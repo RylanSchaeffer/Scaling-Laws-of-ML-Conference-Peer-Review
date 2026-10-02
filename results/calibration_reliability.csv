@@ -1,0 +1,15 @@
+source,method,alpha,incons,dis,rho2,rho2_lo,rho2_hi,includes,note
+NeurIPS 2014 (raw table),two-committee inconsistency,0.2620481927710843,0.25903614457831325,0.4942528735632184,0.526515567731438,0.2711668182280078,0.7331862415878316,reviewers + AC + everything that differs between committees,"committees' own acceptance rate, 43.5/166"
+NeurIPS 2014 (quoted),two-committee inconsistency,0.225,0.25903614457831325,0.5756358768406961,0.4361917575672381,0.12376208298345992,0.6839035849854881,reviewers + AC + everything that differs between committees,25.9% inconsistency applied to the conference-wide 22.5% rate
+NeurIPS 2021 (decided papers),two-committee inconsistency,0.262434554973822,0.26570680628272253,0.5062344139650873,0.5038146081065628,0.38744038741241077,0.609624451010971,reviewers + AC + everything that differs between committees,203 of 764 decided papers inconsistent at 26.2% average acceptance (withdrawn excluded)
+"NeurIPS 2021 (all 882, as quoted)",two-committee inconsistency,0.22732426303854875,0.23015873015873015,0.5062344139650873,0.5570657244246363,0.4477411855173522,0.6551998670176623,reviewers + AC + everything that differs between committees,23.0% at 22.7%: counts the 118 withdrawn papers as consistent rejects
+NeurIPS 2014 (score correlation),corr of committee mean scores,,,,0.55,0.42260000000000003,0.6774,reviewers + calibration; no AC decision,0.55 +/- 0.065
+"NeurIPS 2021 (score correlation, initial)",corr of committee mean scores,,,,0.575,,,reviewers (+ discussion for final); no AC decision,arXiv:2306.03262 Fig. 1; the handoff listed this as not reported
+"NeurIPS 2021 (score correlation, final)",corr of committee mean scores,,,,0.586,,,reviewers (+ discussion for final); no AC decision,arXiv:2306.03262 Fig. 1; the handoff listed this as not reported
+"ICLR 2017-2024, R=3",Spearman-Brown on r=0.40,,,,0.6666666666666667,,,"reviewer-level disagreement only (no AC, no shared noise)",upper bound on rho2 if any shared component exists
+"ICLR 2017-2024, R=3.7",Spearman-Brown on r=0.40,,,,0.7115384615384616,,,"reviewer-level disagreement only (no AC, no shared noise)",upper bound on rho2 if any shared component exists
+"ICLR 2017-2024, R=4",Spearman-Brown on r=0.40,,,,0.7272727272727273,,,"reviewer-level disagreement only (no AC, no shared noise)",upper bound on rho2 if any shared component exists
+"NeurIPS 2014 variance components, R=3","Spearman-Brown, offsets as noise",,,,0.7177570093457945,,,reviewer level only,single-review reliability 0.459
+"NeurIPS 2014 variance components, R=3","Spearman-Brown, offsets removed",,,,0.7514677103718199,,,reviewer level only,single-review reliability 0.502
+"NeurIPS 2014 variance components, R=4","Spearman-Brown, offsets as noise",,,,0.7722473604826545,,,reviewer level only,single-review reliability 0.459
+"NeurIPS 2014 variance components, R=4","Spearman-Brown, offsets removed",,,,0.8012519561815337,,,reviewer level only,single-review reliability 0.502

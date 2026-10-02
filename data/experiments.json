@@ -1,0 +1,481 @@
+{
+  "_meta": {
+    "description": "Field-experiment and inter-review-agreement figures used by the study (handoff §10.1, §10.2). Each item has value, source, handoff status and the result of the 2026-10-02 check. Derived values are computed from the raw counts.",
+    "accessed": "2026-10-02",
+    "status_key": {
+      "V": "verified by the author against the primary source on 2 Oct 2026",
+      "P": "read from a primary page or paper but not re-verified",
+      "S": "secondary source",
+      "U": "unverified or conflicting"
+    },
+    "check_outcome_key": [
+      "confirmed",
+      "partly confirmed",
+      "contradicted",
+      "not found"
+    ],
+    "verification_notes": [
+      "docs/verification/neurips.md",
+      "docs/verification/iclr.md",
+      "docs/verification/icml.md"
+    ],
+    "claims_list": "docs/claims.md"
+  },
+  "neurips2014": {
+    "description": "NeurIPS 2014: about 10% of submissions were reviewed by two independent committees.",
+    "design": {
+      "value": {
+        "papers_chosen": 170,
+        "papers_with_both_decisions": 166,
+        "conference_submissions": 1678
+      },
+      "note": "170 papers (about 10% of 1,678) were chosen; 4 were withdrawn or rejected without review, so 166 have two decisions.",
+      "source": "Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774",
+      "source_url": "https://arxiv.org/pdf/2109.09774",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2109.09774",
+        "note": "Section 2 and Table 1."
+      }
+    },
+    "table_2x2": {
+      "value": {
+        "both_accept": 22,
+        "only_committee_1_accepts": 21,
+        "only_committee_2_accepts": 22,
+        "both_reject": 101,
+        "n": 166,
+        "committee_1_accepts": 43,
+        "committee_2_accepts": 44
+      },
+      "orientation": "Cortes & Lawrence Table 1: rows committee 2, columns committee 1. The handoff's '22 accepted by committee A only' is committee 2 only; '21 by committee B only' is committee 1 only.",
+      "source": "Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774; Lawrence, 'The NIPS experiment', inverseprobability.com, 16 Dec 2014",
+      "source_url": "https://arxiv.org/pdf/2109.09774",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2109.09774",
+        "note": "Lawrence's 2014 blog gives only 25.9%; the table is in the 2021 paper."
+      }
+    },
+    "derived": {
+      "value": {
+        "inconsistent_count": 43,
+        "inconsistent_share": 0.259,
+        "acceptance_rate_committee_1": 0.259,
+        "acceptance_rate_committee_2": 0.2651,
+        "acceptance_rate_mean": 0.262,
+        "share_of_committee_2_accepts_rejected_by_1": 0.5,
+        "share_of_committee_1_accepts_rejected_by_2": 0.4884,
+        "share_of_accepts_rejected_by_other_pooled": 0.4943,
+        "random_decision_inconsistency": 0.3868
+      },
+      "note": "Computed from table_2x2. The handoff's '50 percent and 51 percent rejected by the other' is wrong for the second share: 21/43 = 49% were rejected; 51% is the share the other committee accepted. Section 2.2 of the paper has the typo '25.0%' for 25.9%.",
+      "source": "Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774",
+      "source_url": "https://arxiv.org/pdf/2109.09774",
+      "status": "V",
+      "check": {
+        "outcome": "partly confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2109.09774",
+        "note": "50% and 49%, not 50% and 51% (Section 2.2, Appendix C)."
+      }
+    },
+    "quoted_57_percent": {
+      "value": {
+        "assumed_acceptance_rate": 0.225,
+        "inconsistent_share": 0.259,
+        "quoted_rejected_on_rerun": 0.57,
+        "price_counts": [
+          "21/37",
+          "22/38"
+        ],
+        "realised_conference_rate": 0.247
+      },
+      "note": "E. Price applied the 22.5% rate that the committees were 'tasked with' (37 or 38 accepts of 166) to the 43 inconsistent papers: 21/37 or 22/38, about 57%. 22.5% was a target rate, not the realised conference-wide rate (24.7%). Cortes & Lawrence Appendix C.1 agrees that the debate used the main conference rate as a proxy.",
+      "source": "Price, guest post on Moritz Hardt's blog, 15 Dec 2014; Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774 Appendix C.1",
+      "source_url": "http://blog.mrtz.org/2014/12/15/the-nips-experiment.html",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "http://blog.mrtz.org/2014/12/15/the-nips-experiment.html",
+        "note": "Confirmed with one change: 22.5% was the target rate, not the realised rate."
+      }
+    },
+    "committee_score_correlation": {
+      "value": {
+        "pearson_calibrated_mean_scores": 0.55,
+        "se": 0.065,
+        "notebook_raw_mean_quality": 0.544,
+        "notebook_calibrated_mean_quality": 0.5456
+      },
+      "note": "Correlation of the two committees' mean calibrated scores (paper Fig. 2). The handoff's notebook value 0.544 is the raw (uncalibrated) correlation; the calibrated notebook value is 0.5456. In the model this maps to rho^2 directly (r12 = rho^2).",
+      "source": "Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774; Lawrence, slides 16 Jun 2021; lawrennd/neurips2014 'Reviewer Calibration' notebook",
+      "source_url": "https://arxiv.org/pdf/2109.09774",
+      "status": "V",
+      "check": {
+        "outcome": "partly confirmed",
+        "source_kind": "primary",
+        "url": "https://raw.githubusercontent.com/lawrennd/neurips2014/master/notebooks/Reviewer%20Calibration.ipynb",
+        "note": "0.55 +/- 0.065 confirmed; 0.544 is the raw-score value."
+      }
+    },
+    "variance_components": {
+      "value": {
+        "paper": 1.28,
+        "reviewer_offset": 0.24,
+        "subjective": 1.27
+      },
+      "derived": {
+        "total": 2.79,
+        "reviewer_offset_share": 0.086,
+        "subjective_share_after_offsets": 0.498,
+        "single_review_reliability_offsets_as_noise": 0.4588,
+        "single_review_reliability_offsets_removed": 0.502
+      },
+      "note": "Fitted variance components of individual review scores (paper Table 2). Units: squared points on the 2014 1-10 scale.",
+      "source": "Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774 Table 2; Lawrence, slides 16 Jun 2021",
+      "source_url": "https://arxiv.org/pdf/2109.09774",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2109.09774",
+        "note": "Table 2; the same values are on Lawrence's 2021 slides."
+      }
+    },
+    "score_citation_correlation": {
+      "value": {
+        "accepted": {
+          "r": 0.051,
+          "se": 0.049,
+          "n": 414
+        },
+        "rejected": {
+          "r": 0.22,
+          "se": 0.038
+        }
+      },
+      "note": "Correlation between review scores and later citations. Not significant among accepted papers.",
+      "source": "Cortes & Lawrence, 'Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment', arXiv:2109.09774 Figs. 4 and 8",
+      "source_url": "https://arxiv.org/pdf/2109.09774",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2109.09774",
+        "note": "Figures 4 and 8."
+      }
+    }
+  },
+  "neurips2021": {
+    "description": "NeurIPS 2021: 10% of papers were duplicated at assignment and reviewed by two independent committees (separate ACs, SACs and reviewers).",
+    "design": {
+      "value": {
+        "duplicated_papers": 882,
+        "withdrawn_in_both_copies": 118,
+        "decided_papers": 764,
+        "papers_under_review": 8765,
+        "conference_submissions": 9122
+      },
+      "note": "882 duplicated papers were still under review when initial reviews were released. 118 were withdrawn by the authors after initial reviews; they appear as withdrawn in both copies and so agree by construction. Each copy had its own AC and SAC; the same four PCs worked on both copies (an inference, not stated in the paper). A duplicated paper was accepted if either copy was recommended for acceptance. Duplicated papers had a lower acceptance rate (22.7%) than other papers under review (2,036/7,883 = 25.8%).",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Sections 2-3",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "Sections 2, 3, 4.2, 5.1 and Appendix B."
+      }
+    },
+    "table1": {
+      "value": {
+        "row_labels_original": [
+          "oral",
+          "spotlight",
+          "poster",
+          "reject",
+          "withdrawn"
+        ],
+        "column_labels_copy": [
+          "oral",
+          "spotlight",
+          "poster",
+          "reject",
+          "withdrawn"
+        ],
+        "counts": [
+          [
+            0,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            9,
+            13,
+            0
+          ],
+          [
+            2,
+            7,
+            74,
+            94,
+            0
+          ],
+          [
+            0,
+            13,
+            83,
+            462,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            118
+          ]
+        ]
+      },
+      "note": "Recommendations after SAC/PC calibration. Rows: original committee; columns: copy committee. Orientation checked from the rendered PDF (row accepts 206, column accepts 195).",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Table 1; NeurIPS blog 8 Dec 2021 (same table as an image)",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "Recomputed from Table 1."
+      }
+    },
+    "accept_level": {
+      "value": {
+        "accepts_original": 206,
+        "accepts_copy": 195,
+        "accepted_by_both": 99,
+        "inconsistent_count": 203,
+        "all_882": {
+          "n": 882,
+          "acceptance_rate_mean": 0.2273,
+          "inconsistent_share": 0.2302,
+          "random_decision_inconsistency": 0.3513
+        },
+        "decided_764": {
+          "n": 764,
+          "acceptance_rate_mean": 0.2624,
+          "inconsistent_share": 0.2657
+        },
+        "share_of_original_accepts_rejected_by_copy": 0.5194,
+        "share_of_copy_accepts_rejected_by_original": 0.4923,
+        "share_of_accepts_rejected_by_other_pooled": 0.5062
+      },
+      "note": "The quoted '203 (23.0%) inconsistent at 22.7% average acceptance; random 35.1%' uses all 882 papers and counts the 118 withdrawn papers as consistent rejects. The decided_764 basis drops them. src/peerreview/calibrate.py uses decided_764 as the central calibration target (NEURIPS2021) and keeps all_882 as NEURIPS2021_ALL.",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Section 4.1; NeurIPS blog 8 Dec 2021",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "206 and 195 accepts, 99 in both; recomputed from Table 1."
+      }
+    },
+    "top_tier": {
+      "value": {
+        "oral_plus_spotlight": {
+          "size_original": 29,
+          "size_copy": 25,
+          "overlap": 3,
+          "original_tier_rejected_by_copy": 13,
+          "copy_tier_rejected_by_original": 13
+        },
+        "spotlight_only": {
+          "size_original": 25,
+          "size_copy": 23,
+          "original_spotlights_rejected_by_copy": 13,
+          "copy_spotlights_rejected_by_original": 13
+        },
+        "oral_only": {
+          "size_original": 4,
+          "size_copy": 2,
+          "overlap": 0,
+          "rejected_by_other": 0,
+          "note": "All 6 orals were posters in the other copy."
+        },
+        "if_only_top_tier_accepted": {
+          "acceptance_rate_mean": 0.0306,
+          "inconsistent_count": 48,
+          "inconsistent_share": 0.0544,
+          "random_decision_inconsistency": 0.0594,
+          "share_outside_other_tier_mean": 0.8883
+        }
+      },
+      "pairing": "13 of 29 and 13 of 25 are the oral+spotlight tiers. 13 of 25 and 13 of 23 are the spotlight-only tiers. The two '13 of 25' figures come from different committees. The handoff §8.1 reconstruction pairs the spotlight rejection counts with the oral+spotlight sizes; scripts/run_validation_neurips2021.py uses the correct pairing.",
+      "note": "The paper text gives 5.8% disagreement if only orals and spotlights were accepted, but Table 1 gives 48/882 = 5.4%. The paper's '8% relative improvement' over the 5.9% random baseline fits 5.4%; the blog says 3%.",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Table 1 and Section 4.1; NeurIPS blog 8 Dec 2021 (spotlight counts)",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://blog.neurips.cc/2021/12/08/the-neurips-2021-consistency-experiment/",
+        "note": "The blog states 13/25 and 13/23 for spotlights; the paper gives only Table 1."
+      }
+    },
+    "committee_score_correlation": {
+      "value": {
+        "pearson_initial_mean_scores": 0.575,
+        "pearson_final_mean_scores": 0.586
+      },
+      "note": "The handoff (§10.1, §10.7) says this was not reported. It is reported in the caption of Figure 1. In the model it maps to rho^2 directly (r12 = rho^2). calibrate.py already uses it (NEURIPS2021_SCORE_CORR).",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Figure 1 caption",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "V (absence)",
+      "check": {
+        "outcome": "contradicted",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "Figure 1 caption."
+      }
+    },
+    "disagreement_by_score_threshold": {
+      "value": null,
+      "note": "No table by score band. Figures 2 and 3 plot the disagreement and the rejected-by-other share against the acceptance rate if the top x% by mean initial or final score were accepted. The curves are available only as figures.",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Figures 2 and 3",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "V (absence)",
+      "check": {
+        "outcome": "partly confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "Threshold curves exist as figures only."
+      }
+    },
+    "variants": {
+      "value": {
+        "bump_down": {
+          "acceptance_rate": 0.16,
+          "inconsistent_share": 0.203,
+          "share_of_accepts_rejected_by_other": 0.632
+        },
+        "bump_up": {
+          "acceptance_rate": 0.344,
+          "inconsistent_share": 0.294,
+          "share_of_accepts_rejected_by_other": 0.427
+        },
+        "bump_pairs_counted_consistent": {
+          "inconsistent_share": 0.16
+        },
+        "both_committees_unanimous_but_disagree": 24
+      },
+      "note": "Variants that apply the AC's 'can be bumped up/down' qualifiers. Not a handoff claim.",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "not in handoff",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "Read from the paper by the NeurIPS verifier."
+      }
+    },
+    "recommendation_process": {
+      "value": "The AC meta-review form had a mandatory field: Accept (Oral), Accept (Spotlight), Accept (Poster) or Reject, with a qualifier (certain; can be bumped up; can be bumped down; not certain). SACs and PCs decided orals and spotlights jointly, using factors beyond raw scores. During calibration ACs were often asked to edit meta-reviews between poster and reject or between spotlight and poster.",
+      "source": "Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Sections 2, 4.2, 5.1 and Appendix B",
+      "source_url": "https://arxiv.org/pdf/2306.03262",
+      "status": "not in handoff",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/pdf/2306.03262",
+        "note": "Validation input for §8.1."
+      }
+    },
+    "conference_totals": {
+      "value": {
+        "submissions": 9122,
+        "accepted": 2334,
+        "acceptance_rate": 0.2559,
+        "orals": 55,
+        "spotlights": 260,
+        "posters": 2019,
+        "reviewers_over": 8000,
+        "acs": 708,
+        "sacs": 95,
+        "share_with_at_least_3_reviews_at_release": 0.997
+      },
+      "note": "The handoff gives 25.7%; the fact sheet and the paper give 25.6%.",
+      "source": "NeurIPS 2021 fact sheet; Beygelzimer, Dauphin, Liang & Wortman Vaughan, 'Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment', arXiv:2306.03262 Section 2",
+      "source_url": "https://neurips.cc/media/Press/NeurIPS_2021-Fact_Sheet.pdf",
+      "status": "P",
+      "check": {
+        "outcome": "partly confirmed",
+        "source_kind": "primary",
+        "url": "https://neurips.cc/media/Press/NeurIPS_2021-Fact_Sheet.pdf",
+        "note": "The rate is 25.6%, not 25.7%."
+      }
+    }
+  },
+  "iclr_review_agreement": {
+    "description": "Agreement between individual ICLR reviews of the same paper (OpenReview data).",
+    "berenslab_review_correlation": {
+      "value": {
+        "r": 0.4,
+        "review_pairs": 244226,
+        "reviews_per_paper": 3.7,
+        "papers": 24445,
+        "share_with_3_or_4_reviews": 0.93,
+        "years": "2017-2024"
+      },
+      "note": "244,226 counts ordered pairs, so each pair is counted twice. The figure pools three rating scales (1-10; 1/3/6/8 in 2020; 1/3/5/6/8/10 from 2022).",
+      "source": "berenslab ICLR dataset README (version 24v2 statistics) and arXiv:2404.08403",
+      "source_url": "https://github.com/berenslab/iclr-dataset",
+      "status": "V",
+      "check": {
+        "outcome": "confirmed",
+        "source_kind": "primary",
+        "url": "https://arxiv.org/abs/2404.08403",
+        "note": "Verifier recompute from the paperlists dumps: r = 0.399 over 244,234 ordered pairs (122,117 distinct), 3.66 reviews per reviewed paper, 92.8% with 3 or 4."
+      },
+      "recompute_in_repo": {
+        "file": "results/iclr_pooled_pairs.csv",
+        "subset": "all_reviewed",
+        "ordered_pairs": 244234,
+        "pair_corr_pooled": 0.3988,
+        "pair_corr_paper_weighted": 0.4162,
+        "mean_reviews": 3.6579,
+        "papers": 24119,
+        "decided_only_pair_corr_pooled": 0.3758,
+        "note": "Values as of 2026-10-02; rerun scripts/iclr_data.py to refresh."
+      }
+    },
+    "icc1_by_year": {
+      "value": {
+        "2017": 0.58,
+        "2018": 0.41,
+        "2019": 0.46,
+        "2020": 0.39
+      },
+      "note": "Own one-way ICC(1) of individual scores from the paperlists dumps. Verifier recompute: 0.576, 0.413, 0.464, 0.392. The handoff's SD ranges (within 1.03-1.19, between 1.00-1.20) hold for 2017-2019 only; 2020 (1/3/6/8 scale) has within SD 1.72 and between SD 1.38. ICC(1) is 0.36-0.42 for 2021-2025 and 0.18 for 2026 (pre-rebuttal scores, new scale). The repository's own values are in results/iclr_variance.csv (column icc1_all_reviewed).",
+      "source": "own computation on papercopilot/paperlists",
+      "source_url": "https://github.com/papercopilot/paperlists",
+      "status": "own computation",
+      "check": {
+        "outcome": "partly confirmed",
+        "source_kind": "secondary",
+        "url": "https://github.com/papercopilot/paperlists",
+        "note": "ICC values confirmed; the SD ranges hold for 2017-2019 only."
+      }
+    }
+  }
+}

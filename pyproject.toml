@@ -1,0 +1,24 @@
+[project]
+name = "peerreview"
+version = "0.1.0"
+description = "Scaling laws of ML conference peer review: models, analytics, simulations"
+authors = [
+    { name = "Rylan Schaeffer", email = "rylanschaeffer@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "pymupdf>=1.28.2",
+    "scipy>=1.18.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.28,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

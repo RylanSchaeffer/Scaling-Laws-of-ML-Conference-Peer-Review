@@ -95,6 +95,11 @@ def main() -> None:
         e1 = an.expected_kth_best(N_FINE, 1)
         rows += [_row("E_quality_top_score", level, r2, n, rho * x) for n, x in zip(N_FINE, e1)]
         rows.append(_row("cond_sd", level, r2, np.nan, an.conditional_quality_sd(rho)))
+        # Fixed-share precision at finite N (K = round(pN) >= 10 here, where the closed
+        # form matches the exact integral to 0.1%); figure 1 draws these.
+        for p in (0.01, 0.10):
+            v = [an.precision_pct_finite(n, p, rho) for n in N_FINE]
+            rows += [_row("prec_pct_finite", level, r2, n, x, p=p) for n, x in zip(N_FINE, v)]
     df = pd.DataFrame(rows)
     out = os.path.join(ROOT, "results", "analytic_curves.csv")
     df.to_csv(out, index=False)

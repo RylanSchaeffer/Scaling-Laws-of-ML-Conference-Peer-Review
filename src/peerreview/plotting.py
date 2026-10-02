@@ -24,7 +24,7 @@ MUTED = "#8a8985"
 GRID = "#e4e3df"
 SURFACE = "#ffffff"
 
-TEXTWIDTH_IN = 6.5  # \textwidth of the paper (1 in margins, letter)
+TEXTWIDTH_IN = 5.5  # \textwidth of the paper (NeurIPS 2026 style)
 N_TICKS = [1e3, 1e4, 1e5, 1e6]
 
 
@@ -32,10 +32,10 @@ def setup() -> None:
     mpl.rcParams.update({
         "font.family": "sans-serif",
         "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-        "font.size": 8.5,
-        "axes.titlesize": 9,
-        "axes.titleweight": "bold",
-        "axes.labelsize": 8.5,
+        "font.size": 8,
+        "axes.titlesize": 8.5,
+        "axes.titleweight": "normal",
+        "axes.labelsize": 8,
         "axes.labelcolor": INK,
         "axes.edgecolor": MUTED,
         "axes.linewidth": 0.6,
@@ -46,12 +46,16 @@ def setup() -> None:
         "grid.linestyle": "-",
         "xtick.color": INK2,
         "ytick.color": INK2,
-        "xtick.labelsize": 7.5,
-        "ytick.labelsize": 7.5,
+        "xtick.labelsize": 7,
+        "ytick.labelsize": 7,
         "xtick.major.width": 0.6,
         "ytick.major.width": 0.6,
-        "legend.fontsize": 7.5,
-        "legend.frameon": False,
+        "legend.fontsize": 7,
+        "legend.frameon": True,  # opaque, borderless: guide lines never run through legend text
+        "legend.framealpha": 1.0,
+        "legend.facecolor": SURFACE,
+        "legend.edgecolor": "none",
+        "legend.fancybox": False,
         "lines.linewidth": 1.6,
         "lines.solid_capstyle": "round",
         "lines.solid_joinstyle": "round",
@@ -102,7 +106,7 @@ def end_label(ax, x, y, text, dx=1.08, dy=0.0, color=INK, **kw):
 
 
 def panel_label(ax, s: str) -> None:
-    ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontsize=10, fontweight="bold", va="bottom", ha="left")
+    ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontsize=9, fontweight="bold", va="bottom", ha="left")
 
 
 def save(fig, path_stem: str) -> None:

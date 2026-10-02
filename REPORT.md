@@ -1,4 +1,4 @@
-# Report: Scaling Laws of ML Conference Peer Review
+# Report: Scaling Laws of Machine Learning Conference Peer Review
 
 This report gives every finding of the study, with the number behind each one. The
 paper (`paper/main.pdf`) is the short version. The specification is
@@ -249,7 +249,18 @@ out of the main analyses.
 5. **The NeurIPS 2014 choice.** The raw table (0.53) is the right inversion; the quoted
    version (0.44), which applies the inconsistency rate to the wrong acceptance rate,
    serves as the pessimistic bound because it is the lowest point estimate in common use.
-6. **Venue-years below $N = 1{,}000$** (ICLR 2017 and 2018) are not tabulated.
+6. **Venue-years below $N = 1{,}000$** (ICLR 2017 and 2018) are not tabulated. Fig. 1a
+   of the paper still plots their submission counts.
+7. **Paper title, template and Fig. 1.** At the author's request (2 October 2026) the
+   title is "Scaling Laws of Machine Learning Conference Peer Review", the paper uses the
+   NeurIPS 2026 style with its `preprint` option (not a submission), and the abstract opens
+   with the motivating question (does review still find the best papers and separate signal
+   from noise as submissions grow?). Fig. 1 has two panels: submissions per year
+   (`data/venues.csv`, `N_used`; NeurIPS grew 26% a year from 2014 to 2025) and the
+   precision of fixed-number against fixed-share selections (top 10 and top 100 against the
+   top 1% and top 10%, which are the same sets at $N = 10^3$). The fixed-share curves use
+   `analytic.precision_pct_finite` (rows `prec_pct_finite` in `results/analytic_curves.csv`).
+   The winner-rank panel left Fig. 1; its numbers stay in the text.
 
 ## 9. Limitations
 

@@ -1,4 +1,4 @@
-# Scaling Laws of ML Conference Peer Review
+# Scaling Laws of Machine Learning Conference Peer Review
 
 How does the quality of a conference's selections change as the number of submissions
 grows, with the review process held fixed? This repository holds a calibrated model
@@ -46,5 +46,8 @@ uv run python scripts/make_analytic_curves.py && uv run python scripts/make_R_ne
 ```bash
 cd paper && tectonic main.tex
 ```
+
+The paper uses the NeurIPS 2026 style file (`paper/neurips_2026.sty`, `preprint` option).
+`uv run python scripts/check_paper.py` checks its layout.
 
 The ICLR dumps (about 300 MB) download into `data/raw/`, which git ignores.

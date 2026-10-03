@@ -26,7 +26,7 @@ RES = os.path.join(ROOT, "results")
 FIG = os.path.join(ROOT, "figures")
 LEV = ("pessimistic", "central", "optimistic")
 NEURIPS = {2014: 1678, 2026: 30709}
-ROW_H = 1.72  # height of one row of panels, inches
+ROW_H = 1.69  # height of one row of panels, inches
 
 
 def load(name: str) -> pd.DataFrame:
@@ -123,7 +123,7 @@ def fig_main():
     fixed-percentage precision: each pair is the same set at N = 1,000 (top 10 = top 1%,
     top 100 = top 10%), then they diverge."""
     g = load("sweep_g")
-    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 2.2),
+    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 1.85),
                              gridspec_kw=dict(wspace=0.3, width_ratios=[1, 1.5]))
     submissions_panel(axes[0])
 

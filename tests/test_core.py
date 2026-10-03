@@ -51,3 +51,24 @@ def test_inversions_round_trip():
             assert abs(an.invert_disagreement(a, an.disagreement(a, r)) - r) < 1e-8
     se = an.sigma_eps_for_rho2(0.55, 3)
     assert abs(an.rho2(se, 3) - 0.55) < 1e-12
+
+
+def test_replay_tiers_beyond_scores():
+    """Default tiers follow the score; random tiers among accepts make spotlights as
+    fragile as posters; orals_by_score keeps the orals robust."""
+    from peerreview.validation import replay_tiers
+
+    m = ReviewModel(R=4, sigma_eps=float(an.sigma_eps_for_rho2(0.5, 4, 1.2, 0.0)))
+    kw = dict(n=764, accept_rate=0.262, tiers1=(4, 25), tiers2=(2, 23), N_conf=7902)
+
+    def share(st, a, b):
+        return (st[f"{a}1_rej2"] + st[f"{a}2_rej1"]).sum() / (st[f"{b}1"] + st[f"{b}2"]).sum()
+
+    base = replay_tiers(m, 300, 1, **kw)
+    rand = replay_tiers(m, 300, 1, own=np.inf, **kw)
+    spot = replay_tiers(m, 300, 1, own=np.inf, orals_by_score=True, **kw)
+    assert np.all(base["score_share"] == 1.0) and np.all(rand["score_share"] == 0.0)
+    assert share(base, "spot", "spot") < 0.4 < share(base, "post", "post")
+    assert abs(share(rand, "spot", "spot") - share(rand, "post", "post")) < 0.04
+    assert share(spot, "oral", "oral") < 0.3 < share(spot, "spot", "spot")
+    assert base["overlap"].mean() > 2 * rand["overlap"].mean() * 0.9

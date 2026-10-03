@@ -34,6 +34,9 @@ VARIANTS = {
     "beta/gauss": ReviewModel(R=4, quality="beta"),
     "beta/t3": ReviewModel(R=4, quality="beta", noise="t3"),
     "exp/gauss": ReviewModel(R=4, quality="exp"),
+    # Heavy-tailed noise on a bounded 1-to-10 scale, as real reviews are (not in Fig. 6).
+    "gauss/t3 1-10": ReviewModel(R=4, noise="t3", scale="int10"),
+    "beta/t3 1-10": ReviewModel(R=4, quality="beta", noise="t3", scale="int10"),
 }
 # Subsample: the decided-paper equivalent of the 9,122-paper conference (9,122 x 764 / 882).
 DESIGNS = {"pool": dict(N_conf=None, reps=20_000), "subsample": dict(N_conf=7902, reps=4000)}

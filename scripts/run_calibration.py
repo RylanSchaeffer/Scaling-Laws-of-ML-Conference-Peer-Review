@@ -58,6 +58,9 @@ def bisection_variants() -> list[tuple[ReviewModel, tuple[str, ...]]]:
     # §3.5 validation variants at R = 4 (Gaussian ones are analytic).
     for qd, nz in (("gaussian", "t3"), ("beta", "gaussian"), ("beta", "t3"), ("exp", "gaussian")):
         v.append((ReviewModel(R=4, quality=qd, noise=nz), all_levels))
+    # Heavy-tailed noise on a bounded 1-to-10 scale (highlight process, run_highlight_process.py).
+    for qd in ("gaussian", "beta"):
+        v.append((ReviewModel(R=4, quality=qd, noise="t3", scale="int10"), all_levels))
     return v
 
 

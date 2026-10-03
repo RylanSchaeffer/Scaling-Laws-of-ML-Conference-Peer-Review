@@ -24,7 +24,7 @@ submissions, two out-of-sample tests, and the paper.
 | `src/peerreview/calibrate.py`, `levels.py` | calibration to the NeurIPS experiments; the three reliability levels |
 | `src/peerreview/validation.py` | replay of the NeurIPS 2021 top tier |
 | `src/peerreview/iclr.py` | ICLR public-review pipeline (paperlists dumps) |
-| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV; `make_analytic_curves.py` and `make_R_needed.py` write the two `analytic_*.csv` files |
+| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV; `make_analytic_curves.py` and `make_R_needed.py` write the two `analytic_*.csv` files; `make_best_paper.py` writes `best_paper.csv` |
 | `results/` | one CSV row per configuration, with parameters, metrics, replicates, seed and wall time |
 | `figures/` | every figure, from `scripts/make_figures.py` |
 | `tests/` | unit tests (`uv run pytest -q`) |
@@ -40,7 +40,7 @@ WORKERS=5 bash scripts/run_all.sh
 ```
 
 ```bash
-uv run python scripts/make_analytic_curves.py && uv run python scripts/make_R_needed.py && uv run python scripts/make_figures.py
+uv run python scripts/make_analytic_curves.py && uv run python scripts/make_R_needed.py && uv run python scripts/make_best_paper.py && uv run python scripts/make_figures.py
 ```
 
 ```bash

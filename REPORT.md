@@ -195,6 +195,27 @@ central; the band (NeurIPS only) spans the pessimistic and optimistic levels. At
 top-scored paper's median true rank rises from 15 (2014) to 55 (2026), and the best paper is
 among the ten top-scored papers with probability 44% (2014) and 25% (2026).
 
+**What the Best Paper deserved** (`results/best_paper.csv`, `scripts/make_best_paper.py`).
+The model's Best Paper is the top-scored paper. Exact probabilities (containment_fixed_K
+with K = 1) that it is truly in each tier, central level (pessimistic to optimistic):
+
+| Tier | NeurIPS 2014 ($N$ = 1,678) | NeurIPS 2026 ($N$ = 30,709) |
+|---|---|---|
+| the true best | 12.1% (9.2 to 25.4) | 6.6% (4.6 to 17.7) |
+| the true top 10 | 44.0% (36.0 to 71.6) | 25.2% (18.5 to 54.2) |
+| the true top oral count (20; 112) | 57.7% (48.8 to 84.1) | 62.8% (51.9 to 91.2) |
+| the true top 10% | 93.5% (88.9 to 99.6) | 98.8% (96.9 to 100.0) |
+| the true accepted set (24.7%; 25.7%) | 99.0% (97.7 to 100.0) | 99.91% (99.63 to 100.00) |
+| should have been rejected | 1.0% (2.3 to 0.01) | 0.09% (0.37 to 0.00) |
+| a second committee would reject it | 12.3% (19.2 to 1.0) | 5.2% (10.4 to 0.1) |
+
+The chance that the Best Paper deserved rejection falls with $N$ (1.4% at $10^3$, 0.01% at
+$10^6$, 25% acceptance), because the top score of a larger pool is more extreme and its
+quality sits further above the fixed-percentile acceptance bar. The chance that it is the
+true best falls at the same time. A direct simulation at the central level (200,000
+conferences at $N$ = 1,678; 40,000 at 30,709) agrees within sampling error: 12.15% best,
+99.00% accept-worthy at 1,678; 6.47% best, 62.5% oral-worthy, 99.89% accept-worthy at 30,709.
+
 ## 7. Validation
 
 **NeurIPS 2021 top tier** (`results/validation_neurips2021.csv`). Among the 764 decided

@@ -2,7 +2,8 @@
 
 Simulation results come from the sweep CSVs; analytic curves come from
 results/analytic_curves.csv (scripts/make_analytic_curves.py), so every plotted
-number traces to a CSV row. Figures go to figures/fig{n}_{name}.pdf and .png.
+number traces to a CSV row. Figures go to figures/fig{n}_{name}.pdf and .png. The file
+number n is the report's numbering; the paper orders them 1, 5, 2, 7, 3, 4, 6.
 
 Usage: uv run python scripts/make_figures.py [names...]
 """
@@ -25,7 +26,7 @@ RES = os.path.join(ROOT, "results")
 FIG = os.path.join(ROOT, "figures")
 LEV = ("pessimistic", "central", "optimistic")
 NEURIPS = {2014: 1678, 2026: 30709}
-ROW_H = 1.85  # height of one row of panels, inches
+ROW_H = 1.72  # height of one row of panels, inches
 
 
 def load(name: str) -> pd.DataFrame:
@@ -77,38 +78,52 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: submissions grow; fixed number versus fixed percentile (the main result)
+# Figure 1: papers per year; fixed number versus fixed percentage (the main result)
 # ---------------------------------------------------------------------------
 
 
 def submissions_panel(ax):
-    """Submissions per year at NeurIPS, ICML and ICLR (data/venues.csv, N_used)."""
+    """Submitted (solid), accepted (dashed) and oral (dotted) papers per year at NeurIPS, ICML
+    and ICLR (data/venues.csv: N_used, N_used x acc_rate_used, orals_used). On the log axis a
+    constant rate is a constant gap between two lines; a widening gap is a falling rate."""
     v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
-    v = v[v.denominator != "decided"]
+    v = v[v.denominator != "decided"].copy()
+    v["accepted_n"] = (v.N_used * v.acc_rate_used).round()
     for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^")):
         s = v[v.venue == venue].sort_values("year")
-        ax.plot(s.year, s.N_used, color=c, lw=1.6, marker=mk, ms=3.4, mec=P.SURFACE, mew=0.7, label=venue)
-    # NeurIPS 2026 is reported by secondary aggregators only (docs/claims.md): open marker.
+        ax.plot(s.year, s.N_used, color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, mew=0.6)
+        ax.plot(s.year, s.accepted_n, color=c, lw=1.2, ls=(0, (3, 1.6)), marker=mk, ms=2.6, mec=P.SURFACE, mew=0.5)
+        o = s.dropna(subset=["orals_used"])
+        ax.plot(o.year, o.orals_used, color=c, lw=1.0, ls=(0, (1, 1.3)), marker=mk, ms=2.2, mec=P.SURFACE, mew=0.4)
+    # NeurIPS 2026 is reported by secondary aggregators only (docs/claims.md): open markers.
     last = v[(v.venue == "NeurIPS") & (v.year == 2026)]
-    ax.plot(last.year, last.N_used, ls="none", marker="o", ms=3.4, mfc=P.SURFACE, mec=P.BLUE[450], mew=1.0, zorder=5)
+    for col, ms in (("N_used", 3.2), ("accepted_n", 2.6), ("orals_used", 2.2)):
+        ax.plot(last.year, last[col], ls="none", marker="o", ms=ms, mfc=P.SURFACE, mec=P.BLUE[450], mew=1.0, zorder=5)
     ax.set_yscale("log")
-    ax.set_ylim(400, 6e4)
-    ax.yaxis.set_major_locator(FixedLocator([1e3, 3e3, 1e4, 3e4]))
+    ax.set_ylim(9, 1e6)  # headroom so the legend clears the 2023-2026 NeurIPS points
+    ax.yaxis.set_major_locator(FixedLocator([10, 100, 1e3, 1e4, 1e5]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.yaxis.set_major_formatter(plt.FuncFormatter(P.fmt_count))
     ax.set_xticks([2014, 2018, 2022, 2026])
     ax.set_xlim(2013.3, 2026.7)
     ax.set_xlabel("Year")
-    ax.set_ylabel("Submissions per year")
-    ax.set_title("Submissions grow", loc="left")
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
+    ax.set_ylabel("Papers per year")
+    ax.set_title("Submitted, accepted, orals", loc="left")
+    handles = [Line2D([], [], color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, label=venue)
+               for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))]
+    handles += [Line2D([], [], color=P.INK2, lw=1.6, label="submitted"),
+                Line2D([], [], color=P.INK2, lw=1.2, ls=(0, (3, 1.6)), label="accepted"),
+                Line2D([], [], color=P.INK2, lw=1.0, ls=(0, (1, 1.3)), label="orals")]
+    ax.legend(handles=handles, loc="upper left", ncol=2, handlelength=1.6, columnspacing=0.8, borderaxespad=0.2,
+              fontsize=6.5)
 
 
 def fig_main():
-    """(a) Submissions per year. (b) Fixed-number against fixed-share precision: each pair
-    is the same set at N = 1,000 (top 10 = top 1%, top 100 = top 10%), then they diverge."""
+    """(a) Papers submitted, accepted and given orals per year. (b) Fixed-number against
+    fixed-percentage precision: each pair is the same set at N = 1,000 (top 10 = top 1%,
+    top 100 = top 10%), then they diverge."""
     g = load("sweep_g")
-    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 2.3),
+    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 2.2),
                              gridspec_kw=dict(wspace=0.3, width_ratios=[1, 1.5]))
     submissions_panel(axes[0])
 
@@ -133,7 +148,7 @@ def fig_main():
     ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6])
     P.pct_axis(ax)
     ax.set_ylabel("Precision of the selection")
-    ax.set_title("Fixed number falls, fixed share holds", loc="left")
+    ax.set_title("Fixed number falls, fixed percentage holds", loc="left")
     mark_venues(ax, label=True, y=0.99)
     ax.legend(handles=sim_legend_handles(), loc="lower left", handlelength=1.3, borderaxespad=0.2)
     for i, a in enumerate(fig.axes):
@@ -222,7 +237,7 @@ def fig_parameters():
     d = b[(b.level == "central") & (b.N == 20000)]
     for su, c, ls in ((0.0, P.BLUE[450], "-"), (0.5, P.ORANGE[450], "-")):
         e = d[np.isclose(d.sigma_u, su)].sort_values("R")
-        lab = "no shared noise" if su == 0 else "shared, $\\sigma_u$ = 0.5"
+        lab = "$\\sigma_u$ = 0" if su == 0 else "$\\sigma_u$ = 0.5"
         ax.plot(e.R, e.prec_K10, color=c, lw=1.6, marker="o", ms=3.4, mec=P.SURFACE, mew=0.7, label=lab)
     ax.axvline(3, color=P.MUTED, lw=0.6, ls=(0, (2, 2)), zorder=0)
     ax.set_xscale("log")
@@ -240,12 +255,12 @@ def fig_parameters():
     rn = load("analytic_R_needed")
     for su, c in ((0.0, P.BLUE[450]), (0.5, P.ORANGE[450])):
         e = rn[np.isclose(rn.sigma_u, su)].sort_values("N")
-        lab = "no shared noise" if su == 0 else "$\\sigma_u$ = 0.5"
+        lab = "$\\sigma_u$ = 0" if su == 0 else "$\\sigma_u$ = 0.5"
         ax.plot(e.N, e.R_needed, color=c, lw=1.6, marker="o", ms=3.4, mec=P.SURFACE, mew=0.7, label=lab)
     P.n_axis(ax)
     ax.set_ylim(0, 28)
     ax.set_ylabel("Reviews per paper needed")
-    ax.set_title("Reviews to hold the top", loc="left")
+    ax.set_title("Reviews to hold top 10", loc="left")
     ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
     for i, a in enumerate(axes):
@@ -257,17 +272,17 @@ def fig_parameters():
 # Figure 4: robustness (quality tails, noise tails, score scales)
 # ---------------------------------------------------------------------------
 
-QUAL_LABEL = {"gaussian": "Gaussian", "beta": "bounded (Beta)", "exp": "exponential tail",
-              "lognormal": "lognormal", "t3": "heavy tail ($t_3$)"}
+QUAL_LABEL = {"gaussian": "Gaussian", "beta": "bounded", "exp": "exponential",
+              "lognormal": "lognormal", "t3": "$t_3$"}
 QUAL_ORDER = ("t3", "exp", "lognormal", "gaussian", "beta")
-SCALE_LABEL = {"continuous": "continuous", "int10": "1-10 integer", "iclr6": "ICLR {1,3,5,6,8,10}",
+SCALE_LABEL = {"continuous": "continuous", "int10": "1-10", "iclr6": "ICLR",
                "six": "6-point", "five": "5-point"}
 SCALE_ORDER = ("continuous", "int10", "iclr6", "six", "five")
 
 
 def fig_robustness():
     d, e = load("sweep_d"), load("sweep_e")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.35), gridspec_kw=dict(wspace=0.38))
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.1), gridspec_kw=dict(wspace=0.38))
     for ax, noise, title in ((axes[0], "gaussian", "Gaussian reviewer noise"), (axes[1], "t3", "Heavy-tailed ($t_3$) noise")):
         for i, qd in enumerate(QUAL_ORDER):
             s = d[(d.noise == noise) & (d.quality == qd)]
@@ -280,8 +295,8 @@ def fig_robustness():
         ax.set_ylim(0, 1)
         P.pct_axis(ax)
     axes[0].set_ylabel("Top-10 precision")
-    axes[0].legend(loc="upper center", bbox_to_anchor=(1.12, -0.24), ncol=5, handlelength=1.3, columnspacing=1.0,
-                   title="Quality distribution", title_fontsize=7)
+    # One quality legend serves panels a and b; the upper left of b is empty above its curves.
+    axes[1].legend(loc="upper left", ncol=2, handlelength=1.0, columnspacing=0.5, borderaxespad=0.2)
 
     ax = axes[2]
     st = e[(e.placement == "standard")]
@@ -408,8 +423,8 @@ def fig_validation():
     rows(ax, vv, vp, "overlap_q05", "overlap_q95", "overlap_mean", 3, "observed 3", P.BLUE[300], P.BLUE[450], (0, 18))
     ax.set_yticks(y)
     ax.set_yticklabels([VAR_LABEL[k] for k in vv.index], fontsize=6.3)
-    ax.set_xlabel("Papers in both top tiers")
-    ax.set_title("Top-tier overlap", loc="left")
+    ax.set_xlabel("Papers highlighted by both")
+    ax.set_title("Highlight overlap", loc="left")
 
     ax = axes[1]
     obs = vv.obs_spot_rej_share.iloc[0]
@@ -448,27 +463,37 @@ def fig_validation():
 
 
 # ---------------------------------------------------------------------------
-# Figure 7 (report only): venue history at the oral count
+# Figure 7: the model at each real venue-year (paper Fig. 4)
 # ---------------------------------------------------------------------------
 
 
 def fig_history():
+    """The central model at each real venue-year (results/history.csv): top-10 precision,
+    precision of the real oral set, and the chance that the best paper is in the top 10.
+    Bands span the pessimistic and optimistic levels."""
     h = load("history")
-    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.3))
-    for ax, col, title in ((axes[0], "prec_K10", "Top-10 precision"), (axes[1], "prec_orals", "Precision of the oral set")):
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.6))
+    panels = ((axes[0], "prec_K10", "Top 10 by score", "Precision"),
+              (axes[1], "prec_orals", "Real oral set", "Precision"),
+              (axes[2], "best_in_K10", "Best paper in top 10", "Probability"))
+    for ax, col, title, ylabel in panels:
         for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^")):
             s = h[(h.venue == venue) & (h.denominator != "decided")].dropna(subset=[col])
             cen = s[s.level == "central"].sort_values("year")
             lo, hi = (s[s.level == lev].sort_values("year") for lev in ("pessimistic", "optimistic"))
-            ax.fill_between(cen.year, lo[col], hi[col], color=c, alpha=0.12, lw=0)
-            ax.plot(cen.year, cen[col], color=c, lw=1.6, marker=mk, ms=3.4, mec=P.SURFACE, mew=0.7, label=venue)
-        ax.set_ylim(0, 0.6)
+            if venue == "NeurIPS":  # one band, for the longest series
+                ax.fill_between(cen.year, lo[col], hi[col], color=c, alpha=0.13, lw=0)
+            ax.plot(cen.year, cen[col], color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, mew=0.6, label=venue)
+        ax.set_ylim(0, 0.62 if col != "best_in_K10" else 0.82)
         P.pct_axis(ax)
+        ax.set_xticks([2014, 2018, 2022, 2026])
+        ax.set_xlim(2013.3, 2026.7)
         ax.set_xlabel("Year")
+        ax.set_ylabel(ylabel)
         ax.set_title(title, loc="left")
-    axes[0].legend(loc="upper right", handlelength=1.3)
+    axes[0].legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
     for i, a in enumerate(axes):
-        P.panel_label(a, "ab"[i])
+        P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig7_history"))
 
 

@@ -189,7 +189,11 @@ rate and main-track oral count (values from `data/venues.csv`, `*_used` columns)
 | ICML 2026 | 23,918 | 13.6% | 25.2% (159) | 2,421 | 50.3% |
 | ICLR 2026 (valid) | 19,525 | 14.4% | 28.4% (224) | 2,008 | 49.7% |
 
-Figure 7 (`figures/fig7_history.png`) shows every year with bands.
+Figure 7 (`figures/fig7_history.png`, paper Fig. 4) shows every year: (a) top-10 precision, (b) precision of the
+real oral set, (c) the probability that the best paper is in the top 10 by score. Lines are
+central; the band (NeurIPS only) spans the pessimistic and optimistic levels. At NeurIPS the
+top-scored paper's median true rank rises from 15 (2014) to 55 (2026), and the best paper is
+among the ten top-scored papers with probability 44% (2014) and 25% (2026).
 
 ## 7. Validation
 
@@ -253,14 +257,27 @@ out of the main analyses.
    of the paper still plots their submission counts.
 7. **Paper title, template and Fig. 1.** At the author's request (2 October 2026) the
    title is "Scaling Laws of Machine Learning Conference Peer Review", the paper uses the
-   NeurIPS 2026 style with its `preprint` option (not a submission), and the abstract opens
-   with the motivating question (does review still find the best papers and separate signal
-   from noise as submissions grow?). Fig. 1 has two panels: submissions per year
-   (`data/venues.csv`, `N_used`; NeurIPS grew 26% a year from 2014 to 2025) and the
-   precision of fixed-number against fixed-share selections (top 10 and top 100 against the
-   top 1% and top 10%, which are the same sets at $N = 10^3$). The fixed-share curves use
+   NeurIPS 2026 style with its `preprint` option (not a submission), and the paper is framed
+   around the two jobs of review: accepting good papers (a fixed percentage of submissions)
+   and highlighting the best (orals, spotlights and awards). Highlights grow more slowly
+   than submissions: oral rates fall at every venue, and awards stay at 1 to 13 a year, close
+   to a fixed number. The paper studies the two limits, fixed percentage and fixed number;
+   at real oral counts the model's precision lies between them (`results/history.csv`,
+   `prec_orals`, central: NeurIPS 28.6% to 22.1%, ICML 35.5% to 25.2%, ICLR 30.1% to 28.4%).
+   The question is whether review still separates signal from noise for each job as
+   submissions grow. Fig. 1 has two panels: papers submitted, accepted and given orals per
+   year (`data/venues.csv`, `N_used`, `N_used` x `acc_rate_used` and `orals_used`; NeurIPS
+   submissions grew 26% a year from 2014 to 2025) and the precision of fixed-number against fixed-percentage selections (top 10 and
+   top 100 against the top 1% and top 10%, which are the same sets at $N = 10^3$). The fixed-share curves use
    `analytic.precision_pct_finite` (rows `prec_pct_finite` in `results/analytic_curves.csv`).
    The winner-rank panel left Fig. 1; its numbers stay in the text.
+8. **Seven pages and stated takeaways.** The author asked (2 October 2026) for the key
+   takeaways to be stated and emphasised, and allowed a seventh page. The paper now states
+   four takeaways in the abstract and six ranked conclusions in the Introduction. Results
+   paragraphs open with a bold takeaway sentence. The seventh page carries the real-venue
+   figure (`figures/fig7_history`, paper Fig. 4). Results ends with implications for program
+   chairs, marked as untested. Figure rows are 1.72 in high. Awards are written as "13 or
+   fewer a year", because a secondary source says ICLR 2020 gave none (`data/venues.csv`).
 
 ## 9. Limitations
 

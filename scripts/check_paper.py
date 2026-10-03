@@ -1,6 +1,6 @@
 """Check paper/main.pdf against the layout rules of handoff §2: 4 to 6 pages of main
-text, the main figure at the bottom of page 1 or the top of page 2, and one large
-figure on every later page of the main text.
+text (the author allowed a seventh on 2 October 2026), the main figure at the bottom of
+page 1 or the top of page 2, and one large figure on every later page of the main text.
 
 Usage: uv run python scripts/check_paper.py
 """

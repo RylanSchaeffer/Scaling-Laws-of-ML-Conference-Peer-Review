@@ -363,8 +363,12 @@ out of the main analyses.
    validation as appended rows; earlier rows are unchanged. The paper now says that
    heavy-tailed noise reaches at most 45% (40% on a 1-10 scale), where it said the
    heavy-tailed variants hold 54% inside their 90% ranges. Its "broad interest" explanation
-   is replaced: a purely shared criterion raises the overlap, while a choice that differs
-   between committees fits.
+   is replaced: a purely shared criterion raises the overlap. At the author's request the
+   paper keeps three points only: spotlights fared no better than posters, no tested
+   reviewer noise explains this, and the likely cause is judgement beyond scores that
+   differed between committees. The fits of that judgement stay in §7 only, because a
+   parameter fitted to the same 48 decisions shows that the explanation is possible, not
+   that it is true.
 
 ## 9. Limitations
 

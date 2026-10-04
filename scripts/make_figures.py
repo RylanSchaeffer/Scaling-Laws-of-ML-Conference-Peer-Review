@@ -321,7 +321,7 @@ def fig_mechanism():
     (fixed number) against their top-1% sets (fixed share). (b) The second committee's expected
     score for the first committee's top-scored paper falls ever further below the second
     committee's own 10th-best score. (c) The Best Paper's chances under a second review, out to
-    a million submissions."""
+    100K submissions (no venue has reached more)."""
     g = load("sweep_g")
     fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
 
@@ -349,7 +349,7 @@ def fig_mechanism():
     ax.fill_between(top.N, top.value - sd, top.value + sd, color=P.BLUE[450], alpha=0.14, lw=0)
     ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="Best Paper, $\\pm$1 SD")
     ax.set_ylabel("Second committee's score (SD)")
-    ax.set_ylim(0, 6)
+    ax.set_ylim(0, 5)
     ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
     ax.set_title("The gap grows", loc="left")
     P.n_axis(ax)

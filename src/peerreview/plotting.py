@@ -26,7 +26,7 @@ SURFACE = "#ffffff"
 
 TEXTWIDTH_IN = 5.5  # \textwidth of the paper (NeurIPS 2026 style)
 FONT_PT = 7  # one size for every text element: ticks, labels, titles, legends, annotations
-N_TICKS = [1e3, 1e4, 1e5, 1e6]
+N_TICKS = [1e3, 1e4, 1e5]  # no venue has reached 1M submissions; axes stop at 100K
 
 
 def setup() -> None:
@@ -80,9 +80,9 @@ def fmt_count(x: float, _pos=None) -> str:
 
 
 def n_axis(ax, label: str = "Submissions $N$") -> None:
-    """Log x-axis over N = 1e3..1e6 with 1K/10K/100K/1M ticks."""
+    """Log x-axis over N = 1e3..1e5 with 1K/10K/100K ticks."""
     ax.set_xscale("log")
-    ax.set_xlim(1e3 / 1.15, 1e6 * 1.15)
+    ax.set_xlim(1e3 / 1.15, 1e5 * 1.15)
     ax.xaxis.set_major_locator(FixedLocator(N_TICKS))
     ax.xaxis.set_major_formatter(FuncFormatter(fmt_count))
     ax.xaxis.set_minor_locator(NullLocator())

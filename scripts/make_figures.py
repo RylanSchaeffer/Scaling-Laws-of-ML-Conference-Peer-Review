@@ -251,7 +251,7 @@ def fig_validation():
     hl = [Line2D([], [], ls="none", marker="o", ms=4.4, color=P.INK2, mec=P.SURFACE, label="Central $\\rho^2$ = 0.50"),
           Line2D([], [], ls="none", marker="o", ms=3.8, mfc=P.SURFACE, mec=P.INK2, mew=1.0, label="Pessimistic $\\rho^2$ = 0.44"),
           Line2D([], [], color=P.MUTED, lw=2.0, label="90% range (central)")]
-    fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.36, -0.04), ncol=3, handlelength=1.2)
+    fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.36, -0.13), ncol=3, handlelength=1.2)
 
     ax = axes[2]
     d = ic[(ic.placement == "observed") & (ic.in_main.astype(str) == "True")]

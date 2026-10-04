@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import os
 
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -73,8 +72,8 @@ def mark_venues(ax, label=False, y=0.97):
 
 
 def sim_legend_handles():
-    return [Line2D([], [], color=P.INK2, lw=1.6, label="theory"),
-            Line2D([], [], color=P.INK2, ls="none", marker="o", ms=3.6, mec=P.SURFACE, label="simulation")]
+    return [Line2D([], [], color=P.INK2, lw=1.6, label="Theory"),
+            Line2D([], [], color=P.INK2, ls="none", marker="o", ms=3.6, mec=P.SURFACE, label="Simulation")]
 
 
 # ---------------------------------------------------------------------------
@@ -83,9 +82,8 @@ def sim_legend_handles():
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
 TIERS = (  # (label, colour): the Best Paper's true standing, best to worst, as exclusive tiers
-    ("Best", P.BLUE[700]),  # truly the best paper
-    ("Top 10", P.BLUE[550]),  # ranked 2nd to 10th
-    ("Oral", P.BLUE[400]),  # oral-worthy, outside the top 10
+    ("Top 10", P.BLUE[700]),  # among the ten best papers
+    ("Oral", P.BLUE[450]),  # oral-worthy, outside the top 10
     ("Accept", P.BLUE[250]),  # accept-worthy, not oral-worthy
     ("Reject", P.ORANGE[450]),  # should have been rejected
 )
@@ -93,7 +91,7 @@ TIERS = (  # (label, colour): the Best Paper's true standing, best to worst, as 
 
 def tier_shares(r) -> list[float]:
     """Split the Best Paper's true standing into the five TIERS (one best_paper.csv row)."""
-    return [r.p_best, r.p_top10 - r.p_best, r.p_oral - r.p_top10, r.p_accept - r.p_oral, 1 - r.p_accept]
+    return [r.p_top10, r.p_oral - r.p_top10, r.p_accept - r.p_oral, 1 - r.p_accept]
 
 
 def venue_rows(level: str = "central") -> pd.DataFrame:
@@ -137,9 +135,9 @@ def submissions_panel(ax):
 
 
 RATE_STYLES = (  # (label, column, line style, line width, label position (year, share))
-    ("accepted", "acc_rate_used", "-", 1.6, (2019.5, 0.4)),
-    ("spotlights", "spotlight_rate", (0, (3, 1.6)), 1.4, (2017.6, 0.058)),
-    ("orals", "oral_rate", (0, (1, 1.2)), 1.4, (2017.6, 0.0027)),
+    ("Accepted", "acc_rate_used", "-", 1.6, (2019.5, 0.4)),
+    ("Spotlights", "spotlight_rate", (0, (3, 1.6)), 1.4, (2017.6, 0.058)),
+    ("Orals", "oral_rate", (0, (1, 1.2)), 1.4, (2017.6, 0.0027)),
 )
 
 
@@ -172,7 +170,7 @@ def fig_headline():
     given orals. (c) The true standing of the model's Best Paper (the top-scored paper) at
     NeurIPS 2014, 2021 and 2026 size, central level (results/best_paper.csv)."""
     fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.7),
-                             gridspec_kw=dict(wspace=0.62, width_ratios=[1, 1, 1.4]))
+                             gridspec_kw=dict(wspace=0.45, width_ratios=[1, 1, 1.5]))
     submissions_panel(axes[0])
     rates_panel(axes[1])
 
@@ -182,20 +180,15 @@ def fig_headline():
     for y, yr in enumerate(years):
         r = b[(b.venue == "NeurIPS") & (b.year == yr)].iloc[0]
         left = 0.0
-        for i, ((lab, c), w) in enumerate(zip(TIERS, tier_shares(r))):
+        for (lab, c), w in zip(TIERS, tier_shares(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8)
-            if 0 < i < len(TIERS) - 1:  # the middle tiers are wide enough to label inside
+            if lab != "Reject":  # Reject (at most 1%) is too narrow to label; the caption gives it
                 ax.text(left + w / 2, y, f"{100 * w:.0f}%", ha="center", va="center", color=P.SURFACE if c != P.BLUE[250] else P.INK)
             left += w
-        # The two extremes are too narrow to label inside: Best on the left, Reject on the right.
-        ax.text(-0.02, y, f"{100 * r.p_best:.0f}%", ha="right", va="center", color=P.BLUE[700], clip_on=False)
-        ax.text(1.02, y, f"{100 * (1 - r.p_accept):.1f}%", ha="left", va="center", color=P.ORANGE[600], clip_on=False)
     ax.set_yticks(range(len(years)))
-    ax.set_yticklabels([f"{yr}\n{int(b[(b.venue == 'NeurIPS') & (b.year == yr)].N.iloc[0]):,}" for yr in years])
-    ax.tick_params(axis="y", length=0, pad=19)
-    # Column header for the tick labels, in place of a y-axis label that would crowd panel b.
-    ax.text(-0.14, 2.62, "NeurIPS\nsize", ha="right", va="center", color=P.INK,
-            transform=mpl.transforms.blended_transform_factory(ax.transAxes, ax.transData))
+    ax.set_yticklabels([str(yr) for yr in years])
+    ax.tick_params(axis="y", length=0)
+    ax.set_ylabel("NeurIPS")
     ax.set_xlim(0, 1)
     ax.set_ylim(-0.5, 2.95)
     ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
@@ -204,8 +197,8 @@ def fig_headline():
     ax.grid(axis="y", visible=False)
     ax.set_title("Where the Best Paper truly ranks", loc="left")
     handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in TIERS]
-    ax.legend(handles=handles, loc="upper left", ncol=5, handlelength=0.8, columnspacing=0.55,
-              borderaxespad=0.1, handletextpad=0.25)
+    ax.legend(handles=handles, loc="upper left", ncol=4, handlelength=0.8, columnspacing=0.8,
+              borderaxespad=0.1, handletextpad=0.3)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig1_headline"))
@@ -216,8 +209,8 @@ def fig_headline():
 # ---------------------------------------------------------------------------
 
 VAR_LABEL = {"gauss/gauss": "Gaussian / Gaussian", "gauss/gauss+shared": "Gaussian / Gaussian + shared",
-             "gauss/t3": "Gaussian / $t_3$", "beta/gauss": "bounded / Gaussian", "beta/t3": "bounded / $t_3$",
-             "exp/gauss": "exponential / Gaussian"}
+             "gauss/t3": "Gaussian / $t_3$", "beta/gauss": "Bounded / Gaussian", "beta/t3": "Bounded / $t_3$",
+             "exp/gauss": "Exponential / Gaussian"}
 
 
 def fig_validation():
@@ -232,15 +225,15 @@ def fig_validation():
         ax.axvline(obs, color=P.INK, lw=1.0)
         ax.text(obs, y.max() + 0.75, obs_text, color=P.INK, va="center", ha="center", bbox=dict(fc=P.SURFACE, ec="none", pad=0.6))
         ax.hlines(y, cen[lo], cen[hi], color=c_bar, lw=2.0)
-        ax.plot(cen[mean], y, "o", color=c_dot, ms=4.4, mec=P.SURFACE, mew=0.7, label="central $\\rho^2$ = 0.50")
+        ax.plot(cen[mean], y, "o", color=c_dot, ms=4.4, mec=P.SURFACE, mew=0.7, label="Central $\\rho^2$ = 0.50")
         ax.plot(pes[mean], y - 0.28, "o", mfc=P.SURFACE, mec=c_dot, mew=1.0, ms=3.8, ls="none",
-                label="pessimistic $\\rho^2$ = 0.44")
+                label="Pessimistic $\\rho^2$ = 0.44")
         ax.set_xlim(*xlim)
         ax.set_ylim(-0.7, y.max() + 1.15)
         ax.grid(axis="y", visible=False)
 
     ax = axes[0]
-    rows(ax, vv, vp, "overlap_q05", "overlap_q95", "overlap_mean", 3, "observed 3", P.BLUE[300], P.BLUE[450], (0, 18))
+    rows(ax, vv, vp, "overlap_q05", "overlap_q95", "overlap_mean", 3, "Observed 3", P.BLUE[300], P.BLUE[450], (0, 18))
     ax.set_yticks(y)
     ax.set_yticklabels([VAR_LABEL[k] for k in vv.index])
     ax.set_xlabel("Papers highlighted by both")
@@ -249,22 +242,22 @@ def fig_validation():
     ax = axes[1]
     obs = vv.obs_spot_rej_share.iloc[0]
     rows(ax, vv, vp, "spot_rej_share_q05", "spot_rej_share_q95", "spot_rej_share_mean", obs,
-         f"observed {100 * obs:.0f}%", P.ORANGE[300], P.ORANGE[450], (0, 0.7))
+         f"Observed {100 * obs:.0f}%", P.ORANGE[300], P.ORANGE[450], (0, 0.7))
     ax.set_yticks(y)
     ax.set_yticklabels([])
     P.pct_axis(ax, "x")
     ax.set_xlabel("Spotlights the other rejects")
     ax.set_title("Spotlight rejection", loc="left")
-    hl = [Line2D([], [], ls="none", marker="o", ms=4.4, color=P.INK2, mec=P.SURFACE, label="central $\\rho^2$ = 0.50"),
-          Line2D([], [], ls="none", marker="o", ms=3.8, mfc=P.SURFACE, mec=P.INK2, mew=1.0, label="pessimistic $\\rho^2$ = 0.44"),
+    hl = [Line2D([], [], ls="none", marker="o", ms=4.4, color=P.INK2, mec=P.SURFACE, label="Central $\\rho^2$ = 0.50"),
+          Line2D([], [], ls="none", marker="o", ms=3.8, mfc=P.SURFACE, mec=P.INK2, mew=1.0, label="Pessimistic $\\rho^2$ = 0.44"),
           Line2D([], [], color=P.MUTED, lw=2.0, label="90% range (central)")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.36, -0.04), ncol=3, handlelength=1.2)
 
     ax = axes[2]
     d = ic[(ic.placement == "observed") & (ic.in_main.astype(str) == "True")]
-    for (oc, mc, lab, c, mk) in (("obs_precision", "model_precision", "accepted sets", P.BLUE[450], "o"),
-                                 ("obs_top30", "model_top30", "top-30 sets", P.CAT[1], "s"),
-                                 ("obs_top10", "model_top10", "top-10 sets", P.CAT[2], "^")):
+    for (oc, mc, lab, c, mk) in (("obs_precision", "model_precision", "Accepted sets", P.BLUE[450], "o"),
+                                 ("obs_top30", "model_top30", "Top-30 sets", P.CAT[1], "s"),
+                                 ("obs_top10", "model_top10", "Top-10 sets", P.CAT[2], "^")):
         ax.plot(d[mc], d[oc], ls="none", marker=mk, ms=4.2, color=c, mec=P.SURFACE, mew=0.7, label=lab)
     ax.plot([0, 0.8], [0, 0.8], color=P.MUTED, lw=0.8, ls=(0, (3, 2)))
     ax.set_xlim(0, 0.8)
@@ -334,7 +327,7 @@ def fig_mechanism():
     fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
 
     ax = axes[0]
-    series = (("K", 10, "prec_K10", P.BLUE[450], "top 10"), ("p", 0.01, "prec_p1pct", P.ORANGE[450], "top 1%"))
+    series = (("K", 10, "prec_K10", P.BLUE[450], "Top 10"), ("p", 0.01, "prec_p1pct", P.ORANGE[450], "Top 1%"))
     for kind, size, col, c, label in series:
         q, kw = ("prec_K", dict(K=size)) if kind == "K" else ("prec_pct_finite", dict(p=size))
         cen, lo, hi = (A(q, lev, **kw) for lev in ("central", "pessimistic", "optimistic"))
@@ -353,9 +346,9 @@ def fig_mechanism():
     bar = A("E_kth_best", "central", K=10)
     top = A("E_quality_top_score", "central")
     sd = A("cond_sd", "central").value.iloc[0]
-    ax.plot(bar.N, bar.value, color=P.INK, lw=1.6, label="true top-10 bar")
+    ax.plot(bar.N, bar.value, color=P.INK, lw=1.6, label="True top-10 bar")
     ax.fill_between(top.N, top.value - sd, top.value + sd, color=P.BLUE[450], alpha=0.14, lw=0)
-    ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="top-scored, $\\pm$1 SD")
+    ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="Top-scored, $\\pm$1 SD")
     ax.set_ylabel("Standardised quality")
     ax.set_ylim(0, 6)
     ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
@@ -366,7 +359,7 @@ def fig_mechanism():
     ax = axes[2]
     b = load("best_paper")
     grid = b[b.source == "grid"]
-    for col, c, label in (("p_top10", P.BLUE[400], "in true top 10"), ("p_best", P.BLUE[700], "truly best")):
+    for col, c, label in (("p_top10", P.BLUE[400], "In true top 10"), ("p_best", P.BLUE[700], "Truly best")):
         cen, lo, hi = (grid[grid.level == lev].sort_values("N") for lev in ("central", "pessimistic", "optimistic"))
         ax.fill_between(cen.N, lo[col].values, hi[col].values, color=c, alpha=0.14, lw=0)
         ax.plot(cen.N, cen[col], color=c, lw=1.6, label=label)
@@ -436,13 +429,13 @@ def fig_robustness():
     for ax in axes:
         ax.set_ylim(-0.6, len(names) - 0.2)
         ax.set_yticks(y)
-        ax.set_yticklabels(names if ax is axes[0] else [])
+        ax.set_yticklabels([n[0].upper() + n[1:] for n in names] if ax is axes[0] else [])
         ax.grid(axis="y", visible=False)
     hl = [Line2D([], [], ls="none", marker="o", ms=3.8, color=P.INK2, mfc=P.SURFACE, mew=0.9, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=3.8, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
           plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Gaussian, reliability range (2026)"),
           Line2D([], [], color=P.BLUE[300], lw=2.0, label="90% range of the 2021 replay"),
-          Line2D([], [], color=P.INK, lw=1.0, label="observed at NeurIPS 2021 (3)")]
+          Line2D([], [], color=P.INK, lw=1.0, label="Observed at NeurIPS 2021 (3)")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
     for i, a in enumerate(axes):
         P.panel_label(a, "abcd"[i])

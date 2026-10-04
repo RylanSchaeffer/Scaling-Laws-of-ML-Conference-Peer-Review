@@ -25,6 +25,7 @@ GRID = "#e4e3df"
 SURFACE = "#ffffff"
 
 TEXTWIDTH_IN = 5.5  # \textwidth of the paper (NeurIPS 2026 style)
+FONT_PT = 7  # one size for every text element: ticks, labels, titles, legends, annotations
 N_TICKS = [1e3, 1e4, 1e5, 1e6]
 
 
@@ -32,10 +33,10 @@ def setup() -> None:
     mpl.rcParams.update({
         "font.family": "sans-serif",
         "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-        "font.size": 8,
-        "axes.titlesize": 8.5,
+        "font.size": FONT_PT,
+        "axes.titlesize": FONT_PT,
         "axes.titleweight": "normal",
-        "axes.labelsize": 8,
+        "axes.labelsize": FONT_PT,
         "axes.labelcolor": INK,
         "axes.edgecolor": MUTED,
         "axes.linewidth": 0.6,
@@ -46,11 +47,11 @@ def setup() -> None:
         "grid.linestyle": "-",
         "xtick.color": INK2,
         "ytick.color": INK2,
-        "xtick.labelsize": 7,
-        "ytick.labelsize": 7,
+        "xtick.labelsize": FONT_PT,
+        "ytick.labelsize": FONT_PT,
         "xtick.major.width": 0.6,
         "ytick.major.width": 0.6,
-        "legend.fontsize": 7,
+        "legend.fontsize": FONT_PT,
         "legend.frameon": True,  # opaque, borderless: guide lines never run through legend text
         "legend.framealpha": 1.0,
         "legend.facecolor": SURFACE,
@@ -101,12 +102,12 @@ def band(ax, x, lo, mid, hi, color, label=None, marker="o", lw=1.6, alpha=0.14, 
 
 
 def end_label(ax, x, y, text, dx=1.08, dy=0.0, color=INK, **kw):
-    ax.annotate(text, (x, y), xytext=(x * dx, y + dy), color=color, fontsize=7.5, va="center",
+    ax.annotate(text, (x, y), xytext=(x * dx, y + dy), color=color, va="center",
                 ha="left", annotation_clip=False, **kw)
 
 
 def panel_label(ax, s: str) -> None:
-    ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontsize=9, fontweight="bold", va="bottom", ha="left")
+    ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontweight="bold", va="bottom", ha="left")
 
 
 def save(fig, path_stem: str) -> None:

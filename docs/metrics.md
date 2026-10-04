@@ -29,6 +29,7 @@ This file defines "the best papers" and "a wrong decision" before any model is f
 | Rank of the winner | true rank (1 = best) of $\arg\max_i \bar s_i$; quantiles pooled over all simulated conferences | `winner_rank_q50` etc. |
 | Two-committee overlap | $\lvert\mathrm{Top}_K(\bar s^{(1)})\cap\mathrm{Top}_K(\bar s^{(2)})\rvert/K$, observable without knowing $q$ | `ovl_` |
 | Rejected by a second committee | share of $\mathrm{Top}_K(\bar s^{(1)})$ that committee 2 rejects at acceptance rate $\alpha$ | `rej2_` |
+| The Best Paper under a second review | rank of $\arg\max_i \bar s^{(1)}_i$ by committee 2's scores $\bar s^{(2)}$; $P(\text{rank} \le M)$ for $M = 1$ (top-scored again), 10, the oral count and $A$; one minus the last is "rejected by a second committee". The paper's headline framing: it is in the units of the NeurIPS consistency experiments. In the Gaussian model it equals the true-rank integral with $\rho$ replaced by $\rho^2$. | `p2_best`, `p2_top10`, `p2_oral`, `p2_accept`, `p2_reject`, `winner_rank2_median` (`winner_in2_*` in the simulator) |
 
 ## The accept/reject boundary
 

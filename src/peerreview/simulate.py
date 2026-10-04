@@ -104,12 +104,12 @@ class _Acc:
         out = {}
         for k, chunks in self.vals.items():
             v = np.concatenate(chunks)
-            if k == "winner_rank":
+            if k in ("winner_rank", "winner_rank2"):
                 # Pooled over all conferences, never averaged over chunks (§9).
                 for qn in (0.1, 0.25, 0.5, 0.75, 0.9):
-                    out[f"winner_rank_q{int(100 * qn)}"] = float(np.quantile(v, qn))
-                out["winner_rank_median"] = float(np.median(v))
-                out["winner_logrank_mean"] = float(np.mean(np.log(v)))
+                    out[f"{k}_q{int(100 * qn)}"] = float(np.quantile(v, qn))
+                out[f"{k}_median"] = float(np.median(v))
+                out[f"{k}_logrank_mean" if k == "winner_rank2" else "winner_logrank_mean"] = float(np.mean(np.log(v)))
                 continue
             ok = np.isfinite(v)
             n = int(ok.sum())
@@ -253,10 +253,14 @@ def simulate_best_paper(
     chunk_elems: float = 4e6,
     salt: str = "",
     winner_tiers: dict[str, int] | None = None,
+    second_committee: bool = False,
 ) -> dict:
     """High-replication P(best paper in Top_K) and winner rank; O(N) per conference.
 
     winner_tiers {name: M} adds winner_in_{name} = P(the top-scored paper is in the true top M).
+    second_committee re-reviews every paper with fresh noise (u and eps redrawn) and adds
+    winner_rank2, the top-scored paper's rank by the second committee's scores, and
+    winner_in2_{name} = P(that rank <= M): where a rerun of review would place the Best Paper.
     """
     if seed is None:
         seed = stable_seed(m.as_dict(), N, reps, "best", salt)
@@ -280,6 +284,12 @@ def simulate_best_paper(
         acc.add("winner_rank", rank)
         for name, M in (winner_tiers or {}).items():
             acc.add(f"winner_in_{name}", rank <= M)
+        if second_committee:
+            s2 = jitter(rng, sample_scores(rng, q, m), m)
+            rank2 = (s2 > s2[rows, w][:, None]).sum(1) + 1
+            acc.add("winner_rank2", rank2)
+            for name, M in (winner_tiers or {}).items():
+                acc.add(f"winner_in2_{name}", rank2 <= M)
         done += r
     row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability}
     row.update(acc.summary())

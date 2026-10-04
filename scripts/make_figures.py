@@ -81,17 +81,17 @@ def sim_legend_handles():
 # ---------------------------------------------------------------------------
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
-TIERS = (  # (label, colour): the Best Paper's true standing, best to worst, as exclusive tiers
-    ("Top 10", P.BLUE[700]),  # among the ten best papers
-    ("Oral", P.BLUE[450]),  # oral-worthy, outside the top 10
-    ("Accept", P.BLUE[250]),  # accept-worthy, not oral-worthy
-    ("Reject", P.ORANGE[450]),  # should have been rejected
+TIERS = (  # (label, colour): where a second, independent committee ranks the Best Paper, best to worst
+    ("Top 10", P.BLUE[700]),  # in the second committee's top 10
+    ("Oral", P.BLUE[450]),  # within its oral count, outside its top 10
+    ("Accept", P.BLUE[250]),  # accepted by it, below its oral count
+    ("Reject", P.ORANGE[450]),  # rejected by it
 )
 
 
 def tier_shares(r) -> list[float]:
-    """Split the Best Paper's true standing into the five TIERS (one best_paper.csv row)."""
-    return [r.p_top10, r.p_oral - r.p_top10, r.p_accept - r.p_oral, 1 - r.p_accept]
+    """Split the Best Paper's rank under a second committee into the four TIERS (one best_paper.csv row)."""
+    return [r.p2_top10, r.p2_oral - r.p2_top10, r.p2_accept - r.p2_oral, 1 - r.p2_accept]
 
 
 def venue_rows(level: str = "central") -> pd.DataFrame:
@@ -167,8 +167,8 @@ def rates_panel(ax):
 
 def fig_headline():
     """(a) Papers submitted per year. (b) Share of submissions accepted, given spotlights and
-    given orals. (c) The true standing of the model's Best Paper (the top-scored paper) at
-    NeurIPS 2014, 2021 and 2026 size, central level (results/best_paper.csv)."""
+    given orals. (c) Where a second, independent committee would rank the model's Best Paper
+    (the top-scored paper) at NeurIPS 2014, 2021 and 2026 size, central level (results/best_paper.csv)."""
     fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.7),
                              gridspec_kw=dict(wspace=0.45, width_ratios=[1, 1, 1.5]))
     submissions_panel(axes[0])
@@ -182,7 +182,7 @@ def fig_headline():
         left = 0.0
         for (lab, c), w in zip(TIERS, tier_shares(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8)
-            if lab != "Reject":  # Reject (at most 1%) is too narrow to label; the caption gives it
+            if w >= 0.12:  # narrower segments stay unlabelled; the caption gives Top 10 and Reject
                 ax.text(left + w / 2, y, f"{100 * w:.0f}%", ha="center", va="center", color=P.SURFACE if c != P.BLUE[250] else P.INK)
             left += w
     ax.set_yticks(range(len(years)))
@@ -195,7 +195,7 @@ def fig_headline():
     P.pct_axis(ax, "x")
     ax.set_xlabel("Share of Best Papers")
     ax.grid(axis="y", visible=False)
-    ax.set_title("Where the Best Paper truly ranks", loc="left")
+    ax.set_title("The Best Paper under a second review", loc="left")
     handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in TIERS]
     ax.legend(handles=handles, loc="upper left", ncol=4, handlelength=0.8, columnspacing=0.8,
               borderaxespad=0.1, handletextpad=0.3)
@@ -285,12 +285,11 @@ def fig_venues():
     count (results/best_paper.csv); NeurIPS band = pessimistic to optimistic level."""
     b = load("best_paper")
     b = b[b.source == "venue"].copy()
-    b["p_merely"] = b.p_accept - b.p_oral
     fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.5))
-    panels = ((axes[0], "p_best", "Truly best", 0.4),
-              (axes[1], "p_top10", "In true top 10", 0.82),
-              (axes[2], "p_oral", "Oral-worthy", 1.0),
-              (axes[3], "p_reject", "Should be rejected", 0.03))
+    panels = ((axes[0], "p2_best", "Top-scored again", 0.2),
+              (axes[1], "p2_top10", "In top 10 again", 0.6),
+              (axes[2], "p2_oral", "In oral range again", 1.0),
+              (axes[3], "p2_reject", "Rejected", 0.3))
     for ax, col, title, ymax in panels:
         for venue, c, mk in VENUES:
             s = b[b.venue == venue].dropna(subset=[col])
@@ -300,16 +299,13 @@ def fig_venues():
                 ax.fill_between(cen.year, lo[col].values, hi[col].values, color=c, alpha=0.13, lw=0)
             ax.plot(cen.year, cen[col], color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, mew=0.6, label=venue)
         ax.set_ylim(0, ymax)
-        if col == "p_reject":
-            ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{100 * v:.1f}%"))
-        else:
-            P.pct_axis(ax)
+        P.pct_axis(ax)
         ax.set_xticks([2014, 2020, 2026])
         ax.set_xlim(2013.3, 2026.7)
         ax.set_xlabel("Year")
         ax.set_title(title, loc="left")
     axes[0].set_ylabel("Probability")
-    axes[2].legend(loc="lower right", handlelength=1.1, borderaxespad=0.1)  # panel c has room below its lines
+    axes[0].legend(loc="upper right", handlelength=1.1, borderaxespad=0.1)  # panel a has room above its band
     for i, a in enumerate(axes):
         P.panel_label(a, "abcd"[i])
     P.save(fig, os.path.join(FIG, "fig3_venues"))
@@ -321,35 +317,38 @@ def fig_venues():
 
 
 def fig_mechanism():
-    """(a) Fixed number against fixed percentage. (b) The top-scored paper falls ever further
-    below the true top-10 bar. (c) The Best Paper's chances out to a million submissions."""
+    """Rerun framing throughout: two independent committees. (a) Overlap of their top-10 sets
+    (fixed number) against their top-1% sets (fixed share). (b) The second committee's expected
+    score for the first committee's top-scored paper falls ever further below the second
+    committee's own 10th-best score. (c) The Best Paper's chances under a second review, out to
+    a million submissions."""
     g = load("sweep_g")
     fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
 
     ax = axes[0]
-    series = (("K", 10, "prec_K10", P.BLUE[450], "Top 10"), ("p", 0.01, "prec_p1pct", P.ORANGE[450], "Top 1%"))
+    series = (("K", 10, "ovl_K10", P.BLUE[450], "Top 10"), ("p", 0.01, "ovl_p1pct", P.ORANGE[450], "Top 1%"))
     for kind, size, col, c, label in series:
-        q, kw = ("prec_K", dict(K=size)) if kind == "K" else ("prec_pct_finite", dict(p=size))
+        q, kw = ("ovl_K", dict(K=size)) if kind == "K" else ("ovl_pct_finite", dict(p=size))
         cen, lo, hi = (A(q, lev, **kw) for lev in ("central", "pessimistic", "optimistic"))
         ax.fill_between(cen.N, lo.value, hi.value, color=c, alpha=0.13, lw=0)
         ax.plot(cen.N, cen.value, color=c, lw=1.6, label=label)
         sim_points(ax, g, col, c)
     P.n_axis(ax)
-    ax.set_ylim(0, 0.6)
+    ax.set_ylim(0, 0.4)
     P.pct_axis(ax)
-    ax.set_ylabel("Precision")
+    ax.set_ylabel("Overlap of two committees")
     ax.set_title("Number falls, share holds", loc="left")
-    ax.legend(loc="lower left", handlelength=1.3, borderaxespad=0.2)
+    ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
 
     ax = axes[1]
     bar = A("E_kth_best", "central", K=10)
-    top = A("E_quality_top_score", "central")
-    sd = A("cond_sd", "central").value.iloc[0]
-    ax.plot(bar.N, bar.value, color=P.INK, lw=1.6, label="True top-10 bar")
+    top = A("E_score2_top_score", "central")
+    sd = A("cond_sd2", "central").value.iloc[0]
+    ax.plot(bar.N, bar.value, color=P.INK, lw=1.6, label="Its 10th-best score")
     ax.fill_between(top.N, top.value - sd, top.value + sd, color=P.BLUE[450], alpha=0.14, lw=0)
-    ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="Top-scored, $\\pm$1 SD")
-    ax.set_ylabel("Standardised quality")
+    ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="Best Paper, $\\pm$1 SD")
+    ax.set_ylabel("Second committee's score (SD)")
     ax.set_ylim(0, 6)
     ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
     ax.set_title("The gap grows", loc="left")
@@ -359,15 +358,15 @@ def fig_mechanism():
     ax = axes[2]
     b = load("best_paper")
     grid = b[b.source == "grid"]
-    for col, c, label in (("p_top10", P.BLUE[400], "In true top 10"), ("p_best", P.BLUE[700], "Truly best")):
+    for col, c, label in (("p2_top10", P.BLUE[400], "In top 10 again"), ("p2_best", P.BLUE[700], "Top-scored again")):
         cen, lo, hi = (grid[grid.level == lev].sort_values("N") for lev in ("central", "pessimistic", "optimistic"))
         ax.fill_between(cen.N, lo[col].values, hi[col].values, color=c, alpha=0.14, lw=0)
         ax.plot(cen.N, cen[col], color=c, lw=1.6, label=label)
     P.n_axis(ax)
-    ax.set_ylim(0, 0.8)
+    ax.set_ylim(0, 0.5)
     P.pct_axis(ax)
     ax.set_ylabel("P(Best Paper is ...)")
-    ax.set_title("The Best Paper", loc="left")
+    ax.set_title("The Best Paper, reviewed again", loc="left")
     ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
     for i, a in enumerate(axes):
@@ -381,24 +380,24 @@ def fig_mechanism():
 
 
 def fig_robustness():
-    """Best Paper tier probabilities at NeurIPS 2014 (open) and 2026 (filled) size under every
-    variant refitted to the central disagreement, and each variant's replay of the NeurIPS 2021
-    top-tier overlap (results/best_paper_robustness.csv). The grey span in a-c is the Gaussian
-    model's pessimistic-to-optimistic range at 2026 size."""
+    """Where a second committee ranks the Best Paper at NeurIPS 2014 (open) and 2026 (filled)
+    size under every variant refitted to the central disagreement, and each variant's replay of
+    the NeurIPS 2021 top-tier overlap (results/best_paper_robustness.csv). The grey span in a-c
+    is the Gaussian model's pessimistic-to-optimistic range at 2026 size."""
     r = load("best_paper_robustness")
-    r["p_merely"] = r.p_accept - r.p_oral
+    r["p2_merely"] = r.p2_accept - r.p2_oral
     names = list(dict.fromkeys(r.variant))
     y = np.arange(len(names))[::-1].astype(float)
     rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
     fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.75),
                              gridspec_kw=dict(wspace=0.34, width_ratios=[1, 1, 1, 0.85]))
-    panels = ((axes[0], "p_best", "Truly best", (0, 1), False),
-              (axes[1], "p_merely", "Merely accept-worthy", (0, 0.8), False),
-              (axes[2], "p_reject", "Should be rejected", (1e-4, 0.2), True))
+    panels = ((axes[0], "p2_best", "Top-scored again", (0, 1), False),
+              (axes[1], "p2_merely", "Merely accepted", (0, 1), False),
+              (axes[2], "p2_reject", "Rejected", (1e-4, 0.5), True))
     for ax, col, title, xlim, logx in panels:
-        span = sorted((x.p_accept - x.p_oral) if col == "p_merely" else x[col] for x in rng26)
+        span = sorted((x.p2_accept - x.p2_oral) if col == "p2_merely" else x[col] for x in rng26)
         ax.axvspan(max(span[0], xlim[0]), span[1], color=P.GRID, alpha=0.9, lw=0, zorder=0)
-        c = P.ORANGE[450] if col == "p_reject" else P.BLUE[450]
+        c = P.ORANGE[450] if col == "p2_reject" else P.BLUE[450]
         for yi, n in zip(y, names):
             for yr, hollow in ((2014, True), (2026, False)):
                 v = float(r[(r.variant == n) & (r.year == yr)][col].iloc[0])

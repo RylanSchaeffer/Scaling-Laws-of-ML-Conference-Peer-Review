@@ -1,12 +1,18 @@
-"""What did the Best Paper deserve? The true rank of the top-scored paper, in tiers.
+"""What would a second review make of the Best Paper? And what did it truly deserve?
 
 The model's Best Paper is the paper with the highest mean score. For each real venue-year
 (submissions, acceptance rate, main-track oral count from data/venues.csv) and for a grid
-of N at 25% acceptance, compute exactly, at the three reliability levels, the probability
-that it is truly in the top M papers, for M = 1 (the best), 10, the oral count, 10% of
-submissions and the accepted count. One minus the last is the probability that it should
-have been rejected. Also: the probability that a second, independent committee would reject
-it (rejected_given_top with K = 1).
+of N at 25% acceptance, compute exactly, at the three reliability levels:
+
+- p2_*: the rerun framing the paper reports. A second, independent committee re-reviews
+  every paper (u and eps redrawn; its scores correlate with the first committee's at rho^2).
+  p2_{best,top10,oral,accept} is the probability that it ranks the Best Paper in its top M,
+  for M = 1 (top-scored again), 10, the oral count and the accepted count; p2_reject is one
+  minus the last. winner_rank2_median is the median of that rank. In the Gaussian model the
+  pair of committee scores is bivariate normal with correlation rho^2, so these are the
+  true-rank integrals with rho replaced by rho^2.
+- p_*: the true-rank framing. The probability that it is truly in the top M, for the same M
+  and for 10% of submissions; p_reject is one minus p_accept; winner_rank_median likewise.
 
 Writes results/best_paper.csv.
 Usage: uv run python scripts/make_best_paper.py
@@ -28,16 +34,25 @@ N_GRID = [1000, 2000, 5000, 10_000, 20_000, 50_000, 100_000, 200_000, 500_000, 1
 def tiers(N: int, alpha: float, orals: float | None, rho2: float) -> dict:
     r = float(np.sqrt(rho2))
     A = int(round(alpha * N))
-    out = {
-        "accepted": A,
-        "p_best": an.containment_fixed_K(N, 1, 1, r),
-        "p_top10": an.containment_fixed_K(N, 1, 10, r),
-        "p_top10pct": an.containment_fixed_K(N, 1, int(round(0.10 * N)), r),
-        "p_accept": an.containment_fixed_K(N, 1, A, r),
-        "p_rejected_by_committee2": an.rejected_given_top(N, 1, alpha, r),
-    }
-    out["p_oral"] = an.containment_fixed_K(N, 1, int(orals), r) if orals == orals and orals else np.nan
+    M_oral = int(orals) if orals == orals and orals else None
+    out = {"accepted": A}
+    # Rerun framing: committee 2's scores correlate with committee 1's at rho^2.
+    out["p2_best"] = an.containment_fixed_K(N, 1, 1, rho2)
+    out["p2_top10"] = an.containment_fixed_K(N, 1, 10, rho2)
+    out["p2_oral"] = an.containment_fixed_K(N, 1, M_oral, rho2) if M_oral else np.nan
+    out["p2_accept"] = an.containment_fixed_K(N, 1, A, rho2)
+    out["p2_reject"] = 1.0 - out["p2_accept"]
+    out["winner_rank2_median"] = an.winner_rank_quantile(N, rho2, 0.5)
+    # True-rank framing.
+    out["p_best"] = an.containment_fixed_K(N, 1, 1, r)
+    out["p_top10"] = an.containment_fixed_K(N, 1, 10, r)
+    out["p_top10pct"] = an.containment_fixed_K(N, 1, int(round(0.10 * N)), r)
+    out["p_accept"] = an.containment_fixed_K(N, 1, A, r)
+    out["p_rejected_by_committee2"] = an.rejected_given_top(N, 1, alpha, r)
+    out["p_oral"] = an.containment_fixed_K(N, 1, M_oral, r) if M_oral else np.nan
     out["p_reject"] = 1.0 - out["p_accept"]
+    out["winner_rank_median"] = an.winner_rank_quantile(N, r, 0.5)
+    assert abs(out["p2_reject"] - out["p_rejected_by_committee2"]) < 1e-9
     return out
 
 

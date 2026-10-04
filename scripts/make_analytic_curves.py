@@ -86,7 +86,10 @@ def main() -> None:
         for p in (0.003, 0.005, 0.01, 0.05, 0.2, 0.10, 0.15, 0.25, 0.30, 0.35, 0.40):
             rows.append(_row("prec_pct", level, r2, np.nan, an.precision_pct(p, rho), p=p))
             rows.append(_row("dis", level, r2, np.nan, an.disagreement(p, r2), p=p))
+            # Two-committee overlap of the top-p sets: the precision formula at correlation rho^2.
+            rows.append(_row("ovl_pct", level, r2, np.nan, an.precision_pct(p, r2), p=p))
         rows.append(_row("beta", level, r2, np.nan, (1 - rho) / (1 + rho)))
+        rows.append(_row("beta2", level, r2, np.nan, (1 - r2) / (1 + r2)))  # decay exponent of two-committee overlap
     for level, r2 in LEVELS.items():
         rho = np.sqrt(r2)
         for K in (1, 10, 30):
@@ -95,11 +98,17 @@ def main() -> None:
         e1 = an.expected_kth_best(N_FINE, 1)
         rows += [_row("E_quality_top_score", level, r2, n, rho * x) for n, x in zip(N_FINE, e1)]
         rows.append(_row("cond_sd", level, r2, np.nan, an.conditional_quality_sd(rho)))
+        # Rerun framing: the top-scored paper's expected standardised score under a second
+        # committee is rho^2 E[S*_(1)], with conditional SD sqrt(1 - rho^4) (correlation rho^2).
+        rows += [_row("E_score2_top_score", level, r2, n, r2 * x) for n, x in zip(N_FINE, e1)]
+        rows.append(_row("cond_sd2", level, r2, np.nan, an.conditional_quality_sd(r2)))
         # Fixed-share precision at finite N (K = round(pN) >= 10 here, where the closed
         # form matches the exact integral to 0.1%); figure 1 draws these.
         for p in (0.01, 0.10):
             v = [an.precision_pct_finite(n, p, rho) for n in N_FINE]
             rows += [_row("prec_pct_finite", level, r2, n, x, p=p) for n, x in zip(N_FINE, v)]
+            v = [an.precision_pct_finite(n, p, r2) for n in N_FINE]  # two-committee overlap at finite N
+            rows += [_row("ovl_pct_finite", level, r2, n, x, p=p) for n, x in zip(N_FINE, v)]
     df = pd.DataFrame(rows)
     out = os.path.join(ROOT, "results", "analytic_curves.csv")
     df.to_csv(out, index=False)

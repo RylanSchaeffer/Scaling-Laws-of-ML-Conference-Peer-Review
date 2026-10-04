@@ -12,19 +12,29 @@ Ranges run from the pessimistic level ($\rho^2 = 0.44$) to the optimistic level
 ## 1. Summary
 
 The paper asks one question: as submissions grow, does review still give its awards to the
-right papers? Items A and B answer it; items 1 to 8 give the supporting results.
+right papers? It answers in the units of the NeurIPS consistency experiments (the "rerun"
+framing, decision 12 in §8): if a second, independent committee re-reviewed every paper,
+where would it rank the Best Paper? Items A and B answer it; items 1 to 8 give the
+supporting results, mostly in the true-rank framing the paper no longer reports.
 
-A. **A Best Paper is almost always a good paper but rarely the best one.** The model's Best
-   Paper (the top-scored paper) at NeurIPS 2026 size is truly the best with probability
-   6.6%, in the true top 10 with 25%, oral-worthy with 63%, merely accept-worthy with 37%,
-   and should have been rejected with 0.09%. From NeurIPS 2014 to 2026 the first chance
-   fell from 12.1% to 6.6% (§6).
-B. **How sure: the quality tail decides P(best); careless raves decide P(reject).** Across
-   variants refitted to the same acceptance data, P(best) at NeurIPS 2026 size runs from
-   1.3% (bounded quality) to 92% ($t_3$ quality). The NeurIPS 2021 top-tier overlap rejects
-   the heavy-tailed quality variants ($P \le 0.04$). Under the rest, P(best) is 1.3% to
-   6.7%, P(merely accept-worthy) 37% to 65%, and P(should have been rejected) 0.09% to
-   5.4%; the top value comes from 5% careless "rave" reviews (§6).
+A. **A second review would almost always accept a Best Paper but rarely confirm it.** At
+   NeurIPS 2026 size a second committee would rank the model's Best Paper (the top-scored
+   paper) first again with probability 1.3%, in its top 10 with 6.3%, within the 112 orals
+   with 24%, and would accept it with 95% (reject it with 5.2%); its median rank for it is
+   584th. From NeurIPS 2014 to 2026 the top-scored-again chance fell from 3.7% to 1.3% and
+   the median rank rose from 74th to 584th; the rejection chance fell from 12% to 5% (§6).
+   True-rank framing, for comparison: truly best 6.6%, top 10 25%, oral-worthy 63%, should
+   have been rejected 0.09%.
+B. **How sure: the quality tail decides whether it would win again; the score scale decides
+   whether it would be rejected.** Across variants refitted to the same acceptance data, the
+   top-scored-again chance at NeurIPS 2026 size runs from 0.2% (bounded quality) to 89%
+   ($t_3$ quality). The NeurIPS 2021 top-tier overlap rejects the heavy-tailed quality
+   variants ($P \le 0.04$). Under the rest, the chance is 0.2% to 1.3%, merely accepted
+   70% to 79%, and rejected 5.0% (continuous scores) to 12.7% (5% careless raves on a 1-10
+   scale); rounding to a 1-10 or ICLR scale alone gives 9.7% to 11.9%, because several
+   papers tie for the top score and the award goes to one of them at random. In the
+   true-rank framing careless raves stood out (5.4% against 0.09%); in the rerun framing
+   the second committee's own noise dominates and they add 3 points (§6).
 
 1. **Fixed-number selections degrade as conferences grow; fixed-percentile selections
    do not.** Top-10 precision is 27% at $N = 10^3$, 16% at $10^4$, 10% at $10^5$ and 6% at
@@ -210,8 +220,30 @@ central; the band (NeurIPS only) spans the pessimistic and optimistic levels. At
 top-scored paper's median true rank rises from 15 (2014) to 55 (2026), and the best paper is
 among the ten top-scored papers with probability 44% (2014) and 25% (2026).
 
-**What the Best Paper deserved** (`results/best_paper.csv`, `scripts/make_best_paper.py`).
-The model's Best Paper is the top-scored paper. Exact probabilities (containment_fixed_K
+**The Best Paper under a second review** (`results/best_paper.csv`, `p2_*` columns,
+`scripts/make_best_paper.py`; paper Figs. 1c, 3, 4c). A second, independent committee
+re-reviews every paper (u and eps redrawn); in the Gaussian model its scores correlate with
+the first committee's at $\rho^2$, so the probability that it ranks the first committee's
+top-scored paper within its top $M$ is containment_fixed_K(N, 1, M, $\rho^2$). Central level
+(pessimistic to optimistic):
+
+| Second committee ranks the Best Paper ... | NeurIPS 2014 ($N$ = 1,678) | NeurIPS 2026 ($N$ = 30,709) |
+|---|---|---|
+| first again | 3.7% (2.4 to 12.3) | 1.3% (0.7 to 6.7) |
+| in its top 10 | 17.8% (12.7 to 44.3) | 6.3% (3.8 to 25.5) |
+| within the oral count (20; 112) | 26.4% (19.5 to 58.0) | 24.4% (16.5 to 63.2) |
+| accepted | 87.7% (80.8 to 99.0) | 94.8% (89.6 to 99.9) |
+| rejected | 12.3% (19.2 to 1.0) | 5.2% (10.4 to 0.1) |
+| median rank | 74 (118 to 14) | 584 (1,113 to 53) |
+
+ICML and ICLR 2026: first again 1.4% and 1.5%, within the oral count 31% and 39%, rejected
+5.2%. On the $N$ grid at 25% acceptance (central): first again 4.5% at $10^3$, 1.9% at $10^4$,
+0.85% at $10^5$, 0.38% at $10^6$; in the top 10 again 21.5%, 9.4%, 4.2%, 1.9%; rejected 13.8%,
+7.4%, 4.0%, 2.1%; median rank 52, 262, 1,361, 7,151. A rerun measures reproducibility, not
+correctness: each chance is below its true-rank counterpart, which follows.
+
+**What the Best Paper deserved** (`results/best_paper.csv`, `p_*` columns). The true-rank
+framing, which the paper no longer reports. Exact probabilities (containment_fixed_K
 with K = 1) that it is truly in each tier, central level (pessimistic to optimistic):
 
 | Tier | NeurIPS 2014 ($N$ = 1,678) | NeurIPS 2026 ($N$ = 30,709) |
@@ -233,31 +265,38 @@ conferences at $N$ = 1,678; 40,000 at 30,709) agrees within sampling error: 12.1
 
 **How sure: the Best Paper under every variant** (`results/best_paper_robustness.csv`,
 `scripts/run_best_paper_robustness.py`, paper Fig. 5). Each variant is refitted to the
-central NeurIPS 2021 disagreement (`results/calibration_variants.csv`) and simulated at
-NeurIPS 2014 size (200,000 conferences) and 2026 size (40,000). Careless reviewers ignore
-the paper: a "rave" review gives 10, a "random" review a uniform score on the 1-10 scale
-(`ReviewModel.careless`, `careless_kind`). Each variant also replays the NeurIPS 2021
-top tiers (4,000 replays; observed overlap 3). Values at 2026 size (2014 in brackets):
+central NeurIPS 2021 disagreement (`results/calibration_variants.csv`) and simulated with
+two independent committees at NeurIPS 2014 size (200,000 conferences) and 2026 size
+(40,000). Careless reviewers ignore the paper: a "rave" review gives 10, a "random" review a
+uniform score on the 1-10 scale (`ReviewModel.careless`, `careless_kind`). Each variant also
+replays the NeurIPS 2021 top tiers (4,000 replays; observed overlap 3). The rerun framing
+(`p2_*`), at 2026 size (2014 in brackets):
 
-| Variant | P(best) | P(merely accept-worthy) | P(should be rejected) | 2021 overlap: mean, P(≤3) |
-|---|---|---|---|---|
-| Gaussian, R = 4 | 6.7% (12.1%) | 37.0% | 0.09% (0.96%) | 5.76, 0.17 |
-| bounded quality | 1.3% (5.6%) | 63.6% | 0.35% (1.74%) | 4.98, 0.26 |
-| exponential quality | 49.9% (49.8%) | 0.06% | 0% (0%) | 11.70, 0.002 |
-| lognormal quality | 29.3% (30.2%) | 4.1% | 0% (0.11%) | 7.95, 0.04 |
-| $t_3$ quality | 92.0% (80.2%) | 0% | 0% (0%) | 11.65, 0.001 |
-| 1-10 scale | 2.6% (9.5%) | 57.3% | 0.54% (1.75%) | 5.60, 0.18 |
-| ICLR scale | 1.5% (8.4%) | 64.9% | 0.94% (1.98%) | 5.53, 0.19 |
-| $t_3$ noise, 1-10 | 4.1% (11.9%) | 49.2% | 2.07% (2.93%) | 5.85, 0.17 |
-| 1% rave reviews | 2.7% (9.6%) | 56.8% | 0.79% (2.06%) | 5.65, 0.18 |
-| 5% rave reviews | 2.8% (10.7%) | 53.1% | 5.41% (4.80%) | 5.73, 0.17 |
-| 5% random reviews | 3.3% (10.3%) | 51.6% | 0.38% (1.42%) | 5.76, 0.17 |
+| Variant | first again | merely accepted | rejected | median rank | 2021 overlap: mean, P(≤3) |
+|---|---|---|---|---|---|
+| Gaussian, R = 4 | 1.3% (3.7%) | 70.9% | 5.0% (12.3%) | 583 | 5.76, 0.17 |
+| bounded quality | 0.2% (1.4%) | 78.9% | 12.0% (18.4%) | 1,687 | 4.98, 0.26 |
+| exponential quality | 35.9% (35.8%) | 1.7% | 0% (0.2%) | 3 | 11.70, 0.002 |
+| lognormal quality | 14.8% (16.1%) | 23.1% | 0.2% (3.1%) | 17 | 7.95, 0.04 |
+| $t_3$ quality | 89.0% (73.2%) | 0% | 0% (0%) | 1 | 11.65, 0.001 |
+| 1-10 scale | 0.3% (2.6%) | 76.2% | 9.7% (14.7%) | 1,160 | 5.60, 0.18 |
+| ICLR scale | 0.2% (2.3%) | 76.8% | 11.9% (15.5%) | 1,442 | 5.53, 0.19 |
+| $t_3$ noise, 1-10 | 0.7% (3.6%) | 69.6% | 10.4% (14.7%) | 891 | 5.85, 0.17 |
+| 1% rave reviews | 0.3% (2.6%) | 76.0% | 9.6% (14.6%) | 1,127 | 5.65, 0.18 |
+| 5% rave reviews | 0.4% (2.9%) | 71.4% | 12.7% (15.1%) | 1,142 | 5.73, 0.17 |
+| 5% random reviews | 0.5% (3.0%) | 74.5% | 8.5% (14.0%) | 944 | 5.76, 0.17 |
 
-Heavy-tailed quality puts the best papers far apart, so review finds them and P(best)
-barely changes with size; but it predicts 8 to 12 shared highlights against 3 observed.
-Every light-tailed variant predicts 5 to 6. P(should be rejected) falls with size in every
-variant except 5% raves: one rave lifts a weak paper's mean far above its merit, and the
-top-scored paper is the one most likely to have drawn one.
+Heavy-tailed quality puts the best papers far apart, so both committees find them and the
+first-again chance barely changes with size; but it predicts 8 to 12 shared highlights
+against 3 observed. Every light-tailed variant predicts 5 to 6. The rejection chance falls
+with size in every variant. Rounding to a real score scale roughly doubles it and cuts the
+first-again chance by three quarters: at NeurIPS 2026 size several papers tie for the top
+mean score on a 1-10 scale (a median of 4 in a check of 200 conferences; 12 on the ICLR
+scale), so the award goes to one of them at random. Careless raves add about 3 points on
+top of the scale. The true-rank framing (`p_*`) of the same runs is in the CSV; there careless
+raves stood out (should have been rejected 5.4% against 0.09% Gaussian), because a single
+rave lifts a weak paper above the true acceptance bar while a second committee's own noise
+dwarfs that effect.
 
 ## 7. Validation
 
@@ -369,6 +408,23 @@ out of the main analyses.
     only because the count rose from 20 to 112. NeurIPS orals grew roughly as $N^{0.6}$ over
     those endpoints, between a fixed number and a fixed share. Beyond real sizes (the
     $N$ grid) no oral count exists, and only the fixed-number tiers are reported.
+12. **Rerun framing throughout (4 October 2026).** At the author's decision the paper reports
+    every Best Paper probability in the units of the NeurIPS consistency experiments: where a
+    second, independent committee, re-reviewing every paper with fresh noise, would rank the
+    first committee's Best Paper (top-scored again, in its top 10, within the oral count,
+    accepted, rejected). The true-rank framing (is it truly the best, truly top 10, ...) compares
+    one committee with a noiseless oracle, which the experiments never observe, so its numbers
+    looked about twice as good as anything measurable; the author preferred like units. In the
+    Gaussian model the rerun numbers are the true-rank integrals with $\rho$ replaced by
+    $\rho^2$ (`p2_*` columns of `results/best_paper.csv`; `winner_in2_*` in the simulator, from
+    `simulate_best_paper(..., second_committee=True)`). The mechanism section follows suit:
+    two-committee overlap (`ovl_*`) replaces precision, the gap is the second committee's
+    expected score for the first's top paper against its own 10th-best score, the decay
+    exponent is $(1-\rho^2)/(1+\rho^2)$ (0.33 central; `beta2` in `analytic_curves.csv`), and the
+    reviews needed to hold top-10 overlap are in `analytic_R_needed.csv` (`metric = overlap`:
+    12 per paper at $10^6$, 29 with shared noise). Two consequences: the 2026 Best Paper would be
+    rejected by a second committee 5% of the time (0.09% should have been rejected), and the
+    score scale, not careless raves, is the main driver of that chance across variants.
 
 ## 9. Limitations
 

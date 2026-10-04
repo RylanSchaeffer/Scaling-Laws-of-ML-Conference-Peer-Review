@@ -64,3 +64,19 @@ def test_careless_reviews(kind, p10):
     assert "careless" not in ReviewModel().as_dict() and m.as_dict()["careless"] == 0.05
     with pytest.raises(ValueError):
         ReviewModel(careless=0.05, careless_kind="sloppy")
+
+
+def test_second_committee_matches_closed_forms():
+    from peerreview.simulate import simulate_best_paper
+    m = ReviewModel(R=3, sigma_eps=2.0)
+    rho2 = m.reliability
+    N, A = 2000, 500
+    row = simulate_best_paper(m, N, reps=6000, best_K=(1,), winner_tiers={"top10": 10, "accept": A}, second_committee=True)
+    # Committee 2's scores correlate with committee 1's at rho^2, so the rerun tiers are the
+    # true-rank integrals at correlation rho^2, and the true-rank tiers those at rho.
+    for name, M, c in (("top10", 10, rho2), ("accept", A, rho2)):
+        exact = an.containment_fixed_K(N, 1, M, c)
+        assert abs(row[f"winner_in2_{name}"] - exact) < 4 * row[f"winner_in2_{name}_se"] + 1e-3
+    exact = an.containment_fixed_K(N, 1, 10, np.sqrt(rho2))
+    assert abs(row["winner_in_top10"] - exact) < 4 * row["winner_in_top10_se"] + 1e-3
+    assert row["winner_rank2_median"] > row["winner_rank_median"]

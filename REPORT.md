@@ -40,13 +40,10 @@ Ranges run from the pessimistic level ($\rho^2 = 0.44$) to the optimistic level
    accepted papers are not in the true top 25%, in every variant (38.4% to 39.6%). The
    number of such papers grows with $N$: NeurIPS about 160 in 2014 and about 3,050 in
    2026.
-8. **The real spotlight tier is noisier than the model; of the causes tested alone, only a
-   spotlight choice that differs between committees fits.** In the NeurIPS 2021 experiment
-   the other committee rejected 54% of each committee's spotlights, about as often as its
-   posters (51%); the calibrated Gaussian model predicts 31% ($P(\ge 54\%) = 0.002$). No
-   single noise source closes the gap: lower reliability, heavy-tailed noise and real ICLR
-   review noise each fall short; their combination was not tested. ICLR review halves match
-   the model at the accept level.
+8. **The real top tier is noisier than the model.** In the NeurIPS 2021 experiment the
+   other committee rejected 54% of each committee's spotlights; the calibrated Gaussian
+   model predicts 31% ($P(\ge 54\%) = 0.002$). A possible cause is judgement beyond scores,
+   which the model leaves out. ICLR review halves match the model at the accept level.
 
 ## 2. Definitions
 
@@ -236,65 +233,10 @@ committee rejected 26 of the 48 spotlights (54%). Replayed as a 764-paper subsam
 | exponential / Gaussian | 11.6 (7 to 17) | 0.004 | 16% | < 0.001 |
 
 At the pessimistic level the heavy-tailed-noise variants reach 43% to 45% spotlight
-rejection ($P \ge$ observed 0.07 to 0.11), mainly because their scores are unbounded: one
-extreme review can move a paper's mean anywhere. On a bounded integer 1-10 scale the same
-variants (`gauss/t3 1-10`, `beta/t3 1-10`; calibrated like the others, not in
-`fig6_validation`, paper Fig. 7) predict 38% and 40% at the pessimistic level (90% ranges
-up to 51% and 52%; $P(\ge 54\%)$ = 0.019 and 0.029) and 32% and 33% at the central level.
-The optimistic level fails in every variant. So the top tier is noisier than the
-calibrated model.
-
-**What explains the 54%** (`scripts/run_highlight_process.py`;
-`results/highlight_process_neurips2021.csv`, `results/iclr_highlight_scores.csv`,
-`results/iclr_splithalf_top.csv`). Table 1 of the 2021 report shows that the other
-committee rejected spotlights (26 of 48, 54%; 95% interval 39% to 69%) about as often as
-posters (177 of 347, 51%), and none of the 6 orals. In this one experiment the spotlight
-label carried little information about the other committee's accept decision. Each
-candidate cause, tested alone, at the central level unless stated:
-
-- *Lower reliability does not fit.* Score-based tiers reach 54% only near $\rho^2 = 0.25$
-  (54.7%), where the accept-level disagreement is 63%; observed 51% (203 of 401).
-- *Heavy-tailed noise falls short* (above): at most 45% with unbounded scores and 40% on a
-  bounded scale, as means.
-- *Real ICLR reviews are close to Gaussian at the top.* Decided ICLR 2021-2025 main-track
-  papers with at least four reviews, four drawn and split two and two, 60 splits: the
-  second half rejects 39.6% of the first half's top 3.5%, against 38.0% for an ordinal
-  Gaussian null with the same rating values, ties and accept-level disagreement; for the
-  other accepts 55.8% against 56.5%. By year the top-tier gap is -2.5 to +1.5 points,
-  except 2021 (+15). An earlier run that also kept withdrawn papers showed a larger excess;
-  the single-reliability null fits that mixture less well at the top.
-- *A purely shared non-score criterion does not fit.* If both committees choose spotlights
-  partly by a property both see, with orals by score, spotlight rejection rises to 37% to
-  49%, but the tier overlap rises to 7.5 to 11.5 against the observed 3 ($P$ of both as
-  extreme as observed $\le 0.011$). A mix of shared and own judgement (`both_spot`) fits:
-  45% to 48%, overlap 5.5 to 5.2, joint $P$ 0.06 to 0.10. So a view of broad interest that
-  partly differs between committees is not ruled out.
-- *A judgement each committee makes alone fits.* If each committee keeps its orals by score
-  but picks its spotlights among its accepts by the index $s + \mathrm{own}\cdot
-  \mathrm{SD}(s)\cdot e$, with $e$ drawn afresh for each committee, then for own $\ge 1$
-  (scores explain at most 20% of the index's variance among accepted papers) the model gives
-  43% to 51% spotlight rejection ($P(\ge 54\%)$ = 0.07 to 0.35), overlap 3.3 to 2.2, poster
-  rejection 51% to 52% and $P$(no oral rejected, 6 orals) = 0.30 to 0.36. At the
-  pessimistic level about half suffices: own = 0.5 (score share 0.50) gives 42.5%
-  ($P$ = 0.06) and overlap 3.7. If the orals use the same judgement, the orals fit worse:
-  for own $\ge 1$, $P$(no oral rejected) falls to 0.09 to 0.01 while $P(\ge 54\%)$ is 0.05
-  to 0.33; only own = 1.5 keeps both above 0.05 (0.11 and 0.06). The orals-by-score split was chosen after seeing that no oral was
-  rejected, and 6 orals are a weak test.
-- *ICLR's own highlights follow scores more closely.* The same model fitted to ICLR
-  decisions (area-chair noise fitted to the precision of acceptance by mean rating, then own
-  fitted to the precision of the top tier by mean rating among accepts): scores explain 54%
-  to 100% of ICLR's 2017-2025 highlight choice. In 2025 the observed precision exceeds what
-  the model reaches with own = 0, so 100% is a bound. Ties in the mean rating count as
-  non-score noise, so these shares are if anything low. Own is not comparable across
-  venues; at the same score share (about 0.5) the NeurIPS 2021 replay gives 37% at the
-  central level and 42% ($P$ = 0.06) at the pessimistic level.
-
-The 2021 record (`data/experiments.json`) fits the spotlights: during calibration ACs edited
-meta-reviews between spotlight and poster, and each copy had its own AC and SAC. The record
-says SACs and PCs chose orals and spotlights jointly "using factors beyond raw scores",
-which the replay finds less likely for the orals. The same PCs probably served both copies,
-so their part of the choice was shared. The evidence rests on one experiment with 48
-spotlight decisions.
+rejection ($P \ge$ observed 0.07 to 0.11), but only with unbounded scores. On a 1-10 scale
+(`gauss/t3 1-10`, `beta/t3 1-10`, not plotted) they reach 38% and 40%. The optimistic level
+fails in every variant. So the top tier is noisier than the calibrated model, possibly
+because committees chose highlights partly on judgement beyond scores.
 
 **ICLR split halves** (`results/iclr_splithalf_observed.csv`, `results/validation_iclr.csv`).
 Main-track decided papers with at least four reviews, 200 random splits into two halves
@@ -356,19 +298,9 @@ out of the main analyses.
    figure (`figures/fig7_history`, paper Fig. 4). Results ends with implications for program
    chairs, marked as untested. Figure rows are 1.72 in high. Awards are written as "13 or
    fewer a year", because a secondary source says ICLR 2020 gave none (`data/venues.csv`).
-9. **What explains the NeurIPS 2021 spotlights.** The author asked (3 October 2026) what
-   explains the 54%. `validation.replay_tiers` gained optional non-score terms for the tier
-   choice; with their defaults every earlier result is unchanged (checked bit for bit).
-   Two bounded-scale $t_3$ variants were added to the calibration and the NeurIPS 2021
-   validation as appended rows; earlier rows are unchanged. The paper now says that
-   heavy-tailed noise reaches at most 45% (40% on a 1-10 scale), where it said the
-   heavy-tailed variants hold 54% inside their 90% ranges. Its "broad interest" explanation
-   is replaced: a purely shared criterion raises the overlap. At the author's request the
-   paper keeps three points only: spotlights fared no better than posters, no tested
-   reviewer noise explains this, and the likely cause is judgement beyond scores that
-   differed between committees. The fits of that judgement stay in §7 only, because a
-   parameter fitted to the same 48 decisions shows that the explanation is possible, not
-   that it is true.
+9. **Bounded heavy-tailed variants.** Two $t_3$ variants on a 1-10 scale were added to the
+   calibration and the NeurIPS 2021 validation (appended rows). They show that heavy-tailed
+   noise gets close to the 2021 spotlight result only with unbounded scores.
 
 ## 9. Limitations
 
@@ -378,6 +310,5 @@ rejection or withdrawal; decisions by mean score alone. The calibration rests on
 experiments of 166 and 764 decided papers, whose sampling error spans much of the range
 between our pessimistic and optimistic levels. The tail of the quality distribution,
 which decides the top-of-ranking results, is not identified by accept-level data. The
-heavy-tailed-noise panel of the robustness figure (`fig4_robustness` b, paper Fig. 6b) uses
-unbounded $t_3$ noise; the NeurIPS 2021 replay shows that bounding the scores lowers top-tier
-disagreement, so whether that collapse survives a bounded scale is untested.
+heavy-tailed-noise panel of the robustness figure (paper Fig. 6b) uses unbounded $t_3$
+noise; whether its collapse survives a 1-10 scale is untested.

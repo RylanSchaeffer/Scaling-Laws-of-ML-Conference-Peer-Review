@@ -22,9 +22,9 @@ submissions, two out-of-sample tests, and the paper.
 | `src/peerreview/simulate.py` | vectorised Monte Carlo of whole conferences; every metric |
 | `src/peerreview/analytic.py` | closed forms and exact finite-$N$ integrals for the Gaussian model |
 | `src/peerreview/calibrate.py`, `levels.py` | calibration to the NeurIPS experiments; the three reliability levels |
-| `src/peerreview/validation.py` | replay of the NeurIPS 2021 top tier, optionally with highlights chosen beyond scores |
+| `src/peerreview/validation.py` | replay of the NeurIPS 2021 top tier |
 | `src/peerreview/iclr.py` | ICLR public-review pipeline (paperlists dumps) |
-| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV; `make_analytic_curves.py` and `make_R_needed.py` write the two `analytic_*.csv` files; `make_best_paper.py` writes `best_paper.csv`; `run_highlight_process.py` tests what explains the NeurIPS 2021 spotlight result |
+| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV; `make_analytic_curves.py` and `make_R_needed.py` write the two `analytic_*.csv` files; `make_best_paper.py` writes `best_paper.csv` |
 | `results/` | one CSV row per configuration, with parameters, metrics, replicates, seed and wall time |
 | `figures/` | every figure, from `scripts/make_figures.py` |
 | `tests/` | unit tests (`uv run pytest -q`) |

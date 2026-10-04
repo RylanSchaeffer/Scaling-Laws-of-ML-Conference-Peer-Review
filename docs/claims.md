@@ -261,6 +261,54 @@ marks a contradiction. Every source link is in `data/venues.csv` (`check_url`).
 | 2026 (decided) | 13,763 | 38.9% | 5,355 | 224 | 2 | V/U | partly confirmed | 5,355 / 13,763 = 38.9%. See the row above. | [link](https://blog.iclr.cc/2026/03/31/a-retrospective-on-the-iclr-2026-review-process/) |
 <!-- END 10.4 TABLES -->
 
+## §10.4a Main-track spotlights by venue-year
+
+Added on 2026-10-04 for Fig. 1b. A spotlight is the main-track tier between oral and poster
+("spotlight", "spotlight poster", or ICLR 2023's "notable-top-25%"). Counts exclude orals,
+Datasets & Benchmarks and position papers. A blank count means the venue had no such tier
+that year. ICML 2021 and 2022 labelled every non-oral paper a spotlight, so the label marks no
+selective tier there. One agent per venue found the counts and a second agent re-checked
+each one at its source. Machine-readable copy: `data/spotlights.csv`.
+
+| Venue | Year | Spotlights | Tier | Source | Finding |
+|---|---|---|---|---|---|
+| NeurIPS | 2014 | 62 | spotlight | [primary](https://neurips.cc/Conferences/2014/Schedule?type=Spotlight) | Schedule lists 62 spotlight papers; Lawrence's slides give 20 orals, 62 spotlights, 331 posters. |
+| NeurIPS | 2015 | 67 | spotlight | [primary](https://neurips.cc/Conferences/2015/Schedule?type=Spotlight) | Schedule lists 67; 15 orals + 67 + 321 posters = 403. |
+| NeurIPS | 2016 | – | no spotlight tier | [primary](https://neurips.cc/Conferences/2016/Schedule?type=Oral) | Schedule and conference book have orals and posters only. |
+| NeurIPS | 2017 | 112 | spotlight | [primary](https://neurips.cc/Conferences/2017/Schedule?type=Spotlight) | Schedule lists 112; PC opening remarks give 40/112/527 = 679. |
+| NeurIPS | 2018 | 167 | spotlight | [primary](https://neurips.cc/Conferences/2018/Schedule?type=Spotlight) | Schedule and virtual site list 167; secondary sources give 168. |
+| NeurIPS | 2019 | 164 | spotlight | [primary](https://neurips.cc/Conferences/2019/Schedule?type=Spotlight) | Schedule and virtual site list 164; 36 + 164 + 1,228 = 1,428. |
+| NeurIPS | 2020 | 280 | spotlight | [primary](https://neurips.cc/Conferences/2020/Schedule?type=Spotlight) | Schedule and virtual site list 280; PC post gives 105 orals and 280 spotlights. |
+| NeurIPS | 2021 | 260 | spotlight | [primary](https://arxiv.org/abs/2306.03262) | PC paper section 2: 55 orals, 260 spotlights, 2,019 posters; schedule lists 260. |
+| NeurIPS | 2022 | – | no spotlight tier | [primary](https://media.neurips.cc/Conferences/NeurIPS2022/NeurIPS_2022_Fact_Sheet.pdf) | Fact sheet and PC blog give orals and posters only; no source names a spotlight tier (inference). |
+| NeurIPS | 2023 | 378 | spotlight poster | [primary](https://neurips.cc/static/virtual/data/neurips-2023-orals-posters.json) | Unique main-track papers in virtual-site data; all-track page shows 400 = 378 + 22 D&B. |
+| NeurIPS | 2024 | 326 | spotlight poster | [primary](https://neurips.cc/static/virtual/data/neurips-2024-orals-posters.json) | Unique main-track papers in virtual-site data; a secondary source gives 327. |
+| NeurIPS | 2025 | 687 | spotlight poster | [primary](https://neurips.cc/static/virtual/data/neurips-2025-orals-posters.json) | Unique main-track papers in virtual-site data; secondary sources quoting the notification give 688. |
+| NeurIPS | 2026 | 292 | spotlight | [secondary](https://agihunt.info/en/p/1a0d4e8d89e797c4ba011942d61) | Unverified: secondary article quoting the notification (112 orals + 292 spotlights); the official JSON is duplicated (302 records). |
+| ICML | 2014 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2015 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2016 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2017 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2018 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2019 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2020 | – | no spotlight tier | primary | Every accepted paper had the same talk or poster format; no spotlight tier. |
+| ICML | 2021 | – | no spotlight tier | [primary](https://icml.cc/Conferences/2021/Schedule?type=Spotlight) | Every non-oral paper was labelled spotlight (1,017 of 1,183), so the label marks no selective tier. |
+| ICML | 2022 | – | no spotlight tier | [primary](https://icml.cc/Conferences/2022/Schedule?type=Spotlight) | Every non-oral paper was labelled spotlight (1,115 of 1,233), so the label marks no selective tier. |
+| ICML | 2023 | – | no spotlight tier | [primary](https://icml.cc/Conferences/2023/Schedule?type=Oral) | Schedule has orals and posters only. |
+| ICML | 2024 | 180 | spotlight poster | [primary](https://icml.cc/virtual/2024/events/2024SpotlightPosters) | Virtual site lists 191 across tracks; 11 are position papers. |
+| ICML | 2025 | 213 | spotlight poster | [secondary](https://papers.cool/venue/ICML.2025?group=Spotlight) | OpenReview labels: 225 non-oral spotlights, 12 position papers. Virtual site lists 224 (all tracks). A decision-time count gives 313 including 108 orals, i.e. 205. |
+| ICML | 2026 | 377 | spotlight poster | [primary](https://x.com/icmlconf/status/2049919242862985559) | ICML: 536 main-track spotlight papers (2.2%), orals chosen from them; 536 - 159 main orals = 377. |
+| ICLR | 2017 | – | no spotlight tier | [primary](https://iclr.cc/archive/www/doku.php%3Fid=iclr2017:schedule.html) | Contributed talks and posters only. |
+| ICLR | 2018 | – | no spotlight tier | [primary](https://iclr.cc/Conferences/2018/Schedule) | Orals and posters only. |
+| ICLR | 2019 | – | no spotlight tier | [primary](https://iclr.cc/Conferences/2019/Schedule) | Orals and posters only. |
+| ICLR | 2020 | 108 | spotlight | [secondary](https://syncedreview.com/2019/12/20/iclr-2020-accepted-papers-announced/) | Quotes the PC post: 108 spotlights and 48 talks of 687 accepted; paperlists agrees. |
+| ICLR | 2021 | 114 | spotlight | [primary](https://iclr.cc/virtual/2021/events/spotlight) | Virtual site lists 114; paperlists agrees. |
+| ICLR | 2022 | 175 | spotlight | [primary](https://iclr.cc/media/Press/ICLR_2022_Fact_Sheet.pdf) | Fact sheet and virtual site give 175; paperlists gives 174. |
+| ICLR | 2023 | 280 | notable-top-25% | [secondary](https://papercopilot.com/venue-overview/iclr-2023-venue-overview/) | Author Guide: notable-top-25% was traditionally Accept (spotlight). Paper Copilot and paperlists give 280. |
+| ICLR | 2024 | 367 | spotlight poster | [primary](https://iclr.cc/virtual/2024/events/spotlight-posters) | Virtual site lists 367; paperlists agrees. |
+| ICLR | 2025 | 380 | spotlight poster | [primary](https://iclr.cc/virtual/2025/events/spotlight-posters) | Virtual site lists 380; the fact sheet's 85 conflicts with every other source and the accepted total. |
+| ICLR | 2026 | – | no spotlight tier | [primary](https://iclr.cc/virtual/2026/events/spotlight-posters) | Virtual site lists 0 spotlights; fact sheet and paperlists have orals and posters only. |
+
 ## §10.5 How decisions are made
 
 | Claim | Value | Handoff status | Check | Source |

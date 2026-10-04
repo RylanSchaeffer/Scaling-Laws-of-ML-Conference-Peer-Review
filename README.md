@@ -12,7 +12,7 @@ submissions, two out-of-sample tests, and the paper.
 - **Derivations:** [`docs/derivations.md`](docs/derivations.md) (two independent
   derivations in `docs/derivations/`)
 - **Empirical claims and their sources:** [`docs/claims.md`](docs/claims.md),
-  `data/venues.csv`, `data/experiments.json`
+  `data/venues.csv`, `data/spotlights.csv`, `data/experiments.json`
 
 ## Layout
 

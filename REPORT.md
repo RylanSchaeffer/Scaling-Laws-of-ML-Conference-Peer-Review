@@ -354,7 +354,11 @@ out of the main analyses.
     are (§6, robustness table); implications. Five figures: `fig1_headline` (submissions;
     true standing of the Best Paper at NeurIPS 2014, 2021, 2026), `fig2_validation`,
     `fig3_venues` (the four tier probabilities for every venue-year), `fig4_mechanism`,
-    `fig5_robustness`. The careless-reviewer variants and the per-variant 2021 overlap test
+    `fig5_robustness`. On 4 October 2026 Fig. 1 became three panels at the author's request:
+    (a) submissions per year; (b) the share of NeurIPS submissions accepted, given spotlights
+    and given orals, so the reader sees that acceptance and spotlights are near-fixed shares
+    while the oral share falls (1.2% to 0.4%); (c) the Best Paper's true standing. Spotlight
+    counts are in `data/spotlights.csv` (docs/claims.md §10.4a). The careless-reviewer variants and the per-variant 2021 overlap test
     were added for this section; the three careless variants are calibrated at the central
     level only. The Limitations paragraph was folded into the opening of the Implications.
 

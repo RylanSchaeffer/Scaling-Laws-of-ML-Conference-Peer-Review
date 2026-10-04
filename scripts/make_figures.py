@@ -77,16 +77,16 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: growth, and where the Best Paper truly ranks
+# Figure 1: growth, selection rates, and where the Best Paper truly ranks
 # ---------------------------------------------------------------------------
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
 TIERS = (  # (label, colour): the Best Paper's true standing, best to worst
     ("truly best", P.BLUE[700]),
     ("2nd to 10th", P.BLUE[550]),
-    ("rest of oral-worthy", P.BLUE[400]),
+    ("other oral-worthy", P.BLUE[400]),
     ("merely accept-worthy", P.BLUE[250]),
-    ("should have been rejected", P.ORANGE[450]),
+    ("reject-worthy", P.ORANGE[450]),
 )
 
 
@@ -100,50 +100,82 @@ def venue_rows(level: str = "central") -> pd.DataFrame:
     return b[(b.source == "venue") & (b.level == level)]
 
 
-def submissions_panel(ax):
-    """Submitted (solid), accepted (dashed) and oral (dotted) papers per year at NeurIPS, ICML
-    and ICLR (data/venues.csv: N_used, N_used x acc_rate_used, orals_used). On the log axis a
-    constant rate is a constant gap between two lines; a widening gap is a falling rate."""
+def venue_counts() -> pd.DataFrame:
+    """Submissions, acceptance rate, spotlights and orals per venue-year: data/venues.csv
+    (`*_used` columns) and data/spotlights.csv (main-track spotlight counts, blank where the
+    venue had no spotlight tier or no source gives one)."""
     v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
-    v = v[v.denominator != "decided"].copy()
-    v["accepted_n"] = (v.N_used * v.acc_rate_used).round()
-    for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^")):
-        s = v[v.venue == venue].sort_values("year")
-        ax.plot(s.year, s.N_used, color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, mew=0.6)
-        ax.plot(s.year, s.accepted_n, color=c, lw=1.2, ls=(0, (3, 1.6)), marker=mk, ms=2.6, mec=P.SURFACE, mew=0.5)
-        o = s.dropna(subset=["orals_used"])
-        ax.plot(o.year, o.orals_used, color=c, lw=1.0, ls=(0, (1, 1.3)), marker=mk, ms=2.2, mec=P.SURFACE, mew=0.4)
-    # NeurIPS 2026 is reported by secondary aggregators only (docs/claims.md): open markers.
-    last = v[(v.venue == "NeurIPS") & (v.year == 2026)]
-    for col, ms in (("N_used", 3.2), ("accepted_n", 2.6), ("orals_used", 2.2)):
-        ax.plot(last.year, last[col], ls="none", marker="o", ms=ms, mfc=P.SURFACE, mec=P.BLUE[450], mew=1.0, zorder=5)
+    v = v[v.denominator != "decided"]
+    sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))
+    return v.merge(sp[["venue", "year", "spotlights"]], on=["venue", "year"], how="left").sort_values(["venue", "year"])
+
+
+def _neurips_2026(ax, y, ms):
+    """NeurIPS 2026 is reported by secondary aggregators only (docs/claims.md): open marker."""
+    ax.plot([2026], [y], ls="none", marker="o", ms=ms, mfc=P.SURFACE, mec=P.BLUE[450], mew=1.0, zorder=5)
+
+
+def submissions_panel(ax):
+    """Papers submitted per year at NeurIPS, ICML and ICLR (data/venues.csv, N_used)."""
+    v = venue_counts()
+    for venue, c, mk in VENUES:
+        s = v[v.venue == venue]
+        ax.plot(s.year, s.N_used, color=c, lw=1.6, marker=mk, ms=3.0, mew=0, label=venue)
+    _neurips_2026(ax, v[(v.venue == "NeurIPS") & (v.year == 2026)].N_used.iloc[0], 3.4)
     ax.set_yscale("log")
-    ax.set_ylim(9, 1e6)  # headroom so the legend clears the 2023-2026 NeurIPS points
-    ax.yaxis.set_major_locator(FixedLocator([10, 100, 1e3, 1e4, 1e5]))
+    ax.set_ylim(400, 1e5)
+    ax.yaxis.set_major_locator(FixedLocator([1e3, 1e4, 1e5]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.yaxis.set_major_formatter(plt.FuncFormatter(P.fmt_count))
     ax.set_xticks([2014, 2018, 2022, 2026])
     ax.set_xlim(2013.3, 2026.7)
     ax.set_xlabel("Year")
-    ax.set_ylabel("Papers per year")
-    ax.set_title("Submitted, accepted, orals", loc="left")
-    handles = [Line2D([], [], color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, label=venue)
-               for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))]
-    handles += [Line2D([], [], color=P.INK2, lw=1.6, label="submitted"),
-                Line2D([], [], color=P.INK2, lw=1.2, ls=(0, (3, 1.6)), label="accepted"),
-                Line2D([], [], color=P.INK2, lw=1.0, ls=(0, (1, 1.3)), label="orals")]
-    ax.legend(handles=handles, loc="upper left", ncol=2, handlelength=1.6, columnspacing=0.8, borderaxespad=0.2,
-              fontsize=6.5)
+    ax.set_ylabel("Papers submitted")
+    ax.set_title("Submissions", loc="left")
+    ax.legend(loc="upper left", handlelength=1.4, borderaxespad=0.2, fontsize=6.5)
+
+
+RATE_STYLES = (  # (label, column, line style, line width, label position (year, share))
+    ("accepted", "acc_rate_used", "-", 1.6, (2019.5, 0.36)),
+    ("spotlights", "spotlight_rate", (0, (3, 1.6)), 1.4, (2017.6, 0.058)),
+    ("orals", "oral_rate", (0, (1, 1.2)), 1.4, (2017.6, 0.0027)),
+)
+
+
+def rates_panel(ax):
+    """Share of NeurIPS submissions accepted, given a spotlight and given an oral, per year
+    (main track). Gaps mark years with no spotlight tier (2016, 2022). On the log axis a
+    constant share is a flat line, so a falling line means the tier grew more slowly than
+    submissions."""
+    v = venue_counts().assign(spotlight_rate=lambda d: d.spotlights / d.N_used, oral_rate=lambda d: d.orals_used / d.N_used)
+    s = v[v.venue == "NeurIPS"]
+    for lab, col, ls, lw, (x, y) in RATE_STYLES:
+        ax.plot(s.year[:-1], s[col][:-1], color=P.BLUE[450], ls=ls, lw=lw, marker="o", ms=2.6, mew=0)
+        ax.plot(s.year[-2:], s[col][-2:], color=P.BLUE[450], ls=ls, lw=lw)
+        _neurips_2026(ax, s[col].iloc[-1], 3.2)
+        ax.text(x, y, lab, fontsize=6.8, color=P.INK2, ha="center", va="center")
+    ax.set_yscale("log")
+    ax.set_ylim(2e-3, 0.6)
+    ax.yaxis.set_major_locator(FixedLocator([0.003, 0.01, 0.03, 0.1, 0.3]))
+    ax.yaxis.set_minor_locator(NullLocator())
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{100 * x:g}%"))
+    ax.set_xticks([2014, 2018, 2022, 2026])
+    ax.set_xlim(2013.3, 2026.7)
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Share of submissions")
+    ax.set_title("NeurIPS tiers", loc="left")
 
 
 def fig_headline():
-    """(a) Papers submitted, accepted and given orals per year. (b) The true standing of the
-    model's Best Paper (the top-scored paper) at NeurIPS 2014, 2021 and 2026 size, central level
-    (results/best_paper.csv)."""
-    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 1.85), gridspec_kw=dict(wspace=0.42, width_ratios=[1, 1.5]))
+    """(a) Papers submitted per year. (b) Share of submissions accepted, given spotlights and
+    given orals. (c) The true standing of the model's Best Paper (the top-scored paper) at
+    NeurIPS 2014, 2021 and 2026 size, central level (results/best_paper.csv)."""
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.85),
+                             gridspec_kw=dict(wspace=0.5, width_ratios=[1, 1.05, 1.5]))
     submissions_panel(axes[0])
+    rates_panel(axes[1])
 
-    ax = axes[1]
+    ax = axes[2]
     b = venue_rows()
     years = (2026, 2021, 2014)
     for y, yr in enumerate(years):
@@ -172,7 +204,7 @@ def fig_headline():
     ax.legend(handles=handles, loc="upper left", ncol=3, fontsize=6.2, handlelength=0.9, columnspacing=0.6,
               borderaxespad=0.1, handletextpad=0.3)
     for i, a in enumerate(axes):
-        P.panel_label(a, "ab"[i])
+        P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig1_headline"))
 
 

@@ -3,7 +3,9 @@
 Paper i has true quality q_i and receives R reviews s_ij = q_i + u_i + eps_ij.
 u_i is noise shared by everyone who handles the paper; eps_ij is a reviewer's own
 error. Each review is optionally snapped to a score scale before averaging. The
-paper's score is the mean of its R (snapped) reviews.
+paper's score is the mean of its R (snapped) reviews. Optionally, a share
+`careless` of reviews ignore the paper: "rave" reviews give the top of the scale,
+"random" reviews a uniformly random score.
 
 Everything lives on a latent 1-to-10 axis.
 """
@@ -26,6 +28,7 @@ SCALES: dict[str, np.ndarray | None] = {
 }
 QUALITY_DISTS = ("gaussian", "beta", "exp", "t3", "lognormal")
 NOISE_DISTS = ("gaussian", "t3")
+CARELESS_KINDS = ("rave", "random")
 
 
 @dataclass(frozen=True)
@@ -42,6 +45,9 @@ class ReviewModel:
     scale: str = "continuous"
     # Custom scale points, used only when scale == "custom" (for the placement check).
     scale_points: tuple[float, ...] = ()
+    # Share of reviews that ignore the paper, and what they say.
+    careless: float = 0.0
+    careless_kind: str = "rave"
 
     def __post_init__(self) -> None:
         if self.quality not in QUALITY_DISTS:
@@ -54,6 +60,8 @@ class ReviewModel:
             raise ValueError("custom scale needs at least two points")
         if self.R < 1:
             raise ValueError("R must be at least 1")
+        if not 0.0 <= self.careless < 1.0 or self.careless_kind not in CARELESS_KINDS:
+            raise ValueError("careless must be in [0, 1) with kind 'rave' or 'random'")
 
     def replace(self, **kw) -> "ReviewModel":
         d = asdict(self)
@@ -69,7 +77,7 @@ class ReviewModel:
     @property
     def gaussian_shortcut(self) -> bool:
         """True when the mean score can be drawn in one step (handoff §9)."""
-        return self.points is None and self.noise == "gaussian"
+        return self.points is None and self.noise == "gaussian" and self.careless == 0
 
     @property
     def reliability(self) -> float:
@@ -84,6 +92,9 @@ class ReviewModel:
     def as_dict(self) -> dict:
         d = asdict(self)
         d["scale_points"] = ",".join(f"{p:g}" for p in self.scale_points)
+        if self.careless == 0:  # keep the seeds and CSV rows of every earlier model unchanged
+            d.pop("careless")
+            d.pop("careless_kind")
         return d
 
 
@@ -170,6 +181,15 @@ def sample_scores(rng: np.random.Generator, q: np.ndarray, m: ReviewModel) -> np
         base = q + m.sigma_u * rng.standard_normal(q.shape)
     reviews = base[..., None] + _noise(rng, q.shape + (m.R,), m)
     pts = m.points
+    if m.careless > 0:
+        lo, hi = (1.0, 10.0) if pts is None else (float(pts[0]), float(pts[-1]))
+        if m.careless_kind == "rave":
+            junk = np.full(reviews.shape, hi)
+        elif pts is None:
+            junk = rng.uniform(lo, hi, size=reviews.shape)
+        else:
+            junk = rng.choice(pts, size=reviews.shape)
+        reviews = np.where(rng.random(reviews.shape) < m.careless, junk, reviews)
     if pts is not None:
         reviews = snap(reviews, pts)
     return reviews.mean(axis=-1)

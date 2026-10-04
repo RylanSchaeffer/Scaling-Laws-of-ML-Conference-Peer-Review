@@ -24,7 +24,7 @@ submissions, two out-of-sample tests, and the paper.
 | `src/peerreview/calibrate.py`, `levels.py` | calibration to the NeurIPS experiments; the three reliability levels |
 | `src/peerreview/validation.py` | replay of the NeurIPS 2021 top tier |
 | `src/peerreview/iclr.py` | ICLR public-review pipeline (paperlists dumps) |
-| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV; `make_analytic_curves.py` and `make_R_needed.py` write the two `analytic_*.csv` files; `make_best_paper.py` writes `best_paper.csv` |
+| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV; `make_analytic_curves.py` and `make_R_needed.py` write the two `analytic_*.csv` files; `make_best_paper.py` writes `best_paper.csv`; `run_best_paper_robustness.py` writes `best_paper_robustness.csv` |
 | `results/` | one CSV row per configuration, with parameters, metrics, replicates, seed and wall time |
 | `figures/` | every figure, from `scripts/make_figures.py` |
 | `tests/` | unit tests (`uv run pytest -q`) |
@@ -48,8 +48,7 @@ cd paper && tectonic main.tex
 ```
 
 The paper uses the NeurIPS 2026 style file (`paper/neurips_2026.sty`, `preprint` option).
-`uv run python scripts/check_paper.py` checks its layout. The figure files keep the report's
-numbering; the paper shows them in the order `fig1_main`, `fig5_boundary`, `fig2_mechanism`,
-`fig7_history`, `fig3_parameters`, `fig4_robustness`, `fig6_validation` (paper Figs. 1 to 7).
+`uv run python scripts/check_paper.py` checks its layout. The figure files are numbered as in
+the paper: `fig1_headline`, `fig2_validation`, `fig3_venues`, `fig4_mechanism`, `fig5_robustness`.
 
 The ICLR dumps (about 300 MB) download into `data/raw/`, which git ignores.

@@ -51,3 +51,16 @@ def test_inversions_round_trip():
             assert abs(an.invert_disagreement(a, an.disagreement(a, r)) - r) < 1e-8
     se = an.sigma_eps_for_rho2(0.55, 3)
     assert abs(an.rho2(se, 3) - 0.55) < 1e-12
+
+
+@pytest.mark.parametrize("kind, p10", [("rave", 0.05), ("random", 0.005)])
+def test_careless_reviews(kind, p10):
+    from peerreview.model import sample_scores
+    m = ReviewModel(R=1, scale="int10", sigma_u=0.0, sigma_eps=0.01, careless=0.05, careless_kind=kind)
+    s = sample_scores(np.random.default_rng(3), np.full(400_000, 5.0), m)
+    # Careful reviews of a quality-5 paper give 5; a rave gives 10, a random review 1 to 10.
+    assert abs((s == 10).mean() - p10) < 0.002
+    assert abs((s != 5).mean() - (0.05 if kind == "rave" else 0.045)) < 0.002
+    assert "careless" not in ReviewModel().as_dict() and m.as_dict()["careless"] == 0.05
+    with pytest.raises(ValueError):
+        ReviewModel(careless=0.05, careless_kind="sloppy")

@@ -11,6 +11,21 @@ Ranges run from the pessimistic level ($\rho^2 = 0.44$) to the optimistic level
 
 ## 1. Summary
 
+The paper asks one question: as submissions grow, does review still give its awards to the
+right papers? Items A and B answer it; items 1 to 8 give the supporting results.
+
+A. **A Best Paper is almost always a good paper but rarely the best one.** The model's Best
+   Paper (the top-scored paper) at NeurIPS 2026 size is truly the best with probability
+   6.6%, in the true top 10 with 25%, oral-worthy with 63%, merely accept-worthy with 37%,
+   and should have been rejected with 0.09%. From NeurIPS 2014 to 2026 the first chance
+   fell from 12.1% to 6.6% (§6).
+B. **How sure: the quality tail decides P(best); careless raves decide P(reject).** Across
+   variants refitted to the same acceptance data, P(best) at NeurIPS 2026 size runs from
+   1.3% (bounded quality) to 92% ($t_3$ quality). The NeurIPS 2021 top-tier overlap rejects
+   the heavy-tailed quality variants ($P \le 0.04$). Under the rest, P(best) is 1.3% to
+   6.7%, P(merely accept-worthy) 37% to 65%, and P(should have been rejected) 0.09% to
+   5.4%; the top value comes from 5% careless "rave" reviews (§6).
+
 1. **Fixed-number selections degrade as conferences grow; fixed-percentile selections
    do not.** Top-10 precision is 27% at $N = 10^3$, 16% at $10^4$, 10% at $10^5$ and 6% at
    $10^6$ (exact theory; range at $10^6$: 4% to 19%). The precision of a top-0.5% set is
@@ -189,7 +204,7 @@ rate and main-track oral count (values from `data/venues.csv`, `*_used` columns)
 | ICML 2026 | 23,918 | 13.6% | 25.2% (159) | 2,421 | 50.3% |
 | ICLR 2026 (valid) | 19,525 | 14.4% | 28.4% (224) | 2,008 | 49.7% |
 
-Figure 7 (`figures/fig7_history.png`, paper Fig. 4) shows every year: (a) top-10 precision, (b) precision of the
+`results/history.csv` gives every year: (a) top-10 precision, (b) precision of the
 real oral set, (c) the probability that the best paper is in the top 10 by score. Lines are
 central; the band (NeurIPS only) spans the pessimistic and optimistic levels. At NeurIPS the
 top-scored paper's median true rank rises from 15 (2014) to 55 (2026), and the best paper is
@@ -215,6 +230,34 @@ quality sits further above the fixed-percentile acceptance bar. The chance that 
 true best falls at the same time. A direct simulation at the central level (200,000
 conferences at $N$ = 1,678; 40,000 at 30,709) agrees within sampling error: 12.15% best,
 99.00% accept-worthy at 1,678; 6.47% best, 62.5% oral-worthy, 99.89% accept-worthy at 30,709.
+
+**How sure: the Best Paper under every variant** (`results/best_paper_robustness.csv`,
+`scripts/run_best_paper_robustness.py`, paper Fig. 5). Each variant is refitted to the
+central NeurIPS 2021 disagreement (`results/calibration_variants.csv`) and simulated at
+NeurIPS 2014 size (200,000 conferences) and 2026 size (40,000). Careless reviewers ignore
+the paper: a "rave" review gives 10, a "random" review a uniform score on the 1-10 scale
+(`ReviewModel.careless`, `careless_kind`). Each variant also replays the NeurIPS 2021
+top tiers (4,000 replays; observed overlap 3). Values at 2026 size (2014 in brackets):
+
+| Variant | P(best) | P(merely accept-worthy) | P(should be rejected) | 2021 overlap: mean, P(≤3) |
+|---|---|---|---|---|
+| Gaussian, R = 4 | 6.7% (12.1%) | 37.0% | 0.09% (0.96%) | 5.76, 0.17 |
+| bounded quality | 1.3% (5.6%) | 63.6% | 0.35% (1.74%) | 4.98, 0.26 |
+| exponential quality | 49.9% (49.8%) | 0.06% | 0% (0%) | 11.70, 0.002 |
+| lognormal quality | 29.3% (30.2%) | 4.1% | 0% (0.11%) | 7.95, 0.04 |
+| $t_3$ quality | 92.0% (80.2%) | 0% | 0% (0%) | 11.65, 0.001 |
+| 1-10 scale | 2.6% (9.5%) | 57.3% | 0.54% (1.75%) | 5.60, 0.18 |
+| ICLR scale | 1.5% (8.4%) | 64.9% | 0.94% (1.98%) | 5.53, 0.19 |
+| $t_3$ noise, 1-10 | 4.1% (11.9%) | 49.2% | 2.07% (2.93%) | 5.85, 0.17 |
+| 1% rave reviews | 2.7% (9.6%) | 56.8% | 0.79% (2.06%) | 5.65, 0.18 |
+| 5% rave reviews | 2.8% (10.7%) | 53.1% | 5.41% (4.80%) | 5.73, 0.17 |
+| 5% random reviews | 3.3% (10.3%) | 51.6% | 0.38% (1.42%) | 5.76, 0.17 |
+
+Heavy-tailed quality puts the best papers far apart, so review finds them and P(best)
+barely changes with size; but it predicts 8 to 12 shared highlights against 3 observed.
+Every light-tailed variant predicts 5 to 6. P(should be rejected) falls with size in every
+variant except 5% raves: one rave lifts a weak paper's mean far above its merit, and the
+top-scored paper is the one most likely to have drawn one.
 
 ## 7. Validation
 
@@ -295,12 +338,25 @@ out of the main analyses.
    takeaways to be stated and emphasised, and allowed a seventh page. The paper now states
    four takeaways in the abstract and six ranked conclusions in the Introduction. Results
    paragraphs open with a bold takeaway sentence. The seventh page carries the real-venue
-   figure (`figures/fig7_history`, paper Fig. 4). Results ends with implications for program
+   figure (`figures/fig7_history`, then paper Fig. 4; superseded by item 10). Results ends with implications for program
    chairs, marked as untested. Figure rows are 1.72 in high. Awards are written as "13 or
    fewer a year", because a secondary source says ICLR 2020 gave none (`data/venues.csv`).
 9. **Bounded heavy-tailed variants.** Two $t_3$ variants on a 1-10 scale were added to the
    calibration and the NeurIPS 2021 validation (appended rows). They show that heavy-tailed
    noise gets close to the 2021 spotlight result only with unbounded scores.
+10. **Restructure around one question (3 October 2026).** At the author's request the
+    paper asks one question: as submissions grow, can review still tell good papers from
+    bad ones and give its awards to the right papers? The answers are error probabilities
+    for the Best Paper (truly best, top 10, oral-worthy, merely accept-worthy, should have
+    been rejected). Each section and paragraph runs motivation, method, result,
+    implication. Sections: Introduction; Methods; model faithfulness (§7 here); how often
+    awards go to the right papers (§6); why awards lose accuracy (§4 to §5); how sure we
+    are (§6, robustness table); implications. Five figures: `fig1_headline` (submissions;
+    true standing of the Best Paper at NeurIPS 2014, 2021, 2026), `fig2_validation`,
+    `fig3_venues` (the four tier probabilities for every venue-year), `fig4_mechanism`,
+    `fig5_robustness`. The careless-reviewer variants and the per-variant 2021 overlap test
+    were added for this section; the three careless variants are calibrated at the central
+    level only. The Limitations paragraph was folded into the opening of the Implications.
 
 ## 9. Limitations
 
@@ -310,5 +366,5 @@ rejection or withdrawal; decisions by mean score alone. The calibration rests on
 experiments of 166 and 764 decided papers, whose sampling error spans much of the range
 between our pessimistic and optimistic levels. The tail of the quality distribution,
 which decides the top-of-ranking results, is not identified by accept-level data. The
-heavy-tailed-noise panel of the robustness figure (paper Fig. 6b) uses unbounded $t_3$
-noise; whether its collapse survives a 1-10 scale is untested.
+heavy-tailed-noise results of §5 use unbounded $t_3$ noise; on a 1-10 scale the Best
+Paper at NeurIPS 2026 size is the best 4.1% of the time, against 6.7% Gaussian (§6).

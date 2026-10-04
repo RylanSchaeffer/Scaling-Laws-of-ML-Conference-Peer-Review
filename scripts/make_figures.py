@@ -1,9 +1,8 @@
-"""Every figure of the report and paper, from results/*.csv.
+"""Every figure of the paper, from results/*.csv.
 
-Simulation results come from the sweep CSVs; analytic curves come from
-results/analytic_curves.csv (scripts/make_analytic_curves.py), so every plotted
-number traces to a CSV row. Figures go to figures/fig{n}_{name}.pdf and .png. The file
-number n is the report's numbering; the paper orders them 1, 5, 2, 7, 3, 4, 6.
+Simulation results come from the sweep and robustness CSVs; analytic curves come from
+results/analytic_curves.csv and results/best_paper.csv, so every plotted number traces to a
+CSV row. Figures go to figures/fig{n}_{name}.pdf and .png, numbered as in the paper.
 
 Usage: uv run python scripts/make_figures.py [names...]
 """
@@ -78,8 +77,27 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: papers per year; fixed number versus fixed percentage (the main result)
+# Figure 1: growth, and where the Best Paper truly ranks
 # ---------------------------------------------------------------------------
+
+VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
+TIERS = (  # (label, colour): the Best Paper's true standing, best to worst
+    ("truly best", P.BLUE[700]),
+    ("2nd to 10th", P.BLUE[550]),
+    ("rest of oral-worthy", P.BLUE[400]),
+    ("merely accept-worthy", P.BLUE[250]),
+    ("should have been rejected", P.ORANGE[450]),
+)
+
+
+def tier_shares(r) -> list[float]:
+    """Split the Best Paper's true standing into the five TIERS (one best_paper.csv row)."""
+    return [r.p_best, r.p_top10 - r.p_best, r.p_oral - r.p_top10, r.p_accept - r.p_oral, 1 - r.p_accept]
+
+
+def venue_rows(level: str = "central") -> pd.DataFrame:
+    b = load("best_paper")
+    return b[(b.source == "venue") & (b.level == level)]
 
 
 def submissions_panel(ax):
@@ -118,281 +136,48 @@ def submissions_panel(ax):
               fontsize=6.5)
 
 
-def fig_main():
-    """(a) Papers submitted, accepted and given orals per year. (b) Fixed-number against
-    fixed-percentage precision: each pair is the same set at N = 1,000 (top 10 = top 1%,
-    top 100 = top 10%), then they diverge."""
-    g = load("sweep_g")
-    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 1.85),
-                             gridspec_kw=dict(wspace=0.3, width_ratios=[1, 1.5]))
+def fig_headline():
+    """(a) Papers submitted, accepted and given orals per year. (b) The true standing of the
+    model's Best Paper (the top-scored paper) at NeurIPS 2014, 2021 and 2026 size, central level
+    (results/best_paper.csv)."""
+    fig, axes = plt.subplots(1, 2, figsize=(P.TEXTWIDTH_IN, 1.85), gridspec_kw=dict(wspace=0.42, width_ratios=[1, 1.5]))
     submissions_panel(axes[0])
 
     ax = axes[1]
-    series = (  # (kind, size, simulated column, colour, label, label y offset at N = 1e6)
-        ("K", 100, "prec_K100", P.BLUE[700], "top 100", 0.012),
-        ("K", 10, "prec_K10", P.BLUE[400], "top 10", -0.012),
-        ("p", 0.10, "prec_acc0.10", P.ORANGE[600], "top 10%", 0.0),
-        ("p", 0.01, "prec_p1pct", P.ORANGE[450], "top 1%", 0.0),
-    )
-    for kind, size, col, c, label, dy in series:
-        q, kw = ("prec_K", dict(K=size)) if kind == "K" else ("prec_pct_finite", dict(p=size))
-        cen, lo, hi = (A(q, lev, **kw) for lev in ("central", "pessimistic", "optimistic"))
-        if size == 10:  # one band, for the headline series; figure 5a shows fixed-share bands
-            ax.fill_between(cen.N, lo.value, hi.value, color=c, alpha=0.13, lw=0)
-        ax.plot(cen.N, cen.value, color=c, lw=1.6)
-        sim_points(ax, g, col, c)
-        ax.text(1.3e6, cen.value.iloc[-1] + dy, label, fontsize=7, color=P.INK2, va="center", ha="left",
+    b = venue_rows()
+    years = (2026, 2021, 2014)
+    for y, yr in enumerate(years):
+        r = b[(b.venue == "NeurIPS") & (b.year == yr)].iloc[0]
+        left = 0.0
+        for (lab, c), w in zip(TIERS, tier_shares(r)):
+            ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8)
+            if w >= 0.055:
+                ax.text(left + w / 2, y, f"{100 * w:.0f}%", ha="center", va="center", fontsize=6.5 if w >= 0.09 else 5.6,
+                        color=P.SURFACE if c != P.BLUE[250] else P.INK)
+            left += w
+        ax.text(1.015, y, f"{100 * (1 - r.p_accept):.1f}%", ha="left", va="center", fontsize=6.5, color=P.ORANGE[600],
                 clip_on=False)
-    P.n_axis(ax)
-    ax.set_ylim(0, 0.62)
-    ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6])
-    P.pct_axis(ax)
-    ax.set_ylabel("Precision of the selection")
-    ax.set_title("Fixed number falls, fixed percentage holds", loc="left")
-    mark_venues(ax, label=True, y=0.99)
-    ax.legend(handles=sim_legend_handles(), loc="lower left", handlelength=1.3, borderaxespad=0.2)
-    for i, a in enumerate(fig.axes):
-        P.panel_label(a, "ab"[i])
-    P.save(fig, os.path.join(FIG, "fig1_main"))
-
-
-# ---------------------------------------------------------------------------
-# Figure 2: mechanism, best-paper probability, local slope
-# ---------------------------------------------------------------------------
-
-
-def fig_mechanism():
-    h = load("sweep_h")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
-
-    ax = axes[0]
-    bar = A("E_kth_best", "central", K=10)
-    top = A("E_quality_top_score", "central")
-    sd = A("cond_sd", "central").value.iloc[0]
-    ax.plot(bar.N, bar.value, color=P.INK, lw=1.6, label="true top-10 bar")
-    ax.fill_between(top.N, top.value - sd, top.value + sd, color=P.BLUE[450], alpha=0.14, lw=0)
-    ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="top-scored, $\\pm$1 SD")
-    ax.set_ylabel("Standardised quality")
-    ax.set_ylim(0, 6)
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
-    ax.set_title("The gap grows with $N$", loc="left")
-    P.n_axis(ax)
-
-    ax = axes[1]
-    for K, c in zip((1, 10, 30), (P.BLUE[700], P.BLUE[450], P.BLUE[250])):
-        Aband(ax, "best_in_K", c, K=K, label=f"in the top {K}")
-        sim_points(ax, h, f"best_in_K{K}", c)
-    ax.set_ylim(0, 1)
-    P.pct_axis(ax)
-    ax.set_ylabel("P(best paper is selected)")
-    ax.set_title("The best paper", loc="left")
-    ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
-    P.n_axis(ax)
-    mark_venues(ax)
-
-    ax = axes[2]
-    for lev, c in zip(LEV, (P.ORANGE[450], P.BLUE[450], P.CAT[2])):
-        sl = A("local_slope", lev, K=10)
-        beta = A("beta", lev).value.iloc[0]
-        ax.plot(sl.N, sl.value, color=c, lw=1.6, label=f"$\\rho^2$ = {LEVELS[lev]:.2f}")
-        ax.axhline(-beta, color=c, lw=0.9, ls=(0, (3, 2)))
-    ax.set_ylabel("Log-log slope of top-10 precision")
-    ax.set_title("Faster than the limit", loc="left")
-    ax.legend(loc="lower right", handlelength=1.3, borderaxespad=0.2)
-    ax.set_ylim(-0.5, 0)
-    P.n_axis(ax)
-    for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig2_mechanism"))
-
-
-# ---------------------------------------------------------------------------
-# Figure 3: review-system parameters (reliability, reviewers, shared noise)
-# ---------------------------------------------------------------------------
-
-
-def fig_parameters():
-    c_s, b = load("sweep_c"), load("sweep_b")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
-
-    ax = axes[0]
-    ac = _AC if _AC is not None else load("analytic_curves")
-    curve = ac[ac.quantity == "prec_K_vs_rho2"]
-    for N, col in zip((1e3, 1e4, 1e5, 1e6), (P.BLUE[250], P.BLUE[400], P.BLUE[550], P.BLUE[700])):
-        d = curve[np.isclose(curve.N, N)].sort_values("rho2")
-        ax.plot(d.rho2, d.value, color=col, lw=1.6, label=f"$N$ = {P.fmt_count(N)}")
-        s = c_s[np.isclose(c_s.N, N) & (c_s.rho2 <= 0.95)]
-        ax.plot(s.rho2, s.prec_K10, ls="none", marker="o", ms=3.4, color=col, mec=P.SURFACE, mew=0.7)
-    for lev in LEV:
-        ax.axvline(LEVELS[lev], color=P.MUTED, lw=0.6, ls=(0, (2, 2)), zorder=0)
-    ax.set_xlabel("Reliability $\\rho^2$ of the mean score")
-    ax.set_ylabel("Top-10 precision")
+    ax.set_yticks(range(len(years)))
+    ax.set_yticklabels([f"{yr}\n{int(b[(b.venue == 'NeurIPS') & (b.year == yr)].N.iloc[0]):,}" for yr in years],
+                       fontsize=6.5)
+    ax.set_ylabel("NeurIPS size")
     ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    P.pct_axis(ax)
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
-    ax.set_title("Only $\\rho^2$ matters", loc="left")
-
-    ax = axes[1]
-    d = b[(b.level == "central") & (b.N == 20000)]
-    for su, c, ls in ((0.0, P.BLUE[450], "-"), (0.5, P.ORANGE[450], "-")):
-        e = d[np.isclose(d.sigma_u, su)].sort_values("R")
-        lab = "$\\sigma_u$ = 0" if su == 0 else "$\\sigma_u$ = 0.5"
-        ax.plot(e.R, e.prec_K10, color=c, lw=1.6, marker="o", ms=3.4, mec=P.SURFACE, mew=0.7, label=lab)
-    ax.axvline(3, color=P.MUTED, lw=0.6, ls=(0, (2, 2)), zorder=0)
-    ax.set_xscale("log")
-    ax.set_xticks([1, 2, 3, 5, 10, 20, 50])
-    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{v:g}"))
-    ax.xaxis.set_minor_locator(plt.NullLocator())
-    ax.set_xlabel("Reviews per paper $R$")
-    ax.set_ylabel("Top-10 precision at $N$ = 20K")
-    ax.set_ylim(0, 0.8)
-    P.pct_axis(ax)
-    ax.legend(loc="lower right", handlelength=1.3, borderaxespad=0.2)
-    ax.set_title("A ceiling on reviewers", loc="left")
-
-    ax = axes[2]
-    rn = load("analytic_R_needed")
-    for su, c in ((0.0, P.BLUE[450]), (0.5, P.ORANGE[450])):
-        e = rn[np.isclose(rn.sigma_u, su)].sort_values("N")
-        lab = "$\\sigma_u$ = 0" if su == 0 else "$\\sigma_u$ = 0.5"
-        ax.plot(e.N, e.R_needed, color=c, lw=1.6, marker="o", ms=3.4, mec=P.SURFACE, mew=0.7, label=lab)
-    P.n_axis(ax)
-    ax.set_ylim(0, 28)
-    ax.set_ylabel("Reviews per paper needed")
-    ax.set_title("Reviews to hold top 10", loc="left")
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
-    mark_venues(ax)
-    for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig3_parameters"))
-
-
-# ---------------------------------------------------------------------------
-# Figure 4: robustness (quality tails, noise tails, score scales)
-# ---------------------------------------------------------------------------
-
-QUAL_LABEL = {"gaussian": "Gaussian", "beta": "bounded", "exp": "exponential",
-              "lognormal": "lognormal", "t3": "$t_3$"}
-QUAL_ORDER = ("t3", "exp", "lognormal", "gaussian", "beta")
-SCALE_LABEL = {"continuous": "continuous", "int10": "1-10", "iclr6": "ICLR",
-               "six": "6-point", "five": "5-point"}
-SCALE_ORDER = ("continuous", "int10", "iclr6", "six", "five")
-
-
-def fig_robustness():
-    d, e = load("sweep_d"), load("sweep_e")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.1), gridspec_kw=dict(wspace=0.38))
-    for ax, noise, title in ((axes[0], "gaussian", "Gaussian reviewer noise"), (axes[1], "t3", "Heavy-tailed ($t_3$) noise")):
-        for i, qd in enumerate(QUAL_ORDER):
-            s = d[(d.noise == noise) & (d.quality == qd)]
-            c = P.CAT[i]
-            cen = s[s.level == "central"].sort_values("N")
-            ax.plot(cen.N, cen.prec_K10, color=c, lw=1.6, marker="o", ms=3.0, mec=P.SURFACE, mew=0.6,
-                    label=QUAL_LABEL[qd])
-        ax.set_title(title, loc="left")
-        P.n_axis(ax)
-        ax.set_ylim(0, 1)
-        P.pct_axis(ax)
-    axes[0].set_ylabel("Top-10 precision")
-    # One quality legend serves panels a and b; the upper left of b is empty above its curves.
-    axes[1].legend(loc="upper left", ncol=2, handlelength=1.0, columnspacing=0.5, borderaxespad=0.2)
-
-    ax = axes[2]
-    st = e[(e.placement == "standard")]
-    for i, sc in enumerate(SCALE_ORDER):
-        s = st[st.scale == sc]
-        c = [P.INK, P.BLUE[450], P.CAT[1], P.CAT[2], P.CAT[6]][i]
-        cen = s[s.level == "central"].sort_values("N")
-        ax.plot(cen.N, cen.prec_K10, color=c, lw=1.6, marker="o", ms=3.0, mec=P.SURFACE, mew=0.6,
-                label=SCALE_LABEL[sc])
-    ax.set_title("Discrete scores ($R$ = 4)", loc="left")
-    ax.set_yscale("log")
-    ax.set_ylim(1e-3, 0.5)
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{100 * v:g}%"))
-    P.n_axis(ax)
-    ax.legend(loc="lower left", handlelength=1.3, borderaxespad=0.2, title="Score scale", title_fontsize=7)
-    for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig4_robustness"))
-
-
-# ---------------------------------------------------------------------------
-# Figure 5: the accept/reject boundary
-# ---------------------------------------------------------------------------
-
-
-def fig_boundary():
-    f, h, d, e = load("sweep_f"), load("history"), load("sweep_d"), load("sweep_e")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.1),
-                             gridspec_kw=dict(wspace=1.05, width_ratios=[1, 1, 0.75]))
-    alphas = np.array([0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40])
-
-    ax = axes[0]
-    for col, label, c, q in (("dis", "rejected on a rerun", P.ORANGE[450], "dis"),
-                             ("swap", "not in the true top $\\alpha N$", P.BLUE[450], "prec_pct")):
-        vals = {}
-        for lev in LEV:
-            cur = np.array([A(q, lev, p=a).value.iloc[0] for a in alphas])
-            vals[lev] = 1 - cur if q == "prec_pct" else cur
-        ax.fill_between(alphas, vals["pessimistic"], vals["optimistic"], color=c, alpha=0.14, lw=0)
-        ax.plot(alphas, vals["central"], color=c, lw=1.6, label=label)
-        s = f[f.level == "central"].iloc[0]
-        ax.plot(alphas, [s[f"{col}_acc{a:.2f}"] for a in alphas], ls="none", marker="o", ms=3.4, color=c,
-                mec=P.SURFACE, mew=0.7)
-    ax.set_xlabel("Acceptance rate $\\alpha$")
-    ax.set_ylim(0, 0.8)
-    P.pct_axis(ax)
+    ax.set_ylim(-0.5, 3.35)
+    ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
     P.pct_axis(ax, "x")
-    ax.set_xticks([0.1, 0.2, 0.3, 0.4])
-    ax.set_ylabel("Share of accepted papers")
-    ax.legend(loc="lower left", handlelength=1.3, borderaxespad=0.2)
-    ax.set_title("Acceptance rate", loc="left")
-
-    ax = axes[1]
-    for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^")):
-        s = h[(h.venue == venue) & (h.denominator != "decided")]
-        cen = s[s.level == "central"].sort_values("year")
-        lo, hi = (s[s.level == lev].sort_values("year") for lev in ("pessimistic", "optimistic"))
-        ax.fill_between(cen.year, lo.wrong_accepts, hi.wrong_accepts, color=c, alpha=0.12, lw=0)
-        ax.plot(cen.year, cen.wrong_accepts, color=c, lw=1.6, marker=mk, ms=3.4, mec=P.SURFACE, mew=0.7, label=venue)
-    ax.set_ylabel("Wrong accepts per conference")
-    ax.set_xlabel("Year")
-    ax.set_xticks([2014, 2018, 2022, 2026])
-    ax.set_title("Wrong accepts grow", loc="left")
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{v:,.0f}"))
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
-
-    ax = axes[2]
-    short = {"t3": "$t_3$", "exp": "exp.", "lognormal": "lognorm.", "gaussian": "Gauss.", "beta": "bounded"}
-    rows = []
-    for qd in QUAL_ORDER:
-        for noise in ("gaussian", "t3"):
-            s = d[(d.quality == qd) & (d.noise == noise) & (d.level == "central") & (d.N == 100_000)]
-            rows.append((f"{short[qd]} / {'Gauss.' if noise == 'gaussian' else '$t_3$'}", s["swap_acc0.25"].iloc[0],
-                         P.CAT[QUAL_ORDER.index(qd)]))
-    for sc, lab in zip(SCALE_ORDER[1:], ("1-10", "ICLR 6-pt", "6-point", "5-point")):
-        s = e[(e.scale == sc) & (e.placement == "standard") & (e.level == "central") & (e.N == 100_000)]
-        rows.append((f"{lab} scale", s["swap_acc0.25"].iloc[0], P.INK2))
-    y = np.arange(len(rows))[::-1]
-    for yi, (lab, v, c) in zip(y, rows):
-        ax.plot([0, v], [yi, yi], color=P.GRID, lw=1.0, zorder=1)
-        ax.plot(v, yi, "o", color=c, ms=4.2, mec=P.SURFACE, mew=0.7, zorder=3)
-    ax.set_yticks(y)
-    ax.set_yticklabels([r[0] for r in rows], fontsize=6.3)
-    ax.set_xlim(0, 0.5)
-    ax.set_xticks([0, 0.25, 0.5])
-    P.pct_axis(ax, "x")
-    ax.set_xlabel("Swap fraction, $\\alpha$ = 25%")
+    ax.set_xlabel("Share of Best Papers")
     ax.grid(axis="y", visible=False)
-    ax.set_title("Every variant", loc="left")
+    ax.set_title("Where the Best Paper truly ranks", loc="left")
+    handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in TIERS]
+    ax.legend(handles=handles, loc="upper left", ncol=3, fontsize=6.2, handlelength=0.9, columnspacing=0.6,
+              borderaxespad=0.1, handletextpad=0.3)
     for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig5_boundary"))
+        P.panel_label(a, "ab"[i])
+    P.save(fig, os.path.join(FIG, "fig1_headline"))
 
 
 # ---------------------------------------------------------------------------
-# Figure 6: out-of-sample validation
+# Figure 2: is the model faithful? (held-out tests)
 # ---------------------------------------------------------------------------
 
 VAR_LABEL = {"gauss/gauss": "Gaussian / Gaussian", "gauss/gauss+shared": "Gaussian / Gaussian + shared",
@@ -459,46 +244,178 @@ def fig_validation():
     ax.set_title("ICLR split halves", loc="left")
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig6_validation"))
+    P.save(fig, os.path.join(FIG, "fig2_validation"))
 
 
 # ---------------------------------------------------------------------------
-# Figure 7: the model at each real venue-year (paper Fig. 4)
+# Figure 3: the Best Paper at every real venue-year
 # ---------------------------------------------------------------------------
 
 
-def fig_history():
-    """The central model at each real venue-year (results/history.csv): top-10 precision,
-    precision of the real oral set, and the chance that the best paper is in the top 10.
-    Bands span the pessimistic and optimistic levels."""
-    h = load("history")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.6))
-    panels = ((axes[0], "prec_K10", "Top 10 by score", "Precision"),
-              (axes[1], "prec_orals", "Real oral set", "Precision"),
-              (axes[2], "best_in_K10", "Best paper in top 10", "Probability"))
-    for ax, col, title, ylabel in panels:
-        for venue, c, mk in (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^")):
-            s = h[(h.venue == venue) & (h.denominator != "decided")].dropna(subset=[col])
+def fig_venues():
+    """Best Paper tier probabilities at each venue-year's submissions, acceptance rate and oral
+    count (results/best_paper.csv); NeurIPS band = pessimistic to optimistic level."""
+    b = load("best_paper")
+    b = b[b.source == "venue"].copy()
+    b["p_merely"] = b.p_accept - b.p_oral
+    fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.5))
+    panels = ((axes[0], "p_best", "Truly best", 0.4),
+              (axes[1], "p_top10", "In true top 10", 0.82),
+              (axes[2], "p_oral", "Oral-worthy", 1.0),
+              (axes[3], "p_reject", "Should be rejected", 0.03))
+    for ax, col, title, ymax in panels:
+        for venue, c, mk in VENUES:
+            s = b[b.venue == venue].dropna(subset=[col])
             cen = s[s.level == "central"].sort_values("year")
-            lo, hi = (s[s.level == lev].sort_values("year") for lev in ("pessimistic", "optimistic"))
             if venue == "NeurIPS":  # one band, for the longest series
-                ax.fill_between(cen.year, lo[col], hi[col], color=c, alpha=0.13, lw=0)
+                lo, hi = (s[s.level == lev].sort_values("year") for lev in ("pessimistic", "optimistic"))
+                ax.fill_between(cen.year, lo[col].values, hi[col].values, color=c, alpha=0.13, lw=0)
             ax.plot(cen.year, cen[col], color=c, lw=1.6, marker=mk, ms=3.2, mec=P.SURFACE, mew=0.6, label=venue)
-        ax.set_ylim(0, 0.62 if col != "best_in_K10" else 0.82)
-        P.pct_axis(ax)
-        ax.set_xticks([2014, 2018, 2022, 2026])
+        ax.set_ylim(0, ymax)
+        if col == "p_reject":
+            ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{100 * v:.1f}%"))
+        else:
+            P.pct_axis(ax)
+        ax.set_xticks([2014, 2020, 2026])
         ax.set_xlim(2013.3, 2026.7)
         ax.set_xlabel("Year")
-        ax.set_ylabel(ylabel)
-        ax.set_title(title, loc="left")
-    axes[0].legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
+        ax.set_title(title, loc="left", fontsize=7.5)
+    axes[0].set_ylabel("Probability")
+    axes[1].legend(loc="upper right", handlelength=1.1, borderaxespad=0.1, fontsize=6.3)
+    for i, a in enumerate(axes):
+        P.panel_label(a, "abcd"[i])
+    P.save(fig, os.path.join(FIG, "fig3_venues"))
+
+
+# ---------------------------------------------------------------------------
+# Figure 4: why awards lose accuracy as conferences grow
+# ---------------------------------------------------------------------------
+
+
+def fig_mechanism():
+    """(a) Fixed number against fixed percentage. (b) The top-scored paper falls ever further
+    below the true top-10 bar. (c) The Best Paper's chances out to a million submissions."""
+    g = load("sweep_g")
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
+
+    ax = axes[0]
+    series = (("K", 10, "prec_K10", P.BLUE[450], "top 10"), ("p", 0.01, "prec_p1pct", P.ORANGE[450], "top 1%"))
+    for kind, size, col, c, label in series:
+        q, kw = ("prec_K", dict(K=size)) if kind == "K" else ("prec_pct_finite", dict(p=size))
+        cen, lo, hi = (A(q, lev, **kw) for lev in ("central", "pessimistic", "optimistic"))
+        ax.fill_between(cen.N, lo.value, hi.value, color=c, alpha=0.13, lw=0)
+        ax.plot(cen.N, cen.value, color=c, lw=1.6, label=label)
+        sim_points(ax, g, col, c)
+    P.n_axis(ax)
+    ax.set_ylim(0, 0.6)
+    P.pct_axis(ax)
+    ax.set_ylabel("Precision")
+    ax.set_title("Number falls, share holds", loc="left")
+    ax.legend(loc="lower left", handlelength=1.3, borderaxespad=0.2)
+    mark_venues(ax)
+
+    ax = axes[1]
+    bar = A("E_kth_best", "central", K=10)
+    top = A("E_quality_top_score", "central")
+    sd = A("cond_sd", "central").value.iloc[0]
+    ax.plot(bar.N, bar.value, color=P.INK, lw=1.6, label="true top-10 bar")
+    ax.fill_between(top.N, top.value - sd, top.value + sd, color=P.BLUE[450], alpha=0.14, lw=0)
+    ax.plot(top.N, top.value, color=P.BLUE[450], lw=1.6, label="top-scored, $\\pm$1 SD")
+    ax.set_ylabel("Standardised quality")
+    ax.set_ylim(0, 6)
+    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
+    ax.set_title("The gap grows", loc="left")
+    P.n_axis(ax)
+    mark_venues(ax)
+
+    ax = axes[2]
+    b = load("best_paper")
+    grid = b[b.source == "grid"]
+    for col, c, label in (("p_top10", P.BLUE[400], "in true top 10"), ("p_best", P.BLUE[700], "truly best")):
+        cen, lo, hi = (grid[grid.level == lev].sort_values("N") for lev in ("central", "pessimistic", "optimistic"))
+        ax.fill_between(cen.N, lo[col].values, hi[col].values, color=c, alpha=0.14, lw=0)
+        ax.plot(cen.N, cen[col], color=c, lw=1.6, label=label)
+    P.n_axis(ax)
+    ax.set_ylim(0, 0.8)
+    P.pct_axis(ax)
+    ax.set_ylabel("P(Best Paper is ...)")
+    ax.set_title("The Best Paper", loc="left")
+    ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
+    mark_venues(ax)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig7_history"))
+    P.save(fig, os.path.join(FIG, "fig4_mechanism"))
 
 
-FIGURES = dict(main=fig_main, mechanism=fig_mechanism, parameters=fig_parameters, robustness=fig_robustness,
-               boundary=fig_boundary, validation=fig_validation, history=fig_history)
+# ---------------------------------------------------------------------------
+# Figure 5: how sure are we? Every variant that fits the acceptance data
+# ---------------------------------------------------------------------------
+
+
+def fig_robustness():
+    """Best Paper tier probabilities at NeurIPS 2014 (open) and 2026 (filled) size under every
+    variant refitted to the central disagreement, and each variant's replay of the NeurIPS 2021
+    top-tier overlap (results/best_paper_robustness.csv). The grey span in a-c is the Gaussian
+    model's pessimistic-to-optimistic range at 2026 size."""
+    r = load("best_paper_robustness")
+    r["p_merely"] = r.p_accept - r.p_oral
+    names = list(dict.fromkeys(r.variant))
+    y = np.arange(len(names))[::-1].astype(float)
+    rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
+    fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.75),
+                             gridspec_kw=dict(wspace=0.34, width_ratios=[1, 1, 1, 0.85]))
+    panels = ((axes[0], "p_best", "Truly best", (0, 1), False),
+              (axes[1], "p_merely", "Merely accept-worthy", (0, 0.8), False),
+              (axes[2], "p_reject", "Should be rejected", (1e-4, 0.2), True))
+    for ax, col, title, xlim, logx in panels:
+        span = sorted((x.p_accept - x.p_oral) if col == "p_merely" else x[col] for x in rng26)
+        ax.axvspan(max(span[0], xlim[0]), span[1], color=P.GRID, alpha=0.9, lw=0, zorder=0)
+        c = P.ORANGE[450] if col == "p_reject" else P.BLUE[450]
+        for yi, n in zip(y, names):
+            for yr, hollow in ((2014, True), (2026, False)):
+                v = float(r[(r.variant == n) & (r.year == yr)][col].iloc[0])
+                floor = logx and v < xlim[0]
+                v = xlim[0] * 1.08 if floor else v
+                ax.plot(v, yi, "<" if floor else "o", ms=3.8, color=c, mfc=P.SURFACE if hollow else c,
+                        mec=c if hollow else P.SURFACE, mew=0.9, ls="none", zorder=3)
+        if logx:
+            ax.set_xscale("log")
+            ax.set_xticks([1e-4, 1e-3, 1e-2, 1e-1])
+            ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{100 * v:g}%"))
+        else:
+            ax.set_xticks([0, 0.5, 1] if xlim[1] == 1 else [0, 0.4, 0.8])
+            P.pct_axis(ax, "x")
+        ax.set_xlim(*xlim)
+        ax.set_title(title, loc="left", fontsize=7.5)
+        ax.set_xlabel("Probability")
+
+    ax = axes[3]
+    o = r[r.year == 2026].set_index("variant").loc[names]
+    ax.axvline(3, color=P.INK, lw=1.0)
+    ax.hlines(y, o.overlap2021_q05, o.overlap2021_q95, color=P.BLUE[300], lw=2.0)
+    ax.plot(o.overlap2021_mean, y, "o", color=P.BLUE[450], ms=3.8, mec=P.SURFACE, mew=0.7, ls="none", zorder=3)
+    ax.set_xlim(0, 30)
+    ax.set_title("2021 overlap", loc="left", fontsize=7.5)
+    ax.set_xlabel("Papers in both tiers")
+
+    for ax in axes:
+        ax.set_ylim(-0.6, len(names) - 0.2)
+        ax.set_yticks(y)
+        ax.set_yticklabels(names if ax is axes[0] else [], fontsize=6.5)
+        ax.grid(axis="y", visible=False)
+    hl = [Line2D([], [], ls="none", marker="o", ms=3.8, color=P.INK2, mfc=P.SURFACE, mew=0.9, label="NeurIPS 2014 size"),
+          Line2D([], [], ls="none", marker="o", ms=3.8, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
+          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Gaussian, reliability range (2026)"),
+          Line2D([], [], color=P.BLUE[300], lw=2.0, label="90% range of the 2021 replay"),
+          Line2D([], [], color=P.INK, lw=1.0, label="observed at NeurIPS 2021 (3)")]
+    fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2, fontsize=6.6)
+    for i, a in enumerate(axes):
+        P.panel_label(a, "abcd"[i])
+    P.save(fig, os.path.join(FIG, "fig5_robustness"))
+
+
+FIGURES = dict(headline=fig_headline, validation=fig_validation, venues=fig_venues, mechanism=fig_mechanism,
+               robustness=fig_robustness)
 
 
 def main() -> None:

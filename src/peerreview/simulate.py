@@ -252,8 +252,12 @@ def simulate_best_paper(
     seed: int | None = None,
     chunk_elems: float = 4e6,
     salt: str = "",
+    winner_tiers: dict[str, int] | None = None,
 ) -> dict:
-    """High-replication P(best paper in Top_K) and winner rank; O(N) per conference."""
+    """High-replication P(best paper in Top_K) and winner rank; O(N) per conference.
+
+    winner_tiers {name: M} adds winner_in_{name} = P(the top-scored paper is in the true top M).
+    """
     if seed is None:
         seed = stable_seed(m.as_dict(), N, reps, "best", salt)
     rng = np.random.default_rng(seed)
@@ -272,7 +276,10 @@ def simulate_best_paper(
         for K in best_K:
             acc.add(f"best_in_K{K}", srank < K)
         w = np.argmax(s, axis=1)
-        acc.add("winner_rank", (q > q[rows, w][:, None]).sum(1) + 1)
+        rank = (q > q[rows, w][:, None]).sum(1) + 1
+        acc.add("winner_rank", rank)
+        for name, M in (winner_tiers or {}).items():
+            acc.add(f"winner_in_{name}", rank <= M)
         done += r
     row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability}
     row.update(acc.summary())

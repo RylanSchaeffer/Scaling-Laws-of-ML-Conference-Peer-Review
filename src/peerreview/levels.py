@@ -43,17 +43,20 @@ def target_dis(level: str) -> float:
     return float(an.disagreement(CAL_ALPHA, LEVELS[level]))
 
 
-VARIANT_FIELDS = ("R", "scale", "quality", "noise", "sigma_u", "mu_q", "scale_points")
+VARIANT_FIELDS = ("R", "scale", "quality", "noise", "sigma_u", "mu_q", "scale_points", "careless", "careless_kind")
+FIELD_DEFAULTS = {"careless": 0.0, "careless_kind": "rave"}
 
 
 def variant_key(m: ReviewModel) -> tuple:
-    d = m.as_dict()
+    d = {**FIELD_DEFAULTS, **m.as_dict()}
     return tuple(d[f] for f in VARIANT_FIELDS)
 
 
 def _store() -> pd.DataFrame:
     df = pd.read_csv(CALIB_CSV, keep_default_na=False, na_values=[""])
     df["scale_points"] = df["scale_points"].fillna("").astype(str)
+    for f, v in FIELD_DEFAULTS.items():
+        df[f] = df[f].fillna(v) if f in df else v
     return df
 
 
@@ -71,7 +74,8 @@ def calibrated(m: ReviewModel, level: str = "central") -> ReviewModel:
     mask = np.ones(len(df), bool)
     for f, v in zip(VARIANT_FIELDS, key):
         col = df[f]
-        mask &= (np.isclose(col.astype(float), float(v)) if f in ("R", "sigma_u", "mu_q") else (col.astype(str) == str(v)))
+        mask &= (np.isclose(col.astype(float), float(v)) if f in ("R", "sigma_u", "mu_q", "careless")
+                 else (col.astype(str) == str(v)))
     mask &= df["level"] == level
     hit = df[mask]
     if len(hit) != 1:

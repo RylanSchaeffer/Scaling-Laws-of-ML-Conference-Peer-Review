@@ -361,6 +361,14 @@ out of the main analyses.
     counts are in `data/spotlights.csv` (docs/claims.md §10.4a). The careless-reviewer variants and the per-variant 2021 overlap test
     were added for this section; the three careless variants are calibrated at the central
     level only. The Limitations paragraph was folded into the opening of the Implications.
+11. **Oral-worthy uses observed oral counts (4 October 2026).** At the author's decision, the
+    oral tier is the true top M, where M is the main-track oral count the venue actually gave
+    that year (`data/venues.csv`, `orals_used`; NeurIPS 20 in 2014, 55 in 2021, 112 in 2026).
+    The model does not choose orals, and it assumes no rule for M. So P(oral-worthy) moves
+    with each venue's oral count: at NeurIPS it rose from 57.7% to 62.8% from 2014 to 2026
+    only because the count rose from 20 to 112. NeurIPS orals grew roughly as $N^{0.6}$ over
+    those endpoints, between a fixed number and a fixed share. Beyond real sizes (the
+    $N$ grid) no oral count exists, and only the fixed-number tiers are reported.
 
 ## 9. Limitations
 

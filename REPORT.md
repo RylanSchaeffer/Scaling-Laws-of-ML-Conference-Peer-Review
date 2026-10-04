@@ -369,7 +369,9 @@ out of the main analyses.
    The question is whether review still separates signal from noise for each job as
    submissions grow. Fig. 1 has two panels: papers submitted, accepted and given orals per
    year (`data/venues.csv`, `N_used`, `N_used` x `acc_rate_used` and `orals_used`; NeurIPS
-   submissions grew 26% a year from 2014 to 2025) and the precision of fixed-number against fixed-percentage selections (top 10 and
+   submissions grew 26% a year from 2014 to 2025; the abstract's decade rates, from `N_used`:
+   NeurIPS 2,403 to 30,709 over 2016 to 2026 is 29.0% a year, ICML 1,320 to 23,918 is 33.6%,
+   ICLR 507 to 19,525 over 2017 to 2026 is 50.0%) and the precision of fixed-number against fixed-percentage selections (top 10 and
    top 100 against the top 1% and top 10%, which are the same sets at $N = 10^3$). The fixed-share curves use
    `analytic.precision_pct_finite` (rows `prec_pct_finite` in `results/analytic_curves.csv`).
    The winner-rank panel left Fig. 1; its numbers stay in the text.

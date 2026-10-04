@@ -435,4 +435,4 @@ experiments of 166 and 764 decided papers, whose sampling error spans much of th
 between our pessimistic and optimistic levels. The tail of the quality distribution,
 which decides the top-of-ranking results, is not identified by accept-level data. The
 heavy-tailed-noise results of §5 use unbounded $t_3$ noise; on a 1-10 scale the Best
-Paper at NeurIPS 2026 size is the best 4.1% of the time, against 6.7% Gaussian (§6).
+Paper at NeurIPS 2026 size is the best 4.1% of the time, against 6.5% Gaussian (§6).

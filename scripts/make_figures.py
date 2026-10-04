@@ -77,7 +77,7 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: growth, selection rates, and where the Best Paper truly ranks
+# Figure 1: growth, selection rates, and where a second committee ranks the Best Paper
 # ---------------------------------------------------------------------------
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
@@ -182,7 +182,7 @@ def fig_headline():
         left = 0.0
         for (lab, c), w in zip(TIERS, tier_shares(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8)
-            if w >= 0.12:  # narrower segments stay unlabelled; the caption gives Top 10 and Reject
+            if w >= 0.08:  # narrower segments stay unlabelled; the caption gives Top 10 and Reject
                 ax.text(left + w / 2, y, f"{100 * w:.0f}%", ha="center", va="center", color=P.SURFACE if c != P.BLUE[250] else P.INK)
             left += w
     ax.set_yticks(range(len(years)))
@@ -215,7 +215,7 @@ VAR_LABEL = {"gauss/gauss": "Gaussian / Gaussian", "gauss/gauss+shared": "Gaussi
 
 def fig_validation():
     v, ic = load("validation_neurips2021"), load("validation_iclr")
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.2), gridspec_kw=dict(wspace=0.32))
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.05), gridspec_kw=dict(wspace=0.32))
     sub = v[v.design == "subsample"]
     vv = sub[sub.level == "central"].set_index("variant").loc[list(VAR_LABEL)]
     vp = sub[sub.level == "pessimistic"].set_index("variant").loc[list(VAR_LABEL)]
@@ -312,7 +312,7 @@ def fig_venues():
 
 
 # ---------------------------------------------------------------------------
-# Figure 4: why awards lose accuracy as conferences grow
+# Figure 4: why awards lose reproducibility as conferences grow
 # ---------------------------------------------------------------------------
 
 
@@ -389,7 +389,7 @@ def fig_robustness():
     names = list(dict.fromkeys(r.variant))
     y = np.arange(len(names))[::-1].astype(float)
     rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
-    fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.75),
+    fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H + 0.6),
                              gridspec_kw=dict(wspace=0.34, width_ratios=[1, 1, 1, 0.85]))
     panels = ((axes[0], "p2_best", "Top-scored again", (0, 1), False),
               (axes[1], "p2_merely", "Merely accepted", (0, 1), False),

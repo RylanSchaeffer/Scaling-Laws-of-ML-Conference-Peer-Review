@@ -428,6 +428,20 @@ out of the main analyses.
     rejected by a second committee 5% of the time (0.09% should have been rejected), and the
     score scale, not careless raves, is the main driver of that chance across variants.
 
+13. **Tier sizes along the submissions axis follow NeurIPS's own trends** (2026-10-04). Figure 1 now
+    shows scaling curves against N for every tier (c: where the Best Paper lands under a second
+    review; d: how much of each tier a second committee reproduces). The grid had no oral or
+    spotlight count, so `scripts/make_tier_scaling.py` fits each NeurIPS count to a power law in
+    N (log-log least squares, 2014-2026; `results/tier_sizes.csv`): orals 0.30 N^0.59, spotlights
+    0.34 N^0.72; acceptance stays the grid's 25% share; the top ten and the award are fixed.
+    Curves in `results/tier_scaling.csv` (N = 1K..100K, three levels). Overlap of a tier is exact
+    below 30 papers and the closed-form fixed-percentile formula above (relative error < 0.01%).
+    Central, 1K -> 100K: top-scored again 4.5% -> 0.85%, top 10 21% -> 4.2%, oral or above 29% ->
+    25%, spotlight or above 55% -> 52%, accepted 86% -> 96%; tier overlap: top 10 13% -> 2.4%,
+    orals 16% -> 7.8%, spotlights 27% -> 16%, accepted 48% flat. The stacked bars moved to Fig 3a;
+    Fig 3 dropped the by-year top-scored and top-ten panels (they depend on N only); Fig 4c is now
+    the reviews-per-paper curve from `results/analytic_R_needed.csv`.
+
 ## 9. Limitations
 
 One-dimensional quality; exchangeable reviewers (no leniency offsets, no matching); the

@@ -165,16 +165,66 @@ def rates_panel(ax):
     ax.set_title("NeurIPS tiers", loc="left")
 
 
+TIER_CURVES = (  # Fig 1c,d: tier suffix in results/tier_scaling.csv, colour, labels (c: where the Best Paper lands; d: tier overlap)
+    ("accept", P.MUTED, "Accepted", "Accepted"),
+    ("spot", P.BLUE[250], "Spotlight or above", "Spotlights"),
+    ("oral", P.BLUE[450], "Oral or above", "Orals"),
+    ("top10", P.BLUE[550], "Top 10", "Top 10"),
+    ("best", P.BLUE[700], "Top-scored", None),
+)
+
+
+def tier_curves(ax, prefix: str, which: int):
+    """One line per tier from results/tier_scaling.csv: central level, pessimistic-to-optimistic
+    band, label at the right end. prefix 'p2' (the Best Paper's rank under a second review)
+    or 'ovl' (two committees' tier overlap); log-log axes over N = 1K..100K."""
+    t = load("tier_scaling")
+    for tier, color, *labels in TIER_CURVES:
+        label = labels[which]
+        if label is None:
+            continue
+        col = f"{prefix}_{tier}"
+        lo, cen, hi = (t[t.level == lev].sort_values("N") for lev in LEV)
+        ax.fill_between(cen.N, lo[col].values, hi[col].values, color=color, alpha=0.12, lw=0)
+        ax.plot(cen.N, cen[col], color=color, lw=1.6)
+        if tier == "best":  # below its line, clear of the top-10 band
+            ax.text(1e5, cen[col].iloc[-1] / 1.12, label, color=color, ha="right", va="top")
+        else:
+            ax.text(1e5, cen[col].iloc[-1] * 1.12, label, color=color, ha="right", va="bottom")
+    P.n_axis(ax)
+    ax.set_yscale("log")
+    ax.set_ylim(0.003, 1.3)
+    ax.yaxis.set_major_locator(FixedLocator([0.01, 0.1, 1.0]))
+    ax.yaxis.set_minor_locator(NullLocator())
+    P.pct_axis(ax)
+    mark_venues(ax)
+
+
 def fig_headline():
-    """(a) Papers submitted per year. (b) Share of submissions accepted, given spotlights and
-    given orals. (c) Where a second, independent committee would rank the model's Best Paper
-    (the top-scored paper) at NeurIPS 2014, 2021 and 2026 size, central level (results/best_paper.csv)."""
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.7),
-                             gridspec_kw=dict(wspace=0.45, width_ratios=[1, 1, 1.5]))
+    """(a) Papers submitted per year. (b) Share of NeurIPS submissions accepted, given spotlights
+    and given orals. (c) Where a second, independent committee would rank the model's Best Paper
+    as N grows, tier by tier, with tier sizes on NeurIPS's trends. (d) How much of each tier a
+    second committee reproduces (results/tier_scaling.csv)."""
+    fig, axes = plt.subplots(2, 2, figsize=(P.TEXTWIDTH_IN, 2 * 1.35 + 0.25), gridspec_kw=dict(wspace=0.35, hspace=0.58))
+    axes = axes.ravel()
     submissions_panel(axes[0])
     rates_panel(axes[1])
-
     ax = axes[2]
+    tier_curves(ax, "p2", 0)
+    ax.set_ylabel("Probability")
+    ax.set_title("Where the Best Paper lands again", loc="left")
+    ax = axes[3]
+    tier_curves(ax, "ovl", 1)
+    ax.set_ylabel("Overlap of two committees")
+    ax.set_title("How much of each tier is reproduced", loc="left")
+    for i, a in enumerate(axes):
+        P.panel_label(a, "abcd"[i])
+    P.save(fig, os.path.join(FIG, "fig1_headline"))
+
+
+def standing_panel(ax):
+    """Stacked bars: where a second, independent committee would rank the model's Best Paper
+    (the top-scored paper) at NeurIPS 2014, 2021 and 2026 size, central level (results/best_paper.csv)."""
     b = venue_rows()
     years = (2026, 2021, 2014)
     for y, yr in enumerate(years):
@@ -199,9 +249,6 @@ def fig_headline():
     handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in TIERS]
     ax.legend(handles=handles, loc="upper left", ncol=4, handlelength=0.8, columnspacing=0.8,
               borderaxespad=0.1, handletextpad=0.3)
-    for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
-    P.save(fig, os.path.join(FIG, "fig1_headline"))
 
 
 # ---------------------------------------------------------------------------
@@ -281,15 +328,16 @@ def fig_validation():
 
 
 def fig_venues():
-    """Best Paper tier probabilities at each venue-year's submissions, acceptance rate and oral
-    count (results/best_paper.csv); NeurIPS band = pessimistic to optimistic level."""
+    """(a) The NeurIPS Best Paper's standing under a second review in 2014, 2021 and 2026.
+    (b, c) Best Paper tier probabilities that depend on the venue's own oral count and
+    acceptance rate, at each venue-year (results/best_paper.csv); NeurIPS band = pessimistic
+    to optimistic level. The tiers that depend on N alone are Fig. 1c."""
     b = load("best_paper")
     b = b[b.source == "venue"].copy()
-    fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.5))
-    panels = ((axes[0], "p2_best", "Top-scored again", 0.2),
-              (axes[1], "p2_top10", "In top 10 again", 0.6),
-              (axes[2], "p2_oral", "In oral range again", 1.0),
-              (axes[3], "p2_reject", "Rejected", 0.3))
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.45, width_ratios=[1.5, 1, 1]))
+    standing_panel(axes[0])
+    panels = ((axes[1], "p2_oral", "In oral range again", 1.0),
+              (axes[2], "p2_reject", "Rejected", 0.3))
     for ax, col, title, ymax in panels:
         for venue, c, mk in VENUES:
             s = b[b.venue == venue].dropna(subset=[col])
@@ -304,10 +352,10 @@ def fig_venues():
         ax.set_xlim(2013.3, 2026.7)
         ax.set_xlabel("Year")
         ax.set_title(title, loc="left")
-    axes[0].set_ylabel("Probability")
-    axes[0].legend(loc="upper right", handlelength=1.1, borderaxespad=0.1)  # panel a has room above its band
+    axes[1].set_ylabel("Probability")
+    axes[1].legend(loc="upper right", handlelength=1.1, borderaxespad=0.1)  # above the NeurIPS band
     for i, a in enumerate(axes):
-        P.panel_label(a, "abcd"[i])
+        P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig3_venues"))
 
 
@@ -320,8 +368,8 @@ def fig_mechanism():
     """Rerun framing throughout: two independent committees. (a) Overlap of their top-10 sets
     (fixed number) against their top-1% sets (fixed share). (b) The second committee's expected
     score for the first committee's top-scored paper falls ever further below the second
-    committee's own 10th-best score. (c) The Best Paper's chances under a second review, out to
-    100K submissions (no venue has reached more)."""
+    committee's own 10th-best score. (c) Reviews per paper that hold the top-10 overlap at its
+    1K value as N grows (results/analytic_R_needed.csv), without and with shared noise."""
     g = load("sweep_g")
     fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.62))
 
@@ -356,18 +404,16 @@ def fig_mechanism():
     mark_venues(ax)
 
     ax = axes[2]
-    b = load("best_paper")
-    grid = b[b.source == "grid"]
-    for col, c, label in (("p2_top10", P.BLUE[400], "In top 10 again"), ("p2_best", P.BLUE[700], "Top-scored again")):
-        cen, lo, hi = (grid[grid.level == lev].sort_values("N") for lev in ("central", "pessimistic", "optimistic"))
-        ax.fill_between(cen.N, lo[col].values, hi[col].values, color=c, alpha=0.14, lw=0)
-        ax.plot(cen.N, cen[col], color=c, lw=1.6, label=label)
+    r = load("analytic_R_needed")
+    r = r[(r.metric == "overlap") & (r.N <= 1e5)]
+    for su, c, label in ((0.5, P.ORANGE[450], "With shared noise"), (0.0, P.BLUE[450], "Reviewer noise only")):
+        d = r[np.isclose(r.sigma_u, su)].sort_values("N")
+        ax.plot(d.N, d.R_needed, color=c, lw=1.6, label=label)
     P.n_axis(ax)
-    ax.set_ylim(0, 0.5)
-    P.pct_axis(ax)
-    ax.set_ylabel("P(Best Paper is ...)")
-    ax.set_title("The Best Paper, reviewed again", loc="left")
-    ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
+    ax.set_ylim(0, 16)
+    ax.set_ylabel("Reviews per paper")
+    ax.set_title("Holding top-10 overlap costs more", loc="left")
+    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])

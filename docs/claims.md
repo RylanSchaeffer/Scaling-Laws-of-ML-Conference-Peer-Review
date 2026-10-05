@@ -327,3 +327,14 @@ each one at its source. Machine-readable copy: `data/spotlights.csv`.
 ## §10.6 Background literature
 
 Handoff §10.6 lists the methods and context papers. They supply no data to the study, so they were not checked.
+
+## 10.4b Tier-size scaling fits (results/tier_sizes.csv)
+
+Fitted on NeurIPS main-track counts from `data/venues.csv` (`orals_used`) and
+`data/spotlights.csv`, log-log least squares of count on `N_used`, years with a positive count.
+
+| Tier | Fit | Years | RMSE (log10) |
+|---|---|---|---|
+| Accepted | 0.25 N (the grid's fixed share, not fitted) | - | - |
+| Orals | 0.296 N^0.585 | 2014-2026 (13) | 0.185 |
+| Spotlights | 0.343 N^0.716 | 2014-2026 (11; no tier 2016, 2022) | 0.117 |

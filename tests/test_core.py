@@ -80,3 +80,26 @@ def test_second_committee_matches_closed_forms():
     exact = an.containment_fixed_K(N, 1, 10, np.sqrt(rho2))
     assert abs(row["winner_in_top10"] - exact) < 4 * row["winner_in_top10_se"] + 1e-3
     assert row["winner_rank2_median"] > row["winner_rank_median"]
+
+
+def test_tier_size_fit_recovers_power_law():
+    import pandas as pd
+    from peerreview.tiers import fit_tier_sizes, tier_size
+    N = np.array([1000, 2000, 5000, 10_000, 20_000], float)
+    counts = pd.DataFrame(dict(venue="NeurIPS", year=np.arange(2014, 2019), N_used=N,
+                               orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8))
+    f = fit_tier_sizes(counts)
+    o, s = (f[f.tier == t].iloc[0] for t in ("orals", "spotlights"))
+    assert abs(o.gamma - 0.6) < 1e-9 and abs(o.a - 0.3) < 1e-9 and o.n_years == 5
+    assert abs(s.gamma - 0.8) < 1e-9 and abs(s.a - 0.5) < 1e-9
+    assert tier_size(f, "accepted", 1000) == 250
+    assert tier_size(f, "orals", 10_000) == round(0.3 * 10_000**0.6)
+
+
+def test_tier_overlap_closed_form_matches_exact_from_30():
+    # make_tier_scaling.py switches from the exact 2-D integral to the closed form at M = 30.
+    r2 = 0.5038
+    for N in (1000, 10_000):
+        exact = an.precision_fixed_K(N, 30, r2)
+        approx = an.precision_pct_finite(N, 30 / N, r2)
+        assert abs(approx / exact - 1) < 2e-3

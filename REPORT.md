@@ -42,7 +42,7 @@ B. **How sure: the quality tail decides whether it would win again; the score sc
    true-rank framing careless raves stood out (5.4% against 0.09%); in the rerun framing
    the second review's own noise dominates and they add 3 points (§6).
 
-1. **Fixed-number selections degrade as conferences grow; fixed-percentile selections
+1. **Constant-number selections degrade as conferences grow; fixed-percentile selections
    do not.** Top-10 precision is 27% at $N = 10^3$, 16% at $10^4$, 10% at $10^5$ and 6% at
    $10^6$ (exact theory; range at $10^6$: 4% to 19%). The precision of a top-0.5% set is
    24% from $N = 10^4$ on (23% at $10^3$, where the set holds five papers); at every $N$,
@@ -132,7 +132,7 @@ function with the simulator.
 | Reliability | $\rho^2$ as above; two reviews correlate at $\rho^2$; ceiling $\sigma_q^2/(\sigma_q^2+\sigma_u^2)$ as $R \to \infty$ (0.85 at $\sigma_u = 0.5$). |
 | Fixed percentile | $\mathrm{prec}(p) = P_2(z_p, z_p; \rho)/p$, free of $N$; the finite-$N$ deficit is $O(1/K)$ relative. |
 | Disagreement | $1 - P_2(z_\alpha, z_\alpha; \rho^2)/\alpha$; inconsistent share $= 2\alpha \times$ disagreement; unique inverse. |
-| Fixed number | exact 2-D integral at finite $N$; $\mathrm{prec}_{N,K} \sim \frac{(1+\rho)^2}{K\sqrt{1-\rho^2}} \big[\frac{\Gamma(K+1/(1+\rho))}{\Gamma(K)}\big]^2 N^{-(1-\rho)/(1+\rho)} (4\pi\log N)^{-\rho/(1+\rho)}$, relative correction $O(\log\log N/\log N)$; checked to $N = 10^{300}$. |
+| Constant number | exact 2-D integral at finite $N$; $\mathrm{prec}_{N,K} \sim \frac{(1+\rho)^2}{K\sqrt{1-\rho^2}} \big[\frac{\Gamma(K+1/(1+\rho))}{\Gamma(K)}\big]^2 N^{-(1-\rho)/(1+\rho)} (4\pi\log N)^{-\rho/(1+\rho)}$, relative correction $O(\log\log N/\log N)$; checked to $N = 10^{300}$. |
 | Mechanism | top scores and the true top-$K$ bar both sit near $\sqrt{2\log N}$; the top scores' quality is $\mathcal N(\rho b_N, 1-\rho^2)$; the gap in SD units grows as $\sqrt{(1-\rho)/(1+\rho)}\sqrt{2\log N}$. |
 | Containment | for fixed $K$ and fixed $p$, the share of $\mathrm{Top}_K(\bar s)$ in the true top $p$ tends to 1. |
 | Best paper | same rate $N^{-(1-\rho)/(1+\rho)}$; $P(\text{best wins}) = \mathrm{prec}_{N,1}$. |
@@ -371,7 +371,7 @@ out of the main analyses.
    around the two jobs of review: accepting good papers (a fixed percentage of submissions)
    and giving awards to the best (spotlights, orals and a Best Paper). Award tiers grow more slowly
    than submissions: oral rates fall at every venue, and Best Papers stay at 1 to 13 a year, close
-   to a fixed number. The paper studies the two limits, fixed percentage and fixed number;
+   to a constant number. The paper studies the two limits, fixed percentage and constant number;
    at real oral counts the model's precision lies between them (`results/history.csv`,
    `prec_orals`, central: NeurIPS 28.6% to 22.1%, ICML 35.5% to 25.2%, ICLR 30.1% to 28.4%).
    The question is whether review still separates signal from noise for each job as
@@ -379,7 +379,7 @@ out of the main analyses.
    year (`data/venues.csv`, `N_used`, `N_used` x `acc_rate_used` and `orals_used`; NeurIPS
    submissions grew 26% a year from 2014 to 2025; the abstract's decade rates, from `N_used`:
    NeurIPS 2,403 to 30,709 over 2016 to 2026 is 29.0% a year, ICML 1,320 to 23,918 is 33.6%,
-   ICLR 507 to 19,525 over 2017 to 2026 is 50.0%) and the precision of fixed-number against fixed-percentage selections (top 10 and
+   ICLR 507 to 19,525 over 2017 to 2026 is 50.0%) and the precision of constant-number against fixed-percentage selections (top 10 and
    top 100 against the top 1% and top 10%, which are the same sets at $N = 10^3$). The fixed-share curves use
    `analytic.precision_pct_finite` (rows `prec_pct_finite` in `results/analytic_curves.csv`).
    The winner-rank panel left Fig. 1; its numbers stay in the text.
@@ -416,8 +416,8 @@ out of the main analyses.
     The model does not choose orals, and it assumes no rule for M. So P(oral-worthy) moves
     with each venue's oral count: at NeurIPS it rose from 57.7% to 62.8% from 2014 to 2026
     only because the count rose from 20 to 112. NeurIPS orals grew roughly as $N^{0.6}$ over
-    those endpoints, between a fixed number and a fixed share. Beyond real sizes (the
-    $N$ grid) no oral count exists, and only the fixed-number tiers are reported
+    those endpoints, between a constant number and a fixed share. Beyond real sizes (the
+    $N$ grid) no oral count exists, and only the constant-number tiers are reported
     (superseded by decision 13: the grid now sizes orals and spotlights by fitted power laws).
 12. **Rerun framing throughout (4 October 2026).** At the author's decision the paper reports
     every Best Paper probability in the units of the NeurIPS consistency experiments: where a
@@ -459,13 +459,13 @@ out of the main analyses.
     of submissions, or something between? So (b) now draws each year's proportion as markers and
     the fitted power law count = a N^gamma as a line (`results/tier_sizes.csv`, all four tiers
     fitted on NeurIPS: accepted gamma 1.05, spotlights 0.72, orals 0.59; awards 0.34 on 1 to 13 a
-    year is in the CSV but not drawn, too few papers to show a trend), labelled with gamma; gamma = 1 is a fixed proportion, gamma = 0 a fixed number. The N
+    year is in the CSV but not drawn, too few papers to show a trend), labelled with gamma; gamma = 1 is a fixed proportion, gamma = 0 a constant number. The N
     grid keeps 0.25 N for acceptance (decision 13).
 
 15. **One vocabulary, and a spotlight rung in the landing tiers (10 October 2026).** At the
     author's decision (`docs/terminology.md`): every tier is named by the decision itself and
     the tiers are nested (Best Paper ⊂ oral ⊂ spotlight ⊂ accepted); "award" is the one umbrella
-    for spotlight, oral and Best Paper ("highlights" is gone); the fixed-number tier is "the Best
+    for spotlight, oral and Best Paper ("highlights" is gone); the constant-number tier is "the Best
     Paper" or "the best-paper award", never bare "awards"; the model's second run is "a second
     review", never "a second committee", which read as a best-paper committee. The landing tiers
     gained the spotlight rung: `p2_spot` (rank within orals plus spotlights, from

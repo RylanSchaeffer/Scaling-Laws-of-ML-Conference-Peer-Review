@@ -145,7 +145,7 @@ RATE_TIERS = (  # (tier in results/tier_sizes.csv, count column of venue_counts(
 
 
 def rates_panel(ax):
-    """Is each NeurIPS tier a fixed number, a fixed proportion of submissions, or something
+    """Is each NeurIPS tier a constant number, a fixed proportion of submissions, or something
     between? Markers: each year's main-track count over submissions, against that year's
     submissions (no spotlight tier in 2016 and 2022; best-paper awards, 1 to 13 a year, are too few to
     draw). Lines: the fitted power law count = a N^gamma (results/tier_sizes.csv) over the
@@ -375,7 +375,7 @@ def fig_venues():
 
 def fig_mechanism():
     """Rerun framing throughout: two independent reviews. (a) Overlap of their top-10 sets
-    (fixed number) against their top-1% sets (fixed proportion). (b) The second review's expected
+    (constant number) against their top-1% sets (fixed proportion). (b) The second review's expected
     score for the first review's top-scored paper falls ever further below the second
     review's own 10th-best score. (c) Reviews per paper that hold the top-10 overlap at its
     1K value as N grows (results/analytic_R_needed.csv), without and with shared noise."""

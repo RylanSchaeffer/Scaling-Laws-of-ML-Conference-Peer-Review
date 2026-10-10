@@ -3,7 +3,7 @@ And how much of each tier does a second review reproduce?
 
 Tier sizes follow NeurIPS's own trends (peerreview.tiers): acceptance is the grid's fixed
 proportion, orals and spotlights grow as fitted power laws of N, the top ten and the Best Paper are
-fixed numbers. At each N of the grid and each reliability level this script computes, in
+constant numbers. At each N of the grid and each reliability level this script computes, in
 the rerun framing (a paper's two scores correlate at rho^2):
 
 - p2_{best,top10,oral,spot,accept}: the probability that a second review ranks the first

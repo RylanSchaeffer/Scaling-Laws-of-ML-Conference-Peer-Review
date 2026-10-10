@@ -10,11 +10,11 @@ for everything above plain acceptance.
 | accepted | the acceptance tier, a fixed proportion of submissions (NeurIPS: N^1.05) | "accepts" as a noun |
 | award | any decision above acceptance: spotlight, oral or Best Paper | "highlight", "distinction"; "award" meaning the Best Paper alone |
 | spotlight, oral | the two award tiers that grow more slowly than submissions (N^0.72, N^0.59) | "highlights (spotlights and orals)" |
-| Best Paper | the top award tier, a fixed number (1 to 13 a year; the model holds it at N^0; the NeurIPS fit, N^0.34, rests on too few papers to show a trend); "the best-paper award" when the noun is needed | "the award", "awards" for this tier alone |
-| fixed proportion, fixed number, between | the three scaling classes of a tier's count in N | "share" |
+| Best Paper | the top award tier, a constant number (1 to 13 a year; the model holds it at N^0; the NeurIPS fit, N^0.34, rests on too few papers to show a trend); "the best-paper award" when the noun is needed | "the award", "awards" for this tier alone |
+| fixed proportion, constant number, between | the three scaling classes of a tier's count in N | "share" |
 | a second review | peer review run again on the same papers with new reviewers and area chairs, as in the NeurIPS 2014 and 2021 experiments; the model redraws u and ε, so a paper's two scores correlate at ρ² | "a second committee" (reads as a best-paper committee) |
 | lands in tier X / X again | under a second review the Best Paper is ranked within tier X's count | "oral range" |
-| in the top ten again | ranked within the second review's ten best scores: a fixed-number tier larger than one | |
+| in the top ten again | ranked within the second review's ten best scores: a constant-number tier larger than one | |
 | merely accepted | accepted with no award, so below the spotlight cutoff | "accepted but outside the oral range" |
 | overlap of a tier | the proportion of one review's tier that the other also puts in that tier | |
 | committee | only the real program committees of the NeurIPS 2014 and 2021 experiments, and real award committees | |

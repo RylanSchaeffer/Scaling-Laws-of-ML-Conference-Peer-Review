@@ -1,7 +1,7 @@
 """How large is each tier as a conference grows? Empirical scaling laws for tier sizes.
 
 The Best Paper's fate under a second review depends on how many papers each tier holds at
-size N. Awards and the top ten are fixed numbers. Acceptance is a fixed share. Orals and
+size N. Awards and the top ten are constant numbers. Acceptance is a fixed share. Orals and
 spotlights lie in between: at NeurIPS their counts grew more slowly than submissions
 (Fig. 1b of the paper), so we fit each count to a power law in N, count = a N^gamma, by
 least squares in log-log over the venue-years with a positive count, and use the fitted
@@ -22,7 +22,7 @@ TIER_COLUMNS = {"accepted": "accepted", "spotlights": "spotlights", "orals": "or
 def fit_tier_sizes(counts: pd.DataFrame, venue: str = "NeurIPS") -> pd.DataFrame:
     """One row per tier: count = a * N^gamma fitted on `venue`'s years with a positive count.
 
-    gamma = 1 is a fixed proportion of submissions, gamma = 0 a fixed number. `counts` has
+    gamma = 1 is a fixed proportion of submissions, gamma = 0 a constant number. `counts` has
     columns venue, year, N_used, acc_rate_used, orals_used, spotlights, awards. The N grid
     (scripts/make_tier_scaling.py) uses the fitted oral and spotlight counts and ACCEPT_SHARE * N
     for acceptance, whose fitted exponent is close to 1.

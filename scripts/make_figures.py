@@ -212,7 +212,7 @@ def fig_headline():
     """(a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions, with the
     fitted power law of each tier's count. (c) Where a second review would rank
     the NeurIPS Best Paper in 2014, 2021 and 2026 (results/best_paper.csv)."""
-    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, 1.34 * P.S),
+    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, 1.1 * P.S),
                              gridspec_kw=dict(wspace=0.4, width_ratios=[1, 1, 1.5]))
     submissions_panel(axes[0])
     rates_panel(axes[1])
@@ -239,7 +239,7 @@ def standing_panel(ax):
     ax.set_yticklabels([str(yr) for yr in years])
     ax.tick_params(axis="y", length=0)
     ax.set_xlim(0, 1)
-    ax.set_ylim(-0.5, 3.95)  # room for a two-row legend above the bars
+    ax.set_ylim(-0.5, 4.3)  # room for a two-row legend above the bars
     ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
     P.pct_axis(ax, "x")
     ax.set_xlabel("Proportion of Best Papers")

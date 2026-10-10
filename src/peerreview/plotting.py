@@ -1,8 +1,10 @@
-"""Shared figure style for the report and paper (static, print, light surface).
+"""Shared figure style for the report and paper.
 
-Colours follow the dataviz reference palette: categorical slots in fixed order,
-a single-hue blue ramp for ordered magnitudes, recessive hairline grids, 2px lines,
-text in ink tokens (never in a series colour).
+Rylan's default plot settings: seaborn whitegrid, LaTeX text rendering with Computer Modern,
+amsmath, one 23 pt font for every text element. A figure is drawn S times larger than it
+prints and LaTeX scales it to the text width, so the type prints at PRINT_PT. Colours follow
+the dataviz reference palette: categorical slots in fixed order, a single-hue blue ramp for
+ordered magnitudes, text in ink tokens (never in a series colour).
 """
 
 from __future__ import annotations
@@ -10,6 +12,7 @@ from __future__ import annotations
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 from matplotlib.ticker import FixedLocator, FuncFormatter, NullLocator
 
 # Categorical slots, fixed order (never cycled past 8).
@@ -25,47 +28,43 @@ GRID = "#e4e3df"
 SURFACE = "#ffffff"
 
 TEXTWIDTH_IN = 5.5  # \textwidth of the paper (NeurIPS 2026 style)
-FONT_PT = 7  # one size for every text element: ticks, labels, titles, legends, annotations
+FONT_PT = 23  # one size for every text element: ticks, labels, titles, legends, annotations
+PRINT_PT = 8.0  # the size that type prints at once LaTeX scales a figure to the text width
+S = FONT_PT / PRINT_PT  # canvas scale: every length in inches or points is drawn S times larger
+CANVAS_W = TEXTWIDTH_IN * S  # width of a full-width figure as drawn
 N_TICKS = [1e3, 1e4, 1e5]  # no venue has reached 1M submissions; axes stop at 100K
 
 
 def setup() -> None:
+    sns.set_style("whitegrid")
     mpl.rcParams.update({
-        "font.family": "sans-serif",
-        "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
+        # LaTeX rendering, see https://stackoverflow.com/a/23856968
+        "text.usetex": True,
+        "font.family": "serif",
+        "font.serif": "Computer Modern",
+        "text.latex.preamble": "\n".join([r"\usepackage{amsmath}"]),
         "font.size": FONT_PT,
         "axes.titlesize": FONT_PT,
         "axes.titleweight": "normal",
         "axes.labelsize": FONT_PT,
-        "axes.labelcolor": INK,
-        "axes.edgecolor": MUTED,
-        "axes.linewidth": 0.6,
-        "axes.grid": True,
-        "axes.axisbelow": True,
-        "grid.color": GRID,
-        "grid.linewidth": 0.6,
-        "grid.linestyle": "-",
-        "xtick.color": INK2,
-        "ytick.color": INK2,
         "xtick.labelsize": FONT_PT,
         "ytick.labelsize": FONT_PT,
-        "xtick.major.width": 0.6,
-        "ytick.major.width": 0.6,
-        "xtick.major.pad": 2.5,
-        "ytick.major.pad": 2.0,
-        "axes.labelpad": 2.0,
         "legend.fontsize": FONT_PT,
+        "axes.labelcolor": INK,
+        "xtick.color": INK2,
+        "ytick.color": INK2,
+        "xtick.major.pad": 2.5 * S,
+        "ytick.major.pad": 2.0 * S,
+        "axes.labelpad": 2.0 * S,
         "legend.frameon": True,  # opaque, borderless: guide lines never run through legend text
         "legend.framealpha": 1.0,
         "legend.facecolor": SURFACE,
         "legend.edgecolor": "none",
         "legend.fancybox": False,
-        "lines.linewidth": 1.6,
+        "lines.linewidth": 1.6 * S,
         "lines.solid_capstyle": "round",
         "lines.solid_joinstyle": "round",
-        "lines.markersize": 4.5,
-        "axes.spines.top": False,
-        "axes.spines.right": False,
+        "lines.markersize": 4.5 * S,
         "figure.facecolor": SURFACE,
         "savefig.facecolor": SURFACE,
         "savefig.dpi": 300,
@@ -93,15 +92,15 @@ def n_axis(ax, label: str = "Submissions $N$") -> None:
 
 
 def pct_axis(ax, axis: str = "y") -> None:
-    f = FuncFormatter(lambda v, _p: f"{100 * v:.0f}%")
+    f = FuncFormatter(lambda v, _p: f"{100 * v:.0f}\\%")
     (ax.yaxis if axis == "y" else ax.xaxis).set_major_formatter(f)
 
 
-def band(ax, x, lo, mid, hi, color, label=None, marker="o", lw=1.6, alpha=0.14, ls="-", ms=3.5):
+def band(ax, x, lo, mid, hi, color, label=None, marker="o", lw=1.6 * S, alpha=0.14, ls="-", ms=3.5 * S):
     """Central line with a shaded pessimistic-optimistic band."""
     x, lo, mid, hi = map(np.asarray, (x, lo, mid, hi))
     ax.fill_between(x, np.minimum(lo, hi), np.maximum(lo, hi), color=color, alpha=alpha, lw=0)
-    ax.plot(x, mid, color=color, lw=lw, ls=ls, marker=marker, ms=ms, mec=SURFACE, mew=0.8, label=label)
+    ax.plot(x, mid, color=color, lw=lw, ls=ls, marker=marker, ms=ms, mec=SURFACE, mew=0.8 * S, label=label)
 
 
 def end_label(ax, x, y, text, dx=1.08, dy=0.0, color=INK, **kw):
@@ -113,16 +112,16 @@ def panel_label(ax, s: str) -> None:
     ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontweight="bold", va="bottom", ha="left")
 
 
-def save(fig, path_stem: str, width: float = TEXTWIDTH_IN) -> None:
-    """Write PDF and PNG with the tight bounding box exactly `width` wide (the paper's text
-    width), so \\includegraphics[width=\\textwidth] scales by 1, the type prints at FONT_PT and
-    no white margin is left on either side. The figure width is adjusted iteratively because
-    labels outside the axes have fixed sizes; the height is kept."""
+def save(fig, path_stem: str, width: float = CANVAS_W) -> None:
+    """Write PDF and PNG with the tight bounding box exactly `width` wide (CANVAS_W = S times
+    the paper's text width), so \\includegraphics[width=\\textwidth] scales by 1/S, the type
+    prints at PRINT_PT and no white margin is left on either side. The figure width is
+    adjusted iteratively because labels outside the axes have fixed sizes; the height is kept."""
     for _ in range(4):
         fig.canvas.draw()
         bb = fig.get_tightbbox(fig.canvas.get_renderer())  # inches
         w, h = fig.get_size_inches()
         fig.set_size_inches(w * width / bb.width, h)
-    fig.savefig(path_stem + ".pdf", bbox_inches="tight", pad_inches=0.01)
-    fig.savefig(path_stem + ".png", bbox_inches="tight", pad_inches=0.01, dpi=200)
+    fig.savefig(path_stem + ".pdf", bbox_inches="tight", pad_inches=0.01 * S, dpi=300)
+    fig.savefig(path_stem + ".png", bbox_inches="tight", pad_inches=0.01 * S, dpi=300)
     plt.close(fig)

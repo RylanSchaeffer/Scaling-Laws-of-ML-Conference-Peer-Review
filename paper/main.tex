@@ -51,12 +51,12 @@
 
 \begin{abstract}
 Over the past decade, submissions have grown 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR.
-Under such exponentially increasing strain, how well does machine learning conference peer review succeed at separating signal from noise, at identifying good papers to accept and the best papers to highlight?
+Under such exponentially increasing strain, how well does machine learning conference peer review succeed at separating signal from noise, at identifying good papers to accept and the outstanding papers to highlight?
 Would a second review process select the same Best Papers?
 We answer these questions with a model of machine learning peer review, calibrated to NeurIPS and ICLR data.
 The answer depends on how a tier scales with submissions $N$.
 Acceptance is a fixed proportion ($N^{1.05}$), and for a fixed proportion growth changes nothing: a second review rejects about half of the accepted papers.
-Best Papers are close to a fixed number ($N^{0}$), for which the probability that a second review reproduces the outcome falls as a power of $N$ without a floor: from NeurIPS 2014 to 2026 the probability that a second review would rank the Best Paper in its top ten fell from 18\% to 6\%, while the probability that it would merely accept it rose from 61\% to 70\%.
+Best Papers are close to a constant number ($N^{0}$), for which the probability that a second review reproduces the outcome falls as a power law without a floor: from NeurIPS 2014 to 2026 the probability that a second review would rank the Best Paper in its top ten fell from 18\% to 6\%, while the probability that the paper would merely be accepted rose from 61\% to 70\%.
 Orals ($N^{0.59}$) and Spotlights ($N^{0.72}$) lie in between: second review still places the Best Paper in the oral range about one time in four at any size, because the oral count grows, but reproduces ever less of the oral and spotlight sets, 16\% to 8\% and 27\% to 16\% from 1,000 to 100,000 submissions.
 These answers hinge on how far the best papers stand apart, which acceptance data cannot reveal. Across variants that fit the same data, the probability that the Best Paper is top-scored again ranges from 0.2\% to 89\%, and the NeurIPS 2021 highlights favour the low end. Real score scales make a second review harsher: on a 1--10 scale several papers tie for the top score, and the probability of rejection doubles to 10\%.
 \end{abstract}

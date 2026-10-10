@@ -28,7 +28,7 @@ from peerreview.levels import ROOT, calibrated
 from peerreview.model import ReviewModel
 
 K = 10
-N_GRID = [1000, 2000, 5000, 10_000, 20_000, 50_000, 100_000, 200_000, 500_000, 1_000_000]
+N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 21)]  # 1K to 100K, smooth curves in Fig 4c
 
 
 def main() -> None:

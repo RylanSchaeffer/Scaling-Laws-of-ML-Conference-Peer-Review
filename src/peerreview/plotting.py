@@ -110,7 +110,7 @@ def end_label(ax, x, y, text, dx=1.08, dy=0.0, color=INK, **kw):
 
 
 def panel_label(ax, s: str) -> None:
-    ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontweight="bold", va="bottom", ha="left")
+    ax.text(-0.13, 1.06, r"\textbf{" + s + "}", transform=ax.transAxes, va="bottom", ha="left")  # usetex ignores fontweight
 
 
 def save(fig, path_stem: str, width: float = CANVAS_W) -> None:

@@ -134,7 +134,8 @@ def submissions_panel(ax):
     ax.set_xlabel("Year")
     ax.set_ylabel("Papers submitted")
     ax.set_title("Submissions", loc="left")
-    ax.legend(loc="upper left", handlelength=1.4, borderaxespad=0.2)
+    ax.set_ylim(top=2.5e5)  # headroom: the legend sits above the largest count, over no data
+    ax.legend(loc="upper left", handlelength=1.2, borderaxespad=0.2, labelspacing=0.25, handletextpad=0.5)
 
 
 RATE_TIERS = (  # (tier in results/tier_sizes.csv, count column of venue_counts(), colour, label end, label side)
@@ -167,7 +168,7 @@ def rates_panel(ax):
         xe = x0 if end == "left" else x1
         x = xe * 1.05 if end == "left" else xe / 1.05
         y = f.a * xe ** (f.gamma - 1) * (1.45 if side == "above" else 1 / 1.5)
-        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}$", color=tc, ha=end, va="bottom" if side == "above" else "top")
+        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}$", color=tc, ha=end, va="bottom" if side == "above" else "top", fontsize=P.LEGEND_PT)
     ax.set_yscale("log")
     ax.set_ylim(1.5e-3, 1.0)
     ax.yaxis.set_major_locator(FixedLocator([0.003, 0.01, 0.03, 0.1, 0.3, 1.0]))
@@ -233,13 +234,13 @@ def standing_panel(ax):
         for (lab, c), w in zip(TIERS, tier_proportions(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8 * P.S)
             if w >= 0.14:  # narrower segments stay unlabelled; the Results text gives the top-ten and rejection chances
-                ax.text(left + w / 2, y, f"{100 * w:.0f}\\%", ha="center", va="center", color=P.INK if c in LIGHT else P.SURFACE)
+                ax.text(left + w / 2, y, f"{100 * w:.0f}\\%", ha="center", va="center", color=P.INK if c in LIGHT else P.SURFACE, fontsize=P.LEGEND_PT)
             left += w
     ax.set_yticks(range(len(years)))
     ax.set_yticklabels([str(yr) for yr in years])
     ax.tick_params(axis="y", length=0)
     ax.set_xlim(0, 1)
-    ax.set_ylim(-0.5, 4.3)  # room for a two-row legend above the bars
+    ax.set_ylim(-0.5, 3.8)  # room for a two-row legend above the bars
     ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
     P.pct_axis(ax, "x")
     ax.set_xlabel("Proportion of Best Papers")
@@ -270,7 +271,7 @@ def fig_validation():
     def rows(ax, cen, pes, lo, hi, mean, obs, obs_text, c_bar, c_dot, xlim):
         ax.axvline(obs, color=P.INK, lw=1.0 * P.S)
         ax.text(obs, y.max() + 0.75, obs_text, color=P.INK, va="center", ha="left" if obs < sum(xlim) / 2 else "right",
-                bbox=dict(fc=P.SURFACE, ec="none", pad=0.6))  # label beside the line, on the roomier side
+                bbox=dict(fc=P.SURFACE, ec="none", pad=0.6), fontsize=P.LEGEND_PT)  # label beside the line, on the roomier side
         ax.hlines(y, cen[lo], cen[hi], color=c_bar, lw=2.0 * P.S)
         ax.plot(cen[mean], y, "o", color=c_dot, ms=4.4 * P.S, mec=P.SURFACE, mew=0.7 * P.S, label="Central $\\rho^2$ = 0.50")
         ax.plot(pes[mean], y - 0.28, "o", mfc=P.SURFACE, mec=c_dot, mew=1.0 * P.S, ms=3.8 * P.S, ls="none",

@@ -1,7 +1,7 @@
 """Shared figure style for the report and paper.
 
 Rylan's default plot settings: seaborn whitegrid, LaTeX text rendering with Computer Modern,
-amsmath, one 23 pt font for every text element. A figure is drawn S times larger than it
+amsmath, 23 pt for titles, labels and ticks and 18 pt for legends and in-panel annotations. A figure is drawn S times larger than it
 prints and LaTeX scales it to the text width, so the type prints at PRINT_PT. Colours follow
 the dataviz reference palette: categorical slots in fixed order, a single-hue blue ramp for
 ordered magnitudes, text in ink tokens (never in a series colour).
@@ -28,7 +28,8 @@ GRID = "#e4e3df"
 SURFACE = "#ffffff"
 
 TEXTWIDTH_IN = 5.5  # \textwidth of the paper (NeurIPS 2026 style)
-FONT_PT = 23  # one size for every text element: ticks, labels, titles, legends, annotations
+FONT_PT = 23  # Rylan's default: titles, axis labels and tick labels
+LEGEND_PT = 18  # legends and in-panel annotations are smaller than the labels, never larger
 PRINT_PT = 8.0  # the size that type prints at once LaTeX scales a figure to the text width
 S = FONT_PT / PRINT_PT  # canvas scale: every length in inches or points is drawn S times larger
 CANVAS_W = TEXTWIDTH_IN * S  # width of a full-width figure as drawn
@@ -49,7 +50,7 @@ def setup() -> None:
         "axes.labelsize": FONT_PT,
         "xtick.labelsize": FONT_PT,
         "ytick.labelsize": FONT_PT,
-        "legend.fontsize": FONT_PT,
+        "legend.fontsize": LEGEND_PT,
         "axes.labelcolor": INK,
         "xtick.color": INK2,
         "ytick.color": INK2,

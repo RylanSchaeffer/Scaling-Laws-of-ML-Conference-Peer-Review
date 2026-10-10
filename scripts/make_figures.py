@@ -78,7 +78,7 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: growth, NeurIPS tier shares, and (vs N) where the Best Paper lands again and how much of each tier is reproduced
+# Figure 1: growth, NeurIPS tier proportions, and (vs N) where the Best Paper lands again and how much of each tier is reproduced
 # ---------------------------------------------------------------------------
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
@@ -90,7 +90,7 @@ TIERS = (  # (label, colour): where a second, independent committee ranks the Be
 )
 
 
-def tier_shares(r) -> list[float]:
+def tier_proportions(r) -> list[float]:
     """Split the Best Paper's rank under a second committee into the four TIERS (one best_paper.csv row)."""
     return [r.p2_top10, r.p2_oral - r.p2_top10, r.p2_accept - r.p2_oral, 1 - r.p2_accept]
 
@@ -135,7 +135,7 @@ def submissions_panel(ax):
     ax.legend(loc="upper left", handlelength=1.4, borderaxespad=0.2)
 
 
-RATE_STYLES = (  # (label, column, line style, line width, label position (year, share))
+RATE_STYLES = (  # (label, column, line style, line width, label position (year, proportion))
     ("Accepted", "acc_rate_used", "-", 1.6, (2019.5, 0.4)),
     ("Spotlights", "spotlight_rate", (0, (3, 1.6)), 1.4, (2017.6, 0.058)),
     ("Orals", "oral_rate", (0, (1, 1.2)), 1.4, (2017.6, 0.0027)),
@@ -143,9 +143,9 @@ RATE_STYLES = (  # (label, column, line style, line width, label position (year,
 
 
 def rates_panel(ax):
-    """Share of NeurIPS submissions accepted, given a spotlight and given an oral, per year
+    """Proportion of NeurIPS submissions accepted, given a spotlight and given an oral, per year
     (main track). Gaps mark years with no spotlight tier (2016, 2022). On the log axis a
-    constant share is a flat line, so a falling line means the tier grew more slowly than
+    constant proportion is a flat line, so a falling line means the tier grew more slowly than
     submissions."""
     v = venue_counts().assign(spotlight_rate=lambda d: d.spotlights / d.N_used, oral_rate=lambda d: d.orals_used / d.N_used)
     s = v[v.venue == "NeurIPS"]
@@ -162,7 +162,7 @@ def rates_panel(ax):
     ax.set_xticks([2014, 2018, 2022, 2026])
     ax.set_xlim(2013.3, 2026.7)
     ax.set_xlabel("Year")
-    ax.set_ylabel("Share of submissions")
+    ax.set_ylabel("Proportion of submissions")
     ax.set_title("NeurIPS tiers", loc="left")
 
 
@@ -202,7 +202,7 @@ def tier_curves(ax, prefix: str, which: int):
 
 
 def fig_headline():
-    """(a) Papers submitted per year. (b) Share of NeurIPS submissions accepted, given spotlights
+    """(a) Papers submitted per year. (b) Proportion of NeurIPS submissions accepted, given spotlights
     and given orals. (c) Where a second, independent committee would rank the model's Best Paper
     as N grows, tier by tier, with tier sizes on NeurIPS's trends. (d) How much of each tier a
     second committee reproduces (results/tier_scaling.csv)."""
@@ -231,7 +231,7 @@ def standing_panel(ax):
     for y, yr in enumerate(years):
         r = b[(b.venue == "NeurIPS") & (b.year == yr)].iloc[0]
         left = 0.0
-        for (lab, c), w in zip(TIERS, tier_shares(r)):
+        for (lab, c), w in zip(TIERS, tier_proportions(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8)
             if w >= 0.14:  # narrower segments stay unlabelled; the caption gives Top 10 and Reject
                 ax.text(left + w / 2, y, f"{100 * w:.0f}%", ha="center", va="center", color=P.SURFACE if c != P.BLUE[250] else P.INK)
@@ -244,7 +244,7 @@ def standing_panel(ax):
     ax.set_ylim(-0.5, 2.95)
     ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
     P.pct_axis(ax, "x")
-    ax.set_xlabel("Share of Best Papers")
+    ax.set_xlabel("Proportion of Best Papers")
     ax.grid(axis="y", visible=False)
     ax.set_title("The Best Paper under a second review", loc="left")
     handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in TIERS]
@@ -367,7 +367,7 @@ def fig_venues():
 
 def fig_mechanism():
     """Rerun framing throughout: two independent committees. (a) Overlap of their top-10 sets
-    (fixed number) against their top-1% sets (fixed share). (b) The second committee's expected
+    (fixed number) against their top-1% sets (fixed proportion). (b) The second committee's expected
     score for the first committee's top-scored paper falls ever further below the second
     committee's own 10th-best score. (c) Reviews per paper that hold the top-10 overlap at its
     1K value as N grows (results/analytic_R_needed.csv), without and with shared noise."""
@@ -386,7 +386,7 @@ def fig_mechanism():
     ax.set_ylim(0, 0.4)
     P.pct_axis(ax)
     ax.set_ylabel("Overlap of two committees")
-    ax.set_title("Number falls, share holds", loc="left")
+    ax.set_title("Number falls, proportion holds", loc="left")
     ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
 

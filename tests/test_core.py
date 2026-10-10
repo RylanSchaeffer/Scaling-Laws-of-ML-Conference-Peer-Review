@@ -86,13 +86,14 @@ def test_tier_size_fit_recovers_power_law():
     import pandas as pd
     from peerreview.tiers import fit_tier_sizes, tier_size
     N = np.array([1000, 2000, 5000, 10_000, 20_000], float)
-    counts = pd.DataFrame(dict(venue="NeurIPS", year=np.arange(2014, 2019), N_used=N,
-                               orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8))
+    counts = pd.DataFrame(dict(venue="NeurIPS", year=np.arange(2014, 2019), N_used=N, acc_rate_used=0.25,
+                               orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8, awards=[3, 3, 3, 3, np.nan]))
     f = fit_tier_sizes(counts)
-    o, s = (f[f.tier == t].iloc[0] for t in ("orals", "spotlights"))
+    a, o, s, w = (f[f.tier == t].iloc[0] for t in ("accepted", "orals", "spotlights", "awards"))
+    assert abs(a.gamma - 1.0) < 1e-9 and abs(a.a - 0.25) < 1e-9
     assert abs(o.gamma - 0.6) < 1e-9 and abs(o.a - 0.3) < 1e-9 and o.n_years == 5
     assert abs(s.gamma - 0.8) < 1e-9 and abs(s.a - 0.5) < 1e-9
-    assert tier_size(f, "accepted", 1000) == 250
+    assert abs(w.gamma) < 1e-9 and abs(w.a - 3) < 1e-9 and w.n_years == 4  # a fixed number: gamma = 0
     assert tier_size(f, "orals", 10_000) == round(0.3 * 10_000**0.6)
 
 

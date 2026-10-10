@@ -78,7 +78,7 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: growth, NeurIPS tier proportions, and (vs N) where the Best Paper lands again and how much of each tier is reproduced
+# Figure 1: growth, NeurIPS tier proportions, and the NeurIPS Best Paper under a second review
 # ---------------------------------------------------------------------------
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
@@ -135,28 +135,39 @@ def submissions_panel(ax):
     ax.legend(loc="upper left", handlelength=1.4, borderaxespad=0.2)
 
 
-RATE_STYLES = (  # (label, column, line style, line width, label position (year, proportion))
-    ("Accepted", "acc_rate_used", "-", 1.6, (2019.5, 0.4)),
-    ("Spotlights", "spotlight_rate", (0, (3, 1.6)), 1.4, (2017.6, 0.058)),
-    ("Orals", "oral_rate", (0, (1, 1.2)), 1.4, (2017.6, 0.0027)),
-)
+RATE_TIERS = (  # (tier in results/tier_sizes.csv, count column of venue_counts(), colour, label end, label side)
+    ("accepted", "accepted", P.MUTED, "left", "above"),  # each label sits where no marker lies
+    ("spotlights", "spotlights", P.BLUE[250], "left", "above"),
+    ("orals", "orals_used", P.BLUE[450], "right", "below"),
+)  # awards (1 to 13 a year) are fitted in tier_sizes.csv but not drawn: too few to show a trend
 
 
 def rates_panel(ax):
-    """Proportion of NeurIPS submissions accepted, given a spotlight and given an oral, per year
-    (main track). Gaps mark years with no spotlight tier (2016, 2022). On the log axis a
-    constant proportion is a flat line, so a falling line means the tier grew more slowly than
-    submissions."""
-    v = venue_counts().assign(spotlight_rate=lambda d: d.spotlights / d.N_used, oral_rate=lambda d: d.orals_used / d.N_used)
-    s = v[v.venue == "NeurIPS"]
-    for lab, col, ls, lw, (x, y) in RATE_STYLES:
-        ax.plot(s.year[:-1], s[col][:-1], color=P.BLUE[450], ls=ls, lw=lw, marker="o", ms=2.6, mew=0)
-        ax.plot(s.year[-2:], s[col][-2:], color=P.BLUE[450], ls=ls, lw=lw)
-        _neurips_2026(ax, s[col].iloc[-1], 3.2)
-        ax.text(x, y, lab, color=P.INK2, ha="center", va="center")
+    """Is each NeurIPS tier a fixed number, a fixed proportion of submissions, or something
+    between? Markers: each year's main-track count over submissions (no spotlight tier in 2016
+    and 2022; awards, 1 to 13 a year, are too few to draw). Lines: the fitted power law count = a N^gamma (results/tier_sizes.csv), drawn at
+    each year's submissions. On the log axis a fixed proportion (gamma = 1) is flat and a fixed
+    number (gamma = 0) falls as 1/N; the label gives each tier's gamma."""
+    s = venue_counts().query("venue == 'NeurIPS'").assign(accepted=lambda d: d.N_used * d.acc_rate_used)
+    fits = load("tier_sizes").set_index("tier")
+    for tier, col, c, end, side in RATE_TIERS:
+        f = fits.loc[tier]
+        d = s[s[col].notna() & (s[col] > 0)]
+        ax.plot(d.year[d.year < 2026], (d[col] / d.N_used)[d.year < 2026], ls="none", marker="o", ms=2.6, color=c, mew=0)
+        if (d.year == 2026).any():  # reported, not yet in a primary source
+            _neurips_2026(ax, (d[col] / d.N_used)[d.year == 2026].iloc[0], 3.0)
+        yrs = s[(s.year >= f.year_min) & (s.year <= f.year_max)]
+        trend = f.a * yrs.N_used ** (f.gamma - 1)
+        ax.plot(yrs.year, trend, color=c, lw=1.4)
+        label = {"accepted": "Accepted", "spotlights": "Spotlights", "orals": "Orals", "awards": "Awards"}[tier]
+        tc = c if c != P.MUTED else P.INK2
+        i = 0 if end == "left" else -1
+        x = yrs.year.iloc[i] + (0.2 if end == "left" else -0.2)
+        y = trend.iloc[i] * (1.45 if side == "above" else 1 / 1.5)
+        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}$", color=tc, ha=end, va="bottom" if side == "above" else "top")
     ax.set_yscale("log")
-    ax.set_ylim(2e-3, 0.6)
-    ax.yaxis.set_major_locator(FixedLocator([0.003, 0.01, 0.03, 0.1, 0.3]))
+    ax.set_ylim(1.5e-3, 1.0)
+    ax.yaxis.set_major_locator(FixedLocator([0.003, 0.01, 0.03, 0.1, 0.3, 1.0]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{100 * x:g}%"))
     ax.set_xticks([2014, 2018, 2022, 2026])
@@ -202,24 +213,16 @@ def tier_curves(ax, prefix: str, which: int):
 
 
 def fig_headline():
-    """(a) Papers submitted per year. (b) Proportion of NeurIPS submissions accepted, given spotlights
-    and given orals. (c) Where a second, independent committee would rank the model's Best Paper
-    as N grows, tier by tier, with tier sizes on NeurIPS's trends. (d) How much of each tier a
-    second committee reproduces (results/tier_scaling.csv)."""
-    fig, axes = plt.subplots(2, 2, figsize=(P.TEXTWIDTH_IN, 2 * 1.35 + 0.25), gridspec_kw=dict(wspace=0.35, hspace=0.58))
-    axes = axes.ravel()
+    """(a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions, with the
+    fitted power law of each tier's count. (c) Where a second, independent committee would rank
+    the NeurIPS Best Paper in 2014, 2021 and 2026 (results/best_paper.csv)."""
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.7),
+                             gridspec_kw=dict(wspace=0.4, width_ratios=[1, 1, 1.5]))
     submissions_panel(axes[0])
     rates_panel(axes[1])
-    ax = axes[2]
-    tier_curves(ax, "p2", 0)
-    ax.set_ylabel("Probability")
-    ax.set_title("Where the Best Paper lands again", loc="left")
-    ax = axes[3]
-    tier_curves(ax, "ovl", 1)
-    ax.set_ylabel("Overlap of two committees")
-    ax.set_title("How much of each tier is reproduced", loc="left")
+    standing_panel(axes[2])
     for i, a in enumerate(axes):
-        P.panel_label(a, "abcd"[i])
+        P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig1_headline"))
 
 
@@ -239,14 +242,13 @@ def standing_panel(ax):
     ax.set_yticks(range(len(years)))
     ax.set_yticklabels([str(yr) for yr in years])
     ax.tick_params(axis="y", length=0)
-    ax.set_ylabel("NeurIPS")
     ax.set_xlim(0, 1)
     ax.set_ylim(-0.5, 2.95)
     ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
     P.pct_axis(ax, "x")
     ax.set_xlabel("Proportion of Best Papers")
     ax.grid(axis="y", visible=False)
-    ax.set_title("The Best Paper under a second review", loc="left")
+    ax.set_title("NeurIPS Best Paper under 2nd review", loc="left")
     handles = [plt.Rectangle((0, 0), 1, 1, color=c, label=lab) for lab, c in TIERS]
     ax.legend(handles=handles, loc="upper left", ncol=4, handlelength=0.8, columnspacing=0.8,
               borderaxespad=0.1, handletextpad=0.3)
@@ -324,21 +326,28 @@ def fig_validation():
 
 
 # ---------------------------------------------------------------------------
-# Figure 3: the Best Paper at every real venue-year
+# Figure 3: the Best Paper and the tiers as N grows, and at every real venue-year
 # ---------------------------------------------------------------------------
 
 
 def fig_venues():
-    """(a) The NeurIPS Best Paper's standing under a second review in 2014, 2021 and 2026.
-    (b, c) Best Paper tier probabilities that depend on the venue's own oral count and
-    acceptance rate, at each venue-year (results/best_paper.csv); NeurIPS band = pessimistic
-    to optimistic level. The tiers that depend on N alone are Fig. 1c."""
+    """(a) Where a second committee ranks the Best Paper as N grows, tier by tier, and (b) how
+    much of each tier it reproduces, with tier sizes on NeurIPS's trends (results/tier_scaling.csv).
+    (c, d) The tiers that depend on each venue's own oral count and acceptance rate, at each
+    venue-year (results/best_paper.csv); NeurIPS band = pessimistic to optimistic level."""
     b = load("best_paper")
     b = b[b.source == "venue"].copy()
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.45, width_ratios=[1.5, 1, 1]))
-    standing_panel(axes[0])
-    panels = ((axes[1], "p2_oral", "In oral range again", 1.0),
-              (axes[2], "p2_reject", "Rejected", 0.3))
+    fig, axes = plt.subplots(1, 4, figsize=(P.TEXTWIDTH_IN, ROW_H), gridspec_kw=dict(wspace=0.6, width_ratios=[1.25, 1.25, 1, 1]))
+    ax = axes[0]
+    tier_curves(ax, "p2", 0)
+    ax.set_ylabel("Probability")
+    ax.set_title("Best Paper lands again", loc="left")
+    ax = axes[1]
+    tier_curves(ax, "ovl", 1)
+    ax.set_ylabel("Overlap")
+    ax.set_title("Tier reproduced", loc="left")
+    panels = ((axes[2], "p2_oral", "In oral range again", 1.0),
+              (axes[3], "p2_reject", "Rejected", 0.3))
     for ax, col, title, ymax in panels:
         for venue, c, mk in VENUES:
             s = b[b.venue == venue].dropna(subset=[col])
@@ -353,10 +362,10 @@ def fig_venues():
         ax.set_xlim(2013.3, 2026.7)
         ax.set_xlabel("Year")
         ax.set_title(title, loc="left")
-    axes[1].set_ylabel("Probability")
-    axes[1].legend(loc="upper right", handlelength=1.1, borderaxespad=0.1)  # above the NeurIPS band
+    axes[2].set_ylabel("Probability")
+    axes[2].legend(loc="upper right", handlelength=1.1, borderaxespad=0.1)  # above the NeurIPS band
     for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
+        P.panel_label(a, "abcd"[i])
     P.save(fig, os.path.join(FIG, "fig3_venues"))
 
 

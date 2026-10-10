@@ -449,6 +449,17 @@ out of the main analyses.
     Fig 3 dropped the by-year top-scored and top-ten panels (they depend on N only); Fig 4c is now
     the reviews-per-paper curve from `results/analytic_R_needed.csv`.
 
+14. **Figure 1 back to one row; tier trends fitted (10 October 2026).** At the author's request
+    Fig. 1 is again (a) submissions, (b) NeurIPS tiers, (c) the NeurIPS Best Paper under a second
+    review (stacked bars). The two N-axis panels moved to Fig. 3a,b, beside the by-venue-year
+    panels. Motivation for Fig. 1b, in the author's words: the point is to show how to think
+    about the tiers: are acceptance, spotlights, orals and awards constant numbers, proportions
+    of submissions, or something between? So (b) now draws each year's proportion as markers and
+    the fitted power law count = a N^gamma as a line (`results/tier_sizes.csv`, all four tiers
+    fitted on NeurIPS: accepted gamma 1.05, spotlights 0.72, orals 0.59; awards 0.34 on 1 to 13 a
+    year is in the CSV but not drawn, too few papers to show a trend), labelled with gamma; gamma = 1 is a fixed proportion, gamma = 0 a fixed number. The N
+    grid keeps 0.25 N for acceptance (decision 13).
+
 ## 9. Limitations
 
 One-dimensional quality; exchangeable reviewers (no leniency offsets, no matching); the

@@ -15,18 +15,20 @@ import pandas as pd
 
 ACCEPT_SHARE = 0.25  # the grid's acceptance rate (results/best_paper.csv, source == "grid")
 
-TIER_COLUMNS = {"orals": "orals_used", "spotlights": "spotlights"}
+# tier -> column of scripts.make_figures.venue_counts(); "accepted" is N_used * acc_rate_used
+TIER_COLUMNS = {"accepted": "accepted", "spotlights": "spotlights", "orals": "orals_used", "awards": "awards"}
 
 
 def fit_tier_sizes(counts: pd.DataFrame, venue: str = "NeurIPS") -> pd.DataFrame:
     """One row per tier: count = a * N^gamma fitted on `venue`'s years with a positive count.
 
-    `counts` has columns venue, year, N_used, orals_used, spotlights (scripts.make_figures.venue_counts).
-    Acceptance is not fitted: it is the grid's fixed share, a = ACCEPT_SHARE, gamma = 1.
+    gamma = 1 is a fixed proportion of submissions, gamma = 0 a fixed number. `counts` has
+    columns venue, year, N_used, acc_rate_used, orals_used, spotlights, awards. The N grid
+    (scripts/make_tier_scaling.py) uses the fitted oral and spotlight counts and ACCEPT_SHARE * N
+    for acceptance, whose fitted exponent is close to 1.
     """
-    rows = [dict(tier="accepted", a=ACCEPT_SHARE, gamma=1.0, n_years=0, year_min=np.nan, year_max=np.nan,
-                 rmse_log10=0.0, note="fixed share of submissions, the grid's acceptance rate")]
-    v = counts[counts.venue == venue]
+    v = counts[counts.venue == venue].assign(accepted=lambda d: d.N_used * d.acc_rate_used)
+    rows = []
     for tier, col in TIER_COLUMNS.items():
         d = v[v[col].notna() & (v[col] > 0)]
         x, y = np.log10(d.N_used.to_numpy(float)), np.log10(d[col].to_numpy(float))

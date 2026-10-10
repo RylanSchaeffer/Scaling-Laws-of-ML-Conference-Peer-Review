@@ -2,7 +2,7 @@
 And how much of each tier does a second committee reproduce?
 
 Tier sizes follow NeurIPS's own trends (peerreview.tiers): acceptance is the grid's fixed
-share, orals and spotlights grow as fitted power laws of N, the top ten and the award are
+proportion, orals and spotlights grow as fitted power laws of N, the top ten and the award are
 fixed numbers. At each N of the grid and each reliability level this script computes, in
 the rerun framing (two committees' scores correlate at rho^2):
 
@@ -30,7 +30,7 @@ from make_figures import venue_counts  # noqa: E402
 
 from peerreview import analytic as an  # noqa: E402
 from peerreview.levels import LEVELS, ROOT  # noqa: E402
-from peerreview.tiers import fit_tier_sizes, tier_size  # noqa: E402
+from peerreview.tiers import ACCEPT_SHARE, fit_tier_sizes, tier_size  # noqa: E402
 
 N_GRID = [1000, 1500, 2000, 3000, 5000, 7000, 10_000, 15_000, 20_000, 30_000, 50_000, 70_000, 100_000]
 EXACT_BELOW = 30  # exact 2-D integral below this set size; closed form above
@@ -51,7 +51,7 @@ def main() -> None:
         for N in N_GRID:
             M_oral = tier_size(fits, "orals", N)
             M_spot = M_oral + tier_size(fits, "spotlights", N)
-            A = tier_size(fits, "accepted", N)
+            A = int(round(ACCEPT_SHARE * N))  # the grid's fixed proportion; the fitted exponent is 1.05
             rows.append(dict(
                 level=level, rho2=rho2, N=N, M_oral=M_oral, M_spot=M_spot, A=A,
                 p2_best=an.containment_fixed_K(N, 1, 1, rho2),

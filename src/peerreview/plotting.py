@@ -51,6 +51,9 @@ def setup() -> None:
         "ytick.labelsize": FONT_PT,
         "xtick.major.width": 0.6,
         "ytick.major.width": 0.6,
+        "xtick.major.pad": 2.5,
+        "ytick.major.pad": 2.0,
+        "axes.labelpad": 2.0,
         "legend.fontsize": FONT_PT,
         "legend.frameon": True,  # opaque, borderless: guide lines never run through legend text
         "legend.framealpha": 1.0,

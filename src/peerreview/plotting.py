@@ -113,7 +113,16 @@ def panel_label(ax, s: str) -> None:
     ax.text(-0.13, 1.06, s, transform=ax.transAxes, fontweight="bold", va="bottom", ha="left")
 
 
-def save(fig, path_stem: str) -> None:
-    fig.savefig(path_stem + ".pdf", bbox_inches="tight")
-    fig.savefig(path_stem + ".png", bbox_inches="tight", dpi=200)
+def save(fig, path_stem: str, width: float = TEXTWIDTH_IN) -> None:
+    """Write PDF and PNG with the tight bounding box exactly `width` wide (the paper's text
+    width), so \\includegraphics[width=\\textwidth] scales by 1, the type prints at FONT_PT and
+    no white margin is left on either side. The figure width is adjusted iteratively because
+    labels outside the axes have fixed sizes; the height is kept."""
+    for _ in range(4):
+        fig.canvas.draw()
+        bb = fig.get_tightbbox(fig.canvas.get_renderer())  # inches
+        w, h = fig.get_size_inches()
+        fig.set_size_inches(w * width / bb.width, h)
+    fig.savefig(path_stem + ".pdf", bbox_inches="tight", pad_inches=0.01)
+    fig.savefig(path_stem + ".png", bbox_inches="tight", pad_inches=0.01, dpi=200)
     plt.close(fig)

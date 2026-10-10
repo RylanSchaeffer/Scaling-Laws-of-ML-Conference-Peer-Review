@@ -273,7 +273,8 @@ def fig_validation():
 
     def rows(ax, cen, pes, lo, hi, mean, obs, obs_text, c_bar, c_dot, xlim):
         ax.axvline(obs, color=P.INK, lw=1.0)
-        ax.text(obs, y.max() + 0.75, obs_text, color=P.INK, va="center", ha="center", bbox=dict(fc=P.SURFACE, ec="none", pad=0.6))
+        ax.text(obs, y.max() + 0.75, obs_text, color=P.INK, va="center", ha="left" if obs < sum(xlim) / 2 else "right",
+                bbox=dict(fc=P.SURFACE, ec="none", pad=0.6))  # label beside the line, on the roomier side
         ax.hlines(y, cen[lo], cen[hi], color=c_bar, lw=2.0)
         ax.plot(cen[mean], y, "o", color=c_dot, ms=4.4, mec=P.SURFACE, mew=0.7, label="Central $\\rho^2$ = 0.50")
         ax.plot(pes[mean], y - 0.28, "o", mfc=P.SURFACE, mec=c_dot, mew=1.0, ms=3.8, ls="none",

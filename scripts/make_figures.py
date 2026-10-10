@@ -112,21 +112,12 @@ def venue_counts() -> pd.DataFrame:
     return v.merge(sp[["venue", "year", "spotlights"]], on=["venue", "year"], how="left").sort_values(["venue", "year"])
 
 
-def _neurips_2026(ax, y, ms, x=2026, color=None):
-    """NeurIPS 2026 is reported by secondary aggregators only (docs/claims.md): open marker in the series colour."""
-    ax.plot([x], [y], ls="none", marker="o", ms=ms, mfc=P.SURFACE, mec=color or VENUES[0][1], mew=1.0 * P.S, zorder=5)
-
-
 def submissions_panel(ax):
     """Papers submitted per year at NeurIPS, ICML and ICLR (data/venues.csv, N_used)."""
     v = venue_counts()
     for venue, c, mk in VENUES:
         s = v[v.venue == venue]
-        d = s[(s.year < 2026) | (venue != "NeurIPS")]  # NeurIPS 2026 is reported only: open marker below
-        ax.plot(d.year, d.N_used, color=c, lw=1.6 * P.S, marker=mk, ms=3.0 * P.S, mew=0, label=venue)
-        if len(d) < len(s):
-            ax.plot(s.year.iloc[-2:], s.N_used.iloc[-2:], color=c, lw=1.6 * P.S, zorder=1)  # line to 2026, no marker
-    _neurips_2026(ax, v[(v.venue == "NeurIPS") & (v.year == 2026)].N_used.iloc[0], 3.4 * P.S)
+        ax.plot(s.year, s.N_used, color=c, lw=1.6 * P.S, marker=mk, ms=3.0 * P.S, mew=0, label=venue)
     ax.set_yscale("log")
     ax.set_ylim(400, 1e5)
     ax.yaxis.set_major_locator(FixedLocator([1e3, 1e4, 1e5]))
@@ -159,9 +150,7 @@ def rates_panel(ax):
     for tier, col, c, end, side in RATE_TIERS:
         f = fits.loc[tier]
         d = s[s[col].notna() & (s[col] > 0)]
-        ax.plot(d.N_used[d.year < 2026], (d[col] / d.N_used)[d.year < 2026], ls="none", marker="o", ms=2.6 * P.S, color=c, mew=0)
-        if (d.year == 2026).any():  # reported, not yet in a primary source
-            _neurips_2026(ax, (d[col] / d.N_used)[d.year == 2026].iloc[0], 3.0 * P.S, x=d.N_used[d.year == 2026].iloc[0], color=c)
+        ax.plot(d.N_used, d[col] / d.N_used, ls="none", marker="o", ms=2.6 * P.S, color=c, mew=0)
         yrs = s[(s.year >= f.year_min) & (s.year <= f.year_max)]
         x0, x1 = yrs.N_used.min(), yrs.N_used.max()
         ax.plot([x0, x1], [f.a * x0 ** (f.gamma - 1), f.a * x1 ** (f.gamma - 1)], color=c, lw=1.4 * P.S)
@@ -368,11 +357,7 @@ def fig_venues():
             if venue == "NeurIPS":  # one band, for the longest series
                 lo, hi = (s[s.level == lev].sort_values("year") for lev in ("pessimistic", "optimistic"))
                 ax.fill_between(cen.year, lo[col].values, hi[col].values, color=c, alpha=0.13, lw=0)
-            d = cen[(cen.year < 2026) | (venue != "NeurIPS")]  # NeurIPS 2026 is reported only: open marker, as in Fig 1
-            ax.plot(d.year, d[col], color=c, lw=1.6 * P.S, marker=mk, ms=3.2 * P.S, mec=P.SURFACE, mew=0.7 * P.S, label=venue)
-            if len(d) < len(cen):
-                ax.plot(cen.year.iloc[-2:], cen[col].iloc[-2:], color=c, lw=1.6 * P.S, zorder=1)
-                _neurips_2026(ax, cen[col].iloc[-1], 3.4 * P.S, color=c)
+            ax.plot(cen.year, cen[col], color=c, lw=1.6 * P.S, marker=mk, ms=3.2 * P.S, mec=P.SURFACE, mew=0.7 * P.S, label=venue)
         ax.set_ylim(0, ymax)
         P.pct_axis(ax)
         ax.set_xticks([2014, 2020, 2026])

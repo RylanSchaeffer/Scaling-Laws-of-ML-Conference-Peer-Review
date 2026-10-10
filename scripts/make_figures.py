@@ -216,7 +216,7 @@ def fig_headline():
     """(a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions, with the
     fitted power law of each tier's count. (c) Where a second, independent committee would rank
     the NeurIPS Best Paper in 2014, 2021 and 2026 (results/best_paper.csv)."""
-    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.7),
+    fig, axes = plt.subplots(1, 3, figsize=(P.TEXTWIDTH_IN, 1.34),
                              gridspec_kw=dict(wspace=0.4, width_ratios=[1, 1, 1.5]))
     submissions_panel(axes[0])
     rates_panel(axes[1])

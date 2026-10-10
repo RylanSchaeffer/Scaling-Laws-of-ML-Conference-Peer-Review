@@ -3,10 +3,10 @@ variant that fits the acceptance data equally well (each refitted to the central
 disagreement), at NeurIPS 2014 and 2026 size.
 
 The model's Best Paper is the top-scored paper (ties broken at random). For each variant the
-script simulates whole conferences, each reviewed by two independent committees, and records
-two things about committee 1's Best Paper. The rerun framing the paper reports (p2_*): the
-probability that committee 2 ranks it in its top M, for M = 1 (top-scored again), 10, the oral
-count and the accepted count; one minus the last is the probability that a second committee
+script simulates whole conferences, each reviewed by two independent reviews, and records
+two things about the first review's Best Paper. The rerun framing the paper reports (p2_*): the
+probability that the second review ranks it in its top M, for M = 1 (the Best Paper again), 10, the oral
+count and the accepted count; one minus the last is the probability that a second review
 rejects it. The true-rank framing (p_*): the probability that it is truly in the top M.
 
 Variants: Gaussian (the main model); quality bounded, exponential, lognormal or heavy-tailed
@@ -58,16 +58,21 @@ def job(name: str, year: int) -> dict:
     v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
     x = v[(v.venue == "NeurIPS") & (v.year == year) & (v.denominator != "decided")].iloc[0]
     N, A, orals = int(x.N_used), int(round(x.N_used * x.acc_rate_used)), int(x.orals_used)
-    tiers = {"best": 1, "top10": 10, "oral": orals, "accept": A}
+    sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))
+    spotlights = int(sp[(sp.venue == "NeurIPS") & (sp.year == year)].spotlights.iloc[0])
+    tiers = {"best": 1, "top10": 10, "oral": orals, "spot": orals + spotlights, "accept": A}  # nested tiers
     r = simulate_best_paper(m, N, REPS[year], best_K=(1,), winner_tiers=tiers, second_committee=True,
                             salt=f"best-paper-robustness-{name}")
-    return {"variant": name, "group": group, "year": year, "N": N, "accepted": A, "orals": orals, "level": "central",
+    return {"variant": name, "group": group, "year": year, "N": N, "accepted": A, "orals": orals,
+            "spotlights": spotlights, "level": "central",
             "R": m.R, "sigma_eps": m.sigma_eps, "reps": r["reps"], "seed": r["seed"],
             "p_best": r["winner_in_best"], "p_top10": r["winner_in_top10"], "p_oral": r["winner_in_oral"],
+            "p_spot": r["winner_in_spot"],
             "p_accept": r["winner_in_accept"], "p_reject": 1 - r["winner_in_accept"],
             "p_reject_se": r["winner_in_accept_se"], "p_best_se": r["winner_in_best_se"],
             "winner_rank_median": r["winner_rank_median"],
             "p2_best": r["winner_in2_best"], "p2_top10": r["winner_in2_top10"], "p2_oral": r["winner_in2_oral"],
+            "p2_spot": r["winner_in2_spot"],
             "p2_accept": r["winner_in2_accept"], "p2_reject": 1 - r["winner_in2_accept"],
             "p2_reject_se": r["winner_in2_accept_se"], "p2_best_se": r["winner_in2_best_se"],
             "winner_rank2_median": r["winner_rank2_median"], "wall_s": r["wall_s"]}
@@ -95,7 +100,7 @@ def main() -> None:
         df = df.merge(pd.DataFrame(list(ov)), on="variant")
     out = os.path.join(ROOT, "results", "best_paper_robustness.csv")
     df.to_csv(out, index=False)
-    print(df[["variant", "year", "p2_best", "p2_top10", "p2_oral", "p2_reject", "p2_reject_se", "winner_rank2_median",
+    print(df[["variant", "year", "p2_best", "p2_top10", "p2_oral", "p2_spot", "p2_reject", "p2_reject_se", "winner_rank2_median",
               "p_best", "p_reject", "overlap2021_mean", "p_overlap2021_le_obs"]]
           .round(4).to_string(index=False))
 

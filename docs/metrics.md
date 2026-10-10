@@ -27,10 +27,10 @@ This file defines "the best papers" and "a wrong decision" before any model is f
 | Mean true percentile | mean of the population CDF $F(q)$ over $\mathrm{Top}_K(\bar s)$ | `pctl_` |
 | Best paper | $P(\arg\max_i q_i \in \mathrm{Top}_K(\bar s))$ for $K = 1, 5, 10, 30$ | `best_in_K{K}` |
 | Rank of the winner | true rank (1 = best) of $\arg\max_i \bar s_i$; quantiles pooled over all simulated conferences | `winner_rank_q50` etc. |
-| Two-committee overlap | $\lvert\mathrm{Top}_K(\bar s^{(1)})\cap\mathrm{Top}_K(\bar s^{(2)})\rvert/K$, observable without knowing $q$ | `ovl_` |
-| Rejected by a second committee | share of $\mathrm{Top}_K(\bar s^{(1)})$ that committee 2 rejects at acceptance rate $\alpha$ | `rej2_` |
-| Tier sizes as conferences grow | count of papers in a tier at $N$ submissions: accepted $=0.25N$ (the grid's share); orals and spotlights fitted as $aN^\gamma$ to NeurIPS 2014--2026 in log-log (`results/tier_sizes.csv`); the top ten and the award fixed. `p2_{best,top10,oral,spot,accept}` is the Best Paper's chance under a second review of ranking within each tier so sized; `ovl_{top10,oral,spot,accept}` the two committees' overlap of that tier (exact below 30 papers, closed-form fixed-percentile formula above) | `results/tier_scaling.csv` |
-| The Best Paper under a second review | rank of $\arg\max_i \bar s^{(1)}_i$ by committee 2's scores $\bar s^{(2)}$; $P(\text{rank} \le M)$ for $M = 1$ (top-scored again), 10, the oral count and $A$; one minus the last is "rejected by a second committee". The paper's headline framing: it is in the units of the NeurIPS consistency experiments. In the Gaussian model it equals the true-rank integral with $\rho$ replaced by $\rho^2$. | `p2_best`, `p2_top10`, `p2_oral`, `p2_accept`, `p2_reject`, `winner_rank2_median` (`winner_in2_*` in the simulator) |
+| Two-review overlap | $\lvert\mathrm{Top}_K(\bar s^{(1)})\cap\mathrm{Top}_K(\bar s^{(2)})\rvert/K$, observable without knowing $q$ | `ovl_` |
+| Rejected by a second review | share of $\mathrm{Top}_K(\bar s^{(1)})$ that the second review rejects at acceptance rate $\alpha$ | `rej2_` |
+| Tier sizes as conferences grow | count of papers in a tier at $N$ submissions: accepted $=0.25N$ (the grid's share); orals and spotlights fitted as $aN^\gamma$ to NeurIPS 2014--2026 in log-log (`results/tier_sizes.csv`); the top ten and the Best Paper fixed. `p2_{best,top10,oral,spot,accept}` is the Best Paper's chance under a second review of ranking within each tier so sized; `ovl_{top10,oral,spot,accept}` the two reviews' overlap of that tier (exact below 30 papers, closed-form fixed-percentile formula above) | `results/tier_scaling.csv` |
+| The Best Paper under a second review | rank of $\arg\max_i \bar s^{(1)}_i$ by the second review's scores $\bar s^{(2)}$; $P(\text{rank} \le M)$ for $M = 1$ (the Best Paper again), 10, the oral count, the oral plus spotlight count and $A$ (nested tiers, each including those above it; `docs/terminology.md`); one minus the last is "rejected by a second review", and `p2_accept - p2_spot` is "merely accepted" (accepted with no award). The paper's headline framing: it is in the units of the NeurIPS consistency experiments. In the Gaussian model it equals the true-rank integral with $\rho$ replaced by $\rho^2$. | `p2_best`, `p2_top10`, `p2_oral`, `p2_spot`, `p2_accept`, `p2_reject`, `winner_rank2_median` (`winner_in2_*` in the simulator) |
 
 ## The accept/reject boundary
 
@@ -38,16 +38,16 @@ This file defines "the best papers" and "a wrong decision" before any model is f
 |---|---|---|
 | Swap fraction | share of accepted papers not in $\mathrm{Top}_A(q)$; equals the share of deserving papers rejected | `swap_acc{alpha}` |
 | Wrong accepts (count) | swap fraction $\times A$; equals the count of deserving papers rejected | derived |
-| Two-committee disagreement | $P(\text{rejected by 2}\mid\text{accepted by 1})$, "the share of accepted papers that a rerun would reject" | `dis_acc{alpha}` |
-| Inconsistent decisions | share of all papers accepted by exactly one committee | `incons_acc{alpha}` |
+| Two-review disagreement | $P(\text{rejected by 2}\mid\text{accepted by 1})$, "the share of accepted papers that a rerun would reject" | `dis_acc{alpha}` |
+| Inconsistent decisions | share of all papers accepted by exactly one review | `incons_acc{alpha}` |
 
-When both committees accept $A = \alpha N$ papers, the two boundary statistics are tied
+When both reviews accept $A = \alpha N$ papers, the two boundary statistics are tied
 exactly: inconsistent share $= 2\alpha \times$ disagreement (each paper accepted by 1 and
 rejected by 2 is matched by one paper accepted by 2 and rejected by 1).
 
-## Two committees
+## A second review
 
-A second committee sees the same papers (same $q_i$) and redraws all reviewer errors
+A second review sees the same papers (same $q_i$) and redraws all reviewer errors
 $\varepsilon_{ij}$ and the shared noise $u_i$, because the field experiments used disjoint
 area chairs and reviewers.
 

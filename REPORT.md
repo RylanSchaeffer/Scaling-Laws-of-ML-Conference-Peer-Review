@@ -13,34 +13,34 @@ Ranges run from the pessimistic level ($\rho^2 = 0.44$) to the optimistic level
 
 The paper asks one question: as submissions grow, does review still give its awards to the
 right papers? It answers in the units of the NeurIPS consistency experiments (the "rerun"
-framing, decision 12 in §8): if a second, independent committee re-reviewed every paper,
+framing, decision 12 in §8): if a second, independent review re-ranked every paper,
 where would it rank the Best Paper? Items A and B answer it; items 1 to 8 give the
 supporting results, mostly in the true-rank framing the paper no longer reports.
 
 A. **A second review would almost always accept a Best Paper but rarely confirm it.** At
-   NeurIPS 2026 size a second committee would rank the model's Best Paper (the top-scored
+   NeurIPS 2026 size a second review would rank the model's Best Paper (the top-scored
    paper) first again with probability 1.3%, in its top 10 with 6.3%, within the 112 orals
-   with 24%, and would accept it with 95% (reject it with 5.2%); its median rank for it is
-   584th. From NeurIPS 2014 to 2026 the top-scored-again chance fell from 3.7% to 1.3% and
+   with 24%, within the 404 orals plus spotlights with 43%, and would accept it with 95% (merely accept it, with no award, with 51%; reject it with 5.2%); its median rank for it is
+   584th. From NeurIPS 2014 to 2026 the Best-Paper-again chance fell from 3.7% to 1.3% and
    the median rank rose from 74th to 584th; the rejection chance fell from 12% to 5% (§6).
    Along the $N$ axis with tier sizes on NeurIPS's trends (decision 13), from 1,000 to
-   100,000 submissions the top-scored-again chance falls from 4.5% to 0.85% and the top-ten
+   100,000 submissions the Best-Paper-again chance falls from 4.5% to 0.85% and the top-ten
    chance from 21% to 4.2%, both as $N^{-0.36}$, while oral-or-above falls only from 29% to
-   25% and spotlight-or-above from 55% to 52%; two committees reproduce 48% of the accepted
+   25% and spotlight-or-above from 55% to 52%; two reviews reproduce 48% of the accepted
    set at every size, 27% to 16% of orals plus spotlights, 16% to 8% of orals and 13% to
-   2.4% of the top ten (`results/tier_scaling.csv`).
+   2.3% of the top ten (`results/tier_scaling.csv`).
    True-rank framing, for comparison: truly best 6.6%, top 10 25%, oral-worthy 63%, should
    have been rejected 0.09%.
 B. **How sure: the quality tail decides whether it would win again; the score scale decides
    whether it would be rejected.** Across variants refitted to the same acceptance data, the
-   top-scored-again chance at NeurIPS 2026 size runs from 0.2% (bounded quality) to 89%
+   Best-Paper-again chance at NeurIPS 2026 size runs from 0.2% (bounded quality) to 89%
    ($t_3$ quality). The NeurIPS 2021 top-tier overlap rejects the heavy-tailed quality
    variants ($P \le 0.04$). Under the rest, the chance is 0.2% to 1.3%, merely accepted
-   70% to 79%, and rejected 5.0% (continuous scores) to 12.7% (5% careless raves on a 1-10
+   (no award) 52% to 66%, and rejected 5.0% (continuous scores) to 12.7% (5% careless raves on a 1-10
    scale); rounding to a 1-10 or ICLR scale alone gives 9.7% to 11.9%, because several
    papers tie for the top score and the award goes to one of them at random. In the
    true-rank framing careless raves stood out (5.4% against 0.09%); in the rerun framing
-   the second committee's own noise dominates and they add 3 points (§6).
+   the second review's own noise dominates and they add 3 points (§6).
 
 1. **Fixed-number selections degrade as conferences grow; fixed-percentile selections
    do not.** Top-10 precision is 27% at $N = 10^3$, 16% at $10^4$, 10% at $10^5$ and 6% at
@@ -91,7 +91,7 @@ The model is $s_{ij} = q_i + u_i + \varepsilon_{ij}$ with $q \sim \mathcal N(5, 
 shared noise $u$ and reviewer noise $\varepsilon$; the score is the mean of $R$ reviews
 (snapped to a scale in the discrete variants), ties broken at random. The reliability is
 $\rho^2 = \sigma_q^2 / (\sigma_q^2 + \sigma_u^2 + \sigma_\varepsilon^2/R)$, and two
-independent committees' scores correlate at $\rho^2$.
+independent reviews' scores correlate at $\rho^2$.
 
 **Reliability estimates** (`results/calibration_reliability.csv`):
 
@@ -129,7 +129,7 @@ function with the simulator.
 
 | Item | Result |
 |---|---|
-| Reliability | $\rho^2$ as above; two committees correlate at $\rho^2$; ceiling $\sigma_q^2/(\sigma_q^2+\sigma_u^2)$ as $R \to \infty$ (0.85 at $\sigma_u = 0.5$). |
+| Reliability | $\rho^2$ as above; two reviews correlate at $\rho^2$; ceiling $\sigma_q^2/(\sigma_q^2+\sigma_u^2)$ as $R \to \infty$ (0.85 at $\sigma_u = 0.5$). |
 | Fixed percentile | $\mathrm{prec}(p) = P_2(z_p, z_p; \rho)/p$, free of $N$; the finite-$N$ deficit is $O(1/K)$ relative. |
 | Disagreement | $1 - P_2(z_\alpha, z_\alpha; \rho^2)/\alpha$; inconsistent share $= 2\alpha \times$ disagreement; unique inverse. |
 | Fixed number | exact 2-D integral at finite $N$; $\mathrm{prec}_{N,K} \sim \frac{(1+\rho)^2}{K\sqrt{1-\rho^2}} \big[\frac{\Gamma(K+1/(1+\rho))}{\Gamma(K)}\big]^2 N^{-(1-\rho)/(1+\rho)} (4\pi\log N)^{-\rho/(1+\rho)}$, relative correction $O(\log\log N/\log N)$; checked to $N = 10^{300}$. |
@@ -137,7 +137,7 @@ function with the simulator.
 | Containment | for fixed $K$ and fixed $p$, the share of $\mathrm{Top}_K(\bar s)$ in the true top $p$ tends to 1. |
 | Best paper | same rate $N^{-(1-\rho)/(1+\rho)}$; $P(\text{best wins}) = \mathrm{prec}_{N,1}$. |
 | Winner's rank | $P(\text{rank} \le r) = P(\text{best} \in \mathrm{Top}_r)$; median $\approx \frac{e^{-\gamma\rho^2}}{\rho}(N/\sqrt{4\pi\log N})^{1-\rho^2}$. |
-| Two-committee top-$K$ overlap | equals fixed-$K$ precision at correlation $\rho^2$; rate $N^{-(1-\rho^2)/(1+\rho^2)}$. |
+| Two-review top-$K$ overlap | equals fixed-$K$ precision at correlation $\rho^2$; rate $N^{-(1-\rho^2)/(1+\rho^2)}$. |
 | Tails | Gaussian/Gaussian decays; exponential/Gaussian plateaus; $t_3$/Gaussian rises to 1; $t_3$/$t_3$ plateaus; bounded/Gaussian and any heavier-noise case collapse. Fixed-percentile precision is $N$-free for every shape. |
 | Acceptance rate | wrong accepts per paper $\alpha \cdot \mathrm{swap}(\alpha)$ is zero at $\alpha = 0$ and concave, so its ratio to $\alpha$, the swap fraction, falls as $\alpha$ rises. |
 | Discretisation | no closed form (lattice law, ties, bounded top); fixed percentile stays $N$-free; fixed $K$ becomes a lottery in the top tie class, $\mathrm{prec} \approx K/(N\pi_{\rm top})$. |
@@ -161,7 +161,7 @@ h. Analytic and simulated values agree within Monte Carlo error
 | 1,000,000 | 5.4% | 6.4% | 8.3% | 10.5% | 23.7% | 40.1% | 57.2% | 60.9% |
 
 **Best paper** (`sweep_h.csv`, central): in the top 10 by score 47.8%, 31.1%, 20.2%, 13.2%
-at $N = 10^3, 10^4, 10^5, 10^6$; wins outright 13.4%, 8.5%, 5.1%, 3.1%. Two-committee
+at $N = 10^3, 10^4, 10^5, 10^6$; wins outright 13.4%, 8.5%, 5.1%, 3.1%. Two-review
 top-10 overlap (`sweep_g.csv`): 13.0%, 5.4%, 2.3%, 1.0%.
 
 **Reviewer noise and reviewer count** (`sweep_c.csv`, `sweep_b.csv`). At $N = 10^4$, top-10
@@ -227,18 +227,20 @@ top-scored paper's median true rank rises from 15 (2014) to 55 (2026), and the b
 among the ten top-scored papers with probability 44% (2014) and 25% (2026).
 
 **The Best Paper under a second review** (`results/best_paper.csv`, `p2_*` columns,
-`scripts/make_best_paper.py`; paper Fig. 3 and the grey reliability range in Fig. 5; the same integrals along the $N$ grid with fitted tier sizes are `results/tier_scaling.csv`, paper Fig. 1c,d, decision 13). A second, independent committee
+`scripts/make_best_paper.py`; paper Fig. 3 and the grey reliability range in Fig. 5; the same integrals along the $N$ grid with fitted tier sizes are `results/tier_scaling.csv`, paper Fig. 3a,b, decisions 13 and 14). A second, independent review
 re-reviews every paper (u and eps redrawn); in the Gaussian model its scores correlate with
-the first committee's at $\rho^2$, so the probability that it ranks the first committee's
+the first review's at $\rho^2$, so the probability that it ranks the first review's
 top-scored paper within its top $M$ is containment_fixed_K(N, 1, M, $\rho^2$). Central level
 (pessimistic to optimistic):
 
-| Second committee ranks the Best Paper ... | NeurIPS 2014 ($N$ = 1,678) | NeurIPS 2026 ($N$ = 30,709) |
+| A second review ranks the Best Paper ... | NeurIPS 2014 ($N$ = 1,678) | NeurIPS 2026 ($N$ = 30,709) |
 |---|---|---|
 | first again | 3.7% (2.4 to 12.3) | 1.3% (0.7 to 6.7) |
 | in its top 10 | 17.8% (12.7 to 44.3) | 6.3% (3.8 to 25.5) |
 | within the oral count (20; 112) | 26.4% (19.5 to 58.0) | 24.4% (16.5 to 63.2) |
+| within the orals plus spotlights (82; 404) | 52.3% (42.2 to 84.6) | 43.3% (32.0 to 83.4) |
 | accepted | 87.7% (80.8 to 99.0) | 94.8% (89.6 to 99.9) |
+| merely accepted (no award) | 35.4% (14.5 to 38.5) | 51.5% (16.5 to 57.6) |
 | rejected | 12.3% (19.2 to 1.0) | 5.2% (10.4 to 0.1) |
 | median rank | 74 (118 to 14) | 584 (1,113 to 53) |
 
@@ -260,7 +262,7 @@ with K = 1) that it is truly in each tier, central level (pessimistic to optimis
 | the true top 10% | 93.5% (88.9 to 99.6) | 98.8% (96.9 to 100.0) |
 | the true accepted set (24.7%; 25.7%) | 99.0% (97.7 to 100.0) | 99.91% (99.63 to 100.00) |
 | should have been rejected | 1.0% (2.3 to 0.01) | 0.09% (0.37 to 0.00) |
-| a second committee would reject it | 12.3% (19.2 to 1.0) | 5.2% (10.4 to 0.1) |
+| a second review would reject it | 12.3% (19.2 to 1.0) | 5.2% (10.4 to 0.1) |
 
 The chance that the Best Paper deserved rejection falls with $N$ (1.4% at $10^3$, 0.01% at
 $10^6$, 25% acceptance), because the top score of a larger pool is more extreme and its
@@ -272,28 +274,28 @@ conferences at $N$ = 1,678; 40,000 at 30,709) agrees within sampling error: 12.1
 **How sure: the Best Paper under every variant** (`results/best_paper_robustness.csv`,
 `scripts/run_best_paper_robustness.py`, paper Fig. 5). Each variant is refitted to the
 central NeurIPS 2021 disagreement (`results/calibration_variants.csv`) and simulated with
-two independent committees at NeurIPS 2014 size (200,000 conferences) and 2026 size
+two independent reviews at NeurIPS 2014 size (200,000 conferences) and 2026 size
 (40,000). Careless reviewers ignore the paper: a "rave" review gives 10, a "random" review a
 uniform score on the 1-10 scale (`ReviewModel.careless`, `careless_kind`). Each variant also
 replays the NeurIPS 2021 top tiers (4,000 replays; observed overlap 3). The rerun framing
 (`p2_*`), at 2026 size (2014 in brackets):
 
-| Variant | first again | merely accepted | rejected | median rank | 2021 overlap: mean, P(≤3) |
+| Variant | first again | merely accepted (no award) | rejected | median rank | 2021 overlap: mean, P(≤3) |
 |---|---|---|---|---|---|
-| Gaussian, R = 4 | 1.3% (3.7%) | 70.9% | 5.0% (12.3%) | 583 | 5.76, 0.17 |
-| bounded quality | 0.2% (1.4%) | 78.9% | 12.0% (18.4%) | 1,687 | 4.98, 0.26 |
-| exponential quality | 35.9% (35.8%) | 1.7% | 0% (0.2%) | 3 | 11.70, 0.002 |
-| lognormal quality | 14.8% (16.1%) | 23.1% | 0.2% (3.1%) | 17 | 7.95, 0.04 |
-| $t_3$ quality | 89.0% (73.2%) | 0% | 0% (0%) | 1 | 11.65, 0.001 |
-| 1-10 scale | 0.3% (2.6%) | 76.2% | 9.7% (14.7%) | 1,160 | 5.60, 0.18 |
-| ICLR scale | 0.2% (2.3%) | 76.8% | 11.9% (15.5%) | 1,442 | 5.53, 0.19 |
-| $t_3$ noise, 1-10 | 0.7% (3.6%) | 69.6% | 10.4% (14.7%) | 891 | 5.85, 0.17 |
-| 1% rave reviews | 0.3% (2.6%) | 76.0% | 9.6% (14.6%) | 1,127 | 5.65, 0.18 |
-| 5% rave reviews | 0.4% (2.9%) | 71.4% | 12.7% (15.1%) | 1,142 | 5.73, 0.17 |
-| 5% random reviews | 0.5% (3.0%) | 74.5% | 8.5% (14.0%) | 944 | 5.76, 0.17 |
+| Gaussian, R = 4 | 1.3% (3.7%) | 51.7% | 5.0% (12.3%) | 583 | 5.76, 0.17 |
+| bounded quality | 0.2% (1.4%) | 66.1% | 12.0% (18.4%) | 1,687 | 4.98, 0.26 |
+| exponential quality | 35.9% (35.8%) | 0.2% | 0% (0.2%) | 3 | 11.70, 0.002 |
+| lognormal quality | 14.8% (16.1%) | 10.0% | 0.2% (3.1%) | 17 | 7.95, 0.04 |
+| $t_3$ quality | 89.0% (73.2%) | 0.0% | 0% (0%) | 1 | 11.65, 0.001 |
+| 1-10 scale | 0.3% (2.6%) | 60.4% | 9.7% (14.7%) | 1,160 | 5.60, 0.18 |
+| ICLR scale | 0.2% (2.3%) | 62.0% | 11.9% (15.5%) | 1,442 | 5.53, 0.19 |
+| $t_3$ noise, 1-10 | 0.7% (3.6%) | 52.9% | 10.4% (14.7%) | 891 | 5.85, 0.17 |
+| 1% rave reviews | 0.3% (2.6%) | 59.7% | 9.6% (14.6%) | 1,127 | 5.65, 0.18 |
+| 5% rave reviews | 0.4% (2.9%) | 55.8% | 12.7% (15.1%) | 1,142 | 5.73, 0.17 |
+| 5% random reviews | 0.5% (3.0%) | 57.6% | 8.5% (14.0%) | 944 | 5.76, 0.17 |
 
-Heavy-tailed quality puts the best papers far apart, so both committees find them and the
-first-again chance barely changes with size; but it predicts 8 to 12 shared highlights
+Heavy-tailed quality puts the best papers far apart, so both reviews find them and the
+first-again chance barely changes with size; but it predicts 8 to 12 shared orals and spotlights
 against 3 observed. Every light-tailed variant predicts 5 to 6. The rejection chance falls
 with size in every variant. Rounding to a real score scale roughly doubles it and cuts the
 first-again chance by three quarters: at NeurIPS 2026 size several papers tie for the top
@@ -301,7 +303,7 @@ mean score on a 1-10 scale (a median of 4 in a check of 200 conferences; 12 on t
 scale), so the award goes to one of them at random. Careless raves add about 3 points on
 top of the scale. The true-rank framing (`p_*`) of the same runs is in the CSV; there careless
 raves stood out (should have been rejected 5.4% against 0.09% Gaussian), because a single
-rave lifts a weak paper above the true acceptance bar while a second committee's own noise
+rave lifts a weak paper above the true acceptance bar while a second review's own noise
 dwarfs that effect.
 
 ## 7. Validation
@@ -324,7 +326,7 @@ At the pessimistic level the heavy-tailed-noise variants reach 43% to 45% spotli
 rejection ($P \ge$ observed 0.07 to 0.11), but only with unbounded scores. On a 1-10 scale
 (`gauss/t3 1-10`, `beta/t3 1-10`, not plotted) they reach 38% and 40%. The optimistic level
 fails in every variant. So the top tier is noisier than the calibrated model, possibly
-because committees chose highlights partly on judgement beyond scores.
+because the committees chose orals and spotlights partly on judgement beyond scores.
 
 **ICLR split halves** (`results/iclr_splithalf_observed.csv`, `results/validation_iclr.csv`).
 Main-track decided papers with at least four reviews, 200 random splits into two halves
@@ -367,8 +369,8 @@ out of the main analyses.
    title is "Scaling Laws of Machine Learning Conference Peer Review", the paper uses the
    NeurIPS 2026 style with its `preprint` option (not a submission), and the paper is framed
    around the two jobs of review: accepting good papers (a fixed percentage of submissions)
-   and highlighting the best (orals, spotlights and awards). Highlights grow more slowly
-   than submissions: oral rates fall at every venue, and awards stay at 1 to 13 a year, close
+   and giving awards to the best (spotlights, orals and a Best Paper). Award tiers grow more slowly
+   than submissions: oral rates fall at every venue, and Best Papers stay at 1 to 13 a year, close
    to a fixed number. The paper studies the two limits, fixed percentage and fixed number;
    at real oral counts the model's precision lies between them (`results/history.csv`,
    `prec_orals`, central: NeurIPS 28.6% to 22.1%, ICML 35.5% to 25.2%, ICLR 30.1% to 28.4%).
@@ -394,8 +396,8 @@ out of the main analyses.
 10. **Restructure around one question (3 October 2026).** At the author's request the
     paper asks one question: as submissions grow, can review still tell good papers from
     bad ones and give its awards to the right papers? The answers are error probabilities
-    for the Best Paper (truly best, top 10, oral-worthy, merely accept-worthy, should have
-    been rejected). Each section and paragraph runs motivation, method, result,
+    for the Best Paper (Best Paper again, top ten, oral, spotlight, merely accepted, rejected;
+    `docs/terminology.md`). Each section and paragraph runs motivation, method, result,
     implication. Sections: Introduction; Methods; model faithfulness (§7 here); how often
     awards go to the right papers (§6); why awards lose accuracy (§4 to §5); how sure we
     are (§6, robustness table); implications. Five figures: `fig1_headline` (submissions;
@@ -444,7 +446,7 @@ out of the main analyses.
     Curves in `results/tier_scaling.csv` (N = 1K..100K, three levels). Overlap of a tier is exact
     below 30 papers and the closed-form fixed-percentile formula above (relative error < 0.01%).
     Central, 1K -> 100K: top-scored again 4.5% -> 0.85%, top 10 21% -> 4.2%, oral or above 29% ->
-    25%, spotlight or above 55% -> 52%, accepted 86% -> 96%; tier overlap: top 10 13% -> 2.4%,
+    25%, spotlight or above 55% -> 52%, accepted 86% -> 96%; tier overlap: top 10 13% -> 2.3%,
     orals 16% -> 7.8%, spotlights 27% -> 16%, accepted 48% flat. The stacked bars moved to Fig 3a;
     Fig 3 dropped the by-year top-scored and top-ten panels (they depend on N only); Fig 4c is now
     the reviews-per-paper curve from `results/analytic_R_needed.csv`.
@@ -459,6 +461,20 @@ out of the main analyses.
     fitted on NeurIPS: accepted gamma 1.05, spotlights 0.72, orals 0.59; awards 0.34 on 1 to 13 a
     year is in the CSV but not drawn, too few papers to show a trend), labelled with gamma; gamma = 1 is a fixed proportion, gamma = 0 a fixed number. The N
     grid keeps 0.25 N for acceptance (decision 13).
+
+15. **One vocabulary, and a spotlight rung in the landing tiers (10 October 2026).** At the
+    author's decision (`docs/terminology.md`): every tier is named by the decision itself and
+    the tiers are nested (Best Paper ⊂ oral ⊂ spotlight ⊂ accepted); "award" is the one umbrella
+    for spotlight, oral and Best Paper ("highlights" is gone); the fixed-number tier is "the Best
+    Paper" or "the best-paper award", never bare "awards"; the model's second run is "a second
+    review", never "a second committee", which read as a best-paper committee. The landing tiers
+    gained the spotlight rung: `p2_spot` (rank within orals plus spotlights, from
+    `data/spotlights.csv`) in `results/best_paper.csv` and `results/best_paper_robustness.csv`,
+    and "merely accepted" now means accepted with no award, `p2_accept - p2_spot`, instead of
+    accepted below the oral count. At NeurIPS size the merely-accepted probability (central)
+    is 35% in 2014 and 51% in 2026 (was 61% and 70%); the spotlight segment is 26% and 19%.
+    Fig. 1c bars are Top 10, Oral, Spotlight, Merely accepted, Rejected; Fig. 3a,b share one
+    legend (Accepted, Spotlight, Oral, Top 10, Best Paper); Fig. 5b uses the new definition.
 
 ## 9. Limitations
 

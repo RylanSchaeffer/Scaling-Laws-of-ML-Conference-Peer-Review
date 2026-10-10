@@ -338,4 +338,4 @@ Fitted on NeurIPS main-track counts from `data/venues.csv` (`orals_used`) and
 | Accepted | 0.155 N^1.048 (the N grid uses 0.25 N) | 2014-2026 (13) | 0.040 |
 | Spotlights | 0.343 N^0.716 | 2014-2026 (11; no tier 2016, 2022) | 0.117 |
 | Orals | 0.296 N^0.585 | 2014-2026 (13) | 0.185 |
-| Awards | 0.144 N^0.343 (1 to 13 a year; not drawn) | 2016-2025 (10) | 0.274 |
+| Best Papers (`awards` row) | 0.144 N^0.343 (1 to 13 a year; not drawn) | 2016-2025 (10) | 0.274 |

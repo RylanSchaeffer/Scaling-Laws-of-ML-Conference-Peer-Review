@@ -8,6 +8,7 @@ submissions, two out-of-sample tests, and the paper.
 - **Paper:** [`paper/main.pdf`](paper/main.pdf) (source `paper/main.tex`)
 - **Report of all findings:** [`REPORT.md`](REPORT.md)
 - **Specification:** [`docs/handoff.md`](docs/handoff.md)
+- **Terminology (tiers, awards, second review):** [`docs/terminology.md`](docs/terminology.md)
 - **Metric definitions:** [`docs/metrics.md`](docs/metrics.md)
 - **Derivations:** [`docs/derivations.md`](docs/derivations.md) (two independent
   derivations in `docs/derivations/`)

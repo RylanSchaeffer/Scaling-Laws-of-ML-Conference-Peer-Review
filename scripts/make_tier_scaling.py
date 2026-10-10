@@ -1,15 +1,15 @@
 """Where does the Best Paper land under a second review, tier by tier, as conferences grow?
-And how much of each tier does a second committee reproduce?
+And how much of each tier does a second review reproduce?
 
 Tier sizes follow NeurIPS's own trends (peerreview.tiers): acceptance is the grid's fixed
-proportion, orals and spotlights grow as fitted power laws of N, the top ten and the award are
+proportion, orals and spotlights grow as fitted power laws of N, the top ten and the Best Paper are
 fixed numbers. At each N of the grid and each reliability level this script computes, in
-the rerun framing (two committees' scores correlate at rho^2):
+the rerun framing (a paper's two scores correlate at rho^2):
 
-- p2_{best,top10,oral,spot,accept}: the probability that a second committee ranks the first
-  committee's Best Paper within its top M, for M = 1, 10, the oral count, the oral plus
+- p2_{best,top10,oral,spot,accept}: the probability that a second review ranks the first
+  review's Best Paper within its top M, for M = 1, 10, the oral count, the oral plus
   spotlight count, and the accepted count (exact finite-N integrals).
-- ovl_{top10,oral,spot,accept}: the share of one committee's tier that the other also puts
+- ovl_{top10,oral,spot,accept}: the proportion of one review's tier that the other also puts
   in its tier. Exact for M < 30; for larger M the closed-form fixed-percentile formula
   (precision_pct_finite at rho^2), whose relative error is below 0.01% from M = 30 up.
 

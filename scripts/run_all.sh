@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regenerate every result CSV. Run from the repository root.
+# Regenerate every simulated and data CSV; the analytic CSVs come from the make_*.py chain in README.md. Run from the repository root.
 set -euo pipefail
 W=${WORKERS:-5}
 uv run python scripts/iclr_data.py

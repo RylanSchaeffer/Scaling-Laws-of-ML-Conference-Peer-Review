@@ -15,7 +15,7 @@ This file defines "the best papers" and "a wrong decision" before any model is f
 - **Fixed-number selection** of size $K$ picks $\mathrm{Top}_K(\bar s)$ with $K$ constant
   in $N$ (best-paper awards, a fixed number of talk slots).
 - **Fixed-percentile selection** at fraction $p$ picks $\mathrm{Top}_{\mathrm{round}(pN)}(\bar s)$
-  (acceptance at rate $\alpha$; oral or spotlight tiers defined as a share of submissions).
+  (acceptance at rate $\alpha$; along the $N$ axis, oral and spotlight tiers sized by the fitted power laws of `results/tier_sizes.csv`).
 - $A = \mathrm{round}(\alpha N)$ is the number of accepted papers.
 
 ## Top of the ranking

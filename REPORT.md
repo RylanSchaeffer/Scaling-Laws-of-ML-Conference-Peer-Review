@@ -23,6 +23,12 @@ A. **A second review would almost always accept a Best Paper but rarely confirm 
    with 24%, and would accept it with 95% (reject it with 5.2%); its median rank for it is
    584th. From NeurIPS 2014 to 2026 the top-scored-again chance fell from 3.7% to 1.3% and
    the median rank rose from 74th to 584th; the rejection chance fell from 12% to 5% (§6).
+   Along the $N$ axis with tier sizes on NeurIPS's trends (decision 13), from 1,000 to
+   100,000 submissions the top-scored-again chance falls from 4.5% to 0.85% and the top-ten
+   chance from 21% to 4.2%, both as $N^{-0.36}$, while oral-or-above falls only from 29% to
+   25% and spotlight-or-above from 55% to 52%; two committees reproduce 48% of the accepted
+   set at every size, 27% to 16% of orals plus spotlights, 16% to 8% of orals and 13% to
+   2.4% of the top ten (`results/tier_scaling.csv`).
    True-rank framing, for comparison: truly best 6.6%, top 10 25%, oral-worthy 63%, should
    have been rejected 0.09%.
 B. **How sure: the quality tail decides whether it would win again; the score scale decides
@@ -214,14 +220,14 @@ rate and main-track oral count (values from `data/venues.csv`, `*_used` columns)
 | ICML 2026 | 23,918 | 13.6% | 25.2% (159) | 2,421 | 50.3% |
 | ICLR 2026 (valid) | 19,525 | 14.4% | 28.4% (224) | 2,008 | 49.7% |
 
-`results/history.csv` gives every year: (a) top-10 precision, (b) precision of the
-real oral set, (c) the probability that the best paper is in the top 10 by score. Lines are
-central; the band (NeurIPS only) spans the pessimistic and optimistic levels. At NeurIPS the
+`results/history.csv` gives, for every year and level, top-10 precision (`prec_K10`),
+precision of the real oral set (`prec_orals`) and the probability that the best paper is in
+the top 10 by score (`best_in_K10`); no figure draws it now (decision 8). At NeurIPS the
 top-scored paper's median true rank rises from 15 (2014) to 55 (2026), and the best paper is
 among the ten top-scored papers with probability 44% (2014) and 25% (2026).
 
 **The Best Paper under a second review** (`results/best_paper.csv`, `p2_*` columns,
-`scripts/make_best_paper.py`; paper Figs. 1c, 3, 4c). A second, independent committee
+`scripts/make_best_paper.py`; paper Fig. 3 and the grey reliability range in Fig. 5; the same integrals along the $N$ grid with fitted tier sizes are `results/tier_scaling.csv`, paper Fig. 1c,d, decision 13). A second, independent committee
 re-reviews every paper (u and eps redrawn); in the Gaussian model its scores correlate with
 the first committee's at $\rho^2$, so the probability that it ranks the first committee's
 top-scored paper within its top $M$ is containment_fixed_K(N, 1, M, $\rho^2$). Central level
@@ -409,7 +415,8 @@ out of the main analyses.
     with each venue's oral count: at NeurIPS it rose from 57.7% to 62.8% from 2014 to 2026
     only because the count rose from 20 to 112. NeurIPS orals grew roughly as $N^{0.6}$ over
     those endpoints, between a fixed number and a fixed share. Beyond real sizes (the
-    $N$ grid) no oral count exists, and only the fixed-number tiers are reported.
+    $N$ grid) no oral count exists, and only the fixed-number tiers are reported
+    (superseded by decision 13: the grid now sizes orals and spotlights by fitted power laws).
 12. **Rerun framing throughout (4 October 2026).** At the author's decision the paper reports
     every Best Paper probability in the units of the NeurIPS consistency experiments: where a
     second, independent committee, re-reviewing every paper with fresh noise, would rank the

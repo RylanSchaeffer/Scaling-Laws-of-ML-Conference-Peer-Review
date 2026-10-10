@@ -1,8 +1,9 @@
 """Every figure of the paper, from results/*.csv.
 
 Simulation results come from the sweep and robustness CSVs; analytic curves come from
-results/analytic_curves.csv and results/best_paper.csv, so every plotted number traces to a
-CSV row. Figures go to figures/fig{n}_{name}.pdf and .png, numbered as in the paper.
+results/analytic_curves.csv, results/analytic_R_needed.csv, results/best_paper.csv and
+results/tier_scaling.csv, so every plotted number traces to a CSV row. Figures go to
+figures/fig{n}_{name}.pdf and .png, numbered as in the paper.
 
 Usage: uv run python scripts/make_figures.py [names...]
 """
@@ -77,7 +78,7 @@ def sim_legend_handles():
 
 
 # ---------------------------------------------------------------------------
-# Figure 1: growth, selection rates, and where a second committee ranks the Best Paper
+# Figure 1: growth, NeurIPS tier shares, and (vs N) where the Best Paper lands again and how much of each tier is reproduced
 # ---------------------------------------------------------------------------
 
 VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))
@@ -167,7 +168,7 @@ def rates_panel(ax):
 
 TIER_CURVES = (  # Fig 1c,d: tier suffix in results/tier_scaling.csv, colour, labels (c: where the Best Paper lands; d: tier overlap)
     ("accept", P.MUTED, "Accepted", "Accepted"),
-    ("spot", P.BLUE[250], "Spotlight or above", "Spotlights"),
+    ("spot", P.BLUE[250], "Spotlight or above", "Orals + spotlights"),
     ("oral", P.BLUE[450], "Oral or above", "Orals"),
     ("top10", P.BLUE[550], "Top 10", "Top 10"),
     ("best", P.BLUE[700], "Top-scored", None),
@@ -232,7 +233,7 @@ def standing_panel(ax):
         left = 0.0
         for (lab, c), w in zip(TIERS, tier_shares(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8)
-            if w >= 0.08:  # narrower segments stay unlabelled; the caption gives Top 10 and Reject
+            if w >= 0.14:  # narrower segments stay unlabelled; the caption gives Top 10 and Reject
                 ax.text(left + w / 2, y, f"{100 * w:.0f}%", ha="center", va="center", color=P.SURFACE if c != P.BLUE[250] else P.INK)
             left += w
     ax.set_yticks(range(len(years)))
@@ -410,7 +411,8 @@ def fig_mechanism():
         d = r[np.isclose(r.sigma_u, su)].sort_values("N")
         ax.plot(d.N, d.R_needed, color=c, lw=1.6, label=label)
     P.n_axis(ax)
-    ax.set_ylim(0, 16)
+    ax.set_ylim(0, 20)  # headroom for the legend above the 14.5 end of the shared-noise curve
+    ax.set_yticks([0, 5, 10, 15, 20])
     ax.set_ylabel("Reviews per paper")
     ax.set_title("Holding top-10 overlap costs more", loc="left")
     ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)

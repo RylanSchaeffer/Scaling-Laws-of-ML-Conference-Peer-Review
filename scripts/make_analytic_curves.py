@@ -52,7 +52,7 @@ def job(spec: tuple) -> list[dict]:
         v = [an.containment_fixed_K(n, arg, int(round(0.01 * n)), rho) for n in N_FINE]
         out += [_row("c1pct_K", level, r2, n, x, K=arg) for n, x in zip(N_FINE, v)]
     elif kind == "rho2_curve":
-        # precision at fixed N as a function of reliability (figure 3)
+        # precision at fixed N as a function of reliability (not drawn)
         N, K = arg
         v = an.precision_fixed_K(N, K, rho)
         out.append(_row("prec_K_vs_rho2", level, r2, N, v, K=K))
@@ -103,7 +103,7 @@ def main() -> None:
         rows += [_row("E_score2_top_score", level, r2, n, r2 * x) for n, x in zip(N_FINE, e1)]
         rows.append(_row("cond_sd2", level, r2, np.nan, an.conditional_quality_sd(r2)))
         # Fixed-share precision at finite N (K = round(pN) >= 10 here, where the closed
-        # form matches the exact integral to 0.1%); figure 1 draws these.
+        # form matches the exact integral to 0.1%); Fig. 4a draws p = 0.01.
         for p in (0.01, 0.10):
             v = [an.precision_pct_finite(n, p, rho) for n in N_FINE]
             rows += [_row("prec_pct_finite", level, r2, n, x, p=p) for n, x in zip(N_FINE, v)]

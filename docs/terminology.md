@@ -18,11 +18,13 @@ for everything above plain acceptance.
 | merely accepted | accepted with no award, so below the spotlight cutoff | "accepted but outside the oral range" |
 | overlap of a tier | the proportion of one review's tier that the other also puts in that tier | |
 | the quality variants that keep the Best Paper reproducible | name them: exponential, lognormal and $t_3$ quality, under which the best papers stand far apart. No tail-class label: the exponential is not heavy-tailed | "the three heavy-tailed variants" |
-| the model, the main model | the NeurIPS review process: the integer 1 to 10 score of 2014 to 2024 and the four reviews per paper of 2020 on, the form of the NeurIPS 2021 experiment. Four reviews per paper, each the integer from 1 to 10 nearest to quality plus noise, Gaussian quality and reviewer noise, no shared noise, mean score, ties at random (`peerreview.model.MAIN_FORM`). Sections 3 and 4 use it; the ICLR test (Section 2.2) scores on ICLR's own form because its data are ICLR reviews, and Section 5 runs the other forms. Its row in Figs 3 and 6 is "Main model" (Gaussian quality and noise on this form) | "the Gaussian model" for the main results; "continuous" anywhere but the scale section |
+| the model, the main model | the NeurIPS review process: the integer 1 to 10 score of 2014 to 2024 and the four reviews per paper of 2020 on, the form of the NeurIPS 2021 experiment. Four reviews per paper, each the integer from 1 to 10 nearest to quality plus noise, Gaussian quality and reviewer noise, no shared noise, mean score, ties at random (`peerreview.model.MAIN_FORM`). Sections 3 and 4 use it; the ICLR test (Section 2.2) scores on ICLR's own form because its data are ICLR reviews, and Section 5 runs the other forms. Its row in Figs 4 and 6 is "Main model" (Gaussian quality and noise on this form) | "the Gaussian model" for the main results; "continuous scores" only for the scale section's form and for the closed form of Section 3 (`tier_scaling.csv`), which labels each level by its reliability |
 | committee | only the real program committees of the NeurIPS 2014 and 2021 experiments, and real award committees | |
 
 Where the terms live in the code: `results/best_paper.csv` and `results/best_paper_robustness.csv`
 carry `p2_best`, `p2_top10`, `p2_oral`, `p2_spot`, `p2_accept` (nested cutoffs; merely accepted
 = `p2_accept - p2_spot`); the grid rows of `best_paper.csv` (`source == "grid"`) carry the same on the N grid
 plus the overlaps `overlap_*`; `results/tier_scaling.csv` is the continuous-score closed form (`ovl_*`). Figure legends: Fig 1c "Top 10, Oral, Spotlight, Merely accepted, Rejected";
-Fig 3a,b "Accepted, Spotlight, Oral, Top 10, Best Paper".
+Fig 2 "Best Paper, Top 10, Oral, Spotlight, Accepted" (nested: each tier includes the tiers to its right);
+Fig 4a,b and Fig 6 rows "Main model, Bounded quality, Exponential quality, Lognormal quality, $t_3$ quality,
+$t_3$ noise, Shared noise, 1% rave reviews, 5% rave reviews, 5% random reviews".

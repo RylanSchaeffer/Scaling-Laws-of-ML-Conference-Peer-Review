@@ -29,14 +29,20 @@ OBS = dict(n=764, accept_rate=(206 + 195) / 2 / 764, tiers1=(4, 25), tiers2=(2, 
            spot1_rej2=13, spot2_rej1=13, top1_rej2=13, top2_rej1=13)
 # Every variant reviews on the main form (integer 1-10 scores, four reviews per paper), which is the 2021 form.
 FORM = MAIN_FORM
-VARIANTS = {
+VARIANTS = {  # the main model and the variants of the robustness section (scripts/run_best_paper_robustness.py)
     "gauss/gauss": ReviewModel(**FORM),
     "gauss/gauss+shared": ReviewModel(**FORM, sigma_u=0.5),
     "gauss/t3": ReviewModel(**FORM, noise="t3"),
     "beta/gauss": ReviewModel(**FORM, quality="beta"),
     "beta/t3": ReviewModel(**FORM, quality="beta", noise="t3"),
     "exp/gauss": ReviewModel(**FORM, quality="exp"),
+    "lognormal/gauss": ReviewModel(**FORM, quality="lognormal"),
+    "t3/gauss": ReviewModel(**FORM, quality="t3"),
+    "careless1": ReviewModel(**FORM, careless=0.01, careless_kind="rave"),
+    "careless5": ReviewModel(**FORM, careless=0.05, careless_kind="rave"),
+    "random5": ReviewModel(**FORM, careless=0.05, careless_kind="random"),
 }
+CENTRAL_ONLY = ("lognormal/gauss", "t3/gauss", "careless1", "careless5", "random5")  # calibrated at the central level only
 # Subsample: the decided-paper equivalent of the 9,122-paper conference (9,122 x 764 / 882).
 DESIGNS = {"pool": dict(N_conf=None, reps=20_000), "subsample": dict(N_conf=7902, reps=4000)}
 
@@ -77,7 +83,7 @@ def main() -> None:
     ap.add_argument("--levels", default="", help="comma-separated levels to re-run; merged into the existing table")
     args = ap.parse_args()
     levels = tuple(x for x in args.levels.split(",") if x) or tuple(LEVELS)
-    jobs = [(v, lev, d) for v in VARIANTS for lev in levels for d in DESIGNS]
+    jobs = [(v, lev, d) for v in VARIANTS for lev in levels for d in DESIGNS if not (v in CENTRAL_ONLY and lev != "central")]
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         rows = list(ex.map(job, *zip(*jobs)))
     df = pd.DataFrame(rows)

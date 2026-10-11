@@ -252,20 +252,24 @@ def standing_panel(ax):
 # Figure 2: is the model faithful? (held-out tests)
 # ---------------------------------------------------------------------------
 
-VAR_LABEL = {"gauss/gauss": "Main model", "gauss/gauss+shared": "Shared noise", "gauss/t3": "$t_3$ noise",
-             "beta/gauss": "Bounded quality", "beta/t3": "Bounded quality, $t_3$ noise", "exp/gauss": "Exponential quality"}
+VAR_LABEL = {  # rows of Fig 4a,b: the main model and the variants of the robustness section, in Fig 6's order
+    "gauss/gauss": "Main model", "beta/gauss": "Bounded quality", "exp/gauss": "Exponential quality",
+    "lognormal/gauss": "Lognormal quality", "t3/gauss": "$t_3$ quality", "gauss/t3": "$t_3$ noise",
+    "gauss/gauss+shared": "Shared noise", "careless1": "1\\% rave reviews", "careless5": "5\\% rave reviews",
+    "random5": "5\\% random reviews"}
 
 
 def fig_validation():
     """(c) ICLR split halves: observed against model overlap of the accepted, top-30 and top-10
-    sets, reviewer noise fitted per year. (a, b) The NeurIPS 2021 experiment under six variants:
+    sets, reviewer noise fitted per year. (a, b) The NeurIPS 2021 experiment under the main model and the
+    nine variants of the robustness section (results/validation_neurips2021.csv):
     papers in both committees' oral-plus-spotlight tiers, and the proportion of one committee's
     spotlights the other rejects; central level (circles, 90% range) and pessimistic level (diamonds)."""
     v, ic = load("validation_neurips2021"), load("validation_iclr")
-    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.05) * P.S), gridspec_kw=dict(wspace=0.36))
+    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S), gridspec_kw=dict(wspace=0.36))
     sub = v[v.design == "subsample"]
     vv = sub[sub.level == "central"].set_index("variant").loc[list(VAR_LABEL)]
-    vp = sub[sub.level == "pessimistic"].set_index("variant").loc[list(VAR_LABEL)]
+    vp = sub[sub.level == "pessimistic"].set_index("variant").reindex(list(VAR_LABEL))  # NaN where not calibrated
     y = np.arange(len(vv))[::-1].astype(float)
 
     ax = axes[2]  # ICLR on the right: the variant row labels of (a) need the left margin
@@ -295,7 +299,8 @@ def fig_validation():
                 va="center", ha="left" if left else "right", fontsize=P.LEGEND_PT)  # beside the line, roomier side
         ax.hlines(y, cen[lo], cen[hi], color=c_bar, lw=2.0 * P.S)
         ax.plot(cen[mean], y, "o", color=c_dot, ms=4.4 * P.S, mec=P.SURFACE, mew=0.7 * P.S)
-        ax.plot(pes[mean], y - 0.3, "D", color=c_dot, ms=3.0 * P.S, mec=P.SURFACE, mew=0.7 * P.S, ls="none")
+        ok = pes[mean].notna().values
+        ax.plot(pes[mean].values[ok], (y - 0.3)[ok], "D", color=c_dot, ms=3.0 * P.S, mec=P.SURFACE, mew=0.7 * P.S, ls="none")
         ax.set_xlim(*xlim)
         ax.set_ylim(-0.7, y.max() + 1.15)
         ax.grid(axis="y", visible=False)
@@ -459,9 +464,9 @@ def fig_mechanism():
 
 def fig_robustness():
     """Where a second review ranks the Best Paper at NeurIPS 2014 (small marker) and 2026 (large)
-    size under every variant refitted to the central disagreement, and each variant's replay of
-    the NeurIPS 2021 oral-plus-spotlight overlap (results/best_paper_robustness.csv). The grey span in a-c
-    is the Gaussian model's pessimistic-to-optimistic range at 2026 size. Rows are grouped by family."""
+    size under every variant refitted to the central disagreement (results/best_paper_robustness.csv);
+    each variant's replay of the NeurIPS 2021 experiment is in Fig 4a,b. The grey span is the Gaussian
+    model's pessimistic-to-optimistic range at 2026 size. Rows are grouped by family."""
     r = load("best_paper_robustness")
     r["p2_merely"] = r.p2_accept - r.p2_spot  # accepted with no award
     r["variant"] = r.variant.replace({"Gaussian": "Main model"})  # the paper's name for the base model on the 1-10 form
@@ -475,8 +480,7 @@ def fig_robustness():
         pos -= 1.0
     y = np.array(y) - y[-1]  # bottom row at 0
     rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
-    fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S),
-                             gridspec_kw=dict(wspace=0.34, width_ratios=[1, 1, 1, 0.85]))
+    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S), gridspec_kw=dict(wspace=0.34))
     panels = ((axes[0], "p2_best", "Best Paper again", (1e-3, 1), [1e-3, 1e-2, 1e-1, 1], P.INK),
               (axes[1], "p2_merely", "Merely accepted", (0, 1), [0, 0.5, 1], P.MUTED),
               (axes[2], "p2_reject", "Rejected", (1e-4, 0.5), [1e-3, 1e-2, 1e-1], P.ORANGE[450]))
@@ -503,17 +507,6 @@ def fig_robustness():
         ax.set_title(title, loc="left")
         ax.set_xlabel("Probability")
 
-    ax = axes[3]
-    o = r[r.year == 2026].set_index("variant").loc[names]  # the replay does not depend on the year
-    ax.axvline(3, color=P.INK, lw=1.0 * P.S)
-    ax.text(3 + 0.4, y.max() + 0.75, "Observed 3", color=P.INK, va="center", ha="left", fontsize=P.LEGEND_PT)
-    ax.hlines(y, o.overlap2021_q05, o.overlap2021_q95, color=P.BLUE[300], lw=2.0 * P.S)
-    ax.plot(o.overlap2021_mean, y, "D", color=P.BLUE[450], ms=3.4 * P.S, mec=P.SURFACE, mew=0.7 * P.S, ls="none", zorder=3)
-    ax.set_xlim(0, 20)
-    ax.set_xticks([0, 10, 20])
-    ax.set_title("NeurIPS 2021 replay", loc="left")
-    ax.set_xlabel("Chosen by both committees")
-
     for ax in axes:
         ax.set_ylim(-0.6, y.max() + 1.15)
         ax.set_yticks(y)
@@ -522,12 +515,10 @@ def fig_robustness():
         ax.grid(axis="y", visible=False)
     hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
-          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main model, pessimistic to optimistic level, 2026 size"),
-          Line2D([], [], ls="none", marker="D", ms=3.4 * P.S, color=P.BLUE[450], mec=P.SURFACE, label="Mean of the 2021 replay"),
-          Line2D([], [], color=P.BLUE[300], lw=2.0 * P.S, label="90\\% range of the 2021 replay")]
+          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main model, pessimistic to optimistic level, 2026 size")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
     for i, a in enumerate(axes):
-        P.panel_label(a, "abcd"[i])
+        P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig5_robustness"))
 
 # ---------------------------------------------------------------------------

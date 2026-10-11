@@ -331,6 +331,28 @@ def fig_validation():
 # ---------------------------------------------------------------------------
 
 
+def experiment_points() -> list[tuple[str, str, int, float]]:
+    """The two NeurIPS two-committee experiments as points of Fig 2 (data/experiments.json): for the
+    papers one committee put in a tier, the proportion the other committee put in a tier (pooled over
+    both directions). Returns (first tier, second tier, submissions N, proportion)."""
+    import json
+    e = json.load(open(os.path.join(ROOT, "data", "experiments.json")))
+    pts = []
+    a = e["neurips2014"]["table_2x2"]["value"]
+    pts.append(("accept", "accept", e["neurips2014"]["design"]["value"]["conference_submissions"],
+                2 * a["both_accept"] / (a["committee_1_accepts"] + a["committee_2_accepts"])))
+    n21 = e["neurips2021"]; N21 = n21["design"]["value"]["conference_submissions"]
+    acc = n21["accept_level"]["value"]
+    pts.append(("accept", "accept", N21, 2 * acc["accepted_by_both"] / (acc["accepts_original"] + acc["accepts_copy"])))
+    c = np.array(n21["table1"]["value"]["counts"])[:4, :4]  # rows: original oral, spotlight, poster, reject; columns: the copy
+    top1, top2 = c[:2, :].sum(), c[:, :2].sum()  # oral-plus-spotlight tiers, 29 and 25
+    pts.append(("spot", "spot", N21, 2 * c[:2, :2].sum() / (top1 + top2)))  # 3 papers in both tiers
+    pts.append(("spot", "accept", N21, (c[:2, :3].sum() + c[:3, :2].sum()) / (top1 + top2)))  # accepted by the other committee
+    oral1, oral2 = c[0, :].sum(), c[:, 0].sum()  # 4 and 2 orals
+    pts.append(("oral", "accept", N21, (c[0, :3].sum() + c[:3, 0].sum()) / (oral1 + oral2)))  # all 6 accepted
+    return pts
+
+
 def fig_scaling():
     """The scaling laws: where a second review places a paper that the first review made (a) the Best
     Paper (results/best_paper.csv grid rows, p2_*), (b) an oral, (c) a spotlight or (d) an accepted paper
@@ -348,13 +370,20 @@ def fig_scaling():
             ax.plot(pl.N, pl[f"place_{first}_in_{second}"], color=color, lw=1.6 * P.S, label=label)
         log_prob_axis(ax)
         ax.set_title(title, loc="left")
+    panel = {"best": axes[0], "oral": axes[1], "spot": axes[2], "accept": axes[3]}
+    colour = {tier: c for tier, c, _, _ in TIER_CURVES}
+    for first, second, N, v in experiment_points():  # the NeurIPS 2014 and 2021 experiments
+        panel[first].plot([N], [v], ls="none", marker="o", ms=4.2 * P.S, mfc=colour[second], mec=P.INK, mew=0.8 * P.S, zorder=7,
+                          clip_on=False)  # the 6-of-6 orals sit at 100%, on the frame
     for ax in axes:  # where we are this year: NeurIPS 2026 submissions
         ax.axvline(NEURIPS[2026], color=P.INK2, lw=0.9 * P.S, ls=(0, (4, 3)), zorder=0)
         ax.text(NEURIPS[2026] / 1.1, 0.0001, "2026", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
                 bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo where a curve passes under the label
     axes[0].set_ylabel("Probability, second review")
     h, l = axes[0].get_legend_handles_labels()  # the five tiers, from (a)
-    fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=5, handlelength=1.3, columnspacing=1.2,
+    h.append(Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, mfc=P.SURFACE, mec=P.INK, mew=0.8 * P.S))
+    l.append("NeurIPS 2014 and 2021 experiments")
+    fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=6, handlelength=1.3, columnspacing=1.0,
                title="Tier the second review gives the paper; each tier includes the tiers to its right", title_fontsize=P.LEGEND_PT)
     for i, a in enumerate(axes):
         P.panel_label(a, "abcd"[i])

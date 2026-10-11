@@ -11,6 +11,8 @@ uv run python scripts/run_best_paper_robustness.py --workers "$W"
 uv run python scripts/make_tier_scaling.py
 uv run python scripts/run_best_paper.py --workers "$W"
 uv run python scripts/run_best_paper_hirep.py --workers "$W"
+uv run python scripts/run_best_paper.py --cited --reps 50000 --workers "$W"
+uv run python scripts/run_placement.py --workers "$W"
 uv run python scripts/run_R_needed.py --workers "$W"
 uv run python scripts/run_scale_impact.py --workers "$W"
 uv run python scripts/build_venues_used.py

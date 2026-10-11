@@ -51,6 +51,8 @@ cd paper && tectonic main.tex
 
 The paper uses the NeurIPS 2026 style file (`paper/neurips_2026.sty`, `preprint` option).
 `uv run python scripts/check_paper.py` checks its layout. The figure files are numbered as in
-the paper: `fig1_headline`, `fig2_validation`, `fig3_venues`, `fig4_mechanism`, `fig5_robustness`.
+the paper, in its figure order: `fig1_headline`, `fig2_scaling` (the four-panel scaling figure, from
+`results/best_paper.csv` and `results/placement.csv`), `fig0_schematic`, `fig2_validation`,
+`fig4_mechanism`, `fig5_robustness`, `fig6_scales`.
 
 The ICLR dumps (about 300 MB) download into `data/raw/`, which git ignores.

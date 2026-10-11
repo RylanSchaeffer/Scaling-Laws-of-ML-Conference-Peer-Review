@@ -104,3 +104,17 @@ def test_tier_overlap_closed_form_matches_exact_from_30():
         exact = an.precision_fixed_K(N, 30, r2)
         approx = an.precision_pct_finite(N, 30 / N, r2)
         assert abs(approx / exact - 1) < 2e-3
+
+
+def test_placement_matches_overlap_and_nests():
+    from peerreview.simulate import simulate_best_paper
+    from peerreview.model import ReviewModel, MAIN_FORM
+    m = ReviewModel(**MAIN_FORM, sigma_eps=2.0)
+    tiers = {"best": 1, "top10": 10, "oral": 17, "spot": 65, "accept": 250}
+    r = simulate_best_paper(m, 1000, reps=100, best_K=(1,), seed=3, winner_tiers={"best": 1}, second_committee=True,
+                            overlap_tiers=tiers, place_tiers={"oral": 17, "spot": 65, "accept": 250})
+    for k in ("oral", "spot", "accept"):
+        assert r[f"place_{k}_in_{k}"] == r[f"overlap_{k}"]  # a paper keeps its own tier with the tier's overlap
+    # tiers nest, so the chance of a tier or higher grows with the tier
+    assert r["place_oral_in_oral"] <= r["place_oral_in_spot"] <= r["place_oral_in_accept"] <= 1
+    assert r["place_spot_in_spot"] <= r["place_spot_in_accept"]

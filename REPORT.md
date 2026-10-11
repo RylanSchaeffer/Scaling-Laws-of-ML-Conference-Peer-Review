@@ -404,7 +404,7 @@ out of the main analyses.
     awards go to the right papers (§6); why awards lose accuracy (§4 to §5); how sure we
     are (§6, robustness table); implications. Five figures: `fig1_headline` (submissions;
     true standing of the Best Paper at NeurIPS 2014, 2021, 2026), `fig2_validation`,
-    `fig3_venues` (the four tier probabilities for every venue-year), `fig4_mechanism`,
+    `fig2_scaling` (where a second review places a Best Paper, an oral, a spotlight and an accepted paper against N), `fig4_mechanism`,
     `fig5_robustness`. On 4 October 2026 Fig. 1 became three panels at the author's request:
     (a) submissions per year; (b) the share of NeurIPS submissions accepted, given spotlights
     and given orals, so the reader sees that acceptance and spotlights are near-fixed shares

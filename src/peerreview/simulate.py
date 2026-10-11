@@ -257,6 +257,7 @@ def simulate_best_paper(
     winner_tiers: dict[str, int] | None = None,
     second_committee: bool = False,
     overlap_tiers: dict[str, int] | None = None,
+    place_tiers: dict[str, int] | None = None,
 ) -> dict:
     """High-replication P(best paper in Top_K) and winner rank; O(N) per conference.
 
@@ -269,6 +270,11 @@ def simulate_best_paper(
     probability that both reviews pick the same Best Paper), and z2_winner and z2_tenth, the
     second review's score for the first review's Best Paper and its own 10th-best score, both
     in units of the second review's score SD about its mean.
+    With overlap_tiers, place_tiers {name: K} adds place_{name}_in_{tier} for every tier in
+    overlap_tiers: the proportion of the first review's top K (the papers it put in that tier)
+    that the second review ranks within that tier's size, so where a second review places a
+    paper the first review made an oral, a spotlight or an accepted paper. place_X_in_X equals
+    overlap_X.
     """
     if seed is None:
         seed = stable_seed(m.as_dict(), N, reps, "best", salt)
@@ -306,6 +312,13 @@ def simulate_best_paper(
                     K = int(K)
                     in2[rows[:, None], order2[:, :K]] = True  # grows with K: tiers nest
                     acc.add(f"overlap_{name}", in2[rows[:, None], order1[:, :K]].sum(1) / K)
+                if place_tiers:
+                    rank2_all = np.empty_like(order2)
+                    rank2_all[rows[:, None], order2] = np.arange(N)[None, :]  # 0-based rank by the second review
+                    for xname, KX in place_tiers.items():
+                        r2 = rank2_all[rows[:, None], order1[:, : int(KX)]]
+                        for tname, KT in overlap_tiers.items():
+                            acc.add(f"place_{xname}_in_{tname}", (r2 < int(KT)).sum(1) / int(KX))
                 mu2, sd2 = s2.mean(axis=1), s2.std(axis=1)
                 acc.add("z2_winner", (s2[rows, w] - mu2) / sd2)
                 acc.add("z2_tenth", (s2[rows, order2[:, 9]] - mu2) / sd2)

@@ -309,17 +309,17 @@ def fig_validation():
     ax.set_title("NeurIPS 2021 orals + spotlights", loc="left")
 
     ax = axes[1]
-    obs = vv.obs_spot_rej_share.iloc[0]
-    rows(ax, vv, vp, "spot_rej_share_q05", "spot_rej_share_q95", "spot_rej_share_mean", obs,
+    obs = vv.obs_top_rej_share.iloc[0]  # 26 of the 54 oral-plus-spotlight papers, rejected by the other committee
+    rows(ax, vv, vp, "top_rej_share_q05", "top_rej_share_q95", "top_rej_share_mean", obs,
          f"Observed {100 * obs:.0f}\\%", P.ORANGE[300], P.ORANGE[450], (0, 0.7))
     ax.set_yticks(y)
     ax.set_yticklabels([])
     P.pct_axis(ax, "x")
     ax.set_xlabel("Rejected by the other committee")
-    ax.set_title("NeurIPS 2021 spotlights", loc="left")
-    hl = [Line2D([], [], ls="none", marker="o", ms=4.4 * P.S, color=P.INK2, mec=P.SURFACE, label="Central level, $\\rho^2$ = 0.50"),
+    ax.set_title("The same papers, rejected", loc="left")
+    hl = [Line2D([], [], ls="none", marker="o", ms=4.4 * P.S, color=P.INK2, mec=P.SURFACE, label=f"Central level, $\\rho^2$ = {LEVELS['central']:.2f}"),
           Line2D([], [], color=P.MUTED, lw=2.0 * P.S, label="90\\% range, central level"),
-          Line2D([], [], ls="none", marker="D", ms=3.0 * P.S, color=P.INK2, mec=P.SURFACE, label="Pessimistic level, $\\rho^2$ = 0.44")]
+          Line2D([], [], ls="none", marker="D", ms=3.0 * P.S, color=P.INK2, mec=P.SURFACE, label=f"Pessimistic level, $\\rho^2$ = {LEVELS['pessimistic']:.2f}")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.36, -0.08), ncol=3, handlelength=1.2)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])

@@ -112,13 +112,47 @@ def analytic_rows() -> list[dict]:
     return rows
 
 
+def write_levels_table() -> None:
+    lv = []
+    for level, r2 in LEVELS.items():
+        row = {"level": level, "rho2": r2, "rho": np.sqrt(r2), "cal_alpha": CAL_ALPHA, "target_dis": target_dis(level),
+               "target_incons": 2 * CAL_ALPHA * target_dis(level)}
+        for R in (3, 4):
+            for su in (0.0, 0.5):
+                row[f"sigma_eps_R{R}_su{su:g}"] = float(an.sigma_eps_for_rho2(r2, R, 1.2, su))
+        lv.append(row)
+    pd.DataFrame(lv).to_csv(os.path.join(ROOT, "results", "calibration_levels.csv"), index=False)
+    print(pd.DataFrame(lv).round(4).to_string(index=False))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=5)
     ap.add_argument("--forms-only", action="store_true",
                     help="calibrate only the review forms of data/review_forms.csv and the variants on them that the store lacks, and append them")
+    ap.add_argument("--level", default="", help="recalibrate every variant and form at this level only, replacing its rows in the store")
     args = ap.parse_args()
     os.makedirs(os.path.join(ROOT, "results"), exist_ok=True)
+    if args.level:
+        from peerreview.levels import variant_key
+        write_levels_table()
+        seen, jobs = set(), []
+        for m, levels in bisection_variants() + form_variants() + main_form_variants():
+            if args.level in levels and variant_key(m) not in seen:
+                seen.add(variant_key(m)); jobs.append((m, args.level))
+        print(f"{len(jobs)} calibrations at the {args.level} level")
+        rows = [r for r in analytic_rows() if r["level"] == args.level]
+        t0 = time.perf_counter()
+        with ProcessPoolExecutor(max_workers=args.workers) as ex:
+            for i, r in enumerate(ex.map(_job, [m for m, _ in jobs], [lev for _, lev in jobs]), 1):
+                rows.append(r)
+                print(f"[{i}/{len(jobs)} {time.perf_counter() - t0:.0f}s] R={r['R']} {r['scale']} q={r['quality']} n={r['noise']} su={r['sigma_u']}: "
+                      f"sigma_eps={r['sigma_eps']:.4f} dis={r['achieved']:.4f} (target {r['target_dis']:.4f}) converged={r['converged']}", flush=True)
+        old = pd.read_csv(CALIB_CSV, keep_default_na=False, na_values=[""])
+        df = pd.concat([old[old.level != args.level], pd.DataFrame(rows)], ignore_index=True)
+        df.to_csv(CALIB_CSV, index=False)
+        print(f"wrote {CALIB_CSV}: {len(df)} rows")
+        return
     if args.forms_only:
         from peerreview.levels import _store, variant_key
         store = _store()
@@ -140,16 +174,7 @@ def main() -> None:
         return
 
     pd.DataFrame(reliability_table()).to_csv(os.path.join(ROOT, "results", "calibration_reliability.csv"), index=False)
-    lv = []
-    for level, r2 in LEVELS.items():
-        row = {"level": level, "rho2": r2, "rho": np.sqrt(r2), "cal_alpha": CAL_ALPHA, "target_dis": target_dis(level),
-               "target_incons": 2 * CAL_ALPHA * target_dis(level)}
-        for R in (3, 4):
-            for su in (0.0, 0.5):
-                row[f"sigma_eps_R{R}_su{su:g}"] = float(an.sigma_eps_for_rho2(r2, R, 1.2, su))
-        lv.append(row)
-    pd.DataFrame(lv).to_csv(os.path.join(ROOT, "results", "calibration_levels.csv"), index=False)
-    print(pd.DataFrame(lv).round(4).to_string(index=False))
+    write_levels_table()
 
     jobs = [(m, lev) for m, levels in bisection_variants() for lev in levels]
     rows = analytic_rows()

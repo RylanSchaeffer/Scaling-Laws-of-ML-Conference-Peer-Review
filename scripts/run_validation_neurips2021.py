@@ -74,12 +74,17 @@ def job(name: str, level: str, design: str) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=5)
+    ap.add_argument("--levels", default="", help="comma-separated levels to re-run; merged into the existing table")
     args = ap.parse_args()
-    jobs = [(v, lev, d) for v in VARIANTS for lev in LEVELS for d in DESIGNS]
+    levels = tuple(x for x in args.levels.split(",") if x) or tuple(LEVELS)
+    jobs = [(v, lev, d) for v in VARIANTS for lev in levels for d in DESIGNS]
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         rows = list(ex.map(job, *zip(*jobs)))
     df = pd.DataFrame(rows)
     out = os.path.join(ROOT, "results", "validation_neurips2021.csv")
+    if args.levels and os.path.exists(out):
+        old = pd.read_csv(out)
+        df = pd.concat([old[~old.level.isin(levels)], df], ignore_index=True)
     df.to_csv(out, index=False)
     cols = ["variant", "level", "design", "overlap_mean", "overlap_q05", "overlap_q95", "p_overlap_le_obs",
             "spot_rej_share_mean", "p_spot_rej_ge_obs", "top_rej_share_mean", "p_top_rej_ge_obs", "acc_dis_mean"]

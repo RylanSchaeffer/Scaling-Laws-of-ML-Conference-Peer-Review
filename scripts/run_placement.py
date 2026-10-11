@@ -54,11 +54,13 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--reps", type=int, default=4000)
+    ap.add_argument("--levels", default="", help="comma-separated levels to (re)simulate; merged into the existing table")
     args = ap.parse_args()
+    levels = tuple(x for x in args.levels.split(",") if x) or tuple(LEVELS)
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
     specs = [{"N": N, "level": lev, "orals": tier_size(fits, "orals", N), "spotlights": tier_size(fits, "spotlights", N),
               "reps": args.reps if N <= 10_000 else max(1000, args.reps // 2), "scale": MAIN_FORM["scale"], "R": MAIN_FORM["R"]}
-             for N in N_GRID for lev in LEVELS]
+             for N in N_GRID for lev in levels]
     specs.sort(key=lambda s: -s["N"])
     rows, t0 = [], time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
@@ -67,8 +69,12 @@ def main() -> None:
             r = f.result(); rows.append(r)
             print(f"[{i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} {r['level']}: oral->oral {r['place_oral_in_oral']:.3f} "
                   f"oral->accept {r['place_oral_in_accept']:.3f} accept->accept {r['place_accept_in_accept']:.3f} ({r['wall_s']:.0f}s)", flush=True)
-    out = pd.DataFrame(rows).sort_values(["N", "level"])
+    out = pd.DataFrame(rows)
     path = os.path.join(ROOT, "results", "placement.csv")
+    if args.levels and os.path.exists(path):
+        old = pd.read_csv(path)
+        out = pd.concat([old[~old.level.isin(levels)], out], ignore_index=True)
+    out = out.sort_values(["N", "level"])
     out.to_csv(path, index=False)
     print(f"wrote {path}: {len(out)} rows in {time.perf_counter() - t0:.0f}s")
 

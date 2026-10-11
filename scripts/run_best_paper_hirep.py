@@ -49,6 +49,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--venues", action="store_true", help="the cited venue-years (VENUE_YEARS) instead of the grid")
+    ap.add_argument("--levels", default="", help="comma-separated levels to re-simulate (default: all)")
     args = ap.parse_args()
     b = pd.read_csv(PATH)
     if args.venues:
@@ -58,6 +59,8 @@ def main() -> None:
     else:
         grid = b[b.source == "grid"]
         specs = sorted({(int(N), lev, "grid") for N, lev in zip(grid.N, grid.level)}, key=lambda s: -s[0])
+    if args.levels:
+        specs = [s for s in specs if s[1] in args.levels.split(",")]
     t0 = time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         futs = [ex.submit(job, s) for s in specs]

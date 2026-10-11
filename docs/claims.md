@@ -209,6 +209,11 @@ that agrees with N x rate to rounding. It is blank where no such count exists; t
 accepted count is round(rate x N). "Check" is the worst outcome over the row's claims. Bold text
 marks a contradiction. Every source link is in `data/venues.csv` (`check_url`).
 
+**Growth rates in the abstract** (29% per year at NeurIPS, 34% at ICML, 50% at ICLR): endpoint
+growth over the past decade from `data/venues.csv` (`N_used`), NeurIPS 2016 to 2026
+(2,403 to 30,709: 29.0%), ICML 2016 to 2026 (1,320 to 23,918: 33.6%) and ICLR 2017 to 2026,
+its first year in the data (507 to 19,525: 50.0%).
+
 <!-- BEGIN 10.4 TABLES -->
 ### NeurIPS
 

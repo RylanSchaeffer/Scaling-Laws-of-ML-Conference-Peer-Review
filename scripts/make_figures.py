@@ -348,6 +348,10 @@ def fig_scaling():
             ax.plot(pl.N, pl[f"place_{first}_in_{second}"], color=color, lw=1.6 * P.S, label=label)
         log_prob_axis(ax)
         ax.set_title(title, loc="left")
+    for ax in axes:  # where we are this year: NeurIPS 2026 submissions
+        ax.axvline(NEURIPS[2026], color=P.INK2, lw=0.9 * P.S, ls=(0, (4, 3)), zorder=0)
+        ax.text(NEURIPS[2026] / 1.1, 0.0001, "2026", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
+                bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo where a curve passes under the label
     axes[0].set_ylabel("Probability, second review")
     h, l = axes[0].get_legend_handles_labels()  # the five tiers, from (a)
     fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=5, handlelength=1.3, columnspacing=1.2,

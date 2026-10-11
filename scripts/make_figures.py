@@ -254,7 +254,7 @@ def standing_panel(ax):
 # Figure 2: is the model faithful? (held-out tests)
 # ---------------------------------------------------------------------------
 
-VAR_LABEL = {"gauss/gauss": "Gaussian", "gauss/gauss+shared": "Gaussian + shared noise", "gauss/t3": "$t_3$ noise",
+VAR_LABEL = {"gauss/gauss": "Main model", "gauss/gauss+shared": "Shared noise", "gauss/t3": "$t_3$ noise",
              "beta/gauss": "Bounded quality", "beta/t3": "Bounded quality, $t_3$ noise", "exp/gauss": "Exponential quality"}
 
 
@@ -447,6 +447,7 @@ def fig_robustness():
     is the Gaussian model's pessimistic-to-optimistic range at 2026 size. Rows are grouped by family."""
     r = load("best_paper_robustness")
     r["p2_merely"] = r.p2_accept - r.p2_spot  # accepted with no award
+    r["variant"] = r.variant.replace({"Gaussian": "Main model"})  # the paper's name for the base model on the 1-10 form
     names = list(dict.fromkeys(r.variant))
     groups = [r[r.variant == n].group.iloc[0] for n in names]
     y, pos = [], 0.0  # a gap of 0.6 rows between families
@@ -504,7 +505,7 @@ def fig_robustness():
         ax.grid(axis="y", visible=False)
     hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
-          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Gaussian, pessimistic to optimistic level, 2026 size"),
+          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main model, pessimistic to optimistic level, 2026 size"),
           Line2D([], [], ls="none", marker="D", ms=3.4 * P.S, color=P.BLUE[450], mec=P.SURFACE, label="Mean of the 2021 replay"),
           Line2D([], [], color=P.BLUE[300], lw=2.0 * P.S, label="90\\% range of the 2021 replay")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)

@@ -1,7 +1,7 @@
 """Figure 0: the model of conference peer review, drawn (Methods section).
 
 (a) A conference receives N papers; paper i has a hidden true quality q_i ~ N(5, sigma_q^2).
-(b) Each paper receives R review scores, each snapped to the venue's score scale, s_ij = q_i + u_i + eps_ij: shared noise u_i is the
+(b) Each paper receives R = 4 review scores, each the nearest integer from 1 to 10 to s_ij = q_i + u_i + eps_ij: shared noise u_i is the
 same for all of its reviewers, reviewer noise eps_ij is new for each; its score is the mean.
 (c) Papers are ranked by mean score and the nested tiers are cut by rank. (d) A second review
 redraws u and eps on the same papers, so the ranking changes and the first review's Best
@@ -29,7 +29,7 @@ FIG = os.path.join(ROOT, "figures")
 S = P.S
 
 # Layout, printed inches: four panels in a row, arrows in the gaps, a title row above the axes.
-PANELS = (("$N$ papers", 0.95), ("$R$ reviews on the venue's scale", 1.3), ("Rank by mean score", 1.2), ("A second review", 1.0))
+PANELS = (("$N$ papers", 0.95), ("$R=4$ reviews, each scored 1 to 10", 1.3), ("Rank by mean score", 1.2), ("A second review", 1.0))
 H = 1.9  # axes height
 TOP, BOT = 0.22, 0.04  # title row above the axes, margin below
 GAP, LEFT, RIGHT = 0.25, 0.14, 0.02  # the left margin holds the panel letter of (a)
@@ -111,23 +111,23 @@ def bar(ax, x, y, eps, label, lq=0.36, lu=0.10, bh=0.085):
 
 
 def panel_reviews(ax):
-    rows, eps = (1.62, 1.47, 1.32), (0.05, 0.14, 0.08)
+    rows, eps = (1.62, 1.49, 1.36, 1.23), (0.05, 0.14, 0.08, 0.11)
     xi, yi, xr, xq = 0.16, 1.80, 0.37, 0.47  # paper icon, reviewer glyphs, bars
     paper(ax, xi, yi, dark=True)
     ax.text(xi + IW / 2 + 0.04, yi, "paper $i$", ha="left", va="center", **ANN)
     ax.plot([xi, xi], [yi - IH / 2 - 0.01, rows[-1]], color=P.MUTED, lw=0.6 * S, zorder=1)  # tree to its reviewers
-    for y, e, j in zip(rows, eps, (1, 2, 3)):
+    for y, e, j in zip(rows, eps, (1, 2, 3, 4)):
         ax.plot([xi, xr - 0.05], [y, y], color=P.MUTED, lw=0.6 * S, zorder=1)
         reviewer(ax, xr, y)
         bar(ax, xq, y, e, f"$s_{{i{j}}}$")
-    ym = 1.10
+    ym = 1.04
     ax.text(xq - 0.035, ym, "Mean score", ha="right", va="center", **ANN)
     bar(ax, xq, ym, float(np.mean(eps)), r"$\bar s_i$")
-    ax.text(0.68, 0.86, r"$s_{ij}=q_i+u_i+\varepsilon_{ij}$", ha="center", va="center", fontsize=P.LEGEND_PT, color=P.INK)
-    legend = ((0.62, SEG[0], "$q_i$: true quality"),
-              (0.50, SEG[1], "$u_i$: shared noise, same"),
-              (0.38, None, "for all of its reviewers"),
-              (0.26, SEG[2], r"$\varepsilon_{ij}$: reviewer noise"))
+    ax.text(0.68, 0.83, r"$s_{ij}=q_i+u_i+\varepsilon_{ij}$", ha="center", va="center", fontsize=P.LEGEND_PT, color=P.INK)
+    legend = ((0.60, SEG[0], "$q_i$: true quality"),
+              (0.48, SEG[1], "$u_i$: shared noise, same"),
+              (0.36, None, "for all of its reviewers"),
+              (0.24, SEG[2], r"$\varepsilon_{ij}$: reviewer noise"))
     for y, style, text in legend:
         if style is not None:
             ax.add_patch(Rectangle((0.12, y - 0.035), 0.09, 0.07, lw=0.5 * S, zorder=3, **style))

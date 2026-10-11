@@ -17,7 +17,7 @@ for everything above plain acceptance.
 | in the top ten again | ranked within the second review's ten best scores: a constant-number tier larger than one | |
 | merely accepted | accepted with no award, so below the spotlight cutoff | "accepted but outside the oral range" |
 | overlap of a tier | the proportion of one review's tier that the other also puts in that tier | |
-| exponential or heavier tails | the three quality variants that keep the Best Paper reproducible: exponential, lognormal, $t_3$. The exponential is the boundary case and is not heavy-tailed; only lognormal and $t_3$ are | "the three heavy-tailed variants", "heavy-tailed" for the exponential |
+| the quality variants that keep the Best Paper reproducible | name them: exponential, lognormal and $t_3$ quality, under which the best papers stand far apart. No tail-class label: the exponential is not heavy-tailed | "the three heavy-tailed variants" |
 | committee | only the real program committees of the NeurIPS 2014 and 2021 experiments, and real award committees | |
 
 Where the terms live in the code: `results/best_paper.csv` and `results/best_paper_robustness.csv`

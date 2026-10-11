@@ -34,8 +34,8 @@ A. **A second review would almost always accept a Best Paper but rarely confirm 
 B. **How sure: the quality tail decides whether it would win again; the score scale decides
    whether it would be rejected.** Across variants refitted to the same acceptance data, the
    Best-Paper-again chance at NeurIPS 2026 size runs from 0.2% (bounded quality) to 89%
-   ($t_3$ quality). The NeurIPS 2021 top-tier overlap rejects the quality variants
-   with exponential or heavier tails ($P \le 0.04$). Under the rest, the chance is 0.2% to 1.3%, merely accepted
+   ($t_3$ quality). The NeurIPS 2021 top-tier overlap rejects the exponential, lognormal
+   and $t_3$ quality variants ($P \le 0.04$). Under the rest, the chance is 0.2% to 1.3%, merely accepted
    (no award) 52% to 66%, and rejected 5.0% (continuous scores) to 12.7% (5% careless raves on a 1-10
    scale); rounding to a 1-10 or ICLR scale alone gives 9.7% to 11.9%, because several
    papers tie for the top score and the award goes to one of them at random. In the
@@ -294,7 +294,7 @@ replays the NeurIPS 2021 top tiers (4,000 replays; observed overlap 3). The reru
 | 5% rave reviews | 0.4% (2.9%) | 55.8% | 12.7% (15.1%) | 1,142 | 5.73, 0.17 |
 | 5% random reviews | 0.5% (3.0%) | 57.6% | 8.5% (14.0%) | 944 | 5.76, 0.17 |
 
-Quality with exponential or heavier tails puts the best papers far apart, so both reviews find them and the
+Exponential, lognormal and $t_3$ quality put the best papers far apart, so both reviews find them and the
 first-again chance barely changes with size; but it predicts 8 to 12 shared orals and spotlights
 against 3 observed. Every other variant predicts 5 to 6. The rejection chance falls
 with size in every variant. Rounding to a real score scale roughly doubles it and cuts the

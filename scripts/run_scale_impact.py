@@ -28,8 +28,8 @@ from peerreview.tiers import tier_size
 FORMS = (  # label, R, scale, who uses it
     ("Integer 1--10, 4 reviews", 4, "int10", "main form; NeurIPS 2014--2024, ICML 2023--2024, ICLR 2017--2019 and 2021"),
     ("Integer 1--10, 3 reviews", 3, "int10", "NeurIPS 2014--2019 and ICML before 2024, three reviews"),
-    ("Six-point, 4 reviews", 4, "six", "NeurIPS 2025--2026"),
-    ("Six-point, 3 reviews", 3, "six", "ICML 2026"),
+    ("Six-point, 4 reviews", 4, "six", "NeurIPS 2025--2026 and ICML 2026"),
+    ("Six-point, 3 reviews", 3, "six", "no venue; the six-point scale with three reviews"),
     ("Five-point, 4 reviews", 4, "five", "ICML 2025"),
     ("1/3/5/6/8/10, 4 reviews", 4, "iclr6", "ICLR 2022--2025"),
     ("0/2/4/6/8/10, 4 reviews", 4, "iclr2026", "ICLR 2026"),

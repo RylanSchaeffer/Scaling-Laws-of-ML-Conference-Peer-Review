@@ -4,7 +4,8 @@ overlaps and the large tiers but not for the Best Paper and top-ten probabilitie
 0.1% and 1% at 100K. This script re-simulates those two on the main form with many more replays
 (lean: no overlaps) and writes them back into the grid rows, with the replay count in reps_best.
 
-Usage: uv run python scripts/run_best_paper_hirep.py [--workers 2]
+Usage: uv run python scripts/run_best_paper_hirep.py [--workers 2] [--venues]
+  --venues does the same for the cited venue-years (NeurIPS 2014, 2021, 2026; ICML and ICLR 2026).
 """
 from __future__ import annotations
 
@@ -27,14 +28,17 @@ def reps_for(N: int) -> int:
     return 50_000 if N <= 10_000 else 30_000 if N <= 32_000 else 20_000
 
 
+VENUE_YEARS = (("NeurIPS", 2014), ("NeurIPS", 2021), ("NeurIPS", 2026), ("ICML", 2026), ("ICLR", 2026))  # the cited ones
+
+
 def job(spec: tuple) -> dict:
-    N, level = spec
+    N, level, key = spec
     m = calibrated(ReviewModel(**MAIN_FORM), level)
     reps = reps_for(N)
-    seed = stable_seed(m.as_dict(), N, reps, "best_paper_hirep", level)
+    seed = stable_seed(m.as_dict(), N, reps, "best_paper_hirep", level, key)
     t0 = time.perf_counter()
     r = simulate_best_paper(m, N, reps, best_K=(1,), seed=seed, winner_tiers={"best": 1, "top10": 10}, second_committee=True)
-    return {"N": N, "level": level, "p2_best": r["winner_in2_best"], "p2_best_se": r["winner_in2_best_se"],
+    return {"N": N, "level": level, "key": key, "p2_best": r["winner_in2_best"], "p2_best_se": r["winner_in2_best_se"],
             "p2_top10": r["winner_in2_top10"], "p2_top10_se": r["winner_in2_top10_se"],
             "overlap_best": r["winner_in2_best"], "overlap_best_se": r["winner_in2_best_se"],
             "winner_rank2_median": r["winner_rank2_median"], "reps_best": reps, "seed_best": seed,
@@ -44,19 +48,26 @@ def job(spec: tuple) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=2)
+    ap.add_argument("--venues", action="store_true", help="the cited venue-years (VENUE_YEARS) instead of the grid")
     args = ap.parse_args()
     b = pd.read_csv(PATH)
-    grid = b[b.source == "grid"]
-    specs = sorted({(int(N), lev) for N, lev in zip(grid.N, grid.level)}, key=lambda s: -s[0])
+    if args.venues:
+        rows = b[(b.source == "venue") & [(v, int(y)) in VENUE_YEARS for v, y in zip(b.venue, b.year)]]
+        specs = sorted({(int(r.N), r.level, f"{r.venue}{int(r.year)}") for r in rows.itertuples()}, key=lambda s: -s[0])
+    else:
+        grid = b[b.source == "grid"]
+        specs = sorted({(int(N), lev, "grid") for N, lev in zip(grid.N, grid.level)}, key=lambda s: -s[0])
     t0 = time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         futs = [ex.submit(job, s) for s in specs]
         for i, f in enumerate(as_completed(futs), 1):
             r = f.result()
-            mask = (b.source == "grid") & (b.N == r["N"]) & (b.level == r["level"])
+            mask = (b.source == ("grid" if r["key"] == "grid" else "venue")) & (b.N == r["N"]) & (b.level == r["level"])
+            if r["key"] != "grid":
+                mask &= (b.venue + b.year.astype("Int64").astype(str)) == r["key"]
             assert mask.sum() == 1
             for k, v in r.items():
-                if k not in ("N", "level", "wall_s"):
+                if k not in ("N", "level", "key", "wall_s"):
                     b.loc[mask, k] = v
             print(f"[{i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} {r['level']}: p2_best={r['p2_best']:.5f}"
                   f"+-{r['p2_best_se']:.5f} p2_top10={r['p2_top10']:.4f} ({r['reps_best']} reps, {r['wall_s']:.0f}s)", flush=True)

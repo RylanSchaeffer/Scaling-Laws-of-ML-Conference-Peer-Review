@@ -8,6 +8,11 @@ uv run python scripts/run_sweeps.py g h f b a d e c --workers "$W"
 uv run python scripts/run_validation_neurips2021.py --workers "$W"
 uv run python scripts/run_validation_iclr.py --workers "$W"
 uv run python scripts/run_best_paper_robustness.py --workers "$W"
+uv run python scripts/make_tier_scaling.py
+uv run python scripts/run_best_paper.py --workers "$W"
+uv run python scripts/run_best_paper_hirep.py --workers "$W"
+uv run python scripts/run_R_needed.py --workers "$W"
+uv run python scripts/run_scale_impact.py --workers "$W"
 uv run python scripts/build_venues_used.py
 uv run python scripts/run_history.py --workers "$W"
 uv run python scripts/verify_analytic.py

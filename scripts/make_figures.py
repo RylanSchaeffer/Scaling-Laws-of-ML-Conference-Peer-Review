@@ -424,8 +424,8 @@ def fig_mechanism():
         d = r[np.isclose(r.sigma_u, su)].sort_values("N")
         ax.plot(d.N, d.R_needed, color=c, lw=1.6 * P.S, ls=ls, label=label)
     P.n_axis(ax)
-    ax.set_ylim(0, 20)  # headroom for the legend above the 14.5 end of the shared-noise curve
-    ax.set_yticks([0, 5, 10, 15, 20])
+    ax.set_ylim(0, 30)  # the shared-noise curve ends near 23 at 100K; the legend sits above the curves' start
+    ax.set_yticks([0, 10, 20, 30])
     ax.set_ylabel("Reviews per paper")
     ax.set_title("More reviews to hold top-10 overlap", loc="left")
     ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
@@ -512,8 +512,86 @@ def fig_robustness():
         P.panel_label(a, "abcd"[i])
     P.save(fig, os.path.join(FIG, "fig5_robustness"))
 
+# ---------------------------------------------------------------------------
+# Figure 6: does the score scale matter? The same model on every real review form
+# ---------------------------------------------------------------------------
+
+FORM_LINES = (  # form label in results/scale_impact.csv, colour, line style, legend label
+    ("Integer 1--10, 4 reviews", P.INK, "-", "Integer 1--10 (main)"),
+    ("Six-point, 4 reviews", P.BLUE[450], "-", "Six-point"),
+    ("1/3/5/6/8/10, 4 reviews", P.BLUE[250], "-", "ICLR 1/3/5/6/8/10"),
+    ("Continuous, 4 reviews", P.INK2, (0, (4, 2)), "Continuous"),
+)
+
+
+def fig_scales():
+    """The same calibrated model on every real review form (results/scale_impact.csv). (a-c) Where a
+    second review ranks the Best Paper at NeurIPS 2014 (small marker) and 2026 (large) size under
+    each form, rows in the order of the main form first; grey span: the main form, pessimistic to
+    optimistic level, at 2026 size. (d) The top-ten chance along the submissions axis for four forms."""
+    r = load("scale_impact")
+    conf = r[r.part == "conference"]
+    names = [f for f, *_ in FORM_LINES[:1]] + [f for f in dict.fromkeys(conf.form) if f != FORM_LINES[0][0]]
+    names = [n for n in names if n != "Continuous, 4 reviews"] + ["Continuous, 4 reviews"]  # continuous last
+    y = np.arange(len(names))[::-1].astype(float)
+    y[-1] -= 0.6  # a gap before the continuous row, which is no real scale
+    rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
+    fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, (ROW_H + 0.5) * P.S),
+                             gridspec_kw=dict(wspace=0.36, width_ratios=[1, 1, 1, 1.15]))
+    panels = ((axes[0], "p2_best", "Best Paper again", (1e-4, 0.3), [1e-3, 1e-2, 1e-1], P.INK),
+              (axes[1], "p2_oral", "Oral again", (0, 0.5), [0, 0.25, 0.5], P.BLUE[450]),
+              (axes[2], "p2_reject", "Rejected", (0, 0.35), [0, 0.1, 0.2, 0.3], P.ORANGE[450]))
+    SIZES = ((2014, 2.8, 0.16), (2026, 4.2, -0.16))
+    for ax, col, title, xlim, ticks, c in panels:
+        logx = xlim[0] > 0
+        span = sorted(x[col] for x in rng26)
+        ax.axvspan(max(span[0], xlim[0]), span[1], color=P.GRID, alpha=0.55, lw=0, zorder=0)
+        for yi, n in zip(y, names):
+            for yr, ms, dy in SIZES:
+                v = float(conf[(conf.form == n) & (conf.year == yr)][col].iloc[0])
+                ax.plot(v, yi + dy, "o", ms=ms * P.S, color=c, mec=P.SURFACE, mew=0.7 * P.S, ls="none", zorder=3, clip_on=False)
+        if logx:
+            ax.set_xscale("log")
+            ax.set_xticks(ticks)
+            ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{100 * v:g}\\%"))
+        else:
+            ax.set_xticks(ticks)
+            P.pct_axis(ax, "x")
+        ax.set_xlim(*xlim)
+        ax.set_title(title, loc="left")
+        ax.set_xlabel("Probability")
+    for ax in axes[:3]:
+        ax.set_ylim(y.min() - 0.6, y.max() + 0.6)
+        ax.set_yticks(y)
+        ax.set_yticklabels([n.replace("%", "\\%") for n in names] if ax is axes[0] else [])
+        ax.grid(axis="y", visible=False)
+
+    ax = axes[3]
+    grid = r[r.part == "grid"]
+    for form, c, ls, label in FORM_LINES:
+        d = grid[grid.form == form].sort_values("N")
+        ax.plot(d.N, d.p2_top10, color=c, ls=ls, lw=1.6 * P.S, label=label)
+    P.n_axis(ax)
+    ax.set_yscale("log")
+    ax.set_ylim(0.004, 0.4)
+    ax.yaxis.set_major_locator(FixedLocator([0.01, 0.1]))
+    ax.yaxis.set_minor_locator(NullLocator())
+    P.pct_axis(ax)
+    ax.set_ylabel("Probability")
+    ax.set_title("Top 10 again", loc="left")
+    ax.legend(loc="lower left", handlelength=1.3, borderaxespad=0.2)
+    mark_venues(ax)
+    hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
+          Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
+          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main form, pessimistic to optimistic level, 2026 size")]
+    fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
+    for i, a in enumerate(axes):
+        P.panel_label(a, "abcd"[i])
+    P.save(fig, os.path.join(FIG, "fig6_scales"))
+
+
 FIGURES = dict(headline=fig_headline, validation=fig_validation, venues=fig_venues, mechanism=fig_mechanism,
-               robustness=fig_robustness)
+               robustness=fig_robustness, scales=fig_scales)
 
 
 def main() -> None:

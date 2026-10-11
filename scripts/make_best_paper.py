@@ -1,4 +1,8 @@
-"""What would a second review make of the Best Paper? And what did it truly deserve?
+"""Continuous-score closed forms (the Gaussian model without a score scale), the former main
+table. The main results are now simulated on the real review form by scripts/run_best_paper.py;
+this table remains for the power-law explanation and as a check.
+
+What would a second review make of the Best Paper? And what did it truly deserve?
 
 The model's Best Paper is the paper with the highest mean score. For each real venue-year
 (submissions, acceptance rate, main-track oral count from data/venues.csv) and for a grid
@@ -78,7 +82,7 @@ def main() -> None:
                          "spotlights": np.nan, "level": level, "rho2": rho2, **tiers(N, 0.25, None, None, rho2)})
     out = pd.DataFrame(rows)
     out["year"] = out["year"].astype("Int64")
-    path = os.path.join(ROOT, "results", "best_paper.csv")
+    path = os.path.join(ROOT, "results", "best_paper_continuous.csv")
     out.to_csv(path, index=False)
     print(f"wrote {path}: {len(out)} rows")
 

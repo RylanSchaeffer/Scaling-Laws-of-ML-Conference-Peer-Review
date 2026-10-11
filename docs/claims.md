@@ -131,6 +131,8 @@ awards, and ICLR 2024 and 2025 desk-reject and withdrawal counts.
 
 ## §3.2 Score scales
 
+The main results use one form: integer 1 to 10 scores with four reviews per paper (`peerreview.model.MAIN_FORM`), the NeurIPS scale of 2014 to 2024 and the form of the NeurIPS 2021 experiment that calibrates the model. The other forms below are tested in the score-scale section (`scripts/run_scale_impact.py`, `data/review_forms.csv`).
+
 | Scale (latent points) | Used by (handoff) | Check | Source |
 |---|---|---|---|
 | integer 1 to 10 | NeurIPS through 2024 | confirmed. The 2022 to 2024 pages have the handoff's labels. 2014 and 2021 also used 1 to 10, with other labels. | [NeurIPS 2024 reviewer guidelines](https://neurips.cc/Conferences/2024/ReviewerGuidelines); arXiv:2306.03262 App. B |

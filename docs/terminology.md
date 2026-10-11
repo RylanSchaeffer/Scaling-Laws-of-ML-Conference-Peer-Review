@@ -22,6 +22,6 @@ for everything above plain acceptance.
 
 Where the terms live in the code: `results/best_paper.csv` and `results/best_paper_robustness.csv`
 carry `p2_best`, `p2_top10`, `p2_oral`, `p2_spot`, `p2_accept` (nested cutoffs; merely accepted
-= `p2_accept - p2_spot`); `results/tier_scaling.csv` the same on the N grid plus the overlaps
-`ovl_*`. Figure legends: Fig 1c "Top 10, Oral, Spotlight, Merely accepted, Rejected";
+= `p2_accept - p2_spot`); the grid rows of `best_paper.csv` (`source == "grid"`) carry the same on the N grid
+plus the overlaps `overlap_*`; `results/tier_scaling.csv` is the continuous-score closed form (`ovl_*`). Figure legends: Fig 1c "Top 10, Oral, Spotlight, Merely accepted, Rejected";
 Fig 3a,b "Accepted, Spotlight, Oral, Top 10, Best Paper".

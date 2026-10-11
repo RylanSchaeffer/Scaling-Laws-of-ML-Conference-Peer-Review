@@ -11,6 +11,8 @@ Ranges run from the pessimistic level ($\rho^2 = 0.44$) to the optimistic level
 
 ## 1. Summary
 
+> **10 October 2026.** The paper's numbers now come from the real review form (integer 1 to 10 scores, four reviews per paper); see decision 16 in Section 8 for the current headline numbers. The sections below describe the continuous-score model and remain as the derivation and the check.
+
 The paper asks one question: as submissions grow, does review still give its awards to the
 right papers? It answers in the units of the NeurIPS consistency experiments (the "rerun"
 framing, decision 12 in §8): if a second, independent review re-ranked every paper,
@@ -475,6 +477,42 @@ out of the main analyses.
     is 35% in 2014 and 51% in 2026 (was 61% and 70%); the spotlight segment is 26% and 19%.
     Fig. 1c bars are Top 10, Oral, Spotlight, Merely accepted, Rejected; Fig. 3a,b share one
     legend (Accepted, Spotlight, Oral, Top 10, Best Paper); Fig. 5b uses the new definition.
+
+16. **One real review form for the main results (10 October 2026).** The author asked that the
+    model use real score scales rather than continuous scores with a "real scales would be harsher"
+    caveat, and then that the bulk of the paper use one form, the most defensible, with the other
+    scales tested in a later section. The main form is integer 1 to 10 scores with four reviews per
+    paper (`peerreview.model.MAIN_FORM`): the NeurIPS scale of 2014 to 2024, the most common across
+    venues, and the form of the NeurIPS 2021 experiment that calibrates the model. Every main-text
+    probability is now simulated on it (`scripts/run_best_paper.py` replaces the analytic table,
+    which remains as `results/best_paper_continuous.csv`); reviewer noise is recalibrated per form
+    and variant (`run_calibration.py --forms-only`); the forms in use are recorded in
+    `data/review_forms.csv` and compared in `results/scale_impact.csv` (`run_scale_impact.py`,
+    Fig. 7 and Section 7 of the paper). Headline numbers, central level, where a second review
+    places the NeurIPS Best Paper (10,000 replays; the Best Paper and top-ten rows for the cited
+    years are being re-simulated with 50,000):
+
+    | | 2014 | 2021 | 2026 |
+    |---|---|---|---|
+    | Best Paper again | 2.5% | 0.9% | 0.4% |
+    | Top ten again | 14% | 6% | 3% |
+    | Oral again | 22% | 18% | 15% |
+    | Spotlight tier | 47% | 46% | 31% |
+    | Merely accepted (no award) | 37% | 43% | 60% |
+    | Rejected | 16% | 11% | 10% |
+
+    Along the submissions axis (NeurIPS trends, 1K to 100K): top ten again 18% to 0.9%, an oral
+    25% to 12%, oral overlap 15% to 6%, spotlight overlap 27% to 15%, top-10 overlap 12% to 1%,
+    accepted overlap 48% flat, top-1% overlap 12% flat. Holding top-10 overlap takes 14 reviews
+    per paper at 100K instead of 4 (23 with shared noise). Robustness on this form: no variant
+    confirms the Best Paper at 2026 size with more than 1.3% (t3 quality); exponential, lognormal
+    and t3 quality give it an oral with 38%, 30% and 85% and reject it with 1.3%, 4% and under
+    0.01%, but predict 8 to 11 shared NeurIPS 2021 orals and spotlights against the 3 observed.
+    Score scales: every form with five or more points and four reviews agrees within a factor of
+    two (confirmation 0.15% to 0.3%, an oral 11% to 14%, rejection 10% to 12% at 2026 size);
+    ICLR 2020's four points with three reviews rejects it 28% of the time; continuous scores
+    confirm it 1.3% of the time and reject it 5%. The tables above this entry are the
+    continuous-score model and are superseded for the paper's numbers.
 
 ## 9. Limitations
 

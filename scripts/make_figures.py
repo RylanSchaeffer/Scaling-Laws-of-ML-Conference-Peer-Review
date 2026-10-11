@@ -81,7 +81,7 @@ def sim_legend_handles():
 # Figure 1: growth, NeurIPS tier proportions, and the NeurIPS Best Paper under a second review
 # ---------------------------------------------------------------------------
 
-VENUES = (("NeurIPS", P.CAT[6], "o"), ("ICML", P.CAT[3], "s"), ("ICLR", P.CAT[2], "^"))  # violet, amber, green: no tier colour
+VENUES = (("NeurIPS", P.BLUE[450], "o"), ("ICML", P.CAT[1], "s"), ("ICLR", P.CAT[2], "^"))  # blue, orange, green (the author's choice)
 TIERS = (  # (label, colour): the tier a second review gives the Best Paper, best to worst (docs/terminology.md)
     ("Top 10", P.BLUE[650]),  # in the second review's top 10 (the Best Paper again, 1-4%, is inside it)
     ("Oral", P.BLUE[450]),  # within its oral count, outside its top 10

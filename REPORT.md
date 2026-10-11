@@ -489,17 +489,17 @@ out of the main analyses.
     and variant (`run_calibration.py --forms-only`); the forms in use are recorded in
     `data/review_forms.csv` and compared in `results/scale_impact.csv` (`run_scale_impact.py`,
     Fig. 7 and Section 7 of the paper). Headline numbers, central level, where a second review
-    places the NeurIPS Best Paper (10,000 replays; the Best Paper and top-ten rows use 50,000
-    replays at 2014 and 2021 and 30,000 at 2026, `run_best_paper_hirep.py --venues`):
+    places the NeurIPS Best Paper (these three years: 50,000 replays for every tier,
+    `run_best_paper.py --cited --reps 50000`; other venue-years 10,000):
 
     | | 2014 | 2021 | 2026 |
     |---|---|---|---|
-    | Best Paper again | 2.4% | 0.9% | 0.3% |
-    | Top ten again | 14% | 6% | 2.5% |
-    | Oral again | 22% | 18% | 15% |
-    | Spotlight tier | 47% | 46% | 31% |
-    | Merely accepted (no award) | 37% | 43% | 60% |
-    | Rejected | 16% | 11% | 10% |
+    | Best Paper again | 2.5% | 0.8% | 0.3% |
+    | Top ten again | 14% | 6% | 2.6% |
+    | Oral again | 22% | 18% | 14% |
+    | Spotlight tier | 47% | 46% | 30% |
+    | Merely accepted (no award) | 38% | 43% | 61% |
+    | Rejected | 15% | 11% | 10% |
 
     Along the submissions axis (NeurIPS trends, 1K to 100K): top ten again 18% to 0.9%, an oral
     25% to 12%, oral overlap 15% to 6%, spotlight overlap 27% to 15%, top-10 overlap 12% to 1%,

@@ -10,6 +10,8 @@ tiers (overlap_*), and the second review's score for that paper against its own 
 
 Writes results/best_paper.csv.
 Usage: uv run python scripts/run_best_paper.py [--workers 2] [--reps 10000]
+       uv run python scripts/run_best_paper.py --cited [--reps 50000]   # re-simulate only the cited NeurIPS
+       years (2014, 2021, 2026) at every level with more replays and write them back into the table
 """
 from __future__ import annotations
 
@@ -27,6 +29,7 @@ from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
 
 N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
+CITED_YEARS = (2014, 2021, 2026)  # the NeurIPS years the paper quotes (--cited)
 GRID_ALPHA = 0.25
 SCALE, R = MAIN_FORM["scale"], MAIN_FORM["R"]
 
@@ -94,8 +97,11 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--reps", type=int, default=10_000)
+    ap.add_argument("--cited", action="store_true", help="only NeurIPS 2014, 2021 and 2026; write the rows back into the table")
     args = ap.parse_args()
     sp = sorted(specs(args.reps), key=lambda s: -s["N"] * s["R"] * s["reps"])  # longest first
+    if args.cited:
+        sp = [s for s in sp if s["source"] == "venue" and s["venue"] == "NeurIPS" and s["year"] in CITED_YEARS]
     rows = []
     t0 = time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
@@ -109,6 +115,11 @@ def main() -> None:
     out = pd.DataFrame(rows).sort_values(["source", "venue", "year", "N", "level"])
     out["year"] = out["year"].astype("Int64")
     path = os.path.join(ROOT, "results", "best_paper.csv")
+    if args.cited:  # replace the cited rows in the existing table; every column of those rows comes from this run
+        old = pd.read_csv(path)
+        keep = ~((old.source == "venue") & (old.venue == "NeurIPS") & old.year.isin(CITED_YEARS))
+        out["reps_best"], out["seed_best"] = out["reps"], out["seed"]
+        out = pd.concat([old[keep], out], ignore_index=True).sort_values(["source", "venue", "year", "N", "level"])
     out.to_csv(path, index=False)
     print(f"wrote {path}: {len(out)} rows in {time.perf_counter() - t0:.0f}s")
 

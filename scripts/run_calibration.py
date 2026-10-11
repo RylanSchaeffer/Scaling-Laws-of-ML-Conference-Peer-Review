@@ -22,7 +22,7 @@ import pandas as pd
 from peerreview import analytic as an
 from peerreview.calibrate import calibrate_sigma_eps, reliability_table
 from peerreview.levels import CAL_ALPHA, CALIB_CSV, LEVELS, ROOT, target_dis
-from peerreview.model import ReviewModel
+from peerreview.model import MAIN_FORM, ReviewModel
 from peerreview.simulate import stable_seed
 
 CAL_N, CAL_REPS, CAL_TOL = 5000, 2000, 5e-4
@@ -68,6 +68,26 @@ def bisection_variants() -> list[tuple[ReviewModel, tuple[str, ...]]]:
     return v
 
 
+def form_variants() -> list[tuple[ReviewModel, tuple[str, ...]]]:
+    """The real review forms (data/review_forms.csv): each distinct (reviews per paper, score scale),
+    for the score-scale section (scripts/run_scale_impact.py)."""
+    forms = pd.read_csv(os.path.join(ROOT, "data", "review_forms.csv"))
+    keys = sorted({(int(r.R), str(r.scale)) for r in forms.itertuples()})
+    return [(ReviewModel(R=R, scale=scale), tuple(LEVELS)) for R, scale in keys]
+
+
+def main_form_variants() -> list[tuple[ReviewModel, tuple[str, ...]]]:
+    """Model variants on the main form (MAIN_FORM): the NeurIPS 2021 replay variants (Fig. 2) at every level,
+    the robustness variants (Fig. 5) at the central level."""
+    v: list[tuple[ReviewModel, tuple[str, ...]]] = []
+    for kw in (dict(sigma_u=0.5), dict(noise="t3"), dict(quality="beta"), dict(quality="beta", noise="t3"), dict(quality="exp")):
+        v.append((ReviewModel(**MAIN_FORM, **kw), tuple(LEVELS)))
+    for kw in (dict(quality="lognormal"), dict(quality="t3"),
+               *(dict(careless=share, careless_kind=kind) for share, kind in CARELESS)):
+        v.append((ReviewModel(**MAIN_FORM, **kw), ("central",)))
+    return v
+
+
 def _job(m: ReviewModel, level: str) -> dict:
     seed = stable_seed(m.as_dict(), level, "calibration")
     t0 = time.perf_counter()
@@ -95,8 +115,29 @@ def analytic_rows() -> list[dict]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=5)
+    ap.add_argument("--forms-only", action="store_true",
+                    help="calibrate only the review forms of data/review_forms.csv and the variants on them that the store lacks, and append them")
     args = ap.parse_args()
     os.makedirs(os.path.join(ROOT, "results"), exist_ok=True)
+    if args.forms_only:
+        from peerreview.levels import _store, variant_key
+        store = _store()
+        have = {(variant_key(ReviewModel(**{k: r[k] for k in ("R", "scale", "quality", "noise", "sigma_u", "mu_q", "careless", "careless_kind")}
+                                          | {"scale_points": tuple(float(x) for x in str(r["scale_points"]).split(",") if x)})), r["level"])
+                for _, r in store.iterrows()}
+        jobs = [(m, lev) for m, levels in form_variants() + main_form_variants() for lev in levels
+                if (variant_key(m), lev) not in have]
+        print(f"{len(jobs)} form calibrations to run")
+        rows = []
+        t0 = time.perf_counter()
+        with ProcessPoolExecutor(max_workers=args.workers) as ex:
+            for i, r in enumerate(ex.map(_job, [m for m, _ in jobs], [lev for _, lev in jobs]), 1):
+                rows.append(r)
+                print(f"[{i}/{len(jobs)} {time.perf_counter() - t0:.0f}s] R={r['R']} {r['scale']} {r['level']}: "
+                      f"sigma_eps={r['sigma_eps']:.4f} dis={r['achieved']:.4f} (target {r['target_dis']:.4f}) converged={r['converged']}", flush=True)
+        df = pd.concat([pd.read_csv(CALIB_CSV, keep_default_na=False, na_values=[""]), pd.DataFrame(rows)], ignore_index=True)
+        df.to_csv(CALIB_CSV, index=False)
+        return
 
     pd.DataFrame(reliability_table()).to_csv(os.path.join(ROOT, "results", "calibration_reliability.csv"), index=False)
     lv = []

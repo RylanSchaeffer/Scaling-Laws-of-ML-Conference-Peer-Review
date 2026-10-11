@@ -93,7 +93,7 @@ def n_axis(ax, label: str = "Submissions $N$") -> None:
 
 
 def pct_axis(ax, axis: str = "y") -> None:
-    f = FuncFormatter(lambda v, _p: f"{100 * v:.0f}\\%")
+    f = FuncFormatter(lambda v, _p: f"{round(100 * v, 2):g}\\%")  # 0.1%, 1%, 25%
     (ax.yaxis if axis == "y" else ax.xaxis).set_major_formatter(f)
 
 

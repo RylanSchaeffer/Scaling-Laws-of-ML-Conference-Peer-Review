@@ -21,22 +21,21 @@ import numpy as np
 import pandas as pd
 
 from peerreview.levels import LEVELS, ROOT, calibrated
-from peerreview.model import ReviewModel
+from peerreview.model import MAIN_FORM, ReviewModel
 from peerreview.simulate import stable_seed
 from peerreview.validation import replay_tiers
 
 OBS = dict(n=764, accept_rate=(206 + 195) / 2 / 764, tiers1=(4, 25), tiers2=(2, 23), overlap=3,
            spot1_rej2=13, spot2_rej1=13, top1_rej2=13, top2_rej1=13)
+# Every variant reviews on the main form (integer 1-10 scores, four reviews per paper), which is the 2021 form.
+FORM = MAIN_FORM
 VARIANTS = {
-    "gauss/gauss": ReviewModel(R=4),
-    "gauss/gauss+shared": ReviewModel(R=4, sigma_u=0.5),
-    "gauss/t3": ReviewModel(R=4, noise="t3"),
-    "beta/gauss": ReviewModel(R=4, quality="beta"),
-    "beta/t3": ReviewModel(R=4, quality="beta", noise="t3"),
-    "exp/gauss": ReviewModel(R=4, quality="exp"),
-    # Heavy-tailed noise on a bounded 1-to-10 scale, as real reviews are (not in Fig. 6).
-    "gauss/t3 1-10": ReviewModel(R=4, noise="t3", scale="int10"),
-    "beta/t3 1-10": ReviewModel(R=4, quality="beta", noise="t3", scale="int10"),
+    "gauss/gauss": ReviewModel(**FORM),
+    "gauss/gauss+shared": ReviewModel(**FORM, sigma_u=0.5),
+    "gauss/t3": ReviewModel(**FORM, noise="t3"),
+    "beta/gauss": ReviewModel(**FORM, quality="beta"),
+    "beta/t3": ReviewModel(**FORM, quality="beta", noise="t3"),
+    "exp/gauss": ReviewModel(**FORM, quality="exp"),
 }
 # Subsample: the decided-paper equivalent of the 9,122-paper conference (9,122 x 764 / 882).
 DESIGNS = {"pool": dict(N_conf=None, reps=20_000), "subsample": dict(N_conf=7902, reps=4000)}

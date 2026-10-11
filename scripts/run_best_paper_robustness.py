@@ -1,25 +1,23 @@
-"""How sure are the Best Paper probabilities? The same tiers as make_best_paper.py, under every
-variant that fits the acceptance data equally well (each refitted to the central NeurIPS 2021
-disagreement), at NeurIPS 2014 and 2026 size.
+"""Where a second review would place the Best Paper under each model variant, at the NeurIPS 2014
+and 2026 conferences (their submissions, acceptance rates, oral and spotlight counts), on the main
+review form (integer 1-10 scores, four reviews per paper; other forms: scripts/run_scale_impact.py).
 
-The model's Best Paper is the top-scored paper (ties broken at random). For each variant the
-script simulates whole conferences, each reviewed by two independent reviews, and records
-two things about the first review's Best Paper. The rerun framing the paper reports (p2_*): the
-probability that the second review ranks it in its top M, for M = 1 (the Best Paper again), 10, the oral
-count and the accepted count; one minus the last is the probability that a second review
-rejects it. The true-rank framing (p_*): the probability that it is truly in the top M.
+The model's Best Paper is the top-scored paper (ties broken at random). For each variant the script
+simulates whole conferences, each reviewed twice, and records where the second review ranks the
+first review's Best Paper (p2_*: in its top M for M = 1, 10, the oral count, the oral plus spotlight
+count and the accepted count; one minus the last is the probability that it rejects the paper) and
+the paper's true rank (p_*).
 
-Variants: Gaussian (the main model); quality bounded, exponential, lognormal or heavy-tailed
-(t3), R = 3; reviews on a 1-10 or ICLR scale, R = 4; heavy-tailed (t3) reviewer noise on a
-1-10 scale; and 1% or 5% "rave" reviews (always 10) or 5% random reviews on a 1-10 scale.
+Variants change one thing about the Gaussian model: the quality distribution (bounded, exponential,
+lognormal, t3), the reviewer noise (t3), shared paper-level noise, or a share of careless reviews
+("rave" = the top score, "random" = a random point).
+Every variant is recalibrated at the central level (results/calibration_variants.csv).
 
-Each variant also replays the NeurIPS 2021 top tier (validation.replay_tiers, the 764-paper
-subsample design of run_validation_neurips2021.py): the overlap of the two committees'
-oral-plus-spotlight tiers, observed 3. This is the one data set that reaches the top of the
-ranking, so it tests the quality tails that acceptance data cannot see.
+Each variant also replays the NeurIPS 2021 top tier (validation.replay_tiers, the 764-paper decided
+set within a 7,902-paper conference), for Fig. 5d.
 
 Writes results/best_paper_robustness.csv.
-Usage: uv run python scripts/run_best_paper_robustness.py [--workers 5]
+Usage: uv run python scripts/run_best_paper_robustness.py [--workers 2]
 """
 
 from __future__ import annotations
@@ -31,30 +29,36 @@ from concurrent.futures import ProcessPoolExecutor
 import pandas as pd
 
 from peerreview.levels import ROOT, calibrated
-from peerreview.model import ReviewModel
+from peerreview.model import MAIN_FORM, ReviewModel
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.validation import replay_tiers
 
-VARIANTS = {  # name: (group, model)
-    "Gaussian": ("main", ReviewModel(R=4)),
-    "bounded quality": ("quality", ReviewModel(R=3, quality="beta")),
-    "exponential quality": ("quality", ReviewModel(R=3, quality="exp")),
-    "lognormal quality": ("quality", ReviewModel(R=3, quality="lognormal")),
-    "$t_3$ quality": ("quality", ReviewModel(R=3, quality="t3")),
-    "1-10 scale": ("scale", ReviewModel(R=4, scale="int10")),
-    "ICLR scale": ("scale", ReviewModel(R=4, scale="iclr6")),
-    "$t_3$ noise, 1-10": ("noise", ReviewModel(R=4, noise="t3", scale="int10")),
-    "1% rave reviews": ("careless", ReviewModel(R=4, scale="int10", careless=0.01, careless_kind="rave")),
-    "5% rave reviews": ("careless", ReviewModel(R=4, scale="int10", careless=0.05, careless_kind="rave")),
-    "5% random reviews": ("careless", ReviewModel(R=4, scale="int10", careless=0.05, careless_kind="random")),
+VARIANTS = {  # name: (group, changes to the year's real review form)
+    "Gaussian": ("main", {}),
+    "bounded quality": ("quality", dict(quality="beta")),
+    "exponential quality": ("quality", dict(quality="exp")),
+    "lognormal quality": ("quality", dict(quality="lognormal")),
+    "$t_3$ quality": ("quality", dict(quality="t3")),
+    "$t_3$ noise": ("noise", dict(noise="t3")),
+    "shared noise": ("noise", dict(sigma_u=0.5)),
+    "1% rave reviews": ("careless", dict(careless=0.01, careless_kind="rave")),
+    "5% rave reviews": ("careless", dict(careless=0.05, careless_kind="rave")),
+    "5% random reviews": ("careless", dict(careless=0.05, careless_kind="random")),
 }
+
+
+def form_model(year: int, changes: dict) -> ReviewModel:
+    """The main review form (integer 1-10 scores, four reviews per paper) with the variant's changes."""
+    return ReviewModel(**MAIN_FORM, **changes)
+
+
 REPS = {2014: 200_000, 2026: 40_000}
 OVERLAP_REPS, OBS_OVERLAP = 4000, 3
 
 
 def job(name: str, year: int) -> dict:
-    group, m0 = VARIANTS[name]
-    m = calibrated(m0, "central")
+    group, changes = VARIANTS[name]
+    m = calibrated(form_model(year, changes), "central")
     v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
     x = v[(v.venue == "NeurIPS") & (v.year == year) & (v.denominator != "decided")].iloc[0]
     N, A, orals = int(x.N_used), int(round(x.N_used * x.acc_rate_used)), int(x.orals_used)
@@ -65,7 +69,7 @@ def job(name: str, year: int) -> dict:
                             salt=f"best-paper-robustness-{name}")
     return {"variant": name, "group": group, "year": year, "N": N, "accepted": A, "orals": orals,
             "spotlights": spotlights, "level": "central",
-            "R": m.R, "sigma_eps": m.sigma_eps, "reps": r["reps"], "seed": r["seed"],
+            "R": m.R, "scale": m.scale, "sigma_eps": m.sigma_eps, "reps": r["reps"], "seed": r["seed"],
             "p_best": r["winner_in_best"], "p_top10": r["winner_in_top10"], "p_oral": r["winner_in_oral"],
             "p_spot": r["winner_in_spot"],
             "p_accept": r["winner_in_accept"], "p_reject": 1 - r["winner_in_accept"],
@@ -79,7 +83,7 @@ def job(name: str, year: int) -> dict:
 
 
 def overlap_job(name: str) -> dict:
-    m = calibrated(VARIANTS[name][1], "central")
+    m = calibrated(form_model(2021, VARIANTS[name][1]), "central")  # the replay is of NeurIPS 2021, on its form
     seed = stable_seed(name, "best-paper-robustness-overlap2021")
     st = replay_tiers(m, OVERLAP_REPS, seed, n=764, accept_rate=(206 + 195) / 2 / 764, tiers1=(4, 25),
                       tiers2=(2, 23), N_conf=7902)
@@ -91,7 +95,7 @@ def overlap_job(name: str) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--workers", type=int, default=5)
+    ap.add_argument("--workers", type=int, default=2)
     args = ap.parse_args()
     jobs = [(n, y) for n in VARIANTS for y in REPS]
     with ProcessPoolExecutor(max_workers=args.workers) as ex:

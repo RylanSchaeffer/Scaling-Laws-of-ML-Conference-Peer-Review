@@ -179,11 +179,13 @@ TIER_CURVES = (  # Fig 3a,b: tier suffix in results/tier_scaling.csv, colour, le
 
 
 def tier_curves(ax, prefix: str):
-    """One line per tier from results/tier_scaling.csv: central level, pessimistic-to-optimistic
-    band. prefix 'p2' (the Best Paper ranks within the tier under a second review) or 'ovl'
-    (two reviews' tier overlap; no Best Paper curve); log-log axes over N = 1K..100K. The tier
-    names go in one legend under the figure."""
-    t = load("tier_scaling")
+    """One line per tier from the simulated grid rows of results/best_paper.csv (the NeurIPS 2026 review
+    form, tier sizes on NeurIPS's trends): central level, pessimistic-to-optimistic band. prefix 'p2'
+    (the Best Paper ranks within the tier under a second review) or 'overlap' (the proportion of one
+    review's tier that the other also ranks in it); log-log axes over N = 1K..100K. The tier names go
+    in one legend under the figure."""
+    t = load("best_paper")
+    t = t[t.source == "grid"]
     for tier, color, label, _ in TIER_CURVES:
         # The overlap of two one-paper tiers is the probability that both reviews pick the same paper: p2_best.
         col = "p2_best" if tier == "best" else f"{prefix}_{tier}"
@@ -197,8 +199,8 @@ def tier_curves(ax, prefix: str):
         ax.plot(cen.N, cen[col], color=color, lw=1.6 * P.S, label=label)
     P.n_axis(ax)
     ax.set_yscale("log")
-    ax.set_ylim(0.003, 1.0)
-    ax.yaxis.set_major_locator(FixedLocator([0.01, 0.1, 1.0]))
+    ax.set_ylim(0.0008, 1.0)  # the Best Paper line reaches 0.1% at 100K
+    ax.yaxis.set_major_locator(FixedLocator([0.001, 0.01, 0.1, 1.0]))
     ax.yaxis.set_minor_locator(NullLocator())
     P.pct_axis(ax)
     mark_venues(ax)
@@ -344,7 +346,7 @@ def fig_venues():
     ax.set_ylabel("Probability")
     ax.set_title("Best Paper, second review", loc="left")
     ax = axes[1]
-    tier_curves(ax, "ovl")
+    tier_curves(ax, "overlap")
     ax.set_ylabel("Overlap of two reviews")
     ax.set_title("Tier overlap, two reviews", loc="left")
     mark_venues(ax, label=True)  # the top of (b) is empty
@@ -380,38 +382,33 @@ def fig_venues():
 
 
 def fig_mechanism():
-    """Rerun framing throughout: two independent reviews. (a) Overlap of their top-10 sets
-    (constant number) against their top-1% sets (fixed proportion). (b) The second review's expected
-    score for the first review's top-scored paper falls ever further below the second
-    review's own 10th-best score. (c) Reviews per paper that hold the top-10 overlap at its
-    1K value as N grows (results/analytic_R_needed.csv), without and with shared noise."""
-    g = load("sweep_g")
+    """Rerun framing throughout: two independent reviews, simulated on the NeurIPS 2026 review form
+    (results/best_paper.csv grid rows). (a) Overlap of their top-10 sets (constant number) against their
+    top-1% sets (fixed proportion). (b) The second review's expected score for the first review's
+    top-scored paper falls ever further below the second review's own 10th-best score. (c) Reviews per paper that hold the top-10 overlap at its
+    1K value as N grows (results/R_needed.csv), without and with shared noise."""
+    t = load("best_paper")
+    t = t[t.source == "grid"]
     fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.62))
 
     ax = axes[0]
-    series = (("K", 10, "ovl_K10", P.BLUE[650], "Top 10"), ("p", 0.01, "ovl_p1pct", P.MUTED, "Top 1\\%"))  # tier colours of Figs 1c, 3
-    for kind, size, col, c, label in series:
-        q, kw = ("ovl_K", dict(K=size)) if kind == "K" else ("ovl_pct_finite", dict(p=size))
-        cen, lo, hi = (A(q, lev, **kw) for lev in ("central", "pessimistic", "optimistic"))
-        ax.fill_between(cen.N, lo.value, hi.value, color=c, alpha=0.13, lw=0)
-        ax.plot(cen.N, cen.value, color=c, lw=1.6 * P.S, label=label)
-        sim_points(ax, g, col, c)
+    for col, c, label in (("overlap_top10", P.BLUE[650], "Top 10"), ("overlap_top1pct", P.MUTED, "Top 1\\%")):  # tier colours of Figs 1c, 3
+        lo, cen, hi = (t[t.level == lev].sort_values("N") for lev in LEV)
+        ax.fill_between(cen.N, lo[col].values, hi[col].values, color=c, alpha=0.13, lw=0)
+        ax.plot(cen.N, cen[col], color=c, lw=1.6 * P.S, label=label)
     P.n_axis(ax)
     ax.set_ylim(0, 0.4)
     P.pct_axis(ax)
     ax.set_ylabel("Overlap of two reviews")
     ax.set_title("Number falls, proportion holds", loc="left")
-    h, l = ax.get_legend_handles_labels()
-    ax.legend(handles=h + sim_legend_handles(), loc="upper right", ncol=2, handlelength=1.3, borderaxespad=0.2, columnspacing=1.0)
+    ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
 
     ax = axes[1]
-    bar = A("E_kth_best", "central", K=10)
-    top = A("E_score2_top_score", "central")
-    sd = A("cond_sd2", "central").value.iloc[0]
-    ax.plot(bar.N, bar.value, color=P.BLUE[650], lw=1.6 * P.S, label="Second review's 10th-best score")
-    ax.fill_between(top.N, top.value - sd, top.value + sd, color=P.INK, alpha=0.08, lw=0)  # +-1 SD of that score
-    ax.plot(top.N, top.value, color=P.INK, lw=1.6 * P.S, label="First review's Best Paper")
+    cen = t[t.level == "central"].sort_values("N")
+    ax.plot(cen.N, cen.z2_tenth, color=P.BLUE[650], lw=1.6 * P.S, label="Second review's 10th-best score")
+    ax.fill_between(cen.N, cen.z2_winner - cen.z2_winner_sd, cen.z2_winner + cen.z2_winner_sd, color=P.INK, alpha=0.08, lw=0)  # +-1 SD
+    ax.plot(cen.N, cen.z2_winner, color=P.INK, lw=1.6 * P.S, label="First review's Best Paper")
     ax.set_ylabel("Second review's score (SD units)")
     ax.set_ylim(0, 6)  # headroom for the legend above the 10th-best curve (3.8 SD at 100K)
     ax.set_yticks([0, 2, 4, 6])
@@ -421,7 +418,7 @@ def fig_mechanism():
     mark_venues(ax, label=True, y=0.03, va="bottom")  # the bottom of (b) is empty
 
     ax = axes[2]
-    r = load("analytic_R_needed")
+    r = load("R_needed")
     r = r[(r.metric == "overlap") & (r.N <= 1e5)]
     for su, c, ls, label in ((0.5, P.INK, "-", "With shared noise"), (0.0, P.INK2, (0, (4, 2)), "Reviewer noise only")):
         d = r[np.isclose(r.sigma_u, su)].sort_values("N")

@@ -1,0 +1,117 @@
+"""Where a second review would place the Best Paper, simulated on the main review form
+(peerreview.model.MAIN_FORM: integer 1-10 scores, four reviews per paper), at the three reliability levels.
+
+For every venue-year in data/venues.csv (with its submissions, acceptance rate, oral and
+spotlight counts) and for a grid of submissions N with the fitted tier sizes (results/tier_sizes.csv)
+and acceptance at 25%, each replay draws one conference, reviews it twice, and records the tier the
+second review gives the first review's top-scored paper (p2_*), the overlap of the two reviews'
+tiers (overlap_*), and the second review's score for that paper against its own 10th-best score
+(z2_*). Columns match the former analytic table.
+
+Writes results/best_paper.csv.
+Usage: uv run python scripts/run_best_paper.py [--workers 2] [--reps 10000]
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
+
+import numpy as np
+import pandas as pd
+
+from peerreview.levels import LEVELS, ROOT, calibrated
+from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.simulate import simulate_best_paper, stable_seed
+from peerreview.tiers import tier_size
+
+N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
+GRID_ALPHA = 0.25
+SCALE, R = MAIN_FORM["scale"], MAIN_FORM["R"]
+
+
+def job(spec: dict) -> dict:
+    scale, R, level = spec["scale"], spec["R"], spec["level"]
+    m = calibrated(ReviewModel(R=R, scale=scale), level)
+    N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
+    if not np.isfinite(m.sigma_eps):  # the level is unreachable on this form (coarse scale: ties floor the disagreement)
+        return {**spec, "rho2": LEVELS[level], "sigma_eps": np.nan, "accepted": A, "wall_s": 0.0}
+    M_oral = int(spec["orals"]) if spec["orals"] == spec["orals"] else None  # NaN check
+    M_spot = M_oral + int(spec["spotlights"]) if M_oral and spec["spotlights"] == spec["spotlights"] else None
+    tiers = {"best": 1, "top10": 10, "accept": A}
+    if M_oral:
+        tiers["oral"] = M_oral
+    if M_spot:
+        tiers["spot"] = M_spot
+    overlap = {**tiers, "top1pct": max(1, int(round(0.01 * N)))}
+    seed = stable_seed(m.as_dict(), N, spec["reps"], "best_paper_forms", spec["source"], level)
+    t0 = time.perf_counter()
+    r = simulate_best_paper(m, N, spec["reps"], best_K=(1, 10), seed=seed, winner_tiers=tiers,
+                            second_committee=True, overlap_tiers=overlap)
+    out = {**spec, "rho2": LEVELS[level], "sigma_eps": m.sigma_eps, "accepted": A, "seed": seed}
+    for name in ("best", "top10", "oral", "spot", "accept"):
+        out[f"p2_{name}"] = r.get(f"winner_in2_{name}", np.nan)
+        out[f"p2_{name}_se"] = r.get(f"winner_in2_{name}_se", np.nan)
+        out[f"p_{name}"] = r.get(f"winner_in_{name}", np.nan)
+        out[f"overlap_{name}"] = r.get(f"overlap_{name}", np.nan)
+        out[f"overlap_{name}_se"] = r.get(f"overlap_{name}_se", np.nan)
+    out["p2_reject"] = 1.0 - out["p2_accept"]
+    out["p2_reject_se"] = out["p2_accept_se"]
+    out["p_reject"] = 1.0 - out["p_accept"]
+    out["p_top10pct"] = np.nan
+    out["overlap_top1pct"] = r["overlap_top1pct"]
+    out["overlap_top1pct_se"] = r["overlap_top1pct_se"]
+    for k in ("winner_rank2_median", "winner_rank2_q10", "winner_rank2_q90", "winner_rank_median",
+              "z2_winner", "z2_winner_sd", "z2_winner_se", "z2_tenth", "z2_tenth_sd", "z2_tenth_se"):
+        out[k] = r[k]
+    out["wall_s"] = time.perf_counter() - t0
+    return out
+
+
+def specs(reps: int) -> list[dict]:
+    v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
+    v = v[v.denominator != "decided"]
+    sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))[["venue", "year", "spotlights"]]
+    v = v.merge(sp, on=["venue", "year"], how="left")
+    fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
+    out = []
+    for _, x in v.iterrows():
+        for level in LEVELS:
+            out.append({"source": "venue", "venue": x.venue, "year": int(x.year), "N": int(x.N_used),
+                        "alpha": float(x.acc_rate_used), "orals": x.orals_used, "spotlights": x.spotlights,
+                        "scale": SCALE, "R": R, "level": level, "reps": reps})
+    for N in N_GRID:
+        for level in LEVELS:
+            o = tier_size(fits, "orals", N)
+            out.append({"source": "grid", "venue": "", "year": np.nan, "N": N, "alpha": GRID_ALPHA,
+                        "orals": o, "spotlights": tier_size(fits, "spotlights", N),
+                        "scale": SCALE, "R": R, "level": level, "reps": reps if N <= 10_000 else max(2000, reps // 2)})
+    return out
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--workers", type=int, default=2)
+    ap.add_argument("--reps", type=int, default=10_000)
+    args = ap.parse_args()
+    sp = sorted(specs(args.reps), key=lambda s: -s["N"] * s["R"] * s["reps"])  # longest first
+    rows = []
+    t0 = time.perf_counter()
+    with ProcessPoolExecutor(max_workers=args.workers) as ex:
+        futs = [ex.submit(job, s) for s in sp]
+        for i, f in enumerate(as_completed(futs), 1):
+            r = f.result()
+            rows.append(r)
+            print(f"[{i}/{len(sp)} {time.perf_counter() - t0:.0f}s] {r['source']} {r['venue']} {r['year']} N={r['N']} "
+                  f"{r['scale']} R={r['R']} {r['level']}: p2_best={r['p2_best']:.4f} p2_top10={r['p2_top10']:.3f} "
+                  f"p2_accept={r['p2_accept']:.3f} ({r['wall_s']:.0f}s)", flush=True)
+    out = pd.DataFrame(rows).sort_values(["source", "venue", "year", "N", "level"])
+    out["year"] = out["year"].astype("Int64")
+    path = os.path.join(ROOT, "results", "best_paper.csv")
+    out.to_csv(path, index=False)
+    print(f"wrote {path}: {len(out)} rows in {time.perf_counter() - t0:.0f}s")
+
+
+if __name__ == "__main__":
+    main()

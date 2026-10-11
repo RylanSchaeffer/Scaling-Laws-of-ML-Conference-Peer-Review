@@ -115,6 +115,8 @@ class _Acc:
             n = int(ok.sum())
             out[k] = float(v[ok].mean()) if n else np.nan
             out[f"{k}_se"] = float(v[ok].std(ddof=1) / np.sqrt(n)) if n > 1 else np.nan
+            if k.startswith("z2_"):  # score positions also report their spread across conferences
+                out[f"{k}_sd"] = float(v[ok].std(ddof=1)) if n > 1 else np.nan
         return out
 
 
@@ -254,13 +256,19 @@ def simulate_best_paper(
     salt: str = "",
     winner_tiers: dict[str, int] | None = None,
     second_committee: bool = False,
+    overlap_tiers: dict[str, int] | None = None,
 ) -> dict:
     """High-replication P(best paper in Top_K) and winner rank; O(N) per conference.
 
     winner_tiers {name: M} adds winner_in_{name} = P(the top-scored paper is in the true top M).
     second_committee re-reviews every paper with fresh noise (u and eps redrawn) and adds
     winner_rank2, the top-scored paper's rank by the second committee's scores, and
-    winner_in2_{name} = P(that rank <= M): where a rerun of review would place the Best Paper.
+    winner_in2_{name} = P(that rank <= M): where a second review would place the Best Paper.
+    With second_committee, overlap_tiers {name: K} adds overlap_{name}, the proportion of the
+    first review's top K that the second review also ranks in its top K (K = 1 is the
+    probability that both reviews pick the same Best Paper), and z2_winner and z2_tenth, the
+    second review's score for the first review's Best Paper and its own 10th-best score, both
+    in units of the second review's score SD about its mean.
     """
     if seed is None:
         seed = stable_seed(m.as_dict(), N, reps, "best", salt)
@@ -290,6 +298,17 @@ def simulate_best_paper(
             acc.add("winner_rank2", rank2)
             for name, M in (winner_tiers or {}).items():
                 acc.add(f"winner_in2_{name}", rank2 <= M)
+            if overlap_tiers:
+                order1 = np.argsort(-s, axis=1)
+                order2 = np.argsort(-s2, axis=1)
+                in2 = np.zeros(s.shape, dtype=bool)
+                for name, K in sorted(overlap_tiers.items(), key=lambda kv: kv[1]):
+                    K = int(K)
+                    in2[rows[:, None], order2[:, :K]] = True  # grows with K: tiers nest
+                    acc.add(f"overlap_{name}", in2[rows[:, None], order1[:, :K]].sum(1) / K)
+                mu2, sd2 = s2.mean(axis=1), s2.std(axis=1)
+                acc.add("z2_winner", (s2[rows, w] - mu2) / sd2)
+                acc.add("z2_tenth", (s2[rows, order2[:, 9]] - mu2) / sd2)
         done += r
     row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability}
     row.update(acc.summary())

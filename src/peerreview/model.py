@@ -17,7 +17,7 @@ from dataclasses import asdict, dataclass
 import numpy as np
 from scipy import special, stats
 
-# Score scales on the latent 1-to-10 axis (handoff §3.2). "iclr4" is ICLR 2020.
+# Score scales on the latent 1-to-10 axis (handoff §3.2, data/review_forms.csv). "iclr4" is ICLR 2020.
 SCALES: dict[str, np.ndarray | None] = {
     "continuous": None,
     "int10": np.arange(1.0, 11.0),
@@ -25,7 +25,13 @@ SCALES: dict[str, np.ndarray | None] = {
     "iclr6": np.array([1.0, 3.0, 5.0, 6.0, 8.0, 10.0]),
     "five": np.linspace(1.0, 10.0, 5),
     "iclr4": np.array([1.0, 3.0, 6.0, 8.0]),
+    "iclr2026": np.array([0.0, 2.0, 4.0, 6.0, 8.0, 10.0]),  # ICLR 2026 review form
 }
+# The review form of the main results: integer 1-to-10 overall scores, four reviews per paper. The scale
+# NeurIPS used from 2014 to 2024 (also ICML 2023-2024 and ICLR 2017-2019 and 2021) and the form of the
+# NeurIPS 2021 two-committee experiment that calibrates the model; NeurIPS and ICML assign four reviews.
+# Other forms (data/review_forms.csv) are tested in the score-scale section (scripts/run_scale_impact.py).
+MAIN_FORM: dict = {"R": 4, "scale": "int10"}
 QUALITY_DISTS = ("gaussian", "beta", "exp", "t3", "lognormal")
 NOISE_DISTS = ("gaussian", "t3")
 CARELESS_KINDS = ("rave", "random")

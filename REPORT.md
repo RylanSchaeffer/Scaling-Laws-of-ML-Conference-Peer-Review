@@ -489,13 +489,13 @@ out of the main analyses.
     and variant (`run_calibration.py --forms-only`); the forms in use are recorded in
     `data/review_forms.csv` and compared in `results/scale_impact.csv` (`run_scale_impact.py`,
     Fig. 7 and Section 7 of the paper). Headline numbers, central level, where a second review
-    places the NeurIPS Best Paper (10,000 replays; the Best Paper and top-ten rows for the cited
-    years are being re-simulated with 50,000):
+    places the NeurIPS Best Paper (10,000 replays; the Best Paper and top-ten rows use 50,000
+    replays at 2014 and 2021 and 30,000 at 2026, `run_best_paper_hirep.py --venues`):
 
     | | 2014 | 2021 | 2026 |
     |---|---|---|---|
-    | Best Paper again | 2.5% | 0.9% | 0.4% |
-    | Top ten again | 14% | 6% | 3% |
+    | Best Paper again | 2.4% | 0.9% | 0.3% |
+    | Top ten again | 14% | 6% | 2.5% |
     | Oral again | 22% | 18% | 15% |
     | Spotlight tier | 47% | 46% | 31% |
     | Merely accepted (no award) | 37% | 43% | 60% |

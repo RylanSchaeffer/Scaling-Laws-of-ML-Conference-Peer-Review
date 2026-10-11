@@ -52,7 +52,8 @@ def main() -> None:
     args = ap.parse_args()
     b = pd.read_csv(PATH)
     if args.venues:
-        rows = b[(b.source == "venue") & [(v, int(y)) in VENUE_YEARS for v, y in zip(b.venue, b.year)]]
+        cited = pd.Series([(v, int(y)) in VENUE_YEARS if y == y else False for v, y in zip(b.venue, b.year)], index=b.index)
+        rows = b[(b.source == "venue") & cited]
         specs = sorted({(int(r.N), r.level, f"{r.venue}{int(r.year)}") for r in rows.itertuples()}, key=lambda s: -s[0])
     else:
         grid = b[b.source == "grid"]

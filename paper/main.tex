@@ -11,6 +11,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage[font=small,labelfont=bf,skip=4pt]{caption}
+\usepackage{booktabs}
 \usepackage{microtype}
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=1.4em}
@@ -109,7 +110,7 @@ Machine learning conferences do two jobs. They accept good papers, and they give
 
 Both jobs now run at a far larger scale (Fig.~\ref{fig:main}a). NeurIPS received 1,678 submissions in 2014 and 30,709 in 2026; ICML and ICLR grew alike \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}. The process stayed the same: a few reviews per paper, a mean score on a short scale, and a final call by area chairs. Is each tier a constant number, a fixed proportion of submissions, or something between? Fitting each NeurIPS count to a power of submissions, $N^{\gamma}$, puts acceptance at $\gamma=1.05$, a fixed proportion, and spotlights at 0.72 and orals at 0.59, between (Fig.~\ref{fig:main}b); Best Papers, 1 to 13 a year, are close to a constant number. The oral proportion fell from 1.2\% to 0.4\% at NeurIPS and from 3.0\% to 0.7\% at ICML (2021--2026). We ask whether review still separates signal from noise well enough to give its awards to the right papers.
 
-True quality is never observed, so we ask the question that can be measured. Two field experiments, at NeurIPS 2014 and 2021, sent the same papers to two independent committees, and both times the second committee rejected about half of the papers the first accepted \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}. We ask the same of the Best Paper: if a second review, with new reviewers and area chairs, re-ranked every paper, would it rank the Best Paper first again or in its top ten, give it an oral or a spotlight, merely accept it, or reject it? How do these chances change as conferences grow? A Best Paper is a single paper, which no experiment can measure. We therefore model the NeurIPS review process: four reviews per paper, each an integer score from 1 to 10 that is quality plus noise, and papers ranked by their mean score. We calibrate the noise to the two experiments, bound it with ICLR's reviewer agreement, test the model on held-out ICLR and NeurIPS data, and simulate what a second review would do to the Best Paper. We find:
+True quality is never observed, so we ask the question that can be measured. Two field experiments, at NeurIPS 2014 and 2021, sent the same papers to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}. We ask the same of the Best Paper: if a second review, with new reviewers and area chairs, re-ranked every paper, would it rank the Best Paper first again or in its top ten, give it an oral or a spotlight, merely accept it, or reject it? How do these chances change as conferences grow? A Best Paper is a single paper, which no experiment can measure. We therefore model the NeurIPS review process: four reviews per paper, each an integer score from 1 to 10 that is quality plus noise, and papers ranked by their mean score. We calibrate the noise to the two experiments, bound it with ICLR's reviewer agreement, test the model on held-out ICLR and NeurIPS data, and simulate what a second review would do to the Best Paper. We find:
 \begin{enumerate}
 \item \textbf{Best Papers are close to a constant number ($N^{0}$), for which the chance that a second review reproduces the outcome falls as a power law without a floor.} From NeurIPS 2014 to 2026 the chance that a second review confirms the Best Paper fell from 2.5\% to 0.3\%, the chance that it is in the top ten again from 14\% to 2.6\%, and the chance that it is merely accepted rose from 38\% to 61\% (Fig.~\ref{fig:main}c; Section~\ref{sec:best}). The top score goes to ever luckier papers: the confirmation chance decays as $N^{-0.75}$ over $10^3$ to $10^5$ submissions (Fig.~\ref{fig:scaling}a; Section~\ref{sec:best}).
 \item \textbf{Acceptance is a fixed proportion of submissions ($N^{1.05}$), and for a fixed proportion growth changes nothing.} At every size a second review rejects about half of the accepted papers, and the overlap of two reviews' accepted sets stays at 48\% from 1,000 to 100,000 submissions (Fig.~\ref{fig:scaling}d; Section~\ref{sec:accept}).
@@ -117,6 +118,27 @@ True quality is never observed, so we ask the question that can be measured. Two
 \item \textbf{No variant of the model that fits the acceptance data, and no score scale in use, lets a second review confirm the Best Paper.} At NeurIPS 2026 size the chance is 0.1\% to 1.3\% across the variants and 0.15\% to 0.3\% across every scale with five or more points; the three quality distributions that favour it predict 8 to 11 shared NeurIPS 2021 orals and spotlights, against the 3 observed (Sections~\ref{sec:sure} and~\ref{sec:scales}).
 \item \textbf{A Best Paper is a lottery draw among many good papers: a second review would accept it but not single it out.} At NeurIPS 2026 size a second review would accept the Best Paper with probability 90\% but give it any award, a spotlight or better, with only 30\% (Section~\ref{sec:results}).
 \end{enumerate}
+
+\begin{center}
+\small
+\captionof{table}{\textbf{The same papers reviewed twice: the NeurIPS 2014 and 2021 experiments.} Two independent committees, each with its own reviewers and area chairs, decided the same submissions \citep{cortes2021inconsistency,beygelzimer2023neurips}.}
+\label{tab:experiments}
+\begin{tabular}{lrr}
+\toprule
+ & NeurIPS 2014 & NeurIPS 2021 \\
+\midrule
+Submissions to the conference & 1,678 & 9,122 \\
+Papers decided by both committees & 166 & 764 \\
+Accepted by committee 1, by committee 2 & 43, 44 & 206, 195 \\
+Accepted by both & 22 & 99 \\
+One committee's accepted papers rejected by the other & 49\%, 50\% & 52\%, 49\% \\
+Orals plus spotlights in committee 1, in committee 2 & -- & 29, 25 \\
+In that tier in both & -- & 3 \\
+One committee's orals and spotlights rejected by the other & -- & 13 of 29, 13 of 25 \\
+The 4 and 2 orals, in the other committee & -- & 6 posters, no award \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \section{Methods}\label{sec:methods}
 

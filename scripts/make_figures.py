@@ -179,32 +179,29 @@ TIER_CURVES = (  # Fig 2a: tier suffix in results/best_paper.csv, colour, legend
 )
 
 
+Y_FLOOR = 0.00008  # shared y axis of Fig 2: 0.01% to 100%
+Y_TICKS = [0.0001, 0.001, 0.01, 0.1, 1.0]
+
+
 def tier_curves(ax, prefix: str):
-    """One line per tier from the simulated grid rows of results/best_paper.csv (the NeurIPS 2026 review
-    form, tier sizes on NeurIPS's trends): central level, pessimistic-to-optimistic band. prefix 'p2'
-    (the Best Paper ranks within the tier under a second review) or 'overlap' (the proportion of one
-    review's tier that the other also ranks in it); log-log axes over N = 1K..100K. The tier names go
-    in one legend under the figure."""
+    """Fig 2a: one line per tier from the grid rows of results/best_paper.csv, central level, log-log over
+    N = 1K..100K. prefix 'p2': the probability that a second review ranks the first review's Best Paper
+    within the tier (tiers nest). The tier names go in one legend under the figure."""
     t = load("best_paper")
-    t = t[t.source == "grid"]
+    t = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
     for tier, color, label, _ in TIER_CURVES:
-        # The overlap of two one-paper tiers is the probability that both reviews pick the same paper: p2_best.
         col = "p2_best" if tier == "best" else f"{prefix}_{tier}"
-        lo, cen, hi = (t[t.level == lev].sort_values("N") for lev in LEV)
-        if tier == "best":  # a black band would read as grey, the Accepted colour: dashed edges tie it to its line
-            ax.fill_between(cen.N, lo[col].values, hi[col].values, color=color, alpha=0.07, lw=0)
-            for edge in (lo, hi):
-                ax.plot(cen.N, edge[col], color=color, lw=0.6 * P.S, ls=(0, (2, 2)))
-        else:
-            ax.fill_between(cen.N, lo[col].values, hi[col].values, color=color, alpha=0.12, lw=0)
-        ax.plot(cen.N, cen[col], color=color, lw=1.6 * P.S, label=label)
+        ax.plot(t.N, t[col], color=color, lw=1.6 * P.S, label=label)
+    log_prob_axis(ax)
+
+
+def log_prob_axis(ax):
     P.n_axis(ax)
     ax.set_yscale("log")
-    ax.set_ylim(0.0008, 1.0)  # the Best Paper line reaches 0.1% at 100K
-    ax.yaxis.set_major_locator(FixedLocator([0.001, 0.01, 0.1, 1.0]))
+    ax.set_ylim(Y_FLOOR, 1.0)
+    ax.yaxis.set_major_locator(FixedLocator(Y_TICKS))
     ax.yaxis.set_minor_locator(NullLocator())
     P.pct_axis(ax)
-    mark_venues(ax)
 
 
 def fig_headline():
@@ -334,46 +331,24 @@ def fig_validation():
 # ---------------------------------------------------------------------------
 
 
-PLACE_CURVES = (  # Fig 2b-d: the second review's tier for a paper the first review put in a tier; column suffix, colour, label
-    ("accept", P.MUTED, "Accepted"),
-    ("spot", P.BLUE[250], "Spotlight"),
-    ("oral", P.BLUE[450], "Oral"),
-)
-
-
 def fig_scaling():
     """The scaling laws: where a second review places a paper that the first review made (a) the Best
     Paper (results/best_paper.csv grid rows, p2_*), (b) an oral, (c) a spotlight or (d) an accepted paper
     (results/placement.csv, place_{first}_in_{second}), against submissions N on NeurIPS's tier trends.
-    Each curve is the probability of that tier or a higher one (tiers nest), central level with the
-    pessimistic-to-optimistic band, log-log. A paper keeps its own tier with the tier's overlap."""
+    Every panel draws the same five nested curves, the probability of that tier or a higher one, at the
+    central level: above the paper's own tier a promotion, the own tier its overlap, below it a demotion."""
     pl = load("placement")
+    pl = pl[pl.level == "central"].sort_values("N")
     fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.42))
     ax = axes[0]
     tier_curves(ax, "p2")
     ax.set_title("Best Paper", loc="left")
-    for ax, first, title in ((axes[1], "oral", "Oral paper"), (axes[2], "spot", "Spotlight paper"),
-                             (axes[3], "accept", "Accepted paper")):
-        for second, color, label in PLACE_CURVES:
-            col = f"place_{first}_in_{second}"
-            if col not in pl.columns or pl[col].isna().all():
-                continue
-            # only the paper's own tier and the tiers below it: a promotion to a smaller tier is rare and off this axis
-            if TIER_ORDER.index(second) < TIER_ORDER.index(first):
-                continue
-            lo, cen, hi = (pl[pl.level == lev].sort_values("N") for lev in LEV)
-            ax.fill_between(cen.N, lo[col].values, hi[col].values, color=color, alpha=0.12, lw=0)
-            ax.plot(cen.N, cen[col], color=color, lw=1.6 * P.S, label=label)
-        P.n_axis(ax)
-        ax.set_yscale("log")
-        ax.set_ylim(0.0008, 1.0)  # the same axis as (a): the Best Paper's curves plunge, the accepted paper's line is flat
-        ax.yaxis.set_major_locator(FixedLocator([0.001, 0.01, 0.1, 1.0]))
-        ax.yaxis.set_minor_locator(NullLocator())
-        P.pct_axis(ax)
+    for ax, first, title in ((axes[1], "oral", "Oral paper"), (axes[2], "spot", "Spotlight paper"), (axes[3], "accept", "Accepted paper")):
+        for second, color, label, _ in TIER_CURVES:
+            ax.plot(pl.N, pl[f"place_{first}_in_{second}"], color=color, lw=1.6 * P.S, label=label)
+        log_prob_axis(ax)
         ax.set_title(title, loc="left")
-        mark_venues(ax)
     axes[0].set_ylabel("Probability, second review")
-    mark_venues(axes[3], label=True, y=0.97)  # the top of (d) is empty: only the accepted line, at 48%
     h, l = axes[0].get_legend_handles_labels()  # the five tiers, from (a)
     fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=5, handlelength=1.3, columnspacing=1.2,
                title="Tier the second review gives the paper; each tier includes the tiers to its right", title_fontsize=P.LEGEND_PT)

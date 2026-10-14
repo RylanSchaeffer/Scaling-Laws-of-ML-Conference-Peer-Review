@@ -1,0 +1,261 @@
+{
+  "pair_id": "n21-269",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        7,
+        7
+      ],
+      "confidences": [
+        5,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_QpRs",
+        "Reviewer_tfr3"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_jysn",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only score below threshold: 5 against three 7s. Its reasons check out. Table 1 has SOTA error below the estimated Bayes error in 6 of 11 rows. Eq. 16 needs labels, and lines 176-179 select the flow model on test NLL. Section 5 omits the equal-covariance assumption. The review is short (1.5 hours, confidence 3), and jysn did not reply after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_tfr3",
+          "evidence": "Confidence 3, 'Math/other details were not carefully checked'. It says 'The claims appear well supported, with no major technical issues' but discusses no result of Section 4; its only concrete points are notation (the line-84 typo, which is correct). It rose to 7 after the rebuttal with no specific reason: 'I feel this paper is a valuable contribution'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_jysn",
+          "claim": "In several Table 1 rows the SOTA error is lower than the Bayes error, even on *MNIST datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "Six of 11 rows: Kuzushiji-MNIST 6.6e-3 vs 8.03e-3, Fashion-MNIST 3.09e-2 vs 3.36e-2, EMNIST letters 4.12e-2 vs 4.37e-2, EMNIST balanced 8.95e-2 vs 9.47e-2, CIFAR-100 3.92e-2 vs 4.59e-2, CIFAR-10 3e-3 vs 2.46e-2 (8x). A true Bayes error cannot sit 8x above a test error on 10,000 images, so the CIFAR-10 estimate is not the real Bayes error."
+        },
+        {
+          "reviewer": "Reviewer_jysn",
+          "claim": "Eq. 16 uses labels and the flow model is chosen by test NLL, so test labels drive model selection.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 176-179: 'report the numbers produced by the model with the smallest NLL loss on the test set'. The authors confirmed this to Committee B; the camera-ready text is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_jysn",
+          "claim": "Equal class covariances are a strong limitation that the limitations section does not mention.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 92-95 need a shared covariance to make the constraints linear. Section 5 (lines 263-273) names only flow quality and the unknown gap between E(p_hat) and E(p)."
+        },
+        {
+          "reviewer": "Reviewer_QpRs",
+          "claim": "HDR integration is too memory-hungry for high-dimensional data, so the paper does not meet its own high-dimensional motivation.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 48-51 fault divergence estimators in high dimensions; lines 166-169 cap all experiments at 32x32x3 because HDR is 'highly memory intensive' at 64x64x3."
+        },
+        {
+          "reviewer": "Reviewer_QpRs",
+          "claim": "The experiments compare with no other Bayes error estimator.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 has no such comparison. The authors' reply to QpRs concedes that [7] has been run on MNIST-sized data. The camera-ready still has none."
+        },
+        {
+          "reviewer": "Reviewer_B5Qe",
+          "claim": "Section 4.2 reports only MNIST and Fashion-MNIST, at one training-set size.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 185 names the two datasets; line 192 fixes 60,000 training samples. The camera-ready adds no dataset and no sample-size study."
+        },
+        {
+          "reviewer": "Reviewer_tfr3",
+          "claim": "Line 84 writes q_j(x) = N(z; mu_j, Sigma_j); it should be q_j(z).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 84 reads exactly so, and the camera-ready keeps the typo."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_QpRs",
+          "Reviewer_tfr3"
+        ],
+        "evidence": "Author responses 2021-08-10. Reviewer_QpRs edited 2021-08-26: 'would like to raise my score'. Reviewer_tfr3 edited 2021-09-13: 'will increase my score to 7'. Reviewer_B5Qe and Reviewer_jysn did not edit or reply. From these moves, A's pre-rebuttal mean was at most 6.0.",
+        "what_convinced_or_not": "QpRs credits the answers (the memory cost is in forming the constraint matrices; comparisons promised) but still asks for 'experiments with other Bayes error estimation methods'. tfr3 gives no specific reason. The responses mostly promise work for 'an updated draft': other estimators, more datasets in Section 4.2, varying sample size, other flow architectures. The camera-ready main text adds none of these."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accept matches three 7s. The meta-review is four generic bullets ('the claims are well expressed', 'the experiments are well executed') and names no concern. It ignores jysn's test-split and Table 1 points, B5Qe's 'Section 4.3 ... is somewhat weak', and the missing comparison QpRs still wanted.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three 7s, two of them raised after the rebuttal",
+        "Novel, elegant idea: exact Bayes error of a flow model via invariance and HDR integration",
+        "Clear writing; temperature gives synthetic benchmarks with known Bayes error",
+        "Promised additions accepted in place of new evidence",
+        "The one detractor (jysn) stayed silent in the discussion"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Q5Ht",
+        "Reviewer_TyQJ",
+        "Reviewer_8UYK",
+        "Reviewer_Vaq4"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 6, 5 span one point. The two 6s are mild supporters: Reviewer_TyQJ lowered to 6 in the discussion, and Reviewer_8UYK listed mostly missing baselines and did not reply after the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Q5Ht",
+          "claim": "Line 99 ('highly efficient, even in high dimensions') contradicts lines 166-169 (memory limit at 64x64x3).",
+          "checked_against_paper": "correct",
+          "evidence": "Both passages are in the submission, and line 167 blames 'the HDR integration routine' itself. The rebuttal moved the blame to forming the constraint matrices and promised to clarify; the camera-ready keeps both sentences unchanged."
+        },
+        {
+          "reviewer": "Reviewer_Q5Ht",
+          "claim": "'Highly accurate' (line 102) rests on a plot with no error numbers.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1 shows two overlapping curves from one draw, and checklist item 3(c) cites it in place of error bars. The camera-ready adds a relative-error panel over 100 runs."
+        },
+        {
+          "reviewer": "Reviewer_Q5Ht",
+          "claim": "A good density fit does not imply a good Bayes error estimate, so line 134 is too strong (counterexample with P, Q, R).",
+          "checked_against_paper": "correct",
+          "evidence": "The counterexample holds. P = N(0,1) vs N(2,1) has Bayes error Phi(-1) = 0.159. Q, closer to P in density, has Phi(-1.5) = 0.067. R = U(0,1) vs U(a,1+a) with a = 0.683 matches 0.159. The paper gives no evidence that lower NLL means a better estimate, and Section 5 (lines 270-273) concedes the gap is unknown."
+        },
+        {
+          "reviewer": "Reviewer_Q5Ht",
+          "claim": "Lines 175-181 tune on the test split, so the reported NLLs are not trustworthy.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 176-179 select lambda by the smallest test NLL. The authors confirmed it and promised a note; the camera-ready text is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_Q5Ht",
+          "claim": "The paper does not say how the class means mu_j are set.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 59-60 and 117-118 say mu_j and Sigma are learned during training."
+        },
+        {
+          "reviewer": "Reviewer_8UYK",
+          "claim": "The authors miss a recent divergence-based Bayes error estimator used on MNIST (arXiv 1811.06419).",
+          "checked_against_paper": "correct",
+          "evidence": "It is not among references [6]-[11]. The authors replied that it bounds, rather than computes, the Bayes error, on PCA or autoencoder features."
+        },
+        {
+          "reviewer": "Reviewer_8UYK",
+          "claim": "In Section 4.3 the estimated Bayes error and the SOTA error conflict for some datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "The review words it backwards ('estimated Bayes error is lower than the error of SOTA'), which is the expected case. The real conflict is the reverse: SOTA error is below the estimate in 6 of 11 Table 1 rows, CIFAR-10 by 8x."
+        },
+        {
+          "reviewer": "Reviewer_8UYK",
+          "claim": "Proposition 1 shows invariance under an invertible linear transformation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 127 allows any invertible map T; the Glow transformation is nonlinear."
+        },
+        {
+          "reviewer": "Reviewer_TyQJ",
+          "claim": "Table 1's Bayes error and SOTA columns show a strong linear relationship, with EMNIST bymerge and byclass off the trend.",
+          "checked_against_paper": "correct",
+          "evidence": "Pearson r = 0.95 over the 11 rows, and the two EMNIST splits have the largest absolute gaps. But TyQJ reads the estimates as true Bayes errors ('reassuring'), although SOTA beats the estimate in 6 rows."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": [
+          "Reviewer_Q5Ht",
+          "Reviewer_TyQJ"
+        ],
+        "evidence": "Author responses 2021-08-10. Reviewer_Q5Ht edited 2021-08-23: 'made my score slightly higher' on point 1 (efficiency). Reviewer_TyQJ replied 2021-09-01: 'lowered somewhat my initial score' because of Q5Ht's point 2 and 8UYK's issues. Reviewer_Vaq4 edited 2021-08-28: 'I do not change my evaluation'. Reviewer_8UYK's only edit is on the posting day, 2021-07-16, and it never replied. From these moves, B's pre-rebuttal mean was about 5.5.",
+        "what_convinced_or_not": "The O(KD) complexity answer convinced Q5Ht on efficiency. The continuity argument (the Bayes error converges as p_hat approaches p) did not: Q5Ht wanted evidence that lower NLL gives a better estimate. Vaq4 rejected 'same order of magnitude' as evidence against generator bias, since 'error rates of popular deep learning classifiers are all in the same order of magnitude', and agreed with Q5Ht. TyQJ was moved by the other reviewers, not by the authors."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Reject matches a 5.5 mean with two 5s. The meta-review calls the contribution valuable but says 'some claims need more precision and require more throughout empirical comparison' and that the fixes 'would require another round of reviewing'. That is Q5Ht's points 1-2, as TyQJ cited them, plus 8UYK's missing baselines.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Mean 5.5 with two 5s after the discussion",
+        "Imprecise claims on efficiency, HDR accuracy and estimator quality (Q5Ht)",
+        "No comparison with other Bayes error estimators or non-flow synthetic data (8UYK)",
+        "No evidence that a better flow fit gives a better Bayes error estimate (Q5Ht, Vaq4)",
+        "Promised fixes judged to need another review round"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Section 4.2 covers only MNIST and Fashion-MNIST (Reviewer_B5Qe)",
+    "Equal-covariance assumption missing from the limitations (Reviewer_jysn)",
+    "Reframe the work as a synthetic-benchmark generator, not a real-data Bayes error estimator (Reviewer_jysn)",
+    "Report the flow models' classification error instead of test NLL (Reviewer_jysn)",
+    "Missing literature that evaluates generative models with classifiers (Reviewer_B5Qe)",
+    "Notation errors such as line 84 (Reviewer_tfr3)"
+  ],
+  "issues_only_b": [
+    "Line 99 'highly efficient' contradicts the memory limit at lines 166-169; no complexity given (Reviewer_Q5Ht)",
+    "HDR accuracy shown only as a plot, with no error numbers or Monte Carlo baseline (Reviewer_Q5Ht)",
+    "Counterexample: a worse density fit can give the exact Bayes error (Reviewer_Q5Ht)",
+    "How NLL handles discrete pixel data is not described (Reviewer_Q5Ht)",
+    "Uncertainty-quantification baselines and the aleatoric/epistemic split; arXiv 1811.06419 not cited (Reviewer_8UYK)",
+    "Proof of Proposition 1 not found by the reviewer (Reviewer_TyQJ)"
+  ],
+  "shared_issues": [
+    "No comparison with existing Bayes error estimators (A: QpRs; B: 8UYK)",
+    "No evidence that the flow's Bayes error approximates the true one (A: jysn, QpRs; B: Q5Ht, Vaq4)",
+    "Table 1 rows where SOTA error and estimated Bayes error conflict (A: jysn; B: 8UYK)",
+    "Flow model selected on the test split (A: jysn; B: Q5Ht)",
+    "Convolutional generator may favour convolutional classifiers (A: B5Qe; B: Vaq4)",
+    "HDR memory limit undercuts the high-dimensional motivation (A: QpRs; B: Q5Ht)",
+    "Fixed training-set size; vary N (A: B5Qe, jysn; B: Q5Ht)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same strengths and the same gaps, and weighted them differently. Every reviewer liked the core idea: Proposition 1 gives the exact Bayes error of a flow model, and temperature tunes it. Both committees also found that no other Bayes error estimator is compared, that nothing shows the flow's Bayes error tracks the real one, that the flow is selected on the test split, and that a convolutional generator may favour convolutional classifiers. The scores split in the discussion phase; from the stated score moves, the pre-rebuttal means were close (A at most 6.0, B about 5.5). In A, Reviewer_QpRs and Reviewer_tfr3 rose to 7 after replies that mostly promised future work, and the one detractor, Reviewer_jysn, never replied. In B, Reviewer_Q5Ht gave line-level contradictions and a valid counterexample and stayed unconvinced on the NLL point; Reviewer_TyQJ lowered to 6 and Reviewer_Vaq4 held 5, both citing Q5Ht. A's area chair wrote four generic bullets that name no concern; B's area chair wanted the promised fixes reviewed again. The paper supports B's doubt about the real-data claims: SOTA error is below the estimated Bayes error in 6 of 11 Table 1 rows (CIFAR-10 by 8x), and the camera-ready adds none of the promised comparisons.",
+  "candidate_reasons": [
+    "Post-rebuttal scores moved oppositely",
+    "Detailed detractor steered the discussion",
+    "Lone detractor silent after rebuttal",
+    "Promises accepted versus demanded",
+    "Generic meta-review ignored concerns",
+    "Same limitations weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_Q5Ht final review, points 1-3 and after-rebuttal note",
+    "Reviewer_TyQJ discussion comment, 2021-09-01",
+    "Reviewer_Vaq4 after-rebuttal note",
+    "Reviewer_QpRs after-rebuttal note",
+    "Reviewer_tfr3 update line in summary",
+    "Reviewer_jysn review on Table 1 and Eq. 16",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1",
+    "paper_submitted.pdf lines 99-102 and 166-169",
+    "paper_submitted.pdf lines 175-181",
+    "paper_submitted.pdf Section 5, lines 270-273",
+    "paper.pdf (camera-ready): no added comparisons, Section 4.4 dropped"
+  ]
+}

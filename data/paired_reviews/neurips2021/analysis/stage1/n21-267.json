@@ -1,0 +1,235 @@
+{
+  "pair_id": "n21-267",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 9, 5],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_zi5m",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "A 9 against a 6 and a 5. The review is three short paragraphs with one weakness: a request for empirical timing, which line 350 already points to (Figures 6 and 7). The summary says the experiments show 'consistent improvement on graph classification tasks'; the paper has only node classification and link prediction. After the rebuttal: 'Thank you for your response. I expect that you can implement the suggestions provided by the reviewers.' Without this review A's mean is 5.5, the same as B's."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zi5m",
+          "evidence": "3 hours. Calls the tasks graph classification in the summary. Asks for timing data that the paper references. Does not engage with any of Reviewer_k7tB's objections to the theorems. The only post-rebuttal message is two lines of thanks."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_k7tB",
+          "claim": "Theorem 3.3 is not a fair comparison with 1-WL: for E1={(a,c),(b,c),(c,d)} and E2={(e,f),(f,g)}, a shaDow-GNN on 1-hop subgraphs cannot separate d and g, so no fixed setting of shaDow-GNN generalises 1-WL.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked by hand: the 1-hop subgraphs of d and g are both a single edge, so every shaDow-GNN gives them the same output, while 1-WL separates them after two rounds (c has degree 3, f has degree 2). Theorem 3.3 (lines 227-229) fixes no EXTRACT, and lines 208-209 present decoupling as 'making them more powerful than 1-WL'. The authors' reply concedes that an L=1 model fails and argues that L is a hyperparameter to be chosen per case, i.e. the result needs a large enough neighbourhood."
+        },
+        {
+          "reviewer": "Reviewer_k7tB",
+          "claim": "Section 3.2 says shaDow-SAGE approximates tau 'with error decaying exponentially with the model depth' but gives no error bound and no formal theorem.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 188-199 are an informal argument that ends 'at an exponential rate [26]'. Section 3.2 has no numbered result. The authors promised formal theorems; the camera-ready adds one."
+        },
+        {
+          "reviewer": "Reviewer_k7tB",
+          "claim": "Decoupling depth and scope is not new; sampling methods such as FastGCN already do it.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 287-296: layer-wise samplers such as FastGCN estimate the full L-hop aggregation and run inference on the full neighbourhood. None of them sets model depth above scope."
+        },
+        {
+          "reviewer": "Reviewer_k7tB",
+          "claim": "Only base GNNs are compared; there is no comparison with oversmoothing remedies such as PairNorm, Scattering GCN or DAGNN.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares GCN, GraphSAGE and GAT with and without GraphSAINT, all tuned with DropEdge (line 351). PairNorm [58] and DAGNN [30] are cited but not run. The authors added PairNorm and DAGNN numbers in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_CVVn",
+          "claim": "EXTRACT_1 and EXTRACT_2 are presumably 1-hop and 2-hop extractors but are not defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollaries 3.2.1 and 3.2.2 (lines 171-172) define them by conditions: subgraph size at most n, and distinct node sets for distinct targets. The notation is terse, not missing."
+        },
+        {
+          "reviewer": "Reviewer_zi5m",
+          "claim": "The paper evaluates cost only theoretically; empirical training and inference times are not shown.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 350 points to Figures 6 and 7 'for time evaluation on CPU and GPU'. The authors also cite measured inference time in Figure 8 (Appendix F.5). Only Table 1 reports analytic cost."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review carries an edit date. Reviewer_zi5m (2021-08-21): 'Thank you for your response. I expect that you can implement the suggestions provided by the reviewers.' Reviewer_k7tB never replied, despite the authors' reminder of 2021-08-25. Reviewer_CVVn never posted.",
+        "what_convinced_or_not": "Nothing on record moved anyone. The authors answered k7tB's counterexample by treating L as a hyperparameter, which concedes that a fixed small subgraph does not cover 1-WL. With k7tB silent, the objection stayed open and the AC did not take it up."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences. The meta-review calls the method 'a new way to perform graph sampling', the framing the paper rejects at lines 287-296. It says 'the reviewers agree that the method is simple, and that this is a merit' and turns k7tB's correctness objection to Theorem 3.3 into 'some discrepancy over the usefulness of the theory'. It shows no independent reading.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 6, 9, 5 (mean 6.67): two of three reviewers above the threshold, with the margin supplied by Reviewer_zi5m's thinly argued 9.",
+        "A simple method with orders-of-magnitude lower inference cost and memory on graphs up to 110M nodes, and small accuracy gains on every benchmark.",
+        "The AC treated the dispute over the theory as one of usefulness and counted the presence of theorems as a plus."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 7, 5, 6],
+      "confidences": [4, 3, 3, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 7, 5, 6 spread evenly around the threshold: two reviewers lean reject and two lean accept. No single reviewer stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_29rS",
+          "evidence": "Confidence 3 and 'Math/other details were not carefully checked'. Says 'the authors have adequately addressed the limitations', although the paper has no limitations discussion and the same review asks for one in the main paper. 'I did not see outstanding weaknesses.' Never posted after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3DBS",
+          "claim": "The paper claims 'a shallow neighborhood is necessary and sufficient for the GNN to learn well', which is false for long-range tasks, and it does not discuss limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 114 states it without qualification, supported only by a social-network example and the gamma-decaying theorem (lines 116-122). The main paper has no limitations section; the checklist answers [Yes] with no pointer (line 571). The authors agreed to scope the claim and add a limitations section."
+        },
+        {
+          "reviewer": "Reviewer_3DBS",
+          "claim": "No experiment shows that L' > L message-passing layers beat an L-layer GNN with deeper per-layer MLPs.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted paper has no such ablation. The rebuttal's '2+3' vs '5' table supplies it: shaDow-SAGE 0.5273 vs 0.5424 on Flickr and 0.7946 vs 0.8043 on ogbn-products; the 5-layer model is slightly lower on Yelp (0.6502 vs 0.6519)."
+        },
+        {
+          "reviewer": "Reviewer_3DBS",
+          "claim": "Line 342 says L' > 5 can further improve accuracy, but L' = 7 in Table 14 shows no improvement.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Line 342 makes the claim. Table 14 is in the supplementary appendix, which is not in the submitted PDF. The authors' own numbers (0.7850 vs 0.7836 on ogbn-products, with larger variance) support 3DBS."
+        },
+        {
+          "reviewer": "Reviewer_ChBa",
+          "claim": "The accuracy gain is quite small except for link prediction.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, best shaDow model against best baseline: +0.020 Flickr, +0.004 Reddit, +0.007 Yelp, +0.008 ogbn-arxiv, +0.007 ogbn-products. On ogbn-products shaDow-GCN+PPR (0.7844) trails GCN+GraphSAINT (0.8003). Reviewer_3DBS says the same. The cost reductions, not the accuracy gains, are large."
+        },
+        {
+          "reviewer": "Reviewer_ChBa",
+          "claim": "ID-GNN (You et al., AAAI 2021) is not cited, though it runs GNNs on K-hop ego-nets and already shows expressivity beyond 1-WL.",
+          "checked_against_paper": "correct",
+          "evidence": "ID-GNN is not among the 59 references (lines 408-566). The authors agreed to cite it and argued that the mechanism differs (identity colouring vs depth above scope)."
+        },
+        {
+          "reviewer": "Reviewer_ChBa",
+          "claim": "There is no experimental evidence that L' > L layers are needed for a depth-L subgraph.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 has only L' = 3 and L' = 5 on PPR subgraphs of effective depth 2 to 3 (lines 338-341), and no L' = L row. The 3-to-5 changes are mixed: shaDow-GAT falls on Flickr (0.5383 to 0.5342) and Yelp (0.6549 to 0.6537). The authors' reply quoted only the rises."
+        },
+        {
+          "reviewer": "Reviewer_KB4T",
+          "claim": "The theorems need EXTRACT functions with special properties, and it is unclear how to obtain such functions without much prior knowledge of the task.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollary 3.2.1 needs only a size bound, which the top-K PPR extractor (lines 247 and 326, K at most 200) meets by construction. Corollary 3.2.2 needs distinct node sets, which the authors measured as nearly always true (0.0155 to 0.219 expected collisions). KB4T is right that model- and learning-based EXTRACT are left to future work (lines 239-241)."
+        },
+        {
+          "reviewer": "Reviewer_KB4T",
+          "claim": "It is unclear how the method differs from neighbour-sampling and subgraph-sampling methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 287-296 state the difference: samplers estimate full-neighbourhood quantities and speed up only training, while EXTRACT defines the scope for both training and inference."
+        },
+        {
+          "reviewer": "Reviewer_29rS",
+          "claim": "The authors have adequately addressed the limitations of their work.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main paper has no limitations discussion. Reviewer_3DBS says so, and the authors promised to add a limitations section."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The proof that shaDow-SAGE expresses everything GraphSAGE can lets EXTRACT return the full L-hop neighbourhood, so it does not cover the small subgraphs the paper targets.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 183-185: 'by 1. letting EXTRACT return the full L-hop neighborhood'. Line 201 then concludes 'SHADOW-SAGE is more expressive than GraphSAGE' without that condition. The camera-ready keeps the same construction."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The 1-WL proof does not cover graphs that 1-WL separates but a shaDow model with a small neighbourhood cannot.",
+          "checked_against_paper": "correct",
+          "evidence": "This is Reviewer_k7tB's point in Committee A, and that counterexample holds. The proof is in the supplementary appendix, not the PDF, but the authors' own account of it (choose L and L' per case) shows that it relies on large neighbourhoods. The AC wrote shaDow-SAGE where the theorem concerns general shaDow-GNNs; the point is unchanged."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "'First-of-its-kind decoupling design principle' over-claims; GNNs have used more layers than the graph diameter, e.g. arXiv 1802.03685 with up to 1000 layers.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The phrase comes from the authors' reply to Reviewer_ChBa, not from the paper. The cited work runs many message-passing rounds on whole small graphs. That is depth beyond the diameter, not a bounded subgraph per target on a large graph, so the counterexample answers the wording rather than the method."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review carries an edit date. Only Reviewer_KB4T replied (2021-09-04): 'still a bit concerned about the EXTRACT function as well as the assumptions in theoretical results' and 'a better shape for future re-submission'. The authors answered the same day and noted that the reply reached them after the discussion phase closed. ChBa, 29rS and 3DBS never posted after the rebuttal.",
+        "what_convinced_or_not": "The new evidence (the 2+3 vs 5 ablation, PPR subgraph uniqueness, 2-layer baselines) moved no one on record. The promise to scope the shallow-neighbourhood claim and add a limitations section did not satisfy the AC, who still listed that sentence as over-claiming. The rebuttal's own phrase 'first-of-its-kind' became the AC's second example of over-claiming, so the rebuttal cost the paper."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The reviewers split 4 and 5 against 6 and 7. The AC took 3DBS's 'necessary and sufficient' point, but the decision rests on 'a closer inspection of the proofs' by the AC. The meta-review calls the empirical results 'great', although ChBa and 3DBS called the gains small, and it does not use ChBa's ID-GNN novelty point or KB4T's EXTRACT concerns. Last line: 'I hope the authors can improve the writing of this paper'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Over-claiming: 'a shallow neighborhood is necessary and sufficient' (line 114) and the rebuttal's 'first-of-its-kind' decoupling principle.",
+        "The expressivity results hold only when EXTRACT returns a full or large neighbourhood, not the small subgraphs the paper uses (the AC's own proof check; lines 183-185 and Theorem 3.3).",
+        "A split panel (4, 7, 5, 6; mean 5.5) with open concerns on novelty against ID-GNN and on how to design EXTRACT."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No comparison with oversmoothing remedies such as PairNorm, Scattering GCN or DAGNN (Reviewer_k7tB).",
+    "The exponential-approximation claim of Section 3.2 has no error bound and no formal theorem (Reviewer_k7tB).",
+    "Theorem 3.2 only formalises an obvious intuition (Reviewer_k7tB).",
+    "No empirical training or inference times (Reviewer_zi5m; the paper points to appendix figures).",
+    "Comparison with graph-altering methods; unclear EXTRACT_1 and EXTRACT_2 notation (Reviewer_CVVn)."
+  ],
+  "issues_only_b": [
+    "ID-GNN is uncited prior art for per-node subgraphs beyond 1-WL (Reviewer_ChBa).",
+    "Accuracy gains are small outside link prediction (Reviewer_ChBa, Reviewer_3DBS).",
+    "No ablation shows that L' > L message passing beats deeper per-layer MLPs or an L' = L model (Reviewer_3DBS, Reviewer_ChBa).",
+    "'A shallow neighborhood is necessary and sufficient' over-claims; no limitations section; long-range tasks (Reviewer_3DBS, Reviewer_29rS, AC).",
+    "No practical guidance for designing EXTRACT; learning-based EXTRACT left to future work (Reviewer_KB4T).",
+    "The claim at line 342 that L' > 5 helps is not supported by Table 14 (Reviewer_3DBS).",
+    "shaDow-SAGE contains GraphSAGE only when EXTRACT returns the full L-hop neighbourhood (AC).",
+    "'First-of-its-kind' decoupling is over-claiming (AC, quoting the rebuttal)."
+  ],
+  "shared_issues": [
+    "Expressivity beyond 1-WL holds only if EXTRACT may return a large neighbourhood (Reviewer_k7tB in A; the AC in B).",
+    "Novelty of decoupling against prior work (FastGCN from k7tB in A; ID-GNN from ChBa and NeuroSAT from the AC in B).",
+    "Relation to sampling methods (Reviewer_k7tB in A; Reviewer_KB4T in B).",
+    "EXTRACT builds in human-chosen inductive bias (Reviewer_CVVn in A; Reviewer_KB4T in B).",
+    "Large reductions in inference cost and memory, acknowledged in both committees."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw large efficiency gains and the same gap in the theory; they split on how much the gap counted, and one review and two area chairs decided it. Committee A's mean of 6.67 rests on Reviewer_zi5m's 9: three short paragraphs, a summary that calls the experiments graph classification, a request for timing data that the paper already points to, and a two-line note after the rebuttal. Without it, A's mean is 5.5, the same as B's. In A, Reviewer_k7tB gave a correct counterexample to Theorem 3.3: with a 1-hop EXTRACT the reviewer's nodes d and g get identical subgraphs, yet 1-WL separates them in two rounds, so 'more discriminative than 1-WL' holds only if EXTRACT may grow to a large neighbourhood. The authors' defence, that L is a hyperparameter, concedes the small-subgraph case; k7tB never replied, and A's three-sentence meta-review called it 'some discrepancy over the usefulness of the theory'. B's reviewers split 4 and 5 against 6 and 7. B's AC read the proofs, found the same gap, added that shaDow-SAGE contains GraphSAGE only when EXTRACT returns 'the full L-hop neighborhood' (lines 183-185), cited two over-claims (line 114 and the rebuttal's 'first-of-its-kind'), and rejected while calling the empirical results great. The AC's points are correct on the text, but they concern how the theory is framed, which a revision can scope; the meta-review's last line asks for better writing. The committees weighted the same facts differently: A's AC followed the scores, and B's AC overrode a split panel on its own reading.",
+  "candidate_reasons": [
+    "exuberant thin champion review",
+    "score-following three-sentence meta-review",
+    "AC's own proof inspection",
+    "expressivity claims need large neighbourhoods",
+    "over-claiming in paper and rebuttal",
+    "split borderline panel, AC decides"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_zi5m review and reply of 2021-08-21",
+    "Reviewer_k7tB review (Theorem 3.3 counterexample) and the authors' Part 2 reply",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_3DBS review",
+    "Reviewer_KB4T reply of 2021-09-04",
+    "Authors' reply to Reviewer_ChBa ('first-of-its-kind')",
+    "paper_submitted.pdf lines 110-114, 183-201, 208-229",
+    "paper_submitted.pdf Table 1"
+  ]
+}

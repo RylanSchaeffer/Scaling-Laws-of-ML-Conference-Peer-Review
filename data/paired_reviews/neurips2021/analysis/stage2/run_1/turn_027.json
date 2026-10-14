@@ -1,0 +1,226 @@
+{
+  "run": 1,
+  "turn": 27,
+  "pair_id": "n21-039",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both area chairs followed their reviewers' scores (A mean 4.33 to reject, B unanimous 8s to spotlight); neither set the outcome on its own reading."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or area chair on either committee forecast impact beyond the paper's own SR setting."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "After the rebuttal B's Reviewer_Lh3t and Reviewer_chSU raised, while A's two 4s stayed unchanged and A's Reviewer_k8sL fell to 5."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Thin reviews pushed both committees apart: A's Reviewer_k8sL wrote a three-sentence review in 1 hour and Reviewer_1kmf cited irrelevant references, while B's Reviewer_chSU (2 hours, confidence 5) rated 8 without testing the SOTA claim against 2020 baselines."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A raised the missing 2020 lightweight SR baselines (LatticeNet near-tie within 0.04 dB), and A's area chair cited 'fairly small improvements' as a reason to reject; B never saw it."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both saw the same Table 2 margins over IMDN (0.08 to 0.39 dB at equal size); B's reviewers called them 'strong' and 'obviously better', A's Reviewer_k8sL called them 'marginal'."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "A's Reviewer_k8sL lowered to 5 saying 'I agree that the novelty ... is not highlighted enough', adopting the other reviewers' novelty arguments rather than its own answered requests."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Reviewer_k8sL's main text is positive, but its final comment explains the 5 on novelty and marginal gains, so rating and stated verdict agree."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No reviewer said they could not judge the paper; A's confidences were 5, 3, 4 and B's all 5."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "A's area chair paraphrased Reviewer_k8sL, but k8sL's 5 sat within one point of the two 4s and was not an outlier."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The committees' verbal verdicts differed (generic pruning with marginal gains against a novel method with strong results), not just their placement on the scale."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "B's unanimous 8s are clear-accept scores that support a spotlight on their own; the split is reject against spotlight, not a tier spread at similar means."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's raises rested on new experiments the authors ran (weight-normalization ablation, sensitivity, HRank), not on copied results or promised revisions."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's reviewers declared their concerns answered, so the four-sentence meta-review did not drop weaknesses that still stood in their final positions."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "The checkable claims about results were correct on both sides; the wrong claims concern prior work and novelty, not the paper's results."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "B's rebuttal confirmed that the ICASSP 2020 paper already pruned SR networks, against the 'first attempt' claim, and showed runtime parity with IMDN, yet Lh3t and chSU raised and B gave a spotlight."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "Reviewer_k8sL's late drop rested on novelty points already raised and on the authors' own LatticeNet table, not on a new objection the authors could not answer."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Scores differ sharply (4.33 against 8.0), so the split is not about where each area chair placed a tier cut-off."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither area chair passed over its most careful reviewer's verdict: A's followed confidence-5 k8sL, and B's spotlight matched DsQ3's 8."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "B's concerns (weight-normalization ablation, sensitivity, HRank, runtime) were closed with new tables, while A's concerns (novelty as generic pruning, small margins over LatticeNet) no response could fix."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "No outlier: A's ratings 5, 4, 4 and B's 8, 8, 8 each lie within one point."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer's score stood apart from their committee."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No committee set aside a detractor's score."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No one raised audience breadth or venue fit."
+    },
+    {
+      "id": "R25",
+      "applies": true,
+      "justification": "A's meta-review says 'the authors seem to agree' that novelty is unclear and the gains small, but the record shows no such agreement on the size of the gains."
+    },
+    {
+      "id": "R26",
+      "applies": true,
+      "justification": "A's Reviewer_XysC and Reviewer_1kmf never replied to a rebuttal that added RCAN+ASSL results and three new baselines, while all three B reviewers responded and two raised."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "All B reviewers rated at confidence 5; none said they could not verify the results."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "Neither committee had an even split; A was 5, 4, 4 and B 8, 8, 8."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "The two rebuttals answered different questions but nothing records conflicting numbers or accounts of the method between them."
+    }
+  ],
+  "added": [
+    {
+      "id": "R30",
+      "name": "Novelty judged against wrong or ignored prior work",
+      "definition": "A reviewer's novelty verdict on one committee rested on a wrong account of prior work, either citing as precedent work that does not do what the paper does or accepting a 'first' claim that known prior work contradicts, and that verdict fed the committee's score.",
+      "justification": "R15 covers wrong claims about the paper's results only; no reason covers a novelty verdict built on irrelevant precedents or on an uncontested false 'first' claim, which here lowered A's score and raised B's."
+    }
+  ],
+  "reasoning": "The core split is the same Table 2 read as strong by B and marginal by A (R06), widened by the rebuttal: B's closable concerns were closed and two reviewers raised (R03, R20) despite admissions on prior SR pruning and runtime parity (R16), while A's two 4s never replied (R26) and k8sL followed the others' novelty arguments down (R07). Only A saw the LatticeNet near-tie (R05). Thin reviews on both sides (R04) and A's meta-review claiming author agreement it lacked (R25) also apply. Both committees judged novelty against a wrong account of prior work, which no existing reason covers, so R30 is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30"
+  ]
+}

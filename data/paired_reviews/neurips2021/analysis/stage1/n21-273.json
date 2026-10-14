@@ -1,0 +1,227 @@
+{
+  "pair_id": "n21-273",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 7],
+      "confidences": [3, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_5rdz", "Reviewer_Zjn9"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 6, 7. No reviewer stands apart. The panel is uniformly mild-positive: no detractor and no strong champion. Three of four reviewers declared confidence 3 ('Math/other details were not carefully checked')."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5rdz",
+          "evidence": "2 hours, a 143-word main review of one-line points. It says running time is 'not discussed in the manuscript', but lines 318-320 give about 2 s per Cityscapes image. It raised to 6 on 2021-09-01 because 'the author promises to make the presentation in the revised manuscript more clear'."
+        },
+        {
+          "reviewer": "Reviewer_vDMJ",
+          "evidence": "Thin. The summary, repeated as the first paragraph of the main review, is the paper's own conclusion sentence (lines 322-323) nearly word for word. 'Experiments prove its effectiveness' rests on no specific check. Its three questions are reasonable but generic, and it kept 6 with a two-sentence reply."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XpFH",
+          "claim": "COPS outperforms SOTA, e.g. Panoptic-DeepLab and SSAP.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: COPS (R-50) beats Panoptic-DL R-50 (Cityscapes val 62.2 vs 60.2) but not Panoptic-DL X-71 (Cityscapes test 60.7 vs 59.5; COCO test 38.8 vs 36.6). Neither method is the state of the art (Axial-DL 62.7 Cityscapes test; Max-DeepLab 49 COCO test)."
+        },
+        {
+          "reviewer": "Reviewer_XpFH",
+          "claim": "PQ_stuff on COCO drops after end-to-end fine-tuning, and only the classification layer is trained end-to-end.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 COCO PQ_st: baseline 32.8 test / 33.4 val, end-to-end 31.4 / 31.7. Lines 286-288: only the semantic classification layer and the last two layers of the affinity classifiers are fine-tuned; batch norm is frozen."
+        },
+        {
+          "reviewer": "Reviewer_5rdz",
+          "claim": "On COCO the results are much worse than UPSNet.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 COCO val: UPSNet (R-50) 42.5, COPS end-to-end 36.3."
+        },
+        {
+          "reviewer": "Reviewer_5rdz",
+          "claim": "The computations, parameters and running time of the module are not discussed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 318-320 give about 2 s per Cityscapes image for the AMWC solver; lines 244-246 and 282-285 give hardware and training time. Only parameter counts are absent."
+        },
+        {
+          "reviewer": "Reviewer_Zjn9",
+          "claim": "PQ is below the state of the art, but the method convincingly improves on a bottom-up baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: own baseline to end-to-end, Cityscapes val 58.5 to 62.2 and COCO val 34.3 to 36.3. EfficientPS, Axial-DL and Max-DeepLab score higher."
+        },
+        {
+          "reviewer": "Reviewer_Zjn9",
+          "claim": "Experiments are done with multiple trials.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Neither PDF contains the appendix. Checklist item 3(c) says the supplementary material holds the seed comparison."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_5rdz"],
+        "evidence": "Reviewer_5rdz's review was edited 2021-09-01, the date of 'Thus I would like to increase my rating' (final 6). Reviewer_XpFH (no edit): 'I will not further increase my score'. Reviewer_vDMJ (no edit): 'I'd like to keep my recommendation rating'. Reviewer_Zjn9's only edit is on its posting day, 2021-07-21, and its reply says 'I continue to recommend acceptance'.",
+        "what_convinced_or_not": "The COCO SQ/RQ breakdown, the pointer to the appendix oracle study, and promises of runtime statistics and clearer presentation satisfied Reviewer_5rdz and Reviewer_vDMJ. Reviewer_XpFH accepted the answers but kept its real-world-impact concern, because the authors conceded that solver speed and gradient scaling remain open problems."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review restates the reviewers' praise ('clarity of exposition', 'rather elegant solution') and their main drawback ('scalability and practicality remain one of the key drawbacks'), and accepts 'notwithstanding the fact that the empirical results were not state-of-the-art'. It adds no reading of its own beyond asking for a limitations section.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Novel, elegant use of an AMWC solver inside a trainable pipeline (all four reviewers)",
+        "Clear writing (Reviewer_XpFH, Reviewer_Zjn9, meta-review)",
+        "Gain over the authors' own bottom-up baseline and over matched-backbone competitors",
+        "Uniform 6-7 ratings after a rebuttal that raised Reviewer_5rdz to 6",
+        "Non-SOTA results and a slow solver accepted as limitations"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 7, 7, 6, 3],
+      "confidences": [4, 5, 4, 3, 5],
+      "reviews_edited_after_posting": ["Reviewer_8yaS", "Reviewer_G2zw", "Reviewer_upv8", "Reviewer_UruC"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_aCGb",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Rating 3 at confidence 5 ('checked the math/other details carefully') with a 45-word main review and a summary copied from the abstract; it reports 4 hours and never replied to the rebuttal. Its 'end-to-end' overclaim point is correct (submitted title vs lines 275-288). 'Complex' is contested, 'does not achieve the state-of-the-art' is true but the paper claims no SOTA (lines 47-53), and 'There is not ablation study' is overstated. Without it, B's mean is 6.25, the same as A's."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_aCGb",
+          "evidence": "45-word main review, summary copied from the abstract, confidence 5, no reply after the rebuttal. It says there is no ablation of the new modules, but Table 1 isolates the fine-tuning stage, Figure 4 compares N=1 with N=5, and lines 241-242 point to an appendix ablation."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_aCGb",
+          "claim": "'An End-to-End Trainable Approach' is an overclaim: the method pre-trains the branches and then fine-tunes.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted title says 'An End-to-End Trainable Approach'. Lines 275-288: 8 to 11 days of pre-training with top-k cross-entropy, then fine-tuning of only the last classifier layers with batch norm frozen. The camera-ready is retitled 'A Fully Differentiable Approach'."
+        },
+        {
+          "reviewer": "Reviewer_aCGb",
+          "claim": "There is no ablation study of the new modules.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 compares baseline and end-to-end; Figure 4 compares single and averaged perturbation (N=1 vs N=5); lines 241-242 cite an appendix ablation with simpler losses. The ablations are thin, not absent."
+        },
+        {
+          "reviewer": "Reviewer_8yaS",
+          "claim": "Symbols in Eq. (1)-(2) are not explained; L means one thing at line 173 and another at line 193; 'some constraint set' and 'some interval' are vague.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 173: z: V -> {1,...,L} with L undefined; line 193: L is the loss. Eq. (1) uses C_l, l and l' with no explicit definition. Lines 193 and 199 contain 'is some constraint set' and 'sampled uniformly on some interval'."
+        },
+        {
+          "reviewer": "Reviewer_8yaS",
+          "claim": "Table 1 compares validation results although the method is cross-validated on the validation split.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 249: 'We cross-validate our method on the validation split and evaluate the same model on the testing split'. Table 1 reports PQ_val for COPS beside other methods. The rebuttal says 10% of the validation split was used for early stopping."
+        },
+        {
+          "reviewer": "Reviewer_8yaS",
+          "claim": "4000 COCO fine-tuning iterations is less than one epoch and may be too short.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 288-289: batch 24 x 4000 iterations = 96k images, against 118k COCO training images (line 258). The rebuttal said more training would not lower the loss, yet the camera-ready trains 10000 iterations (with more layers unfrozen) and reports COCO test PQ 38.5 instead of 36.6."
+        },
+        {
+          "reviewer": "Reviewer_UruC",
+          "claim": "No code was submitted, and the decoder of the affinity branch is not explained.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 64: 'We will make our code available upon acceptance of the paper.' Section 3.1 says only that the CNN 'corresponds to Panoptic-Deeplab'; the camera-ready adds that both branches use DeepLabv3+ decoders. The appendix was not available to check."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "COPS performs unfavourably against reported baselines, e.g. Table 1, Axial-DL 42.2 vs 36.6.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 COCO test PQ: Axial-DL (Axial-S) 42.2, COPS end-to-end 36.6. The paper itself places Axial-DeepLab among bottom-up methods (lines 78-79, 92), but it uses an attention backbone, not ResNet-50."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "Hand-crafted heuristics remain in the method (e.g. line 256).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 255-256 fix small-segment rejection thresholds (200 and 2048 pixels) 'used during both training and inference', against 'no ad-hoc downstream refinements of the segmentation' (lines 100-101). The paper calls this rejection common practice (lines 211-212) and does not learn the thresholds because that overfits (lines 293-294)."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The model is first pre-trained using the proxy metric, then fine-tuned with the AMWC solver.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 277: pre-training uses weighted top-k cross-entropy. Line 286: the PQ surrogate is used only in the fine-tuning stage."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_G2zw", "Reviewer_upv8"],
+        "evidence": "Reviewer_G2zw's review was edited 2021-08-22, the date of 'I will raise my score to 7'. Reviewer_upv8's review was edited 2021-09-03 with a post-rebuttal note: 'I will raise my rating to 7 (accept)'. Reviewer_8yaS's edit on 2021-08-21 matches its reply 'The maximum score I would like to rate is 5'; the direction is not stated. Reviewer_UruC kept 6 (its only edit is on the posting day). Reviewer_aCGb never replied or edited.",
+        "what_convinced_or_not": "New experiments in the rebuttal (AMWC at full resolution, boundary PQ, a training-time breakdown) convinced Reviewer_G2zw and Reviewer_upv8; upv8 judged the efficiency and two-stage limits 'acceptable at the first attempt'. Reviewer_8yaS was not convinced: it still saw an overclaim, disputed the simplicity claim, and said the promised changes 'may need another round of review'. The authors' 2021-08-24 offer to say 'fully differentiable' instead of 'end-to-end' drew no reviewer reply."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "After the rebuttal three of five reviewers recommended acceptance (7, 7, 6) and two rejection (5, 3). The AC took the detractors' points (presentation, ablations, 'end-to-end' overclaim), added its own ('In my read of the paper': the Axial-DL gap, the line 256 heuristics, ablations in the appendix), consulted 'multiple colleagues' on the term 'end-to-end', and rejected because the revisions 'would be quite significant and require further review' and 'there is no strong champion'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own reading: COCO gap to Axial-DeepLab and residual hand-set thresholds",
+        "'End-to-end' title judged wrong for a pre-train-then-fine-tune method",
+        "Presentation and notation problems; ablations only in the appendix",
+        "Promised revisions judged too large to accept without another review",
+        "Two 7s not counted as a strong champion"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Quality of the heuristic AMWC solutions and of the perturbation gradients (Reviewer_Zjn9)",
+    "Gradient accuracy if more parameters are trained end-to-end (Reviewer_XpFH)",
+    "PQ_stuff drop on COCO after fine-tuning (Reviewer_XpFH)",
+    "Universality of the loss as a plug-in module (Reviewer_vDMJ)",
+    "Order of methods in Table 1 (Reviewer_5rdz)"
+  ],
+  "issues_only_b": [
+    "'End-to-end' title and claims are an overclaim (Reviewer_aCGb, Reviewer_8yaS, AC)",
+    "Undefined and reused notation; ad hoc smoothing functions in the surrogate (Reviewer_8yaS)",
+    "Table 1 validation results from a model selected on validation; COCO fine-tuning under one epoch (Reviewer_8yaS)",
+    "Fidelity of the PQ surrogate to true PQ; Figure 4 plots only the surrogate (Reviewer_8yaS, Reviewer_upv8)",
+    "Boundary and mask quality against Panoptic-DeepLab (Reviewer_G2zw)",
+    "No code at submission; decoder of the affinity branch unspecified (Reviewer_UruC)",
+    "Gap to Axial-DeepLab on COCO and residual hand-set thresholds (AC)",
+    "Key ablations only in the appendix (AC, Reviewer_upv8)",
+    "Simplicity and fewer-hyperparameter claims disputed (Reviewer_8yaS, Reviewer_aCGb)"
+  ],
+  "shared_issues": [
+    "Slow AMWC solver; no real-time inference",
+    "Results below the state of the art, weakest on COCO",
+    "Two-stage training: pre-training, then fine-tuning of the last layers only",
+    "Thin ablations; ResNet-50 only, stronger backbones untested",
+    "Where the PQ gain comes from (RQ vs SQ)",
+    "Typos and proofreading"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw the same weaknesses and weighted them differently; B's reviewer draw and area chair tipped it to reject. Both panels saw that COPS trails the state of the art (most on COCO), that the AMWC solver needs about 2 s per Cityscapes image, and that 'end-to-end' training fine-tunes only the last layers after cross-entropy pre-training. Committee A's four reviewers (6, 6, 6, 7; three at confidence 3) praised the idea and the clarity, nobody attacked the claims, and the AC accepted 'notwithstanding' the non-SOTA results. Committee B drew two detractors. Reviewer_aCGb gave 3 at confidence 5 with a 45-word main review and never answered the rebuttal; only its overclaim point holds. Reviewer_8yaS gave a careful 5 whose specific claims check out (L used for two things, validation-split numbers in Table 1, under one epoch of COCO fine-tuning). Without aCGb, B's mean equals A's 6.25. B's AC then read the paper, added correct but secondary findings (COCO test PQ 36.6 vs Axial-DeepLab 42.2; fixed area thresholds at line 256 despite the 'no ad-hoc refinements' claim; ablations only in the appendix), consulted colleagues on 'end-to-end', and rejected against a 3-to-2 positive majority because there was 'no strong champion'. A had no strong champion either: it had one 7, B had two. The overclaim was real (the camera-ready is retitled 'A Fully Differentiable Approach'), but it is a framing defect, not a flaw in the results.",
+  "candidate_reasons": [
+    "Inattentive confident detractor",
+    "AC independent reading added objections",
+    "AC overrode positive reviewer majority",
+    "Strong-champion bar applied asymmetrically",
+    "End-to-end title overclaim",
+    "Presentation flaws noticed by one panel"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_aCGb review (3, confidence 5, 45-word main review, no discussion)",
+    "Reviewer_8yaS review and 2021-08-21 reply",
+    "Reviewer_G2zw 2021-08-22 reply and Reviewer_upv8 post-rebuttal note (both raised to 7)",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "submitted paper Table 1 (COCO test PQ: Axial-DL 42.2, COPS 36.6)",
+    "submitted paper lines 100-101 vs 255-256 (area thresholds)",
+    "submitted paper lines 275-289 (cross-entropy pre-training; only last layers fine-tuned; 4000 COCO iterations)",
+    "camera-ready title and Section 4.4 Limitations"
+  ]
+}

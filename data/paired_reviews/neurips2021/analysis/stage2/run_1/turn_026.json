@@ -1,0 +1,220 @@
+{
+ "run": 1,
+ "turn": 26,
+ "pair_id": "n21-033",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "mode": "sequential",
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "A's AC took the spotlight as its own step, for 'strong theoretical insight' no reviewer had checked; B's AC's deciding line, that the edits 'warrant another round of reviews', was its own too."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "A's AC cited the timeliness of offline multi-agent RL, not a forecast of impact beyond the paper; B made no impact argument."
+  },
+  {
+   "id": "R03",
+   "applies": false,
+   "justification": "The rebuttal raised every reviewer in both committees by about a point; it did not leave either committee unchanged."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "A's Reviewer_P8yc gave a 7 at confidence 2 on no reason beyond 'seem to gain improved performance', and A's reviews stayed on notation and derivations while B's checked the baselines."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Only B saw that the submitted D4RL CQL baseline fell far below CQL's published scores and tied the constraint to EMaQ, BRAC and KL-control, and both counted against the paper."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "Both committees got the expanded D4RL table and the poor-data weakness: A's AC called the table 'substantial additional empirical evidence', B's Reviewer_5dG2 and AC read it as mixed."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "Every score change in both committees followed the authors' response; none is traced to reviewer discussion."
+  },
+  {
+   "id": "R08",
+   "applies": false,
+   "justification": "No reviewer's rating contradicts its own text; B's 6s carry required revisions, A's 7s carry answered questions."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "A's unsure reviewers gave accept scores of 7, not borderline ones, and B's reviewers did not plead inability."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "B's AC followed Reviewer_5dG2, but 5dG2's 5 matched Rr7B's, so it was not an outlier."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The committees wrote different assessments (A clarifications, B baseline and novelty flaws), not similar verdicts at different scores."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "A's AC turned four 7s and a 'consensus recommendation to accept' into a spotlight although no reviewer rated above 7 or argued for that tier."
+  },
+  {
+   "id": "R13",
+   "applies": true,
+   "justification": "A's reviewers raised to 7 and A's AC credited a D4RL table whose CQL numbers were copied from other papers and whose ICQ means differ from the table sent to B."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "The notes do not show A's or B's meta-review dropping weaknesses its reviewers named."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "The checkable claims that fed either recommendation held; 5dG2's 'only' overstates slightly but its claim is correct overall."
+  },
+  {
+   "id": "R16",
+   "applies": true,
+   "justification": "The authors told A that ICQ 'maybe has a limited performance with randomly sampled data' and their table showed ICQ trailing CQL on six tasks, yet Reviewer_icWA and the rest of A raised to 7."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "All objections in both committees came in time for the authors to answer."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "The scores were not near-identical: four 7s against 6, 6, 5, 5."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "B's highest-confidence reviewer, xr9t, was thin and settled at 6; no expert verdict was passed over in either committee."
+  },
+  {
+   "id": "R20",
+   "applies": false,
+   "justification": "Both committees' reviewers rose by about one point; the rebuttal did not lift A further than B, though B's novelty concerns stayed open."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "No single score stood apart from its committee."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "No outlying reviewer; every reviewer revised after the response."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "Neither committee had a detractor set aside."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "No reviewer or AC raised audience or venue fit."
+  },
+  {
+   "id": "R25",
+   "applies": false,
+   "justification": "Neither meta-review misreports the reviewers' final positions or the rebuttal."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "All eight reviewers engaged with the response and revised their reviews."
+  },
+  {
+   "id": "R27",
+   "applies": true,
+   "justification": "Every A reviewer's confidence label says the math was not carefully checked (P8yc at 2), yet their four 7s counted in full and A's AC cited 'strong theoretical insight' for the spotlight."
+  },
+  {
+   "id": "R28",
+   "applies": true,
+   "justification": "B split 6, 6 against 5, 5, and the AC adopted Reviewer_5dG2's reading that the results are mixed without addressing the two 6s."
+  }
+ ],
+ "added": [
+  {
+   "id": "R29",
+   "name": "Authors told the two committees different things",
+   "definition": "The authors' responses to the two committees differed in substance, such as different result numbers, conflicting accounts of the method or setup, or concessions offered to only one committee, so each committee judged different evidence about the same paper.",
+   "justification": "No existing reason covers the authors giving the two committees different evidence or concessions; R13 covers unverified rebuttal evidence and R16 an admission that did not lower scores, not a difference between what each committee was told."
+  }
+ ],
+ "reasoning": "A's four 7s came from reviewers who did not check the math or the baselines and whose questions the rebuttal answered; B's reviewers caught the under-run CQL baseline and the closeness to EMaQ and KL-control. Both committees rose by a point, so the gap stayed, and the ACs then read the same rebuttal table in opposite ways: A's AC lifted unanimous 7s to a spotlight, B's AC adopted Reviewer_5dG2's 'mixed' reading and wanted re-review. That gives R01, R04, R05, R06, R12, R13, R16, R27 and R28. The authors also sent the committees different D4RL numbers and offered only B a restructuring of the paper; no reason covered this, so R29 is added. R12's comparison clause fits loosely because B's scores were lower, but A's step from consensus to spotlight is the named mechanism.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29"
+ ]
+}

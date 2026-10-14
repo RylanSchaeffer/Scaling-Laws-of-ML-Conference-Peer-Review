@@ -222,5 +222,29 @@
     "created_by_pair": "n21-017",
     "created_turn": 24,
     "exemplar": "A's ratings were 4, 3, 7, 6, all at confidence 3; the meta-review took Reviewer_x5V9's positioning critique by name and did not address the two accept-side scores."
+  },
+  {
+    "id": "R29",
+    "name": "Authors told the two committees different things",
+    "definition": "The authors' responses to the two committees differed in substance, such as different result numbers, conflicting accounts of the method or setup, or concessions offered to only one committee, so each committee judged different evidence about the same paper.",
+    "created_by_pair": "n21-033",
+    "created_turn": 26,
+    "exemplar": "A's rebuttal table gives higher ICQ means than B's in 7 of the 8 rows where they differ, and only B was offered a new title and the multi-agent method moved to the appendix, which B's AC read as edits that 'warrant another round of reviews'."
+  },
+  {
+    "id": "R30",
+    "name": "Novelty judged against wrong or ignored prior work",
+    "definition": "A reviewer's novelty verdict on one committee rested on a wrong account of prior work, either citing as precedent work that does not do what the paper does or accepting a 'first' claim that known prior work contradicts, and that verdict fed the committee's score.",
+    "created_by_pair": "n21-039",
+    "created_turn": 27,
+    "exemplar": "A's Reviewer_1kmf called novelty 'limited' on three references, none of which prunes an SR network (one is a 2009 kernel adaptive filter paper), while B's Reviewer_chSU praised the 'first attempt' at SR filter pruning although DsQ3 in the same committee named DHP and an ICASSP 2020 SR pruning paper."
+  },
+  {
+    "id": "R31",
+    "name": "Higher tier given with no stated grounds",
+    "definition": "One committee's recommendation reached a higher tier than its scores or its own meta-review supported, and nothing in its record argued for that tier, so part of the split reflects an unexplained tier assignment, not the reviews.",
+    "created_by_pair": "n21-053",
+    "created_turn": 28,
+    "exemplar": "B gave a spotlight on ratings 7, 8, 6, 5 under a meta-review that shared the detractor's overclaiming concern and concluded only that the work 'may be enough for justifying publication', with no word on the tier."
   }
 ]

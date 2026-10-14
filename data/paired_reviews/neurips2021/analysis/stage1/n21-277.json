@@ -1,0 +1,209 @@
+{
+  "pair_id": "n21-277",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 6, 8],
+      "confidences": [4, 4, 5, 5],
+      "reviews_edited_after_posting": ["Reviewer_Svzq", "Reviewer_pRRP", "Reviewer_oRgf"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 6, 8 at confidence 4 to 5; no reviewer departs from the rest. Reviewer_oRgf's 8 (confidence 5, 15 hours) is the most enthusiastic: 'novel and exciting', 'may open a new line of research', and the RNR and DeepMoE comparisons 'show superior results'. It never posted after the rebuttal. The outcome did not hinge on it, because the other three ratings are at or above 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_pRRP",
+          "evidence": "Asked how the CA module helps when it 'is running in each PU separately'. Line 197 of the submission says 'all CA modules share parameters within a stage'; Figure 2 draws one CA per PU, which invites the misreading. pRRP then raised to 7 with one appended line, 'The authors' rebuttal addressed my comments'. That rebuttal gave no new experiment for its specialization question, only pointers to the supplement, a DRNet number from another paper and promised related-work text."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Svzq",
+          "claim": "The effect of the larger batch size is not measured on the baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 278-283: batch 256 for all baselines, 1024 for RMN. Figure 4(b) sweeps batch size for RMN only. The rebuttal's batch-1024 baselines score lower than batch 256 on CIFAR-100 and Tiny-ImageNet and the same on ImageNet."
+        },
+        {
+          "reviewer": "Reviewer_Svzq",
+          "claim": "Only a single seed per experiment, without standard deviations.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-4 give single numbers, and checklist 3(c) on error bars answers [No]. The authors admitted it and posted ten-seed tables (three seeds on ImageNet). The camera-ready prints the same means and labels them 'skip when occurring PU death'; the rebuttal did not disclose that runs were skipped."
+        },
+        {
+          "reviewer": "Reviewer_pRRP",
+          "claim": "The CA module runs in each PU separately, so it cannot relieve the inconsistency between PUs.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 197: 'Please note that all CA modules share parameters within a stage.' The authors conceded that Figure 2 draws two CA blocks per stage."
+        },
+        {
+          "reviewer": "Reviewer_vPSw",
+          "claim": "The ImageNet EfficientNet-B0 baseline (76.5%) is well below the public 77.1%.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 lists EfficientNet-B0 at 76.5%. The authors said they used the plain PyTorch ImageNet recipe. With timm and AutoAugment the baseline reached 77.0% and RMN 78.4%."
+        },
+        {
+          "reviewer": "Reviewer_oRgf",
+          "claim": "The authors compare with RNR and DeepMoE and show superior results.",
+          "checked_against_paper": "correct",
+          "evidence": "The comparison is in the supplement (lines 241-242), which paper_submitted.pdf does not contain; camera-ready Section 4.4 reproduces it. RMN 78.96% against RNR 78.42% on CIFAR-100 ResNet-18, timed on a CPU. DeepMoE is compared only by gains over separate baselines (+1.70 against +0.97). Superior, but by a thin margin in one reproduced setting."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Svzq", "Reviewer_pRRP"],
+        "evidence": "Svzq's review is edited 2021-08-18, the day of its reply 'Since the authors addressed my main concerns and cleared my doubts, I'm increasing my score'. Its review text still says the paper 'does not meet the bar yet', so it rose from below the bar to 7. pRRP's review is edited 2021-08-13 and ends 'Now I would like to upgrade my grading'. oRgf's edit is on its posting day, before the rebuttal. vPSw, not edited, asked a follow-up on 2021-08-19 and stayed at 6.",
+        "what_convinced_or_not": "Svzq was convinced by batch-1024 baselines that score below the batch-256 ones and by ten-seed means with small deviations: 'the effects are not caused by the increased batch size but the method itself'. pRRP accepted a clarification of line 197, pointers to the supplementary visualizations and comparisons, a promise to discuss DRNet, Switch Transformer and OSML, and a DRNet accuracy taken from its own paper. vPSw's EfficientNet point got a timm rerun and no further reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: the mechanism is 'simple and elegant', it is validated on three benchmarks, and 'All the reviewers agreed the proposed memory routing is of interest to community thanks to its simplicity and good empirical results.' That matches the final ratings. It does not mention the parameter growth, the missing routing baselines or vPSw's baseline-accuracy question.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All final ratings at or above threshold (7, 7, 6, 8); the AC restated the consensus.",
+        "Non-parametric routing valued as simple and elegant: Svzq 'sidesteps that elegantly', oRgf 'novel and exciting'.",
+        "Consistent gains on four backbones and three datasets at nearly equal FLOPs were read as sufficient; a cross-paper DRNet number and promised discussion answered pRRP's request for comparisons.",
+        "The rebuttal removed the concrete doubts: batch-1024 baselines and ten-seed tables for Svzq, a clarification and promises for pRRP.",
+        "Parameter growth accepted as the normal cost of mixture-of-experts (oRgf: 'acceptable for MoE methods')."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 6, 3, 4],
+      "confidences": [4, 4, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_cGyg", "Reviewer_Qanu"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_bRNA",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "bRNA's 6 is the only rating above 4. The review (3 hours) gives reasons: the idea 'looks new to me', the method is 'technically sound', the paper is clear. It also raises a real doubt about the central claim: the separation of features in the supplementary figure 'is not obvious to me'. It asks for routing statistics and never replied after the rebuttal. It is a mild, reasoned lean, not an empty champion vote. The AC set it aside as 'a less informative review'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_cGyg",
+          "evidence": "3 hours, three paragraphs, rating 3. It says 'the authors did not compare RMNs to any conditional computation baselines', but lines 241-242 point to supplementary comparisons with RNR and DeepMoE, which oRgf, fdXd and Qanu all discuss. Its prior art, MEGAN and HydraNets, route with learned gating networks, as the paper's lines 111-117 and the rebuttal say. Its post-rebuttal reply engages no point: 'However I am not still convinced. Therefore my score remains unchanged.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_fdXd",
+          "claim": "On ImageNet, RMN ResNet-18 has 7.6 times the parameters of ResNet-18 (11.7M to 89.9M).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: ResNet-18 11.7M, RMN (ResNet-18) 89.9M, a factor of 7.7. Across Tables 2-4 the factor runs from 1.7 (VGG-16) to 7.9."
+        },
+        {
+          "reviewer": "Reviewer_fdXd",
+          "claim": "The routing is essentially differentiable architecture search without the final path selection and retraining.",
+          "checked_against_paper": "incorrect",
+          "evidence": "RMN picks a procedure per input 'in both training and testing' (abstract; lines 48-49). One selected path for all inputs would remove the mechanism, so the DARTS analogy misses it. The authors' answer, 'another research topic', did not say so."
+        },
+        {
+          "reviewer": "Reviewer_cGyg",
+          "claim": "The authors did not compare RMNs to any conditional computation baselines.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True only of the main tables. Lines 241-242 place comparisons 'with other related MOE methods' in the supplement; camera-ready Section 4.4 shows them (RNR and DeepMoE)."
+        },
+        {
+          "reviewer": "Reviewer_cGyg",
+          "claim": "Using representative features for routing is not new (MEGAN, HydraNets).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 111-117 describe HydraNets as partitioning the class labels and routing with decision networks; the rebuttal says the same of both papers. HydraNets clusters to define its branches but does not route by the nearest stored feature, so the overlap is partial."
+        },
+        {
+          "reviewer": "Reviewer_Qanu",
+          "claim": "No competing routing method is in the main results; the supplementary comparison reproduces one method and differs by about 0.5 point.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-4 compare only plain backbones with RMN, and lines 241-242 defer the rest. Camera-ready Section 4.4: RNR rerun on CIFAR-100 ResNet-18, 78.96% against 78.42%, with CPU timing; DeepMoE compared only by gains over separate baselines."
+        },
+        {
+          "reviewer": "Reviewer_Qanu",
+          "claim": "The accuracy gain is confounded by the larger batch size.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 278-283: batch 256 for baselines, 1024 for RMN; Figure 4(b) sweeps RMN only. The rebuttal's ResNet-18 baseline sweep (61.5% at batch 128 down to 60.2% at 2048) answered it, and Qanu accepted that."
+        },
+        {
+          "reviewer": "Reviewer_Qanu",
+          "claim": "The claims that RMN is simple and 'easy to train' have no experimental support.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 40-41 and 122 assert 'easy to train' and measure nothing. Lines 303-307 report unstable training at batch 128 or 256 and about 40% dead PUs after 50 epochs at batch 128. The camera-ready limitations add 'the model training is unstable since some PUs may die'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Qanu"],
+        "evidence": "Qanu's review is edited 2021-09-10, the day of its reply 'I have raised my score to 4, to account for the response, but still vote for rejection'. fdXd, 2021-08-27: 'I did not find the answers directly addressing my concerns. I will keep my original rating.' cGyg, 2021-08-27: 'my score remains unchanged.' bRNA never replied. cGyg's edit is on its posting day, before the rebuttal.",
+        "what_convinced_or_not": "Qanu credited the CondConv deltas ('encouraging') and the baseline batch sweep. It kept the thin RNR and DeepMoE comparison, the CPU-only timing and the unsupported ease-of-training claim. The CondConv point is weaker than Qanu allowed: RMN's larger gains start from weaker baselines, and CondConv's absolute accuracy is higher (78.6% against 78.3% on ResNet-50, 78.3% against 78.1% on EfficientNet-B0). fdXd got deferrals on Gumbel-softmax ('In our future research, we will try') and on DARTS ('another research topic'). cGyg did not engage with the authors' rebuttal of its prior-art claim."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The bullets come from Qanu, partly verbatim: 'the results in accuracy are quite close and only one method is reproduced by running the official code', 'Experiments are not controlled'. It omits that Qanu called the CondConv result 'encouraging' and accepted the batch-size check. It calls bRNA's review 'less informative' but counts cGyg's short review, which contains a false claim, among '3 extremely critical and informative reviews'. 'The author's response has been found to be handwavy' echoes fdXd and Qanu.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No competing routing method in the main results, and a thin supplementary comparison (Qanu; AC).",
+        "Advantage over the state of the art unclear for 1.7 to 7.9 times the parameters (fdXd, cGyg, Qanu; AC).",
+        "Claims of simplicity and easy training not shown; experiments called uncontrolled (Qanu; AC).",
+        "Rebuttal judged handwavy: deferrals on Gumbel-softmax and DARTS (fdXd) and restated claims (AC).",
+        "The lone 6 (bRNA) discounted as less informative."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Single seed and no error bars (Svzq); checklist 3(c) answers No. B never asked.",
+    "The ImageNet EfficientNet-B0 baseline, 76.5%, is below the public 77.1% (vPSw, after the rebuttal).",
+    "How the CA module relieves inconsistency between PUs (pRRP, a misreading of line 197).",
+    "Sensitivity to the number of stem-training epochs (oRgf) and different PU counts per stage (vPSw).",
+    "Missing NLP mixture-of-experts work such as Switch Transformer (oRgf, pRRP)."
+  ],
+  "issues_only_b": [
+    "Missing routing baselines in the main results as a ground for rejection (Qanu, cGyg, fdXd); in A, oRgf read the same supplementary comparison as 'superior results'.",
+    "Comparison with Gumbel-softmax routing and with DARTS-style architecture search (fdXd).",
+    "Dynamic-parameter baselines such as CondConv, and hard single-path against soft routing (Qanu).",
+    "Unsupported 'easy to train' and 'simple' claims, four-stage training, no GPU wall-clock timing (Qanu); in A, Svzq and oRgf praised the ease of training.",
+    "Novelty against MEGAN and HydraNets, and the term 'memory' (cGyg)."
+  ],
+  "shared_issues": [
+    "Parameter growth of up to 7.9 times (A: vPSw, oRgf; B: fdXd, cGyg, Qanu).",
+    "Batch 1024 for RMN against 256 for baselines (A: Svzq; B: Qanu); both rebuttals gave baseline sweeps, and both reviewers accepted them.",
+    "No evidence that PUs specialize; visualizations and routing statistics requested (A: pRRP, vPSw, Svzq; B: bRNA).",
+    "Relation to other mixture-of-experts and routing methods (A: pRRP asked for discussion of DRNet, Switch Transformer and OSML; B: Qanu, fdXd and cGyg asked for experiments).",
+    "Unusual terminology and rough writing (A: Svzq; B: Qanu, cGyg)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same evidence differently. Both saw a simple nearest-memory router that adds 0.8 to 4.8 points over plain VGG, ResNet and EfficientNet at nearly equal FLOPs, for 1.7 to 7.9 times the parameters (Tables 2-4). Both saw that the main paper compares with no other routing method; lines 241-242 defer RNR and DeepMoE to the supplement. Committee A valued the simplicity and the steady gains. Its concrete doubts were a batch-size confound and single seeds. The rebuttal answered both with batch-1024 baselines and ten-seed tables, and Reviewer_Svzq and Reviewer_pRRP rose to 7. Committee B required routing baselines. Reviewer_Qanu, the most detailed critic in either committee, found the supplementary comparison thin. The camera-ready confirms it: one reproduced method (RNR, 78.96% against 78.42%, timed on a CPU), and DeepMoE compared only by gains over separate baselines. A's Reviewer_oRgf read the same comparison as 'superior results'. Qanu also rejected the unsupported 'easy to train' claim. The submission itself reports about 40% dead PUs at batch 128, and the camera-ready concedes unstable training and averages that skip runs with dead PUs. The rebuttal's CondConv deltas and batch sweep moved Qanu only to 4. B's AC adopted Qanu's reasons nearly verbatim and set aside the lone 6. A's AC restated the consensus in three sentences. B's factual claims are mostly correct, but none is a fatal flaw. The split is over the evidence standard for a new routing method.",
+  "candidate_reasons": [
+    "Routing baselines demanded versus waived",
+    "Simplicity credited as the contribution",
+    "Rebuttal fixed accepting committee's doubts",
+    "Unsupported ease-of-training claim challenged",
+    "AC adopted one detailed detractor",
+    "Parameter growth tolerated as MoE norm"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_Svzq review and reply of 2021-08-18 (Committee A)",
+    "Reviewer_pRRP review with appended upgrade line, edited 2021-08-13 (Committee A)",
+    "Reviewer_oRgf review (Committee A)",
+    "Reviewer_vPSw comment of 2021-08-19 and authors' reply of 2021-09-01 (Committee A)",
+    "Authors' response to Reviewer_Svzq: batch-1024 baselines and ten-seed tables (Committee A)",
+    "Committee A meta-review",
+    "Reviewer_Qanu review and reply of 2021-09-10 (Committee B)",
+    "Reviewer_fdXd review and 'Final rating' of 2021-08-27 (Committee B)",
+    "Reviewer_cGyg review and 'After rebuttal' of 2021-08-27 (Committee B)",
+    "Reviewer_bRNA review (Committee B)",
+    "Authors' response to Reviewer_Qanu: CondConv deltas and ResNet-18 batch sweep (Committee B)",
+    "Committee B meta-review",
+    "paper_submitted lines 241-242 (MoE comparisons deferred to the supplement)",
+    "paper_submitted lines 278-283 and Figure 4(b) (batch 256 against 1024)",
+    "paper_submitted lines 40-41, 122 ('easy to train') and lines 303-307 (about 40% dead PUs at batch 128)",
+    "paper_submitted line 197 (CA modules share parameters within a stage)",
+    "paper_submitted Tables 2-4 (gains and parameter counts) and checklist 3(c)",
+    "paper.pdf (camera-ready) Section 4.4 (RNR 78.96% against 78.42%, CPU timing), Section 6 and the 'skip when occurring PU death' table captions"
+  ]
+}

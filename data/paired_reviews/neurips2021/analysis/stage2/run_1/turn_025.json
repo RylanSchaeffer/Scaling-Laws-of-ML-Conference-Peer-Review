@@ -1,0 +1,212 @@
+{
+ "run": 1,
+ "turn": 25,
+ "pair_id": "n21-025",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "mode": "sequential",
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": false,
+   "justification": "Both area chairs followed their reviewers' scores: A's cited 'no one strongly in favor', B's accepted on four ratings of 6 or more."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "Neither recommendation rested on a forecast of impact beyond the paper; B praised breadth across tasks the paper actually ran."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "The rebuttal moved three B reviewers up (tbWn, Rugm, kHDT) while no A score changed after it."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "B's Reviewer_7vAs gave a 7 on two sentences of praise after three hours as 'not an expert', while A's Reviewer_41qE spent 12 hours testing the novelty claim; A's own thin review (La4a) was discounted."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Only A showed that CoPE is Pi-Net on the concatenated input and that bolded CIFAR10 gains lie within the run-to-run spread, and both counted against the paper."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "Both committees saw the closeness to Pi-Net; A judged it a set of design choices, B read it as 'a natural continuation' and 'significant novelty'."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "No score moved because of reviewer discussion; B's raises cite the authors' response and A's scores never moved."
+  },
+  {
+   "id": "R08",
+   "applies": false,
+   "justification": "No rating contradicts its own text: La4a's 7 matches its generic praise, and the low A scores match their criticisms."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "B's unsure reviewer (7vAs) gave a clear 7, not a borderline score, and A's reviewers were confident."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "A's area chair followed the three agreeing detractors, not one outlier; B's followed the mean."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The verbal assessments differed: A's reviewers argued against novelty and significance, B's praised them."
+  },
+  {
+   "id": "R12",
+   "applies": false,
+   "justification": "B's spotlight did not rest on unanimity without a high score; Rugm rated 8, and A's lower tier came from a lower mean."
+  },
+  {
+   "id": "R13",
+   "applies": true,
+   "justification": "kHDT raised on rebuttal tables whose 'Pi-net' super-resolution row is Pi-Net-SICONC and whose BigGAN row repeats SNGAN's FID, and that table is not in the camera-ready."
+  },
+  {
+   "id": "R14",
+   "applies": true,
+   "justification": "B's meta-review says all reviewers found the work 'useful and novel', the opposite of kHDT's 'a straightforward follow-up', and carries no weakness forward."
+  },
+  {
+   "id": "R15",
+   "applies": true,
+   "justification": "B's 7vAs rated 7 on 'clear improvements over baselines', which Tables 3 and 4 refute for CIFAR10; A's oDAB misread SNGAN's FID, though that point fed A's scores less."
+  },
+  {
+   "id": "R16",
+   "applies": true,
+   "justification": "The authors did not dispute Rugm's point that Karras et al. beat CoPE on conditional CIFAR10, and Rugm still raised to 8 as 'fully addressed'."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "41qE's 2021-08-27 objection restated an earlier point and the authors answered it on 2021-08-29; no new objection came too late to answer."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "The two committees' reviews differed in score and argument, so the split is not one tier threshold applied to identical reviews."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "A's area chair followed the most careful reviewer (41qE); in B no reviewer reached a contrary expert verdict that the area chair passed over."
+  },
+  {
+   "id": "R20",
+   "applies": true,
+   "justification": "B's concerns were requests for details, metrics and comparisons that the rebuttal met, while A's core concern, novelty over Pi-Net, no response could fix and the authors conceded it."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "La4a's 7 was A's outlier, but A stayed below threshold with or without it; no single score set either tier."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "La4a never replied, but its high score was not one the response had answered; it simply stood unrevised and was discounted."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "No area chair set aside a low outlier while defending acceptance."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "No reviewer on either committee raised audience breadth or venue fit."
+  },
+  {
+   "id": "R25",
+   "applies": true,
+   "justification": "B's meta-review says 'one reviewer raising their score' when three did, and claims unanimous agreement on novelty that kHDT did not share."
+  },
+  {
+   "id": "R26",
+   "applies": true,
+   "justification": "A's Mncu, oDAB and La4a never answered the authors' response, so pre-rebuttal scores stood, while three B reviewers engaged and raised."
+  },
+  {
+   "id": "R27",
+   "applies": true,
+   "justification": "B's 7vAs said 'I am not an expert in this field' at confidence 3 yet gave a 7, which B's area chair counted in the 7.0 mean behind the spotlight."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "A's reviewers did not split evenly; three of four rated below threshold."
+  }
+ ],
+ "added": [],
+ "reasoning": "Both committees saw that CoPE is close to Pi-Net and lacks state-of-the-art baselines, but weighted that closeness differently (R06). Only A tested the novelty claim and the significance of the gains (R05); its core objection could not be answered by a rebuttal, while B's requests could (R20). The rebuttal lifted three B scores and none in A (R03), partly on rebuttal tables that do not hold up (R13) and despite an undisputed stronger result in Karras et al. (R16); A's reviewers mostly left the response unanswered (R26). B's spotlight counted a thin, non-expert 7 built on a wrong reading of the results (R04, R15, R27), and its meta-review misstated the reviewers' positions and dropped their weaknesses (R14, R25). Every cause in this pair fits an existing reason, so none was added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28"
+ ]
+}

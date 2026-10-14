@@ -1,0 +1,210 @@
+{
+  "pair_id": "n21-268",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 4, 6, 5],
+      "confidences": [3, 3, 2, 4],
+      "reviews_edited_after_posting": ["Reviewer_scrw", "Reviewer_6Rb7"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Kr3H",
+        "direction": "champion",
+        "basis": "inattentive",
+        "evidence": "The only 7; he calls himself 'the one high grade'. 2 hours, confidence 3. The review calls the paper 'mainly a theoretical paper' whose point is 'why modern methods are better than traditional methods', assumes Eqs. 5-6 'are approximations', and gives much of its length to papers-with-code and PTB <unk> practice. On 2021-08-20 he wrote 'I'm not prepared to be the advocate' and 'I'm inclined to go along with the other reviewers'. The 7 stayed on the form but carried no weight."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Kr3H",
+          "evidence": "Misreads the genre and the method: the submission is a method paper with experiments on four tasks (checklist: theoretical results N/A), and Eqs. 4-6 define the model rather than approximate one. Its only comments on the results are that Figure 1 shows comparable PPL with a speed advantage, that Figure 2 'is similar to Figure 1, but for another task', and that the results 'seem to be far from SOTA'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_scrw",
+          "claim": "Speed is reported only for the first (HMM) experiment; the text then talks of time complexity, although line 55 promises the decomposition will 'greatly increase the speed of inference'.",
+          "checked_against_paper": "correct",
+          "evidence": "Only Figure 1 (right) reports time. Figure 2, Table 1 and Table 2 report PPL or NLL only; lines 271-275 speak of 'an improvement in computational complexity'. Line 55 reads as quoted."
+        },
+        {
+          "reviewer": "Reviewer_1AvQ",
+          "claim": "Figure 1 is the only efficiency evaluation, and the LHMM+band variant is not timed.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 (right) gives band perplexities only; lines 291-292 say the band means 'only adding another operation that costs O(LN)'. The authors conceded the band version is 'quite a bit slower than LHMM without the band'."
+        },
+        {
+          "reviewer": "Reviewer_scrw",
+          "claim": "State-to-rank ratios beyond 8:1 were not tried.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 1 uses only L/2, L/4, L/8 (line 220), but Table 1 (right) has 16:1 and 32:1 at L=2^14, Table 2 (right) reaches 64:1 (L=2^10, N=2^4), and line 287 discusses the 16:1 limit."
+        },
+        {
+          "reviewer": "Reviewer_scrw",
+          "claim": "In Figure 1 the 2:1 model beats softmax in perplexity at every state size.",
+          "checked_against_paper": "correct",
+          "evidence": "The 2:1 curve lies below the softmax curve at all five sizes in Figure 1 (left); the paper does not comment on it."
+        },
+        {
+          "reviewer": "Reviewer_Kr3H",
+          "claim": "Eqs. 5 and 6 are presented as facts but are presumably approximations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eqs. 4-6 define the parameterization (p proportional to K(u, v)); inference on that model is exact. The abstract's 'exact inference for a model approximation of standard structured distributions' (line 12) invites the misreading."
+        },
+        {
+          "reviewer": "Reviewer_6Rb7",
+          "claim": "The linearization property at line 139 has no reference or proof, and Psi is treated as square.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 136 cites Aizerman et al. 1964 and Jakel et al. 2007, and line 139 calls it an 'elementary property of matrix-vector products' (Eq. 3 is associativity). Line 76 defines Psi_e as L x L^|e|, i.e. rectangular; the kernel framing ('a symmetric function', line 135) is what suggests squareness."
+        },
+        {
+          "reviewer": "Reviewer_6Rb7",
+          "claim": "No error bars are reported.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(c): '[No], we will include error bars in future revisions.'"
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_6Rb7"],
+        "evidence": "6Rb7's review is edited 2021-09-02, the date of 'Decided to modify my score to reflect this', with an update saying he changed it 'under the expectation that authors will add important details ... and will include timings'. scrw's edit (2021-08-21) adds 'I maintain my original score'. 1AvQ and Kr3H never edited; 1AvQ (2021-08-19) found the speed-up 'not very large practically (mostly less than 2x)', Kr3H (2021-08-20) declined to advocate.",
+        "what_convinced_or_not": "The new PCFG and HSMM timing tables answered the request and confirmed the worry: 0.53x to 1.59x, slower at the smallest sizes, and at |N|=100 both faster LPCFGs are less accurate (203.47 and 194.25 vs 191.08 PPL). scrw: 'these speedups are fairly modest'. 1AvQ wanted settings where the vanilla model cannot train; only the HSMM out-of-memory result does that. The answers to Kr3H ('the choice of the feature mapping phi did not have a large impact'; more on poor PTB practice) undercut his own take-away. 6Rb7 moved on promises."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers are split -- two in favor and two opposed' ... 'Author response provided more complete runtime comparisons with baselines, but unfortunately showed very modest gains (and in some cases, none at all). Thus ... I lean towards rejection.' This is scrw's and 1AvQ's post-rebuttal position, and 'none at all' is accurate for LPCFG at |N|=30 and LHSMM at L=2^7. With Kr3H withdrawn and 6Rb7 conditional, the reject matches the discussion, not the 2-2 split of ratings.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Practical speedup not shown: the submission times only the HMM experiment, and the rebuttal tables gave 0.53x to 1.59x for PCFG and HSMM (scrw, 1AvQ, area chair).",
+        "The rank constraint cuts capacity, so speed must come at useful accuracy; at |N|=100 the faster LPCFGs are worse than the PCFG (area chair, 1AvQ weakness 2).",
+        "No advocate: Kr3H's 7 rested on a misreading and he declined to champion; 6Rb7's 6 had confidence 2 and was conditional on promised timings."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 5],
+      "confidences": [5, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Ys2d", "Reviewer_51Nb", "Reviewer_Yt4e", "Reviewer_HMa8"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 5 lie within two points. Yt4e's 7 is the top and rests on a short review; HMa8's 5 is the bottom and is the most detailed review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Yt4e",
+          "evidence": "2 hours. Engages with the linear algebra and asks a real question about normalisation, but on the experiments says only 'the improvements are compelling' and never notes that only Figure 1 measures speed. Raised to 7 on 2021-08-11 on answers about presentation, three days before any timing tables were posted."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HMa8",
+          "claim": "The abstract's 'we can reduce the complexity of inference by a factor of the hidden state size' is not supported; the experiments use only small ratios, maxing out around 32:1.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract lines 9-11 read as quoted; the reduction is L/N, not L. HMM ratios stop at 32:1 (Table 1 right); HSMM reaches 64:1 (Table 2 right). The authors conceded: 'The abstract is indeed not supported by the results', and the camera-ready abstract drops the claim."
+        },
+        {
+          "reviewer": "Reviewer_HMa8",
+          "claim": "An L-state HMM with a rank-N transition matrix is equivalent to an HMM on N states in the discrete case.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The authors' counterexample holds: a 3-state rank-2 HMM with identity emissions gives P(x1,x2) rows (1/9,1/9,1/9), (0,1/3,0), (1/6,0,1/6), which no 2-state HMM can produce. HMa8's construction yields a transition-emitting HMM, not a standard one. HMa8 conceded in his update."
+        },
+        {
+          "reviewer": "Reviewer_Ys2d",
+          "claim": "Apart from the HMM experiments, all results report accuracy only, and no result shows LHMM or LPCFG giving a meaningful accuracy gain over HMM or PCFG.",
+          "checked_against_paper": "correct",
+          "evidence": "Only Figure 1 is timed. The paper claims parity, not gains: LHMM is worse than HMM on all four music sets (Figure 2), LPCFG at |N|=100 is worse than PCFG (203.47/194.25 vs 191.08). The one gain, LHMM 131.8 vs HMM 136.8 test PPL (Table 1), has no error bars."
+        },
+        {
+          "reviewer": "Reviewer_51Nb",
+          "claim": "Computation time is reduced about 8 times (summary: 2 to 2^6 times).",
+          "checked_against_paper": "incorrect",
+          "evidence": "8 is the state-to-rank ratio. The paper claims 'an empirical speedup of more than 3x at L = 2^14' (line 252); read off Figure 1 (right), softmax is about 3,400 and 8:1 about 1,300 s/epoch, about 2.6x."
+        },
+        {
+          "reviewer": "Reviewer_51Nb",
+          "claim": "The role of alpha_v at line 145 is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 145 ends with a dangling 'with alpha_u and beta_v' and writes f(x_u) for f(z_u). Authors: 'alpha_u being here is a mistake'."
+        },
+        {
+          "reviewer": "Reviewer_Yt4e",
+          "claim": "The paper does not show how the factored distributions stay normalised (51Nb likewise: the constants c are dropped after line 140).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 140-142 introduce the c's as 'e.g. normalizing constants'; Section 3.2 writes p proportional to K and never says how the normaliser is computed. The rebuttal supplied c_v = [U_e(V_e^T 1)]_v."
+        },
+        {
+          "reviewer": "Reviewer_51Nb",
+          "claim": "AWD-LSTM far outperforms LHMM (57.3 vs 131.8 PPL).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 (left) test PPL: AWD-LSTM 57.3, LHMM 131.8."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Ys2d", "Reviewer_Yt4e", "Reviewer_HMa8"],
+        "evidence": "Ys2d edited 2021-08-17, the date of 'I've increased my score', with 'Score raised from weak reject to weak accept'. Yt4e edited 2021-08-11, the date of 'I'll edit my review scores to be more positive'. HMa8 edited 2021-08-23: 'I've increased my score by a point'. 51Nb's edit is dated 2021-07-14, a day after posting and before the rebuttal; on 2021-08-21 he wrote 'I thus keep my score'.",
+        "what_convinced_or_not": "The counterexample proving that a rank-N HMM with more states is more expressive than an N-state HMM. HMa8: 'This addresses my deepest concern'; Ys2d: 'particularly regarding the relationship between a low-rank HMM and an HMM with fewer hidden states', 'should be a lemma'. Yt4e moved on answers about normalisation and semirings. The PCFG and HSMM timing tables, posted to Ys2d on 2021-08-14, drew no comment on their size from anyone. 51Nb was not moved on originality; HMa8 would not credit the promised revisions 'sight unseen'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accept matches three of four ratings at or above 6. But 'The reviewers agree that the paper is well written, has useful contributions, and the experiments are good' misstates HMa8 (5; experiments 'struggle to demonstrate practical gains') and Ys2d ('I could not find a convincing result ... meaningful performance improvement'), and skips 51Nb's standing originality doubt. Speed is not mentioned. The chair asks the authors to follow up on the title change, the low-rank HMM discussion and semirings, i.e. credits promised revisions.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "The lead objection, that a low-rank HMM is just a smaller HMM, was refuted by a proof in the rebuttal; Ys2d rose to 6 and HMa8 to 5.",
+        "Three of four final ratings at or above 6, with Yt4e's 7 raised after answers on presentation and normalisation.",
+        "The abstract's overclaim was conceded and treated as a wording fix ('empirical speedups').",
+        "The chair accepted on the ratings and promised revisions; the size of the speedups was never weighed."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The size of the rebuttal speedups as a reason to reject: 1AvQ 'mostly less than 2x', scrw 'fairly modest', area chair 'very modest gains (and in some cases, none at all)'.",
+    "The LHMM+band variant is untimed; the authors conceded it is 'quite a bit slower' (1AvQ).",
+    "Experiments where the vanilla model cannot be trained, beyond the HSMM case (1AvQ).",
+    "Capacity lost to the rank constraint must be weighed against the speed (area chair, 1AvQ).",
+    "Ratios beyond 8:1 and why 2:1 beats softmax in Figure 1 (scrw); PTB <unk> preprocessing (Kr3H); error bars and PTB licence (6Rb7)."
+  ],
+  "issues_only_b": [
+    "Whether an L-state rank-N HMM is equivalent to an N-state HMM (HMa8, Ys2d).",
+    "The abstract's 'factor of the hidden state size' claim, conceded by the authors (HMa8).",
+    "Originality against Choromanski et al. 2020 (51Nb); the misleading title 'Linearized Structured Models' (51Nb).",
+    "How the factored distributions are normalised (Yt4e, 51Nb) and the line 145 error (51Nb); other semirings (Yt4e).",
+    "Related work by Thai, McAuley and Belanger, and whether big-O counts matter on parallel GPUs (Ys2d)."
+  ],
+  "shared_issues": [
+    "Speed is measured only for the HMM experiment (A: scrw, 1AvQ; B: Ys2d, HMa8).",
+    "Speed claims outrun the evidence (A: scrw on line 55; B: HMa8 on the abstract).",
+    "The parameterization and training procedure are under-described (A: Kr3H, 6Rb7, scrw; B: Ys2d, 51Nb).",
+    "The kernel language hides that the method is a plain low-rank constraint (A: Kr3H and 6Rb7 read it as an approximation; B: HMa8 and Yt4e asked to drop it).",
+    "LHMMs are far behind neural language models (A: Kr3H; B: 51Nb)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees judged a borderline paper and ended close (A 7/4/6/5, mean 5.5; B 6/6/7/5, mean 6.0), and both saw that the submission times only the HMM experiment. They diverged on which objection led and on what the rebuttal did to it. In A, Reviewer_scrw and Reviewer_1AvQ made demonstrated practical speed the test; the rebuttal's PCFG and HSMM timing tables (0.53x to 1.59x, slower at small sizes, less accurate at |N|=100) confirmed their worry and both held. A's only 7, Reviewer_Kr3H, rested on reading the paper as theory, and he declined to advocate. The area chair rejected on 'very modest gains (and in some cases, none at all)'. In B, the lead objection was that an L-state rank-N HMM might be no more than an N-state HMM (Reviewer_HMa8, Reviewer_Ys2d). That claim is false, and the authors proved it with a counterexample, which moved Ys2d to 6 and HMa8 to 5. B received the identical timing tables, nobody in B weighed their size, and B's chair called the experiments 'good' and credited promised revisions. The committees weighed the same modest speed evidence differently, and the rebuttal refuted B's main objection while confirming A's.",
+  "candidate_reasons": [
+    "same speed numbers weighed differently",
+    "rebuttal refuted lead objection",
+    "rebuttal confirmed lead objection",
+    "lone champion declined to advocate",
+    "meta-review overstates reviewer consensus",
+    "promised revisions credited sight unseen"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_1AvQ post 2021-08-19",
+    "Reviewer_scrw final review, UPDATE",
+    "Reviewer_Kr3H post 'Open to negotiation', 2021-08-20",
+    "Authors' PCFG and HSMM timing tables, 2021-08-14, both forums",
+    "Authors' response to Reviewer_HMa8 (counterexample)",
+    "Reviewer_HMa8 final review, Update",
+    "Reviewer_Ys2d post 2021-08-17",
+    "Committee B meta-review",
+    "paper_submitted.pdf abstract lines 9-12, line 55, lines 250-254, Figure 1, Tables 1 and 2"
+  ]
+}

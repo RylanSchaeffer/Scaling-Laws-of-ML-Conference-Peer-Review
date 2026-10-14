@@ -1,0 +1,236 @@
+{
+  "pair_id": "n21-274",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 5],
+      "confidences": [4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_Lats"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_K7DT",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Lone 5 against two 7s. Its one reason, that algorithm and theory 'strongly rely on previous work', is right: line 113 says 'We here copy the main result' of Guyader et al. (Theorem 1), and the proofs of Propositions 1-2 take a few lines each. The authors replied 'This is essentially true'. But the main review is one paragraph after a claimed 10 hours, K7DT never posted after the rebuttal, and the AC did not mention the point."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Lats",
+          "evidence": "Said the paper gives no ACAS Xu running times; Figure 2 plots them per property. Said MNIST uses 5 images; Table 3's 99, 97 and 93 percent cannot come from 5 images on 4 networks (the authors say 100). Lats conceded on 2021-08-25: 'Indeed, I've missed several details'."
+        },
+        {
+          "reviewer": "Reviewer_K7DT",
+          "evidence": "One-paragraph main review with a single point (incremental), after a claimed 10 hours. No post or edit after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Lats",
+          "claim": "The paper gives no running times for ACAS Xu.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 2, 'ACAS Xu - runtimes of ERAN [DeepPoly+MILP] and Last Particle', plots them; lines 252-253 discuss them."
+        },
+        {
+          "reviewer": "Reviewer_Lats",
+          "claim": "The MNIST experiment uses only 5 images.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5.3 states 4 networks and no image count, but Table 3's certified rates (99, 97, 93, 85 percent) are not multiples of 5, so the run used far more than 5 images. Authors: 100 images x 4 networks."
+        },
+        {
+          "reviewer": "Reviewer_Lats",
+          "claim": "The method falsely certifies some cases as robust.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: 9 ACAS Xu cases certified by Last Particle and uncertified by ERAN; line 249: 'It is not sound as it admits 9 false positives'. On MNIST (Table 3) there is no ground truth, so false certifications there cannot be counted."
+        },
+        {
+          "reviewer": "Reviewer_Lats",
+          "claim": "The analysis approximates the Gamma distribution by a Gaussian, which is unreliable in the tails.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 155-156: m is computed by a line search on the exact Gamma quantile. The Gaussian approximation (App. A) only shows the log(1/pc) scaling, and Table 1 puts m and its approximation within 4 iterations."
+        },
+        {
+          "reviewer": "Reviewer_Lats",
+          "claim": "On ImageNet the paper compares with no other method.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 and Section 5.4 report Last Particle alone."
+        },
+        {
+          "reviewer": "Reviewer_Aovq",
+          "claim": "The ImageNet experiment uses only 5 test images.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 266-267: '2 neural networks ... with 5 test images'; Table 4's certified fractions are multiples of 0.2. The camera-ready uses 100 images."
+        },
+        {
+          "reviewer": "Reviewer_K7DT",
+          "claim": "Both the algorithm and the theoretical analysis strongly rely on previous work.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 113: 'We here copy the main result of the Last Particle simulation' (Guyader et al. 2011). Propositions 1-2 (lines 129-139) follow from the Gamma and Poisson laws in a few lines. Authors: 'This is essentially true'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Lats"],
+        "evidence": "Lats wrote on 2021-08-25 'I would like to raise my score' and on 2021-08-30 'the authors have adequately addressed my major concerns'. The review's last edit is 2021-08-30 and the final rating is 7; the earlier rating is not visible. Aovq (7) and K7DT (5) have no edits, and K7DT posted nothing after the rebuttal.",
+        "what_convinced_or_not": "The corrections of Lats's misreadings (Figure 2 runtimes, 100 MNIST images on 4 networks) and the argument that no other method has run on ImageNet at pc = 10^-15. Lats still wanted more test images and an explanation of why small N works, but deferred: 'I'm not an expert in the field'. The 100-image ImageNet table came on 2021-09-03, after Lats's edit and after every reviewer post. Lats had offered to 'raise it more' for it and did not; Aovq asked for it and never commented on it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences. It praises the authors' 'impressive effort' and cites an 'emerging consensus' that the 'comments, clarifications, and also experiments' addressed many concerns. It does not mention K7DT's novelty point, and no reviewer commented on the new experiments in the record.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Two 7s from reviewers who praised clarity, the ERAN comparisons and scalability, and who said they were not experts in the area (Lats, Aovq).",
+        "The rebuttal corrected Lats's misreadings, and Lats raised the rating to 7.",
+        "Black-box assessment at pc = 10^-15 on ImageNet networks was seen as promising, and a 100-image ImageNet table arrived during the discussion.",
+        "K7DT's incremental-novelty 5 had no follow-up, and the AC did not weigh it."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 3, 5],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_YGbw"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_YGbw",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Lowest rating (3) and the most work: 12 hours and three discussion rounds. Each specific claim checks out against the paper (PGD at line 47, Alg. 2 asymptotics at lines 195-203, no AMLS experiment, p = 0 framing in Sections 3.3 and 5.2), and the authors conceded the main ones. The gaps concern framing and evaluation, not wrong results, so 'Clear rejection' is severe; YGbw also calls the work 'interesting and promising'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_AB2m",
+          "evidence": "Read N = 2 particles as 'the empirical evaluation is for TWO datapoints!!'; ACAS Xu alone has 225 cases (line 243). Said there are no simulations beyond Gaussian input; Sections 5.3-5.4 use uniform L-infinity noise (lines 256, 268). The summary credits the method with 'lower false positive rates' than ERAN; Table 2 shows 9 false positives for Last Particle. After the authors corrected the first two points, AB2m wrote only 'I do not see my main concerns alleviated'."
+        },
+        {
+          "reviewer": "Reviewer_kvKQ",
+          "evidence": "2-3 hours. The summary calls the method 'sound' and the first con attacks 'claiming soundness', but line 144 says 'our procedure is complete but not sound'. kvKQ conceded ('my initial review was overly harsh with this criticism') and kept 5. The rest of the review, on smoothing and concentration bounds, is substantive."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AB2m",
+          "claim": "The empirical evaluation covers only two data points.",
+          "checked_against_paper": "incorrect",
+          "evidence": "N = 2 is the number of particles per input. ACAS Xu has 45 x 5 = 225 cases (line 243), MNIST uses 4 networks, ImageNet 2 networks x 5 images."
+        },
+        {
+          "reviewer": "Reviewer_AB2m",
+          "claim": "No experiments are given for non-Gaussian input distributions.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 256: 'We focus on L-infinity uniform robustness'; line 268: 'noise uniformly distributed over L-infinity'. Only the idealized Section 5.1 is Gaussian."
+        },
+        {
+          "reviewer": "Reviewer_AB2m",
+          "claim": "pc and t change from one experiment to another with no guidance on how to choose them.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 2-4 use pc = 10^-50, 10^-35, 10^-15 and t = 40, 40, 20; the main text gives no rule. The rebuttal points to domain safety standards for pc."
+        },
+        {
+          "reviewer": "Reviewer_YGbw",
+          "claim": "Line 47 says PGD is neither sound nor complete, but PGD is complete.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 47: 'They are fast, but neither sound nor complete.' Under the paper's own definition (line 24), an attack that finds no violation certifies, so it is complete. Authors: 'You are right'; the camera-ready says 'complete but unsound a priori'."
+        },
+        {
+          "reviewer": "Reviewer_YGbw",
+          "claim": "Alg. 2 does not give independent samples in finitely many steps, so the claimed non-asymptotic guarantees hold only for the idealized algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 195-203: independence needs 'an infinity of iterations' and 'all the formulas given in Prop. 1 and after hold true asymptotically for large t'. Checklist line 352: 'Non-asymptotic guarantees are proven in Prop. 1 to 4.' Authors: 'We totally agree'."
+        },
+        {
+          "reviewer": "Reviewer_YGbw",
+          "claim": "There is no experimental comparison with Webb et al.'s AMLS; the 4-orders-of-magnitude speed-up (lines 208-211) is asserted.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 compares only with ERAN. Lines 208-211 multiply typical N and t values; no run of AMLS appears. YGbw's added reason, that AMLS raises the level faster per iteration, is weak (N = 2 needs only about 3 to 5 times more iterations), and YGbw accepted the arithmetic in the update."
+        },
+        {
+          "reviewer": "Reviewer_YGbw",
+          "claim": "Section 3.3 and experiments 5.2-5.3 frame the problem as certifying p = 0, conflating it with absence of violations, while the test decides p < pc.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 147-148: 'our procedure always certifies whenever the property holds since Pfn(0) = 0', while line 18 defines the property as no violation in the neighbourhood. Table 2 counts as false positives the 9 cases where ERAN finds a violation. Authors: 'The paper places an undue emphasis on formal certification which confuses the three reviewers.'"
+        },
+        {
+          "reviewer": "Reviewer_kvKQ",
+          "claim": "The paper over-claims soundness.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 144: 'our procedure is complete but not sound'; lines 40-41 promise only 'guarantees on the lack of soundness'. kvKQ conceded."
+        },
+        {
+          "reviewer": "Reviewer_kvKQ",
+          "claim": "Only 5 ImageNet test images are used.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 266-267."
+        },
+        {
+          "reviewer": "Reviewer_kvKQ",
+          "claim": "Comparable guarantees follow from a standard concentration inequality or a sequential bound applied to Webb et al.'s estimator.",
+          "checked_against_paper": "not_checked",
+          "evidence": "An argument about other methods. The paper makes no such comparison; line 161 says only that Webb et al. give no guarantee like the level alpha."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "YGbw edited the review on 2021-08-25 to add AR notes ending 'In light of the author response, I will keep my score' (3). kvKQ (2021-08-25): 'have reduced my confidence, but not increased my score'; the review shows no edit and confidence 4. AB2m (2021-08-25): 'I do not see my main concerns alleviated'; no edit.",
+        "what_convinced_or_not": "Nothing moved a score. The authors conceded the PGD error, the idealized-only guarantees and the confusing framing, so the rebuttal confirmed B's main points. YGbw accepted the speed-up arithmetic and the authors' linear-score test of Alg. 2 but replied 'A NN is of course very different from a linear function'. kvKQ asked for a non-uniform specification on which the method beats bound propagation and attacks; none was given."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four shortfalls, each from the reviews: motivation (YGbw, kvKQ), experimental comparisons with previous approaches (YGbw, kvKQ), practicality (AB2m) and advance over Webb et al. 2019 and Baluta et al. 2021 (AB2m, YGbw). 'All the reviewers and I agree'. The practicality item inherits AB2m's misreadings. The AC adds Wang et al. (UAI 2021) but says it did not affect the decision.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Weak motivation and framing: a p < pc test is scored against exact certification (YGbw, kvKQ).",
+        "Evaluation gaps: no experiment against Webb et al.'s AMLS, attacks or smoothing, and the Alg. 2 approximation is untested on networks (YGbw, kvKQ).",
+        "Limited advance over Webb et al. 2019 and Baluta et al. 2021 (AB2m, YGbw, AC).",
+        "Practicality, partly built on AB2m's misreadings of the experiments."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The Gaussian approximation of the Gamma quantile for m in the tails (Lats); Table 1 and the rebuttal answer it.",
+    "Why fewer particles (small N) certify better is counter-intuitive and unexplained (Lats).",
+    "The Broader Impact section omits the military and ACAS Xu uses named in the introduction (Lats).",
+    "Simple Gaussian proposals, no gradient-based MCMC, and a sequential algorithm (Aovq; K7DT on sequentiality).",
+    "ERAN is not run on ImageNet (Aovq)."
+  ],
+  "issues_only_b": [
+    "The guarantees hold only for the idealized sampler; with Alg. 2 they are asymptotic in t, against the checklist's 'non-asymptotic' claim (YGbw).",
+    "The certified property is not stated formally, and Sections 3.3 and 5.2 frame success as p = 0 while the test decides p < pc (YGbw, kvKQ).",
+    "No experimental comparison with Webb et al.'s AMLS, the closest method; the 4-orders speed-up is asserted, not measured (YGbw).",
+    "Line 47 wrongly calls PGD incomplete (YGbw).",
+    "Concentration or sequential bounds and randomized smoothing as simpler routes to similar guarantees (kvKQ); pc and t chosen per experiment without guidance, and the input distribution must be known (AB2m)."
+  ],
+  "shared_issues": [
+    "Incremental advance over Guyader et al. 2011 and Webb et al. 2019 (A: K7DT; B: AB2m, YGbw, kvKQ, AC).",
+    "ImageNet tested on only 5 images (A: Lats, Aovq; B: kvKQ).",
+    "Too few comparisons with other methods, including gradient attacks such as PGD (A: Lats; B: YGbw, kvKQ)."
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee B's reviewers knew the statistical-robustness literature and found specific gaps that the paper confirms; no Committee A reviewer raised them. Reviewer_YGbw (3, confidence 4, 12 hours) showed four things. The guarantees hold only for the idealized sampler (lines 195-203: 'asymptotically for large t'). No experiment compares the method with Webb et al.'s AMLS, the closest method. Line 47 wrongly calls PGD incomplete. Sections 3.3 and 5.2 score a p < pc test against exact certification. The authors conceded the guarantee gap, the PGD error and the framing. Committee A's two 7s came from self-declared non-experts (Lats: 'I'm not an expert in the field'; Aovq: 'not too familiar with this area', 2 hours). Their main complaints were misreadings (ACAS Xu runtimes, MNIST image count) and the 5-image ImageNet test, and the rebuttal answered them; Lats then raised to 7. Both committees saw the same incremental advance over Guyader et al. and Webb et al. and scored it 5 (K7DT; AB2m, kvKQ). B's area chair also took 'practicality' from AB2m, who misread N = 2 particles as two data points, but YGbw's and kvKQ's grounds stand without it. A's area chair rewarded the rebuttal effort in three sentences. B's gaps concern framing and evaluation, not wrong results, and neither committee found a fatal flaw. The split comes from reviewer expertise and depth, not from different weights on the same facts.",
+  "candidate_reasons": [
+    "non-expert reviewers championed acceptance",
+    "expert detractor found verified gaps",
+    "rebuttal corrected acceptors' misreadings",
+    "guarantee caveat seen by one committee",
+    "reject AC inherited reviewer misreadings",
+    "accept AC credited rebuttal effort"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_YGbw final review (AR notes) and 2021-08-27 post",
+    "Reviewer_Lats posts of 2021-08-25 and 2021-08-30",
+    "Reviewer_Aovq review ('not too familiar with this area of research')",
+    "Reviewer_AB2m review and 2021-08-25 post",
+    "Reviewer_kvKQ 2021-08-25 post",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf line 47 (PGD)",
+    "paper_submitted.pdf lines 195-203 and checklist line 352 (guarantees asymptotic in t)",
+    "paper_submitted.pdf lines 208-211 and Section 5 (no AMLS experiment)",
+    "paper_submitted.pdf Figure 2 and Tables 2-4"
+  ]
+}

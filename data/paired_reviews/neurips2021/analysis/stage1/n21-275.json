@@ -1,0 +1,218 @@
+{
+  "pair_id": "n21-275",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 7, 5],
+      "confidences": [4, 3, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Qkr9",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "7 against two 5s (p3ra, R5bK). The review is short (4 hours, confidence 3, 'Math/other details were not carefully checked'), but every point checks out: the Table 2 'mean is 236 while standard deviation is 1' oddity was a code bug that the authors admitted, the line-269 brittleness was conceded ('a valid and pertinent question'), and the errata at lines 136/326, 245, 313 and 350 are in the PDF. The positive verdict itself is one sentence ('the approach is well thought out, and the lower bound is fundamental'), and Qkr9 never posted in the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_p3ra",
+          "claim": "In the low-false-alarm regime the upper bound grows with the log of the parameter-set size, which the lower bound lacks, so the claim that only a 1/(1-ε) factor separates the bounds is overstated.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 (lines 258-260) sets β ≥ m|Θ^(1)|/α and bounds the delay by 8 log β / ((1-ε) max_a D), so log|Θ^(1)| enters. Theorem 1 (line 149) has only log(1/α). Lines 287-291 claim a match 'up to the algorithm-dependent multiplicative factor 1/(1-ε)', which holds only as α goes to 0 for a fixed instance. The authors conceded on 2021-09-01 that 'a tighter lower bound containing a dependence on d should hold' and called the high-dimensional regime out of scope."
+        },
+        {
+          "reviewer": "Reviewer_p3ra",
+          "claim": "The experiments report a modified algorithm, not the one that is analysed.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 364-365: 'For ε-GCD, we found it advantageous to update the MLE estimate ... both during exploration and exploitation phases'. Algorithm 1 line 13 uses exploration data only. In the rebuttal the analysed version gave delays 127, 171, 213, 263 against 100, 120, 170, 190 in Table 1 (URS 300 to 790)."
+        },
+        {
+          "reviewer": "Reviewer_p3ra",
+          "claim": "The stopping threshold β is linear in the parameter-set size, so the algorithm will be slow to stop.",
+          "checked_against_paper": "correct",
+          "evidence": "True of the algorithm as printed: Algorithm 1 line 4 compares the log-likelihood CUSUM Q^(2) (line 16) with β. Theorem 2's 8 log β term and the proof sketch (line 315, product form) intend the threshold log β. The authors called line 4 a typo ('it should be log(β)'). This is the defect that FMqm named in Committee B."
+        },
+        {
+          "reviewer": "Reviewer_R5bK",
+          "claim": "Only trivial baselines are given; no experimental-design baseline or prior adaptive method is compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 359-362 compare ε-GCD with uniformly random selection (URS) and an Oracle only. ZM20 and Gun+21 are discussed (lines 96-107) but not run. p3ra raised the same point, and R5bK still named it as the open issue on 2021-08-17."
+        },
+        {
+          "reviewer": "Reviewer_Qkr9",
+          "claim": "The reported standard deviations are implausible (URS mean 236 with standard deviation 1; ε-GCD less variable than the Oracle).",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'the computation of standard deviation for detection delay was incorrect in our code' (Variance[X]-c instead of Variance[X-c]). Main-text Table 1 shows the same pattern (size 10: Oracle 66 ± 32, ε-GCD 100 ± 21). The camera-ready Table 1 has different values (ε-GCD+ 98 ± 62, Oracle 30 ± 5)."
+        },
+        {
+          "reviewer": "Reviewer_Qkr9",
+          "claim": "The second delay term blows up when a parameter close to the true one has a different most informative action.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 269 approximates the second term by 1/ε^4 times the sum of 1/Δ_θ^4 over the parameters whose best action differs. By the definition at line 272, Δ_θ is at most half the average divergence between θ* and θ, so it goes to 0 for a nearby θ. Authors: 'This is a valid and pertinent question'; the fix is left to future work."
+        },
+        {
+          "reviewer": "Reviewer_R5bK",
+          "claim": "Theorem 2's second term is left vague in the main text, and Theorem 1 is stated only for a change at time 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 260 gives the second term as O(poly(1/ε, E[Q_ν], P)), with the detail deferred to the appendix (lines 266-268). Theorem 1 (line 149) bounds E^(1,θ*)[τ]; line 153 defers a general change time to the appendix. The authors confirmed both."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting (all posted 2021-07-16). p3ra, 2021-09-01: 'I am inclined to keep my score the same'. R5bK, 2021-08-17: 'most issues were clarified; the only thing which is still there is comparison to something more substantial and clarity of explanations', with no edit. Qkr9 posted nothing after the review.",
+        "what_convinced_or_not": "The theory clarifications (the role of (m, α), the log β threshold, and a worked example at α = 0.001 where the first term is 12.90 and the second 0.55) satisfied R5bK on the bound but not on the baselines. The example uses d = 2, so it does not address the dependence on d. p3ra accepted the clarification about the dataset but not the refusal to run ZM20 or Gun+21, and not the treatment of the bound gap. The authors were combative ('a fundamental misunderstanding of quickest change detection'; closing the gap is 'an unrealistic and unfair expectation')."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepted with two of three ratings at 5. The meta-review credits the problem's own interest, 'solid intuitions' and near-optimality 'in the limit where false rate tends to zero'. It calls the d-dependent gap 'perfectly fine' if the revision states it. That is p3ra's own fallback ('at the very least this issue should be discussed honestly in the paper'), but p3ra did not draw acceptance from it. No reviewer is named.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "A new problem with a lower bound and an algorithm that matches it as the false alarm rate goes to zero (AC; Qkr9).",
+        "The rebuttal clarified the theory, and the dimension-dependent gap between the bounds was judged acceptable if the revision discloses it (AC, on p3ra's point).",
+        "Weak baselines and poor readability were treated as revisions, not as reasons to reject (AC)."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 6, 6, 5],
+      "confidences": [3, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_r9YP", "Reviewer_P4K6"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 6, 5 are tight. Fs8Y's 5 is one point below the rest, and no reviewer argued for rejection in the record. The outlier is the AC's decision, which went against three ratings above the threshold."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Fs8Y",
+          "evidence": "Posted 2021-08-01, two weeks after the others. Asserts 'exiting works showing optimality and optimal algorithm in similar bandit change-point detection problem' but names none: the only works named are ZM20, which gives no delay bound per lines 101-107, and Cao et al., a regret paper. The limitations and ethics fields are '.'. Asks what '(1)' in Θ^(1) means, though line 126 names it the post-change parameter set. Never replied to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_FMqm",
+          "claim": "The threshold β in Algorithm 1 is inconsistent with Theorem 2: a delay of order log β / KL means β is a likelihood-ratio threshold, but Algorithm 1 thresholds a cumulative log-likelihood ratio.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 line 4: 'if max Q_t^(2)(θ) ≥ β', with Q^(2) a sum of log-likelihood ratios (line 16). Theorem 2 (line 260) gives 8 log β; the proof sketch (lines 314-315) writes Q^(2) as a product, and line 351 uses 'the level log β'. Authors: 'This is a good catch'. The camera-ready line 4 reads log β."
+        },
+        {
+          "reviewer": "Reviewer_P4K6",
+          "claim": "The abstract and introduction promise to trade sensing cost against detection delay, but the method only minimises detection delay.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract lines 5-6: 'a means of balancing sensing cost with detection delay'. The objective (lines 34-35) is delay under a false alarm constraint, with one action per round and no cost term. The authors redefined cost as a fixed per-round budget, and the camera-ready abstract drops the phrase."
+        },
+        {
+          "reviewer": "Reviewer_P4K6",
+          "claim": "The pre-change distribution and the set of post-change distributions are assumed known.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 125-127: 'The learner is aware, a priori, of the pre-change parameter θ0, the post-change parameter set Θ(1) and the observation distribution structure'. Fs8Y and the AC raised the same limit. It is the standard parametric setting for quickest change detection, not an error."
+        },
+        {
+          "reviewer": "Reviewer_FMqm",
+          "claim": "E_ℓ is used before it is defined, line 197 has the wrong subscripts, and the references at lines 313 and 350 are broken.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 193 uses E_ℓ before Algorithm 1 line 7 defines E_t. Line 197 sums over ℓ but writes E_t, X_t, A_t, and writes 'argmax' for a maximum. Line 313 reads 'by line ??' and line 350 'the bound (??)'. P4K6 and Qkr9 listed the same errata."
+        },
+        {
+          "reviewer": "Reviewer_Fs8Y",
+          "claim": "Existing works already give optimality results and optimal algorithms for similar bandit change-point problems, so the problem is not new.",
+          "checked_against_paper": "not_checked",
+          "evidence": "No such work is named. The submission's related work (lines 101-107) says ZM20 does not characterise detection delay under a false alarm constraint, and Cao et al. 2019 is about regret. Checking ZM20 itself needs material outside the pair files."
+        },
+        {
+          "reviewer": "Area chair (Committee B)",
+          "claim": "[Lai98] already establishes a lower bound in a similar setting, which weakens the lower-bound contribution.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper says so itself at lines 158-160: with one action the bound 'reduces to the form of a a standard lower bound for the classical changepoint detection problem [Lai98]'. The new element is the maximum over actions in the denominator, which the meta-review does not address."
+        },
+        {
+          "reviewer": "Area chair (Committee B)",
+          "claim": "Step 13 computes the MLE from the whole history, which makes the action rule of step 14 non-indexable.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Algorithm 1 line 13 is 'argmax Q_t^(1)(θ)', annotated 'Most likely post-change distribution based on exploration data'. Q^(1) is updated only in exploration rounds, by the recursion in line 11, so each round costs one update per candidate parameter. Only the experimental variant (lines 364-365) uses all the data."
+        },
+        {
+          "reviewer": "Area chair (Committee B)",
+          "claim": "Pulling one arm alone seems to show whether a change occurred, so exploration seems unnecessary.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The setting is a local change (abstract lines 2-3: changes are 'observable primarily through a well-aligned sensing action'). In the worked example (lines 292-299) the most informative action is 'in fact, the only informative one', so the right sensor must be found. Every observation updates the CUSUM of every candidate parameter (lines 11 and 16), which also answers the AC's question on how the correlation is used."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_P4K6"],
+        "evidence": "P4K6's review was edited 2021-09-02, the day P4K6 wrote 'I found your clarifications very clear. Accordingly, I have increased my score' (final 6). r9YP's edit on 2021-07-16 predates the rebuttal; on 2021-09-02 r9YP wrote 'I will keep my score' (6). FMqm, 2021-08-27: 'I maintain my score' (6). Fs8Y never replied (5).",
+        "what_convinced_or_not": "The definition of sensing cost as a fixed per-round budget, and the linear-model account of how observations depend on actions, convinced P4K6. r9YP found the responses 'convincing' but would not go to a clear accept because 'there are quite a lot of modifications to be made to the discussion/presentation'. The AC was not moved."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "'This is a borderline paper. After thorough discussions among Reviewers, I would lean towards a rejection.' Three of four final ratings are 6, one of them raised after the rebuttal, and no reviewer argued for rejection in the record. The concerns are labelled 'my own read'. Calling the contribution 'incremental' contradicts r9YP ('a finite-time analysis of the problem is novel'), FMqm ('new additions to the bandit change detection theory') and P4K6. Several concerns misread the paper (step 13, why explore, correlation), and the summary calls the paper 'distributed quickest section' and names the method epsilon-QCD.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "The AC judged the contribution incremental over classical change detection with known likelihoods, citing [Lai98] for the lower bound.",
+        "The framework was judged unclear: the promised trade-off between sensing cost and delay is not modelled (P4K6, Fs8Y, AC).",
+        "Parametric assumptions with known distributions, and no baselines beyond uniform sampling and the Oracle (P4K6, Fs8Y, AC).",
+        "The presentation needs many changes, so the reviewers stopped at 'marginally above' (r9YP).",
+        "The AC's own questions on the algorithm, several of which the submission already answers."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Gap between the bounds: the upper bound carries log|Θ^(1)| (order d) and the lower bound does not, so optimality holds only as α goes to 0 for a fixed instance (p3ra; AC).",
+    "The experiments run a variant that updates the MLE on all data, not the analysed Algorithm 1 (p3ra, R5bK).",
+    "The standard deviations in the experiment tables come from a code bug (Qkr9; the authors confirmed it).",
+    "The second delay term blows up when a nearby parameter has a different best action (Qkr9, line 269).",
+    "Theorem 2's second term is vague in the main text; does the first term dominate at α = 0.001 (R5bK).",
+    "An optimal-design baseline instead of uniform sampling (R5bK); the choice of the exploration distribution π (Qkr9).",
+    "Only one change is detected; a misspecified pre-change parameter (p3ra)."
+  ],
+  "issues_only_b": [
+    "The abstract promises a trade-off between sensing cost and delay that the model does not contain (P4K6, Fs8Y, AC).",
+    "The lower bound reduces to [Lai98], so the contribution is incremental (AC).",
+    "Trade-off curves of false alarm against delay (FMqm).",
+    "Appendix details of the Theorem 1 proof, lines 602 and 605 (r9YP).",
+    "The AC's questions on the algorithm: indexability of step 13, why explore, use of the correlation, the dimension of θ.",
+    "Non-parametric baselines, transient changes, and non-parametric or adversarial extensions (AC)."
+  ],
+  "shared_issues": [
+    "Clarity: undefined terms in the introduction and the need for an early concrete example (p3ra, R5bK; r9YP, P4K6, Fs8Y).",
+    "Known pre-change parameter and known post-change set (p3ra; P4K6, Fs8Y, AC).",
+    "No comparison with ZM20 or with any baseline beyond uniform sampling and the Oracle (p3ra, R5bK; Fs8Y, FMqm, AC).",
+    "The β versus log β threshold in Algorithm 1 line 4 (p3ra's slow-stopping worry; FMqm named the error); the authors conceded it in both forums.",
+    "Detection delay instead of regret, and the relation to non-stationary bandits (p3ra as a minor point; Fs8Y, AC).",
+    "Typos and broken references at lines 193, 197, 313 and 350 (Qkr9; FMqm, P4K6, Fs8Y).",
+    "The queue interpretation is unclear (p3ra; r9YP)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The area chairs, not the reviewers, split this paper. Both reviewer pools rated it borderline: A 5, 7, 5 (mean 5.67) and B 6, 6, 6, 5 (mean 5.75), so the committee that rejected had the higher mean. No reviewer in either committee found a fatal error. A's AC accepted against two 'marginally below' ratings. It valued a new problem with a lower bound and an upper bound that matches it as the false alarm rate goes to zero, and it accepted the dimension-dependent gap between the bounds (p3ra's strongest point) if the revision states it. B's AC rejected against three 'marginally above' ratings, one raised after the rebuttal, on concerns it labels 'my own read'. The main one, that the contribution is incremental over classical change detection ([Lai98]), contradicts the novelty statements of r9YP, FMqm and P4K6. Three of its questions misread the submission: step 13 uses exploration data only, lines 292-299 show that only the aligned sensor is informative, and every observation updates every candidate's statistic. A's reviewers found more real defects than B's (the bound gap, a standard-deviation bug, experiments on an unanalysed variant), and A still accepted. The two ACs weighed the same borderline record in opposite directions.",
+  "candidate_reasons": [
+    "Borderline scores, AC discretion decides",
+    "Rejecting AC overrode weak-accept majority",
+    "AC's own concerns misread paper",
+    "Novelty judged incremental over classical detection",
+    "Accepting AC tolerated disclosed bound gap"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_p3ra review and final response (2021-09-01)",
+    "Authors' reply 'Optimality and gap between upper and lower bound' (Committee A, 2021-09-01)",
+    "Reviewer_Qkr9 review point 2 and the authors' reply 'Tabulated Variance Corrections'",
+    "Reviewer_FMqm review and the authors' reply on the β threshold (Committee B, 2021-08-09)",
+    "Reviewer_P4K6 post and Reviewer_r9YP 'Keeping my score' (both 2021-09-02)",
+    "paper_submitted Algorithm 1 lines 4, 11, 13, 16",
+    "paper_submitted Theorem 2 (lines 255-262) and lines 287-291",
+    "paper_submitted lines 158-160 ([Lai98]) and lines 292-309 (benefits of adaptivity)",
+    "paper_submitted lines 359-365 and Table 1",
+    "paper_submitted abstract lines 5-6"
+  ]
+}

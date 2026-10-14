@@ -1,0 +1,240 @@
+{
+ "pair_id": "n21-132",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 2, 5, 6],
+   "confidences": [5, 5, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_PcFP"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_Jxr4",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "Rating 2 at confidence 5 after '45 mins'. The same three sentences fill the summary, main review, limitations and ethics fields and say nothing about the method or results. The only ground is a 'duplicate submission' with an ICML 2021 workshop paper. The NeurIPS FAQ and the non-archival workshop call, both quoted by the authors, permit that. Jxr4 never replied, and the AC did not cite it. Without Jxr4 the mean is 5.33 (5, 5, 6), still below the threshold."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Jxr4",
+     "evidence": "45 minutes; one pasted paragraph in all four fields; no assessment of the method or the results; no reply to the authors' policy rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_PcFP",
+     "evidence": "Confidence 5 ('checked the math/other details carefully') while writing 'I do not fully understand the motivation and details of the attack'. It lists seven references without saying why each matters; none attacks graph classification. It wrongly says [17] is not RL-based. It raised the score to 5 in a one-line comment that gives no reason."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_FwkT",
+     "claim": "The paper only considers GCN and GIN (and ChebyGIN) as victim models, far from the state of the art.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 223-225 name GCN and GIN as the two victims on the TU datasets; line 259 uses a pre-trained ChebyGIN on MNIST-75sp; line 276 attacks a GCN fake-news detector. S2V appears only in the App. D comparison with RL-S2V (footnote 4). The camera-ready adds a Graph U-Net victim (Table 2)."
+    },
+    {
+     "reviewer": "Reviewer_FwkT",
+     "claim": "Expected improvement is mentioned only parenthetically, with no justification.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 149-150: '(we use expected improvement (EI) [12] as the default acquisition function)'. No other text justifies the choice."
+    },
+    {
+     "reviewer": "Reviewer_FwkT",
+     "claim": "Post-rebuttal: graph-classification robustness and defence papers were missed (You et al. 2020, Chen et al. 2020, Zhang et al. 2020/21, Gao et al. 2020).",
+     "checked_against_paper": "correct",
+     "evidence": "You et al., Chen et al. and Gao et al. are not cited. Zhang et al. is reference [34], cited only as a backdoor attack (line 195). The paper also cites [10], a certified-robustness paper for graph classification, only as a white-box attack (lines 192-194). No defence is evaluated, so the rebuttal's argument that defences are scarce does not hold."
+    },
+    {
+     "reviewer": "Reviewer_PcFP",
+     "claim": "GRABNEL and random search attack the fake-news detector about equally well.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 7 shows close ASR curves. Lines 295-297 concede that 'Random search also performs reasonably well' because the discussion cascades are small."
+    },
+    {
+     "reviewer": "Reviewer_PcFP",
+     "claim": "The gradient-based attack performs poorly on PROTEINS with GCN but best on the other datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: on PROTEINS-GCN, accuracy after Gradient-based is 50.60 against 19.46 for Random and 10.82 for GRABNEL. Gradient-based is best in only 3 of the other 5 columns (IMDB-M GCN, IMDB-M GIN, COLLAB GIN); GRABNEL is best in the remaining two."
+    },
+    {
+     "reviewer": "Reviewer_PcFP",
+     "claim": "[17] is not a reinforcement-learning-based technique.",
+     "checked_against_paper": "incorrect",
+     "evidence": "[17] is ReWatt (Ma et al. 2019), which uses RL; the authors quoted its abstract. The real error in that sentence (lines 185-186) is [37], Nettack, which is not RL-based and is credited there with RL-S2V's work."
+    },
+    {
+     "reviewer": "Reviewer_Jxr4",
+     "claim": "The paper duplicates an accepted ICML 2021 workshop paper and must be rejected as a dual submission.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Not a claim about the paper's content. The NeurIPS 2021 FAQ quoted by the authors allows parallel submission to a non-archival venue, and the AdvML workshop call states it is non-archival and welcomes papers under review at NeurIPS. Nobody disputed this."
+    },
+    {
+     "reviewer": "Reviewer_8giU",
+     "claim": "Fig. 6 is never referenced, and line 247's 'Sec. 6' should be Sec. 5.",
+     "checked_against_paper": "correct",
+     "evidence": "No text line cites Figure 6. Line 247 reads 'as we elaborate in Sec. 6', but Section 6 is the Conclusion and the attack analysis is Section 5."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_PcFP"],
+    "evidence": "PcFP edited the review on 2021-08-25 and wrote 'I raised my score to Marginally below the acceptance threshold' (now 5). FwkT replied on 2021-08-25 without editing and kept 5. Jxr4 and 8giU never edited or replied. No A score crossed the threshold.",
+    "what_convinced_or_not": "PcFP gave no reason for the raise. FwkT called the replies 'very thorough' but rejected the claim that a black-box attack needs no tests on newer victims: 'I don't think one can say with confidence, without experimental support'. A's rebuttal offered no new experiments on victims, robust GNNs or defences. Its argument that defences are scarce met FwkT's list of graph-classification robustness papers. The authors did not answer that comment."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5, 2, 5, 6 (mean 4.5). The meta-review restates FwkT's 2021-08-25 comment almost word for word: 'at least one or two of the state-of-the-art models', 'training with perturbations to the graph structure', 'without experimental support'. It points to 'the revised review' with graph-classification papers, which is FwkT's comment. It presents one reviewer's point as what 'the reviewers found'. It does not mention Jxr4's dual-submission claim or the points of PcFP and 8giU.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Victims limited to GCN and GIN (plus ChebyGIN); no state-of-the-art or perturbation-trained victims (FwkT, restated by the AC)",
+    "No experiments on robust GNNs, detection or defences (FwkT, PcFP)",
+    "Missed graph-classification robustness literature (FwkT's post-rebuttal list, named by the AC)",
+    "Three of four ratings below the threshold, mean 4.5; the 2 rests on an invalid dual-submission claim"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [7, 6, 6, 6],
+   "confidences": [5, 3, 3, 5],
+   "reviews_edited_after_posting": ["Reviewer_yB9K", "Reviewer_twfu", "Reviewer_FuZ8"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 6, 6, 6. yB9K's 7 is one point above the rest; without it the mean is 6.0, still above A's 4.5 and A's 5.33 without Jxr4. No reviewer argued for rejection after the rebuttal."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_yB9K",
+     "claim": "RL-S2V is not compared with GRABNEL on real-world datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Footnote 4: RL-S2V is compared only on the dataset of [7], in App. D. Table 1 and Fig. 2 use Random, Genetic and Gradient-based only."
+    },
+    {
+     "reviewer": "Reviewer_yB9K",
+     "claim": "The complexity analysis covers only the surrogate, not sequential selection or acquisition optimisation.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 121-124 give O(Hm) for the WL step and linear scaling for the regression, and nothing for the genetic algorithm or the whole attack."
+    },
+    {
+     "reviewer": "Reviewer_twfu",
+     "claim": "The comparison uses only one published method, from 2018.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 218-222: random search, the genetic algorithm of [7] (2018) and a simple white-box gradient method. RL-S2V, also from [7], appears only in App. D."
+    },
+    {
+     "reviewer": "Reviewer_twfu",
+     "claim": "Figure 6 is not explained in the manuscript.",
+     "checked_against_paper": "correct",
+     "evidence": "No text line cites Figure 6; Section 5 (lines 301-330) states the patterns without pointing to it. The authors conceded the missing reference."
+    },
+    {
+     "reviewer": "Reviewer_qDG8",
+     "claim": "Table 1 shows validation, not test, accuracy.",
+     "checked_against_paper": "correct",
+     "evidence": "The Table 1 caption reads 'Validation accuracy of the victim models'. The authors said it is test accuracy mislabelled; the camera-ready caption says 'Test accuracy'."
+    },
+    {
+     "reviewer": "Reviewer_qDG8",
+     "claim": "Algorithm 1 seems not to count the initial points against the budget B.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 queries n_init graphs in step 4 and divides the total budget B into stages in step 7 without subtracting them. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_qDG8",
+     "claim": "GRABNEL performs worse than random for small query counts in many result figures.",
+     "checked_against_paper": "correct",
+     "evidence": "The Fig. 2 caption concedes that Random and Genetic 'appear to converge faster in some tasks' and attributes it to their use of the full perturbation budget."
+    },
+    {
+     "reviewer": "Reviewer_qDG8",
+     "claim": "The gradient-based baseline performs much worse than random on PROTEINS.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: true for GCN (50.60 against 19.46). For GIN, Gradient-based (11.90) beats Random (42.90)."
+    },
+    {
+     "reviewer": "Reviewer_FuZ8",
+     "claim": "Sequential Random (Fig. 12, App. F) performs on par with GRABNEL.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The appendix is not in the submitted PDF. The authors' own Table R2 shows parity at the default budget on PROTEINS (10.82 against 10.12) and MNIST-75sp (0.00 both), and a GRABNEL lead on COLLAB and under tighter budgets and constraints (Tables R3-R4)."
+    },
+    {
+     "reviewer": "Reviewer_FuZ8",
+     "claim": "The attack analysis does not say how many samples were examined.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5 (lines 301-330) gives no counts. The authors said in the rebuttal that about 100 or more adversarial samples per dataset were examined."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_FuZ8", "Reviewer_twfu"],
+    "evidence": "FuZ8 on 2021-08-24: 'I am happy to increase my score from 5 to 6'; the review was edited the same day. twfu wrote on 2021-08-24 'I will keep my scores', then on 2021-08-26 'The authors' response has addressed my major concerns' and edited the review that day; the text carries no update note and the final rating is 6, so the edit most likely raised it to 6. yB9K's only edit (2021-07-15) predates the rebuttal; yB9K kept 7. qDG8 never edited and kept 6.",
+    "what_convinced_or_not": "FuZ8 received new tables: Sequential Random under tighter budgets and 2-hop and rewire constraints (R2-R4), plus an argument on the fairness of the white-box comparison. twfu accepted a point-by-point case that the suggested works [a]-[d] are not black-box evasion baselines, and that Section 5 explains Fig. 6. yB9K found the runtime analysis and the black-box discussion 'interesting and helpful' but still wanted hierarchical victims 'in the future'; the authors then reported preliminary Graph U-Net results. qDG8 'now ha[d] a better understanding' and kept 6."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All final ratings are 6 or 7. The meta-review says the reviewers 'reached consensus with the authors on the major issues' and found the experiments 'mostly thorough'. It names no remaining weakness, although yB9K still wanted hierarchical victims and qDG8 had called the missing defence evaluation a 'main concern'. It asks for a revision that improves 'writing and exposition'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "First use of Bayesian optimisation for black-box attacks on graph classification, with several attack modes (yB9K, FuZ8, AC)",
+    "Attack analysis judged interesting and useful (yB9K, FuZ8)",
+    "Rebuttal settled the open points: Sequential Random tables, runtime analysis, baseline comparability (FuZ8, twfu, yB9K)",
+    "All final ratings 6 or 7, two raised after the rebuttal; the AC cites the consensus"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Dual submission with the ICML 2021 AdvML workshop version (Jxr4; invalid under the NeurIPS FAQ)",
+  "Robust GNNs trained on perturbed graphs as victims (FwkT)",
+  "Missed graph-classification robustness papers You et al. 2020 and Gao et al. 2020 (FwkT)",
+  "Attack flow and motivation hard to follow; overview figure and BO background needed (PcFP, 8giU)",
+  "WL extractor and expected-improvement choice under-described; genetic algorithm taken from [7] without stated changes (FwkT)",
+  "Twitter threat model: modifying existing accounts called not impossible (PcFP)"
+ ],
+ "issues_only_b": [
+  "Sequential Random nearly matches GRABNEL at the default budget (FuZ8)",
+  "RL-S2V not compared on real datasets, only one 2018 method as a published baseline, Nettack not used (yB9K, twfu, FuZ8)",
+  "Table 1 labelled validation accuracy, initial queries not counted in B, no ChebyGIN in Table 1 (qDG8)",
+  "Role of surrogate uncertainty, ridge-regression ablation, feature length with injected nodes (qDG8)",
+  "Attack-analysis claims lack statistics and comparison with node-level pattern studies (twfu, FuZ8)",
+  "Privacy of the Twitter data (yB9K)"
+ ],
+ "shared_issues": [
+  "Victims limited to GCN and GIN; state-of-the-art or hierarchical victims wanted (FwkT in A; yB9K in B)",
+  "No evaluation of defences (FwkT, PcFP in A; qDG8 in B)",
+  "Incremental combination of known WL, BO and GA parts (FwkT, PcFP in A; twfu, FuZ8 in B)",
+  "Cost of running the attack per graph (8giU in A; yB9K, qDG8, FuZ8 in B)",
+  "Missing related work: Ma et al. 2020 black-box node attack (PcFP in A; yB9K in B), Wu et al. 2019 (PcFP, FwkT in A; FuZ8 in B), Zhang et al. backdoor and Chen et al. detection (FwkT in A; twfu in B)",
+  "Gradient-based baseline anomaly on PROTEINS (PcFP in A; qDG8 in B)",
+  "Fig. 6 never referenced in the text (8giU in A; twfu in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees saw the same gaps and weighted them differently. The paper attacks only GCN and GIN on the TU datasets (lines 223-225), tests no defence or robust model, and combines known parts; reviewers in both committees said so. In A, Reviewer_FwkT judged newer victims and defence experiments 'essential' after the rebuttal and kept 5. A's AC restated that comment almost word for word as the reason to reject. In B, Reviewer_yB9K raised the same victim point 'if possible' and kept 7, as future work. Reviewer_qDG8 kept 6 although it called the missing defences a 'main concern'. The rebuttals also landed differently. In B, new Sequential Random tables moved FuZ8 from 5 to 6, and arguments on baseline fit most likely moved twfu to 6. The authors also reported preliminary Graph U-Net results in B only. A received only a runtime table, and FwkT's last comment went unanswered. A's mean of 4.5 includes Reviewer_Jxr4's 2, which rests on a wrong dual-submission claim. The AC did not cite it, and the other A scores (5, 5, 6) still sit below the threshold. Nobody found a technical error, and the camera-ready adds a Graph U-Net victim. The split is a difference in where each committee set the bar for missing experiments; A's AC set it where FwkT did.",
+ "candidate_reasons": [
+  "Missing experiments: blocking versus future",
+  "AC adopted one reviewer's bar",
+  "Rebuttal evidence reached one committee",
+  "Invalid dual-submission strong reject",
+  "Rebuttal lifted B scores past threshold"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_FwkT post-rebuttal comment (2021-08-25), Committee A",
+  "Committee A meta-review",
+  "Reviewer_Jxr4 review and the authors' reply on dual submission",
+  "Reviewer_yB9K review point 4 and reply of 2021-08-23",
+  "Reviewer_FuZ8 reply of 2021-08-24 and the authors' Tables R2-R4",
+  "Reviewer_twfu replies of 2021-08-24 and 2021-08-26",
+  "Authors' reply to Reviewer_yB9K of 2021-08-24 (preliminary Graph U-Net results)",
+  "Committee B meta-review",
+  "paper_submitted.pdf lines 223-225, 259 and 276 (victim models)",
+  "paper_submitted.pdf lines 185-195 and references [10], [34]",
+  "paper_submitted.pdf Fig. 7 and lines 295-297",
+  "paper_submitted.pdf Table 1 and Algorithm 1",
+  "paper.pdf Table 2 (Graph U-Net victim)"
+ ]
+}

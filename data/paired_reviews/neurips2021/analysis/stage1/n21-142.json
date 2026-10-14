@@ -1,0 +1,208 @@
+{
+  "pair_id": "n21-142",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 7, 7, 5],
+      "confidences": [2, 3, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_Wxum", "Reviewer_w1hQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 7, 7, 5 (Reviewer_nBtD, Reviewer_wbfL, Reviewer_Wxum, Reviewer_w1hQ) split two against two. No lone reviewer departs from the rest. The decisive voice was Reviewer_w1hQ, one of the two 5s. The AC followed w1hQ's argument, not an outlying score."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_wbfL",
+          "evidence": "7 at confidence 3 after 2 hours. 'I don't have much feedback to give on this paper.' Calls the experiments 'clear and compelling' and credits the method with the TADPOLE result, which DCM matches (Figure 4). No reply after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_Wxum",
+          "evidence": "7 at confidence 2 after 2.5 hours. 'I am not familiar with the literature on geometric trajectory models. As such, I cannot speak much to the novelty or technical soundness.' The review covers only the introduction and related work. The post-rebuttal update keeps the 7 and endorses Reviewer_w1hQ's suggestions."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_w1hQ",
+          "claim": "There is no comparison with simpler baselines such as linear mixed-effects models; DCM is the only baseline compared directly.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares GB only with DCM under the logistic metric g_sig. Figure 4 adds only the best TADPOLE challenger for each target. No linear mixed model is run, although the Euclidean case of the authors' own model gives straight-line trajectories (line 118)."
+        },
+        {
+          "reviewer": "Reviewer_w1hQ",
+          "claim": "In Table 1, row Imp(n=1), the HIPP DCM value 0.31 should be 0.031.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 prints 0.31 next to GB's 0.029; every other HIPP entry lies between 0.028 and 0.056. The authors confirmed 0.031. The camera-ready still prints 0.31."
+        },
+        {
+          "reviewer": "Reviewer_w1hQ",
+          "claim": "References in the introduction imply that learning the metric from data had been done before, so the specific contribution is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 54-59 describe [9], which learns a metric for disease progression by push-forward through an auto-encoder. Line 131 says metric learning 'has already been addressed in the literature [10],[9],[16]'. The new element is the RKHS diffeomorphism that keeps DCM's separation of time and space variability."
+        },
+        {
+          "reviewer": "Reviewer_w1hQ",
+          "claim": "Some error reductions are as small as 0.002, and their practical meaning is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, Imp(nr=2), HIPP: GB 0.028 against DCM 0.030 on a [0,1]-normalised scale. Other gaps are larger, for example VENTS Pred(nf=1), 0.042 against 0.056. The paper gives no clinical or back-transformed scale."
+        },
+        {
+          "reviewer": "Reviewer_nBtD",
+          "claim": "Only one baseline is compared on ADNI, and the synthetic evaluation gives only two qualitative examples.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 has two synthetic experiments, Convergence and Stability, reported as average-trajectory curves in Figure 2. Table 1 compares GB with DCM only."
+        },
+        {
+          "reviewer": "Reviewer_wbfL",
+          "claim": "The method is strongly competitive on the TADPOLE data, even against black-box models.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4: ADAS-Cog13 MAE 3.59 for GB against 4.7 for the best challenger; VENTS 0.43 against 0.41. DCM, the prior model, scores 3.61 and 0.42, so the result supports the DCM family, not the learned metric. Lines 314-316 say the same: 'the potential of the geometric approach', and GB better than DCM 'but not on VENTS'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_w1hQ"],
+        "evidence": "Reviewer_w1hQ edited the review on 2021-08-30 and posted the same day: 'As a result I am raising my score to 5.' The earlier score is not stated. Reviewer_Wxum edited on 2021-09-02 to add 'I will be maintaining my score' (7). Reviewer_nBtD and Reviewer_wbfL never edited and never replied.",
+        "what_convinced_or_not": "The authors' account of the contribution and their answers to w1hQ's questions 'addresses most of my concerns'; after re-reading, 'the contribution makes more sense to me'. The TADPOLE answer did not convince: it 'tells us very little about how much improvement your method offers over some of the standard out-of-box methods'. w1hQ asked for a linear mixed-model baseline, results by competitor type and individual trajectories, which a rebuttal could not supply. The authors also told w1hQ that GB 'outperforms the best challenger in both outcomes'. Figure 4 contradicts this for VENTS (0.43 against 0.41), and no one noticed."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Mean 6.0 on a two-two split. The AC rejected on Reviewer_w1hQ's argument and named it: 'As reviewer w1hQ points out, a standard linear mixed effects model would make for an informative baseline'. The two 7s were set aside; Reviewer_Wxum's own update endorsed w1hQ's suggestions, so neither 7 contested the critique. The AC also asked for a simulation against a standard mixed model. Section 3.1 has simulations with a known generating metric, but none compares GB with a standard mixed model.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "The AC adopted Reviewer_w1hQ's critique: DCM is the only direct baseline, and no linear mixed-effects comparison shows what the learned flexibility buys or where the method fails.",
+        "The two 7s were thin and low-confidence (Reviewer_wbfL, Reviewer_Wxum) and did not argue against the critique; Wxum endorsed it.",
+        "A two-two split at mean 6.0 left the outcome to the AC's reading."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 6, 6],
+      "confidences": [4, 3, 2, 4],
+      "reviews_edited_after_posting": ["Reviewer_EBmu"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 6, 6 (Reviewer_FMHL, Reviewer_kAFz, Reviewer_EBmu, Reviewer_W3mj) span one point, all at or above the threshold. No reviewer stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_EBmu",
+          "evidence": "6 at confidence 2. The review is about twenty copy-edits plus 'Figure 1 needs to be explained in more detail'. It says nothing about the contribution, the method or the experiments, so the 6 has no stated basis. It did catch a missing norm in Eq. (2). Edited 2021-08-27 with no explanation."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_kAFz",
+          "claim": "The approach outperforms on ADAS-Cog13 but not on VENTS.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4: GB beats the best challenger on ADAS-Cog13 (3.59 against 4.7) but not on VENTS (0.43 against 0.41), and does not beat DCM on VENTS (0.42). Lines 313-316: 'stay competitive on VENTS'; GB better than DCM 'but not on VENTS'."
+        },
+        {
+          "reviewer": "Reviewer_FMHL",
+          "claim": "The Riemannian setup isolates the approach, so it is compared with only one baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares GB with DCM only; Figure 4 adds only the best TADPOLE challenger per target. FMHL wrote 'one baseline GB', meaning DCM."
+        },
+        {
+          "reviewer": "Reviewer_FMHL",
+          "claim": "TADPOLE scores three outcomes, but the paper reports only two (ADAS-Cog13 and VENTS).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 298-301 and Figure 4 cover only ADAS-Cog13 and VENTS. TADPOLE [24] also scored clinical diagnosis. The authors' reply that submissions 'were assessed only in the prediction of ADAS and VENTS' is wrong."
+        },
+        {
+          "reviewer": "Reviewer_W3mj",
+          "claim": "The paper needs a time and space complexity analysis.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 191 gives the time complexity, O(n_MCMC d N_c N_comp^3), with details in Supplementary B. Only the space complexity is missing, as the authors said."
+        },
+        {
+          "reviewer": "Reviewer_EBmu",
+          "claim": "The middle term of Eq. (2) is missing the Euclidean norm.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (2) reads sum |eps_ij|^2 = sum eps^g_ij + eps^noise_ij = sum |y_ij - gamma_i(t_ij)|^2; the middle term lacks the squared norm."
+        },
+        {
+          "reviewer": "Reviewer_EBmu",
+          "claim": "]0,1[ and ]-1,1[ should be written [0,1] and [-1,1].",
+          "checked_against_paper": "incorrect",
+          "evidence": "]0,1[ is the French notation for the open interval (0,1), the domain of the logistic model (lines 119, 148). [0,1] would change the meaning. The authors told Committee A that the intended form is (-1,1)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "No reviewer posted after the author responses of 2021-08-10. Reviewer_EBmu's review carries an edit date of 2021-08-27 with no text that explains it. The other three reviews were never edited.",
+        "what_convinced_or_not": "Nothing is on record. The rebuttal promised a related-work section, clearer figures and a space-complexity note. It explained the choice of sigma (three values tried on a validation set) and the patient-level split. It also claimed that the VENTS and ADAS-Cog13 forecasts have 'smaller mean absolute errors than all these competing methods'. Figure 4 and the paper's own 'stay competitive on VENTS' contradict the VENTS part. No reviewer challenged it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 6 or 7, and the AC accepted. The meta-review's first sentence is Reviewer_kAFz's summary word for word. 'The theoretical grounding and experiments are well provided' paraphrases kAFz's 'nice balance between theoretical grounding and experiments'. The single-baseline concern of Reviewer_FMHL and Reviewer_W3mj becomes 'suggestions, such as related works and details of experimental setting'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings are at or above the threshold (7, 7, 6, 6), including both confidence-4 reviewers.",
+        "Reviewers credited the RKHS metric-learning idea and the TADPOLE comparison. Reviewer_W3mj: 'In term of novelty and performance improvement, this paper meets the publication requirement.'",
+        "The single-baseline and related-work concerns were treated as revisions. No reviewer discussion followed the rebuttal, and the AC restated Reviewer_kAFz."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No linear mixed-effects baseline to show what the learned flexibility buys (Reviewer_w1hQ; adopted by the AC)",
+    "Novelty unclear relative to earlier metric learning cited in the introduction (Reviewer_w1hQ)",
+    "Synthetic experiments qualitative, with unclear takeaways; no simulation against a standard mixed model (Reviewer_nBtD, Reviewer_w1hQ, AC)",
+    "Methods hard to follow without Riemannian background; paper not standalone (Reviewer_w1hQ)",
+    "Clinical size of the MAE gains; individual fitted trajectories, subgroups and disease subtypes (Reviewer_w1hQ)",
+    "Table 1 typo, 0.31 for 0.031 (Reviewer_w1hQ)",
+    "Use in other applications not shown (Reviewer_nBtD)"
+  ],
+  "issues_only_b": [
+    "TADPOLE protocol: whether train and test subjects match the challenge, only two of the three challenge targets, significance from bootstrapping only the authors' own errors (Reviewer_FMHL)",
+    "GB beats the best challenger on ADAS-Cog13 but not on VENTS (Reviewer_kAFz)",
+    "Choice of the kernel width sigma on real data (Reviewer_W3mj)",
+    "Possible subject leakage across ADNI phases (Reviewer_W3mj)",
+    "Interpretability claimed but not shown in the results (Reviewer_W3mj)",
+    "Missing multi-task learning literature (Reviewer_kAFz)",
+    "Figures 1 and 2 need explanation (Reviewer_EBmu, Reviewer_W3mj)"
+  ],
+  "shared_issues": [
+    "Only one direct baseline, DCM; the approach is isolated from other progression models (A: Reviewer_nBtD, Reviewer_w1hQ; B: Reviewer_FMHL, Reviewer_W3mj)",
+    "What the Riemannian formulation adds over simpler or earlier nonlinear models (A: Reviewer_wbfL; B: Reviewer_FMHL)",
+    "Need for a dedicated related-work section (A: Reviewer_Wxum; B: Reviewer_FMHL, Reviewer_kAFz)",
+    "TADPOLE results by competitor type and margin (A: Reviewer_w1hQ; B: Reviewer_kAFz)",
+    "Limitations not stated in one place (A: Reviewer_w1hQ; B: Reviewer_kAFz)",
+    "Runtime and complexity (A: Reviewer_w1hQ; B: Reviewer_W3mj)",
+    "Typos and nonstandard interval notation (A: Reviewer_w1hQ; B: Reviewer_EBmu, Reviewer_W3mj)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same weakness differently. The paper tests its contribution, a learned metric, against one direct baseline: DCM, the authors' earlier model. Beyond that, it cites the TADPOLE leaderboard. In Committee A, Reviewer_w1hQ wrote the most thorough review and was the only reviewer to reply in the discussion. w1hQ rose only to 5, because no linear mixed-effects baseline or granular result shows what the flexibility buys. The AC adopted that critique by name. The two 7s carried little weight: Reviewer_wbfL had written 'I don't have much feedback to give', and Reviewer_Wxum could not judge 'the novelty or technical soundness'. In Committee B, both confidence-4 reviewers raised the same single-baseline point (Reviewer_FMHL: an 'isolated' approach; Reviewer_W3mj: compare with the state of the art) but still scored 7 and 6. No B reviewer posted after the rebuttal, and the AC copied Reviewer_kAFz's summary. On the experiments, the paper supports A's doubt more than B's praise. In Figure 4, GB matches DCM on ADAS-Cog13 (3.59 against 3.61) and trails DCM and the best challenger on VENTS (0.43 against 0.42 and 0.41). The headline TADPOLE result therefore belongs to DCM, not to the learned metric. The authors told both committees that GB also wins on VENTS, and no reviewer caught the contradiction. No one found an error. The paper is borderline, and the two chairs resolved it in opposite directions.",
+  "candidate_reasons": [
+    "AC followed most engaged reviewer",
+    "Missing simple baseline judged decisive",
+    "Thin low-confidence accept votes discounted",
+    "Same weakness treated as revision",
+    "Benchmark credit given to prior model",
+    "Meta-review copied from one review"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_w1hQ final review and 2021-08-30 discussion comment",
+    "Committee A meta-review",
+    "Reviewer_wbfL and Reviewer_Wxum final reviews (Wxum UPDATE)",
+    "Reviewer_FMHL final review, points 1-3",
+    "Reviewer_W3mj final review, point 6",
+    "Reviewer_kAFz final review, limitations point 1",
+    "Committee B meta-review (first sentence equals Reviewer_kAFz's summary)",
+    "Authors' reply to Reviewer_w1hQ (2021-08-10) and the common answers in both forums",
+    "paper_submitted Figure 4 and lines 311-316",
+    "paper_submitted Table 1",
+    "paper_submitted lines 118 and 138-140"
+  ]
+}

@@ -1,0 +1,273 @@
+{
+ "pair_id": "n21-137",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    9,
+    7,
+    7,
+    7,
+    5
+   ],
+   "confidences": [
+    5,
+    4,
+    3,
+    2,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_AxQU",
+    "Reviewer_Am83",
+    "Reviewer_hg22"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_AxQU",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only rating above 7: a 9 ('Top 15% of accepted NeurIPS papers') at confidence 5 ('checked the math/other details carefully'), yet the reviewer 'Only skimmed the appendices', where the proofs are. The line edits are careful and found real slips (Theorem 7 omits μ < 0.5; 'range' is used for the length of the range). But the 9 rests on the writing ('Reading this paper was a pleasure. No exaggeration.') and on a reading of the experiments that Section 6 does not support ('improved tightness', while COTND is 'consistently looser than TND'). 'The proofs look correct' missed that Theorem 12 does not follow for negative μ. No reply after the rebuttal. Reviewer_hg22's 5 is as far from the median; his basis was mixed: a conceded misreading of Theorem 6 and a correct point on the μ grid."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Am83",
+     "evidence": "A 7 at confidence 2 in five generic sentences ('well written', 'clear and well-organized', the improvement is 'limited, but it exists'). It makes no specific claim, asks no question and names no weakness. The 10 hours reported do not show in the text. The authors' reply was a one-line thank-you."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_AxQU",
+     "claim": "The experiments demonstrate 'the improved tightness of the computed bounds with respect to previous related results'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 6: on random forests CμTND is 'generally comparable to TND' and COTND is 'consistently looser than TND' (L301-303); on heterogeneous ensembles CμTND is 'usually tighter' and COTND 'usually looser' than TND (L316-317). One of four comparisons favours a new bound. In Committee B the authors conceded they 'did not achieve empirical improvement over Masegosa et al.'."
+    },
+    {
+     "reviewer": "Reviewer_AxQU",
+     "claim": "'The proofs look correct.'",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 12 (L205-210) substitutes the lower bound (5) on E_ρ[L(h)] into the term -2μ E_ρ[L(h)] for every μ in the grid. For μ < 0 that term needs an upper bound, so the stated bound does not follow; L130 says the optimal μ 'can take negative values'. The camera-ready splits Theorem 12 by the sign of μ and thanks colleagues for 'pointing out ... that negative μ in Theorem 12 requires a separate treatment'. No reviewer in either committee caught this."
+    },
+    {
+     "reviewer": "Reviewer_AxQU",
+     "claim": "Theorem 7 (L137) should state μ < 0.5.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 6 requires μ < ε, and Theorem 7 uses ε = 0.5, but the submitted Theorem 7 states no condition on μ. The camera-ready reads 'for all ρ and all μ < 0.5'."
+    },
+    {
+     "reviewer": "Reviewer_AxQU",
+     "claim": "'Range' in Theorem 13 and Lemma 14 is used for the length of the range.",
+     "checked_against_paper": "correct",
+     "evidence": "Lemma 14 (L235) calls K_μ = max{1-μ, 1-2μ} 'the range'. The authors conceded. The camera-ready says 'length of the range' and restates Theorem 9 for a loss 'taking values in an interval of length b' instead of 'bounded from above by b', dropping the claimed one-sided-boundedness advantage ('three ways' became 'two ways')."
+    },
+    {
+     "reviewer": "Reviewer_AxQU",
+     "claim": "The factor 2 in front of KL in Theorems 12 and 15 may be a typo.",
+     "checked_against_paper": "incorrect",
+     "evidence": "L202 states KL(ρ^2||π^2) = 2 KL(ρ||π) [Germain et al., 2015]. The factor is right; only the proof sketch lacked the pointer."
+    },
+    {
+     "reviewer": "Reviewer_hg22",
+     "claim": "The union bound over the μ grid in Theorem 12 is unnecessary, because Theorem 7 holds for every μ and Theorem 11 does not depend on μ; k_μ may also be removable from Theorem 15.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 11 holds 'for all ... λ in (0,2) and γ > 0 simultaneously' (L196), and L231-233 says PAC-Bayes-λ needs no union bound. The authors' Rebuttal - 2 said the union bound 'cannot be dropped'. The camera-ready removes the μ grid from Theorems 12 and 15 ('for all values of μ < 0.5') and credits colleagues for 'pointing out that there is no need in a union bound over a grid of μ'."
+    },
+    {
+     "reviewer": "Reviewer_hg22",
+     "claim": "Original text, quoted by the authors and removed in the 2021-08-20 edit: Theorem 6 'essentially rederives' Chebyshev's inequality.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Substituting the optimal μ into Theorem 6 recovers Chebyshev-Cantelli, and μ = 0 recovers second order Markov (L129-132). hg22 conceded: 'I was in error regarding lemma 6 ... I thought here that μ = E[Z]'."
+    },
+    {
+     "reviewer": "Reviewer_hg22",
+     "claim": "Original text, quoted by the authors: Chebyshev-Cantelli improves on Chebyshev by at most a factor 2.",
+     "checked_against_paper": "correct",
+     "evidence": "True once Chebyshev is truncated at 1, as probabilities are: min(1, V/α^2) <= 2V/(α^2 + V). The authors' first rebuttal called it 'not true'; in Rebuttal - 2 they agreed ('This is true') and argued that a factor 2 matters for tight bounds."
+    },
+    {
+     "reviewer": "Reviewer_hg22",
+     "claim": "The ln(√n/δ) terms of Theorems 10 and 11 beat a plain union bound over the d^2 tandem losses only when n <= d^4.",
+     "checked_against_paper": "correct",
+     "evidence": "L192 and L196 carry ln(2 √n/δ), and ln(√n) < ln(d^2) exactly when n < d^4. The authors accepted the cut-off and argued that realistic d puts the experiments on the favourable side; this is a weighting question, not an error in the paper."
+    },
+    {
+     "reviewer": "Reviewer_WkCd",
+     "claim": "The new bounds 'lead to better performance experimentally'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Against the prior tandem bound the paper shows no clear gain: CμTND 'often performs similar or slightly worse than TND' in test loss (L299), and the bounds are mostly comparable or looser (L301-303, L316-317). The authors told Committee B that preserving the tightness 'provides no considerable improvement to the performance'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_hg22"
+    ],
+    "evidence": "Reviewer_hg22, 2021-08-20: 'I was in error regarding lemma 6, and it seems my other criticisms were not shared by the remaining reviewers, so I shall raise my score accordingly'; his review was edited the same day and ends at 5, so the earlier score was lower (value not recorded). The authors' first rebuttal quotes phrases ('the improvement never exceeds a factor 2', 'essentially rederive Chebyshev's inequality') that the final text no longer contains. Reviewer_AxQU's edit (2021-07-21) and Reviewer_Am83's (2021-07-16) predate the 2021-08-09 rebuttal. No other reviewer replied.",
+    "what_convinced_or_not": "The rebuttal to hg22 was blunt ('most of which are factually incorrect statements') and corrected his misreading of Theorem 6; peer pressure did the rest. He stayed unconvinced that the ln(√n) cost is worth paying for large n, and he asked, correctly, whether the μ grid could be dropped. Rebuttal - 2 wrongly insisted it could not, and nobody followed up. The positive reviewers received thanks and clarifications (factor 2 on KL, μ < 0.5 in the grids, 'range' terminology, new bound names); they needed nothing more."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Four of five ratings are 7 or 9 (mean 7.0). The three-sentence meta-review says 'The referees are in agreement' and 'All of the referee objections have been addressed during the discussion phase'. Reviewer_hg22 stayed at 5 with open questions, and the one objection that proved correct (the μ grid) received a wrong answer that the AC did not check.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Clarity and theoretical novelty: the parametric Chebyshev-Cantelli form and the PAC-Bayes-Bennett inequality (Reviewer_AxQU, Reviewer_WkCd, Reviewer_ViFo, Reviewer_Am83)",
+    "Experiments read as an improvement over prior bounds (Reviewer_AxQU 'improved tightness', Reviewer_WkCd 'better performance', Reviewer_ViFo), a reading Section 6 does not support",
+    "A 9 at confidence 5 from Reviewer_AxQU, backed by detailed line edits",
+    "The only detractor (Reviewer_hg22) conceded a misreading and rose to 5; the meta-review declares agreement"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    5,
+    5
+   ],
+   "confidences": [
+    4,
+    4,
+    1,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_ZLiP",
+    "Reviewer_Paqn",
+    "Reviewer_Mc3o"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All four ratings are 5. The two most expert reviewers (Reviewer_Mc3o, confidence 5; Reviewer_Paqn, confidence 4) give specific, checkable reasons; Reviewer_ZLiP softened to 'not opposed to the paper appearing' without changing his score."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_R8qn",
+     "evidence": "Confidence 1 and 'I am not very familiar with this area'. The 5 rests on an impression that the paper 'might be a technical follow-up' to Masegosa et al. 2020 and that Theorems 6-8 'seem to be slight modifications of existing bounds'. It is an honest educated guess, not evidence; the reviewer did not respond to the rebuttal's claim that Theorem 6 is 'a real breakthrough'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Paqn",
+     "claim": "The new bounds give test errors no different from Masegosa et al.'s TND, the bounds degrade on most data sets, and they do not beat the first-order bound's guarantees.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 6: CμTND 'often performs similar or slightly worse than TND' (L299); COTND is 'consistently looser than TND' (L302) and 'usually looser' on heterogeneous ensembles (L317). The one exception is CμTND, 'usually tighter' than TND on heterogeneous ensembles (L316). The appendix tables Paqn cites (E.3, E.5) are not in paper_submitted.pdf, but the authors conceded both points: 'we did not achieve empirical improvement over Masegosa et al.' and 'the first order bound is often tighter'."
+    },
+    {
+     "reviewer": "Reviewer_Mc3o",
+     "claim": "Minimising the parametric relaxation of the C-bound does not give improved empirical results; the results confirm the effectiveness of Masegosa et al. 2020, especially in bound values.",
+     "checked_against_paper": "correct",
+     "evidence": "Same Section 6 statements (L299-303, L316-317). The authors replied that 'preserving the tightness provides no considerable improvement to the performance' and called the null result surprising and interesting."
+    },
+    {
+     "reviewer": "Reviewer_Mc3o",
+     "claim": "The paper omits recent C-bound minimisation algorithms, Bauvin et al. 2020 and Viallard et al. 2021.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither appears in the submitted references (L329-398), while L118-119 says 'Theorem 3 was the only practically applicable second order bound so far'. The camera-ready cites both, describing them as minimising 'heuristic surrogates rather than the bound itself'."
+    },
+    {
+     "reviewer": "Reviewer_Mc3o",
+     "claim": "In Theorem 12 the union bound and parameter grid over μ are unnecessary, since Theorems 7 and 11 hold uniformly over μ and ρ.",
+     "checked_against_paper": "correct",
+     "evidence": "As for Reviewer_hg22 in Committee A: Theorem 11 holds for all λ and γ simultaneously (L196) and Theorem 7 is deterministic. The authors denied it; the camera-ready removed the μ grid and acknowledged the point."
+    },
+    {
+     "reviewer": "Reviewer_Paqn",
+     "claim": "The work on margin/offset losses, such as Laviolette et al. 2017, 'is never discussed in the paper'.",
+     "checked_against_paper": "correct",
+     "evidence": "Laviolette et al. [2017] is cited once (L42) in a list of C-bound developments, with no discussion. The authors replied that its Corollary 1 reduces to Theorem 5, so it does not anticipate the new form; the novelty concern did not hold, but the omission was real."
+    },
+    {
+     "reviewer": "Reviewer_Paqn",
+     "claim": "(e-2)γ is tighter than φ(γ b)/(γ b^2) for γ > 1/b, so the comparison with PAC-Bayes-Bernstein in L173-181 is confusing.",
+     "checked_against_paper": "incorrect",
+     "evidence": "L175 states that PAC-Bayes-Bernstein restricts γ to (0, 1/b]; on that interval φ(γ b)/(γ b)^2 <= e-2 (L177-179). The algebra is right but the comparison is not one the Bernstein bound allows."
+    },
+    {
+     "reviewer": "Reviewer_ZLiP",
+     "claim": "The paper uses 'a looser Chebyshev inequality' with μ not at its optimum, so 'we pay the price in terms of looser bounds'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "At the optimal μ, Theorem 6 recovers Chebyshev-Cantelli exactly (L129-131), so the oracle bound loses nothing. The real price is the union bound over the μ grid in the empirical bounds, which the camera-ready shows was unnecessary."
+    },
+    {
+     "reviewer": "Reviewer_ZLiP",
+     "claim": "The bound of Theorem 12 is named the μ-tandem bound, although the μ-tandem loss appears only in Theorem 15.",
+     "checked_against_paper": "correct",
+     "evidence": "L276-277 names Theorem 12 'the μ-tandem bound CμTND' and Theorem 15 COTND. The authors renamed them CCTND and CCPBB."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_Paqn's UPDATE (edited 2021-08-31): 'I confirm my initial rating'. Reviewer_ZLiP's update (edited 2021-09-01): 'I am not opposed to the paper appearing at the conference, but I still remain borderline on this one.' Reviewer_Mc3o's edit (2021-07-27) predates the 2021-08-09 rebuttal; Reviewer_R8qn never edited. No reviewer posted in the discussion.",
+    "what_convinced_or_not": "The authors conceded the null result and recast it as an insight: the relaxation of Masegosa et al. 'already gets most out of the second order information'. Paqn did not accept this. He wanted experiments with weak, decorrelated voters and the Figure 1 statistics, to see whether oracle-to-empirical looseness explains the gap. The answer that bounded-depth trees 'did not change the situation' confirmed the null result without explaining it. The authors' answer to Mc3o on the μ grid was wrong, and the claim to R8qn that Theorem 6 is 'a real breakthrough' moved nobody."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four ratings are 5. The meta-review lists the reviewers' concerns ('significance of the results, comparison with earlier works, and the numerical validation ... not deemed conclusive') and calls the contributions 'too incremental'. It does not engage the rebuttal's reframing or ZLiP's 'not opposed'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Contribution judged incremental over Masegosa et al. 2020 (all four reviewers; meta-review 'too incremental')",
+    "No empirical gain over the TND bound, conceded by the authors (Reviewer_Paqn, Reviewer_Mc3o)",
+    "Missing related work: C-bound minimisation (Bauvin et al. 2020, Viallard et al. 2021) and margin losses (Laviolette et al. 2017)",
+    "No champion: four borderline 5s, and the rebuttal moved nobody"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "'Range' used for the length of the range in Theorem 13 and Lemma 14, and μ < 0.5 missing from Theorems 7 and 8 (Reviewer_AxQU; both corrected in the camera-ready)",
+  "The ln(√n/δ) cost of the PAC-Bayes bounds against a plain union bound over d^2 tandem losses, break-even at n = d^4 (Reviewer_hg22)",
+  "Comparison with linear-classifier and VC bounds and with Mazzetto et al. (Reviewer_hg22)",
+  "Which of the two new bounds is better when, and why COTND gives the lowest loss but the loosest bound (Reviewer_WkCd, Reviewer_ViFo)",
+  "Missing pseudo-code for optimising ρ (Reviewer_ViFo)",
+  "Bennett's inequality as sub-Poisson rather than sub-Gaussian, and a sub-Poisson variance bound for Theorem 13 (Reviewer_hg22)"
+ ],
+ "issues_only_b": [
+  "No empirical gain over the TND bound of Masegosa et al. 2020, and the first-order bound often tighter (Reviewer_Paqn, Reviewer_Mc3o; conceded by the authors)",
+  "No analysis of why: report μ, the losses and the Figure 1 statistics, and test weak, decorrelated voters (Reviewer_Paqn, Reviewer_Mc3o)",
+  "C-bound minimisation algorithms of Bauvin et al. 2020 and Viallard et al. 2021 missing (Reviewer_Mc3o; the camera-ready cites both)",
+  "Novelty against the margin/offset losses of Laviolette et al. 2017 not discussed (Reviewer_Paqn)",
+  "Direct minimisation of the kl bound (Reeb et al. 2018, Letarte et al. 2019) as an alternative to PAC-Bayes-λ (Reviewer_Paqn, Reviewer_Mc3o; the camera-ready adds a footnote)",
+  "Significance of table differences and the log scale of Figure 2 (Reviewer_Paqn)"
+ ],
+ "shared_issues": [
+  "Union bound over the μ grid in Theorem 12 unnecessary (A: Reviewer_hg22; B: Reviewer_Mc3o). Correct; the authors denied it in both forums and removed it in the camera-ready",
+  "Core idea simple or incremental: Theorem 6 is one step from Markov's inequality (A: Reviewer_AxQU 'surprisingly simple proof', Reviewer_WkCd 'does not seem technically challenging', Reviewer_Am83, Reviewer_hg22 'quite incremental'; B: all four). A rated the paper 7 to 9 regardless; B rated it 5",
+  "Parameter grids and union bounds loosen the empirical bounds, especially COTND (A: Reviewer_hg22, Reviewer_ViFo; B: Reviewer_ZLiP, Reviewer_Paqn)",
+  "Confusing bound names CμTND and COTND (A: Reviewer_ViFo; B: Reviewer_ZLiP); renamed CCTND and CCPBB",
+  "Whether prior C-bound optimisers allow a comparison (A: Reviewer_WkCd asked, and the answer 'we are unaware of computationally efficient ways' went unchallenged; B: Reviewer_Mc3o named two)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A accepted and Committee B rejected because of reviewer composition and weighting, not a disputed fact. Both committees saw a clearly written paper. Its core step, Theorem 6, is Markov's inequality applied to (Z - μ)^2, and it adds a new PAC-Bayes-Bennett inequality. A rewarded clarity and theoretical novelty: Reviewer_AxQU gave 9 at confidence 5, and three reviewers gave 7. B's two PAC-Bayes specialists, Reviewer_Mc3o (confidence 5) and Reviewer_Paqn (confidence 4), judged the paper against its direct predecessor, the tandem bound (TND) of Masegosa et al. 2020. They found no empirical gain. The submission supports B. Section 6 says COTND is 'consistently looser than TND' on random forests, and CμTND 'often performs similar or slightly worse than TND' in test loss. In B's rebuttal the authors conceded that they 'did not achieve empirical improvement over Masegosa et al.'. No A reviewer raised this, and AxQU wrote that the experiments demonstrate 'improved tightness'. A's only critic, Reviewer_hg22, opened with a misreading of Theorem 6. He conceded it and rose to 5, partly because his points 'were not shared by the remaining reviewers'. B also named C-bound minimisation papers that the submission omits (Bauvin et al. 2020, Viallard et al. 2021). In A, the authors' statement that no efficient C-bound optimiser exists went unchallenged. Each committee had one reviewer (hg22, Mc3o) who said correctly that Theorem 12 needs no union bound over the μ grid. The authors denied it in both forums and removed it in the camera-ready. Neither committee noticed that the submitted Theorem 12 does not follow for negative μ.",
+ "candidate_reasons": [
+  "Champion present in one committee",
+  "Null empirical result noticed by one",
+  "Specialists judged against direct predecessor",
+  "Detractor discredited by early errors",
+  "Simplicity read as elegance or incrementality",
+  "Related work known only to specialists"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_AxQU review ('improved tightness'; 'The proofs look correct'; 'Only skimmed the appendices')",
+  "Reviewer_hg22 review and his response of 2021-08-20 ('I was in error regarding lemma 6'; μ grid question)",
+  "Authors' Rebuttal - 2 to Reviewer_hg22 (μ grid 'cannot be dropped')",
+  "Authors' rebuttal to Reviewer_WkCd ('we are unaware of computationally efficient ways to optimize the prior C-bounds')",
+  "Committee A meta-review",
+  "Reviewer_Paqn review and UPDATE (edited 2021-08-31)",
+  "Reviewer_Mc3o review (empirical results; Bauvin et al. 2020, Viallard et al. 2021; μ grid in Theorem 12)",
+  "Authors' rebuttal to Reviewer_Paqn ('we did not achieve empirical improvement over Masegosa et al.')",
+  "Reviewer_ZLiP update (edited 2021-09-01)",
+  "Committee B meta-review",
+  "paper_submitted.pdf Section 6, L299-303 and L314-317",
+  "paper_submitted.pdf Theorem 12 (L205-210), L130, L196, L231-233",
+  "paper_submitted.pdf L118-119 and references L329-398",
+  "paper.pdf (camera-ready): Theorem 12 split by the sign of μ, Theorem 15 without a μ grid, Theorem 9 restated for range length, Acknowledgments"
+ ]
+}

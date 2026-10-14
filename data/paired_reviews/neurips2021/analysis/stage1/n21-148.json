@@ -1,0 +1,216 @@
+{
+  "pair_id": "n21-148",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 7],
+      "confidences": [5, 4, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_aWB2"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 6, 7. Reviewer_rrae's 7 is one point above the others and rests on the same reading: clear writing, a novel method, and accuracy tables taken at face value."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_rrae",
+          "evidence": "Rating 7 at confidence 5, 3 hours. It calls the results 'sufficient' and 'strong evidence' that the method 'can address the existing problem'. It does not notice that Table 1 compares an 800-epoch SLAC-ANN (L210) with baselines 'cited from [2]' (L215), that no result has seed variance, or that no figure shows overlapping tails in a trained vanilla ANN. Its concerns are the distance in Eq. 7 and citation slips. It never replied to the rebuttal. Uncritical rather than careless: it did spot the duplicate references."
+        },
+        {
+          "reviewer": "Reviewer_aWB2",
+          "evidence": "Confidence 5 in 3 hours. The summary and main review reuse the paper's own sentences almost word for word (L78-80: 'replaces classifier head with appropriate trainable distribution parameters ... to avoid potential entanglement'; L322-325: 'pre-define ANN features ... high diversity of distribution tails in angle space'). It calls the ablations 'extensive' and asks only for a CNN histogram and a ResNet-50 run. The post-rebuttal edit is one line."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_aWB2",
+          "claim": "Figure 1 shows the long-tailed distribution only for the ANN; it does not show whether CNN features are also long-tailed.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1(a,b) are histograms of ANN weights and features of one sampled layer of a ResNet-32 on CIFAR-10 (L86-87); there is no CNN panel. The authors conceded that CNN features are also long-tailed and cited a supplementary SLAC-CNN result (+0.1 to 0.2 points)."
+        },
+        {
+          "reviewer": "Reviewer_AHNP",
+          "claim": "No simple baseline that removes long tails directly, such as center loss, is compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 compares only L-SoftMax, LGM, MoM, SL and SLAC. The rebuttal reported center loss at 67.66% against SLAC's 68.31% on CIFAR-100, with no variance."
+        },
+        {
+          "reviewer": "Reviewer_P2Ke",
+          "claim": "The increase in parameters or FLOPs from replacing the classifier with distribution parameters is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists ResNet-20 #Mul 0.45M -> 0.46M and #Add 81.89M -> 81.90M without comment; the paper gives no parameter counts. The rebuttal pointed to Tables 1 and 2."
+        },
+        {
+          "reviewer": "Reviewer_rrae",
+          "claim": "The choice of Mahalanobis distance in Eq. 7 is unexplained and has no Euclidean baseline in the ablations; references [11, 12] and [29, 30] are duplicates.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 ablates only the SL parameters and the loss terms. [11] and [12] are both Krizhevsky et al. 2012; [29] and [30] are both DoReFa-Net. The rebuttal reported Euclidean distance at 68.11%."
+        },
+        {
+          "reviewer": "Reviewer_rrae",
+          "claim": "The comparison on various datasets shows strong evidence that the method addresses the existing long-tail problem and improves AdderNets.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 baselines are cited from [2] (L215) while SLAC-ANN trains 800 epochs (L210). The paper's own Figure 4(c) (ResNet-20) gives matched-epoch gains of +0.01 (400 epochs), +0.52 (800) and +0.25 (1200) on CIFAR-100, and +0.16, +0.12 and +0.17 on CIFAR-10. No result reports seed variance (checklist 3(c): 'N/A'). No figure shows overlapping class tails in a trained vanilla ANN."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_aWB2 edited on 2021-09-14 to add 'My concerns are addressed in the authors' rebuttal. I keep my score of 6.' Reviewer_AHNP replied on 2021-08-22: 'I think my concerns have been addressed. So I keep my score'. Reviewer_P2Ke and Reviewer_rrae never edited or replied.",
+        "what_convinced_or_not": "Each request got a new number: ResNet-50 at 75.3% against 74.9% for vanilla ANN; on CIFAR-100 center loss 67.66%, Euclidean distance 68.11% and a fixed target 67.74%, all below SLAC's 68.31%. This settled the requests but raised no score above 'marginally above'. No reviewer asked whether differences of 0.2 to 0.65 points without variance exceed seed noise."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review says all four reviewers 'recommend acceptance' and that 'Since there is no attempt to reject the submission, there is no basis to overturn the consensus.' It names clarity and novelty and no weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or above threshold (6, 6, 6, 7); the AC saw 'no attempt to reject'",
+        "Novel method and clear presentation (all four reviewers)",
+        "Accuracy gains over vanilla ANN taken at face value ('The improvement seems obvious', Reviewer_AHNP)",
+        "The rebuttal supplied every extra baseline and the ResNet-50 run the reviewers asked for"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 6, 5, 5],
+      "confidences": [5, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_5BV4", "Reviewer_9FVq", "Reviewer_xfwL", "Reviewer_5ZaN"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 6, 5, 5. Reviewer_9FVq's 6 is the highest, yet its two weaknesses become the meta-review's two reasons. Reviewer_5BV4's 4 is one point below the two 5s."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5ZaN",
+          "evidence": "Two short paragraphs at confidence 3. Its only concrete point is that SLAC-ANN still trails the CNN on ImageNet (Table 2: 67.7% against 69.8%). The paper does not dispute this, and it is no flaw in a method that claims only to narrow the gap (L242-245). Its edit (2021-08-04) predates the rebuttal, and it never replied."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_9FVq",
+          "claim": "The training recipe differs from the original ANN work (800 instead of 400 epochs), so the slightly improved accuracy may come from an unfair comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "SLAC-ANN trains 800 epochs (L210); 'All the baseline results are cited from [2]' (L215). Figure 4(c) (ResNet-20) gives vanilla ANN 67.60/67.79/67.76% and SLAC-ANN 67.61/68.31/68.01% on CIFAR-100 at 400/800/1200 epochs, and 91.84/92.17/92.42% against 92.00/92.29/92.59% on CIFAR-10. The Table 1 gains of +0.45 and +0.71 shrink to +0.12 and +0.52 at matched 800 epochs, and to +0.16 and +0.01 at 400. Vanilla ANN at 1200 epochs (92.42%) beats the reported SLAC-ANN (92.29%); L301-302 says both decline at 1200, which holds only for CIFAR-100. The CNN rows that SLAC-ANN 'beats' in Table 1 are also cited from [2]."
+        },
+        {
+          "reviewer": "Reviewer_9FVq",
+          "claim": "Overlapped tails are not shown in real trained networks (Figure 3), unlike the illustrations in Figures 1 and 2.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1(c) is captioned 'a toy example'; Figure 1(b) is one pooled histogram of a layer's features, not per class; Figure 2 is a schematic. Figure 3 (LeNet on MNIST) shows only the LGM, MoM, SL and SLAC variants, with no vanilla-ANN panel, and every panel shows separated clusters. The authors conceded 'The long tails problem is not obvious on MNIST' and promised a CIFAR-10 visualization."
+        },
+        {
+          "reviewer": "Reviewer_5BV4",
+          "claim": "Figure 1 uses CIFAR-10 but Figure 3 uses MNIST, so the analysis is not convincing.",
+          "checked_against_paper": "correct",
+          "evidence": "L86-87: ResNet-32 on CIFAR-10. Figure 3 caption: LeNet on MNIST."
+        },
+        {
+          "reviewer": "Reviewer_5BV4",
+          "claim": "The long-tail problem also exists and has been investigated on ImageNet ('Large-scale long-tailed recognition in an open world'); it is not unique to AdderNet.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The cited work concerns class-frequency imbalance; the paper's long tail is heavy-tailed feature values (L44-51). The narrower point, that CNN features may also be heavy-tailed, is fair. The authors conceded it and cited a supplementary SLAC-CNN result, which is not in the record."
+        },
+        {
+          "reviewer": "Reviewer_5BV4",
+          "claim": "ImageNet training takes 300 epochs, longer than the usual 90 to 120, and BWN is missing as a baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "L235: 300 epochs. Table 2's only binary baseline is XNOR-Net (51.2%), and its ANN row is the published 67.0% also quoted at L36, so there is no matched-epoch ImageNet comparison. The authors' BWN rerun gave 64.4% at 300 epochs."
+        },
+        {
+          "reviewer": "Reviewer_xfwL",
+          "claim": "No error bars are reported; some improvements are within seed randomness.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(c) answers 'N/A', and no table reports variance. The rebuttal's error-bar table lists vanilla ANN at 91.84% and 67.60%, the 400-epoch values in Figure 4(c), against SLAC-ANN's 800-epoch 92.29% and 68.31%, and reports 'the best results' of four runs. It repeats the epoch mismatch; no reviewer noticed."
+        },
+        {
+          "reviewer": "Reviewer_xfwL",
+          "claim": "IR-Net reaches 66.5% with far fewer epochs, above the authors' BWN rerun at 64.4%.",
+          "checked_against_paper": "not_checked",
+          "evidence": "External figure. Taken at face value, 66.5% is below SLAC-ANN's 67.7% and vanilla ANN's 67.0% in Table 2, so it questions the authors' baseline tuning, not the method's rank."
+        },
+        {
+          "reviewer": "Reviewer_9FVq",
+          "claim": "The paper gives no efficiency results (training or inference speed on GPUs or custom hardware).",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1 and 2 give only operation counts (#Mul, #Add, #XNOR). The authors cited a prior FPGA study [23]."
+        },
+        {
+          "reviewer": "Reviewer_5ZaN",
+          "claim": "SLAC-ANN still underperforms the CNN on ImageNet.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: 67.7% against 69.8% top-1. The paper claims only to narrow the gap."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Edits by Reviewer_5BV4 (2021-07-18), Reviewer_9FVq (2021-07-20) and Reviewer_5ZaN (2021-08-04) predate the 2021-08-10 rebuttal. Reviewer_xfwL edited on 2021-08-31: 'I'll keep my original rating'. No reviewer posted in the discussion, and the authors' 2021-08-24 BWN follow-up got no reply.",
+        "what_convinced_or_not": "The rebuttal gave error bars, 600-epoch results, an 800-epoch BNN, a BWN rerun and a promised CIFAR-10 feature plot. Reviewer_xfwL credited the 'variance study' but held at 5 because the authors' BWN (64.4%) trails IR-Net's published 66.5%. The rebuttal did not resolve Reviewer_9FVq's epoch point: it cited Figure 4(c), which shows no CIFAR-100 gain at 400 epochs. It gave no direct evidence that class tails overlap in a trained vanilla ANN."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 5.0, with three of four ratings below threshold. The two reasons track Reviewer_9FVq's weaknesses: 'the long-tail hypothesis wasn't given proper empirical support' (9FVq: overlap 'not shown in your real trained networks') and 'slightly higher test accuracies ... which could be attributed to other factors' (9FVq: 'is the slightly improved accuracy mainly attributed to unfair comparison?'). The first paragraph is an accurate summary of AdderNets in the AC's own words.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Small accuracy gains that may come from doubled training epochs against cited baselines (Reviewer_9FVq, Reviewer_5BV4, Reviewer_xfwL)",
+        "Long-tail overlap hypothesis not shown in a trained network (Reviewer_9FVq, Reviewer_5BV4; meta-review)",
+        "No error bars on sub-point gains (Reviewer_xfwL)",
+        "Three of four ratings below threshold, none moved by the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Center loss as a direct tail-removing baseline (Reviewer_AHNP)",
+    "Parameter and FLOP increase from the distribution classifier (Reviewer_P2Ke)",
+    "Adaptive versus fixed target distance in Eq. 8 (Reviewer_P2Ke)",
+    "Mahalanobis versus Euclidean distance in Eq. 7 (Reviewer_rrae)",
+    "Duplicate references, missing skew Laplace citations and typos (Reviewer_rrae, Reviewer_AHNP, Reviewer_aWB2)",
+    "Long tails may be only one of several factors limiting ANNs (Reviewer_AHNP)"
+  ],
+  "issues_only_b": [
+    "SLAC-ANN trained 800 (CIFAR) and 300 (ImageNet) epochs against baselines cited from [2] (Reviewer_9FVq, Reviewer_5BV4, Reviewer_xfwL)",
+    "Overlapping tails never shown in a trained network; Figure 1 on CIFAR-10 but Figure 3 on MNIST (Reviewer_9FVq, Reviewer_5BV4)",
+    "No error bars; gains may be within seed noise (Reviewer_xfwL)",
+    "Missing binary-weight (BWN) and quantized baselines; under-tuned BWN rerun (Reviewer_5BV4, Reviewer_xfwL)",
+    "No measured latency or energy (Reviewer_5BV4, Reviewer_9FVq)",
+    "Doubled training cost (Reviewer_xfwL)",
+    "Skew Laplace assumption not justified (Reviewer_9FVq); in A, Reviewer_rrae called it 'well-justified'",
+    "No code release (Reviewer_9FVq)",
+    "Remaining gap to the CNN on ImageNet (Reviewer_5ZaN)"
+  ],
+  "shared_issues": [
+    "Novel method and clear writing, praised in both committees",
+    "Whether long-tailed features also occur in CNNs (Reviewer_aWB2; Reviewer_5BV4)",
+    "More ImageNet architectures: ResNet-50 (Reviewer_aWB2), MobileNets (Reviewer_5BV4)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee B rejected because its reviewers tested whether the accuracy gains were real and whether the long-tail mechanism was shown, and the paper confirms both doubts. Table 1 compares an 800-epoch SLAC-ANN with vanilla-ANN numbers cited from [2] (L210, L215). The paper's own Figure 4(c) puts the matched-epoch gain at 0.01 points (400 epochs) and 0.52 (800) on CIFAR-100 and 0.12 to 0.17 on CIFAR-10, and vanilla ANN at 1200 epochs (92.42%) beats the reported SLAC-ANN (92.29%). No figure shows overlapping class tails in a trained vanilla ANN: Figure 1(c) is a toy and Figure 3 (MNIST) has no vanilla panel. Reviewer_9FVq raised both points, Reviewer_xfwL added the missing error bars, and B's AC built the rejection on them. No Committee A reviewer raised either point. They took the gains at face value, asked for add-on baselines that the rebuttal supplied as numbers without variance, and kept 6, 6, 6, 7; A's AC deferred to the absence of any reject score. The split is a difference in scrutiny, not in weighting. B's weaker objections (Reviewer_5BV4's class-imbalance reference and hardware latency, Reviewer_5ZaN's gap to the CNN) did not drive its decision.",
+  "candidate_reasons": [
+    "Epoch-confounded gains caught by one",
+    "Mechanism never shown in trained networks",
+    "Uncritical reviews accept headline gains",
+    "AC defers to unanimous scores",
+    "No seed variance on small gains"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_9FVq main review, Weakness (1) and (2)",
+    "Reviewer_xfwL final review (post-rebuttal note) and the authors' error-bar table",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "paper_submitted.pdf L210, L215 and Table 1",
+    "paper_submitted.pdf Figure 4(c) and L295-302",
+    "paper_submitted.pdf Figure 1 caption and Figure 3",
+    "Reviewer_rrae final review",
+    "Reviewer_aWB2 final review against paper L78-80 and L322-325"
+  ]
+}

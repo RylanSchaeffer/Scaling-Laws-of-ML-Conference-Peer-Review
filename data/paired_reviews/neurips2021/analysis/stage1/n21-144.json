@@ -1,0 +1,238 @@
+{
+  "pair_id": "n21-144",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        5,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Fw2q",
+        "Reviewer_9ST8"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 7, 7 at confidence 4, 5, 4, 2. The spread is two points and no score stands apart. Reviewer_Fw2q's 5 is the only score below the threshold, and it rests on specific points that the paper confirms (errors in Eq. 2 and Eq. 7, the weak start and NUS-WIDE in Figure 7). The two 7s carry little evidence: Reviewer_9ST8 is at confidence 2 and 'was not able to check all the math'; Reviewer_vZcB's evaluation is three sentences of praise ('extensive and convincing') plus notation fixes, in 2.5 hours."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bnVb",
+          "evidence": "Confidence 5 ('checked the math/other details carefully'), but the review contains no comment on the math. The main review restates the method and asks for a table, a statistical test and other scores. The limitations field is pasted from the paper's checklist with the PDF line number inside: 'All the labels collected are440assumed to be accurate' (checklist lines 440-441). 3 hours, never edited, no comment on the tables and p-values the authors supplied."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Fw2q",
+          "claim": "In Eq. (2), y_nk should be y_nl; it is unclear how each label is generated.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (2), after L151, has p(y_nk | z_nk, θ_k) inside products over n and k only, while labels are indexed by l (y_n ∈ {0,1}^L, L126). The authors conceded and gave a corrected likelihood with a product over l."
+        },
+        {
+          "reviewer": "Reviewer_Fw2q",
+          "claim": "In Eq. (7), f_n^(k) should be outside the parenthesis in the first term (also raised by Reviewer_vZcB).",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) with a = z_nk and b = z_nk + υ_nk gives κ = (z_nk − υ_nk)/2, so the linear term must be (z_nk − υ_nk) f_n^(k)/2. Eq. (7) prints (z_nk − υ_nk f_n^(k))/2. The authors conceded to both reviewers."
+        },
+        {
+          "reviewer": "Reviewer_Fw2q",
+          "claim": "The model does worse than some competitors in Figure 7 when few samples are acquired, and on NUS-WIDE.",
+          "checked_against_paper": "correct",
+          "evidence": "At 0 selected samples GP-B2M starts below most baselines on Delicious (0.684 vs up to 0.693), Enron (0.806 vs up to 0.843), Bibtex (0.542, the lowest curve) and Corel5K (0.709 vs 0.717-0.719); it leads from about 35-70 samples on. On NUS-WIDE, CS-GP is level with or above GP-B2M from about 130 samples to the end. The authors blamed early exploration, but all models share the same initial training set (L291-292), so the gap at 0 selected samples comes from the model, not from the sampling."
+        },
+        {
+          "reviewer": "Reviewer_Fw2q",
+          "claim": "Labels with frequency below 20 are removed, although Section 4.1 suggests the model handles rare labels.",
+          "checked_against_paper": "correct",
+          "evidence": "L289-290: 'we remove extremely rare labels with label frequency less than 20'. The authors said these labels are under 0.5% of each dataset and that prior ML-AL work does the same."
+        },
+        {
+          "reviewer": "Reviewer_vZcB",
+          "claim": "L74 should say Component 2; the GP in Eq. (1) has zero mean but Figure 2(b) shows m_k; λ appears in Eqs. (6)-(7) although υ blocks it.",
+          "checked_against_paper": "correct",
+          "evidence": "L73-74 name Component 1 twice (Reviewer_9ST8 also caught it). Eq. (1) is N(f^(k) | 0, Σ_k) while Figure 2(b) has a node m_k. Eqs. (6) and (7) condition on λ_n. The authors conceded all three."
+        },
+        {
+          "reviewer": "Reviewer_bnVb",
+          "claim": "Results use a single score (AUC) and no statistical test.",
+          "checked_against_paper": "correct",
+          "evidence": "L290-291 and Figure 7: ROC-AUC only, mean and error bar over 3 trials, no test. The authors' p-values (rebuttal) put the lead over CS-GP below 0.05 in only 6 of 15 cells; non-significant cells are spread over all three stages (5, 5 and 6 of 20 at N=100, 250, 400), not concentrated early as the authors said."
+        },
+        {
+          "reviewer": "Reviewer_9ST8",
+          "claim": "GP-B2M is slower than the simpler CBM baseline and similar to CS-GP in passive learning.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Both results are in Appendix D (Tables 3-4), which is not part of the submitted PDF or the camera-ready PDF in the record."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "Reviewer_Fw2q edited 2021-09-02 and added that the response was 'considered in the updated rating'; no earlier score or direction is recorded. Reviewer_9ST8 edited 2021-09-02: 'I decided to keep my score.' Reviewer_bnVb and Reviewer_vZcB never edited. No reviewer reply appears in the forum. The chair reports that 'no consensus was reached'.",
+        "what_convinced_or_not": "The authors conceded every notation error (Eq. 2, Eq. 7, the GP mean, λ in Eqs. 6-7), gave Reviewer_bnVb AUC tables and paired t-test p-values, and told Reviewer_Fw2q the model 'goes far beyond a simple mixture model'. The novelty argument did not lift Fw2q above the threshold, and the chair later agreed with Fw2q on novelty. The tables support the late-stage parity: at N=400 GP-B2M is level with CS-GP on NUS-WIDE (85.6) and Corel5K (74.8) and behind MMC on Enron (89.2 vs 89.5). No A reviewer commented on this."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 6.25, three of four at or above the threshold. The meta-review counts 'three positive reviews and one negative one', notes 'no consensus', grants Fw2q's point that the Bernoulli mixture is 'not a particularly novel idea', and accepts because 'the modeling as a whole is reasonable'. It says the experiments show 'superiority over traditional active learning', which takes the paper's framing and ignores the late-stage parity in Figure 7 and in the authors' own tables.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at or above the threshold (6, 7, 7): 'three positive reviews and one negative one' (meta-review)",
+        "Novelty critique conceded but outweighed: 'the modeling as a whole is reasonable' (meta-review, after Reviewer_Fw2q)",
+        "Experiments read as showing superiority over prior ML-AL methods (Reviewer_vZcB, Reviewer_9ST8, meta-review)",
+        "Notation errors treated as fixable; the authors conceded each one (Reviewer_Fw2q, Reviewer_vZcB)"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_iRRM"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 6 at confidence 4, 3, 3; no score stands apart and none is above 6. Reviewer_iRRM's 6 sits on a long critical text and a post-rebuttal verdict ('overly complex ... very similar results') that reads as a reject; the chair took the text, not the number."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_iRRM",
+          "claim": "By the time 500 samples are selected, other methods may perform slightly better than GP-B2M, but comparably.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 7 at 500 samples: MMC above GP-B2M on Enron (about 0.899 vs 0.894); AUDI and CS-GP at or above it on Delicious (about 0.742 and 0.741 vs 0.740); CS-GP level on Corel5K (0.750 vs 0.751) and NUS-WIDE (0.855 vs 0.854). GP-B2M still leads only on Bibtex (0.630 vs 0.619, overlapping error bars). L306-307 concede that baselines 'eventually converge to a similar AUC score', while L305 claims better performance 'consistently on all the datasets'."
+        },
+        {
+          "reviewer": "Reviewer_AzUM",
+          "claim": "η in Figure 6 has no clear effect of the kind the authors state; the same applies to ρ; the ablation is not informative.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 6(a): the curves for η = 0, 2, 5 lie within about 0.005 AUC, with no error bars, and are not monotone in η (η = 2 is below both others after 150 samples). They already differ by about 0.003 at 0 selected samples, where η, a weight in the sampling function (L239), cannot act. Figure 6(b) shows ρ effects of about 0.01 in the stated direction, so the ρ half is weaker. The rebuttal recast η as robustness: 'only slightly different model performances'."
+        },
+        {
+          "reviewer": "Reviewer_AzUM",
+          "claim": "Most methods have a large variance in Figure 7; there is no clear pattern that the proposed method is better.",
+          "checked_against_paper": "correct",
+          "evidence": "Partly. Error bars from 3 trials overlap for most curves at most points, and late-stage parity holds on four datasets. But GP-B2M's mean leads clearly from about 50 to 300 samples on Delicious, Enron, Bibtex and Corel5K, so 'no clear pattern' overstates. Against CS-GP the authors' p-values (given only to Committee A) are below 0.05 in 6 of 15 cells."
+        },
+        {
+          "reviewer": "Reviewer_AzUM",
+          "claim": "AUC-ROC is a poor metric under class imbalance; AUC-PR is better.",
+          "checked_against_paper": "correct",
+          "evidence": "L290-291: ROC-AUC is the only score in the main comparison. The authors' alternative, the average precision analysis (appendix Figure 10, Figure 7 of the camera-ready), compares GP-B2M with BRMs only, not with the AL baselines."
+        },
+        {
+          "reviewer": "Reviewer_iRRM",
+          "claim": "L140 calls the latent indicator variables Z a key innovation, but this is the usual way to handle finite mixtures; the model looks like a mixture of experts.",
+          "checked_against_paper": "correct",
+          "evidence": "L140: 'One key innovation lies in using the latent indicator variables Z' to link features to components. The authors replied that the novelty is the feature link, and conceded the expert reading: 'each GP acts as an expert machine and the gating is achieved by the logistic-softmax function'."
+        },
+        {
+          "reviewer": "Reviewer_iRRM",
+          "claim": "p(y) = Σ_k π_nk θ_k at L133 is a weighted average of parameters with undefined notation; Eq. (12) should be an approximation.",
+          "checked_against_paper": "correct",
+          "evidence": "L133 and L149 write p(y_n) = Σ_k π_nk θ_k, the vector of marginal probabilities p(y_nl = 1). Eq. (12) uses q(Θ) under an equality sign. The authors conceded both."
+        },
+        {
+          "reviewer": "Reviewer_iRRM",
+          "claim": "ρ (L316) is not defined, and the role of X in Eq. (1) is not stated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L329-331 define ρ through the threshold ḡ = (ρ/K) Σ g(θ_k). L143 states Σ_k = [K(x_n, x_m)], the kernel Gram matrix on the inputs. The authors pointed to both."
+        },
+        {
+          "reviewer": "Reviewer_dgB5",
+          "claim": "In the label-wise analysis, the AP deterioration of the proposed model on tail labels is also more significant.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked on the camera-ready version of the figure (Figure 7 there; appendix Figure 10 in the submission, which is not in the record). On NUS-WIDE most labels above frequency 300 gain AP over BRMs, while many labels below 200 lose AP, by up to about 50%, among a few large gains. The authors replied that not all rare labels correlate with others."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_iRRM edited 2021-09-01 and added: 'the answers have not made me change my mind.' Reviewer_AzUM and Reviewer_dgB5 never edited. No reviewer reply appears in the forum.",
+        "what_convinced_or_not": "The authors answered iRRM's points one by one, conceded the notation errors and the mixture-of-experts reading, and cited appendix timing (Table 4) and the average precision analysis. iRRM stayed unconvinced: 'interesting but overly complex, involving many parameters, and hyper-parameters, but, still producing very similar results to other competing methods'. To iRRM's point that the active-learning objective could serve any probabilistic model, the authors answered about the training likelihood, Eq. (2). To AzUM they recast the flat η curves as robustness and offered average precision against BRMs only. Nothing in the public record shows AzUM's or dgB5's reaction."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Two of three ratings are 6 (marginally above) and one is 5; mean 5.67. The chair rejected, citing 'several weaknesses in the presentation and proposed idea' and singling out Reviewer_iRRM's 'detailed set of suggestions'. It says all reviewers agreed after the rebuttal that issues remained; only iRRM's post-rebuttal statement is public. The meta-review names no specific flaw and ends with 'due to the large number of high quality submissions at NeurIPS'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No reviewer above 6; the most thorough reviewer stayed unconvinced: 'overly complex ... still producing very similar results to other competing methods' (Reviewer_iRRM)",
+        "Presentation and clarity weaknesses, led by Reviewer_iRRM's long list (meta-review)",
+        "Unclear empirical advantage: overlapping variance in Figure 7, an uninformative ablation, ROC-AUC only (Reviewer_AzUM)",
+        "Borderline paper cut on competition: 'due to the large number of high quality submissions' (meta-review)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No analysis of the acquisition function against BALD, BatchBALD or expected error reduction (Reviewer_Fw2q)",
+    "No comparison of the model with standard multi-label classifiers (Reviewer_Fw2q)",
+    "Labels with fewer than 20 occurrences removed despite the claim of handling rare labels (Reviewer_Fw2q)",
+    "No ranking-based measures such as precision at k (Reviewer_Fw2q)",
+    "No numerical table or statistical test for Figure 7 (Reviewer_bnVb)"
+  ],
+  "issues_only_b": [
+    "Missing related work on sample-label pair queries; overstated claim that few ML-AL methods model label correlations (Reviewer_AzUM)",
+    "Ablation of η and ρ in Figure 6 shows no clear effect (Reviewer_AzUM)",
+    "Model resembles a mixture of experts, and the sampling objective is not specific to it (Reviewer_iRRM)",
+    "The introduction criticises latent embeddings and pairwise correlations, yet the model uses both (Reviewer_iRRM)",
+    "Unfair characterisation of the CBM and CS baselines (Reviewer_iRRM)",
+    "AP losses on tail labels in the label-wise analysis (Reviewer_dgB5)"
+  ],
+  "shared_issues": [
+    "Limited novelty of the mixture construction (Reviewer_Fw2q in A; Reviewer_iRRM in B)",
+    "Small or unclear margin over baselines in Figure 7 (Reviewer_Fw2q, Reviewer_bnVb in A; Reviewer_AzUM, Reviewer_iRRM in B)",
+    "ROC-AUC as the only metric (Reviewer_bnVb, Reviewer_Fw2q in A; Reviewer_AzUM in B)",
+    "Notation errors in the model equations (Reviewer_Fw2q, Reviewer_vZcB, Reviewer_9ST8 in A; Reviewer_iRRM in B)",
+    "Computational cost (Reviewer_9ST8 in A; Reviewer_iRRM in B)",
+    "Limitations and societal impact not discussed in the main paper (Reviewer_Fw2q in A; Reviewer_iRRM in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected a borderline paper on largely the same facts; no reviewer in either committee found an error that breaks a result. Both saw a mixture construction of limited novelty, small gains over the strongest baseline, ROC-AUC as the only metric, and many notation errors. The outcome turned on reviewer draw and on how each chair read the texts. A drew two 7s that carry little evidence: Reviewer_9ST8 at confidence 2, who 'was not able to check all the math', and Reviewer_vZcB, whose evaluation is three sentences of praise. A's chair counted 'three positive reviews and one negative one', granted Reviewer_Fw2q's novelty objection, and accepted 'the modeling as a whole'. B drew no score above 6. Its most thorough reviewer, Reviewer_iRRM (14 hours), kept a 6 on a critical review and concluded after the rebuttal that the method is 'overly complex' and gives 'very similar results to other competing methods'. The paper supports that reading: at 500 selected samples a baseline is level with or ahead of GP-B2M on four of five datasets, and the η ablation shows no effect beyond noise, as Reviewer_AzUM said. B's chair followed iRRM's text over the two 6s and closed on competition. A had the same evidence, through Fw2q's comments and the authors' own N=400 tables, and weighted it less.",
+  "candidate_reasons": [
+    "Two accept scores only in A",
+    "Low-confidence seven counted as support",
+    "Critical text under a borderline score",
+    "Chair conceded novelty, accepted anyway",
+    "Late-stage parity with baselines weighted",
+    "Borderline cut citing competition"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_iRRM final review, REBUTTAL paragraph",
+    "Reviewer_9ST8 review (confidence 2)",
+    "Reviewer_vZcB main review",
+    "Reviewer_Fw2q review and author response Q3, Q4, Q9",
+    "Author response to Reviewer_bnVb (AUC tables and p-values)",
+    "Reviewer_AzUM review, point 2",
+    "paper_submitted.pdf Figure 7 and L303-308",
+    "paper_submitted.pdf Figure 6(a) and L313-327",
+    "paper_submitted.pdf Eq. (2), Eq. (7), L133, L140, L289-291, L329-331"
+  ]
+}

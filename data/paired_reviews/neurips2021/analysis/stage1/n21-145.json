@@ -1,0 +1,232 @@
+{
+  "pair_id": "n21-145",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 8, 7],
+      "confidences": [3, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_5uYD", "Reviewer_doUF", "Reviewer_AbCy"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 8, 7 (Reviewer_5uYD, Reviewer_doUF, Reviewer_AbCy, Reviewer_CDfk) at confidence 3, 4, 3, 3. No rating is more than one point from the mean of 7.0. Reviewer_AbCy's 8 is the highest rating in either committee but only one step above the others; its weak support is recorded under inattentive_reviews."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_AbCy",
+          "evidence": "An 8 ('Top 50% of accepted NeurIPS papers, clear accept') after 3 hours, with 'Math/other details were not carefully checked'. The strengths are generic ('solid', 'reasonable and novel to me') and include 'empirical results are shown to support the author's claims about the proposed method's superiority', which Figure 5 contradicts. The weaknesses listed are typos, naming, one assumption and figure layout. The score rose after a two-sentence reply that accepted the authors' promise to revise."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_doUF",
+          "claim": "The LSTM baseline is missing from Figure 4 and Table 2; in Figure 5 LSTM's final accuracy seems lower than meta-RNN's.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4(b-c) compares only FastRNN, LipschitzRNN, iRNN and vanilla RNN; Table 2 lists only the six meta-RNN variants. Figure 5 legend: LSTM 97.81, 92.61, 93.65 against meta-RNN-dense 98.85, 95.70, 95.59 on Pixel-MNIST, Perm-MNIST and HAR-2. The rebuttal gave LSTM about 75% and 90% on HAR-2 with 1% and 10% of the data, against 90.25 and 93.25 for dense SGD (Table 2)."
+        },
+        {
+          "reviewer": "Reviewer_AbCy",
+          "claim": "L145 should put h, not F, in the feasible space H; L147 should call θ a hyperparameter of F, not of h.",
+          "checked_against_paper": "correct",
+          "evidence": "L145: 'F is a proper, differentiable everywhere, and lower-bounded function in the feasible space H'. L147: 'learn the hyperparameter θ of h'. The authors agreed both are typos."
+        },
+        {
+          "reviewer": "Reviewer_AbCy",
+          "claim": "Both the theory and the empirical results support the paper's claims of superiority.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 5 puts meta-RNN-dense behind MomentumRNN (99.08), IndRNN and LipschitzRNN (99.00) on Pixel-MNIST (98.85); behind LipschitzRNN (96.32) and IndRNN (96.00) on Perm-MNIST (95.70); behind IndRNN (96.35) and iRNN (96.30) on HAR-2 (95.59). L343 says the dense model 'can always achieve superior performance', and L344-346 then concede that IndRNN and others reach better accuracy. Superiority holds only in the 1% and 10% HAR-2 runs, against four baselines and no LSTM (Figure 4, Table 2)."
+        },
+        {
+          "reviewer": "Reviewer_CDfk",
+          "claim": "The paper assumes each x_t is drawn from a distribution that depends only on the label, which ignores dependence between inputs, and then uses this at L228 to explain fast convergence.",
+          "checked_against_paper": "correct",
+          "evidence": "L140-142: each x_t 'is sampled from P_y ... We observe that this assumption can work well in practice, even for the sequences with strong dependencies among samples.' L228-235 use it for the clustering hypothesis. The authors agreed. Committee B's chair cites the same lines ('assumption at line 142')."
+        },
+        {
+          "reviewer": "Reviewer_5uYD",
+          "claim": "The method needs MAML-style second-order gradients, which could be prohibitive for long sequences (initial review; retracted).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 7 and Eq. 11 give the cell in closed form, and Adam trains all models (L291), so training is backpropagation through an RNN cell. 5uYD retracted after the authors' explanation of 2021-08-18. The misreading has a source in the paper: Algorithm 1 writes the upper level as an argmin and never says it is a backpropagation step, and L213-217 discuss second-order solvers."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "The stability guarantee relies on an inner step size that scales as 1/T.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 (L240-243): η ∈ (0, ε/(TL)], with ε ∈ (0, 1) 'a sufficiently small constant'. The experiments fix η = 10^-3 for every T (L288) and never check the condition."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_5uYD", "Reviewer_AbCy", "Reviewer_doUF"],
+        "evidence": "Reviewer_5uYD, edited 2021-08-24: 'I'm increasing my score to a 7' after learning that no second-order gradients are needed. Reviewer_AbCy, 2021-08-24: the answers 'essentially addressed my concerns ... I would have no problem improving the score'; the authors thank AbCy for 'increasing the score'; edited the same day, final 8. Reviewer_doUF, 2021-08-27: 'I am happy with your response and will be raising my score'; edited 2021-08-30, final 6, so at most 5 before. Reviewer_CDfk never replied or edited.",
+        "what_convinced_or_not": "Clarifications of misreadings (first-order training; the Eq. 6 typos), promised additions (LSTM curves, PTB, related work on learned objectives, a new name), and new numbers: LSTM at about 75% and 90% on HAR-2 with 1% and 10% of the data, and a first PTB perplexity of 120.35. doUF still disputed the meta-learning rationale for sample efficiency and the claim that [3] lacks a bilevel formulation, and raised anyway. The PTB update of 2021-08-24 (117.45 against LSTM 117.41 and FastGRNN 116.11) drew no comment in A."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 6 to 8, mean 7.0. The meta-review says 'The reviewers liked the paper' and that the small-scale experiments and missing LSTM comparison will be addressed, as the authors 'have promised'. It then names two doubts of its own, the 1/T step size being 'too small to allow the hidden state to adapt quickly to new inputs' and 'meta learning' being the wrong frame, and accepts 'Despite this concerns'. Neither doubt was put to the authors.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers found the bilevel view of RNNs novel (Reviewer_5uYD 'highly novel', Reviewer_CDfk 'a new perspective', Reviewer_AbCy 'solid', Reviewer_doUF 'an interesting perspective')",
+        "The stability theorem counted as a contribution without a check (Reviewer_CDfk 'some nice theorems'; Reviewer_doUF 'very interesting insight, although I have not checked the proofs')",
+        "Small benchmarks accepted as the field's convention (Reviewer_CDfk 'understandable'; Reviewer_doUF 'the current preliminary experiments are OK')",
+        "The rebuttal cleared two misreadings and promised LSTM, PTB and related-work additions; three reviewers raised their scores",
+        "The chair deferred to the 7.0 mean despite two doubts of the chair's own"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 5, 5],
+      "confidences": [4, 3, 5, 3],
+      "reviews_edited_after_posting": ["Reviewer_2xM4"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 5, 5, 5 (Reviewer_Vvok, Reviewer_2xM4, Reviewer_8SmP, Reviewer_Qm4o) at confidence 4, 3, 5, 3. Reviewer_Vvok's 4 is one point below the rest and rests on a specific, correct point about Theorem 2 and on the small benchmarks that all four B reviewers named."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_8SmP",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') after 1 hour. The summary says the method treats h_t as a free variable that minimises ||h_t − f(h_{t−1}, θ)|| and 'removes the recursive dependency of each h_t on h_<t'. That describes the penalty relaxation of Eq. 3-4, which the paper sets aside; meta-RNN keeps h_t = h_{t−1} − η∇F_t (Eq. 7). No reply to the rebuttal, no edit. The 5 rests on missing large-scale experiments, not on the misreading."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Vvok",
+          "claim": "Theorem 2 should just be an observation: with a dominant residual connection, gradients do not vanish or explode.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 (L240-243) requires η ≤ ε/(TL) with ε ∈ (0, 1) small. Each step's Jacobian is I − η∇²F_t (cf. L249), so it lies within ε/T of the identity, and a product of T such factors stays near the identity. Figure 2(a) is a residual cell, 'essentially a variant of ResNet' (L205). The proof is in an appendix that the PDF does not include, but the statement carries the argument. The authors replied with questions ('Why is it obvious?'); Vvok never answered."
+        },
+        {
+          "reviewer": "Reviewer_Vvok",
+          "claim": "F in Eq. 10 was chosen so that its derivative (Eq. 11) is an affine transformation; the optimisation view adds nothing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 11, ∇F_t = (αI − ∇_hφ_t)(αh_{t−1} − φ_t), contains φ_t and its Jacobian, so it is not affine. The broader point has support: L177 says Eq. 10 'borrows the transition function in vanilla RNNs', and L166-168 liken the cell to FastRNN and iRNN."
+        },
+        {
+          "reviewer": "Reviewer_8SmP",
+          "claim": "The method treats h_t as a free variable that minimises ||h_t − f(h_{t−1}, θ)||, which removes the recursive dependency of h_t on earlier states.",
+          "checked_against_paper": "incorrect",
+          "evidence": "That is the penalty relaxation of Eq. 3-4, which the introduction sets aside (L23-38). meta-RNN keeps h_t = h_{t−1} − η∇F_t (Eq. 7), so the recursion stays; stability comes from the step size (Theorem 2)."
+        },
+        {
+          "reviewer": "Reviewer_8SmP",
+          "claim": "Table 2 reports meta-RNN training time but compares it with no other method.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 lists only the six meta-RNN variants. The rebuttal added that FastRNN, iRNN, LipschitzRNN and vanilla RNN take 0.37x, 0.80x, 0.73x and 0.27x of the dense model's time, and conceded O(D²) work per step."
+        },
+        {
+          "reviewer": "Reviewer_2xM4",
+          "claim": "ε is not defined in Theorem 2.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L242 defines ε ∈ (0, 1) as 'a sufficiently small constant'. The definition is loose but present."
+        },
+        {
+          "reviewer": "Reviewer_Qm4o",
+          "claim": "The main paper does not explain how the upper-level (network parameter) stage is solved.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 writes the upper level as an argmin over ω, θ; the only detail is 'Adam [88] is used as the optimizer for all the methods' (L291). The same gap misled Reviewer_5uYD in Committee A."
+        },
+        {
+          "reviewer": "Reviewer_Qm4o",
+          "claim": "The paper does not show that the conditions of Theorems 1 and 2 hold for the chosen F once training updates the weights.",
+          "checked_against_paper": "correct",
+          "evidence": "L288 fixes η = 10^-3 for every sequence length (T from 100 to 784), and L is never estimated, so η ≤ ε/(TL) is not checked. The authors replied that 'our theorems are for inference, not for training', which conflicts with Theorem 2's own wording, 'no vanishing/exploding gradient for training meta-RNN'."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "A gradient step on x_t is optimisation only under the assumption at line 142, and Algorithm 1's inner loop uses θ* while the upper level writes h_T(θ).",
+          "checked_against_paper": "correct",
+          "evidence": "L140-142 assume each x_t ∼ P_y given the label; the lower-level problem of Eq. 6 is an expectation over x_t ∼ P_y. Algorithm 1 runs h_t ← h_{t−1} − η∇F(h_{t−1}, x_t; θ*) and then takes the argmin over ω, θ of ℓ(h_T(θ), y; ω) evaluated at θ*. The camera-ready box is unchanged."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "The PTB result added in the rebuttal is much worse than LSTM results in the literature.",
+          "checked_against_paper": "not_checked",
+          "evidence": "PTB is not in the submission. In the discussion meta-RNN reached 117.45, against about 78 for a regularised LSTM (Reviewer_Qm4o, citing Bai et al. 2018). In the authors' own setting LSTM reached 117.41 and FastGRNN 116.11, so the gap belongs to the setting; the like-for-like result is parity with LSTM, not a gain."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_2xM4"],
+        "evidence": "Reviewer_2xM4, edited 2021-08-28: 'The authors convincingly argue for the originality of meta-RNN and moreover add additional experiments ... Thus, I have increased my rating', final 5, so at most 4 before; also 'I agree with the other reviewers about limited experimental results'. Reviewer_Qm4o replied on 2021-08-19 with follow-up questions and did not edit. Reviewer_Vvok and Reviewer_8SmP never replied or edited.",
+        "what_convinced_or_not": "The sparse-baseline run (FastRNN 94.57, iRNN 80.21, LipschitzRNN 85.03, vanilla RNN 84.90, meta-RNN 94.96) and the originality argument moved 2xM4 by one step. Nothing answered the main objection, scale: the only new real-data result, PTB at 117.45, matched LSTM in the authors' setting and sat far above the ~78 that Qm4o cited. The replies were combative ('Significant flaws of the reviewer', 'Do not be afraid of bilevel optimization!', 'Why is it obvious?'), and Vvok and 8SmP never engaged."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 4 or 5 (mean 4.75), so rejection matches the scores. The reasons are mostly the chair's own: 'not well written' (Reviewer_Qm4o had called the paper 'nicely written and well organized'), 'hard to understand why the main algorithm (Algorithm 1) makes sense', and a 'mini review' asking why a gradient step on x_t optimises anything and how h_T depends on θ. The small benchmarks and the doubtful meta-learning link come from the reviewers; the PTB comparison with the literature comes from Reviewer_Qm4o. The chair's questions appear only in the meta-review, so the authors never answered them.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers found the benchmarks too small or simple (Reviewer_Vvok 'just toy problems'; Reviewer_8SmP 'larger, more real' experiments; Reviewer_2xM4 'relatively simple'; Reviewer_Qm4o 'a task with a real dataset is missing')",
+        "The meta-learning framing obscured more than it explained (Reviewer_Vvok, Reviewer_2xM4, Reviewer_Qm4o, meta-review)",
+        "The theory judged thin: Theorem 2 'should just be an observation' (Reviewer_Vvok); novelty against iRNN questioned (Reviewer_2xM4, later conceded)",
+        "The chair's own reading: Algorithm 1 does not make sense for sequences whose inputs change meaning, and its θ/θ* notation is unclear",
+        "PTB perplexity of 117 judged 'much worse' than LSTM results in the literature (Reviewer_Qm4o, meta-review)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No discussion of meta-learned objective functions (Chebotar et al. 2019, Kirsch et al. 2020, Oh et al. 2020), which run computationally similar bilevel loops (Reviewer_doUF)",
+    "The name 'meta-RNN' is already used for RNNs that meta-learn in their activations (Reviewer_doUF, Reviewer_AbCy)",
+    "The meta-learning rationale for sample efficiency applies at meta-test time, not to the paper's training-time gains (Reviewer_doUF)",
+    "Typos in the Eq. 6 description at L145 and L147, and Theorem 1's Lipschitz assumptions too strong for richer cells (Reviewer_AbCy)",
+    "A learnable h_0 (Reviewer_CDfk)",
+    "A 1/T inner step size may be too small for the hidden state to adapt to new inputs (Committee A meta-review)",
+    "Cost of second-order gradients through the inner loop (Reviewer_5uYD; retracted after the rebuttal)"
+  ],
+  "issues_only_b": [
+    "Theorem 2 is an observation about a dominant residual connection (Reviewer_Vvok)",
+    "F was chosen to reproduce a familiar cell, so the optimisation view adds nothing (Reviewer_Vvok)",
+    "Novelty against equilibrium and ODE RNNs such as iRNN (Reviewer_2xM4; conceded after the rebuttal)",
+    "Sparse meta-RNN compared with dense baselines (Reviewer_2xM4); the rebuttal's sparse baselines put FastRNN at 94.57 against 94.96",
+    "The low-data advantage is not shown relative to full data (Reviewer_2xM4)",
+    "No comparison with Transformers or on Long Range Arena (Reviewer_8SmP)",
+    "Whether the theorem conditions hold as the weights change in training (Reviewer_Qm4o)",
+    "Variable-length sequences (Reviewer_Qm4o)",
+    "PTB perplexity of 117 far from about 78 for literature LSTMs (Reviewer_Qm4o; Committee B meta-review)",
+    "Algorithm 1 notation: inner loop with θ*, upper level with h_T(θ) (Committee B meta-review)"
+  ],
+  "shared_issues": [
+    "Small, simple benchmarks (A: Reviewer_doUF, Reviewer_CDfk, meta-review; B: all four reviewers, meta-review). A called them acceptable, B disqualifying",
+    "The meta-learning framing is confusing or wrong (A: Reviewer_doUF, Reviewer_AbCy, meta-review; B: Reviewer_Vvok, Reviewer_2xM4, Reviewer_Qm4o, meta-review)",
+    "Algorithm 1 does not say how the upper level is solved (A: Reviewer_5uYD, resolved in discussion; B: Reviewer_Qm4o and the meta-review, unresolved)",
+    "The x_t ∼ P_y assumption ignores dependence between inputs (A: Reviewer_CDfk, minor; B: meta-review, central)",
+    "No LSTM baseline in the low-data HAR-2 runs (A: Reviewer_doUF; B: Reviewer_Qm4o); the rebuttal gave both about 75% and 90%",
+    "No runtime or memory comparison with baselines (A: Reviewer_5uYD; B: Reviewer_8SmP, Reviewer_Qm4o); the rebuttal showed meta-RNN slowest, with baselines at 0.27x to 0.80x of its time",
+    "Sequence-to-sequence outputs (A: Reviewer_doUF; B: Reviewer_Qm4o)",
+    "Weak motivation and presentation in the introduction (A: Reviewer_5uYD, Reviewer_AbCy; B: Reviewer_Qm4o, Reviewer_Vvok)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected mainly because they weighted the same facts differently; no reviewer in either committee found an error in a result. Both saw a novel bilevel view of RNNs, a stability theorem, benchmarks limited to the adding task, pixel and permuted MNIST and HAR-2, a confusing meta-learning label, and an Algorithm 1 that does not say how the upper level is solved. A's reviewers led with the novelty and treated small benchmarks as the convention. The rebuttal cleared two misreadings (Reviewer_5uYD's second-order belief, Reviewer_AbCy's typos) and promised LSTM curves, PTB and related work, and three scores rose to a 7.0 mean. A's chair doubted the 1/T inner step size and the meta-learning frame but deferred to that mean. B's reviewers led with the missing real-data evidence. Reviewer_Vvok called Theorem 2 an observation about a dominant residual connection, which the theorem's own condition η ≤ ε/(TL) confirms. Only Reviewer_2xM4 moved, to 5, and two reviewers never engaged. B's chair added a reading of the chair's own that the paper supports: the update is optimisation only under the input-independence assumption of L140-142, Algorithm 1 mixes θ and θ*, and the rebuttal's PTB perplexity of 117 is far from about 78 for LSTMs in the literature. Neither committee noted that Figure 5 puts the dense model behind the best baselines on all three benchmarks, despite L343's 'can always achieve superior performance', or that the PTB run ties LSTM (117.45 against 117.41) and trails FastGRNN (116.11). The case for practical gains was thin. A rewarded the idea and the promises; B asked for the evidence.",
+  "candidate_reasons": [
+    "Novelty versus experimental scale weighting",
+    "Rebuttal cleared misreadings in one committee",
+    "Accepting chair deferred despite doubts",
+    "Rejecting chair's own conceptual objection",
+    "Promised revisions accepted as sufficient",
+    "Rebuttal experiment judged against literature"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_5uYD review, edit note (2021-08-24) and 'Clarification Requested' thread",
+    "Reviewer_doUF review and threads ending 2021-08-27 ('will be raising my score')",
+    "Reviewer_AbCy review and 2021-08-24 comment",
+    "Reviewer_CDfk review, point 1 (x_t ∼ P_y assumption) and point 3 (scale)",
+    "Committee A meta-review",
+    "Reviewer_Vvok review (Theorem 2, Eq. 10) and the authors' reply",
+    "Reviewer_8SmP review summary",
+    "Reviewer_2xM4 review and 2021-08-28 reply",
+    "Reviewer_Qm4o review and 2021-08-19 follow-up (PTB ~78)",
+    "Authors' PTB update, 2021-08-24 (117.45 against LSTM 117.41 and FastGRNN 116.11)",
+    "Committee B meta-review and 'Mini review from AC'",
+    "paper_submitted.pdf Algorithm 1 (p. 4), L140-148, Eq. 3-7, Eq. 10-11, Theorem 2 (L240-243), L288-291",
+    "paper_submitted.pdf Figure 4, Table 2, Figure 5 and L337-347"
+  ]
+}

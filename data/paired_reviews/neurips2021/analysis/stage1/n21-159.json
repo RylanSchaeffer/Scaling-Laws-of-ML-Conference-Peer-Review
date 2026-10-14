@@ -1,0 +1,226 @@
+{
+  "pair_id": "n21-159",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        5,
+        5,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_opYp",
+        "Reviewer_bpP1"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_R6yL",
+        "direction": "champion",
+        "basis": "unclear",
+        "evidence": "R6yL's 7 at confidence 2 is the only accept-level rating; the others are 6/5/5 at confidence 4. R6yL wrote 'This is not my main area of expertise' and that it is 'unfamiliar with directly related work', so it could not judge the novelty and baseline questions that decided the case. In discussion (2021-08-16) it 'strongly encourage[d]' the authors to address the baselines and regret analysis, but kept 7. The AC 'downweighed' this review, which turned a 2-2 split into a reject."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_bpP1",
+          "claim": "Regret bounds are given only for the K-armed bandit (in the appendix); none for linear or deep contextual bandits.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 164-167: Appendix A.7 bounds the regret of SAU-UCB and SAU-Sampling 'in multi-armed bandits'. Section 4.2 gives only Proposition 4, which bounds E[e_n^2/n_a] against the MSE, not the regret. Lines 295-297 concede that why SAU beats TS in deep bandits 'is still not settled theoretically'. The abstract's 'as well as its regret bounds' does not say the bound is for multi-armed bandits only. The authors conceded the point."
+        },
+        {
+          "reviewer": "Reviewer_TBN4",
+          "claim": "Hypermodels and NeuralUCB are neither discussed nor compared (also Reviewer_bpP1: LinUCB, NeuralUCB, NeuralTS).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.3 (lines 259-265) compares only with the four best methods of [18]: LinearPosterior, LinearGreedy, NeuralLinear, NeuralGreedy. The 34 references contain no NeuralUCB, NeuralTS or hypermodels. LinUCB (Abbasi-Yadkori [8]) appears only in the introduction's list of UCB methods. The camera-ready still has no NeuralUCB or NeuralTS experiment; it dismisses NeuralUCB on cost and its 'reported performance'."
+        },
+        {
+          "reviewer": "Reviewer_TBN4",
+          "claim": "SAU is not tested on an environment that needs hard exploration, such as the Wheel bandit of [18].",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 covers seven datasets (Mushroom, Statlog, Covertype, Financial, Jester, Adult, Census); no Wheel bandit. The camera-ready adds Wheel results (Appendix C, Table 2)."
+        },
+        {
+          "reviewer": "Reviewer_TBN4",
+          "claim": "The inequality inside Pr{.} in Proposition 3 (lines 160-162) points the wrong way.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 161 reads Pr{|tau_a^2 - E tau_a^2| <= sigma_a sqrt(8c/(n_a log(delta/2)))} <= delta. The authors confirmed the typo. The bound is also undefined: log(delta/2) < 0 for delta < 1, so the square root has a negative argument. No reviewer flagged this, and the camera-ready fixes only the direction."
+        },
+        {
+          "reviewer": "Reviewer_opYp",
+          "claim": "Section 4.3 omits UCB and UCB-diag from the linear comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1 and lines 195-198 compare SAU-Sampling and SAU-UCB with TS and TSdiag only. The authors said UCB was 'substantially worse than TS' in unreported preliminary runs."
+        },
+        {
+          "reviewer": "Reviewer_opYp",
+          "claim": "The least-squares estimator at line 172 needs n_a > p so that the sum of x_j x_j^T is invertible.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 172 inverts the sum of x_j x_j^T with no regulariser. The authors conceded a 'default assumption' of invertibility and proposed adding c*I."
+        },
+        {
+          "reviewer": "Reviewer_R6yL",
+          "claim": "The uncertainty estimate does not depend on the current context (also Reviewer_vh32 and Reviewer_yDN2 in B).",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3), (7) and (8): tau_a^2 is a single running average per action, so the bonus depends on the arm and n_a only. The paper does not discuss this as a limitation."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Author responses 2021-08-10, follow-ups 2021-08-17 and 2021-08-19. Reviewer_opYp edited on 2021-09-02: the clarifications 'were leading me to increase my score further', but the discussion with the other reviewers surfaced the missing NeuralUCB/NeuralTS baselines and the partial theory, 'leading me to keep my score'. Reviewer_bpP1 edited on 2021-08-19, the day of its reply 'So I keep my score 5'. Reviewer_TBN4 replied on 2021-08-19 without editing. Reviewer_R6yL replied on 2021-08-16 without editing.",
+        "what_convinced_or_not": "The answers on Section 3.1, positioning against maximum likelihood, and the omitted UCB satisfied opYp, but no score moved. bpP1 held because Proposition 4 is not a regret bound, which the authors conceded; it called the NeuralUCB/NeuralTS comparisons something 'you should have included in the submission' but 'not a condition for the acceptance score'. The authors claimed, in prose without numbers or tables, that Neural-SAU-Sampling beat NeuralTS and NeuralUCB by 'more than 50%' on Mushroom and Shuttle and was 'marginally but consistently better' on the Wheel bandit. No reviewer credited these claims; TBN4 still asked for the baselines and Wheel results in the paper. The authors' argument that regret bounds matter little outside the NTK regime did not move bpP1."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The meta-review counts two accept and two reject recommendations, 'downweighed' the confidence-2 accept, and rests the reject on the missing baselines raised by TBN4, bpP1 and, after discussion, opYp. It sets aside bpP1's main objection: 'a more complete theoretical analysis was not deemed crucial'. It says the authors 'did not provide an empirical comparison but rather highlighted (only) the theoretical differences'. That is inaccurate: the authors claimed results against NeuralTS, NeuralUCB and on the Wheel bandit, though only in prose.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "No empirical comparison with recent neural-bandit methods (NeuralUCB, NeuralTS, hypermodels); the AC judged SAU's value 'impossible to fully (empirically) understand' without them",
+        "A 2-2 split (6/5/5/7) broken by downweighting Reviewer_R6yL's confidence-2 accept",
+        "Reviewer discussion led Reviewer_opYp to hold at 6 instead of raising",
+        "Regret analysis only for multi-armed bandits (Reviewer_bpP1's 5), though the AC called fuller theory not crucial",
+        "The authors' claimed comparisons came as prose only; the meta-review treats them as absent"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_yDN2"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/7 sit within one point. The low 6 (Reviewer_yDN2) is itself a post-rebuttal raise."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_fQ5w",
+          "evidence": "A 7 resting on one paragraph: the method is new 'to the best of my knowledge', efficient and clearly written, plus one minor suggestion. It names no weakness and does not engage the theory or the baselines. Its confidence-3 label says math was not carefully checked, although it reports 5 hours, the most in B. Its reply to the rebuttal is generic: 'I'm keeping my positive score.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_yDN2",
+          "claim": "Literature review and connection with past work are completely missing, e.g. NeuralUCB.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no related-work section; prior work appears only in the introduction (lines 31-51) and Section 5.1 (lines 226-235). NeuralUCB, NeuralTS and variance-based UCB (Audibert et al.) are not cited. 'Completely missing' overstates, since UCB and TS literature is cited."
+        },
+        {
+          "reviewer": "Reviewer_yDN2",
+          "claim": "In Algorithm 1 step 6, tau is missing the square in SAU-UCB.",
+          "checked_against_paper": "correct",
+          "evidence": "Step 6 reads mu_hat + sqrt(tau_a log n / n_a), while Eq. (7) has sqrt(n_a^-1 tau_a^2 log n). Algorithm 4 line 5 has the same error."
+        },
+        {
+          "reviewer": "Reviewer_yDN2",
+          "claim": "Eq. (7) lacks the UCB width parameter alpha.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (7) has no scaling constant. The authors said they fixed it at 1 after it 'work[ed] well empirically'."
+        },
+        {
+          "reviewer": "Reviewer_yDN2",
+          "claim": "Eq. (3) uses out-dated estimates theta_hat_{n,a} for the residuals instead of the current one.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) and Algorithm 1 line 11 accumulate each residual at the time of its step and never re-evaluate it. The authors confirmed this was for cost and cited Proposition 3."
+        },
+        {
+          "reviewer": "Reviewer_vh32",
+          "claim": "Reported regrets are consistently higher than in [18], and the variants of NeuralLinear and LinearPosterior used are unclear.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submitted PDF has neither [18]'s numbers nor Appendix C, which describes the baselines. The authors conceded 'some discrepancies' with [18]."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_yDN2"
+        ],
+        "evidence": "Author responses 2021-08-10. Reviewer_yDN2 edited its review on 2021-08-24, the day it wrote 'I find the response convincing, and I've raised my score accordingly'; its final 6 means it started at 5 or lower. Reviewer_fQ5w (2021-09-01) kept 'my positive score'. Reviewer_vh32 (2021-09-11): 'My rating remains.'",
+        "what_convinced_or_not": "yDN2 accepted four answers without new experiments: (1) tau^2 is 'the per-step squared prediction error', not a variance estimate as in Audibert et al.; (2) a conceptual and cost comparison with NeuralUCB; (3) alpha fixed at 1; (4) stale residuals justified by cost and Proposition 3. The novelty answer is thin against the paper itself: lines 99-100 introduce tau_a^2 as an approximation of the arm's noise variance, and line 164 states E[tau_a^2] -> sigma_a^2. The camera-ready's new Section 3.3 opens 'Using the variance estimation in MAB is not novel.' vh32 accepted that the best [18] variant was used per dataset and that some regret discrepancies with [18] remain."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'There is a consensus among the reviewers that the paper makes a useful contribution'; yDN2's novelty concern was 'addressed satisfactorily'. It calls the theory 'compelling' and says SAU is 'competitive with Thompson sampling in the limit', which holds only for Bernoulli multi-armed bandits (Proposition 1; lines 164-167). It does not mention NeuralUCB, the [18] variant questions, or the context-independent bonus.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings above threshold (7/6/7); the meta-review cites reviewer consensus",
+        "Simple, cheap drop-in method: a SAU variant beats the four best [18] methods on all seven benchmarks (Table 1) and runs over 10 times faster than NeuralLinear",
+        "The rebuttal's conceptual and cost answers resolved Reviewer_yDN2's novelty and NeuralUCB concerns, and yDN2 raised its score",
+        "Theory (Thompson-sampling match and regret bound in multi-armed bandits, MSE bounds in linear bandits) read as compelling; its narrow scope was not treated as a weakness"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No regret analysis for linear or deep contextual bandits (Reviewer_bpP1; Reviewer_opYp after discussion)",
+    "No test on hard-exploration environments such as the Wheel bandit (Reviewer_TBN4)",
+    "Hypermodels and NeuralTS missing as baselines; LinUCB, UCB and UCB-diag missing from the linear comparisons (Reviewer_TBN4, Reviewer_bpP1, Reviewer_opYp)",
+    "Reversed inequality in Proposition 3 (Reviewer_TBN4)",
+    "Least-squares estimator in Section 4.2 needs n_a >= p (Reviewer_opYp)",
+    "Sensitivity to mini-batch and buffer size (Reviewer_TBN4)",
+    "Unstated assumptions and expectations in Section 3.1 and Propositions 1-2 (Reviewer_opYp)"
+  ],
+  "issues_only_b": [
+    "Which variants of the [18] baselines were used, and why reported regrets exceed those in [18] (Reviewer_vh32)",
+    "No UCB width parameter alpha in Eq. (7) (Reviewer_yDN2)",
+    "Missing square on tau in Algorithm 1 step 6 (Reviewer_yDN2)",
+    "No context-dependent variance baseline, e.g. a Gaussian-likelihood network (Reviewer_yDN2)",
+    "No empirical check of how well SAU tracks model uncertainty (Reviewer_fQ5w)"
+  ],
+  "shared_issues": [
+    "No comparison with NeuralUCB (A: Reviewer_bpP1, Reviewer_TBN4, Reviewer_opYp after discussion, as missing experiments; B: Reviewer_yDN2, as missing related work)",
+    "Novelty against existing variance-based or residual-variance exploration (A: Reviewer_opYp; B: Reviewer_yDN2); both accepted the authors' distinction",
+    "Exploration bonus ignores the current context (A: Reviewer_R6yL; B: Reviewer_vh32, Reviewer_yDN2)",
+    "Residuals computed with outdated estimates and never re-evaluated (A: Reviewer_opYp; B: Reviewer_yDN2)",
+    "Related work thin or scattered (A: Reviewer_R6yL, Reviewer_opYp; B: Reviewer_yDN2)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same gap differently. The submission tests SAU only against the four best methods of [18], neither cites nor runs NeuralUCB, NeuralTS or hypermodels, and proves a regret bound only for multi-armed bandits. Both committees saw the NeuralUCB gap. In B, Reviewer_yDN2 raised it as missing related work, accepted the authors' cost argument without any experiment, and raised its score, so 7/6/7 became a consensus accept. In A, three reviewers wanted the comparison run, and the reviewer discussion made Reviewer_opYp hold at 6 instead of raising. That left a 2-2 split (6/5/5/7), which the AC broke by downweighting Reviewer_R6yL's confidence-2 accept; the AC rested the reject on the missing baselines and set aside Reviewer_bpP1's demand for a contextual regret bound. A's concern is a correct reading of the paper, and the camera-ready still has no NeuralUCB or NeuralTS experiment. But A's meta-review misstates the rebuttal: the authors did claim, in prose without numbers, that SAU beat NeuralTS and NeuralUCB by over 50%. B's accept leans on a thin 7 (Reviewer_fQ5w) and a meta-review that calls the theory 'compelling' without noting its multi-armed-bandit scope.",
+  "candidate_reasons": [
+    "neural-bandit baseline gap weighted differently",
+    "AC downweighted low-confidence champion",
+    "reviewer discussion hardened baseline concern",
+    "contextual regret analysis demanded",
+    "cost argument accepted over experiments",
+    "unquantified rebuttal results not credited"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_opYp review, UPDATE POST REBUTTAL",
+    "Reviewer_bpP1 review and replies of 2021-08-15, 2021-08-19 and 2021-08-21",
+    "Reviewer_TBN4 review and reply of 2021-08-19",
+    "Authors' replies in A of 2021-08-10 (Wheel bandit) and 2021-08-17 (NeuralTS/NeuralUCB claims)",
+    "Committee A meta-review",
+    "Reviewer_yDN2 review and reply of 2021-08-24",
+    "Reviewer_fQ5w review",
+    "Committee B meta-review",
+    "paper_submitted Section 5.3, lines 257-265, and reference list",
+    "paper_submitted lines 164-167 and 295-297",
+    "paper_submitted Proposition 3, lines 160-161",
+    "paper_submitted Algorithm 1 step 6 vs Eq. (7)",
+    "paper_submitted lines 99-100 and 164",
+    "paper.pdf (camera-ready) Section 5.3 on NeuralUCB"
+  ]
+}

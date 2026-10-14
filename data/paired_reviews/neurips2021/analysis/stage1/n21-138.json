@@ -1,0 +1,274 @@
+{
+  "pair_id": "n21-138",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_U7r7",
+        "Reviewer_3LiL",
+        "Reviewer_3tUD"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7, 6, 6, 7 at confidence 4, 3, 4, 3. All four sit at or just above the threshold and name the same limits (NTK-only theory, solution rather than dynamics, presentation). No reviewer stands apart and none advocates strongly."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_3LiL",
+          "evidence": "1.5 hours. Claimed the authors 'did not tackle the cross-entropy loss directly in equation (5)', but Eq. 5 is the logistic loss on labels in {-1,+1} plus a ridge term; the authors corrected it. Called an experiment tracking z2 'crucial' and missing, while Fig. 1(d) already plots the feature responses z1 and z2 (Eq. 4) over training. Raised to 6 'tentatively' and declined to advocate."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3LiL",
+          "claim": "The paper does not tackle cross-entropy directly in Eq. 5.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 5 (L123-126) is 1·log[1+exp(−Yŷ)] + (λ/2)||θ||², the binary cross-entropy on logits with labels in {−1,+1}, plus weight decay. 3LiL accepted the correction."
+        },
+        {
+          "reviewer": "Reviewer_3LiL",
+          "claim": "No experiment directly shows z2 falling as s1² rises, leaving 'a huge gap' between theory and experiments.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 1(d) plots the responses z1 and z2 (Eq. 4) over training on the two-moon task: z2 falls ('starvation') when the data become separable and recovers under SD. It does not sweep s1 in Theorem 2's setting. The authors say SM B.1 (Fig. 5) does; the supplement is not in the record, and the camera-ready moves Fig. 5 into the main text."
+        },
+        {
+          "reviewer": "Reviewer_MbCs",
+          "claim": "Hyperparameters are tuned on the test sets.",
+          "checked_against_paper": "correct",
+          "evidence": "For Colored MNIST only: L260-263 say the task 'assumes access to the test environment for hyperparameter tuning for all the reported methods', and checklist 1(b) repeats it. The authors say CelebA uses a validation set."
+        },
+        {
+          "reviewer": "Reviewer_3tUD",
+          "claim": "REx appears to strictly outperform SD in Table 2 but is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: REx 68.7% (±0.9) test against SD 68.4% (±1.2). L242-248 discuss IRM and SD, not REx. The gap is inside one standard deviation, so 'strictly' overstates, but the omission is real. Three B reviewers raised the same point."
+        },
+        {
+          "reviewer": "Reviewer_3tUD",
+          "claim": "Section 4.4 uses 'a variant' of SD without explanation.",
+          "checked_against_paper": "correct",
+          "evidence": "L273-277: (λ/2)||ŷ−γ||² with λ and γ 'tuned separately for each class (a total of four hyper-parameters)'; the only rationale is that it 'appears to perform better than the original SD'. No vanilla-SD result on CelebA is reported."
+        },
+        {
+          "reviewer": "Reviewer_U7r7",
+          "claim": "L164-165 call Assumption 1 a variation of case 2, but case 2 is a permutation matrix and Assumption 1 a perturbed identity.",
+          "checked_against_paper": "correct",
+          "evidence": "Case 2 (L162) is a permutation matrix and Assumption 1 (L166-167) a perturbed identity. The identity is a permutation matrix, so this is an imprecision, as U7r7 itself says."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_3tUD",
+          "Reviewer_3LiL",
+          "Reviewer_U7r7"
+        ],
+        "evidence": "Reviewer_3tUD (2021-08-13): 'You have mostly answered my questions and I have raised my score to a 7'. Reviewer_3LiL (2021-08-13): 'I would like to raise my score to 6 tentatively'. Reviewer_U7r7 (2021-08-19): 'clarified most of my concerns. I have raised my score to 7'. The three reviews carry matching edit dates. Reviewer_MbCs (2021-08-17) kept 6. Earlier scores are not visible.",
+        "what_convinced_or_not": "The authors explained that Theorem 2 concerns the converged solution, which primal and dual dynamics share. They pointed to the primal-versus-dual experiment in SM B.1 and a new NTK-spectrum plot, gave an intuition for SD (penalising confidence favours learning new features) and derived Eq. 17 from Eq. 9. Not resolved: MbCs wanted claims about the intermediate dynamics; 3LiL and 3tUD wanted a fuller discussion of importance and future work, which the authors answered with appeals to unnamed follow-up work and a news article on COVID imaging."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review cites the scores ('most reviewers updated their scores to a 6 or 7'), notes 'the lack of enthusiasm' and the limits of the theory, credits the experiments and the theoretical results, and concludes 'borderline acceptance'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four post-rebuttal ratings at or above threshold (7, 6, 6, 7)",
+        "Experiments on two-moon, CIFAR robustness, Colored MNIST and CelebA accepted as showing the phenomenon and the benefit of SD (meta-review: reviewers 'uniformly agreed')",
+        "NTK-only theory accepted as a limit, not a flaw: 'the NTK regime seems already enough' (Reviewer_U7r7)",
+        "Rebuttal clarifications raised three scores (Reviewer_U7r7, Reviewer_3tUD, Reviewer_3LiL)"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        3,
+        7,
+        7,
+        5,
+        4
+      ],
+      "confidences": [
+        4,
+        3,
+        2,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_i1Jd"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_TXkC",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Rated 3 ('clear rejection') at confidence 4 against 7, 7, 5, 4, after 1 hour, with five sentences of substance. Its headline, 'There are, unfortunately, no such guarantees (see Section 3.4)', overstates: L193-199 derive that SD decouples the dual variables 'for any initial coupling, without simplifying assumptions', which makes z* independent of the feature strengths and so rules out starvation under Definition 2. The paper says only that this 'suggests' SD mitigates GS (L201). Its Taylor complaint ignores the rationale at L145-147. Two rigour points hold: Assumption 1 is unmotivated and Lemma 1's 'approximated' is undefined. TXkC never answered the rebuttal or the 2021-08-19 follow-up. Without it, B's mean is 5.75, still split two against two."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_TXkC",
+          "evidence": "1 hour, five sentences of substance, a 3 at confidence 4. The headline 'no such guarantees' overstates Section 3.4, and the Taylor complaint ignores L145-147. The authors rebutted each point; TXkC did not reply."
+        },
+        {
+          "reviewer": "Reviewer_ZevV",
+          "evidence": "2 hours. A 7 resting on Figure 1 ('This perspective has sparked a lot of ideas in this reviewer') and two questions, with no assessment of the theory or the experiments; math 'not carefully checked'. No reply to the rebuttal. Weak support for acceptance."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TXkC",
+          "claim": "The abstract promises guarantees for SD, but there are none (Section 3.4).",
+          "checked_against_paper": "incorrect",
+          "evidence": "L193-199 derive Eq. 18: under SD the dual variables decouple 'for any initial coupling, without simplifying assumptions'. With the paper's Eq. 4 and the SD optimum θ*, z* = U^T α*/λ with α* independent of S, so dz_j*/d(s_i²) = 0 and no starvation occurs under Definition 2. The paper states this informally ('suggests SD should mitigate GS', L201) and gives no theorem; nothing guarantees accuracy or robustness. The claim overstates."
+        },
+        {
+          "reviewer": "Reviewer_TXkC",
+          "claim": "Theorem 1 hinges on a Taylor approximation with no discussion of whether it is appropriate.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L145-147: when λ ≪ s_k², 'the linear term dominates Eq. 9, and the fixed point is drawn closer towards the origin', which motivates the expansion around the origin. The rationale is one sentence with no error bound, but it exists."
+        },
+        {
+          "reviewer": "Reviewer_TXkC",
+          "claim": "Lemma 1 rests on Assumption 1 and on an 'approximation' that are not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Assumption 1 (L166-167) is introduced only 'to study a minimal case of starvation' (L164). Lemma 1 (L168-170) says the fixed point 'can be approximated by' Eq. 14 with no order or error term, and δ is only 'small'. Reviewer_i1Jd made the same point about δ."
+        },
+        {
+          "reviewer": "Reviewer_PD11",
+          "claim": "The loss in Eq. 5 is strongly convex in θ, so it has one global minimum and the dynamics are irrelevant.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 3 makes ŷ = Φ0θ linear in θ (L102-105), and Eq. 5 adds (λ/2)||θ||² with λ > 0 (Eqs. 8-11 divide by λ). The loss is therefore λ-strongly convex with a unique minimiser. Definition 2 (L117-118) and Theorem 2 concern only that optimum θ*. The authors' reply that cross-entropy has no finite solution on separable data ignores the ridge term; they conceded that 'Thm 2 studies the converged solution and not the intermediate dynamics'."
+        },
+        {
+          "reviewer": "Reviewer_PD11",
+          "claim": "Spectral decoupling is simple L2 regularisation in output space.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 17 adds (λ/2)||ŷ||², 'an L2 penalty exclusively on the network's logits' (L191-192). The authors replied 'Exactly!'."
+        },
+        {
+          "reviewer": "Reviewer_PD11",
+          "claim": "The 'excessive invariance' argument (l.74) holds for almost any classifier, since off-distribution points are generically classified with high confidence.",
+          "checked_against_paper": "correct",
+          "evidence": "L72-74 illustrate excessive invariance with 'a data point with low probability under the data distribution' that 'would still be classified with high confidence', which is PD11's reading. The authors' reply that the term concerns in-distribution examples contradicts their own text."
+        },
+        {
+          "reviewer": "Reviewer_i1Jd",
+          "claim": "SD is not compared with simple regularisers (L2/L1, batch norm, dropout) on real datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-3 compare SD only with ERM, REx, IRM, LfF and Group DRO, and the authors confirmed the ERM baseline has no weight decay. Weight decay, dropout and batch norm appear only for the two-moon task (L58-61, SM B). The authors answered with tables from other papers, not new results."
+        },
+        {
+          "reviewer": "Reviewer_i1Jd",
+          "claim": "Theorem 2 is limited to two features and a very specific U.",
+          "checked_against_paper": "correct",
+          "evidence": "L171-177: 'we consider the two dimensional case' with U as in Eq. 15. L178-179 assert without proof that the rationale 'naturally extends to higher dimensions'."
+        },
+        {
+          "reviewer": "Reviewer_i1Jd",
+          "claim": "In the NTK regime all weights except the last layer are fixed, so GS may only happen at initialisation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 3 linearises around θ0: all parameters θ change while the tangent features Φ0 stay fixed (L102-105). The underlying concern stands: the features are frozen at initialisation, so feature learning in the rich regime is outside the theory."
+        },
+        {
+          "reviewer": "Reviewer_7wTW",
+          "claim": "Definition 2 does not imply that a starved feature fails to be learned.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 2 (L117-118) is the sign condition dz_j*/d(s_i²) < 0, a local sensitivity; nothing in Section 3 links it to z_j* staying near zero. The authors conceded that Theorem 2 is 'in fact local'."
+        },
+        {
+          "reviewer": "Reviewer_7wTW",
+          "claim": "The abstract presents gradient starvation as a discovery, while the introduction treats it as an extension of earlier work.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract L1: 'We identify and formalize a fundamental gradient descent phenomenon'. L35: 'Gradient Starvation, first coined in [24]', which is arXiv:1809.06848, the paper B's meta-review cites."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B reviewer posted in the discussion. Reviewer_i1Jd edited its review on 2021-09-01: 'my concerns about the limitations of the NTK regime, and of the theoretical part remain. Hence, I decided to retain my score.' The other four reviews were never edited. The authors' follow-ups of 2021-08-19 to Reviewer_PD11, Reviewer_i1Jd and Reviewer_TXkC, and their 'Final note' of 2021-09-01, got no reply.",
+        "what_convinced_or_not": "Nothing visible moved B. The rebuttal disputed TXkC's main claim with a sound argument (under SD, dz_j*/ds_i = 0), conceded PD11's points on output-space L2 and on solution-only theory, and answered i1Jd's baseline request with tables from other papers, not new results. i1Jd judged the NTK and theory limits unresolved. The authors' appeals to unnamed follow-up work and workshop reception added nothing checkable."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The decision matches the three below-threshold reviews (3, 4, 5). The meta-review credits the 'numerical results', then cites 'several significant concerns regarding the technical contributions of the work, in part (but not only) due to the by now well-established discrepancy between NTK and neural network models'. It cites arXiv:1809.06848 for the name of the phenomenon. It does not mention the rebuttal or either 7.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three of five ratings below threshold (3, 4, 5), mean 5.2, none moved after the rebuttal",
+        "Theory confined to the NTK linearisation, 'essentially only presented for a linear model (with kernel features)' (Reviewer_PD11, Reviewer_i1Jd, meta-review)",
+        "Narrow, informal theory: two-feature Theorem 2, unquantified approximations, overstated guarantees (Reviewer_TXkC, Reviewer_i1Jd)",
+        "No comparison with simple regularisers on real data (Reviewer_i1Jd)",
+        "The two accept votes were thin (Reviewer_ZevV) or low-confidence (Reviewer_7wTW, confidence 2)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Colored MNIST hyperparameters tuned on the test environment (Reviewer_MbCs; the paper says so at L260-263)",
+    "CIFAR code and experimental details missing (Reviewer_MbCs; the authors then pushed the code)",
+    "Importance and future directions unclear; implications need more discussion (Reviewer_3LiL, Reviewer_3tUD, Reviewer_MbCs)",
+    "Why Eq. 5 keeps weight decay if the theory takes λ small (Reviewer_3LiL)",
+    "No sweep of the SD strength λ and no multi-class analysis (Reviewer_3tUD)"
+  ],
+  "issues_only_b": [
+    "No comparison with weight decay, dropout or batch norm on real data; the ERM baseline has no weight decay (Reviewer_i1Jd, Reviewer_PD11)",
+    "Eq. 5 is strongly convex, so gradient starvation is a property of a unique ridge optimum and the 'dynamics' play no role (Reviewer_PD11)",
+    "Definition 2 is a local sign condition and does not show that a feature goes unlearned (Reviewer_7wTW)",
+    "Theorem 2 covers only two features with a perturbed-identity U, with unquantified approximations (Taylor step, Assumption 1, size of δ, 'attractive fixed point' undefined) (Reviewer_i1Jd, Reviewer_TXkC, Reviewer_7wTW)",
+    "Abstract overclaims: 'guarantees' for SD (Reviewer_TXkC) and discovery of a phenomenon first named in arXiv:1809.06848 (Reviewer_7wTW; B's meta-review)",
+    "SD is plain L2 on the logits, close to the uncited confidence penalty of arXiv:1701.06548 (Reviewer_PD11, Reviewer_ZevV)",
+    "The excessive-invariance argument is generic (Reviewer_PD11)"
+  ],
+  "shared_issues": [
+    "Theory holds only in the NTK linearisation (A: Reviewer_U7r7, Reviewer_MbCs; B: Reviewer_i1Jd, Reviewer_PD11, meta-review). A: 'already enough'; B: a decisive limit",
+    "The dual analysis describes the converged solution, not the training dynamics in parameter space (A: Reviewer_MbCs, Reviewer_3tUD, Reviewer_U7r7; B: Reviewer_PD11)",
+    "REx matches SD in Table 2 but is not discussed (A: Reviewer_3tUD; B: Reviewer_7wTW, Reviewer_i1Jd, Reviewer_PD11)",
+    "CelebA uses an SD variant with four per-class hyperparameters (A: Reviewer_3tUD, Reviewer_MbCs; B: Reviewer_7wTW)",
+    "No direct measurement of starvation that links the theory to the experiments (A: Reviewer_3LiL, Reviewer_3tUD; B: Reviewer_7wTW)",
+    "Cross-entropy versus squared loss not shown in the main text (A: Reviewer_3tUD; B: Reviewer_PD11)",
+    "Notation errors and missing derivations: c for α in Eq. 8, undefined ⊙, Eq. 9 (A: Reviewer_MbCs, Reviewer_3tUD, Reviewer_3LiL; B: Reviewer_i1Jd)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected because the committees weighted the same limits differently and only A's reviewers engaged with the rebuttal; no reviewer found an error in a result. Both committees saw that the theory holds only in the NTK linearisation, that the dual analysis describes the ridge-regularised optimum rather than training dynamics, that REx goes undiscussed, and that CelebA needs a re-tuned SD variant with four hyperparameters. A's reviewers treated these as limits of a useful paper: Reviewer_U7r7 called the NTK regime 'already enough' for a theory that motivates an algorithm, and three reviewers raised their scores after the rebuttal, ending at 7, 6, 6, 7. A's chair accepted on the scores despite 'the lack of enthusiasm'. In B, three of five reviewers rated below threshold (3, 4, 5) and none of the five replied to the rebuttal; Reviewer_i1Jd's only edit kept its 5 because the NTK concerns 'remain'. B's lowest score is weak evidence: Reviewer_TXkC spent one hour, and its headline claim of 'no such guarantees' overstates Section 3.4, which derives that SD decouples the dual variables for any coupling. B's two 7s were thin (Reviewer_ZevV) or low-confidence (Reviewer_7wTW). B did raise two valid points that A missed: Eq. 5 is strongly convex, so gradient starvation is a property of a unique ridge optimum rather than of gradient descent (Reviewer_PD11), and SD is never compared with weight decay, dropout or batch norm on real data (Reviewer_i1Jd). Neither is a fatal flaw, and A saw the first in a milder form (Reviewer_MbCs) and accepted it as a limit. B's chair made the NTK gap the stated reason.",
+  "candidate_reasons": [
+    "Same limits weighted differently",
+    "No reviewer engagement after rebuttal",
+    "Rebuttal raised scores in one committee",
+    "NTK restriction judged disqualifying",
+    "Low-effort detractor review",
+    "Missing simple-regulariser baselines"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_U7r7 review ('the NTK regime seems already enough') and reply of 2021-08-19",
+    "Reviewer_3tUD and Reviewer_3LiL replies of 2021-08-13; Reviewer_MbCs reply of 2021-08-17",
+    "Committee A meta-review",
+    "Reviewer_TXkC review and the authors' reply",
+    "Reviewer_PD11 review (strong convexity, L2 on logits, excessive invariance) and the authors' reply",
+    "Reviewer_i1Jd review and its edit of 2021-09-01",
+    "Reviewer_7wTW review (Definition 2 is local; abstract against introduction)",
+    "Committee B discussion: no reviewer replies; author follow-ups of 2021-08-19 and 'Final note' of 2021-09-01",
+    "Committee B meta-review",
+    "paper_submitted.pdf Eq. 3 (L102-105) and Eq. 5 (L123-126): ridge term with λ > 0",
+    "paper_submitted.pdf Section 3.4, L187-202 (Eq. 18, 'for any initial coupling', 'suggests')",
+    "paper_submitted.pdf L145-147 (Taylor rationale) and L164-179 (Assumption 1, Lemma 1, Theorem 2)",
+    "paper_submitted.pdf Fig. 1(d); Tables 1-3; L58-61; L260-263; L273-277",
+    "paper_submitted.pdf abstract L1 against L35 ('first coined in [24]')"
+  ]
+}

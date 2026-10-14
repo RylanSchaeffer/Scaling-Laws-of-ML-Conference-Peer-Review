@@ -1,8 +1,12 @@
-# Stage 2 prompt, version 1 (2026-10-14): the set of reasons, grown one pair at a time
+# Stage 2 prompt, version 2 (2026-10-14): the set of reasons, grown from the pairs in a fixed order
 
 Stage 1 produced, for each pair of committees, notes on why the two committees recommended what they
 did (`analysis/stage1/<pair_id>.json` and `.md`). Stage 2 builds one shared set of reasons for the
-discrepancies, one pair at a time, in a fixed order. You are one turn of that process.
+discrepancies from the pairs in a fixed order (`analysis/order.json`). You are one turn of that process.
+Run 1 covers the 50 pairs in which at least one committee recommended an oral or a spotlight (turns 1 to
+50 of the order), one pair at a time, each turn seeing the set its predecessor left. Back-fill then judges,
+for every pair, every reason its own turn did not judge. The matrix is derived afterwards from the turn and
+back-fill files; nothing is edited by hand.
 
 ## The set of reasons
 
@@ -40,7 +44,7 @@ causal inference"; "committee B gave lower scores".
 5. Write `run_<k>/turn_<nnn>.json`:
 
 ```
-{"run": k, "turn": n, "pair_id": "...", "kind": "...", "prompt_version": 1,
+{"run": k, "turn": n, "pair_id": "...", "kind": "...", "prompt_version": 2,
  "reasons_before": ["R01", ...],
  "judgements": [{"id": "R01", "applies": true, "justification": "..."}, ...],   // one per reason in reasons_before
  "added": [{"id": "R08", "name": "...", "definition": "...", "justification": "why no existing reason covers this"}],
@@ -53,13 +57,14 @@ causal inference"; "committee B gave lower scores".
 
 ## Back-fill
 
-A reason created at turn n was never judged for the pairs of turns 1 to n-1. The back-fill judge for
-pair p (turn n) reads the final `reasons.json`, takes every reason with `created_turn > n`, and judges
-each for pair p from its stage 1 notes, yes or no with one line of justification. It writes
+A reason created after a pair's turn was never judged for that pair. The back-fill judge for pair p (turn n) reads the final `reasons.json` and p's turn file, takes
+every reason whose id is not among the turn file's `judgements`, and judges each for pair p from its
+stage 1 notes, yes or no with one line of justification. A reason that p's own proposal was mapped to is
+judged like any other. It writes
 `run_<k>/backfill_<pair_id>.json`:
 
 ```
-{"run": k, "pair_id": "...", "turn": n, "prompt_version": 1,
+{"run": k, "pair_id": "...", "turn": n, "prompt_version": 2,
  "judgements": [{"id": "R23", "applies": false, "justification": "..."}, ...]}
 ```
 
@@ -71,7 +76,7 @@ The merge judge reads the final `reasons.json` and names every pair of entries t
 mechanism under two names. It writes `run_<k>/merges.json`:
 
 ```
-{"run": k, "prompt_version": 1, "merges": [{"keep": "R03", "absorb": "R19", "why": "..."}], "reasoning": "..."}
+{"run": k, "prompt_version": 2, "merges": [{"keep": "R03", "absorb": "R19", "why": "..."}], "reasoning": "..."}
 ```
 
 Entries that overlap but name different mechanisms are not merged. The merge is applied afterwards by

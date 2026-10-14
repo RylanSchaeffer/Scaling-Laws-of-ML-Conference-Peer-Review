@@ -1,0 +1,282 @@
+{
+  "pair_id": "n21-135",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        8,
+        9
+      ],
+      "confidences": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_oqBv"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_vv5y",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "Ratings 7, 6, 8, 9 (Wkgz, oqBv, cW9s, vv5y), all at confidence 5. vv5y gave 9 ('Top 15%, strong accept') after 2 hours, on two generic pros. Its own second question, whether STEP beats unsupervised OOD detectors, stays open in the review, and vv5y never replied to the rebuttal. Without vv5y the mean is 7.0, so the decision does not depend on it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_cW9s",
+          "evidence": "Rating 8 ('clear accept') at confidence 5 with '8 hours' reported, but the main review is one sentence: 'the proposed setting is novel and the proposed approach reasonable, and the experiments are also convincing'. The three limitation items are generic questions. cW9s did not reply to a rebuttal that only promised changes ('We will improve the writing quality')."
+        },
+        {
+          "reviewer": "Reviewer_vv5y",
+          "evidence": "Rating 9 at confidence 5 after 2 hours. Two generic pros ('seems reasonable and insightful'; experiments 'basically' support the claims). It asks whether STEP outperforms unsupervised OOD detection methods, the gap that oqBv later had to press, yet rates the paper top 15%. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oqBv",
+          "claim": "The test of generalization to unseen OOD data uses semantically similar pairs (TINc/TINr, LSUNr/LSUNc).",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 2 trains on TINr and tests on TINc, and trains on LSUNr and tests on LSUNc, with CIFAR-10 only (lines 212-216). Each pair is a crop and a resize of the same source images (lines 152-158)."
+        },
+        {
+          "reviewer": "Reviewer_oqBv",
+          "claim": "Detection performance is largely unaffected with only 10 labeled images, so the labels look redundant, the method is close to self-supervised, and CSI and SSD need comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3b: STEP reaches about 95% AUROC with 10 labeled images and about 99% with 250. Table 1 has no CSI or SSD, although line 38 cites both as methods that use unlabeled data."
+        },
+        {
+          "reviewer": "Reviewer_oqBv",
+          "claim": "Against UOOD* (with OOD validation data) the performance gain is marginal.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 AUROC: STEP leads UOOD† by 0.7 to 3.0 points on six pairs and trails it on CIFAR-100 TINr (93.51 vs 95.31) and LSUNr (98.20 vs 98.96), on nearly every metric. The authors conceded: 'the performance gain does seem quite marginal'."
+        },
+        {
+          "reviewer": "Reviewer_oqBv",
+          "claim": "The training setup is not OOD-agnostic.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 159-161: the OOD images not drawn for validation go into the unlabeled set Du and are also the test data. Table 1 therefore scores OOD images that the SimCLR backbone and the KNN graph saw in training. Lines 203-210 acknowledge 'known OOD samples'."
+        },
+        {
+          "reviewer": "Reviewer_oqBv",
+          "claim": "The proposed setting was studied before as semi-supervised novelty detection (Blanchard et al. 2010).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submission does not cite Blanchard et al. and calls the setting novel (abstract, line 6). The A chair raised a related point (closeness to positive-unlabeled learning). The camera-ready abstract says 'we study a setting' where the submission said 'we propose a novel setting'."
+        },
+        {
+          "reviewer": "Reviewer_Wkgz",
+          "claim": "STEP is significantly better than the baselines with or without knowledge that OOD data exist, and best in almost all settings.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The large margins hold against ODIN, MAH† and UOOD. Against UOOD†, which uses OOD validation data, the margin is at most 3 AUROC points, and UOOD† wins two of eight pairs (Table 1). The paper's own caption says 'in most cases'."
+        },
+        {
+          "reviewer": "Reviewer_Wkgz",
+          "claim": "The conclusion admits that a theoretical study is lacking.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 294: 'The limitation of our work is the lack of solid theoretical results.' Checklist item 2 is N/A."
+        },
+        {
+          "reviewer": "Reviewer_vv5y",
+          "claim": "The experiments include comparisons with the SOTA methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 compares ODIN, MAH† and two UOOD variants only. CSI and SSD, cited on line 38 as recent methods that use unlabeled data, are missing; vv5y's own second question points at this gap."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_oqBv"
+        ],
+        "evidence": "oqBv edited the review on 2021-08-25 and posted 'I raised my score since the authors have addressed the major concerns'. The earlier rating is not recorded; the final is 6. No other A review was edited, and no other A reviewer replied.",
+        "what_convinced_or_not": "The first reply (2021-08-09) claimed that unsupervised OOD methods need clean ID data. oqBv called this 'not accurate' (SSD has a SupCon variant) and asked for SSD and more OOD test sets. On 2021-08-23 the authors reported CIFAR-10 AUROC with TINr as training OOD on five test sets: STEP 91.67 to 98.29, SSD 67.92 to 94.62; STEP is better on four, SSD on LSUNc. oqBv raised the score but still asked for Textures and CIFAR-10 vs CIFAR-100 in the final version. Wkgz, cW9s and vv5y received short answers and promises, and did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 6 or above (mean 7.5). The meta-review says 'The writing is clear, the motivation is strong, the idea is novel, and the results are significant' and names no specific result. It adds its own point that the setting is close to positive-unlabeled learning and asks for related work. It mentions a concern 'discussed internally' that the public record does not show.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four accept-side ratings (7, 6, 8, 9), all at confidence 5",
+        "Setting judged novel and practical by all four reviewers and the AC",
+        "Table 1 margins read as significant (Wkgz, AC), although the large margins are over ODIN, MAH† and UOOD, not UOOD†",
+        "oqBv's concerns about baselines and OOD breadth answered in discussion by an SSD comparison on five OOD test sets"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        3,
+        5,
+        3,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_U8Ns",
+        "Reviewer_TQrA"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_7FHe",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Ratings 3, 5, 3, 6 (U8Ns, TQrA, Jitz, 7FHe). 7FHe gave the only accept-side rating. The review gives reasons (a sound formulation, comparisons with recent methods, an informative ablation) and asks for a two-stage SSL baseline. Its 'very well written' conflicts with the many typos in the text, and 7FHe did not reply to the rebuttal. The AC copied its summary and rejected anyway."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Jitz",
+          "evidence": "Partly inattentive. The evaluation critique is accurate, but the review reads the Mahalanobis distance as computed in 'input image space' (line 108 says feature space) and asks what N is, which Eq. (4) defines. Rating 3 at confidence 5 ('checked the math/other details carefully'), and no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_U8Ns",
+          "claim": "Cholesky needs a well-conditioned precision matrix, which needs at least d+1 samples per class, so the limited labeled data cannot give a usable Mahalanobis distance.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 estimates Σ̂ on the labeled set only: 250 images for CIFAR-10 and 400 for CIFAR-100 (lines 148-150). Lines 125-126 call d 'relatively large', and the rebuttal says the features are flattened maps from four DenseNet stages. Σ̂ is then singular, yet Eq. (5) takes a Cholesky factor of its inverse. The main text and the rebuttal never say how Σ̂ is regularized; Fig. 3b even runs with 10 labels. For a shared covariance the bound is n - K >= d in total, not d+1 per class, but the point stands."
+        },
+        {
+          "reviewer": "Reviewer_U8Ns",
+          "claim": "Using a scene dataset as OOD for CIFAR makes the problem unrealistically easy; held-out CIFAR classes would be harder.",
+          "checked_against_paper": "correct",
+          "evidence": "The OOD sets are TIN and LSUN (lines 152-158); only LSUN is a scene set. STEP scores 99.99 AUROC on TINc and LSUNc for both ID sets (Table 1), so half the benchmarks are saturated. No near-OOD split is tested. The rebuttal answered only 'Following the previous studies [29, 43]'."
+        },
+        {
+          "reviewer": "Reviewer_U8Ns",
+          "claim": "The writing has many grammar issues and broken sentences.",
+          "checked_against_paper": "correct",
+          "evidence": "'Comparsion Methods' (line 163), 'to provid accurate logits' (line 194), 'Sturture-Keep' (Table 2), 'ofter occur' (line 52), 'projctor' (Algorithm 1), and the fragment 'Because some comparison methods in our experiments heavily rely on OOD validation.' (line 159). Reviewer_7FHe's 'very well written' does not hold."
+        },
+        {
+          "reviewer": "Reviewer_Jitz",
+          "claim": "Results cover only four OOD sets, two pairs of the same data rescaled differently; the unseen-OOD test has two cases, each differing from training only in rescaling.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 152-158 (TINc, TINr, LSUNc, LSUNr) and Fig. 2 (TINr to TINc, LSUNr to LSUNc, CIFAR-10 only)."
+        },
+        {
+          "reviewer": "Reviewer_Jitz",
+          "claim": "Eq. 3 uses a quantifier over all i, j where a sum is needed.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) reads 'max_P ||Px_i - Px_j||_2, for all x_i, x_j in D_l ∪ D_u', which is not one objective. The authors agreed to revise it."
+        },
+        {
+          "reviewer": "Reviewer_Jitz",
+          "claim": "Section 2.2 computes the Mahalanobis distance in the input image space.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 108 says 'in the feature space'; Algorithm 1 estimates Σ̂ 'with fθ(·)'; lines 125-126 use an ensemble of backbone-layer representations. The notation Px_i, not P fθ(x_i), invites the misreading."
+        },
+        {
+          "reviewer": "Reviewer_Jitz",
+          "claim": "The 'detection-specific space' and N are not defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (4) on line 110 defines N(x_i, x_j) = ||Px_i - Px_j||_2, the L2 distance in the projected space; lines 121-122 name that space."
+        },
+        {
+          "reviewer": "Reviewer_TQrA",
+          "claim": "Table 2 has no comparison with contrastive OOD methods such as CSI and SSD.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither Table 1 (main results) nor Table 2 (ablation) has CSI or SSD. The B rebuttal declined to run them and argued that CSI needs clean ID data; in A, oqBv called the same argument 'not accurate'."
+        },
+        {
+          "reviewer": "Reviewer_TQrA",
+          "claim": "The hyperparameters seem tuned on the test set in Fig. 3, with the best result in the main table.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 186 fixes K = 12 for all pairs. Fig. 3a shows K = 3 slightly better on both resize sets, and Table 1 matches the K = 12 values (95.61, 99.07). The paper does not say how K = 12 was chosen."
+        },
+        {
+          "reviewer": "Reviewer_TQrA",
+          "claim": "MSP, Gram-matrix and likelihood-ratio baselines are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares ODIN, MAH† and UOOD/UOOD† only (lines 163-176). MSP is cited as 'The baseline [17]' (line 267) but not run. The rebuttal declined; the B AC repeated the point."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The authors only consider CIFAR-10/100, while most OOD papers also use SVHN and TinyImageNet.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The ID sets are CIFAR-10 and CIFAR-100 only and SVHN is absent, but TinyImageNet is already in the paper as OOD data (TINc, TINr; lines 152-156)."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The theory part is not thoroughly evaluated.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper has no theory: checklist item 2 is N/A, and line 294 names 'the lack of solid theoretical results' as the limitation. No B reviewer raised it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "U8Ns edited on 2021-08-28 to add 'I stand with my original rating of \"clear reject\"'. TQrA edited on 2021-08-18, after the rebuttal, with no visible post-rebuttal text, so any change is unknown. Jitz and 7FHe never edited. No B reviewer posted in the discussion.",
+        "what_convinced_or_not": "U8Ns: the rebuttal 'does not address my main concerns'; it restated the idea and did not explain how an ill-conditioned Σ̂ is inverted. The authors declined the CSI/SSD, MSP, Gram, likelihood-ratio, energy and ID-accuracy requests, and answered Jitz's evaluation critique with 'We follow the experimental settings that were widely used in previous studies'. They added WideResNet results and a FixMatch+ODIN/MAH baseline for 7FHe. That ODIN AUROC of 7.35% is far below chance, so the score was inverted; nobody queried it. The SSD comparison the authors gave A on 2021-08-23 never reached B."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 4.25 with two 3s, so the rejection follows the scores. The text is assembled: paragraph 1 is Reviewer_7FHe's summary word for word, and point 2.2 is TQrA's Cons 5 almost word for word. Point 1 (theory) comes from no B reviewer, and point 2.1 calls TinyImageNet missing although the paper uses it. The meta-review ignores U8Ns's covariance objection, Jitz's clarity points and every rebuttal result, and concedes that the formulation 'has sufficient contribution to make to the field'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two clear rejects (U8Ns, Jitz) and a 5 (TQrA); mean 4.25",
+        "Missing baselines: CSI/SSD, MSP, Gram matrices, likelihood ratios (TQrA, AC); the B rebuttal declined to run them",
+        "Narrow OOD evaluation: four OOD sets from two sources, and the unseen-OOD test only goes from resize to crop (Jitz, AC)",
+        "Doubts on soundness and clarity: a Mahalanobis distance from a singular covariance is preserved (U8Ns); ill-posed Eq. 3 and unclear method (Jitz)",
+        "No theory (AC only)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Labels nearly redundant: about 95% AUROC with 10 labels (Fig. 3b), so the method is close to self-supervised (oqBv)",
+    "Gains over UOOD† marginal, and negative on two CIFAR-100 pairs (oqBv; the authors conceded)",
+    "Setting studied before as semi-supervised novelty detection (oqBv, Blanchard et al. 2010) and close to positive-unlabeled learning (AC)",
+    "Effect of the amounts of labeled ID and of OOD data (Wkgz)",
+    "Visualization of the learned space; training stability over epochs (oqBv, cW9s)"
+  ],
+  "issues_only_b": [
+    "Covariance from 250 or 400 labels in a large feature space is singular, so preserving its Mahalanobis distances and taking a Cholesky factor are ill-founded (U8Ns)",
+    "Method description unclear: Eq. 3 quantifier, how the covariance is estimated, where backbone features enter (Jitz)",
+    "Missing MSP, Gram-matrix, likelihood-ratio and energy baselines, and no ID classification accuracy (TQrA, AC)",
+    "No two-stage SSL-then-OOD baseline (7FHe, TQrA); unlabeled data may hold unknown ID classes (7FHe)",
+    "No ID datasets beyond CIFAR, such as SVHN (AC)"
+  ],
+  "shared_issues": [
+    "No comparison with the self-supervised OOD detectors CSI and SSD despite reliance on SimCLR features (oqBv, vv5y in A; TQrA in B)",
+    "Few OOD test sets, and an unseen-OOD test only from resize to crop of the same source (oqBv in A; Jitz and AC in B); near-OOD tests requested (oqBv's CIFAR-10 vs CIFAR-100 in A; U8Ns's held-out classes in B)",
+    "Dependence on the quality of SimCLR pretraining (cW9s, vv5y in A; TQrA in B)",
+    "Computational cost (oqBv: 500 SimCLR epochs; TQrA: O(n^2) KNN graph)",
+    "No theory (Wkgz in A, as an acceptable limitation; the AC in B, as a reason to reject)",
+    "Writing quality (cW9s mildly in A; U8Ns and Jitz strongly in B), while oqBv, Wkgz and 7FHe called the paper clear"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees found the same main weaknesses, but only Committee A received new evidence on them. STEP rests on SimCLR features, yet the paper compares it with no self-supervised OOD detector (CSI, SSD), and its only unseen-OOD test trains on resized images and tests on crops of the same source (Fig. 2). In A, Reviewer_oqBv, the one A reviewer who probed the experiments, raised both points, rejected the first reply and asked again. The authors then gave an SSD comparison on five OOD sets (STEP better on four), and oqBv raised the score to 6. A's other ratings (7, 8, 9, all at confidence 5) carry little weight: Reviewer_cW9s gave 8 on a one-sentence assessment, and Reviewer_vv5y gave 9 after two hours. In B, Reviewer_TQrA and Reviewer_Jitz raised the same baseline and dataset points. The authors declined the baselines, no B reviewer replied in the discussion, and the SSD evidence never reached B. B also had a principled detractor, Reviewer_U8Ns: the covariance is estimated from 250 or 400 labels in a 'relatively large' feature space, so it is singular, and neither the main text nor the rebuttal says how STEP inverts it. No A reviewer raised this. B's AC rejected on missing baselines and datasets, added a theory objection that no B reviewer raised, and wrongly listed TinyImageNet as absent. The split comes mainly from the reviewer draw and from one reviewer's follow-up. The covariance objection is the one material fact that only B saw.",
+  "candidate_reasons": [
+    "follow-up elicited decisive new evidence",
+    "silent reviewers after rebuttal",
+    "thin high-confidence accept reviews",
+    "unanswered covariance soundness objection",
+    "AC added unraised objections",
+    "same weaknesses weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_oqBv review, follow-up (2021-08-18) and update (2021-08-25), Committee A",
+    "Authors' reply to follow-up feedback (2021-08-23), SSD table, Committee A",
+    "Reviewer_cW9s and Reviewer_vv5y reviews, Committee A",
+    "Committee A meta-review",
+    "Reviewer_U8Ns review and update (2021-08-28), Committee B",
+    "Reviewer_Jitz review",
+    "Reviewer_TQrA Cons 1, 3 and 5, and the authors' reply",
+    "Authors' reply to Reviewer_7FHe (FixMatch+ODIN AUROC 7.35%)",
+    "Committee B meta-review",
+    "paper_submitted.pdf lines 125-133, Eq. (5) and Algorithm 1 (covariance from labeled data only)",
+    "paper_submitted.pdf lines 148-161 (labeled set sizes, OOD sets, test OOD images in Du)",
+    "paper_submitted.pdf Table 1, Fig. 2, Fig. 3a-b and line 186"
+  ]
+}

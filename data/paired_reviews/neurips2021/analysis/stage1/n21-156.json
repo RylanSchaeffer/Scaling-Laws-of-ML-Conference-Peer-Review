@@ -1,0 +1,228 @@
+{
+  "pair_id": "n21-156",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        8
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7pq7",
+        "Reviewer_4Rfw"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_x8VX",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Only confidence-4 review in A (5 h). Places the work as an extension of Archambeau and Opper, catches the Sec. 4.1 parameter bias ('right sign but are quite far from the ground truth') and the linear-only experiments, both confirmed by the paper; replied after the rebuttal ('I maintain my favorable appreciation'). Explicitly values the qualitative evaluation ('rather that quantitative evaluation / comparison to alternative - which is great'). Outvoted by three 6s; the meta-review does not mention this review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_4Rfw",
+          "evidence": "1.5 h. The main review is three one-line questions (scaling in dimensions and modes, comparison with discrete-time SLDS, scaling with N and sampling frequency); limitations field is just 'Yes'; nothing on the method itself."
+        },
+        {
+          "reviewer": "Reviewer_5o85",
+          "evidence": "Short review. Calls the derivations and numerical results 'somewhat inadequate' with one specific point (inherent bias); never replied to the rebuttal; review not edited."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_x8VX",
+          "claim": "Parameters recovered in Sec. 4.1 have the right sign but are far from the ground truth",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 4.1: learned set points beta_1 = 0.70, beta_2 = -0.52 against ground truth +1/-1 (30% and 48% off); the paper calls this 'identified with high accuracy'."
+        },
+        {
+          "reviewer": "Reviewer_x8VX",
+          "claim": "All evaluations assume linear models",
+          "checked_against_paper": "correct",
+          "evidence": "Every experiment fits the per-mode linear drift of Eq. (20) (Secs. 4.1, 4.2, 4.4; Sec. 4.3 learns set points beta_z); prior gradients are given only for linear f = A_p y + b_p (Sec. 3.2)."
+        },
+        {
+          "reviewer": "Reviewer_7pq7",
+          "claim": "No comparison with the state of the art and no clear quantitative results",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 4 has no baseline and no error metric; the only numbers in the main text are the two Sec. 4.1 set points; all other results are figures."
+        },
+        {
+          "reviewer": "Reviewer_5o85",
+          "claim": "The approach largely extends existing VI methods for diffusions and Markov jump processes",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 3.2: 'our results generalize the findings of [26, 29]' (Archambeau et al.; Opper and Sanguinetti) and recover the GP approximation [26] for |Z| = 1; the coupling of the two processes is the new part."
+        },
+        {
+          "reviewer": "Reviewer_4Rfw",
+          "claim": "Scaling in state dimension and number of modes is not shown",
+          "checked_against_paper": "correct",
+          "evidence": "All experiments are 1D or 2D with 2 to 4 modes; Sec. 5 says high-dimensional state spaces and many modes need further approximations."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_7pq7",
+          "Reviewer_4Rfw"
+        ],
+        "evidence": "Reviewer_7pq7 edited the review on 2021-08-24, the day they wrote 'I can appreciate the novelty of the method and willing to reassess my score'. Reviewer_4Rfw's review says the questions must be answered 'before the paper can be accepted', yet the final rating is 6; the review was edited on 2021-08-31, after their reply. Earlier ratings are not public. Reviewer_x8VX: 'I maintain my favorable appreciation' (no edit). Reviewer_5o85: no reply, no edit.",
+        "what_convinced_or_not": "The authors' argument that no hybrid baseline exists moved 7pq7 ('I understand the difficulty in comparing with the state of the art') but not 4Rfw, who still wanted a discretized, continuous-only or two-step comparison. 4Rfw got cost answers (O(n^2|Z|) forward equations, linear in the number of observations) but no comparison. x8VX accepted the replies on VEM, nonlinear drift and sampling and the promised revert-to-prior figure. The two reviewers who moved ended at 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'technically innovative and very clearly described', plus requests for computational costs and related work. No mention of x8VX's 8, the parameter bias or the missing baselines; no reason given for poster over spotlight.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 (marginally above), mean 6.5",
+        "Accepted for the novelty and clarity of the hybrid VI framework",
+        "Missing baselines, quantitative results and cost/scaling analysis kept the 6s lukewarm"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        8,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        2,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_QSy5",
+        "Reviewer_d46C",
+        "Reviewer_czKb"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings span 7 to 8. The one 8 (Reviewer_QSy5) is the least argued score: its summary and significance repeat the paper's own conclusion almost word for word ('tested on various benchmark tasks including real-world biological data and the results demonstrate its ability to faithfully reconstruct complex latent dynamics'; 'the toolbox for inference will be of great utility for the analysis and control'), and its concrete content is two clarity items and three open questions. Without it B's mean is still 7.0, above A's 6.5."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_naZJ",
+          "claim": "Even for a low-D system the parameter error (beta) is relatively large",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 4.1: beta_1 = 0.70, beta_2 = -0.52 against ground truth +1/-1, described in the paper as 'high accuracy'."
+        },
+        {
+          "reviewer": "Reviewer_czKb",
+          "claim": "The factorization in Eq. (12) is invalid",
+          "checked_against_paper": "incorrect",
+          "evidence": "The first line of Eq. (12) is the product rule at a fixed time t: p(y,z,t|x) = p(z,t|x) p(y,t|z,t,x). The submitted notation omitted t from the conditioning set; the camera-ready adds it. czKb later wrote 'I'm starting to think this is just a notation issue'."
+        },
+        {
+          "reviewer": "Reviewer_czKb",
+          "claim": "The Sec. 3.2 derivation rests on Pontryagin's maximum principle, which goes uncited",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded it was cited only in the supplement; the camera-ready Sec. 3.2 now cites it ([49])."
+        },
+        {
+          "reviewer": "Reviewer_naZJ",
+          "claim": "The visualizations should add the observations x(t) (implying they are absent)",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figs. 2, 3 and 5 plot the observations as crosses; Fig. 4 shows the data as a white line."
+        },
+        {
+          "reviewer": "Reviewer_naZJ",
+          "claim": "Experiments mostly use a drift function of known analytic form; drift mismatch is untested",
+          "checked_against_paper": "correct",
+          "evidence": "Three of four experiments are synthetic with known drift, but Sec. 4.2 already fits linear per-mode drifts to diffusions in nonlinear multi-well potentials, which is a drift mismatch; Sec. 4.3 is real data."
+        },
+        {
+          "reviewer": "Reviewer_QSy5",
+          "claim": "No experiment has a mismatched number of modes",
+          "checked_against_paper": "correct",
+          "evidence": "Every experiment fixes |Z| in advance; the authors concede the number of modes must be given."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_d46C"
+        ],
+        "evidence": "Reviewer_d46C wrote on 2021-08-16 'I'm willing to increase my score if my above concerns can be addressed'; the authors replied on 08-18; on 08-24 d46C wrote 'The importance of the continuous-time switching dynamical system is well explained' and edited the review that day. Reviewer_QSy5: 'My recommendation remains the same' (its edit is same-day, 2021-07-14, before the rebuttal). Reviewer_czKb edited on 08-31 to add a post-rebuttal note that keeps 'the paper should be accepted'. Reviewer_naZJ: no reply, no edit. Earlier ratings are not public.",
+        "what_convinced_or_not": "The authors' second reply to d46C (no analytic solution for time-varying impulsive ODEs, the Gaussian sum smoother cited, Markov-state-modelling use cases) answered d46C's doubt about the low-level formulation. czKb stayed unconvinced on Eq. (12) and on the lack of quantitative comparisons but kept 7. naZJ never answered the 'comparison would not be fair' argument that failed with A's Reviewer_4Rfw."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers agreed the paper is timely, significant, and relevant for the community, and that it deserves acceptance' (naZJ's words). Lists the parameter-error study (naZJ), references incl. [20] (czKb, d46C) and the Eq. (12) notation, siding with czKb, as revisions. No argument for spotlight beyond the unanimous 7-8 scores.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 7-8 scores, mean 7.25",
+        "Judged timely, significant and rigorous: first VI framework for continuous-time hybrid systems",
+        "Qualitative evaluation, parameter error, Eq. (12) notation and references treated as camera-ready revisions"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Motivation unclear: do discrete modes exist a priori? Use beyond ground-truth recovery, e.g. clustering (Reviewer_7pq7)",
+    "Plain GP baseline (Reviewer_7pq7)",
+    "Inherent bias of VI and VEM; Turner 2011 on VEM for time series (Reviewer_5o85, Reviewer_x8VX)",
+    "Do per-mode posteriors revert to the prior where the mode is inactive? (Reviewer_x8VX)",
+    "Comparison with exact sampling-based inference (Reviewer_x8VX)",
+    "Scaling with number of observations and sampling frequency (Reviewer_4Rfw)"
+  ],
+  "issues_only_b": [
+    "Eq. (12) factorization and notation (Reviewer_czKb)",
+    "Pontryagin's maximum principle uncited; relation to the Viterbi path (Reviewer_czKb)",
+    "Debt to Archambeau et al. [20] not stated in the text (Reviewer_czKb)",
+    "Failure outside meta-stable regimes; mismatched number of modes (Reviewer_QSy5, Reviewer_czKb)",
+    "Need for the low-level formulation; analytic OU solutions; Gaussian sum smoother (Reviewer_d46C)",
+    "Unknown or neural drift function (Reviewer_naZJ)"
+  ],
+  "shared_issues": [
+    "No baseline or comparison with existing methods (discrete-time SLDS, continuous-only, two-step)",
+    "Validation mostly qualitative",
+    "Large parameter error in Sec. 4.1",
+    "Only 1D/2D experiments; scaling to dimensions and modes unaddressed",
+    "Linear drift only",
+    "Computational cost and optimization difficulty (local optima, convergence)",
+    "Method extends existing VI for diffusions and MJPs (Archambeau, Opper)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two committees saw the same paper and the same faults; they weighted them differently. Both describe the first variational framework for continuous-time switching systems, rigorous and clearly written, with only qualitative 1D/2D experiments, no baseline, no scaling study, and biased parameter estimates. The paper confirms the bias: Sec. 4.1 reports learned set points 0.70 and -0.52 against ground truth +1/-1 and calls this 'identified with high accuracy'. The best-informed reviewer on each side flagged it (Reviewer_x8VX in A, Reviewer_naZJ in B), and neither committee treated it as decisive. Committee B's four reviewers listed the same weaknesses as A's but called them camera-ready work and scored 8, 7, 7, 7; B's AC turned the unanimous clear-accept scores into a spotlight with no further argument. In Committee A the only expert (Reviewer_x8VX, confidence 4) scored 8, but three thin, low-confidence reviews scored 6 ('marginally above'): one reviewer said they did not know the literature, one spent 1.5 hours on three questions, one never replied. A's two-sentence meta-review followed the 6.5 mean to a poster. The tier difference comes from reviewer draw and calibration, not from a fact that one committee found and the other missed.",
+  "candidate_reasons": [
+    "same weaknesses, different score calibration",
+    "lone expert champion outnumbered",
+    "thin low-confidence marginal reviews",
+    "missing baselines weighted differently",
+    "AC tier follows mean score",
+    "rebuttal persuaded reviewers unevenly"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_x8VX final review and reply 2021-08-25",
+    "Reviewer_7pq7 review and reply 2021-08-24",
+    "Reviewer_4Rfw review (1.5 h) and reply 2021-08-24",
+    "Reviewer_5o85 review",
+    "Committee A meta-review",
+    "Reviewer_naZJ review, Weaknesses",
+    "Reviewer_czKb review and post-rebuttal comment",
+    "Reviewer_d46C discussion 2021-08-16 to 2021-08-24",
+    "Reviewer_QSy5 summary vs paper Section 5",
+    "Committee B meta-review",
+    "paper Section 4.1 (beta_1 = 0.70, beta_2 = -0.52 vs +/-1)",
+    "paper Eq. (12)"
+  ]
+}

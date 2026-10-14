@@ -1,0 +1,199 @@
+{
+  "pair_id": "n21-048",
+  "prompt_version": 1,
+  "kind": "oral/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_h23K",
+        "Reviewer_yA7o"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four reviewers rated 6 (h23K, 6Pv4, yA7o, rBKj) at confidence 3, 3, 3 and 2. No score stands apart. Reviewer_h23K's text ('the contributions on the theory side are not major') reads lower than its 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yA7o",
+          "evidence": "2 hours spent; 'I did not check the proofs'; asks for experiments on an identification-theory paper; its 2021-09-10 update ('I still think the authors should take these concerns more seriously') names no specific gap in the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_h23K",
+          "claim": "Theorem 2 needs a surrogate set that 'converts the problem to the original one' (the MGT setting).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 and Fig. 5b: the generalized criterion runs the MGT loop with a surrogate experiment Q_s'(W) = Q(W|U,s')Q(U) in place of P(W) = P(W|U)P(U). The added generality is sets, an interventional base distribution and the Z' subset. That this is shallow is opinion. The rebuttal did not answer the point."
+        },
+        {
+          "reviewer": "Reviewer_h23K",
+          "claim": "The results are 'only one-way theorems' (sufficient conditions).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorems 1 and 2 state 'identifiable if'; Theorem 4 states only that ID-ME is sound. The authors concede that completeness is open (replies to Reviewer_rBKj and Reviewer_9UEy)."
+        },
+        {
+          "reviewer": "Reviewer_6Pv4",
+          "claim": "P_{a,B}(C,d) should be a |X_C| x |X_B| matrix, not |X_B| x |X_C| (line 114).",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'You are right, thanks for catching the typo.' The PDF in the folder is the camera-ready and reads |X_C| x |X_B| (Section 3)."
+        },
+        {
+          "reviewer": "Reviewer_rBKj",
+          "claim": "Lines 56-57 call P_x(y) in Fig. 1d not identifiable by either approach without saying why.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors concede that 'not identified' is the right term (a hedge after projecting out U1). The camera-ready reads 'the effect is not identified from each approach'."
+        },
+        {
+          "reviewer": "Reviewer_rBKj",
+          "claim": "The paper shows that existing sound identification procedures are not complete.",
+          "checked_against_paper": "correct",
+          "evidence": "Proposition 1: on X->A->B->Y with P(X,B), P(A,B), P(A,Y), P_x(y) = P(y|A)P(B|A)^+P(B|x) (pseudoinverse). The algebra holds: P(y|A) = P(y|B)P(B|A), P(B|x) = P(B|A)P(A|x), and M M^+ M = M."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_h23K's only edit is on its posting day (2021-07-15). Reviewer_6Pv4 and Reviewer_rBKj never edited. Reviewer_yA7o edited on 2021-09-10 and added an update that keeps its concerns and reports no score change. No A reviewer replied to the authors in the forum.",
+        "what_convinced_or_not": "The authors answered Reviewer_h23K's depth critique with general claims ('Algorithm 1 (ID-ME) is the most general identification algorithm known to date'), not with a reply on Theorem 2. They put experiments and the continuous case off as future work, which Reviewer_yA7o did not accept. They promised presentation fixes for the extra page. The meta-review reports private discussion in which reviewers 'saw merit', but no score rose."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two-sentence meta-review: 'The paper was very difficult to follow, but after a fair bit of discussion, reviewers saw merit in the results presented, despite the difficulty with presentation.' Four 6s became a poster. The AC's framing ('(everywhere) identification ... (generic) identification') shows field expertise, but the AC made no case for a higher tier.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four uniform 6s ('marginally above the acceptance threshold') at confidence 2 to 3, with no champion",
+        "Paper judged 'very difficult to follow' (meta-review); readability capped enthusiasm",
+        "Doubt about depth: Theorem 2 seen as a reduction to MGT (Reviewer_h23K); seen as journal material with proofs unchecked (Reviewer_6Pv4)",
+        "Rebuttal moved no score"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Oral)",
+      "ratings_final": [
+        8,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_iUkv"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8 (9UEy), 6 (iUkv, up from 5) and 7 (kvzq) lie within two points. Reviewer_9UEy holds the top score but is not an outlier."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_kvzq",
+          "claim": "Miao et al. need a rank condition on the proxies; this paper may need none.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 requires full column rank of Q(W|U,x); Theorem 2 requires invertible Q(W|U,s') and Q(U|z/(S u Z'),x); (C4) restates the MGT rank |X_U|. The authors replied the same way. kvzq's wider point, that the assumptions are 'strewn throughout', is fair: they sit inside long theorem statements."
+        },
+        {
+          "reviewer": "Reviewer_iUkv",
+          "claim": "Line 164 (Lemma 2) should have no sum over z.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The sum over z is the marginalization over Z, a subset of both X_i and Y_j, that Lemma 2 writes as a matrix product (Section 3, text before Lemma 2). The camera-ready keeps it, and the authors replied that the line is correct."
+        },
+        {
+          "reviewer": "Reviewer_iUkv",
+          "claim": "The algorithm identifies effects that earlier algorithms cannot, so those algorithms are incomplete.",
+          "checked_against_paper": "correct",
+          "evidence": "Proposition 1 (pseudoinverse on X->A->B->Y); Theorem 5 claims strict subsumption of the proxy criteria, GID(-PO), mID and eID."
+        },
+        {
+          "reviewer": "Reviewer_9UEy",
+          "claim": "ID-ME is proven sound but not complete.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 4 ('ID-ME is sound'); there is no completeness result. The authors call completeness their main open question."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_iUkv"
+        ],
+        "evidence": "Reviewer_iUkv edited its review on 2021-08-26 and wrote in the discussion: 'I increase my score from 5 to 6.' Reviewer_9UEy and Reviewer_kvzq never edited, so their 8 and 7 predate the rebuttal, and neither posted a reply.",
+        "what_convinced_or_not": "Point-by-point notation answers (order of set differences, the a/B shorthand, the meaning of observational, unconditional and nonmarginal) convinced Reviewer_iUkv that the problems are fixable in revision. iUkv still asked for a running example and clearer notation."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows 8/6/7, but the oral tier goes beyond the reviews: the top score is 8 ('Top 50% of accepted NeurIPS papers'), no reviewer argued for an oral, and the meta-review's only praise is 'a solid and novel theoretical contribution'. Its point that the abstract should say the full joint distribution is not given is the AC's own.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC judged it 'a solid and novel theoretical contribution' and chose the oral tier without a reviewer asking for it",
+        "Reviewer support 8/7/6 at 6 to 7 hours each; Reviewer_kvzq (confidence 4) called it 'a very strong contribution' and a strict generalization",
+        "Readability problems treated as fixable; Reviewer_iUkv raised 5 to 6 after the notation answers"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theorem 2's surrogate set reduces the problem to MGT; the contribution is not deep (Reviewer_h23K)",
+    "Better suited to a journal; proofs need days to check (Reviewer_6Pv4)",
+    "No extension to continuous variables (Reviewer_yA7o)",
+    "Why Fig. 1d is not identified (Reviewer_rBKj)",
+    "Citation style, missing references (Greenland & Lash 2008; Carroll et al. 2006) and a matrix-dimension typo (Reviewer_6Pv4); P_r clutter and an undefined admissible set (Reviewer_h23K)"
+  ],
+  "issues_only_b": [
+    "Rank condition of Miao et al.; assumptions 'strewn throughout and often made opaque' (Reviewer_kvzq)",
+    "Practical estimation of the identified formulas may be very hard (Reviewer_kvzq)",
+    "Too much space on the single- and double-proxy settings; no running example of the algorithm (Reviewer_iUkv)",
+    "A table relating ID-ME to recent identification algorithms (Reviewer_9UEy)",
+    "Abstract and introduction should say that the full joint distribution is not given (Committee B meta-review)"
+  ],
+  "shared_issues": [
+    "Dense, overloaded notation, including the slash notation of Lemma 2 (Reviewer_rBKj in A, Reviewer_iUkv in B)",
+    "Proofs not checked by most reviewers",
+    "Soundness without completeness (Reviewer_h23K and Reviewer_rBKj in A, Reviewer_9UEy in B)",
+    "No experiments: held against the paper in A (Reviewer_yA7o), explicitly not in B (Reviewer_kvzq)",
+    "Need for more intuition and examples; unclear definitions of distribution types near lines 80-82 (Reviewer_6Pv4 in A, Reviewer_iUkv in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B recommended more because its reviewers rated the same facts higher, and its area chair chose an oral that no reviewer asked for. Neither committee found an error in a result; both found the notation dense, and most reviewers checked no proofs. Committee A's four reviewers, at confidence 2 or 3, each settled on 6. Reviewer_h23K's critique that Theorem 2 reruns the MGT loop with a surrogate experiment is accurate and went unanswered, but it did not push anyone below acceptance; A's area chair took the flat 6s and the reading difficulty as the verdict: poster. Committee B's reviewers spent 6 to 7 hours each; Reviewer_kvzq (confidence 4) called the paper 'a very strong contribution', Reviewer_9UEy gave 8, and the notation critic Reviewer_iUkv rose from 5 to 6 after the rebuttal. Still, a top score of 8 ('Top 50% of accepted NeurIPS papers') and no reviewer request do not make an oral; the oral tier is the B area chair's own call, justified in one generic sentence. The discrepancy is the reviewer pool plus area-chair discretion at the award tier, not different facts.",
+  "candidate_reasons": [
+    "AC escalated to oral unprompted",
+    "Low-confidence reviewers hedged at six",
+    "Reviewer effort and expertise differed",
+    "Readability weighed as limiting, not fixable",
+    "Contribution depth doubted versus credited"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_h23K review (Theorem 2 critique)",
+    "Reviewer_6Pv4 review (proofs unchecked, journal fit)",
+    "Reviewer_yA7o review and its 2021-09-10 update",
+    "Reviewer_kvzq review",
+    "Reviewer_9UEy review",
+    "Reviewer_iUkv discussion reply of 2021-08-26 (5 to 6)",
+    "paper Section 4, Theorem 2 and Fig. 5",
+    "paper Proposition 1 and Theorem 4"
+  ]
+}

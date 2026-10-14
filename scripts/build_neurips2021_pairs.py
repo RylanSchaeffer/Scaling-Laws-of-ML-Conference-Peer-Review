@@ -127,12 +127,13 @@ def main() -> None:
                         "program_chairs_note": dec["content"]["consistency_experiment"]}
             json.dump(decision, open(os.path.join(sdir, "decision.json"), "w"), indent=1)
             sides[side] = decision
-            pdf_src = os.path.join(RAW, "pdf", f"{fid}.pdf")
-            if os.path.exists(pdf_src) and not os.path.exists(os.path.join(sdir, "paper.pdf")):
-                try:
-                    os.link(pdf_src, os.path.join(sdir, "paper.pdf"))
-                except OSError:
-                    shutil.copy(pdf_src, os.path.join(sdir, "paper.pdf"))
+            for sub, name in (("pdf", "paper.pdf"), ("pdf_submitted", "paper_submitted.pdf")):
+                pdf_src = os.path.join(RAW, sub, f"{fid}.pdf")
+                if os.path.exists(pdf_src) and not os.path.exists(os.path.join(sdir, name)):
+                    try:
+                        os.link(pdf_src, os.path.join(sdir, name))
+                    except OSError:
+                        shutil.copy(pdf_src, os.path.join(sdir, name))
             # reviews, with initial and final versions
             revs = []
             for r in sorted(replies(n, "Official_Review"), key=lambda r: r["tcdate"]):
@@ -257,7 +258,7 @@ same pairs. Counts against the report's Table 1: `reconciliation.md`.
 - `pairs/<pair_id>/a|b/reviews.jsonl`: every review, every field, as the forum shows it now; `edited_after_posting` and `last_edited` say whether the reviewer changed it more than an hour after posting (OpenReview's API returns no earlier versions, so the pre-rebuttal rating is not recoverable).
 - `pairs/<pair_id>/a|b/discussion.jsonl`: author responses and reviewer, area-chair and public comments, threaded by `replyto`.
 - `pairs/<pair_id>/a|b/ethics.jsonl`: ethics reviews where they exist.
-- `pairs/<pair_id>/a|b/paper.pdf`: the submission as reviewed.
+- `pairs/<pair_id>/a|b/paper_submitted.pdf`: the anonymised PDF as the reviewers saw it (the last pre-review revision of the submission note); `paper.pdf`: the PDF on the forum today, the camera-ready for accepted papers.
 
 Not public, so absent: reviewer, area-chair and senior-area-chair identities; the reviewer–area-chair
 discussion; the pairs rejected by both committees whose authors did not opt in; the four fatal-flaw

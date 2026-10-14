@@ -1,0 +1,231 @@
+{
+ "pair_id": "n21-092",
+ "prompt_version": 1,
+ "kind": "spotlight/poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [
+    8,
+    8,
+    8,
+    7
+   ],
+   "confidences": [
+    4,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_PMym",
+    "Reviewer_TdaR"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 8, 8, 8, 7 (order WgWk, PMym, vxWe, TdaR). No rating departs from the others; the lone 7 (Reviewer_TdaR) is the only review that questions novelty."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_PMym",
+     "evidence": "Rating 8 from a two-sentence main review ('clearly written and technically sound'), 2 hours, confidence 3 ('Math/other details were not carefully checked'). Its only request is experiments; its only discussion post is 'Thank you for providing the numerical experiments.'"
+    },
+    {
+     "reviewer": "Reviewer_vxWe",
+     "evidence": "Rating 8 at confidence 3 (math not carefully checked), 4 hours. Names no weakness and asks no question; calls the proof technique 'fairly standard' yet rates a clear accept. No discussion post."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_TdaR",
+     "claim": "The algorithm and results such as the gradient formula (6) and the Hessian-inverse estimator (8) already appear in Ghadimi and Wang (2018); the novelty is the Lemma 2 observation and the analysis after it.",
+     "checked_against_paper": "correct",
+     "evidence": "Paper Section 2.1: 'It has been shown in [16] that using (8)...'. Section 2.2: readers 'may readily recognize the similarities' between ALSET and BSA [16], TTSA [18], stocBiO [17]. The new part is the analysis built on Lemma 2."
+    },
+    {
+     "reviewer": "Reviewer_TdaR",
+     "claim": "The submission has no conclusion section.",
+     "checked_against_paper": "correct",
+     "evidence": "Authors: 'Due to space limitation, we cannot add the conclusion in the initial submission.' The dataset PDF (camera-ready) adds Section 6, Conclusions."
+    },
+    {
+     "reviewer": "Reviewer_PMym",
+     "claim": "Compared with previous work, the paper improves the sample complexity from O(ε^-2.5) to O(ε^-2).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Overstated. The gain is only against the single-loop two-timescale TTSA [18]. Paper Table 1 and Section 1.2 list stocBiO [17] and STABLE [19] at O(ε^-2) and SUSTAIN/RSVRB at O(ε^-3/2). The real gain is O(ε^-2) for vanilla SGD with O(1) batch, as Reviewer_tqUa states."
+    },
+    {
+     "reviewer": "Reviewer_WgWk",
+     "claim": "The smoothness of ∇y*(x) in Lemma 2 opens the way to the improved rate; small tweaks to existing analyses do not suffice, for the reasons under eq. (20).",
+     "checked_against_paper": "correct",
+     "evidence": "Paper Section 2.3: the smoothness 'has not been explored by previous analysis such as [16–18]'; eq. (20) shows that prior analyses need two timescales or a growing batch."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "unknown",
+    "by_whom": [],
+    "evidence": "Only Reviewer_PMym edited after the rebuttal (2021-08-20), the day it posted 'Thank you for providing the numerical experiments'. Its text has no post-rebuttal note, so a rating change cannot be recovered. Reviewer_TdaR's edit is dated the day of posting (2021-07-16), before the rebuttal. No other reviewer replied.",
+    "what_convinced_or_not": "Nothing was in dispute. The rebuttal promised a conclusion section and more explanation of how Lemma 2 is used, and gave a small portfolio experiment (100 Book-to-Market) that Reviewer_PMym had asked for. No reviewer pressed further."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three-sentence meta-review: 'It is the consensus of the reviewers that this paper makes a worthwhile contribution'. It adds that the analysis 'is tight', a word the paper never uses: the paper claims a 'tighter' analysis and proves no lower bound. The spotlight is given on a 7.75 mean with no reason beyond consensus.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Unanimous accept ratings (8, 8, 8, 7), mean 7.75",
+    "One analysis that covers SGD-type updates for bilevel, min-max and compositional problems",
+    "O(ε^-2) for vanilla alternating SGD from the smoothness of y*(x) (Lemma 2)",
+    "Clear writing"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_tqUa",
+    "Reviewer_b2gP",
+    "Reviewer_wdT9"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 6, 6, 6 (order tqUa, b2gP, wdT9, r5Xc). The highest rating comes from the most thorough reviewer (Reviewer_tqUa, 12 hours, checked the bilevel proofs), so no rating is an outlier."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_r5Xc",
+     "evidence": "Strengths section reads 'Please refer to the summary'; 3-4 hours; confidence 3 (math not carefully checked). Its three weaknesses are specific (κ against STABLE, experiments), but it did not edit or reply after the rebuttal answered all three."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_tqUa",
+     "claim": "The right-hand side of eq. (48) should be multiplied by 2; this breaks Lemma 3 as stated, but a changed Young inequality restores Theorem 1 with new constants.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Eq. (48) is in the supplementary proof, which the dataset PDF (camera-ready main paper) does not contain. The authors called it a typo and promised to fix the constant."
+    },
+    {
+     "reviewer": "Reviewer_tqUa",
+     "claim": "For min-max (g = -f), Assumption 1 requires f(x,·) to be Lipschitz while f(x,·) is strongly concave on all of R^{d'}; no such function exists. Reviewer_wdT9 raised the same point on 2021-08-18.",
+     "checked_against_paper": "correct",
+     "evidence": "A function that is strongly concave on all of R^{d'} decreases at least quadratically, so it cannot be Lipschitz. Assumption 1 requires f Lipschitz in z = [x; y]. The camera-ready Proposition 3 now assumes Lipschitz continuity in x only, the authors' fix (example sin(x)sin(y) - 2y^2)."
+    },
+    {
+     "reviewer": "Reviewer_tqUa",
+     "claim": "The bilevel complexity carries a log factor (N = O(log 1/ε) Hessian samples per iteration), so it should be Õ, not O.",
+     "checked_against_paper": "correct",
+     "evidence": "Camera-ready Theorem 1 sets N = O(log K), and Table 1 reports Õ(κ^9 ε^-2) samples in φ. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_b2gP",
+     "claim": "The min-max advantage over two-timescale GDA (Lin et al.) is unclear: ALSET needs an extra Lipschitz assumption, while GDA uses an increasing batch size.",
+     "checked_against_paper": "correct",
+     "evidence": "Camera-ready Section 3.1: 'our result complements, rather than improves, the analysis in [28]'."
+    },
+    {
+     "reviewer": "Reviewer_b2gP",
+     "claim": "The compositional result covers only a quadratic g, so claiming an advantage over SCGD and NASA, which treat a general inner function, is unfair.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. (3) uses g = ||y - h(x;φ)||^2 only to reformulate the problem; the inner function h is a general smooth function, the same object as the inner function of SCGD and NASA. The authors clarified this and b2gP updated its score."
+    },
+    {
+     "reviewer": "Reviewer_wdT9",
+     "claim": "ALSET still needs two loops, so the claim near line 58 is misleading.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 1 holds 'for any T ≥ 1', so T = 1 gives a single-loop method with O(ε^-2). Two loops (T = Θ(κ^4), Proposition 2) only improve the κ-dependence. wdT9 accepted this after the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_wdT9",
+     "claim": "The step sizes require the total number of iterations K to be fixed in advance.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (12): α_k = min{ᾱ1, ᾱ2, α/√K}, and ᾱ1, ᾱ2 depend on problem constants (also Reviewer_tqUa point 4). The authors say decreasing step sizes also work, without proof."
+    },
+    {
+     "reviewer": "Reviewer_r5Xc",
+     "claim": "Against STABLE, the inner loop cannot be ignored when κ is large, and no κ-dependent gradient-complexity comparison is given.",
+     "checked_against_paper": "correct",
+     "evidence": "Proposition 2 uses T = Θ(κ^4) inner steps, giving Õ(κ^9 ε^-2) samples in φ against O(κ^5 ε^-2) in ξ (Table 1). The rebuttal compared with STABLE in ε only, and the camera-ready Table 1 still lists STABLE as κ^p."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_b2gP"
+    ],
+    "evidence": "Reviewer_b2gP (edited 2021-08-13): 'After reviewing the authors response, I have updated my score'; the final is 6, and the author reply favoured the paper, so the move was up. Reviewer_tqUa (edited 2021-08-23): 'satisfied ... keeping my positive score' at 7. Reviewer_wdT9 (edited 2021-08-15): 'satisfied with the answer', no score change stated; on 2021-08-18 it raised the min-max assumption again. Reviewer_r5Xc: no edit, no reply.",
+    "what_convinced_or_not": "Convincing: the compositional result covers a general smooth inner function h; T = 1 gives a single-loop method; min-max needs Lipschitz continuity in x only. Not enough to lift any score above 7: the concession that the min-max result 'complements, rather than improves' Lin et al.; a κ comparison with STABLE given in ε only; the admitted log factor and eq. (48) constant."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'All reviewers give positive evaluation on this paper. So do I.' Poster on a 6.25 mean. The only substantive content is Reviewer_wdT9's request for a κ-dependence comparison in the bilevel table, made a requirement for the final version.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four reviews positive, but three at 6 (marginally above threshold), mean 6.25",
+    "Gain is clear mainly in the bilevel case; the min-max result needs an extra assumption and only complements prior work",
+    "κ-dependence (T = Θ(κ^4) inner steps) and the log factor not shown against competitors",
+    "Proofs judged sound apart from fixable errors"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Novelty limited to the Lemma 2 smoothness observation; algorithm and estimators (6), (8) from Ghadimi and Wang (Reviewer_TdaR; Reviewer_vxWe: proof technique 'fairly standard')",
+  "No conclusion section in the submission (Reviewer_TdaR)",
+  "Explain in the appendix how and why Lemma 2 gives the improved rate (Reviewer_WgWk)"
+ ],
+ "issues_only_b": [
+  "Min-max assumption impossible as stated: f Lipschitz and strongly concave in y on unconstrained R^{d'} (Reviewer_tqUa, Reviewer_wdT9); fixed by requiring Lipschitz continuity in x only",
+  "Min-max result needs an extra Lipschitz assumption and only complements Lin et al. (Reviewer_b2gP; conceded)",
+  "κ-dependence: the κ-optimal rate needs T = Θ(κ^4) inner steps, with no κ comparison against STABLE (Reviewer_r5Xc, Reviewer_wdT9, Committee B AC)",
+  "Hidden log factor: the bilevel rate is Õ, not O (Reviewer_tqUa; conceded)",
+  "Constant error in eq. (48) that breaks Lemma 3 as written; fixable (Reviewer_tqUa)",
+  "Restrictive assumptions on unconstrained domains; step sizes tied to K and unknown constants (Reviewer_tqUa, Reviewer_wdT9)",
+  "Actor-critic analysis needs smoothness of y*(θ) (Reviewer_wdT9)",
+  "Compositional comparison with SCGD/NASA thought unfair (Reviewer_b2gP; a misreading, h is general)",
+  "Two-loop structure thought necessary (Reviewer_wdT9; a misreading, T = 1 is allowed)",
+  "Mis-stated complexity of [16]; N and α unset in Theorem 1; α for α_k in Algorithm 1 (Reviewer_tqUa; α_k also Reviewer_wdT9)"
+ ],
+ "shared_issues": [
+  "No numerical experiments (A: Reviewer_PMym; B: Reviewer_r5Xc, Reviewer_tqUa); the same 100 Book-to-Market table answered both",
+  "The contribution rests on one observation, the smoothness of y*(x): A's Reviewer_TdaR calls the novelty 'merely' this, B's Reviewer_b2gP and Reviewer_wdT9 call the technique new"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "A recommended a spotlight and B a poster because A's reviewers scrutinised less and scored higher, not because the committees disputed any fact. Both accepted the same result, O(ε^-2) samples for vanilla alternating SGD via the smoothness of y*(x) (Lemma 2), and both area chairs followed their mean rating (7.75 against 6.25). A's three 8s come from short reviews (2 to 5 hours; Reviewer_PMym and Reviewer_vxWe at confidence 3, math not checked) that named no substantive weakness. They took at face value the claim that the analysis improves or matches the best rate in every special case, and A's AC called the analysis 'tight', a word the paper never uses. A also noted thin novelty (Reviewer_TdaR: 'merely' Lemma 2; Reviewer_vxWe: 'fairly standard') and still scored higher than B, which called the technique new. B's reviewers, two of whom spent 12 and 20 hours, tested the special cases and found limits that the authors conceded. The min-max result rested on an assumption that no strongly concave function satisfies, and it only 'complements, rather than improves' Lin et al. The bilevel rate hides a log factor and a κ^4 inner loop, with no κ comparison against STABLE, and eq. (48) has a constant error. Two B objections were misreadings that the rebuttal fixed, yet no B score rose above 7. Neither committee found a fatal flaw; the spotlight rests on A's less-checked scores.",
+ "candidate_reasons": [
+  "thin high-score reviews",
+  "deeper proof checking found limits",
+  "special-case claims narrowed under scrutiny",
+  "hidden κ and log dependence",
+  "lenient calibration despite novelty doubts",
+  "chairs follow mean rating"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_tqUa final review (points 8 to 10) and author response Q3 to Q5",
+  "Reviewer_b2gP final review and author response Q1, Q2",
+  "Reviewer_r5Xc review and author response Q1, Q2",
+  "Reviewer_PMym and Reviewer_vxWe reviews (confidence 3, math not checked)",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper Section 3.1, Proposition 3 ('complements, rather than improves')",
+  "paper Table 1 and Proposition 2 (T = Θ(κ^4))",
+  "paper Section 2.1, eq. (8) attributed to [16]"
+ ]
+}

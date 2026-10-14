@@ -1,0 +1,211 @@
+{
+  "pair_id": "n21-186",
+  "prompt_version": 1,
+  "kind": "oral/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 7, 8],
+      "confidences": [3, 2, 1, 3],
+      "reviews_edited_after_posting": ["Reviewer_aRng", "Reviewer_mSFc", "Reviewer_N9bU"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 7, 8 (aRng, mSFc, N9bU, WPhA) sit symmetrically around 7; no rating is more than one point from the mean. The lowest, aRng's 6, carries the committee's most detailed critique; the highest, WPhA's 8 (5.5 hours), carries specific comments."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_WPhA",
+          "claim": "Definition 2.2 is cut off: it says 'if for each X_i in X such that <condition>' and then stops",
+          "checked_against_paper": "correct",
+          "evidence": "The dataset's paper.pdf is the camera-ready (author names, NeurIPS 2021 footer, de Haan 2019 cited as the rebuttal promised). Its Definition 2.2 (p. 4) still reads 'satisfy the sequential backdoor for (G, X, Y) if for each X_i ∈ X such that (Y ⊥⊥ X_i | X_{1:i-1}, Z_{1:i})', with no main clause."
+        },
+        {
+          "reviewer": "Reviewer_aRng",
+          "claim": "The synthetic results report |Y - Ŷ|, which does not match Definition 2.1; |E[Y] - E[Ŷ]| is the right metric",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded a typo for |E[Y] - E[Y|do(π)]|; the camera-ready Table 1 caption reads |E[Y] - E[Ŷ]|."
+        },
+        {
+          "reviewer": "Reviewer_aRng",
+          "claim": "Figure 4 does not label its vertical axis",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded ('will be labeled accordingly'); the camera-ready Figure 4 now has an E[Y] axis label."
+        },
+        {
+          "reviewer": "Reviewer_aRng",
+          "claim": "The actual complexity of Algorithm 1 is unclear",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 states only 'polynomial time'. The rebuttal's O(|V|(|V|+|E|)) counts one pass of the for-loop; the enclosing do-while (Alg. 1, lines 8-16) repeats until O^X stops growing, which can add a factor of |V|. The algorithm is still polynomial."
+        },
+        {
+          "reviewer": "Reviewer_mSFc",
+          "claim": "de Haan et al. (2019), Causal Confusion in Imitation Learning, is not cited (also raised by Reviewer_N9bU)",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied that it is orthogonal (no unobserved confounders) and promised to cite it; the camera-ready cites it in Section 1."
+        },
+        {
+          "reviewer": "Reviewer_N9bU",
+          "claim": "The analysis and experiments rely on binary decision variables and on a separate policy for every state",
+          "checked_against_paper": "incorrect",
+          "evidence": "Wrong for the analysis: Def. 2.1 and Thms. 2.1, 3.1 and 4.1 are graphical and quantify over all SCMs compatible with G; binary SCMs appear only as adversarial counterexamples (Sections 2 and 4). Right for the experiments (discrete models in Table 1; speed-up/slow-down actions in HighD) and for per-step policies (Section 2: one decision rule per action)."
+        },
+        {
+          "reviewer": "Reviewer_WPhA",
+          "claim": "The experiments are mostly or entirely synthetic, with data constructed to meet the method's assumptions (also Reviewer_N9bU)",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5: the HighD run is 'a synthetic, adversarial causal model' with HighD data 'altered to conform to the causal model'; Table 1 uses random discrete models on four 4-node graphs."
+        },
+        {
+          "reviewer": "Reviewer_mSFc",
+          "claim": "The Figure 3 caption says X_i where X_1 is meant",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready caption still reads 'which means X_i ∉ An(Y)' for Fig. 3c, where the action is X_1."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_N9bU"],
+        "evidence": "N9bU edited on 2021-08-17 and wrote 'I have moved my score to an Accept' (now 7; earlier value not exposed). mSFc edited on 2021-08-16 but wrote 'I keep my score at 7'. aRng's only edit (2021-07-16) predates the 2021-08-10 author response, and the 2021-08-22 reply records no change. WPhA did not edit and 'remain[s] in favour of acceptance'.",
+        "what_convinced_or_not": "N9bU accepted the theory-first framing, the reply that de Haan et al. (2019) assumes no unobserved confounders, and the explanation that HighD performance is E[Y] under ground-truth mechanisms, while still calling the experiments 'idealized and simple'. aRng found the answers 'helpful' but asked for the details to go into the paper and still disputed the wording ('computable', the collider clause); a rebuttal cannot fix exposition, so the 6 stayed."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "A poster matches a 7.0 mean with no rating above 8. The meta-review copies Reviewer_N9bU's summary almost word for word ('This paper seeks to formalize when it is possible to imitate an expert...', 'This paper seems like a solid theoretical study of imitation learning'), takes 'The main shortcoming of the paper is its clarity' from Reviewer_aRng, and notes 'remaining concerns'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings in the accept range (6, 7, 7, 8), mean 7.0, nothing above 8",
+        "Complete necessary-and-sufficient criterion seen as a solid theoretical contribution",
+        "Clarity of presentation named the main shortcoming, with concerns left after the rebuttal",
+        "Idealized, largely synthetic experiments"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Oral)",
+      "ratings_final": [7, 7, 7, 7, 9],
+      "confidences": [3, 1, 3, 1, 4],
+      "reviews_edited_after_posting": ["Reviewer_1SfX", "Reviewer_3m9X"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_rfa1",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "9 ('Top 15% of accepted NeurIPS papers') at confidence 4 against four 7s; without it B's mean is 7.0, the same as A's. The case for the 9 is three generic sentences ('The paper is clear, rigorous, and well written...'); the rest is a list of presentation nits (lines 51, 106, 122, 138, 217, Figs. 3 and 4, Table 1). No assessment of the proofs, of Algorithm 1, or of novelty over Zhang et al. (2020). Posted 2021-07-30, two weeks after the others; no reply to the rebuttal. Its 'clear' verdict conflicts with 1SfX ('quite dense'), 4Bw1 ('hard to parse') and 3m9X ('a bit abstract')."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nWYc",
+          "evidence": "Confidence 1, 2 hours: 'I know very little about the technical details of causal learning... may not be able to access the technical contribution'. The review assesses nothing in the theory and asks only for citations and more experiments, yet rates 7."
+        },
+        {
+          "reviewer": "Reviewer_4Bw1",
+          "evidence": "Confidence 1: 'The paper is original and high quality... The main contribution is significant', with no supporting point; the rest is practitioner questions (adversarial IL, small data, images) and the missing error bars."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_4Bw1",
+          "claim": "Figure 4 has no confidence bars",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready Figure 4 is four bars with no error bars."
+        },
+        {
+          "reviewer": "Reviewer_rfa1",
+          "claim": "The faded edges in Figure 3 and the term 'ancestral graph' (line 217) are not defined; E[y|do(π)] is used at line 51 before it is introduced",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready: the Fig. 3 caption defines only blue (added) and orange (removed) edges; 'ancestral graph of Y' is used without definition in Section 3; E[Y|do(π)] appears on p. 2, while P(V|do(π)) is defined on p. 4."
+        },
+        {
+          "reviewer": "Reviewer_3m9X",
+          "claim": "The motivating example says 'the learner from Fig. 1a had a full view of the car's surroundings', but X connects only to F and H",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready keeps the sentence; Fig. 1a draws only F→X and H→X, and the learner's covariate set {F, B, S} appears only in Section 2."
+        },
+        {
+          "reviewer": "Reviewer_3m9X",
+          "claim": "The computational cost of Algorithm 1 is not stated",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 says only 'polynomial time'. The rebuttal's O(|V|(|V|+|E|)), which 3m9X accepted, covers one pass of the for-loop and omits the do-while in Alg. 1, lines 8-16; the algorithm is still polynomial."
+        },
+        {
+          "reviewer": "Reviewer_1SfX",
+          "claim": "The full causal graph must be known a priori, and the analysis needs different covariates for each step",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 lists the known causal diagram as limitation (1); Section 2 defines a policy as one decision rule π_i(X_i|Z_i) per action."
+        },
+        {
+          "reviewer": "Reviewer_nWYc",
+          "claim": "The experiments are only on toy domains",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5: random discrete models on four 4-node graphs (Table 1) and one semi-synthetic HighD model."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_1SfX", "Reviewer_3m9X"],
+        "evidence": "1SfX edited on 2021-08-17 ('I have updated my score'); 3m9X edited on 2021-08-22 ('I would like to increase my score'); both are now 7, earlier values not exposed. nWYc ('more affirmative') and 4Bw1 ('really helpful') did not edit. rfa1 did not respond.",
+        "what_convinced_or_not": "1SfX accepted that with an unobserved reward E[Y|do(π)] is not identifiable (Zhang et al. 2020), so exact imitation is the right target, and accepted the xor example showing that the causal graph cannot be dropped; 1SfX still wanted analysis of wrong graphs and got no answer on the realism of the HighD graph. 3m9X was satisfied by the complexity bound and by the clarifications of Fig. 1a, stationarity and the temporal ordering."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows five accept ratings. The oral tier goes beyond four '7: Good paper, accept' ratings, and the meta-review gives no reason for it: it says 'It is my pleasure to recommend acceptance' and then quotes Reviewer_rfa1's strengths paragraph and Reviewer_3m9X's first sentence verbatim. It mentions no weakness.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Five accept ratings with nothing below 7 after two post-rebuttal raises, mean 7.4",
+        "Reviewer_rfa1's 9 at confidence 4, calling the paper clear and rigorous",
+        "Contribution framed as foundational for imitation learning (Reviewer_3m9X)",
+        "Rebuttal settled the strict-criterion and known-graph objections of Reviewer_1SfX"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Missing citation of de Haan et al. (2019) (mSFc, N9bU); conceded and added in the camera-ready",
+    "Definition 2.2 grammatically cut off (WPhA); still so in the camera-ready",
+    "Wrong error metric |Y - Ŷ| and unlabelled Figure 4 axis (aRng); both conceded",
+    "HighD evaluation unclear for a static dataset, apparently needing off-policy evaluation (aRng)",
+    "Terminology: 'uniquely computable', the π in π-backdoor, the collider clause at line 99 (aRng)",
+    "HighD experiment made to look more realistic than it is, with binary actions (N9bU)"
+  ],
+  "issues_only_b": [
+    "Exact-imitation target P(y|do(π)) = P(y) too strict compared with maximizing E[Y] (1SfX)",
+    "No robustness analysis for a misspecified causal graph (1SfX)",
+    "No guidance for the non-imitable case or for finite samples (3m9X, 4Bw1)",
+    "Missing related work on imitation from observation and over-imitation (nWYc)",
+    "Figure 4 lacks error bars (4Bw1); undefined terms: ancestral graph, faded edges, π-BD (rfa1)"
+  ],
+  "shared_issues": [
+    "Dense notation, hard for readers outside causality (A: aRng, N9bU; B: 1SfX, 4Bw1, 3m9X, rfa1)",
+    "Idealized, synthetic or semi-synthetic experiments (A: aRng, N9bU, WPhA; B: nWYc, 1SfX, 4Bw1)",
+    "Computational cost of Algorithm 1 not stated (A: aRng; B: 3m9X)",
+    "Separate per-step policies over long histories; long or infinite horizons (A: mSFc, N9bU; B: 1SfX, 3m9X)",
+    "Extension to continuous or high-dimensional inputs (A: mSFc; B: 3m9X, 4Bw1)",
+    "Motivating driving example hard to ground (A: N9bU; B: 3m9X)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B's oral rests on Reviewer_rfa1's thinly argued 9 and an area chair who quoted it; Committee A saw the same paper, peaked at 8, and called clarity its main shortcoming. Both committees saw a complete graphical criterion that extends Zhang et al. (2020) to sequential decisions, written in dense notation, with idealized experiments and strong assumptions (a known causal graph, one policy per step). No reviewer on either side found an error, and none checked the proofs. rfa1 posted two weeks after the others, at confidence 4, supported a 'top 15%' rating with three generic sentences, and skipped the discussion. Without rfa1, B's ratings average 7.0, exactly A's mean. Two other B reviewers (1SfX, 3m9X) raised to 7 after the rebuttal, so B ended at 7, 7, 7, 7, 9; in A, the most detailed critic (aRng, 6) never moved. A's area chair copied the summary of Reviewer_N9bU (confidence 1) and aRng's sentence on clarity. B's area chair quoted rfa1's 'clear, rigorous, and well written', although 1SfX, 4Bw1 and 3m9X called the paper dense, hard to parse or abstract, and gave no reason for an oral.",
+  "candidate_reasons": [
+    "lone confident champion score",
+    "meta-review copies enthusiastic reviewer",
+    "clarity counted as flaw versus strength",
+    "more post-rebuttal score raises",
+    "oral tier left unjustified",
+    "detailed critic kept borderline score"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Reviewer_rfa1 review (rating 9, confidence 4, posted 2021-07-30, no discussion)",
+    "Committee B meta-review (quotes Reviewer_rfa1 and Reviewer_3m9X verbatim)",
+    "Committee A meta-review (copies Reviewer_N9bU's summary and Reviewer_aRng's clarity sentence)",
+    "Reviewer_aRng review and 2021-08-22 reply",
+    "Reviewer_N9bU post-rebuttal update",
+    "Reviewer_1SfX 2021-08-17 reply; Reviewer_3m9X 2021-08-22 reply",
+    "paper Definition 2.2 (p. 4)",
+    "paper Algorithm 1 (p. 7) and Section 3",
+    "paper Section 5, Table 1 and Figure 4"
+  ]
+}

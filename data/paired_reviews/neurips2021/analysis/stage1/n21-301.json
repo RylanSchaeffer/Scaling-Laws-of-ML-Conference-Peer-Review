@@ -1,0 +1,229 @@
+{
+  "pair_id": "n21-301",
+  "prompt_version": 1,
+  "kind": "oral/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Oral)",
+      "ratings_final": [
+        8,
+        7,
+        8,
+        9
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_BSPV",
+        "Reviewer_DcW4"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings span 7 to 9 and no reviewer argues against acceptance. The only 9 (Reviewer_DcW4) is one point above two 8s; it is listed under inattentive_reviews."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_DcW4",
+          "evidence": "9 at confidence 4 after '2 hours'. Generic praise, no question or criticism, no reply in the discussion. Says prospective coding 'has no precedence in the literature'; the paper's own citation of Köndgen et al. and two co-reviewers' pointer to Brea et al. 2016 contradict this."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_DcW4",
+          "claim": "Prospective coding has no precedent in the literature.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission cites Köndgen et al. 2008 for phase-advanced firing (the rebuttal refers to 'Köndgen [16]'). Camera-ready Section 3 also cites [18-21] for derivative-based and prospective neuron responses. Reviewer_ob4X and Reviewer_BSPV name Brea et al. 2016, 'Prospective coding by spiking neurons'."
+        },
+        {
+          "reviewer": "Reviewer_BSPV",
+          "claim": "The model passes membrane potentials directly to other neurons, which is not biologically realistic.",
+          "checked_against_paper": "correct",
+          "evidence": "True for the error path of the basic model: Eqn. 4 needs the downstream prospective voltage, and the authors concede 'the downstream voltage has to be communicated to the upstream neuron'. Forward signals are rates, and the Section 5 microcircuit uses rates only."
+        },
+        {
+          "reviewer": "Reviewer_BSPV",
+          "claim": "The paper does not discuss the limitations of the model.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors say they 'added a new limitations section'. The camera-ready has Section 7, 'Implications and limitations' (spikes, weight transport, hardware effects)."
+        },
+        {
+          "reviewer": "Reviewer_BSPV",
+          "claim": "Line 97: the neuron-wise sum of energies omits the loss term.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors concede. Camera-ready Section 3 now adds 'for factorizing loss functions, a local loss term'."
+        },
+        {
+          "reviewer": "Reviewer_ztYa",
+          "claim": "The claim that LE alleviates 'a second form of catastrophic forgetting' is not shown; a transfer-learning experiment is needed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper's claim is unlearning in an already-trained network during relaxation, shown in Fig. 1c, not forgetting across tasks. The authors say their wording caused the confusion; the camera-ready calls the effect 'related, but not identical to catastrophic forgetting'."
+        },
+        {
+          "reviewer": "Reviewer_ob4X",
+          "claim": "The paper should relate its prospective coding to Brea et al. 2016.",
+          "checked_against_paper": "correct",
+          "evidence": "Reviewer_BSPV raises the same point. The authors agree; the camera-ready adds footnote 2, which cites Brea et al. [26] as a different, TD-learning form of prospectivity."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_BSPV"
+        ],
+        "evidence": "Reviewer_BSPV's review, edited 2021-08-27, opens 'Based on the authors' response, I have revised my score to an accept' (final 7). The same day BSPV wrote that the score would go to accept if the limitations are made clear and prominent. Reviewer_DcW4's edit (2021-08-05) is before the author response (2021-08-10). Reviewer_ztYa replied with thanks and no change. Reviewer_ob4X did not reply.",
+        "what_convinced_or_not": "The promised limitations section (spikes, hardware imperfections) and the pointer to the rate-based microcircuit of Section 5 convinced BSPV. BSPV's follow-up question, whether rate coding brings back the lag, got no technical answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "One-sentence meta-review: reviewers 'were in agreement' on 'a novel and elegant model' with 'thorough experimental results'. It does not mention BSPV's plausibility caveat, BSPV's view that the robustness analysis is 'a bit simplistic', or ztYa's request for comparisons.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four accept ratings (7, 8, 8, 9; mean 8.0) and no detractor",
+        "Reviewers agree the framework is novel, elegant and clearly written",
+        "No reviewer questioned the novelty of the fast-response claim"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        9,
+        8,
+        3
+      ],
+      "confidences": [
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_gRxq",
+        "Reviewer_VGyX"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_VGyX",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "3 at confidence 4 against 9 and 8. Names specific prior work (Knight 1972; van Vreeswijk and Sompolinsky 1998; Boerlin et al. 2013), ran the code, and answered the rebuttal with more references. The camera-ready concedes his two main points. His 'clear rejection' overreaches: the prior work has no learning, and he concedes that the interaction with training 'would indeed be an interesting theoretical question'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_iVNT",
+          "evidence": "9 at confidence 4 while admitting confusion about Eq. 2 and Fig. 1 ('Despite these uncertainties in my understanding and interpretation, I like the big picture'). Writes 'CIFAR100' for CIFAR-10. Two-sentence reply in the discussion."
+        },
+        {
+          "reviewer": "Reviewer_gRxq",
+          "evidence": "Says the model is applied 'to real data from cortical microcircuits'; Section 5 uses a synthetic 8-image dataset (Fig. 3c). The rest of the review asks specific, accurate questions."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_VGyX",
+          "claim": "Faster-than-membrane-time-constant responses were already shown by Knight 1972 and van Vreeswijk and Sompolinsky 1998, which the paper does not cite.",
+          "checked_against_paper": "correct",
+          "evidence": "B's AC asked for both citations. The camera-ready adds them as [22, 23] in Section 3 and concedes 'a long tradition of studying faster-than-τm responses'."
+        },
+        {
+          "reviewer": "Reviewer_VGyX",
+          "claim": "The problem the paper addresses was already solved by that prior work.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Both prior papers treat population responses without learning. The paper's main result is phase-free credit assignment with continuous plasticity (Sections 4 and 5, Figs. 2 and 3). VGyX himself calls the interaction with training an open question."
+        },
+        {
+          "reviewer": "Reviewer_VGyX",
+          "claim": "The solution needs unrealistically short synaptic time constants (Fig. 4: τs = 0.1, 0.5, 2 ms).",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4c uses τs = 0, 0.1, 0.5 and 2 ms. The camera-ready concedes τs 'on and even below biological time scales' and says the filter slows computation; with τs = 2 ms, learning needs presentation times near 10 ms or longer. The filter is needed only under added output noise (Section 6) and as a numerical device (Section 3)."
+        },
+        {
+          "reviewer": "Reviewer_VGyX",
+          "claim": "There is no mathematical theory of the frequency response of the model.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper has no frequency-response analysis. Its analytical core is that (1 + τm d/dt) exactly inverts the membrane low-pass filter (Section 3, SI), so with matched time constants the response has no lag by construction."
+        },
+        {
+          "reviewer": "Reviewer_VGyX",
+          "claim": "The seeds in the README differ from those in 2b_jobs.sh.",
+          "checked_against_paper": "not_checked",
+          "evidence": "About the code, not the PDF. The authors confirm that different experiments used different documented seeds; that is not a flaw in itself."
+        },
+        {
+          "reviewer": "Reviewer_gRxq",
+          "claim": "The model is applied to real data from cortical microcircuits.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 trains a microcircuit model after Sacramento et al. 2018 on a synthetic dataset of 8 images in 3 classes (Fig. 3c). No recorded data appear."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_gRxq's edit (2021-09-02): 'I will keep my original rating of 8'. Reviewer_VGyX's edit (2021-09-03) adds 'POST-REBUTTAL' text saying he is 'still convinced' and states no score change. Reviewer_iVNT did not edit and replied 'I still think it is an interesting paper, despite the work of Bruce Knight and Sompolinsky'.",
+        "what_convinced_or_not": "The authors separated their single-neuron mechanism for credit assignment from population mean-field effects. VGyX was not convinced: he replied that a rate unit stands for a population, that the Köndgen phase advance is a trial-averaged response, and that Spruston et al. report a 6.3 ms AMPA time constant. The authors answered only with thanks."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts in line with the 9 and 8 ('proposes a novel solution, and demonstrates that the solution works'). Makes VGyX's points required revisions: 'the timescales of synaptic transmission' and that Knight and van Vreeswijk and Sompolinsky 'should be cited'. 'Related to this last point', suggests changing the title, which promises 'arbitrarily fast computation with arbitrarily slow neurons', to stress the credit-assignment contribution.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two strong accepts (9, 8) on an important problem with a novel solution",
+        "A confident detractor (3) showed that faster-than-τm responses are uncited prior work",
+        "AC judged the headline fast-computation claim overstated and suggested a new title",
+        "Synaptic filter time constants at or below the biological range"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Relation to Brea et al. 2016 prospective coding (Reviewer_ob4X, Reviewer_BSPV)",
+    "'Second form of catastrophic forgetting' not shown; transfer-learning test and Dendritic Gated Network comparison requested (Reviewer_ztYa)",
+    "Robustness analysis limited to noise and time-constant mismatch, 'a bit simplistic' (Reviewer_BSPV)",
+    "Error path of the basic model needs downstream voltages; rate coding may bring back the lag (Reviewer_BSPV)",
+    "No results on larger architectures such as ResNets (Reviewer_BSPV)"
+  ],
+  "issues_only_b": [
+    "Faster-than-τm population responses already known; Knight 1972 and van Vreeswijk and Sompolinsky 1998 uncited (Reviewer_VGyX)",
+    "Synaptic filter time constants of 0.1 to 2 ms at or below biological values (Reviewer_VGyX)",
+    "Prospective time constant τr unphysiological; Köndgen evidence is trial-averaged (Reviewer_VGyX)",
+    "No mathematical theory of the frequency response (Reviewer_VGyX)",
+    "Derivation close to Boerlin et al. 2013 balanced spiking networks (Reviewer_VGyX)",
+    "Code seeds inconsistent and baseline tuning unstated (Reviewer_VGyX)",
+    "Fig. 1 and Fig. 4a hard to read (Reviewer_iVNT, Reviewer_gRxq)"
+  ],
+  "shared_issues": [
+    "Biological realism of fast signal transmission: rates versus spikes (Reviewer_BSPV in A), rate units as populations (Reviewer_VGyX in B)",
+    "No limitations section (Reviewer_BSPV in A; Reviewer_gRxq in B)",
+    "Energy function of Eq. 2 under-explained (Reviewer_BSPV in A; Reviewer_iVNT and Reviewer_gRxq in B)",
+    "Testable biological predictions wanted (Reviewer_ob4X in A; Reviewer_gRxq in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Only Committee B had a specialist detractor, and his partly correct prior-work critique kept B at a poster. Reviewer_VGyX (3, confidence 4) showed that faster-than-τm responses of neuron populations were known (Knight 1972; van Vreeswijk and Sompolinsky 1998) and uncited. He also showed that the noise filter uses synaptic time constants at or below the biological range. The camera-ready concedes both points. B's AC accepted on the strength of the 9 and the 8, but made these points required revisions and suggested changing the title, which promises arbitrarily fast computation, to stress credit assignment. Without VGyX, B's ratings (9, 8) exceed A's mean of 8.0. VGyX's reject verdict overreached: the prior work has no learning, and the paper's main result is phase-free credit assignment. Committee A never saw this critique. Its oral rests on uniform but thin praise, including a two-hour 9 that calls prospective coding unprecedented, and on a one-sentence meta-review.",
+  "candidate_reasons": [
+    "specialist detractor in one committee",
+    "uncited prior work on fast responses",
+    "headline claim judged overstated",
+    "AC adopts detractor's framing critique",
+    "thin uncontested praise elsewhere",
+    "one-sentence meta-review restates consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Reviewer_VGyX final review and reply of 2021-09-03",
+    "Reviewer_iVNT reply of 2021-08-26",
+    "Committee A meta-review",
+    "Reviewer_DcW4 final review",
+    "Reviewer_BSPV final review and reply of 2021-08-27",
+    "paper Section 3, paragraph citing [22-25]",
+    "paper Section 6 and Fig. 4c",
+    "paper Section 5 and Fig. 3c",
+    "paper Section 7"
+  ]
+}

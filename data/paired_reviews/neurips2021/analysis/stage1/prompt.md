@@ -16,9 +16,11 @@ All files are under `{pair_dir}`:
   after the rebuttal shows only as an edit date and in what reviewers say in the discussion.
 - `paper.json`: title, abstract, authors, final decision, the kind of discrepancy.
 - `a/` and `b/`: the same records as JSON lines (`reviews.jsonl`, `discussion.jsonl`, `decision.json`,
-  `ethics.jsonl` where present) and the submitted PDF, `paper.pdf`. Read the PDF when you need to judge
-  whether a reviewer's specific claim about the paper is right (a stated error, a missing baseline, a
-  misread result). Do not summarise the paper for its own sake.
+  `ethics.jsonl` where present) and two PDFs: `paper_submitted.pdf`, the anonymised version the
+  reviewers saw, and `paper.pdf`, the version on the forum today (the camera-ready, for accepted
+  papers). Use `paper_submitted.pdf` when you need to judge whether a reviewer's specific claim about
+  the paper is right (a stated error, a missing baseline, a misread result); if it is missing, use
+  `paper.pdf` and say so. Do not summarise the paper for its own sake.
 
 Committee A's own decision: {own_a}. Committee B's own decision: {own_b}. Final decision: {final}.
 Kind of discrepancy: {kind}. Ratings are NeurIPS's 1 to 10 scale (10 award quality, 7 accept,

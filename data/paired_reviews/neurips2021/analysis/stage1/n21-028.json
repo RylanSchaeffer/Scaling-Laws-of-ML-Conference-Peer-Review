@@ -1,0 +1,223 @@
+{
+  "pair_id": "n21-028",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        1,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_h4G7",
+        "Reviewer_FpoL",
+        "Reviewer_z1y4"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four final ratings are 7. Before the rebuttal they were at most 6, 7, 6, 6: Reviewer_h4G7, Reviewer_FpoL and Reviewer_z1y4 each say they raised to 7."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_aGgD",
+          "evidence": "Confidence 1 ('educated guess'), 1.5 hours. Judged novelty against Meinke and Hein 'after a cursory glance' and 'did not carefully review the proofs'. Says the figures are 'without captions' (every figure in the paper has one). Praised Fig. 6 for showing no accuracy drop; Committee B found that its CIFAR-10-C half was built on color-inverted data. Post-rebuttal reply in full: 'Thank you for your reply. I keep my score.' Its 7 still counts toward A's unanimity."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_FpoL",
+          "claim": "The motivation that quadratic variance growth is not enough and cubic growth is enough is never justified.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Sec. 2.2, Eq. (3) gives the argument: under the probit approximation the mean and the square root of the quadratic variance both grow linearly in alpha, so confidence tends to a constant below 1. The valid part of the complaint is that the abstract and introduction assert this before the argument appears. The authors pointed to the same section in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_z1y4",
+          "claim": "The paper compares to no dedicated OOD-detection baseline such as the Mahalanobis detector.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares only MAP, temperature scaling, Deep Ensembles, GP-DSCS and LLL variants. The camera-ready adds Mahalanobis and DUQ [32, 33] only to Appendix D. The rebuttal numbers that moved this reviewer were copied from Meinke and Hein's Table 2, not rerun."
+        },
+        {
+          "reviewer": "Reviewer_h4G7",
+          "claim": "Summing per-layer variances in Eq. (10) treats the layer representations as independent.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 3.3 defines f-hat as a sum of per-layer GPs and states that the f-hat(l) are assumed independent. The authors conceded it is a modelling assumption."
+        },
+        {
+          "reviewer": "Reviewer_aGgD",
+          "claim": "Figures are very small and without captions.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figures 1 to 6 all have captions. Figs. 2 and 3 are small inline figures with one-line captions, so 'small' holds and 'without captions' does not."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_z1y4",
+          "Reviewer_FpoL",
+          "Reviewer_h4G7"
+        ],
+        "evidence": "Reviewer_z1y4 edited 2021-08-12: 'happy to increase my score to a 7, given the comparison with Mahalanobis'. Reviewer_FpoL edited 2021-08-20: 'I am happy to increase my score' after the authors promised a delta-ball condition and an error analysis for Prop. 1. Reviewer_h4G7 edited 2021-08-22: 'raising my score to 7 because of the inclusion of comparisons to DUQ'. Reviewer_aGgD: 'I keep my score.'",
+        "what_convinced_or_not": "Two raises rest on baseline numbers taken from other papers (Mahalanobis from Meinke and Hein's Table 2, DUQ from the DUQ paper), not rerun under the paper's protocol; against DUQ with lambda 0.5, RGPR only ties on AUROC (92.6 vs 92.7) and wins on accuracy. FpoL's raise rests on promised rigor, which the camera-ready delivers (Lemma 1 and error terms in Prop. 2). Left open: z1y4's objection that the results are not about true BNN posteriors, and h4G7's view that the choice of hidden layers is arbitrary and treated as independent."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance matches four 7s ('Good paper, accept'), but no reviewer rated above 7 or argued for a spotlight; Reviewer_z1y4 called significance 'somewhat limited' and Reviewer_h4G7 doubted the method would become 'a commonly used post-hoc technique'. The two-sentence meta-review cites only consensus: 'As pointed out by all the reviewers ... important problem ... well-written ... well motivated ... well-supported'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four 7s with no dissent after three rebuttal raises",
+        "Important problem, sound theory plus experiments, clear writing (meta-review)",
+        "No stated reason for spotlight over poster"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        8,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_YyKC",
+        "Reviewer_oTxs"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 8, 6 span two points. The 8 (Reviewer_oTxs, confidence 4, 6 hours) is the highest rating in either committee and is well grounded: oTxs flagged the low CIFAR-10-C accuracy that exposed the loader bug, and raised only after the rerun."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_YyKC",
+          "claim": "In Fig. 6 last-layer Laplace beats Deep Ensembles on almost every CIFAR-10-C metric, against Ovadia et al.; the DE baseline looks weak.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors traced the anomaly to a loader bug (np.uint8(self.data*255)) that color-inverted CIFAR-10-C; the paper never mentions it. After the rerun DE is best on Brier (0.354) and accuracy (0.752), and RGPR barely improves on LLL (NLL 0.872 to 0.869, Brier 0.363 unchanged, ECE 0.080 to 0.095 with the OOD objective). Table 1, which the authors say the bug did not affect, still has DE worse than a single MAP net at FPR@95 on CIFAR-10 (51.0 vs 38.9) and CIFAR-100 (74.7 vs 72.2); no reviewer queried it."
+        },
+        {
+          "reviewer": "Reviewer_oTxs",
+          "claim": "CIFAR-10-C accuracy in Fig. 6 is unexpectedly low.",
+          "checked_against_paper": "correct",
+          "evidence": "Same bug; the authors say they learned of it from this review. Rerun accuracy is about 0.74, and the camera-ready Fig. 6 shows accuracy at that level."
+        },
+        {
+          "reviewer": "Reviewer_YyKC",
+          "claim": "Raising the variance to reach a uniform prediction makes the method inapplicable to regression.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplied PDF has no appendix, and its main text covers classification only. The authors cite Appendix D.4 for regression, and Reviewer_d2CF independently reports regression datasets in the supplement; both contradict the claim."
+        },
+        {
+          "reviewer": "Reviewer_YyKC",
+          "claim": "The paper states that Meinke and Hein (2020) cannot be applied to BNNs.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Sec. 1 calls RGPR 'complementary' to Meinke and Hein, which works 'for non-Bayesian NNs'; Sec. 4 says uniform asymptotic confidence 'has not been previously achieved in the context of BNNs'. Neither says it cannot be applied."
+        },
+        {
+          "reviewer": "Reviewer_4z2v",
+          "claim": "Any additive zero-mean Gaussian with super-quadratic variance would fix the problem; the DSCS kernel is not specifically motivated.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded it, and the camera-ready Sec. 4 adds that higher-order arc-cosine kernels also grow super-quadratically. Their preliminary ablation shows the quadratic first-order arc-cosine kernel nearly matches DSCS in OOD detection (FPR@95 26.2 vs 24.2 on CIFAR-10, 62.5 vs 63.0 on CIFAR-100), so the non-asymptotic gains do not come from the cubic growth that is the paper's theoretical contribution."
+        },
+        {
+          "reviewer": "Reviewer_4z2v",
+          "claim": "In deep networks the extension adds residual branches from hidden layers to the output, not infinitely many units in those layers.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (10) sums GPs on each layer's representation and adds the sum to the output. The authors conceded that 'RGPR does not extend the width of hidden layers in the literal sense'."
+        },
+        {
+          "reviewer": "Reviewer_d2CF",
+          "claim": "The experiments use only last-layer Laplace as the base BNN.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 5, Fig. 6 and Table 1 use LLL only; Sec. 5.1 sends KFL, SWAG and SVDKL results to Appendix D. The B meta-review lists this as a remaining concern."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_oTxs",
+          "Reviewer_YyKC"
+        ],
+        "evidence": "Reviewer_oTxs edited 2021-08-16 after the bug fix: 'Excellent! I'll increase my score now' (final 8). Reviewer_YyKC edited 2021-08-17: 'the new numbers seem more in line with what I would expect from DE, I will raise my score' (final 6). Reviewer_d2CF: 'I'll keep my score (7) unchanged'. Reviewer_4z2v: 'keeping my score for now (weak accept)', and no change after the authors' second reply.",
+        "what_convinced_or_not": "Disclosure and rerun of the CIFAR-10-C experiment convinced oTxs and YyKC, though oTxs called the omission of the bug 'very concerning'. The authors' first reply presented the inversion as part of the reported setup; only YyKC's follow-up drew the admission that it was an accidental bug. The motivation answers did not move 4z2v: the authors conceded any super-quadratic kernel works, and their own ablation showed a quadratic kernel nearly matches DSCS. d2CF still wanted non-LLL results in the main paper."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All reviewers agree that the paper is of high quality ... should be accepted. The remaining concerns are about motivation and experiments with other methods in addition to last-layer Laplace': these are the open points in the final comments of Reviewer_4z2v and Reviewer_d2CF. The meta-review omits the confirmed CIFAR-10-C bug and calls the paper 'practically sound'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers on the accept side (6, 7, 8, 6)",
+        "Theory judged sound and interesting",
+        "Unresolved motivation for the DSCS kernel and the infinite-ReLU framing (Reviewer_4z2v)",
+        "Main-text experiments only with last-layer Laplace (Reviewer_d2CF)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Comparison with the Mahalanobis detector and single-pass methods DUQ and SNGP (Reviewer_z1y4, Reviewer_h4G7)",
+    "Unquantified linearization and probit approximation errors (Reviewer_FpoL)",
+    "A Gaussian around a trained solution is called a BNN; the results are not about true posteriors (Reviewer_z1y4)",
+    "Independence across layers in Eq. (10) and the arbitrary choice of hidden representations over NTK features (Reviewer_h4G7)",
+    "Applicability to non-Bayesian ReLU nets (Reviewer_z1y4)"
+  ],
+  "issues_only_b": [
+    "Undisclosed CIFAR-10-C loader bug that color-inverted the test images behind Fig. 6 (Reviewer_YyKC, Reviewer_oTxs)",
+    "Weak Deep Ensemble baseline (Reviewer_YyKC)",
+    "Why the DSCS kernel: any super-quadratic kernel works, the infinite-ReLU framing is forced, the deep version adds residual branches (Reviewer_4z2v)",
+    "Whether the practical gains come from cubic growth or from a flexible tuned kernel; the authors' ablation shows a quadratic kernel nearly matches (Reviewer_4z2v)",
+    "Missing Outlier Exposure and Hein et al. (2019) baselines (Reviewer_YyKC)",
+    "Regression applicability (Reviewer_YyKC) and a non-asymptotic version of the uniform-confidence theorem (Reviewer_d2CF)"
+  ],
+  "shared_issues": [
+    "Quadratic-versus-cubic argument asserted in the abstract and introduction before it is explained (Reviewer_FpoL; Reviewer_YyKC, Reviewer_4z2v)",
+    "Last-layer Laplace as the only base BNN in the main experiments (Reviewer_z1y4; Reviewer_d2CF)",
+    "Per-layer sigma^2 tuning and the choice of which layers to use (Reviewer_h4G7; Reviewer_4z2v)",
+    "Practical relevance of asymptotic overconfidence (Reviewer_z1y4; Reviewer_4z2v)",
+    "Near-origin assumption k(x_m, x) ≈ 0 behind the post-hoc decomposition (Reviewer_FpoL; Reviewer_oTxs)",
+    "Positioning against Meinke and Hein (2020) (Reviewer_aGgD; Reviewer_YyKC)",
+    "Missing baselines, though each committee named different ones"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees accepted the paper; the spotlight-versus-poster split is area-chair discretion applied to two records of very different depth. Committee A ended at four 7s. Three were raises after the rebuttal, two of them on baseline numbers the authors copied from other papers, and one of the four was a confidence-1, 1.5-hour review. A's area chair turned this uniform-7 slate into a spotlight with a two-sentence meta-review that cites only consensus, although no A reviewer rated above 7 and two doubted the significance or the adoption of the method. Committee B spent about 26 reviewer-hours to A's 10.5. It uncovered an undisclosed data-loader bug that color-inverted the CIFAR-10-C images behind Fig. 6, and it pressed the motivation for the DSCS kernel until the authors' own ablation showed that a quadratic-variance arc-cosine kernel nearly matches it in practice. Two B reviewers stayed at 6, and B's area chair kept the paper at poster, citing unresolved motivation and experiments with last-layer Laplace only. B held the only 8 in either committee, so ratings alone do not explain the outcome: B knew more about the paper's weaknesses, and A's chair was more generous with a thinner record.",
+  "candidate_reasons": [
+    "AC upgraded unanimous sevens",
+    "Deeper review found experimental bug",
+    "Unresolved motivation kept two sixes",
+    "Rebuttal raises on copied baselines",
+    "Generic meta-review without spotlight rationale",
+    "Cursory low-confidence review counted equally"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_z1y4 comment 2021-08-12 and Reviewer_h4G7 comment 2021-08-22 (raises on copied baselines)",
+    "Reviewer_aGgD review and 2021-08-17 comment",
+    "Committee B authors' 'Further response' 2021-08-16 (CIFAR-10-C loader bug) and rerun table of 2021-08-10",
+    "Reviewer_oTxs 'Follow up' 2021-08-16",
+    "Authors' 2021-08-24 reply to Reviewer_4z2v (arc-cosine and last-layer ablations)",
+    "Committee B meta-review",
+    "paper Sec. 2.2 Eq. (3), Sec. 3.3 Eq. (10), Sec. 4, Table 1",
+    "paper.pdf is the camera-ready, not the submission: NeurIPS 2021 footer, Lemma 1 added, Theorem 3 renumbered 4"
+  ]
+}

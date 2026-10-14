@@ -1,0 +1,229 @@
+{
+  "pair_id": "n21-090",
+  "prompt_version": 1,
+  "kind": "oral/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_eRj1"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 7 (QFcb, tPz3, eRj1). No reviewer departs from the others and none argues for more than an accept."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QFcb",
+          "claim": "The paper has no related-work section and does not compare its techniques with prior work.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready PDF still has no related-work section; prior work sits in short intro paragraphs ('Coreset construction techniques', 'Previous work', Section 1.4)."
+        },
+        {
+          "reviewer": "Reviewer_QFcb",
+          "claim": "The real-world datasets have dimension > 10, so Algorithm 3 (2-D signals) does not fit them.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 treats each dataset as an n x m matrix (9358 x 15, 9900 x 18), masks 5 x 5 patches and predicts them from the (row, column) index, i.e. a 2-D signal. The authors' reply says the same."
+        },
+        {
+          "reviewer": "Reviewer_tPz3",
+          "claim": "The coreset stores only k log(N)/eps entries.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 8: |C| in (k log N)^O(1)/eps^4, exponent unspecified. The 'Coreset size' paragraph admits the bound exceeds N for N ~ 140,000, k = 1000, eps = 0.2."
+        },
+        {
+          "reviewer": "Reviewer_eRj1",
+          "claim": "The coreset size is linear in the number of leaves and logarithmic in the number of points.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Same Theorem 8 bound: polynomial in k log N with an unspecified exponent, not linear in k."
+        },
+        {
+          "reviewer": "Reviewer_eRj1",
+          "claim": "The coreset clearly beats uniform sampling only below about 5-8% of the data.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 (top): at ~1% the gap is large (LightGBM, dataset i: about 0.21 vs 0.37); at 8-10% the RandomForest curves nearly meet (about 0.145 vs 0.155). LightGBM keeps a gap of about 0.04 there."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "QFcb and tPz3 never edited their reviews, so their 6 and 7 stand from posting. eRj1 edited on 2021-08-27 to add 'Post response: Thanks, I am satisfied with the response'. The text does not say whether the rating changed, and the final 7 fits the pre-rebuttal text ('The only real weakness I see is the strong assumption').",
+        "what_convinced_or_not": "eRj1 accepted the defence of the signal assumption (weakest assumption that allows a coreset; natural for images and sensor data). QFcb and tPz3 did not reply; the answers to them were mostly promises to add intuition and explanations."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review restates the reviewers' praise (first coreset for decision trees, the proof ideas, solid experiments) and their two requests (justify the signal assumption, add intuition). A poster matches 6, 7, 7 with no champion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "First coreset for decision trees, liked by all three reviewers",
+        "Ratings 6, 7, 7 with no reviewer arguing for a higher tier",
+        "Only requests: justify the signal assumption and add intuition"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Oral)",
+      "ratings_final": [
+        4,
+        7,
+        7,
+        8
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_nDd9",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "4 against 7, 7, 8. The reasons are specific: the algorithm description is hard to follow, database histogram and R-tree work is missing, the partition-tree link is not explained, and the theory covers single trees while the experiments use forests. The camera-ready still cites no histogram work and the authors conceded the forest gap for dependent trees. One point misreads Section 5 (the experiments are 2-D, not 15- or 18-dimensional). nDd9 did not reply after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1UMR",
+          "evidence": "Rating 8 at confidence 2 ('Math/other details were not carefully checked') on a two-sentence main review that lists no weakness and calls the result 'perhaps not surprising, but useful'; no discussion. It is the only score above 7 in either committee and is weak evidence for an oral."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ybbQ",
+          "claim": "In Algorithm 2 the last iteration of the inner loop runs but its result is not used in the output.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Algorithm 2 (p. 7): when r_end reaches n, the slice over rows r_begin..n is dropped and lastB' (rows r_begin..n-1) is kept. r_begin := r_end then never passes n, so the printed loop does not terminate; it also stalls when one row already gives more than 1/gamma parts, unlike Fig. 2 step 4. A simulation of the printed loop confirms both. The rebuttal did not answer this point."
+        },
+        {
+          "reviewer": "Reviewer_nDd9",
+          "claim": "Related database work on multi-dimensional histograms and R-trees is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready reference list has no histogram, R-tree, BIRCH or Guha paper, although the authors replied that this work 'will be discussed'."
+        },
+        {
+          "reviewer": "Reviewer_nDd9",
+          "claim": "The theory covers single decision trees, but the experiments use forests, and the dependence between trees is not covered.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 uses RandomForestRegressor and LGBMRegressor (gradient boosting, trees fit in sequence). Section 1.2 only asserts the coreset is 'clearly also a coreset for forests'. The authors conceded that dependent trees are 'less clear'."
+        },
+        {
+          "reviewer": "Reviewer_nDd9",
+          "claim": "The algorithm is described for d = 2 but the experiments apply it in 15 and 18 dimensions.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 uses the 9358 x 15 and 9900 x 18 tables as 2-D matrices and predicts masked 5 x 5 patches from the (row, column) index."
+        },
+        {
+          "reviewer": "Reviewer_nDd9",
+          "claim": "The polynomial in the coreset size bound is not specified.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 8: |C| in (k log N)^O(1)/eps^4. The paper says this exceeds N for N ~ 140,000, k = 1000, eps = 0.2."
+        },
+        {
+          "reviewer": "Reviewer_nDd9",
+          "claim": "The claimed link to partition trees is not really explained, and partition trees serve arbitrary-orientation ranges rather than axis-aligned rectangles.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.4 gives an analogy (each query meets few cells). The cited source [28] is on simplex range queries, and Algorithms 1-2 are greedy axis-parallel slicing with no partition-tree construction."
+        },
+        {
+          "reviewer": "Reviewer_BfeE",
+          "claim": "There is no formal statement for d > 2 despite the claim that the extension is easy.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 of the camera-ready still calls tensors 'a straightforward generalization' and leaves them to future work."
+        },
+        {
+          "reviewer": "Reviewer_BfeE",
+          "claim": "The paper does not discuss the similar structure of the Feldman-Langberg (STOC 2011) framework.",
+          "checked_against_paper": "correct",
+          "evidence": "[22] is cited only in passing (frameworks, sampling, bicriteria approximation). Section 1.4 calls the method 'very different from existing coreset techniques that are sampling-based'."
+        },
+        {
+          "reviewer": "Reviewer_ybbQ",
+          "claim": "The impossibility result and the relaxation that escapes it are explained too vaguely.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.2 only cites [54] for the lower bound. Section 6 refers to 'the artificial worst-case example from Section 1.2', which Section 1.2 does not give."
+        },
+        {
+          "reviewer": "Reviewer_1UMR",
+          "claim": "The experiments show impressive gains in runtime and storage.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 (bottom right): random-forest tuning falls from 390 s to about 15-85 s, at a test-loss increase of about 0.01-0.07. For LightGBM (58 s on full data) the saving is about 1.5x at the coreset sizes where its loss nears the full-data line."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_ybbQ (2021-09-03): 'I will leave my rating unchanged.' nDd9, BfeE and 1UMR did not reply.",
+        "what_convinced_or_not": "The replies were mostly promises ('will be discussed', 'will try to squeeze such a statement'). They skipped ybbQ's Algorithm 2 point and did not understand the Fig. 3 point. nDd9's 4 stood. The camera-ready still lacks the histogram references and a formal d > 2 statement."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "The text echoes the reviews (novelty praised; writing and comparison to past work criticised), but the tier does not: ratings 4, 7, 7, 8 (mean 6.5), no reviewer argued for an oral, and the meta-review itself puts the writing 'almost of the level of being considered unpublishable'. Its quote 'absolutely above the bar' appears in no public review or comment.",
+        "meta_review_leans_on": "unclear"
+      },
+      "main_reasons_for_decision": [
+        "Technical novelty judged 'absolutely above the bar' by someone outside the public record",
+        "First coreset for decision trees and a simple, clever partitioning scheme (BfeE, 1UMR)",
+        "Writing faults treated as fixable in the camera-ready, not as disqualifying"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why the coordinate swap in Algorithm 3 (line 6) keeps the guarantee, and what a 'smoothed' coreset is (QFcb)",
+    "Whether real data satisfy the signal assumption (eRj1)",
+    "Coreset advantage over uniform sampling shrinks at larger sizes (eRj1)",
+    "Why the coreset pipeline is slower than uniform sampling (tPz3)"
+  ],
+  "issues_only_b": [
+    "Theory covers single trees, not the forests and boosting in the experiments (nDd9)",
+    "Uncited database work: multi-dimensional histograms, R-trees, BIRCH, Guha's histograms (nDd9, ybbQ)",
+    "Partition-tree link is an analogy; axis-aligned range search is the relevant line (nDd9)",
+    "No formal statement for d > 2 (BfeE, ybbQ)",
+    "Similarity to the Feldman-Langberg framework not discussed (BfeE)",
+    "Algorithm 2 pseudo-code flaw and notation errors (ybbQ)",
+    "Tightness of the size bound and its dependence on k (BfeE, ybbQ)"
+  ],
+  "shared_issues": [
+    "First coreset for decision trees and the partition-tree idea praised as novel",
+    "Signal assumption that escapes the lower bound is under-explained (eRj1 and A's meta-review; ybbQ)",
+    "Thin comparison with prior work (QFcb; nDd9, BfeE, ybbQ)",
+    "Algorithms given with too little intuition (tPz3, QFcb; nDd9 and B's meta-review)",
+    "How a 2-D method applies to the 15- and 18-column datasets (QFcb; nDd9)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B's oral does not follow from its own record. Its ratings (4, 7, 7, 8; mean 6.5) were lower than A's (6, 7, 7; mean 6.67), its reviewers found more and more specific faults (missing database-histogram and Feldman-Langberg comparisons, no d > 2 theorem, a broken Algorithm 2, theory that does not cover the boosted forests in the experiments), and its own meta-review calls the writing 'almost ... unpublishable'. No B reviewer argued for an oral; the only score above 7 is Reviewer_1UMR's 8 at confidence 2 on a two-sentence review. The meta-review's 'absolutely above the bar' appears in no public review or comment, so the tier came from B's AC or SAC, who prized the first coreset for decision trees in a discussion that is not public. Committee A followed its lukewarm 6-7 scores to a poster. Both committees saw the same facts, a novel first result with weak exposition and thin related work; their ACs weighted the novelty differently.",
+  "candidate_reasons": [
+    "AC tier above reviewer scores",
+    "first-of-kind novelty outweighs writing",
+    "off-record endorsement drives oral",
+    "meta-review text contradicts oral tier",
+    "poster follows lukewarm consensus"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_1UMR final review",
+    "Reviewer_nDd9 final review",
+    "Reviewer_ybbQ final review and 2021-09-03 comment",
+    "Reviewer_eRj1 final review (edited 2021-08-27)",
+    "paper Algorithm 2 (p. 7)",
+    "paper Theorem 8 and 'Coreset size' paragraph (pp. 8-9)",
+    "paper Section 5 and Figure 4"
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "pair_id": "n21-002",
+  "prompt_version": 1,
+  "kind": "oral/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 7, 6],
+      "confidences": [4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_oCAy", "Reviewer_KUr5", "Reviewer_FCVA"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8/7/6 spread evenly around 7. Reviewer_FCVA's 6 does not match its wholly positive text ('a good work in both theoretical and experimental perspectives', 'simple and clever'), and its 2021-09-10 edit carries no note."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oCAy",
+          "claim": "A relatively weak baseline is used; the gain over a strong baseline such as ReActNet is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "ImageNet ResNet-18 comparisons centre on Bi-Real Net+PReLU (59.0); FDA-BNN's 60.2 top-1 sits 5.3 points below ReActNet's 65.5. The ReActNet* rows in Table 5 (65.5 vs 66.0) are the rebuttal result, added to the camera-ready PDF."
+        },
+        {
+          "reviewer": "Reviewer_FCVA",
+          "claim": "No comparison to Lin2020 (RBNN), another approximation function for BNNs.",
+          "checked_against_paper": "correct",
+          "evidence": "Committee A's AC made adding it a required change. Camera-ready Table 5 shows RBNN 59.9 vs FDA-BNN 60.2 top-1: a 0.3-point margin over the closest gradient-approximation method."
+        },
+        {
+          "reviewer": "Reviewer_FCVA",
+          "claim": "Line 168 mentions SGD, but line 284 uses Adam.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors conceded ('Sorry for the misleading in line 168'). Camera-ready uses SGD for CIFAR-10 (Sec. 3.1) and Adam for ImageNet (Sec. 3.3); Sec. 2.3 now says 'gradient descent based optimization methods'. Harmless."
+        },
+        {
+          "reviewer": "Reviewer_KUr5",
+          "claim": "Approximation by series decomposition 'has strong theoretical guarantee'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 (Eq. 11) gives mean-square convergence of the function to the square wave. Training uses the derivative (Eq. 10), whose series (Eq. 8) has equal-amplitude terms 4w/pi and does not converge, so nothing carries over to the gradient. With the rebuttal's w=0.1 and n=18, Eq. 10 is negative for 0.83<|t|<=1."
+        },
+        {
+          "reviewer": "Reviewer_KUr5",
+          "claim": "Eq. 7 holds only for |t|<T, so inputs beyond T are unhandled.",
+          "checked_against_paper": "correct",
+          "evidence": "Valid question, answered by clipping inputs to [-1,1] with w=0.1 (T about 63). Eq. 7 itself should read |t|<T/2; no reviewer caught it, though KUr5 claimed confidence 5 ('checked the math'). Harmless here."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_KUr5 (edited 2021-08-28): 'My concerns are well addressed ... So I will keep my original score of 7.' Reviewer_oCAy's last edit (2021-07-27) predates the 2021-08-04 response, so its 8 is pre-rebuttal. Reviewer_FCVA edited on 2021-09-10 without a note; any change is unknown. No reviewer posted in the discussion.",
+        "what_convinced_or_not": "The authors gave A the same core content as B (ReActNet +0.5 top-1, MLP-depth table, input clipping, cosine decay of alpha) plus RBNN (+0.3). KUr5 judged the concerns addressed but did not raise. oCAy had promised 'a clear accept' if answered, already sat at 8 and never replied. The AC still listed the comparisons and 'further justification' of Fourier series as required changes."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Restates the consensus ('Reviewers all agreed that the paper has novel ideas and is clearly written') and recommends acceptance. Says the authors 'addressed most' concerns and requires comparisons to Lin2020 and ReActNet and 'further justification of the advantage of the Fourier series approximation over the others'. No argument for a spotlight or oral.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Moderate, unanimous support: 8/7/6, mean 7.0, no reviewer above 8",
+        "Novel idea and clear writing, agreed by all reviewers",
+        "Concerns mostly answered, but strong-baseline comparisons and the case for Fourier series over other surrogates left as required revisions"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Oral)",
+      "ratings_final": [8, 8, 8, 7],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Xxt6", "Reviewer_UYYe", "Reviewer_oG66", "Reviewer_f6JJ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8/8/8/7; no reviewer departs from the rest."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Xxt6",
+          "evidence": "Rating 8 after 2 hours. The main review lists no weakness and calls Fig. 1 'inspiring'; the only concerns are two unspecified hyper-parameters (alpha schedule, T)."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_f6JJ",
+          "claim": "No comparison to state-of-the-art BNN methods such as Real-to-Binary and ReActNet (Reviewer_UYYe and Reviewer_oG66 raised the same).",
+          "checked_against_paper": "correct",
+          "evidence": "As in A: 60.2 top-1 vs ReActNet's 65.5. The rebuttal gives 66.0 on the ReActNet recipe (+0.5). Its '+0.6 over Real2Bin' sets that ReActNet-based run against Real2Bin's published 65.4, not a controlled comparison."
+        },
+        {
+          "reviewer": "Reviewer_f6JJ",
+          "claim": "Table 4 suggests the shortcut is important.",
+          "checked_against_paper": "correct",
+          "evidence": "Stronger than stated: without the shortcut, sine plus noise module gives 85.27 (Table 4), below sine alone at 85.83 (Table 2). No shortcut-only row exists, so the learned FC layers show no benefit of their own. All tables are single runs without error bars."
+        },
+        {
+          "reviewer": "Reviewer_Xxt6",
+          "claim": "The method adds no parameters or FLOPs and leaves the architecture unchanged.",
+          "checked_against_paper": "correct",
+          "evidence": "True at inference: the sine module acts only in the backward pass and alpha reaches 0 (Sec. 2.3). Training adds two FC layers per binarized layer and time that grows with n (Fig. 3)."
+        },
+        {
+          "reviewer": "Reviewer_Xxt6",
+          "claim": "Fig. 1 shows that tanh leaves approximation error at low frequencies.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 1(k) shows it. But Fig. 1 plots spectra of the functions, not of the gradients used in training, and has no axis scales."
+        },
+        {
+          "reviewer": "Reviewer_Xxt6",
+          "claim": "The initial alpha and its decay schedule are not specified.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready main text still says only that alpha 'is gradually decreased during training and reaches 0'; the rebuttal's alpha0=0.1 and cosine decay are absent."
+        },
+        {
+          "reviewer": "Reviewer_f6JJ",
+          "claim": "'A theorem is provided to show the rationality' of estimating sign with Fourier series.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 covers the function in mean square, not the gradient used in back-propagation; every term of Eq. 8 has amplitude 4w/pi."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_oG66", "Reviewer_f6JJ"],
+        "evidence": "Reviewer_f6JJ, 2021-08-31: 'The authors have solved my concerns greatly ... raise my score and vote for acceptance' (final 7, so at most 6 before). Reviewer_oG66 post-rebuttal note: 'After reading comments from other reviewers ... increase my score to 8.' Reviewer_Xxt6 and Reviewer_UYYe edited on 2021-09-01 without a note; any change is unknown.",
+        "what_convinced_or_not": "f6JJ received the ReActNet/Real2Bin numbers, the noise-only result (77.16) and the ImageNet n_s. oG66 cites other reviewers' comments, not the response; those comments and the AC's 'separate post' are not in the public record. oG66 also accepted an O(n^-2) rate for Theorem 1 that the authors took from a result on smooth functions; the square wave's mean-square error falls as O(1/n)."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Reviewers support acceptance, but none rated above 8 ('Top 50% of accepted'). The AC adds a personal reading ('I have gone through the paper by myself'), personal taste ('a simple idea that works is the greatest to me') and an impact claim beyond BNNs that no reviewer made: 'I am sure that this paper will be impactful and therefore I recommend it as an oral presentation.'",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own enthusiasm for a simple idea that works",
+        "AC's prediction of impact beyond BNNs (non-smooth functions, STE)",
+        "Unanimous 7-8 after rebuttal (mean 7.75), two reviewers raising",
+        "Rebuttal judged 'particularly good'"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why Fourier series beats tanh or SignSwish when all converge to sign (Reviewer_KUr5, Reviewer_FCVA); the AC required 'further justification'",
+    "No comparison to RBNN/Lin2020 (Reviewer_FCVA)",
+    "SGD vs Adam inconsistency (Reviewer_FCVA)",
+    "Whether a two-layer MLP is the right noise module (Reviewer_oCAy, Reviewer_FCVA)",
+    "Whether the Fig. 3-4 ablations used the noise module (Reviewer_oCAy)"
+  ],
+  "issues_only_b": [
+    "Missing noise-only row in Table 2 (Reviewer_f6JJ)",
+    "Why the shortcut matters in Table 4 (Reviewer_f6JJ)",
+    "No explicit training target for the noise module (Reviewer_UYYe)",
+    "Notation, Fig. 1 caption, convergence rate of Theorem 1 (Reviewer_oG66)",
+    "Applicability beyond BNNs, as a strength (AC)"
+  ],
+  "shared_issues": [
+    "Weak baselines and no ReActNet comparison; rebuttal shows +0.5 top-1 (A: Reviewer_oCAy; B: Reviewer_UYYe, Reviewer_oG66, Reviewer_f6JJ)",
+    "Unspecified hyper-parameters: alpha schedule, T and input range, number of FS terms (A: Reviewer_KUr5; B: Reviewer_Xxt6, Reviewer_f6JJ)",
+    "Novel, simple idea and clear paper (all reviewers)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees accepted; they split only on poster versus oral. They saw the same strengths, raised the same main weakness (no ReActNet comparison) and received the same core rebuttal (+0.5 top-1 on the ReActNet recipe). No reviewer on either side rated above 8. B's oral comes from its AC, who read the paper, prized 'a simple idea that works' and predicted impact beyond BNNs, a claim no reviewer made. B's higher mean (7.75 vs 7.0) helped: two B reviewers raised scores after a response that left A's scores unchanged, and B's reviews were shorter (3.6 vs 6.0 hours on average) and less critical. A's AC kept the strong-baseline comparisons and the case for Fourier series over other surrogates as required revisions. The paper supports A's caution: the controlled gain over ReActNet is 0.5 points in one single-run setting; the energy argument fits the sign function but not its gradient, whose series terms all have amplitude 4w/pi (Eq. 8); and the learned noise layers that B's AC valued show no benefit without a fixed shortcut (85.27 vs 85.83 for sine alone).",
+  "candidate_reasons": [
+    "AC enthusiasm drives tier upgrade",
+    "AC extrapolates impact beyond evidence",
+    "Same rebuttal, unequal score response",
+    "Core motivation challenged on one side",
+    "Thin enthusiastic reviews inflate mean",
+    "Modest strong-baseline gain weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_f6JJ comment 2021-08-31",
+    "Reviewer_oG66 post-rebuttal note",
+    "Reviewer_KUr5 post-rebuttal note",
+    "Authors' ReActNet table (both committees)",
+    "paper Table 2 vs Table 4 (85.83 vs 85.27)",
+    "paper Eq. 5, Eq. 8, Theorem 1",
+    "paper Table 5 (ReActNet* 65.5 vs FDA-BNN* 66.0; RBNN 59.9 vs 60.2)"
+  ]
+}

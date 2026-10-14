@@ -1,0 +1,225 @@
+{
+  "pair_id": "n21-104",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        9
+      ],
+      "confidences": [
+        4,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_fSHR"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_e5Ff",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 7 (9, 'Top 15%'), written in 2 h. Five strengths in general terms ('Empirical results are strong', 'I enjoyed reading it a lot'), no questions, and one weakness that restates the paper's own limitation. Its claims of substantial MT gains and demonstrated sample efficiency do not hold against the paper (see checkable_claims). No comment after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_e5Ff",
+          "evidence": "Reads MT as a substantial win over seq2seq, but the MT table has the base Neural QCFG at 23.5 BLEU against the LSTM's 25.1. Claims 'better sample efficiency' although no experiment varies training-set size. Silent after the rebuttal, which disclosed that a tuned Transformer beats the model on MT."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_fSHR",
+          "claim": "The seq2seq-LSTM is a weak MT baseline and a Transformer should be added (Reviewer_FyUp makes the same request).",
+          "checked_against_paper": "correct",
+          "evidence": "The authors confirm the submission had no Transformer and reply that a tuned Transformer beats the QCFG by '3~4 BLEU points'. The camera-ready Table 4 adds it: Transformer 30.4 BLEU and 100% daxy accuracy, against Neural QCFG 23.5 (26.8 with BiLSTM). Section 3.3 now calls the MT results 'largely negative'."
+        },
+        {
+          "reviewer": "Reviewer_FyUp",
+          "claim": "The MT task is very small: sentences begin with phrases such as 'I am' or 'he is' and are at most 9 words long.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.3: 6,073 training pairs (1,000 of them the repeated 'i am daxy' pair) and 583 test sentences; every Figure 3 example is short and starts with a pronoun and copula. The paper does not state the 9-word limit, but the authors concede the data are '*very* simple' and that realistic MT ran out of memory."
+        },
+        {
+          "reviewer": "Reviewer_e5Ff",
+          "claim": "On navigation, style transfer and MT the model 'outperforms traditional seq2seq models substantially, demonstrating better sample efficiency'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True for style transfer and for the 8-sentence daxy test (100% vs LSTM 12.5%). False for MT BLEU: Neural QCFG 23.5 vs LSTM 25.1 (Table 4); only the BiLSTM variant (26.8) beats the LSTM, and it drops to 75% daxy accuracy. No experiment varies training-set size. The paper itself claims only that it 'performs respectably'."
+        },
+        {
+          "reviewer": "Reviewer_fSHR",
+          "claim": "'All experiments show significant improvement over previous work.'",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: LANE, Program Synth. and NeSS score 100% on all four SCAN splits and NQG-T5 on the three it reports; Neural QCFG scores 95.7 to 98.7. On MT BLEU the base model trails the LSTM."
+        },
+        {
+          "reviewer": "Reviewer_FyUp",
+          "claim": "In the style-transfer table the best non-human score is almost always the paper's model.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: Neural QCFG + copy is best in 20 of 21 metric cells across the three hard StylePTB tasks; the exception is active-to-passive BLEU-1 (0.836 vs Seq2Seq + copy 0.838)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_fSHR"
+        ],
+        "evidence": "Reviewer_fSHR wrote 'I will raise my rating to 7' on 2021-09-10, the review's edit date, so the initial rating was at most 6. Reviewer_6KbN called the new ablations 'satisfactory' (2021-08-11) and kept 7. Reviewer_FyUp and Reviewer_e5Ff posted nothing after the rebuttal.",
+        "what_convinced_or_not": "Reviewer_fSHR raised the score after a reply that conceded very small data, out-of-memory failure on realistic MT, and a tuned Transformer 3 to 4 BLEU ahead. Candour, not favourable evidence, moved the score. The linear-source-parse (about -3 BLEU) and no-constraint (about -1.5 BLEU) ablations satisfied Reviewer_6KbN."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four accepts, mean 7.5, one 9. The meta-review paraphrases Reviewer_e5Ff: 'While there is prior work on quasi-synchronous grammars, the neural parameterization..., the application to recent benchmarks, and strong results' mirrors e5Ff's second strength; the passage on data-driven models without inductive bias and 'low sample efficiency' mirrors the first; 'The only main weaknesses... high time complexity' mirrors e5Ff's weakness. It calls the results 'strong', chooses to 'downplay' scale because sample efficiency is a 'stated goal', and never mentions the authors' admission in this forum that a tuned Transformer beats the model on MT.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept with a 9 champion (mean 7.5)",
+        "Novel neural parameterization of a QCFG with both trees latent and no feature engineering",
+        "Results read as 'strong' against seq2seq baselines on SCAN, StylePTB and MT",
+        "Important direction: inductive bias against purely data-driven models",
+        "AC chose to downplay small scale and high compute as consistent with a sample-efficiency goal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        8,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_9RED",
+        "Reviewer_sHgm"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings spread from 6 to 8 with no reviewer isolated. The highest, Reviewer_3r7i (8), is the most specific review in either committee: 4 h, concrete ablation requests, engagement after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_LKem",
+          "evidence": "Confidence 2; writes 'I am not an expert in this direction and my judgement might not be accurate'. The review is five generic questions with no assessment of the results. After the rebuttal it says 'I think all your scores are based on such LM', although the authors had just stated that no reported model uses the autoregressive LM. Its 7 carries little information."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3r7i",
+          "claim": "The contribution of training the source PCFG jointly with the QCFG is never tested; a pipelined baseline is needed (Reviewer_9RED asks the same).",
+          "checked_against_paper": "correct",
+          "evidence": "No pipelined ablation appears in the paper, even in the camera-ready main text. The rebuttal supplies it and it favours the method: pipelined SCAN jump 60.4 vs 96.8 and length 38.3 vs 95.7, and about 2 BLEU lower on MT."
+        },
+        {
+          "reviewer": "Reviewer_sHgm",
+          "claim": "The numbers of nonterminals and preterminals differ per dataset and look tuned to each dataset's grammar (Reviewer_3r7i: the selection procedure is not documented).",
+          "checked_against_paper": "correct",
+          "evidence": "|N|=10 and |P|=1 for SCAN (Section 3.1), 8 and 8 for StylePTB (3.2), 14 and 14 for MT (3.3), each with task-specific rule constraints. The main text gives no selection procedure. The authors answer 'light grid search' without naming the split, and Reviewer_3r7i's dev-versus-test question stays unanswered. The rebuttal also shows SCAN falling to 0.7% (around right) and 0.6% (length) without the constraints."
+        },
+        {
+          "reviewer": "Reviewer_sHgm",
+          "claim": "SCAN and the MT task both have template-generated test sets, so a model that learns the grammar should score 100%, and the QCFG does not.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Only SCAN and the 8 daxy sentences are templated. The 583-sentence MT test set is a random held-out split of natural sentences (Section 3.3), and the base Neural QCFG scores 100% on daxy (Table 4). The point holds for SCAN only (95.7 to 98.7%)."
+        },
+        {
+          "reviewer": "Reviewer_9RED",
+          "claim": "NQG-T5 does not use SCAN-specific knowledge; it induces its grammar from scratch.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper's Related Work describes NQG-T5 as rule induction plus a seq2seq back-off, with no SCAN-specific component, and the authors' rebuttal cites NQG's own results on SQL. The authors reply 'This is a fair point'. NQG-T5 scores 100% on the three SCAN splits it reports (Table 1)."
+        },
+        {
+          "reviewer": "Reviewer_3r7i",
+          "claim": "Joint training adds 'a traditional monolingual CFG objective from a treebank'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 2.3 adds the gradient of log p_phi(x), the PCFG likelihood of the raw source string; no treebank is used. Reviewer_fSHR in Committee A states this correctly. The slip does not affect Reviewer_3r7i's argument."
+        },
+        {
+          "reviewer": "Reviewer_LKem",
+          "claim": "After the rebuttal: all reported scores use the autoregressive LM extension.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The authors told Reviewer_LKem that no reported model uses it; the camera-ready Section 2.4 adds that the combined model degenerated in preliminary experiments, 'and hence did not pursue this further'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_9RED",
+          "Reviewer_sHgm"
+        ],
+        "evidence": "Reviewer_9RED appended 'I have increased my score from 5 to 6' (edited 2021-08-08). Reviewer_sHgm wrote 'I increased my rating to 6' on 2021-08-30, the review's edit date. Reviewer_3r7i 'left my score as-is' at 8. Reviewer_LKem called its questions 'properly resolved' and stayed at 7.",
+        "what_convinced_or_not": "The pipelined baseline, the no-constraint table, the failure-mode analysis and the conceptual NQG comparison moved both low scores to 6. Neither went higher: there was no empirical NQG or GeoQuery comparison and no answer on real-world constraints. Reviewer_3r7i's question whether the configuration was chosen on dev rather than test stayed open."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 6.75 with two 6s ('marginally above the acceptance threshold'). The five-sentence meta-review rests on 'All reviewers agree the acceptance', calls the results 'good', not strong, and adds Reviewer_sHgm's GeoQuery request. It does not engage with Reviewer_3r7i's 8 or with the rebuttal experiments.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous but lukewarm accept: two 6s, a confidence-2 7, one 8 (mean 6.75)",
+        "Interesting, flexible approach with good results on compositional benchmarks",
+        "Positioning against NQG left open: no GeoQuery or empirical NQG comparison",
+        "Per-dataset hyperparameters and constraints, failure modes and scalability left as concerns"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No Transformer baseline on MT; the rebuttal disclosed that a tuned Transformer beats the QCFG by 3 to 4 BLEU (Reviewer_FyUp, Reviewer_fSHR)",
+    "The MT data are tiny and formulaic: fixed pronoun-copula openings, short sentences (Reviewer_FyUp)",
+    "Whether SCAN results could be compared under matched SCAN-specific knowledge (Reviewer_FyUp)",
+    "More synthetic compositional benchmarks: COGS, CFQ, CLOSURE (Reviewer_6KbN)",
+    "Pseudocode for marginalization and inference; a shorter introduction (Reviewer_6KbN, Reviewer_FyUp)"
+  ],
+  "issues_only_b": [
+    "No pipelined baseline isolating joint PCFG + QCFG training (Reviewer_3r7i, Reviewer_9RED)",
+    "No non-neural QCFG baseline (Reviewer_9RED)",
+    "Calling NQG-T5 SCAN-specific is questionable; NQG reaches 100% on SCAN while the probabilistic QCFG does not (Reviewer_9RED, Reviewer_sHgm)",
+    "Per-dataset nonterminal counts and rule constraints look tuned, with dev-versus-test selection unclear (Reviewer_3r7i, Reviewer_sHgm)",
+    "Unexplained sample-and-rescore decoding (Reviewer_3r7i)",
+    "StylePTB easy and medium tasks not evaluated (Reviewer_sHgm)",
+    "Real-world use of the domain-specific rule constraints (Reviewer_9RED)"
+  ],
+  "shared_issues": [
+    "High time and memory cost of the O(S^3 T^3) dynamic program limits scale",
+    "Only small-scale experiments",
+    "Semantic parsing or GeoQuery evaluation requested (Reviewer_6KbN in A; Reviewer_sHgm and the AC in B)",
+    "Error or failure-mode analysis on SCAN (Reviewer_6KbN in A; Reviewer_sHgm in B)",
+    "Whether the learned source tree matters (linear-parse ablation in A; sequence-to-tree and pipelined baselines in B)",
+    "Training-time and inference-cost figures, and clarity of the autoregressive-LM extension"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees accepted unanimously and differ by one tier; the cause is reviewer draw and AC framing, not information. Committee A drew Reviewer_e5Ff, a 9 written in 2 h that lists praise, asks nothing and overstates the MT result, and its AC paraphrased that review and called the results 'strong'. Committee B drew two reviewers who reached only 6 after the rebuttal (Reviewer_9RED from 5, Reviewer_sHgm), whose reservations concern positioning against NQG and per-dataset tuning, not errors; its AC followed the 6.75 mean to a poster. The information ran against the outcome: only Committee A heard the authors concede that a tuned Transformer beats the model by 3 to 4 BLEU on MT (the camera-ready calls its MT results 'largely negative'), yet its AC never mentioned this and Reviewer_fSHR raised the score after reading it, while Committee B's rebuttal experiments mostly favoured the method. Both committees saw the same core facts (a novel latent grammar, respectable small-scale results, a very expensive dynamic program); A weighted them with more enthusiasm.",
+  "candidate_reasons": [
+    "Exuberant 9 inflates committee mean",
+    "AC adopts single champion's framing",
+    "Rebuttal concession on baseline ignored",
+    "Two marginal 6s anchor poster",
+    "Open positioning against NQG grammar"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_e5Ff review (Committee A)",
+    "Committee A meta-review",
+    "Authors' replies to Reviewer_FyUp and Reviewer_fSHR (Transformer 3 to 4 BLEU better on MT)",
+    "Reviewer_fSHR comment, 2021-09-10",
+    "Reviewer_9RED post-rebuttal addendum; Reviewer_sHgm comment, 2021-08-30",
+    "Authors' reply to Reviewer_3r7i (pipelined and no-constraint SCAN tables)",
+    "Committee B meta-review",
+    "paper Table 4 and Section 3.3 (camera-ready PDF)",
+    "paper Table 1 and Section 3.1"
+  ]
+}

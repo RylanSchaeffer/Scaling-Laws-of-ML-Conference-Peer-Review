@@ -1,0 +1,189 @@
+{
+  "pair_id": "n21-172",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [8, 7, 6, 7],
+      "confidences": [4, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_sKB5", "Reviewer_m8WY", "Reviewer_LW6b"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_sKB5",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Mild: one point above the other A ratings, but the only rating above 7 among all seven reviews in both committees. Had it been a 7, A's mean would be 6.75, close to B's 6.67. The 8 rests on the longest review (6 h), four questions on capacity, loss design and language modelling, and two follow-up posts. Reviewer_sKB5 rose to 8 after the authors supplied a new capacity table and wrote 'I want to see this paper accepted'. The praise 'very well written' is generous: the same review lists typos on four lines, a broken sentence and a forgotten placeholder."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_LW6b",
+          "evidence": "The original review is two sentences (a one-line summary and a one-line verdict) with no reference to any section, equation or result, and 'n/a' for limitations. The specific objection (no comparison with TPR, NSCL, Logic Tensor Networks) appeared only in a discussion post on 2021-08-18. The later raise cites 'the enthusiasm of the other reviewers', and the final text still notes 'the lack of comparative evaluation results'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_sKB5",
+          "claim": "A discussion of binding capacity is entirely missing.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded it ('We will add reference to the capacity results of Plate') and posted a new capacity table. The supplied PDF is the camera-ready; its Section 3.1 now has an added capacity paragraph that points to Appendix D."
+        },
+        {
+          "reviewer": "Reviewer_LW6b",
+          "claim": "The evaluation compares only standard networks with and without the HRR output layer; there is no comparison with TPR, NSCL, Logic Tensor Networks or similar systems.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 baselines are FC, XML-CNN and AttentionXML, each with a fully connected output layer. Section 2 calls first-order-logic systems 'beyond the scope of our current study'."
+        },
+        {
+          "reviewer": "Reviewer_LW6b",
+          "claim": "The contribution in Section 3.1 is incremental and rather straightforward.",
+          "checked_against_paper": "correct",
+          "evidence": "Equation 3 divides each Fourier coefficient by its magnitude. Reviewer_rafZ ('simple fix') and Reviewer_uoCQ ('small but important modification') describe it the same way. Whether simple means incremental is a judgment, not a fact."
+        },
+        {
+          "reviewer": "Reviewer_rafZ",
+          "claim": "Related work omits Plate's own use of HRRs in gradient-based learning systems (his book, chapter 5).",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready still cites only Plate 1995 and still says 'no work to our knowledge has successfully used a VSA of fixed length in gradient based learning'. The authors' reply to Reviewer_rafZ does not answer this point."
+        },
+        {
+          "reviewer": "Reviewer_rafZ",
+          "claim": "Results are at least in the same ballpark as state-of-the-art methods.",
+          "checked_against_paper": "correct",
+          "evidence": "True only in part. Table 1 marks three HRR cells within 5% of the published XML-CNN or AttentionXML scores (EURLex-4K, Amazon-13K, Wiki10-31K); these are 2017 and 2019 methods. On Amazon-670K, HRR-FC P@1 is 19.9 against 34.6 for its own FC baseline."
+        },
+        {
+          "reviewer": "Reviewer_rafZ",
+          "claim": "The choice of HRR dimension d is arbitrary.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied 'The choice of d was fairly arbitrary'. Section 5.3 uses d'=400 or 3000 with no stated rule."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_sKB5", "Reviewer_m8WY", "Reviewer_LW6b"],
+        "evidence": "Reviewer_sKB5 edited 2021-08-18: 'increase my score to an 8'. Reviewer_m8WY edited 2021-08-18: 'I will raise my score to a 7'. Reviewer_LW6b edited 2021-08-23: 'I have increased my score accordingly'; the original text said 'I don't believe that the paper can be accepted'. Reviewer_rafZ never posted and never edited. So A's pre-rebuttal mean was at most 6.25; the final mean is 7.0.",
+        "what_convinced_or_not": "Reviewer_sKB5 was convinced by answers to the loss-function questions and by a new table: error-free retrieval capacity of projected HRRs reaches 384 pairs at d=8100, while naive HRRs stop at 24. Reviewer_m8WY, unfamiliar with HRRs, cited 'discussion of significance with reviewers rafZ and sKB5'. Reviewer_LW6b cited 'the enthusiasm of the other reviewers' and a second look at the supplement. No comparative evaluation was added, and the final LW6b text says so."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Spotlight on a 7.0 mean with one 8. The meta-review paraphrases Reviewer_rafZ: 'will likely spark future work' (rafZ: 'will likely spur greater interest') and 'fairly broad interest' (rafZ: 'a fairly diverse audience'). It says the clarifications made 'all reviewers much more confident'; Reviewer_rafZ never took part, and Reviewer_LW6b still notes no comparative evaluation. Its 'very effective' refers to size, which Table 2 supports (output layer 59-99.6% smaller, whole network 5-42% smaller).",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Mean 7.0 after three of four reviewers raised their scores in discussion",
+        "A champion (Reviewer_sKB5, 8) who saw the paper as filling a gap in trainable fixed-size binding",
+        "The rebuttal closed the champion's one stated weakness (capacity) with new results",
+        "The AC adopted Reviewer_rafZ's significance case: promising, likely to spark future work, broad interest"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 7],
+      "confidences": [4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_uoCQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 7, none above 7. All three reviews share the same reservation about the application."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_uoCQ",
+          "claim": "Multi-label classification does not use the key feature of HRRs, the ability to represent complex symbolic structure.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 binds every label vector to one of two fixed role vectors, p or m (eqs. 4-5). There is no nesting and no other role. The authors agreed: 'more complex hierarchical/nested symbolic mechanics would be stronger'."
+        },
+        {
+          "reviewer": "Reviewer_M8pZ",
+          "claim": "The method uses two fixed orthogonal role vectors, and learning the role and filler vectors has little effect.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4: m is 'any vector orthogonal to p', and neither changes during training. Section 5.5 and Table 5: fixed and learned label vectors differ by at most 1.56 P@5 points."
+        },
+        {
+          "reviewer": "Reviewer_rRrp",
+          "claim": "The authors replaced AttentionXML's hierarchical attention head with a fully connected layer.",
+          "checked_against_paper": "correct",
+          "evidence": "Sections 5 and 5.2 say the hierarchical prediction head 'is replaced with a fully connected layer'."
+        },
+        {
+          "reviewer": "Reviewer_rRrp",
+          "claim": "Performance is comparable and in some cases SOTA-exceeding.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No HRR result in Table 1 exceeds published state of the art. The paper marks only three HRR cells as within 5% of XML-CNN or AttentionXML and states 'State-of-the-art XML performance is not a goal'. HRR beats its own baseline in several cells; that is a different claim. The misread is favourable to the paper and did not raise the rating above 6."
+        },
+        {
+          "reviewer": "Reviewer_uoCQ",
+          "claim": "Table 1 applies different models to different datasets with no explanation.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied 'We will add this explanation to the document'. The camera-ready now explains it in Sections 5 and 5.1 (raw text not available; footnote 3)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_uoCQ"],
+        "evidence": "Reviewer_uoCQ edited 2021-08-21 and posted 'I've decided to increase my rating to 7'. Reviewer_rRrp did not edit; the 2021-08-27 post thanks the authors but says 'we're hindered a bit by not being able to see an actual revision'. Reviewer_M8pZ never posted and never edited. So B's pre-rebuttal mean was at most 6.33; the final mean is 6.67.",
+        "what_convinced_or_not": "Reviewer_uoCQ accepted the authors' point that the problem solved is making HRRs learnable by backpropagation: 'this work will provide a foundation'. Reviewer_rRrp's concerns were framing and application, which a reply cannot fix, so the rating stayed at 6. In B the authors offered promised text and a worked example, not new results."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Poster on a 6.67 mean. The meta-review is two sentences. 'Provides a foundation for other systems to build on' repeats Reviewer_uoCQ's update. 'The results are not compelling that such representations will be useful in applications' states the reservation that Reviewer_uoCQ, Reviewer_rRrp and Reviewer_M8pZ all raised.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Mean 6.67 with no rating above 7",
+        "All three reviewers said the XML demonstration does not exercise what HRRs are for",
+        "The AC judged the application results not compelling and accepted on technical novelty",
+        "Thin discussion: one score raise, one reviewer silent, one unmoved"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No analysis of binding capacity versus dimension (Reviewer_sKB5, Reviewer_rafZ)",
+    "No comparison with other neuro-symbolic systems such as TPR, NSCL or Logic Tensor Networks (Reviewer_LW6b)",
+    "Novelty claim ignores Plate's own gradient-based use of HRRs (Reviewer_rafZ)",
+    "No theory for why the projection improves retrieval, and no case for HRR over other VSAs (Reviewer_rafZ)",
+    "Alternative exponential loss and objective forms (Reviewer_sKB5)"
+  ],
+  "issues_only_b": [
+    "XML binds labels to only two fixed roles, so compositional binding is never tested (Reviewer_uoCQ, Reviewer_M8pZ, Reviewer_rRrp)",
+    "Unclear purpose: what problem the method solves and what it would replace (Reviewer_uoCQ, Reviewer_rRrp)",
+    "AttentionXML's head replaced by a fully connected layer; no comparison with attention, hashing or distillation output layers (Reviewer_rRrp)",
+    "Table 1 applies different models to different datasets without explanation (Reviewer_uoCQ)"
+  ],
+  "shared_issues": [
+    "The HRR background in Section 3 is hard for non-experts (Reviewer_m8WY, Reviewer_LW6b; Reviewer_rRrp, Reviewer_uoCQ)",
+    "Tensor Product Representation work is missing from related work (Reviewer_sKB5, Reviewer_LW6b; Reviewer_M8pZ)",
+    "The projection step is a small, simple change (Reviewer_rafZ, Reviewer_LW6b; Reviewer_uoCQ)",
+    "Not state of the art on XML, and only one task (Reviewer_m8WY, Reviewer_rafZ; Reviewer_uoCQ, Reviewer_rRrp, Reviewer_M8pZ)",
+    "Many typos and an 'XXX lines of code' placeholder (Reviewer_sKB5, Reviewer_m8WY, Reviewer_rafZ; Reviewer_uoCQ, Reviewer_rRrp)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same facts; A's discussion lifted its scores to a spotlight, while B's reviewers kept their doubt about the XML demonstration. Every reviewer describes the same contribution: a projection step that makes HRRs trainable, shown on XML with large output-layer compression and accuracy near the baselines except at 670K labels. Before the discussion A's mean was at most 6.25, below B's final 6.67; three raises in discussion carried A to 7.0. In A, Reviewer_sKB5 received a new capacity table and rose to 8, asking for acceptance. Reviewer_m8WY and Reviewer_LW6b then raised their scores, each citing the other reviewers' views. A's AC repeated Reviewer_rafZ's case for broad interest and future work. In B, all three reviewers said that XML, with two fixed roles, never tests what HRRs are for. Only Reviewer_uoCQ moved, to 7. B's AC wrote that the results do not show usefulness in applications. A weighted the enabling step; B weighted the thin demonstration.",
+  "candidate_reasons": [
+    "Champion at 8 only in A",
+    "Discussion raised A's scores more",
+    "Score raises by deference to peers",
+    "Demo task underuses symbolic binding",
+    "AC framing: promise versus application",
+    "New results shown only to A"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Reviewer_sKB5 final review and 'Reply^3' post (2021-08-18)",
+    "Authors' 'Reply^2' to Reviewer_sKB5 with the capacity table (Committee A)",
+    "Reviewer_m8WY final review, update paragraph",
+    "Reviewer_LW6b posts of 2021-08-18 and 2021-08-23",
+    "Reviewer_rafZ review, Significance paragraph",
+    "Committee A meta-review",
+    "Reviewer_uoCQ review and 'updated rating' post (2021-08-21)",
+    "Reviewer_M8pZ limitations section",
+    "Reviewer_rRrp 'Response to the authors' (2021-08-27)",
+    "Committee B meta-review",
+    "paper Section 4 (eqs. 4-5), Sections 5 and 5.2, Tables 1, 2 and 5",
+    "a/paper.pdf is the camera-ready (NeurIPS 2021 footer, '22 lines of code', created 2022-01-24), not the submission as reviewed"
+  ]
+}

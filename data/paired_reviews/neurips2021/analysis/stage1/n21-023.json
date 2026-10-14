@@ -1,0 +1,211 @@
+{
+  "pair_id": "n21-023",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        8
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_rN14"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings span 7 to 8. Reviewer_Kz6Q's lone 8 is one point above the others and is backed by a substantive 8-hour review with three specific questions, so it is not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_xAhK",
+          "evidence": "3 hours, confidence 3 with 'Math/other details were not carefully checked', one paragraph of summary and praise plus a single question, no reply to the rebuttal. Its 7 is weak evidence either way, although the one question (unbounded logistic minimizer) is informed."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_CRtT",
+          "claim": "Definition 4: for Tikhonov the qualification should be q = 1, not 1/2.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded this in committee B on 2021-08-18 ('Tikhonov has qualification of 1, and not 1/2 as incorrectly stated'); camera-ready p.5 reads 'has qualification 1'. In A the authors answered with a notation argument they later withdrew, and CRtT did not follow up. Checked against a/paper.pdf, which is the camera-ready, not the submission."
+        },
+        {
+          "reviewer": "Reviewer_CRtT",
+          "claim": "Supplement Assumption 9 has a lower bound on df_λ that the main-paper capacity condition lacks.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'This is a typo which will be corrected'. Camera-ready Assumption 4 (p.4) now states s λ^{-1/α} ≤ df_λ ≤ S λ^{-1/α}."
+        },
+        {
+          "reviewer": "Reviewer_CRtT",
+          "claim": "Theorem 1 hides how its constants depend on t, so it seems to give good rates even as t → ∞, where the estimator is unregularized.",
+          "checked_against_paper": "correct",
+          "evidence": "A presentation gap, not an error: C_var grows linearly in t (authors' reply, appendix Eq. 55). The camera-ready adds an 'Influence of t' paragraph on p.6."
+        },
+        {
+          "reviewer": "Reviewer_xAhK",
+          "claim": "For the logistic loss the risk minimizer ln(η/(1−η)) is usually unbounded, but the analysis seems to need a bounded θ*.",
+          "checked_against_paper": "correct",
+          "evidence": "Assumption 2 (p.3) requires θ* ∈ H, which with a bounded kernel makes θ* bounded. The authors agreed and deferred the L² case to future work; the camera-ready adds a sentence saying so before Assumption 2."
+        },
+        {
+          "reviewer": "Reviewer_rN14",
+          "claim": "The paper does not contrast its guarantees directly with Marteau-Ferey et al., and the gain looks incremental.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agreed and promised a comparison; the camera-ready adds 'Example: a very easy learning task' on p.6 (Tikhonov n^{-2/3} against iterated Tikhonov n^{-20/21}). Sec. 3.1 says the proof builds 'upon the tools from [1]'. Whether that is incremental is a judgment; B's Reviewer_r7mh saw the same fact and called it a small issue."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_rN14"
+        ],
+        "evidence": "Reviewer_rN14 edited the review on 2021-08-18: 'I appreciate the added clarity in differentiating from Marteau-Ferey et al. [1], and so I have adjusted my score accordingly' (final 7; the earlier value is not exposed). Reviewer_Kz6Q on 2021-09-10: 'I will keep my score as it is'. Reviewer_CRtT and Reviewer_xAhK did not edit or reply.",
+        "what_convinced_or_not": "The explicit rate comparison (Marteau-Ferey's error stops at n^{-2/3} with α = 1; iterated Tikhonov reaches n^{-(2r+1)/(2r+2)}) convinced rN14. CRtT's qualification question got the authors' 'different notation' answer, which they withdrew in committee B; in A that answer stood unchallenged."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'All reviewers agree that the paper is technically quite interesting and well-executed', 'a nice contribution to the conference program', and a request to add the Marteau-Ferey comparison that cleared up 'some confusions'. Poster matches the 7.25 mean; nothing argues for or against a spotlight.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three 7s and one 8 (mean 7.25): a consensus of 'good paper, accept', not 'top 50%'.",
+        "The three 7-reviewers praised soundness and clarity but did not argue significance; only Kz6Q called the contribution significant.",
+        "Novelty over Marteau-Ferey et al. was the live question; rN14 reached 7 only after the rebuttal's rate comparison.",
+        "The AC followed the consensus with no argument about the tier."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        8,
+        8,
+        8,
+        7
+      ],
+      "confidences": [
+        5,
+        4,
+        2,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_r7mh",
+        "Reviewer_v7Aq"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings span 7 to 8. Reviewer_v7Aq was a detractor before the rebuttal ('temporarily holding a weak reject') on a correct, checkable point (Tikhonov's qualification), and moved to 7 once the authors conceded it; no outlier remains."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_KRE1",
+          "evidence": "8 at confidence 5 ('checked the math/other details carefully') with 5 hours and a six-sentence main review of praise, no technical criticism and no sign of a math check. It did not mention the qualification error that CRtT and v7Aq found. Discussion reply: 'would like to keep my rating'. The limitations note on confidence dependence is expert, but the 8 is weak evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_v7Aq",
+          "claim": "Line 153: Tikhonov's qualification is 1, not 1/2.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors conceded on 2021-08-18 and showed the error stays outside the proofs; camera-ready p.5 reads 'qualification 1'. The same camera-ready paragraph still gives wrong saturated rates (n^{-α(1+2q)/(1+α(1+2q))}, and n^{-α/(1+α)} for Tikhonov), which contradict Theorem 1, Table 1 (t = 1 theory 0.80 = 2α/(1+2α) at α = 2) and the authors' own corrected text (n^{-2αq/(1+2αq)})."
+        },
+        {
+          "reviewer": "Reviewer_7njB",
+          "claim": "Assumption 1 uses the Hessian before it is defined; it should read Tr ∇²ℓ_z(0).",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'Indeed, this should read Tr ∇²ℓ_z(0)'. Camera-ready Assumption 1 (p.3) now reads so."
+        },
+        {
+          "reviewer": "Reviewer_r7mh",
+          "claim": "The assumptions (self-concordance, source, capacity) and the self-concordant Taylor bounds come from Marteau-Ferey et al. and Bach; the work is an iterative improvement.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready: Assumption 1 is 'also introduced in [1]'; the bound in Eq. (13) 'first appeared in [11] and was given in this form in [1]'; Sec. 3.1 builds 'upon the tools from [1]'. r7mh still called this a small issue and gave 8."
+        },
+        {
+          "reviewer": "Reviewer_KRE1",
+          "claim": "Optimal rates need t ≥ r + 1/2 iterations.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (p.5): the rate in Eq. (11) holds when 't ≥ r + 1/2'. This is the only specific statement in KRE1's main review."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_v7Aq"
+        ],
+        "evidence": "Reviewer_v7Aq: 'I am temporarily holding a weak reject', then a post-rebuttal note (edited 2021-08-18): 'I am therefore happy to vote for acceptance'; final 7. Reviewer_r7mh edited on 2021-08-28 to add 'This is a strong paper'; whether its 8 changed is not recorded. Reviewer_7njB (2021-08-22) and Reviewer_KRE1 (2021-08-27) kept 8.",
+        "what_convinced_or_not": "v7Aq rejected the first 'different notation' answer and asked again on 2021-08-13. The second answer conceded that line 153 was wrong and showed the final rates are unaffected; that concession moved v7Aq. r7mh accepted the proposed paragraph on the source and capacity conditions."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review summarizes Theorem 1, Proposition 2 and the synthetic experiments, frames the work as answering whether iterated Tikhonov overcomes the saturation of [1], then says 'The reviewers agreed that the authors deliver a solid theoretical contribution ... of clear interest to the NeurIPS audience'. Spotlight matches the 7.75 mean; the only tier-relevant phrase is the broad-interest claim about kernel methods.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three 8s and one 7 (mean 7.75).",
+        "Reviewers called the result significant (KRE1, 7njB) and the paper strong (r7mh).",
+        "The only detractor, v7Aq, moved from weak reject to 7 once the qualification error was conceded as a typo outside the proofs.",
+        "The AC framed the work as answering the saturation question left by Marteau-Ferey et al., of clear interest given how widely kernel methods are used."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No explicit rate comparison with Marteau-Ferey et al. (Reviewer_rN14)",
+    "Dependence of Theorem 1's constants on t, and behaviour as t → ∞ (Reviewer_CRtT)",
+    "Supplement and main text disagree on the capacity condition's lower bound (Reviewer_CRtT)",
+    "How to choose t in practice (Reviewer_Kz6Q)",
+    "Effect of the dimension of Y (Reviewer_Kz6Q)",
+    "Other definitions of generalized self-concordance and a missing ball-oracle reference (Reviewer_rN14)"
+  ],
+  "issues_only_b": [
+    "Newton-based inner solvers scale poorly; first-order solvers not discussed (Reviewer_v7Aq)",
+    "Unknown dependence of the bounds on the confidence level δ (Reviewer_KRE1)",
+    "Missing link to sequential greedy approximation (Reviewer_7njB)",
+    "Assumption 1 uses the Hessian before its definition; overloaded symbols (Reviewer_7njB)",
+    "Little intuition for the source and capacity conditions (Reviewer_r7mh)",
+    "Eq. (19) and the function L̄ are hard to interpret (Reviewer_v7Aq)"
+  ],
+  "shared_issues": [
+    "Tikhonov's qualification printed as 1/2 instead of 1 (Reviewer_CRtT in A, Reviewer_v7Aq in B); the authors conceded it only in B",
+    "Incremental over Marteau-Ferey et al.: same assumptions and self-concordance toolbox (Reviewer_rN14 in A, Reviewer_r7mh in B)",
+    "Minimizer assumed to lie in H, which excludes unbounded or non-attainable targets (Reviewer_xAhK and Reviewer_Kz6Q in A, Reviewer_KRE1 in B)",
+    "Dense notation in the self-concordance definition (Reviewer_CRtT in A, Reviewer_7njB in B)",
+    "Experiments only on toy synthetic data, treated as adequate by both (Reviewer_Kz6Q in A, Reviewer_r7mh in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The spotlight/poster split is score calibration, not substance. Both committees saw a sound, clearly written extension of Marteau-Ferey et al.'s Tikhonov analysis for generalized self-concordant losses to iterated Tikhonov, which removes saturation and reaches optimal rates; both noted modest novelty and dense notation, and neither found a flaw in the results. The one real error, Tikhonov's qualification printed as 1/2 instead of 1, was raised in both committees (Reviewer_CRtT in A, Reviewer_v7Aq in B) and sits in background prose, not in the theorems. Three of A's reviewers chose 7 and three of B's chose 8 for similar assessments, giving means of 7.25 and 7.75, and each AC's short meta-review follows its mean without arguing the tier. The visible weighting difference is novelty: A's Reviewer_rN14 called the gain over Marteau-Ferey 'somewhat incremental' and A's AC made that comparison its only specific request, while B's Reviewer_r7mh made the same observation, called it a small issue, and framed the result as the answer to an open question from Marteau-Ferey et al., a framing B's AC repeated. B's higher mean also rests partly on thin support: Reviewer_KRE1's 8 at confidence 5 comes with a brief, uncritical review, and Reviewer_r7mh's 8 carries confidence 2.",
+  "candidate_reasons": [
+    "7 versus 8 calibration split",
+    "incrementality weighted more in A",
+    "open-question framing in B",
+    "AC tier follows mean score",
+    "thin high-confidence champion review"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A rating table (7, 7, 7, 8) and Committee B rating table (8, 8, 8, 7)",
+    "Reviewer_rN14 final review, post-rebuttal paragraph",
+    "Reviewer_r7mh main review ('iterative improvement on existing work' ... 'these are small issues')",
+    "Reviewer_KRE1 review and 2021-08-27 reply",
+    "Reviewer_v7Aq 2021-08-13 comment and the authors' 2021-08-18 concession",
+    "Authors' reply to Reviewer_CRtT (Definition 4 item)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper (camera-ready a/paper.pdf) p.5: qualification paragraph and Theorem 1",
+    "paper (camera-ready a/paper.pdf) p.6: 'Influence of t' and 'Example: a very easy learning task'"
+  ]
+}

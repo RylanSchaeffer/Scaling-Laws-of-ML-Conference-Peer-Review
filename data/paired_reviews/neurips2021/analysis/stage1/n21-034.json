@@ -1,0 +1,238 @@
+{
+  "pair_id": "n21-034",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        7,
+        6
+      ],
+      "confidences": [
+        5,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7cFv",
+        "Reviewer_92hs",
+        "Reviewer_cKPT"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/7/6 sit one point either side of the mean (4/6/5 before the rebuttal). Reviewer_7cFv is the lowest and the most specific; its main objection is principled, and Table 3 confirms it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_92hs",
+          "evidence": "The summary paraphrases the abstract, and pros 2 and 4 copy the paper's contribution bullets almost word for word ('intriguing phenomenon of hierarchical clustering effect ... which benefits a lot in various tasks'). Pro 1 asserts 'a significant impact on the field' without support. It says the limitations are 'discussed well', while Reviewer_7cFv and Reviewer_cKPT say the paper does not discuss them. Its four cons are specific clarifying questions, so the review is not empty, but its 7 rests on the authors' own words."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7cFv",
+          "claim": "Clean accuracy rises by about as much (1.2 to 1.3 points) as accuracy under attack, so the clean-to-attack drop is unchanged and the gain may come from better training in general.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 of the camera-ready PDF on file (Table 1 in the submission): natural 84.20 to 85.43 and 84.27 to 85.53 (+1.23, +1.26); AutoAttack 46.58 to 47.21 and 41.90 to 43.21 (+0.63, +1.31); clean-to-AutoAttack gap 37.62 to 38.22 (best) and 42.37 to 42.32 (last). Single runs."
+        },
+        {
+          "reviewer": "Reviewer_7cFv",
+          "claim": "The timing claim (lines 213-214) ignores that a robust model must be fully trained before the model is retrained with the loss, so total training cost more than doubles.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 takes 'a pre-trained robust DNN model' and says 'Retrain F from scratch'; Section 4.2.1 still compares 191.20 s and 193.66 s per epoch and calls the increase 'negligible'. The authors conceded that pre-training is needed unless the class hierarchy is known in advance."
+        },
+        {
+          "reviewer": "Reviewer_7cFv",
+          "claim": "Only the relative improvement over plain adversarial training is reported; no state-of-the-art defense is compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 lists only AT (Madry, per the rebuttal) and AT+C. TRADES and FAT appear only in the rebuttal: TRADES 52.98+-0.34 vs 53.68+-0.37 and FAT 43.46+-0.24 vs 44.96+-0.32 PGD-20 over 5 runs."
+        },
+        {
+          "reviewer": "Reviewer_7cFv",
+          "claim": "Feature-space clustering (Figure 4) is shown for only one model and looks weaker than the weight clustering.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied 'We add new figures and results'. The camera-ready Figure 4 has eight panels, but its text still reads 'a similar clustering effect on CIFAR-10 in Fig. 4'."
+        },
+        {
+          "reviewer": "Reviewer_cKPT",
+          "claim": "The superclasses in most experiments are only animals and non-animals, so the setting is simple.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1, the CIFAR-10 and STL-10 panels of Figure 2, the regularizer (Eq. 10, written for the two CIFAR-10 groups), Table 3 and Figure 7 all use the two-way split; ImageNet-10 has 2 superclasses and CIFAR-20 has 4. Only the domain-adaptation sets use 4 to 6 superclasses."
+        },
+        {
+          "reviewer": "Reviewer_cKPT",
+          "claim": "AlexNet R+C in Table 2 is far above NR and R (91 vs 85), which suggests that some models are not trained well enough.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 source coarse accuracy: 90.68 (R+C) vs 85.50 (NR) and 84.75 (R), with fine accuracy flat (65.56, 65.37, 64.50). ResNet-18 (88.25 vs 87.94) and DenseNet-121 (91.37 vs 90.18) show no such jump. The authors' reply (same recipe; a separate AlexNet reaches 55.95% fine accuracy) does not explain it."
+        },
+        {
+          "reviewer": "Reviewer_cKPT",
+          "claim": "The fine-tuned results may reflect the backbone's upper bound rather than a benefit of robustness.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 ResNet-18 Coarse-FT: 94.25 (NR), 94.40 (R), 94.75 (R+C). The text's '6.46%' vs '3.32%' increase comes from R's lower source accuracy, not from a higher final accuracy."
+        },
+        {
+          "reviewer": "Reviewer_cKPT",
+          "claim": "In Figure 5(a), non-robust models perform worst in some cases but best in others.",
+          "checked_against_paper": "incorrect",
+          "evidence": "In the camera-ready Figure 5(a), the NR circle (left panel) and the NR pentagon (right panel) have the lowest target accuracy in every colour group. The reviewer most likely compared circles with pentagons across panels, as the authors said. Several within-group gaps lie inside the plotted error bars."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_7cFv",
+          "Reviewer_92hs",
+          "Reviewer_cKPT"
+        ],
+        "evidence": "Reviewer_7cFv (2021-08-16): 'I will increase my score by 1 point' (4 to 5; review edited 2021-08-16). Reviewer_92hs (2021-08-16): the same, 6 to 7, and appended 'My concerns are addressed well' to its review. Reviewer_cKPT (2021-09-01): 'from 5 to 6' (review edited 2021-09-01). Mean 5.0 before the rebuttal, 6.0 after.",
+        "what_convinced_or_not": "New TRADES and FAT results, train and test accuracies, linear-model and feature-matrix figures, and clarifications of the domain-adaptation setup convinced all three. Reviewer_7cFv kept two concerns: no reason why the post hoc linearization is characteristic of the real network, and gains possibly within seed variance. The authors' 2021-08-18 answer (an intuitive argument; 5-run TRADES and FAT results) drew no reply, and the meta-review repeats both concerns."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review praises novelty, as all three reviewers did, then names two reservations that match Reviewer_7cFv's 2021-08-16 comment: the implications for the original network 'remains speculative', and 'the experimental results could be stronger'. A poster fits the post-rebuttal 5/7/6.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Novel, intriguing clustering observation on linear components (all three reviewers)",
+        "Link from the linearized sub-network to the real network remains speculative (Reviewer_7cFv, Reviewer_cKPT)",
+        "Small robustness gains without variance estimates or state-of-the-art baselines (Reviewer_7cFv)",
+        "Post-rebuttal ratings 5/7/6, a borderline-accept band"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        5,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_aQh1"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/7/6. Reviewer_HkhD's 7 is one point above the others and rests on a two-hour review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_HkhD",
+          "evidence": "Two hours. The summary paraphrases the paper's conclusion; the strengths are generic ('novel and convincing with a detailed explanation', 'a large number of good quality experiments') and sit beside 'These experiments show moderate improvement'. Three short questions and no reply to the rebuttal. Its 7 is the committee's highest rating."
+        },
+        {
+          "reviewer": "Reviewer_aQh1",
+          "evidence": "Three hours at confidence 5: two questions and two one-line limitations, one of them wrong ('The observations are based on CIFAR-10 dataset'). No reply to the rebuttal. The ClusTR question is substantive, so the review is thin rather than empty."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_psEt",
+          "claim": "Line 158 assigns labels (0,2,8,9) to 'Non-animal', but Figure 3(b) shows (0,1,8,9) as the correlated block.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors answered 'That is a typo': (0,2,8,9) is the STL-10 split and (0,1,8,9) the CIFAR-10 split. The camera-ready text now ties (0,2,8,9) to STL-10 in Fig. 2(a)(e). Minor."
+        },
+        {
+          "reviewer": "Reviewer_psEt",
+          "claim": "The influence of the linearization approximation on networks with non-linear layers is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "The linear-model check (camera-ready Table 1 and Figure 3: 29.21% vs 39.53% clean accuracy) and the intuitive paragraph in Section 3.1 first appear in the rebuttal, so the submission lacked them."
+        },
+        {
+          "reviewer": "Reviewer_psEt",
+          "claim": "Table 1 lacks defense baselines such as TRADES.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 3 still compares only AT and AT+C; TRADES appears only in the rebuttal (52.80 vs 53.71 PGD-20)."
+        },
+        {
+          "reviewer": "Reviewer_aQh1",
+          "claim": "The observations are based on CIFAR-10; the class hierarchy might not be clear on other data sets.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The weight-correlation figure covers STL-10, CIFAR-10, CIFAR-20 and ImageNet-10 (eight models, which Reviewer_7cFv also describes), and domain adaptation uses CIFAR-100 subsets and TinyImageNet. Only the robustness-enhancement experiment uses CIFAR-10 alone."
+        },
+        {
+          "reviewer": "Reviewer_aQh1",
+          "claim": "The robustness improvement is limited.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: AutoAttack +0.63 (best checkpoint) and +1.31 (last checkpoint), no more than the +1.23 and +1.26 clean-accuracy gains; single runs."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No reviewer posted after the 2021-08-10 author responses. Reviewer_HkhD and Reviewer_psEt never edited their reviews; Reviewer_aQh1's only edit is dated 2021-07-07, its posting day, a month before the rebuttal.",
+        "what_convinced_or_not": "Nothing visible. The ClusTR comparison (AutoAttack 43.21 vs 0.03), the wrong-hierarchy ablation (PGD-20 45.36 vs 47.78, baseline 46.50), the TRADES result, the linear-model argument and the typo fix went unacknowledged. The spotlight rests on pre-rebuttal ratings."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance fits 6/7/6, but no reviewer rated above 7 or asked for a highlight. The meta-review restates the abstract, adds 'a hot research topic' and 'We think the paper will interest many readers', and names no weakness. It says the authors 'illustrated how to further boost adversarial robustness', where Reviewer_aQh1 wrote 'The robustness improvement is limited' and Reviewer_HkhD 'moderate improvement'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings above threshold (6/7/6) with uniform praise for novelty",
+        "Area chair's view that the topic is 'hot' and the paper 'will interest many readers'",
+        "No reservation reached the meta-review: no reviewer engaged after the rebuttal, and the meta-review names no weakness"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Clean accuracy rises as much as robust accuracy, so the robustness gain may be generic (Reviewer_7cFv; Table 3 confirms)",
+    "Pre-training plus retraining at least doubles the cost; the 'negligible' per-epoch timing understates it (Reviewer_7cFv)",
+    "No state-of-the-art defense comparison and no seed variance (Reviewer_7cFv)",
+    "Feature clustering shown for one model only (Reviewer_7cFv)",
+    "Simple two-way animal/non-animal setting and no theory for why adversarial training clusters (Reviewer_cKPT)",
+    "Domain-adaptation design: source accuracy reported, no fine-level accuracy, near-ceiling fine-tuning, AlexNet R+C anomaly (Reviewer_92hs, Reviewer_cKPT)",
+    "Writing hard to follow (Reviewer_7cFv, Reviewer_cKPT); Reviewer_psEt in B found it 'easy to follow'"
+  ],
+  "issues_only_b": [
+    "Whether the class hierarchy or the regularizer itself drives the gain; comparison with ClusTR-style clustering regularizers (Reviewer_aQh1)",
+    "Whether a binary C_op scales to complex hierarchies such as ImageNet (Reviewer_psEt)",
+    "Generality beyond CIFAR-10 (Reviewer_aQh1; wrong, the paper uses four data sets)",
+    "Line-158 label mismatch with Figure 3(b) (Reviewer_psEt)",
+    "Direction of cause in the attack confusion matrix (Reviewer_HkhD)",
+    "How the features z_i in Eq. 9 are computed (Reviewer_aQh1)"
+  ],
+  "shared_issues": [
+    "Validity of analysing the linearized sub-network instead of the real network (Reviewer_7cFv, Reviewer_cKPT; Reviewer_psEt)",
+    "Small robustness improvement (Reviewer_7cFv, Reviewer_cKPT; Reviewer_aQh1, Reviewer_HkhD)",
+    "Missing defense baselines such as TRADES (Reviewer_7cFv, Reviewer_92hs; Reviewer_psEt)",
+    "Retraining from scratch in Algorithm 2 (Reviewer_7cFv; Reviewer_HkhD)",
+    "Figures 5 and 6 hard to read (Reviewer_cKPT; Reviewer_HkhD)",
+    "Novelty of the clustering observation (all six reviewers)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two committees saw almost the same ratings, and the area chairs made the difference. Committee A ended at 5/7/6 (mean 6.0) after each reviewer added one point; Committee B stayed at 6/7/6 (mean 6.33) with no reviewer reply to the rebuttal. No reviewer on either side rated above 7 or asked for a highlight. A's area chair carried Reviewer_7cFv's two unresolved points into the meta-review (the link to the original network 'remains speculative'; 'the experimental results could be stronger') and gave a poster. B's area chair paraphrased the abstract, gave topical interest as the only reason ('a hot research topic', 'will interest many readers'), dropped every weakness B's own reviewers listed, and gave a spotlight. Mostly the same facts were weighted differently, but A also tested the results harder: 7cFv's objection that clean accuracy rises as much as robust accuracy holds in Table 3, and no B reviewer probed the results that closely or engaged after the rebuttal.",
+  "candidate_reasons": [
+    "AC upgrade without reviewer support",
+    "meta-review omits reviewers' weaknesses",
+    "topic popularity drives the highlight",
+    "thin reviews, no rebuttal engagement",
+    "detailed detractor exposes confounded gains",
+    "AC carries unresolved reservations forward"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_7cFv review and 2021-08-16 comment",
+    "Reviewer_aQh1 limitations ('The robustness improvement is limited')",
+    "Reviewer_HkhD main review ('moderate improvement')",
+    "Reviewer_92hs pros vs paper Section 1 contribution bullets",
+    "paper Table 3: natural vs AutoAttack accuracy, AT vs AT+C",
+    "paper Algorithm 2 and Section 4.2.1 timing paragraph",
+    "paper Table 2 AlexNet and ResNet-18 rows",
+    "Committee B discussion: no reviewer reply after the 2021-08-10 author responses"
+  ]
+}

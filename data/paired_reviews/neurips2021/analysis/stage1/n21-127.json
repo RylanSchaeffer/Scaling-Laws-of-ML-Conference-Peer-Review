@@ -1,0 +1,217 @@
+{
+  "pair_id": "n21-127",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        7,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ecPK",
+        "Reviewer_epzC",
+        "Reviewer_WJWj"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Split panel 5/5/6/7 (Reviewer_ecPK, Reviewer_WJWj at 5; Reviewer_epzC 6; Reviewer_dx3d 7). No single reviewer stands apart; the outcome turns on the two 5s."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_WJWj",
+          "evidence": "2 hours; two-sentence summary; asks 'how tight the derived lower bounds are' although Section 3.2 opens 'These lower bounds are nearly tight, as shown by the upper bounds in Theorem 4'; says 'many undefined terms' with no example and did not reply when the authors asked for examples; edited 2021-08-28 with no post-rebuttal text."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ecPK",
+          "claim": "The mechanism gives point queries and the sum query the same perturbation; by privacy amplification through subsampling, point queries on disjoint subsets need much less noise, so the paper is 'only an evaluation/criticism valid for that particular synthetisation technique'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 3 quantifies over every randomized M that outputs a positively weighted dataset and satisfies the privacy definition; it assumes no noise allocation. Under add/remove neighbours a record changes one point query by 1 (footnote 2), so each point query has sensitivity 1 like the sum, and Delta_1 of all d+1 queries is 2 (Section 3.1). A fixed partition gives parallel composition, not subsampling amplification; no point query can take less than order 1/epsilon noise."
+        },
+        {
+          "reviewer": "Reviewer_ecPK",
+          "claim": "The pure-DP proof of Theorem 3 uses datasets that differ by 2(alpha C + k) records, so it may not give bounds for the neighbouring relation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Group privacy (factor e^{r epsilon} for datasets r records apart) holds for every epsilon-DP mechanism, and packing arguments built on it are a standard lower-bound technique (Remark 2 says the proofs are packing arguments). The reviewer wrote 'I am not familiar with this proof technique'. The supplementary proof is not in the PDF, so its steps were not checked line by line."
+        },
+        {
+          "reviewer": "Reviewer_WJWj",
+          "claim": "It is unclear how tight the derived lower bounds are.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 3.2, Theorem 4: upper bounds that match Theorem 3 up to constants for pure and approximate DP and nearly for zCDP. Reviewer_dx3d's review of the submission cites the same section on tightness, so it was there at review time."
+        },
+        {
+          "reviewer": "Reviewer_WJWj",
+          "claim": "The theoretical results are somewhat incremental given earlier work, e.g. the trade-off analyses in [3].",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready PDF says after Theorem 3 that its pure and approximate DP cases 'can be proved using the result of their Theorem 7.2' and, in Related Work, 'Our constructions are based on their proof techniques'. [3] did not study the trade-off with the sum query, so 'trade-off analyses in [3]' overstates it; the zCDP case and the trade-off framing are new."
+        },
+        {
+          "reviewer": "Reviewer_epzC",
+          "claim": "The baselines are ad hoc and should be compared with optimization-based methods such as the matrix mechanism (McKenna et al. 2018).",
+          "checked_against_paper": "incorrect",
+          "evidence": "The matrix mechanism and HDMM choose which queries to measure; the paper's algorithms post-process noisy answers into microdata, and its NNLS baseline is the usual post-processing in such pipelines (Section 4 and footnote 3). The lower bound holds for any measurement strategy. epzC accepted the clarification and raised the score."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": [
+          "Reviewer_epzC",
+          "Reviewer_ecPK"
+        ],
+        "evidence": "Reviewer_epzC edited 2021-08-25: 'Thank you for addressing my questions and clarifying some misunderstandings. I updated my score accordingly' (up, to 6). Reviewer_ecPK edited 2021-09-06: 'have reduced my score by a point' (6 to 5). Reviewer_WJWj edited 2021-08-28 with no post-rebuttal text, so any change is unknown. Reviewer_dx3d did not edit. No reviewer posted in the discussion.",
+        "what_convinced_or_not": "The answers on microdata, local DP, the matrix mechanism and positive weights moved epzC up. ecPK accepted the OLS and dataset answers but not the group-privacy answer, then added a new objection (subsampling amplification, mechanism specificity) a month after the author response; the record has no author reply to it. WJWj did not reply to the request for examples or to the answer on tightness and practical implications."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts a 5/5/6/7 panel on its own judgement: 'Because of the high significance and potential impact of the work, I tend to favour acceptance.' Calls the reviews 'divided' and repeats the detractors' doubt 'whether the results are specific to the mechanism analysed and could be circumvented by using a different mechanism' without resolving it ('if applicable'). Theorem 3 already excludes any mechanism that outputs microdata.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "The AC's own view of high significance for official statistics (US Census 2020) carried acceptance over two below-threshold scores.",
+        "A divided panel (mean 5.75) kept the tier at poster.",
+        "Reviewer_ecPK's late, incorrect objection that the trade-off is specific to one mechanism, repeated unresolved in the meta-review.",
+        "Reviewer_WJWj's concerns on writing, incrementality relative to [3] and tightness of the bounds."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        8,
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        2,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_bo89",
+        "Reviewer_eGa2"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_bo89",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only score above 7. The review is mostly a restated summary; it names no weakness, asks one implementation question (near-zero noise variance) and fixes a typo. It calls the experiments 'extensive' and says they 'validate their principles', but does not assess novelty against [3] or the proofs. Its only post-rebuttal trace is '[response acknowledged]'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_eGa2",
+          "evidence": "Confidence 5 ('checked the math/other details carefully'), but the one-sentence summary ('presents lower bound of query errors') misses the microdata requirement and the trade-off, and the main objection confused simultaneous error with per-query error. Resolved: eGa2 wrote 'It clears my confusion' and raised to 6."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_eGa2",
+          "claim": "The paper ignores Dinur and Nissim (PODS 2003) and Blum, Ligett and Roth (J. ACM 2013), which give more general results; the epsilon-DP case of Theorem 3 seems a corollary of the latter.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper bounds per-query expected squared error and the trade-off between point queries and their sum under a nonnegativity requirement (Eq. 1, Theorem 3). Blum, Ligett and Roth bound simultaneous error, which behaves differently (the camera-ready contrasts the two in Eq. 1, citing [7]); Dinur and Nissim concern reconstruction from subset-sum answers. Neither yields the sum/point trade-off. eGa2 conceded on 2021-09-05."
+        },
+        {
+          "reviewer": "Reviewer_eGa2",
+          "claim": "If part of Theorem 3 follows from Theorem 7.2 in [3], that part should be credited to [3].",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready says after Theorem 3 that its pure and approximate DP cases 'can be proved using the result of their Theorem 7.2'."
+        },
+        {
+          "reviewer": "Reviewer_4cAR",
+          "claim": "It is unclear how original the proof of Theorem 3 is.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied that the novelty is 'not in the proof of theorem 3, but in the conclusion/interpretation'; the camera-ready credits [3]'s Theorem 7.2 and proof techniques."
+        },
+        {
+          "reviewer": "Reviewer_NcCk",
+          "claim": "The uncertainty principle is an artefact of the requirement that synthetic data be non-negatively weighted.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1: 'these lower bounds arise specifically because negative query answers are disallowed'; Broader Impact says negative weights avoid it. The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_NcCk",
+          "claim": "The principle is stated only for the max expected per-query squared error metric.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 1 and Theorem 3 use per-query expected squared error only; whether that metric matters most is a judgement, not a fact the paper settles."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_eGa2"
+        ],
+        "evidence": "Reviewer_eGa2 posted on 2021-09-05 'It clears my confusion, and I have changed my rating accordingly' and edited the review the same day (final 6). Reviewer_bo89 edited 2021-08-31, by its text only to add '[response acknowledged]'. Reviewer_NcCk replied 2021-08-31 agreeing that negative weights would need changes to downstream systems; review not edited. Reviewer_4cAR did not edit.",
+        "what_convinced_or_not": "The authors' explanation that their per-query expected error differs from the simultaneous error of Blum et al., so their trade-off does not follow from that work, convinced eGa2. The concession that Theorem 3's novelty lies in interpretation did not lower 4cAR's 7."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "All four final ratings are 6 or more, so acceptance follows the reviews. The meta-review restates the result correctly as applying to 'any private algorithm that is consistent on micro data', calls it 'an interesting paper that throws light on an important phenomenon' and ends 'I recommend that the paper be accepted'. It gives no reason for the spotlight tier, which goes beyond two 'marginally above' scores and one thinly argued 8.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All post-rebuttal ratings at 6 or more (mean 6.75), with an 8 from Reviewer_bo89.",
+        "The strongest objection (Reviewer_eGa2, prior work) was refuted in the rebuttal and withdrawn.",
+        "The AC's own reading: the result explains the Census anomalies and the cost of the microdata requirement."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Trade-off said to be specific to one mechanism; subsampling amplification said to cut point-query noise (Reviewer_ecPK, echoed in the meta-review)",
+    "Validity of the group-privacy step in the pure-DP proof of Theorem 3 (Reviewer_ecPK)",
+    "Tightness of the lower bounds (Reviewer_WJWj)",
+    "Writing quality and definition of microdata (Reviewer_WJWj)",
+    "Practical implications not discussed (Reviewer_WJWj; authors conceded and promised text)",
+    "No comparison with the matrix mechanism or local DP (Reviewer_epzC)",
+    "Proposed algorithms have no theoretical guarantees (Reviewer_ecPK, Reviewer_dx3d)"
+  ],
+  "issues_only_b": [
+    "Results said to be subsumed by Dinur-Nissim and Blum-Ligett-Roth (Reviewer_eGa2, withdrawn)",
+    "Principle holds only for max per-query squared error (Reviewer_NcCk)",
+    "Advice to build microdata by post-processing goes too far (Reviewer_NcCk)",
+    "Numerical stability when noise variance is near zero (Reviewer_bo89)",
+    "Experiments should summarise results on all datasets (Reviewer_4cAR)"
+  ],
+  "shared_issues": [
+    "High importance for the US Census and official statistics (both ACs, most reviewers)",
+    "Theory leans on Balcer and Vadhan [3]; novelty lies in the interpretation (A: Reviewer_WJWj, Reviewer_ecPK; B: Reviewer_4cAR, Reviewer_eGa2)",
+    "Trade-off comes from the nonnegativity (positive-weights) requirement (A: Reviewer_epzC; B: Reviewer_NcCk)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees accepted the paper for its importance to official statistics; the tier gap comes from weak 5s in A and a thin 8 in B. In A, Reviewer_ecPK cut a 6 to a 5 in a review edit dated 2021-09-06, a month after the author response. The new argument was that privacy amplification by subsampling would let point queries take less noise, so the trade-off holds only for one synthesis technique. That is wrong: Theorem 3 covers every private mechanism that outputs positively weighted data, and each point query has sensitivity 1, like the sum (footnote 2). Nobody answered it, and A's meta-review repeated it as an open question while calling the reviews divided. A's other 5 (Reviewer_WJWj, 2 hours) asks how tight the bounds are, which Theorem 4 answers. In B, the one strong objection (Reviewer_eGa2: the results follow from Blum, Ligett and Roth) was also wrong, but the authors refuted it and eGa2 raised to 6. B's AC then chose a spotlight on scores of 8, 7, 6, 6. The 8 (Reviewer_bo89) is mostly summary, and the meta-review gives no reason for the tier. Even without ecPK's late cut, A's mean would be 6.0 against B's 6.75, so the draw of reviewers explains most of the gap. One shared fact was weighed differently: the theory leans on Balcer and Vadhan [3]. WJWj counted this against the paper; B's reviewers did not.",
+  "candidate_reasons": [
+    "late incorrect downgrade after rebuttal",
+    "AC repeated unresolved reviewer doubt",
+    "wrong prior-work objection refuted early",
+    "thinly argued champion score",
+    "thin detractor review already answered",
+    "spotlight tier without stated reason"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_ecPK final review, Update section (edited 2021-09-06)",
+    "Committee A meta-review",
+    "paper Section 3.1: Theorem 3, footnote 2, sensitivity remark after Theorem 3",
+    "paper Section 3.2: Theorem 4",
+    "Reviewer_WJWj final review and authors' reply (2021-08-05)",
+    "Reviewer_eGa2 review and comment (2021-09-05)",
+    "Reviewer_bo89 final review",
+    "Committee B meta-review",
+    "paper text after Theorem 3 crediting Theorem 7.2 of [3] (camera-ready PDF, created 2021-10-25)"
+  ]
+}

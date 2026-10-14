@@ -1,0 +1,231 @@
+{
+  "pair_id": "n21-057",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_MXxs",
+        "Reviewer_oRvo",
+        "Reviewer_i7rY"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 7 lie within one point. No reviewer argued for more or less than acceptance."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_MXxs",
+          "claim": "The paper speaks about fairness without formally defining it.",
+          "checked_against_paper": "correct",
+          "evidence": "Even the camera-ready PDF defines no fairness criterion. The objective is utility only (eqs. 1 and 3), and Section 2.1 sets the goal 'absent additional fairness constraints'."
+        },
+        {
+          "reviewer": "Reviewer_MXxs",
+          "claim": "Related work cites a recharging-bandit paper and a delayed-feedback paper together as the same kind of work.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Section 1 still says 'recent works that have formulated delayed action impact in bandit learning [56, 38]'. [56] is Pike-Burke et al. 2018 on delayed, aggregated feedback; [38] is Recharging bandits."
+        },
+        {
+          "reviewer": "Reviewer_MXxs",
+          "claim": "Related work misses Cella and Cesa-Bianchi 2020, Kolobov et al. 2020, Pike-Burke and Grünewälder 2019, and Gael et al. 2020.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied that they 'will include these papers'. The camera-ready bibliography adds all four ([10], [24], [41], [55]), but the main text cites none of them."
+        },
+        {
+          "reviewer": "Reviewer_i7rY",
+          "claim": "Lemma 3.1 restates the known linear-regret result for classical algorithms in non-stationary settings, and the importance weighting in eq. (5) is a known technique with no citation.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded both. The camera-ready adds citation [29] at eq. (5) and a sentence that Lemma 3.1 'resembles' the non-stationary negative results."
+        },
+        {
+          "reviewer": "Reviewer_i7rY",
+          "claim": "The impact function is coordinate-wise and cannot model correlations between arms.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (2): f_k(t) depends only on arm k's own probabilities p_k(s). The authors said they do not know whether the results extend to correlated impacts."
+        },
+        {
+          "reviewer": "Reviewer_PRpe",
+          "claim": "The negative result for standard algorithms holds because the optimal action can be a mixed strategy.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors confirmed it ('Indeed, our negative result follows from that an optimal action is to play a mixed strategy'). The EXP3 paragraph in Section 4 gives the same reason."
+        },
+        {
+          "reviewer": "Reviewer_oRvo",
+          "claim": "Appendix B adds group fairness only by fixing the Lagrange multipliers instead of optimising them.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Appendix B is not in the PDF. On 2021-08-19 the authors conceded that the multipliers 'need to be optimized' and called fairness constraints out of scope."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_oRvo",
+          "Reviewer_i7rY"
+        ],
+        "evidence": "Reviewer_oRvo's final text says 'change my score from 5 to 6' (edited 2021-08-21). Reviewer_i7rY wrote on 2021-08-25 'I am satisfied with the responses. I have changed my score' and edited the review that day; the final rating is 7, so the move was up. Reviewer_MXxs edited only on the posting day. Reviewer_PRpe never edited or replied.",
+        "what_convinced_or_not": "The fairness explanation moved Reviewer_oRvo one point. Its follow-up then showed that the Appendix B extension is loose; the authors conceded, so the fairness link stayed open. Reviewer_i7rY accepted promises to cite importance weighting, acknowledge Lemma 3.1's similarity to non-stationary results, and explain the experiments. Reviewer_MXxs and Reviewer_PRpe did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review has two sentences: 'no objection on the technical results ... or on the significance', but 'major presentation concerns' about the fairness connection and related work. These are the points Reviewer_MXxs, Reviewer_oRvo and Reviewer_i7rY raised. It summarises the reviewers collectively and shows no own reading. Ratings of 6, 6, 7, 7 support a poster.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All reviewers accepted the results as sound: an optimal algorithm with a matching lower bound",
+        "Accept-level but lukewarm ratings (6, 6, 7, 7; one 6 raised from 5) and no reviewer above 7",
+        "Positioning faults the AC called 'major presentation concerns': an undefined fairness link and incomplete, partly mis-cited related work"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ZiMd",
+        "Reviewer_L6w5",
+        "Reviewer_dTZk"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 7, 7, 7 lie within one point. No reviewer rated above 7, so no reviewer championed a spotlight."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_8ugy",
+          "evidence": "A thin 7 at confidence 3: generic praise ('very novel', 'very interesting and practical') and three short questions. Posted 2021-08-03, after the other four. No reply to an author answer that addressed the choice of ε, not its computation question."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ZiMd",
+          "claim": "The probability of choosing an arm, not the pull itself, drives the arm's evolution.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (2) averages the probabilities p_k(s), not the realised activations. The B AC repeated the concern."
+        },
+        {
+          "reviewer": "Reviewer_ZiMd",
+          "claim": "The discretisation ε depends on the Lipschitz constant, which the results hide.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorems 4.2 and 5.1 give ε only in terms of T. The authors confirmed that ε scales as L^(1/3) and that they absorbed it into constants."
+        },
+        {
+          "reviewer": "Reviewer_aHiG",
+          "claim": "Each p_k takes values in {ε, 2ε, ..., 1}, so no arm can get probability 0.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 defines P_ε with every p_k at least ε. The authors confirmed this keeps the importance weights bounded."
+        },
+        {
+          "reviewer": "Reviewer_aHiG",
+          "claim": "Regret is measured against the best fixed policy, not the optimal dynamic policy.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) takes the supremum over fixed p. Footnote 4 concedes that the dynamic benchmark would need a continuous-state MDP. Reviewer_dTZk made the same point."
+        },
+        {
+          "reviewer": "Reviewer_8ugy",
+          "claim": "The paper does not address the computational cost of selecting a meta arm from the ε-cover.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 takes an argmax over P_ε, and the paper says the number of meta arms 'grows exponentially with K'. The main text gives no procedure or cost. The author reply addressed only the choice of ε."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "Essentially nothing in the main text explains how the lower bounds are proved.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The PDF is the camera-ready version. Its five-line paragraph after Theorem 6.1 paraphrases the rebuttal, so it was probably added later. Reviewer_MXxs, Reviewer_PRpe and Reviewer_ZiMd asked for the same."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_dTZk (edited 2021-09-03): 'I will keep my score unchanged'. Reviewer_ZiMd's 2021-08-31 edit thanks the authors and names no score change. Reviewer_L6w5's edit (2021-08-01) predates the 2021-08-10 rebuttal. Reviewer_aHiG and Reviewer_8ugy never edited or replied.",
+        "what_convinced_or_not": "The answers on ε, ρ, general impact functions and the dynamic benchmark satisfied Reviewer_ZiMd and Reviewer_dTZk. Reviewer_ZiMd still found the probability-driven impact justified only by 'very specific applications'. No B reviewer disputed the framing, so the rebuttal had nothing contentious to settle."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The AC followed the reviews' direction ('uniformly positive') but went one tier above them, because no rating exceeds 7. The upgrade rests on the AC's own words, 'very strong contribution' and 'of interest ... [to] the broader community', and on its own reading ('I found the assumption ... odd'). It calls the remaining weaknesses 'minor'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Uniformly positive reviews (7, 6, 7, 7, 7), none below 6",
+        "The AC's own judgement that the setting is new, timely and of broad interest, with an optimal algorithm and a matching lower bound",
+        "Weaknesses (lower-bound intuition, probability-driven impact) treated as minor camera-ready fixes"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Fairness is the stated motivation but is never defined; the objective is pure utility, and Appendix B adds group fairness only with fixed Lagrange multipliers (Reviewer_MXxs, Reviewer_oRvo)",
+    "Related work incomplete and partly mis-cited: delay-dependent, recovering and rested-bandit papers missing; a delayed-feedback paper grouped with recharging bandits (Reviewer_MXxs)",
+    "Standard tools without attribution: Lemma 3.1 restates the non-stationary linear-regret result, and eq. (5) is ordinary importance weighting (Reviewer_i7rY)",
+    "Experiments reported without explanation; baselines and their tuning unclear (Reviewer_i7rY, Reviewer_MXxs)",
+    "Repeated pulls of a meta arm still carry transients, so the estimate is not the meta arm's own reward (Reviewer_i7rY)"
+  ],
+  "issues_only_b": [
+    "How to set ε, s_a and ρ; ε hides the Lipschitz constant (Reviewer_ZiMd, Reviewer_L6w5, Reviewer_aHiG)",
+    "Benchmark is the best fixed policy, not the optimal dynamic policy; the Appendix H argument for it is informal (Reviewer_aHiG, Reviewer_dTZk)",
+    "High variance of importance weights for low-probability arms (Reviewer_dTZk)",
+    "Delayed observation of rewards is not modelled (Reviewer_dTZk)",
+    "Every arm keeps probability at least ε (Reviewer_aHiG)",
+    "No instance-dependent lower bound; the cost of optimising over the ε-cover is not addressed (Reviewer_8ugy)"
+  ],
+  "shared_issues": [
+    "Main text gives little intuition for the lower bound (A: Reviewer_MXxs, Reviewer_PRpe; B: Reviewer_ZiMd and the AC)",
+    "Why the probability of choosing an arm, not the pull, drives its evolution; realism of the meta-arm protocol (A: Reviewer_MXxs; B: Reviewer_ZiMd and the AC)",
+    "Restrictive impact function: per arm only, one discount factor, no correlations (A: Reviewer_i7rY; B: Reviewer_ZiMd, Reviewer_L6w5, Reviewer_aHiG)",
+    "The negative result for standard algorithms is expected and the importance weighting is standard: A's Reviewer_i7rY counts both against the paper and Reviewer_PRpe says the negative result rests on a mixed optimum; B's Reviewer_dTZk lists both as pros and the B AC praises the negative result",
+    "δ written for γ near line 118 (A: Reviewer_MXxs, Reviewer_oRvo; B: Reviewer_ZiMd, Reviewer_L6w5, Reviewer_aHiG)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B's spotlight came from its area chair, not its reviewers. B's five ratings were 7, 6, 7, 7, 7, so no reviewer went above 'Good paper, accept', and the fifth 7 (Reviewer_8ugy) is a thin, late review. The B meta-review calls the paper a 'very strong contribution' of interest to 'the broader community'; that tier judgement is the AC's own. Committee A rated the paper 6, 6, 7, 7, and Reviewer_oRvo's 6 was a 5 before the rebuttal. A's reviewers attacked the paper's positioning, not its theorems. They said fairness is invoked but never defined (Reviewer_MXxs, Reviewer_oRvo), the related work is incomplete and mis-cited (Reviewer_MXxs), and Lemma 3.1 and the importance weighting are known tools without attribution (Reviewer_i7rY). All of these hold: the authors conceded them, and the camera-ready PDF still defines no fairness criterion and still groups a delayed-feedback paper with recharging bandits as 'delayed action impact [56, 38]'. A's AC called these 'major presentation concerns' and stopped at poster. B's reviewers never raised them and read the policing and lending motivation as a strength. Where both committees saw the same fact, they weighted it in opposite directions: Reviewer_dTZk lists Lemma 3.1 and EXP3-style importance weighting as pros, and Reviewer_i7rY lists them as known results without attribution. The gap is AC calibration on near-equal, accept-level reviews, widened by correct positioning faults that only A's reviewers found.",
+  "candidate_reasons": [
+    "AC enthusiasm above reviewer scores",
+    "fairness framing doubted only in A",
+    "related-work faults found only in A",
+    "known components read as strengths",
+    "near-equal scores, AC sets tier"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_MXxs final review (fairness, related work)",
+    "Reviewer_oRvo final review and 2021-08-12 follow-up (Appendix B multipliers)",
+    "Reviewer_i7rY final review and 2021-08-25 reply",
+    "Reviewer_dTZk final review, Pros (A) and (B)",
+    "Reviewer_8ugy final review",
+    "paper Section 1, Related work ('delayed action impact [56, 38]')",
+    "paper Section 2, eqs. (1) to (3) and Section 2.1 (utility-only objective)",
+    "paper Section 6, paragraph after Theorem 6.1 (camera-ready PDF)"
+  ]
+}

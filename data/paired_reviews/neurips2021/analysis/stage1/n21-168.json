@@ -1,0 +1,201 @@
+{
+  "pair_id": "n21-168",
+  "prompt_version": 1,
+  "kind": "oral/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 8],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_3uQ8", "Reviewer_yauQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 8 lie within one point. The 8 comes from the thinnest review (Reviewer_FCFz), but it did not change the outcome."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_FCFz",
+          "evidence": "Rating 8 after 1.5 hours: a summary and one paragraph of general praise ('The experiments clearly demonstrate superior performance on a number of control tasks'), with no question and no weakness. The authors replied with one line of thanks."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_yauQ",
+          "claim": "Most of the theoretical results were already shown in C-learning, the same authors' earlier paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 4.1 (Lemma 4.1 Bellman identity, Lemma 4.2 value-iteration equivalence, Corollary 4.2.1 tabular convergence, Lemma 4.3 policy improvement) follows the C-learning analysis. Sec. 2 calls C-learning the most similar prior work, with 'a similar temporal-difference update'. The authors conceded: 'The analysis of convergence and improvement guarantees are similar to C-learning'. Only Sec. 4.2 (robust control, Lemma 4.4 Hellinger) has no C-learning counterpart."
+        },
+        {
+          "reviewer": "Reviewer_yauQ",
+          "claim": "Only one imitation-learning baseline (SQIL) is included.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Sec. 5 also compares against AIRL and DAC (adversarial imitation learning), and against VICE, ORIL, PURL and frozen variants. The authors' response pointed to AIRL and DAC in the submitted results figure; the reviewer did not dispute it."
+        },
+        {
+          "reviewer": "Reviewer_yauQ",
+          "claim": "The loss in Algorithm 1 uses s_{t+1} where s_t is meant, and p_U(s_t | e_t = 1) appears before its definition.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded both typos. The camera-ready Algorithm 1 evaluates the classifier at s_t."
+        },
+        {
+          "reviewer": "Reviewer_3uQ8",
+          "claim": "The image-based experiments use relatively simple tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 5.2: two of the three image tasks are reaching tasks, 'mechanically easier than the state-based tasks', and all baselines make progress on them. Sec. 6 concedes that RCE and all baselines struggle on image versions of the harder tasks."
+        },
+        {
+          "reviewer": "Reviewer_3uQ8",
+          "claim": "In sawyer_push the success examples only show the end effector touching the puck, so the task looks underspecified.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The success examples also have the puck moved to the far right of the table (author response; camera-ready Sec. 5.1). The camera-ready sentence repeats the rebuttal word for word, so the submitted text probably did not state it."
+        },
+        {
+          "reviewer": "Reviewer_3uQ8",
+          "claim": "The statement that the method works when the user's capabilities differ from the agent's is not linked to any experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 3.1, 'Experimentally, we find that our method succeeds even in cases where this assumption is violated', has no pointer to a figure or appendix, even in the camera-ready."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_yauQ"],
+        "evidence": "Reviewer_yauQ edited the review on 2021-08-31, after the 2021-08-06 responses, and added 'After reading the response and other reviewers' feedback, I'd like to improve my score'. The final rating is 7, so the first rating was lower. Reviewer_3uQ8's only edit is on the posting day, before the rebuttal. Reviewer_FCFz never edited. No reviewer posted in the visible discussion.",
+        "what_convinced_or_not": "The response corrected Reviewer_yauQ's baseline count (AIRL and DAC were in the paper), reported a C-learning variant at about 0.07 return against 0.2 for RCE on sawyer_push, and conceded that the convergence analysis is similar to C-learning. This lifted Reviewer_yauQ only to 7. The answers to Reviewer_3uQ8 on sawyer_push, task selection and the failed image tasks did not move that 7."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "A poster matches 7, 7, 8. The meta-review names the points of Reviewer_3uQ8 and Reviewer_yauQ on 'the relationship of the theory to existing proofs' and on fair baselines, and judges the elements 'nicely distinct'. It calls the paper 'another nicely done example of using a mix of existing and new tools to develop coherent theory and algorithms for a new spin on the problem', and limits 'rather significant impact' to 'some domains'. Its statement that the reviewers 'initially agreed upon the strong novelty' does not fit the first review of Reviewer_yauQ.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three accepts with no rating above 8 (mean 7.33)",
+        "AC reads the paper as a well-executed new spin built partly from existing tools, with large impact only in some domains",
+        "Reviewer_3uQ8's doubts about the experimental section kept that rating at 7 after the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Oral)",
+      "ratings_final": [8, 9, 7, 8],
+      "confidences": [4, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_LgSM", "Reviewer_9r4w"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_xycR",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only 9 ('Top 15%') among the seven reviews of this paper. It comes from a 2-hour, one-paragraph review ('very well presented and the work is solid') with 'one minor comment' on interpretability, and no edit or reply after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_xycR",
+          "evidence": "Rating 9 from one paragraph of general praise written in 2 hours. The only point is a minor comment on interpretability. No engagement after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_LgSM",
+          "evidence": "A list of general strengths ('The experimental evaluations are also comprehensive') with no specific point. The only con is 'not really a negative of the paper'. The post-rebuttal raise to 8 gives no reason beyond reading 'the other reviews and the authors' responses to them'. The authors' reply to this reviewer was a short promise to investigate non-binary success."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LgSM",
+          "claim": "The paper proves that the new Bellman equation gives the Bayes-optimal classifier and convergence to the optimal policy.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemmas 4.1 to 4.3 and Corollary 4.2.1. The convergence result holds in the tabular setting only, which the review does not say."
+        },
+        {
+          "reviewer": "Reviewer_6QWr",
+          "claim": "Robust example-based control is equivalent to minimising a squared Hellinger distance.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 4.2, Lemma 4.4."
+        },
+        {
+          "reviewer": "Reviewer_6QWr",
+          "claim": "The results show a clear advantage over recent state-of-the-art methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Fig. 2: RCE leads on all seven state-based tasks, and no baseline makes progress on bin picking or hammering. Fig. 4: on the two image reaching tasks the baselines also make progress, more slowly."
+        },
+        {
+          "reviewer": "Reviewer_9r4w",
+          "claim": "The user provides 200 success states for each manipulation task.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 5.1: 'we provide the agent with 200 successful outcomes to define the task'."
+        },
+        {
+          "reviewer": "Reviewer_9r4w",
+          "claim": "The classifier's negative examples can include state-action pairs that lead to success.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 7 and Eq. 8 draw negatives from the marginal p(s_t, a_t) of the replay data, which includes pairs that reach success."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_LgSM", "Reviewer_9r4w"],
+        "evidence": "Reviewer_LgSM edited on 2021-09-01: 'After reading the other reviews and the authors' responses to them, I am updating my score' (final 8). Reviewer_9r4w first wrote 'I'm open to increasing the score based on the authors response' and edited on 2021-09-02: 'most concerns about this paper have been well addressed at this point. I'm now more inclined to accept the paper' (final 8). Reviewer_xycR and Reviewer_6QWr never edited. No reviewer posted in the visible discussion.",
+        "what_convinced_or_not": "Reviewer_9r4w got a point-by-point answer: fixed-horizon episodes without a halt action, actions for success examples drawn from the policy (ablation Fig. 6d), the entropy bonus as the cause of motion in the bin task, about 10 success examples being enough (Fig. 6a) against at least one full 151-step trajectory for imitation, and hypotheses for the failure of the imitation baselines. Reviewer_LgSM states no reason; the reply to this reviewer only promised to investigate non-binary success."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The whole meta-review is two sentences: 'This was a well-received paper by all the reviewers. The discussion strengthened the acceptance score.' It gives no reason for the oral tier beyond the scores.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "High final ratings (8, 9, 7, 8; mean 8.0), including a 9",
+        "Two reviewers raised their ratings after the rebuttal, which the AC cites",
+        "No reviewer named a substantive weakness"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theory largely follows the authors' earlier C-learning analysis (Reviewer_yauQ; correct, and conceded)",
+    "No C-learning baseline (Reviewer_yauQ)",
+    "Image-based tasks are simple and the results 'somewhat underwhelming' (Reviewer_3uQ8; the paper concedes the limitation)",
+    "Tasks may have been chosen to favour RCE; which tasks failed (Reviewer_3uQ8)",
+    "sawyer_push success examples look underspecified (Reviewer_3uQ8; answered in the rebuttal)",
+    "Evaluation by return instead of success rate (Reviewer_3uQ8)",
+    "Claims about generalising goal-conditioned RL and about users with different capabilities lack experimental support (Reviewer_3uQ8)",
+    "Missing related work outside RL and imitation, such as RUDDER (Reviewer_3uQ8)",
+    "Too few imitation baselines (Reviewer_yauQ; wrong, AIRL and DAC were included)",
+    "Notation and Algorithm 1 typos (Reviewer_yauQ)"
+  ],
+  "issues_only_b": [
+    "Halting at success states and fixed-horizon evaluation (Reviewer_9r4w)",
+    "Which action goes with a success example (Reviewer_9r4w)",
+    "Data needs against imitation learning not quantified (Reviewer_9r4w)",
+    "Why the imitation baselines fail (Reviewer_9r4w)",
+    "Loss of interpretability without an explicit reward (Reviewer_xycR)",
+    "Non-binary definitions of success (Reviewer_LgSM)",
+    "Reason for the off-policy formulation (Reviewer_6QWr)",
+    "A single running example would help clarity (Reviewer_9r4w)"
+  ],
+  "shared_issues": [
+    "Parts of the idea come from prior work (A: theory from C-learning, Reviewer_yauQ; B: the rationale is 'not necessarily novel', Reviewer_6QWr)",
+    "The experimental analysis could go deeper (Reviewer_3uQ8 wants a stronger experimental section; Reviewer_9r4w wants a more careful comparison with imitation learning)",
+    "Presentation details (Reviewer_3uQ8 on crowded figures; Reviewer_9r4w on a running example)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B recommended an oral because its scores were higher, not because it found more in the paper. Both committees judged the paper a clear accept. The careful reviews in the two committees are close: 7 and 7 in A (Reviewer_3uQ8, Reviewer_yauQ), 7 and 8 in B (Reviewer_6QWr, Reviewer_9r4w). B's top score, the only 9 among the seven reviews, comes from a 2-hour, one-paragraph review (Reviewer_xycR). Reviewer_LgSM raised a generic review to 8 after the rebuttal and gave no reason. B's AC wrote two sentences that restate the scores. A's AC wrote a reasoned meta-review and read the paper as 'another nicely done example of using a mix of existing and new tools', a reading that fits a poster. Only A heard that the theory follows the authors' own C-learning analysis, a correct point that the authors conceded. A's AC still judged the elements 'nicely distinct', so this point at most shaped that wording. On the facts that both committees saw, they weighed the same evidence differently, and B's thinner, more generous reviews set its tier.",
+  "candidate_reasons": [
+    "Thin generous reviews lift scores",
+    "Score-following two-sentence meta-review",
+    "AC's own moderate-impact reading",
+    "Same praise, different score calibration",
+    "Unexplained post-rebuttal score raise",
+    "Prior-work overlap raised in one"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Reviewer_xycR final review",
+    "Reviewer_LgSM post-rebuttal update",
+    "Reviewer_9r4w review, author response and update",
+    "Reviewer_6QWr final review",
+    "Reviewer_yauQ review and author response on C-learning",
+    "Reviewer_3uQ8 review and author response",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper Sec. 2 and Sec. 4.1 (relation to C-learning)",
+    "paper Sec. 5.2 and Sec. 6 (image tasks, limitations)"
+  ]
+}

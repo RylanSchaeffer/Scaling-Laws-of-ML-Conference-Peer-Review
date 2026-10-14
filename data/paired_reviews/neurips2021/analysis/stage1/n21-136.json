@@ -1,0 +1,127 @@
+{
+  "pair_id": "n21-136",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 7, 6, 7],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_skXW", "Reviewer_tp15"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8, 7, 6, 7 all lie within one point of the 7.0 mean. The 8 (Reviewer_skXW) is the best-informed review in either committee, not an outlier."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_Hp5d", "evidence": "2 h. The summary is accurate and technical, but the evaluation is three sentences ('Important topic, significant contribution. ... Experimental study would be nice to have'); no discussion."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_skXW", "claim": "Concurrent ICML 2021 paper by Makarychev and Shan has 'very similar results, both in terms of bounds as well as algorithms'; Laber and Murtinho is weaker.", "checked_against_paper": "correct", "evidence": "Camera-ready Section 1.3 and Table 1: Makarychev and Shan's k-medians algorithm is 'essentially the same as our modified Algorithm 1' and their bounds O(log k log log k), O(k log k log log k) beat this paper's by log k/log log k. Laber and Murtinho was already cited as prior work [10] with O(d log k) bounds; Reviewer_Hp5d's summary of the submission reports that bound, so only Makarychev and Shan is new."},
+        {"reviewer": "Reviewer_skXW", "claim": "What improvement there is over the concurrent work is only polylog k factors.", "checked_against_paper": "correct", "evidence": "Table 1: this paper's distinct results versus Makarychev and Shan are the Omega(k) k-means lower bound (theirs Omega(k/log k)) and the l_p generalisation; its upper bounds are weaker by a log k/log log k factor."},
+        {"reviewer": "Reviewer_tp15", "claim": "k-medians cost is defined with l1 distances, not Euclidean distances.", "checked_against_paper": "correct", "evidence": "Section 2 defines cost1 with ||x - mu||_1, following Dasgupta et al. [6]. A definitional choice inherited from prior work, not an error."},
+        {"reviewer": "Reviewer_tp15", "claim": "All results hold only in expectation.", "checked_against_paper": "correct", "evidence": "Theorems 1-3 bound E[cost(T)]. The authors replied that Markov plus O(log n) repetitions gives a high-probability bound only by reading the data, and gave an example showing strong concentration is impossible for an oblivious algorithm."},
+        {"reviewer": "Reviewer_X5Zn", "claim": "The analysis removes the dependence on tree height, which is Omega(k) in the worst case.", "checked_against_paper": "correct", "evidence": "Section 1.2 and Figure 2: Dasgupta et al. lose O(H); the k standard basis vectors force height k - 1."},
+        {"reviewer": "Reviewer_Hp5d", "claim": "Prior upper bounds were k and k^2 (d log k in low dimension) with an Omega(log k) lower bound, and prior algorithms were deterministic.", "checked_against_paper": "correct", "evidence": "Section 1, Table 1 and Section 1.2: Dasgupta et al. pick the minimum cut; Laber and Murtinho use optimal search trees; both choose cuts from the data points."}
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_skXW (edited 2021-07-16) and Reviewer_tp15 (edited 2021-07-15) edited their reviews, both before the 2021-08-09 author responses. No reviewer posted in the discussion.",
+        "what_convinced_or_not": "The responses (experiments out of scope for a theory paper, Markov plus repetition for a high-probability bound, a conclusion to be added, agreement that the ICML papers are independent work) drew no reviewer reply. Nothing shows a changed view."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Acceptance matches 8, 7, 6, 7. The two-sentence meta-review answers Reviewer_skXW's point ('Considering that the ICML papers are concurrent works') and asks for a comparison that will 'highlight the unique insights and techniques'. No reviewer argued for a highlight.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Consistent accept scores (8, 7, 6, 7; mean 7.0), all at confidence 4",
+        "Concurrent ICML papers classified as independent work, so the overlap did not block acceptance",
+        "The best-informed reviewer framed the contribution as matched by concurrent work up to polylog factors, which leaves no case for a highlight",
+        "Standing reservations: no experiments (Reviewer_tp15, Reviewer_X5Zn, Reviewer_Hp5d), 'incremental' (Reviewer_X5Zn), an 'artificial problem' (Reviewer_skXW)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 6, 7, 8],
+      "confidences": [4, 3, 4, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 7, 8 all lie within one point of the 7.0 mean."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_mWXa", "evidence": "The top score (8) rests on a four-sentence evaluation ('The improvement is substantial ... Overall, this is a nice theoretical contribution') with no weakness, no question and no discussion. Accurate, but not evidence of a highlight-level paper."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_gBnK", "claim": "The left side of Equation (1) is not correct.", "checked_against_paper": "correct", "evidence": "The authors conceded a missing norm bar; camera-ready Eq. (1) reads max over mu in B of ||x - pi(x)||_1 + ||pi(x) - mu||_1. A typo, not an error in the argument."},
+        {"reviewer": "Reviewer_gBnK", "claim": "The guarantees hold only in expectation; what is the worst case?", "checked_against_paper": "correct", "evidence": "Theorems 1-3 bound E[cost(T)]. The bounds hold for worst-case inputs; the expectation is over the algorithm's random cuts only, as the authors explained. Reviewer_gBnK did not reply."},
+        {"reviewer": "Reviewer_fBhF", "claim": "The paper improves the state of the art 'by shaving a k factor for k-medians and a klog^2 factor for k-means'.", "checked_against_paper": "incorrect", "evidence": "Abstract and Table 1: O(k) to O(log^2 k) and O(k^2) to O(k log^2 k), a k/log^2 k gain for both objectives. A minor slip in a 1.5 h review."},
+        {"reviewer": "Reviewer_fBhF", "claim": "The algorithm needs only the reference centers (O(dk) input), not the data points.", "checked_against_paper": "correct", "evidence": "Algorithm 1 input is the k centers; Section 3.2 gives O(dk log^2 k) time."},
+        {"reviewer": "Reviewer_mWXa", "claim": "Gains from k to log^2 k (k-medians) and k^2 to k log^2 k (k-means), nearly matching an old k-medians lower bound and a new k-means lower bound.", "checked_against_paper": "correct", "evidence": "Abstract, Table 1 and Section 5. No B reviewer noted that Makarychev and Shan's concurrent bounds are better (camera-ready Section 1.3)."}
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_fBhF replied on 2021-08-19: 'I agree that the empirical work is not need for this submission', but left the 7 unchanged.",
+        "what_convinced_or_not": "The argument that a theory paper, like Dasgupta et al., needs no experiments convinced Reviewer_fBhF. That removes the only reservation behind 'I would give a strong accept but for the lack of empirical evaluation', so his stance rose without a rating change. Reviewer_gBnK did not answer the reply on expectation."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows 7, 6, 7, 8, but no reviewer argued for a highlight and the meta-review ('The reviewers provided sufficient positive feedback and support ... Therefore, I recommend accepting the paper') gives no reason for a spotlight. The AC raised the Makarychev and Shan overlap, which no B reviewer mentions, and set it aside as independent work needing a related-work update.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Consistent accept scores (7, 6, 7, 8; mean 7.0) praising substantial gains, near-tight bounds and a simple algorithm",
+        "Reviewer_fBhF withdrew the only stated barrier to a strong accept (no experiments) after the rebuttal",
+        "No reviewer weighed the concurrent work; the AC classified the overlap as independent work and asked only for a related-work update",
+        "The meta-review gives no stated reason for the spotlight tier"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Scoop by concurrent ICML 2021 work (Makarychev and Shan) with a similar algorithm and bounds, raised by a reviewer (Reviewer_skXW); in B only the AC mentions the overlap",
+    "Explainable clustering as an artificial problem with little bearing on k-clustering use (Reviewer_skXW)",
+    "Results incremental over Dasgupta et al. (Reviewer_X5Zn)",
+    "k-medians with l1 rather than Euclidean distance (Reviewer_tp15)",
+    "Missing conclusion section and a tightness conjecture repeated in the main text (Reviewer_tp15, Reviewer_X5Zn)",
+    "k-means bounds still poor (Reviewer_Hp5d)"
+  ],
+  "issues_only_b": [
+    "Typo in Equation (1) (Reviewer_gBnK)",
+    "Importance sampling of cuts instead of uniform sampling (Reviewer_gBnK)",
+    "Claim that obliviousness 'avoids introducing biases' should go (Reviewer_fBhF)",
+    "Unexplained claim that guarantees carry to future data points (Reviewer_fBhF)"
+  ],
+  "shared_issues": [
+    "No empirical evaluation (A: Reviewer_tp15, Reviewer_X5Zn, Reviewer_Hp5d; B: Reviewer_fBhF)",
+    "Guarantees only in expectation (A: Reviewer_tp15; B: Reviewer_gBnK)",
+    "Overlap with Makarychev and Shan (ICML 2021) treated as independent work (both meta-reviews)",
+    "Bounds not yet tight (A: Reviewer_X5Zn; B: Reviewer_gBnK on the stated limitations)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same paper the same way; the tier split is AC discretion at a mean of 7.0. Each panel gave one 8, two 7s and one 6, praised the simple oblivious algorithm and the near-tight bounds, and noted missing experiments and expectation-only guarantees. Both ACs knew of the concurrent ICML 2021 paper by Makarychev and Shan and both classified it as independent work; neither meta-review gives a reason for its tier. The difference is what the reviewers knew. In A, the best-informed reviewer (Reviewer_skXW, 8, 10 h including the concurrent papers) wrote that the paper was scooped by work with 'very similar results, both in terms of bounds as well as algorithms', that the differences are polylog factors, and that acceptance was a 'policy' question. The camera-ready's own Section 1.3 confirms that Makarychev and Shan use essentially the same k-medians algorithm with bounds better by log k/log log k. That record supports acceptance, not a highlight. In B, no reviewer mentions the concurrent work, so every score treats the paper as the new state of the art; the one stated barrier to a strong accept (no experiments, Reviewer_fBhF) was withdrawn after the rebuttal; the top score (Reviewer_mWXa, 8) is a four-sentence evaluation with no weakness; and the AC treated the overlap as a related-work fix. A's poster rests on better-informed reviews.",
+  "candidate_reasons": [
+    "reviewer exposed near-identical concurrent work",
+    "identical scores, tier left to AC",
+    "sole objection withdrawn after rebuttal",
+    "thin champion review for spotlight",
+    "overlap treated as related-work fix",
+    "no stated rationale for tier"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Reviewer_skXW final review (Committee A)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_fBhF review and 2021-08-19 reply (Committee B)",
+    "Reviewer_mWXa review (Committee B)",
+    "paper Section 1.3 and Table 1 (the PDF is the camera-ready, created 2021-10-24)"
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "pair_id": "n21-014",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 5, 7],
+      "confidences": [4, 5, 3],
+      "reviews_edited_after_posting": ["Reviewer_t36c", "Reviewer_1Cph"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/5/7 (t36c, 1Cph, 9Atj) lie one point either side of 6. No score stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1Cph",
+          "evidence": "1 hour at confidence 5 ('checked the math/other details carefully'). Calls the Table 1 models 'baselines' that 'are not designed for imbalanced classification' and doubts the results 'stand'. Table 1 is a with/without-ReNode ablation on six GNN backbones, and Table 3 compares six quantity-imbalance methods; the review mentions neither."
+        },
+        {
+          "reviewer": "Reviewer_9Atj",
+          "evidence": "Thin rather than wrong. The 7 rests on a short review that names no weakness, only two open questions, at confidence 3 ('Math/other details were not carefully checked'), although 7 hours are reported. The only post-rebuttal reply is one line: 'I look forward to future developments.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_1Cph",
+          "claim": "Table 1 runs on quantity-balanced benchmarks against GNNs not designed for imbalance, so the comparison is unfair and does not stand.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 reports each of six GNNs with and without ReNode; ReNode is an add-on, not a competitor. Lines 193-196 choose the balanced split on purpose, to isolate topology imbalance. Table 3 (lines 215-227) adds step quantity imbalance (ρ = 5, 10) and compares DR-GCN, RA-GCN, GraphSMOTE, Re-weight, Focal and CB."
+        },
+        {
+          "reviewer": "Reviewer_1Cph",
+          "claim": "The paper says imbalance 'roots from the unequal quantity of labeled examples', which ignores skew in the unlabeled set.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract lines 2-4 use this phrase about existing studies. A wording point only; the authors explained it, and 1Cph did not press it."
+        },
+        {
+          "reviewer": "Reviewer_1Cph",
+          "claim": "Label propagation for imbalanced classification on graphs is not new (a KDD 2018 paper, doi 10.1145/3219819.3219968).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submission does not cite that paper; its content was not checked. The authors did not discuss it specifically: all prior work, 'including the mentioned one', is said to address quantity imbalance."
+        },
+        {
+          "reviewer": "Reviewer_t36c",
+          "claim": "P_v in Equation (3) is not clearly defined.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) samples x from P_{v,:} and never says this is row v of the PPR matrix P of Eq. (2). The authors conceded."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_1Cph"],
+        "evidence": "1Cph, 2021-08-31: 'willing to slightly increase my score, as I believe the quality of this paper is still below the acceptance threshold'; the review was edited the same day and ends at 5 (the earlier score is not exposed). t36c edited on 2021-08-30 only to add 'I will remain my rating' (6). 9Atj never edited (7) and replied in one line on 2021-08-16.",
+        "what_convinced_or_not": "t36c found the answers sufficient but kept 6. 1Cph raised slightly but kept 'limited novelty' and 'lack of theoretical insights'. 9Atj accepted the authors' 'first study' position. The authors' 2021-09-01 reply to 1Cph ('the main purpose of this work is to reveal the topology imbalance issue') did not move 1Cph further but convinced the AC, who reuses its wording."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 6.0, two of three at or above 6. The AC cites 9Atj and t36c for the novel problem and 1Cph and t36c for simplicity and missing theory, then accepts. The phrase 'the task of solving topology imbalance is non-trivial due to the asymmetry and complexity of the graph topology' is copied from the authors' 2021-09-01 reply. The AC calls the view 'Based on my own evaluation of the paper'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Introducing topology imbalance is a novel research problem that 'will stimulate subsequent works' (AC; t36c, 9Atj).",
+        "The simple method without theory is excused as fitting a first study, following the authors' rebuttal framing.",
+        "Ratings 7/6/5; the only sub-threshold reviewer raised his score after the rebuttal."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 6, 5],
+      "confidences": [4, 3, 5],
+      "reviews_edited_after_posting": ["Reviewer_PVVk"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/6/5 (WAqa, PVVk, 84DB) differ by one point. PVVk's 6 is the only score above threshold, not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_PVVk",
+          "evidence": "0.6 hours at confidence 3; 'significance: Ok'. Asks the authors to 'please confirm' whether the problem is new and whether stronger baselines exist instead of checking, and does not mention Table 3's six imbalance baselines. This is B's only above-threshold score."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_84DB",
+          "claim": "ReNode's gains are small, about 1% absolute and under 2% relative.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 Weighted-F1 gains over 30 model-dataset cells: median 0.8 points, range -0.2 (GAT, Computers) to 2.7 (CHEB, Photo); 27 of 30 are below the baseline's standard deviation. Table 2 shows at most 2.2 points, on high-conflict splits."
+        },
+        {
+          "reviewer": "Reviewer_84DB",
+          "claim": "The method assumes homophily; the authors acknowledge it but do not study it.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 72: 'we focus on TINL in homogeneously-connected graphs'. Section 4.2: ReNode 'needs a further update for heterogeneously-connected graphs', and all experiment datasets are homogeneously connected. No heterophilous graph is tested."
+        },
+        {
+          "reviewer": "Reviewer_84DB",
+          "claim": "No alternative to the PPR-based conflict measure is studied.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text tests only PPR-based Totoro. Footnote 1 points to other weight schedules in Appendix B, which neither PDF contains. The rebuttal answered with schedules (cosine vs linear, ranks vs raw values), not with alternatives to PPR."
+        },
+        {
+          "reviewer": "Reviewer_84DB",
+          "claim": "We do not know how ReNode affects graph convolutions other than GCN.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 applies ReNode to GCN, GAT, PPNP, SAGE, CHEB and SGC on five datasets. Only Table 2 (conflict levels) and Table 3 (quantity imbalance) are GCN-only."
+        },
+        {
+          "reviewer": "Reviewer_84DB",
+          "claim": "Only two imbalance ratios (5 and 10) are tested.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 219 and Table 3."
+        },
+        {
+          "reviewer": "Reviewer_WAqa",
+          "claim": "The LP-GCN boundary alignment rests on Figure 2(a), whose legend is unclear; line 198 has 'GTA' for GAT; '*' in Eqs. (6)-(7) is ambiguous.",
+          "checked_against_paper": "correct",
+          "evidence": "The Figure 2 caption does not define 'GCN=T, LP=T'. Line 198 reads 'GTA [37]'. Eqs. (6) and (7) use '*' for multiplication. Section 2.2 also cites [38] for the LP-GCN link."
+        },
+        {
+          "reviewer": "Reviewer_WAqa",
+          "claim": "Post-rebuttal: adaptive aggregators such as GAT may reduce the boundary shift, so boundary nodes should be exploited by better graph filters, not down-weighted.",
+          "checked_against_paper": "correct",
+          "evidence": "The premise matches the paper's own Section 4.1 and Figure 5: GAT is the least sensitive to topology imbalance. But Table 1 shows ReNode still adds 0.8-1.7 Weighted-F1 points to GAT on four of five datasets (-0.2 on Computers). The authors cited neither."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "Topology imbalance lacks a rigorous or formal definition.",
+          "checked_against_paper": "correct",
+          "evidence": "TINL is introduced through its characteristics (lines 32-49) and LP influence boundaries (Section 2.2). The summed Totoro value serves only as a proxy (lines 132-137). No B reviewer raised this point."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "ReNode discards nodes near the decision boundary.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (4) lowers their weight to a floor w_min, a hyperparameter. The Figure 1 caption and lines 150-152 describe decreasing, not removing, their weight. WAqa wrote 'down-weighting'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after the rebuttal; PVVk's edit (2021-07-21) predates it. PVVk, 2021-08-31: 'I will keep my rate'. WAqa raised new concerns on 2021-08-18, the authors answered on 2021-08-20, and WAqa did not reply. 84DB never posted after the rebuttal.",
+        "what_convinced_or_not": "WAqa accepted the answers on Figure 2(a) and on up-weighting 'easy' nodes ('your explanation makes sense'), then moved to a design objection that the authors called an 'orthogonal direction'. PVVk found the loss analysis still 'heuristics'. The authors answered 84DB's PPR question with weight-schedule results. The 'first study, lite solution' plea that won over Committee A's AC was also made here (reply to WAqa, 2021-08-20) and persuaded nobody."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 5.33, two of three below threshold, no score moved. Point 2 (homophily) is 84DB's. Point 3 paraphrases WAqa's post-rebuttal comment but overstates it as 'discarded'. Point 1 (no formal definition) appears in no review. 'Not addressed after rebuttal' is partly inferred, since 84DB never responded.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Topology imbalance lacks a rigorous or formal definition (AC's own point).",
+        "The homophily assumption may be too strong (84DB).",
+        "The method is too simple; boundary nodes should be exploited, not down-weighted (WAqa, post-rebuttal).",
+        "Ratings 6/5/5 that the rebuttal did not move."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Prior label-propagation work on graph imbalance (an uncited KDD 2018 paper) and the novelty of LP plus re-weighting (1Cph)",
+    "Quantity-balanced benchmarks and plain GNN backbones in Table 1 (1Cph; a misreading of the design)",
+    "Abstract wording that quantity imbalance 'roots from' labeled counts (1Cph)",
+    "Totoro computed from labels that may themselves be topology-biased (t36c)",
+    "Undefined P_v in Eq. (3); when ReNode hurts; adjusting weights during training (t36c, 9Atj)"
+  ],
+  "issues_only_b": [
+    "Homophily assumption; no heterophilous graph tested (84DB; AC point 2)",
+    "Small gains, median 0.8 Weighted-F1 points (84DB)",
+    "No alternative to the PPR conflict measure; only two imbalance ratios; GAT tuning (84DB)",
+    "Up-weighting easy nodes is counter-intuitive; boundary nodes should be exploited by adaptive filters or self-training (WAqa; AC point 3)",
+    "No formal definition of topology imbalance (AC point 1 only)",
+    "Unclear Figure 2(a) legend and typos (WAqa)"
+  ],
+  "shared_issues": [
+    "Method is a heuristic built from known parts (PPR or label propagation plus loss re-weighting) without theoretical justification (t36c, 1Cph; WAqa, PVVk, 84DB; both ACs)",
+    "Whether the problem is truly new or already covered by imbalance work (1Cph; PVVk, 84DB)",
+    "Baselines not designed for, or not strong enough for, topology imbalance (1Cph; PVVk, 84DB)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same borderline paper and weighted the same two facts in opposite ways: a new, interesting problem (topology imbalance) and a simple heuristic fix without theory that adds about one F1 point. Both ACs name both facts. Committee A's AC read it as a problem paper and reused the authors' last reply nearly word for word ('the task of solving topology imbalance is non-trivial ...'), so simplicity became acceptable for a first study. Committee B's AC read it as a methods paper and rejected on three points: no formal definition (raised by no reviewer), the homophily assumption (84DB), and a method that should exploit boundary nodes rather than down-weight them (WAqa). The authors made the same 'first study, lite solution' plea to B, and it moved nobody. The reviewer pools tilted the same way. A's only sub-threshold reviewer (1Cph, 1 hour, confidence 5) misread Table 1 as a baseline comparison and missed Table 3, yet raised his score. B's two 5s came from its two most specific reviews, whose main checkable claims hold (median gain 0.8 points, homophilous data only, no alternative to PPR); B's only 6 came from a 36-minute review. Neither committee found an error; mean ratings of 6.0 against 5.33 left the call to the ACs.",
+  "candidate_reasons": [
+    "problem novelty outweighs method simplicity",
+    "AC adopts authors' rebuttal framing",
+    "detractor misreads experiments, raises score",
+    "specific detractors, thin lone supporter",
+    "AC adds concern no reviewer raised",
+    "rebuttal moves no score"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Authors' 2021-09-01 reply to Reviewer_1Cph (Committee A)",
+    "Reviewer_1Cph review and 2021-08-31 comment",
+    "Committee B meta-review",
+    "Reviewer_84DB review",
+    "Reviewer_WAqa 2021-08-18 comment and authors' 2021-08-20 reply",
+    "Reviewer_PVVk review and 2021-08-31 comment",
+    "paper_submitted Table 1, Table 3 and Eq. (4)",
+    "paper_submitted line 72 and Section 4.2"
+  ]
+}

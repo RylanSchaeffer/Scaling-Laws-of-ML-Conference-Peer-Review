@@ -1,0 +1,257 @@
+{
+ "pair_id": "n21-013",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    7,
+    7,
+    7,
+    4
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_bubM"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_bubM",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Ratings in table order: hUgP 7, tPsp 7, zwvr 7, bubM 4. bubM is the only score below the threshold, with the highest confidence (5) and the most time (13 h against 3 h for each of the others). Its review lists specific points, and most hold: stage-1 curricula, per-environment hyperparameters, separate training per environment, text-field roles not stated, overlapping standard deviations. One is wrong (the NetHack action set). After the rebuttal bubM raised to 4 and kept only a thesis objection: 'it's still not clear what we gain from simplifying 5 different environments under one framework vs using the original environments'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_zwvr",
+     "evidence": "Short review (3 h). The 7 rests on generic praise ('the choices for the architecture and all of the individual environments were justified'). It states 'There is no Broader Impacts section provided', but Reviewer_hUgP ('Yes, Appendix A') and Reviewer_tPsp ('a thorough impact statement in the appendix') found one; paper.pdf checklist 1(c) points to Appendix A. The post-rebuttal reply is one sentence."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_bubM",
+     "claim": "SILG does not contain RTFM or NetHack but one level of RTFM and three NetHack tasks; the environments are simplified versions of the originals.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors confirm that RTFM and Messenger are stage 1 of their curricula and that Touchdown uses auto-stop. paper.pdf (camera-ready; paper_submitted.pdf is missing) Section 2: 'We include all 4 RTFM curriculum stages, but only show results for the first stage' (same for the 3 Messenger stages); SILGNetHack combines 3 tasks (Score, Gold, Scout). The later stages and the rename were added after review."
+    },
+    {
+     "reviewer": "Reviewer_bubM",
+     "claim": "NetHack has 93 actions in the NetHack paper, but SILG uses 23 fixed actions; how was the subset chosen?",
+     "checked_against_paper": "incorrect",
+     "evidence": "paper.pdf Table 1 lists 23 fixed actions. The authors reply that the NLE task environments (score, gold, scout and others) expose Discrete(23); this is NLE's own task action set, so SILG did not cut the action space."
+    },
+    {
+     "reviewer": "Reviewer_bubM",
+     "claim": "Standard deviations in Tables 2 and 3 are large and overlap, so Base and Best are hard to tell apart.",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Table 2: Base and Best overlap within one standard deviation for RTFM 88.8 (22.4) vs 99.2 (0.7), SILGNetHack 23.8 (0.8) vs 25.4 (3.3), ALFWorld 21.0 (1.5) vs 23.6 (2.8) and 16.0 (2.1) vs 16.6 (2.9). They do not overlap for Messenger 0 (0) vs 31 (2.6) or SymTD 9.7 (1.3) vs 14.9 (1.8)."
+    },
+    {
+     "reviewer": "Reviewer_bubM",
+     "claim": "We do not know what the dynamics and non-dynamics text is for each environment, so the results cannot be reproduced.",
+     "checked_against_paper": "correct",
+     "evidence": "Reviewer_hUgP asked the same question for RTFM, ALFWorld and Touchdown. The authors answered per environment only in the rebuttal and promised 'a table with detailed description and examples'. paper.pdf renames the fields (joint text, text fields) and points to Appendix F for precise inputs, which paper.pdf does not contain. The authors also say code was in the supplement."
+    },
+    {
+     "reviewer": "Reviewer_hUgP",
+     "claim": "Including only the first stage of RTFM is odd, because the model is already at human performance there (Table 2).",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Table 2: RTFM Best (+state) 99.2 (0.7) against Human 100."
+    },
+    {
+     "reviewer": "Reviewer_hUgP",
+     "claim": "The SymTD expert win rate of about 60% is low; tasks may have been converted incorrectly.",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Table 1: human win 61.5% on SymTD, against 100% on RTFM, Messenger and ALFWorld and 78.1% on SILGNetHack. Section 2 attributes the gap to symbolic representations 'removing information referenced by the instructions such as color'."
+    },
+    {
+     "reviewer": "Reviewer_tPsp",
+     "claim": "Fig. 6 is missing the +bert and +all lines.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors conceded: 'These experiments were not finished at the time of submission'."
+    },
+    {
+     "reviewer": "Reviewer_zwvr",
+     "claim": "There is no Broader Impacts section.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Reviewer_hUgP and Reviewer_tPsp cite an impact statement in Appendix A; paper.pdf checklist 1(c): '[Yes] See A'."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "Essential details of how models interact with the games are 'completely missing', so reviewers 'could not evaluate the technical correctness'.",
+     "checked_against_paper": "not_checked",
+     "evidence": "paper_submitted.pdf is missing, and paper.pdf rewrote the interface description. The record shows the claim is overstated: the reviews quote per-environment input descriptions in the submission (tPsp on the ALFWorld grid, hUgP on L239 and L141); only the text-field roles were missing. Reviewer_tPsp: 'the paper provides enough information for me to build the model'. Reviewer_bubM after the rebuttal: 'clarity is no longer a major concern'."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "The human experiment has only one subject and was 'generally seen as inadequate'.",
+     "checked_against_paper": "correct",
+     "evidence": "One subject is correct (authors: 'a CS student trained to be proficient in these games'). 'Generally seen as inadequate' is not: in A only Reviewer_bubM raised it, as a minor point, and in B Reviewer_UhjS listed the single-expert baseline as a strength."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_bubM"
+    ],
+    "evidence": "bubM edited the review on 2021-08-30 and wrote 'I'm going to increase my score to 4'; the earlier score is not stated. hUgP (2021-08-10): 'remain satisfied with my score of 7'. zwvr (2021-09-01): 'I will keep my score'. tPsp (2021-09-14): 'I remain satisfied with my review'.",
+    "what_convinced_or_not": "The promised table of text-field roles, the NetHack rename and the marking of curriculum stages resolved bubM's clarity concerns ('clarity is no longer a major concern'). The authors' GLUE argument did not convince bubM on the thesis: what simplified environments, trained separately, add over the originals. hUgP kept 7 with hesitations on SymTD and FiLM2 ablations, 'not crucial weaknesses'."
+   },
+   "ac": {
+    "followed_reviews": "no",
+    "evidence": "Three of four reviewers kept 7 after the rebuttal, and the AC rejected. The two 'major concerns' come from bubM (partial environments; missing details), with hUgP's question on the first stage. The AC went beyond bubM: bubM had withdrawn clarity as a major concern, and tPsp had said the paper was enough to build the model. The AC paraphrased the authors' reason for partial games as 'the resulting evaluation numbers would be too poor'; the authors said harder stages need curriculum learning and 'would greatly complicate the description', and promised them for the release. The AC's GLUE standard ('included other benchmarks wholesale') is loose: GLUE recast SQuAD as QNLI and the Winograd schemas as WNLI. The AC's hypothetical of an 'unplayable' mapping is answered by expert win rates of 100% (RTFM, Messenger, ALFWorld) and 78.1% (SILGNetHack); only SymTD at 61.5% fits it. 'None of us could understand' implies a private discussion that the public record does not show.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "SILG includes only partial variants of the existing environments (first curriculum stage of RTFM and Messenger, three NetHack tasks), so the benchmark is incomplete by a GLUE standard (AC concern 1, from Reviewer_bubM and Reviewer_hUgP)",
+    "The mapping from each game to the common interface (inputs, outputs, metrics) is not specified, so technical correctness cannot be judged (AC concern 2, from Reviewer_bubM and Reviewer_hUgP; bubM withdrew it as a major concern)",
+    "Minor: the human baseline comes from a single subject (AC, from Reviewer_bubM's minor point 14)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_UhjS",
+    "Reviewer_MASS",
+    "Reviewer_gUh8"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings in table order: UhjS 7, MASS 6, h3yz 7, gUh8 7, all confidence 4. No score stands apart; MASS's 6 is one point below the rest."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_gUh8",
+     "evidence": "2 hours. The strengths are generic ('I learned a lot from this paper'); the weaknesses ask about public release, references and the choice of environments. The summary calls ALFWorld and Touchdown 'visual worlds', though SILG uses their symbolic versions. The raise to 7 cites mainly the promised public release, which says nothing about the results."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_UhjS",
+     "claim": "SIR outperforms SOTA on RTFM but is substantially worse than SOTA on Messenger and ALFWorld, so 'reasonable performance across all environments' is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Table 2: RTFM 99.2 vs SOTA 83; Messenger 31 vs 85; ALFWorld 23.6 and 16.6 vs 40 and 37 (SOTA uses supervised trajectories). The camera-ready text now says 'reasonable performance across all environments except Messenger'; the abstract still claims 'comparable performance to environment-specific architectures'."
+    },
+    {
+     "reviewer": "Reviewer_UhjS",
+     "claim": "VisTD uses 10-dimensional PCA ResNet features, which is too small to support 'models trained on SymTD outperform those trained on VisTD'.",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Section 4.2: 'U is 10-dim PCA features from a ResNet'; Table 3: SymTD 14.9 (1.8) vs VisTD 4.3 (4.0). The authors cite memory limits and expect VisTD to win with more compute."
+    },
+    {
+     "reviewer": "Reviewer_UhjS",
+     "claim": "BERT hurts performance everywhere except Messenger validation.",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Section 4.1: pretrained LMs 'help generalization in Messenger but does not improve performance on other environment'. The size of the harm in the figures was not checked."
+    },
+    {
+     "reviewer": "Reviewer_UhjS",
+     "claim": "The Touchdown RL setup (auto-stop) makes comparison with past work, which uses manual stop, hard.",
+     "checked_against_paper": "correct",
+     "evidence": "paper.pdf Section 2 puts manual-stop variants in Appendix E; Table 2 caption: 'Though not comparable, the manual stop VisTD SOTA trained using imitation learning on supervised trajectories is 16.7%'."
+    },
+    {
+     "reviewer": "Reviewer_MASS",
+     "claim": "In Figs. 6 and 7 training has not converged and runs stop at different step counts (e.g. +all vs base).",
+     "checked_against_paper": "correct",
+     "evidence": "The authors promised 'a more extended plot of Fig 6 and 7'; in Committee A they conceded the +bert and +all runs in Fig. 6 were unfinished at submission."
+    },
+    {
+     "reviewer": "Reviewer_gUh8",
+     "claim": "The paper does not mention a public release of the benchmark.",
+     "checked_against_paper": "not_checked",
+     "evidence": "paper_submitted.pdf is missing. Reviewer_tPsp in Committee A wrote 'try it on SIGL (once release)', which suggests the submission promised one."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_UhjS",
+     "Reviewer_gUh8"
+    ],
+    "evidence": "UhjS edited 2021-09-10: 'I've raised my score to a 7 (from a 6)'. gUh8 edited 2021-08-28: 'I have raised my score to a 7' (earlier score not stated). MASS's edit (2021-07-15) predates the rebuttal; h3yz did not edit. No reviewer posted in the discussion thread.",
+    "what_convinced_or_not": "UhjS: the explanations of the BERT, entity-attention and Messenger results, and the plan to support imitation learning. Touchdown comparability stayed unresolved but was accepted because 'the work doesn't make touchdown-specific claims'; the claim about component specificity was accepted only as motivation. gUh8: the promised public release and the reasons for the choice of methods and environments."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Meta-review: 'Reviewers all advocate for acceptance and the AC agrees'. It asks for clearer reasons for the environment choice and the exclusion of perceptual environments, and for the Messenger details from the response. It names no concern that could block acceptance.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four reviewers recommend acceptance (7, 6, 7, 7), two after raising their scores",
+    "A unified API and benchmark can focus effort and keep over-engineered single-environment models from obscuring general solutions",
+    "The open concerns (choice of environments, exclusion of perception, Messenger results) are treated as revisions"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Only the first curriculum stage of RTFM and Messenger and three NetHack tasks are used, so the benchmark is incomplete or too easy (Reviewer_bubM, Reviewer_hUgP, AC)",
+  "Per-environment hyperparameter sweeps make the models differ across environments (Reviewer_bubM)",
+  "SymTD conversion validity: 61.5% expert win rate and unverified segmentation quality (Reviewer_hUgP)",
+  "No ablation of FiLM2 or of the base SIR model (Reviewer_hUgP)",
+  "Base and Best within one standard deviation; SOTA standard deviations missing (Reviewer_bubM)",
+  "NetHack action subset (Reviewer_bubM; wrong, it is NLE's task action set)",
+  "Environment FPS not reported (Reviewer_zwvr)"
+ ],
+ "issues_only_b": [
+  "No imitation learning despite gold trajectories for Touchdown and ALFWorld (Reviewer_UhjS)",
+  "Auto-stop Touchdown setup not comparable with past work (Reviewer_UhjS)",
+  "SIR far below SOTA on Messenger; train and test performance anti-correlated (Reviewer_UhjS)",
+  "BERT and entity-attention results under-explored (Reviewer_UhjS)",
+  "VisTD baseline uses only 10-dimensional PCA features (Reviewer_UhjS)",
+  "Exclusion of visual perception and justification of the environment choice; missing related work such as gSCAN and R2R (Reviewer_UhjS, Reviewer_h3yz, Reviewer_gUh8, AC)",
+  "No aggregate score across environments (Reviewer_MASS)",
+  "Public release not mentioned (Reviewer_gUh8)"
+ ],
+ "shared_issues": [
+  "Text-field roles (dynamics vs non-dynamics, instance-specific vs not) not stated (A: Reviewer_bubM and Reviewer_hUgP as a reproducibility gap, AC as a reason to reject; B: Reviewer_UhjS as a Figure 1 suggestion)",
+  "The headline claim that most modelling advances help only the environment they were designed for is too broad (A: Reviewer_bubM, models not comparable across environments; B: Reviewer_UhjS, components under-explored)",
+  "Models trained separately per environment, with no cross-environment training or transfer (A: Reviewer_bubM, Reviewer_hUgP; B: Reviewer_MASS)",
+  "Whether one architecture should suit environments with very different challenges (A: Reviewer_zwvr; B: Reviewer_gUh8)",
+  "Sparse task descriptions; Figure 1 needs more detail (A: Reviewer_hUgP, Reviewer_tPsp; B: Reviewer_UhjS, Reviewer_h3yz)",
+  "Unfinished or unconverged runs in Figs. 6 and 7 (A: Reviewer_tPsp; B: Reviewer_MASS)",
+  "Human baseline from a single person (A: Reviewer_bubM and AC as a weakness; B: Reviewer_UhjS as a strength)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees' reviewers favoured acceptance: A gave 7, 7, 7, 4 and B gave 7, 6, 7, 7. The split comes from A's area chair, who rejected against three accept votes; B's area chair followed unanimous scores. A's meta-review rests on two objections from the lone detractor, Reviewer_bubM: SILG uses partial versions of existing environments (first curriculum stage of RTFM and Messenger, three NetHack tasks), and the mapping from each game to the interface is not specified. Both have a basis: the submission reported stage 1 only and did not say which text feeds which model field, and the authors promised a table. But no other A reviewer treated either point as decisive. Reviewer_hUgP raised both and kept 7, and bubM wrote after the rebuttal that clarity 'is no longer a major concern'. The area chair overstated both points. The meta-review calls details 'completely missing', misstates the authors' reason for omitting later stages, and fears an 'unplayable' mapping that expert win rates of 100% (RTFM, Messenger, ALFWorld) and 78.1% (NetHack) contradict. B's reviewers saw related facts (unclear text fields in Figure 1, a simplified Touchdown, one human expert) and did not count them against the paper. The committees weighted the same facts differently, and the difference sits with A's area chair, not with the reviewers.",
+ "candidate_reasons": [
+  "AC overrode three accept votes",
+  "AC adopted lone detractor's objections",
+  "Benchmark completeness treated as disqualifying",
+  "Unspecified environment mapping judged decisive",
+  "Detractor present in one committee",
+  "Meta-review defers to unanimous scores"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review (concerns 1 and 2, minor point on one subject)",
+  "Reviewer_bubM review and 2021-08-30 comment ('clarity is no longer a major concern')",
+  "Reviewer_hUgP review (SymTD, sparse environment descriptions, first stage only) and 2021-08-10 comment",
+  "Authors' responses to Reviewer_hUgP point 6 (curriculum learning) and Reviewer_bubM point 15 (promised table)",
+  "Reviewer_tPsp review ('enough information for me to build the model')",
+  "Reviewer_UhjS review and post-rebuttal update",
+  "Committee B meta-review",
+  "paper.pdf (camera-ready; paper_submitted.pdf missing) Section 2, Table 1 human win %, Table 2, Section 4.2"
+ ]
+}

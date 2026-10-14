@@ -1,0 +1,231 @@
+{
+  "pair_id": "n21-016",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [3, 3, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_cBn7", "Reviewer_YU4M"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 6, so no reviewer stands apart. The uniformity is weak evidence: confidences are 3, 3, 2 and 3, all at levels that say math and details were not carefully checked. Reviewer_YU4M (confidence 2, 2 hours) says it is not an SSL expert. Reviewer_cBn7's 6 was a 4 before the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_YU4M",
+          "evidence": "Confidence 2, 2 hours, and 'I'm not an expert in the semi-supervised learning area'. The strengths are generic ('well organized', 'convincing performance'). Its one technical question (why Eq. 2 is needed beside Eq. 3) is answered by the loss schedule at lines 177-179. The rest is a training-curve request and a punctuation fix. It did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_8Nkc",
+          "evidence": "Partly inattentive. It asks for a comparison with UDA, which is a row of Table 1 and Table 2 (cited as [33]). It asks whether competitors use the same augmentation, which lines 231-233 state. Its other questions (class division, Eq. 7, Eq. 13, K and rho) are reasonable. It never replied to the two-part rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_cBn7",
+          "claim": "On CIFAR-100 the method does not perform much better.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: 43.17±1.29 vs USADTM 43.36±1.89 at 400 labels; second at 2500 labels (28.00 vs ReMixMatch 27.43) and at 10000 labels (22.24 vs USADTM 21.35)."
+        },
+        {
+          "reviewer": "Reviewer_cBn7",
+          "claim": "Eq. 1 is never used in the rest of Section 3.",
+          "checked_against_paper": "correct",
+          "evidence": "No later equation contains the transformed feature f~_k. Line 152 says in words that it is fed to the k-th LF, but the map from f~_k to p~^{w,k} is never written. Reviewer_xTCd and Reviewer_gFDp in B raised the same gap."
+        },
+        {
+          "reviewer": "Reviewer_8Nkc",
+          "claim": "The paper should also compare with UDA (Xie et al., NeurIPS 2020).",
+          "checked_against_paper": "incorrect",
+          "evidence": "UDA [33] is a row of Table 1 for CIFAR-10, CIFAR-100 and SVHN (e.g., 29.05±5.93 on CIFAR-10 at 40 labels) and of Table 2 for STL-10."
+        },
+        {
+          "reviewer": "Reviewer_8Nkc",
+          "claim": "It is unclear whether FixMatch and ReMixMatch use the same augmentation, so the comparison may be unfair.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 231-233 and 248-251: weak flip-and-shift and RandAugment plus Cutout following [4, 34, 35], the FixMatch codebase and training protocol, and the same Wide ResNet backbones."
+        },
+        {
+          "reviewer": "Reviewer_AJRp",
+          "claim": "In the ablation the plain ensemble without MCL (Exp1) is already better than FixMatch.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: Exp1 annotation accuracy 92.46% at 40 labels vs FixMatch proxy-label accuracy 88.51% (line 279); full model 93.82%. Most of the gain over FixMatch exists without MCL."
+        },
+        {
+          "reviewer": "Reviewer_AJRp",
+          "claim": "The method gives significant performance gains on CIFAR, SVHN and STL-10 (reply of 2021-09-03).",
+          "checked_against_paper": "incorrect",
+          "evidence": "True only against FixMatch (RA), the baseline the authors chose (e.g., SVHN at 40 labels 3.96 to 2.98). Against USADTM, which line 256 calls the state of the art, DP-SSL leads by 0.03 points on SVHN and 0.31 on STL-10 at 40 labels, inside one STD, and trails in five of eight larger-label columns of Tables 1-2."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_cBn7"],
+        "evidence": "Reviewer_cBn7 posted 'Score update' on 2021-08-31 ('update the score from 4 to 6'); its review edit has the same date. The authors had asked it to re-evaluate on 2021-08-30. Reviewer_AJRp replied on 2021-09-03 and kept 6. Reviewer_YU4M's edit (2021-07-16) predates the responses. Reviewer_8Nkc and Reviewer_YU4M did not reply.",
+        "what_convinced_or_not": "cBn7's concern was clarity, and it said the authors 'addressed most' of it. The response gave a worked example of the top-(rho x K) assignment, the step-wise training order and a class-wise LF accuracy table. AJRp accepted the new averaging numbers (83.95% to 89.43%) but still wanted a comparison with self-training methods such as SimCLRv2 and results on more realistic datasets."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review says 'all of the reviewers have rated the paper slightly above acceptance bar' and 'all reviewers are happy to see the paper published'; two reviewers never posted after the rebuttal, so the second phrase rests on scores. It names B's central doubt, 'not very clear where exactly the gains come from', and leaves clarity and ablation fixes to the camera-ready. It adds its own view that uniting data programming and SSL can help the community.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four ratings of 6 after the rebuttal, one raised from 4",
+        "State-of-the-art results, strongest on CIFAR-10 with 40 labels (6.54% vs 9.54% error)",
+        "AC values linking data programming with SSL",
+        "Clarity and ablation gaps judged fixable in the camera-ready"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 4, 4],
+      "confidences": [5, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_xTCd", "Reviewer_ECpd", "Reviewer_gFDp"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 5, 4 and 4 sit within one point, and there is no champion. Confidences are 5, 3, 4 and 4, higher than A's. All four reviews give specific technical reasons, and most of them check out against the paper."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_gFDp",
+          "claim": "MCL has a marginal effect: +1.36 points at 40 labels and +0.31 at 250 labels.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: Exp1 w.o. MCL 92.46/95.02 vs Exp3 MCL w. FT 93.82/95.33 annotation accuracy. MCL without feature transformation (Exp2, 91.61/94.98) is worse than no MCL."
+        },
+        {
+          "reviewer": "Reviewer_gFDp",
+          "claim": "Without MCL the method is already state of the art; the FixMatch-to-no-MCL gap is larger than the no-MCL-to-full-model gap.",
+          "checked_against_paper": "correct",
+          "evidence": "Exp1 92.46% vs FixMatch proxy labels 88.51% (line 279) is +3.95; Exp1 to the full model is +1.36. gFDp's '7.54% error' is annotation error, not test error, but the comparison holds. The authors conceded that the label model carries most of the gain."
+        },
+        {
+          "reviewer": "Reviewer_gFDp",
+          "claim": "The regularization has only a tiny effect.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: Exp14 w.o. regularizer 93.19/94.94 vs Exp15 93.82/95.33, i.e., +0.63 and +0.39 points."
+        },
+        {
+          "reviewer": "Reviewer_gFDp",
+          "claim": "There is no ablation of the label model against averaging or majority vote.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 3 compares the label model with Majority Vote and FlyingSquid on the same LF outputs (CIFAR-10, 40 labels: F1 93.61 vs 85.96 and 90.25). Only plain averaging is missing."
+        },
+        {
+          "reviewer": "Reviewer_gFDp",
+          "claim": "There is no ablation of probabilistic versus hard one-hot labels.",
+          "checked_against_paper": "correct",
+          "evidence": "No such row in Tables 3-4. The rebuttal gives 8.61±1.53% error with hard labels vs 6.54±0.98% (CIFAR-10, 40 labels)."
+        },
+        {
+          "reviewer": "Reviewer_ux7Q",
+          "claim": "At 40 labels on SVHN and STL-10 the gains over USADTM are not compelling.",
+          "checked_against_paper": "correct",
+          "evidence": "SVHN 2.98±0.86 vs USADTM 3.01±1.97; STL-10 9.32±0.91 vs 9.63±1.35 (Tables 1-2). Both margins are inside one STD. The only large gain is CIFAR-10 at 40 labels (6.54 vs 9.54)."
+        },
+        {
+          "reviewer": "Reviewer_ux7Q",
+          "claim": "The threshold epsilon in Eq. 4 has no sensitivity study.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 174 fixes epsilon at 0.95 with no study. The rebuttal adds one: accuracy rises from 79.05% at 0.8 to a peak of 93.46% at 0.95, then falls to 91.73% at 0.975."
+        },
+        {
+          "reviewer": "Reviewer_xTCd",
+          "claim": "Line 259 says '40 labels' where it means 400 labels for CIFAR-100.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1's CIFAR-100 columns are 400, 2500 and 10000 labels; line 259 says 'the best for 40 labels case'."
+        },
+        {
+          "reviewer": "Reviewer_xTCd",
+          "claim": "Training costs are not compared or reported.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 238 names only the hardware (16 RTX3090s). No training time or compute comparison with FixMatch appears. The authors promised one for the revision."
+        },
+        {
+          "reviewer": "Committee B AC (meta-review)",
+          "claim": "Results on datasets other than CIFAR-10 at 40 labels are relatively poor.",
+          "checked_against_paper": "incorrect",
+          "evidence": "DP-SSL is best or second in every column of Tables 1-2. It trails USADTM or ReMixMatch in five of eight larger-label columns, by 0.03 to 0.96 points. 'No clear gain' is accurate; 'poor' is not."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_xTCd (edit 2021-09-10), Reviewer_ECpd (2021-08-31) and Reviewer_gFDp (2021-09-12) appended post-rebuttal notes that keep 5, 5 and 4. Reviewer_ux7Q neither edited nor replied. No B reviewer replied to the authors in the forum; ECpd mentions a discussion among reviewers.",
+        "what_convinced_or_not": "The responses repeated the explanations that moved Reviewer_cBn7 in A (the worked top-(rho x K) example, the Eq. 7 derivation) and added a symbol glossary and new numbers (epsilon sweep, hard labels, K x rho grid). gFDp said they addressed 'some' ablation concerns but the paper needs 'a major revision'. xTCd kept presentation, design justification and training cost as open. ECpd said novelty and the marginal MCL gain were not addressed. The authors' concession that the label model, not MCL, gives most of the gain supports gFDp."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review's three reasons follow Reviewer_ux7Q's W1 (novelty), W2 (gains on other datasets) and W4 (presentation) in order, and it calls the outcome 'consensus'. It overstates two of them: only two of four reviewers called the work incremental (Reviewer_gFDp called it original), and the other-dataset results are on par, not 'relatively poor'. It does not mention gFDp's ablation findings.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Judged incremental: existing DP, MCL and label-model parts combined",
+        "Clear gain only on CIFAR-10 with 40 labels",
+        "Terminology-heavy method that reviewers could not follow",
+        "Many components with small or untested individual effects (Table 4)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No comparison with self-training methods such as SimCLRv2 (Reviewer_AJRp)",
+    "Bias from very few labeled samples (Reviewer_cBn7)",
+    "Contribution of RandAugment and Cutout, and augmentation fairness (Reviewer_8Nkc; lines 231-233 already state the setup)",
+    "Change of metrics between Table 1 and Section 4.4 (Reviewer_8Nkc)",
+    "Missing UDA comparison (Reviewer_8Nkc; UDA is in Table 1)",
+    "Training curves and convergence time (Reviewer_YU4M)"
+  ],
+  "issues_only_b": [
+    "Limited novelty: a heuristic combination of existing DP, MCL and label-model parts (Reviewer_ECpd, Reviewer_ux7Q)",
+    "MCL and the regularizer add little in Table 4; most of the gain exists without MCL (Reviewer_gFDp)",
+    "Gains over USADTM outside CIFAR-10 at 40 labels are within noise (Reviewer_ux7Q, Committee B AC)",
+    "Missing ablations: soft versus hard labels, the abstention class, epsilon sensitivity, an even K and rho grid (Reviewer_gFDp, Reviewer_ux7Q)",
+    "Training cost not reported (Reviewer_xTCd)",
+    "Need for a separate end model (Reviewer_xTCd)",
+    "Error cases and class imbalance (Reviewer_ECpd)"
+  ],
+  "shared_issues": [
+    "Strong low-label results, above all CIFAR-10 at 40 labels (seven of eight reviewers)",
+    "Unclear notation and method description: Eq. 1, the MCL assignment u, the label-model parameters (A: cBn7, 8Nkc; B: xTCd, ECpd, gFDp, ux7Q)",
+    "Unmotivated four-part potential in Eq. 7 (A: 8Nkc; B: ux7Q)",
+    "Unclear accuracy estimation and regularizer (A: 8Nkc; B: ECpd, gFDp)",
+    "Unclear source of the gain and missing ensemble baselines (A: AJRp, AC; B: gFDp, xTCd)",
+    "Small gains on CIFAR-100 or other datasets (A: cBn7; B: ux7Q, AC)",
+    "No ImageNet or large-scale results (A: AJRp, cBn7; B: ux7Q)",
+    "Multi-stage training cost (A: YU4M, AJRp; B: xTCd)",
+    "Choice of K and rho (A: 8Nkc; B: gFDp)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same facts and weighted them differently; reviewer depth set the weights. The facts: one large gain (CIFAR-10, 40 labels: 6.54% vs USADTM's 9.54% error), parity elsewhere, a notation-heavy method with many parts, and no clear source of the gain. A's four 6s came at confidence 2 to 3, mostly as clarification questions. One A reviewer is a self-declared non-expert (Reviewer_YU4M, 2 hours). One asked for a UDA comparison already in Table 1 (Reviewer_8Nkc). One rose from 4 to 6 when the rebuttal explained the notation (Reviewer_cBn7). A's AC named B's central doubt, 'not very clear where exactly the gains come from', yet accepted on the uniform scores and left fixes to the camera-ready. B's reviewers (confidence 3 to 5) checked the ablations and the margins, and the paper confirms them. MCL, the headline component, adds 1.36 and 0.31 points of annotation accuracy (Table 4). At 40 labels on SVHN and STL-10, DP-SSL leads USADTM by less than one STD. The same explanations that moved cBn7 moved nobody in B, and Reviewer_gFDp asked for a major revision. B's AC overstated one reason: results beyond CIFAR-10 are on par, not 'relatively poor'. Neither committee found an error. The paper sits at the threshold, and A's less critical pool placed it above.",
+  "candidate_reasons": [
+    "Reviewer expertise and confidence gap",
+    "Component ablation audit only in B",
+    "Clarity fixable versus major revision",
+    "Baseline framing: FixMatch versus USADTM",
+    "AC A deferred to uniform scores",
+    "Novelty judged incremental only in B"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_gFDp final review (Effect of MCL, Effect of regularization, update after rebuttal)",
+    "paper Table 4 (Exp1 vs Exp3; Exp14 vs Exp15)",
+    "paper Tables 1-2 (SVHN and STL-10 at 40 labels; USADTM rows)",
+    "paper line 279 (FixMatch and USADTM proxy-label accuracy)",
+    "Reviewer_ux7Q review W1, W2, W4",
+    "Reviewer_cBn7 'Score update' comment, 2021-08-31",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_YU4M review (confidence 2, not an SSL expert)",
+    "Reviewer_8Nkc review, experiments item 5, vs Table 1 UDA row",
+    "Reviewer_ECpd post-rebuttal note",
+    "Authors' response to Reviewer_gFDp part 2, item 4 (label model carries the gain)"
+  ]
+}

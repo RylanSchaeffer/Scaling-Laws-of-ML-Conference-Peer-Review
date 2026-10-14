@@ -1,0 +1,235 @@
+{
+  "pair_id": "n21-027",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        8,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_TT1t",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "The only rating above 6 (8, confidence 4). Eleven numbered, specific points; three are confirmed by the submission (Eq. 17 inner sum over r only, v_mu undefined in Theorem 6, Fig. 2 caption says the rate of learning 'varied little' while the plotted reward rate runs from about 0.035 to 0.056 across alpha). Post-rebuttal (2021-08-31): 'addressed all my main concerns'. The 8 does not decide A's outcome: the other three ratings are all 6."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TT1t",
+          "claim": "In Eq. 17 the second summation should run over s', r, not over r alone.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 17 (page 8) sums p(s', r | s, a) over r only, so s' is free. Authors: 'Indeed, the second summation should be over {s', r}'."
+        },
+        {
+          "reviewer": "Reviewer_TT1t",
+          "claim": "v_mu(s) in Theorem 6 is never defined.",
+          "checked_against_paper": "correct",
+          "evidence": "v_mu appears only at line 323, inside Theorem 6; the main text never defines it. Authors: 'We missed defining it in the paper'."
+        },
+        {
+          "reviewer": "Reviewer_TT1t",
+          "claim": "The Fig. 2 claim that the rate of learning varied little over alpha and eta is not supported; the reward rate about doubles across alpha.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 2 right: about 0.035 to 0.046 at alpha = 2^-9, about 0.056 at alpha >= 2^-3. The authors agreed to restrict the caption to eta."
+        },
+        {
+          "reviewer": "Reviewer_Pn3J",
+          "claim": "A primitive-action Differential Q-learning baseline (Wan et al. 2021) is missing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 2 left includes O = A. Lines 74-76 define actions as one-step options; with every length 1, L stays at its initial value 1 and the update is Differential Q-learning. The paper does not name it as such."
+        },
+        {
+          "reviewer": "Reviewer_Pn3J",
+          "claim": "The introduction does not motivate the average-reward setting (also Reviewer_ufJp, Q1).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 16-20 state the extension and give no reason for it. The camera-ready adds a paragraph citing Sutton & Barto 2018 Sec. 10.4 and Naik et al. 2019. Authors: 'we did not clearly present this motivation in the paper'."
+        },
+        {
+          "reviewer": "Reviewer_Pn3J",
+          "claim": "Gosavi's algorithm is absent from the learning-curve plot.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 2 left shows only the three option sets; Gosavi appears only in the sensitivity plot of Fig. 3 (Reviewer_TT1t point 9 makes the same request)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_Pn3J (2021-08-20): 'acknowledge the rebuttal response and recommend acceptance'. Reviewer_Dp3F (2021-08-30): 'My review and rating of the paper remains the same.' Reviewer_TT1t (2021-08-31): 'addressed all my main concerns ... rating remain the same'. Reviewer_ufJp did not reply.",
+        "what_convinced_or_not": "No score needed to move: all four were already at 6 or above. The authors promised a motivation paragraph, a statement of the technical difficulty and typo fixes. They offered no new experiments and declined Reviewer_Dp3F's discounted baseline as 'inappropriate and difficult to interpret'. Dp3F's 'trivially extend' point got the answer 'a unified proof for all the cases'; Dp3F neither accepted it nor pressed it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four-sentence meta-review: 'The reviewers unanimously recommended acceptance. The work is theoretically solid and novel. Well done!' It does not mention the incrementality (Reviewer_Dp3F), the missing motivation (Reviewer_ufJp, Reviewer_Pn3J) or the thin experiments (Reviewer_Dp3F, Reviewer_Pn3J, Reviewer_TT1t). 'Novel' contradicts Dp3F.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or above 6 (6, 8, 6, 6)",
+        "Convergence theory judged sound; Reviewer_ufJp reports checking the Theorem 1 and Theorem 3 proofs",
+        "Average-reward hierarchical RL seen as understudied and relevant (Reviewer_TT1t, Reviewer_Pn3J)",
+        "Thin experiments and missing motivation treated as limits of a theory paper, not as reasons to reject"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        5,
+        7,
+        7
+      ],
+      "confidences": [
+        2,
+        5,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_EQtC"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_EQtC",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold (5) and the only confidence 5 in either committee. Its core judgement holds: novelty beyond Theorem 1 is unclear (the authors agreed the intra-option, planning and interruption parts are 'more derivative in nature'), and the paper gives 'little motivation intuitively or through experiments' (the introduction gives none). Its detail is weaker than its confidence: three of its specific claims are false (Gosavi citation, beta values, limitations). The edit of 2021-09-16 keeps the 5 because the authors 'did not provide convincing experimental results, and in their rebuttal do not intend to'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_mBza",
+          "evidence": "Rating 7, confidence 4, but the main review is five sentences, mostly description; its one positive remark is 'more generalized than earlier work'. The judgements in the limitations field are critical: 'proof techniques have been borrowed heavily' and 'a very natural extension of Q-learning'. Nothing in the text argues for a 7. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_EQtC",
+          "claim": "Gosavi (2004), the experimental baseline, is not cited in the introduction around L40, so the work is hard to situate.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 32-35 cite Gosavi 2004 and state its special-recurrent-state limitation."
+        },
+        {
+          "reviewer": "Reviewer_EQtC",
+          "claim": "The sensitivity study shows only beta = 2^-1; other values are not presented.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 174-177 and 186-188 refer the beta study and the other option sets to Appendix B.1. The appendix is not in the supplied PDF, so its content was not checked."
+        },
+        {
+          "reviewer": "Reviewer_EQtC",
+          "claim": "L211 says all options are updated, whereas Sutton et al. update only consistent options; this is a key difference.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 13 weights each option's update by rho_t(o) = pi(A_t|S_t,o)/pi(A_t|S_t,O_t), which is zero for an inconsistent deterministic option. The remark at lines 244-247 says this extends the method to stochastic option policies."
+        },
+        {
+          "reviewer": "Reviewer_EQtC",
+          "claim": "Limitations are not really discussed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 7, 'Conclusions, Limitations, and Future Work', names the tabular setting, given fixed options, separate learning and planning, and limited empirical experience."
+        },
+        {
+          "reviewer": "Reviewer_EQtC",
+          "claim": "The paper gives little motivation, intuitively or through experiments, for extending options to average reward.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 16-20 give no reason for the average-reward formulation. All experiments (Figs. 2-5) run inside the average-reward formulation on one Four-Room grid; none shows what it gives over the discounted formulation."
+        },
+        {
+          "reviewer": "Reviewer_cm1m",
+          "claim": "The remark at line 138 says Theorem 1 assumes known expected option lengths, which contradicts the estimated lengths in the algorithm.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 covers updates (5-8), where L is learned by Eq. 8. The remark's wording invites the misreading: it says L_n 'is the expected option length' where it means an estimate of it."
+        },
+        {
+          "reviewer": "Reviewer_WKn4",
+          "claim": "The summation at line 290 should be over s', l, not r, l.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 290 defines m^r(s,o) with a sum over r, l that leaves s' free. Line 292 has a similar slip (l left free) that no reviewer noted."
+        },
+        {
+          "reviewer": "Reviewer_mBza",
+          "claim": "The special recurrent state is needed only for Gosavi's proof; the experiments run Gosavi's algorithm without one, and the two algorithms are very similar.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 189-200 give Gosavi's updates with no special state. Authors: 'Gosavi's algorithm itself does not require the specification of a special recurrent state'. The algorithms differ in the reward-rate estimate (sample average versus TD error) and in the length scaling."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_EQtC edited (2021-09-16), adding a post-rebuttal note that keeps the 5. Reviewer_cm1m (2021-08-20) asked two follow-ups (why options rather than actions in real problems; clearer theorem and remark); the authors answered on 2021-08-26 with a vacuum-robot example. Reviewer_WKn4 (2021-08-23): the responses were 'helpful'. Reviewer_mBza did not reply. No rating changed.",
+        "what_convinced_or_not": "The rebuttal cleared the factual points (Gosavi citation, beta values, consistent options, option length). It conceded the core ones: to Reviewer_EQtC that the intra-option, planning and interruption contributions are 'more derivative in nature'; to Reviewer_mBza that the algorithm is 'a natural extension'; to Reviewer_cm1m that the motivation was missing. It promised text, not experiments, and called a discounted comparison 'inappropriate'. EQtC called that refusal 'quite negative'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Rejects although three of four reviewers rated 6 or 7. Each stated reason comes from the reviews: 'weakly motivated as observed by multiple reviewers' (Reviewer_cm1m, Reviewer_EQtC); 'relatively incremental' (EQtC, Reviewer_mBza, cm1m's 'straightforward modification'); and an experiment showing 'some capability afforded by the average reward formulation which the discounted formulation lacks' (EQtC's 'why we should even bother'). It cites 'a lot of discussion amongst the reviewers' that is not public. The journal suggestion, with function approximation or option learning, is the chair's own.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Setup weakly motivated (Reviewer_cm1m, Reviewer_EQtC)",
+        "Algorithms and analysis incremental over Wan et al. 2021 (Reviewer_EQtC, Reviewer_mBza; partly conceded by the authors)",
+        "No experiment showing what average reward gives over discounted (Reviewer_EQtC, meta-review)",
+        "Record judged 'strictly borderline' after private reviewer discussion; the positive ratings were thin or low-confidence",
+        "Tabular only; function approximation and option learning left for a journal version"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Fig. 2 caption overclaims robustness to alpha (Reviewer_TT1t)",
+    "Gosavi absent from the learning curves; only its sensitivity is shown (Reviewer_Pn3J, Reviewer_TT1t)",
+    "Undefined v_mu in Theorem 6 and the Eq. 17 summation error (Reviewer_TT1t)",
+    "Comparison with multi-time models and an Average Cost TD baseline (Reviewer_Pn3J)",
+    "Whether options help only in early exploration (Reviewer_TT1t)",
+    "Why hyperparameter sensitivity differs across option sets (Reviewer_ufJp)"
+  ],
+  "issues_only_b": [
+    "Special recurrent state is an artifact of Gosavi's proof, so the gain over Gosavi lies mainly in the proof (Reviewer_mBza)",
+    "Updating all options versus only consistent ones (Reviewer_EQtC)",
+    "Relative weight of the four contributions; the authors conceded three are 'more derivative in nature' (Reviewer_EQtC)",
+    "Motivation for options over primitive actions in real problems (Reviewer_cm1m)",
+    "Remark at line 138 on expected option length; informal theorem statements (Reviewer_cm1m)",
+    "Only one beta value in the main sensitivity plot (Reviewer_EQtC)",
+    "Why the goal state changes between experiments (Reviewer_WKn4)"
+  ],
+  "shared_issues": [
+    "Incremental extension of Wan et al. 2021 algorithms and proofs (Reviewer_Dp3F; Reviewer_EQtC, Reviewer_mBza, Reviewer_cm1m)",
+    "No motivation for the average-reward formulation (Reviewer_ufJp, Reviewer_Pn3J; Reviewer_EQtC, Reviewer_cm1m)",
+    "One small tabular domain; thin empirical study (Reviewer_Dp3F, Reviewer_Pn3J, Reviewer_TT1t; Reviewer_WKn4, Reviewer_EQtC)",
+    "No comparison with a discounted-setting method (Reviewer_Dp3F; Reviewer_EQtC, Committee B meta-review)",
+    "Tabular only; function approximation left to future work (Reviewer_TT1t; Reviewer_cm1m, Committee B meta-review)",
+    "Technical difficulty and originality not highlighted (Reviewer_Dp3F; Reviewer_EQtC)",
+    "Notation: one symbol q for several Bellman solutions; summation-index slips in Section 5 (Reviewer_TT1t; Reviewer_WKn4)",
+    "No broader-impact statement (Reviewer_Pn3J; Reviewer_EQtC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same borderline facts differently, and the split sits with Committee B's area chair. Mean ratings were 6.5 (A) and 6.25 (B); seven of eight reviewers rated 6 or above. Both committees raised the same weaknesses: an incremental extension of Wan et al.'s (2021) algorithms and proofs, no stated reason for the average-reward formulation, one small tabular domain, and no comparison with a discounted method. The submission confirms them: its introduction gives no motivation (the camera-ready adds a paragraph), and every experiment uses one Four-Room grid. The authors sent near-identical rebuttals that promised text, not experiments, and no rating moved on either side. A's chair followed four positive scores with a four-sentence meta-review that calls the work 'novel', ignoring Reviewer_Dp3F's 'trivially extend'. A's record also held a careful champion, Reviewer_TT1t (8, eleven specific points, three confirmed). B's positive side was weak: Reviewer_cm1m at confidence 2, Reviewer_WKn4's generic 7, and Reviewer_mBza's 7, whose short text is mostly description plus two criticisms and who never replied. B's one confidence-5 reviewer, Reviewer_EQtC, held at 5; its core judgement is right, although three of its specific claims are false. Only in B did the authors concede that the intra-option, planning and interruption contributions are 'more derivative in nature'. B's chair called the paper 'strictly borderline' and rejected it on EQtC's grounds. No reviewer found a technical error beyond typos, so the outcome turned only on whether a theory-first tabular extension clears the bar.",
+  "candidate_reasons": [
+    "Chair overrode majority-positive scores",
+    "Thin champions discounted by chair",
+    "Confident detractor framed the decision",
+    "Incrementality over prior work weighed differently",
+    "Missing average-reward motivation",
+    "Score-following meta-review in A"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Reviewer_EQtC review and post-rebuttal edit (2021-09-16)",
+    "Authors' response to Reviewer_EQtC ('more derivative in nature')",
+    "Reviewer_mBza review (no reply after the rebuttal)",
+    "Committee A meta-review",
+    "Reviewer_TT1t review and 2021-08-31 comment",
+    "Reviewer_Dp3F review",
+    "paper_submitted.pdf lines 16-20 (no average-reward motivation; the camera-ready adds one)",
+    "paper_submitted.pdf lines 32-35, 174-188 and Section 7 (against Reviewer_EQtC's specific claims)",
+    "paper_submitted.pdf Fig. 2 right, Eq. 17, line 290, Theorem 6"
+  ]
+}

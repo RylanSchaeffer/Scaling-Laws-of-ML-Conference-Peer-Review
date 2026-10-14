@@ -1,0 +1,200 @@
+{
+  "pair_id": "n21-011",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 5, 6, 7],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_EuYn", "Reviewer_xkvv", "Reviewer_JU4W"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/5/6/7 (5K8S, EuYn, xkvv, JU4W) span two points. Reviewer_JU4W's 7 is the only accept-level score, and its review states no weakness (see inattentive_reviews). Without it the mean is 5.67, still above every rating in B."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_JU4W",
+          "evidence": "Rating 7, claimed 8 hours. The review restates the paper section by section and names no weakness. It says 'The related work is dense and covers most important related works', but the submission never mentions line graphs or Monti et al. (2018), which 5K8S, xkvv and QU8H raised and the camera-ready added. After the rebuttal it only added 'I acknowledge that I have read the authors' response and the other reviews' and took no part in the novelty dispute."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_5K8S",
+          "claim": "The method treats the dual as a simple graph and does not exploit its hypergraph nature; edge-level message passing on the dual was already done by Monti et al. (2018, dual-primal GCN).",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 aggregates over N(e; M^T), the dual nodes that share a hyperedge, i.e. original edges that share an endpoint: the line-graph neighbourhood. Lines 201-205 allow any off-the-shelf GCN, GAT, GraphSAGE or GIN. The submission's related work (lines 88-107) never mentions line graphs or Monti et al.; the camera-ready adds a 'Graph transformation' paragraph that cites Monti et al."
+        },
+        {
+          "reviewer": "Reviewer_5K8S",
+          "claim": "Table 1 overstates the cost of building the edge adjacency: O(m^2) holds only for a dense build; a sparse build costs O(m d_max).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 and lines 149-150 compare O(m^2) for edge-aware GNNs with O(1) for DHT, a dense-only comparison. The authors conceded the O(m d_max) sparse cost in the rebuttal, and the camera-ready replaces Table 1 with a star-graph comparison."
+        },
+        {
+          "reviewer": "Reviewer_xkvv",
+          "claim": "On a star graph, message passing on the dual hypergraph needs n(n-1) messages, against 2n on the original graph.",
+          "checked_against_paper": "correct",
+          "evidence": "Correct for Eq. 4 as written: the n edges of a star all share the hub, so pairwise aggregation over N(e; M^T) is quadratic. The authors' O(m) relies on a two-stage node-to-hyperedge-to-node aggregation that the submission does not describe (lines 186-189 and 199-201 discuss only the sparse transformation). The camera-ready adds the O(m) sentence and a star-graph Table 1. xkvv accepted the explanation ('Get it')."
+        },
+        {
+          "reviewer": "Reviewer_EuYn",
+          "claim": "The key idea is to run a known graph method on the transposed incidence matrix (line 207); HyperCluster and HyperDrop are straightforward adoptions of DiffPool- and SAGPool-style pooling.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 206-207 define EHGNN(X, M, E) = GNN(E, M^T, X). Eq. 6 and Eq. 8 apply Eq. 5 and Eq. 7 to M^T; HyperCluster uses GMPool assignments (line 275) and HyperDrop uses SAGPool on the hypergraph (line 346). The authors' reply concedes they are 'straightforward adoptions'."
+        },
+        {
+          "reviewer": "Reviewer_EuYn",
+          "claim": "Table 2 shows higher variances for the proposed method than for the baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "MARS + EHGNN has the larger standard deviation in 6 of 8 cells, though the mean SDs are close (2.9 vs 3.0, as the authors said). On ChEMBL the success-rate gain (56.64 to 58.25) is smaller than either SD (5.79, 6.07), and JNK3 falls (70.57 to 70.01). The authors' t-test (p = 0.017) covers only the ZINC success rate."
+        },
+        {
+          "reviewer": "Reviewer_JU4W",
+          "claim": "The related work covers most important related works.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission omits the line-graph approach to edge representation (Monti et al. 2018; Chen et al. 2019; Cai et al. 2020), which the authors themselves treat as the closest prior work in the rebuttal; the camera-ready adds it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": ["Reviewer_xkvv"],
+        "evidence": "EuYn edited on 2021-08-10, the day it wrote 'I can increase the confidence score but I still tend to marginally lean towards rejection': a confidence change, rating 5 held. xkvv wrote 'Get it. Thanks for the clarification' on 2021-08-30; the authors asked it on 2021-08-31 to 'revise the review and the score'; it edited on 2021-09-02, the last discussion day. A rise to 6 is possible but not visible. JU4W's 2021-08-29 edit only adds an acknowledgement line. 5K8S never replied and never edited.",
+        "what_convinced_or_not": "EuYn welcomed the MLP comparison and the t-test but held 5 on novelty after three rounds ('Let us politely agree to disagree'); the self-attention analogy and the appeal to the NeurIPS guideline on novel combinations did not move it. xkvv accepted the two-stage O(m) aggregation argument. The authors' line-graph timing table (32.78 s for 2,000 edges, growing linearly at about 16 ms per edge) measures implementation overhead, not the asymptotic gap it is cited for; no reviewer questioned it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 6.0, with three of four ratings at 6 or 7. The four-sentence meta-review calls edge representation 'an under-studied problem', says the model 'outperforms baselines on several tasks', and asks the authors to 'incorporate the salient points of the discussion'. It does not mention the novelty objections of 5K8S and EuYn.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Edge representation learning accepted as an under-studied problem that the paper advances",
+        "Broad experiments with large reconstruction gains and wins on generation and classification",
+        "Novelty doubts (5K8S, EuYn, xkvv) scored as borderline, not disqualifying: 6, 5, 6",
+        "One uncritical 7 (JU4W) lifts the mean to 6.0"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 4, 4],
+      "confidences": [4, 4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_QU8H"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Unanimous 4s (KF8o, QU8H, HuNj, dR4y), confidence 4, 4, 5, 4."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_dR4y",
+          "evidence": "Says HyperCluster and HyperDrop 'cannot be trained in an end-to-end way', but Eq. 6 and Eq. 8 use learned assignments and scores (GMPool, SAGPool; lines 232-235, 242, 275, 346). Calls the idea 'good' in originality and novelty, then gives 4 for few 'technical contributions'. Claims edges are 'usually hundreds of times the number of nodes' in real networks. Never replied after the rebuttal corrected it."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QU8H",
+          "claim": "The aggregation of Eq. 4 is the same as running a standard GNN on the line graph, as Cai et al. (2020) already did.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 and lines 197-198: neighbours in G* are nodes that share a hyperedge, i.e. original edges that share an endpoint, the line-graph adjacency. The authors conceded 'the result of the aggregation (or precisely the adjacency between the edges) is the same' and defended only the lower cost of a two-stage implementation. The submission never mentions line graphs; the camera-ready adds a paragraph on them."
+        },
+        {
+          "reviewer": "Reviewer_QU8H",
+          "claim": "Figure 1 is chemically wrong: Tylenol has two more hydrogens than NAPQI, so the two graphs differ in nodes, not only in edges.",
+          "checked_against_paper": "incorrect",
+          "evidence": "In hydrogen-suppressed molecular graphs, the convention of the paper's ZINC data (node features are atom types, lines 266-267), both molecules have the same 11 heavy atoms (8 C, 1 N, 2 O) and the same skeleton, and differ only in bond orders. QU8H accepted this ('I agree the edge information ... is necessary since the hydrogen atoms are dropped'). The submission did not state the convention; the camera-ready adds a footnote."
+        },
+        {
+          "reviewer": "Reviewer_KF8o",
+          "claim": "EHGNN does not capture node information by itself and needs a parallel node-level GNN.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 289-291 combine EHGNN + HyperCluster with GCN + GMPool for graph reconstruction, and lines 344-346 use GCN node layers for all classification models. The authors' reply (the two are trained jointly) does not contradict this."
+        },
+        {
+          "reviewer": "Reviewer_HuNj",
+          "claim": "The paper's PROTEINS and D&D accuracies (75.39, 78.39) are below HGP-SL's 84.91 and 80.96.",
+          "checked_against_paper": "correct",
+          "evidence": "The numbers match Table 3 (HyperDrop + GMT), but the inference is weak. The paper follows the 10-fold protocol of Baek et al. and takes baseline numbers from that paper (lines 344-354, Table 3 caption); HGP-SL's figures come from its own protocol. In the authors' rerun under the paper's protocol, HGP-SL scores 74.25 (D&D) and 71.91 (PROTEINS), below HyperDrop. HuNj did not reply."
+        },
+        {
+          "reviewer": "Reviewer_dR4y",
+          "claim": "HyperCluster and HyperDrop cannot be trained end to end.",
+          "checked_against_paper": "incorrect",
+          "evidence": "HyperCluster's assignment matrix is generated from the learned E' by GMPool (lines 232-235, 275), and HyperDrop's score function has learnable parameters (line 242) via SAGPool (line 346); both train with the rest of the model."
+        },
+        {
+          "reviewer": "Reviewer_dR4y",
+          "claim": "Only small improvements are observed.",
+          "checked_against_paper": "correct",
+          "evidence": "Partly. True for classification: HyperDrop averages 73.20 and HyperDrop + GMT 73.57 against GMT's 73.07 (Table 3), and HyperDrop alone trails GMT on HIV, Tox21 and ToxCast, despite the abstract's 'largely outperforms'. False for reconstruction, where exact match is far above all baselines (Figures 3 and 5)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "The only edit (QU8H, 2021-07-15) predates the rebuttal (2021-08-10). QU8H replied twice (2021-08-16, 2021-08-19) and stayed at 4. KF8o, HuNj and dR4y posted nothing after the rebuttal.",
+        "what_convinced_or_not": "QU8H accepted the hydrogen-suppression answer but pressed on novelty: 'clarify how the aggregation mechanism is different, not how the graph transformation is different'. The authors then conceded that the edge adjacency is the line graph's and argued only cost; QU8H did not reply. Corrections to dR4y (end-to-end training), HuNj (HGP-SL rerun, SDNE) and KF8o (joint training) drew no response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Unanimous 4s. The meta-review says 'all the reviewers had hard time discerning what's the novelty of the proposed work, and the significance of the contribution' and asks for a clearer contrast with existing work. It does not weigh the empirical results or the rebuttal's corrections.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers judged the technical novelty too thin: dual-hypergraph message passing is line-graph or hypergraph message passing, and the pooling reuses node pooling",
+        "QU8H's line-graph equivalence, conceded in substance by the authors",
+        "Doubts on the size and significance of the gains and on scale (dR4y, HuNj)",
+        "Model judged not conceptually stronger than existing GNNs (KF8o)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "MLP baseline for reconstruction and generation (EuYn); the authors supplied it",
+    "Statistical tests and larger variance in Table 2 (EuYn)",
+    "Hypergraph attention networks and explicit edge-feature baselines with simple pooling (EuYn, 5K8S)",
+    "Quantitative two-moon result and the Figure 3 versus Figure 5 accuracy gap (5K8S)",
+    "Why drop edges rather than nodes, and a rewiring framing (5K8S); oversmoothing result unsurprising (EuYn)"
+  ],
+  "issues_only_b": [
+    "EHGNN needs a parallel node GNN and is not conceptually stronger than existing GNNs (KF8o)",
+    "Figure 1 Tylenol/NAPQI example called chemically wrong (QU8H; wrong under hydrogen-suppressed graphs)",
+    "No comparison with reported state-of-the-art accuracies (HGP-SL, GCN-LPA) or with SDNE (HuNj)",
+    "Small datasets and the memory cost of edge representations on large graphs (HuNj, dR4y)",
+    "Pooling said not to train end to end (dR4y; wrong)"
+  ],
+  "shared_issues": [
+    "Limited novelty: edges-as-nodes message passing and hypergraph duality are known (5K8S, EuYn, xkvv in A; all four in B)",
+    "Message passing on the dual equals line-graph aggregation; the hypergraph structure is unused (5K8S, xkvv in A; QU8H in B)",
+    "HyperCluster and HyperDrop reuse node pooling (EuYn in A; HuNj, dR4y in B)",
+    "Complexity claims of Table 1 and the sparse implementation; runtime on large or high-degree graphs (5K8S, xkvv in A; dR4y, HuNj in B)",
+    "Size or significance of the gains (EuYn in A; dR4y in B)",
+    "Tasks and compression ratio not defined in the main text (5K8S, xkvv in A; KF8o in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw the same facts and weighted them differently. All eight reviewers found the method simple and built from known parts: message passing on the dual hypergraph uses the line-graph neighbourhood (two edges are neighbours when they share a node), and HyperCluster and HyperDrop run GMPool and SAGPool on the dual. The paper supports this doubt. The submission never mentions line graphs or Monti et al. (2018), the camera-ready adds both, and the authors conceded to Reviewer_QU8H that 'the adjacency between the edges' equals the line graph's, defending only the lower cost. Most reviewers on both sides also credited the problem and the breadth of the experiments. Committee A turned this into 6, 5, 6 and 7: Reviewer_5K8S called the dual 'not novel per se' and still gave 6, Reviewer_EuYn gave 5 with 'accepting it would not be that bad', and Reviewer_JU4W gave 7 with a review that names no weakness. Committee B turned it into four 4s. No rating moved visibly after the rebuttal, three of B's four reviewers never replied, and both ACs followed their mean (6.0 and 4.0). B's factual errors (QU8H on Figure 1, dR4y on end-to-end training, HuNj's cross-protocol accuracy comparison) did not drive the reject; the decisive novelty point was also made in A. The split is reviewer calibration of 'simple idea, broad experiments', plus one uncritical 7 in A.",
+  "candidate_reasons": [
+    "Same novelty doubt, different calibration",
+    "Uncritical accept-level review in A",
+    "Line-graph equivalence made checkable in B",
+    "Empirical breadth versus technical novelty",
+    "Most B reviewers silent after rebuttal",
+    "ACs followed mean scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_5K8S review ('the idea of processing the dual graph is not novel per se')",
+    "Reviewer_EuYn discussion 2021-08-12 and 2021-08-14",
+    "Reviewer_JU4W review",
+    "Reviewer_xkvv discussion 2021-08-13 to 2021-08-30 (star graph)",
+    "Reviewer_QU8H discussion 2021-08-19 and author reply 2021-08-20",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Eq. 4, lines 186-207, Table 1",
+    "paper_submitted.pdf Related Work lines 88-107; paper.pdf 'Graph transformation' paragraph",
+    "paper_submitted.pdf Table 2, Table 3, Figure 1"
+  ]
+}

@@ -1,0 +1,256 @@
+{
+ "pair_id": "n21-024",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    5,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_LSav",
+    "Reviewer_ZcLN"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All four reviewers (LSav, LFjT, UvLd, ZcLN) gave 6, at confidence 3 to 5. No score stands apart."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_LSav",
+     "claim": "Line 215 sets C = 512, but ResNet-101 outputs 2048 channels; is the backbone changed?",
+     "checked_against_paper": "correct",
+     "evidence": "l.215 states 'C = 512' and the submission describes no reduction layer. The authors confirmed a conv layer that reduces 2048 to 512. The camera-ready adds 'since we use a conv. layer for dimension reduction'."
+    },
+    {
+     "reviewer": "Reviewer_LSav",
+     "claim": "Eq. 9 is an ordinary cross-entropy loss, not a contrastive loss.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 9 is a softmax cross-entropy of f^k(X) against the category prototypes C^k; l.181 calls it 'a contrastive loss'. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_LFjT",
+     "claim": "With PCC and PAL, seen-class accuracy drops in the ablation.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1, CUB: MCA_s falls from 84.4 (Base-V2S) to 77.1 (full DPPN). On aPY it rises from 42.6 to 61.2, so the drop is on CUB only."
+    },
+    {
+     "reviewer": "Reviewer_LFjT",
+     "claim": "SUN results are weak compared with recent work (RFF, DVBE, APN).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: DPPN's SUN H is 41.0, above the embedding APN (37.6) but below IZF-Softmax (54.8) and CE-GZSL (43.1). The paper concedes a 'relative small improvement on SUN' (l.307-309). RFF and DVBE are not in Table 3."
+    },
+    {
+     "reviewer": "Reviewer_UvLd",
+     "claim": "Unseen-class accuracy is not great across the datasets; H is saved by better seen-class accuracy, so the method suits supervised learning more than zero-shot learning.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3: DPPN's CUB unseen accuracy (70.2) is second only to RGEN's printed 73.5, and its seen accuracy is the highest on no dataset. Table 1, CUB: unseen accuracy rises from 50.5 to 70.2 while seen accuracy falls from 84.4 to 77.1. The claim fits aPY (seen 42.6 to 61.2), not CUB."
+    },
+    {
+     "reviewer": "Reviewer_ZcLN",
+     "claim": "DPPN uses 448 x 448 input and backbone fine-tuning, unlike most baselines, and the comparison does not say so.",
+     "checked_against_paper": "correct",
+     "evidence": "l.211-214: 448 x 448 input; fixed backbone, then fine-tuning of the whole network. Table 3 marks neither setting per method. The rebuttal's 224-pixel and no-fine-tuning runs still put DPPN first on most benchmarks."
+    },
+    {
+     "reviewer": "Reviewer_ZcLN",
+     "claim": "The paper does not say how local features are aggregated into the global representation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. 6 and l.147-151 define f^k(X) = cat(f_rd(P^k)), and Table 2 compares cat(.) with sum(.). ZcLN wrote '(or couldn't find it)'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_ZcLN"
+    ],
+    "evidence": "Reviewer_UvLd (2021-09-01): 'Since the ratings diverged, there has been some discussion amongst reviewers. After the discussion, I remain at a score above the threshold.' All final ratings are 6, and LFjT and UvLd never edited, so the divergent score belonged to LSav or ZcLN. ZcLN edited its review on 2021-09-02, the day it wrote 'They addressed most of my concerns'. Its original text ('the significance may be low', 'The comparison may not be fair to many methods') reads as below the threshold. The upward move is inferred; OpenReview shows no earlier rating. LSav's edit (2021-08-26) added '[Post rebuttal] The authors have addressed my concern ... I still lean to accept'. LFjT (2021-08-21): 'I recommend to the acceptance of this paper', with the review unedited at 6.",
+    "what_convinced_or_not": "New experiments persuaded ZcLN: a max-pooling (SELAR-style) aggregation baseline, 224-pixel input, no fine-tuning, and AUSUC. DPPN kept its lead in most of them; it trailed only on SUN AUSUC and on AWA2 at 224 pixels. ZcLN's remaining concern (AUSUC for every experiment) drew AUSUC tables on 2021-09-07. UvLd accepted the explanation of the difference from APN but called it still 'handwaivy'. LFjT accepted the AWA2 and SUN ablations. LSav accepted the conv-layer explanation for C = 512, the conventional ZSL results and a PCP localisation score."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Four-sentence meta-review: 'Reviewers felt there were various sources of confusion and explanation quality. However they also agree that the methodology is solid enough and the evaluation is strong. I recommend accept'. It names no specific point and matches the four 6s.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Four marginal-accept ratings, unanimous after the rebuttal",
+    "Reviewers judged the method sound and the evaluation strong: best H on CUB, AWA2 and aPY, with extensive ablations",
+    "The rebuttal experiments (max-pooling aggregation, 224-pixel and no-fine-tuning runs, AUSUC) answered the most critical reviewer, Reviewer_ZcLN",
+    "Clarity problems judged fixable in the camera-ready"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_8tZA",
+    "Reviewer_hqqu"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "A 2-2 split: 8tZA and hqqu at 5, FH4n and fpHH at 6, all at confidence 4. No single score stands apart. The two 5s differ in quality: hqqu's review is detailed; 8tZA's 5 does not follow from its own text."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_8tZA",
+     "evidence": "Rates 5, but the main review is four lines of praise: 'significant novelty', 'experiments prove the efficiency', 'The ablation study is sufficient', 'The code is provided'. All criticism concerns presentation. It asks 'How to set the hyper-parameters?' although Sec. 4.1 (l.211-217) lists them. It 'corrects' 'complementary' (l.85) to 'complimentary', which is wrong. It edited the review on 2021-08-26 with no visible post-rebuttal text and posted nothing in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_hqqu",
+     "claim": "L216 sets lambda = 0.1, but Fig. 5(a)(b) omits 0.1 and the text picks 1.0.",
+     "checked_against_paper": "correct",
+     "evidence": "l.216: 'K = 3 and lambda = 0.1'; l.280-282: 'we set lambda = 1.0'; Fig. 5 tests 0, 0.5, 1, 2, 5 and 10. The camera-ready changes l.216 to lambda = 1.0."
+    },
+    {
+     "reviewer": "Reviewer_hqqu",
+     "claim": "'End-to-end' training (L60) conflicts with the two-stage training (L213).",
+     "checked_against_paper": "correct",
+     "evidence": "l.60: 'DPPN is end-to-end trainable'; l.213: 'A two-stage training strategy is adopted'. The two stages are a frozen-backbone warm-up and then full fine-tuning; the camera-ready renames this 'two-step'. A wording fault, not a method fault."
+    },
+    {
+     "reviewer": "Reviewer_hqqu",
+     "claim": "Post-rebuttal: training stays unclear, because the whole ResNet-101 is 'retained between multiple stages' and the effect of K on batch size on one machine is unexplained.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The K iterations run in the prototype head on one backbone pass (Eq. 5, Fig. 2). The rebuttal had already said that a 'stage' is an iteration, not a training stage. Sec. 4.1 fixes batch size 64 on two 1080ti GPUs. Table 1 gives 62.842 against 62.900 GFLOPs for K = 1 and K = 3. Memory is not reported, but each iteration works on C x N_a prototypes (512 x 312 on CUB)."
+    },
+    {
+     "reviewer": "Reviewer_fpHH",
+     "claim": "Table 3's TF-VAEGAN results on SUN are transductive.",
+     "checked_against_paper": "correct",
+     "evidence": "Submission Table 3: 62.4 / 47.1 / 53.7. The camera-ready replaces them with 41.8 / 51.9 / 46.3. The error inflated a competitor, not DPPN."
+    },
+    {
+     "reviewer": "Reviewer_fpHH",
+     "claim": "g(.) cannot do 'redundancy reduction', because it maps R^{N_a} to R^{N_v} with N_v = D x N_a > N_a.",
+     "checked_against_paper": "correct",
+     "evidence": "l.154 ('for redundancy reduction') against l.151 (N_v = D x N_a). The authors conceded: 'We are sorry for this mistake'."
+    },
+    {
+     "reviewer": "Reviewer_FH4n",
+     "claim": "The aPY result is exceptionally higher than the current state of the art.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3: IZF-Softmax (generative) has H 49.8 on aPY, above DPPN's 48.4. DPPN's 9.4-point margin (l.303-304) is over embedding methods only (CosineSoftmax 39.0)."
+    },
+    {
+     "reviewer": "Reviewer_8tZA",
+     "claim": "The hyperparameter settings and the values used in Sec. 4.3 are not given.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Sec. 4.1 (l.211-217) gives input size, optimizer, batch size, learning rate, C, K and lambda; l.288-289 give N_v and D per dataset."
+    },
+    {
+     "reviewer": "Reviewer_8tZA",
+     "claim": "Line 85: 'complementary' should be 'complimentary'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.85, 'learns complementary relationships between different region parts', uses the right word."
+    },
+    {
+     "reviewer": "Committee B area chair",
+     "claim": "ResNet-101 pretrained on ImageNet may overlap the benchmark images, break the ZSL setting, and explain the exceptionally high aPY gain.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1: Base-V2S, on the same ImageNet-pretrained ResNet-101, reaches H 35.5 on aPY; DPPN reaches 48.4, so pretraining cannot explain the gain. The authors name ResNet-101 as the backbone of DAZLE, APN and GEM-ZSL too. The submission never names its seen/unseen splits, so the text does not rule out overlap, but overlap would help the baseline and DPPN alike. No reviewer raised the point; it first appears in the meta-review, so the authors could not answer it."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_hqqu edited its review on 2021-08-31 and wrote 'Overall, we will thus keep our initial rating.' Reviewer_8tZA edited on 2021-08-26 with no visible post-rebuttal text, so any change there cannot be seen. FH4n and fpHH never edited and never commented.",
+    "what_convinced_or_not": "hqqu found that 'the author made clear responses to the unclear issues' and that the added lambda and N_v results made the discussion 'more comprehensive'. It kept 5 for two reasons. It wanted 'other recent backbones' instead of the ResNet-50 runs the authors added, and it raised a new question about batch size under different K. Both points sit in the edited review, and the authors never answered them. No other B reviewer responded to the rebuttal."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The meta-review notes 'two for borderline accept, two for borderline reject' and then rejects on hqqu's two post-rebuttal points, copied almost word for word ('ResNet-101 is retained between multiple stages; how it will affect the batch size regarding various K settings in the same machine'; 'adding more recent backbones'). It adds the AC's own guess: 'ResNet101 is pre-trained on ImageNet, which may have overlapped images with the benchmark datasets ... I personally guess this is one reason why the improvement on aPY is exceptionally higher'. It cites a 'very thorough discussion' that the public record does not show; the two 6s wrote nothing after the rebuttal.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Training procedure judged unclear: batch size under different K with a fine-tuned ResNet-101 (Reviewer_hqqu post-rebuttal; AC reason 1)",
+    "Backbone study judged insufficient: only ResNet-101 and ResNet-50 (Reviewer_hqqu; AC reason 2)",
+    "The AC's own suspicion that ImageNet pretraining overlaps the benchmarks and inflates the aPY gain",
+    "A 5/5/6/6 split, mean 5.5, resolved against the paper"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "H needs calibration; AUSUC requested (Reviewer_ZcLN)",
+  "448-pixel input and backbone fine-tuning against 224-pixel, non-fine-tuned baselines (Reviewer_ZcLN)",
+  "No SELAR / global-max-pooling aggregation baseline (Reviewer_ZcLN)",
+  "Unseen accuracy weak and H carried by seen accuracy; seen accuracy drops on CUB in the ablation (Reviewer_UvLd, Reviewer_LFjT)",
+  "C = 512 against ResNet-101's 2048 channels (Reviewer_LSav)",
+  "Eq. 9 is cross-entropy, misnamed as a contrastive loss (Reviewer_LSav)",
+  "No quantitative evaluation of attribute localisation (Reviewer_LSav)"
+ ],
+ "issues_only_b": [
+  "lambda = 0.1 at l.216 against lambda = 1.0 in Fig. 5 and l.282 (Reviewer_hqqu)",
+  "Backbones other than ResNet-101; after the rebuttal, backbones newer than ResNet-50 (Reviewer_hqqu, AC)",
+  "Batch size and memory under different K with a fine-tuned backbone (Reviewer_hqqu post-rebuttal, AC)",
+  "ImageNet pretraining may overlap the benchmarks and explain the aPY gain (AC only, built on Reviewer_FH4n's question about aPY)",
+  "TF-VAEGAN SUN row in Table 3 is transductive (Reviewer_fpHH)",
+  "g(.) described as 'redundancy reduction' though N_v > N_a (Reviewer_fpHH)",
+  "Missing comparison with 'Adaptive and Generative Zero-Shot Learning' (ICLR 2021) (Reviewer_fpHH)",
+  "Inference with f^1 against f^3, and summing or concatenating all K representations (Reviewer_fpHH, Reviewer_FH4n)",
+  "Image-order effect, ablation of g(.), dense prediction tasks, DPPN features in a generative model (Reviewer_FH4n, Reviewer_hqqu)",
+  "Fig. 2 unclear; source of the Table 3 numbers (Reviewer_8tZA)"
+ ],
+ "shared_issues": [
+  "What image-specific prototype updates add over APN; novelty incremental (A: UvLd, ZcLN; B: hqqu, FH4n, 8tZA)",
+  "Training procedure unclear: 'multi-stage supervision', end-to-end against two-stage (A: UvLd; B: hqqu)",
+  "Presentation and clarity of the method (A: UvLd, LFjT; B: 8tZA, hqqu)",
+  "No conventional ZSL results (A: LSav; B: FH4n, hqqu)",
+  "Weak results on SUN (A: LFjT; B: hqqu)",
+  "Ablations and hyperparameter study only on CUB and aPY (A: LFjT; B: hqqu)",
+  "Why K = 3 is best and why localisation improves with K (A: LSav; B: 8tZA, fpHH)",
+  "Limitations not discussed (A: UvLd, ZcLN; B: hqqu, fpHH)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same paper: a moderate extension of APN with strong benchmark numbers and a poorly explained training procedure. No reviewer in either committee found an error in the method or the results. A drew four 6s. Its most critical reviewer, Reviewer_ZcLN, asked for AUSUC, a max-pooling aggregation baseline and 224-pixel, non-fine-tuned runs, got them, and wrote that the authors 'addressed most of my concerns'. A's AC followed the unanimous scores. B split 5, 5, 6, 6. Reviewer_8tZA's 5 does not follow from a review that praises 'significant novelty' and a 'sufficient' ablation study. Reviewer_hqqu kept 5 after the rebuttal on two points that the authors never answered: backbones newer than the ResNet-50 runs they added, and batch size under different K. B's AC adopted both points and added a guess of its own: ImageNet pretraining may overlap the benchmarks and explain the aPY gain. No reviewer raised this guess, and Table 1 refutes it: Base-V2S, on the same ImageNet-pretrained backbone, reaches H 35.5 on aPY against 48.4 for DPPN. The committees weighted the same facts differently at the threshold. The discrepancy comes from reviewer draw and from B's AC, not from a flaw that only one committee found.",
+ "candidate_reasons": [
+  "reviewer draw at the threshold",
+  "unsupported detractor score counted fully",
+  "goalposts moved after the rebuttal",
+  "post-rebuttal follow-ups left unanswered",
+  "AC added unraised leakage speculation",
+  "AC broke a borderline split"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Reviewer_hqqu final review, post-rebuttal paragraph",
+  "Reviewer_8tZA final review",
+  "Reviewer_ZcLN 'Response to rebuttal' (2021-09-02) and the authors' 'Further results' (2021-09-07)",
+  "Reviewer_UvLd 'End of rebuttal' (2021-09-01)",
+  "Committee A meta-review",
+  "paper_submitted.pdf Table 1 (Base-V2S against DPPN on aPY; GFLOPs for K = 1 and K = 3)",
+  "paper_submitted.pdf Sec. 4.1, l.211-217 (448-pixel input, fine-tuning, C = 512, lambda = 0.1)",
+  "paper_submitted.pdf Table 3 (aPY: IZF-Softmax 49.8 against DPPN 48.4; TF-VAEGAN SUN row)",
+  "paper.pdf Sec. 4.1 (lambda = 1.0, conv layer for C = 512) and Table 3 (TF-VAEGAN SUN corrected to 46.3)"
+ ]
+}

@@ -1,0 +1,264 @@
+{
+  "pair_id": "n21-038",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        8,
+        5,
+        4,
+        4
+      ],
+      "confidences": [
+        3,
+        4,
+        5,
+        5
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_DE5k",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "An 8 at confidence 3 after 2 hours, three or more points above the other three ratings (5, 4, 4). The review gives no technical assessment: 'the theoretical grounding and the empirical evaluations are sufficient' and 'It seems a rather complete work'. Its only specific requests are a new section order, a longer Discussion and a limitations paragraph. It concedes 'Methods are not new'. No reply in discussion. Without it, A's mean is 4.33."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_DE5k",
+          "evidence": "Generic praise with no comment on the method, the baselines or the results. The concrete points concern only structure: move Related Work before Methods, treat Section 3.5 as Discussion, add a limitations paragraph. 2 hours, no discussion."
+        },
+        {
+          "reviewer": "Reviewer_TPwF",
+          "evidence": "2 hours at confidence 5. The first con misreads Eq. 6, which conditions on z_i(0), A_i[0:T] and Θ (line 111). The baseline complaint names no specific model. The limitations field says only 'No.' No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TPwF",
+          "claim": "Eq. 6 assumes that Y(t0:T) and Y(0:t0) are independent, which discards temporal dependence.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 6 (line 111) states conditional independence given z_i(0), A_i[0:T] and Θ; dependence runs through the latent ODE state. The authors said so; TPwF did not reply."
+        },
+        {
+          "reviewer": "Reviewer_TPwF",
+          "claim": "The paper claims disease progression in general but evaluates only COVID-19, simulated and real.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 226: both experiments study dexamethasone for COVID-19. Line 350 concedes 'a single disease (COVID-19), a single treatment (dexamethasone), and a single expert model'. The submitted abstract frames the task as 'predicting the progression of disease under medications'."
+        },
+        {
+          "reviewer": "Reviewer_TPwF",
+          "claim": "Time LSTM is the only non-ODE baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists Expert, Residual, Ensemble, NODE, ODE2VAE, GRU-ODE and Time LSTM; all but Time LSTM are ODE-based. The only hybrid baselines are Residual and Ensemble, which the authors built from NODE and Expert."
+        },
+        {
+          "reviewer": "Reviewer_fnTo",
+          "claim": "Figure 1C treats all actions as exogenous, with no backdoor path.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1C has arrows from a to z^e, z^m and x and none into a. Eq. 2 conditions on a given treatment plan, and the main text states no assumption about how clinicians chose treatments."
+        },
+        {
+          "reviewer": "Reviewer_fnTo",
+          "claim": "The case study makes treatment claims that cannot be verified, e.g. 'LHM predicts that immune activity z^e_1 would decrease afterwards even without treatment'.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 334-337 contain the quote and set it against a treatment a clinician 'might begin'. z^e is never observed in the ICU data, and the submission reports no validation of Figure 4. The clinician check that the rebuttal cites is not in the paper."
+        },
+        {
+          "reviewer": "Reviewer_fnTo",
+          "claim": "ICU measurement times are informative, not missing at random.",
+          "checked_against_paper": "correct",
+          "evidence": "The main model treats measurement times as uninformative. Lines 124-125 defer 'modeling informative sampling' to Appendix A.7, and the simulation deletes measurements at random with probability 0.5 (lines 248-249)."
+        },
+        {
+          "reviewer": "Reviewer_V3vo",
+          "claim": "Only a one-time treatment is considered, in both the simulation and the real data.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True for the simulation (lines 229-230). The real data use the treatments the patients received: Figure 4 shows two doses for Patient B and daily doses for Patient C."
+        },
+        {
+          "reviewer": "Reviewer_V3vo",
+          "claim": "LHM may win because it has more latent variables or capacity than the baselines.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 263-266 set NODE's latent dimension above M+E, so NODE has more latents than LHM. The submission has no false-expert-model control; the authors ran one for Committee B only."
+        },
+        {
+          "reviewer": "Reviewer_V3vo",
+          "claim": "The reported RMSE aggregates all physiological variables.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 and Figure 3 give one RMSE per method, with no per-variable breakdown."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "Section 3.5 says that LHM lets clinicians 'design the best treatment plan for the patient at hand'.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 185-186, nearly verbatim. Line 214 also uses 'causal inference', against the rebuttal's statement that the term does not appear in the main text. The camera-ready keeps the Section 3.5 sentence."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. The only reviewer reply is Reviewer_V3vo's 'Thank you for your responses.' (2021-08-31). Reviewer_DE5k, Reviewer_TPwF and Reviewer_fnTo did not reply to the 2021-08-10 responses; TPwF and fnTo also ignored the 2021-08-25 reminders.",
+        "what_convinced_or_not": "To Reviewer_fnTo the authors denied causal intent, said 'causal inference' does not appear in the main text (line 214 uses it), and noted that the evaluation uses factual treatments. They did not address the Section 3.5 decision-support claim, which the AC quoted as the reason to reject. To Reviewer_V3vo's source-of-gain question they gave an argument (NODE has more latents), not the misspecified-ODE experiment they later ran for Committee B. They correctly rebutted Reviewer_TPwF's Eq. 6 reading, but TPwF did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The reject matches three of four ratings (5, 4, 4). The decisive reason is Reviewer_fnTo's: 'issues around causal inference from observational data remain'. The AC dismissed the authors' denial by quoting Section 3.5 (lines 185-186). 'Framing and empirical results' echo Reviewer_TPwF and Reviewer_V3vo. The AC says the paper 'generated much discussion'; the visible thread holds only V3vo's one-line acknowledgement.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Unstated causal assumptions: Section 3.5 promises treatment-plan design from confounded observational ICU data (Reviewer_fnTo, quoted and checked by the AC)",
+        "Framing needs significant revision: a general disease-progression claim tested on one COVID-19 application (Reviewer_TPwF)",
+        "Three of four ratings below threshold (5, 4, 4); the lone 8 is a thin review",
+        "Empirical evaluation judged incomplete (Reviewer_V3vo, Reviewer_TPwF)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        4,
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_yPRn",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold, two points below the median of 6. A 6-hour review with a specific objection that the paper bears out: the ELBO (Eq. 8) has no term that makes the decoder use z^e, and Section 3.3 offers only independent priors. It names two related works and replied after the rebuttal (2021-08-11). One point is wrong: the Table 1 caption states H = 24 hours. Without it, B's mean is 6.33."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_yPRn",
+          "claim": "Nothing in the architecture or the objective stops the decoder from ignoring z^e.",
+          "checked_against_paper": "correct",
+          "evidence": "The ELBO (Eq. 8) is a reconstruction term plus a KL term on z(0); no term rewards use of z^e. Section 3.3 (lines 131-134) says that independent priors 'guarantee' that z^m does not duplicate z^e, a property of the prior, not of the posterior or the decoder. The authors conceded duplication is 'not impossible'."
+        },
+        {
+          "reviewer": "Reviewer_yPRn",
+          "claim": "It is unclear which prediction horizon Table 1 reports.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The Table 1 caption states 'Prediction horizon H = 24 hours'."
+        },
+        {
+          "reviewer": "Reviewer_yPRn",
+          "claim": "The paper does not discuss APHYNITY (ICLR 2021) or Takeishi and Kalousis (2021).",
+          "checked_against_paper": "correct",
+          "evidence": "The reference list cites Le Guen and Thome (CVPR 2020) [28] but neither work. The camera-ready adds APHYNITY [51] and still omits Takeishi and Kalousis."
+        },
+        {
+          "reviewer": "Reviewer_59iy",
+          "claim": "RMSE and CRPS are not defined or referenced at lines 254-255.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 254-255 name both metrics without a definition or a citation."
+        },
+        {
+          "reviewer": "Reviewer_59iy",
+          "claim": "The x1 curve in Figure 4 looks like a perfect fit with no prediction error.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The caption labels x1(t) as the observed C-reactive protein. The panel shows observed points joined by lines, not a model output."
+        },
+        {
+          "reviewer": "Reviewer_62Te",
+          "claim": "a(t) is assumed continuous, which needs justification.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 66-68 allow step-function components for discrete treatments such as surgery."
+        },
+        {
+          "reviewer": "Reviewer_62Te",
+          "claim": "Figure 3 has no M=0 condition.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 234-236 and Figure 3 use M = 2, 4 and 8 only."
+        },
+        {
+          "reviewer": "Reviewer_Cu63",
+          "claim": "The line 51 claim that expert variables give clinicians extra insight is not evaluated.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 51-52 make the claim; the only support is the qualitative Figure 4 case study (lines 314-348). The clinician check that the rebuttal cites is not in the paper."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B review was edited after posting. Reviewer_62Te (2021-08-25): the experiment 'helps addressing the concerns', and 62Te would raise the score if it were run on real data with a nonlinear ODE. Reviewer_Cu63 (2021-08-25): 'I maintain my recommendation for acceptance'. Reviewer_yPRn (2021-08-11) restated that the two prior methods are more general and that z^e may be 'completely useless'; the authors' 2021-08-13 reply got no answer. Reviewer_59iy did not reply.",
+        "what_convinced_or_not": "The misspecified-ODE experiment (LHM-MIS, a linear oscillator ODE: RMSE about 0.92 at every N against 0.70 to 0.75 for LHM, close to NODE) partly convinced 62Te and the AC. The authors' attack on the pendulum example in Takeishi and Kalousis did not move yPRn. Cu63 found the novelty concern 'warranted' but not grounds to lower 7."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The accept matches three of four ratings (6, 7, 6). The meta-review cites the new simulation for Reviewer_62Te and says the authors 'addressed' Reviewer_yPRn's novelty concerns, which yPRn never said. It does not mention causal framing; no B reviewer raised it, and Reviewer_Cu63 praised Section 3.5 as 'well formed'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers above threshold: a valuable idea in a clearly written paper (Reviewer_59iy, Reviewer_Cu63, Reviewer_62Te)",
+        "The misspecified-ODE experiment taken to show that the expert ODE drives the gain (Reviewer_62Te, AC)",
+        "AC judged that the rebuttal answered the novelty concern about APHYNITY and the physics-integrated VAE (Reviewer_yPRn)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Confounding by indication: treatments drawn as exogenous in Figure 1C, no stated causal assumptions, decision-support claims in Section 3.5 (Reviewer_fnTo; decisive for the AC)",
+    "Informative, not random, measurement times in ICU data (Reviewer_fnTo)",
+    "Unverifiable treatment claims in the case study, e.g. Patient A 'even without treatment' (Reviewer_fnTo)",
+    "A general disease-progression claim tested only on COVID-19; non-ODE deep-learning baselines missing (Reviewer_TPwF)",
+    "Eq. 6 read as discarding temporal dependence, a misreading (Reviewer_TPwF)",
+    "Manuscript structure and no limitations section (Reviewer_DE5k)",
+    "Per-variable RMSE, choice among expert models, disadvantages of LHM, single doses (the last incorrect for the real data) (Reviewer_V3vo)"
+  ],
+  "issues_only_b": [
+    "Nothing stops the decoder from ignoring the expert variables (Reviewer_yPRn)",
+    "LHM as a special case of the physics-integrated VAE of Takeishi and Kalousis (Reviewer_yPRn)",
+    "Recovery of θe and of the latent trajectories in the simulation (Reviewer_yPRn); values of the ODE parameters (Reviewer_59iy)",
+    "No M=0 condition in Figure 3; extra parameters may explain the gain over Expert (Reviewer_62Te)",
+    "Missing related work: Hussain et al. 2021, Linial et al. 2021, Miller et al. 2020 (Reviewer_62Te, Reviewer_Cu63)",
+    "Reliance on a correct expert ODE limits applicability (Reviewer_Cu63, Reviewer_yPRn)",
+    "Effect of prediction horizon and history length on uncertainty (Reviewer_Cu63)"
+  ],
+  "shared_issues": [
+    "One disease, one treatment and one real dataset (A: Reviewer_TPwF, Reviewer_V3vo; B: Reviewer_59iy, Reviewer_62Te)",
+    "Whether the expert ODE, not capacity or regularity, drives the gain (A: Reviewer_V3vo; B: Reviewer_62Te, Reviewer_yPRn)",
+    "APHYNITY (ICLR 2021) not cited (A: Reviewer_fnTo; B: Reviewer_yPRn)",
+    "No validation of the inferred expert variables in Figure 4 (A: Reviewer_V3vo, Reviewer_fnTo; B: Reviewer_59iy, Reviewer_Cu63)",
+    "Modest technical novelty, a new combination of known parts (A: Reviewer_DE5k, Reviewer_V3vo; B: Reviewer_59iy, Reviewer_yPRn, Reviewer_Cu63)",
+    "Clear, well-written paper (A: Reviewer_DE5k, Reviewer_V3vo; B: Reviewer_yPRn, Reviewer_59iy, Reviewer_Cu63)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee A rejected on an issue that nobody in Committee B raised: treatment advice drawn from confounded observational data. Reviewer_fnTo (confidence 5) objected that ICU treatments depend on patient state, but the model treats them as exogenous and states no causal assumptions. The objection overreaches on the experiments, which test only factual predictions under the treatments the patients received. It holds for the framing: Section 3.5 (lines 185-186) promises help to 'design the best treatment plan', Figure 1C draws no arrow into the treatment node, and the Patient A case argues against starting dexamethasone from an unvalidated latent curve. A's AC quoted Section 3.5 and asked for 'significant reframing'. In B, Reviewer_Cu63 called the same section 'well formed'. The reviewer draw also differed. A's only champion, Reviewer_DE5k (8), gave no technical assessment, and two confidence-5 detractors plus a 5 put A's median at 4.5. B had three reviewers at 6 to 7 with specific technical questions; its detractor, Reviewer_yPRn, argued novelty and the risk that the model ignores its expert variables. The authors also gave B more evidence: a misspecified-ODE control for Reviewer_62Te, which lost about 0.2 RMSE to LHM. A's Reviewer_V3vo asked the same question and got only an argument. No score moved in either committee, and each AC followed its majority. This is not the same facts weighted differently: the decisive issue appeared only in A.",
+  "candidate_reasons": [
+    "Decisive objection raised in one committee",
+    "Causal framing of decision-support claims",
+    "AC adopts one expert's objection",
+    "Thin champion review in rejecting committee",
+    "Extra experiment shown to one committee",
+    "Same section praised and faulted"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_fnTo review (causal inference section)",
+    "Committee A meta-review (quotes Section 3.5)",
+    "Committee B meta-review",
+    "Reviewer_Cu63 review (Section 3.5 'well formed') and 2021-08-25 comment",
+    "Reviewer_DE5k review",
+    "Authors' 2021-08-17 reply to Reviewer_62Te (LHM-MIS table)",
+    "Reviewer_62Te comments 2021-08-15 and 2021-08-25",
+    "Authors' response to Reviewer_V3vo, point (4)",
+    "Reviewer_yPRn comment 2021-08-11 and authors' 2021-08-13 reply",
+    "paper lines 185-186 (Section 3.5) and line 214",
+    "paper Figure 1C",
+    "paper lines 334-337 (Patient A) and Figure 4",
+    "paper Eq. 6 (line 111) and Eq. 8",
+    "paper Section 3.3 (lines 131-134)",
+    "paper Table 1 and caption",
+    "paper lines 226 and 350"
+  ]
+}

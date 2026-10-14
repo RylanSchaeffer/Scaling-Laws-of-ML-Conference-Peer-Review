@@ -1,0 +1,229 @@
+{
+  "pair_id": "n21-012",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 4],
+      "confidences": [5, 4, 5],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 5, 4 (Reviewer_u1Yw, Reviewer_vuNT, Reviewer_LYiS): all below threshold and within one point. The mildest, vuNT's 5, rests on one concern that the authors answered with new runs."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_vuNT",
+          "evidence": "0.5 hours; one concern; 'If the authors could fix this issue, I am satisfied with the approach.' It never replied to the 2021-08-10 answer or to the 2021-08-18 table with alpha_2 = 0.5, and the rating stayed at 5."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_u1Yw",
+          "claim": "The paper claims that the power transform keeps the metric properties of the IoU loss but gives no proof; the cited GIoU paper [28] has no such proof.",
+          "checked_against_paper": "correct",
+          "evidence": "L155 asserts non-negativity, identity of indiscernibles, symmetry and triangle inequality and cites only [28] (Rezatofighi et al., CVPR 2019), which does not treat power transforms. The triangle inequality fails for alpha < 1, which Eq. (1) allows (alpha > 0): boxes [0, 1]^2, [0.5, 1.5]x[0, 1] and [1, 2]x[0, 1] give L(x,z) = 1 > L(x,y) + L(y,z) = 0.845 at alpha = 0.5. It holds for alpha >= 1 (a concave transform of the Jaccard distance), so the alpha = 3 runs are unaffected. The camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_u1Yw",
+          "claim": "Property 1 (order preservingness) is 'only a naive claim and no mathematical proof is available'.",
+          "checked_against_paper": "not_checked",
+          "evidence": "L157-158 defer derivations to Appendix A, which is not in the 12-page submitted PDF. Property 1 follows directly from the monotonicity of IoU^alpha, so the objection carries little weight."
+        },
+        {
+          "reviewer": "Reviewer_u1Yw",
+          "claim": "The gain may be a side effect of a larger regression loss against the fixed classification loss as IoU rises during training; the source of the gain is not isolated.",
+          "checked_against_paper": "correct",
+          "evidence": "Property 2 (L168-170): L_alpha-IoU / L_IoU rises from 1 to alpha as IoU -> 1, so alpha = 3 enlarges the regression loss up to threefold against an unchanged classification loss, more so late in training. Neither the submitted main text nor the camera-ready reports a control such as a scaled L_IoU; the camera-ready itself says alpha-IoU 'adds an absolute loss weight to L_IoU'. The rebuttal (A4) said only that the classification loss was fixed."
+        },
+        {
+          "reviewer": "Reviewer_u1Yw",
+          "claim": "Implementation details and baseline hyperparameters for Tables 1-3 are missing.",
+          "checked_against_paper": "not_checked",
+          "evidence": "L212-215 say all models follow the original implementations' default protocols and defer details to Appendix B.1, which is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_LYiS",
+          "claim": "Improvements are not significant, especially on MS COCO, and shrink quickly on stronger detectors (Table 1).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 mAP gains: YOLOv5x +0.30/+0.28 (VOC) and +0.25/+0.43 (COCO), against YOLOv5s +0.91/+1.58 (VOC) and +0.72/+0.38 (COCO). No error bars (checklist 3c). The authors conceded the YOLOv5x gain is 'not significantly large'."
+        },
+        {
+          "reviewer": "Reviewer_LYiS",
+          "claim": "Focal and Efficient IoU loss is among the competitors not compared.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 has an L_Focal-EIoU row (AP50 59.10, AP75 42.40, mAP 38.90). The authors pointed this out in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_LYiS",
+          "claim": "(2021-08-29) The added comparison shows the improvement over Dynamic R-CNN is very small.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors' rebuttal table (Faster R-CNN R50-FPN, COCO): Dynamic R-CNN mAP 39.10 against alpha variants 38.96-39.43; AP75 42.80 against 41.92-42.18. Alpha-IoU trails at AP75, the high-IoU range it claims to improve. Table 2 likewise has Focal-EIoU's AP75 (42.40) above every alpha variant."
+        },
+        {
+          "reviewer": "Reviewer_vuNT",
+          "claim": "Raising the DIoU/CIoU penalty terms to alpha > 1 gives good boxes less weight on those terms, which conflicts with the motivation.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (4) raises rho^2/c^2 and beta*v to the power alpha; for values in [0, 1], alpha > 1 shrinks small penalties most. The authors agreed ('absolutely right'); their alpha_2 = 0.5 runs moved mAP by at most 0.46."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review edited after posting. Reviewer_LYiS (2021-08-29): 'I keep my initial rating unchanged.' Reviewer_u1Yw (2021-09-01): 'I keep my current rating.' Reviewer_vuNT never replied.",
+        "what_convinced_or_not": "The authors added a Dynamic R-CNN and loss-weight-adjustment comparison for LYiS and an alpha_2 = 0.5 table for vuNT, and argued novelty, Appendix A proofs and a 'learning curriculum' rationale for u1Yw. The Dynamic R-CNN table hurt the paper: LYiS read it as 'very small' improvement, which the numbers support. u1Yw called the answers on proofs (Q2) and the high-IoU rationale (Q3) 'not quite convincing' without detail; the loss-weight confound (Q4) got no real answer. vuNT, who had promised to be satisfied if the issue were fixed, never responded to the new table."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers were unanimous that the paper is not suitable for publication at NeurIPS at this time.' It repeats LYiS's points (benefits decrease with stronger detectors; small compared to Dynamic R-CNN) and u1Yw's (similar to GCE and focal loss). It does not mention vuNT's concern, the unproven metric claim or the loss-weight confound.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers below threshold (4, 5, 4; mean 4.33), two at confidence 5",
+        "Small gains that shrink on stronger detectors (Reviewer_LYiS; Table 1 YOLOv5x +0.25 to +0.43 mAP)",
+        "Parity with Dynamic R-CNN in the authors' own rebuttal table (Reviewer_LYiS, AC)",
+        "Power reweighting judged a direct transfer of GCE and focal loss, limiting novelty (Reviewer_u1Yw, AC)",
+        "Rebuttal moved no score; vuNT silent, u1Yw unconvinced"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 7, 7, 7, 7],
+      "confidences": [2, 3, 4, 4, 4, 4, 4],
+      "reviews_edited_after_posting": [
+        "Reviewer_TBNp",
+        "Reviewer_Zi6N",
+        "Reviewer_pgM4",
+        "Reviewer_k9Mu",
+        "Reviewer_BMDv"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 7, 7, 7, 7 (Reviewer_TBNp, Reviewer_LZaD, Reviewer_SBt3, Reviewer_Zi6N, Reviewer_pgM4, Reviewer_k9Mu, Reviewer_BMDv): all at or above threshold. The two 6s carry the lowest confidences (2 and 3)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_TBNp",
+          "evidence": "Two-line review at confidence 2 ('Detectors should contain recent SOTA methods'; 'Improvements is limited on YOLOv5 and DETR'). Its limitations field asks for Faster R-CNN, which Table 2 already reports. Post-rebuttal note is one sentence: 'I would like to give accept.'"
+        },
+        {
+          "reviewer": "Reviewer_LZaD",
+          "evidence": "0.5 hours; three generic lines on originality, clarity and quality; no weakness; no reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_BMDv",
+          "evidence": "Rating 7 at confidence 4 with no weakness beyond two plotting remarks (plot the loss against alpha; a redundant Fig. 3 legend). Post-rebuttal note keeps 7 without engaging the other reviewers' concerns."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TBNp",
+          "claim": "Experiments should use recent detectors such as FCOS, Faster R-CNN, Cascade R-CNN and ATSS.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 already reports Faster R-CNN (ResNet-50-FPN). FCOS, ATSS and Cascade R-CNN are absent; the paper names them only in related work (L57, L72-74). The rebuttal added FCOS (+0.88 mAP)."
+        },
+        {
+          "reviewer": "Reviewer_TBNp",
+          "claim": "Improvements are limited on YOLOv5 and DETR.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 mAP gains: YOLOv5x +0.25 to +0.43, YOLOv5s +0.38 to +1.58, DETR +0.69 to +1.34; no error bars."
+        },
+        {
+          "reviewer": "Reviewer_SBt3",
+          "claim": "AP50 and mAP remain basically unaltered; the gains sit at AP75:95.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: AP50 changes by at most 0.43 points and falls in 6 of 12 cells; mAP rises by 0.25 to 1.58, so 'basically unaltered' is exact for AP50 and a slight understatement for mAP. The paper concedes a possible AP50 drop (L232-234). The authors' reply that mAP is 'greatly improved in most cases' overstates Table 1."
+        },
+        {
+          "reviewer": "Reviewer_pgM4",
+          "claim": "Results on PASCAL VOC and COCO show that the approach outperforms other IoU losses consistently.",
+          "checked_against_paper": "correct",
+          "evidence": "True for mAP: every alpha variant beats its baseline in Tables 1-3, and all alpha variants exceed Focal-EIoU's 38.90 in Table 2. Not true at AP75, where Focal-EIoU (42.40) leads every alpha variant (41.92-42.18), or at AP50 in Table 1, where alpha-IoU falls in 4 of 6 cells."
+        },
+        {
+          "reviewer": "Reviewer_k9Mu",
+          "claim": "With alpha > 1 the gradient is small early in training, when the loss is high, and large near convergence.",
+          "checked_against_paper": "correct",
+          "evidence": "Property 3 (L179-181) and Fig. 1 (right): the relative gradient weight alpha*IoU^(alpha-1) is below 1 for IoU < alpha^(1/(1-alpha)) (0.58 at alpha = 3) and reaches alpha at IoU = 1."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_k9Mu",
+          "Reviewer_Zi6N",
+          "Reviewer_TBNp"
+        ],
+        "evidence": "Reviewer_k9Mu (2021-08-23): 'raised my rating to 7', review edited the same day. Reviewer_Zi6N's review, which opens 'I have a very mixed feeling', was edited 2021-09-01, the day it wrote 'I am convinced that this paper would be a great contribution'; final 7. Reviewer_TBNp's review was edited 2021-09-01, and on 2021-09-10 it wrote 'I would like to give accept'; final 6. The Zi6N and TBNp moves are inferred from edit dates and comments. Reviewer_BMDv's 2021-08-23 edit kept 7 ('keep my original rating'); Reviewer_pgM4's edit (2021-07-20) predates the rebuttal.",
+        "what_convinced_or_not": "New results: FCOS R50 (+0.88 mAP) for TBNp, Faster R-CNN ResNet-101 (+0.78) for pgM4, and an average-recall table (gains of 0.1 to 0.9 points) for Zi6N's recall concern. Explanations: a 'learning curriculum' account of the gradient reweighting, a rule of thumb alpha in [2, 3], and noisy boxes as low-IoU examples that alpha-IoU down-weights. Zi6N wrote that the explanation showed its concern 'was invalid'. SBt3 praised the 'so detailed answers' and called the paper 'an excellent contribution' without saying which answer settled its AP50 and overfitting doubts. TBNp accepted the same relative-gain defence of YOLOv5x ('~0.6% in mAP', about 0.3 points) that LYiS rejected in A."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'Reviewers agreed that this is a solid paper that deserves acceptance', and a request to implement the rebuttal promises. It names no strength or weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All seven reviewers at or above threshold (6, 6, 7, 7, 7, 7, 7; mean 6.71)",
+        "Simple one-parameter, drop-in generalization of IoU losses (Reviewer_pgM4, Reviewer_k9Mu, Reviewer_SBt3)",
+        "Breadth of experiments: several detectors, two datasets, noisy boxes, small data (Reviewer_LZaD, Reviewer_SBt3, Reviewer_pgM4, Reviewer_k9Mu)",
+        "Rebuttal results (FCOS, ResNet-101, recall) and explanations settled the remaining doubts (Reviewer_k9Mu, Reviewer_Zi6N, Reviewer_TBNp)",
+        "AC deferred to the reviewers' consensus"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Comparison with other methods that favour high-IoU boxes, Dynamic R-CNN and loss-weight adjustment (Reviewer_LYiS, AC); the rebuttal table shows parity on mAP and a deficit at AP75",
+    "Novelty: a direct transfer of the GCE and focal-loss power transform (Reviewer_u1Yw, AC)",
+    "Unproven metric-property claim at L155 that cites only the GIoU paper; false for alpha < 1 (Reviewer_u1Yw)",
+    "Gain possibly due to a larger regression-loss weight against the fixed classification loss, with no control (Reviewer_u1Yw)",
+    "Missing implementation details and baseline hyperparameters, deferred to Appendix B.1 (Reviewer_u1Yw)"
+  ],
+  "issues_only_b": [
+    "Missing modern detectors (FCOS, ATSS, Cascade R-CNN) and stronger backbones (Reviewer_TBNp, Reviewer_pgM4); the rebuttal added FCOS and ResNet-101 results",
+    "Possible harm to recall and to small or occluded objects; AP95 as an unrealistic target (Reviewer_Zi6N)",
+    "AP50 essentially unchanged; possible overfitting to easy boxes (Reviewer_SBt3)",
+    "Small early gradients and late instability; how to choose alpha; no explanation of the noise robustness (Reviewer_k9Mu)",
+    "Combination with the L1 loss as in DETR, an alpha schedule for Cascade R-CNN, figure readability (Reviewer_pgM4, Reviewer_k9Mu, Reviewer_BMDv)"
+  ],
+  "shared_issues": [
+    "Small gains that shrink on stronger detectors (A: Reviewer_LYiS; B: Reviewer_TBNp, Reviewer_SBt3); A counted it against the paper, B did not",
+    "Rationale for up-weighting high-IoU boxes, the reverse of focal loss (A: Reviewer_u1Yw Q3, Reviewer_LYiS on motivation; B: Reviewer_SBt3, Reviewer_Zi6N, Reviewer_k9Mu)",
+    "Role of alpha on the penalty terms (A: Reviewer_vuNT, as a conflict; B: Reviewer_k9Mu, as an ablation question)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees were unanimous, on opposite sides of the threshold, and saw mostly the same facts. Alpha-IoU raises IoU losses to a power alpha (alpha = 3 in the main tables), which up-weights high-IoU boxes as focal loss and GCE reweight classification losses. Its gains over IoU baselines are consistent but small: +0.25 to +0.43 mAP on YOLOv5x (Table 1), with no error bars. Committee A's two confidence-5 reviewers read this as a derivative idea (Reviewer_u1Yw) with marginal gains (Reviewer_LYiS); the third, Reviewer_vuNT, raised only the penalty-term conflict and stayed at 5 without replying to the rebuttal. Reviewer_LYiS asked for other methods that favour high-IoU boxes, and the authors' own rebuttal table then showed Dynamic R-CNN level on mAP (39.10 vs 38.96-39.43) and ahead at AP75 (42.80 vs at most 42.18), so the rebuttal hardened A. Committee B's seven reviewers raised the same small-gain and easy-box concerns (Reviewer_TBNp, Reviewer_SBt3, Reviewer_Zi6N) but weighted simplicity, breadth and noise robustness more, and the rebuttal's FCOS, ResNet-101 and recall results satisfied them; three of the seven reviews are thin. A also raised two correct points that B never saw: an unproven metric claim at L155 that is false for alpha < 1, and an uncontrolled increase in the regression-loss weight. Neither AC added a reading of its own. The discrepancy is mainly the same modest effect weighted differently, plus a competitor comparison that only A requested.",
+  "candidate_reasons": [
+    "Same small gains weighted oppositely",
+    "Competitor comparison requested only in A",
+    "Rebuttal table backfired in A",
+    "Thin positive reviews in B",
+    "Rebuttal additions persuaded B reviewers",
+    "ACs deferred to reviewer consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_LYiS main review and 2021-08-29 response",
+    "Authors' rebuttal to Reviewer_LYiS (Dynamic R-CNN table)",
+    "Reviewer_u1Yw main review and authors' answers A2 and A4",
+    "Reviewer_vuNT main review; authors' 2021-08-18 alpha_2 table; no reply",
+    "Committee A meta-review",
+    "Reviewer_SBt3 main review and 2021-09-13 comment",
+    "Reviewer_Zi6N main review and 2021-09-01 comment",
+    "Reviewer_k9Mu 2021-08-23 comment",
+    "Reviewer_TBNp main review and 2021-09-10 comment",
+    "Authors' rebuttals to Reviewer_LYiS and Reviewer_TBNp (same YOLOv5x defence)",
+    "Committee B meta-review",
+    "paper L155 (metric claim citing [28]) and camera-ready Section 3.3 (unchanged)",
+    "paper L168-170 (Property 2, relative loss weight from 1 to alpha)",
+    "paper Table 1 (YOLOv5x gains; AP50 changes)",
+    "paper Table 2 (Faster R-CNN; Focal-EIoU AP75 42.40)",
+    "paper checklist 3(c) (no error bars)"
+  ]
+}

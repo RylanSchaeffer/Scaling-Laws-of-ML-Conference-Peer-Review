@@ -1,0 +1,258 @@
+{
+ "pair_id": "n21-019",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    5,
+    7,
+    5
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_mj3d"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_K5Z7",
+    "direction": "champion",
+    "basis": "principled",
+    "evidence": "The only rating above threshold (7 against 4, 5, 5). The reasons are reasoned but light: 1.5 hours, novelty judged from 'a quick literature review', 'the technical contribution feels a little light', and 'I can't think of any major reason NOT to accept'. Its specific points are accurate (Eq. 3 notation, Figure 1, missing soft-argmax citations, no state-of-the-art numbers). It did not reply after the rebuttal, so it gave the AC nothing to weigh against three sub-threshold reviews."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_N85X",
+     "evidence": "The 4 rests on a framing objection (why depart from maximum likelihood) tied to no section of the paper, and the reviewer calls the empirical results 'compelling'. The summary calls the tasks 'localisation and classification' and omits the two point-cloud experiments. It guesses that gains come from 'exploring multiple modes', while the paper argues for concentrated maps. It asked for 'a discussion in the rebuttal' and then posted nothing and left the review unedited."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_mj3d",
+     "claim": "The high variance of Eq. 5 that motivates sampling is never demonstrated.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 103-108 assert that the model is 'slow to converge' with Eq. 4 and cite REINFORCE variance; no number is given. Eq. 4 is an exact probability-weighted sum over all grid positions (lines 96-98), so its gradient has no sampling variance. The rebuttal's closed-form expected error, also variance-free, gives 31.2 mAP (uniform) and 30.2 (Gaussian), as poor as Eq. 4 (30.9). Variance does not explain the failure."
+    },
+    {
+     "reviewer": "Reviewer_mj3d",
+     "claim": "Soft w/ V.R performs almost as well as sampling-argmax in most experiments (about 1% relative), and there are no multiple runs.",
+     "checked_against_paper": "correct",
+     "evidence": "Against the best regularized variant: Human3.6M MPJPE 49.5 vs 49.7 (0.4%), OCT MAD 0.735 vs 0.743 (1.1%), KeypointNet PCK 39.9 vs 39.0 (2.3%, D.R.), DAS 63.0 vs 62.3 (1.1%). It does not hold on COCO (69.8 vs 60.6 for V.R) or MTFL (2.94 vs 3.15). Checklist 3(c): no error bars, 'too computationally expensive'."
+    },
+    {
+     "reviewer": "Reviewer_mj3d",
+     "claim": "The continuous mixture of Section 3.1 is kernel density estimation (Parzen windowing).",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 6-9: p(y) is a weighted sum of kernels centred at the grid points y_i, with the Gaussian width set to the grid spacing. The authors concede it becomes KDE if the weights are read as sample frequencies."
+    },
+    {
+     "reviewer": "Reviewer_mj3d",
+     "claim": "The Gumbel-softmax temperature of Eq. 11 can serve as the kernel bandwidth of an analytical solution that behaves the same.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The temperature (Eq. 11) softens the categorical weights; the kernel width is sigma (Eq. 9, sigma = c), as the authors replied."
+    },
+    {
+     "reviewer": "Reviewer_CcdV",
+     "claim": "Page 3 says the model is slow to converge with Eq. 4 but reports no result.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 103: 'we find the model is slow to converge by training with Equation 4'. No table or number follows."
+    },
+    {
+     "reviewer": "Reviewer_CcdV",
+     "claim": "A mixture of basis functions without sampling, trained with the soft-argmax loss, is a missing ablation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Each basis is centred at y_i, so the mixture mean is sum_i w_i y_i, the soft-argmax output of Eq. 1. The ablation is soft-argmax itself; CcdV conceded this on 2021-08-28."
+    },
+    {
+     "reviewer": "Reviewer_CcdV",
+     "claim": "The soft-argmax baseline in Table 5 and Soft w/ D.R. in Table 7 perform very badly.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 5: Soft MAD 3.08 against 0.735-0.746 for every other method. Table 7: Soft w/ D.R. 50.6 DAS against 59.1 for Soft. The paper explains neither."
+    },
+    {
+     "reviewer": "Reviewer_CcdV",
+     "claim": "Sampling-argmax gives large gains on COCO but not on Human3.6M.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: 64.5 to 69.8 mAP. Table 4: MPJPE 50.4 to 49.5 at best; Samp. Gau. is worse than Soft (50.9), against line 251's 'consistent performance improvements'."
+    },
+    {
+     "reviewer": "Reviewer_N85X",
+     "claim": "The paper does not say when constraining the map's shape is preferable to standard maximum-likelihood training.",
+     "checked_against_paper": "correct",
+     "evidence": "No maximum-likelihood or pixel-wise heatmap baseline appears in Tables 1-8. Section 1 motivates the method only against soft-argmax and the regularizers of [21]."
+    },
+    {
+     "reviewer": "Reviewer_K5Z7",
+     "claim": "Soft-argmax is under-cited: Goroshin et al. and Finn et al. are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither appears in references [1]-[33]."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Responses posted 2021-08-09. Reviewer_CcdV (2021-08-28): 'I am keeping my rating as is.' Reviewer_mj3d edited on 2021-09-06 and ended at 5: 'hesitant to cross the acceptance threshold'; the record does not show whether 5 was a raise. Reviewer_N85X and Reviewer_K5Z7 never replied or edited.",
+    "what_convinced_or_not": "mj3d accepted the closed-form results (31.2 and 30.2 mAP against 69.8) but found the gap 'very surprising' and kept the KDE and significance-test concerns. CcdV doubted the Eq. 4 result (30.9 mAP), saying it 'could also mean that the experiment was simply not performed properly', conceded that a basis mixture without sampling is soft-argmax, and judged the answer on regularization weak. The authors' reply that regularizers need 'laborious tuning' did not address the missing error bars."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Rejects with ratings 4, 5, 7, 5 ('one reviewer recommending acceptance and three rejection'). The three listed concerns mirror Reviewer_mj3d's review: motivation for sampling, missing baselines, significance of the gains; N85X's theory point is added. It says the reviewers 'remained unconvinced' by the new baselines, although mj3d wrote 'I am now convinced' about the closed-form comparison. It calls the paper 'thoroughly discussed'; only CcdV posted after the rebuttal, though mj3d's update cites 'the discussions'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings below threshold; the lone 7 is lightly argued and silent after the rebuttal",
+    "The reason for sampling is unsupported: the variance problem is never shown and the closed-form alternative was missing",
+    "Gains over the tuned regularizers are about 1% relative on several tasks, with no error bars",
+    "The rebuttal's new numbers were doubted (CcdV) or found surprising (mj3d)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    9,
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_1xmt",
+    "Reviewer_LEuR",
+    "Reviewer_WkN8"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_1xmt",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "A 9 ('Top 15% of accepted NeurIPS papers') against three 7s, after 1 to 2 hours. Bullet praise: 'the related work is complete' and the sampling is 'well-justified with the comparison of Eq. 5 to the REINFORCE convergence problems'; the paper contains no such comparison. Its two weaknesses (flat Table 4, unexplained abbreviations) match A's Reviewer_CcdV. Limitations: 'No limitations'. Without it B's mean is still 7.0, so it did not decide B's outcome."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_1xmt",
+     "evidence": "Praises a REINFORCE comparison the paper does not contain (lines 106-108 give only an analogy) and calls the 17-line related work 'complete' while the soft-argmax origins are uncited. After the rebuttal: 'The authors sufficiently addressed the questions of all reviews.'"
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_1xmt",
+     "claim": "The sampling approach is well-justified by comparing Eq. 5 with the convergence problems of REINFORCE.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 106-108 state the analogy and assert slow convergence; no experiment compares them. Reviewer_Sf1a in the same committee asked for that missing evidence. Eq. 4's gradient is exact, so the REINFORCE variance argument does not apply to it."
+    },
+    {
+     "reviewer": "Reviewer_1xmt",
+     "claim": "The related work is complete.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 4 is 17 lines. Goroshin et al. and Finn et al., the soft-argmax origins named by A's Reviewer_K5Z7, are absent from references [1]-[33]."
+    },
+    {
+     "reviewer": "Reviewer_LEuR",
+     "claim": "In many cases at least one version of sampling-argmax is better than the baselines.",
+     "checked_against_paper": "correct",
+     "evidence": "The best basis differs by task (triangular on COCO, uniform on OCT, Gaussian on MTFL absolute error). Samp. Gau. loses to Soft on Human3.6M MPJPE (50.9 vs 50.4); Samp. Tri. matches V.R on OCT (0.744 vs 0.743)."
+    },
+    {
+     "reviewer": "Reviewer_WkN8",
+     "claim": "Sampling-argmax improves SimplePose on COCO by 5.3 mAP.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: Soft 64.5, Samp. Tri. 69.8."
+    },
+    {
+     "reviewer": "Reviewer_WkN8",
+     "claim": "On MTFL, KeypointNet, OCT and Human3.6M the improvement is marginal, less than 1%.",
+     "checked_against_paper": "correct",
+     "evidence": "Against the best regularized variant every gap is under one point: Human3.6M 0.2 mm, OCT 0.008 MAD, KeypointNet 0.9 PCK and 0.7 DAS, MTFL 0.38 points of relative error (still 5-7% relative). Against plain soft-argmax, OCT (3.08 to 0.735) and KeypointNet (+1.7 PCK, +3.9 DAS) are larger; the rebuttal answered with those gains."
+    },
+    {
+     "reviewer": "Reviewer_Sf1a",
+     "claim": "The high-variance claim of lines 106-107 is not self-evident and needs an experiment.",
+     "checked_against_paper": "correct",
+     "evidence": "The paper reports no such experiment."
+    },
+    {
+     "reviewer": "AC (meta-review)",
+     "claim": "One motivation is to improve training compared to the usual Gumbel softmax.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 5 compares only with soft-argmax and its regularized variants (lines 203-204). Gumbel-softmax is a step inside the method (lines 158-160)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_WkN8",
+     "Reviewer_LEuR"
+    ],
+    "evidence": "Responses posted 2021-08-09. Reviewer_WkN8 (2021-08-25): 'I raise my rating to 7'. Reviewer_LEuR, review edited 2021-09-01: 'decided to increase my score to a 7'. Reviewer_1xmt edited 2021-08-16 with an after-rebuttal note and states no change. Reviewer_Sf1a never replied.",
+    "what_convinced_or_not": "WkN8 accepted the new numbers: HRNet at 75.4 mAP (given without a soft-argmax HRNet baseline), HemletsPose 1.2 mm better, and relative gains over plain soft-argmax (76.1% on OCT, where both regularizers come within 1.5%). LEuR accepted the answer that heatmaps fit CNNs better than regressing distribution parameters ('I understand now') and cited the other reviews. Sf1a received the 30.9 mAP Eq. 4 result it asked for and did not respond."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three sentences: 'The reviewers are unanimous that this is a good submission, and that it should be accepted.' It gives the motivation as improving 'compared to the usual Gumbel softmax'; the paper's baseline is soft-argmax. It engages with no reviewer concern.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Unanimous accept ratings (9, 7, 7, 7), two raised after the rebuttal",
+    "The rebuttal supplied the Eq. 4 result and stronger-backbone numbers that B's reviewers asked for",
+    "Gains over soft-argmax across six tasks read as convincing"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Closed-form expected error as a missing baseline; Section 3.1 read as KDE (Reviewer_mj3d)",
+  "Gains over variance regularization about 1% relative, with no error bars or significance tests (Reviewer_mj3d; Reviewer_CcdV in discussion)",
+  "Basis functions and sampling not disentangled; the basis-only half reduces to soft-argmax (Reviewer_CcdV)",
+  "Anomalous baselines: Table 5 soft-argmax MAD 3.08, Table 7 Soft w/ D.R. 50.6 (Reviewer_CcdV); no justification against maximum-likelihood training (Reviewer_N85X)",
+  "Cost of more samples, Brier score and ECE, missing soft-argmax citations, heatmap-supervised Simple Pose at 73.7 mAP (Reviewer_CcdV, Reviewer_K5Z7, Reviewer_mj3d)"
+ ],
+ "issues_only_b": [
+  "A fully continuous reparameterized distribution as an alternative (Reviewer_LEuR)",
+  "Plots of predicted distributions to verify unimodality, and the intuition for the expected error (Reviewer_WkN8)",
+  "The log-derivative step in Eq. 5 (Reviewer_WkN8)",
+  "Applying the method to newer pose methods such as PoseFix and EvoPose2D (Reviewer_WkN8, Reviewer_Sf1a)"
+ ],
+ "shared_issues": [
+  "The variance or slow-convergence claim for Eq. 4/5 is not demonstrated (A: Reviewer_mj3d, Reviewer_CcdV; B: Reviewer_Sf1a)",
+  "Small gains outside COCO, Human3.6M in particular (A: Reviewer_CcdV, Reviewer_mj3d; B: Reviewer_WkN8, Reviewer_1xmt)",
+  "No state-of-the-art comparison (A: Reviewer_K5Z7, Reviewer_mj3d; B: Reviewer_WkN8, Reviewer_Sf1a)",
+  "Unexplained table abbreviations, uninformative captions, grammar (A: Reviewer_CcdV, Reviewer_mj3d, Reviewer_N85X; B: Reviewer_1xmt, Reviewer_LEuR)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same facts and weighted them differently; A also probed deeper. Both sides noted that the paper never shows the variance problem that motivates sampling and that gains outside COCO are small, and both received nearly the same rebuttal numbers. A's reviewers doubted them: Reviewer_CcdV suspected a faulty Eq. 4 run, and Reviewer_mj3d found the closed-form gap 'very surprising' and ended below threshold for lack of significance tests. The paper supports A's doubts. Eq. 4 is an exact sum over grid positions, so its gradient has no sampling variance, and the rebuttal's closed-form expected error, also variance-free, reached 31.2 mAP, as poor as Eq. 4's 30.9. The stated reason for sampling does not hold, and the reason sampling helps is unexplained. Against the best regularized variant, the gain is 0.4 to 2.3% relative on four of six tasks, with no error bars. A's lone 7 (Reviewer_K5Z7, 1.5 hours) called the contribution 'a little light', and the AC followed the three-to-one split. B's reviewers took the same numbers as answers: Reviewer_WkN8 and Reviewer_LEuR raised to 7 after relative gains over plain soft-argmax (76.1% on OCT, where the regularizers come within 1.5%) and an HRNet result without a matched baseline. B's 9 (Reviewer_1xmt, 1 to 2 hours) praised a REINFORCE comparison the paper does not contain, and B's three-sentence meta-review misnames the baseline as Gumbel softmax. Neither committee found a fatal flaw; the COCO (+5.3 mAP) and MTFL (about 7%) gains stand on the paper's numbers.",
+ "candidate_reasons": [
+  "Rebuttal numbers doubted versus accepted",
+  "Small gains over tuned regularizers",
+  "Unsupported rationale for sampling",
+  "Deeper methodological probing in rejecting committee",
+  "Exuberant short champion review",
+  "Area chairs follow score majorities"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_mj3d review and post-rebuttal update (edited 2021-09-06)",
+  "Reviewer_CcdV comment 2021-08-28",
+  "Authors' response to Reviewer_mj3d (closed-form loss: 31.2 and 30.2 mAP)",
+  "Authors' response to Reviewer_CcdV (Eq. 4: 30.9 mAP; basis mixture equals soft-argmax)",
+  "Authors' response to Reviewer_WkN8 (relative gains; HRNet 75.4 mAP)",
+  "Reviewer_WkN8 comment 2021-08-25 and Reviewer_LEuR review update",
+  "Reviewer_1xmt review",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper lines 96-108 (Eq. 4 and 5)",
+  "paper Tables 1 and 4-8",
+  "paper checklist 3(c) (no error bars)",
+  "paper lines 158-160 (Gumbel-softmax as a step of the method)"
+ ]
+}

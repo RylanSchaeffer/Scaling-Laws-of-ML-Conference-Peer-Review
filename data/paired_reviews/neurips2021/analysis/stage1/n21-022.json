@@ -1,0 +1,257 @@
+{
+ "pair_id": "n21-022",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    5,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_dFot",
+    "Reviewer_NJWB",
+    "Reviewer_dUSe"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/7/5/6 (dFot, Tmzn, NJWB, dUSe) sit within 5-7. NJWB's 5 (confidence 5, '3 days') is the only score below 6 and rests on a natural-accuracy drop that Tables 1-2 confirm; the AC reports NJWB 'fine with either acceptance or rejection'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Tmzn",
+     "evidence": "The 7 rests on generic praise ('Results under different attack methods are reported, which is convincing') plus two minor questions (FreeAT vs FastAT, pruning baselines). It never engages Table 1, where TRADES-6 is more robust and PGD-7, FAT and TRADES-1 keep higher natural accuracy. No discussion post."
+    },
+    {
+     "reviewer": "Reviewer_dFot",
+     "evidence": "The positive verdict is two generic sentences ('Those experimental results can support their main claims') and four clarification questions; no discussion post. The text shares whole sentences with Committee B's Reviewer_babp (same rating 6, confidence 4, time '3', edit date 2021-07-19)."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_NJWB",
+     "claim": "Natural accuracy drops by over 10% from natural training (Tables 1 and 2).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 (CIFAR-10): standard 95.01 vs NADAR-A 86.61 and NADAR-B 86.23, a drop of 8.4-8.8 points, so 'over 10%' is slightly high there. Table 2 (CIFAR-100): 78.84 vs 61.73 and 62.56, a drop of 16-17 points."
+    },
+    {
+     "reviewer": "Reviewer_NJWB",
+     "claim": "Some adversarial training methods, e.g. FAT and TRADES-1, keep higher natural accuracy than NADAR.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: FAT 89.34, TRADES-1 88.64 and PGD-7 87.25 vs NADAR-A 86.61 and NADAR-B 86.23. The paper itself states a '1.02% standard performance drop comparing to PGD-7' (l.303-304)."
+    },
+    {
+     "reviewer": "Reviewer_dUSe",
+     "claim": "NADAR uses a larger model than the baselines, so the comparison is unfair.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: the baselines use WRN32-10 (46.2M params, 6.7 GFLOPs); NADAR adds 3.6-4.4M params and 0.6-0.7 GFLOPs, about 8-10% more."
+    },
+    {
+     "reviewer": "Reviewer_dUSe",
+     "claim": "The paper trains with PGD-7 rather than PGD-10.",
+     "checked_against_paper": "correct",
+     "evidence": "l.294 and l.297: standard-NAS baselines and NADAR are retrained with PGD-7."
+    },
+    {
+     "reviewer": "Reviewer_dUSe",
+     "claim": "The reported robustness is below what plain adversarial training on a WRN reaches today (FGSM 61+, PGD-20 56+, PGD-100 55+).",
+     "checked_against_paper": "not_checked",
+     "evidence": "The reference numbers are external. Table 1 gives NADAR-B FGSM 60.46, PGD-20 53.43, PGD-100 53.06; its PGD-7 baseline row (87.25/45.84) is cited from [16], not rerun by the authors."
+    },
+    {
+     "reviewer": "Reviewer_dFot",
+     "claim": "Table 1 appears to report last-epoch accuracy.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The submission does not say which epoch it reports; the authors say 'We report the best epoch'."
+    },
+    {
+     "reviewer": "Reviewer_Tmzn",
+     "claim": "The choice of FreeAT over FastAT for the search is not explained.",
+     "checked_against_paper": "correct",
+     "evidence": "l.287-288 state that FreeAT is used during search and give no reason; FastAT appears only in Table 3 and Table 4."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_dUSe"
+    ],
+    "evidence": "dUSe's review was edited 2021-08-28 with 'I raise my score to 6' after the post-rebuttal line. dFot's edit (2021-07-19) and NJWB's (2021-07-16) predate the 2021-08-09 rebuttal; Tmzn never edited. No reviewer posted in A's discussion.",
+    "what_convinced_or_not": "dUSe accepted that the cited reference numbers came from other settings (SVHN, PGD-10, TRADES), that WRN32-10 is WRN34-10, that supplement Figure 3 controls for random enlargement, and the claim that NADAR can 'reach both better standard and adversarial accuracy' than PGD-7. That last claim is false by Table 1 (86.23/86.61 vs 87.25 natural) and by l.303-304. NJWB's post-rebuttal view is not on record beyond the AC's 'fine with either'. A never saw the authors' 25 August FAT/TRADES retraining table, which was posted only in B's forum."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 7, 5, 6. The AC writes '3 reviewers hold positive opinions and 1 reviewer is fine with either acceptance or rejection' and adds 'I personally think the new point of view may open the door to a new world'. It calls the rebuttal 'particularly good' but names no concern and no result.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four reviewers at or above 6 (mean 6.0); the AC counted positive opinions",
+    "The AC's own enthusiasm for dilation instead of compression ('may open the door to a new world')",
+    "Rebuttal judged 'particularly good'; Reviewer_dUSe raised the score to 6"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    4,
+    6,
+    8
+   ],
+   "confidences": [
+    4,
+    5,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_babp",
+    "Reviewer_DKEh",
+    "Reviewer_WsAL"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_DKEh",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Only score below 6 (4, confidence 5, 2 hours) and the one the AC followed. Its theory critique is specific and holds against Theorems 1 and 3. One claim is wrong (NAS baselines lack adversarial training; l.292-294 say otherwise), and the 2021-09-01 reply ignores the authors' pointer to the random-dilation control in supplement Figure 3. kvfV's 8 is the opposite extreme but rests on a one-hour review with no weakness named."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_kvfV",
+     "evidence": "Rating 8 ('clear accept') after 1 hour. The review asks three design questions (search space, fixed backbone, form of the FLOPs term), names no weakness, judges no result, and has no discussion post."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_DKEh",
+     "claim": "The theory analyses a sum of two networks, not the architecture used; it holds for any learned classifier and does not explain the method's success.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorems 1 and 3 are stated 'For any mapping hb, hd : X -> R', with hd defined only as 'the change resulting from the dilation architecture' (l.217-218). Eq. 2 sums backbone and dilation features at every block, not at the output. Theorem 1's extra term E[exp(-hb hd)] equals 1 when hd = 0, so the bound is then vacuous."
+    },
+    {
+     "reviewer": "Reviewer_DKEh",
+     "claim": "The table shows other searched architectures without adversarial training, so the comparison is unfair.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.292-294: standard-NAS architectures are 'retrained with PGD-7' and robust-NAS methods follow their original adversarial settings; Table 1 gives them robust accuracies of 39-49% under PGD-20."
+    },
+    {
+     "reviewer": "Reviewer_DKEh",
+     "claim": "Comparison to the best random architecture from the search space is missing.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The main paper has no random-architecture comparison. The authors point to supplement Figure 3, which is not in the files."
+    },
+    {
+     "reviewer": "Reviewer_DKEh",
+     "claim": "Nothing shows that the gain is not merely due to a larger network.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 6: a network dilated without the separate objectives reaches 45.97% PGD-20, near the 45.84% PGD-7 backbone, vs 53.18% for full NADAR. The ablated networks' sizes are not reported, so this control is partial."
+    },
+    {
+     "reviewer": "Reviewer_DKEh",
+     "claim": "Table 4 shows TRADES-6 is better than the trained NADAR network.",
+     "checked_against_paper": "correct",
+     "evidence": "As printed, Table 4 puts TRADES-6 ahead only under APGD-CE (55.28 vs 52.64) and Square (59.43 vs 59.33) and behind under APGD-T and FAB-T (43.10/43.45 vs 50.45/50.88). Table 1 (PGD-20 56.43 vs 53.43) and the authors' own later AutoAttack figures (53.08 vs 50.44) support the claim. The 53.08 conflicts with Table 4's 43.10 APGD-T value, which caps AutoAttack accuracy."
+    },
+    {
+     "reviewer": "Reviewer_WsAL",
+     "claim": "No improvement over TRADES-6: the mean of natural and PGD-20 accuracy is 70.675 for TRADES-6 and 69.83 for NADAR-B.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: TRADES-6 84.92/56.43, NADAR-B 86.23/53.43."
+    },
+    {
+     "reviewer": "Reviewer_WsAL",
+     "claim": "TRADES results are missing on CIFAR-100 and Tiny-ImageNet, and baseline sets differ across datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 lists Standard, PGD-7, FreeAT-8, RobNet-large and RACL; Table 3 lists only backbone vs dilation under PGD-4, FreeAT-4 and FastAT."
+    },
+    {
+     "reviewer": "Reviewer_babp",
+     "claim": "Tables 1-3 report no stronger attacks (CW, AutoAttack), and only ResNet-like backbones are used.",
+     "checked_against_paper": "correct",
+     "evidence": "AutoAttack appears only in Table 4 (CIFAR-10, per-attack, no combined score); the backbones are WRN32-10 and ResNet-50 (l.280-281)."
+    },
+    {
+     "reviewer": "Committee B area chair",
+     "claim": "The method is based on PGD; whether its advantage holds with stronger adversarial training is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "All NADAR retraining in the submission uses PGD-7, FreeAT or FastAT. The authors' 25 August table adds FAT and TRADES retraining, but under TRADES-6 the gain is +1.00 PGD-20, and its backbone rows repeat the cited Table 1 baselines rather than reruns."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_WsAL"
+    ],
+    "evidence": "WsAL (2021-08-28): 'I am willing to improve my score'; review edited 2021-08-29, final 6. DKEh (2021-09-01): 'still not convinced'; review last edited 2021-07-16, final 4. babp's edit (2021-07-19) predates the rebuttal; kvfV never edited.",
+    "what_convinced_or_not": "WsAL accepted the AutoAttack figure (50.44%), the trade-off-ratio argument against TRADES-6 and the timing numbers ('The answer to Q1 is satisfactory'). DKEh rejected the theory defence ('Nothing here is related to networks'), saw no answer on larger networks, and called PGD 'a very weak adversarial training approach'. The authors' 2021-09-05 reply (FLOPs comparison with larger networks, FAT/TRADES retraining table) drew no reviewer response."
+   },
+   "ac": {
+    "followed_reviews": "no",
+    "evidence": "Ratings 6, 4, 6, 8: three at or above 6. The AC calls the method 'novel and technically sound', then rejects on three concerns that restate DKEh's review and 2021-09-01 reply: theory not specific to networks, larger networks versus search, PGD versus stronger training. The meta-review does not mention the 25 August FAT/TRADES table, Table 6 or the supplement control.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Theory generic, not tied to the dilation architecture (Reviewer_DKEh, AC concern 1)",
+    "Gain not separated from added capacity (Reviewer_DKEh, AC concern 2)",
+    "Results rest on PGD training; advantage under TRADES-like methods unclear (Reviewer_DKEh, Reviewer_WsAL, AC concern 3)",
+    "AC judged the fixes to need 'a significant amount of work'"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Natural accuracy well below standard training and below PGD-7, FAT and TRADES-1: 'just another trade-off' (Reviewer_NJWB, Reviewer_dUSe)",
+  "Absolute robustness below well-tuned adversarial training; best versus last epoch (Reviewer_dUSe, Reviewer_dFot)",
+  "Need for the FLOPs-aware part, and no robust-pruning baselines (Reviewer_dUSe, Reviewer_Tmzn)",
+  "FreeAT chosen over FastAT without reason (Reviewer_Tmzn)"
+ ],
+ "issues_only_b": [
+  "Theory holds for any classifier and does not model the dilation architecture (Reviewer_DKEh, AC)",
+  "NADAR not more robust than TRADES-6; TRADES absent on CIFAR-100 and Tiny-ImageNet; baseline sets differ by dataset (Reviewer_WsAL, Reviewer_DKEh)",
+  "No best-random-architecture or whole-architecture-search control; DARTS missing from Tables 2-3 (Reviewer_DKEh)",
+  "Only ResNet-like backbones; environmental cost of larger models (Reviewer_babp)",
+  "Choice of search space, fixed backbone, form of the FLOPs term (Reviewer_kvfV)"
+ ],
+ "shared_issues": [
+  "Gain may come from added capacity rather than the search (A: Reviewer_dUSe; B: Reviewer_DKEh, AC)",
+  "Comparison rests on the older PGD-7 training recipe (A: Reviewer_dUSe; B: Reviewer_DKEh, AC)",
+  "No combined AutoAttack accuracy (A: Reviewer_dFot; B: Reviewer_babp, Reviewer_WsAL)",
+  "Training cost not reported (A: Reviewer_dFot, Reviewer_dUSe; B: Reviewer_WsAL)",
+  "Table 1 'Arch.' and 'Back.' columns unexplained (A: Reviewer_dFot; B: Reviewer_babp)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees ended at a mean rating of 6.0 with overlapping concerns; the area chairs made the split. A's AC counted three positive reviewers and one indifferent one, added personal enthusiasm ('may open the door to a new world'), and named no technical issue. B's AC rejected over ratings of 6, 6 and 8 by restating the three objections of the lone detractor, Reviewer_DKEh: generic theory, capacity versus search, and PGD-only training. The submission confirms the theory objection (Theorems 1 and 3 hold for any mappings, while Eq. 2 sums features at every block, and Theorem 1's bound is vacuous when the dilation adds nothing) and WsAL's point that TRADES-6 is more robust (PGD-20 56.43 vs 53.43). Table 6 and the cited supplement control weaken the capacity objection, and B's AC ignored them. A's positive side is thin: two generic positive reviews and a raise by dUSe after a rebuttal that wrongly claimed better standard accuracy than PGD-7 (86.23 vs 87.25). B's 8 is a one-hour review that the AC gave no weight. The same facts were weighted differently, and B's weighting rests on better-checked points. B's AC also omitted the authors' FAT/TRADES retraining table, but that table shows the gain falling to +1.00 PGD-20 under TRADES-6 and reuses cited baseline numbers. Separately, A's dFot and B's babp share whole sentences not in the paper, so the committees were not independent on that seat; both gave 6, so this does not explain the split.",
+ "candidate_reasons": [
+  "AC overrode above-threshold majority",
+  "AC adopted lone detractor's critique",
+  "AC enthusiasm for novel framing",
+  "generic theory flagged in one committee",
+  "thin positive reviews counted fully",
+  "rebuttal new results not credited"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_DKEh review and 2021-09-01 reply",
+  "Reviewer_WsAL review (TRADES-6 averages) and 2021-08-28 reply",
+  "Reviewer_dUSe post-rebuttal edit (2021-08-28) and authors' reply 3.5 to dUSe",
+  "Authors' 2021-08-25 new-results table (Committee B forum only)",
+  "paper Section 3.1 Eq. 2; Section 4 Theorems 1 and 3 (l.217-250)",
+  "paper Table 1 and l.292-294, l.303-304",
+  "paper Table 4 and Table 6",
+  "Reviewer_dFot and Reviewer_babp reviews (shared sentences)"
+ ]
+}

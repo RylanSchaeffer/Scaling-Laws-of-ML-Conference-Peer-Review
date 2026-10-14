@@ -1,0 +1,216 @@
+{
+  "pair_id": "n21-042",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 7, 4, 7],
+      "confidences": [4, 4, 5, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/7/4/7 split two above and two below threshold; no single reviewer stands apart. The two low scores rest on different grounds. Reviewer_yJfq (5) cites an incomplete SCDC baseline and missing related work, both correct. Reviewer_2qnh (4, confidence 5) cites limited novelty, and the checkable part of that claim is wrong (see checkable_claims)."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_yJfq",
+          "claim": "SCDC, an important baseline, has no values for Fashion, Reuters and STL-10 in Table 1, and its MNIST values come from its own paper under different settings.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 shows SCDC only for MNIST (Acc 84.2, NMI 81.2, no ARI), marked 'Results taken from (Luo et al., 2018)'. Lines 237-240: the original results were 'computed with a higher number of constraints'; the released code with 6000 constraints was 'highly unstable'."
+        },
+        {
+          "reviewer": "Reviewer_2qnh",
+          "claim": "From Eq. 11-12 the only difference from existing methods is W; 'If W=I, then it is exactly VAE.'",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 93-97: with no prior information the model equals VaDE/GMM-VAE, which the paper calls 'a special case of our framework'. Eq. 5 and the last term of Eq. 11 run over j != i, so W=I acts like W=0 and gives VaDE, not a VAE. The structural point (the new piece is the W term) is what the paper itself says; calling it trivial is a judgement."
+        },
+        {
+          "reviewer": "Reviewer_2qnh",
+          "claim": "The paper misses Correlated Variational Auto-Encoders (Tang et al., ICML 2019).",
+          "checked_against_paper": "correct",
+          "evidence": "The reference list (lines 322-414) has no Tang et al. Reviewer_yJfq lists the same paper as reference [4]. The authors promised to add it."
+        },
+        {
+          "reviewer": "Reviewer_2A4z",
+          "claim": "The mixing distribution pi is fixed at 1/K, which limits use on imbalanced data.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 150-153 fix pi_k = 1/K so that the normaliser Omega(pi) is constant. The Limitations paragraph (lines 316-319) admits pi must be chosen a priori."
+        },
+        {
+          "reviewer": "Reviewer_2A4z",
+          "claim": "The number of constraints is fixed at 6000; only Figure 2 varies it.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 224 sets 6000 constraints 'unless stated otherwise'. Figure 2 varies them from 0.1N to N, against C-IDEC only. UTKFace uses 2N (line 294)."
+        },
+        {
+          "reviewer": "Reviewer_5L8k",
+          "claim": "W carries label-like information, so the task approaches classification; no real application shows pairwise information that labels cannot give.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 222-223: every constraint is generated from ground-truth labels (must-link if same label, cannot-link otherwise). For UTKFace, 2N constraints come from labels on 1.5% of the data (lines 294-295). No experiment uses pairwise judgments that do not come from labels."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Responses posted 2021-08-07. Reviewer_2A4z (2021-08-25): 'maintain my original \"accept\" recommendation'. Reviewer_yJfq (2021-08-18) asked again for comparisons with the cited works and for stronger baselines than VaDE plus PCA; the authors replied 2021-08-24, with no further reply or edit. Reviewer_2qnh and Reviewer_5L8k did not reply.",
+        "what_convinced_or_not": "2A4z was satisfied by the transitive-closure and pi answers. yJfq was not moved: the authors gave a qualitative comparison with the cited works and asked yJfq to name stronger baselines. 2qnh never answered the correction that W=I gives VaDE. The AC took the related-work answers as 'reasonably addressed'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts on a 2-2 split (mean 5.75). The three-sentence meta-review cites 'many positive comments' and 'agreement that technical details are novel'. That overstates consensus: Reviewer_2qnh wrote 'The novelty is limited.' It judges the related-work concerns 'reasonably addressed by the author response', although Reviewer_yJfq stayed at 5 after asking for more.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Two 7s praising clarity, soundness and thorough experiments (Reviewer_2A4z, Reviewer_5L8k)",
+        "AC judged the related-work comparisons adequately answered in the rebuttal",
+        "AC treated technical novelty as agreed, setting aside Reviewer_2qnh's objection",
+        "Good empirical performance with simple inference"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 6, 4, 7],
+      "confidences": [4, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_JUWY", "Reviewer_3xdu"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_bU1a",
+        "direction": "detractor",
+        "basis": "unclear",
+        "evidence": "bU1a's 4 is two points below the other B ratings (6, 6, 7). The review lists eight questions, mostly about constrained clustering as a setting, and ends 'In general, I am positive about the method'. No stated flaw in the paper supports the 4. The paper already answers several questions: scaling to millions of points (Section 2.4), conflicting experts (noisy-constraint heuristic, Section 4), W as a metric (Definition 1 allows negative entries). The O(N^2) and labels-versus-pairs points are fair but general. bU1a did not reply to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_3xdu",
+          "evidence": "Rating 6 after a review that restates the abstract and lists no weakness. It names DEC, VaDE and IDEC as the beaten baselines; Table 1 runs VaDE, PCKmeans, SDEC, C-IDEC and SCDC, not DEC or IDEC. No part in the discussion."
+        },
+        {
+          "reviewer": "Reviewer_2jYB",
+          "evidence": "Rating 7 after one hour of reviewing, confidence 3, 'Math/other details were not carefully checked'. Four short paragraphs with no specific engagement with the method or the results. Its claim that no other work combines deep GMMs with constraints overlooks SCDC, which the paper cites. No part in the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_JUWY",
+          "claim": "delta_{c_i c_j} is not explained in the paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 5 (page 3) uses delta_{c_i c_j} without a definition. It is the standard Kronecker delta, so this is a minor clarity point."
+        },
+        {
+          "reviewer": "Reviewer_JUWY",
+          "claim": "The choice |W_ij| = 10^4 for all data sets is not explained.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 224 states the value with no justification. The only rule for |W_ij| is the noisy-label heuristic alpha log((1-q)/q) with alpha = 1000 (line 256)."
+        },
+        {
+          "reviewer": "Reviewer_JUWY",
+          "claim": "The evaluation protocol, including how accuracy is computed, is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text (lines 235-237) names Acc, NMI and ARI but does not say how clusters are matched to labels. The rebuttal gives the Hungarian algorithm. The appendix was not available to check."
+        },
+        {
+          "reviewer": "Reviewer_3xdu",
+          "claim": "The method outperforms state-of-the-art clustering methods such as DEC, VaDE and IDEC.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 baselines are VaDE, PCKmeans, SDEC, C-IDEC and SCDC (lines 209-214). DEC and IDEC are not run; their constrained variants are."
+        },
+        {
+          "reviewer": "Reviewer_2jYB",
+          "claim": "No other work combines deep Gaussian mixture models with clustering constraints.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 191-199 name SCDC (Luo et al., 2018) as a deep generative model for pairwise-constrained clustering, and Table 1 reports it. The paper's novelty claim is narrower: it conditions the cluster prior on W instead of modelling p(W|c)."
+        },
+        {
+          "reviewer": "Reviewer_bU1a",
+          "claim": "Full domain knowledge needs O(N^2) pairwise relations; the authors do not claim to need it, but coverage falls quadratically as N grows.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 225-227 say the total is O(N^2) and that the 6000 constraints used are 'a small fraction of the total information'. Figure 2 shows results from 0.1N to N constraints."
+        },
+        {
+          "reviewer": "Reviewer_bU1a",
+          "claim": "It is open whether the algorithm scales to millions of points.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 2.4 (lines 157-162) restricts the pairwise term to the mini-batch, so the cost per update is O(L B^2 K C_p), independent of N."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "'The method requires experts to express all pairwise relations leading to O(N^2) relations.'",
+          "checked_against_paper": "incorrect",
+          "evidence": "Experiments use 6000 random pairs (line 224), 'a small fraction of the total information' (lines 225-227); Figure 2 uses 0.1N to N. Reviewer_bU1a, whose concern this restates, wrote 'I am aware that authors don't claim the need of full information'."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The evaluation data sets (MNIST, etc.) are very standard, and no application domain is demonstrated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 4 includes a medical heart-echo set (305 infant videos, 20000 frames, clustered by view and by preterm status; Table 2) and UTKFace (gender, ethnicity; Figure 5). The defensible core: all constraints are simulated from ground-truth labels (lines 222-223), so no experiment shows pairwise judgments elicited from experts."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "The two edits (Reviewer_JUWY 2021-07-15, Reviewer_3xdu 2021-07-17) predate the responses of 2021-08-06. Reviewer_JUWY (2021-08-14): 'my general impression of the paper remains unchanged. I will keep my score.' Reviewer_bU1a, Reviewer_3xdu and Reviewer_2jYB did not reply, despite the authors' 2021-08-30 note asking bU1a to reconsider.",
+        "what_convinced_or_not": "The answers to JUWY's clarity questions (delta, W, mini-batching, K, Hungarian matching) improved JUWY's understanding but not the score. The AC did not accept the O(N^2) answer: the cost is eliciting constraints, not computation. The AC did not address the authors' claim that the number of constraints needed does not grow with N."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Rejects over ratings 6/6/4/7, three of four at or above threshold. Calls bU1a's concern 'one of the primary concerns' and restates it as needing 'all pairwise relations', dropping bU1a's own concession. Adds an objection no B reviewer raised (data sets 'very standard'); Reviewer_JUWY had called the 'real-world datasets' novel. Opens with 'The reviewers carefully considered the merits', though only JUWY replied to the rebuttal.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Practicality of eliciting pairwise constraints from experts (Reviewer_bU1a's O(N^2) point, overstated as needing all pairs)",
+        "AC's own view that the benchmarks are standard and no application domain is demonstrated",
+        "Positive reviews gave little argument to weigh against this (Reviewer_3xdu restates the abstract; Reviewer_2jYB took one hour; Reviewer_JUWY's 6 is marginal)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Missing related work: Correlated VAEs, relational autoencoders, multi-source semi-supervised clustering (Reviewer_yJfq, Reviewer_2qnh)",
+    "SCDC baseline reported only on MNIST, copied from its own paper (Reviewer_yJfq)",
+    "Limited novelty: VaDE plus a W term (Reviewer_2qnh)",
+    "Fixed mixing weights pi = 1/K (Reviewer_2A4z) and a fixed rather than random W (Reviewer_2qnh)",
+    "No stronger two-stage VAE plus constrained-clustering baselines; representation not used beyond clustering (Reviewer_yJfq)"
+  ],
+  "issues_only_b": [
+    "Clarity: undefined delta, unexplained |W| = 10^4, mini-batching of the objective, derivation of Eq. 11, accuracy protocol, fixed K (Reviewer_JUWY)",
+    "Conflicting expert annotations (Reviewer_bU1a)",
+    "Scaling to millions of points and high-resolution data; Gaussian latent assumption (Reviewer_bU1a)",
+    "Why use domain knowledge instead of designed features (Reviewer_bU1a)",
+    "Standard benchmarks and no demonstrable application domain (Committee B AC only)"
+  ],
+  "shared_issues": [
+    "Pairwise constraints versus class labels or semi-supervised learning (A: Reviewer_5L8k; B: Reviewer_bU1a); the authors answered both with the same crowdsourcing paragraph",
+    "Practical cost of collecting thousands of constraints (A: Reviewer_2A4z; B: Reviewer_bU1a, Committee B AC)",
+    "Clear writing, a novel combination and extensive experiments (most reviewers in both committees)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees averaged 5.75, so the split comes from the area chairs, not the scores. B's reviews leaned more positive (6, 6, 7 against one 4), yet B's AC rejected. The AC made the lone detractor's practicality point (Reviewer_bU1a) the primary concern. It restated that point as 'the method requires experts to express all pairwise relations'. The paper contradicts this: experiments use 6000 random pairs, which lines 225-227 call a small fraction of the O(N^2) total, and bU1a had conceded the point. The AC also called the data sets 'very standard', which ignores the heart-echo and UTKFace experiments. A's reviews split 2-2 (5, 4 against 7, 7). Its AC accepted, called novelty agreed, and judged the related-work gaps answered by the rebuttal. That set aside Reviewer_2qnh's 4, whose checkable basis is wrong: with no constraints the model is VaDE, not a VAE, as Section 2.1 states. Review quality also differed. A had a careful champion who engaged in discussion (Reviewer_2A4z); B's positive reviews were thin (Reviewer_3xdu restates the abstract, Reviewer_2jYB took one hour). One real issue sits under B's rejection, and both committees saw it. Every constraint is simulated from class labels, so no experiment shows pairwise judgments doing what labels cannot. A's Reviewer_5L8k raised this and still rated 7; B's AC made it decisive. The authors answered both with the same crowdsourcing paragraph.",
+  "candidate_reasons": [
+    "Equal means, opposite AC calls",
+    "AC elevates lone detractor's concern",
+    "AC overstates the annotation requirement",
+    "AC overlooks real-world experiments",
+    "Thin positive reviews in rejecting committee",
+    "Labels-versus-pairs concern weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_bU1a review, second bullet (O(N^2))",
+    "Reviewer_2qnh review, Cons 1",
+    "Authors' response to Reviewer_5L8k item 2 (A), identical to the response to Reviewer_bU1a item 6 (B)",
+    "Reviewer_JUWY comment 2021-08-14",
+    "Reviewer_2A4z comment 2021-08-25",
+    "Reviewer_3xdu review",
+    "paper lines 222-227 (constraint sampling, 6000 pairs, small fraction of O(N^2))",
+    "paper lines 93-97 (VaDE as special case) and Eq. 5",
+    "paper Section 4, Heart Echo (Table 2) and Face Images (Figure 5)",
+    "paper Section 2.4, lines 157-162",
+    "paper Table 1 and lines 237-240 (SCDC)"
+  ]
+}

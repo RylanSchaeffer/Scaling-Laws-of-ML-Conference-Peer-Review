@@ -1,0 +1,299 @@
+{
+  "pair_id": "n21-037",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        8
+      ],
+      "confidences": [
+        3,
+        5,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_cDnL",
+        "Reviewer_iR66"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 8 at confidences 3, 5, 5; no rating stands apart. The 6 (Reviewer_iR66) rose from below threshold after the rebuttal. The 8 (Reviewer_U5qd) is the shortest review; the 7 (Reviewer_cDnL) is the most specific."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_U5qd",
+          "evidence": "Three short paragraphs for an 8 at confidence 5 ('checked the math/other details carefully'). It names no detail it checked, raises no point about the model, and did not answer the rebuttal. Its one criticism (the training-diet test covers a single domain) is correct, so the review is thin rather than wrong."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_cDnL",
+          "claim": "Eq. 2 uses layer l+1 target features as a convolution kernel on layer l search features without explaining how their channels match.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted l.132-136 define Eq. 2 this way. The paper never says that layers 10, 14, 18 are the pooled versions of 9, 13, 17; this follows only from the pooling indices at l.116. The authors confirmed the pooling relation in the rebuttal, and the camera-ready adds 'the feature map after pooling operation'."
+        },
+        {
+          "reviewer": "Reviewer_cDnL",
+          "claim": "The target features should not depend on the fixation index n.",
+          "checked_against_paper": "correct",
+          "evidence": "l.132 indexes the target features by n. The authors replied 'The reviewer is correct', and the camera-ready drops the n."
+        },
+        {
+          "reviewer": "Reviewer_cDnL",
+          "claim": "l.105 wrongly says VGG16 traditionally uses average pooling.",
+          "checked_against_paper": "correct",
+          "evidence": "VGG16 uses max pooling, as the paper itself says at l.89 and l.240. The authors promised a fix; the camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_cDnL",
+          "claim": "The MNIST and rotated-ImageNet models are trained from scratch, but the main model is pretrained VGG16 with swapped pooling layers, so a from-scratch ImageNet control is missing and the 'easily integrated' claim is untested.",
+          "checked_against_paper": "correct",
+          "evidence": "l.125-129 (pretrained weights, no retraining) against l.249 and l.258 (from scratch). The submission has no from-scratch ImageNet eccNET. The authors conceded that 'easily' 'does not really hold'."
+        },
+        {
+          "reviewer": "Reviewer_iR66",
+          "claim": "The search-asymmetry references [10, 23-25] are inadequate; Treisman and Gormican 1988, Rosenholtz 2001, Bruce and Tsotsos 2011 and others are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "l.29 cites only [25, 10, 23, 24]; none of the suggested works is among the 28 references. The camera-ready adds them."
+        },
+        {
+          "reviewer": "Reviewer_iR66",
+          "claim": "Experiment E (Experiment 5) is unconvincing.",
+          "checked_against_paper": "correct",
+          "evidence": "l.205-206 and Fig. 5A: model Asymmetry Index about -1.0 against a human index of about +0.6. The reviewer's further doubt about the human data was wrong; the authors cited replications of the human effect."
+        },
+        {
+          "reviewer": "Reviewer_iR66",
+          "claim": "Some baselines in Fig. 5 are strawmen with no mechanism that could produce asymmetry.",
+          "checked_against_paper": "correct",
+          "evidence": "Chance, GBVS and pixelMatching have no learned features (l.165-167). The only deep baseline, IVSN, is the authors' earlier model (l.168, [27]). No published model of search asymmetry is a baseline."
+        },
+        {
+          "reviewer": "Reviewer_U5qd",
+          "claim": "The training-diet manipulation is shown for one experiment only, which gives the hypothesis only anecdotal support.",
+          "checked_against_paper": "correct",
+          "evidence": "l.248: 'as a proof-of-principle, we focused on Experiment 2'; Fig. 6 shows Experiment 2 only."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_iR66"
+        ],
+        "evidence": "Reviewer_iR66 edited the review on 2021-08-26, the day of its reply: 'I would not object to the acceptance of this paper, subject to the revisions that the authors have proposed'. The AC: 'initially one negative review but the rebuttal satisfied this reviewer who increased their score to a marginal accept'. Reviewer_cDnL's edit (2021-07-16) predates the rebuttal; Reviewer_U5qd never edited. Neither cDnL nor U5qd replied.",
+        "what_convinced_or_not": "Promises, not new results: A's rebuttal shows no new figures. It promises the missing references, more asymmetries, fisheye and grid training sets, and fine-tuned fits. iR66: 'Given all the promises made in the detailed reply, I am inclined to trust that the authors will incorporate these'. iR66 rejected the authors' offer of a per-condition model that fixes Experiment 5 as possibly 'counterproductive'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences. It counts reviews ('two positive reviews and initially one negative review') and says most limitations 'were addressed in the rebuttal', which addressed them mainly with promises. It names no technical point.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Post-rebuttal ratings 7, 6, 8 (mean 7.0), all at or above threshold.",
+        "All three reviewers valued the core result: without task training, the model reproduces the polarity of five of six asymmetries, and rotated training images reverse Experiment 2.",
+        "Reviewer_iR66 moved from below threshold to 6 on promised references, analyses and training regimes.",
+        "The remaining weaknesses (qualitative fit, Experiment 5, a one-experiment training test) were left to the discussion section."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        5,
+        8
+      ],
+      "confidences": [
+        4,
+        3,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_F9R3",
+        "Reviewer_CJM4",
+        "Reviewer_CMyL",
+        "Reviewer_h9eJ"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_CMyL",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold (5 against 7, 7, 8), at confidence 5 after 11 hours. Its specific claims check out. From l.139 and l.143, each map is rescaled by max(A)/(max(A)-min(A)), so a map whose minimum is zero returns to its raw scale. The attention maps feed only the winner-take-all choice of fixation, so 'top-down modulation' is a template match of the target's pooled features against the search features one layer below. Fig. 3B's model curves do not match the macaque curves the caption says they match. One claim is wrong: Section 5 does discuss limitations."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CJM4",
+          "evidence": "Two of its weaknesses misread Fig. 5B. MNIST training leaves an average Asymmetry Index of about 0.19, above both architecture ablations (0.084 and about 0.05), so the asymmetry does not depend on 'the data instead of the method/architecture'. IVSN, a VGG16-based network, averages about 0.32, so other neural networks do show asymmetry. It also reads the lighting conjecture, which the paper limits to Experiment 2 (l.248, l.290), as an account of all six. Confidence 3, 3 hours."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_F9R3",
+          "claim": "The training-diet claim rests on only two manipulations, MNIST and 90-degree rotation.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.4, l.249-264."
+        },
+        {
+          "reviewer": "Reviewer_F9R3",
+          "claim": "Earlier computational models of search asymmetry (Heinke and Backhaus 2011; Bruce and Tsotsos 2011) are not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is among references [1]-[28]. The camera-ready adds both."
+        },
+        {
+          "reviewer": "Reviewer_F9R3",
+          "claim": "The authors collected eye-tracking data but compare only reaction times and fixation counts, not trajectories.",
+          "checked_against_paper": "correct",
+          "evidence": "l.146-155: the eye-tracking data serve only to fit RT = alpha*N + beta."
+        },
+        {
+          "reviewer": "Reviewer_CJM4",
+          "claim": "66.7% top-1 accuracy is not 'similar' to 72% (l.267).",
+          "checked_against_paper": "correct",
+          "evidence": "l.267-268 call them similar. The authors agreed, and the camera-ready drops the sentence."
+        },
+        {
+          "reviewer": "Reviewer_CJM4",
+          "claim": "The MNIST result shows that the asymmetry depends on the data instead of the method or architecture.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 5B: MNIST training leaves an average index of about 0.19. Removing eccentricity-dependent pooling (about 0.05) or multi-layer modulation (0.084, l.235) lowers it more."
+        },
+        {
+          "reviewer": "Reviewer_CJM4",
+          "claim": "Other neural network models do not capture the asymmetry (Fig. 5).",
+          "checked_against_paper": "incorrect",
+          "evidence": "IVSN, built on VGG16, averages about 0.32 in Fig. 5B; l.228-229 say it beats the other baselines."
+        },
+        {
+          "reviewer": "Reviewer_CJM4",
+          "claim": "The lighting-direction assumption is not backed by any statistic of the training data.",
+          "checked_against_paper": "correct",
+          "evidence": "l.256-258 state it as a conjecture with no measurement. The review's further claim that it cannot explain curves misreads its scope: the paper applies it only to Experiment 2 (l.248, l.290)."
+        },
+        {
+          "reviewer": "Reviewer_CMyL",
+          "claim": "The weighting of the three attention maps scales each by max(A)/(max(A)-min(A)), which undoes the normalization.",
+          "checked_against_paper": "correct",
+          "evidence": "From l.139 and l.143, map l enters as (A_l - min A_l) * max A_l / (max A_l - min A_l), over a sum common to all maps; when min A_l = 0 this is the raw map. The authors' rebuttal derives the same factor and answers with a rationale for weighting by the maximum, not the arithmetic. The camera-ready keeps the formula."
+        },
+        {
+          "reviewer": "Reviewer_CMyL",
+          "claim": "The 'top-down modulation' maps do not modulate processing in the network; they are readouts.",
+          "checked_against_paper": "correct",
+          "evidence": "l.72-74 and l.137-143: A_n is used only for the winner-take-all choice of the next fixation."
+        },
+        {
+          "reviewer": "Reviewer_CMyL",
+          "claim": "The two interacting layers are a feature map and a pooled (blurred) version of it, so the operation is template matching.",
+          "checked_against_paper": "correct",
+          "evidence": "Eccentricity-dependent pooling sits at layers 10, 14, 18 (l.116, Fig. 3A); modulation runs 10 to 9, 14 to 13, 18 to 17 (l.233-234). The authors told Reviewer_cDnL the same."
+        },
+        {
+          "reviewer": "Reviewer_CMyL",
+          "claim": "The pooling regions were not chosen to follow the macaque receptive-field curves the model is compared with.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3B: from 4 to 14 deg eccentricity, layer 18 spans about 7.5-12.5 deg against about 3-11 deg for V4; at every level the model's slope is lower and its intercept higher. The caption says 'matches'; the authors called it 'a coarse approximation'."
+        },
+        {
+          "reviewer": "Reviewer_CMyL",
+          "claim": "The rebuttal's statement that layer 10 is the 6th convolutional layer is off.",
+          "checked_against_paper": "correct",
+          "evidence": "The pooling indices 3, 6, 10, 14, 18 at l.116 follow Keras VGG16 numbering, where layer 10 is the third pooling layer, after seven convolutions. The authors' last reply pointed to the code without answering."
+        },
+        {
+          "reviewer": "Reviewer_CMyL",
+          "claim": "The authors do not comment on their limitations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 (l.297-315) gives four limitations; checklist item 1(b) points there."
+        },
+        {
+          "reviewer": "Reviewer_h9eJ",
+          "claim": "Eccentricity and multi-layer modulation affect asymmetry more than MNIST training, yet the discussion stresses the training set.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 5B: about 0.05 and 0.084 against about 0.19. l.319-320: human biases 'can be derived purely from the statistics of training images'. The camera-ready drops 'purely' and credits the architecture."
+        },
+        {
+          "reviewer": "Reviewer_h9eJ",
+          "claim": "The human data in Fig. 4 have no error bars.",
+          "checked_against_paper": "correct",
+          "evidence": "The left panels of Fig. 4 show none, although the caption says 'Error bars denote standard error'. The authors said the original studies did not always report them."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_F9R3",
+          "Reviewer_CJM4",
+          "Reviewer_CMyL"
+        ],
+        "evidence": "Reviewer_F9R3 (edited 2021-08-28): 'I decided to raise my score to 7'. Reviewer_CJM4 (reply 2021-08-27, edited the same day): 'I would like to raise my rating accordingly'. Reviewer_CMyL (edited 2021-08-15): 'I have just slightly increased my evaluation', ending at 5. Reviewer_h9eJ (edited 2021-08-28) thanked the authors and names no change. The AC: the rebuttal 'led to the increase of scores'.",
+        "what_convinced_or_not": "B's rebuttal showed new results behind anonymous links: a scanpath comparison for T versus L, Places and rotated-Places training, a ResNet backbone and fine-tuned reaction-time fits. F9R3 credited the added intuition about eccentricity and top-down modulation. CJM4 credited the motivation argument and 'promised extensive experiments that were more than I expected'; it could not open the ResNet figure. h9eJ welcomed the fixation comparison and new training regimes. CMyL credited the scanpaths and fits but kept 5, because the weighting, the 'top-down' label and the receptive-field fit still looked 'strange/unusual' and the results might 'depend on some oddity of the model'. The authors' second reply to CMyL (2021-09-24, four days before the decision) drew no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Summarises the contribution, credits the rebuttal for the raised scores, and lists Reviewer_CMyL's unresolved model choices and the motivation questions of Reviewer_F9R3 and Reviewer_CJM4 as points for clarification. 'All the reviewers think the paper is well-written' overstates CMyL, who found the nomenclature and layer numbering confusing.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Post-rebuttal ratings 7, 7, 5, 8 (mean 6.75); three of four at 7 or above.",
+        "New rebuttal results and promises raised Reviewer_F9R3 and Reviewer_CJM4 to 7 and Reviewer_CMyL to 5.",
+        "Reviewer_h9eJ's detailed 8 and Reviewer_F9R3's 10-hour 7 vouch for the human-model comparison and the ablations.",
+        "The AC treated Reviewer_CMyL's unresolved objections to the model's design as clarifications, not reasons to reject."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No from-scratch ImageNet control for the from-scratch MNIST and rotated models; the 'easily integrated' claim is untested (Reviewer_cDnL)",
+    "l.105 says VGG16 uses average pooling; the target features carry a needless fixation index (Reviewer_cDnL)",
+    "Strawman baselines; alternatives to winner-take-all such as an ideal searcher (Reviewer_iR66)",
+    "Eccentricity imposed by the network rather than the sensor; untested asymmetries such as colour and novelty (Reviewer_iR66)"
+  ],
+  "issues_only_b": [
+    "The map weighting undoes its own normalization; 'top-down modulation' is a readout template match (Reviewer_CMyL)",
+    "Receptive fields not fit to the macaque data; layer-to-area mapping and layer numbering (Reviewer_CMyL)",
+    "No scanpath comparison with human eye movements (Reviewer_F9R3, Reviewer_CMyL, Reviewer_h9eJ)",
+    "Rotation changes more than lighting; no intuition for why the components produce asymmetry; missing work on shared human-network biases (Reviewer_F9R3)",
+    "Motivation for human-like models; 66.7% versus 72% called similar; lighting conjecture untested indoors (Reviewer_CJM4, Reviewer_F9R3, AC)",
+    "Architecture versus training set in the discussion; missing human error bars and subject counts (Reviewer_h9eJ)"
+  ],
+  "shared_issues": [
+    "Training-diet evidence limited to Experiment 2 (A: Reviewer_U5qd, Reviewer_iR66; B: Reviewer_F9R3, Reviewer_h9eJ)",
+    "Thin citation of the search-asymmetry literature and its earlier models (A: Reviewer_iR66; B: Reviewer_F9R3)",
+    "Qualitative fit only; absolute reaction times are off (A: Reviewer_cDnL, Reviewer_iR66; B: Reviewer_CMyL)",
+    "The model reverses Experiment 5 (A: Reviewer_cDnL, Reviewer_iR66; B: Reviewer_CMyL, Reviewer_h9eJ)",
+    "Eq. 2 pairs target layer l+1 with search layer l without saying how the channels match (A: Reviewer_cDnL; B: Reviewer_CMyL)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons, and weighed the same facts the same way. Every reviewer found the core result interesting: an ImageNet-pretrained VGG16 with eccentricity-dependent pooling, never trained on the task, reproduces the polarity of five of six classical search asymmetries, and training on rotated images reverses Experiment 2. Both committees saw the same weaknesses (qualitative fit only, a reversed Experiment 5, a training-diet test on one experiment, thin citation of the asymmetry literature) and treated them as revision items. In both, the rebuttal raised scores: in A on promises alone (Reviewer_iR66 to 6), in B on new results and promises (Reviewer_F9R3 and Reviewer_CJM4 to 7, Reviewer_CMyL to 5). Final means were 7.0 and 6.75, with no 9 in either committee, so neither had a case for a spotlight; both meta-reviews restate the score consensus. The one real difference is B's principled detractor. Reviewer_CMyL showed that the map weighting cancels its own normalization when a map's minimum is zero, that the 'top-down modulation' is a template-matching readout, and that Fig. 3B does not match the macaque data its caption claims. The authors never resolved these points, and B accepted over him. A's nearest counterpart, Reviewer_cDnL, raised the same Eq. 2 layer pairing, accepted the authors' explanation and stayed at 7. So the agreement does not hinge on A lacking such a reviewer: his objections concern how the model is built and interpreted, and B judged them clarifications.",
+  "candidate_reasons": [
+    "Qualitative match without task training",
+    "Weaknesses treated as revision items",
+    "Rebuttal promises and results raised scores",
+    "Principled detractor outvoted by three",
+    "No top-tier champion in either",
+    "Meta-reviews restate score consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Fig. 5A-B (Asymmetry Index per experiment; ablations, MNIST, IVSN)",
+    "paper_submitted.pdf Section 4.4 and Fig. 6 (training-diet test on Experiment 2 only)",
+    "paper_submitted.pdf l.130-143 (Eq. 2 and the weighting of the attention maps)",
+    "paper_submitted.pdf Fig. 3B (model against macaque receptive fields)",
+    "paper_submitted.pdf l.105, l.125-129, l.319-320",
+    "Reviewer_cDnL final review and authors' reply 3.1-3.4",
+    "Reviewer_iR66 reply of 2021-08-26",
+    "Reviewer_CMyL final review (post-rebuttal section) and authors' reply of 2021-09-24",
+    "Reviewer_h9eJ final review",
+    "Reviewer_CJM4 final review and reply of 2021-08-27",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

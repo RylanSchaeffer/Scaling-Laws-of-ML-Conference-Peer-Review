@@ -1,0 +1,274 @@
+{
+  "run": 1,
+  "turn": 47,
+  "pair_id": "n21-302",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "A's spotlight is unexplained, but the meta-review leans on the scores and shows no reading or taste of the area chair's own; B's chair stated no view."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither committee rested its recommendation on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's rebuttal raised hnow (borderline to 7) and DqnY (to 6); in B the detractor xSwS stayed at 3 ('not really satisfied') and B's recommendation stayed at reject."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's Reviewer_D146 rated 5 after 2 hours on unsupported assertions ('learning entropy growth is not as exciting') and never replied; B averaged 3.6 hours against A's 4.7."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "The decisive concern, thin experiments and weak baselines, was shared; B-only points (tensor cost, dopri5, Section 5.4) did not drive B's reject."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees named the same toy benchmarks, NODE-only baseline and missing gas-container spread; A treated them as non-disqualifying, B's detractor and AC as grounds to reject."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "B's Reviewer_DeZu cut 7 to 6 citing 'the weaknesses in the experiments section as other reviewers have noted', not the authors' response."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No reviewer's rating contradicts the verdict of their own review text in a way that set the recommendation; AB4a's unrecorded raise to 7 was counted by the AC."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No B or A reviewer said they could not judge the paper and defaulted to a borderline score."
+    },
+    {
+      "id": "R10",
+      "applies": true,
+      "justification": "B's two-sentence meta-review rejected on the one outlying reviewer xSwS (3), who 'is still strongly convinced about rejection', and did not weigh the accept-side 6 and 7."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The split comes from one committee's detractor and its weighting of thin experiments, not from similar verbal verdicts placed at different scores."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A's meta-review cites reviewer agreement, but A held an 8 and B's spread sat at a much lower mean and maximum, so the contrast the reason names is absent; R31 covers the tier."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "A's DqnY raised to 6 'based on the assumption that the missing information will be added', on promised appendices and a code link, not checked evidence."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's meta-review carried the weakness forward ('The numerical experiments are good, but can be further improved'); B's named the detractor's concern."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "xSwS's wrong claim concerns notation (the Einstein convention is declared), not the paper's results, and the 3 rests mainly on correct points about the experiments."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "A's authors admitted gas-container training was 'either failing completely or training consistently' and that the figure shows the best of five runs; hnow still raised to 7 and A's AC gave a spotlight."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "DeZu's 2021-08-24 drop repeated existing experiment concerns, and the authors were still replying in B on 2021-08-25, so no new objection went unanswerable."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The committees' scores differ (7/6/8 against 3/6/7/5), so the split is not near-identical scores under different cut-offs."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "B's AC followed the detractor, not the mean of less-informed reviewers, and A's AC did not pass over a better-informed verdict."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "A's concerns (novelty against Öttinger, penalty-weight tuning, missing details) were answerable and answered; xSwS in B wanted more datasets and baselines, which a rebuttal could not supply."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "xSwS's 3 stood far below B's other final positions (6, 7, 5) and pulled B's mean from 6.0 to 5.25, which with the AC's deference kept B below acceptance."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "The outlying xSwS replied to the authors on 2021-08-22; A's non-engaging PQY3 was not outlying."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "B's AC followed its detractor rather than setting it aside."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "xSwS faulted physics-style notation, a presentation point, and no reviewer judged the paper too specialised for NeurIPS or suited to another venue."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "B's meta-review reported the swings and the remaining detractor accurately, and A's did not misstate positions."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Three of B's four reviewers replied after the rebuttal, and two of A's three did, so neither committee mostly ignored the response."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee said they could not verify the results while giving an accept score."
+    },
+    {
+      "id": "R28",
+      "applies": true,
+      "justification": "B's final positions split 3 and 5 against 6 and 7 at confidence 3 to 4, and the AC settled it on xSwS's critique without addressing the accept-side scores; A had no split."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "Both committees heard the same substance (promised error bars, the same defence of the experiments); the extra examples and code link are answers to different questions, not conflicting accounts."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "hnow's novelty concern against Öttinger [42] was accurate as to the overlap and was withdrawn after a check; no novelty verdict rested on wrong prior work."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's meta-review conceded the experiments 'can be further improved' and gave no reason for a spotlight on 7/6/8, with no reviewer arguing for the tier."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "No reviewer contested the paper's framing from a neighbouring field's premises; xSwS had 'no criticisms of the proposed parameterization'."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "A's 8 (PQY3) never joined the discussion, and B's AB4a engaged and reached 7, so the contrast the reason names is absent."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No reviewer or AC judged the promised fixes too large to accept without another review."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "Neither AC cited input outside the committee's record."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "Both committees judged the paper as a methods paper; B weighted the thin experiments more, which R06 covers, rather than applying a different standard for the contribution type."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "B's below-threshold scores rest on the central experimental evidence, not on a peripheral point."
+    }
+  ],
+  "added": [],
+  "reasoning": "Both committees saw the same thin experiments; A's explanatory rebuttal lifted two reviewers and its AC gave an unexplained spotlight on 7/6/8 despite a conceded best-of-five gas result, while B's AC broke a 3/5 against 6/7 split toward one firm detractor whose demand for more data no rebuttal could meet, after another reviewer cut his score on reading the other reviews. Existing reasons cover each mechanism (R03, R04, R06, R07, R10, R13, R16, R20, R21, R28, R31). The authors' twice-misread reply to AB4a was considered as a new reason but not added: AB4a ended at 7 and the AC counted it, so it did not shape the outcome.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ]
+}

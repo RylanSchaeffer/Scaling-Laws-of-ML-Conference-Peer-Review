@@ -1,0 +1,242 @@
+{
+  "pair_id": "n21-056",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        1,
+        5
+      ],
+      "confidences": [
+        3,
+        2,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_BuNG",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Rating 1 ('Trivial or wrong') at confidence 5, against 7 (Reviewer_Ktc7), 7 (Reviewer_Kvzc) and 5 (Reviewer_riVf). The review names no error and discusses no experiment or result. Its one checkable point, that the difference from [44] is 'marginal, if any at all', is overstated (see checkable_claims). The rest is 'rather amateurish' with no example, and a blanket objection that RL tuning only moves the problem to a harder non-convex one. It claims 24 hours for three paragraphs and never replied to the rebuttal. A's AC called this reviewer 'a bit excessively harsh'. In B, Reviewer_cZUC raised the same overlap with Wei et al. 2020 and gave 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_BuNG",
+          "evidence": "A 1 at confidence 5 that never mentions the vector policy, the benchmarks, QPLIB, Netlib or Maros-Meszaros. 'The convex optimization section is rather amateurish' comes with no example. No reply to the point-by-point rebuttal of 2021-08-11."
+        },
+        {
+          "reviewer": "Reviewer_Kvzc",
+          "evidence": "A 7 at confidence 2 after 1 hour. The review says 'I am not an expert in the area of using RL to speed up optimization'. The pros restate the abstract. The one substantive request, an analysis of why the learned updates help, is valid, but the review cites no specific result. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_BuNG",
+          "claim": "Using RL to tune ADMM was introduced in [44], and the difference from [44] is 'marginal, if any at all'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Half right. The submission cites [44] once, as 'an RL agent to tune parameters for an ADMM-based inverse imaging solver' (l.76-77), and does not say how RLQP differs, so the core idea is not new. But RLQP learns one per-constraint policy for general constrained QPs that transfers across problem sizes and classes (Sec. 4.2, Sec. 5.2, Sec. 5.5-5.7); [44] targets inverse imaging only. 'If any at all' is wrong. The rebuttal's contrast ([44] tunes 'denoising operations', RLQP tunes rho) understates the overlap, because [44] also tunes the ADMM penalty parameter. The camera-ready adds a related-work table that sets RLQP against [44]."
+        },
+        {
+          "reviewer": "Reviewer_riVf",
+          "claim": "Sec. 5.3 says OSQP's handcrafted policy beats RLQP on the class-specific (SQP) problems, perhaps even with a class-specific policy.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.269-272: only 'RLQP trained on the benchmarks converges more slowly than the handcrafted policy'. 'With a vector policy trained on the QPs from the SQP, the shifted geometric mean of OSQP is 1.37', so the class-specific policy wins. The section is three sentences long and easy to misread. The rebuttal muddles it further: it says the scalar policy lost and that RLQP was 'not trained' on the motion-planning problems."
+        },
+        {
+          "reviewer": "Reviewer_riVf",
+          "claim": "In Table 1 (QPLIB), when RLQP does not improve the solve time it often times out, so the learned policy may be fragile.",
+          "checked_against_paper": "correct",
+          "evidence": "Vector RLQP loses to OSQP on 3 of 12 instances, 2 of them by timeout (9002, 8515), and solves one that OSQP does not (8938). Scalar RLQP times out on 7 of 12 and beats OSQP on only 2. The text concedes 'all but three cases' (l.285-287). The rebuttal's 'only adds one additional timeout' is the net count for the vector policy."
+        },
+        {
+          "reviewer": "Reviewer_riVf",
+          "claim": "The paper does not report variance across RL training runs.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission reports one trained policy per setting and no seed variation. The rebuttal says 5 seeds showed 'little to no difference' and points to Fig. 2 right, but that panel is a box plot of iterations over warm-start problems, not over seeds."
+        },
+        {
+          "reviewer": "Reviewer_riVf",
+          "claim": "Fig. 3 is hard to read at low problem sizes.",
+          "checked_against_paper": "correct",
+          "evidence": "The x-axis is linear from 0 to 2000, so the 10-50 training range is a thin grey strip. The reviewer's second question, a missing dashed green curve, is not borne out: the caption gives dashed and solid variants only for the vector policy."
+        },
+        {
+          "reviewer": "Reviewer_Kvzc",
+          "claim": "The paper offers no analysis of why the RL policy's updates reduce solve time or how they differ from the heuristic rule.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no plot or analysis of the learned policy; l.195-202 give only an untested hypothesis about action variance. The authors posted a policy visualisation in both forums on 2021-08-17."
+        },
+        {
+          "reviewer": "Reviewer_Ktc7",
+          "claim": "The scalar policy's state is only the primal and dual residuals, while the vector policy's state has more features.",
+          "checked_against_paper": "correct",
+          "evidence": "l.144: the scalar state is the two residuals stacked in R^2. l.183: the vector state si in R^6 adds the distance to the bounds, z - Ax, y and rho."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting, and no reviewer posted in the discussion. The authors answered every review on 2021-08-10 and 2021-08-11 and posted a policy visualisation on 2021-08-17.",
+        "what_convinced_or_not": "Nothing is on record. Reviewer_riVf's two concerns got direct answers (the vector policy beats the handcrafted one in Sec. 5.3; QPLIB timeouts are out-of-distribution and not divergence), but riVf stayed at 5 without comment. Reviewer_BuNG's novelty objection got a point-by-point contrast with Wei et al. 2020 and no reply. The meta-review does not mention the rebuttal."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Mean 5.0 on a 7-7-1-5 split. The AC sided with the two 7s and discounted Reviewer_BuNG as 'a bit excessively harsh - perhaps expecting ... the same sort of rigor one might find in a pure optimization paper'. The AC judged the generalisation evidence 'reasonable' for an RL application paper; 'it's not reasonable to expect RL to find a silver bullet' answers Reviewer_riVf's QPLIB concern only indirectly. The AC records a reservation: decades of RL-tuned optimisation with 'not much practical impact'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "The AC judged it as an RL application paper with reasonable evidence of generalisation within related problem classes.",
+        "The AC set aside Reviewer_BuNG's 1 as excessively harsh, a pure-optimisation standard applied to an RL application paper.",
+        "Two 7s (Reviewer_Ktc7, Reviewer_Kvzc) for speedups across benchmarks and practical value, both from short reviews.",
+        "Reviewer_riVf's 5 rested on QPLIB timeouts (correct) and a misread Sec. 5.3; the AC accepted partial generalisation as enough."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_cZUC",
+        "Reviewer_THP1"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_cZUC, confidence 4), 7 (Reviewer_THP1, confidence 3) and 7 (Reviewer_nymS, confidence 3). The spread is one point. Both the 6 and THP1's 7 are post-rebuttal increases."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_cZUC",
+          "claim": "Highly similar ideas were explored in Wei et al. 2020, which accelerates proximal algorithms with RL.",
+          "checked_against_paper": "correct",
+          "evidence": "l.76-77 cite [44] as an RL agent that tunes the parameters of an ADMM-based solver, and the submission does not say how RLQP differs. The differences (general constrained QPs, per-constraint policy, transfer across sizes and classes) are real; cZUC judged them enough for a 6."
+        },
+        {
+          "reviewer": "Reviewer_cZUC",
+          "claim": "The multi-agent Markov-game framing adds little: Algorithm 2 is in effect single-agent TD3 with a shared per-constraint network.",
+          "checked_against_paper": "correct",
+          "evidence": "Alg. 2 and l.187-194: one actor and one critic, trained on m per-constraint tuples per step with one shared reward. Sec. 3.3 calls the setting 'a special case of a multi-agent MDP or Markov game'. The authors' reply (one R^6 to R^1 network applied m times) confirms this reading; the benefit they cite, size invariance, comes from the per-constraint architecture."
+        },
+        {
+          "reviewer": "Reviewer_THP1",
+          "claim": "The paper does not state the convergence tolerances used in the experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission gives no tolerance; l.291-292 say only 'high-accuracy'. The rebuttal gave 1e-5 for all three solvers. The camera-ready gives 10^-5 for OSQP and RLQP but runs Gurobi 'using default settings'."
+        },
+        {
+          "reviewer": "Reviewer_THP1",
+          "claim": "The Gurobi comparison is misleading without a discussion of solution precision, and Gurobi appears in Figs. 2 and 3 but not in Table 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 has only OSQP and RLQP columns, and the submission never discusses precision. Fig. 2 left shows Gurobi faster than vector RLQP on Huber, SVM and Portfolio; RLQP wins on Eq., Random and the aggregate. The rebuttal's 'strongly outperforms ... the Gurobi commercial solver' overstates Fig. 2."
+        },
+        {
+          "reviewer": "Reviewer_THP1",
+          "claim": "The supplement's README refers to a train_benchmark_problems.sh script that does not exist.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The code supplement is not in the PDF. The authors conceded that it was 'lost in the shuffle while anonymizing' and uploaded it on 2021-08-16."
+        },
+        {
+          "reviewer": "Reviewer_THP1",
+          "claim": "Appendix B's 'Vector 1' ablation drops the residual features and performs about as well, so the features may be unnecessary.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in the submitted PDF (l.241 points to the supplement). The authors' reply concedes that 'the individual state of the constraint may be the most important input'."
+        },
+        {
+          "reviewer": "Reviewer_THP1",
+          "claim": "The cost of refactorising the KKT system when rho changes is only alluded to (p.4 l.146) and needs a full discussion.",
+          "checked_against_paper": "correct",
+          "evidence": "l.145-146 ('avoid a costly matrix factorization') and l.264 ('O((n + m)^3)') mention it in passing. No section says how often rho changes in the experiments or what it costs."
+        },
+        {
+          "reviewer": "Reviewer_nymS",
+          "claim": "The paragraph at l.195-202 is hard to parse.",
+          "checked_against_paper": "correct",
+          "evidence": "The paragraph moves from untested claims about action variance to advice on a lower learning rate and a larger batch, with no experiment or number."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_THP1",
+          "Reviewer_cZUC"
+        ],
+        "evidence": "Reviewer_THP1 edited the review on 2021-08-18: 'I have changed my score from 5 to 7.' Reviewer_cZUC replied on 2021-08-18, got an answer on 2021-08-19, and edited the review on 2021-09-20: 'I am willing to raise my eval to 6.' Reviewer_nymS replied on 2021-08-23 ('I like the table form') and did not edit.",
+        "what_convinced_or_not": "THP1: the answers to nine comments, the 2021-08-17 policy visualisation ('seem to be making interesting progress on understanding the structure of the learned policy') and the uploaded script. THP1 still asks the authors not to overstate the Gurobi comparison and to drop features the ablation shows are unneeded. cZUC: the explanation that the vector policy is one R^6 to R^1 network applied per constraint. cZUC stays 'not fully convinced' that the Markov-game framing adds anything and calls the ideas 'not very novel', but the contribution 'solid'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All three final ratings are 6 or 7. The meta-review's core sentence copies Reviewer_THP1's summary ('clear gains within specific problem classes and some evidence of generalization across problem classes') and adds a line on the audience. It names no weakness and misspells OSQP as 'QSQP'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers ended at 6 or 7; two raised their scores after the rebuttal.",
+        "Clear speedups over OSQP within problem classes and some cross-class generalisation (Reviewer_THP1, restated by the AC).",
+        "The rebuttal clarified the per-constraint policy and added a policy visualisation.",
+        "Judged useful to RL researchers and OSQP practitioners despite modest novelty over Wei et al. 2020."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "QPLIB timeouts and fragility of the learned policy (Reviewer_riVf)",
+    "Class-specific results in Sec. 5.3 (Reviewer_riVf, a misreading)",
+    "No variance across RL training seeds (Reviewer_riVf)",
+    "RL tuning moves the problem into a harder non-convex optimisation with its own hyperparameters (Reviewer_BuNG)",
+    "Readability of Fig. 3 at low problem sizes (Reviewer_riVf)"
+  ],
+  "issues_only_b": [
+    "Convergence tolerances not stated; Gurobi compared without regard to solution precision and absent from Table 1 (Reviewer_THP1)",
+    "The multi-agent Markov-game framing adds nothing to a shared per-constraint network (Reviewer_cZUC)",
+    "Missing training script; an ablation in which the residual features add little (Reviewer_THP1)",
+    "Runtime overhead of the policy, refactorisation cost, and embedded deployment without an ML library (Reviewer_THP1, Reviewer_cZUC)",
+    "Reward design for problems not solved to optimality; runtime versus iterations in Fig. 2 (Reviewer_cZUC)",
+    "Narrow relevance of ADMM and QP to NeurIPS; missing learning-to-optimise and differentiable-solver literature (Reviewer_THP1)",
+    "No benchmark on real robotics MPC problems (Reviewer_nymS)"
+  ],
+  "shared_issues": [
+    "Novelty over Wei et al. 2020 [44] (Reviewer_BuNG in A; Reviewer_cZUC in B)",
+    "Unclear presentation of the scalar and vector state and action spaces (Reviewer_Ktc7 and Reviewer_BuNG in A; Reviewer_nymS, Reviewer_cZUC and Reviewer_THP1 in B)",
+    "No analysis of what the learned policy does compared with OSQP's heuristic (Reviewer_Kvzc in A; Reviewer_THP1 in B)",
+    "A decoupled per-constraint policy versus a joint policy over all constraints (Reviewer_Ktc7 in A; Reviewer_nymS and Reviewer_cZUC in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reason: RLQP gives real speedups over OSQP's hand-tuned rho rule on the benchmark classes and transfers in part to unseen problem sets, and its novelty over Wei et al. 2020 is modest but not nil. The agreement is solid in B and fragile in A. B ended at 6, 7, 7: Reviewer_THP1, who reviewed from the optimisation side, rose from 5 to 7, and Reviewer_cZUC rose to 6, after the rebuttal clarified the per-constraint policy and added a policy visualisation. A ended at 7, 7, 1, 5 (mean 5.0), and no reviewer engaged after the rebuttal. A's two 7s are thin (Reviewer_Kvzc: 1 hour, confidence 2, self-declared non-expert). Its 1 (Reviewer_BuNG, confidence 5) names no error and overstates the overlap with [44]. Its 5 (Reviewer_riVf) rests on a correct QPLIB-timeout point and a misread Sec. 5.3. A's AC accepted on their own reading, as an RL application paper with reasonable generalisation evidence, and explicitly discounted BuNG. That call was sound, but A's acceptance rests on the AC rather than on the reviews. The two ACs weighed the same facts the same way; the only sharp difference in weighting is between reviewers, with a 1 from BuNG and a 6 from cZUC for the same overlap with Wei et al.",
+  "candidate_reasons": [
+    "AC overrode split low-mean panel",
+    "Harsh detractor discounted by AC",
+    "Thin champions in one committee",
+    "Rebuttal lifted optimisation-expert reviewer",
+    "Practical speedups outweighed modest novelty"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_BuNG review",
+    "Reviewer_riVf review and the authors' reply of 2021-08-10",
+    "Reviewer_Kvzc review",
+    "Reviewer_THP1 updated review (edited 2021-08-18)",
+    "Reviewer_cZUC post-rebuttal update (edited 2021-09-20) and discussion of 2021-08-18 and 2021-08-19",
+    "Committee B meta-review",
+    "paper_submitted.pdf l.76-77 (the only citation of [44])",
+    "paper_submitted.pdf Sec. 5.3, l.269-272",
+    "paper_submitted.pdf Table 1 (QPLIB)",
+    "paper_submitted.pdf Fig. 2 left and right",
+    "paper.pdf (camera-ready) Sec. 5: 10^-5 for OSQP and RLQP, Gurobi 'using default settings'"
+  ]
+}

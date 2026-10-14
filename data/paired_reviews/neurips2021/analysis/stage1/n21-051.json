@@ -1,0 +1,242 @@
+{
+  "pair_id": "n21-051",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_kMiC",
+        "Reviewer_sAxR"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 6, 7 lie within one point of the mean 6.0. The one rating below threshold, Reviewer_kMiC's 5, is principled: its points on the exponential dependence on r and d, the '≈' in Theorem 4.3 and the undiscussed 1/alpha^4 rate are all in the submission."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_kMiC",
+          "claim": "The guarantees depend exponentially on the norm bounds r and d, which the paper treats as constants.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemma 3.1: step size 1/(k1 k2 k3 phi_max^2 exp(r^T d)) and tau >= 2 k1 k2 k3 phi_max^2 exp(r^T d) ||Theta_hat_n||^2 / epsilon. Assumptions 2.1 and 2.2 call r_i and d_i constants. The authors conceded the bound stays polynomial only if r and d are O(log k1k2)."
+        },
+        {
+          "reviewer": "Reviewer_kMiC",
+          "claim": "'≈' is used inside a theorem statement.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 4.3 and Lemma 3.1 both end in '≈ O(poly(k1k2/alpha))'. The camera-ready replaced it with a sentence that names what is ignored."
+        },
+        {
+          "reviewer": "Reviewer_SSuU",
+          "claim": "The sample complexity is about d^2/alpha^4 (d = k1k2 parameters), against d/alpha^2 in standard cases.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 4.3: n >= O(k1^2 k2^2 / (alpha^4 lambda_min^2) log(k1k2/delta)). The submission does not discuss tightness; the authors replied that the 1/alpha^4 dependence seems 'fundamental to the loss function'."
+        },
+        {
+          "reviewer": "Reviewer_SSuU",
+          "claim": "The paper provides asymptotic normality and asymptotic efficiency (listed as a strength).",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.86: 'our method misses out on asymptotic efficiency'; l.367-368 repeat it as a limitation."
+        },
+        {
+          "reviewer": "Reviewer_SSuU",
+          "claim": "Assumption 4.1 does not say which distribution its expectation is over.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Assumption 4.1 writes E[vec(Phi(x)) vec(Phi(x))^T] with no subscript. The authors confirmed x ~ f(.; Theta*); the camera-ready adds E_x."
+        },
+        {
+          "reviewer": "Reviewer_sAxR",
+          "claim": "The paper has no experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3 is N/A throughout; l.370-371 name an empirical study as future work."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "The optimization uses no sparsity-encouraging or low-rank prior, so a polynomial rather than logarithmic sample complexity is expected.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 and (11): the constraint set Lambda is an l1,1 ball, a nuclear-norm ball, or both. What holds is that Theorem 4.3 gains nothing from them: the bound is polynomial in k1k2 for every choice of norm."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_sAxR"
+        ],
+        "evidence": "Reviewer_sAxR edited the review on 2021-08-19 and wrote that day: 'I increased my score to 6.' Reviewer_kMiC's edit (2021-07-22) predates the author response (2021-08-10), and kMiC never replied. Reviewer_SSuU replied on 2021-08-31 ('Thanks a lot for clarifying all my questions!') and kept 7 with no edit. Reviewer_kDGo did not reply.",
+        "what_convinced_or_not": "sAxR still wanted experiments but judged the finite-sample and computational results 'good enough to make up for the lack of an experimental study', citing the other reviewers. kMiC's points were largely conceded (a matrix formulation suffices; r and d must be O(log k1k2); '≈' to be removed) and drew no reply. SSuU's sharper question, whether the hardness results [23, 48] survive Assumption 4.1, got an argument by example (sparse Ising models), not a proof."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'This paper was viewed as a borderline paper'; acceptance matches three of four ratings at or above 6. The AC echoes Reviewer_kMiC on tensor notation and Reviewer_sAxR and Reviewer_kDGo on experiments, then argues for acceptance from its own reading: 'a new idea that can inspire other researchers' on 'such a fundamental problem as finding alternatives to MLE'. It adds a doubt about sparse models that no A reviewer raised, on a wrong premise (see checkable claims).",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 5, 6, 6, 7 (mean 6.0): three of four at or above threshold; the AC calls the paper borderline.",
+        "A tractable alternative to the MLE for a fundamental problem, with consistency, asymptotic normality and polynomial finite-sample bounds.",
+        "The AC's own judgement that the loss is 'a new idea that can inspire other researchers'.",
+        "The rate, the constants r and d, the tensor notation and the missing experiments treated as revisions; Reviewer_sAxR rose to 6, accepting theory in place of experiments."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_xSou"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 6, 5 span two points around the mean 6.25. The one rating below threshold, Reviewer_nf2S's 5, came late (2021-09-02) and rests on a valid point: the paper never states the cost of the centering inside the gradient."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_VbcL",
+          "evidence": "A 7 whose main review is two sentences: cite Dagan et al. [STOC 21], and 'an empirical study would have made the paper much stronger'. The accurate summary shows the paper was read, but the review argues nothing for the rating and does not answer the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_xzAW",
+          "evidence": "A 7 at confidence 4 after 2 hours: four short paragraphs with one specific point (the uncited Vuffray et al. 2016, which is correct). No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nf2S",
+          "claim": "The paper treats p as a constant and charges O(k1k2n) per gradient; whether the gradient stays polynomial in p is untracked.",
+          "checked_against_paper": "correct",
+          "evidence": "The second half holds: Theorem 4.3 charges max(k1k2n, c(Lambda)) per iteration, and Definition 2.1 centers Phi by E_U[Phi(x)], an integral over X whose cost is never stated. The first half is a misreading: l.221-222 single out k3 as the one size that does not scale with p."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "Computing the gradient is not polynomial-time in the full generality the paper states.",
+          "checked_against_paper": "correct",
+          "evidence": "True of the paper as written, which assumes exact centering. The obstacle is weaker than stated: X is a box or a ball in every example, so uniform Monte Carlo approximates E_U[Phi] for any bounded Phi; what is missing is an analysis of that error. The camera-ready (Section 5, 'Practicality of Algorithm 1') concedes that centering 'may not be polynomial-time'."
+        },
+        {
+          "reviewer": "Reviewer_xSou",
+          "claim": "Computing the centering of the features needs sampling that the paper does not describe.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 2.1 defines the centered statistic and gives no procedure."
+        },
+        {
+          "reviewer": "Reviewer_xSou",
+          "claim": "The sample complexity is polynomial, not logarithmic, in the parameter dimension despite the norm bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 4.3: n >= O(k1^2 k2^2 / (alpha^4 lambda_min^2) log(k1k2/delta))."
+        },
+        {
+          "reviewer": "Reviewer_xSou",
+          "claim": "Typo: phi_max should be 2b^l, not 2b^k (l.266).",
+          "checked_against_paper": "correct",
+          "evidence": "l.265-266 print 2b^k for polynomials of degree l. The camera-ready fixed phi_max but kept R*(Phi(x)) <= 2b^k."
+        },
+        {
+          "reviewer": "Reviewer_xzAW",
+          "claim": "The loss descends from Vuffray et al. 2016 (interaction screening), which is not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted references hold only Vuffray et al. 2019 [51] and Ren et al. 2021 [37]; l.274-275 credit [51, 40]. The camera-ready adds the 2016 paper as [56]."
+        },
+        {
+          "reviewer": "Reviewer_VbcL",
+          "claim": "Dagan et al. (STOC 2021) is relevant and not cited; the estimator minimizes the KL divergence from the uniform distribution to f(.; Theta* - Theta).",
+          "checked_against_paper": "correct",
+          "evidence": "Dagan et al. is absent from the submitted references (the camera-ready adds it as [10]). Theorem 4.1 states the KL characterization."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_xSou"
+        ],
+        "evidence": "Reviewer_xSou edited the review on 2021-08-19 and wrote that day: 'I will be increasing my score' (final 6). Reviewer_VbcL and Reviewer_xzAW did not reply. Reviewer_nf2S's review arrived on 2021-09-02, after the discussion; the authors answered the same day and the 5 stayed.",
+        "what_convinced_or_not": "xSou accepted the authors' argument that logarithmic rates are known only for node-wise-sparse models, while this paper handles global structure such as low rank: 'I agree that global sparsity constraints do not directly give you a log n kind of guarantee.' xSou still asked for examples where Assumption 4.1 holds and for experiments. The authors' answer to nf2S (closed-form centering for polynomial and sinusoidal statistics) did not remove the AC's caveat."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'While the reviewers leaned towards accepting the paper, they believe that this point needs to be addressed in the final version.' The meta-review's only judgement is the gradient-cost caveat, taken from Reviewer_nf2S's late review and Reviewer_xSou's point 5, and made a condition of the final version.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 7, 7, 6, 5 (mean 6.25): 'the reviewers leaned towards accepting'.",
+        "A clearly written, theoretically interesting method that handles global structure (low rank, sparse plus low rank), not only node-wise sparsity.",
+        "Reviewer_xSou's polynomial-versus-logarithmic objection answered in the rebuttal; score raised.",
+        "The gradient-cost caveat (Reviewer_nf2S, Reviewer_xSou) made a required revision, not a reason to reject."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The 1/alpha^4 and (k1k2)^2 rate, its tightness and missing lower bounds (Reviewer_kMiC, Reviewer_SSuU, Reviewer_kDGo)",
+    "Exponential dependence on the norm bounds r and d, and '≈' in theorem statements (Reviewer_kMiC)",
+    "Whether the cited MLE hardness results survive Assumption 4.1, and which distribution its expectation is over (Reviewer_SSuU)",
+    "Worked examples (Ising, Mallows, truncated Gaussians against Daskalakis et al.) and the bounded-support restriction (Reviewer_SSuU)",
+    "Confusing italic and bold notation (Reviewer_kDGo)"
+  ],
+  "issues_only_b": [
+    "Cost of the gradient: the centering E_U[Phi] is never costed and the dependence on p is untracked (Reviewer_nf2S, Reviewer_xSou, Committee B AC)",
+    "Loss close to the interaction screening objectives ISO and GISO; 'standard' techniques (Reviewer_xSou, Reviewer_xzAW)",
+    "Missing prior work: Vuffray et al. 2016, Dagan et al. 2021, Klivans and Meka 2017 (Reviewer_xzAW, Reviewer_VbcL, Reviewer_xSou)",
+    "Typos in Section 2.1 and equations (5)-(6) (Reviewer_xSou)"
+  ],
+  "shared_issues": [
+    "No experiments (A: Reviewer_sAxR, Reviewer_kDGo, AC; B: Reviewer_VbcL, Reviewer_xzAW, Reviewer_xSou)",
+    "Tensor formulation unnecessary; the authors conceded in both forums that matrices suffice (A: Reviewer_kMiC, AC; B: Reviewer_xSou)",
+    "Polynomial rather than logarithmic dependence on dimension for sparse structure (A: AC; B: Reviewer_xSou)",
+    "Assumption 4.1 and the other assumptions need justification (A: Reviewer_kDGo, Reviewer_SSuU; B: Reviewer_xSou)",
+    "No asymptotic efficiency, a limitation the paper states (A: Reviewer_kDGo; B: Reviewer_VbcL)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons, on matching score profiles: A 5, 6, 6, 7 (mean 6.0) and B 7, 7, 6, 5 (mean 6.25). Each saw a clean theory result on a basic problem (a convex loss that avoids the partition function, with consistency, asymptotic normality and polynomial finite-sample bounds) and treated its weaknesses as revisions. In each committee one reviewer rose to 6 after the rebuttal (Reviewer_sAxR, Reviewer_xSou) and one 5 stayed (Reviewer_kMiC, Reviewer_nf2S). The committees found different weaknesses, and the submission confirms most of them. A pressed the statistics: (k1k2)^2/alpha^4 samples (Theorem 4.3), exp(r^T d) in the step size and iteration count (Lemma 3.1), and '≈' inside theorems. B pressed computation and prior art: the gradient needs a centering integral that the paper never costs (Definition 2.1; Theorem 4.3 charges k1k2n per gradient), and the loss extends Vuffray et al.'s uncited 2016 interaction screening objective. Neither committee treated any of this as fatal, and nobody argued for more than a poster: the top ratings are 7s, A's 7 wrongly credits the paper with asymptotic efficiency, and B's two 7s rest on a two-sentence review and a 2-hour review. The ACs differ only in emphasis. A's AC accepted a 'borderline paper' on its own reading ('a new idea that can inspire other researchers'); B's AC deferred to the reviewers and made the gradient-cost caveat a condition of the final version.",
+  "candidate_reasons": [
+    "Borderline theory, steady mild support",
+    "Weaknesses read as revisions, not flaws",
+    "Rebuttal lifts one reviewer each",
+    "Theory accepted without experiments",
+    "Different flaws found, same tier",
+    "No reviewer argues above poster"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Lemma 3.1 (exp(r^T d) in step size and iteration count)",
+    "paper_submitted.pdf Theorem 4.3 (k1^2 k2^2/alpha^4 samples, '≈', k1k2n cost per gradient)",
+    "paper_submitted.pdf Definition 2.1 (centering by the uniform distribution, no procedure)",
+    "paper_submitted.pdf l.86 and l.367-368 (not asymptotically efficient)",
+    "paper_submitted.pdf Table 1 (l1,1 and nuclear-norm constraint sets)",
+    "paper_submitted.pdf references (no Vuffray et al. 2016, no Dagan et al. 2021)",
+    "paper.pdf Section 5, 'Practicality of Algorithm 1' (centering may not be polynomial-time)",
+    "Reviewer_kMiC final review",
+    "Reviewer_SSuU final review and reply of 2021-08-31",
+    "Reviewer_sAxR reply of 2021-08-19",
+    "Reviewer_xSou final review and reply of 2021-08-19",
+    "Reviewer_nf2S review of 2021-09-02 and the authors' reply",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "pair_id": "n21-047",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 6, 6],
+      "confidences": [3, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_tN3S", "Reviewer_vKtB"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 6, 6 lie within one point. The only 7 (Reviewer_MSFd, confidence 3) rests on a short but accurate review that caught the missing Figures 3 and 5 and replied to the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vKtB",
+          "claim": "The SGD update A[g] = γg/||g||_2 at l.131-132 contradicts Eq. 2.",
+          "checked_against_paper": "correct",
+          "evidence": "l.131-132 normalizes the SGD step to length γ; Eq. 2 and Section 3.3 use a first-order change of -η||g||_2^2, which needs A[g] = g. The authors replied 'You are right: if the target optimizer is SGD, then A[g]=g'. The camera-ready keeps the l.131-132 formula."
+        },
+        {
+          "reviewer": "Reviewer_vKtB",
+          "claim": "Algorithm 1 does not solve the constrained problem (1).",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 takes a step on ||g|| when the constraint fails and a step on the loss otherwise; l.151-152 says the constraint holds only 'for the majority of iterations'. The authors agreed that the problem is solved heuristically."
+        },
+        {
+          "reviewer": "Reviewer_vKtB",
+          "claim": "The initialization of the BN layers is missing from the manuscript.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.117-119: BN scales and biases 'are initialized to 1 and 0 respectively'; footnote 1 says GradInit also rescales the BN scale vectors. The question behind the claim was sound: with BN scales fixed, GradInit gives Acc_best 94.6 (VGG-19) and 94.7 (ResNet-110) against Kaiming's 94.4 and 95.0 (authors' rebuttal table)."
+        },
+        {
+          "reviewer": "Reviewer_vKtB",
+          "claim": "The gradients of the final layer's scale factors equal those of L(S̃; θ_m), so the post-step objective is bypassed for that layer.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Under Eq. 1 the features move with the step: the derivative of the output with respect to α_{M-1} is W f(x; θ_m - ηA) after the step and W f(x; θ_m) before it. The authors showed this, and vKtB accepted it."
+        },
+        {
+          "reviewer": "Reviewer_vKtB",
+          "claim": "LeCun et al. (1998) is never cited, and Glorot and Bengio also use the fan-out.",
+          "checked_against_paper": "correct",
+          "evidence": "References [1]-[39] contain no LeCun et al.; l.58-61 credits Glorot and Bengio [1] with fan-in scaling only. The authors promised to fix both."
+        },
+        {
+          "reviewer": "Reviewer_vKtB",
+          "claim": "He et al. [2] do not take backward propagation into account.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Checked against the cited work, not the submission: He et al. (2015) Section 2.2 has a 'Backward Propagation Case'. The authors said so, and vKtB did not contest it."
+        },
+        {
+          "reviewer": "Reviewer_DheR",
+          "claim": "One warmup epoch gives similar or higher first-epoch accuracy than GradInit, yet GradInit ends higher (Table 3).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 Acc1, warmup against GradInit: 37.4 vs 29.3 (VGG-19 w/o BN), 53.5 vs 47.8 (VGG-19 w/ BN), 48.7 vs 38.2 (ResNet-110 w/ BN), 28.1 vs 29.0 (ResNet-1202), 19.8 vs 36.2 (ResNet-110 w/o BN). GradInit's Acc_best is higher in all five. The rebuttal did not answer this point."
+        },
+        {
+          "reviewer": "Reviewer_DheR",
+          "claim": "No convergence plots or training-time comparison support the acceleration claim.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text reports only Acc1 and Acc_best. The authors sent training curves through an image link in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_MSFd",
+          "claim": "l.251 cites a Figure 3 and l.277 a Figure 5 that are not in the main text; l.297 should read 'It is'.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text has only Figures 1 and 2; l.297-298 reads 'Is it believed'."
+        },
+        {
+          "reviewer": "Authors (reply to Reviewer_tN3S)",
+          "claim": "τ was grid-searched on test accuracy after one epoch of training.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.236-237: 'We do a grid search on τ ... and report the results with the best average final test accuracy on 4 runs.' The camera-ready keeps that sentence. tN3S did not notice the contradiction."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_tN3S"],
+        "evidence": "Reviewer_tN3S wrote 'I will raise my score if my concerns get addressed', edited the review on 2021-08-25 and replied that day 'I raise my score accordingly' (final 6). Reviewer_vKtB edited on 2021-08-18 to add 'I am not inclined to change my rating' (6). Reviewer_MSFd replied on 2021-08-28 'I would like to keep my positive review' (7). Reviewer_DheR neither replied nor edited (6).",
+        "what_convinced_or_not": "New experiments answered tN3S's two 'simple substitutions': learnable scalars kept during training did not converge for VGG-19 at learning rate 0.1, and one epoch of training only the BN weights left Acc_best at or below Kaiming. tN3S also got the ImageNet weight-norm plots. vKtB accepted the clarifications but read the Fix BN ablation (GradInit with BN scales fixed is at Kaiming level) as lowering significance, so kept 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: the method 'work[s] better on a few datasets than prior works (metaInit, fixup, etc.)' and 'The AC agrees with these assessments'. It names no issue from any review: nothing on vKtB's BN ablation or on DheR's unanswered warmup point.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four ratings of 6 or 7 (mean 6.25); no reviewer below the threshold after the rebuttal.",
+        "Consistent gains over Kaiming, MetaInit and FixUp at under 1% overhead, and warmup-free Post-LN Transformer training.",
+        "New rebuttal experiments refuted Reviewer_tN3S's simpler substitutes and lifted that rating to 6.",
+        "Reviewer_vKtB's BN ablation lowered the perceived significance but no rating.",
+        "The AC restated the consensus."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 7],
+      "confidences": [3, 2, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Ztx8"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 7 lie within one point. The two 7s differ in quality (Reviewer_QztT's is argued, Reviewer_Qphs's is thin), but neither is out of line with the others."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Qphs",
+          "evidence": "The summary is pasted verbatim as the opening of the main review; the one stated weakness is 'improve the overall accuracies'; it reads Table 2 as showing no significant time cost, though the penalty form takes 38 to 64% longer. A 7 at confidence 4 after 2.5 hours, with no reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_AaUJ",
+          "evidence": "Confidence 2 and 'not very familiar with the line of research'. It says only ResNet and VGG were evaluated, which misses the Wide ResNet and DenseNet results that l.222 points to. It lists 'No clear advantage over existing techniques' yet rates 6, and it did not reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QztT",
+          "claim": "Table 4 lists FixUp at 75.7, but the FixUp paper reports 76%.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: FixUp w/o BN 18.0/75.7, reimplemented according to the caption. The authors did not dispute 76.0. Against 76.0, GradInit w/o BN (75.8) does not win."
+        },
+        {
+          "reviewer": "Reviewer_QztT",
+          "claim": "Adding GradInit to Admin gives no improvement on translation.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 5 with Adam: Admin 36.1, GradInit with w_skip 36.0, GradInit without w_skip 36.1 BLEU. With SGD the gain is real: 35.6 against Admin's 33.7."
+        },
+        {
+          "reviewer": "Reviewer_QztT",
+          "claim": "l.70 speaks of infinite variance with a finite second-order moment.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.67-70 speaks of a finite s-order moment for s in (0, 2], so infinite variance is possible."
+        },
+        {
+          "reviewer": "Reviewer_Ztx8",
+          "claim": "l.291-293 overclaims the acceleration over FixUp.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 w/o BN: GradInit 19.2/75.8 against FixUp 18.0/75.7. The authors said 'we will rephrase the sentence'; the camera-ready keeps it."
+        },
+        {
+          "reviewer": "Reviewer_Ztx8",
+          "claim": "GradInit's smaller batch size lengthens each training epoch.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.290-291 uses the smaller batch size only for GradInit. The authors confirmed that training uses FixUp's hyperparameters and that GradInit adds about 11 minutes to 52 hours."
+        },
+        {
+          "reviewer": "Reviewer_Ztx8",
+          "claim": "The method still needs validation on DenseNet.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.222 points to Wide ResNet and DenseNet results in Appendix E; the authors copied the DenseNet table into their reply."
+        },
+        {
+          "reviewer": "Reviewer_AaUJ",
+          "claim": "Only ResNet and VGG are evaluated on image classification.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True of the main text, but l.222 points to Wide ResNet and DenseNet results in Appendix E."
+        },
+        {
+          "reviewer": "Reviewer_Qphs",
+          "claim": "Table 2 shows no significant increase in running time from the second-order terms of the penalty form.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2: 82 vs 56, 100 vs 62, 169 vs 103 and 269 vs 195 s per GradInit epoch, 38 to 64% longer for the penalty form. The extra seconds are small next to full training, which is the defensible part of the point."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "It is not clear that warmup costs more than running GradInit.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper gives no time comparison. l.318-322 compares only iteration counts: T = 780 GradInit iterations against a usual 4000-step warmup; a 780-step warmup fails at η_max ≥ 3e-4 and gives 35.4 against 36.0 BLEU at 2e-4."
+        },
+        {
+          "reviewer": "Authors (reply to Reviewer_QztT)",
+          "claim": "The τ grid search used test accuracy after the first epoch.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.236-237 says the reported runs use the τ with 'the best average final test accuracy on 4 runs'. QztT objected to tuning on the test set but took the first-epoch account at face value."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_QztT replied on 2021-08-31: 'I will maintain my original score of 7.' Reviewer_Ztx8 edited the review on 2021-08-18 to add 'the reviewer still keeps the score' (6). Reviewer_AaUJ and Reviewer_Qphs neither replied nor edited.",
+        "what_convinced_or_not": "QztT accepted the FixUp reproduction account and the Table 1 fix, but stayed 'not entirely convinced on how much more significant it is' and called test-set tuning 'a little concerning'. Ztx8 accepted most answers but wanted theory or a broader scope. The DenseNet table copied from Appendix E and the new convergence curves moved no rating."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Opens 'All reviewers were positive' and credits the efficiency gain over MetaInit. It turns the recurring architecture concern (Reviewer_QztT, Reviewer_AaUJ, Reviewer_Ztx8) into a request to 'tone down this claim', and adds its own doubt that warmup is 'necessarily more expensive than running GradInit'. Both are revision requests, not reasons against acceptance.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four ratings of 6 or 7 (mean 6.5); no reviewer below the threshold.",
+        "Efficiency and memory advantage over MetaInit, and warmup removal without architectural change.",
+        "Limited architecture coverage and marginal gains held ratings at 6 or 7 but drew no reject.",
+        "The AC accepted with requests to tone down 'architecture agnostic' and to discuss the cost of warmup."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Whether rescaling the BN scales drives the gains; the Fix BN ablation says yes for BN networks (Reviewer_vKtB)",
+    "Cheaper substitutes: learnable scalars kept during training, or training only the BN weights (Reviewer_tN3S)",
+    "Errors in the method description: SGD update at l.131-132 against Eq. 2, heuristic constraint handling, missing LeCun citation (Reviewer_vKtB)",
+    "One warmup epoch beats GradInit's first-epoch accuracy in three of five Table 3 models; unanswered (Reviewer_DheR)",
+    "Why the objective lowers gradient variance; optimizer-specific heuristics (Reviewer_MSFd, Reviewer_DheR)"
+  ],
+  "issues_only_b": [
+    "Too few architectures for an 'architecture agnostic' claim (Reviewer_QztT, Reviewer_AaUJ, Reviewer_Ztx8, AC)",
+    "Reimplemented FixUp baseline 75.7 against the published 76.0 (Reviewer_QztT)",
+    "Overclaimed acceleration over FixUp at l.291-293 (Reviewer_Ztx8)",
+    "No BLEU gain over Admin with Adam; warmup may cost no more than GradInit (Reviewer_QztT, AC)",
+    "Adam on image tasks, cost of the penalty form, need for theory (Reviewer_Qphs, Reviewer_Ztx8)"
+  ],
+  "shared_issues": [
+    "Small final-accuracy gains (A: Reviewer_DheR, Reviewer_vKtB; B: Reviewer_QztT, Reviewer_AaUJ, Reviewer_Qphs)",
+    "τ tuned on the test set (A: Reviewer_tN3S accepted the answer; B: Reviewer_QztT called it 'a little concerning')",
+    "Acceleration shown only through first-epoch accuracy; the authors sent both committees new curves (A: Reviewer_DheR; B: Reviewer_AaUJ)",
+    "Efficiency over MetaInit at under 1% overhead (A: Reviewer_tN3S, Reviewer_MSFd, Reviewer_vKtB; B: Reviewer_QztT, Reviewer_Qphs, AC)",
+    "Thin explanation or theory of why it works (A: Reviewer_MSFd, Reviewer_DheR; B: Reviewer_Ztx8)",
+    "Main text depends on appendix figures and tables; Table 1 lacks or garbles the S = S̃ case (A: Reviewer_MSFd, Reviewer_vKtB; B: Reviewer_QztT, Reviewer_Qphs)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons, and neither weighed any fact much differently. All eight ratings are 6 or 7 (A: 6, 7, 6, 6, mean 6.25; B: 7, 6, 6, 7, mean 6.5), and no reviewer argued for rejection or for a higher tier. Both committees saw the same picture: GradInit costs under 1% of training time and far less memory than MetaInit; it gives large first-epoch gains but final-accuracy gains of only 0.1 to 0.8 points over the best CIFAR-10 baseline (Table 3) and 0.1 to 0.3 on ImageNet (Table 4); and it trains the Post-LN Transformer without warmup. The committees probed different weaknesses. A tested the method: Reviewer_vKtB found that the SGD update at l.131-132 contradicts Eq. 2 and that Algorithm 1 enforces the constraint only heuristically, and the authors' new ablation showed that on BN networks GradInit with fixed BN scales falls to Kaiming level. B tested breadth and effect size: three reviewers and the AC found too few architectures for an 'architecture agnostic' claim, Reviewer_QztT found the FixUp baseline below its published number, and Reviewer_Ztx8 found an overclaim against FixUp. In both committees these points held ratings at 6 or 7 without lowering them; the rebuttal raised one A rating (Reviewer_tN3S) and none in B. Both meta-reviews restate the consensus; B's adds two revision requests. Neither committee noticed that l.236-237 says τ was chosen by best average final test accuracy, while the authors told both committees it was chosen by first-epoch test accuracy.",
+  "candidate_reasons": [
+    "Uniform weak-accept ratings in both",
+    "Cheap method, small consistent gains",
+    "Efficiency advantage over MetaInit",
+    "Different critiques, same score ceiling",
+    "Meta-reviews restate score consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_vKtB final review and 'Update after rebuttal'",
+    "Authors' reply to Reviewer_vKtB (GradInit Fix BN table)",
+    "Authors' reply to Reviewer_tN3S and Reviewer_tN3S reply of 2021-08-25",
+    "Reviewer_DheR final review (Table 3 warmup point)",
+    "Reviewer_QztT final review and reply of 2021-08-31",
+    "Reviewer_Ztx8 final review and post-rebuttal note",
+    "Reviewer_Qphs final review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf l.131-132 and Eq. 2 (SGD update)",
+    "paper_submitted.pdf l.236-237 (τ selection)",
+    "paper_submitted.pdf Tables 2, 3 and 4",
+    "paper_submitted.pdf l.318-322 (GradInit against a 780-step warmup)"
+  ]
+}

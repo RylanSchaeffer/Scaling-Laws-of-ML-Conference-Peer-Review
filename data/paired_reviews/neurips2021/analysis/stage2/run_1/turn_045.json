@@ -1,0 +1,275 @@
+{
+  "run": 1,
+  "turn": 45,
+  "pair_id": "n21-262",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "B's spotlight exceeds its scores, but B's AC states no reading or taste of its own; it cites reviewer agreement. A's AC deferred to the scores against its own positive view."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither AC nor any reviewer rested the recommendation on a forecast of broad impact; B's 'general interest' is attributed to the reviewers."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "No score moved in either committee after the rebuttal."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's Reviewer_G9ps gave a 6 after three hours, misdescribed the setting as fine-tuning, named one weakness and answered the rebuttal with thanks only, while A's reviewers probed the evidence harder."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A raised single runs, test-set selection of the loss variant and m, untuned default hyperparameters and the missing pretext-task comparison; the paper confirms them and A's AC asked for improved experiments."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the same simple loss, the same requests (ImageNet-1K, ResNet, longer training, lambda) and the same rebuttal answers; A's reviewers stayed below threshold and B's called the answers adequate."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No reviewer in either committee changed a score after reading other reviews."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No reviewer's rating clearly contradicts the verdict of their own text; jUVG's 7 and K16j's 6 carry stated doubts but are not out of line."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Confidences are 3 to 5 in both committees; no reviewer said they could not judge the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's AC followed no single outlying reviewer; A's AC followed the mean."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The score gap rests on different concerns raised (A probed evidence reliability), not on similar verdicts placed at different points of the scale."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "B's scores were not unanimous (Z3Px rated 5 and called the contribution 'not enough for a NeurIPS paper')."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "No score rose in either committee."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "B's meta-review named no remaining weakness and said the scale and CNN questions were addressed, dropping Z3Px's insufficiency verdict, K16j's 'high uncertainty' and its view that the optimization is 'likely poor throughout'."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "Z3Px's wrong 100- versus 200-epoch comparison came after its 5 was set, was corrected the same day and changed no score; the other checkable claims are correct."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "The rebuttal's 300-epoch Infograph run showed the Swin and T2T baselines roughly doubling, and ImageNet-1K gains were only +0.13 and +0.15; K16j read this as poor optimization yet kept 6, and B's AC gave a spotlight."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "Z3Px's late comment was answered by the authors the same day; no late objection stood unanswered."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The two committees' reviews differ in content (A raised evidence-reliability issues B never did), so the split is not near-identical reviews read against different cut-offs."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's most confident reviewer (jUVG, confidence 5) is echoed in A's AC's requests; B's K16j rated 6 and B did not follow the mean either."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No score moved in either committee; the rebuttal answered neither committee's concerns better in effect."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee had an outlying score; A's 4 and 7 are each one point from the next rating."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "There is no outlying reviewer in either committee."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC set aside a detractor; B's 5 was not discarded but ignored in a spotlight recommendation."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No reviewer or AC raised audience breadth or venue fit; Z3Px's objection is to the size of the contribution."
+    },
+    {
+      "id": "R25",
+      "applies": true,
+      "justification": "B's meta-review says 'The reviewers were in agreement' that the method is novel and of general interest, while Z3Px called the contribution 'not enough for a NeurIPS paper' and K16j 'not groundbreaking'."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Three of A's reviewers never answered the rebuttal, but B's reviewers, though engaged, revised no score either, so the mechanism's contrast is absent."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "All reviewers in both committees gave confidence 3 or higher and none said they could not verify the results."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "A's 5, 6, 7, 4, 5 is not an even split and A's AC followed the scores, not one side's critique."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "Both committees received the same core rebuttal experiments; the extras answered each committee's own questions and do not conflict."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "No novelty verdict rested on a wrong account of prior work."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "B gave a spotlight on ratings 6, 6, 5, 6 (mean 5.75) under a meta-review that gives no reason for the tier."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "No reviewer contested the paper's framing from a neighbouring field."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "Neither committee had a reviewer rating well above the accept level; the top scores are 7 in A and 6 in B."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No reviewer or AC rejected on the ground that the promised revisions were too large."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "Neither AC relied on input outside the record."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "ndSd's demand for pretext-task comparisons is a missing-baseline concern, not a standard tied to the type of contribution."
+    }
+  ],
+  "added": [
+    {
+      "id": "R37",
+      "name": "Low score held on a peripheral point",
+      "definition": "A reviewer on one committee held a below-threshold score after the rebuttal on a point peripheral to the paper's contribution, such as a variant the method does not use or a presentation detail, and that score counted at full weight in that committee's mean and recommendation.",
+      "justification": "R15 needs a wrong factual claim, but Tk2H's claim is correct; R22 needs an outlying reviewer who ignored the rebuttal, but Tk2H is not an outlier and replied; R08 needs a score at odds with the reviewer's own text. None covers a score held on a point that does not bear on the contribution."
+    }
+  ],
+  "reasoning": "The stage 1 verdict is that the committees weighted much the same facts differently and that B's spotlight has no basis in B's reviews. A's reviewers probed the reliability of the gains (single runs, test-set selection, untuned baselines), points only A raised; no score moved in either committee, and A's AC deferred to a mean of 5.4. B's AC claimed a reviewer consensus on novelty that Z3Px and K16j did not share, dropped their reservations, and gave a spotlight with no stated grounds on a mean of 5.75, after a rebuttal that conceded under-trained baselines. One of A's three sub-threshold scores rested on a loss variant the method does not use; no existing reason names a score held on a peripheral point, so I added R37.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ]
+}

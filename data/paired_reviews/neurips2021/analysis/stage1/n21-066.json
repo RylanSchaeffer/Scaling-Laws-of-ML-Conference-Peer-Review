@@ -1,0 +1,247 @@
+{
+  "pair_id": "n21-066",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        8
+      ],
+      "confidences": [
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_6R4u"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_J2f5",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 6 and A's only clear-accept vote: an 8 at confidence 3 ('Math/other details were not carefully checked') after 2 hours. The review is generic praise ('clearly structured and very well written', 'considerable practical significance') with two requests; one of them, a complexity analysis, is already at l.212-215. It names no limitation of the theory, does not mention the phase transition, and did not reply to the rebuttal. Without it, A's mean is 6.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_J2f5",
+          "evidence": "2 hours for an 8. Asks for 'some form of brief complexity analysis' that l.212-215 give (O(nh log h), against O(n^3) for the biweight method); Reviewer_6R4u in the same committee quoted that paragraph. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_pALD",
+          "claim": "Assumption 1 lets ε reach 1/2 and Theorem 1 inherits it, but l.236 requires ε < 1/10; the paper should state the breakdown point.",
+          "checked_against_paper": "correct",
+          "evidence": "Assumption 1 (l.99-100) allows ε in (0, 1/2). Theorem 1 condition (ii) (l.220-221) needs 2ε' < 1/2, so ε < 1/4, and the l.236 display covers ε < 0.1 and 0.1 < ε < (1/4)min{1, κ²/(C_λ²σ²)}. The paper never states the breakdown point. The 1/10 reading is too strict, but the point holds; the authors replied that ARC tolerates 'at most ε < 1/4'."
+        },
+        {
+          "reviewer": "Reviewer_pALD",
+          "claim": "The conclusion's claim (l.358-359) that the optimal localisation error has the same order as without contamination conflicts with Lemma 2, which 'clearly factors ε into the error bound'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lemma 2's bound is max{e^-1(1-ε)^-1 σ²κ^-2, {2(1-2ε)e log((1-ε)/ε)}^-1}. For ε bounded away from 1/2, (1-ε)^-1 ≤ 2 and the second term is O(1), so ε changes only constants; l.145-152 say so. The authors' reply made the same argument."
+        },
+        {
+          "reviewer": "Reviewer_6R4u",
+          "claim": "The efficiency claim at the end of Section 3.1 has no timing experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "l.212-215 give only asymptotic costs; Section 4 reports no run times, and checklist 3(d) declines to report compute. The authors declined to add timings ('we fear it would not be a fair comparison')."
+        },
+        {
+          "reviewer": "Reviewer_6R4u",
+          "claim": "There is no sensitivity analysis for the window width h.",
+          "checked_against_paper": "correct",
+          "evidence": "Every simulation fixes h = 170 (l.284), i.e. 20 log(n) for n = 5000. The authors argued that varying the minimal spacing L stands in for varying h and promised more analysis."
+        },
+        {
+          "reviewer": "Reviewer_6R4u",
+          "claim": "ARC and aARC do not always have the lowest error, and the Figure 3 cases {0.1, 2, 1} and {0.2, 2, 1} are missing from the supplementary tables.",
+          "checked_against_paper": "correct",
+          "evidence": "l.317-318: 'we under-perform with respect to the competitors when they can correctly detect the change points'. The supplement is not in the PDF; the authors conceded the two missing cases."
+        },
+        {
+          "reviewer": "Reviewer_J2f5",
+          "claim": "The paper lacks a brief complexity analysis.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.212-215: ARC costs O(nh log(h)), worst case O(n² log(n)), against O(n³) for the penalised biweight approach."
+        },
+        {
+          "reviewer": "Reviewer_J2f5",
+          "claim": "There is no quantitative accuracy summary for the real data sets, in the paper or the supplement.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The main text has none: l.327-346 are qualitative, and competitor outputs on the well-log data are 'omitted'. The authors point to supplementary Section E.3.1, which is not in the PDF."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [
+          "Reviewer_6R4u"
+        ],
+        "evidence": "The authors replied to all three reviewers on 2021-08-10. No reviewer posted in the discussion. Reviewer_6R4u edited the review on 2021-08-14 with no post-rebuttal note, so a rating change cannot be seen (final 6). Reviewer_pALD and Reviewer_J2f5 never edited.",
+        "what_convinced_or_not": "Nothing on record. The replies conceded the missing table cases, declined timing experiments, argued that varying L stands in for varying h, gave the order argument for Lemma 2, and put the tolerated contamination at 'at most ε < 1/4'. No reviewer answered."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: adversarial robustness here 'has not been considered before', and the paper gives 'a new algorithm as well as empirical evidence'. This matches three accept-side ratings (6, 6, 8). It names none of the concerns of Reviewer_pALD or Reviewer_6R4u and does not mention the phase transition.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings on the accept side (6, 6, 8; mean 6.67), and no reviewer found an error in a theorem.",
+        "The two detailed reviews (Reviewer_pALD, Reviewer_6R4u; confidence 4) stayed at 6 for real but non-fatal limits: known building blocks (RUME plus a scan), univariate data only, a guarantee that stops below ε = 1/4, and no timing or h-sensitivity results.",
+        "The only clear-accept vote is Reviewer_J2f5's thin 8 (2 hours, confidence 3), which asked for a complexity analysis that the paper already has.",
+        "The AC restated the novelty of the problem in two sentences and weighed no concern."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        4,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_x4pj",
+        "Reviewer_9vuk"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_k3Ng",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only reject-side rating, three points below the median of 7. Its central objection, that a detector should signal the change points that the contamination creates, contradicts the problem definition (Assumption 1 and l.104-107: the targets are changes in the inlier means f_i). It asks for a source of the log(n) term that l.114-116 cite. The rest is scope ('an extreme constraint' to study univariate means), baselines and style (sentences that start with a citation, URLs in the references, Figure 1). Limitations field: '-'. No reply to the rebuttal. Without it, B's mean is 7.33."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_k3Ng",
+          "evidence": "Misreads the detection target (see outlier) and asks for a reference that l.114-116 give. It recommends adding methods from van den Burg and Williams [44]; three of the four baselines already come from that study (PELT, BIWEIGHT = RFPOP, R_CUSUM built on WBS), though the paper does not say so. Confidence 3 ('Math/other details were not carefully checked'); no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_k3Ng",
+          "claim": "The spurious-change-point attack is contradictory: a change detector should signal a change that the contamination puts into the data.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Assumption 1 (l.97-103) and l.104-107 define the targets as changes in the inlier means f_i; changes made by the H_i are by definition not targets, as in the robust statistics literature. The authors replied the same."
+        },
+        {
+          "reviewer": "Reviewer_k3Ng",
+          "claim": "The log(n) term at l.136 lacks an explanation or a reference.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.114-116 give the uncontaminated boundary √log(n) with references [21, 20]; l.136-137 is algebra on Lemma 1's condition."
+        },
+        {
+          "reviewer": "Reviewer_x4pj",
+          "claim": "Lemmas 1 and 2 assume ε_i = ε, although the model allows ε_i ≤ ε.",
+          "checked_against_paper": "correct",
+          "evidence": "l.132 and l.154: 'Suppose that ε_i = ε'. The authors: 'Due to the artefact of our current proof, unfortunately, ε_i = ε is required.'"
+        },
+        {
+          "reviewer": "Reviewer_x4pj",
+          "claim": "Condition (5) is presented as the complement of Lemma 1's regime, but it is not.",
+          "checked_against_paper": "correct",
+          "evidence": "l.141-142 introduce (5) with 'not in the regime described in Lemma 1, i.e.'. Lemma 1's class is κ²Lσ^-2 < max{8ε/(1-2ε), log(n), 4εL}; (5) is min{κ²Lσ^-2, (1-2ε)log((1-ε)/ε)L} ≥ ζ_n. The authors conceded that (5) 'is not the exact complement'."
+        },
+        {
+          "reviewer": "Reviewer_x4pj",
+          "claim": "The motivation and experiments assume an attacker who knows the true change points.",
+          "checked_against_paper": "correct",
+          "evidence": "True for the hiding attack: setting (ii) (l.302-303) puts point masses at κ/(2ε) and κ(1-1/(2ε)) on the two halves of each segment, which needs κ and the change locations, and l.53-54 motivate attacks 'based on their knowledge of the underlying models'. Setting (i) has no true change point, and the Beijing perturbation (l.335-338) is random."
+        },
+        {
+          "reviewer": "Reviewer_x4pj",
+          "claim": "The simulations give the algorithms the true σ and ε.",
+          "checked_against_paper": "correct",
+          "evidence": "l.285: 'the true value of σ is used as the input for all algorithms'; l.289: the true ε in simulations. aARC estimates ε (l.289-291), and the real data use the MAD for σ (l.288)."
+        },
+        {
+          "reviewer": "Reviewer_9vuk",
+          "claim": "No knowledge of ε is required, which is of great practical interest.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.201-202: 'the proportion of contamination ε is required as an input', and λ in Theorem 1 depends on ε. Only aARC estimates ε, and it has no theory (l.207-209)."
+        },
+        {
+          "reviewer": "Reviewer_9vuk",
+          "claim": "At l.240, κ = 0 means only that the smallest jump is 0, not that there is no change point.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Assumption 1 (l.100-103) defines the η_k as exactly the points where f changes, so every κ_k > 0 and κ = 0 only when K = 0. The paper's wording is right; the authors conceded the point anyway."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_x4pj"
+        ],
+        "evidence": "Reviewer_x4pj asked a follow-up on 2021-08-21, received two new attack settings on 2021-08-24, and wrote on 2021-08-25: 'I am happy with the response and will increase my score' (review edited that day; final 7). Reviewer_9vuk edited on 2021-08-29: 'I keep my 7 score and am in favor of acceptance.' Reviewer_aT7R and Reviewer_k3Ng neither edited nor replied.",
+        "what_convinced_or_not": "x4pj was moved by 'reasonable' results under sinusoidal and Cauchy contamination that use no change-point knowledge, although ARC was not the best method in either (R_cusum won Setting 1, BIWEIGHT(5) won Setting 2). 9vuk accepted the explanations of novelty and of why the O∪I model differs. k3Ng got answers on the robust target, the baselines and the log(n) source, and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Cites 'strong enthusiasm among most referees', which overstates an uncritical 8 and two 7s against a 4. It names the phase transition as the contribution and rules that multivariate data (Reviewer_k3Ng) and other contamination models (Reviewer_x4pj, Reviewer_9vuk) can wait: 'a sufficiently solid and complete contribution on its own'. It does not mention k3Ng's objection on spurious change points or the concessions on Lemmas 1 and 2.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four ratings on the accept side (8, 7, 7), crediting the new formulation and the phase transition (Reviewer_aT7R, Reviewer_x4pj, Reviewer_9vuk).",
+        "The rebuttal's knowledge-free attack experiments raised Reviewer_x4pj to 7; Reviewer_9vuk kept 7 after the novelty and O∪I explanations.",
+        "The lone 4 (Reviewer_k3Ng) rested on a misreading of the detection target and a scope preference, and k3Ng did not engage after the rebuttal.",
+        "The AC ruled the univariate scope and other contamination models to be future work.",
+        "The 8 (Reviewer_aT7R) is uncritical (no weakness, no question, confidence 3), so no one argued for a higher tier."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Breakdown point: Assumption 1 allows ε up to 1/2, but the guarantee stops below 1/4 (Reviewer_pALD)",
+    "No timing experiment for the efficiency claim, and a request for a complexity analysis that l.212-215 already give (Reviewer_6R4u, Reviewer_J2f5)",
+    "No sensitivity analysis for the window width h, fixed at 170 (Reviewer_6R4u)",
+    "ARC not best in localisation, Figure 3 cases missing from the supplement, no comparison with the β-divergence Bayesian method (Reviewer_6R4u)",
+    "No quantitative accuracy summary on the real data (Reviewer_J2f5)"
+  ],
+  "issues_only_b": [
+    "Realism of an attacker who knows the change points, and experiments under less adversarial contamination (Reviewer_x4pj); answered with two new settings",
+    "Lemmas 1 and 2 need ε_i = ε, and condition (5) is not the complement of Lemma 1's regime (Reviewer_x4pj)",
+    "True σ and ε given to the algorithms in simulations (Reviewer_x4pj); Reviewer_9vuk wrongly praised that ε need not be known",
+    "Empirical test of the phase transition, implicit constants in Theorem 1, no comparison with results for time-independent contamination (Reviewer_9vuk)",
+    "Whether change points created by the contamination should be detected; Figure 1, citation style and URLs in the references (Reviewer_k3Ng)"
+  ],
+  "shared_issues": [
+    "Known building blocks, RUME plus a CUSUM-type scan (A: Reviewer_pALD, Reviewer_6R4u; B: Reviewer_9vuk, Reviewer_x4pj)",
+    "Univariate mean changes only; extension to multivariate data (A: Reviewer_pALD; B: Reviewer_k3Ng and the AC)",
+    "Other adversary models, adaptive or O∪I strong contamination (A: Reviewer_pALD; B: Reviewer_9vuk, Reviewer_x4pj and the AC); the authors gave pALD and 9vuk nearly the same reply",
+    "Median-of-means or simpler robust estimators instead of RUME (A: Reviewer_pALD; B: Reviewer_9vuk)",
+    "Benchmarks from van den Burg and Williams [44] and missing related work (A: Reviewer_6R4u; B: Reviewer_k3Ng, Reviewer_9vuk); the typo 'widow' at l.226 (Reviewer_6R4u, Reviewer_9vuk)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, and they weighed the same facts the same way. Six of seven reviewers credited a new problem: change point detection under a dynamic Huber contamination model. Reviewers in both committees noted that the algorithm joins known parts (RUME and a scan) and covers univariate mean changes only. No reviewer found an error in a theorem. The confirmed errors are in presentation: l.142 calls condition (5) the complement of Lemma 1's regime, which it is not, and Assumption 1 allows ε up to 1/2 while Theorem 1 needs ε below 1/4. The means are close (A 6.67, B 6.5). Each committee had one thinly argued 8: Reviewer_J2f5 (2 hours, asked for a complexity analysis the paper has) and Reviewer_aT7R (praise only). So nobody made a case for a higher tier. B's only reject vote (Reviewer_k3Ng, 4) rested mainly on a misreading of the detection target and on a scope preference. k3Ng ignored the rebuttal, and B's AC set the scope point aside. The committees differed in emphasis only. A's two careful reviewers stressed known techniques and thin experiments and gave 6, and no A reviewer mentioned the phase transition. B's careful reviewers credited the phase transition and gave 7, one of them after new experiments in the rebuttal. Without the outliers, A's mean is 6.0 and B's is 7.33, but B's warmer core still produced no argued case for a spotlight.",
+  "candidate_reasons": [
+    "New problem from known parts",
+    "No error found in theorems",
+    "Thinly argued eights on both sides",
+    "Lone detractor misread the target",
+    "Scope limits deferred to future work",
+    "Close means, no spotlight advocate"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_pALD final review (limitations 1 and 4)",
+    "Reviewer_6R4u final review (major concerns 2, 3 and 6)",
+    "Reviewer_J2f5 final review; paper_submitted.pdf l.212-215",
+    "Reviewer_k3Ng final review; paper_submitted.pdf Assumption 1, l.104-107 and l.114-116",
+    "Reviewer_x4pj final review, follow-up of 2021-08-21 and reply of 2021-08-25",
+    "Authors' reply to Reviewer_x4pj of 2021-08-24 (Settings 1 and 2)",
+    "Reviewer_9vuk post-rebuttal edit; paper_submitted.pdf l.201-202",
+    "paper_submitted.pdf Theorem 1 condition (ii) and the l.236 display",
+    "paper_submitted.pdf l.141-142, Lemma 1 and Lemma 2",
+    "paper_submitted.pdf l.284-289 (h = 170; true σ and ε as inputs)",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

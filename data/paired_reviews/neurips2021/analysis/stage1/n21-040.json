@@ -1,0 +1,206 @@
+{
+  "pair_id": "n21-040",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 4, 6],
+      "confidences": [4, 4, 5, 5],
+      "reviews_edited_after_posting": ["Reviewer_4Ef6"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_eN4k",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only 4 (confidence 5, 10 hours) against three 6s. Each point is specific, and the paper confirms the main ones. K and M change per dataset (l.202-204: 3, 2 for Office-31, Office-Home and PointDA-10; 5, 5 for VisDA), and no selection rule is given. The K-M grid on VisDA (Fig. 4 right) spans 83.4 to 85.9, against a 3.0-point margin over SHOT. The gains over SHOT on Office-31 and Office-Home are 0.8 and 0.4 (Tables 1-2). Table 4 has no source-free baseline. eN4k pressed all four points on 2021-08-19 and did not reply to the follow-ups of 2021-08-23 and 2021-08-31. One slip: the comment cites 'digits' results that the submission does not contain."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ERRY",
+          "claim": "Eq. 7 is wrong: p̄_c and q_c are scalars, not label distributions.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 7 sums KL(p̄_c || q_c) over c, with p̄_c the mean score of class c and q_c = 1/C. A KL divergence between two scalars is not defined. The authors conceded. The camera-ready Eq. 7 is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_eN4k",
+          "claim": "K and M seem carefully tuned, and the paper does not say how they were chosen.",
+          "checked_against_paper": "correct",
+          "evidence": "l.202-204 set K, M = 3, 2 for three datasets and 5, 5 for VisDA because it 'is much larger'. No selection rule is given. Fig. 4 (right) spans 83.4 to 85.9 on VisDA; every setting stays above SHOT's 82.9. The authors' own validation-split experiment (2021-08-31) gives 82.3 at K, M = 2 and 85.0 at K, M = 5 on the test part, so the choice matters."
+        },
+        {
+          "reviewer": "Reviewer_eN4k",
+          "claim": "On Office-31 and Office-Home the advantage over SHOT is not significant.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: 89.4 against SHOT's 88.6 and Model Adaptation's 89.6. Table 2: 72.2 against SHOT's 71.8. l.209-210 itself says 'similar results' on Office-31. Reviewer_4Ef6 made the same point."
+        },
+        {
+          "reviewer": "Reviewer_eN4k",
+          "claim": "Table 4 (PointDA-10) lacks SHOT and Model Adaptation.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 lists only source-present baselines taken from PointDAN and a source-only row. The SHOT number (42.5) appears only in the rebuttal, from the authors' own run. The camera-ready Table 4 still has no SHOT row."
+        },
+        {
+          "reviewer": "Reviewer_4Ef6",
+          "claim": "Section 5 wrongly claims that no existing DA work exploits the target structure; use of local target structure is well known.",
+          "checked_against_paper": "correct",
+          "evidence": "l.276-277: 'existing works on DA do not explicitly exploit this source of information'. The paper itself cites DIRT-T's cluster assumption (l.75) and SRDC's discriminative clustering (l.80-81). The camera-ready drops the sentence and cites Pan et al. 2020."
+        },
+        {
+          "reviewer": "Reviewer_LSVJ",
+          "claim": "Fig. 3 shows no value of r between -1 and 0.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3 (right) tests r = -1, 0, 0.1, 0.15, 0.2 and 1. The authors then ran r = -0.1 and got 4.9 points less than r = 0 on VisDA."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_4Ef6"],
+        "evidence": "Reviewer_4Ef6 wrote on 2021-08-29: 'the first score has been upgraded' and 'the reviewer leans to acceptance'. On 2021-08-31 the authors asked whether the reviewer 'would like to update his score to 6'. 4Ef6 replied 'The score is corrected', and the review shows an edit that day. The starting score is not visible; the request implies it was below 6. Reviewer_ERRY (2021-08-17) and Reviewer_LSVJ (2021-08-18) were satisfied; their reviews are unedited at 6. Reviewer_eN4k (2021-08-19) disputed all four answers; the review is unedited at 4.",
+        "what_convinced_or_not": "4Ef6 accepted the local K-NN against global K-means distinction and the VisDA and PointDA-10 margins ('Mainly because of 1. and 4.'). ERRY valued the runtime table: faster than SHOT, and 85.1 with a 5% memory bank. eN4k was not convinced: no model-selection rule for K and M, a complexity count that ignores ranking, small gains over SHOT, a SHOT PointDA-10 number from the authors' own run, and no DomainNet. The later validation-split experiment got no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'three leaning towards acceptance and one recommending rejection'. The AC repeats the K-NN against K-means argument from the 4Ef6 thread. It names eN4k's doubts about DomainNet and complexity, then sides with the majority: 'sufficiently empirically justified with the existing datasets to warrant publication'. It asks for discussion of K, M and scalability in the final version.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 after the rebuttal; the AC counts 'three leaning towards acceptance'.",
+        "Reciprocal-neighbor weighting accepted as new against global clustering such as K-means (Pan et al. 2020).",
+        "VisDA (85.9 against SHOT's 82.9) and PointDA-10 (52.6 against PointDAN's 48.7) carry the empirical case; the runtime table answered scalability.",
+        "Reviewer_eN4k's points on K and M selection, small Office margins and DomainNet judged not decisive."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 4, 6, 7],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_tPBC", "Reviewer_4Suf", "Reviewer_R8cb"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_4Suf",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only 4, against 7, 6 and 7. The stated reason is item 7: 'The submitted code cannot re-implement the results in this paper, and there is a large performance gap. So I recommend to reject this paper.' On 2021-08-05 the authors conceded that the submitted code 'accidentally omitted some functionality'. Their new code covers VisDA and PointDA-10 only. 4Suf kept the 4 on 2021-09-01 ('This response cannot address my main concerns') and gave no reason. The other six items are requests; one asks for a pre-adaptation t-SNE that Fig. 1(a) already shows."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_tPBC",
+          "evidence": "A 7 from 2 hours of review. The strengths are generic ('technically sound', 'well written', 'Sufficient experiments'). The review mentions no result: not the 0.4-point Office-Home margin, and not that the method trails Model Adaptation on Office-31. The post-rebuttal note says 'Most of my concerns are addressed' and names none. The AC copied its summary into the meta-review."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_4Suf",
+          "claim": "The submitted code cannot reproduce the paper's results; there is a large performance gap.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The code is not in the record. The authors conceded (2021-08-05) that the submitted code 'accidentally omitted some functionality'. They posted new code, logs and weights for VisDA and PointDA-10 only. No reviewer reported a test of the new code."
+        },
+        {
+          "reviewer": "Reviewer_4Suf",
+          "claim": "Fig. 5 should also show the target features before adaptation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.268-269: the t-SNE before adaptation is Fig. 1(a), on the same Ar→Rw task. The authors pointed to it."
+        },
+        {
+          "reviewer": "Reviewer_R8cb",
+          "claim": "L215 claims that source-free methods outperform methods with access to source data, without a fair comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "l.214-215 make the claim. Table 1 contradicts it on Office-31: SRDC 90.8, RWOT 90.8 and RSDA-MSTN 91.1 against 89.4. The authors promised to adapt the sentence; the camera-ready keeps it."
+        },
+        {
+          "reviewer": "Reviewer_R8cb",
+          "claim": "nRNNs and expanded neighbors get the same affinity 0.1, although l.165 says expanded neighbors are further away.",
+          "checked_against_paper": "correct",
+          "evidence": "l.143 sets r = 0.1 for nRNNs. l.164-165 assign r to expanded neighbors 'since they are further than nearest neighbors'. l.253-254 keep it at 0.1. The authors: 0.2 for nRNNs and 0.1 for expanded neighbors adds 0.3 on VisDA."
+        },
+        {
+          "reviewer": "Reviewer_R8cb",
+          "claim": "The gain over SHOT is significant on VisDA-C (3%) and marginal on Office-Home (0.4%).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: 85.9 against 82.9. Table 2: 72.2 against 71.8."
+        },
+        {
+          "reviewer": "Reviewer_meMo",
+          "claim": "L147 calls S_i a scalar, but it is a vector of prediction scores.",
+          "checked_against_paper": "correct",
+          "evidence": "l.147: 'note this term is a scalar'. S stores the prediction vectors p_i (Eq. 2). The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_tPBC",
+          "claim": "Eq. 9 has no trade-off weights between its terms.",
+          "checked_against_paper": "correct",
+          "evidence": "l.178: L = Ldiv + LN + LE + Lself. The authors: a weight of 0.5 on Ldiv adds 0.3."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_R8cb"],
+        "evidence": "Reviewer_R8cb's post-rebuttal section: 'I'd like to raise the score to 6'; the review shows an edit on 2021-08-25. Reviewer_tPBC added 'I keep my positive rating' (edit 2021-08-26). Reviewer_4Suf, 2021-09-01: 'I will keep my score' (edit the same day). Reviewer_meMo wrote 'I would be happy to increase the score if my concerns are addressed', received the runtime, memory-bank and continuous-affinity results, and never replied; the review is unedited at 7.",
+        "what_convinced_or_not": "R8cb rose because the rebuttal answered the questions and named the method's limits: with source data the method degrades (82.6 to 52.5), and without L_div it falls to 76.3. In return R8cb asked for a limitations discussion; the camera-ready has none (checklist 1(b): [No]). 4Suf was not moved by the replacement code and did not say why."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The first four sentences copy Reviewer_tPBC's summary word for word, including 'Using the a sample in the mini-batch as query, it retrieve'. The AC then names concerns about 'technical novelty' and an 'incremental flavor' (reciprocal NNs) that no public B review raises. It does not mention Reviewer_4Suf's reproducibility objection, the only stated reason for a reject score. 'After discussion it was concluded' refers to no visible exchange.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers positive (7, 6, 7): technically sound, clear ablations, well written.",
+        "Rebuttal ablations moved Reviewer_R8cb to 6.",
+        "The AC judged the novelty incremental but sufficient 'as a whole'.",
+        "Reviewer_4Suf's code-reproducibility objection was outvoted and left out of the meta-review."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty against clustering-based adaptation (Pan et al. 2020) and the overclaim in Section 5 (Reviewer_4Ef6)",
+    "How to choose K and M without target labels; dependence on feature dimension and data size (Reviewer_eN4k, Reviewer_ERRY)",
+    "Eq. 7 notation error, and whether the loss is minimized only at one-hot ground-truth predictions (Reviewer_ERRY)",
+    "Figure 1(c) suggests perfectly clean clusters (Reviewer_4Ef6)",
+    "No source-free baseline in Table 4 and no DomainNet experiment (Reviewer_eN4k)",
+    "RNN against NN for low-confidence points; negative affinity for nRNNs (Reviewer_LSVJ)"
+  ],
+  "issues_only_b": [
+    "Submitted code did not reproduce the results (Reviewer_4Suf)",
+    "Claim at l.214-215 that source-free methods beat source-present ones, contradicted by Table 1; FixBi comparison; behaviour with source data (Reviewer_R8cb)",
+    "One affinity value, 0.1, for both nRNNs and expanded neighbors (Reviewer_R8cb, Reviewer_4Suf)",
+    "Role of L_div under class imbalance, and L_self against a momentum update (Reviewer_R8cb)",
+    "No trade-off weights in Eq. 9; inter-cluster separability; distance to cluster centres (Reviewer_tPBC)",
+    "Continuous affinity, a convergence criterion from the per-shared curve, a Tent comparison, and 'scalar' at l.147 (Reviewer_meMo)",
+    "Novelty called incremental, by the AC only"
+  ],
+  "shared_issues": [
+    "Memory and nearest-neighbor cost, with no runtime analysis (A: Reviewer_ERRY, Reviewer_eN4k; B: Reviewer_meMo, Reviewer_4Suf); both got the same runtime table",
+    "Small gains over SHOT on Office-31 and Office-Home (A: Reviewer_eN4k, Reviewer_4Ef6; B: Reviewer_R8cb)",
+    "Missing source-free comparisons, with Domain Impression and SoFA requested in both (A: Reviewer_4Ef6; B: Reviewer_4Suf)",
+    "Hyperparameter choice: K and M in A; r and loss weights in B",
+    "No limitations or societal-impact discussion (six of eight reviewers)",
+    "Typos and polish (A: Reviewer_LSVJ; B: Reviewer_meMo, Reviewer_4Suf)",
+    "Strong VisDA result and thorough ablations (praised in both)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Each had three reviewers at 6 or above and one 4 that did not move, and each AC followed the majority. Both majorities relied on the same evidence: VisDA (85.9 against SHOT's 82.9), PointDA-10 (52.6 against PointDAN's 48.7) and clear ablations. The authors posted one runtime table in both forums, and it settled the scalability concern. Both committees saw the same weakness: small gains on Office-31 (0.8 over SHOT, 0.2 below Model Adaptation) and Office-Home (0.4). Neither treated it as decisive. Each detractor had a specific reason that the record supports. In A, Reviewer_eN4k objected that K and M are tuned with no stated rule; the paper confirms it, and the K-M grid on VisDA spans 83.4 to 85.9, most of the margin over SHOT. In B, Reviewer_4Suf could not reproduce the results with the submitted code, and the authors admitted that the code omitted functionality. Each AC overruled its detractor; B's AC did not mention reproducibility at all. B's higher mean (6.0 against 5.5) carries little information. Reviewer_tPBC's 7 comes from a two-hour review with generic praise, and in A Reviewer_4Ef6 entered its 6 after the authors asked for a 6. The ACs differed only in tone on novelty: A found it 'interesting', B saw an 'incremental flavor'. The same facts and the same score profile gave the same decision.",
+  "candidate_reasons": [
+    "Same three-to-one score split",
+    "AC sided with the majority",
+    "VisDA and PointDA gains decisive",
+    "Thin Office-dataset margins tolerated",
+    "Reproducibility objection left unaddressed",
+    "Author-requested score raise"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Tables 1-4 (Office-31 89.4 against SHOT 88.6 and Model Adaptation 89.6; Office-Home 72.2 against 71.8; VisDA 85.9 against 82.9; PointDA-10 with no source-free baseline)",
+    "paper_submitted.pdf l.202-204 (K, M per dataset) and Fig. 4 right (83.4 to 85.9 on VisDA)",
+    "paper_submitted.pdf Eq. 7, l.143, l.147, l.164-165, l.214-215, l.268-269, l.276-277",
+    "Reviewer_eN4k review and comment of 2021-08-19",
+    "Reviewer_4Ef6 post-rebuttal comment (2021-08-29), authors' request and 'The score is corrected' (2021-08-31)",
+    "Reviewer_4Suf review item 7, authors' code note (2021-08-05), Reviewer_4Suf reply (2021-09-01)",
+    "Reviewer_R8cb post-rebuttal section",
+    "Reviewer_tPBC summary, copied into the Committee B meta-review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready): Eq. 7 and l.214-215 claim unchanged, Table 4 without SHOT, checklist 1(b)-(c) [No], runtime Table 6 added"
+  ]
+}

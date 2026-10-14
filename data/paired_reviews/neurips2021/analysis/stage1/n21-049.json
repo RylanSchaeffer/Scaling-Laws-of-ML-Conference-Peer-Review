@@ -1,0 +1,269 @@
+{
+  "pair_id": "n21-049",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        4,
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Nvoh"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_8jnC",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6 (4 at confidence 4) and the most specific review in A. Every factual point checks out against the submission: the 0.65-point LeNet drop and the 1.5-point ResNet-50 drop (Tables 2, 4), marginal gains over Butterfly and better parameter efficiency for Adaptive Fastfood (Tables 5, 6), and overclaiming phrases (abstract l.5, l.274-275). 8jnC replied after the rebuttal ('I remain unconvinced') with a further, correct objection to Table 6. Without 8jnC the mean is 6.33."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_fZAT",
+          "evidence": "6 at confidence 4. Asks whether results come from training from scratch or from a pretrained model, and how DeBut-mono and DeBut-bulging differ, though l.180-191, Section 3.2 and l.237-242 answer both. Asks why DeBut does not improve accuracy over the layers it compresses. Never replied to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_aaRU",
+          "evidence": "7 at confidence 3 on three generic strengths ('elegant and practical', 'convincing results on standard benchmarks'). Does not mention the 1.5-point ImageNet drop; credits 'better inference rates than competing approaches' without noting that Table 6 omits the dense network. Never replied to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8jnC",
+          "claim": "Replacing 3 of 5 LeNet layers and training from scratch costs 0.65 points (error almost doubles); ResNet-50 with DeBut in only 9 layers loses about 1.5 points top-1.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2, CONV2+FC1+FC2: 98.64 without ALS against the 99.29 baseline (error 0.71% to 1.36%); with ALS 97.27. Table 4: 74.52 and 74.34 against 76.01; l.236: the 9 CONV layers of the last three bottleneck blocks."
+        },
+        {
+          "reviewer": "Reviewer_8jnC",
+          "claim": "The advantage over Butterfly is marginal, and Adaptive Fastfood has better theoretical efficiency.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 5: DeBut beats Butterfly by 0.25 (FC1) and 0.62 points (three layers); Adaptive Fastfood matches DeBut's 98.89 with 11.82K against 17.96K parameters and reaches 98.61 with 3.2K against 10.19K. Table 6: DeBut 93.72 against Butterfly 93.34 with 2.43M against 2.13M parameters. l.252 concedes Fastfood 'has both good accuracy and high compression'."
+        },
+        {
+          "reviewer": "Reviewer_8jnC",
+          "claim": "'renders a new paradigm for network compression' and 'where other fast linear transform schemes fail' are exaggerations.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract l.5 and l.274-275. By l.248-250 neither Butterfly nor Fastfood was run on ImageNet, so the 'fail' claim is untested. The camera-ready replaces the first phrase and keeps the second."
+        },
+        {
+          "reviewer": "Reviewer_8jnC",
+          "claim": "Table 6 timing is misleading: Adaptive Fastfood runs on CPU through sklearn while the butterflies run on GPU (reply of 2021-08-13).",
+          "checked_against_paper": "correct",
+          "evidence": "The submission does not say how Fastfood was implemented; l.189-190 says all coding is PyTorch on a GTX 1080 Ti. The authors confirmed the sklearn code, and their own timing for an 8192-vector Hadamard transform (sklearn 0.0001 s, their PyTorch 6.6 s on CPU and 13.4 s on GPU) shows that Table 6's 2100 s/epoch and 148.27 s measure an implementation, not the method."
+        },
+        {
+          "reviewer": "Reviewer_Nvoh",
+          "claim": "Table 6 gives no timing details and omits the original network.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 6 has three rows and no baseline. The authors then gave Nvoh the baseline: 48 s/epoch and 2.01 s inference against DeBut's 50 s and 4.01 s, so the uncompressed VGG-16-BN is faster in both."
+        },
+        {
+          "reviewer": "Reviewer_Nvoh",
+          "claim": "l.104 wrongly says DeBut 'replaces' the circulant structure of convolution; that structure comes from applying the same matrix to every im2col patch, which DeBut still does.",
+          "checked_against_paper": "correct",
+          "evidence": "l.101-104 and Fig. 2(c): DeBut replaces the flattened filter F, which is still applied to every im2col column. The authors' reply ('the flattened filter matrix is F does not have the circulant structure') concedes Nvoh's premise. The camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_Nvoh",
+          "claim": "The constraint p/r = q/s needs channel counts with suitable factors, and the paper does not discuss this.",
+          "checked_against_paper": "correct",
+          "evidence": "l.111 implies p/r = q/s; the main text never discusses awkward channel counts. The authors proposed zero padding in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_fZAT",
+          "claim": "The model with DeBut seems to run slower than the baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper reports no baseline timing. The authors' figures for VGG-16-BN given to Nvoh (2.01 s against 4.01 s inference) confirm it; their answer to fZAT was a cuFFT analogy, not numbers."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_Nvoh edited on 2021-09-02: 'Given the rebuttal and the other positive reviews, I am keeping my score.' Reviewer_8jnC replied on 2021-08-13 ('I remain unconvinced'), did not edit, and did not answer the authors' follow-up of 2021-08-17. Reviewer_aaRU and Reviewer_fZAT neither replied nor edited.",
+        "what_convinced_or_not": "Nothing moved a score. The new results (Tucker-2, a binary ResNet-18, HRank plus DeBut, a chain-generation notebook, 2x2 against 8x9 rightmost blocks) answered questions that A's positive reviewers did not press. 8jnC's objection was the size of the gain over Butterfly, which new baselines do not change, and the authors' Hadamard-transform timing confirmed rather than answered the Table 6 objection."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'Congratulations, the paper is accepted', 'incorporate the edits and corrections as discussed', and 'tone down the \"sensational\" language', which is Reviewer_8jnC's word. No reason for acceptance, and no mention of 8jnC's novelty or Table 6 objections, which stood unanswered at a 4.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or 7 (aaRU, Nvoh, fZAT): a natural, clearly written generalisation of butterfly matrices with favourable Tables 5 and 6.",
+        "The lone reject (Reviewer_8jnC, 4) rested on correct, checkable points, but no positive reviewer and not the AC engaged with them.",
+        "No score moved; Reviewer_Nvoh kept 6 citing 'the other positive reviews'.",
+        "The AC accepted on the majority and turned 8jnC's 'sensational' complaint into a revision request."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        5,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        5,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_X4Ja",
+        "Reviewer_jjhd",
+        "Reviewer_tNGs"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 5, 6, 7, 7 lie within two points. The lowest, Reviewer_tsAg's 5 at confidence 5, is one point below jjhd and rests on a generic review with one claim Table 6 contradicts."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_tsAg",
+          "evidence": "5 at confidence 5 ('checked the math/other details carefully'), but the review is generic and states 'There is no experiment to demonstrate the lightweight and low inference complexity comparing to the exiting butterfly-based methods', which Table 6 contradicts. Never replied to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_jjhd",
+          "evidence": "The post-rebuttal note asks the authors to 'try large-scale datasets like ImageNet', although Table 4 is on ImageNet and jjhd's own summary says so. The B AC then repeated the point as experiments on 'easy' datasets."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_X4Ja",
+          "claim": "Factorizing non-square conv/FC weight matrices into structured parts has been studied in tensor decompositions (Garipov et al.; Wang et al.), and the paper does not discuss this.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither paper is cited; Novikov et al. [25] appears only in a list of low-rank methods (l.45). The authors' first answer (all factors are full-rank) missed X4Ja's TT-rank point, as X4Ja showed on 2021-08-15. Their second answer holds: freely learned diagonals have no Kronecker structure, so a low-rank TT form needs shared parameters. The camera-ready adds no TT literature."
+        },
+        {
+          "reviewer": "Reviewer_X4Ja",
+          "claim": "Tables 3 and 4 report no 'w/o ALS' results.",
+          "checked_against_paper": "correct",
+          "evidence": "Both tables have only 'with ALS' columns. Table 2 shows ALS can hurt: 97.27 with ALS against 98.64 without for three LeNet layers."
+        },
+        {
+          "reviewer": "Reviewer_X4Ja",
+          "claim": "The complexity comparison of GEMM with a sparse factor product (l.130-131) ignores hardware.",
+          "checked_against_paper": "correct",
+          "evidence": "l.129-133 counts nonzeros only, and its DeBut cost omits the factor N that l.255 includes. The authors' VGG figures (2.01 s dense against 4.01 s DeBut inference, given to Committee A) show that the count does not become speed."
+        },
+        {
+          "reviewer": "Reviewer_jjhd",
+          "claim": "Only Adaptive Fastfood and Butterfly are compared, and there is no runtime comparison with the unpruned model.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 5 and 6. B never received the dense timing; the authors answered jjhd that DeBut is orthogonal to pruning and promised low-rank runtimes."
+        },
+        {
+          "reviewer": "Reviewer_jjhd",
+          "claim": "The authors should try large-scale datasets like ImageNet (post-rebuttal).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 4 reports ResNet-50 on ImageNet, and jjhd's own summary lists it. What is missing is a Butterfly or Fastfood comparison at that scale (l.248-250)."
+        },
+        {
+          "reviewer": "Reviewer_tsAg",
+          "claim": "No experiment demonstrates light weight and low inference complexity against existing butterfly-based methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 6 reports parameters, training time and inference time for Butterfly and Adaptive Fastfood (l.263-266)."
+        },
+        {
+          "reviewer": "Reviewer_tsAg",
+          "claim": "Table 4 shows a drop of more than 1.5 points, contrary to 'without compromising accuracy'.",
+          "checked_against_paper": "correct",
+          "evidence": "74.52 and 74.34 against 76.01; abstract l.9 and conclusion l.292-293. The authors promised 'with an acceptable accuracy drop'; the camera-ready abstract still says 'without compromising accuracy'."
+        },
+        {
+          "reviewer": "Reviewer_tNGs",
+          "claim": "The argument that Adaptive Fastfood is very slow (l.261) is unfair, since the fast Hadamard transform can be very fast.",
+          "checked_against_paper": "correct",
+          "evidence": "l.260-262 calls the FHT 'exceedingly time-consuming'. The authors' timing given to Committee A (sklearn FHT 0.0001 s on an 8192-vector) shows that the slowness belongs to their implementation."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_jjhd",
+          "Reviewer_X4Ja"
+        ],
+        "evidence": "Reviewer_jjhd edited on 2021-08-30: 'I decided to change my rating from 4 to 6.' Reviewer_X4Ja replied on 2021-08-15 ('clearing most of the aspects'), then edited on 2021-08-29: 'I decided to upgrade my rating' (final 7; the earlier value is not exposed). Reviewer_tNGs edited on 2021-09-03: 'I'm keeping my rating'. Reviewer_tsAg neither replied nor edited.",
+        "what_convinced_or_not": "New experiments: Tucker-2 on VGG-16 (93.71% at 2.43M against 93.36% at 3.21M), HRank plus DeBut (93.82% at 1.67M), a binary ResNet-18, and a chain-generation notebook. They answered jjhd's request for other baselines and X4Ja's request for a chain-design rule; X4Ja upgraded with the tensor-train question still open. jjhd still asked for the claims on 'substituting CNN and FC layers' to be toned down. The 2x2 against 8x9 table sent to tsAg reports 94.11% for an 8x9-block chain on CONV13 at 12.71M parameters; submitted Table 3 gives 93.91 (±0.08) for the same layer, block and size. tsAg did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The AC calls the work 'a bit of a \"more of the same\"' and says 'the experiments are done on \"easy\" datasets', then defers: 'the reviews lean strongly toward acceptance ... I will go with the reviewer's combined recommendation.' At 5, 6, 7, 7, 'strongly' overstates the reviews, and Table 4 is on ImageNet; the missing piece is a competitor comparison at that scale.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Rebuttal experiments (Tucker-2, HRank plus DeBut, binary ResNet-18, chain-generation notebook) lifted Reviewer_jjhd from 4 to 6 and Reviewer_X4Ja to 7.",
+        "Reviewer_tNGs (7, confidence 5) found the method novel and the ALS initialization clever, and engaged with the details.",
+        "Reviewer_tsAg's 5 rested on generic novelty doubts and a claim that Table 6 contradicts; tsAg did not reply.",
+        "The AC doubted the novelty and the datasets but followed reviews it described as leaning strongly toward acceptance."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Modern convolutions use implicit GEMM, not explicit im2col, so the im2col framing is dated (Reviewer_8jnC)",
+    "Relation to mixed-radix (Cooley-Tukey) FFT, and channel counts that must factor to meet p/r = q/s (Reviewer_Nvoh)",
+    "l.104 wrongly claims DeBut replaces the circulant structure of convolution (Reviewer_Nvoh; B's X4Ja only called the passage misplaced)",
+    "Sensational language: 'renders a new paradigm', 'where other fast linear transform schemes fail' (Reviewer_8jnC, AC)",
+    "Spatial grouping patterns of the hierarchy and shuffling of im2col columns (Reviewer_aaRU)"
+  ],
+  "issues_only_b": [
+    "Undiscussed link to tensor-train and tensor-ring compression (Garipov et al., Wang et al.) (Reviewer_X4Ja)",
+    "Memory cost of intermediate activations in a factor chain (Reviewer_tNGs)",
+    "Whether bias and BatchNorm parameters count in the compression ratios (Reviewer_X4Ja)",
+    "The name 'deformable' is misleading (Reviewer_X4Ja, Reviewer_tNGs)",
+    "Gradient descent instead of ALS for initialization, a general product rule, and the densification condition missing from Appendix I (Reviewer_tNGs)",
+    "Experiments on 'easy' datasets (AC), although Table 4 is on ImageNet"
+  ],
+  "shared_issues": [
+    "Novelty limited to lifting the square, power-of-two constraint of butterflies (A: 8jnC; B: tsAg, AC)",
+    "Accuracy loss contradicts 'without compromising accuracy': 1.5 to 1.7 points on ImageNet (A: 8jnC, fZAT; B: tsAg)",
+    "Few baselines: only Butterfly and Adaptive Fastfood, no low-rank, pruning or quantization comparison (A: aaRU; B: jjhd, tsAg)",
+    "Hand-designed chains with no design rule (A: Nvoh, aaRU; B: X4Ja, jjhd, tNGs)",
+    "Runtime evidence: Table 6 omits the dense network and implementation details, and the Fastfood timing is unfair (A: Nvoh, fZAT, 8jnC; B: jjhd, tNGs, X4Ja)",
+    "Unifying CONV and FC through im2col is not new (A: 8jnC; B: jjhd)",
+    "No 'w/o ALS' results in Tables 3 and 4 (A: Nvoh; B: X4Ja)",
+    "Clear writing and figures (all four A reviewers; B: tNGs, jjhd)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reason: in each, three of four reviewers gave 6 or 7, one dissenter was outvoted, and the AC followed the majority without engaging the open objections. The committees saw the same facts and weighed them alike. The paper is a clearly written generalisation of butterfly matrices to non-square, non-power-of-two shapes with small empirical gains: 0.25 and 0.62 points over Butterfly on MNIST and 0.38 on CIFAR-10 with 0.3M more parameters (Tables 5, 6); Adaptive Fastfood matches DeBut's accuracy with fewer parameters; ResNet-50 on ImageNet loses 1.5 to 1.7 points despite 'without compromising accuracy' (Table 4). The paths differed. In A no score moved. Reviewer_8jnC's reject rested on specific, correct points, including that Table 6 pits a CPU sklearn Fastfood against GPU butterflies, which the authors' own timing supports (0.0001 s in sklearn against 13.4 s in their GPU code for an 8192-point Hadamard transform). No positive reviewer answered 8jnC, and the three-sentence meta-review only asks to tone down 'sensational' language. In B the rebuttal's new baselines (Tucker-2, HRank plus DeBut, binary ResNet-18) answered requests for more comparisons and lifted Reviewer_jjhd from 4 to 6 and Reviewer_X4Ja to 7; the lowest vote, Reviewer_tsAg's 5 at confidence 5, rested partly on a claim Table 6 contradicts. B's AC judged the paper 'more of the same' on 'easy' datasets but deferred to reviews it called strongly positive. B ended higher (6.25 against 5.75) because its objections asked for experiments the authors could supply, while A's objection concerned the size of the gain over Butterfly, which no new baseline changes. The agreement rests on two thin majorities and two deferential ACs, not on a shared argument.",
+  "candidate_reasons": [
+    "Three of four above threshold",
+    "Lone dissenter outvoted, never answered",
+    "Rebuttal baselines lifted two scores",
+    "Area chairs deferred to majority",
+    "Overclaims treated as wording fixes",
+    "Clear writing offset modest gains"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 2 (LeNet, with and without ALS)",
+    "paper_submitted.pdf Table 4 (ResNet-50 on ImageNet)",
+    "paper_submitted.pdf Tables 5 and 6 (Butterfly and Adaptive Fastfood comparisons)",
+    "paper_submitted.pdf abstract l.5 and l.9, l.101-104, l.248-250, l.260-262, l.274-275",
+    "Reviewer_8jnC final review and reply of 2021-08-13",
+    "Authors' reply to Reviewer_8jnC of 2021-08-17 (Hadamard-transform timing)",
+    "Authors' reply to Reviewer_Nvoh (dense VGG-16-BN timing: 48 s/epoch, 2.01 s)",
+    "Reviewer_Nvoh final review (edited 2021-09-02)",
+    "Reviewer_jjhd final review and post-rebuttal note",
+    "Reviewer_X4Ja final review and reply of 2021-08-15",
+    "Reviewer_tsAg final review",
+    "Authors' 2x2 against 8x9 table in the reply to Reviewer_tsAg",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) abstract and Section 5"
+  ]
+}

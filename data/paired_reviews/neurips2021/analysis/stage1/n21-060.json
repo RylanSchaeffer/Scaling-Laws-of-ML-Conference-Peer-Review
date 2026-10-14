@@ -1,0 +1,231 @@
+{
+  "pair_id": "n21-060",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        2,
+        3,
+        4,
+        2,
+        3
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_kC68",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 7, one point above the other four. The 8 ('Top 50% of accepted NeurIPS papers') rests on three sentences of praise ('quite well written', 'creative and original connection between correlated sampling and DP learning', 'implications of the assumption are explored in-depth') at confidence 2 ('Math/other details were not carefully checked'). It names no weakness and asks no question; the authors replied only 'Thank you for your review.' Without it A's mean is 7.0, equal to B's. It changed nothing: A still chose a poster."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_kC68",
+          "evidence": "Three-sentence main review for an 8 at confidence 2, with no weakness, question or reply. It says the authors 'adequately discussed the limitations and the societal impact', but checklist item 1(c) marks negative societal impact N/A and the paper has no such discussion."
+        },
+        {
+          "reviewer": "Reviewer_R7Bc",
+          "evidence": "7 at confidence 2. The main review holds no statement specific to this paper ('The results are significant and interesting'; 'the literature review is thorough'). It concedes 'It was quite hard for me to check some proofs, due to lack of previous technical background' and that it could not see the motivation. Limitations field: '-'. No reply to the authors' motivation answer."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_R9c6",
+          "claim": "Theorems 2 and 3 both name the local model; Theorem 3 should be in the central model.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted l.74 says 'In the central model', but Theorem 3 at l.76 says 'in the (public randomness) local model'. Table 1 lists Theorem 3 under eps-DP (Central). The authors called it a typo; the camera-ready drops 'local model'. Committee B's Reviewer_ZiPC found the same slip."
+        },
+        {
+          "reviewer": "Reviewer_R9c6",
+          "claim": "The checklist says limitations are in Section 5, but Section 5 holds only conclusions and open questions.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 1(b): '[Yes] See Section 5'. Section 5 (l.302-327) lists open questions (samples per user, efficient learners, whether shared randomness is necessary) and calls none of them a limitation. The authors apologised and named shared randomness as the limitation."
+        },
+        {
+          "reviewer": "Reviewer_R9c6",
+          "claim": "SQ is not spelled out.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.64, the first use, expands it: 'statistical query (SQ) dimension'. What the main text lacks is a definition of the SQ model and SQ dimension; the authors promised to move Definition 31 from the supplement."
+        },
+        {
+          "reviewer": "Reviewer_xkiJ",
+          "claim": "Typo 'artifically' at line 35.",
+          "checked_against_paper": "correct",
+          "evidence": "l.35 reads 'artifically'; the camera-ready reads 'artificially'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Reviewer_R9c6 replied on 2021-09-10: 'My comments are addressed.' Reviewer_kC68, Reviewer_xkiJ, Reviewer_4gym and Reviewer_R7Bc did not reply to the authors' responses of 2021-08-09.",
+        "what_convinced_or_not": "Nothing needed convincing: all five ratings were already accept. The authors conceded the Theorem 3 typo, the wording at l.35 and the unmarked limitations, promised to move the SQ definition into the main text, called the work primarily theoretical in answer to the practicality question, and gave R7Bc federated-learning examples (search clicks, Gboard). R7Bc did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'All the reviewers greatly appreciate the significance and novelty of this work, with some minor issues raised', then a list drawn from Reviewer_R9c6 (theorem statements, practicality) and Reviewer_R7Bc (motivation). No argument about the tier.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 7.2 (8, 7, 7, 7, 7): every reviewer called the results significant or the correlated-sampling technique new.",
+        "Only minor issues were raised (Theorem 3 mislabelled, wording at l.35, practicality, unmarked limitations), and the authors conceded each one.",
+        "No case for a higher tier: the only 8 is Reviewer_kC68's three-sentence review at confidence 2.",
+        "Thin expertise: two reviewers at confidence 2, one self-described outsider (R9c6), and no review that checked a proof detail."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        1,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Wgf7"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 7. Confidence ranges from 1 (Reviewer_ZiPC) to 4 (Reviewer_Wgf7)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ZiPC",
+          "evidence": "Not careless, but the 7 is a declared deferral: confidence 1 and 'Unfortunately I was not really qualified to review this paper ... I'm giving an accept but will have to trust the other reviewers on this one.' It still caught two real slips (Theorem 3's model, alpha undefined at l.53)."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_wvJN",
+          "claim": "Theorem 25 should assume (0.9, 1-beta/3)-pseudo-global stability, not (0.9, beta/3).",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 15 makes the second parameter the probability over the random string r. The proof (l.295-297) needs stability 'with probability 1 - 2beta/3 over r', so the parameter must be 1 - beta/3; Corollary 21 supplies the 1 - beta form. The camera-ready makes exactly this change."
+        },
+        {
+          "reviewer": "Reviewer_wvJN",
+          "claim": "Line 283 should read 'with probability 1 - beta^2/60'.",
+          "checked_against_paper": "correct",
+          "evidence": "l.283 states the good event of Lemma 24's proof holds 'with probability beta^2/60'. The camera-ready reads 1 - beta^2/60."
+        },
+        {
+          "reviewer": "Reviewer_wvJN",
+          "claim": "Lemma 13: the brackets inside the (.,.)-accurate are wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "l.191: the square root covers 'n * O(log(|U|/beta)' and the bracket opened by O closes outside it, after '/eps'. The camera-ready writes O(sqrt(n * log(|U|/beta))/eps)."
+        },
+        {
+          "reviewer": "Reviewer_ZiPC",
+          "claim": "Theorem 3 on page 2 names the local model while line 74 names the central model.",
+          "checked_against_paper": "correct",
+          "evidence": "l.74 'In the central model'; l.76 'in the (public randomness) local model'. Fixed in the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_ZiPC",
+          "claim": "alpha at line 53 is undefined.",
+          "checked_against_paper": "correct",
+          "evidence": "l.53 uses poly(d/alpha); alpha is defined only at l.150-151 (err_D(f) <= alpha with probability 1 - beta). l.57 refers the reader to Section 2."
+        },
+        {
+          "reviewer": "Reviewer_Wgf7",
+          "claim": "Each user needs m >= poly(d) samples, usually enough for each user to learn alone, unlike federated learning; all users draw IID samples from one distribution.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (l.58-60): O~((d/alpha)^O(1)) samples per user. In Algorithm 2 (p.9) each user runs an (alpha, beta/3)-accurate learner on its own m samples, and l.103-104 assumes each user's m samples give a hypothesis 'with small error'. l.144: every user's samples are 'drawn i.i.d. from D'. The motivation (l.25-34) cites federated learning and never addresses this regime."
+        },
+        {
+          "reviewer": "Reviewer_Wgf7",
+          "claim": "Section 4.1 is cluttered by Lemmas 22-24, whose joint content is that the empirical distribution is close to P; c_h in eq. (2) is defined far from its use.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemmas 22-24 and their proofs fill most of pp.7-8, and the text after Lemma 24 combines them into E[d_tv(P, P_hat)] <= beta^2/10. c_u is defined at l.176; eq. (2) at l.298 uses c_h with a footnote pointing back."
+        },
+        {
+          "reviewer": "Reviewer_5d6f",
+          "claim": "Pure-DP bounds on the number of users are tight in the central model and nearly tight in the local model.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: central O(PRDim/eps) against Omega(PRDim/eps); local O(PRDim/eps^2) against Omega(PRDim/eps)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_Wgf7's only edit is dated 2021-08-01, before the author responses of 2021-08-09, so the rebuttal did not cause it. Reviewer_wvJN, 2021-08-30: 'After the discussion period, my evaluation remains the same.' Reviewer_ZiPC, Reviewer_Wgf7 and Reviewer_5d6f did not reply.",
+        "what_convinced_or_not": "The authors gave 5d6f and Wgf7 the same paragraph on large m: an open question, discussed in Section 5, and even the item-level sample complexity is open between poly(LDim) and log* LDim. They called heterogeneous users future work and said they would 'consider' Wgf7's reorganisation. They did not answer Wgf7's point that each user could learn alone. No reviewer pressed; the ratings were already 7."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "A summary of the paper, then 'The reviewers agree that this is an interesting paper with solid contribution, that should be accepted to NeurIPS.' It does not mention Wgf7's motivation critique or 5d6f's large-m weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 7s, mean 7.0: all four reviewers called the results significant or new.",
+        "The substantive weaknesses (Wgf7's federated-learning mismatch and IID assumption, 5d6f's large m) were framed by the reviewers themselves as open questions, not reasons to reject.",
+        "Reviewer_wvJN's proof-level corrections are slips in statements, not errors in the results; the camera-ready fixes all three.",
+        "No reviewer argued for more than a 7, and the AC restated the consensus."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Practicality of the algorithms and no code (Reviewer_R9c6; listed by the AC)",
+    "Item-level versus user-level terminology may confuse DP readers (Reviewer_R9c6)",
+    "Section 5 states no limitation although the checklist points there; SQ model not defined in the main text (Reviewer_R9c6)",
+    "Confusing sentence and typo at l.35 (Reviewer_4gym, Reviewer_xkiJ)",
+    "Open conceptual questions: SQ dimension versus PRDim, a general user-level/item-level relation, choice of the learner A in Algorithm 1 (Reviewer_4gym, Reviewer_xkiJ)"
+  ],
+  "issues_only_b": [
+    "The regime is few users with poly(d) samples each, enough for each user to learn alone; federated learning is the reverse (Reviewer_Wgf7)",
+    "All users draw IID samples from one distribution; heterogeneous users are not covered (Reviewer_Wgf7)",
+    "Large samples-per-user requirement; no characterisation at fixed m (Reviewer_5d6f, Reviewer_Wgf7)",
+    "Dense organisation of Sections 2 to 4: Lemmas 22-24 belong in the appendix, c_h defined far from eq. (2) (Reviewer_Wgf7)",
+    "Proof-level slips in Lemma 13, l.283 and Theorem 25 (Reviewer_wvJN); alpha undefined at l.53 (Reviewer_ZiPC)",
+    "Shared randomness as a limitation (Reviewer_wvJN); in A only the authors named it, replying to Reviewer_R9c6"
+  ],
+  "shared_issues": [
+    "Theorem 3 names the local model where the central model is meant (A: Reviewer_R9c6; B: Reviewer_ZiPC)",
+    "Results significant and technique original (all nine reviewers)",
+    "Motivation of the setting (A: Reviewer_R7Bc's own unfamiliarity, echoed by the AC; B: Reviewer_Wgf7's specific federated-learning mismatch)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. All nine reviewers rated the paper accept (A: 8, 7, 7, 7, 7; B: 7, 7, 7, 7). Each called the results significant or the technique new. With shared randomness, correlated sampling makes most users output one hypothesis, so O(log(1/delta)/eps) users suffice for any Littlestone class, with near-matching lower bounds (Table 1). No reviewer found an error in a result. Every error found is a slip in a statement, and the submission confirms each one. Theorem 3 names the local model where the central model is meant; R9c6 (A) and ZiPC (B) found this independently. wvJN's three corrections (Lemma 13, l.283, Theorem 25) are right, and the camera-ready adopts them. Only B raised substantive limits. Wgf7 showed that the regime is few users with poly(d) samples each, enough for each user to learn alone, which is the reverse of federated learning; 5d6f asked about fixed m. Both still gave 7, and the authors called the points open problems. No score moved after the rebuttal in either committee. Nothing argued for a spotlight: A's only rating above 7 is Reviewer_kC68's three-sentence 8 at confidence 2, and both meta-reviews restate the consensus. The committees differ in how well their 7s are supported, not in outcome. Two B reviewers read the proofs closely (wvJN, Wgf7); no A review shows such a reading. B's ZiPC gave a 7 while 'not really qualified to review this paper'.",
+  "candidate_reasons": [
+    "Unanimous accept ratings in both",
+    "Only statement slips found, all confirmed",
+    "Limits framed as open questions",
+    "No argued case above poster",
+    "Low-confidence reviewers defaulting to accept",
+    "Meta-reviews restate score consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_kC68 final review",
+    "Reviewer_R7Bc final review",
+    "Reviewer_R9c6 final review and reply of 2021-09-10",
+    "Reviewer_wvJN final review (Minor Comments) and reply of 2021-08-30",
+    "Reviewer_Wgf7 final review (edited 2021-08-01)",
+    "Reviewer_ZiPC final review",
+    "Reviewer_5d6f final review",
+    "Authors' replies to Reviewer_5d6f and Reviewer_Wgf7 (2021-08-09)",
+    "paper_submitted.pdf l.74-77 (Theorem 3) and Table 1, p.3",
+    "paper_submitted.pdf Lemma 13 (l.190-191), l.283, Theorem 25 (l.289-292)",
+    "paper_submitted.pdf Theorem 1 (l.58-60), l.103-104, Algorithm 2 (p.9)",
+    "paper_submitted.pdf Section 5 and checklist 1(b)-(c)",
+    "paper.pdf (camera-ready) Lemma 13, Theorem 25, Theorem 3",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

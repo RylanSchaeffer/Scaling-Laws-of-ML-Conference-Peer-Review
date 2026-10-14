@@ -5,7 +5,7 @@ Observed (arXiv:2306.03262, Table 1): among the 764 decided duplicated papers (1
 tiers (oral + spotlight) of 29 and 25 papers overlapped in 3 papers; the other
 committee rejected 13 of 29 and 13 of 25 top-tier papers, and 13 of 25 and 13 of 23
 spotlights. Every variant of §3.5 is calibrated to the accept-level disagreement only,
-so these numbers are a test.
+so these numbers are a test; the award step's noise is fitted on the pairs' scores (scripts/fit_award_noise.py), not on them.
 
 Writes results/validation_neurips2021.csv.
 Usage: uv run python scripts/run_validation_neurips2021.py [--workers 5]
@@ -20,8 +20,8 @@ from concurrent.futures import ProcessPoolExecutor
 import numpy as np
 import pandas as pd
 
-from peerreview.levels import LEVELS, ROOT, calibrated
-from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.levels import LEVELS, ROOT, calibrated, main_model
+from peerreview.model import MAIN_FORM
 from peerreview.simulate import stable_seed
 from peerreview.validation import replay_tiers
 
@@ -29,18 +29,19 @@ OBS = dict(n=764, accept_rate=(206 + 195) / 2 / 764, tiers1=(4, 25), tiers2=(2, 
            spot1_rej2=13, spot2_rej1=13, top1_rej2=13, top2_rej1=13)
 # Every variant reviews on the main form (integer 1-10 scores, four reviews per paper), which is the 2021 form.
 FORM = MAIN_FORM
-VARIANTS = {  # the main model and the variants of the robustness section (scripts/run_best_paper_robustness.py)
-    "gauss/gauss": ReviewModel(**FORM),
-    "gauss/gauss+shared": ReviewModel(**FORM, sigma_u=0.5),
-    "gauss/t3": ReviewModel(**FORM, noise="t3"),
-    "beta/gauss": ReviewModel(**FORM, quality="beta"),
-    "beta/t3": ReviewModel(**FORM, quality="beta", noise="t3"),
-    "exp/gauss": ReviewModel(**FORM, quality="exp"),
-    "lognormal/gauss": ReviewModel(**FORM, quality="lognormal"),
-    "t3/gauss": ReviewModel(**FORM, quality="t3"),
-    "careless1": ReviewModel(**FORM, careless=0.01, careless_kind="rave"),
-    "careless5": ReviewModel(**FORM, careless=0.05, careless_kind="rave"),
-    "random5": ReviewModel(**FORM, careless=0.05, careless_kind="random"),
+VARIANTS = {  # the main model (with and without its award step) and the variants of the robustness section
+    "gauss/gauss": main_model(),
+    "gauss/gauss/noaward": main_model(sigma_award=0.0),
+    "gauss/gauss+shared": main_model(sigma_u=0.5),
+    "gauss/t3": main_model(noise="t3"),
+    "beta/gauss": main_model(quality="beta"),
+    "beta/t3": main_model(quality="beta", noise="t3"),
+    "exp/gauss": main_model(quality="exp"),
+    "lognormal/gauss": main_model(quality="lognormal"),
+    "t3/gauss": main_model(quality="t3"),
+    "careless1": main_model(careless=0.01, careless_kind="rave"),
+    "careless5": main_model(careless=0.05, careless_kind="rave"),
+    "random5": main_model(careless=0.05, careless_kind="random"),
 }
 CENTRAL_ONLY = ("lognormal/gauss", "t3/gauss", "careless1", "careless5", "random5")  # calibrated at the central level only
 # Subsample: the decided-paper equivalent of the 9,122-paper conference (9,122 x 764 / 882).
@@ -60,7 +61,7 @@ def job(name: str, level: str, design: str) -> dict:
     obs_top_rej = (OBS["top1_rej2"] + OBS["top2_rej1"]) / sum(sum(t) for t in (OBS["tiers1"], OBS["tiers2"]))
     acc_dis = 1 - st["acc_overlap"] / st["acc1"]
     return dict(
-        variant=name, level=level, design=design, sigma_eps=m.sigma_eps, R=m.R, reps=d["reps"], seed=seed,
+        variant=name, level=level, design=design, sigma_eps=m.sigma_eps, sigma_award=m.sigma_award, R=m.R, reps=d["reps"], seed=seed,
         N_conf=d["N_conf"] or OBS["n"],
         overlap_mean=ov.mean(), overlap_sd=ov.std(), overlap_q05=np.quantile(ov, 0.05), overlap_q50=np.median(ov),
         overlap_q95=np.quantile(ov, 0.95), p_overlap_le_obs=(ov <= OBS["overlap"]).mean(),

@@ -118,3 +118,30 @@ def test_placement_matches_overlap_and_nests():
     # tiers nest, so the chance of a tier or higher grows with the tier
     assert r["place_oral_in_oral"] <= r["place_oral_in_spot"] <= r["place_oral_in_accept"] <= 1
     assert r["place_spot_in_spot"] <= r["place_spot_in_accept"]
+
+
+def test_award_step():
+    import numpy as np
+    from peerreview.model import ReviewModel, award_order
+    from peerreview.simulate import simulate_best_paper
+    rng = np.random.default_rng(1)
+    s = rng.normal(5, 1.5, (4, 200))
+    m0 = ReviewModel(R=4, scale="int10", sigma_eps=2.0)
+    assert award_order(rng, s, m0, 50) is s and "sigma_award" not in m0.as_dict()  # no award noise: the score ordering
+    m = m0.replace(sigma_award=0.6)
+    t = award_order(rng, s, m, 50)
+    for row_s, row_t in zip(s, t):
+        acc, acc_t = set(np.argsort(-row_s)[:50]), set(np.argsort(-row_t)[:50])
+        assert acc == acc_t  # acceptance is by the score
+        rej = np.argsort(-row_s)[50:]
+        assert list(np.argsort(-row_t)[50:]) == list(rej)  # rejected papers keep their score order
+    # with sigma_award = 0 the simulator is unchanged (same seed, same numbers)
+    tiers = {"best": 1, "top10": 10, "oral": 17, "spot": 65, "accept": 250}
+    a = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
+    b = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers, accept=250)
+    assert a["overlap_spot"] == b["overlap_spot"] and a["winner_in2_best"] == b["winner_in2_best"]
+    # award noise lowers the award overlaps and leaves the acceptance overlap
+    c = simulate_best_paper(m0.replace(sigma_award=1.0), 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
+    d = simulate_best_paper(m0, 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
+    assert c["overlap_oral"] < d["overlap_oral"] and c["overlap_top10"] < d["overlap_top10"]
+    assert abs(c["overlap_accept"] - d["overlap_accept"]) < 0.03

@@ -2,8 +2,8 @@
 top tier in the calibrated model.
 
 Each committee ranks the same papers by its own mean score, accepts its top A, and
-puts its top `oral` papers in an oral tier and the next `spot` papers in a spotlight
-tier. The statistics are the ones the experiment reported: the overlap of the two
+puts the top `oral` papers of its award ordering (score plus chair noise within the
+accepted set, model.award_order) in an oral tier and the next `spot` in a spotlight tier. The statistics are the ones the experiment reported: the overlap of the two
 top tiers (oral + spotlight) and the share of one committee's spotlights that the
 other committee rejected.
 
@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .model import ReviewModel, jitter, sample_quality, sample_scores
+from .model import ReviewModel, award_order, jitter, sample_quality, sample_scores
 
 
 def _kth_largest(x: np.ndarray, K: int) -> np.ndarray:
@@ -65,10 +65,12 @@ def replay_tiers(
         s2 = jitter(rng, sample_scores(rng, q, m), m)
         a1 = s1 >= _kth_largest(s1, sizes["acc"])
         a2 = s2 >= _kth_largest(s2, sizes["acc"])
-        top1 = s1 >= _kth_largest(s1, sizes["t1"])
-        top2 = s2 >= _kth_largest(s2, sizes["t2"])
-        spot1 = top1 & ~(s1 >= _kth_largest(s1, sizes["o1"]))
-        spot2 = top2 & ~(s2 >= _kth_largest(s2, sizes["o2"]))
+        t1 = award_order(rng, s1, m, sizes["acc"])
+        t2 = award_order(rng, s2, m, sizes["acc"])
+        top1 = t1 >= _kth_largest(t1, sizes["t1"])
+        top2 = t2 >= _kth_largest(t2, sizes["t2"])
+        spot1 = top1 & ~(t1 >= _kth_largest(t1, sizes["o1"]))
+        spot2 = top2 & ~(t2 >= _kth_largest(t2, sizes["o2"]))
         sub = slice(0, n)
         a1, a2, top1, top2, spot1, spot2 = (x[:, sub] for x in (a1, a2, top1, top2, spot1, spot2))
         with np.errstate(invalid="ignore", divide="ignore"):

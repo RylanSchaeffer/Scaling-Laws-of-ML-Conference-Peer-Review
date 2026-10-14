@@ -253,7 +253,7 @@ def standing_panel(ax):
 # ---------------------------------------------------------------------------
 
 VAR_LABEL = {  # rows of Fig 4a,b: the main model and the variants of the robustness section, in Fig 6's order
-    "gauss/gauss": "Main model", "beta/gauss": "Bounded quality", "exp/gauss": "Exponential quality",
+    "gauss/gauss": "Main model", "gauss/gauss/noaward": "No award step", "beta/gauss": "Bounded quality", "exp/gauss": "Exponential quality",
     "lognormal/gauss": "Lognormal quality", "t3/gauss": "$t_3$ quality", "gauss/t3": "$t_3$ noise",
     "gauss/gauss+shared": "Shared noise", "careless1": "1\\% rave reviews", "careless5": "5\\% rave reviews",
     "random5": "5\\% random reviews"}

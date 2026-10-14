@@ -29,6 +29,24 @@ from .model import ReviewModel
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CALIB_CSV = os.path.join(ROOT, "results", "calibration_variants.csv")
+AWARD_JSON = os.path.join(ROOT, "results", "award_noise.json")  # written by scripts/fit_award_noise.py
+
+
+def award_sigma() -> float:
+    """The fitted chair-level award noise sigma_award (results/award_noise.json), the same at every level:
+    it is fitted on the NeurIPS 2021 pairs' real scores, independently of the reviewer-noise calibration."""
+    import json
+
+    with open(AWARD_JSON) as f:
+        return float(json.load(f)["sigma_award"])
+
+
+def main_model(**changes) -> "ReviewModel":
+    """The main model: the main review form (integer 1-10 scores, four reviews) with the fitted award
+    step, plus any variant changes. Calibrate its reviewer noise with `calibrated`."""
+    from .model import MAIN_FORM
+
+    return ReviewModel(**{**MAIN_FORM, "sigma_award": award_sigma(), **changes})
 
 CAL_ALPHA = NEURIPS2021.alpha
 LEVELS: dict[str, float] = {

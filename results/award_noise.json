@@ -1,0 +1,34 @@
+{
+ "sigma_award": 0.59,
+ "fit_statistic": "awards inside the committee's own score top-K, summed over both committees",
+ "observed": {
+  "awards_in_score_topK": 26.1612,
+  "shared": 3,
+  "rejected_by_other": 25,
+  "K_a": 22,
+  "K_b": 31,
+  "awards": 53
+ },
+ "at_fit": {
+  "awards_in_score_topK": 26.16735,
+  "shared": 3.56815,
+  "rejected_by_other": 22.4358
+ },
+ "at_zero": {
+  "awards_in_score_topK": 53.0,
+  "shared": 5.85605,
+  "rejected_by_other": 20.521250000000002
+ },
+ "bootstrap": {
+  "n": 200,
+  "q05": 0.422265625,
+  "q50": 0.56005859375,
+  "q95": 0.7557617187499999,
+  "reps_per_fit": 2000
+ },
+ "n_pairs": 301,
+ "fit_reps": 20000,
+ "seed": 20261014,
+ "source": "data/paired_reviews/neurips2021/copies.csv",
+ "note": "sigma_award on the 1-10 rating axis; awards = oral or spotlight by that committee; accepted = own decision not reject"
+}

@@ -4,7 +4,7 @@
 For every venue-year in data/venues.csv (with its submissions, acceptance rate, oral and
 spotlight counts) and for a grid of submissions N with the fitted tier sizes (results/tier_sizes.csv)
 and acceptance at 25%, each replay draws one conference, reviews it twice, and records the tier the
-second review gives the first review's top-scored paper (p2_*), the overlap of the two reviews'
+second review gives the first review's Best Paper, the first paper of its award ordering (p2_*), the overlap of the two reviews'
 tiers (overlap_*), and the second review's score for that paper against its own 10th-best score
 (z2_*). Columns match the former analytic table.
 
@@ -23,8 +23,8 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 
-from peerreview.levels import LEVELS, ROOT, calibrated
-from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.levels import LEVELS, ROOT, calibrated, main_model
+from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
 
@@ -36,7 +36,7 @@ SCALE, R = MAIN_FORM["scale"], MAIN_FORM["R"]
 
 def job(spec: dict) -> dict:
     scale, R, level = spec["scale"], spec["R"], spec["level"]
-    m = calibrated(ReviewModel(R=R, scale=scale), level)
+    m = calibrated(main_model(R=R, scale=scale), level)
     N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
     if not np.isfinite(m.sigma_eps):  # the level is unreachable on this form (coarse scale: ties floor the disagreement)
         return {**spec, "rho2": LEVELS[level], "sigma_eps": np.nan, "accepted": A, "wall_s": 0.0}

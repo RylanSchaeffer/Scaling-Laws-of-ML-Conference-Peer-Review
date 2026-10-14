@@ -17,8 +17,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 
-from peerreview.levels import ROOT, calibrated
-from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.simulate import simulate_best_paper, stable_seed
 
 PATH = os.path.join(ROOT, "results", "best_paper.csv")
@@ -33,7 +32,7 @@ VENUE_YEARS = (("NeurIPS", 2014), ("NeurIPS", 2021), ("NeurIPS", 2026), ("ICML",
 
 def job(spec: tuple) -> dict:
     N, level, key = spec
-    m = calibrated(ReviewModel(**MAIN_FORM), level)
+    m = calibrated(main_model(), level)
     reps = reps_for(N)
     seed = stable_seed(m.as_dict(), N, reps, "best_paper_hirep", level, key)
     t0 = time.perf_counter()

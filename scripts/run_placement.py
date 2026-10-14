@@ -22,8 +22,8 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 
-from peerreview.levels import LEVELS, ROOT, calibrated
-from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.levels import LEVELS, ROOT, calibrated, main_model
+from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
 
@@ -33,7 +33,7 @@ FIRST = ("top10", "oral", "spot", "accept")  # the first review's tiers whose pa
 
 
 def job(spec: dict) -> dict:
-    m = calibrated(ReviewModel(**MAIN_FORM), spec["level"])
+    m = calibrated(main_model(), spec["level"])
     N, A = spec["N"], int(round(GRID_ALPHA * spec["N"]))
     tiers = {"best": 1, "top10": 10, "oral": int(spec["orals"]), "spot": int(spec["orals"]) + int(spec["spotlights"]), "accept": A}
     place = {k: tiers[k] for k in FIRST}

@@ -2,7 +2,7 @@
 and 2026 conferences (their submissions, acceptance rates, oral and spotlight counts), on the main
 review form (integer 1-10 scores, four reviews per paper; other forms: scripts/run_scale_impact.py).
 
-The model's Best Paper is the top-scored paper (ties broken at random). For each variant the script
+The model's Best Paper is the first paper of the award ordering (score plus chair noise within the accepted set). For each variant the script
 simulates whole conferences, each reviewed twice, and records where the second review ranks the
 first review's Best Paper (p2_*: in its top M for M = 1, 10, the oral count, the oral plus spotlight
 count and the accepted count; one minus the last is the probability that it rejects the paper) and
@@ -28,8 +28,8 @@ from concurrent.futures import ProcessPoolExecutor
 
 import pandas as pd
 
-from peerreview.levels import ROOT, calibrated
-from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.levels import ROOT, calibrated, main_model
+from peerreview.model import ReviewModel
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.validation import replay_tiers
 
@@ -48,8 +48,8 @@ VARIANTS = {  # name: (group, changes to the year's real review form)
 
 
 def form_model(year: int, changes: dict) -> ReviewModel:
-    """The main review form (integer 1-10 scores, four reviews per paper) with the variant's changes."""
-    return ReviewModel(**MAIN_FORM, **changes)
+    """The main model (integer 1-10 scores, four reviews per paper, the fitted award step) with the variant's changes."""
+    return main_model(**changes)
 
 
 REPS = {2014: 200_000, 2026: 40_000}

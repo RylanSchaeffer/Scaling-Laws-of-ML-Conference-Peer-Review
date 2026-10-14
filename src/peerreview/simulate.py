@@ -35,7 +35,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from .model import ReviewModel, jitter, quality_cdf, sample_quality, sample_scores
+from .model import ReviewModel, award_order, jitter, quality_cdf, sample_quality, sample_scores
 
 DEFAULT_ALPHAS = (0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40)
 
@@ -146,6 +146,10 @@ def simulate_chunk(
     top, accsel = sel.sizes(N)
     A_ref = int(round(sel.alpha_ref * N))
     M1, M5 = max(1, int(round(0.01 * N))), max(1, int(round(0.05 * N)))
+    # Award ordering (model.award_order): the top-of-ranking selections, the winner and the best paper's
+    # rank are by score + chair noise within the accepted set (A_ref); acceptance stays by the score.
+    t1 = award_order(rng, s1, m, A_ref)
+    t2 = award_order(rng, s2, m, A_ref) if two_committees else None
 
     # Thresholds (K-th largest values) for every size that is needed.
     q_need = {M1, M5, A_ref} | set(accsel.values())
@@ -153,16 +157,17 @@ def simulate_chunk(
         q_need |= {K, 2 * K, 10 * K}
     Tq = _thresholds(q, q_need)
     T1 = _thresholds(s1, accsel.values())
-    T2 = _thresholds(s2, set(top.values()) | set(accsel.values()) | {A_ref}) if two_committees else {}
+    T2 = _thresholds(s2, set(accsel.values()) | {A_ref}) if two_committees else {}
+    T2t = _thresholds(t2, set(top.values())) if two_committees else {}
 
-    # --- top-of-ranking selections: sort only the top Kt scores -------------
+    # --- top-of-ranking selections: sort only the top Kt of the award ordering -------------
     if top:
         Kt = max(top.values())
         if Kt < N:
-            idx = np.argpartition(-s1, Kt - 1, axis=1)[:, :Kt]
+            idx = np.argpartition(-t1, Kt - 1, axis=1)[:, :Kt]
         else:
             idx = np.broadcast_to(np.arange(N), (reps, N)).copy()
-        order = np.argsort(-s1[rows, idx], axis=1)
+        order = np.argsort(-t1[rows, idx], axis=1)
         idx = np.take_along_axis(idx, order, axis=1)
         q_top = q[rows, idx]
         cs1 = np.cumsum(q_top >= Tq[M1][:, None], axis=1)
@@ -171,6 +176,7 @@ def simulate_chunk(
         csF = np.cumsum(quality_cdf(q_top, m), axis=1)
         if two_committees:
             s2_top = s2[rows, idx]
+            t2_top = t2[rows, idx]
             csR = np.cumsum(s2_top < T2[A_ref][:, None], axis=1)
         for name, K in top.items():
             qk = q_top[:, :K]
@@ -184,7 +190,7 @@ def simulate_chunk(
             acc.add(f"cA_{name}", csA[:, K - 1] / K)
             acc.add(f"pctl_{name}", csF[:, K - 1] / K)
             if two_committees:
-                acc.add(f"ovl_{name}", (s2_top[:, :K] >= T2[K][:, None]).sum(1) / K)
+                acc.add(f"ovl_{name}", (t2_top[:, :K] >= T2t[K][:, None]).sum(1) / K)
                 acc.add(f"rej2_{name}", csR[:, K - 1] / K)
 
     # --- acceptance selections: boolean masks over all N --------------------
@@ -201,11 +207,11 @@ def simulate_chunk(
 
     # --- best paper and winner ----------------------------------------------
     b = np.argmax(q, axis=1)
-    srank_best = (s1 > s1[rows[:, 0], b][:, None]).sum(1)  # 0-based score rank
+    srank_best = (t1 > t1[rows[:, 0], b][:, None]).sum(1)  # 0-based rank in the award ordering
     for K in sel.best_K:
         if K <= N:
             acc.add(f"best_in_K{K}", srank_best < K)
-    w = np.argmax(s1, axis=1)
+    w = np.argmax(t1, axis=1)
     acc.add("winner_rank", (q > q[rows[:, 0], w][:, None]).sum(1) + 1)
     return acc
 
@@ -258,8 +264,14 @@ def simulate_best_paper(
     second_committee: bool = False,
     overlap_tiers: dict[str, int] | None = None,
     place_tiers: dict[str, int] | None = None,
+    accept: int | None = None,
 ) -> dict:
     """High-replication P(best paper in Top_K) and winner rank; O(N) per conference.
+
+    Every rank is in the award ordering (model.award_order): the score plus the chairs' award noise
+    within the accepted set, whose size is `accept`, else the "accept" entry of winner_tiers or
+    overlap_tiers, else 25% of N. The Best Paper is the first paper of that ordering. With
+    sigma_award = 0 the award ordering is the score ordering.
 
     winner_tiers {name: M} adds winner_in_{name} = P(the top-scored paper is in the true top M).
     second_committee re-reviews every paper with fresh noise (u and eps redrawn) and adds
@@ -278,6 +290,8 @@ def simulate_best_paper(
     """
     if seed is None:
         seed = stable_seed(m.as_dict(), N, reps, "best", salt)
+    if accept is None:
+        accept = (winner_tiers or {}).get("accept") or (overlap_tiers or {}).get("accept") or int(round(0.25 * N))
     rng = np.random.default_rng(seed)
     per_paper = m.R if not m.gaussian_shortcut else 1
     chunk = max(1, int(chunk_elems // (N * per_paper)))
@@ -289,24 +303,26 @@ def simulate_best_paper(
         rows = np.arange(r)
         q = sample_quality(rng, (r, N), m)
         s = jitter(rng, sample_scores(rng, q, m), m)
+        t = award_order(rng, s, m, accept)
         b = np.argmax(q, axis=1)
-        srank = (s > s[rows, b][:, None]).sum(1)
+        srank = (t > t[rows, b][:, None]).sum(1)
         for K in best_K:
             acc.add(f"best_in_K{K}", srank < K)
-        w = np.argmax(s, axis=1)
+        w = np.argmax(t, axis=1)
         rank = (q > q[rows, w][:, None]).sum(1) + 1
         acc.add("winner_rank", rank)
         for name, M in (winner_tiers or {}).items():
             acc.add(f"winner_in_{name}", rank <= M)
         if second_committee:
             s2 = jitter(rng, sample_scores(rng, q, m), m)
-            rank2 = (s2 > s2[rows, w][:, None]).sum(1) + 1
+            t2 = award_order(rng, s2, m, accept)
+            rank2 = (t2 > t2[rows, w][:, None]).sum(1) + 1
             acc.add("winner_rank2", rank2)
             for name, M in (winner_tiers or {}).items():
                 acc.add(f"winner_in2_{name}", rank2 <= M)
             if overlap_tiers:
-                order1 = np.argsort(-s, axis=1)
-                order2 = np.argsort(-s2, axis=1)
+                order1 = np.argsort(-t, axis=1)
+                order2 = np.argsort(-t2, axis=1)
                 in2 = np.zeros(s.shape, dtype=bool)
                 for name, K in sorted(overlap_tiers.items(), key=lambda kv: kv[1]):
                     K = int(K)
@@ -323,7 +339,7 @@ def simulate_best_paper(
                 acc.add("z2_winner", (s2[rows, w] - mu2) / sd2)
                 acc.add("z2_tenth", (s2[rows, order2[:, 9]] - mu2) / sd2)
         done += r
-    row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability}
+    row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability, "accept": int(accept)}
     row.update(acc.summary())
     row["wall_s"] = time.perf_counter() - t0
     return row

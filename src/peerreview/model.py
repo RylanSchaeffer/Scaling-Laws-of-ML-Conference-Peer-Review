@@ -7,6 +7,11 @@ paper's score is the mean of its R (snapped) reviews. Optionally, a share
 `careless` of reviews ignore the paper: "rave" reviews give the top of the scale,
 "random" reviews a uniformly random score.
 
+Acceptance is by the score: the top A papers. Awards (the Best Paper, the top ten, orals,
+spotlights) are chosen within the accepted set by the award ordering a_i = score_i + eta_i,
+where eta_i ~ N(0, sigma_award^2) is the chairs' own noise, redrawn by every committee
+(`award_order`). With sigma_award = 0 the award ordering is the score ordering.
+
 Everything lives on a latent 1-to-10 axis.
 """
 
@@ -54,6 +59,8 @@ class ReviewModel:
     # Share of reviews that ignore the paper, and what they say.
     careless: float = 0.0
     careless_kind: str = "rave"
+    # Chair-level award noise: SD of eta in the award ordering score + eta within the accepted set.
+    sigma_award: float = 0.0
 
     def __post_init__(self) -> None:
         if self.quality not in QUALITY_DISTS:
@@ -68,6 +75,8 @@ class ReviewModel:
             raise ValueError("R must be at least 1")
         if not 0.0 <= self.careless < 1.0 or self.careless_kind not in CARELESS_KINDS:
             raise ValueError("careless must be in [0, 1) with kind 'rave' or 'random'")
+        if self.sigma_award < 0:
+            raise ValueError("sigma_award must be non-negative")
 
     def replace(self, **kw) -> "ReviewModel":
         d = asdict(self)
@@ -95,12 +104,21 @@ class ReviewModel:
         var_noise = self.sigma_u**2 + self.sigma_eps**2 / self.R
         return self.sigma_q**2 / (self.sigma_q**2 + var_noise)
 
+    @property
+    def award_reliability(self) -> float:
+        """corr(a1, a2) of two committees' award orderings, ignoring truncation to the accepted set:
+        sigma_q^2 / (sigma_q^2 + sigma_u^2 + sigma_eps^2 / R + sigma_award^2) for continuous scores."""
+        var_noise = self.sigma_u**2 + self.sigma_eps**2 / self.R + self.sigma_award**2
+        return self.sigma_q**2 / (self.sigma_q**2 + var_noise)
+
     def as_dict(self) -> dict:
         d = asdict(self)
         d["scale_points"] = ",".join(f"{p:g}" for p in self.scale_points)
         if self.careless == 0:  # keep the seeds and CSV rows of every earlier model unchanged
             d.pop("careless")
             d.pop("careless_kind")
+        if self.sigma_award == 0:
+            d.pop("sigma_award")
         return d
 
 
@@ -210,3 +228,23 @@ def jitter(rng: np.random.Generator, s: np.ndarray, m: ReviewModel) -> np.ndarra
     pts = m.points
     width = 1e-9 if pts is None else 1e-6 * float(np.min(np.diff(pts))) / m.R
     return s + width * rng.random(s.shape)
+
+
+def award_order(rng: np.random.Generator, s: np.ndarray, m: ReviewModel, accept: int) -> np.ndarray:
+    """The award ordering of one committee: the score plus the chairs' award noise within the accepted set.
+
+    `s` holds the (jittered) scores, one row per conference; `accept` is the number of accepted papers.
+    Returns t with t = s + eta for the accepted papers (the top `accept` by s) and t = s - 100 for the
+    rest, so that the top-K of t for any K <= accept is the award tier chosen by s + eta among the
+    accepted papers, the top-`accept` of t is the accepted set itself, and ranks beyond it follow s.
+    With sigma_award = 0 the scores are returned unchanged and no random numbers are drawn.
+    """
+    if m.sigma_award == 0:
+        return s
+    N = s.shape[-1]
+    A = int(accept)
+    if not 1 <= A <= N:
+        raise ValueError(f"accept must be in [1, N]; got {A} for N = {N}")
+    thr = np.partition(s, N - A, axis=-1)[..., N - A][..., None]
+    t = s + m.sigma_award * rng.standard_normal(s.shape)
+    return np.where(s >= thr, t, s - 100.0)

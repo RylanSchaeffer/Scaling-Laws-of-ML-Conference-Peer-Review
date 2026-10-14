@@ -21,7 +21,7 @@ from concurrent.futures import ProcessPoolExecutor
 import numpy as np
 import pandas as pd
 
-from peerreview.levels import ROOT, calibrated
+from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM, ReviewModel
 from peerreview.simulate import simulate_best_paper, stable_seed
 
@@ -34,13 +34,13 @@ FORM = MAIN_FORM  # integer 1-10 scores, four reviews per paper
 def overlap(m: ReviewModel, N: int, R: int, reps: int) -> float:
     mR = m.replace(R=R)
     r = simulate_best_paper(mR, N, reps, best_K=(1,), seed=stable_seed(mR.as_dict(), N, reps, "R_needed"),
-                            second_committee=True, overlap_tiers={"top10": K})
+                            second_committee=True, overlap_tiers={"top10": K}, accept=int(round(0.25 * N)))
     return float(r["overlap_top10"])
 
 
 def job(spec: tuple) -> dict:
     su, N, reps = spec
-    m = calibrated(ReviewModel(**FORM, sigma_u=su), "central")
+    m = calibrated(main_model(sigma_u=su), "central")
     t0 = time.perf_counter()
     target = overlap(m, N_GRID[0], FORM["R"], reps)
     evals = {}

@@ -20,8 +20,8 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 
-from peerreview.levels import LEVELS, ROOT, calibrated
-from peerreview.model import MAIN_FORM, ReviewModel
+from peerreview.levels import LEVELS, ROOT, calibrated, main_model
+from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
 
@@ -42,7 +42,7 @@ REPS_CONF = {2026: 40_000, 2014: 100_000}
 
 
 def job(spec: dict) -> dict:
-    m = calibrated(ReviewModel(R=spec["R"], scale=spec["scale"]), spec["level"])
+    m = calibrated(main_model(R=spec["R"], scale=spec["scale"]), spec["level"])
     N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
     tiers = {"best": 1, "top10": 10, "oral": int(spec["orals"]), "spot": int(spec["orals"] + spec["spotlights"]), "accept": A}
     overlap = {**tiers, "top1pct": max(1, int(round(0.01 * N)))}

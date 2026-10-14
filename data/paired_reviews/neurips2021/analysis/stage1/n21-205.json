@@ -24,7 +24,7 @@
     "reviewer": "Reviewer_kc15",
     "direction": "champion",
     "basis": "unclear",
-    "evidence": "The only rating above threshold (6, confidence 3) against two 4s at confidence 4. The positive case is two one-line pros, 'Mathematical formulation' and 'SOTA results on ImageNet', with the SOTA claim taken at face value. The review itself names a missing baseline (DeepShift). kc15 replied after the rebuttal and kept 6 because activation memory also matters. The AC's meta-review does not draw on this review."
+    "evidence": "The only rating above threshold (6, confidence 3) against two 4s at confidence 4. The positive case is two one-line pros, 'Mathematical formulation' and 'SOTA results on ImageNet', with the SOTA claim taken at face value. The review itself names a missing baseline (DeepShift). kc15 replied after the rebuttal and kept 6 because activation memory also matters. The AC cites it only within 'some reviewers appreciated the simplicity and effectiveness of this method'."
    },
    "inattentive_reviews": [
     {
@@ -208,11 +208,11 @@
    },
    "ac": {
     "followed_reviews": "yes",
-    "evidence": "Accepted with ratings 6, 7, 6, 6. The meta-review repeats the reviewers' praise ('interesting, well-presented, and applicable') and says the complexity question was 'addressed adequately' in the response. It does not mention the missing baselines that BfHB and WFRz raised, or the epoch counts in the rebuttal. 'Applicable' rests on ImageNet classification only.",
+    "evidence": "Accepted with ratings 6, 7, 6, 6. The meta-review repeats the reviewers' praise ('interesting, well-presented, and applicable') and says the authors 'addressed this adequately in their response' on complexity. It does not mention the missing baselines that BfHB and WFRz raised, or the epoch counts in the rebuttal. 'Applicable' rests on ImageNet classification only.",
     "meta_review_leans_on": "scores"
    },
    "main_reasons_for_decision": [
-    "Method judged novel, simple and theoretically grounded by all four reviewers",
+    "Method judged novel and interesting by all four reviewers; sound or 'theoretically grounded' by BfHB and WFRz",
     "Results judged state of the art on ImageNet, taken at face value",
     "Complexity concern judged resolved by the rebuttal's per-iteration FLOPs estimate (AC)",
     "New GoogLeNet results lifted Reviewer_BfHB from 5 to 6"
@@ -241,7 +241,7 @@
   "Typos and the broken reference at line 180 (A: J3PT; B: ECoB)",
   "Limitations and societal impact said to be missing, wrongly for limitations (A: KcPD; B: BfHB)",
   "Activations not quantized (A: kc15; B: WFRz)",
-  "Method judged novel, simple and elegant (KcPD and J3PT in A; all four reviewers in B)"
+  "Novelty and elegance of the method acknowledged (J3PT and KcPD in A; all four reviewers in B)"
  ],
  "same_facts_weighted_differently": true,
  "verdict": "The committees weighed the same facts differently, and the reviewer draw set the weights. Both saw a simple, novel method, accuracy at or slightly above the listed baselines, a costly two-phase procedure, missing baselines and typos. Committee A drew two confident detractors: Reviewer_KcPD found no 'tangible benefit' over existing quantizers, and Reviewer_J3PT wanted a real assessment of the overhead. Committee B drew four reviewers at 6 or 7 who treated the same gaps as fixable. The paper supports A's central doubt. The submitted abstract says CBP beats the state of the art 'For all cases', but its own Table 1 puts LQ-Nets ahead on AlexNet ternary (60.5% against 58.8%), and two of four ResNet-18 margins are 0.1 points. Quantization Networks, which B's Reviewer_WFRz asked for, beats the submitted CBP top-1 in 5 of 8 ResNet cells of the camera-ready table, whose abstract now says 'For most cases'. Both forums got the same cost answer: about 2% more FLOPs per iteration than backprop for ResNet, with 101 to 201 CBP epochs after full pre-training. That answer does not address KcPD's total-cost point. B's AC called it adequate; J3PT did not accept it, and KcPD, who had offered to reconsider, never replied. No fatal flaw separates the committees.",

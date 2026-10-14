@@ -1,0 +1,218 @@
+{
+  "pair_id": "n21-208",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        1
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 7 (mean 6.67) sit within one point. The 6 comes from Reviewer_dLDo, who disputed the experimental protocol. The 7 from Reviewer_Q9sG (confidence 1) carries no information, but it is not out of line."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Q9sG",
+          "evidence": "Rating 7 at confidence 1. The main review is two sentences: the results 'appear to be novel and practical', and 'I am unable to accurately review the paper in the context of originality and significance because I feel like I lack the domain knowledge'. No weakness, no question and no reply to the rebuttal, although 5-6 hours are reported. It is not evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vF9d",
+          "claim": "On the synthetic instances LinGapE outperforms MisLid, potentially quite significantly.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1, Experiment (A): at ε = 0 LinGapE needs slightly fewer samples than MisLid; at ε = 2 it needs several times fewer (MisLid's box spans about 2,500 to 7,500). LinGapE's error frequency at ε = 2 is 0.036, still below δ = 0.05, against 0.0 for MisLid. In the submission, MisLid's advantage shows only in Experiment (E), where LinGapE has an error frequency of 1.0."
+        },
+        {
+          "reviewer": "Reviewer_vF9d",
+          "claim": "The paper never bounds the initialization length t_0, which could be large for ill-conditioned features.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 188-192 describe pulling a barycentric spanner round robin until the minimum eigenvalue of V_t0 exceeds 2L²; no bound on t_0 is given. The authors conceded that t_0 ≥ 2L²/Γ(A) grows with ill-conditioning and promised an explicit bound. The AC wrote 'I have to agree with reviewer 2 (vF9d) about the bound on t_0'."
+        },
+        {
+          "reviewer": "Reviewer_vF9d",
+          "claim": "Experiment (B) shows no unstructured baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "The third panel of Figure 1 shows only MisLid with ε in {0.5, 1, 2}. The authors said this is by design, to illustrate Lemma 2."
+        },
+        {
+          "reviewer": "Reviewer_dLDo",
+          "claim": "In the leftmost plot of Figure 1 all empirical error rates are 0.0, so the plot does not show which algorithm needs fewer samples for a given error.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1, Experiment (A) at ε = 0: error frequency 0.0 for LUCB, LinGapE and MisLid. The authors' reply is also sound: a comparison at a fixed empirical error rate measures a fixed-budget property, not the stopping time that the paper's theory is about. The dispute is about protocol, not a defect."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_vF9d (2021-08-15) thanked the authors for the 'cogent rebuttal' and asked for log-scale or tabulated results, a clearer half-space discussion and an explicit t_0 bound; the authors promised all three (2021-08-17). Reviewer_dLDo (2021-09-10) was 'still not convinced by the rebuttal on the experiment settings'. Reviewer_Q9sG did not post.",
+        "what_convinced_or_not": "vF9d called the rebuttal 'cogent'. It added an ε = 5 run of Experiment (A), in which LinGapE's error frequency is 0.946 and MisLid's is 0, and a t_0 analysis; vF9d's follow-up asked only for presentation changes. dLDo rejected the authors' argument that a fixed-error-rate comparison ignores the stopping rule, but kept 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The review team seems aligned that the paper meets the NeurIPS threshold with one borderline vote.' The AC added that 'while the issue of misspecification is not new in the MAB literature, the pure exploration problem does raise its own challenges'. The AC agreed with vF9d on t_0 and asked for a better discussion of the relation to Kaufmann (2016) and of 'what additional complexity in analysis stems from misspecification relative to earlier work'. These are revision requests, not reasons to reject.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings at or above 6 (mean 6.67), which the AC read as an aligned team",
+        "Pure exploration under misspecification is a new problem with its own challenges and an audience (AC: 'a good story to tell')",
+        "The rebuttal answered Reviewer_vF9d with a new ε = 5 run and a t_0 analysis",
+        "Open points (t_0 bound, relation to Kaufmann 2016, what misspecification adds to the analysis, plots) treated as camera-ready changes"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        4,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        5,
+        1
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_TZ2B"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_TZ2B",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only rating below threshold (4) against two 6s. Its two concrete objections rest on misreadings. TZ2B asks why δ = 1 was set for LinGapE in Figure 2; the red label is the error frequency (δ̂ = 1.0), and lines 286-288 set δ = 5% for all algorithms. TZ2B proposes to absorb the misspecification into the noise; η is a fixed per-arm offset that can change the top-m set (Experiment A, lines 299-302; Experiment E). The other points (implicit Theorem 2, thin intuition, comparison with earlier bounds) are presentation requests that Reviewer_1wnn also made while rating 6. The authors' rebuttal called these 'several misunderstandings'; TZ2B never replied."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_TZ2B",
+          "evidence": "Read LinGapE's error frequency of 1.0 in Figure 2 as a parameter setting, although lines 286-288 define it. Proposed to treat a bounded per-arm bias as noise, which the model of Equation 1 and Experiment (E) contradict. Did not engage after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_sjPk",
+          "evidence": "Rating 6 at confidence 1. The main review is two sentences: 'a well-written and solid piece of work', and 'being a non-expert in the area, it is hard for me to assess the novelty and significance'. Two hours, no weakness, no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TZ2B",
+          "claim": "In Figure 2 the rationale for setting δ = 1 for LinGapE is not apparent.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 286-288: 'In all experiments, we consider δ = 5%', and the boxplots report 'the error frequency δ̂'. The red 'δ̂ = 1.0' labels under LinGapE in Experiments (E.i) and (E.ii) mean that LinGapE returned a wrong set in every run. This is the paper's main evidence for MisLid, and TZ2B read it as a tuning choice."
+        },
+        {
+          "reviewer": "Reviewer_TZ2B",
+          "claim": "Given a known bound on η, the misspecification could be absorbed into the random noise.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Equation 1 defines η as a fixed vector with sup-norm at most ε: a deterministic per-arm bias, not zero-mean noise. Experiment (A) puts η on the fourth-best arm so that ε > Δ swaps it into the top 3 (lines 299-302). A linear algorithm can then return the wrong set: LinGapE's error frequency is 0.036 at ε = 2 and 1.0 in Experiment (E)."
+        },
+        {
+          "reviewer": "Reviewer_TZ2B",
+          "claim": "LinGapE needs almost as many samples as MisLid, so MisLid's advantage is unclear.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The sample counts are right: LinGapE needs fewer samples in Experiments (A) and (D), and far fewer in (E). The conclusion is wrong, because the advantage the paper claims is correctness: LinGapE's error frequency is 1.0 in (E.i) and (E.ii) (Figure 2), the label TZ2B misread."
+        },
+        {
+          "reviewer": "Reviewer_1wnn",
+          "claim": "Theorem 2 gives the sample complexity only implicitly, as the solution of equation (5), and the δ → 0 argument ignores that β^uns depends on t.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 257-262: T0(δ) is the 'solution to the equation in t' (5), and asymptotic optimality is argued from 'β^uns ≈ log(1/δ) for small δ' with no treatment of the log log t term. This is a presentation gap, not an error: the authors' rebuttal sketch shows that the t-dependent term is lower order. Reviewer_dLDo (A) and Reviewer_TZ2B also called the bound hard to read or not explicit."
+        },
+        {
+          "reviewer": "Reviewer_1wnn",
+          "claim": "Probable typo at line 211: θ should replace θ_t in the self-normalized concentration.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 206-214 define θ_t as the V_t-orthogonal projection of μ and call this parametrization 'a key novelty of our work': the estimate's error against θ_t is exactly the self-normalized martingale of Abbasi-Yadkori et al. (2011), which, the paper says, avoids inflating the concentration by ε²t as earlier misspecified-bandit analyses [26, 39] do. B's most confident reviewer read the paper's main analysis device as a typo, and nobody in B discussed it."
+        },
+        {
+          "reviewer": "Reviewer_1wnn",
+          "claim": "The authors should compare against stochastic (unstructured) best-arm identification algorithms to show MisLid's advantage (follow-up, 2021-08-26).",
+          "checked_against_paper": "incorrect",
+          "evidence": "LUCB, a UCB-based unstructured algorithm, appears in Experiments (A), (D) and (E.ii) (line 285; Figures 1 and 2) and needs about an order of magnitude more samples than MisLid. Track-and-Stop is not included; the authors cited its computational cost."
+        },
+        {
+          "reviewer": "Reviewer_1wnn",
+          "claim": "Appending a constant to the features would reduce the problem to standard linear top-m identification.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Equation 1 gives each arm its own offset η^k, so the extra coordinate would be arm-dependent. 1wnn conceded on 2021-08-26."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_TZ2B's only edit (2021-07-03) is one day after posting and a month before the 2021-08-06 rebuttal. Reviewer_1wnn (2021-08-26) withdrew the (d+1)-feature point and welcomed a rephrased Theorem 2 paragraph, but asked how the bound differs from Kaufmann (2016), for fixed-error plots and for stochastic BAI baselines. The authors answered on 2021-08-27, and 1wnn did not post again. TZ2B and Reviewer_sjPk did not post.",
+        "what_convinced_or_not": "The rebuttal corrected TZ2B's reading of the error frequency and the noise argument; TZ2B did not respond. The answer to 1wnn conceded that Equation 2 'is exactly the lower bound of [Garivier16] with a different definition of the set of alternatives' and placed the novelty in Lemma 1 (m(K−m) half-spaces instead of (K choose m) sets). That concession fits the AC's later 'not much technical depth' verdict, for the lower bound only."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "A reject fits a borderline mean of 5.33, but two of three reviewers, including the confidence-5 Reviewer_1wnn, rated above threshold. The stated reason, 'the reviewers and I felt that the work does not have much technical depth beyond (carefully) combining techniques from online linear bandits with misspecification and the body of work on best arm identification', appears in no public B review. 1wnn listed the single no-regret learner and asymptotic optimality as strengths. The meta-review grants that 'The end results are novel' and does not mention the orthogonal parametrization or the single learner, which the paper presents as its technical novelties.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's judgment of limited technical depth: a careful combination of misspecified linear bandit and best-arm identification techniques",
+        "Borderline ratings (4, 6, 6; mean 5.33), none above 6",
+        "The lower bound is the Garivier-Kaufmann bound with a new set of alternatives, as the authors conceded to Reviewer_1wnn",
+        "Presentation gaps: implicit Theorem 2 and thin intuition (Reviewer_TZ2B, Reviewer_1wnn)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No explicit bound on the initialization length t_0, which grows with ill-conditioned features (Reviewer_vF9d; the AC agreed)",
+    "Justification of the heuristic stopping threshold used in all experiments (Reviewer_vF9d)",
+    "Whether m(K−m) half-space minimizations are cheaper than the (K choose m) combinatorial problem for small m (Reviewer_vF9d)",
+    "No unstructured baseline in Experiment (B); a linear y-axis hides the LinGapE-MisLid comparison (Reviewer_vF9d)",
+    "Whether adaptation to the true misspecification is possible under other assumptions (Reviewer_vF9d)"
+  ],
+  "issues_only_b": [
+    "Misspecification could be absorbed into the noise, and the motivation is inadequate (Reviewer_TZ2B)",
+    "Why δ = 1 for LinGapE in Figure 2 (Reviewer_TZ2B; a misreading of the error frequency)",
+    "Thin intuition for the lower bound and correctness proofs in the main text (Reviewer_TZ2B)",
+    "Reduction to a (d+1)-dimensional linear bandit (Reviewer_1wnn; withdrawn)",
+    "The δ → 0 optimality argument ignores the t-dependence of β^uns; comparison with stochastic BAI algorithms (Reviewer_1wnn)"
+  ],
+  "shared_issues": [
+    "What the analysis adds over earlier fixed-confidence work, in particular the lower bounds of Garivier and Kaufmann (2016) and Kaufmann et al. (2016) (A: Reviewer_vF9d's line 132 question and the AC's revision request; B: Reviewer_1wnn, Reviewer_TZ2B, and the AC's reason to reject)",
+    "LinGapE needs fewer samples than MisLid on the synthetic instances (A: Reviewer_vF9d; B: Reviewer_1wnn, Reviewer_TZ2B)",
+    "The sample complexity upper bound is implicit and hard to read (A: Reviewer_dLDo; B: Reviewer_1wnn, Reviewer_TZ2B)",
+    "Algorithms should be compared at a fixed empirical error rate (A: Reviewer_dLDo, unresolved; B: Reviewer_1wnn follow-up)",
+    "Misspecification is not new in the bandit literature; the new part is pure exploration (A: Reviewer_dLDo and the AC; B: the AC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Two things split the committees: the reviewer draw and the area chairs' (ACs') weighting of one shared doubt. A's ratings (6, 7, 7; mean 6.67) made acceptance routine; B's (4, 6, 6; mean 5.33) left the decision to the AC. Both ACs doubted how much the analysis adds to earlier fixed-confidence work, and both noted that misspecification is known in bandits. A's AC made this a revision request ('what additional complexity in analysis stems from misspecification'). B's AC made it the reason to reject: 'not much technical depth beyond (carefully) combining techniques'. No public B review says this. The authors' reply to Reviewer_1wnn conceded that Equation 2 is the Garivier-Kaufmann bound with a new set of alternatives, which supports the AC for the lower bound only. Nobody in B engaged with the paper's claimed analysis novelty, the orthogonal parametrization (lines 206-214); 1wnn, the most confident reviewer in either committee, called it a 'probable typo' and still rated 6. B's only reject, Reviewer_TZ2B (4), rests on two misreadings: TZ2B took LinGapE's error frequency of 1.0 for a parameter and proposed to treat a fixed per-arm bias as noise. Each committee had a confidence-1 reviewer who admitted not knowing the area (7 in A, 6 in B). The substantive reviewers raised the same points on both sides (LinGapE's lower sample counts, the implicit Theorem 2) and rated 7 (Reviewer_vF9d) and 6 (1wnn). No reviewer found an error, and no fatal flaw separates the committees.",
+  "candidate_reasons": [
+    "AC judged technical depth insufficient",
+    "same novelty doubt, opposite weight",
+    "detractor's objections rest on misreadings",
+    "borderline mean left to AC",
+    "reject reason absent from reviews",
+    "non-expert scores shift committee means"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_TZ2B review and the authors' 2021-08-06 rebuttal to it",
+    "Reviewer_1wnn review (strengths; line 211 'probable typo') and 2021-08-26 follow-up",
+    "Authors' 2021-08-27 reply to Reviewer_1wnn (Equation 2 and Lemma 1)",
+    "Reviewer_vF9d review and 2021-08-15 follow-up",
+    "Reviewer_dLDo 2021-09-10 follow-up",
+    "Reviewer_Q9sG review; Reviewer_sjPk review",
+    "paper_submitted lines 286-288 and Figure 2 labels (LinGapE error frequency 1.0)",
+    "paper_submitted Figure 1, Experiment (A) panels",
+    "paper_submitted Theorem 2, lines 257-267",
+    "paper_submitted lines 206-214 (orthogonal parametrization)",
+    "paper_submitted lines 122-147 (lower bound and comparison with Kaufmann et al. 2016)"
+  ]
+}

@@ -1,0 +1,219 @@
+{
+ "pair_id": "n21-202",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    9,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_p28f"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_rx52",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "A 9 ('Top 15% of accepted NeurIPS papers') against two 6s, after 2 hours. The main review is one paragraph of praise ('their result is terrific', 'I strongly recommend this paper for acceptance') and names no weakness. It calls the model 'highly relevant to modern problems in practical machine learning', the link that Reviewer_p28f, Reviewer_Nq1S, the AC and all of Committee B doubt. rx52 never posted in the discussion; the authors' reply to rx52 is a thank-you."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_rx52",
+     "evidence": "2 hours; no weakness, question or limitation. It takes the adversarial-training link at face value, although the paper itself says its Section 4 setting differs from Theorem 1 (lines 224-228, 237-240) and that it 'does not yield a provable defense in real-world settings' (line 373)."
+    },
+    {
+     "reviewer": "Reviewer_Nq1S",
+     "evidence": "Two questions and four sentences of assessment. Admits 'I'm not familiar with the Equivalence-Query-learning model by Angluin'; the limitations field is '-'. Gives 6 because the separation 'seems interesting' and never replies to the authors' answers."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_p28f",
+     "claim": "In the proposed model the attacks need not even depend on the target image.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 2 calls A a restricted adversary whenever A(f, EX_D) = EQ_D. The note at lines 310-312 says 'a priori there is no restriction on the relationship between samples from EX_D and A(f, EX_D)' and that A need not use EX_D at all."
+    },
+    {
+     "reviewer": "Reviewer_p28f",
+     "claim": "The robustness link assumes that attacks are on the manifold and distributed as D on the error set, not adversarially.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 proceeds 'under this assumption' that D' and D_{f!=h} are 'not too different' (lines 224-228). Corollary 1 says nothing once A(f_t, EX_D) differs from EQ_D(f_t) (lines 329-330)."
+    },
+    {
+     "reviewer": "Reviewer_Nq1S",
+     "claim": "It is not clear why Theorem 1 explains the on-manifold result of Section 4.",
+     "checked_against_paper": "correct",
+     "evidence": "The paper says the two distributions 'may be different' (line 224) and that 'Algorithm 1 is likely not the same as the algorithms that are used for training neural networks' (lines 237-240). The authors' reply rests the link on two unproven assumptions."
+    },
+    {
+     "reviewer": "Reviewer_rx52",
+     "claim": "The algorithm needs polylog(1/eps) queries, against O(1/eps) samples in the PAC model.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1: O((d + log(1/delta)) log^9(1/eps)) queries; the PAC comparison is O(d/eps) (Hanneke 2016, lines 119-121)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_p28f"
+    ],
+    "evidence": "Inferred from dates and text. On 2021-08-19 Reviewer_p28f wrote 'I would be willing to increase my score given that both the sections are made more precise and less tangential'. On 2021-08-23 the authors promised to 'focus more on the separation result and make the discussion about adversarial examples more concise and precise'. The review was edited on 2021-08-23. Its text still ends 'as is, I lean towards rejecting the paper', which fits a 5 better than the final 6. Reviewer_rx52 and Reviewer_Nq1S did not edit or reply.",
+    "what_convinced_or_not": "The defence of the model did not convince: on 2021-08-19 p28f answered that attacks independent of an anchor input miss targeted attacks and are often off-manifold. The promise to shrink the adversarial material and refocus on the theorem is what p28f had asked for."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All ratings are 6 or above (mean 7.0), and the AC accepted. The AC credits 'a neat argument' that 'requires significant insight', calls the adversarial connection 'tenuous at best to me and to several of the reviewers (as well as in an earlier review process as per the authors)', and asks the authors to 'remove all unnecessary parts there'. No author statement about an earlier review appears in either public record.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "The PAC versus EQ separation is novel and non-trivial ('neat argument', 'requires significant insight', Committee A AC; 'technically novel', Reviewer_p28f)",
+    "All three ratings at or above 6 (mean 7.0), lifted by Reviewer_rx52's uncritical 9",
+    "The adversarial-robustness material was treated as removable: the AC asked for cuts and the authors promised to refocus on the separation result",
+    "Reviewer_p28f's rating reached 6 after that promise, although his text still leans to rejection"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    5
+   ],
+   "confidences": [
+    3,
+    2,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_mNRE",
+    "Reviewer_SBEU",
+    "Reviewer_X9Aw"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 6, 5 sit within one point. Reviewer_SBEU's 6 is the highest, and SBEU shares the other two reviewers' view of the robustness half."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_X9Aw",
+     "claim": "Corollary 1 gives no robust learning guarantee; at best the learned predictor has low standard generalization error.",
+     "checked_against_paper": "correct",
+     "evidence": "Corollary 1 (lines 323-331) guarantees R_{D,h}(f) <= eps, the standard risk, or a round where A was not a restricted adversary. Section 5 defines no robust risk. The 'defense' reading (lines 337-346) is an interpretation, not a theorem."
+    },
+    {
+     "reviewer": "Reviewer_X9Aw",
+     "claim": "Lines 371-372 are not accurate: Section 5 presents no robustness guarantee.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 371-372 say the setting lets 'a learning scheme ... become increasingly robust', and the abstract says the model 'leads to robustness'. Line 373 concedes 'Our result does not yield a provable defense in real-world settings'."
+    },
+    {
+     "reviewer": "Reviewer_X9Aw",
+     "claim": "The paper does not discuss Montasser, Hanneke and Srebro (2021).",
+     "checked_against_paper": "correct",
+     "evidence": "Absent from the references. The authors agreed to add it."
+    },
+    {
+     "reviewer": "Reviewer_SBEU",
+     "claim": "The bound has an exponent of 9, which the authors discuss, and the paper gives no lower bounds.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 states O((d + log(1/delta)) log^9(1/eps)). Section 6 (lines 377-380) conjectures O(d log(1/eps)) and names a near-matching upper or lower bound as an open problem; no lower bound is proved."
+    },
+    {
+     "reviewer": "Reviewer_SBEU",
+     "claim": "The adversary is not defined in the sense of Section 5's opening, where x' must be misclassified and 'semantically indistinguishable' from x.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 266-271 introduce semantic indistinguishability and call it hard to define. Definition 2 puts no closeness constraint between x and A(f, x)."
+    },
+    {
+     "reviewer": "Reviewer_mNRE",
+     "claim": "Line 300 justifies the attack model by saying new attack models 'might be necessary for realizing adversarial robustness in the real world'.",
+     "checked_against_paper": "correct",
+     "evidence": "Quoted accurately from lines 300-301."
+    },
+    {
+     "reviewer": "Reviewer_mNRE",
+     "claim": "The exponential improvement is not very surprising, because the counterexamples come from the symmetric difference.",
+     "checked_against_paper": "not_checked",
+     "evidence": "A judgment. The abstract concedes the result is 'intuitive'. Lines 112-115 and 132-149 argue that the natural Combine step cannot be computed and that the Bshouty-Gavinsky technique gives no better than O(d/eps). Committee A's AC made the same point and still credited the argument."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "All three reviews were edited after the rebuttal with explicit no-change notes: Reviewer_SBEU on 2021-08-21 ('my opinion remains unchanged'), Reviewer_mNRE on 2021-08-30 ('my evaluation on this paper has not changed'), Reviewer_X9Aw on 2021-08-31 ('I decided to keep my score the same'). mNRE cites 'the discussion offline', in which 'we are all a bit concerned with the latter part of the paper'.",
+    "what_convinced_or_not": "The authors pasted one defence into all three replies: the assumption that attacks follow D on the error set is 'as canonical as any other', and adversarially chosen distributions are 'missing'. It did not answer X9Aw's point that Corollary 1 has no robust guarantee. Unlike in A, the authors offered no cut or refocus, only to cite Montasser et al. and to state Section 3.3 as a corollary."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5, 6, 5 (mean 5.33), and the AC rejected. The meta-review says the theorem 'appeared to be novel to the reviewers', that the robustness part 'was rather confusing for all the reviewers', and that 'after the discussion, all the reviewers recommended rejecting the paper in its current form'. Reviewer_SBEU's posted rating is still 6, so that unanimity comes from the non-public discussion. The AC adds no reading of its own.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "The adversarial-robustness material (about half the main text) was judged confusing, informal and without a robustness guarantee by all three reviewers and the AC",
+    "The AC judged the paper 'in its current form', not the theorem alone",
+    "Ratings 5, 6, 5 (mean 5.33) and no champion; the reviewers agreed to reject in the non-public discussion",
+    "The rebuttal defended the adversarial framing instead of offering to cut it, so no score moved"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "The proof overview lacks technical detail, and Sections 3.3 and 5 are tangential (Reviewer_p28f)",
+  "The attack model misses targeted attacks that change features of a specific input (Reviewer_p28f, discussion)",
+  "An earlier review process also found the adversarial link tenuous (Committee A AC)",
+  "The EQ model is 'highly relevant to modern problems in practical machine learning', claimed as a strength (Reviewer_rx52)"
+ ],
+ "issues_only_b": [
+  "Corollary 1 bounds only standard risk, so the paper has no robustness guarantee and lines 371-372 overclaim (Reviewer_X9Aw)",
+  "The goal of adversarial robustness is never formally defined (Reviewer_X9Aw)",
+  "Missing related work: Montasser, Hanneke and Srebro (2021) (Reviewer_X9Aw)",
+  "No lower bounds, and the log^9 factor is loose (Reviewer_SBEU)",
+  "State the Section 3.3 black-box boosting result as a formal corollary; clarify lines 282-283 (Reviewer_X9Aw)"
+ ],
+ "shared_issues": [
+  "The PAC versus EQ separation is novel and interesting (A: Reviewer_p28f, Reviewer_rx52, Reviewer_Nq1S, AC; B: Reviewer_SBEU, Reviewer_X9Aw, AC)",
+  "The adversarial-robustness connection is unconvincing or informal (A: Reviewer_p28f, Reviewer_Nq1S, AC; B: Reviewer_mNRE, Reviewer_SBEU, Reviewer_X9Aw, AC)",
+  "The speed-up is unsurprising because counterexamples come from the disagreement region (A: AC; B: Reviewer_mNRE)",
+  "The assumption that attacks follow D on the error set, and the Section 4 link to Stutz et al., are unjustified (A: Reviewer_p28f, Reviewer_Nq1S; B: Reviewer_SBEU)",
+  "The adversary is not tied to the input it perturbs (A: Reviewer_p28f; B: Reviewer_SBEU)",
+  "The link to standard robust PAC learning is unclear (A: Reviewer_Nq1S; B: Reviewer_X9Aw)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A recommended a poster and B a reject on the same facts. Both found the PAC versus EQ separation theorem novel and non-trivial, and both ACs and five of six reviewers doubted the adversarial-robustness material, about half the main text. A's AC called that link 'tenuous at best', accepted on the theorem, and asked the authors to 'remove all unnecessary parts'; B's AC rejected the paper 'in its current form'. A's scores gave its AC room. Reviewer_rx52's 9 is a 2-hour review that names no weakness and praises the framing every other reviewer doubted; it is enthusiasm, not evidence. Reviewer_p28f's 6 contradicts his own text ('as is, I lean towards rejecting the paper'): he offered a higher score if the adversarial sections became 'more precise and less tangential', the authors promised on 2021-08-23 to 'focus more on the separation result', and he edited the review that day. In B the authors pasted one defence of the adversarial model into all three replies and offered no cut, and no score moved. B's specific criticisms hold on the submission: Corollary 1 bounds only standard risk, so the abstract and lines 371-372 claim a robustness the paper does not prove, and Montasser, Hanneke and Srebro (2021) is missing. No fatal flaw separates the committees. A judged the paper the authors promised; B judged the paper it read.",
+ "candidate_reasons": [
+  "same strengths and weaknesses, different weights",
+  "AC accepts core, requests cuts",
+  "exuberant champion with thin review",
+  "rebuttal promise lifted borderline score",
+  "specialist exposed missing robustness guarantee",
+  "overclaimed framing judged as submitted"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_rx52 review (9, 2 hours)",
+  "Reviewer_p28f review, 2021-08-19 comment and the authors' 2021-08-23 reply",
+  "Reviewer_Nq1S review",
+  "Committee A meta-review",
+  "Reviewer_X9Aw final review (after-rebuttal paragraph)",
+  "Reviewer_SBEU final review",
+  "Reviewer_mNRE after-rebuttal note ('discussion offline')",
+  "Committee B meta-review",
+  "paper_submitted Corollary 1 (lines 323-331) and lines 337-346",
+  "paper_submitted lines 371-373 and abstract",
+  "paper_submitted Definition 2 and note (lines 307-312)",
+  "paper_submitted Theorem 1 and Section 6 (lines 377-380)",
+  "paper_submitted references (no Montasser, Hanneke, Srebro 2021)"
+ ]
+}

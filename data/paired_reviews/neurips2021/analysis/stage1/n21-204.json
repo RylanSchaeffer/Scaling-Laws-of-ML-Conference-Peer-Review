@@ -1,0 +1,233 @@
+{
+ "pair_id": "n21-204",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_pJNf"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No outlier. All three final ratings are 7. Reviewer_pJNf began at 5 and moved to 7 after the rebuttal ('I've bumped up my rating accordingly (5->7)', 2021-08-24), so the initial ratings were 5, 7, 7."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_pJNf",
+     "claim": "The paper claims improved speed over prior work but does not demonstrate it.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted lines 256-258 say the system 'transcribes piano pieces faster than baseline systems' and give no numbers. Table 4 times only the semi-CRF components and has no baseline row. The rebuttal added 95 s against 353 s for Kong et al. (2020) on a 33.3-minute piece."
+    },
+    {
+     "reviewer": "Reviewer_pJNf",
+     "claim": "Only mean scores are reported, with no variance or statistical test; the consistent gain is about 4 points F1 on the two offset metrics.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2: Note w/ Offset F1 88.50 against 84.45 and Note w/ Offset & Vel. F1 87.53 against 83.02. Frame F1 is 90.81 against 90.17 and note onset F1 is 96.31 against 96.77. Checklist 3(c) answers error bars 'N/A ... Too expensive to train so many times'. The authors posted paired file-wise t-tests (p below 1e-5 against prior methods) on 2021-08-19, in A's forum only."
+    },
+    {
+     "reviewer": "Reviewer_pJNf",
+     "claim": "Calling the conditional independence assumption of Eq. 2 'similar to naive Bayes' is no justification (lines 146-147).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 146-147 are the whole justification: 'One may question the validity of this conditional independence assumption for piano transcription, this is a simple treatment similar to naive Bayes.' pJNf raised this only as a minor comment."
+    },
+    {
+     "reviewer": "Reviewer_jUoX",
+     "claim": "The Kong et al. note-with-offset F1 in the paper (84.45) differs from the published 82.47, and the paper does not say why.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 lists 84.45, and Section 4.4 does not say how baseline numbers were obtained. The authors replied that they recomputed baselines from the pretrained models with corrected offset labels. The recomputed baseline is higher than Kong et al.'s own figure, so the change favours the baseline. The camera-ready adds a sentence on the recomputation."
+    },
+    {
+     "reviewer": "Reviewer_jUoX",
+     "claim": "The forward-backward algorithm, a key contribution, is introduced in one sentence without citations or explanation.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 129-131: 'Here we propose a forward-backward algorithm, as shown in Algorithm 1', with no citation. The rest of the paragraph covers batching, memory layout and speed."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_pJNf"
+    ],
+    "evidence": "Reviewer_pJNf, 2021-08-24: 'Your clarifications are most helpful, and I've bumped up my rating accordingly (5->7)'; the review was edited the same day. Reviewer_7qii, 2021-09-01: 'I will keep the same rating' (7). Reviewer_jUoX, 2021-08-27, kept 7 and asked again for clearer diagrams and a clearer CRF description. Neither 7qii nor jUoX edited the review.",
+    "what_convinced_or_not": "pJNf's two objections were mixed results without statistics and an unproven speed claim. The common response gave bug-fixed results (Note w/ Offset F1 88.63 against 84.45) and a runtime comparison (95 s against 353 s). A follow-up gave paired t-tests (p below 1e-5). These moved pJNf to 7. jUoX accepted the baseline explanation and the promise of MAESTRO v3 results, but the clarity concern stayed open; it did not lower the score. The rebuttal's claim to win 'all event-level F1s' passes over note onset F1, where Kong et al. still lead (96.77 against 96.39); no reviewer noticed."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three 7s, and the AC accepted. The meta-review cites a 'significant improvement in performance' in the 'updated results' and says 'Reviewers had no reservation of its impact and contribution to the domain'. That overstates the reviews: Reviewer_jUoX wrote that significance 'is limited by the domain-specific nature of the work', and Reviewer_pJNf found significance 'somewhat difficult to gauge'. jUoX's clarity request appears only as a general request to incorporate all suggestions.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Unanimous 7s from three specific, engaged reviewers (confidences 4, 4, 5).",
+    "First event-level (interval) formulation of piano transcription, valued for music transcription and sound event detection; Reviewer_7qii: 'I strongly argue for accepting this paper'.",
+    "About 4 points F1 gain over Kong et al. (2020) on the two note-with-offset metrics, supported after the rebuttal by bug-fixed results and paired t-tests.",
+    "The rebuttal runtime comparison (95 s against 353 s) answered the unproven speed claim and moved Reviewer_pJNf from 5 to 7."
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    5,
+    6,
+    5
+   ],
+   "confidences": [
+    3,
+    5,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_ygBT",
+    "Reviewer_1vpu"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No outlier. Ratings 4, 5, 6, 5 lie within two points. The low end, Reviewer_LiUp (4), is the least careful review. The high end, Reviewer_nVTb (6), names only scope as a weakness."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_LiUp",
+     "evidence": "2 hours, confidence 3, a 150-word main review. Its two concrete claims are the missing baseline runtime (correct) and that the results do not significantly improve the state of the art (wrong for the offset metrics, +4.05 and +4.51 F1). The rest is that semi-CRFs date from 2004 and a venue suggestion (ISMIR or ICASSP). LiUp did not reply to the rebuttal, which gave the runtime comparison and updated results, and did not edit the review."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_LiUp",
+     "claim": "No run times are reported for the state-of-the-art models, so the speed claim has no fair comparison.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 256-258 assert faster transcription with no numbers, and Table 4 has no baseline row. The rebuttal added 95 s against 353 s for Kong et al. (2020)."
+    },
+    {
+     "reviewer": "Reviewer_LiUp",
+     "claim": "The empirical results do not significantly improve on the state of the art.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Wrong for the paper's target metrics: Note w/ Offset F1 88.50 against 84.45 and Note w/ Offset & Vel. F1 87.53 against 83.02 (Table 2). True for frame F1 (90.81 against 90.17), note onset F1 (96.31 against 96.77) and the three pedal F1s, where Kong et al. lead (Table 3). The submission has no significance test."
+    },
+    {
+     "reviewer": "Reviewer_ygBT",
+     "claim": "The numbers for different systems are extremely close, and Kong et al. (2020) is better in most categories.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The count holds: Kong et al. lead 4 of 7 F1 columns (note onset and all three pedal F1s). The closeness does not: the two offset F1s, the paper's stated target, differ by 4.05 and 4.51 points (Table 2)."
+    },
+    {
+     "reviewer": "Reviewer_ygBT",
+     "claim": "Related work does not mention semi-CRFs for speech.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 79-87 cite word segmentation, named entity recognition, part-of-speech tagging and chord recognition, and no speech work. The authors replied that Kong et al. (2015) is 'on the same task', but the paper cites it for Chinese word segmentation (lines 81-82). The camera-ready adds Lu et al. (2016) on phone recognition."
+    },
+    {
+     "reviewer": "Reviewer_1vpu",
+     "claim": "The claim at lines 137-139 that the custom gradient is faster than autodiff has no support.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 137-139 assert 'a substantial speedup' over PyTorch autodiff on GPU; Table 4 has no autodiff row. The rebuttal table supplied it: 0.08 s against 0.39 s at 400 frames and 0.27 s against 17.68 s at 1600 frames on GPU."
+    },
+    {
+     "reviewer": "Reviewer_1vpu",
+     "claim": "Each event type gets an independent zeroth-order semi-CRF, so the model captures neither note correlations nor temporal correlations between events.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 42 and 47 specify a zeroth-order semi-CRF. Lines 143-147 assume conditional independence across event types and justify it only as 'similar to naive Bayes'. The authors defended this as a deliberate choice, and 1vpu called the defence 'reasonable'."
+    },
+    {
+     "reviewer": "Reviewer_1vpu",
+     "claim": "The parameters theta in Eq. 1 are not explained, and it is unclear that the model is trained end to end.",
+     "checked_against_paper": "correct",
+     "evidence": "Theta appears in Eqs. 1, 2, 3 and 5 and at line 129 ('gradient w.r.t. to theta') but is never defined. The submission never says that the score models and the semi-CRF are trained jointly; a reader must infer it from Eq. 5."
+    },
+    {
+     "reviewer": "Reviewer_1vpu",
+     "claim": "State-of-the-art claims are overstated: frame F1 is only marginally better (90.81 against 90.17), note onset F1 marginally worse (96.31 against 96.77), and sustain pedal detection significantly worse.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 matches. Table 3: pedal frame F1 89.69 against 94.11; pedal onset F1 76.23 against 77.71; pedal onset-and-offset F1 73.06 against 73.81. The abstract says the model 'surpasses the current state-of-the-art'."
+    },
+    {
+     "reviewer": "Reviewer_1vpu",
+     "claim": "The score and attribute models are distinct for each event type and share no weights (posed as a question).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 193-196: one MLP outputs a channel for every event type. Line 206: the attribute predictor takes an eventType embedding, so it is shared. The authors confirmed both are shared. The misreading supports 1vpu's own report that the paper is hard to follow."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_1vpu"
+    ],
+    "evidence": "Reviewer_1vpu edited the review on 2021-08-31 and added a post-rebuttal section: 'I have increased my score to a 5'. The earlier score is not shown. Reviewer_LiUp, Reviewer_ygBT and Reviewer_nVTb posted nothing after the rebuttal and did not edit their reviews after it; ygBT's edit is dated 2021-07-16, the day after posting. 1vpu mentions 'lingering confusion among the reviewers (myself included)', so a reviewer discussion took place that the public record does not show.",
+    "what_convinced_or_not": "1vpu cited the stronger bug-fixed results, the autodiff benchmark and the promised clarity rewrite, and called the answer on temporal and harmonic correlations 'reasonable'. 1vpu stopped at 5 because 'I can't evaluate the extent of the writing improvements', and still wanted to know why the analytical gradient beats autodiff. The rebuttal answered LiUp's two concrete points (runtime, state of the art) and ygBT's runtime and pytorch-struct points with numbers; none of the three responded. B never received the paired t-tests that A got."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 4, 5, 6, 5 (mean 5.0), and the AC rejected. The AC calls the rebuttal 'good' and says it 'answers the majority of the questions', but rejects because 'the revision to be made ... seems to be significant'. The two named lingering concerns come from Reviewer_1vpu: temporal correlation is not modelled (also Reviewer_ygBT), and it is unclear why autodiff is slower. 1vpu had called the answer on correlations 'reasonable', and the authors had given an autodiff benchmark. The AC does not mention limited ML novelty or venue fit, the main objection of Reviewer_LiUp and Reviewer_nVTb.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Mean rating 5.0, with three of four reviewers below threshold after the rebuttal.",
+    "Limited ML novelty and narrow scope: a 2004 semi-CRF applied to one task; Reviewer_LiUp and Reviewer_nVTb suggested ISMIR or ICASSP.",
+    "Hard-to-follow CRF exposition; Reviewer_1vpu would not endorse writing changes it could not see, and the AC judged the needed revision 'significant'.",
+    "Modelling restrictions (independent zeroth-order semi-CRFs) and the unexplained autodiff speedup, named by the AC as lingering concerns."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Baseline figures differ from published ones (Kong et al. note-with-offset F1 84.45 against 82.47), and MAESTRO v2 has known errors; use v3 (Reviewer_jUoX).",
+  "Time of Viterbi decoding relative to the network forward pass (Reviewer_jUoX).",
+  "Motivation of the product and moment features and of length scaling; piano-roll visualisations against Hawthorne et al. and Kong et al. (Reviewer_7qii).",
+  "Whether the non-overlap assumption transfers to sound event detection (Reviewer_pJNf)."
+ ],
+ "issues_only_b": [
+  "The zeroth-order semi-CRF models no temporal correlation between events (Reviewer_1vpu, Reviewer_ygBT; named by the B AC).",
+  "Why the custom gradient beats autodiff, and why the dynamic program is a bottleneck (Reviewer_1vpu; named by the B AC).",
+  "Implementation looks ad hoc: pytorch-struct, a CPU forward-backward, a maximum duration or an explicit duration model would do (Reviewer_ygBT).",
+  "Sustain pedal results trail Kong et al., and the paper gives no argument for preferring note-with-offset metrics (Reviewer_1vpu).",
+  "Undefined theta, unstated end-to-end training and the asymmetric no-event score (Reviewer_1vpu).",
+  "Speech semi-CRF work missing from related work; no experiments on the model's internals (Reviewer_ygBT)."
+ ],
+ "shared_issues": [
+  "Limited ML novelty: an existing semi-CRF applied to a new task (A: Reviewer_pJNf, Reviewer_7qii, Reviewer_jUoX; B: all four).",
+  "Domain-specific scope limits relevance to the wider ML audience (A: Reviewer_jUoX; B: Reviewer_LiUp and Reviewer_nVTb, who suggested ISMIR or ICASSP).",
+  "Mixed results against Kong et al.: clear gains only on the offset metrics, and no significance test (A: Reviewer_pJNf; B: Reviewer_LiUp, Reviewer_ygBT, Reviewer_1vpu).",
+  "Speed claim without a baseline runtime (A: Reviewer_pJNf, Reviewer_jUoX; B: Reviewer_LiUp, Reviewer_ygBT).",
+  "Unclear exposition of the CRF loss and the forward-backward algorithm (A: Reviewer_jUoX, Reviewer_pJNf; B: Reviewer_1vpu, Reviewer_ygBT, Reviewer_nVTb).",
+  "Weak justification of independence across event types (A: Reviewer_pJNf, minor comment; B: Reviewer_ygBT and Reviewer_1vpu, central)."
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same facts differently. Reviewers on both sides named the same weaknesses: an existing semi-CRF applied to one task, clear gains only on the note-with-offset metrics, a speed claim without a baseline, and a hard CRF section. Committee A's reviewers, piano-transcription specialists, valued the event-level reformulation and the 4-point offset F1 gain and gave 7 regardless. Reviewer_jUoX gave 7 while calling clarity 'clearly the area for the most improvement'; B's Reviewer_1vpu made the same complaint and gave 5. Committee B judged the paper as a NeurIPS ML contribution and probed the semi-CRF design (independence, zeroth order, autodiff). The rebuttal widened the gap. In A, it moved Reviewer_pJNf from 5 to 7 with bug-fixed results, a runtime comparison and paired t-tests. In B, only 1vpu replied, and stopped at 5 because the rewrite could not be seen. Reviewer_LiUp, Reviewer_ygBT and Reviewer_nVTb never answered a rebuttal that met their runtime and state-of-the-art points with numbers. B's AC called the rebuttal good but rejected on the size of the revision, leaning on 1vpu's remaining questions. Neither committee found an error in a key result.",
+ "candidate_reasons": [
+  "domain value versus ML novelty",
+  "same clarity complaint, different scores",
+  "detractors silent after rebuttal",
+  "rebuttal evidence moved one committee",
+  "AC rejects pending unseen revision",
+  "reviewer expertise mix differed"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_pJNf discussion reply, Committee A, 2021-08-24 (5->7)",
+  "Authors' paired t-test post, Committee A, 2021-08-19",
+  "Reviewer_jUoX final review (Clarity section)",
+  "Reviewer_1vpu final review, post-rebuttal section",
+  "Reviewer_LiUp final review",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf Tables 2, 3 and 4",
+  "paper_submitted.pdf lines 137-139, 143-147 and 256-258"
+ ]
+}

@@ -1,0 +1,220 @@
+{
+ "pair_id": "n21-203",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [4, 8, 5],
+   "confidences": [4, 3, 4],
+   "reviews_edited_after_posting": ["Reviewer_qqRn", "Reviewer_ABo1"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_qqRn",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only rating above threshold (8, 'clear accept') against 4 and 5, at the lowest confidence in A (3) after 4 hours. The review praises the exposition, concedes that 'empirical results are not compelling across all experiments', says 'I have very little to add beyond the summary above', and asks five clarification questions on Sections 3-4. After the rebuttal qqRn stayed 'in support' but endorsed the other reviewers' empirical concerns and doubted the ImageNet licence answer. The AC's meta-review does not draw on this review."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_wTMH",
+     "claim": "PSWE matches PMA's ModelNet40 accuracy (87.6 against 87.6) but needs more than twice PMA's inference time (2.04 s against 0.97 s).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1, ISAB row: PMA 87.6 ± 0.6, PSWE at L = 1024 87.6 ± 0.4. The timings come from the authors' own rebuttal table (ISAB test time per epoch). With the MLP backbone PSWE leads PMA by 0.3 points (86.9 against 86.6, within one standard deviation) at 1.68 s against 0.60 s. The claim at lines 230-231 that PSWE 'is able to outperform other pooling methods' for both backbones is false for ISAB."
+    },
+    {
+     "reviewer": "Reviewer_wTMH",
+     "claim": "The exact Euclidean embedding does not motivate the trainable slicers and reference, and the paper lacks a random fixed-slicer baseline.",
+     "checked_against_paper": "correct",
+     "evidence": "Eqs. 7-12 hold for any reference measure and any slices; line 172 even samples the slices uniformly. Training the slices is motivated only by the metric-learning remark of Section 4.3 (lines 199-204). Tables 1-3 use trained slicers throughout and contain no frozen-slicer or frozen-reference ablation. The rebuttal asserted that random fixed slices have 'severe consequences' but gave no numbers."
+    },
+    {
+     "reviewer": "Reviewer_wTMH",
+     "claim": "Rabin et al., 'Wasserstein barycenter and its application to texture mixing', is missing and should be discussed.",
+     "checked_against_paper": "incorrect",
+     "evidence": "It is reference [38] of the submission, cited at line 128, though wrongly as a source for generalized SW. The authors also missed this and promised to 'add' it. Committee B's AC caught the miscitation."
+    },
+    {
+     "reviewer": "Reviewer_ABo1",
+     "claim": "ModelNet40 accuracy is far below the state of the art and even below PointNet without the spatial transformer (more than 87%).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 tops out at 87.6 (ISAB) and 86.9 (MLP); no state-of-the-art encoder such as DGCNN or KPConv is tested. The PointNet figure is not in the submission; against the 87% ABo1 cites, the MLP result is just below and the ISAB result just above. Table 1 also has no max-pooling baseline, although PointNet pools by max."
+    },
+    {
+     "reviewer": "Reviewer_ABo1",
+     "claim": "On graph classification PSWE does not improve consistently over its counterparts.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2: even with PSWE's best of six L values picked per row after the fact, a baseline is best in 5 of 15 (dataset, backbone) rows (FSPool in four, GAP in one) and ties in one. Standard deviations are 2 to 8 points, so most differences are within noise. The authors replied that FSPool is a special case of PSWE."
+    },
+    {
+     "reviewer": "Reviewer_ABo1",
+     "claim": "On image classification PSWE is only comparable to FSPool, and CIFAR and ImageNet are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: PSWE is best in none of four settings. FSPool beats it in three (67.1 against 64.6; 23.4 against 18.4; 47.7 against 47.0) and GAP in one (82.5 against 82.3). Only NWPU-RESISC45 and Places-Extra69 are used."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The paper lacks a stronger discussion of, and a comparison with, Mialon et al. (OTKE), of which PSWE is a variant with 1D Wasserstein and one reference per slice.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 94-97 call the work 'closely related' to [12] (Mialon et al.) and [16] and contrast them in two sentences; Tables 1-3 contain no OTKE baseline. In B's forum the authors said they 'could not afford to run OTKE'. The 'just a variant' part is the AC's novelty judgment, not a checkable error."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_ABo1"],
+    "evidence": "Author responses on 2021-08-10; follow-ups on 2021-08-26 and 2021-08-27. ABo1's review was edited on 2021-09-10, the day of 'I increase my rating slightly'; the final rating is 5. wTMH's review was never edited, and wTMH wrote 'I am leaning toward my original rating' (2021-08-26). qqRn's review was edited on 2021-08-23, the day of the 'Acknowledgement' comment; what changed is unknown, and the text holds no post-rebuttal note.",
+    "what_convinced_or_not": "ABo1 raised the rating 'slightly' for the authors' 'efforts', with concerns 'not fully addressed': ModelNet40 accuracy and the small scale of the image experiments. The authors declined local pooling and stronger backbones as out of scope. The runtime table backfired: wTMH used it to show that PSWE ties PMA at twice the inference time. The 'legal' reason for skipping ImageNet drew objections from ABo1 and qqRn, since ModelNet40, Places and IMDB carry similar terms. The authors' Places-Extra69 rerun (2021-08-27) shows PSWE best in neither row, and nobody replied to it."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Two of three ratings are below threshold (4, 5), and the AC rejected, noting 'strong disagreements'. The AC's 'most importantly' points are ABo1's: stronger comparison with SOTA methods 'even if they do not reach SOTA' and a 'potential way for local pooling'. The AC then adds an objection that no reviewer raised: PSWE is 'just a variant' of Mialon et al. with a 1D Wasserstein distance and one reference per slice, so a comparison was expected. The authors never saw this objection. qqRn's 8 is not discussed.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Experimental study too weak: no state-of-the-art backbones and ModelNet40 accuracy far below the state of the art (Reviewer_ABo1, adopted by the AC)",
+    "No demonstration of local pooling (Reviewer_ABo1, AC)",
+    "AC's own view that PSWE is a variant of Mialon et al.'s OTKE, discussed in two sentences and not compared",
+    "Both confidence-4 reviewers stayed below threshold after the rebuttal; the only 8 is thin",
+    "Same ModelNet40 accuracy as PMA at about twice the inference time (Reviewer_wTMH)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [7, 5, 7, 6],
+   "confidences": [3, 3, 3, 4],
+   "reviews_edited_after_posting": ["Reviewer_iGeu"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 5, 7, 6 (mean 6.25) all lie within 1.25 of the mean, and the one 5 (Reviewer_xtA8) was declared a 6 in the discussion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_vGLg",
+     "evidence": "Rating 7 after a reported 10 hours. The main review restates the method, lists generic pros ('novel', 'theoretically grounded', 'demonstrated on a number of different settings') and two generic cons, and cites no table or result. The post-rebuttal reply is one sentence."
+    },
+    {
+     "reviewer": "Reviewer_xtA8",
+     "evidence": "Says f_i^θ (line 159) is not explained, but Eq. 7 defines it as the Monge map; guesses that i is a hidden-layer number, but line 103 uses it to index input sets. States that PSWE is better on point clouds and graphs, which Tables 1-2 do not support. Wrote that the rating would rise to 6 but never edited the form, which still says 5."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_iGeu",
+     "claim": "The final embedding is an L-vector (a learned weighting summed over the N reference elements), not the N×L matrix of the main text, and this appears only in the supplement.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 returns φ(X_i) ∈ R^{N×L}, and Eq. 12 uses the Frobenius norm; the main text never mentions a weighted sum. The authors confirmed it. Eq. 12's identity with the GSW distance therefore does not hold for the vector the experiments use; no reviewer drew that conclusion."
+    },
+    {
+     "reviewer": "Reviewer_iGeu",
+     "claim": "Table 2 shows large accuracy drops at L = 1024 that the paper does not discuss.",
+     "checked_against_paper": "correct",
+     "evidence": "IMDB-B with GIN falls from 74.6 (L = 256) to 68.8 (L = 1024); ENZYMES with GIN from 45.4 to 40.0 and with GCN from 37.8 to 33.7. The text does not mention it; the authors blamed overfitting."
+    },
+    {
+     "reviewer": "Reviewer_xtA8",
+     "claim": "On image recognition PSWE improves only a little over GAP.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: PSWE beats GAP by 0.7 points on Places-Extra69 with the patch MLP (18.4 against 17.7) and by 0.4 with ResNet18, and falls below GAP on NWPU-RESISC45 with ResNet18 (82.3 against 82.5). The one large gain is on NWPU with the patch MLP (64.6 against 50.4), where FSPool is higher still (67.1)."
+    },
+    {
+     "reviewer": "Reviewer_xtA8",
+     "claim": "PSWE obtains better performance in point-cloud and graph classification.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1: with ISAB, PSWE ties PMA (87.6); with the MLP it leads PMA by 0.3, within one standard deviation. Table 2: a baseline is best in 5 of 15 rows and ties in one, even with PSWE's best L picked per row."
+    },
+    {
+     "reviewer": "Reviewer_xtA8",
+     "claim": "The symbols d and i (line 103) and f_i^θ (line 159) are not explained.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 103 defines X_i as an input set with N_i elements in R^d, so i indexes sets and d is the element dimension. Eq. 7 (lines 157-158) defines f_i^θ as the Monge map between the slices of μ_i and μ_0."
+    },
+    {
+     "reviewer": "Reviewer_SDvh",
+     "claim": "The experimental results do not significantly outperform the baselines.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1-3: a tie with PMA on ModelNet40 with ISAB, mixed graph rows within noise, and no image setting where PSWE is best."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "SW was introduced in [38], not [36, 37] as the end of Section 3.1 implies, and [38] is not about generalized SW.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 127-128 cite [36, 37] for SW and [38, 39] for generalized SW. [38] is Rabin, Peyré, Delon and Bernot's texture-mixing paper, the origin of SW."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_xtA8"],
+    "evidence": "Author responses on 2021-08-10, a ResNet18 rerun on 2021-08-11, and follow-ups on 2021-08-26 and 2021-09-09. xtA8 wrote on 2021-08-26 'I would like to increase my rating to 6' but never edited the review, which still reads 5; the authors' 2021-09-09 'Follow-up' asked xtA8 to do so. iGeu edited the review on 2021-08-26 to add a post-rebuttal note and kept 7. SDvh 'kept my score unchanged' at 6 (2021-09-01). vGLg retained 7 (2021-09-02).",
+    "what_convinced_or_not": "xtA8 moved for novelty ('the proposed method is really novel') and for the Places-Extra69 rerun ('results on 16x16 patches + MLP has improved greatly'), yet PSWE is best in neither rerun row (35.2 against FSPool's 35.4; 58.30 against GAP's 58.63). iGeu found the answers 'very satisfactory' but still wanted an account of why the gain over GAP varies; the authors offered a shallow-versus-deep-backbone hypothesis. SDvh said the response 'cleared most of my concerns' but kept 6 because controlled experiments were only promised. The promised ablations were described in words, without numbers."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'All the reviewers are positive about the work and also appreciated the rebuttal', which holds only if xtA8's stated 6 counts. The AC asks for the promised experiments and for 'an in-depth discussion of the variations in relative performances with respect to GAP' (iGeu's post-rebuttal point). The AC's own reading shows in one citation fix: SW was introduced in [38], not [36, 37].",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All reviewers at or above threshold in the discussion (7, 7, 6, and xtA8's stated 6)",
+    "Novel, theoretically grounded method valued above modest gains (Reviewer_iGeu, Reviewer_vGLg, Reviewer_SDvh)",
+    "Rebuttal promised ablations, controlled experiments, max-pooling results and timings",
+    "Uneven gains over GAP treated as a camera-ready discussion item (AC)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Absolute accuracy far below the state of the art on ModelNet40; no state-of-the-art encoders such as DGCNN or KPConv (Reviewer_ABo1)",
+  "Only global pooling is shown; no local-pooling experiment (Reviewer_ABo1, Committee A AC)",
+  "No CIFAR or ImageNet, and the licence reason for skipping ImageNet conflicts with the datasets used (Reviewer_ABo1, Reviewer_qqRn)",
+  "Same ModelNet40 accuracy as PMA at about twice the inference time (Reviewer_wTMH)",
+  "No random fixed-slicer baseline; the exact-embedding property does not motivate the trainable parts (Reviewer_wTMH)",
+  "PSWE as a variant of Mialon et al.'s OTKE, with no comparison (Committee A AC)",
+  "Multiset inputs, slicer regularity conditions and what the reference set learns (Reviewer_qqRn)"
+ ],
+ "issues_only_b": [
+  "The experiments use a learned weighted sum to an L-vector, stated only in the supplement (Reviewer_iGeu, Reviewer_SDvh)",
+  "Undiscussed accuracy drops at L = 1024 in Table 2 (Reviewer_iGeu)",
+  "Interpretability of the learned reference set (Reviewer_iGeu, Reviewer_SDvh)",
+  "Missing max-pooling baseline (Reviewer_xtA8)",
+  "Undefined symbols and missing implementation details for the image models (Reviewer_xtA8)",
+  "No controlled tests of sliced OT against other distances such as MMD; the geometric motivation is not exploited (Reviewer_SDvh)",
+  "No comparison with max-sliced or other generalized SW distances (Reviewer_vGLg)"
+ ],
+ "shared_issues": [
+  "Small and uneven gains over simple pooling baselines (A: Reviewer_ABo1, Reviewer_wTMH, Reviewer_qqRn; B: Reviewer_xtA8, Reviewer_iGeu, Reviewer_SDvh)",
+  "Ablation of the trainable slicers and reference (A: Reviewer_wTMH; B: Reviewer_vGLg, Reviewer_SDvh)",
+  "Run time as a function of L (A: Reviewer_qqRn, Reviewer_wTMH; B: Reviewer_SDvh)",
+  "Comparison with other OT or distribution embeddings (A: AC on OTKE; B: Reviewer_SDvh on exact OT and MMD, Reviewer_vGLg on max-sliced SW)",
+  "Citation of Rabin et al. as the origin of SW (A: Reviewer_wTMH, wrongly as missing; B: AC, correctly as miscited)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw a clear, well-written pooling layer with tidy theory and small, uneven gains; they weighted the gains differently, and the reviewer draw set the weights. In A, both confidence-4 reviewers judged the practical value too low, and the submission confirms their checkable points: on ModelNet40 with ISAB, PSWE ties PMA at 87.6% (Table 1) at twice PMA's inference time by the authors' own timings (Reviewer_wTMH); PSWE is best in none of four image settings, with FSPool ahead in three (Table 3); and a baseline wins 5 of 15 graph rows and ties one even with PSWE's best L picked per row (Table 2; Reviewer_ABo1). A's only champion, Reviewer_qqRn (8), had 'very little to add' and later shared the empirical doubts. A's AC added an objection that no reviewer raised and the authors could not answer: PSWE is 'just a variant' of Mialon et al.'s OT embedding, which the paper treats in two sentences and never compares with. Three of B's four reviewers also named the weak gains ('only equally / slightly better', 'very close to GAP') but rated novelty higher, without weighing it against Mialon et al. or Kolouri et al. [16]; Reviewer_xtA8 promised a 6 after a rerun in which PSWE is still best in neither row, and B's AC followed a uniformly positive discussion. No fatal flaw separates the committees; A's reading of the experiments is the more accurate one.",
+ "candidate_reasons": [
+  "same modest gains, different weight",
+  "confident practicality-focused detractors in A",
+  "thin lone champion in A",
+  "AC-added novelty objection, never rebutted",
+  "novelty praised without prior-work check",
+  "results overclaim unchecked in B"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_ABo1 review (Cons 3-5) and 2021-08-22, 2021-09-10 replies",
+  "Reviewer_wTMH review and 2021-08-26 'runtime' reply",
+  "Reviewer_qqRn review and 2021-08-23 'Acknowledgement'",
+  "Committee A meta-review (Mialon et al. paragraph)",
+  "Authors' reply to Reviewer_SDvh, point A ('could not afford to run OTKE')",
+  "Reviewer_xtA8 2021-08-26 'Minor review comments' (stated 6, form still 5)",
+  "Reviewer_iGeu review (N×L versus 1×L) and post-rebuttal note",
+  "Reviewer_SDvh 2021-09-01 reply",
+  "Committee B meta-review",
+  "Authors' Places-Extra69 reruns (B 2021-08-10 and 2021-08-11; A 2021-08-27)",
+  "paper_submitted Table 1 (ISAB row) and lines 230-231",
+  "paper_submitted Tables 2 and 3",
+  "paper_submitted lines 94-97 (Mialon et al. [12], Kolouri et al. [16])",
+  "paper_submitted lines 127-128 and reference [38]",
+  "paper_submitted Algorithm 1 and Eq. 12"
+ ]
+}

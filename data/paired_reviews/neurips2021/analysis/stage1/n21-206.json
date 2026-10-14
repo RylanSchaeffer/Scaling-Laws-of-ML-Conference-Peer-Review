@@ -1,0 +1,252 @@
+{
+ "pair_id": "n21-206",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    6,
+    6,
+    6,
+    5
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_wktj",
+    "Reviewer_xfuA"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 6, 6, 6, 5 (wktj, xfuA, hn5z, Ep5m, LkFg). Reviewer_LkFg's 5 is one point below the rest and rests on the same prior-work point as Reviewer_wktj's 6. The rejection came from the AC, not from an outlying rating."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_hn5z",
+     "evidence": "Writes 'The related works are adequately cited' and 'The novelty of this paper is high', although the submission cites no memorization-capacity work and omits Daniely and Bubeck et al. The summary gives the width bound as n/2d; the paper states m >= 2n/d (line 117). Quality and clarity get one sentence each ('This paper is technically sound'). No post in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_wktj",
+     "claim": "Daniely (2019) and Bubeck et al. (2020), which show that O(n/d) neurons suffice to memorize n points, are not cited, so the novelty cannot be judged.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is in references [1]-[37]. Section 2 (lines 86-106) discusses only Soudry and Carmon, Xie et al., depth-expressivity work and Zhou et al. The camera-ready adds both as [9] and [12], 'pointed out by the reviewers'."
+    },
+    {
+     "reviewer": "Reviewer_wktj",
+     "claim": "The proofs of Theorems 1 and 2 show only that bad stationary points lie in a measure-zero set where the Jacobian is singular, so bad local minima can remain near the initialization.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The proof sketch (lines 155-159) argues that J(w0; v0) is full rank w.p.1 over the random draw and stays full rank throughout B_eps(w0); 'w.p.1' quantifies the initialization and data, not the points in the ball. An entry-wise non-zero v only rescales column blocks, so the rank does not depend on v. wktj withdrew the point: 'I was admittingly mistaken ... The proof seems sound.'"
+    },
+    {
+     "reviewer": "Reviewer_LkFg",
+     "claim": "The paper ignores the memorization papers of Daniely and of Bubeck et al., which use similar assumptions and parameters.",
+     "checked_against_paper": "correct",
+     "evidence": "Same reference-list check as for Reviewer_wktj."
+    },
+    {
+     "reviewer": "Reviewer_LkFg",
+     "claim": "References 15-22 deal with the ReLU activation, unlike this paper.",
+     "checked_against_paper": "incorrect",
+     "evidence": "[20] Lee et al. 2019, [21] Jacot et al. 2018 and [22] Chizat et al. 2018 are NTK and lazy-training analyses that cover smooth activations. The authors said so, and LkFg did not reply."
+    },
+    {
+     "reviewer": "Reviewer_Ep5m",
+     "claim": "In Theorem 1, 'for any small neighborhood' (line 130) should read 'there exists a small neighborhood', as the inverse function theorem gives.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 130 quantifies over any B_eps(w0) with no bound on eps. The authors conceded that the result holds only for eps below the inverse-function-theorem radius. Reviewer_qdo9 in B made the same point."
+    },
+    {
+     "reviewer": "Reviewer_xfuA",
+     "claim": "The paper does not say how large kappa is or how the bound in Eq. 6 depends on it.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 2 (line 210) states loss(w*, v*) = O(eps^2) with no kappa. The authors cited O(kappa^2 eps^2) in Appendix B, which is not in the submitted PDF."
+    },
+    {
+     "reviewer": "Reviewer_xfuA",
+     "claim": "The Oymak and Soltanolkotabi papers on convergence of moderately overparameterized shallow networks are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Absent from references [1]-[37]. The camera-ready adds them as [54] and [55]."
+    },
+    {
+     "reviewer": "Reviewer_hn5z",
+     "claim": "The related works are adequately cited.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The submission cites no memorization-capacity work (no Baum, Bubeck et al., Daniely or Yun et al.). The camera-ready adds a paragraph on finite-sample expressivity and on [9] and [12]."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "mixed",
+    "by_whom": [
+     "Reviewer_wktj",
+     "Reviewer_xfuA"
+    ],
+    "evidence": "Reviewer_wktj edited the review on 2021-08-19 with a post-rebuttal comment: 'I decided to raise my score to 6' (the earlier rating is not visible). Reviewer_xfuA posted 'Decrease my score' on 2021-08-18 ('I decrease my score from 8 to 6') and edited the review the same day. Reviewer_hn5z, Reviewer_Ep5m and Reviewer_LkFg did not edit or post.",
+    "what_convinced_or_not": "The authors' explanation that Theorem 1 holds for every point of the ball convinced wktj that the proofs are sound ('I drop my second claim'). The comparison with Daniely and Bubeck et al. did not: wktj agreed that results and techniques differ, but said all three papers 'essentially claim the same thing' and asked for a dedicated comparison in the paper. xfuA lowered the rating because of the similarity that other reviewers raised, before the authors' 2021-08-19 reply, and did not answer that reply. LkFg never answered the rebuttal."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Four of five ratings are 6 (mean 5.8), and the meta-review opens with 'This paper makes a significant contribution', but the AC rejected. The decisive concern comes from the reviewers: wktj and LkFg named Daniely and Bubeck et al., and xfuA cut to 6 over them. The AC set Bubeck aside as 'an easily fixable mistake' and made Daniely decisive: the authors 'make arguments about the validity of the result in Daniely', such claims 'must go through the scrutiny of peer-review', and NeurIPS 'does not accept revised versions'. The AC admits only 'a brief view' of the rebuttal. The program chairs accepted on condition of 'a re-examination to ensure that the claims made with respect to the work of Daniely are correct'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Closest prior work uncited: Daniely (NeurIPS 2020) and Bubeck et al. (2020) claim memorization at width about n/d with training guarantees (Reviewer_wktj, Reviewer_LkFg)",
+    "The rebuttal's charge that Daniely's O~(n/d) bound hides super-polynomial factors was a new, contestable claim that the AC said needs peer review",
+    "No revised version allowed, so the AC could not check the promised comparison",
+    "Ratings only marginal: wktj capped at 6 for poor positioning, and xfuA cut 8 to 6 over the same prior work"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    8,
+    7,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_qqLe",
+    "Reviewer_HxjM"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_qqLe",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "8 against 6, 7 and 6. A 3-hour review of generic praise ('a relevant paper from various viewpoints') with only wording and figure-size comments. It overstates the result ('they can prove success in the sense of reaching the global minimum') and never mentions prior memorization work. Without it, B's ratings are 6, 7, 6, still above threshold, so it did not decide B's outcome."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_qqLe",
+     "evidence": "Rating 8 after 3 hours. The review praises the combination of expressivity and trainability but checks no proof and names no weakness beyond articles, figure fonts and the vague term 'expressivity'. It misstates Theorem 2 as a proof that training reaches the global minimum. The only later engagement is one added sentence: 'The authors addressed my comments successfully'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_qdo9",
+     "claim": "Assumption 2 requires sigma(0) = 0 (zero set {0}) and also sigma(0) != 0, a contradiction; the condition also tightens as n grows.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 118-120 state both. The authors called sigma(0) != 0 a typo. As written, the derivative condition also fails for tanh and sigmoid (second derivative zero at 0) and for softplus (third derivative zero at 0), which lines 122-124 say it covers. The camera-ready replaces it with 'infinitely many non-zero coefficients in the Taylor expansion'."
+    },
+    {
+     "reviewer": "Reviewer_qdo9",
+     "claim": "Theorem 1 does not quantify eps, so it appears to hold for any eps.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 130 says 'for any small neighborhood' with no bound on eps. The authors conceded that the result needs eps 'small enough'."
+    },
+    {
+     "reviewer": "Reviewer_qdo9",
+     "claim": "The paper gives no convergence guarantee, so the trainability claims in the introduction are not supported.",
+     "checked_against_paper": "correct",
+     "evidence": "The abstract (lines 13-14) says 'so the trainability is guaranteed', and the conclusion (lines 312-313) says the network 'can be provably trained to approximately zero loss'. Theorem 2 (line 210) covers only KKT points of problem (5). The camera-ready abstract says that the convergence analysis is left to future work."
+    },
+    {
+     "reviewer": "Reviewer_qdo9",
+     "claim": "The plots are averaged over only two independent runs.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 309: 'The presented results are averaged over 2 seeds'. Checklist item 3(c) says the same."
+    },
+    {
+     "reviewer": "Reviewer_Lvky",
+     "claim": "Prior work on memorization (Zhang et al. 2017; Yun et al., 'Small ReLU networks are powerful memorizers') and on width-limited expressivity (Lu et al. 2017) is not cited.",
+     "checked_against_paper": "correct",
+     "evidence": "None is in references [1]-[37]. The camera-ready adds all three ([73], [75], [45])."
+    },
+    {
+     "reviewer": "Reviewer_qqLe",
+     "claim": "The authors introduce a training regime for which they can prove that it reaches the global minimum.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 2 (line 210) says that every KKT point of (5) has loss O(eps^2). No result shows that projected gradient descent reaches a KKT point; the authors told Reviewer_qdo9 that iteration complexity is left to future work."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_HxjM"
+    ],
+    "evidence": "Reviewer_HxjM on 2021-08-31: 'Thank you for the detailed clarifications. I have increased my score' (review edited the same day; the earlier rating is not visible). Reviewer_qqLe edited on 2021-09-13 to add 'The authors addressed my comments successfully, and I will keep my (positive) rating'. Reviewer_qdo9 replied only 'Thanks for your detailed rebuttal' (2021-09-02) and did not edit. Reviewer_Lvky did not respond.",
+    "what_convinced_or_not": "HxjM accepted the answers on the even-width assumption, the d = 1, 2 case, the radius of the inverse function theorem and PGD in practice. qqLe's comments were minor wording and figure fixes. qdo9's substantive points (no convergence guarantee, similarity to lazy training, no generalization analysis) drew long answers and promises; qdo9 kept 6 without comment. No B reviewer raised Daniely or Bubeck et al., so the rebuttal never had to defend the novelty against them."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 8, 7, 6. The AC writes 'The reviewers agree that this is an valuable contribution' and recommends acceptance. The AC adopts qdo9's point that convergence guarantees are missing and asks for it in the abstract and introduction. The summary misdescribes the result ('a small neighborhood around this point within which training converges'): the ball is around the initialization, and there is no convergence theorem. 'Far from existing work' is overstated: the submission's own Section 2 cites landscape results in the same md > n regime (Soudry and Carmon; Xie et al.).",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings above threshold after the rebuttal (6, 8, 7, 6); Reviewer_HxjM raised to 7",
+    "The narrow-width regime was seen as new and 'far from existing work'; no reviewer knew Daniely or Bubeck et al.",
+    "Weaknesses (Assumption 2 typo, imprecise theorem statements, thin experiments, no generalization or convergence analysis) judged fixable in the camera-ready",
+    "The AC required the missing-convergence caveat in the abstract and introduction instead of rejecting"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Uncited Daniely (NeurIPS 2020) and Bubeck et al. (2020) results on memorization at width about n/d with training guarantees (Reviewer_wktj, Reviewer_LkFg, Committee A AC)",
+  "Whether the proofs of Theorems 1 and 2 exclude bad stationary points in the whole ball (Reviewer_wktj; withdrawn)",
+  "Dependence of the O(eps^2) bound of Theorem 2 on kappa, and growth of the outer weights v (Reviewer_xfuA)",
+  "Missing Oymak and Soltanolkotabi convergence papers (Reviewer_xfuA)",
+  "Random-label memorization experiments (Reviewer_wktj)"
+ ],
+ "issues_only_b": [
+  "Assumption 2 is self-contradictory and tightens with n (Reviewer_qdo9)",
+  "Trainability claims in the abstract and introduction are overstated (Reviewer_qdo9, Committee B AC)",
+  "Similarity to NTK lazy training, with the hidden weights kept near initialization (Reviewer_qdo9)",
+  "Missing training details, only two seeds, and a confusing Figure 5 (Reviewer_qdo9)",
+  "'Expressivity' means only memorization and needs a definition (Reviewer_Lvky, Reviewer_qqLe, Reviewer_qdo9)",
+  "Practical relevance of narrow networks; the mirrored initialization is only a proof device (Reviewer_Lvky)",
+  "Even-width assumption, the d = 1 or 2 case, choice of the radius, and PGD convergence in practice (Reviewer_HxjM)"
+ ],
+ "shared_issues": [
+  "Missing memorization literature (A: Daniely and Bubeck et al., Reviewer_wktj and Reviewer_LkFg, as a novelty problem; B: Zhang et al. 2017, Yun et al. and Lu et al. 2017, Reviewer_Lvky, as a citation request)",
+  "No convergence rate or iteration complexity (A: Reviewer_LkFg; B: Reviewer_qdo9, Reviewer_HxjM, Committee B AC)",
+  "No generalization analysis (A: Reviewer_xfuA; B: Reviewer_Lvky, Reviewer_qdo9)",
+  "Smooth activations only, no ReLU (A: Reviewer_xfuA; B: Reviewer_qqLe, Reviewer_HxjM)",
+  "Theorem 1 does not bound the neighborhood radius eps (A: Reviewer_Ep5m; B: Reviewer_qdo9, Reviewer_HxjM)",
+  "One hidden layer only (A: Reviewer_hn5z; B: Reviewer_qqLe, Reviewer_Lvky)",
+  "Typos and small figure text (A: Reviewer_wktj, Reviewer_LkFg; B: Reviewer_qqLe, Reviewer_qdo9)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Committee A rejected and B accepted because the decisive fact reached only A. Reviewer_wktj and Reviewer_LkFg in A named Daniely (NeurIPS 2020) and Bubeck et al. (2020), which claim memorization at width about n/d with training guarantees; the submission cites neither. Reviewer_xfuA then cut 8 to 6, and wktj stayed at 6. A's ratings were still 6, 6, 6, 6, 5, and the AC called the paper 'a significant contribution'. The AC rejected anyway: the rebuttal's argument that Daniely's O~(n/d) hides super-polynomial factors was a claim about another paper's validity that 'must go through the scrutiny of peer-review', and NeurIPS allowed no revision. The caution was sound. By the rebuttal's own account, Daniely fixes n = d^c, so for constant c the hidden factor is polylogarithmic, and the camera-ready concedes this. Daniely also analyses SGD, while this paper proves no convergence, so the paper is not better on every axis. None of B's four reviewers mentioned Daniely or Bubeck. B's criticisms (an Assumption 2 typo, imprecise theorem statements, no convergence rate, thin experiments) were answerable, HxjM raised to 7, and the AC accepted on 6, 8, 7, 6, calling the regime 'far from existing work'. No fatal flaw separates the committees; the program chairs made acceptance conditional on a re-check of the Daniely claims.",
+ "candidate_reasons": [
+  "decisive prior work seen by one committee",
+  "AC overrode marginal-accept ratings",
+  "rebuttal claims judged to need re-review",
+  "no-revision rule applied strictly",
+  "reviewer pool lacked memorization expertise",
+  "peer-prompted score drop in A"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee A decision.json program chairs' note (conditional acceptance, Daniely re-examination)",
+  "Reviewer_wktj review and post-rebuttal comment",
+  "Reviewer_LkFg review",
+  "Reviewer_xfuA 'Decrease my score' comment, 2021-08-18",
+  "Authors' 'To Reviewer wktj: Part I: Related Works', 2021-08-09 (Remarks 1 and 2 on Daniely)",
+  "Reviewer_hn5z review",
+  "Committee B meta-review",
+  "Reviewer_qdo9 review (Assumptions, Weakness)",
+  "Reviewer_qqLe review",
+  "Reviewer_HxjM 'Response to Rebuttal', 2021-08-31",
+  "paper_submitted.pdf Section 2 (lines 86-106) and references [1]-[37]",
+  "paper_submitted.pdf Assumption 2 (lines 118-124), Theorem 1 (lines 128-134), Theorem 2 (line 210), abstract lines 13-14, line 309",
+  "paper.pdf (camera-ready) Section 2, paragraphs on Bubeck et al. [9] and Daniely [12]"
+ ]
+}

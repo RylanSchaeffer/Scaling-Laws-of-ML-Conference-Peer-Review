@@ -1,0 +1,228 @@
+{
+ "pair_id": "n21-207",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    6,
+    5
+   ],
+   "confidences": [
+    4,
+    2,
+    4,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_BH6Q",
+    "Reviewer_LtAC"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 6, 6, 5 (mean 5.5) split two against two at the threshold. No rating stands apart. The 5s come from the reviewer who checked the proofs (Reviewer_ZiZV, confidence 4) and from a low-confidence reviewer (Reviewer_w5L3, confidence 2). Both cite novelty."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_BH6Q",
+     "evidence": "Confidence 2, 'Math/other details were not carefully checked'. The main review is seven short, generic sentences; it names no theorem, algorithm or section. Limitations: 'Yes'. It was edited on 2021-08-16, after the rebuttal, with no comment posted. The 6 carries little information, and the text itself calls the result 'not that surprising'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_ZiZV",
+     "claim": "LSVI-UCB-Batch is literally LSVI-UCB with Q-function updates only at pre-specified batch grids.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 is LSVI-UCB with an 'if k = t_b' gate (lines 4-13). Lines 221-222: 'The main difference between LSVI-UCB-Batch and LSVI-UCB is the introduction of batches.'"
+    },
+    {
+     "reviewer": "Reviewer_ZiZV",
+     "claim": "Uniform batch grids are predictable from SBUCB (Han et al. 2020); the rare-switch rule is the determinant criterion of rarely switching OFUL (Abbasi-Yadkori et al. 2011).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 223-226: both LSVI-UCB-Batch and SBUCB 'take uniform batch grids', and SBUCB is the H = 1 case. Lines 253-256: the determinant criterion 'has been used in the rarely switching OFUL algorithm'."
+    },
+    {
+     "reviewer": "Reviewer_ZiZV",
+     "claim": "No lower bound is given for the rare policy switch model.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 5.5 (lines 289-293) and the conclusion (lines 326-327) leave it open. The rebuttal gave only a conjecture and a construction that needs changing action sets."
+    },
+    {
+     "reviewer": "Reviewer_ZiZV",
+     "claim": "The paper does not explain what is new in its proof techniques (also Reviewer_BH6Q).",
+     "checked_against_paper": "correct",
+     "evidence": "The contributions (lines 72-92) list only results. The main text names no new technique or technical difficulty; the lemmas are only in the supplement. The camera-ready adds no such paragraph."
+    },
+    {
+     "reviewer": "Reviewer_w5L3",
+     "claim": "The leading term sqrt(d^3 H^3 T) of Theorem 4.1 does not match the dH sqrt(T) lower bound of Theorem 4.2.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4.1 (lines 228-231) against Theorem 4.2 (lines 237-238): a sqrt(dH) gap, inherited from LSVI-UCB. The paper claims tightness only in B (line 16, line 325). When B <= sqrt(T/dH), the dHT/B term dominates both bounds and they match, as the authors answered. True, but it contradicts no claim of the paper."
+    },
+    {
+     "reviewer": "Reviewer_w5L3",
+     "claim": "Theorem 4.1 extends Theorem 3.1 of Jin et al. 2020 through Lemma A.3 (Lambda^{b_k} against Lambda^k); Theorem 5.1 adds Lemma 12 of Abbasi-Yadkori et al. 2011.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The appendix is in neither PDF (12 and 13 pages). Reviewer_3Uwm in B also named Lemmas A.3 and B.3 as the key steps, and the authors agreed."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The theoretical results are what one would expect from the bandit literature.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4.1's O~(sqrt(d^3 H^3 T) + dHT/B) has the shape of Han et al.'s O~(sqrt(dT) + dT/B) for batched linear bandits (lines 131-132). Lines 239-241 call the lower-bound result 'similar to its counterpart for batched linear bandits'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "unknown",
+    "by_whom": [],
+    "evidence": "Author responses on 2021-08-10. No A reviewer posted in the discussion. Reviewer_BH6Q edited the review on 2021-08-16 with no comment, so any change is not visible. Reviewer_ZiZV and Reviewer_w5L3 never edited; their 5s are the original ratings. Reviewer_LtAC's edit (2021-07-19) predates the rebuttal.",
+    "what_convinced_or_not": "Nothing visibly moved anyone. ZiZV received misspecification runs (zeta up to 0.4; average regret still falls with K), a novelty argument (a simpler bonus-sum proof than Han et al. 2020; per-stage switch triggers need care in the martingale argument) and a conjectured rare-switch lower bound. ZiZV did not answer. w5L3 received the correct reply that the B term dominates and matches the lower bound when B <= sqrt(T/dH), and did not answer. LtAC's question on 'diminishing B' was a misreading of B (number of batches), as the authors noted. The AC did not mention the rebuttal."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The reviews split 5, 6, 6, 5. The AC sided with the two 5s and made novelty decisive: the paper 'seems to combine known techniques for linear MDPs, with techniques from the bandit literature on limited adaptivity', and the results are 'what one would expect'. This restates ZiZV's originality section. It does not weigh Reviewer_LtAC's more positive reading (12 hours, confidence 4: 'The method is new in the function approximation setting').",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Low technical novelty: LSVI-UCB combined with limited-adaptivity devices from bandits (Reviewer_ZiZV, Reviewer_w5L3, Committee A AC)",
+    "Results judged predictable from batched and rarely switching linear bandits ('what one would expect', AC)",
+    "Two-two split at mean 5.5; one of the two 6s is a thin, confidence-2 review (Reviewer_BH6Q)",
+    "No lower bound for the rare policy switch model (Reviewer_ZiZV, Reviewer_w5L3)",
+    "The rebuttal (misspecification runs, novelty argument) drew no reviewer reply and no visible score change"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_FRs1",
+    "Reviewer_ZCnH"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All four ratings are 6 (mean 6.0). Reviewer_ZCnH's 6 came after the rebuttal; the earlier value is not visible."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_FRs1",
+     "claim": "Algorithm 2 is the algorithm of Figure 3 of Abbasi-Yadkori et al. 2011 (rarely switching OFUL), moved from linear bandits to linear MDPs.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 253-256 say the determinant criterion 'has been used in the rarely switching OFUL algorithm'. Algorithm 2, line 7, adds only the check over all stages h in [H]."
+    },
+    {
+     "reviewer": "Reviewer_FRs1",
+     "claim": "Line 312 says LSVI-UCB-Batch achieves regret similar to LSVI-UCB, but Fig. 1(a) does not show this.",
+     "checked_against_paper": "correct",
+     "evidence": "In Fig. 1(a), the B = 50 curve stays clearly above the fully adaptive curve until about episode 1,500 and meets it only near K = 2,500. The authors called the statement 'unclear and misleading'."
+    },
+    {
+     "reviewer": "Reviewer_Xhcq",
+     "claim": "'When B = T' at line 222 should read K, and the superscript + in Algorithms 1 and 2 is undefined.",
+     "checked_against_paper": "correct",
+     "evidence": "Batch grids end at t_{B+1} = K + 1 (lines 191-192), so B <= K; lines 233-234 repeat the T. The notation paragraph (lines 100-106) does not define [.]^+. The camera-ready reads 'B = K'."
+    },
+    {
+     "reviewer": "Reviewer_Xhcq",
+     "claim": "LSVI-UCB-Batch differs from LSVI-UCB only in updating every K/B episodes; the determinant criterion appeared in prior work.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1, line 1, sets t_i = (i-1) floor(K/B) + 1. Lines 221-222 and 253-256 say the same."
+    },
+    {
+     "reviewer": "Reviewer_ZCnH",
+     "claim": "Theorem 4.2 assumes B >= (d-1)H/2, so the upper and lower bounds match only when T = O(d^3 H^3).",
+     "checked_against_paper": "incorrect",
+     "evidence": "The assumption is at line 237. But the bounds match when dH/2 <= B <= sqrt(T/dH), which needs T = Omega(d^3 H^3), not O; the authors corrected the direction. That is the regime where the regret bound is sublinear, so the condition is mild."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_ZCnH"
+    ],
+    "evidence": "Author responses on 2021-08-10, and on 2021-08-30 a follow-up to ZCnH asking to 'reconsider the rating'. ZCnH replied on 2021-09-01, 'I've updated my score accordingly', and the review's edit date is 2021-09-01; the final rating is 6. Reviewer_FRs1 (2021-08-24), Reviewer_Xhcq (2021-08-29) and Reviewer_3Uwm (2021-08-30) each wrote that they keep their score. FRs1's edit (2021-07-14) predates the rebuttal.",
+    "what_convinced_or_not": "ZCnH accepted that Gao et al. 2021 is the constant-eta special case of LSVI-UCB-RareSwitch with no budget B, and the correction that the bounds match for T = Omega(d^3 H^3). 3Uwm thanked the authors for 'the explanations about the technical differences' (Lemmas A.3 and B.3 as the key steps; the per-state schedule of Bai et al. 2019 as a special case) but kept 6. FRs1 was 'satisfied'. No reviewer withdrew the novelty concern, and none had treated it as a reason to reject."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four ratings are 6. The meta-review is Reviewer_Xhcq's summary copied word for word plus one sentence: 'There is a consensus that the paper should be accepted.' It does not mention the limited novelty that Reviewer_FRs1, Reviewer_3Uwm and Reviewer_Xhcq each named as the main weakness, and it adds no reading of its own.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Four ratings of 6 (mean 6.0) and no detractor",
+    "A clean, complete study: two algorithms with LSVI-UCB-level regret and a lower bound for the batch model (Reviewer_FRs1, Reviewer_Xhcq, Reviewer_ZCnH)",
+    "Covers the concurrent Gao et al. 2021 and adds the batch model (Reviewer_FRs1; authors' replies)",
+    "Limited novelty, named by three reviewers, treated as a weakness and not as a reason to reject",
+    "The rebuttal lifted Reviewer_ZCnH to 6, and the AC cited 'consensus'"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No lower bound for the rare policy switch model (Reviewer_ZiZV, Reviewer_w5L3)",
+  "Robustness to misspecification of the linear MDP, by experiment or by a bound like Theorem 3.2 of Jin et al. 2020 (Reviewer_ZiZV)",
+  "The leading term sqrt(d^3 H^3 T) exceeds the dH sqrt(T) lower bound (Reviewer_w5L3)",
+  "Poor S and A dependence when the bounds are specialized to tabular MDPs (Reviewer_LtAC)",
+  "PAC bound and the choice of T for a fixed budget B (Reviewer_LtAC)"
+ ],
+ "issues_only_b": [
+  "Line 312 overstates Fig. 1(a); no random-policy baseline; only two settings per algorithm (Reviewer_FRs1)",
+  "The lower bound needs B >= (d-1)H/2, which limits where the bounds match (Reviewer_ZCnH)",
+  "Typos: 'B = T' for 'B = K' and an undefined [.]^+ (Reviewer_Xhcq)",
+  "Whether the average regret scales as 1/sqrt(T) (Reviewer_3Uwm)",
+  "Relation of the switch rule to the per-state schedule of Bai et al. 2019 for tabular MDPs (Reviewer_3Uwm)"
+ ],
+ "shared_issues": [
+  "Limited technical novelty: Algorithm 1 is LSVI-UCB with batches and Algorithm 2 uses the rarely switching OFUL criterion (A: Reviewer_ZiZV, Reviewer_BH6Q, Reviewer_w5L3, AC; B: Reviewer_FRs1, Reviewer_3Uwm, Reviewer_Xhcq)",
+  "The paper does not say what is new in its proofs (A: Reviewer_ZiZV, Reviewer_BH6Q; B: Reviewer_3Uwm)",
+  "Comparison with the concurrent Gao et al. 2021 (A: Reviewer_LtAC; B: Reviewer_FRs1, Reviewer_ZCnH)",
+  "The linear MDP assumption limits practical relevance (A: Reviewer_ZiZV; B: Reviewer_Xhcq)",
+  "The experiments are small: one synthetic MDP and two settings per algorithm (A: Reviewer_ZiZV; B: Reviewer_FRs1)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A rejected and B accepted because the two committees weighed the same weakness differently at the threshold. Both saw a clear paper whose algorithms are LSVI-UCB plus known limited-adaptivity devices from bandits. The paper confirms this (lines 221-226 and 253-256) and names no new proof technique. All four A reviewers and three of four B reviewers (Reviewer_FRs1, Reviewer_3Uwm, Reviewer_Xhcq) named limited novelty. In A, Reviewer_ZiZV, the one reviewer who checked the proofs (confidence 4), and the low-confidence Reviewer_w5L3 rated 5. One of A's two 6s is a thin confidence-2 review (Reviewer_BH6Q). A's AC broke the 5.5 tie on novelty and restated ZiZV ('what one would expect'). No A reviewer replied to the rebuttal, so the misspecification runs and the novelty argument moved nothing. In B, all four reviewers rated 6 despite the same concern; Reviewer_ZCnH reached 6 only after the rebuttal and an author follow-up. B's AC copied Reviewer_Xhcq's summary, cited 'consensus' and did not mention novelty. No reviewer in either committee found an error. B's checkable points (line 312 overstates Fig. 1(a); typos) are minor and were conceded. The split is a one-point calibration difference on two reviewers plus the AC's framing, not a difference in what the committees found.",
+ "candidate_reasons": [
+  "same novelty concern, different weight",
+  "AC broke a two-two tie",
+  "careful confident detractor in A",
+  "no reviewer engagement after rebuttal",
+  "author nudge lifted one score",
+  "meta-review copied from one review"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_ZiZV review (Originality, Quality, Significance)",
+  "Reviewer_w5L3 review and the authors' reply A1",
+  "Reviewer_BH6Q review",
+  "Reviewer_LtAC review (Originality and Significance)",
+  "Authors' response to Reviewer_ZiZV (misspecification tables, novelty argument)",
+  "Committee A meta-review",
+  "Reviewer_FRs1, Reviewer_3Uwm and Reviewer_Xhcq reviews (weak points)",
+  "Reviewer_ZCnH 2021-09-01 reply and edit date; authors' 2021-08-30 follow-up",
+  "Committee B meta-review against Reviewer_Xhcq's summary",
+  "paper_submitted Algorithm 1 and lines 207-226",
+  "paper_submitted Algorithm 2 and lines 253-256",
+  "paper_submitted Theorems 4.1 and 4.2, lines 228-241",
+  "paper_submitted Figure 1(a) and line 312",
+  "paper_submitted contributions, lines 72-92"
+ ]
+}

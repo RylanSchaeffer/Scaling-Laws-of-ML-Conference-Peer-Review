@@ -1,0 +1,251 @@
+{
+ "pair_id": "n21-211",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    5,
+    5,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Dwry",
+    "Reviewer_vmVW"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 5, 5, 6 lie within one point and straddle the threshold. No reviewer champions the paper or argues for rejection in the discussion. The most confident reviewer, Reviewer_dV7b (confidence 5), gave a lukewarm 6 and called the idea 'extremely obvious'."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_dV7b",
+     "claim": "In benchmark 1 the corrupted cue bits are set to zero instead of flipped, which removes input-noise variance and artificially aids performance.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 154: the query is a corrupted key with '60% of the entries are randomly set to zero'. The authors replied 'Thank you for pointing out this flaw' and promised to re-run with flipped bits, adding that every network received the same cues. No re-run was shown."
+    },
+    {
+     "reviewer": "Reviewer_Dwry",
+     "claim": "The experiments have no error bars or confidence intervals (Reviewer_vmVW also: no repeated runs with different seeds).",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 2-5 show single curves. Checklist item 3(c) answers '[No]' to error bars. The authors promised error bars for all plots."
+    },
+    {
+     "reviewer": "Reviewer_Dwry",
+     "claim": "The sequential local third factor tells the network which slot to write next; a Hopfield network has no such information, so this is where sequential KEVIN's advantage comes from.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 4 writes to hidden unit t mod N, the 'least-recently-written-to neuron' (lines 113-114). The authors conceded that in the sequential case 'having an internal state' provides the advantage. Random KEVIN, which has no such state, reaches capacity 0.161N against Hopfield's 0.143N (Fig. 2b), with twice as many connections (line 170)."
+    },
+    {
+     "reviewer": "Reviewer_dTBY",
+     "claim": "Hopfield still shows competitive and better performance on autoassociative recall; the best performer is sequential KEVIN because of its sequential slot-based writing.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 2a: Hopfield is more accurate than random KEVIN beyond about 30 stimuli and than sequential KEVIN beyond about 90 (near 0.77 against 0.63 and 0.70 at 175). In heteroassociative recall, BAM ends above random and trained KEVIN beyond about 35 stimuli; only sequential KEVIN stays above it (Fig. 5a). The authors attribute part of Hopfield's high-load accuracy to its higher chance floor, because the uncorrupted bits are already set."
+    },
+    {
+     "reviewer": "Reviewer_vmVW",
+     "claim": "Performance on the one more complex task, copy-paste, is poor.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 275-276: 'Interestingly, BAM performs better on this task, despite having a theoretically lower capacity.' Fig. 5c: at 20 patterns BAM is near 0.80, sequential KEVIN near 0.69, trained near 0.62 and random near 0.56."
+    },
+    {
+     "reviewer": "Reviewer_vmVW",
+     "claim": "The paper compares KEVIN's linear capacity only with classical Hopfield networks and never mentions the exponential capacity of modern Hopfield networks.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 2 cites Krotov and Hopfield and Ramsauer et al. (lines 57-67) and says the capacity per connection is similar, but the word 'exponential' does not appear. vmVW placed these citations in the Introduction; they are in Section 2."
+    },
+    {
+     "reviewer": "Reviewer_Dwry",
+     "claim": "In Fig. 5 the accuracy at 60 patterns is higher than at 50, which suggests high run-to-run variance.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 5b (sequence recall): sequential KEVIN falls to about 0.84 near 55 patterns and rises to about 0.88 at 60. It is a single run with no error bars. The authors said variance is higher in this setting."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The paper should be placed in better context against Kanerva's sparse distributed memory, which seems very similar except for a softmax instead of a step function.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 2 cites Kanerva at lines 48, 69, 72 and 79-80. Lines 68-69 state the step-function versus softmax difference that the AC raises, and lines 79-80 add that Kanerva fixes the key matrix while this paper learns it. The paper gives no analytical or numerical comparison, so a deeper comparison is missing, but the context is there. No reviewer raised Kanerva."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The paper does not show that the model is more consistent with biological experimental data than earlier proposals.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 293-294: 'We also have not made direct comparisons between KEVIN and experimental findings in memory-related behavior or memory-related neural activity.' Among the reviewers, only Reviewer_dV7b touched this, and only as something he 'would have liked' (neural signatures that separate the proposals)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Dwry",
+     "Reviewer_vmVW"
+    ],
+    "evidence": "Author replies on 2021-08-10. The replies to vmVW and dTBY carry the same five-point reframing that Committee B received, and the reply to dTBY even cites 'Reviewer 3w4j', a Committee B reviewer. Reviewer_dV7b, 2021-08-11: 'The reply does not significantly alter my evaluation', kept 6. Reviewer_Dwry exchanged comments from 2021-08-11 to 2021-08-13 ('This addresses most of my concerns') and edited the review on 2021-08-17: 'increased my score from 4 to 6'. Reviewer_vmVW, 2021-08-25: 'I updated my score (4->5)'. Reviewer_dTBY never replied and never edited.",
+    "what_convinced_or_not": "Dwry moved after the authors conceded that the sequential gate supplies an internal state that Hopfield lacks and promised to say so, and to cite the reservoir and pruning work. vmVW accepted the reframing as a biological learning rule for modern Hopfield networks but stayed 'not convinced about the significance of the experimental results'. The experimental fixes (error bars, flipped-bit cues, matched synapse counts, an internally generated global third factor) were only promised; no new results were shown. dTBY's objections on incrementality, sequential plausibility and performance were answered but never revisited."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings 6, 5, 5, 6 (mean 5.5) straddle the threshold, and nobody argued for rejection in the discussion. The AC rejected because 'The significance of the proposal was not satisfactorily established', citing the reviewers' experiment concerns ('see reviewer comments') and Reviewer_dTBY's doubt about sequential KEVIN. The AC added an incomplete comparison with Kanerva's sparse distributed memory, which no reviewer raised and which the paper does discuss, and a missing fit to biological data, credited to 'some on the committee'. The closing judgement, that the work falls 'in the middle of biological plausibility and computationally efficiency', is the AC's own.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Significance not established: synthetic tasks only, no naturalistic data (Reviewer_vmVW; AC)",
+    "Experiments judged inadequate: no error bars and a Hopfield comparison of doubtful fairness (Reviewer_Dwry, Reviewer_dV7b, Reviewer_vmVW)",
+    "Sequential KEVIN, the only variant clearly ahead on the autoassociative and heteroassociative benchmarks, judged biologically implausible (Reviewer_dTBY; AC)",
+    "No evidence of a better fit to biological data than earlier models (AC; conceded at lines 293-294)",
+    "Comparison with Kanerva's sparse distributed memory judged incomplete (AC's own point)",
+    "Borderline ratings (mean 5.5) with no champion"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    7
+   ],
+   "confidences": [
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Y8iA",
+    "Reviewer_Fi9m",
+    "Reviewer_3w4j"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 7; all three rose after the rebuttal and none stands apart."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Y8iA",
+     "evidence": "A short review of generic requests. It asks for the relation to Neural Turing Machines, which the paper cites and positions at lines 33, 50 and 74-75, asks three notation questions, and asks why Hopfield leads in Fig. 2a. Y8iA replied only after the authors' reminder of 2021-08-27, in three short sentences ('Using a key-value architecture to store memories is interesting and valuable'), and moved from 5 to 6 without naming a resolved point."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_3w4j",
+     "claim": "The model of Section 3 (Eqs. 2-3) is mathematically identical to the modern Hopfield network of Krotov and Hopfield run for one step; the novelty is in the plasticity rules and third factors, not the architecture.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 57-62 already say that for certain energy functions modern Hopfield retrieval 'is the key-value mechanism described above', yet lines 41-42 and Section 3 introduce KEVIN as a new circuit. The authors conceded the equivalence and proposed dropping the KEVIN name and retitling the paper."
+    },
+    {
+     "reviewer": "Reviewer_3w4j",
+     "claim": "The paper says 'Hopfield network' for the 1982 model and presents its model as an alternative to Hopfield networks and to attractor dynamics, which misleads.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 12-13: 'a compelling alternative mechanism to Hopfield networks'. Lines 283-284 contrast 'feedforward computation' with 'recurrent attractor dynamics'. Lines 170-174, 225 and 288 say 'Hopfield' without 'classical'."
+    },
+    {
+     "reviewer": "Reviewer_Fi9m",
+     "claim": "The model performs similar or better than Hopfield networks and other memory networks.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Fig. 2a: Hopfield is more accurate than random KEVIN beyond about 30 stimuli and than sequential KEVIN beyond about 90. Fig. 5a: BAM ends above random and trained KEVIN. Lines 275-276: BAM 'performs better' on copy-paste. KEVIN is better on continual, flashbulb and correlated recall (Fig. 4) and on sequence recall (Fig. 5b)."
+    },
+    {
+     "reviewer": "Reviewer_Fi9m",
+     "claim": "The learning rate of the value matrix in Eq. 9 is undefined.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 141 says only 'learning and rapid decay rates analogous to those for the key matrix'; no equation defines it for the simplified model. The authors supplied it in the rebuttal as q(t) times the local third factor."
+    },
+    {
+     "reviewer": "Reviewer_Y8iA",
+     "claim": "In Fig. 2a the Hopfield network is more accurate as the number of stimuli grows toward 100.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 2a: Hopfield levels off near 0.78 while sequential KEVIN drops below it near 90 stimuli and random KEVIN near 30. The authors explained that Hopfield's chance floor is higher because the uncorrupted bits are already set."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Y8iA",
+     "Reviewer_Fi9m",
+     "Reviewer_3w4j"
+    ],
+    "evidence": "Author replies on 2021-08-10. Reviewer_3w4j edited the review on 2021-08-16: 'The authors have addressed my concerns ... I vote accept ... I have updated my scores' (final 7; the earlier rating is not shown, but the review had made acceptance conditional). Reviewer_Fi9m edited on 2021-08-17: 'The authors raised convincing points ... I have raised my score' (final 7). Reviewer_Y8iA replied on 2021-08-31, after an author reminder on 2021-08-27: 'I have increased my score from 5 to 6'. Neither 3w4j nor Fi9m posted in the discussion.",
+    "what_convinced_or_not": "3w4j's three conditions (acknowledge the modern Hopfield equivalence, say 'classical' Hopfield, drop the feedforward-versus-attractor contrast) were met by concession and promised rewording, including a new title and dropping the KEVIN name. Fi9m accepted the narrower framing (not competing with machine-learning memory networks) in place of the naturalistic tasks and baselines he had called necessary. Y8iA accepted the chance-floor explanation and the positioning against Neural Turing Machines. No new experiments were shown."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 7, 7 (mean 6.67), all raised after the rebuttal. The meta-review restates the consensus ('The reviewers agree that the proposed model is interesting'), says the modern Hopfield questions 'could be resolved with the author's responses' (Reviewer_3w4j's point), and gives Reviewer_Fi9m's naturalistic-task point as the only negative. It calls the simulations 'convincing', a judgement that no B reviewer tested.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three-factor plasticity rules for key-value memory judged novel and relevant (Reviewer_3w4j, Reviewer_Fi9m)",
+    "Modern Hopfield equivalence and terminology resolved by the authors' concession and reframing (Reviewer_3w4j; AC)",
+    "Clear writing and simulations taken as convincing (Reviewer_Fi9m; AC)",
+    "All three ratings rose after the rebuttal (mean 6.67)",
+    "Naturalistic-task gap noted but not treated as decisive (Reviewer_Fi9m; AC)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Cues zero 60% of the entries instead of flipping them, which favours the comparison (Reviewer_dV7b; the authors called it a 'flaw')",
+  "No error bars or repeated seeds (Reviewer_Dwry, Reviewer_vmVW; checklist 3(c) [No])",
+  "The sequential gate gives KEVIN information that Hopfield lacks (Reviewer_Dwry; conceded)",
+  "Sequential slot cycling is not biologically plausible (Reviewer_dTBY; Committee A AC)",
+  "KEVIN has twice the synapses of the Hopfield baseline (Reviewer_dV7b, Reviewer_vmVW)",
+  "Linear capacity against the exponential capacity of modern Hopfield networks (Reviewer_vmVW)",
+  "Poor copy-paste performance (Reviewer_vmVW)",
+  "Task-specific additions undercut the claim of a simple model (Reviewer_dTBY)",
+  "Missing ADAM and RNN baselines (Reviewer_dTBY) and reservoir and pruning references (Reviewer_Dwry)",
+  "No comparison with Kanerva's sparse distributed memory or with biological data (Committee A AC)"
+ ],
+ "issues_only_b": [
+  "The Section 3 architecture is a one-step modern Hopfield network, not a new circuit (Reviewer_3w4j)",
+  "Feedforward retrieval and one-step attractor retrieval are mathematically the same (Reviewer_3w4j)",
+  "Missing H-Mem (Limbacher and Legenstein, NeurIPS 2020) (Reviewer_Fi9m)",
+  "Undefined value learning rate in Eq. 9, unstated weight initialization, and a 'feedforward' controller drawn with feedback (Reviewer_Fi9m)"
+ ],
+ "shared_issues": [
+  "Only simple synthetic tasks; naturalistic tasks needed to judge significance (A: Reviewer_vmVW, AC; B: Reviewer_Fi9m, AC)",
+  "No comparison with machine-learning memory networks (A: Reviewer_dTBY, Reviewer_vmVW; B: Reviewer_Y8iA, Reviewer_Fi9m)",
+  "The Hopfield versus key-value contrast ignores modern Hopfield networks (A: Reviewer_vmVW; B: Reviewer_3w4j)",
+  "Hopfield is more accurate at high load in Fig. 2a (A: Reviewer_dTBY, Reviewer_dV7b; B: Reviewer_Y8iA)",
+  "Limited novelty of the mechanism (A: Reviewer_dTBY, Reviewer_dV7b; B: Reviewer_Fi9m, Reviewer_3w4j)",
+  "Hidden activity could gate value writes and decay instead of the local third factor (A: Reviewer_Dwry, Reviewer_dV7b; B: Reviewer_Fi9m)",
+  "Undefined symbols and losses (q_t, f and g, the meta-learning loss, Eq. 13) (A: Reviewer_Dwry, Reviewer_dTBY, Reviewer_dV7b; B: Reviewer_Y8iA, Reviewer_Fi9m)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B recommended a poster and A a reject for two reasons. The committees weighed the same contribution differently, and A's reviewers tested the experiments harder. Both saw a known key-value architecture with new three-factor plasticity rules, tested only on synthetic tasks. In B, Reviewer_3w4j showed that the architecture is a one-step modern Hopfield network but judged the rules novel enough to accept. The authors conceded and reframed, and all three B reviewers raised their scores (6, 7, 7). A's reviewers attacked the comparison with Hopfield networks, and the submission confirms their points. The cues zero 60% of the entries instead of flipping them (line 154); the authors called this a 'flaw'. No figure has error bars (checklist 3(c)). Random KEVIN matches Hopfield capacity with twice the synapses (Fig. 2b). On the autoassociative and heteroassociative benchmarks only sequential KEVIN clearly wins, and A judged its slot cycling implausible. The same reframing went to both committees. It answered B's main objection, architectural novelty, but not A's, experimental significance. With ratings 6, 5, 5, 6 and no champion, A's area chair rejected on significance. That AC also cited Kanerva's sparse distributed memory, which the paper already cites and contrasts, and the missing fit to biological data, which the paper concedes. In B, Reviewer_Fi9m raised to 7 without the naturalistic tasks and baselines he had called necessary, and Reviewer_Y8iA's 6 rests on a thin review. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "same contribution weighted differently",
+  "deeper scrutiny of baseline fairness",
+  "reframing rebuttal answered only B",
+  "borderline scores, no champion in A",
+  "AC added reasons reviewers never required",
+  "score raised without promised evidence"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_dV7b review (benchmark 1) and authors' reply ('this flaw')",
+  "Reviewer_Dwry review, 2021-08-11 comment and authors' 2021-08-12 reply",
+  "Reviewer_vmVW review (point 7) and 2021-08-25 comment",
+  "Reviewer_dTBY review",
+  "Committee A meta-review",
+  "Reviewer_3w4j final review and authors' reply on modern Hopfield equivalence",
+  "Reviewer_Fi9m final review (Significance and update)",
+  "Reviewer_Y8iA review and 2021-08-31 comment",
+  "Committee B meta-review",
+  "paper_submitted line 154 and checklist 3(c)",
+  "paper_submitted Figure 2a-b and lines 169-174",
+  "paper_submitted Figure 5 and lines 275-277",
+  "paper_submitted lines 48, 57-72 and 79-80 (Kanerva, modern Hopfield networks)",
+  "paper_submitted lines 290-294 (limitations)"
+ ]
+}

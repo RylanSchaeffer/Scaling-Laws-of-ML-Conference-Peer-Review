@@ -1,0 +1,222 @@
+{
+ "pair_id": "n21-069",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [7, 7, 7, 7],
+   "confidences": [3, 5, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_LARb", "Reviewer_9MQr", "Reviewer_GxXa"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All four final ratings are 7 (confidence 3 to 5). Reviewer_9MQr and Reviewer_GxXa reached 7 only after the rebuttal, so the pre-rebuttal spread was wider, but no final rating stands apart."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_LARb",
+     "claim": "Eq. 1 is the same generative model as MultiViewICA [41]; the differences are the noise model, Gaussian components and the inference method.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 1 is x_i = A_i(s + n_i). Section 5 (l.259-261) says MultiViewICA differs by assuming non-Gaussianity and the same noise covariance across views. The authors replied that ShICA is 'a strict generalization of [41]'."
+    },
+    {
+     "reviewer": "Reviewer_LARb",
+     "claim": "MVICA appears in the runtime plot (Fig. 3) but not in the separation plot (Fig. 2).",
+     "checked_against_paper": "correct",
+     "evidence": "The Fig. 2 legend lists ShICA-ML, ShICA-J, Multiset CCA and CanICA only; Fig. 3 adds MVICA. Reviewer_9MQr asked the same. The authors pointed to appendix Fig. 7, and the camera-ready adds MVICA to Fig. 2."
+    },
+    {
+     "reviewer": "Reviewer_qGdn",
+     "claim": "The BOLD reconstruction gains (Fig. 5) are small and the confidence intervals overlap heavily.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors' own table (reply to Reviewer_GxXa), 20 components: forrest ShICA-ML 0.200 [0.187, 0.213] against MVICA 0.191 [0.177, 0.204]; the ShICA-ML and MVICA intervals overlap on all four datasets. The authors conceded the gains are 'modest'. Reviewer_9MQr made the same point."
+    },
+    {
+     "reviewer": "Reviewer_9MQr",
+     "claim": "The claim that most non-Gaussian components in real data are super-Gaussian (l.224) has no citation, and the neuroimaging focus of the title is barely discussed ('neuroimaging' appears once).",
+     "checked_against_paper": "correct",
+     "evidence": "l.223-224 make the super-Gaussian claim with no reference. In the body, 'neuroimaging' appears only at l.21 and 'neuroscience' not at all. The authors added two citations and promised more neuroscience motivation."
+    },
+    {
+     "reviewer": "Reviewer_GxXa",
+     "claim": "The paper dismisses IVA for fMRI because IVA does not extract a shared response.",
+     "checked_against_paper": "correct",
+     "evidence": "l.34-36: IVA-L and IVA-G are 'not well-suited for modelling the dependencies between views in functional brain imaging'; l.286-288 call IVA-L 'quite unrealistic for fMRI'. The authors conceded the lines are 'a bit unfair'; the camera-ready drops them and says ShICA 'is no longer the method of choice' where a common response does not apply."
+    },
+    {
+     "reviewer": "Reviewer_GxXa",
+     "claim": "MultiView ICA [41] is not compared against; MVICA in the figures is undefined.",
+     "checked_against_paper": "incorrect",
+     "evidence": "MVICA is MultiViewICA [41]. It is benchmarked in Figs. 3, 4 and 5 and discussed at l.379 and l.413 as 'Multiview ICA'. Only the acronym is undefined, which the authors conceded."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_9MQr", "Reviewer_GxXa"],
+    "evidence": "Reviewer_9MQr (comment and edit 2021-08-23): 'will be upgrading my evaluation to 7'. Reviewer_GxXa (comment and edit 2021-08-26): 'I am bumping my score to simplify the decision', while listing four remaining points. Reviewer_qGdn replied only 'Thank you for the thoughtful response' and did not edit. Reviewer_LARb's edit (2021-07-06) predates the rebuttal.",
+    "what_convinced_or_not": "Point-by-point replies with concessions: promised reframing toward neuroscience, a fairer IVA discussion that cites IVA-L-SOS, IVA-GGD and Kotz IVA, citations for super-Gaussianity, dataset details, and a table of the Fig. 5 values. 9MQr accepted the promises. GxXa's raise is for convenience, not new evidence: the shared-response context, IVA-G as a generalization of mCCA, and a missing Cardoso reference stayed open."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review restates the consensus ('clear novelty in model specification and related theory ... convincing experimental results') and lists the changes the authors promised: framing, relevance to neuroscience, relation to prior work, clarifications of model and assumptions.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Unanimous 7 after the rebuttal",
+    "Global identifiability and the Multiset CCA analysis (Theorem 5, Section 3.2) judged a clear advance over MultiViewICA [41]",
+    "Authors conceded the framing and related-work points and promised fixes"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 5, 4, 6],
+   "confidences": [4, 4, 5, 3],
+   "reviews_edited_after_posting": ["Reviewer_v4RY", "Reviewer_6yar"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_vUQJ",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "Lowest rating across both committees (4, confidence 5) from a review of four short points. Two of the four are contradicted by the paper: 'Apart from simulation, no real fMRI data decomposition was compared' (Fig. 5 benchmarks five methods on four fMRI datasets) and the claim that Multiset CCA obviously 'can't deal with noise' (Theorem 5). No reply to the rebuttal; the AC set the review aside."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_6yar",
+     "evidence": "30 minutes. The review is generic praise ('The paper is very excellent'). Edited on 2021-08-18, after the author replies, to lower the score: 'after reading some other reviewer comments, I have some concerns about the methodology and originality ... Therefore, I must give a lower score'. It names no concern."
+    },
+    {
+     "reviewer": "Reviewer_vUQJ",
+     "evidence": "Four short points at confidence 5. Says no real fMRI data was compared, although Fig. 5 covers four fMRI datasets and Fig. 4 MEG. Calls the failure of Multiset CCA obvious, although Theorem 5 proves Multiset CCA fits the model from exact covariances. No reply to the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_Mkd2",
+     "evidence": "Reports 40 hours, but reads the model as handling 'non-Gaussian noise' (l.73-75: the noise is Gaussian). Says the cross-validation scheme is missing (l.394-399 state it) and asks for classification accuracy (l.414-415 point to time-segment matching in Appendix G.2). No reply to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_vUQJ",
+     "claim": "The simulations use only 4 components and 5 subjects.",
+     "checked_against_paper": "correct",
+     "evidence": "l.315-316: p = 4 components and m = 5 views. The real-data experiments are larger: 100 MEG subjects (l.361) and full-brain fMRI."
+    },
+    {
+     "reviewer": "Reviewer_vUQJ",
+     "claim": "GICA and IVA are not compared with the proposed method.",
+     "checked_against_paper": "correct",
+     "evidence": "No figure includes IVA, and the authors confirmed IVA 'is not compared because it does not provide a shared response'. Yet l.57-58 (kept in the camera-ready) claim the experiments show ShICA 'outperforms existing GroupICA and IVA methods'. GroupICA is represented by CanICA only; the authors argue it dominates GICA."
+    },
+    {
+     "reviewer": "Reviewer_vUQJ",
+     "claim": "Multiset CCA has no independence constraint, so its failure under noise is obvious and comparing it with ICA methods is unfair.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 5 shows Multiset CCA recovers the unmixing matrices from exact covariances under Assumption 4. Section 3.2 and Fig. 1 attribute its failure to sampling noise. ShICA-J is Multiset CCA plus joint diagonalization, so the comparison is an ablation."
+    },
+    {
+     "reviewer": "Reviewer_vUQJ",
+     "claim": "Apart from simulation, no real fMRI data decomposition was compared.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Fig. 5 benchmarks ShICA-ML, ShICA-J, MVICA, CanICA and SRM on four fMRI datasets (sherlock, forrest, raiders, gallant); Fig. 4 compares five methods on MEG from 100 subjects."
+    },
+    {
+     "reviewer": "Reviewer_Mkd2",
+     "claim": "The paper presents handling non-Gaussian noise as a novelty over CCA-based methods such as SRM.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.73-75: the individual noises are Gaussian, n_i ~ N(0, Sigma_i). Non-Gaussianity applies to the shared components only."
+    },
+    {
+     "reviewer": "Reviewer_Mkd2",
+     "claim": "The paper gives no clear cross-validation scheme and reports no classification accuracy.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.394-399: unmixing operators are learned on all subjects and 80% of runs, then applied to the other 20% of runs with 80% of subjects to reconstruct the left-out 20%. l.414-415 point to time-segment matching in Appendix G.2. Only the averaging-versus-MMSE step was missing; the camera-ready adds it."
+    },
+    {
+     "reviewer": "Reviewer_Mkd2",
+     "claim": "The number of components is selected manually, so no inference is possible from the experiments.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Fig. 5 sweeps 5, 10, 20 and 50 components for every method, and l.412-413 report ShICA-ML best at each. The valid part: R2 still rises at 50, so the sweep does not show where the methods peak."
+    },
+    {
+     "reviewer": "Reviewer_Mkd2",
+     "claim": "Newer SRM extensions (MN-SRM, RSRM) are not compared.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 5 uses plain SRM [13]. RSRM [46] is cited in Section 5 (l.296) but not benchmarked. The authors argued MN-SRM shows no gain over SRM."
+    },
+    {
+     "reviewer": "Reviewer_v4RY",
+     "claim": "The paper does not relate its model to Bayesian CCA (Klami, Virtanen and Kaski 2013).",
+     "checked_against_paper": "correct",
+     "evidence": "The reference list has Klami et al.'s group factor analysis [28] but not Bayesian CCA. The authors answered in the rebuttal: Gaussian prior, variational approximation, noise on the sensors."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": ["Reviewer_6yar"],
+    "evidence": "Reviewer_6yar edited on 2021-08-18, after the 2021-08-10 author replies, adding 'after reading some other reviewer comments ... I must give a lower score'; the earlier rating is not visible. Reviewer_v4RY edited on 2021-08-31 to say it keeps its marginal-accept 6. Reviewer_Mkd2 and Reviewer_vUQJ never edited and never replied.",
+    "what_convinced_or_not": "The replies corrected the misreadings of Reviewer_vUQJ (real-data experiments, Multiset CCA) and Reviewer_Mkd2 (Gaussian noise, protocol, Appendix G.2 accuracy), but neither reviewer engaged. Reviewer_6yar's drop answered other reviews, not the rebuttal. Reviewer_v4RY was satisfied with the Bayesian CCA answer."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "'Two reviewers recommend rejection and two reviewers recommend acceptance ... after my own reading of the paper, I believe this work provides a genuine contribution.' The AC set the two reject reviews aside: 'I believe that the authors have included suitable baselines when testing their model.'",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC's own reading: identifiable components make the method robust, a genuine contribution to multi-view ICA",
+    "AC judged the existing baselines suitable, which removed the main objection of the two reject reviews",
+    "Left-out-subject fMRI reconstruction cited as evidence of downstream usefulness"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Noise-diversity assumption restrictive for real data (Reviewer_qGdn)",
+  "Shared-response assumption unrealistic in fMRI and unfair dismissal of IVA (Reviewer_GxXa)",
+  "Title promises neuroimaging insight the paper does not discuss (Reviewer_9MQr)",
+  "Small fMRI reconstruction gains with overlapping confidence intervals (Reviewer_qGdn, Reviewer_9MQr)",
+  "Fixed, uncited super-Gaussian source density (Reviewer_qGdn, Reviewer_9MQr)",
+  "Noise term mixes individual differences and measurement noise (Reviewer_LARb)",
+  "MVICA missing from Fig. 2 and acronym undefined (Reviewer_LARb, Reviewer_9MQr, Reviewer_GxXa)",
+  "Scalability against GroupICA for hundreds of subjects (Reviewer_LARb)"
+ ],
+ "issues_only_b": [
+  "Relation to Bayesian CCA (Reviewer_v4RY)",
+  "Metrics not comparable with Chen et al. 2015 (Reviewer_Mkd2)",
+  "Number of components not tuned per method (Reviewer_Mkd2)",
+  "SRM extensions MN-SRM and RSRM not benchmarked (Reviewer_Mkd2)",
+  "Simulations too small: 4 components, 5 subjects (Reviewer_vUQJ)",
+  "Comparison with Multiset CCA called unfair (Reviewer_vUQJ)"
+ ],
+ "shared_issues": [
+  "No IVA benchmark (Reviewer_GxXa in A, Reviewer_vUQJ in B), although l.57-58 claim the experiments show ShICA outperforms IVA methods",
+  "Baselines beyond the chosen set (A: jICA, linked ICA, TensorICA, newer IVA; B: GICA, MN-SRM, RSRM)",
+  "Limited novelty: close to MultiViewICA [41] (Reviewer_LARb, Reviewer_GxXa) or 'rather straightforward' (Reviewer_v4RY)",
+  "Missing experimental and dataset details (Reviewer_LARb in A, Reviewer_Mkd2 in B)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster, by different routes. Committee A's four reviewers ended at 7; two of them (Reviewer_9MQr, Reviewer_GxXa) raised their scores after a thorough rebuttal, GxXa explicitly 'to simplify the decision', and the AC followed the scores. Committee B's reviewers split 6, 6, 5, 4 (mean 5.25), and the accept came from the AC's own reading, which judged the identifiability results a genuine contribution and the baselines suitable. The paper supports that call: most specific objections in B's two reject reviews are wrong (Fig. 5 benchmarks five methods on four fMRI datasets, the noise is Gaussian, the train/test split is stated, and Theorem 5 shows Multiset CCA fits the model). One of B's accepts (Reviewer_6yar) is a 30-minute review that lowered its score after reading peers without naming a concern. The discussion phase widened the gap between the committees: two scores rose in A and one fell in B. The valid criticism both committees raised, no IVA benchmark despite a claim of beating IVA methods (l.57-58), did not change either decision. B's agreement rests on its AC, not its scores.",
+ "candidate_reasons": [
+  "AC own reading overrode split scores",
+  "Detractor claims contradicted by paper",
+  "Rebuttal lifted two scores",
+  "Score bump to simplify decision",
+  "Herding downgrade after reading peers",
+  "Uneven reviewer care across committees"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Reviewer_vUQJ review, points (c) and (d)",
+  "Reviewer_Mkd2 review, points 1 to 3",
+  "Reviewer_6yar review, edited 2021-08-18",
+  "Reviewer_9MQr comment 2021-08-23",
+  "Reviewer_GxXa comment 2021-08-26",
+  "Authors' R2 table in the reply to Reviewer_GxXa",
+  "paper l.57-58 (IVA claim) and Figs. 2-5 (baselines)",
+  "paper l.73-75 (Gaussian noise)",
+  "paper Theorem 5 and Section 3.2",
+  "paper l.394-415 (reconstruction protocol, Appendix G.2 pointer)"
+ ]
+}

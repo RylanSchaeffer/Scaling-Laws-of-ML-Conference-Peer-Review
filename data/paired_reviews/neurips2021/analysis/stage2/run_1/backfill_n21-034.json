@@ -1,0 +1,32 @@
+{
+  "run": 1,
+  "pair_id": "n21-034",
+  "turn": 9,
+  "prompt_version": 2,
+  "judgements": [
+    {"id": "R14", "applies": true, "justification": "B's meta-review restated the abstract, named no weakness, and said the authors 'illustrated how to further boost adversarial robustness' against aQh1's 'The robustness improvement is limited'; A's meta-review carried 7cFv's two reservations forward."},
+    {"id": "R15", "applies": false, "justification": "The wrong claims (aQh1's CIFAR-10-only limitation, cKPT's Figure 5(a) reading) were minor and did not set either committee's score or tier."},
+    {"id": "R16", "applies": false, "justification": "A's concession that pre-training is needed did not leave A higher than its information supported: A's area chair kept the reservations and gave the lower tier, and B's response held no damaging admission."},
+    {"id": "R17", "applies": false, "justification": "No objection or score cut came after the response period; the only late action, cKPT's 2021-09-01 edit, was a raise."},
+    {"id": "R18", "applies": false, "justification": "B's area chair did not cite the scores alone but its own reading ('a hot research topic', 'will interest many readers'), so the split is not a pure threshold difference."},
+    {"id": "R19", "applies": false, "justification": "A's area chair followed its most specific reviewer, 7cFv, and B's area chair followed its own reading, not the mean of less-informed reviewers."},
+    {"id": "R20", "applies": false, "justification": "B's scores stayed flat because no B reviewer replied, not because B's concerns were beyond what a response could fix; the authors answered them with new results."},
+    {"id": "R21", "applies": false, "justification": "Stage 1 finds no outlier in either committee; all ratings sit within one point of the mean."},
+    {"id": "R22", "applies": false, "justification": "No reviewer's score stood apart from its committee, so no outlying score stood unrevised."},
+    {"id": "R23", "applies": false, "justification": "Neither area chair set aside an outlying low score or framed the meta-review as accept or reject against a detractor."},
+    {"id": "R24", "applies": false, "justification": "No reviewer or area chair raised audience breadth or venue fit as a ground against the paper."},
+    {"id": "R25", "applies": false, "justification": "B's meta-review paraphrased the paper and made no statement about the reviewers' final positions or the rebuttal; its omission of weaknesses is R14, not a misstatement of the record."},
+    {"id": "R26", "applies": true, "justification": "No B reviewer replied to the 2021-08-10 responses (ClusTR comparison, wrong-hierarchy ablation, TRADES), so B's pre-rebuttal 6/7/6 stood, while all three A reviewers engaged and revised."},
+    {"id": "R27", "applies": false, "justification": "No reviewer said they could not verify the results; confidences are 5/4/3 on both sides."},
+    {"id": "R28", "applies": false, "justification": "Neither committee split evenly between accept and reject; all final ratings are 5 or above."},
+    {"id": "R29", "applies": false, "justification": "The TRADES figures differ (52.80/53.71 to B, 52.98/53.68 over five seeds to A) only because A asked for seed averages; the accounts agree in substance."},
+    {"id": "R30", "applies": false, "justification": "All six reviewers praised the novelty, and no novelty verdict rested on a wrong account of prior work; aQh1's ClusTR question was answered."},
+    {"id": "R31", "applies": false, "justification": "B's meta-review did state grounds for the spotlight, topical interest and expected readership; the weakness of those grounds is R01 and R02."},
+    {"id": "R32", "applies": false, "justification": "No reviewer contested the paper's framing from a neighbouring field's premises."},
+    {"id": "R33", "applies": false, "justification": "No reviewer on either side rated well above accept (top rating 7 in both), and each committee's 7 came from a light review."},
+    {"id": "R34", "applies": false, "justification": "Neither committee rejected the paper or judged promised revisions too large for camera-ready."},
+    {"id": "R35", "applies": false, "justification": "Neither meta-review relies on an assessment absent from the committee's record."},
+    {"id": "R36", "applies": false, "justification": "Both committees judged the paper as an analysis-plus-method paper on the same terms; neither imposed a contribution-type standard the other did not."},
+    {"id": "R37", "applies": false, "justification": "No score stayed below threshold, and 7cFv's held concerns (linearization link, seed variance) are central, not peripheral."}
+  ]
+}

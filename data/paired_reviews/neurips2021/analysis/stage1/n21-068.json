@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-068",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_jDpZ",
+        "Reviewer_zw1M"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_zbiv), 7 (Reviewer_jDpZ), 7 (Reviewer_GKTE) and 6 (Reviewer_zw1M). The spread is one point. No rating stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zw1M",
+          "evidence": "Asked 'Whether Autoformer works for multivariate time series?', but l.222 says 'All the experiments are multivariate forecasting.' Said ARMA 'is not compared', but l.223 puts ARIMA ('ARMIA') among the supplementary baselines. Listed DeepGLO as 'not mentioned', but l.80 cites it (twice, as [27] and [28]). Asked 'How to determine tau in practice?', which Eq. 6 answers (the top-k autocorrelation lags). Its points on non-periodic series and on input length were real, and it pressed them in two follow-ups."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_jDpZ",
+          "claim": "The paper defines long-term forecasting as predicting the long-term future from a short history, which is not the usual definition.",
+          "checked_against_paper": "correct",
+          "evidence": "l.107-108: 'The long-term forecasting setting is to predict the long-term future given the short-term history, i.e. O >> I.' The authors conceded. The camera-ready reads 'predict the long-term future, i.e. larger O'."
+        },
+        {
+          "reviewer": "Reviewer_jDpZ",
+          "claim": "The experiments use a 96-step input, which is one day of the 15-minute ETT data.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 caption: 'We set the input length I as 24 for ILI and 96 for the others.' l.203-204: ETT is 'recorded every 15 minutes'. Only the Table 3 ablation uses inputs of 192 and 336."
+        },
+        {
+          "reviewer": "Reviewer_jDpZ",
+          "claim": "In Table 3 the MSE consistently increases when the input length increases, for Auto-Correlation and self-attention alike.",
+          "checked_against_paper": "correct",
+          "evidence": "Auto-Correlation MSE at inputs 96/192/336: 0.351/0.387/0.418 (predict 336), 0.491/0.462/0.544 (predict 720), 0.575/0.747/0.890 (predict 1440). Input 336 is worse than input 96 at every horizon. 'Consistently' overstates it: predict-720 dips at input 192, and ProbSparse improves with input length. The authors did not dispute the ETT pattern. They answered with Exchange and ILI runs where longer inputs help."
+        },
+        {
+          "reviewer": "Reviewer_jDpZ",
+          "claim": "The paper does not say how the test window is chosen, so each task may rest on a single test window.",
+          "checked_against_paper": "correct",
+          "evidence": "l.213-214 says only: 'We follow standard protocol and split all datasets into training, validation and test set in chronological order by the ratio of 7:1:2.' The authors replied that this 'standard protocol' means 'rolling prediction without retraining'. The paper never says so. If the rolling protocol was used, the single-window worry is unfounded, but the paper gave the reviewer no way to know."
+        },
+        {
+          "reviewer": "Reviewer_zw1M",
+          "claim": "ARMA is not compared, and DeepGLO and N-BEATS are not mentioned or compared.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.222-223: the univariate experiments, 'with more baselines, such as DeepAR [26], ARMIA [1] and Prophet [32]', are in the supplement. DeepGLO is cited at l.80 (as [27] and [28]). Only the N-BEATS part holds: it is not cited. Neither DeepGLO nor N-BEATS is compared."
+        },
+        {
+          "reviewer": "Reviewer_zbiv",
+          "claim": "AvgPool is undefined, and it is not clear whether AutoCorrelation takes one argument or two.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 3 writes AutoCorrelation with one argument, Eq. 4 (second line) with two, and Eq. 6 defines it with three (Q, K, V). l.123 describes AvgPool only as 'the moving average', with no kernel size. B's Reviewer_ozCn flagged the same Eq. 4."
+        },
+        {
+          "reviewer": "Reviewer_GKTE",
+          "claim": "The encoder output has length I, and l.179 does not say how it is resized to length O.",
+          "checked_against_paper": "correct",
+          "evidence": "l.178-179: 'K, V are from the encoder X_en^N and will be resized to length-O'. The main text gives no method. The authors pointed to supplementary lines 93-96 and said they truncate or zero-pad."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_jDpZ",
+          "Reviewer_zw1M"
+        ],
+        "evidence": "Reviewer_jDpZ wrote on 2021-08-10: 'I have changed my Rating to \"7: Good paper, accept\" accordingly'. The review was edited that day. Reviewer_zw1M wrote on 2021-09-01: 'would like to raise my score from 5 to 6'. The review was edited that day. Reviewer_GKTE wrote on 2021-08-30: 'Thanks for addressing my concerns'. It did not edit and stayed at 7. Reviewer_zbiv did not reply or edit.",
+        "what_convinced_or_not": "New experiments and clarifications convinced them. jDpZ cited the clarified protocol (Q2, Q5), longer-input runs on Exchange and ILI (Q3), and learned lags on Exchange and on a mixed-frequency set (Q4). zw1M needed a second round: ablations on ILI and COVID-19 as non-periodic cases, and advice on input length. Nobody checked the claim about the 'standard protocol' of l.213. The ETT result that longer inputs hurt was explained ('more irrelevant information'), not removed. Some new baseline numbers changed later. In the camera-ready univariate Table 2, N-BEATS (0.156) and ARIMA (0.112) beat Autoformer (0.241) on Exchange predict-96. The rebuttal table that zw1M saw had Autoformer best there (0.126 against 0.319 and 0.308)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Following the author response and discussion, most initial reviewer concerns were addressed and the consensus is that the paper should be accepted.' 'The basic concepts it builds on are well known in time series analysis' echoes Reviewer_zw1M (Vlachos et al.) and Reviewer_zbiv. The one request, limitations under 'complex seasonality, quasiperiodicity, absence of periodicity', collects the open points of jDpZ, zw1M and zbiv.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal, mean 6.5 (6, 7, 7, 6).",
+        "Auto-Correlation and the inner decomposition block judged novel; Table 1 reports large MSE gains (38% on average).",
+        "Rebuttal experiments on longer inputs, learned lags, non-periodic data and new baselines moved Reviewer_jDpZ to 7 and Reviewer_zw1M from 5 to 6.",
+        "Open doubts on non-periodic and multi-seasonal series kept it at poster; the AC asks for a statement of limitations."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_8uZe",
+        "Reviewer_e5xp"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All three final ratings are 6, each at confidence 4."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_e5xp",
+          "evidence": "1.5 hours and a 90-word main review. It asked for TFT, MQTransformer and quantile forecasts. It then noted that the authors' new numbers 'dont align with the TFT or MQTransformer papers'. The reply restated the forecasting setup, and e5xp did not pursue the point. On the same day (2021-08-11) it switched to 'a marginal accept'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ozCn",
+          "claim": "Table 2 has issues in Informer's first row.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Table 2, predict-96: Informer Origin 0.343, Sep 0.490, Ours 0.354 (in bold). The decomposition makes Informer worse, against l.239-240: 'other models can gain consistent promotion'. The authors: 'We will correct this.' The camera-ready changes Informer's predict-96 Origin to 0.365 in Tables 1 and 3. The other Informer ETT cells of Table 1 are unchanged."
+        },
+        {
+          "reviewer": "Reviewer_ozCn",
+          "claim": "AutoCorrelation takes two inputs in Eq. 4, and X_t means different things in Eq. 1 and Eq. 5.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 (second line) gives AutoCorrelation two arguments; Eq. 6 defines it with three (Q, K, V). Eq. 1 uses X_t for the trend part; Eq. 5 uses X_t for the value at time t."
+        },
+        {
+          "reviewer": "Reviewer_8uZe",
+          "claim": "In Eq. 6 the sum runs over i but the terms are indexed by k, and the lags run from 1 to L where Eq. 5 implies 0 to L-1.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Eq. 6 sums from i = 1 to k over Roll(V, tau_k) times the normalised R(tau_k), with tau in {1, ..., L}. The camera-ready writes tau_i."
+        },
+        {
+          "reviewer": "Reviewer_8uZe",
+          "claim": "c is the number of periods, so with c = 3 the model must find 3 periods in a 24-hour ETT input.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.175: 'let k = ⌊c × log L⌋, c is a hyper-parameter'. k is the number of selected lags. For L = 96 and c = 3, k is 13 with the natural log, and more than 3 in any base. The authors corrected this. Their new table shows c = 2 is best on ETT (MSE 0.339 against 0.351 at c = 3)."
+        },
+        {
+          "reviewer": "Reviewer_8uZe",
+          "claim": "There is no analysis of whether the decomposition recovers a known period and trend.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 4 caption: 'For clearness, we add the linear growth to raw data additionally.' The figure shows the learned trend and seasonal parts of this ETT series with 0 to 3 decomposition blocks. It is one qualitative case."
+        },
+        {
+          "reviewer": "Reviewer_e5xp",
+          "claim": "The paper does not compare with TFT or MQTransformer and does not forecast distributions.",
+          "checked_against_paper": "correct",
+          "evidence": "l.220-223 and Table 1: the baselines are Informer, Reformer, LogTrans, LSTNet, LSTM and TCN (DeepAR, ARIMA and Prophet in the supplement). Training uses the L2 loss (l.215). Neither TFT nor MQTransformer is cited. The camera-ready main text still includes neither."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_e5xp",
+          "Reviewer_8uZe"
+        ],
+        "evidence": "Reviewer_e5xp edited on 2021-08-11: 'After the additional results, Im happy to switch to a marginal accept'. Its original text says 'I cannot give it an accept'. Reviewer_8uZe edited on 2021-08-27: 'After the author response, the rating is updated to 6'. The record does not show its earlier rating, and it posted nothing in the discussion. Reviewer_ozCn did not reply or edit.",
+        "what_convinced_or_not": "New baselines convinced them. e5xp got TFT and MQTransformer tables and 0.5- and 0.9-risk results. 8uZe got c-sensitivity tables, a comparison with period-aware attention RNNs and learned lags on Exchange. e5xp's doubt that the numbers 'dont align' with the TFT and MQTransformer papers got a restatement of the setup and was dropped. No B reviewer asked about input length or the test protocol. The rebuttal promised to add TFT, MQTransformer and the period-aware RNNs to Table 1; the camera-ready main text has none of them."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'After careful consideration of the paper and given review scores of (6, 6, 6, mean 6), it appears that the paper could be accepted as a poster.' It lists one question per reviewer as answered. 8uZe's satisfaction shows only in its edited rating, and ozCn never replied.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three ratings of 6 (mean 6.0); the AC cites the scores.",
+        "Reviewers liked the auto-correlation mechanism and the encoder/decoder decomposition; ozCn and e5xp called them novel.",
+        "Rebuttal baselines (TFT, MQTransformer, period-aware RNNs) and c-sensitivity results moved Reviewer_e5xp and Reviewer_8uZe to 6.",
+        "The remaining faults were notation and equation errors, which the authors promised to fix."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Definition of long-term forecasting, and whether longer inputs help (Reviewer_jDpZ, Reviewer_zw1M)",
+    "Error that rises with input length in Table 3, and the undocumented test protocol (Reviewer_jDpZ)",
+    "Recent lags that dominate the correlogram under multiple seasonalities (Reviewer_jDpZ)",
+    "Dimensions with different periods; series without periodicity; rotated or stretched signals; additive against multiplicative decomposition (Reviewer_GKTE, Reviewer_zw1M, Reviewer_zbiv, AC)",
+    "ARIMA, DeepGLO and N-BEATS baselines; frequency-domain autocorrelation is not new (Reviewer_zw1M)",
+    "Standard deviations over the three runs (Reviewer_GKTE)",
+    "Limitations not described (Reviewer_jDpZ, Reviewer_zbiv, Reviewer_zw1M, AC)"
+  ],
+  "issues_only_b": [
+    "TFT and MQTransformer baselines, and probabilistic or quantile forecasts (Reviewer_e5xp)",
+    "Period-aware content attention RNNs (Cinar et al. 2018) as missing related work (Reviewer_8uZe)",
+    "Fixed c = 3 across datasets and the choice of k (Reviewer_8uZe, Reviewer_ozCn)",
+    "Eq. 6 sum index and lag range; 'correlation' against 'auto-correlation' as the name (Reviewer_8uZe)",
+    "Table 2 Informer predict-96 row, X_t notation clash, undefined C in Figure 2, motivation of Roll() (Reviewer_ozCn)"
+  ],
+  "shared_issues": [
+    "Method liked, and called novel by six of seven reviewers (all but Reviewer_8uZe, who called it 'interesting')",
+    "Unclear Section 3: arguments of AutoCorrelation, AvgPool and padding, the encoder-decoder resize (A: Reviewer_zbiv, Reviewer_GKTE; B: Reviewer_ozCn)",
+    "Why the decoder input is I/2 + O (A: Reviewer_GKTE; B: Reviewer_ozCn)",
+    "A 96-step ETT input covers one day: can the model find longer periods, and which lags does it learn? (A: Reviewer_jDpZ; B: Reviewer_8uZe)",
+    "Missing baselines, answered in both by author-run tables (A: Reviewer_zw1M; B: Reviewer_e5xp, Reviewer_8uZe)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Every reviewer liked the method, and six of seven called it novel. By the end, no reviewer doubted the large MSE gains of Table 1. No final rating is below 6 or above 7, so neither committee had a champion or a detractor. In each committee, two reviewers rose after a rebuttal full of new author-run experiments: Reviewer_jDpZ (to 7) and Reviewer_zw1M (5 to 6) in A, Reviewer_e5xp and Reviewer_8uZe (to 6) in B. A's mean is half a point higher (6.5 against 6.0) because of two 7s. This gap does not cross a tier. The committees differed in what they examined, not in the result. A's jDpZ attacked the evaluation design, and the submission confirms the points. l.107-108 defines long-term forecasting by a short history. l.213-214 gives no test-window protocol. In Table 3, Auto-Correlation is worse with input 336 than with input 96 at every horizon. B examined notation, the hyperparameter c and missing baselines, and its AC cited the mean score. Neither committee could check the rebuttal's numbers, and some changed later. In the camera-ready univariate table, N-BEATS (0.156) and ARIMA (0.112) beat Autoformer (0.241) on Exchange predict-96. The rebuttal table shown to A had Autoformer best there (0.126 against 0.319 and 0.308).",
+  "candidate_reasons": [
+    "Novel mechanism with large reported gains",
+    "Rebuttal experiments lifted borderline reviewers",
+    "No champion or detractor present",
+    "Evaluation critique answered with new runs",
+    "AC deferred to mean score",
+    "Author-run rebuttal baselines accepted unchecked"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.107-108 (definition of long-term forecasting)",
+    "paper_submitted.pdf l.213-214 (7:1:2 split; no test-window protocol)",
+    "paper_submitted.pdf Table 3 (Auto-Correlation MSE by input length)",
+    "paper_submitted.pdf Table 2 (Informer predict-96: Ours 0.354 against Origin 0.343)",
+    "paper_submitted.pdf Eqs. 3, 4 and 6 and l.175 (AutoCorrelation arguments, sum index, k)",
+    "paper_submitted.pdf l.220-223 (baselines; all experiments multivariate; ARIMA in the supplement)",
+    "Reviewer_jDpZ final review and comment of 2021-08-10",
+    "Reviewer_zw1M comments of 2021-08-31 and 2021-09-01",
+    "Authors' reply to Reviewer_zw1M Q3 (univariate baseline tables) and to Reviewer_jDpZ Q5 (protocol)",
+    "Reviewer_e5xp final review and comment of 2021-08-11",
+    "Reviewer_8uZe final review ('Revision Update')",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Section 3 definition, Table 2 (univariate) and Table 3 (decomposition ablation)"
+  ]
+}

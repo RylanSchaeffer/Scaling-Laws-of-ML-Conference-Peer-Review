@@ -1,0 +1,204 @@
+{
+  "pair_id": "n21-075",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 8, 7],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_uPhV", "Reviewer_AySN"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_uPhV), 8 (Reviewer_AySN) and 7 (Reviewer_83MA), all at confidence 4. AySN's 8 is one point above the others and rests on specific points (choice of r_t, saddle-point cost per step). No rating stands apart."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AySN",
+          "claim": "Empirically, FW outperforms state-of-the-art methods on the presented benchmarks.",
+          "checked_against_paper": "correct",
+          "evidence": "As printed, yes: submitted Table 1 shows BC lowest at every delta (1,030 against LT 7,651 and LT-H 3,319 at delta = 0.1). But l.343-345 run LT, LT-H and XY-A with their own stopping rules and BC with the heuristic threshold log((log t + 1)/delta). The camera-ready runs LT with the shared rule; LT then needs fewer samples than FWS at every delta (919 against 1,030 at 0.1; 2,518 against 2,839 at 0.0001). 'Rather spectacular' (l.351-352) is gone, and the abstract's 'outperforms existing algorithms' becomes 'is competitive'. No reviewer in either committee noticed the mismatch."
+        },
+        {
+          "reviewer": "Reviewer_AySN",
+          "claim": "The choice of r_t appears only in the appendix (l 653) and belongs in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text says only that r_t 'will be discussed later' (l.239) and needs 'an appropriate decay rate' (l.259-260). Theorem 1 gives conditions (i)-(ii), not the t^-0.9 used in the experiments, which the rebuttal states."
+        },
+        {
+          "reviewer": "Reviewer_AySN",
+          "claim": "Each step still solves a linear saddle-point problem, which costs more than standard Frank-Wolfe.",
+          "checked_against_paper": "correct",
+          "evidence": "l.239-241: 'Computing z(t) is equivalent to solving a zero-sum game, which can be further formulated as a LP'. The submission reports no running times; the rebuttal concedes that LMA is faster."
+        },
+        {
+          "reviewer": "Reviewer_83MA",
+          "claim": "The algorithm is no longer Best Challenger: z(t) can put mass on many arms through the r-subdifferential, and the optimizer is not the standard FW algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (10)-(11) take the convex hull of the gradients of every f_j within r_t of the minimum, and the tracking step (l.261-262) can select any arm. The authors agreed; the camera-ready renames the algorithm FWS."
+        },
+        {
+          "reviewer": "Reviewer_83MA",
+          "claim": "Algorithm 1's while condition evaluates F at an estimate that may lie outside the parameter set, where F is undefined.",
+          "checked_against_paper": "correct",
+          "evidence": "The loop tests tF_{mu_hat(t)}(omega(t)) < beta with no check on mu_hat, although l.254-255 say the objective cannot be computed when mu_hat is outside Lambda. The camera-ready adds 'or mu_hat(t-1) not in Lambda' to the loop condition."
+        },
+        {
+          "reviewer": "Reviewer_uPhV",
+          "claim": "Line 339 misspells the name of an algorithm from [9].",
+          "checked_against_paper": "correct",
+          "evidence": "l.339: 'LineGame-C (CG-C) and LineGame (Lk-C) from [9]'; the algorithms are LinGame-C and LinGame. The camera-ready keeps the typo."
+        },
+        {
+          "reviewer": "Reviewer_83MA",
+          "claim": "Proof-level slips in the appendix (L990, L1012, L1170, L1218, L1245, L1252 and others).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submitted PDF is the 12-page main paper; the 54-page long version the reviewers cite is not in the record. The authors conceded most points and promised fixes. The one visible in the main text, division by N_k(t) at l.182-183, gets 'When N_k(t) > 0' in the camera-ready."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_uPhV"],
+        "evidence": "Reviewer_uPhV, 2021-08-31: 'My concerns are addressed, and have increased my score'; review edited that day, final 7. Reviewer_AySN's edit of 2021-08-31 adds only thanks, with no statement about the score (final 8). Reviewer_83MA neither edited nor replied.",
+        "what_convinced_or_not": "Direct answers to direct questions. uPhV got a reason for Assumption 3 (Lipschitz continuity of the gradients for Theorem 2) and a per-round cost account: an LP with m variables, m = 1 in about 40% of unstructured rounds, faster than TaS, slower than LMA. AySN got the r_t choice (t^-0.9) and its sensitivity (t^-0.5 costs about 200 more samples). 83MA got the promised rename and line-by-line fixes."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers are all in favor of accepting.' The AC adds the tier argument: 'clear accept but not a top paper because of the nature of contribution being relatively technical relative to antecedent work and some of the documented computational limitations'. This echoes AySN's originality and limitations paragraphs and the rebuttal's cost account.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept (7, 8, 7): a convergence and asymptotic-optimality proof for a Frank-Wolfe-type sampling rule across generic structures, judged sound and well written",
+        "Empirical lead taken at face value (AySN: 'outperforms other methods empirically')",
+        "AC held the tier at poster: technical relative to antecedent work, computational cost left open"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 7],
+      "confidences": [3, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_2Czm", "Reviewer_8vBR", "Reviewer_5onQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_2Czm, confidence 3), 6 (Reviewer_8vBR), 7 (Reviewer_ABte) and 7 (Reviewer_5onQ). After the rebuttal the spread is one point. The AC says the reviews were 'initially mixed'; the two 6s were lower before the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_2Czm",
+          "claim": "Each ingredient exists in prior work: the one-step online approach in LMA [39], the Best Challenger rule in [21], and the non-smooth FW analysis in [42] (Ravi et al.).",
+          "checked_against_paper": "correct",
+          "evidence": "2Czm cites the long version's reference numbers. The paper says so itself: Best Challenger is from [13], 'hence the name of our algorithm' (l.67-70); LMA is 'a solution close to ours' (l.100); its non-smooth FW is 'close to those developed in [31, 4]' and 'similar but simplified' (l.119-124). The difference that the rebuttal stressed (no gradients in a neighbourhood) is already at l.230-235."
+        },
+        {
+          "reviewer": "Reviewer_8vBR",
+          "claim": "Lines 100-106 distinguish the work from LMA only by better empirical performance.",
+          "checked_against_paper": "correct",
+          "evidence": "l.100-106 call LMA 'close to ours' and say only that it 'may not be as efficient as TaS or BC'. The argument that LMA needs a learning rate tuned to the unknown mu appears first in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_8vBR",
+          "claim": "Line 56 asserts that the inner problem of (1) can be hard, with no sense of hardness and no example.",
+          "checked_against_paper": "correct",
+          "evidence": "l.54-56: '(1) is a concave program but can become difficult to solve depending the underlying structure'. No example follows. Rebuttal: 'The hardness of this problem is difficult to evaluate ... We will look for yet harder structures.'"
+        },
+        {
+          "reviewer": "Reviewer_8vBR",
+          "claim": "The computational advantage, if it is the main advantage, is not demonstrated in experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission reports only sample complexity (Table 1). The rebuttal promises running times for the final version. ABte and 5onQ in B, and uPhV and 83MA in A, asked the same."
+        },
+        {
+          "reviewer": "Reviewer_5onQ",
+          "claim": "The linear-bandit baselines omit RAGE, LinGapE and ALBA.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares BC with LT, LT-H, CG-C, Lk-C, XY-A and RR only. LinGapE [40], RAGE [10] and ALBA [37] are cited but not run. Reviewer_ABte made the same point."
+        },
+        {
+          "reviewer": "Reviewer_ABte",
+          "claim": "LT-H is not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "LT-H appears in Table 1 and l.343-345, but l.338-340 define only LT. The authors pointed to Appendix E; the camera-ready drops the LT-H column."
+        },
+        {
+          "reviewer": "Reviewer_5onQ",
+          "claim": "Lambda is not defined explicitly; if it holds only instances with a unique best arm, it is not convex.",
+          "checked_against_paper": "correct",
+          "evidence": "l.30 defines Lambda only as 'the set of possible instances'. Example 1 sets Lambda = (0,1)^K, which contains ties, but l.31 and l.133-134 require a unique answer for every mu in Lambda. The rebuttal pointed to l.30 and did not resolve this."
+        },
+        {
+          "reviewer": "Reviewer_5onQ",
+          "claim": "Assumption 3 is missing a 'for all' in front of pi in S_{i*(mu)}.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.292-294 state a conditional ('if ||pi - mu|| <= kappa, then pi in S_{i*(mu)}'); nothing is missing. 5onQ later wrote: 'For Assumption 3, I understand it now.'"
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_8vBR", "Reviewer_2Czm"],
+        "evidence": "Reviewer_8vBR (edited 2021-08-27): 'I increased my score', final 6. Reviewer_2Czm (edited 2021-08-17): 'my concern is clearly addressed by author's response', final 6; the rise is inferred from the AC's 'initially received mixed reviews' and 'all reviewers agreed'. Reviewer_5onQ (edited 2021-08-30) was 'mostly satisfied', final 7, no stated change. Reviewer_ABte did not edit.",
+        "what_convinced_or_not": "Positioning arguments, not new results. To 2Czm: the non-smooth FW of [42] needs subgradients in a neighbourhood, which the r-subdifferential subspace and Proposition 1 avoid; l.230-235 already say this. To 8vBR: LMA needs a learning rate that depends on the unknown mu; Assumption 2 is weaker than in [8] and [29]; BC gives the first Lipschitz-bandit BAI results. No example of a hard inner problem was given. To 5onQ: RAGE was left out because LT-H beats it in [18], LUCB because TaS beats it in [13]; running times promised."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'initially received mixed reviews ... These concerns were sufficiently addressed by the authors' response, and, after a short discussion, all reviewers agreed that the paper is strong enough for publication.' The meta-review gives no view of its own and does not mention computation, baselines or the exponential dependence on K.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Asymptotic optimality for generic structured pure exploration, with the first Lipschitz-bandit BAI results (ABte, 5onQ)",
+        "The rebuttal resolved the significance doubts of 2Czm and 8vBR, giving a 6-6-7-7 consensus",
+        "No reviewer above 7, so nothing argued for more than a poster"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The algorithm is no longer Best Challenger and needs a new name (83MA); the camera-ready renames it FWS",
+    "Algorithm 1's loop evaluates F at an estimate outside Lambda (83MA); fixed in the camera-ready",
+    "Choice and sensitivity of r_t, and behaviour at r_t = 0 (AySN)",
+    "Missing references on FW in active exploration: Carpentier et al. 2011, Tarbouriech and Lazaric 2019 (83MA)"
+  ],
+  "issues_only_b": [
+    "Significance relative to LMA, the Best Challenger rule and non-smooth FW (2Czm, 8vBR); in A, AySN and the AC noted the antecedents but did not count them against the paper",
+    "Missing baselines: RAGE, LinGapE, ALBA for linear BAI; LUCB, lil'UCB and top-two algorithms for unstructured BAI (ABte, 5onQ)",
+    "How restrictive Assumption 2 is against prior work, and whether problem (1) is ever hard (8vBR)",
+    "LT-H undefined and Lambda loosely defined (ABte, 5onQ)",
+    "Meaning of the constants Psi and T_{epsilon,L} in Theorem 2 (5onQ)"
+  ],
+  "shared_issues": [
+    "Per-round cost (an LP over the r-subdifferential) with no running-time comparison (uPhV, AySN, 83MA; 8vBR, ABte, 5onQ); the authors' replies on BC against TaS disagree: faster (uPhV, 83MA), similar (ABte), 'close to and sometimes better' (5onQ)",
+    "Exponential dependence on K in Theorem 2 (83MA; ABte, 5onQ)",
+    "Whether forced exploration can be removed (83MA; ABte)",
+    "Interpretation of Assumptions 2 and 3 (uPhV; 8vBR, 5onQ)",
+    "The same appendix slips at L240, L990, L1012, L1170-1171, L1252 and the norm in Proposition 3 (83MA; ABte), raised in near-identical words"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reasons. No reviewer disputed the theory: a convergence and asymptotic-optimality proof for a Frank-Wolfe-type sampling rule in generic structured pure exploration. The parts are known, and the paper says so: Best Challenger (l.67-70), LMA 'close to ours' (l.100), and non-smooth FW 'similar but simplified' (l.119-124). The speed claim in the title was never measured. No rating is above 8 or below 6, so nobody argued for a higher tier. Committee A's AC capped it explicitly: 'clear accept but not a top paper'. B's lower mean (6.5 against 7.33) is the same facts weighted differently. Reviewer_2Czm and Reviewer_8vBR counted the closeness to prior work against significance, and a rebuttal of positioning arguments lifted both to 6. A's reviewers noted the same antecedents and did not count them. The agreement is partly not independent. Reviewer_83MA (A) and Reviewer_ABte (B) have matching summaries, the same two main questions, and six of ABte's seven technical comments at the same appendix lines. ABte posted on 2021-07-16 after 10 hours; 83MA posted on 2021-07-18 after 1 hour. Neither committee noticed that the empirical lead rests on unequal stopping rules. The submitted Table 1 runs LT with its own rule and BC with a looser heuristic threshold (l.343-345). In the camera-ready, with a shared rule, LT needs fewer samples than FWS at every delta, and 'outperforms' becomes 'competitive'.",
+  "candidate_reasons": [
+    "Sound theory built from known parts",
+    "Open computational cost capped tier",
+    "Rebuttal settled novelty doubts in B",
+    "No champion for a higher tier",
+    "Same reviewer's work in both committees",
+    "Unequal stopping rules went unnoticed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_83MA final review (A) against Reviewer_ABte final review (B): summaries, line comments, main questions, posting dates and time spent",
+    "Reviewer_2Czm and Reviewer_8vBR final reviews with post-rebuttal notes",
+    "Reviewer_uPhV post-rebuttal comment of 2021-08-31",
+    "Committee A meta-review ('clear accept but not a top paper')",
+    "Committee B meta-review ('initially received mixed reviews')",
+    "paper_submitted.pdf l.67-70, l.100-106, l.119-124, l.230-235 (positioning against Best Challenger, LMA and non-smooth FW)",
+    "paper_submitted.pdf Table 1, l.343-345 and l.351-352 (LT on its own stopping rule; 'rather spectacular')",
+    "paper.pdf (camera-ready) Table 1 and abstract (LT on the shared rule beats FWS; 'competitive')",
+    "paper_submitted.pdf l.239-241 (LP per round) and l.298-299 (Psi exponential in K)",
+    "Authors' replies on run time to uPhV, 83MA, ABte and 5onQ"
+  ]
+}

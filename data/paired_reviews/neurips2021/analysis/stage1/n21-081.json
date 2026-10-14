@@ -1,0 +1,228 @@
+{
+  "pair_id": "n21-081",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_E74o",
+        "Reviewer_MsYr",
+        "Reviewer_3Csr",
+        "Reviewer_7zoB"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four final ratings are 6: Reviewer_E74o (confidence 3), Reviewer_MsYr (4), Reviewer_3Csr (3) and Reviewer_7zoB (2). No rating stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_7zoB",
+          "evidence": "Confidence 2; posted 2021-08-01, two weeks after the other three. A 175-word main review of generic praise ('The authors conduct thorough experiments and compare with a wide range of state-of-the-art baselines') with one question: does JAX or Autograd have forward mode? The summary misreads the mechanism: forward-mode AD 'helps overcome the gradient degradation which occurs in greedy gradient based hyper-parameter optimization methods like Hyper-gradient descent'. The paper says greediness 'mitigates gradient degradation' (l.128) and that sharing, not forward mode, addresses it (l.145-148). Post-rebuttal: 'I have decided to retain my score', with no comment on the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_MsYr",
+          "claim": "The Section 5.4 comparison searches the learning rate over [-1, 1], which includes negative learning rates, for 7 learning rates at once, so the black-box methods (RS, BO, HB, BOHB) will often sample a negative learning rate.",
+          "checked_against_paper": "correct",
+          "evidence": "l.330-331: 'consider large search ranges: α ∈ [−1, 1], β ∈ [−1.5, 1.5], and ξ ∈ [−4 × 10−3, 4 × 10−3]'; l.335-336: '7 learning rates, 1 momentum and 1 weight decay'. FDS initializes all hyperparameters at 0 (Algorithm 1; Figure 4 caption). If the seven learning rates are drawn uniformly, all seven are non-negative with probability 1/128. The authors confirmed no log scale and conceded that the range 'slows down the trial-and-error based black box methods' and that 'FDS and BOHB become equally good around the [0, 0.1] range'. The headline ×20 speedup (l.343-344: zero regret in 3 hours against BOHB's 60) is measured in this setting."
+        },
+        {
+          "reviewer": "Reviewer_MsYr",
+          "claim": "The paper's statement that forward mode is not available in automatic-differentiation packages is wrong: JAX supports it, and reverse-on-reverse gives it in any reverse-mode package.",
+          "checked_against_paper": "correct",
+          "evidence": "l.360-362: 'forward-mode differentiation doesn't come in an automatic-differentiation package yet, like reverse differentiation, and so some pen and paper work is still required'. The authors conceded: 'It is correct that recent ML toolboxes like JAX boast forward-mode autodiff'. Reviewer_7zoB and B's Reviewer_CQeN made the same point."
+        },
+        {
+          "reviewer": "Reviewer_E74o",
+          "claim": "The abstract speaks of hyperparameters in general, but the paper learns only the learning rate, momentum and weight decay of SGD.",
+          "checked_against_paper": "correct",
+          "evidence": "The abstract (l.1-14) names no optimizer; l.159-160: 'we consider the most popular optimizer, namely SGD with momentum and weight decay'. The authors said they had made the abstract name these hyperparameters; the camera-ready abstract still does not."
+        },
+        {
+          "reviewer": "Reviewer_E74o",
+          "claim": "'T hyperparameters' on line 193 may be a typo.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.107-108 and l.190-193 use one hyperparameter per inner step (λ ∈ R^T), so ensemble averaging needs T hypergradients per seed. The authors said so. Minor."
+        },
+        {
+          "reviewer": "Reviewer_3Csr",
+          "claim": "The paper treats gradient degradation as hypergradient variance over seeds; ill-conditioning of a deterministic inner loop is a separate problem that sharing does not address.",
+          "checked_against_paper": "correct",
+          "evidence": "l.185-187 name minibatch ordering and initialization as 'the two main causes for this noise' and propose to 'average out their effect'; Theorem 4.1 bounds error against the ensemble mean. The authors conceded: 'we approached the problem from the perspective of the second component to gradient degradation'."
+        },
+        {
+          "reviewer": "Reviewer_7zoB",
+          "claim": "Forward-mode AD overcomes the gradient degradation that occurs in greedy methods such as Hypergradient Descent.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.128: greediness 'mitigates gradient degradation'; l.145-148: forward mode addresses memory, and 'Sharing hyperparameters (section 4.1) mitigates gradient degradation'. The misreading did not affect the rating."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_E74o",
+          "Reviewer_3Csr"
+        ],
+        "evidence": "Reviewer_E74o's review said 'for now it is just below the acceptance threshold'; its update says 'I am raising my score accordingly' (edited 2021-08-23, final 6). On 2021-08-24 the authors wrote to Reviewer_3Csr: 'your score is in contrast with the other three reviewers'. 3Csr replied on 2021-08-30, 'You have addressed my main concerns', and edited the review that day (final 6); the rise is inferred from these, as the review text names no score. Reviewer_MsYr's edit of 2021-09-03 added a Post-Rebuttal section that keeps the search-space objection and names no score change. Reviewer_7zoB (edited 2021-09-10): 'I have decided to retain my score'.",
+        "what_convinced_or_not": "Text, not new results, moved both risers. E74o rose on promises of Adam and CIFAR-100 results in an appendix, although the authors had written that FDS is 'less consistent across seeds for CIFAR-100' and 'would likely not obtain an average zero-regret'. 3Csr accepted the explanation that the MSE is measured against the ensemble-average hypergradient, and the bias-variance framing ('was helpful'), after the authors conceded that sharing targets variance, not ill-conditioning. MsYr was not convinced on the search space: 'it is a bit extreme to consider a space of [-1, 1] for learning rates', and without a log scale it is 'very improbable that any of the baselines will find a good LR'. MsYr did not lower the rating for it. The promised RTHO curve does not appear in the camera-ready Figure 1."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All reviewers agree that this paper proposed a useful method. Some questions regarding clarity, implementation and experiments were raised but addressed by the authors in the rebuttal phrase.' This overstates the record: Reviewer_MsYr's post-rebuttal section says 'I still have some concerns about the search space for comparisons'. The meta-review names no weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6 from four reviewers (mean 6.0), after the rebuttal lifted Reviewer_E74o and Reviewer_3Csr from below threshold.",
+        "All reviewers found the method clear and useful, with Theorem 4.1 and Figure 2 supporting the noise-bias trade-off of sharing.",
+        "Narrow scope (SGD hyperparameters, three small datasets) and hand-derived forward mode counted as limits of scope, not flaws.",
+        "Reviewer_MsYr's unresolved objection to the [-1, 1] linear search range for the black-box baselines left the final 6 in place, and the AC called all concerns addressed."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_CQeN"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_3NBa), 6 (Reviewer_CQeN) and 6 (Reviewer_FmV3). The spread is one point. The only 7 rests on a 103-word main review that calls novelty 'limited', so it is weak support, but it does not stand apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_3NBa",
+          "evidence": "A 7 at confidence 4 from a 103-word main review: 'The paper is nicely written, the results are well presented and thoroughly tested. The novelty of the paper is limited'. One question, on validation-set size; no weakness named; no reply to the rebuttal. 'Thoroughly tested' passes over one optimizer, three small datasets and the search-range design that A's Reviewer_MsYr questioned."
+        },
+        {
+          "reviewer": "Reviewer_FmV3",
+          "evidence": "Generic praise ('The language is smooth and the structure is clear') and two requests: more datasets and network structures, and 'co-working with structure searching', which l.308-310 puts outside the paper's aim. No point on the method, the theorem or the baselines; no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_CQeN",
+          "claim": "A sign-based optimizer for the hyperparameters is a third, 'rather hidden' component whose contribution is not ablated.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text mentions it once, in Section 5.4 (l.332-334: 'a fixed update size γ to the hyperparameters, which decays by 2 every time the hypergradient flips sign'). Algorithm 1 shows a plain gradient step (α ← α − 0.1 × gval Zα/W), and Section 5.3 does not mention it. The authors said it is used in all CIFAR experiments, is described in Appendix G, and that without it FDS took 25 outer steps instead of 10 and needed a hand-tuned outer learning-rate schedule."
+        },
+        {
+          "reviewer": "Reviewer_CQeN",
+          "claim": "Forward mode need not be derived by hand per optimizer: it can be simulated from reverse mode, and JAX supports it natively.",
+          "checked_against_paper": "correct",
+          "evidence": "Contradicts l.360-362 ('forward-mode differentiation doesn't come in an automatic-differentiation package yet'). The authors conceded and said they clarified Section 6."
+        },
+        {
+          "reviewer": "Reviewer_CQeN",
+          "claim": "H in Section 4.2 is used but not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "l.237: 'We don't need to store H or A in memory since we calculate the Hessian matrix product HZα directly'; l.120 defines H as the horizon. The authors said H is the training Hessian and changed l.237."
+        },
+        {
+          "reviewer": "Reviewer_FmV3",
+          "claim": "The paper aims at hyperparameters for a given architecture, not at architecture search (quoting line 308).",
+          "checked_against_paper": "correct",
+          "evidence": "l.308-310: 'we are not interested in finding the architecture with the best performance, but rather in finding the best hyperparameters given an architecture'. FmV3 still asks for joint architecture search."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_CQeN"
+        ],
+        "evidence": "Reviewer_CQeN (2021-08-20): 'I'm happy with the author response and have updated my rating to an accept'; the review was edited that day (final 6). The authors' reply had hoped to earn CQeN's 'recommendation for publication', so CQeN began below 6. Reviewer_3NBa and Reviewer_FmV3 neither edited nor replied.",
+        "what_convinced_or_not": "New experiments and numbers moved CQeN: greedy hypergradients with sharing added to Figure 2 and Figure 4, memory costs (FDS 2.3M, HD 2M, black-box methods M), and the reason for skipping horizons between 1 and T. CQeN accepted them unseen: 'Though I can't see an updated paper, the proposed changes make sense to me'. CQeN stayed 'a bit confounded at what role exactly the sign-based hypergradient optimizer serves'. The authors did not answer whether the baselines used it. The camera-ready Figures 2 and 4 show neither new greedy-with-sharing curve."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All reviewers agree on acceptance. This is a straightforward decision. The authors should use the feedback given by the reviewers to improve the paper for its camera-ready version.' It names no strength or weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 6.33 (7, 6, 6), after Reviewer_CQeN rose to 6 on two new ablations and memory figures.",
+        "Reviewers praised the writing, the theory and the results; Reviewer_3NBa called novelty limited but the paper 'valuable to the community'.",
+        "Two of three reviews (Reviewer_3NBa, Reviewer_FmV3) are short and generic and did not engage after the rebuttal.",
+        "No reviewer examined the black-box search range, so it never counted against the paper; the AC called the case 'a straightforward decision'."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Black-box baselines search α in [-1, 1] on a linear scale, so most draws of 7 learning rates include a negative one, while FDS starts at 0 (Reviewer_MsYr; l.330-336; unresolved after the rebuttal)",
+    "No comparison with forward-mode methods RTHO and MARTHE; 'greediness' against RTRL-style online updates (Reviewer_MsYr)",
+    "Sharing reduces hypergradient variance but not ill-conditioning; variance lower than what (Reviewer_3Csr)",
+    "How to choose the window W; FDS may need smooth optimal schedules; non-greedy failure on SVHN in Figure 3 (Reviewer_3Csr)",
+    "Scaling to many hyperparameters such as per-layer learning rates, schedules for momentum and weight decay, smaller budgets for early FDS runs (Reviewer_MsYr)",
+    "Error bars and validation losses in Figure 1 (Reviewer_E74o, Reviewer_MsYr)"
+  ],
+  "issues_only_b": [
+    "Sign-based outer optimizer used in all CIFAR runs, one sentence in the main text, not ablated; without it FDS took 25 outer steps instead of 10 (Reviewer_CQeN)",
+    "Ablate sharing apart from non-greediness by giving greedy methods shared hyperparameters (Reviewer_CQeN; authors added two experiments)",
+    "Empirical memory cost and the trade-off for horizons between 1 and T (Reviewer_CQeN)",
+    "H used but undefined in Section 4.2 (Reviewer_CQeN)",
+    "Effect of validation-set size (Reviewer_3NBa)",
+    "Joint use with architecture search (Reviewer_FmV3)"
+  ],
+  "shared_issues": [
+    "Forward mode derived by hand per hyperparameter although JAX and reverse-on-reverse provide it; l.360-362 says no package has it (A: Reviewer_MsYr, Reviewer_7zoB; B: Reviewer_CQeN)",
+    "Scope limited to SGD learning rate, momentum and weight decay (A: Reviewer_E74o, Reviewer_MsYr, Reviewer_3Csr; B: Reviewer_CQeN)",
+    "Few and small datasets and architectures (A: Reviewer_E74o, Reviewer_3Csr; B: Reviewer_FmV3)",
+    "Modest novelty (A: Reviewer_MsYr, 'a slight modification of RTRL'; B: Reviewer_3NBa, 'The novelty of the paper is limited')",
+    "Clear writing and a useful method, with theory that supports the noise-bias trade-off (all seven reviewers)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster because every reviewer settled at a borderline accept. All seven reviewers found FDS clear and useful. Forward-mode differentiation keeps memory constant as the horizon grows. Sharing a hyperparameter over a window of steps lowers hypergradient error (Theorem 4.1, Figure 2). No reviewer found an error in the method or the theorem. Final ratings are 6, 6, 6, 6 in A and 7, 6, 6 in B. In both committees, the rebuttal lifted the reviewers who began below threshold. Both committees named the same limits and treated them as scope, not flaws. FDS covers only SGD hyperparameters on three small datasets, and its forward mode is derived by hand although JAX provides one. The committees differed in scrutiny, not in outcome. A's four main reviews total about 2,500 words; B's three total about 540. Only A examined the search range behind the headline ×20 speedup over black-box methods. Reviewer_MsYr pointed out that the baselines search learning rates in [−1, 1] on a linear scale (l.331), while FDS starts at 0. If the seven learning rates are drawn uniformly, the chance that all seven are non-negative is 1 in 128. The authors conceded that FDS and BOHB \"become equally good around the [0, 0.1] range\". MsYr kept the objection after the rebuttal, yet the final rating is 6, and A's AC called the concerns \"addressed\". B never examined the search range. B's higher mean (6.33 against 6.0) comes from a 7 whose main review is 103 words. It reflects less scrutiny, not a stronger case.",
+  "candidate_reasons": [
+    "Unanimous borderline accept, no champion",
+    "Rebuttal lifted below-threshold reviewers",
+    "Shared scope limits treated as minor",
+    "Baseline handicap raised but not weighted",
+    "Thin reviews and consensus meta-reviews",
+    "Reviewers moved by unseen promises"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.327-337 (search ranges; 7 learning rates, 1 momentum, 1 weight decay)",
+    "paper_submitted.pdf l.343-344 (FDS zero regret in 3 hours, BOHB in 60)",
+    "paper_submitted.pdf Algorithm 1 and Figure 4 caption (hyperparameters initialized at 0)",
+    "paper_submitted.pdf l.332-334 (sign-based outer optimizer)",
+    "paper_submitted.pdf l.360-362 (forward mode 'doesn't come in an automatic-differentiation package yet')",
+    "paper_submitted.pdf l.128 and l.145-148 (what mitigates gradient degradation)",
+    "Reviewer_MsYr final review, Post-Rebuttal section",
+    "Authors' reply to Reviewer_MsYr ('FDS and BOHB become equally good around the [0, 0.1] range')",
+    "Reviewer_E74o 'Update post author response'",
+    "Authors' note of 2021-08-24 and Reviewer_3Csr reply of 2021-08-30",
+    "Reviewer_CQeN comment of 2021-08-20 and authors' reply on the sign-based optimizer",
+    "Reviewer_3NBa and Reviewer_FmV3 reviews",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) abstract and Figures 1, 2 and 4"
+  ]
+}

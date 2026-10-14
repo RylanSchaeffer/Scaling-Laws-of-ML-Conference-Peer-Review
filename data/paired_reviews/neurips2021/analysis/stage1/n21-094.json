@@ -1,0 +1,136 @@
+{
+  "pair_id": "n21-094",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 6, 5],
+      "confidences": [4, 3, 4, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Scores 5 to 7 around a mean of 6.0. Reviewer_vaM6's 5 is one point below two 6s, and Reviewer_9Pj4's 7 is one point above them."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_vaM6", "evidence": "S1 and S2 restate the abstract. W1 calls the method 'mostly a combination of existing modules' but names none. W2 asks for an unsupervised GIN ablation, which Table 2's K = 1 variant already is (lines 248, 305-306), and for DGI, a node-level method whose graph-level form, InfoGraph, is in Table 1. Only W3 (no efficiency analysis) holds. No reply to the rebuttal or to two reminders."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_ubo5", "claim": "No code came with the submission, although the checklist says it did.", "checked_against_paper": "correct", "evidence": "Checklist item 3(a) answers [Yes] (lines 477-478). The authors conceded: 'We promise to release the source code at publication time.'"},
+        {"reviewer": "Reviewer_ubo5", "claim": "The model is basically an extension of GraphCL [49].", "checked_against_paper": "correct", "evidence": "Augmentations and their hyper-parameters follow GraphCL (lines 176, 247-248). With K = 1 the method 'will degenerate to the traditional entangled graph contrastive learning model' (lines 305-306). In Figure 3, DGCL at K = 1 scores the same as GraphCL (about 59.5)."},
+        {"reviewer": "Reviewer_9Pj4", "claim": "Nothing in the approach forces the latent factors to be mutually exclusive.", "checked_against_paper": "correct", "evidence": "Lines 218-225 say the objective encourages disentanglement 'without adding extra regularization term'. The argument is an inductive bias, not a constraint or a proof. The rebuttal repeated these lines. The one direct test, Figure 4(c), shows strong correlation between several channel blocks."},
+        {"reviewer": "Reviewer_9Pj4", "claim": "Embeddings are evaluated only with an SVM, and the learned factors are analysed only on synthetic data.", "checked_against_paper": "correct", "evidence": "Lines 243-245 feed the embeddings to an SVM (a logistic regression for ogbg-molhiv, line 266). Section 4.3 and Figure 4 use only the synthetic SBM graphs."},
+        {"reviewer": "Reviewer_vaM6", "claim": "An unsupervised GIN ablation and DGI are missing from the baselines.", "checked_against_paper": "incorrect", "evidence": "Table 2 Variant 3 sets K = 1, so the GIN encoder (line 248) trains with plain contrastive learning (lines 305-306). DGI [41] learns node embeddings; its graph-level extension, InfoGraph, is in Table 1."},
+        {"reviewer": "Reviewer_vaM6", "claim": "Efficiency and scalability are not discussed.", "checked_against_paper": "correct", "evidence": "The main text gives no complexity, parameter count or runtime; Reviewer_mcrT asked for the same. The rebuttal supplied O(M) complexity and COLLAB timings and promised to add them."},
+        {"reviewer": "Reviewer_mcrT", "claim": "The connection to FactorGCN, which also runs a separate GNN per factor, is not discussed.", "checked_against_paper": "correct", "evidence": "FactorGCN [47] appears only as an example (line 36) and in a group of label-dependent disentangled GNNs (lines 334-337). The shared per-factor encoder design is not discussed."}
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. No reviewer commented after the 2021-08-10 responses, despite author reminders to all four on 2021-08-29 and a second note to vaM6 on 2021-09-02.",
+        "what_convinced_or_not": "Nothing is on record. The authors added GIN with GVAE, beta-VAE and FactorVAE objectives, an MLP classifier, 10% fine-tuning, supervised baselines, and complexity and timing figures. The fine-tuning table is mixed: DGCL trails InfoGraph on RDT-M5K (52.5 vs 53.6) and ties GraphCL on PROTEINS (74.3 vs 74.2). The reply to 9Pj4 claims a real-data disentanglement analysis but shows no data. No reviewer reacted to any of it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'the AC will follow the majority vote'. It answers vaM6 from the rebuttal. On novelty: 'other reviewers indeed rated the proposed approach as being novel', though ubo5 wrote 'novel but limited'. On experiments it repeats the authors' claim that they were 'already in the manuscript'; the authors also added new VAE-objective results. On efficiency it cites the rebuttal discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers scored 6 or 7, and the AC followed the majority vote.",
+        "DGCL is best on all nine datasets in Table 1; no reviewer questioned the numbers.",
+        "The one score below threshold (vaM6, 5) rested on a generic novelty claim and a partly wrong baseline request, and vaM6 did not engage.",
+        "The open points (SVM-only evaluation, factors on real data, efficiency, code) were left to the revision."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 6, 8],
+      "confidences": [4, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_T4kE"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_JYuN",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "8 at confidence 5, two points above the next score. Calls the model 'innovative and technically sound', the theory 'rigorous' and the experiments 'sufficient and convincing', and writes 'I vote for a strong accept'. Raises no question; asks only for a typo fix and graph-kernel descriptions. Theorem 3.1 is a standard variational lower bound. The reply to the rebuttal is one line."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_JYuN", "evidence": "Reports 15 hours, but the evaluation repeats the paper. 'can ensure that each disentangled factor ... is sufficiently discriminative only under one specific aspect of the whole graph' is lines 61-63; the EM sentence is lines 197-198; the log-likelihood sentence is line 186. Says reproducibility details 'are present clearly', but no code came with the submission. Misses the between-block correlation in Figure 4(c) that T4kE found."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_T4kE", "claim": "In Figure 4(c) the correlations between blocks are not lower than in (a) and look worse than in (b).", "checked_against_paper": "correct", "evidence": "In 4(c), dimensions 64-80 correlate with 96-112 at about 0.7 to 0.8 and with 0-16 at about 0.6. Off the diagonal, 4(b) GraphCL is mostly below 0.3. The paper wants 'K independent components' (line 94), so the figure shows grouping within channels, not independent channels. The rebuttal conceded only 'little correlations between blocks'."},
+        {"reviewer": "Reviewer_T4kE", "claim": "beta-VAE and FactorVAE are not compared, and VAE methods are set aside as computationally expensive.", "checked_against_paper": "correct", "evidence": "Table 1 has GVAE only. Lines 337-341 say reconstruction 'could be computationally expensive', with no measurement."},
+        {"reviewer": "Reviewer_T4kE", "claim": "'Holistic' at line 148 is not defined.", "checked_against_paper": "incorrect", "evidence": "Lines 31-33 define it: representations that 'characterize graphs as a perceptual whole'. Why DGCL is less holistic than the WL kernel is not answered."},
+        {"reviewer": "Reviewer_Lf3c", "claim": "The augmentations are GraphCL's [49] and are not designed per factor.", "checked_against_paper": "correct", "evidence": "Line 176: 'We follow [49] to adopt four types of graph augmentation strategies'. Nothing tests whether they preserve factors. The rebuttal: 'We do not generate factor-wise augmented samples'."},
+        {"reviewer": "Reviewer_JYuN", "claim": "DGCL is consistently superior to an extensive set of baselines.", "checked_against_paper": "correct", "evidence": "DGCL tops all nine Table 1 columns. On PROTEINS (76.4 vs MLG 76.1 ± 2.0) and RDT-M5K (56.1 vs GraphCL 56.0 ± 0.3) the margin is inside one standard deviation."},
+        {"reviewer": "Reviewer_JYuN", "claim": "Typo at line 198: 'nontrival'.", "checked_against_paper": "correct", "evidence": "Line 198 reads 'nontrival inference and learning', so JYuN read Section 3.4."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_T4kE"],
+        "evidence": "T4kE edited the review on 2021-08-28, the day it wrote 'I am willing to raise my score to 6'; the final score is 6. Lf3c wrote on 2021-08-26 that it would 'raise my score to 6 if the other two reviewers are both positive'. Both were (6 and 8), but the review was never edited and stays at 5. JYuN: 'The response is satisfying so I will keep my recommendation of strong acceptance.'",
+        "what_convinced_or_not": "The new GBetaVAE and GFactorVAE results settled T4kE's 'biggest concern'. T4kE said the replies on the EM motivation (Q2) and the Figure 4 correlations (Q4) 'do not address my concerns', and raised the score anyway. Lf3c accepted the factor-interpretation reply but said the novelty and augmentation replies 'do not really address the limitations'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences. Reviewers 'appreciated the combination of theory and evaluations', which is JYuN's framing. 'One reviewer had concerns about the novelty' (Lf3c). 'after further discussion amongst the reviewers, the consensus moved towards acceptance', but no reviewer-to-reviewer exchange is on record, and Lf3c stayed at 5. T4kE's open Figure 4 and EM points are not mentioned.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Two of three reviewers scored 6 or more, including a confidence-5 champion (JYuN, 8).",
+        "New beta-VAE and FactorVAE baselines lifted T4kE to 6.",
+        "Lf3c's novelty objection was softened by Lf3c's own offer to move to 6 if the others were positive.",
+        "Table 1 was taken as shown; the Figure 4 problem stayed open but was not treated as fatal."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Downstream evaluation only with an SVM; no fine-tuning (9Pj4)",
+    "No mechanism forces the factors to be mutually exclusive (9Pj4)",
+    "No code, although the checklist says it is included (ubo5)",
+    "No complexity, parameter counts or runtimes (vaM6, mcrT)",
+    "Relation to FactorGCN not discussed (mcrT)",
+    "Supervised baselines, unsupervised GIN and DGI (9Pj4, vaM6)",
+    "Extension to node-level tasks and beyond graphs (ubo5, mcrT)"
+  ],
+  "issues_only_b": [
+    "Strong correlation between channel blocks in Figure 4(c) (T4kE)",
+    "Generic GraphCL augmentations may change the factors (Lf3c)",
+    "No beta-VAE or FactorVAE baselines (T4kE)",
+    "Why discrete channels and an EM-like scheme (T4kE)",
+    "Meaning of 'holistic' and why DGCL is less so (T4kE)",
+    "Graph-kernel baselines under-described (JYuN)"
+  ],
+  "shared_issues": [
+    "Limited novelty beyond GraphCL and existing modules (ubo5, vaM6 in A; Lf3c in B)",
+    "Learned factors on real data not shown or interpreted (ubo5, 9Pj4 in A; Lf3c in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons, and they weighted the same facts the same way. Each had a majority at 6 or above, one confidence-4 reviewer at 5 for limited novelty (Reviewer_vaM6 in A, Reviewer_Lf3c in B), and an AC who followed the majority. No reviewer questioned the numbers in Table 1, where DGCL is best on all nine datasets. A reached its 6.0 mean with four close scores, and no reviewer answered the rebuttal. B's 6.33 rests on an uncritical 8 from Reviewer_JYuN, whose review repeats the paper's own sentences. It also rests on Reviewer_T4kE's rise to 6 after new beta-VAE and FactorVAE baselines. The main difference is scrutiny of the central claim. Only B examined Figure 4, the paper's one direct evidence of disentanglement. T4kE saw, correctly, that several channel blocks in Figure 4(c) correlate at about 0.6 to 0.8, more than GraphCL's features in 4(b). The authors did not answer this, and T4kE raised the score anyway. A's reviewers took the figure at face value. Neither committee questioned the submitted ogbg-molhiv result: 83.5 ROC-AUC from a logistic regression on self-supervised embeddings, above the best leaderboard entry the paper cites (82.3). The camera-ready replaced it with a fine-tuning experiment that reports 69.0 to 74.6.",
+  "candidate_reasons": [
+    "majority above threshold in both",
+    "lone novelty detractor outvoted",
+    "AC followed majority vote",
+    "exuberant champion lifted mean",
+    "new baselines raised one score",
+    "headline results accepted unchecked"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_T4kE review Q4 and comment of 2021-08-28",
+    "Reviewer_Lf3c comment of 2021-08-26",
+    "Reviewer_JYuN review against paper lines 61-63, 186, 197-198",
+    "Reviewer_vaM6 review W2 against paper Table 2 and lines 305-306",
+    "Reviewer_9Pj4 review against paper lines 218-225",
+    "Reviewer_ubo5 review against checklist item 3(a)",
+    "Authors' fine-tuning table in reply to Reviewer_9Pj4",
+    "paper_submitted Figure 4(c) against 4(b)",
+    "paper_submitted Table 1",
+    "paper_submitted Figure 2 and lines 265-273; camera-ready Figure 2"
+  ]
+}

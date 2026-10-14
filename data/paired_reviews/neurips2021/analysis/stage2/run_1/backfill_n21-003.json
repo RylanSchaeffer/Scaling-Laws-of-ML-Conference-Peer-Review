@@ -1,0 +1,16 @@
+{"run": 1, "pair_id": "n21-003", "turn": 23, "prompt_version": 2,
+ "judgements": [
+  {"id": "R25", "applies": true, "justification": "A's AC wrote 'all reviewers were negative', which nMFp's unedited 6 contradicts, and omitted the rebuttal's BDD100K test and KITTI-MOTS results; the reject rests on that account."},
+  {"id": "R26", "applies": true, "justification": "Three of A's four reviewers never posted after the rebuttal and no A score moved, while B's reviewers replied and two raised to 7."},
+  {"id": "R27", "applies": true, "justification": "B's NPPQ said 'I am not an expert in MOTS' yet gave 7 at confidence 4, and B's AC counted it in the '7, 7, 6, 7' that carried acceptance."},
+  {"id": "R28", "applies": false, "justification": "A's ratings were 5, 6, 5, 5, not an even split, and B was unanimous above threshold."},
+  {"id": "R29", "applies": true, "justification": "Only A received the runtime comparison showing PCAN no faster than non-local attention, and B's speed table left out the faster STMask, so the committees saw different speed evidence."},
+  {"id": "R30", "applies": true, "justification": "B's NPPQ found no prior work, though Section 2 cites EM-based prototype attention [19], and that novelty reading fed B's scores."},
+  {"id": "R31", "applies": true, "justification": "B gave a spotlight with no rating above 7 and its meta-review states no reason for that tier."},
+  {"id": "R32", "applies": false, "justification": "h7Rc's objection rests on misreading YouTube-VIS as a VOS dataset, not on premises of a neighbouring field."},
+  {"id": "R33", "applies": true, "justification": "B's TiXB wrote the most careful review and stayed at 7 calling it 'a big step', while A's only positive reviewer, nMFp, gave four one-line strengths and never posted again."},
+  {"id": "R34", "applies": false, "justification": "No A reviewer or AC accepted the promised fixes and rejected for needing re-review; A's reject rests on scores and framing."},
+  {"id": "R35", "applies": true, "justification": "A's AC cites 'low novelty and insight' and an insufficient answer on self-supervised work that no public comment contains, and uses it to call all reviewers negative despite nMFp's 6."},
+  {"id": "R36", "applies": true, "justification": "A's h7Rc and AC faulted the paper as an application with no insight, while B valued the same method-and-benchmark contribution on its own terms."},
+  {"id": "R37", "applies": false, "justification": "x3ez's held 5 rests on the efficiency gain over non-local attention, which is central to the paper's claim, not peripheral."}
+ ]}

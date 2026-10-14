@@ -1,0 +1,188 @@
+{
+  "pair_id": "n21-098",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 8, 7, 5],
+      "confidences": [3, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_bcJK", "Reviewer_cagt"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_SbWq",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Rating 5 at confidence 4 against 7, 8 and 7. The reasons are specific and correct for the submission: no quantitative ablation of spatial against global progression ('Line 273 shows a qualitative and anecdotal image'), and training settings only in the appendix. The rebuttal supplied global-progression runs on every Table 1 task; they are now the Progressive FF row of the camera-ready Table 1. SbWq never replied or edited, and the meta-review does not mention the review. The review took 2 hours."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_bcJK",
+          "claim": "Eq. (4) has the condition backward; the first line should read 'if i > d'.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded ('You are right about the typo in eq. 4') and volunteered a second error: τ = 2n/T should be T/2n. The camera-ready Eq. (4) reads 'if i > d' and τ = T/2n. paper_submitted.pdf is missing; checked against the camera-ready paper.pdf."
+        },
+        {
+          "reviewer": "Reviewer_bcJK",
+          "claim": "Table 1 does not define '±' or bold; on MPEG7, SAPE + RBFG and SAPE + FF tie at 0.928 but only SAPE + FF is bolded.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready caption now defines both, but Table 1 still bolds only SAPE + FF (0.928 ± 0.095) beside SAPE + RBFG (0.928 ± 0.102)."
+        },
+        {
+          "reviewer": "Reviewer_SbWq",
+          "claim": "The spatial adaptation of the mask is not justified empirically; only a qualitative, anecdotal comparison is given.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors answered with new global-progression runs and promised to add them. The camera-ready adds a Progressive FF row to Table 1 and cites it in Section 5.2. Before that, the only quantitative evidence was a one-image PSNR curve against grid resolution (Fig. 7 right). The new row favours SAPE + FF on four of five columns (natural images 28.09 against 27.01, text 31.84 against 30.2, Turbosquid 0.969 against 0.943, MPEG7 0.928 against 0.86) and ties on Thingi10K (0.981 against 0.98). Global progression alone is below plain FF on three columns (text 30.2 against 30.47, Turbosquid 0.943 against 0.964, MPEG7 0.86 against 0.873)."
+        },
+        {
+          "reviewer": "Reviewer_SbWq",
+          "claim": "Training settings (training time, number of parameters) are not in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors confirmed they are in the appendix and promised to move training time and parameter counts into the main text. The camera-ready main text still gives neither and points to the appendix (Section 5.1)."
+        },
+        {
+          "reviewer": "Reviewer_cagt",
+          "claim": "Local bandwidth is easy to estimate (DCT/FFT coefficients, mesh Laplacian), so the advantage of the feedback rule of Eq. 5 is unclear; no such baseline is given.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1 and 2 compare only No Encoding, SIREN, RBFG and FF (plus Progressive FF in the camera-ready). The authors conceded the bandwidth 'can be estimated for each task separately' and argued that this adds a burden."
+        },
+        {
+          "reviewer": "Reviewer_FBfi",
+          "claim": "For most experiments the improvements are incremental; the gain on 2D silhouettes is large.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: SAPE + FF beats the best baseline by about 1 dB PSNR on images (28.09 against SIREN 27.03; 31.84 against SIREN 30.81), by 0.017 IoU on Thingi10K and by 0.005 on Turbosquid, but by 0.055 IoU on MPEG7 (0.928 against FF 0.873; SIREN 0.779)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_cagt"],
+        "evidence": "Reviewer_cagt edited the review on 2021-08-31: 'I've upgraded my score to 7.' Reviewer_bcJK edited on 2021-08-20: the feedback was 'satisfactory', with no stated change (7). Reviewer_FBfi (8) and Reviewer_SbWq (5) never edited or replied.",
+        "what_convinced_or_not": "cagt cited the storage figures (SAPE 1.82 MB against 1.01 MB for FFN and SIREN), the tiny-NeRF result and the motivation from Davies et al. The tiny-NeRF gain is 0.32 dB (25.94 against 25.62), below the reported spread of ±0.87 to ±0.9, and the camera-ready main text contains neither result. SbWq got the requested ablation but did not respond, so the 5 stood."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four reviewers at 7 or 8. The meta-review accepts on 'strong empirical results' and clarity and does not mention Reviewer_SbWq. It adds a novelty framing that no A reviewer gave: coarse-to-fine schemes already exist for NeRF, and 'the spatial adaptivity is shown to improve results across a variety of applications'. Only the rebuttal ablation for SbWq isolates that component across tasks.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Gains on all four task types, large on silhouettes and mesh transfer (Reviewer_bcJK, Reviewer_cagt; AC: 'strong empirical results')",
+        "Clear writing and presentation (all four reviewers; AC)",
+        "Spatial adaptivity improves on existing coarse-to-fine schemes (AC; rebuttal ablation for Reviewer_SbWq)",
+        "The rebuttal answered the cost and NeRF requests, and Reviewer_cagt rose to 7"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 9, 6, 7],
+      "confidences": [4, 4, 4, 2],
+      "reviews_edited_after_posting": ["Reviewer_SEHH", "Reviewer_69T8", "Reviewer_6j88"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_69T8",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 'clear accept': 9 ('Top 15%') at confidence 4, after 2 hours. The review is praise ('excellent, well-written', 'The experiments are well-done') plus two minor points (a vague introduction, held-out data for early stopping). It names no weakness of substance and does not address the small gains over SIREN that Reviewer_nnVB and Reviewer_6j88 found. The post-rebuttal edit (2021-09-10) is one sentence. The AC did not act on the 9."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nnVB",
+          "claim": "Eq. 4 has a typo (1 should be the top line and the clamp 'otherwise'); τ should be T/2n; Φ is written as a function of the previous mask but depends on t.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded the reversed condition, and their reply to Committee A admits that the submitted τ = 2n/T was wrong. The camera-ready Eq. (4) fixes both but still writes ΦP[α(t)] with a right side that depends only on t and i. paper_submitted.pdf is missing; checked against the camera-ready paper.pdf."
+        },
+        {
+          "reviewer": "Reviewer_nnVB",
+          "claim": "Most images and occupancy functions look as good or better with SIREN; SIREN is clearly worse only in the deformation tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: SAPE + FF leads SIREN by about 1 dB PSNR on images and by 0.017 and 0.039 IoU on occupancy, but by 0.149 IoU on MPEG7 silhouettes (0.928 against 0.779). Table 2: Chamfer 0.39 against 0.74, Dirichlet 1.82 against 4.75. The authors conceded 'the margin of improvement for SAPE is small for this task'. The appendix visuals were not checked."
+        },
+        {
+          "reviewer": "Reviewer_6j88",
+          "claim": "SAPE + FF offers only minor improvements over SIREN, e.g. 28.09 instead of 27.03 (Table 1).",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1: natural images 28.09 ± 4.04 against 27.03 ± 4.28; text images 31.84 against 30.81. The authors conceded the small margin and pointed to the silhouette and mesh-transfer results."
+        },
+        {
+          "reviewer": "Reviewer_6j88",
+          "claim": "Limitations are only in a minor supplemental section and figure (A7, Fig. A9).",
+          "checked_against_paper": "correct",
+          "evidence": "The authors confirmed they moved the limitations to the appendix for space. The camera-ready adds Section 6, Limitations and Future Work, to the main text."
+        },
+        {
+          "reviewer": "Reviewer_SEHH",
+          "claim": "SAPE always gets a larger σ than FFN and RBFG; in appendix Section 5.3, SAPE uses σ = 20 against FFN σ = 12, which breaks the 'doubling the bandwidth' rule of line 204.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in paper.pdf. The main text (Section 5.1) states 'For the SAPE variants we use double the σ of these bandwidths'. The authors defended a large σ in general but did not explain 20 against 12."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_6j88"],
+        "evidence": "Reviewer_6j88 commented on 2021-08-25, the day of the edit: 'I have increased my score' (final 7). Reviewer_nnVB (2021-08-26): 'I will maintain my score' (6, not edited). Reviewer_SEHH edited on 2021-08-26: 'I maintain my rating' (8). Reviewer_69T8 edited on 2021-09-10 with one sentence and no stated change (9).",
+        "what_convinced_or_not": "6j88 rose on promises ('Assuming the motivation will be expanded and the limitations made more clear') and on the pointer to large gains on silhouettes and mesh transfer. nnVB accepted the clarifications on Eq. 4 and the mask grid but kept 6. SEHH's σ question got a general defence; the 20 against 12 inconsistency was not addressed. 6j88's question on soft against hard masking got no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four reviewers at 6 or above. The two-sentence meta-review says the layer is novel and 'performs well on a variety of tasks', and that the reviewers found it 'interesting and relevant'. It does not address the small gains over SIREN, the memory cost of the mask grid, or the tier question that Reviewer_6j88 left to the AC.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Novel layer that works on a variety of tasks (AC; Reviewer_SEHH, Reviewer_nnVB)",
+        "Clear writing and figures (all four reviewers)",
+        "High ratings from Reviewer_SEHH (8) and Reviewer_69T8 (9)",
+        "Concerns about the SIREN margins and memory were answered; Reviewer_6j88 rose to 7, Reviewer_nnVB kept 6"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No quantitative ablation of spatial against global progression (Reviewer_SbWq); answered with new runs, now the Progressive FF row of Table 1",
+    "Hand-set linear unmasking policy instead of a learned one (Reviewer_SbWq, Reviewer_cagt)",
+    "No baseline that estimates local bandwidth directly by DCT, FFT or mesh Laplacian (Reviewer_cagt)",
+    "No NeRF test, no comparison with codecs or traditional mesh transfer, and the storage cost (Reviewer_cagt, Reviewer_SbWq)",
+    "Training time and parameter counts only in the appendix (Reviewer_SbWq, Reviewer_cagt)",
+    "Table 1 notation and the unbolded tie at 0.928 (Reviewer_bcJK)",
+    "Link to predictive coding; ground truth inside the optimisation loop (Reviewer_FBfi)"
+  ],
+  "issues_only_b": [
+    "SAPE gets a larger σ than the baselines, and appendix Section 5.3 breaks the doubling rule (Reviewer_SEHH)",
+    "τ should be T/2n, and Φ is written as a function of α(t) but depends on t (Reviewer_nnVB)",
+    "Track the mask grid with an implicit function instead (Reviewer_nnVB)",
+    "Held-out data for the early-stopping threshold (Reviewer_69T8)",
+    "Hand-picked test images, soft against hard masking, Table 1 datasets and Table 2 units (Reviewer_6j88)",
+    "Purpose of regression in mesh transfer; reconstructions at several grid sizes (Reviewer_SEHH)"
+  ],
+  "shared_issues": [
+    "Reversed condition in Eq. 4 (A: Reviewer_bcJK; B: Reviewer_nnVB)",
+    "Small gains over SIREN and FFN on direct regression (A: Reviewer_FBfi; B: Reviewer_nnVB, Reviewer_6j88)",
+    "Extra memory and complexity of the mask grid (A: Reviewer_cagt, Reviewer_SbWq; B: Reviewer_nnVB)",
+    "Limitations left to the appendix (A: Reviewer_bcJK; B: Reviewer_6j88)",
+    "Vague introduction or weak motivation for implicit representations (A: Reviewer_cagt; B: Reviewer_6j88, Reviewer_69T8)",
+    "Clear writing and a range of tasks (all eight reviewers)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Seven of eight reviewers rated the paper 6 or higher, all eight found it clear, and none found an error in a result. The flaws they found were presentational: a reversed condition in Eq. 4, Table 1 notation, and limitations and training details left to the appendix. Both committees saw the main weakness and accepted anyway. On direct regression, SAPE + FF beats SIREN by about 1 dB PSNR (28.09 against 27.03 on natural images; A: Reviewer_FBfi, 'incremental'; B: Reviewer_6j88, 'marginal', and Reviewer_nnVB). The large gains are on the indirect-supervision tasks: silhouette IoU 0.928 against 0.779, mesh-transfer Chamfer 0.39 against 0.74. The committees weighed these facts the same way. The gap in mean rating (6.75 in A, 7.5 in B) comes from one reviewer at each end, and neither changed an outcome. In A, Reviewer_SbWq gave 5 because the submission had no quantitative ablation of spatial against global progression. That claim was correct. The rebuttal ablation, now the Progressive FF row of Table 1, supports the spatial component on four of five columns but not on Thingi10K (0.981 against 0.98). SbWq never replied, and A's AC credited the spatial adaptivity without naming the review. In B, Reviewer_69T8 gave 9 after 2 hours, named no weakness of substance, and added one sentence after the rebuttal. That 9 is not evidence of a stronger paper, and B's two-sentence meta-review did not act on it. Neither AC discussed a tier above poster.",
+  "candidate_reasons": [
+    "Clear method, no errors found",
+    "Small regression gains accepted by both",
+    "Large gains on indirect-supervision tasks",
+    "Lone detractor's ablation request answered",
+    "Thin strong-accept champion in B",
+    "No tier deliberation by ACs"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_SbWq final review and the authors' reply (global-progression ablation)",
+    "Reviewer_cagt final review, post-rebuttal section",
+    "Reviewer_bcJK final review (Eq. 4, Table 1 tie)",
+    "Reviewer_69T8 final review and edit of 2021-09-10",
+    "Reviewer_nnVB final review and comment of 2021-08-26",
+    "Reviewer_6j88 final review and comment of 2021-08-25",
+    "Reviewer_SEHH limitations section (σ choices)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready; paper_submitted.pdf missing) Table 1 with the Progressive FF row, and Table 2",
+    "paper.pdf Eq. (4), Section 5.1 (double-σ rule), Section 5.2 (spatial against non-spatial progression), Section 6 (limitations)"
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "pair_id": "n21-272",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 6, 6],
+      "confidences": [3, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_ycgL"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6, 7, 6, 6 (VhJS, 7tur, ycgL, Sn8S); before the rebuttal 6, 7, 5, 6. Reviewer_7tur's 7 is one point above the rest, and its text carries the committee's sharpest doubt (whether the approach 'simply relies on these magic' 93.63 million training samples), so it is a mild champion, not an outlier."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7tur",
+          "claim": "Only Orion is trained on the 93.63-million-sample continued-training corpus; the Prompt baseline in Table 1 is not.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 148-153 give '93.63 millions samples' for continued training; line 222 says the Prompt baseline uses Bart as is. Table 1's ablations show the dependence: without continued training of P(ins|rp) or P(rh|ins), BLEU-1 falls from 45.41 to 15.85 or 19.17, against Prompt's 17.77."
+        },
+        {
+          "reviewer": "Reviewer_VhJS",
+          "claim": "Against KB-based rule induction, Orion is somewhat worse than the best baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: AMIE+ 57.0 accuracy, RuLES 47.7, Orion 49.2 to 51.3 for k = 5, 10, 20. The paper calls this 'competitive' (line 259)."
+        },
+        {
+          "reviewer": "Reviewer_ycgL",
+          "claim": "Supported beam search only marginally changes performance.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: Orion without STS 44.92 BLEU-1 and 39.68 METEOR; full Orion 45.41 and 40.41."
+        },
+        {
+          "reviewer": "Reviewer_ycgL",
+          "claim": "Table 3 shows Orion hallucinating unsupported hypotheses, and its COMET outputs show COMET is not a suitable baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 Case 1 induces '[X] is the largest exporter of oil to [Y]' and '... of uranium to [Y]' from a sentence about diplomatic relations. COMET outputs '<HasProperty>: happy' and '<MadeUpOf>: happy'. Lines 214-219 concede that COMET's hypotheses often describe x only."
+        },
+        {
+          "reviewer": "Reviewer_ycgL",
+          "claim": "Table 4's BERT baseline is lower, and ExpBERT with annotated rules higher, than in the ExpBERT paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 gives BERT 46.43/40.20 and annotated rules 76.04/56.92 (Spouse/Disease); lines 283-284 disclose that the authors unfroze ExpBERT's frozen parameters. The authors' rebuttal rerun in the original setup gives BERT 52.9/49.7 and annotated 63.5/52.4, which confirms the gap."
+        },
+        {
+          "reviewer": "Reviewer_Sn8S",
+          "claim": "The accuracy metric in Table 2 needs criteria for deciding when a learned rule is correct.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 258 says only 'We manually evaluate whether these inducted rules are correct'. Section 5.4 gives no criteria, annotator count or agreement."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_ycgL"],
+        "evidence": "ycgL's review is edited 2021-08-27 with 'Score raised from 5 -> 6 after response from authors'; the same day ycgL wrote that the new results and clarifications 'are sufficient for me to raise my score to be in line with the other reviewers'. Sn8S posted three follow-ups (2021-08-26 to 2021-08-28) and ended 'They make the proposed approach more convincing to me', with no edit (stays 6). VhJS and 7tur never replied; their reviews are unedited.",
+        "what_convinced_or_not": "ycgL: the ExpBERT rerun in its original setup (inducted rules 63.8/52.6 vs annotated 63.5/52.4) and the stated criteria for a correct rule; the objection that BLEU/ROUGE/METEOR do not measure rule accuracy stays in the final review. Sn8S: the perplexity answer on error identification and the <z> demonstration for existential rules, with a request to state which rules the method can learn. The stronger Prompt baseline sent to 7tur (20.95 vs 45.41 BLEU-1) drew no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final ratings are 6 or 7. The five-sentence meta-review calls the method 'novel and flexible', says 'The empirical results are good on different tasks' and 'The rebuttals clarified lots of issues', and names LM bias as the limitation. It does not mention ycgL's standing metric objection or 7tur's continued-training doubt.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four final ratings at or above threshold (6, 7, 6, 6) after ycgL raised 5 to 6 'to be in line with the other reviewers'.",
+        "Inducing rules from a pretrained LM without annotated rules judged novel and useful (VhJS, Sn8S, 7tur, AC).",
+        "Rebuttal experiments satisfied the two reviewers who engaged: the ExpBERT rerun for ycgL; the existential-rule demonstration and the perplexity answer for Sn8S."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 5, 5, 7],
+      "confidences": [3, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_hJMv", "Reviewer_Vt5F"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6, 5, 5, 7 (hJMv, mUXe, cSoa, Vt5F) are a 2-2 split around the threshold, not one outlier. Before discussion they were at least 7, 5, 5, 8; Reviewer_Vt5F's original 8 after one hour was the exuberant end, and Vt5F cut it to 7."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Vt5F",
+          "evidence": "One hour spent, the least of the eight reviewers, for an original 8. The review mostly restates significance; its only technical request is nucleus sampling, plus typos. Vt5F never posted in discussion and lowered to 7 for a weakness 'pointed out by other reviewers'."
+        },
+        {
+          "reviewer": "Reviewer_hJMv",
+          "evidence": "'I did not find major flaws'; two small comments (Figure 1, lines 133-135), two typos, and no engagement with any experiment. It states 'Limitations have been adequately discussed', but the paper has no limitations section and its checklist answers [No] to 'Did you describe the limitations of your work?'. hJMv later lowered to 6 on other reviewers' points, not on its own reading."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_mUXe",
+          "claim": "The claim of significant improvement on relation extraction (line 63) is false: in Table 4 the gap between annotated and inducted rules is smaller than the error bars.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: Spouse 76.04±0.47 vs 76.05±0.52, Disease 56.92±0.82 vs 57.68±1.34. Line 63 names no comparator, and against BERT (46.43/40.20) the gain is large, as the authors replied. But the abstract (lines 15-17) and line 285 say the inducted rules 'even outperformed' the annotated ones, and line 287 says this 'strongly verified' them; the error bars do not support that."
+        },
+        {
+          "reviewer": "Reviewer_cSoa",
+          "claim": "The main gains come from continued training on extra corpora, and the Prompt baseline gets no continued training.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: removing continued training of P(ins|rp) or P(rh|ins) drops BLEU-1 from 45.41 to 15.85 or 19.17, against Prompt's 17.77. Line 222: Prompt uses Bart as is. The rebuttal's Prompt with continued training on if-then sentences reached only 20.95."
+        },
+        {
+          "reviewer": "Reviewer_mUXe",
+          "claim": "Accuracies in Table 2 are close, and the manual evaluation may be subjective.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 spans 47.7 to 57.0, with Orion at 49.2 to 51.3. Line 258 gives no criteria, annotator count or agreement."
+        },
+        {
+          "reviewer": "Reviewer_mUXe",
+          "claim": "Rules are restricted to one atom in the body.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 79: 'we only consider the bodies with one atom'. Section 2.1 defines multi-atom bodies, as cSoa also noted."
+        },
+        {
+          "reviewer": "Reviewer_cSoa",
+          "claim": "Eq. (3) holds only under an independence assumption that line 106 asserts rather than derives.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 105-106 argue from one example (Steve Jobs, Apple) to 'given the ins, rp and rh are independent'."
+        },
+        {
+          "reviewer": "Reviewer_hJMv",
+          "claim": "Limitations have been adequately discussed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission has no limitations section, and checklist item 1(b) 'Did you describe the limitations of your work?' is answered [No]."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_Vt5F", "Reviewer_hJMv"],
+        "evidence": "Vt5F's review is edited 2021-08-25: 'lowered score from 8 to 7 to take into account some of the weakness in evaluation (comparing to models with less training data) pointed out by other reviewers'. hJMv's is edited 2021-09-10: 'I have decided to lower my score but it will remain above the acceptance threshold', after 'a discussion with the other reviewer'; the final 6 means the original was at least 7. cSoa wrote on 2021-08-12 'I may not increase the overall scores'. mUXe never replied; neither critic's review is edited.",
+        "what_convinced_or_not": "The stronger Prompt baseline that cSoa specified was run and lost to Orion 20.95 to 45.41 BLEU-1. cSoa did not move, recast the objection as 'the critical points for the proposed method is continue training with extra-training data', and added 'I read the negative comments from other reviewers and I agree with them'. The answer to mUXe redefined 'significant' as relative to BERT and left the 'even outperformed' claim unaddressed. The nucleus-sampling result and the multi-atom general response did not stop either supporter from lowering."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Reviews split 2-2 (7 and 6 above threshold, two 5s below; mean 5.75), with both 5s at confidence 4 and both supporters at 3. The meta-review says the paper 'was divisive, and the ultimate decision was borderline' and that reviewers 'were split on the degree to which the experiments back up the main claims'. It names no reviewer and no flaw, gives no reason for breaking the tie toward reject, and asks only for clarity revisions.",
+        "meta_review_leans_on": "unclear"
+      },
+      "main_reasons_for_decision": [
+        "Two confidence-4 reviewers held 5 on weak evaluation: BLEU on a self-built 155-premise set with incomparable baselines, close and subjective Table 2 accuracies, Table 4 gains inside the error bars (mUXe).",
+        "Gains attributed to continued training on 93.63 million NER-tagged sentences rather than to knowledge in the LM; the requested stronger baseline did not change that view (cSoa).",
+        "Both supporters lowered their scores in discussion citing the critics (Vt5F 8 to 7, hJMv to 6), leaving a borderline 2-2 split that the AC resolved toward reject."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Table 4 diverges from the ExpBERT paper; ycgL asked for the original ExpBERT setup and got it in rebuttal (inducted 63.8/52.6 vs annotated 63.5/52.4).",
+    "Existential rules and a clear boundary on which rules the method can learn (Sn8S, three follow-ups).",
+    "Error identification cannot separate LM errors from decoding effects such as beam width (Sn8S); over-generalised rules as a robustness limit (VhJS).",
+    "COMET is an unsuitable baseline and Table 3 shows hallucinated hypotheses (ycgL); supported beam search adds little (ycgL).",
+    "Orion trails AMIE+ in accuracy and the premise must be given in advance (VhJS); no ablation on the size of the continued-training corpus (7tur)."
+  ],
+  "issues_only_b": [
+    "The 'significant' and 'even outperformed' claims are false because Table 4's inducted-vs-annotated gap is inside the error bars (mUXe). ycgL in A saw the same within-variance numbers and called them 'an interesting result'.",
+    "Eq. (3) rests on an asserted conditional independence (cSoa).",
+    "The abstract's claim to 'revisit' KB-based vs LM-based differences has no analysis behind it (cSoa).",
+    "Nucleus sampling instead of beam search (Vt5F); Figure 1 clarity and the limits of generalising to more variables (hJMv)."
+  ],
+  "shared_issues": [
+    "Gains depend on continued training over 93.63 million NER-tagged sentences that the Prompt baseline lacks (A: 7tur; B: cSoa, then Vt5F). The authors sent the same stronger-baseline table (Prompt new 20.95 vs Orion 45.41 BLEU-1) to both committees.",
+    "BLEU/ROUGE/METEOR on the self-built OpenRule155 do not show whether rules are correct, and the baselines are not comparable (A: ycgL; B: mUXe).",
+    "Manual accuracy in Table 2 has no stated criteria and is subjective (A: ycgL, Sn8S; B: mUXe).",
+    "Rules have one body atom and two shared variables (A: Sn8S; B: mUXe, cSoa, hJMv).",
+    "LM bias carries into the induced rules (A: VhJS, AC; B: mUXe, Vt5F)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same weaknesses and neither found a fatal flaw: text-overlap metrics on a self-built 155-premise set, a manual accuracy table without criteria, gains that depend on continued training over 93.63 million NER-tagged sentences the Prompt baseline never gets, and an 'even outperformed the manually annotated rules' result inside Table 4's error bars. The discussion split them, not the facts. Before it, B's ratings were higher (8, at least 7, 5, 5) than A's (6, 7, 5, 6). In A the lone detractor, ycgL, got the ExpBERT rerun and rule criteria the review asked for and raised 5 to 6 'to be in line with the other reviewers'; 7tur kept a 7 despite raising the continued-training doubt; the AC accepted on uniform 6-7 scores with a meta-review that passes over the metric objection. In B the two confidence-4 critics held: cSoa got exactly the stronger baseline the review asked for, which Orion beat 45.41 to 20.95 BLEU-1, then recast the objection as continued training per se and agreed with 'the negative comments from other reviewers'; mUXe, whose Table 4 and Table 2 points are correct on the paper, never replied. B's supporters were thin (Vt5F spent one hour; hJMv found 'no major flaws' and wrongly said limitations were discussed), and both lowered their scores citing the critics. The B AC called the paper 'divisive' and the decision 'borderline' and rejected without naming a flaw. Same facts, herding in opposite directions, and an AC tie-break toward reject.",
+  "candidate_reasons": [
+    "Discussion herding in opposite directions",
+    "Thin champions deferred to critics",
+    "Critic unmoved by requested baseline",
+    "AC tie-break toward reject",
+    "Lone detractor conformed upward after rebuttal",
+    "Same evaluation weaknesses weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_ycgL final review ('Score raised from 5 -> 6') and 'Response to response', 2021-08-27 (Committee A)",
+    "Reviewer_7tur review, continued-training paragraph (Committee A)",
+    "Reviewer_Sn8S discussion thread, 2021-08-26 to 2021-08-28 (Committee A)",
+    "Committee A meta-review",
+    "Reviewer_cSoa 'About the new experiments', 2021-08-12 (Committee B)",
+    "Reviewer_Vt5F final review, edit note 'lowered score from 8 to 7', edited 2021-08-25 (Committee B)",
+    "Reviewer_hJMv 'AFTER REBUTTAL' note and 'Thank you' comment, 2021-09-10 (Committee B)",
+    "Reviewer_mUXe review, Table 4 and Table 2 points (Committee B)",
+    "Committee B meta-review",
+    "Authors' stronger Prompt baseline table (Prompt new 20.95 vs Orion 45.41 BLEU-1), posted to 7tur (A) and cSoa (B)",
+    "paper_submitted.pdf Table 1 ablations and line 222 (Prompt baseline uses Bart as is)",
+    "paper_submitted.pdf Table 4 and lines 62-63, 283-287",
+    "paper_submitted.pdf Table 2 and lines 258-261",
+    "paper_submitted.pdf checklist item 1(b): limitations [No]"
+  ]
+}

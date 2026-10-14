@@ -1,0 +1,257 @@
+{
+ "pair_id": "n21-266",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    5,
+    6,
+    7
+   ],
+   "confidences": [
+    3,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_uDuc"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5 to 7 around a mean of 6.0. Reviewer_MTm9's 7 and Reviewer_teR3's 5 each sit one point from the two 6s. MTm9's 7 rests on a five-sentence, two-hour review. teR3's 5 rests on specific questions about which corruption the method resists."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_MTm9",
+     "evidence": "Five-sentence main review, two hours, rating 7 at confidence 4: 'I think the paper is in a good shape', then three short questions on the perturbation type and the datasets. No reply after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_uDuc",
+     "claim": "The experiments perturb only the response of the training samples.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 278: 'We specifically generate perturbations only in the response dimension by shifting y ↦ κy'. The covariate-noise table on KIN appeared only in the authors' 2021-08-29 reply."
+    },
+    {
+     "reviewer": "Reviewer_uDuc",
+     "claim": "The abstract promises robustness to covariate perturbations, which the experiments do not test.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 3-5 name 'covariate perturbations'. Section 5 perturbs only y (lines 276-280)."
+    },
+    {
+     "reviewer": "Reviewer_uDuc",
+     "claim": "Each gradient evaluation needs the inverse of an N-by-N matrix, which limits scalability.",
+     "checked_against_paper": "correct",
+     "evidence": "Ω* in Theorem 3.2 contains [I − (γ*)^-1 Ω̂^1/2 V(β) Ω̂^1/2]^-1, and in Theorem 4.2 [γ*I − V(β)]^-1, both (N+1)×(N+1). Lemmas 3.3 and 4.3 build the gradient from Ω*. Figure 6 reports about 10 s per estimate with N at most 50."
+    },
+    {
+     "reviewer": "Reviewer_teR3",
+     "claim": "The test perturbation y → κy with κ uniform on [1.8, 2.2] matches neither errors-in-variables nor Huber contamination.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 279 defines it. The paper cites a Huber-contamination paper [8] at line 57 but never tests that model. The authors' reply cites privacy masking by multiplicative noise, which the paper does not mention."
+    },
+    {
+     "reviewer": "Reviewer_PZV3",
+     "claim": "The baselines omit kernel ridge regression and Huber-loss models, and Problem (1) has no regularization.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 243-247 list NW, LLR, LLR-I and NW-Metric only. Eq. 1 has no regularizer."
+    },
+    {
+     "reviewer": "Reviewer_MTm9",
+     "claim": "The paper has no limitations or societal-impact section (Reviewer_uDuc says the same).",
+     "checked_against_paper": "correct",
+     "evidence": "The checklist answers 'limitations' by pointing to the concluding remarks (lines 353-357). Their only limit is that the log-determinant version needs a non-singular Ω̂. Societal impact is answered [No]."
+    },
+    {
+     "reviewer": "Committee A AC (meta-review)",
+     "claim": "The paper does not spell out why the method is the one to choose for small samples.",
+     "checked_against_paper": "correct",
+     "evidence": "The abstract and lines 59-60 claim help at low sample sizes. The training size is fixed at 1200 (line 253). Only Figure 4 varies N, for NW-LogDet and NW-BuresW alone on KIN, with no baseline. The authors' 2021-08-31 claim to uDuc that they ran 'experiments with different sample sizes N to benchmark the performance of different estimators' does not match Figure 4."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": [
+     "Reviewer_uDuc"
+    ],
+    "evidence": "Reviewer_uDuc edited on 2021-09-02: 'I lowered my score from 7 to 6', after two discussion rounds (2021-08-25 and 08-30). Reviewer_teR3 wrote 'I would be willing to increase my score if these points above were engaged with more meaningfully' but posted nothing after the 2021-08-10 response and never edited. Reviewer_PZV3 and Reviewer_MTm9 posted nothing after the rebuttal. The mean fell from 6.25 to 6.0.",
+    "what_convinced_or_not": "uDuc asked what problem the method solves and why it should solve it. The authors defined a robust estimator as any min-max solution, gave 'hand-waving arguments', said 'we do not have any further insights on how the choice of Ω̂ may affect the estimator', and added a covariate-noise table on KIN. uDuc concluded that the method is 'a heuristic in terms of its statistical effectiveness' and that the experiments are too narrow to carry it. teR3's question about real corruption got a privacy-masking argument that the paper does not contain. teR3 never said whether it sufficed."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Three of four ratings at 6 or above (mean 6.0), and the AC rejected. The AC posted nothing in the discussion. The two-sentence meta-review restates Reviewer_uDuc's final update: 'motivation and practical impact are unclear'. Its 'small sample situations' echoes uDuc's 'Especially when the sample size is small, no method can perform well in general'. It calls the paper 'technically sound', as all four reviewers did.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Motivation unclear: no account of what robustness the min-max over doubly non-negative matrices buys (Reviewer_uDuc, Reviewer_teR3, AC)",
+    "Practical value rests on narrow experiments: one label-noise model and weak baselines (Reviewer_uDuc, Reviewer_PZV3, Reviewer_teR3)",
+    "No support for the claimed small-sample benefit (AC)",
+    "Lukewarm scores that fell in discussion: uDuc 7 to 6, teR3 silent at 5, and the only 7 from a two-hour review"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    7,
+    8,
+    7
+   ],
+   "confidences": [
+    4,
+    3,
+    2,
+    3,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_rPg1",
+    "Reviewer_sDqY",
+    "Reviewer_rsLw",
+    "Reviewer_cyV5",
+    "Reviewer_DQfm"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6 to 8 around a mean of 7.0. Reviewer_cyV5's 8 and Reviewer_sDqY's 6 each sit one point from the three 7s. cyV5's 8 exceeds the review's own bar ('strong enough to be a clear accept if it had this'), and the authors never supplied 'this'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_DQfm",
+     "evidence": "Confidence 2. Generic pros ('Extensive experimental results ... confirm the effectiveness') for one label-noise model and four baselines. Asked 'How to get the value of the perturbation intensity κ?', although κ is only the experiment's noise level (line 279). Raised 6 to 7 with 'most of my concerns are well addressed' after replies that pointed back to lines 56-64."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_sDqY",
+     "claim": "Figure 1 does not show NW-LogDet or NW-BuresW doing better than plain NW.",
+     "checked_against_paper": "correct",
+     "evidence": "Clean data, N = 50, ρ = 0.1: both tie NW on Abalone (about 2.35) and Bank (about 0.089) and are worse on CPU (about 12.0 against 8.8) and KIN (about 0.78 against 0.73)."
+    },
+    {
+     "reviewer": "Reviewer_sDqY",
+     "claim": "All the experiments seem to show is that LLR is much worse than the other estimators.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Figure 2: under label perturbation both proposed estimators sit below NW and all baselines on all four datasets, for example KIN about 0.63 against NW 1.25, and CPU about 9 to 12 against 12.6 to 15.8."
+    },
+    {
+     "reviewer": "Reviewer_sDqY",
+     "claim": "The paper makes no links to the distributionally robust optimization literature.",
+     "checked_against_paper": "correct",
+     "evidence": "DRO papers [9, 14, 18, 19, 36] appear only in citation lists (lines 36, 59 and 64) and for one support-function result (line 230). The paper has no related-work section and never places its method within DRO. The authors replied that 'the literature review' reflects the relation."
+    },
+    {
+     "reviewer": "Reviewer_sDqY",
+     "claim": "The paper has no statistical analysis of the resulting estimator.",
+     "checked_against_paper": "correct",
+     "evidence": "Sections 2-4 give only duality and gradient results. The authors called statistical properties 'beyond the scope of this paper'."
+    },
+    {
+     "reviewer": "Reviewer_rsLw",
+     "claim": "Without perturbation the method is less effective, and NW-Metric is more competitive (Figure 1).",
+     "checked_against_paper": "correct",
+     "evidence": "NW-Metric about 3.9 against about 12.0 on CPU and 0.66 against 0.78 on KIN. All tie on Abalone and Bank."
+    },
+    {
+     "reviewer": "Reviewer_rsLw",
+     "claim": "NW-LogDet is clearly effective and outperforms other methods under varying perturbation levels.",
+     "checked_against_paper": "correct",
+     "evidence": "It is the lowest curve in all four panels of Figure 2; the margins on Abalone and Bank are small. But on KIN its error falls as the corruption grows: about 0.78 clean (Figure 1), 0.71 at κ in [1.3, 1.7], 0.65 at [1.8, 2.2], 0.61 at [2.3, 2.7] and 0.59 at [2.8, 3.2] (Figure 5, τ = 0.2N, ρ = 0.1, N = 50). The paper does not explain why corrupted labels beat clean ones, and no reviewer asked."
+    },
+    {
+     "reviewer": "Reviewer_cyV5",
+     "claim": "Line 105 leaves the entries of Ω̂ outside the first row and column unspecified, and the completion is not unique.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 105 fixes only Ω̂_0i = Ω̂_i0 = ω(ẑ_i). Lines 122-124 say only that the set is 'motivated by the Gram matrix'. The authors agreed that the choice 'is not unique' and have no insight into its effect."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_rsLw",
+     "Reviewer_DQfm",
+     "Reviewer_sDqY",
+     "Reviewer_cyV5"
+    ],
+    "evidence": "Reviewer_rsLw edited on 2021-08-26: 'I raise my score from 6 to 7'. Reviewer_DQfm edited on 2021-09-02: 'I decide to raise my score from 6 to 7'. Reviewer_sDqY wrote on 2021-09-01: 'I have updated my score from 5 to 6'. Reviewer_cyV5 edited on 2021-08-14: 'I've changed my mind about this paper'; the earlier rating is not shown, but the review's own bar ('a clear accept if it had this') places it below 8. Reviewer_rPg1 edited on 2021-08-26: 'I shall go with my previous score'. The mean rose from at most 6.2 to 7.0.",
+    "what_convinced_or_not": "Little new substance. rsLw accepted the Figure 1 versus Figure 2 trade-off and saw no 'crucial weaknesses' in other reviews. DQfm's motivation questions got pointers back to lines 56-64 and promises to elaborate. sDqY accepted the Figure 2 answer and the DRO citations, but still called the work incremental and the lack of statistical understanding 'not very satisfying'. cyV5 moved on perceived consensus ('I don't believe any other reviewers have brought up any major concerns', though sDqY had) and on creativity. The later exchange ended with the authors admitting 'we do not have a concrete answer to this open problem', and cyV5 kept 8."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Four of five ratings at 7 or 8 (mean 7.0), and the AC accepted. The AC posted twice (2021-08-24 and 08-27) to make the authors answer Reviewer_cyV5, and asked what the uncertainty set means for the projected weights. The meta-review frames the gap in cyV5's A, A' and B' terms. It says the answer to whether A' links to existing schemes is 'no', and accepts 'after much deliberation' to 'give the author's the benefit of the doubt'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Novel, technically sound matrix reformulation with tractable univariate duals (all five reviewers, AC)",
+    "Potential for follow-up work: the open link to a robust regression problem read as 'upside' (Reviewer_cyV5, AC)",
+    "The rebuttal raised four scores to a mean of 7.0, with four of five at 7 or 8",
+    "The AC trusted the authors to fix the motivation and the A/A' link in the camera-ready ('benefit of the doubt')"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No kernel ridge regression or Huber-loss baselines, and no regularization in Problem (1) (Reviewer_PZV3)",
+  "The y → κy perturbation (κ in [1.8, 2.2]) matches no standard corruption model such as Huber contamination or errors-in-variables (Reviewer_teR3)",
+  "Only responses are perturbed; no covariate, adversarial or natural-shift tests (Reviewer_uDuc, Reviewer_MTm9)",
+  "The abstract claims robustness to covariate perturbations, but the experiments perturb responses (Reviewer_uDuc)",
+  "Adversarial upweighting of high-loss samples may increase sensitivity to outliers, citing Hu et al. [14] (Reviewer_uDuc)",
+  "Scalability: an (N+1)×(N+1) matrix inverse in each gradient evaluation (Reviewer_uDuc)"
+ ],
+ "issues_only_b": [
+  "The contribution is incremental (Reviewer_sDqY)",
+  "On clean data the method is no better than NW, and NW-Metric beats it (Reviewer_sDqY, Reviewer_rsLw)",
+  "Where the method sits in the distributionally robust optimization literature, and whether the projected uncertainty set matches a known DRO scheme (Reviewer_sDqY, Reviewer_cyV5, AC)",
+  "Exposition: Eq. 1 and the z-parametrization are hard to follow, and the precise problem definition comes late (Reviewer_rPg1, AC)",
+  "The difference from NW-Metric (Noh et al.) needs explaining (Reviewer_rsLw)",
+  "Connect the method to differential privacy (Reviewer_rPg1)"
+ ],
+ "shared_issues": [
+  "Unclear motivation: what 'robustify' means and why a divergence ball around Ω̂ is the right notion (A: Reviewer_uDuc, Reviewer_teR3, AC; B: Reviewer_cyV5, Reviewer_DQfm, AC)",
+  "No statistical characterization of the robust estimator or of its link to a robust regression problem (A: Reviewer_uDuc; B: Reviewer_cyV5, Reviewer_sDqY, AC)",
+  "Entries of Ω̂ outside the first row and column are unspecified and not unique (A: Reviewer_uDuc; B: Reviewer_cyV5)",
+  "No guidance on choosing the log-determinant or the Bures-Wasserstein divergence (A: Reviewer_teR3; B: Reviewer_rsLw)",
+  "Why lift the weights to a matrix at all (A: Reviewer_uDuc in discussion; B: Reviewer_DQfm)",
+  "How the method helps with small samples (A: AC; B: Reviewer_DQfm)",
+  "No limitations discussion (A: Reviewer_uDuc, Reviewer_MTm9; B: Reviewer_rsLw, Reviewer_rPg1)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B accepted and Committee A rejected mostly on the same facts. Both committees found the method technically sound. Both found that no one could say what statistical robustness the min-max over doubly non-negative matrices gives. Reviewer_uDuc in A and Reviewer_cyV5 in B pressed this over several rounds and got the same concessions: no insight into how the choice of Ω̂ affects the estimate, and 'we do not have a concrete answer to this open problem'. uDuc lowered 7 to 6 and called the method 'a heuristic' with too little experimental support. A's AC posted nothing in the discussion and rejected in two sentences that restate uDuc. cyV5 read the same open question as 'upside' and moved to 8, partly because 'I don't believe any other reviewers have brought up any major concerns', although Reviewer_sDqY had. Three more B reviewers rose by one point. Two of them have confidence 2, and Reviewer_rsLw cited the absence of 'crucial weaknesses' in other reviews. Before the rebuttal the pools were level (A 6.25, B at most 6.2). After it, A sat at 6.0 and B at 7.0. B's AC concurred with every concern and accepted on 'the benefit of the doubt'. The paper supports A's doubt more than B's praise. The claimed small-sample benefit has no baseline test (Figure 4). On clean data the method ties NW on Abalone and Bank and loses to NW and NW-Metric on CPU and KIN (Figure 1). On KIN its error falls as label corruption grows (Figures 1 and 5), which no reviewer noticed. Neither committee found a fatal error. The split comes from opposite score drift in the discussion and from how much each AC tolerated an unresolved motivation gap.",
+ "candidate_reasons": [
+  "same gap, different AC tolerance",
+  "opposite score drift after rebuttal",
+  "score raises citing perceived consensus",
+  "open problem read as upside",
+  "silent AC follows lead critic",
+  "AC gave benefit of doubt"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_uDuc final review ('Update after the authors' response') and discussion 2021-08-25 to 08-31",
+  "Committee A meta-review",
+  "Reviewer_teR3 review (offer to raise the score; no reply)",
+  "Reviewer_MTm9 review (two hours)",
+  "Reviewer_cyV5 post-rebuttal note and discussion 2021-08-24 to 08-30",
+  "Reviewer_rsLw and Reviewer_DQfm post-rebuttal notes",
+  "Reviewer_sDqY review and 2021-09-01 update",
+  "Area_Chair_cKbd comments of 2021-08-24 and 08-27",
+  "Committee B meta-review",
+  "paper_submitted Figure 1 (clean data) and Figure 2 (label perturbation)",
+  "paper_submitted Figure 4 and line 253 (N varied for the proposed estimators only; 1200 training samples)",
+  "paper_submitted Figure 5 (KIN, κ varied)",
+  "paper_submitted line 105 and lines 122-124 (entries of Ω̂)",
+  "paper_submitted lines 243-247 (baselines) and 276-280 (y → κy)",
+  "paper_submitted Theorems 3.2 and 4.2 (matrix inverse in Ω*)"
+ ]
+}

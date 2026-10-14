@@ -1,0 +1,240 @@
+{
+ "pair_id": "n21-261",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    6,
+    5
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_dgwj"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 6, 6, 5 lie within one point of the 6.0 mean, all at confidence 4. No reviewer stands apart. The lowest, Reviewer_C95H (5), argued from a specific gap (no comparison with Zhao et al. 2018) but never replied to the rebuttal or to the authors' 2021-08-29 reminder."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_kHSY",
+     "evidence": "The summary is the abstract rewritten in the passive voice ('The pros and cons are also studied and the trade-offs ... are investigated'). The main review praises in general terms ('The developed upper bounds are novel and make sense', 'The theory part is sufficient') and discusses no theorem. Its four concrete requests sit in the limitations field. It never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_dgwj",
+     "claim": "Line 88 indexes the mixing coefficients to C instead of K.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 88 reads π = [π_i]_{i=1}^C, while the mixture sums over K sources. The authors said they fixed it."
+    },
+    {
+     "reviewer": "Reviewer_C95H",
+     "claim": "The paper claims to be the first theoretical study of invariant representations with multiple sources, but Zhao et al. (2018) studied this and the paper gives no comparison.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 53-54: 'ours is the first work that rigorously formulates and provides theoretical analysis for DI representations in MSDA and DG'. Zhao et al. (2018), ref [50], appears only once, inside a citation list at line 338, with no discussion. Whether Zhao et al. studied 'exactly this' is a judgement; the missing comparison is a fact. The camera-ready adds one sentence on [50] and keeps the 'first work' claim."
+    },
+    {
+     "reviewer": "Reviewer_C95H",
+     "claim": "Around Theorem 5, ĥ denotes a domain discriminator, while elsewhere ĥ is the label classifier.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 174-176 define ĥ(z, i) as the probability that z comes from Q_i. In Theorems 1 and 3, ĥ maps Z to the label simplex."
+    },
+    {
+     "reviewer": "Reviewer_kHSY",
+     "claim": "No experiments on standard MSDA/DG benchmarks (Digits-five, Office-31, Office-Home, DomainNet) and no comparison with existing methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3 uses Colored MNIST only; PACS is in the appendix (checklist 4a). The results compare values of λ within one objective; no other method appears."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_dgwj edited on 2021-08-26 and wrote 'I'll keep my positive rating'. Reviewer_XYGp replied on 2021-08-25: 'I maintain my rating'. Reviewer_kHSY and Reviewer_C95H never replied and never edited, although the authors sent C95H a reminder on 2021-08-29.",
+    "what_convinced_or_not": "The comparison with Mansour et al. (2009) and Hoffman et al. (2018) made dgwj 'more convinced about the theoretical contributions'. XYGp called the answers 'very precise', including the comparison with Zhao et al. (2018) and the discussion of mixture weights. C95H's objection, that the 'first work' claim ignores Zhao et al. (2018), got a long answer (different research question; binary H-divergence versus multi-class Hellinger) but no verdict from C95H. dgwj still asked for more experimental verification."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Accepted with ratings 7, 6, 6, 5 (mean 6.0). The meta-review restates the abstract ('novel upper bounds for the target risk', 'new insights and offers practical hints'). It names the comparison with Zhao et al. (2018) and Hoffman et al. (2018) as 'the main concern' and says 'The authors have well addressed these in the rebuttal'. XYGp and dgwj had said so; C95H, who pressed Zhao et al. (2018) hardest, had not. It mentions no other issue.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings at 6 or above (mean 6.0); the only rating below 6 (Reviewer_C95H, 5) was never defended after the rebuttal",
+    "Novel multi-source bounds that measure the shift in the latent space and motivate two kinds of DI representations (Reviewer_dgwj, Reviewer_kHSY, Reviewer_XYGp; AC)",
+    "AC judged the comparisons with Zhao et al. (2018) and Hoffman et al. (2018) 'well addressed' by the rebuttal"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    4,
+    6,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    2,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_EJQZ",
+    "Reviewer_RQ3Y"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_EJQZ",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below 6, two points under the next. Six hours at confidence 4. Its specific claims hold in the submission: bound (2) of Theorem 3 is bound (1) of Theorem 1 with the target-mixture distance replaced by pairwise distances; Theorem 8 has the form of the Zhao et al. (2019) bound, which lines 236 and 252 acknowledge; Theorem 7 has no uniform-convergence term. EJQZ engaged after the rebuttal (edited 2021-09-02), conceded that the algorithms differ and that Hellinger covers cases where KL is infinite, and named the two points that remained."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_BYyp",
+     "evidence": "Three short paragraphs at confidence 4. The summary says 'Experiments have shown its effectiveness', but the paper proposes no method. It asks for a DANN comparison 'to show that the theorem actually works', but the experiments already train a DANN-style objective with varied λ (lines 289-296). It never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_EJQZ",
+     "claim": "Theorem 3 is a direct corollary of Theorem 1 (via Lemma 4 of the appendix); compressed DI is general DI with a stricter constraint.",
+     "checked_against_paper": "correct",
+     "evidence": "The first two terms of bound (2) equal those of bound (1). Only √2·L·d_1/2(P^T_g, P^π_g) changes: it becomes pairwise target-source and source-source distances weighted by L√(2π_j)/K. Definition 4 ii requires P^{S,1}_g = ... = P^{S,K}_g = P^T_g, which implies the constraint P^T_g = P^π_g of Definition 2 ii. Lemma 4 is in the appendix, which the PDF does not include. The authors did not dispute the derivation; they argued only that the two optimisation problems have different solutions."
+    },
+    {
+     "reviewer": "Reviewer_EJQZ",
+     "claim": "The lower bounds are simple extensions of Zhao et al. (2019) [49], through triangle inequalities and the data processing inequality.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 236: 'Similar to the theoretical finding in Zhao et al. [49]'. Lines 60-62 say the single-source case recovers the trade-off of [49], and line 252 calls the context 'more general'. Theorem 8.1 bounds the label-marginal distance by the latent distance plus source and target losses, the form of the [49] bound. Theorem 8 also holds only for the Hellinger loss (lines 249-250). The submitted Theorem 8 omits square roots on the loss terms; the camera-ready adds them."
+    },
+    {
+     "reviewer": "Reviewer_EJQZ",
+     "claim": "Theorem 7 ignores the gap between empirical and population feature distances, and needs uniform convergence when ĥ is fit on S.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 7 (lines 228-230) gives ε = (A/δ)^{1/2} for a fixed ĥ, with population distances inside A and no complexity term. The authors replied that this is 'a great direction to extend our theorem 7'."
+    },
+    {
+     "reviewer": "Reviewer_RQ3Y",
+     "claim": "The trade-off in Figure 2a is unclear without repeated runs.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 2a shows one run per λ. Close-target accuracy zig-zags: about 0.708, 0.700, 0.688, 0.717, 0.702, 0.696 for λ = 0, 15, 30, 50, 70, 100. Checklist 3c says no error bars. The authors' 10-run rerun gives 0.705 ± 0.005 at λ = 0 and 0.712 ± 0.006 at λ = 50, about one standard deviation apart; the over-compression drop (0.712 to 0.709-0.711) is within noise."
+    },
+    {
+     "reviewer": "Reviewer_RQ3Y",
+     "claim": "Figures 2b and 3a show no benefit from general DI except in the first 10k iterations.",
+     "checked_against_paper": "correct",
+     "evidence": "In Figure 3a, λ = 0 leads only until about 12k iterations; afterwards the three curves overlap near 0.35-0.38. In Figure 2b, λ = 0 lies below λ = 50 and 70 for most of training. The Figure 3 caption's claim that general DI 'performs better' on the far domain holds only early in training."
+    },
+    {
+     "reviewer": "Reviewer_ssg2",
+     "claim": "Zhao et al. (2018), ref [50], is in the reference list but is not cited in the text.",
+     "checked_against_paper": "incorrect",
+     "evidence": "[50] is cited once, in a list of MSDA works at line 338. The substance holds: the paper never discusses or compares with it."
+    },
+    {
+     "reviewer": "Reviewer_BYyp",
+     "claim": "A comparison with DANN is needed to show that the theorems work.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The experiments already train a DANN-style objective, 'adversarial learning [16] similar to [14]' (Ganin et al.), and vary its weight λ (lines 289-296); λ = 0 is the unaligned baseline. The authors' VLCS run in B is also DANN."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "The compressed DI is a special case of the general DI.",
+     "checked_against_paper": "correct",
+     "evidence": "In the MSDA case, the constraint of Definition 4 ii implies that of Definition 2 ii; in the DG case, Definition 4 i adds a constraint to an unconstrained problem. The optimal solutions can differ, as the authors argued, but the feasible sets nest."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "Many recent methods such as DRO and CORAL are not compared with.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3 compares only values of λ within one objective. No reviewer in either committee named DRO or CORAL."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_RQ3Y"
+    ],
+    "evidence": "Reviewer_RQ3Y edited on 2021-08-26: 'I am confident to raise my score from 5 -> 6'. Reviewer_EJQZ edited on 2021-09-02: 'I decide to keep my score'. Reviewer_ssg2 replied on 2021-08-18, 'Concerns addressed', and kept 7. Reviewer_BYyp never replied or edited.",
+    "what_convinced_or_not": "RQ3Y named no reason; it received a 10-run Colored MNIST rerun and the clarification that the main experiments are DG. That rerun shows only a one-standard-deviation effect. ssg2 accepted the answers on Zhao et al. (2018), the Hellinger distance and infinite capacity. EJQZ accepted that the two algorithms differ, but not that compressed DI adds insight beyond Theorem 1, and not that the lower bound goes beyond Zhao et al. (2019). The authors' answer on Zhao et al. (2019) claimed that the JS divergence 'becomes infinity' when supports differ; JS is bounded by log 2, so that distinction fails. EJQZ did not dispute that [49] treats the binary case; the authors' own Theorem 8 needs the Hellinger loss (lines 249-250)."
+   },
+   "ac": {
+    "followed_reviews": "no",
+    "evidence": "Rejected with ratings 6, 4, 6, 7 (mean 5.75); three of four reviewers were at 6 or above. Points i and ii closely restate EJQZ's post-rebuttal update but are credited to 'reviewers'. Point iv adds DRO and CORAL, which no reviewer named. The decisive paragraph is the AC's own reading: 'After reading the paper and comparing it with Zhao et al., I found that this paper is in its current form not essentially different from existing work. Note that I'm very familiar with Zhao et al.' It also objects that the paper 'does not introduce novel algorithms'. It does not engage ssg2's view that Theorem 8 is 'surprising'.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC's own reading: the paper is 'not essentially different' from Zhao et al., whose conclusions are 'well-known'",
+    "Theorem 3 is a corollary of Theorem 1, so compressed DI adds no new insight (Reviewer_EJQZ; AC point i)",
+    "The multi-source lower bound extends Zhao et al. (2019) directly through the data processing inequality of an f-divergence (Reviewer_EJQZ; AC point ii)",
+    "No new algorithm; the theory-algorithm link is only conceptual; shallow experiments without DRO or CORAL (AC points iii and iv; Reviewer_BYyp, Reviewer_RQ3Y)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Comparison with Hoffman et al. (2018) and Mansour et al. (2009) (Reviewer_dgwj, Reviewer_kHSY)",
+  "Relation to the relaxed alignment of Wu et al. (2019) under label-marginal shift (Reviewer_C95H)",
+  "Choice of mixture weights and domain aggregation; Wen et al. (2020), Liu et al. (2021) (Reviewer_XYGp)",
+  "ĥ overloaded as a domain discriminator around Theorem 5; dense notation (Reviewer_C95H, Reviewer_kHSY, Reviewer_XYGp)",
+  "Tightness of the bounds against [18] and [50]; missing survey references (Reviewer_kHSY)",
+  "Experiments with other alignment distances such as MMD or Wasserstein (Reviewer_dgwj)"
+ ],
+ "issues_only_b": [
+  "Theorem 3 is a direct corollary of Theorem 1; compressed DI is general DI with a stricter constraint (Reviewer_EJQZ; AC)",
+  "Theorem 8 extends the Zhao et al. (2019) lower bound through the data processing inequality (Reviewer_EJQZ; AC)",
+  "Theorem 7 ignores the empirical-population distance gap and uniform convergence (Reviewer_EJQZ)",
+  "Single-run Figure 2a; general DI helps only early in training in Figures 2b and 3a (Reviewer_RQ3Y)",
+  "Infinite-capacity assumption of Theorems 5 and 6; undefined γ_{i,c}; the intuition at line 189 (Reviewer_ssg2)",
+  "Bounds use the Hellinger distance while practice aligns with other divergences; the theory-algorithm link is only conceptual (Reviewer_ssg2; AC point iii)",
+  "No new algorithm; no DRO or CORAL comparison (AC)"
+ ],
+ "shared_issues": [
+  "Novelty and positioning against Zhao et al. (2018) (A: Reviewer_C95H, Reviewer_XYGp, Reviewer_kHSY, AC; B: Reviewer_ssg2)",
+  "Thin experiments: Colored MNIST and PACS only, no baselines (A: Reviewer_kHSY; B: Reviewer_BYyp, Reviewer_RQ3Y, AC)",
+  "When the assumptions of the bounds hold in practice (A: Reviewer_kHSY; B: Reviewer_BYyp)",
+  "Domain-invariant representations are not enough under label shift (A: Reviewer_C95H; B: Reviewer_BYyp)",
+  "No discussion of limitations or societal impact (reviewers in both)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The panels were nearly the same, and the area chairs (ACs) made the difference. Committee A rated 7, 6, 6, 5 (mean 6.0); Committee B rated 6, 4, 6, 7 (mean 5.75). Each had three reviewers at 6 or above and one below. Both committees questioned novelty against Zhao et al. A's AC named the comparison with Zhao et al. (2018) and Hoffman et al. (2018) 'the main concern' and called it 'well addressed'; Reviewer_XYGp and Reviewer_dgwj agreed, and Reviewer_C95H, who pressed the point hardest, never replied. B's AC rejected against three positive reviews. It relied on its own comparison with Zhao et al. ('I'm very familiar with Zhao et al.') and on Reviewer_EJQZ's two post-rebuttal points, which it credited to 'reviewers'. Those points hold in the submitted paper. Bound (2) of Theorem 3 is bound (1) of Theorem 1 with the target-mixture distance replaced by pairwise distances. Theorem 8 has the form of the Zhao et al. (2019) bound, and lines 236 and 252 present it as a generalisation. The authors' answer on Zhao et al. (2019) rested partly on a false statement, that the JS divergence 'becomes infinity' on disjoint supports. A never discussed either point, but the paper states the link to Zhao et al. (2019) openly, and B's own Reviewer_ssg2 read Theorem 8 as 'surprising'. The committees mostly weighed the same incremental theory against different bars, and B's AC set its bar above its own reviewers. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "AC overrode three positive reviews",
+  "AC's own expertise on prior work",
+  "incremental theory over Zhao et al.",
+  "corollary-like theorems flagged only in B",
+  "rebuttal accepted without detractor's reply",
+  "theory paper, no new algorithm"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Reviewer_EJQZ review and post-rebuttal update (edited 2021-09-02)",
+  "Authors' reply to Reviewer_EJQZ, 'Comparison to lower bound in Zhao et al. (2019)'",
+  "Reviewer_ssg2 review and 2021-08-18 reply",
+  "Reviewer_RQ3Y post-rebuttal update and the authors' 10-run table",
+  "Reviewer_BYyp review",
+  "Committee A meta-review",
+  "Reviewer_C95H review; authors' 2021-08-29 reminder, unanswered",
+  "Reviewer_dgwj post-rebuttal update; Reviewer_XYGp 2021-08-25 reply",
+  "Reviewer_kHSY review",
+  "paper_submitted Theorems 1 and 3, bounds (1) and (2), Definitions 2 and 4 (lines 106-164)",
+  "paper_submitted Theorem 8 and lines 236, 249-256",
+  "paper_submitted Theorem 7 (lines 228-230)",
+  "paper_submitted Figures 2 and 3 (page 9); checklist 3c",
+  "paper_submitted lines 53-54 ('first work') and line 338 (only citation of [50])",
+  "camera-ready Theorem 8 (square roots added) and related-work paragraph on Hoffman et al. and Zhao et al."
+ ]
+}

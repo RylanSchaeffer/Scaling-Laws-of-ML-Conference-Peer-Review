@@ -1,0 +1,286 @@
+{
+ "pair_id": "n21-263",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    8,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_RPhx",
+    "Reviewer_GjiB"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_siNV",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only rating above 6: an 8 ('Top 50% of accepted NeurIPS papers, clear accept') after 2.5 hours. The review restates the paper under Originality, Quality, Clarity and Significance and names no weakness. It concedes that 'The momentum-based variance reduction techniques are known' but calls the combination 'new and interesting'. It never weighs the novelty doubt of Reviewer_RPhx, the ε^-1/2 batch or local-step requirement, or the two-baseline evaluation that Reviewer_GjiB flagged. siNV never posted in the discussion; the authors' 'Thank You' got no reply. The 8 did not decide A's outcome, because the two 6s already clear the threshold, but it lifts A's mean to 6.67 against B's 5.75."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_siNV",
+     "evidence": "2.5 hours for an 8. Names no weakness and asks no question. Does not weigh the known estimator it mentions, the ε-dependent b·I requirement (Table 1), or the two-baseline, single-run evaluation (lines 243-244; checklist 3(c)). Never joined the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_RPhx",
+     "claim": "The output average x̄_t must be maintained at every t, so averaging needs a communication round at every t, which would change the communication complexity.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Algorithm 1 forms x̄ only at communication rounds (Step 9), and Step 14 returns x̄_a at one uniformly random index. At most one extra averaging at the output time is needed, not one per step. The gap in the statement is real: Algorithm 1 never says how x̄_a is formed between rounds. The authors called x̄_t a 'virtual variable'; RPhx accepted and asked them to spell out x̄_{a(T)}."
+    },
+    {
+     "reviewer": "Reviewer_RPhx",
+     "claim": "The stepsize in Theorem 3.1 needs the variance σ, which is usually unknown.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3.1 sets η_t = κ̄/(w_t + σ²t)^(1/3) with κ̄ = (bK)^(2/3)σ^(2/3)/L (lines 153-154). The authors answered that σ² can be estimated from a few samples."
+    },
+    {
+     "reviewer": "Reviewer_RPhx",
+     "claim": "The initial minibatch size B never appears in the convergence analysis or the main results.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 3.1 says 'set the initial batch size as B = bI' (lines 155-156). The authors pointed to line 156."
+    },
+    {
+     "reviewer": "Reviewer_RPhx",
+     "claim": "The FedAvg bounds revisit and slightly generalize prior results ([12, 15]).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 gives this work's FedAvg O(ε^-2) samples and O(ε^-3/2) communication, the same rates as [12]/[14]. The addition is the ν trade-off between b and I (Theorem 3.2)."
+    },
+    {
+     "reviewer": "Reviewer_GjiB",
+     "claim": "The rates need a minibatch or a number of local steps of order ε^-1/2, which SCAFFOLD does not need.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: Fed STEM uses I = O(ε^-1/2) and Minibatch STEM uses b = O(ε^-1/2); SCAFFOLD uses O(1) for both. But SCAFFOLD's rates are O(ε^-2) for samples and communication, and Remark 3 gives STEM Õ(ε^-3/2) communication with b = I = O(1)."
+    },
+    {
+     "reviewer": "Reviewer_GjiB",
+     "claim": "The experiments use only (b, I) = (8, 61) and (64, 7) on CIFAR-10 and I = 67 and 536 on MNIST, and compare only with FedAvg and SCAFFOLD.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 243-244 name FedAvg and SCAFFOLD as the only baselines. Figures 2-5 and lines 268-279 use exactly those settings. The rebuttal explained the rule b·I ≈ 490, the per-node sample count (line 260)."
+    },
+    {
+     "reviewer": "Reviewer_siNV",
+     "claim": "In the experiments STEM is better than FedAvg and SCAFFOLD.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 2-4 and lines 269-275 show STEM ahead on CIFAR-10 in both heterogeneity settings. These are single runs: checklist 3(c) answers '[No]' on error bars."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_RPhx",
+     "Reviewer_GjiB"
+    ],
+    "evidence": "Reviewer_RPhx replied on 2021-08-23 ('My major concerns have been much clarified ... I thus would upgrade my rating') and edited the review on 2021-08-29 ('change my rating one grid up to 6'). Reviewer_GjiB replied on 2021-08-19 ('I am going to increase my score') and on 2021-08-25 ('I think this paper deserves positive score, so I have increased my score'), and edited the review that day. Reviewer_siNV never posted or edited.",
+    "what_convinced_or_not": "RPhx accepted that x̄_t is a virtual variable for the analysis and that the random output needs no per-step communication. RPhx never withdrew the novelty reservation ('the fundamental contribution of this work is relatively weak'). GjiB was moved by the new tables (FedProx, FedDyn, MIME, FedGLOMO; five- and two-class splits; Shakespeare), the b·I ≈ 490 rule and the defence of the dissimilarity assumption. GjiB still named more general noise assumptions as room for improvement."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Accepted with ratings 8, 6, 6. The meta-review has two sentences: the algorithm 'appears to achieve better communication complexities in theory and has reasonable experimental performance', and 'Reviewers are all in favor of accepting the paper.' It does not mention the novelty doubt that RPhx kept or the ε-dependent batch requirement that GjiB raised.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All ratings at or above 6 after the rebuttal (8, 6, 6)",
+    "Õ(ε^-1) communication with Õ(ε^-3/2) samples, better communication in theory (meta-review; Reviewer_siNV, Reviewer_GjiB)",
+    "Rebuttal cleared the communication-correctness doubt (Reviewer_RPhx) and added baselines, heterogeneity settings and Shakespeare (Reviewer_GjiB)",
+    "AC accepted on the scores and 'reasonable experimental performance' without weighing the novelty or batch-size doubts"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    5,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_9RXX"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 5, 6, 6 at confidence 3 to 4. No reviewer departs from the others; Reviewer_2QZ9's 5 is one point below. The detractor role fell to the AC panel, whose comment of 2021-09-24 supplied the decisive arguments."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_pfmU",
+     "evidence": "1 hour at confidence 3, whose label says 'Math/other details were not carefully checked'. Asks why the estimator uses two consecutive iterates and whether x_{t+1} alone would do. That two-iterate correction is the variance-reduction mechanism the paper builds on (Step 6; lines 137-140). Never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_9RXX",
+     "claim": "The near-optimal rates need minibatches or local steps of order ε^-1/2, which SCAFFOLD and MIME do not need, so the comparison is unfair.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 confirms the requirement and the O(1) settings of SCAFFOLD and MIME. But Remark 3 (lines 187-195) already says that b = I = O(1) gives Õ(ε^-3/2) communication with optimal samples, which matches MIME and FedGLOMO. 9RXX conceded this on 2021-08-11: 'I apologize for missing this important point.'"
+    },
+    {
+     "reviewer": "Reviewer_9RXX",
+     "claim": "The experiments compare only with FedAvg and SCAFFOLD, not with FedPD, MIME or FedGLOMO.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 243-244 name FedAvg and SCAFFOLD as the only baselines."
+    },
+    {
+     "reviewer": "Reviewer_9RXX",
+     "claim": "Hyperparameter tuning covers just two values for κ̄ and c̄.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 261 tunes κ̄ in [0.01, 0.5] and c̄ in [1, 10]; lines 262-263 report two sub-ranges of κ̄ that work well. The grid itself is not stated. The baselines get only two stepsizes, 0.1 and 0.01 (line 264)."
+    },
+    {
+     "reviewer": "Reviewer_9RXX",
+     "claim": "Each experiment is a single run, with no means or deviations.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist 3(c) answers '[No]' on error bars, citing compute time."
+    },
+    {
+     "reviewer": "Reviewer_2QZ9",
+     "claim": "The server-side momentum step (line 9) equals local momentum steps followed by averaging, so STEM is FedAvg with a momentum local solver and 'two-sided momentum' is not a new concept.",
+     "checked_against_paper": "correct",
+     "evidence": "Step 9 sets x̄ = (1/K)Σx^(k) − η d̄ with d̄ = (1/K)Σd^(k) (Step 8). By linearity this equals averaging the local steps x^(k) − η d^(k). The authors agreed: 'the server-side momentum can be done at the client as well'. Two details make 'momentum SGD' an understatement: Step 6 is a STORM-type estimator with gradients at two consecutive iterates, and Step 8 also averages the directions. The paper itself credits the estimator to [7, 8] (lines 137-140), and its 'two-sided' claim (lines 142-144) rests on the server step."
+    },
+    {
+     "reviewer": "Reviewer_2QZ9",
+     "claim": "Table 1 compares complexities obtained under different assumptions without listing them.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 flags only some differences in footnotes (a weaker heterogeneity assumption for FedPD/FedProx, bounded Hessian dissimilarity for MIME). It has no assumptions column. The authors agreed to add one."
+    },
+    {
+     "reviewer": "Reviewer_2QZ9",
+     "claim": "The methods are tested only with b = 8 or b = 64.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 2-5 use b = 8 or b = 64 only (lines 268-279)."
+    },
+    {
+     "reviewer": "Reviewer_pfmU",
+     "claim": "The bounded gradient dissimilarity assumption is unrealistic for heterogeneous data.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 2(ii) bounds ||∇f^(k)(x) − ∇f^(ℓ)(x)||² ≤ ζ² uniformly in x (lines 100-102). The authors conceded that it is 'rather strong' and called it the most common model for non-convex FL."
+    },
+    {
+     "reviewer": "Reviewer_4cGF",
+     "claim": "STEM requires full device participation, while the FedAvg and SCAFFOLD analyses allow partial participation.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 updates all K WNs every iteration and averages over all K (Steps 5, 8, 9). The paper's own FedAvg (Algorithm 2) also uses full participation. Lines 67-68 note that [15, 16] analyse partial participation. No author reply exists."
+    },
+    {
+     "reviewer": "Reviewer_4cGF",
+     "claim": "Besides the local model, STEM sends a local momentum direction to the server.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 131-133: the WNs share 'their current local models' and 'directions' with the SN, and Step 8 averages the directions. That doubles the per-round payload against FedAvg; Definition 2.3 counts rounds, not vectors."
+    },
+    {
+     "reviewer": "Reviewer_4cGF",
+     "claim": "The paper does not state its limitations clearly.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist 1(b) points to the conclusion, which names only a future communication lower bound (lines 297-298)."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "O(ε^-3/2) sample complexity was already achieved in federated learning by [17, 18], so the overall sample complexity is no better than the best existing results.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 79-84 and Table 1: MIME [17] and FedGLOMO [18] reach O(ε^-3/2) samples with O(ε^-3/2) communication. STEM's gain is communication, Õ(ε^-1)."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "The Õ(ε^-1) communication needs a minibatch or local steps of order ε^-1/2, or a mix, which may be infeasible for some clients.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3.1, Eq. (3), and Remark 3: b·I must be about K^-1·ε^-1/2, and b = I = O(1) gives Õ(ε^-3/2) communication. The same Table 1 shows FedAvg [12]/[14] needing I = O(ε^-1/2) and FedPD/FedProx I = O(ε^-1) for their communication rates, so the requirement is standard. Total samples stay Õ(ε^-3/2)."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "The algorithm needs all clients to update in each round.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1, Steps 5, 8 and 9 use all K WNs. The paper never discusses client sampling for STEM."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_9RXX"
+    ],
+    "evidence": "Reviewer_9RXX wrote on 2021-08-11 'I would like to raise my rating of the paper to at least 5' and on 2021-08-29 'I can increase my score from \"5\" (the consequence of my conservatism) to \"6\"', and edited the review that day. Reviewer_2QZ9 and Reviewer_pfmU never replied or edited. Reviewer_4cGF posted on 2021-08-23, after the author responses of 2021-08-10, and received no author reply.",
+    "what_convinced_or_not": "9RXX accepted Remark 3 (b = I = O(1) still matches MIME) and the hyperparameter details for the new experiments. 9RXX still judged the theory 'not significant enough ... to guarantee acceptance on its own' and credited the experiments for the rise to 6: 'If it was done right from the beginning, the discussion would have been different.' The authors conceded 2QZ9's equivalence point and pfmU's 'rather strong' assumption; neither reviewer answered. Nobody rebutted 4cGF's full-participation and extra-vector points."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Rejected with ratings 6, 5, 6, 6, three of four above the threshold. Every reason comes from a review or from the AC comment of 2021-09-24: novelty (9RXX, 2QZ9), large batch or many local steps (9RXX, 2QZ9), extra vectors and full participation (4cGF). The ratings point the other way. The AC comment adds that MIME and FedGLOMO already reach O(ε^-3/2) samples, and the meta-review cites the 'assessment of two Area Chairs and senior AC'. It gives no weight to the rebuttal experiments that moved 9RXX to 6. The comment came four days before the decision and drew no author reply.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Novelty judged low: the estimator and the complexities adapt existing variance-reduced methods, and MIME and FedGLOMO already reach O(ε^-3/2) samples (AC; Reviewer_9RXX, Reviewer_2QZ9)",
+    "The Õ(ε^-1) communication gain needs b or I of order ε^-1/2 (AC; Reviewer_9RXX, Reviewer_2QZ9)",
+    "Full participation required and a second vector sent each round (Reviewer_4cGF, AC)",
+    "No reviewer above 6 (mean 5.75); the AC panel judged the results 'not significant enough'"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "The random output x̄_a is not defined between communication rounds; feared per-step communication (Reviewer_RPhx; resolved in the rebuttal)",
+  "The stepsize needs the unknown variance σ; no adaptive version (Reviewer_RPhx)",
+  "Loose constants such as 4096 in Theorem 3.1 (Reviewer_GjiB)",
+  "No comparison with compression methods such as FedCOM and MARINA (Reviewer_GjiB)",
+  "The FedAvg bounds only slightly generalize prior results (Reviewer_RPhx)"
+ ],
+ "issues_only_b": [
+  "The 'server-side momentum step' is plain averaging after local steps; the authors agreed (Reviewer_2QZ9)",
+  "Full participation required, unlike the FedAvg and SCAFFOLD analyses (Reviewer_4cGF, AC)",
+  "A second vector sent each round, with privacy exposure of gradient-like directions (Reviewer_4cGF, meta-review)",
+  "MIME and FedGLOMO already reach O(ε^-3/2) samples, so the gain is communication only (AC)",
+  "Single runs without error bars (Reviewer_9RXX); Table 1 mixes assumptions (Reviewer_2QZ9); notation hard to follow (Reviewer_9RXX)"
+ ],
+ "shared_issues": [
+  "Limited technical novelty: a known STORM-type estimator adapted to FL (A: Reviewer_RPhx, and Reviewer_siNV notes the technique is known; B: Reviewer_9RXX, Reviewer_2QZ9, meta-review)",
+  "The communication gain needs b or I of order ε^-1/2, which SCAFFOLD and MIME avoid (A: Reviewer_GjiB; B: Reviewer_9RXX, Reviewer_2QZ9, AC)",
+  "Thin experiments: two baselines, few (b, I) settings, unclear tuning, no FL benchmark dataset (A: Reviewer_GjiB, Reviewer_RPhx; B: Reviewer_9RXX, Reviewer_pfmU, Reviewer_2QZ9). Both committees received the same rebuttal tables.",
+  "Strong bounded-dissimilarity heterogeneity assumption (A: Reviewer_GjiB; B: Reviewer_pfmU)",
+  "Clear writing praised (A: Reviewer_siNV, Reviewer_RPhx, Reviewer_GjiB; B: Reviewer_9RXX, Reviewer_pfmU)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same borderline facts differently. B's area chairs, not its reviewers, made the difference. After the rebuttal, A's reviewers stood at 8, 6, 6 and B's at 6, 5, 6, 6. Both committees saw the same two weaknesses. The momentum estimator is STORM-type variance reduction adapted to FL. The Õ(ε^-1) communication rate needs b·I to grow as ε^-1/2. In A, Reviewer_RPhx raised the first and Reviewer_GjiB the second, and both still moved up to 6. A's only clear accept came from Reviewer_siNV: an 8 after 2.5 hours that names no weakness and never joins the discussion. A's AC accepted in two sentences that follow the scores. In B, no reviewer rated above 6. Reviewer_9RXX credited the rebuttal experiments for the rise to 6 and still called the theory 'not significant enough'. Two ACs and the senior AC then rejected on their own reading. That reading is accurate. MIME and FedGLOMO already reach O(ε^-3/2) samples (Table 1), and with b = I = O(1) STEM's communication falls back to theirs (Remark 3). But Table 1 also shows that FedAvg, FedPD and FedProx need ε-dependent local work for their best communication rates. B counted a standard feature as a weakness. B's further reasons, full participation and a second vector per round, are true of Algorithm 1. Both came from Reviewer_4cGF's review, posted after the rebuttal, and the AC repeated one four days before the decision. The authors never answered either. B also held one fact that A lacked. Reviewer_2QZ9 showed that the 'server-side momentum step' is plain averaging after local steps, and the authors agreed. That weakens the 'two-sided' novelty claim but is not an error. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "AC panel overrode borderline scores",
+  "accepting AC deferred to scores",
+  "uncritical champion in accepting committee",
+  "epsilon-dependent batch counted as weakness",
+  "known estimator judged incremental",
+  "late concerns never answered"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Reviewer_siNV review",
+  "Reviewer_RPhx review, post-rebuttal update and 2021-08-23 reply",
+  "Reviewer_GjiB review and 2021-08-19, 2021-08-25 replies",
+  "Committee B meta-review",
+  "Area_Chair_N4BB comment, 2021-09-24",
+  "Reviewer_9RXX review and 2021-08-11, 2021-08-29 replies",
+  "Reviewer_2QZ9 review; authors' reply ('the server-side momentum can be done at the client as well')",
+  "Reviewer_4cGF review (posted 2021-08-23, no author reply)",
+  "Reviewer_pfmU review",
+  "paper_submitted Algorithm 1, Steps 6, 8, 9 and 14",
+  "paper_submitted Table 1 and Remark 3 (lines 187-195)",
+  "paper_submitted Theorem 3.1 (lines 153-156)",
+  "paper_submitted lines 129-147 (two-sided momentum)",
+  "paper_submitted lines 243-264 and checklist 3(c)"
+ ]
+}

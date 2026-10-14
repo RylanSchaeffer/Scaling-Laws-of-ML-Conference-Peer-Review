@@ -1,0 +1,254 @@
+{
+ "pair_id": "n21-256",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    5,
+    7
+   ],
+   "confidences": [
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_4Eeo",
+    "Reviewer_SaLC"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_SaLC",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below 6, at confidence 3. Its main reason is specific and the paper confirms it: with 1,000 neurons, NALSM beats the LSM baseline by 0.66 (MNIST) and 0.88 (N-MNIST) points in mean accuracy and LSM+AP-STDP by 0.47 and 0.67 (Section 3.4, lines 214-222). SaLC raised its rating after the rebuttal but kept that the gain is 'not expressive enough', while calling the work 'solid'. The 5 did not decide A's outcome; A's AC listed the point as a weakness and accepted."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_SaLC",
+     "claim": "NALSM gives only a minor improvement over previous LSMs (Figure 3A, Figure 4).",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.4: mean accuracy 95.96% vs 95.30% (LSM) and 95.49% (LSM+AP-STDP) on MNIST; 95.90% vs 95.02% and 95.23% on N-MNIST. Gains are 0.47 to 0.88 points, several standard deviations wide but under one point."
+    },
+    {
+     "reviewer": "Reviewer_SaLC",
+     "claim": "The paper shows that NALSM sits at the edge of chaos but does not show that these dynamics cause the gain.",
+     "checked_against_paper": "correct",
+     "evidence": "The attribution (lines 231-243) rests on the baseline LSM's accuracy-versus-branching-factor curve (Fig. 2B) and on comparisons between models that differ in more than their dynamics. NALSM keeps astrocyte-modulated STDP on during spike collection; LSM+STDP does not (lines 138-143). The authors told Reviewer_4Eeo they 'could only gather weak evidence' for the astrocyte's role in that phase."
+    },
+    {
+     "reviewer": "Reviewer_eTQM",
+     "claim": "The discussion claims to introduce astrocytes to neuromorphic computing and to help dismantle the 'neuron doctrine'.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 285-287 say so. The paper's own reference [81] (Tang et al. 2019, 'Introducing astrocytes on a neuromorphic processor') predates the claim. The camera-ready still says the work 'helps in dismantling the 100-year old dogma'."
+    },
+    {
+     "reviewer": "Reviewer_SaLC",
+     "claim": "The discussion says 'LSMs are the most brain-like'.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 268: 'Ironically, LSMs are the most brain-like yet the most difficult to train learning models.' The camera-ready softens it to 'one of the most brain-like'."
+    },
+    {
+     "reviewer": "Reviewer_4Eeo",
+     "claim": "The paper does not discuss its limitations.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist item 1(b), 'Did you describe the limitations of your work?', is answered '[No]'."
+    },
+    {
+     "reviewer": "Reviewer_4Eeo",
+     "claim": "The paper measures the edge of chaos by a ratio of liquid to input spikes (Eq. 8), not by Lyapunov exponents.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 8 and lines 108-115 define BF_proxy as that ratio. The submission contains no Lyapunov exponent."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_4Eeo",
+     "Reviewer_SaLC"
+    ],
+    "evidence": "Reviewer_4Eeo edited the review on 2021-09-02: 'I will raise my score from 6 to 7'. Reviewer_SaLC edited on 2021-08-23: 'I increased my rating', ending at 5. Reviewer_eTQM never edited or replied. No reviewer posted a discussion comment; every change is in a review edit.",
+    "what_convinced_or_not": "4Eeo accepted the new Fashion-MNIST result (85.61 ± 0.18%, above the best non-backprop spiking result the authors cite) and the argument that Lyapunov exponents need frozen weights. Its stated reason for acceptance is the idea of 'using STDP to position the liquid to the EOC'. 4Eeo also agreed with eTQM that some statements are 'overarching'. SaLC moved up but kept that the gain is 'not expressive enough'; the authors' reply that the gain is four times AP-STDP's gain over the LSM did not change that."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Accepted with 7, 5, 7 (mean 6.33). The meta-review says 'All reviewers agree that the approach is interesting and novel' and 'the results are sound'. Its three weaknesses come from eTQM (astrocyte 'tailored to the model needs rather than informed by biology'), SaLC ('minor performance improvements') and 4Eeo (MNIST and N-MNIST only). It adds its own view that earlier approaches were not 'convincing'. It does not mention the Fashion-MNIST result from the rebuttal.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Two of three reviewers at 7 after the rebuttal; all three called the method novel and interesting",
+    "Reviewer_4Eeo raised from 6 to 7 after the Fashion-MNIST result",
+    "AC judged the method effective and the results sound, and listed thin biology, sub-1-point gains and MNIST-only tests as minor weaknesses",
+    "AC judged earlier self-organizing approaches unconvincing"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    4
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_879c",
+    "Reviewer_rDJf",
+    "Reviewer_qHbj"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_r3sw",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below 6, posted on 2021-09-03, seven weeks after the other reviews and after the rebuttal exchange. Its core point is correct and checkable: the paper uses a branching factor as a proxy for chaos and reports no Lyapunov exponent (Section 2.3.1), the same objection Reviewer_879c pressed. Two other claims fail against the paper: baseline tuning is described (Section 2.3, lines 159-167), and Table 1 compares with backprop-trained spiking networks. Its demand for mathematical theory is generic for an empirical paper. It never replied to the authors' three answers of 2021-09-04. The B meta-review does not cite it."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_rDJf",
+     "evidence": "A 7 at confidence 3 ('Math/other details were not carefully checked') after 4 hours. Three numbered points: one paragraph of praise ('novel and interesting', 'well organized'), one question on why STDP helps LSMs, which the paper answers by citation (lines 44-45), and one request for comparisons with other edge-of-chaos approaches. Its only edit is on the posting day, and it never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_879c",
+     "claim": "The paper's 'chaos' is super-critical branching; there is no evidence of a transition to chaotic activity.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 37-38 define chaos as the super-critical phase, and lines 179-180 label σBF > 1 'super-critical (chaotic)'. No Lyapunov exponent or other chaos measure appears. The camera-ready concedes the correspondence 'is not guaranteed' and adds appendix evidence, but keeps 'Edge-of-Chaos' in the title."
+    },
+    {
+     "reviewer": "Reviewer_879c",
+     "claim": "The parameter C in Eq. 3 is not defined (also Reviewer_qHbj).",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 3 (line 91) uses C with no definition in the main text; line 92 points to Appendix A.4."
+    },
+    {
+     "reviewer": "Reviewer_879c",
+     "claim": "Eqs. 7 and 8 are not normalized to the sizes of the input and liquid populations.",
+     "checked_against_paper": "correct",
+     "evidence": "Both sum raw spikes over N_liq and N_inp. Input layers have 784 (MNIST) or 2,312 (N-MNIST) neurons against 1,000 liquid neurons (lines 78-79). The authors argued that only the aggregate balance matters, and 879c accepted that."
+    },
+    {
+     "reviewer": "Reviewer_qHbj",
+     "claim": "In NALSM, STDP keeps adjusting weights during spike-count collection, but not in LSM+STDP.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 138-139: for LSM+STDP, 'Initialized weights were fixed during spike count collection.' Lines 141-143: for NALSM, 'astrocyte modulated STDP continued to adjust synaptic weights.' The authors said STDP left on saturates LSM+STDP weights."
+    },
+    {
+     "reviewer": "Reviewer_r3sw",
+     "claim": "The edge-of-chaos claim is not supported by standard measures of chaos such as Lyapunov exponents.",
+     "checked_against_paper": "correct",
+     "evidence": "The only dynamics measure is the branching factor (Section 2.3.1) and its proxy (Eq. 8). The authors said Lyapunov exponents are hard to measure with plastic weights."
+    },
+    {
+     "reviewer": "Reviewer_r3sw",
+     "claim": "Important information is missing, such as how the baseline was optimized.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 2.3 (lines 159-167): the LSM liquid weight was swept (0.4-1.2 for MNIST, 0.8-1.35 for N-MNIST), the other models used the seed of peak LSM accuracy, and LSM+AP-STDP was hand-tuned per network and dataset on validation accuracy (Appendix A.6)."
+    },
+    {
+     "reviewer": "Reviewer_r3sw",
+     "claim": "NALSM is benchmarked only against other versions of the LSM.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1 lists backprop-trained and feedback-alignment spiking networks on MNIST and N-MNIST (e.g., STBP, SLAYER, DECOLLE). These are literature numbers, not controlled runs, and none is a conventional RNN."
+    },
+    {
+     "reviewer": "Reviewer_r3sw",
+     "claim": "No comparison of total computational cost is given.",
+     "checked_against_paper": "correct",
+     "evidence": "The main text has no cost comparison. The authors gave neuron and connection counts only in their reply of 2021-09-04."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "The paper lacks comparisons with alternative stabilizing negative-feedback mechanisms and does not show that spike-rate adaptation lacks the same benefit.",
+     "checked_against_paper": "correct",
+     "evidence": "The experiments compare only LSM, LSM+STDP and LSM+AP-STDP [17]. The introduction (lines 39-41) names two criticality regulators for LSMs, P-critical [15] and Brodeur and Rouat [16], and tests neither. Homeostatic plasticity [27, 28] appears only as a fix for STDP weight saturation (lines 46-47)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_879c",
+     "Reviewer_qHbj"
+    ],
+    "evidence": "Reviewer_879c replied on 2021-08-27 and 2021-08-30 and edited on 2021-08-30 ('Therefore, I am raising my ratings'), ending at 7. Reviewer_qHbj edited on 2021-08-27 ('I would like to upgrade my rating'), ending at 6. Reviewer_rDJf's only edit is on its posting day, 2021-07-16; it never replied. Reviewer_r3sw posted on 2021-09-03; the authors answered on 2021-09-04, and r3sw never replied.",
+    "what_convinced_or_not": "879c accepted the novelty claim ('relevant for some of NeurIPS' audience') and the answer on normalization. It rejected the evidence for chaos: the mean E/I balance does not show chaos, and autocorrelation 'is not a good measure for chaos in the case of spikes'. It raised anyway, because the results 'do not depend on the transition to chaos' and the authors offered to call edge-of-chaos a conjecture or to rename it 'critical branching'. It left the check of those changes to the AC. qHbj accepted the answers on the STDP asymmetry, firing rates and Fashion-MNIST, but still preferred benchmarks with spatio-temporal structure."
+   },
+   "ac": {
+    "followed_reviews": "no",
+    "evidence": "Rejected with 7, 7, 6, 4 (mean 6.0); three of four reviewers ended above the threshold, two of them after raising. The meta-review names no reviewer and no score. It frames the contribution as a hypothesis about astrocytes and asks whether it is a claim about biology or about neuromorphic algorithms, although the authors had told 879c that the emphasis is the neuromorphic method. Its two demands (a realistic astrocyte model that beats spike-rate adaptation; comparisons with other negative-feedback mechanisms) appear in no B review in that form. The nearest are rDJf's 'comparisons with other edge-of-chaos modulation approaches' and 879c's early 'biologically oriented venue' remark, which 879c withdrew. It omits 879c's chaos objection and r3sw's specific points (Lyapunov exponents, theory, cost).",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC found the impact unclear: neither a defended claim about astrocyte biology nor a demonstrated engineering advance",
+    "No argument that the astrocyte model is realistic or better than spike-rate adaptation (AC)",
+    "No comparison with alternative stabilizing feedback mechanisms (AC; Reviewer_rDJf asked for related comparisons)",
+    "Soft reviewer support: Reviewer_879c's 7 kept an unresolved objection to the title claim and deferred to the AC; Reviewer_rDJf's 7 is thin; Reviewer_qHbj's 6 is marginal; Reviewer_r3sw added a late 4"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Accuracy gain over prior LSMs too small, under one point (Reviewer_SaLC; A's AC)",
+  "Overclaims in the discussion: dismantling the 'neuron doctrine' and 'LSMs are the most brain-like' (Reviewer_eTQM, Reviewer_SaLC)",
+  "Efficiency benefit of sparse astrocyte connectivity not shown (Reviewer_SaLC)",
+  "Notation in Eqs. 4-6 and the decay of A+ and b_astro (Reviewer_SaLC)"
+ ],
+ "issues_only_b": [
+  "Critical branching is not the transition to chaos, yet the title claims edge-of-chaos dynamics (Reviewer_879c; Reviewer_r3sw)",
+  "Branching-factor proxy in Eqs. 7-8 not normalized to population sizes; C in Eq. 3 undefined (Reviewer_879c; Reviewer_qHbj)",
+  "Novelty against the self-organized criticality literature and venue fit (Reviewer_879c, later withdrawn)",
+  "No comparison with other edge-of-chaos or negative-feedback mechanisms (Reviewer_rDJf; B's AC)",
+  "Heuristic mechanism without mathematical theory (Reviewer_qHbj; Reviewer_r3sw)",
+  "Contribution unclear: a claim about biology or a neuromorphic algorithm (B's AC)",
+  "Redundant writing and structure (Reviewer_qHbj)"
+ ],
+ "shared_issues": [
+  "Thin biological grounding of the astrocyte model (A: Reviewer_eTQM, A's AC; B: AC)",
+  "Lyapunov exponents absent (A: Reviewer_4Eeo, as a curiosity; B: Reviewer_879c and Reviewer_r3sw, as a flaw)",
+  "MNIST and N-MNIST too easy or lacking real temporal structure (A: Reviewer_4Eeo, A's AC; B: Reviewer_qHbj)",
+  "Astrocyte-modulated STDP stays on during spike collection: its effect untested (A: Reviewer_4Eeo) and absent from the LSM+STDP baseline (B: Reviewer_qHbj)",
+  "Link from edge-of-chaos dynamics to the accuracy gain not established (A: Reviewer_SaLC; B: Reviewer_r3sw)",
+  "No empirical comparison with backprop-trained networks on cost or accuracy (A: Reviewer_SaLC; B: Reviewer_qHbj, Reviewer_r3sw)",
+  "Limitations not discussed (A: Reviewer_4Eeo, Reviewer_SaLC; B: Reviewer_qHbj)",
+  "Kernel quality and 'liquid synaptic weight' not defined in the main text (A: Reviewer_SaLC; B: Reviewer_qHbj)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The two area chairs weighted the same weaknesses differently. Both review pools were borderline-positive. Committee A ended at 7, 5, 7, and its AC followed the majority. It listed three weaknesses as minor: an astrocyte model 'tailored to the model needs' (from Reviewer_eTQM), small gains over prior LSMs (Reviewer_SaLC; the paper shows 0.66 and 0.88 points over the LSM baseline), and tests on MNIST and N-MNIST only. Committee B ended at 7, 7, 6 and a late 4, so three of four reviewers recommended acceptance. B's AC rejected on its own reading. It found the impact unclear: as biology, the astrocyte model is not shown realistic or better than spike-rate adaptation; as engineering, the paper lacks comparisons with other stabilizing feedback mechanisms. These are A's weaknesses in other words. The engineering point has substance: the paper names two criticality regulators for LSMs ([15], [16]) and tests neither. B's support was also softer than its scores. Reviewer_879c showed, correctly, that the paper equates a branching factor above 1 with chaos and measures no chaos indicator. It raised to 7 only because the results do not depend on chaos, and it deferred to the AC. Reviewer_rDJf's 7 is three short points. B's meta-review mentions neither the chaos dispute nor any score. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "AC overrode positive reviewer majority",
+  "same weaknesses: minor versus decisive",
+  "AC demanded alternative-mechanism comparisons",
+  "unclear framing: biology or engineering",
+  "lukewarm supporters deferred to AC",
+  "edge-of-chaos claim disputed only in B"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Committee A meta-review",
+  "Reviewer_879c review and replies of 2021-08-27 and 2021-08-30",
+  "Reviewer_rDJf review",
+  "Reviewer_qHbj review and update",
+  "Reviewer_r3sw review (posted 2021-09-03) and the authors' replies of 2021-09-04",
+  "Reviewer_SaLC review and 'After rebuttal' note",
+  "Reviewer_4Eeo review and EDITS section",
+  "Reviewer_eTQM review",
+  "paper_submitted Section 2.3.1, lines 178-181 (σBF > 1 labelled chaotic)",
+  "paper_submitted Section 3.4, lines 214-226 (accuracy gains)",
+  "paper_submitted Section 2.2.1, lines 132-144 (STDP during spike collection)",
+  "paper_submitted Section 2.3, lines 156-167 (baseline tuning)",
+  "paper_submitted Table 1",
+  "paper_submitted Introduction, lines 39-41 (criticality regulators [15], [16])",
+  "paper_submitted Discussion, lines 268 and 285-287",
+  "camera-ready Section 3.3 (chaos correspondence 'not guaranteed')"
+ ]
+}

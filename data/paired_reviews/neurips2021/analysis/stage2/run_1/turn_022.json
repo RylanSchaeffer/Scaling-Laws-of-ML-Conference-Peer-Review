@@ -1,0 +1,185 @@
+{
+  "run": 1,
+  "turn": 22,
+  "pair_id": "n21-298",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Neither area chair departed from its reviewers: A's poster matches the 6.25 mean and restates Reviewer_3GRx, and B's spotlight matches a 7.25 mean with two 8s and tracks Reviewer_48Ey."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's meta-review called the paper 'a foundational advance' whose algorithmic Forster decomposition 'can potentially find new applications'; the paper shows no application beyond Massart halfspaces, and A's area chair instead judged it for 'a handful of experts'."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's Reviewer_px8j raised to 6 after the authors confirmed the Theorem 2.1 typo, gave the homogenisation reduction and located Theorem 3.3; in A nobody moved and the reply on fit persuaded no one."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Both committees had thin reviews (A: Reviewer_UuHj and Reviewer_rK8U; B: Reviewer_91N9), and discounting them keeps the gap (A's substantive 6, 6 against B's 8, 7, 6), so neither committee rests on less scrutiny overall."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A's Reviewer_rK8U judged the result 'a lot of work to achieve a relatively minor improvement' in 'a very specific noise model', a limit on the claims that held A's scores at 6; no B reviewer raised the size of the gain."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees heard the same concession that the main theorem synthesises [HKLM20], [HM13] and [AKS20] with Proposition 2.3 as the new step; Reviewer_AuTG (A) read it as a limit and gave 6, Reviewer_48Ey (B) read it as non-trivial execution and gave 8."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "Reviewer_AuTG called the result 'somewhat niche' after reading the other reviews but kept 6; no score in either committee changed because of the discussion."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Reviewer_3GRx's 6 beside 'probably among the top theory papers' follows the venue-fit objection in the same review, so the rating matches the review's verdict; no other rating contradicts its text."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's 6s rest on stated significance and audience concerns, not on reviewers saying they could not judge; the one reviewer who did not verify the arguments, Reviewer_UuHj, gave A's highest score, 7."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "A's area chair adopted Reviewer_3GRx's audience concern and B's followed Reviewer_48Ey, but neither reviewer's score stood apart from the rest of the committee."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal verdicts differ, not only their placement on the scale: A's reviewers judged the payoff narrow or niche, while B's raised no breadth concern and called the paper an improvement on a long-standing problem."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "Neither committee was unanimous; B's spotlight rests on two 8s, which A lacked."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "Reviewer_px8j raised on confirmations of typos and standard reductions, not on new results copied or promised in the rebuttal."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "B's meta-review names no weakness, though Reviewer_px8j found the presentation 'very unclear' and Reviewer_Nd9v found Section 2 'hard to follow'; A's meta-review carried its reviewers' downside ('technically rather complex', 'a handful of experts') forward."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "The wrong claims on file (Reviewer_UuHj's novelty claim, Reviewer_91N9's 'first polynomial-time algorithm' paraphrase, B's area chair's LP account of the sample dependence) have no evident effect on the scores or the tier split."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees heard the same concession that Proposition 2.2 is replaceable, and neither lowered a score; the admission did not separate the committees."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's audience objection came in Reviewer_3GRx's original review and the authors answered it on fit; Reviewer_AuTG's later 'somewhat niche' came with no score change."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The committees' scores differ (means 6.25 and 7.25, two 8s only in B), so the tiers follow different reviews, not different cut-offs on the same reviews."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither area chair passed over its best-informed reviewer: A's followed 3GRx and the 6s, and B's followed its confidence-4 Reviewer_48Ey."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "B's concerns were concrete gaps (Theorem 2.1 typo, homogeneity, source of Theorem 3.3, [AKS20] generality) that the response closed and that lifted Reviewer_px8j, while A's main concerns were audience breadth and the size of the gain, which the reply on fit could not answer, and nobody in A moved."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee had an outlying score; both spreads are within two points and the two 8s are half of B."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Reviewer_rK8U never replied to the rebuttal, but rK8U's 6 matched two other 6s in A and was not an outlying score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither committee had a detractor it set aside; both recommendations weighed tier on undisputed accept scores."
+    }
+  ],
+  "added": [
+    {
+      "id": "R24",
+      "name": "Audience or venue-fit objection lowered one committee",
+      "definition": "One committee's reviewers or area chair judged the paper sound but too specialised for the conference's audience, or better suited to another venue, and held their scores or tier down on that ground, while the other committee never raised audience breadth or venue fit.",
+      "justification": "R05 covers concerns about the paper's claims, method or evidence; here A accepted the technical work as strong and discounted it only for its audience and venue, a different mechanism that no existing reason names."
+    }
+  ],
+  "reasoning": "Both committees accepted the paper and agreed on its facts; the split is over how much a correct but specialised theory result matters to a NeurIPS audience. A's reviewers stopped at 6 for audience fit (Reviewer_3GRx proposed STOC/FOCS/COLT, Reviewer_AuTG later called it 'somewhat niche') and the size of the gain, and A's area chair kept the 'handful of experts' downside; B raised no breadth concern, its rebuttal closed concrete presentation gaps and lifted px8j, and its area chair framed the paper as 'a foundational advance' with possible new applications and no weakness. So R02, R03, R05, R06, R14 and R20 apply. The venue and audience objection is not a concern about the paper's claims, method or evidence, so R05 does not cover it, and I added R24. Thin reviews exist on both sides and discounting them keeps the gap, so R04 does not apply.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24"
+  ]
+}

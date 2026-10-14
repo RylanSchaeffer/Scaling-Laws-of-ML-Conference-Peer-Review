@@ -1,0 +1,257 @@
+{
+ "pair_id": "n21-257",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6 to 7 around a mean of 6.75. Reviewer_err4's 6 sits one point below three 7s. Every reviewer names limited novelty and still recommends acceptance."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_3fnX",
+     "evidence": "A 7 at confidence 3 ('Math/other details were not carefully checked') on four short paragraphs. It cites no table or number; its only criticism is novelty ('it is hard to say this is the contribution of this paper'). It posted nothing after the rebuttal. The claimed 7 hours do not show in the text."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_euiw",
+     "claim": "The text says V1 pre-trains better on ImageNet-21K than V0, but Table 7 shows 53.0 for both.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 289-290: 'V1 achieves a slightly better performance during ImageNet-21K pre-training than V0 does'. Table 7 lists 53.0 -> 87.6 (V0) and 53.0 -> 87.4 (V1). The authors conceded (53.01 vs 53.02); the camera-ready says V1 and V0 'have the same performance'."
+    },
+    {
+     "reviewer": "Reviewer_euiw",
+     "claim": "Only the 'pre' variant of Eq. 3 is used; the 'post' variant is never compared.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 146-147 adopt y^pre. Tables 6-8 ablate relative vs standard attention, layout, head size and norm type, never y^post. The authors' reply to euiw does not address this point."
+    },
+    {
+     "reviewer": "Reviewer_euiw",
+     "claim": "The ResNet50-ViT hybrid of [13] is not mentioned.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 86 mentions 'ViT and ResNet-ViT [13]' in related work. The hybrid is indeed absent from Tables 4-5 and Figures 2-3, so the request to compare it stands."
+    },
+    {
+     "reviewer": "Reviewer_VNGC",
+     "claim": "CoAtNet outperforms previous SOTA methods such as Swin.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4: at 384 px, CoAtNet-2 reaches 85.7% (ImageNet-1K only, 49.8B FLOPs) against Swin-B's 84.2% (47.0B FLOPs); with ImageNet-21K pre-training, CoAtNet-2 reaches 87.1% against Swin-L's 86.4%."
+    },
+    {
+     "reviewer": "Reviewer_err4",
+     "claim": "Table 4 compares models by parameters and FLOPs only, with no throughput.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 columns are eval size, #Params, #FLOPs and top-1 accuracy. TPU time appears only in Table 5, for JFT pre-training (six rows). The rebuttal linked an external TPU latency plot for CoAtNet, NFNet and DeiT."
+    },
+    {
+     "reviewer": "Reviewer_3fnX",
+     "claim": "Relative position bias has been discussed in many previous works, so it is not the paper's contribution.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 138-139 say y^pre 'corresponds to a particular variant of relative self-attention [37, 38]'. The authors agreed: 'relative attention NOT is our contribution'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after posting. Reviewer_VNGC wrote on 2021-09-03: 'I still recommend accepting the paper due to its excellent performance and comprehensive experiments. But please note I still think the novelty of the paper is limited and the authors did not address my concerns.' Reviewer_err4, Reviewer_euiw and Reviewer_3fnX posted nothing after the 2021-08-10 responses.",
+    "what_convinced_or_not": "Nothing had to move: all four ratings were 6 or 7 before the rebuttal. The authors agreed relative attention is not their contribution, promised a PVT comparison, linked a TPU latency plot, explained FLOPs for Table 7 and conceded its text error. They did not answer err4's code request or euiw's request to compare the pre and post variants of Eq. 3. VNGC's novelty concern stayed open, and VNGC kept the 7."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The whole meta-review: 'The rebuttal addressed all of the reviewers concerns, and all reviewers recommend acceptance. The AC agrees with this recommendation.' The first clause is false: Reviewer_VNGC wrote after the rebuttal that 'the authors did not address my concerns', and err4's code request went unanswered. The AC names no strength or weakness.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Strong results in every data regime: 86.0% ImageNet-1K only, 88.56% with ImageNet-21K, 89.77% with JFT (all four reviewers)",
+    "Limited novelty named by Reviewer_VNGC, Reviewer_err4 and Reviewer_3fnX but treated as secondary to the results",
+    "Unanimous ratings of 6 or 7 (mean 6.75); the AC accepted on that basis"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    5,
+    6,
+    5
+   ],
+   "confidences": [
+    5,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_BJnY",
+    "Reviewer_qHHe"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4 to 6 around a mean of 5.0. Reviewer_BJnY's 4 sits one point below two 5s; without it the mean is 5.33, still below the threshold. Reviewer_5AC9's 6 is the only rating above it."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_PojV",
+     "evidence": "Reports 15 hours, yet asks why Table 2 is counterintuitive 'If Transformer layers generalize better'. The paper claims the reverse: 'convolutional layers tend to have better generalization' (lines 43-44) and 'the more convolution stages the model has, the smaller the generalization gap is' (lines 200-201). Most of the review is questions. PojV did not acknowledge the authors' correction."
+    },
+    {
+     "reviewer": "Reviewer_BJnY",
+     "evidence": "At confidence 5 ('checked the math/other details carefully'), it says there is no ablation of relative against classical attention; Table 6 is titled 'Ablation on relative attention'. BJnY did not retract this after the authors pointed to Table 6. The rest of the review is specific: two of its three SOTA points, and its ConViT and error-bar points, hold."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_BJnY",
+     "claim": "The abstract's 'outperforming prior arts of both convolutional networks and Transformers' (86.0% without extra data, 89.77% with JFT) is incorrect: Meta Pseudo Labels reaches 90.2% with JFT, and CaiT and NFNet reach 86.5% without extra data.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 12-14 make the claim. The paper's own Table 4 shows CoAtNet-3 at 86.0% only tying NFNet-F5 (86.0%), and Table 5 omits Meta Pseudo Labels. The authors conceded ('We will correct this statement to avoid misunderstanding'); the camera-ready abstract drops the phrase."
+    },
+    {
+     "reviewer": "Reviewer_BJnY",
+     "claim": "'matching the best public record set by a ConvNet variant NFNet' (line 57) is incorrect: NFNet-F5+SAM reaches 86.3% and NFNet-F6+SAM 86.5%.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 57-58 make the claim. Table 4 lists NFNet-F5 at 86.0% and no SAM rows, while the cited NFNet paper [20] reports 86.5% for NFNet-F6+SAM. The authors said they meant 'no SAM, no distillation'; the camera-ready says 'matching the prior art NFNet [20] under similar computation resource and training conditions'."
+    },
+    {
+     "reviewer": "Reviewer_BJnY",
+     "claim": "Line 31 ('none of these ViT variants could outperform the SOTA convolution-only models ... given the same amount of data and computation') is incorrect, because CaiT [17] matches NFNet [20] with less computation.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The CaiT numbers are outside the paper. The paper's own Table 4 fits the sentence: CaiT-S-36 reaches 85.0% at 48.0B FLOPs against ENetV2-L's 85.7% at 53B. The authors replied that CaiT needs distillation from a RegNet teacher to reach NFNet; BJnY did not contest this, and the camera-ready keeps the sentence."
+    },
+    {
+     "reviewer": "Reviewer_BJnY",
+     "claim": "There is no ablation of the relative attention against classical attention.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 6 ('Ablation on relative attention') compares with and without relative attention: 84.1 vs 83.8 (224 px), 85.7 vs 85.3 (384 px), 87.9 vs 87.4 (ImageNet-21K to 1K). Lines 270-277 discuss it."
+    },
+    {
+     "reviewer": "Reviewer_BJnY",
+     "claim": "Only ImageNet results; no ImageNet-V2 or ImageNet-ReaL evaluation and no standard deviation.",
+     "checked_against_paper": "correct",
+     "evidence": "Every result is ImageNet-1K top-1. Checklist 3(c) answers [No] to error bars: 'The randomness is very limited, usually within 0.1%.' Several ablation gaps are 0.1 to 0.3 points (Table 6 at 224 px, Table 7 V0 vs V2, Table 8)."
+    },
+    {
+     "reviewer": "Reviewer_BJnY",
+     "claim": "ConViT is close prior work (soft convolutional bias in attention, convolution-like blocks early, sample-efficiency comparison with ViT) and is not discussed.",
+     "checked_against_paper": "correct",
+     "evidence": "ConViT is absent from the 48 references. The authors answered with an accuracy table only; BJnY replied that this 'does not answer my question'."
+    },
+    {
+     "reviewer": "Reviewer_PojV",
+     "claim": "Table 2 is counterintuitive if Transformer layers generalize better.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The premise inverts the paper. Lines 43-44 and 196-201 say convolution generalizes better; Table 2 (C-C-T-T transfers better than C-T-T-T at equal pre-training) fits that claim. The authors pointed to the inequality at line 197."
+    },
+    {
+     "reviewer": "Reviewer_qHHe",
+     "claim": "CoAtNet-0 at 224 px (81.6%, 25M parameters, 4.2B FLOPs) does not outperform ViL-S (82.0%, 24.6M, 4.9B), which the paper omits.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 lists CoAtNet-0 at 224 px with 25M parameters, 4.2B FLOPs and 81.6%. ViL is not cited. ViL-S uses about 17% more FLOPs, so CoAtNet-0 is not dominated either. The authors replied 'we may have missed some of them'."
+    },
+    {
+     "reviewer": "Reviewer_qHHe",
+     "claim": "The checklist says code is included, but the supplementary material has none.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist 3(a) answers [Yes] to including code. The authors replied 'That must be a typo' and promised to release code."
+    },
+    {
+     "reviewer": "Reviewer_qHHe",
+     "claim": "The core idea is the same as in NLP work (MUSE; Wu et al. 2019; Chang et al., ACL-IJCNLP 2021), which the paper does not discuss.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paper credits relative attention to NLP work at lines 138-139 ([37] Shaw et al., [38] T5). Chang et al., the closest match, is arXiv 2106.05505 (June 2021), after the submission PDF was made on 2021-05-27. MUSE and Wu et al. are not cited, but neither stacks convolution and attention stages as Section 3.2 does."
+    },
+    {
+     "reviewer": "Reviewer_5AC9",
+     "claim": "The method in Section 3.1 is effectively a relative positional encoding similar to [37].",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 138-139 state it: y^pre 'corresponds to a particular variant of relative self-attention [37, 38]'. The authors agree it is not their invention."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_BJnY (2021-07-15) and Reviewer_qHHe (2021-07-19) edited only on their posting days, before the 2021-08-10 responses. After them: Reviewer_5AC9 (2021-08-31) 'I thus keep my recommendation unchanged'; Reviewer_BJnY (2021-09-02) 'So I keep my initial rating'; Reviewer_PojV (2021-09-02) 'I find no reason to promote this paper above acceptance threshold'. Reviewer_qHHe posted nothing.",
+    "what_convinced_or_not": "The authors conceded the SOTA wording and the code-checklist 'typo', and gave a ConViT accuracy table, a TPU latency plot and a DeiT-B reproduction with their recipe. BJnY wanted a methodological comparison with ConViT and objected to per-model hyperparameters and EMA. PojV used the authors' own reply ('Similar in spirit to ours, Axial-DeepLab') as proof that the positional embedding is not novel. The authors corrected BJnY's ablation claim (Table 6) and PojV's reading of the generalization claim; neither reviewer acknowledged it."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'This paper has received slightly negative ratings - the main concern being the lack of novelty, as well as several ambiguous claims.' Three of four ratings are below 6 (mean 5.0). The AC says 'some questions remained unanswered' without naming them. It does not weigh that the authors conceded and could fix the SOTA wording, or that Reviewer_5AC9 rated the significance high.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Limited novelty: relative attention and convolution-attention hybrids already exist (Reviewer_PojV, Reviewer_qHHe, Reviewer_5AC9; Reviewer_BJnY via ConViT)",
+    "Overstated SOTA claims in the abstract and introduction (Reviewer_BJnY; the AC's 'several ambiguous claims')",
+    "Questions left open after the rebuttal: ConViT methodology and the training recipe (Reviewer_BJnY)",
+    "Mean rating 5.0 with three of four below 6; the AC followed the scores"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Table 7 text says V1 pre-trains better than V0, but the table shows 53.0 for both (Reviewer_euiw)",
+  "Missing comparisons with PVT and the ResNet50-ViT hybrid of [13] (Reviewer_euiw)",
+  "Test the inductive bias by replacing all 3x3 convolutions in a ResNet with the relative attention (Reviewer_err4)",
+  "Eq. 3 indexing unclear; asks for a figure and pseudocode (Reviewer_err4)",
+  "Multi-head Q, K, V projections omitted from Section 3.1; downsampling details only in Appendix A.1 (Reviewer_euiw)"
+ ],
+ "issues_only_b": [
+  "Overstated SOTA claims in the abstract and lines 57-58: NFNet-F6+SAM 86.5%, Meta Pseudo Labels 90.2% (Reviewer_BJnY)",
+  "ConViT, a close prior work, neither cited nor compared (Reviewer_BJnY)",
+  "No ImageNet-V2 or ImageNet-ReaL evaluation and no error bars (Reviewer_BJnY)",
+  "Training recipe differs from DeiT: per-model hyperparameters and EMA (Reviewer_BJnY)",
+  "Missing ViL comparison; CoAtNet-0 trails ViL-S at 224 px (Reviewer_qHHe)",
+  "NLP precedents for unifying convolution and attention: MUSE, dynamic convolutions, Chang et al. 2021 (Reviewer_qHHe)",
+  "Checklist item 3(a) claims code that was not supplied (Reviewer_qHHe)",
+  "Axial-DeepLab and SASA precedents for relative position in vision; why depthwise rather than standard convolution (Reviewer_PojV)",
+  "Compute and environmental cost (Reviewer_PojV, Reviewer_5AC9, Ethics_Reviewer_kHQK)"
+ ],
+ "shared_issues": [
+  "Limited novelty: relative attention is known and convolution-attention hybrids exist (A: Reviewer_VNGC, Reviewer_err4, Reviewer_3fnX, Reviewer_euiw; B: all four reviewers)",
+  "Image classification only, no detection or segmentation (A: Reviewer_err4, Reviewer_VNGC; B: Reviewer_qHHe)",
+  "No latency or throughput comparison; FLOPs and parameters only (A: Reviewer_VNGC, Reviewer_err4; B: Reviewer_BJnY)",
+  "Reproducibility: thin model specification and no code (A: Reviewer_err4; B: Reviewer_5AC9, Reviewer_qHHe)",
+  "Pre versus post normalization: Reviewer_euiw (A) asked for the untested post-softmax variant of Eq. 3; Reviewer_qHHe (B) asked why pre-normalization is better, and the authors answered about LayerNorm placement instead"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same paper: strong ImageNet results in every data regime, with modest novelty that the authors themselves conceded ('relative attention NOT is our contribution'). All eight reviewers praised the results and all eight noted overlap with prior hybrids or relative attention. Committee A's reviewers let results outweigh novelty (7, 6, 7, 7); Reviewer_VNGC kept a 7 while saying the authors 'did not address my concerns'. In Committee B, Reviewer_PojV and Reviewer_qHHe made novelty decisive (5, 5), and Reviewer_BJnY (4, confidence 5) added a correct critique that A missed: the abstract and lines 57-58 overstate SOTA, since the paper's own Table 4 shows only a tie with NFNet-F5 at 86.0% and the cited NFNet paper reports 86.5% with SAM. That fault is in the wording, not the results; the authors conceded and the camera-ready rewords it. B's negative case also carried unretracted errors: BJnY said no relative-attention ablation exists (Table 6 is one), PojV inverted the paper's generalization claim, and qHHe's closest NLP precedent postdates the submission. Neither AC read the paper independently: A's meta-review wrongly says the rebuttal addressed all concerns, and B's restates 'slightly negative ratings'. The split is mainly reviewer draw on how much novelty should weigh against strong empirical results. B's valid extra points (overstated SOTA, uncited ConViT and ViL, no error bars) concern presentation and comparisons, not the correctness of the results.",
+ "candidate_reasons": [
+  "Novelty weighed against empirical strength",
+  "Overstated SOTA wording caught once",
+  "Detractor factual errors left unretracted",
+  "Meta-reviews restate the scores",
+  "Thin high-score review unexamined"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_VNGC post-rebuttal comment (2021-09-03)",
+  "Reviewer_PojV post-rebuttal comment (2021-09-02)",
+  "Reviewer_BJnY review, first weakness (SOTA statements) and post-rebuttal comment",
+  "Submitted paper abstract lines 12-14 and introduction lines 57-58; Table 4 (NFNet-F5 and CoAtNet-3 at 86.0%)",
+  "Submitted paper Table 6 (ablation on relative attention)",
+  "Submitted paper lines 43-44 and 196-201 (generalization ranking)",
+  "Submitted paper checklist items 3(a) and 3(c)",
+  "Committee A meta-review",
+  "Committee B meta-review"
+ ]
+}

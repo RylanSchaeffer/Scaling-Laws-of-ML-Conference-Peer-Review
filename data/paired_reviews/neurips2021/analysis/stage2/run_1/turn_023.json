@@ -1,0 +1,199 @@
+{
+  "run": 1,
+  "turn": 23,
+  "pair_id": "n21-003",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's area chair gave a spotlight on 7, 6, 7, 7 with no reviewer above 7 or arguing for the tier and no reason stated, so the tier rests on the area chair's own unexplained call."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or area chair rested a recommendation on impact beyond video instance segmentation and tracking; TiXB's 'very excited about the prospects' is about the method's own setting."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "After a near-identical rebuttal, B's Reviewer_NPPQ (6 to 7) and Reviewer_HvVc (to 7) raised, while no A score moved."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Thin reviews sit on both sides (A: Reviewer_nMFp, Reviewer_h7Rc; B: Reviewer_NPPQ), and A's two most careful reviews (x3ez, q7JA) drove its reject, so scrutiny is not lopsided."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A found that PCAN is not faster than non-local attention and gains 0.5-0.6 AP, and only A asked for MAST and tuning on the reporting split; both efficiency and related work are in A's reasons for reject."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both saw the same memory saving, best online results, missing prototype count, missing details, no KITTI-MOTS and modest novelty; A read them as a reject, B as a spotlight."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score in either committee moved on other reviewers' views; B's raises cite the rebuttal and A's scores never moved."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Reviewer_nMFp's 6 on four one-line strengths is a thin review, not a rating that contradicts a stated verdict; no other rating clashes with its text."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "NPPQ admitted not being an MOTS expert but rated 7 at confidence 4, not a borderline default; no committee's mean was held near threshold by declared uncertainty."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither area chair adopted a single outlying reviewer's verdict; neither committee had an outlier."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments differ: A's reviewers called it a 'pure application paper' with a 'trivial' gain, while B's saw 'a big step', so this is not one verdict placed at different scores."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "B's meta-review leads with 'All four reviewers recommend acceptance' and no B rating exceeds 7, but A's scores are lower (mean 5.25, maximum 6), so the definition's comparison with the other committee fails."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "B's Reviewer_HvVc called the paper 'badly written' with 'many crucial details missing' and raised to accept on promised revisions to the text and figures."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's meta-review carries the presentation weakness and TiXB's prototype ablation forward, and A's lists its reviewers' concerns; neither drops its reviewers' weaknesses."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "A's Reviewer_h7Rc called YouTube-VIS a VOS dataset, which Section 4.1 refutes, and B's Reviewer_NPPQ called the prototype attention new though Section 2 cites EM-based prototype attention [19]."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The damaging admission (PCAN 63.2 vs 61.8 ms per frame) went to A, which stayed at reject, so it did not leave that committee higher than its information supported."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's area chair cites non-public concerns, but low novelty and self-supervised work were raised in the reviews and answered in the rebuttal; no post-response objection or score cut is on record."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The committees' scores are far apart (means 5.25 and 6.75), not near-identical profiles split by tier cut-offs."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's best-informed reviewer, Reviewer_x3ez (confidence 5), rated 5 and A's area chair followed that side; B's confidences are all 4."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "B's main concerns (prototype count, missing details, KITTI-MOTS) were closed by new tables, while A's central objections (application paper without insight, no speed gain, 0.5-0.6 AP over non-local attention) no response could remove."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee had an outlying score; A's 6 is one point from its 5s and B's 6 one point from its 7s."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer stood apart from their committee; A's silence after the rebuttal was by three of four reviewers, not by an outlier."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither committee had a detractor set aside as unreliable."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No reviewer or area chair raised audience breadth or venue fit."
+    }
+  ],
+  "added": [
+    {
+      "id": "R25",
+      "name": "Meta-review misstated the reviewers' positions or rebuttal",
+      "definition": "One committee's meta-review misreported the record it summarised, such as the reviewers' final positions or which concerns the authors' response had already answered, and that committee's recommendation rested on the inaccurate account.",
+      "justification": "R14 covers a meta-review that drops its reviewers' weaknesses and R15 a wrong claim about the paper's results; neither covers an area chair misreporting the reviewers' stance or the rebuttal's content against the paper."
+    },
+    {
+      "id": "R26",
+      "name": "One committee's reviewers left the rebuttal unanswered",
+      "definition": "Most of one committee's reviewers never replied to the authors' response or joined the public discussion, so scores set before a response that answered their points stood unrevised, while the other committee's reviewers engaged with the response and revised.",
+      "justification": "R03 records that the response persuaded one committee and not the other, which reads as a reasoned judgement; R22 covers silence by an outlying reviewer only. Neither names silence by most of a committee as the mechanism."
+    }
+  ],
+  "reasoning": "The two committees saw the same strengths and gaps and weighed them differently (R06). B's reviewers engaged with a rebuttal that closed their fixable gaps and two raised, one on promised revisions (R03, R13, R20); A's three silent reviewers and x3ez's unmoved 5 left its scores where they were, a mechanism of non-engagement that no reason named, so I added R26. Only A probed runtime and related work (R05). Each side held a factual misreading (R15). A's meta-review called all reviewers negative and listed answered concerns, which R14 and R15 do not cover, so I added R25. B's spotlight on no rating above 7 is the area chair's unexplained call (R01); R12 fails its comparative clause because A's scores are lower.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26"
+  ]
+}

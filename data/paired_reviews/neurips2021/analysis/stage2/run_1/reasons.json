@@ -174,5 +174,53 @@
     "created_by_pair": "n21-178",
     "created_turn": 17,
     "exemplar": "B's Reviewer_wwer never answered the authors' reply that TD3+BC appeared after the deadline and that other reviewers found the paper clear, and the 3 stood while B's other two raised scores rose to 7."
+  },
+  {
+    "id": "R23",
+    "name": "Discarded detractor framed decision as accept-or-reject",
+    "definition": "One committee's area chair set aside an outlying low score as unreliable but spent the meta-review defending acceptance against it, so that committee's recommendation stopped at a plain accept and a higher tier was never weighed, while the other committee, with no such detractor, was considered for a higher tier.",
+    "created_by_pair": "n21-281",
+    "created_turn": 20,
+    "exemplar": "B's area chair called Reviewer_PpQM's 3 'safe to ignore', counted 'the scores are 6, 6, and 7' and recommended acceptance 'in this instance' with no word on tier, while A's undisputed 7/6/7 got a spotlight."
+  },
+  {
+    "id": "R24",
+    "name": "Audience or venue-fit objection lowered one committee",
+    "definition": "One committee's reviewers or area chair judged the paper sound but too specialised for the conference's audience, or better suited to another venue, and held their scores or tier down on that ground, while the other committee never raised audience breadth or venue fit.",
+    "created_by_pair": "n21-298",
+    "created_turn": 22,
+    "exemplar": "A's Reviewer_3GRx called the paper 'probably among the top theory papers' yet gave 6 and proposed STOC/FOCS/COLT, and A's area chair cut to a poster as 'likely to be fully appreciated by a handful of experts'; no B reviewer raised breadth, and B gave a spotlight."
+  },
+  {
+    "id": "R25",
+    "name": "Meta-review misstated the reviewers' positions or rebuttal",
+    "definition": "One committee's meta-review misreported the record it summarised, such as the reviewers' final positions or which concerns the authors' response had already answered, and that committee's recommendation rested on the inaccurate account.",
+    "created_by_pair": "n21-003",
+    "created_turn": 23,
+    "exemplar": "A's area chair wrote 'In the end, all reviewers were negative' although Reviewer_nMFp's 6 was never edited, and listed the missing BDD100K test results as a concern although the rebuttal supplied them (31.8 vs 26.0 mMOTSA)."
+  },
+  {
+    "id": "R26",
+    "name": "One committee's reviewers left the rebuttal unanswered",
+    "definition": "Most of one committee's reviewers never replied to the authors' response or joined the public discussion, so scores set before a response that answered their points stood unrevised, while the other committee's reviewers engaged with the response and revised.",
+    "created_by_pair": "n21-003",
+    "created_turn": 23,
+    "exemplar": "Three of A's four reviewers posted nothing after a rebuttal that supplied BDD100K test results, the prototype-count ablation and a runtime comparison, and Reviewer_x3ez wrote 'Most of my concerns are addressed' yet stayed at 5; in B, Reviewer_NPPQ and Reviewer_HvVc raised to 7."
+  },
+  {
+    "id": "R27",
+    "name": "Non-expert reviewers' accept scores counted in full",
+    "definition": "Reviewers on one committee who said they could not verify the main results (proofs unread, area unfamiliar) still gave clear accept scores, and the area chair counted them at full weight, which lifted that committee's mean and tier above what its checked assessments supported.",
+    "created_by_pair": "n21-017",
+    "created_turn": 24,
+    "exemplar": "In B, Reviewer_hENG (7, confidence 1: 'not a theorist, and have not looked at the proofs') and Reviewer_DACB (7, confidence 2: 'cannot intuitively understand or vouch for the new results') were two of five scores under a meta-review that said all reviewers saw a strong contribution."
+  },
+  {
+    "id": "R28",
+    "name": "Area chair settled an even split for one side",
+    "definition": "One committee's reviewers split evenly between accept and reject at similar confidence, and the area chair settled the split by adopting one side's critique without addressing the other side's scores, so the recommendation reflected that side alone while the other committee had no such split.",
+    "created_by_pair": "n21-017",
+    "created_turn": 24,
+    "exemplar": "A's ratings were 4, 3, 7, 6, all at confidence 3; the meta-review took Reviewer_x5V9's positioning critique by name and did not address the two accept-side scores."
   }
 ]

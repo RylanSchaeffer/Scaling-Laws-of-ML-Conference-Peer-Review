@@ -1,0 +1,178 @@
+{
+  "run": 1,
+  "turn": 20,
+  "pair_id": "n21-281",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's spotlight on a 7/6/7 slate rests on the area chair's own framing: the method is 'clever' (no reviewer used the word) and robustness 'a nice bonus benefit', above what the reviews argued."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither area chair nor any reviewer forecast impact beyond the paper's setting."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "No score is known to have moved after the rebuttal in either committee; B's scores stayed fixed and A's reviewers never replied."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Two of A's three reviews were inattentive: Reviewer_7tWD rated 7 after 2 hours and named no weakness, and Reviewer_t8ZX (2 h) misread Table 3; A averaged 3.0 hours against B's 4.0."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B raised the correct limitations that held its 6s down: ADMM beats GDWS above 130 FPS, GDWS multiplies pruned-model size, FPS comes from one board with HYDRA run dense, and all attacks are PGD."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw that robustness is only inherited from the base model; A's reviewers called it 'weak' and 'a by-product' yet A's area chair recast it as 'a nice bonus benefit' for a spotlight, while B's area chair kept a poster."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No reviewer in either committee changed a score after reading the other reviewers."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each rating matches its review's verdict; 7tWD's 7 with no weakness is consistent, if thin."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Confidences are 3 to 5 in both committees and no reviewer said they could not judge the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's area chair leaned on Reviewer_c4Yo, but c4Yo's 6 sits inside B's 6/6/7 slate, not apart from it; A's area chair followed no single reviewer."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The scores are near equal (7/6/7 against 6/6/7 after the discarded 3), and B's reviews named more limitations, so no calibration gap on similar verdicts drives the split."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's area chair turned 7/6/7 with no dissent, no score above 7 and no tier argument into a spotlight on 'The reviewers all agree', while B's slate with a 3 got a poster at the same maximum of 7."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "No reviewer raised a score on rebuttal material in either committee."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's three-sentence meta-review cites no weakness and calls robustness a bonus 'not a major focus of the reviewers', though t8ZX called it 'weak' and uhXk 'a by-product'; B's area chair named c4Yo, whose doubts survived the rebuttal, as 'most informative'."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "B's Reviewer_PpQM rated 3 at confidence 5 on two wrong claims (no hidden-layer nonlinearities; vectorization breaks image structure), which fed B's scores and the meta-review's defence of acceptance."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The authors conceded that GDWS does not raise robustness to both committees, and neither lowered its scores, so the concession does not separate them."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection or score cut came after the response period; uhXk's 2021-08-30 edit raised nothing new."
+    },
+    {
+      "id": "R18",
+      "applies": true,
+      "justification": "On near-equal support (effective means 6.67 and 6.33, top score 7 in both), neither area chair argued the tier: A cited general agreement for a spotlight, B counted 'the scores are 6, 6, and 7' for a poster."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "B's area chair followed its most detailed reviewer, c4Yo; A's confidence-4 reviewers rated 6 and 7, in line with the accept the area chair gave."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "The rebuttal moved no score in either committee, so it did not lift one committee further than the other."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "B's area chair discarded PpQM's 3, so it did not move the mean the decision used; the remaining slates (7/6/7 and 6/6/7) still differ."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "PpQM did reply to the response ('My rating is kept'), and the area chair set the 3 aside, so the unrevised score did not stand in B's recommendation."
+    }
+  ],
+  "added": [
+    {
+      "id": "R23",
+      "name": "Discarded detractor framed decision as accept-or-reject",
+      "definition": "One committee's area chair set aside an outlying low score as unreliable but spent the meta-review defending acceptance against it, so that committee's recommendation stopped at a plain accept and a higher tier was never weighed, while the other committee, with no such detractor, was considered for a higher tier.",
+      "justification": "R21 and R22 cover an outlying score that moves the mean or stands unrevised; here the area chair discarded the 3, yet the decision was framed as accept or reject and the tier was never discussed, a mechanism no existing reason names."
+    }
+  ],
+  "reasoning": "Both committees accepted on near-equal support and split only on tier. A's spotlight rests on an undisputed 7/6/7 slate with two thin reviews, read by its area chair as consensus that the method is 'clever' while the reviewers' robustness doubts were dropped (R01, R04, R12, R14). B's reviewers found correct limitations A missed (R05), both saw the same inherited robustness and weighted it differently (R06), and neither area chair argued the tier (R18). B's detractor rated 3 on misreadings (R15); the area chair discarded the score but spent the meta-review defending acceptance and never weighed a tier, which no existing reason covers, so I added R23.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+  ]
+}

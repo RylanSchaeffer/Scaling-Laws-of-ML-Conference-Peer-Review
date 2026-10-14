@@ -1,0 +1,269 @@
+{
+ "pair_id": "n21-260",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    5,
+    6
+   ],
+   "confidences": [
+    3,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_ryua",
+    "Reviewer_FgsV",
+    "Reviewer_enP1"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No outlier. Ratings are 5, 5, 5, 6 at confidence 3 or 4. The three 5s rest on different reasons: novelty and the missing submodularity guarantee (Reviewer_ryua), clarity and baselines (Reviewer_FgsV), and the realism of the scenarios (Reviewer_enP1). Reviewer_yRLn's 6 at confidence 4 is the only rating above the threshold, and it lists six concerns of its own."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_ryua",
+     "claim": "The SIM functions are not new: SMI comes from Iyer et al. (2021), SCMI combines SMI and SCG, and SCG is a standard batch-AL criterion (Chen and Krause 2013; Fern et al. 2017).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 78-82 say the work 'utilizes submodular information measures (SIM) by [18] and their extensions by [20]', and that [20] (PRISM) already studies them for targeted data selection. The Table 2 instantiations are taken 'as in [18, 20]' (lines 126-128). The paper cites neither Chen and Krause (2013) nor Fern et al. (2017). The authors conceded that 'the notion of SMI and SCMI functions are not novel contributions of this work'."
+    },
+    {
+     "reviewer": "Reviewer_ryua",
+     "claim": "SMI and SCMI are not submodular in general, so greedy maximisation loses its theoretical guarantee.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 2 motivates submodularity by the 1 − 1/e greedy guarantee and near-linear greedy variants (lines 102-104). The paper then maximises SMI and SCMI greedily (Algorithm 1, Sec. 3.5) but never states that its instantiations are submodular. The authors replied that only the FL variants and GCMI are submodular, by Theorem 5 of Iyer et al. (2021). LOGDETMI, one of the two best rare-class functions (Figure 3 caption), is not among them."
+    },
+    {
+     "reviewer": "Reviewer_FgsV",
+     "claim": "As Section 3.5 admits, one selection round costs about n² in the size of the unlabeled set.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 230-238: the LOGDET, GC and most FL functions need the n × n kernel, O(n²), and FL greedy costs O(Bn²); only FLQMI is linear in n. The partition trick (lines 240-247) reports no timing or accuracy cost."
+    },
+    {
+     "reviewer": "Reviewer_FgsV",
+     "claim": "The experiments compare scenario-tuned SIMILAR functions only against general-purpose AL algorithms.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The rare-class experiment includes FISHER [14], an AL method for biased datasets, and FISHER-LV with a 40× larger held-out set, and gives GLISTER-ACTIVE the same small held-out set (lines 65-75, 269-270, 315-319). FISHER appears only in the rare-class experiment. FgsV's narrower request for rebalancing heuristics (over- or under-sampling, loss reweighting) stands; the paper has none."
+    },
+    {
+     "reviewer": "Reviewer_FgsV",
+     "claim": "The ImageNet results have no error bars.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 287-288: 'For our ImageNet experiments, we only ran the approaches once'. Figure 3(g)-(i) shows no bands."
+    },
+    {
+     "reviewer": "Reviewer_enP1",
+     "claim": "A user cannot know in advance whether the unlabeled pool has rare classes or OOD data, yet the method depends on that knowledge.",
+     "checked_against_paper": "correct",
+     "evidence": "The acquisition function is chosen per scenario (Table 1; Eqs. 2-4). The rare-class form needs a held-out set R before the first round (line 176), and the OOD form adds an 'OOD' class to the model (line 216). The submission does not discuss how a user would detect the scenario; the camera-ready adds Section 3.6 from the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_enP1",
+     "claim": "The OOD experiments exclude OOD points from the initial labeled set.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 346: 'The initial labeled set L consists only of ID points'. The authors reported a run with OOD points in the seed set and similar gains; the submission contains no such run."
+    },
+    {
+     "reviewer": "Reviewer_enP1",
+     "claim": "Figure 3(b) has not converged at the largest labeled-set size, unlike Figure 4(b).",
+     "checked_against_paper": "correct",
+     "evidence": "In Figure 3(b), CIFAR-10 overall accuracy still rises at 1,250 labeled points, at about 49-53% for the top methods. Figure 4(b) flattens near 87-89%."
+    },
+    {
+     "reviewer": "Reviewer_enP1",
+     "claim": "SIMILAR does worse than the baselines in standard AL (Appendix Figure 6).",
+     "checked_against_paper": "not_checked",
+     "evidence": "Neither PDF contains the appendix. The main text claims that SIMILAR 'performs at par with current AL methods' (lines 261-262, Appendix C). Reviewer_yRLn made the same reading; the authors answered that SIMILAR performs 'competitively'."
+    },
+    {
+     "reviewer": "Reviewer_yRLn",
+     "claim": "The rare-class setup makes the imbalanced classes C 10 to 20 times larger than the balanced classes D, so the 'rare' classes are the majority.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 295 sets |CL| = ρ|DL| and |CU| = ρ|DU| with ρ = 10 (CIFAR-10) or 20 (MNIST), so the imbalanced classes are the larger ones. The authors called it a typo, and the camera-ready reverses it to |DL| = ρ|CL|."
+    },
+    {
+     "reviewer": "Reviewer_yRLn",
+     "claim": "The baselines do not get the held-out rare-class set R.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 74-75 and 315-319 state that GLISTER-ACTIVE and FISHER use the same small held-out set, and FISHER-LV a 40× larger one. The authors added that the other baselines get R in their labeled set; the main text does not say so."
+    },
+    {
+     "reviewer": "Reviewer_yRLn",
+     "claim": "Under redundancy, the SIMILAR advantage appears only once the labeled set is large.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 335-337: the SCG functions win 'by ≈ 3 − 5% towards the end as the conditioning gets stronger with increase in L'."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The method assumes access to OOD data, and the paper does not justify that assumption.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The OOD set starts empty: L holds only ID points (line 346), and O collects the OOD points that the method selects and the annotator labels (lines 352-354). The authors explained this to Reviewer_yRLn and Reviewer_enP1; no A reviewer replied. The narrower point stands: the submission does not discuss how a user learns that OOD data is present."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_FgsV edited on 2021-08-26: 'I tend to keep my ratings for its current version'. Reviewer_ryua edited on 2021-09-01: 'I keep my score'. Reviewer_enP1 edited on 2021-09-01: 'I decide to keep my score'. Reviewer_yRLn never edited or replied. No A reviewer posted a comment in the forum.",
+    "what_convinced_or_not": "Reviewer_ryua accepted that the novelty lies in applying SMI and SCMI to batch AL, but judged that 'submodular optimization techniques cannot be used for these criteria except in some special cases'. Reviewer_FgsV wanted more explanation of the framework and its links to existing methods, doubted that FISHER and GLISTER are standard baselines, and still asked for simple rebalancing heuristics. Reviewer_enP1 kept the realism objection and asked for a real case study. The authors posted a chest X-ray experiment on 2021-09-01, the day of enP1's edit, and no A reviewer acknowledged it. No A reviewer acknowledged the answer that OOD points are collected on the fly."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Rejected with ratings 5, 5, 5, 6 (mean 5.25). The meta-review lists the reviewers' concerns: presentation clarity (Reviewer_FgsV), the assumed 'accessibility to OoD data' (Reviewer_enP1, Reviewer_yRLn), the 'significance of contributions w.r.t. existing work' (Reviewer_ryua, Reviewer_FgsV) and the experimental setup (Reviewer_FgsV, Reviewer_enP1). It also credits 'technical novelty in the acquisition function'. It does not note that the method collects OOD points on the fly, as the authors explained.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Every rating at or just below the threshold (5, 5, 5, 6; mean 5.25), and no score moved after the rebuttal",
+    "Limited novelty: the SIM functions come from prior work (Iyer et al. 2021), and SMI and SCMI lack a submodularity guarantee (Reviewer_ryua)",
+    "Unjustified realism assumptions: the user must know about rare classes or OOD data in advance (Reviewer_enP1, Reviewer_yRLn)",
+    "Experimental setup and clarity: baselines, error bars, standard-AL results, the OOD seed set, unexplained SIM instantiations (Reviewer_FgsV, Reviewer_enP1)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    3,
+    2,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_YdBA"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No outlier. Ratings are 7, 7, 6, 6. The two 7s come from the reviewers who pressed the realism limit hardest (Reviewer_Pxy3, Reviewer_hRHU), and both kept 7 after the rebuttal. Reviewer_gPM8's 6 at confidence 2 is thin, with no reply to the rebuttal, but it does not set the outcome."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Pxy3",
+     "claim": "SIMILAR leverages submodularity of the acquisition function to select a batch in almost linear time.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 3.5 (lines 230-238) gives an O(n²) kernel for every function except FLQMI and an O(Bn²) greedy step for the FL functions; only FLQMI is linear in n. The paper never shows that its SMI and SCMI instantiations are submodular."
+    },
+    {
+     "reviewer": "Reviewer_Pxy3",
+     "claim": "For AL under OOD, OOD data is often not available and cannot guide the batch selection.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The method needs no OOD data upfront: L holds only ID points (line 346), and O collects OOD points as they are selected and labeled (lines 352-354). Pxy3 accepted this after the rebuttal: 'I agree that OOD data can be acquired on the fly'."
+    },
+    {
+     "reviewer": "Reviewer_hRHU",
+     "claim": "The rare-class, redundancy and OOD scenarios are synthetically derived from datasets that do not have these properties.",
+     "checked_against_paper": "correct",
+     "evidence": "Each scenario is a 'custom dataset' built from CIFAR-10, MNIST or ImageNet: class subsampling for imbalance (lines 291-304), 20% of points duplicated 10× for redundancy (lines 330-333), and two classes relabelled as OOD (lines 343-351)."
+    },
+    {
+     "reviewer": "Reviewer_hRHU",
+     "claim": "The 'more scalable' claim for the partition trick (line 247) is not quantified.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 240-247 give only the O(n²/p) complexity and say the approaches 'continue performing well while being more scalable'; the submission reports no timing or accuracy cost. The authors gave numbers in the rebuttal: about 5× faster selection for a 0.5-1% accuracy loss."
+    },
+    {
+     "reviewer": "Reviewer_YdBA",
+     "claim": "The user must create a held-out set R of rare-class points before running the algorithm.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 176: 'we can create a (small) held-out set R which contains data points from these rare classes'; the experiments use |R| = 25 (line 300)."
+    },
+    {
+     "reviewer": "Reviewer_gPM8",
+     "claim": "Redundancy conditions on L while OOD queries with I, so the paper gives no formulation for both scenarios at once.",
+     "checked_against_paper": "correct",
+     "evidence": "Equations (3) and (4) treat redundancy and OOD separately, and each experiment covers one scenario. The authors proposed combined forms in the rebuttal; the camera-ready adds them in Appendix I."
+    },
+    {
+     "reviewer": "Reviewer_gPM8",
+     "claim": "The experiments on real-world high-dimensional datasets demonstrate the effectiveness of the framework.",
+     "checked_against_paper": "incorrect",
+     "evidence": "All scenarios are simulated on MNIST, CIFAR-10 and down-sampled ImageNet (lines 271-273, 291, 330, 343). The paper itself calls these 'real world experiments' (line 373); gPM8 repeats that framing, which Reviewer_Pxy3 and Reviewer_hRHU rejected."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_YdBA"
+    ],
+    "evidence": "Reviewer_YdBA edited on 2021-08-31: 'After going through them, I have changed my score accordingly'; the final 6 implies a raise. Reviewer_Pxy3 replied on 2021-08-30 and kept 7: 'I still think that this is a solid paper'. Reviewer_hRHU replied on 2021-08-30, 'Original rating still holds', and kept 7. Reviewer_gPM8 never replied or edited.",
+    "what_convinced_or_not": "YdBA received a combined rare-class and redundancy experiment and a cosine versus Euclidean kernel ablation. The combined table has no error bars and small gaps: LOGDETCMI 33.7 against LOGDETMI 33.29, and FLCMI 31.95 below FL2MI 33.06, although the authors said the SCMI functions beat their SMI counterparts. Pxy3 accepted that 'OOD data can be acquired on the fly'. hRHU rejected the authors' claim that a seed set reveals rare and OOD classes ('you can NOT expect the seed labels to cover all rare/OOD classes') but kept 7. The chest X-ray experiment reached B on 2021-08-09; no B reviewer commented on it."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Accepted with ratings 7, 7, 6, 6 (mean 6.5). The meta-review says the framework is 'well motivated and explained' and 'well appreciated by the reviewers'. It does not mention the realism limit that three B reviewers raised, hRHU's unresolved disagreement, or the simulated datasets.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Every rating at or above the threshold (7, 7, 6, 6; mean 6.5)",
+    "One simple framework for three realistic scenarios, judged novel and clearly written (Reviewer_Pxy3: 'simple and elegant'; Reviewer_hRHU; Reviewer_YdBA)",
+    "Consistent gains on the simulated scenarios; the realism limit noted but not decisive (Reviewer_Pxy3 still called it 'a solid paper'; Reviewer_hRHU kept 7 while disagreeing with the rebuttal)",
+    "Rebuttal experiments raised Reviewer_YdBA to 6"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Novelty: SMI comes from Iyer et al. (2021), SCMI only combines known measures, and conditional gain is standard in batch AL (Chen and Krause 2013; Fern et al. 2017) (Reviewer_ryua)",
+  "SMI and SCMI are not submodular in general, so the greedy guarantee does not hold (Reviewer_ryua)",
+  "Weaker results in standard AL (Reviewer_enP1: 'Achilles heel'; Reviewer_yRLn)",
+  "Generic rather than scenario-specific baselines and no rebalancing heuristics; unclear SIM instantiations and links to existing heuristics; no ImageNet error bars or hyperparameter study (Reviewer_FgsV)",
+  "Rare-class setup typo that makes C the majority; R supposedly withheld from baselines; query-set coverage bias; redundancy gains only late (Reviewer_yRLn)",
+  "OOD seed set excludes OOD points; labeled-set budget too small; poor figure colours (Reviewer_enP1)"
+ ],
+ "issues_only_b": [
+  "One scenario per round; no formulation for co-occurring scenarios such as redundancy plus OOD (Reviewer_gPM8, Reviewer_YdBA)",
+  "No parameter to trade rare-class focus against regular classes (Reviewer_gPM8)",
+  "No learning-theoretic derivation of the acquisition function; missing Shui et al.; BADGE a weak reference baseline; image data only (Reviewer_Pxy3)",
+  "Dependence on which classes are chosen as OOD (Reviewer_hRHU)",
+  "AL problem setting not described (Reviewer_gPM8)"
+ ],
+ "shared_issues": [
+  "The user must know the scenario in advance and supply rare-class examples (A: Reviewer_enP1, Reviewer_yRLn, AC; B: Reviewer_Pxy3, Reviewer_hRHU, Reviewer_YdBA)",
+  "Scenarios simulated on standard benchmarks, with no organic dataset (A: Reviewer_yRLn, Reviewer_enP1 after the rebuttal; B: Reviewer_Pxy3, Reviewer_hRHU)",
+  "O(n²) cost; the partition trick's speed-up and accuracy cost not quantified (A: Reviewer_FgsV; B: Reviewer_hRHU)",
+  "Choice of the gradient similarity kernel not justified (A: Reviewer_FgsV; B: Reviewer_YdBA)",
+  "Clear writing praised (A: Reviewer_ryua, Reviewer_yRLn; B: Reviewer_Pxy3, Reviewer_hRHU, Reviewer_YdBA)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw a borderline paper, and the reviewer draw set the outcome. Every A rating (5, 5, 5, 6) is at or below every B rating (7, 7, 6, 6). Neither committee has an outlier, and both ACs followed the mean. The central weakness was shared and weighted differently. The method needs a held-out set of rare-class examples and a user who knows which scenario applies, and every scenario is simulated on MNIST, CIFAR-10 or ImageNet. Reviewer_enP1 (A) rested a 5 on this. Reviewer_hRHU (B) rejected the authors' answer on the same point and kept a 7, and Reviewer_Pxy3 (B) called it the 'only real complaint' at 7. A also raised issues that no B reviewer touched. Reviewer_ryua judged SIMILAR an application of existing SIM functions (Iyer et al. 2021), and noted that SMI and SCMI are not submodular in general. The paper confirms both points: it takes every function from [18] and [20] (lines 78-82, 126-128) and invokes the greedy guarantee (lines 102-104) without showing that its objectives qualify. No B reviewer examined that overlap, and Pxy3 credited the method with 'almost linear time', which Section 3.5 contradicts for every function except FLQMI. A's experimental complaints were mixed. Reviewer_yRLn correctly caught a typo at line 295 that makes the 'rare' classes the majority. Reviewer_FgsV's claim of only general-purpose baselines and yRLn's claim that the baselines lack R are wrong for the rare-class experiment. After the rebuttal no A score moved, and no A reviewer acknowledged that OOD points are collected on the fly; A's AC still cited 'accessibility to OoD data'. In B, Reviewer_YdBA raised to 6 after new experiments without error bars. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "uniform calibration shift, no outlier",
+  "same realism limit weighted differently",
+  "novelty critic drawn only in A",
+  "rebuttal raised one B score",
+  "ACs followed borderline mean scores"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_ryua review and post-rebuttal note",
+  "Reviewer_enP1 review and post-rebuttal note",
+  "Reviewer_FgsV review and post-rebuttal note",
+  "Reviewer_yRLn review (line 295 typo; baselines and R)",
+  "Committee A meta-review",
+  "Reviewer_hRHU comment 2021-08-30 ('Original rating still holds')",
+  "Reviewer_Pxy3 review and comment 2021-08-30",
+  "Reviewer_YdBA edit 2021-08-31 and the authors' combined-scenario table",
+  "Committee B meta-review",
+  "paper_submitted lines 78-82 and 126-128 (SIM functions from [18] and [20])",
+  "paper_submitted lines 102-104 and Sec. 3.5, lines 228-247 (greedy guarantee; O(n²) cost)",
+  "paper_submitted lines 65-75, 269-270, 315-319 (FISHER and GLISTER use R)",
+  "paper_submitted line 295 (|CL| = ρ|DL|); camera-ready reverses it",
+  "paper_submitted lines 346 and 352-354 (OOD set built on the fly)"
+ ]
+}

@@ -1,0 +1,249 @@
+{
+  "pair_id": "n21-130",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_yx6j",
+        "Reviewer_9buE"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_qFNP",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold: 5 at confidence 4, against 6, 7 and 6. It is a mild dissent, one point under the rest. Two of its four one-line points hold against the submission. The main text has no ablation without the distillation and KL losses. l.186-187 start from pretrained weights and train 30 more epochs, while Table 2 lists models trained from scratch. The throughput point fails: l.63-64 and l.175-177 keep exactly ⌊ρ^s N⌋ tokens per stage at inference, so batches stay uniform. The learning-rate question is routine. qFNP asked one follow-up on token-removal cost (2021-08-18), did not answer the authors' reply (0.1 GFLOPs for the prediction modules, plus the code lines), and never edited its review. The AC overruled it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qFNP",
+          "claim": "Different images keep different tokens, so the dynamic method should have trouble giving a throughput gain at batch size 32 (Table 1).",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.63-64: at inference the model can 'directly abandon a fixed amount of tokens after certain layers for each input instance'. l.175-177: 'only exact m_s = ⌊ρ^s N⌋ tokens are kept at the s-th stage'. Only the token locations vary per image. The authors' reply restated this. Reviewer_9buE asked the same question as a limitation."
+        },
+        {
+          "reviewer": "Reviewer_qFNP",
+          "claim": "The model starts from a pretrained model but is compared with models trained from scratch.",
+          "checked_against_paper": "correct",
+          "evidence": "l.186-187: backbones start from pretrained models and train 30 more epochs, with self-distillation from the original model (Eq. 13-14, l.161-170). Table 2 lists published models trained from scratch. The authors answered with an outside result (about 0.2 points for 100 more epochs, from 'Going deeper with Image Transformers'), not a controlled run."
+        },
+        {
+          "reviewer": "Reviewer_qFNP",
+          "claim": "There is no ablation with and without the knowledge-distillation loss (also asked by Reviewer_mx5s and Reviewer_9buE).",
+          "checked_against_paper": "correct",
+          "evidence": "The 9-page submission has no such ablation; the authors say Appendix B of the supplement had part of it. Their rebuttal table shows the two losses add 0.15 points on DeiT-S (79.17 to 79.32) and 0.48 on LV-ViT-S (82.52 to 83.0). The camera-ready adds it as Table 3."
+        },
+        {
+          "reviewer": "Reviewer_mx5s",
+          "claim": "DynamicViT is compared only with other architectures, not with structural (channel) pruning or distillation.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 compares architectures (transformers and CNNs). Figure 4 compares width scaling trained from scratch. Table 3 compares 2x2 average pooling and static sparsification. No channel-pruning or distillation baseline appears. The authors argued that the methods are orthogonal and pointed to Figure 4."
+        },
+        {
+          "reviewer": "Reviewer_9buE",
+          "claim": "Table 1 covers DeiT-S and two LV-ViT models, but not the more standard DeiT-B.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 rows: DeiT-S, LV-ViT-S, LV-ViT-M. The rebuttal added DeiT-B: 81.3 against 81.8 at 36% fewer FLOPs. The camera-ready has it as Table 5a."
+        },
+        {
+          "reviewer": "Reviewer_9buE",
+          "claim": "The paper lacks a random-drop baseline and a baseline that drops tokens by the pretrained model's attention.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Table 3 has only structural, static and dynamic rows. The rebuttal added random 77.5, attention 78.1 and predict-at-start 77.9 against 79.3, all at 2.9 GFLOPs. 9buE then upgraded its rating."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_9buE"
+        ],
+        "evidence": "Responses posted 2021-08-10. Reviewer_9buE edited its review on 2021-08-18 and wrote 'Given the new results and comparisons, I upgraded my rating' (final 6). Reviewer_yx6j edited on 2021-09-01 to add 'I will keep my initial rating' (7). Reviewer_mx5s replied on 2021-09-01, 'I will keep my score' (6), with no edit. Reviewer_qFNP asked about token-removal cost on 2021-08-18, got an answer on 2021-08-19, and neither replied nor edited (5).",
+        "what_convinced_or_not": "9buE: the DeiT-B result and the random, attention and predict-at-start baselines. mx5s: 'especially the experimental results without using distill and KL loss'. yx6j: clarifications only. qFNP: per the AC, it 'remained concerned about unfair comparisons and runtime gains'; the visible record shows only the cost question. The fairness point got an argument (10% more training, about 0.2 points per 100 epochs), not an experiment."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review lists the concerns (novelty against CNN methods, missing baselines and ablations, runtime gains). It counts 'three reviewers recommend acceptance, while one reviewer recommends rejection' and says 'the AC considers the author response to these issues was convincing'. It concedes 'incremental novelty', agrees with the majority that the results are 'compelling', and asks for a better related-work section.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Large measured gain on three backbones: 31-37% fewer FLOPs and 43-54% more throughput for at most 0.5 points of accuracy (Table 1).",
+        "The rebuttal supplied the missing experiments (DeiT-B, random and attention baselines, loss ablation), and Reviewer_9buE raised its rating to 6.",
+        "Novelty judged incremental against CNN spatially adaptive computation, but outweighed by the results.",
+        "The AC overruled the lone 5 (Reviewer_qFNP) and judged the answers on fairness and throughput convincing."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_m39c",
+        "Reviewer_Gaez",
+        "Reviewer_b7CH",
+        "Reviewer_NNmU"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 6, 6, 6, 7 lie within one point. The two 7s are the thinnest review (Reviewer_z3xW) and the most careful one (Reviewer_s33y). No reviewer stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_z3xW",
+          "evidence": "A 7 on five sentences: 'interesting idea', 'Maybe it is the first paper in this topic', 'results are also pretty good', and one question on downstream tasks. No reply to the rebuttal. The 7 is weak evidence of quality."
+        },
+        {
+          "reviewer": "Reviewer_NNmU",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') on a two-point review. It reads C′ = C/2 (l.120, the width of the prediction module's MLP in Eq. 1) as a backbone downsampling. It says the only baseline is the unpruned model, but Table 3 already compares average-pool downsampling and static sparsification."
+        },
+        {
+          "reviewer": "Reviewer_m39c",
+          "evidence": "Says the experiments 'only' focus on LV-ViT, but Table 1 leads with DeiT-S, and Figure 4 and Table 3 use DeiT. Describes DeiT as pruning network parameters. Proposes compacting the tokens, which l.139-143 rule out for training. This review started below threshold."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_m39c",
+          "claim": "In the experiments, DynamicViT only focuses on the LV-ViT architecture.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 applies it to DeiT-S, LV-ViT-S and LV-ViT-M. Figure 4 uses DeiT models of width 192 to 384. Table 3 uses DeiT-S. Only Table 2 uses LV-ViT alone."
+        },
+        {
+          "reviewer": "Reviewer_m39c",
+          "claim": "It is not clear how N1 and N2 are set for different transformers.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission gives only an example: sparsify 'before the 4th, 7th, and 9th blocks' of a 12-layer model (l.108-109). The rebuttal says the blocks are split uniformly (N1 = N2 = N3 = N4 = 3), which puts the third stage before block 10. The camera-ready changes l.108-109 to '10th'."
+        },
+        {
+          "reviewer": "Reviewer_m39c",
+          "claim": "Eq. 9-11 overcomplicate the zero-token issue; compacting the remaining tokens would do.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.139-143: during training the masks differ per sample, so compaction breaks batching. l.54-56: the prediction module also needs gradients from the dropped tokens. Inference does compact (l.175-180). The authors' reply said the same."
+        },
+        {
+          "reviewer": "Reviewer_m39c",
+          "claim": "The checklist is in the supplement, not in the submitted PDF.",
+          "checked_against_paper": "correct",
+          "evidence": "The 11-page submitted PDF ends with the references and has no checklist. The camera-ready has it on page 13."
+        },
+        {
+          "reviewer": "Reviewer_s33y",
+          "claim": "L143 says the tokens are not actually removed because of batching, so the FLOPs should not fall (posed as a question).",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.139-143 describe training. l.175-180 say inference discards tokens and keeps ⌊ρ^s N⌋ per stage. s33y later wrote 'My main confusion (Q1) is resolved'."
+        },
+        {
+          "reviewer": "Reviewer_s33y",
+          "claim": "D in Eq. 2 should be D-hat.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 2 writes Agg(MLP(x), D), but Eq. 3 defines Agg over D-hat. The authors confirmed the typo."
+        },
+        {
+          "reviewer": "Reviewer_Gaez",
+          "claim": "DynamicViT gets distillation losses and 30 extra fine-tuning epochs that the baselines do not get.",
+          "checked_against_paper": "correct",
+          "evidence": "l.161-174: Eq. 13-14 distil from the original backbone. l.186-187: 30 epochs from pretrained weights. The authors replied that the teacher is the same model, not DeiT's RegNetY, and cited about 0.2 points for 100 more epochs. They ran no from-scratch model. Gaez accepted the answer."
+        },
+        {
+          "reviewer": "Reviewer_NNmU",
+          "claim": "The method acts as a downsampling (l.120, C′ = C/2), and the only baseline is the model without pruning.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.119-120: C′ is the width of the prediction module's MLP (Eq. 1), not a backbone downsampling. Table 3 already compares 2x2 average-pool downsampling (78.2) and static sparsification (73.4) with DynamicViT (79.3). A conv-downsampling baseline is absent; the rebuttal added one trained from scratch (77.0)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_m39c",
+          "Reviewer_Gaez"
+        ],
+        "evidence": "Responses posted 2021-08-10. Reviewer_m39c edited on 2021-08-20: 'This reviewer turns positive on the current submission' (final 6, so it started below 6). Reviewer_Gaez edited on 2021-09-08: 'The response addressed my concerns. I lean to vote for acceptance' (final 6; the earlier rating is not stated, so this rise is probable, not certain). Reviewer_NNmU edited on 2021-08-11, the day it wrote 'I am pleased with the clarification and additional experiments' (final 6; any change is not stated). Reviewer_s33y wrote on 2021-08-23 'If I can, I would increase my rating to 7.5' and kept 7 with no edit. Reviewer_b7CH's edit is on its posting day, before the rebuttal. b7CH and z3xW did not reply.",
+        "what_convinced_or_not": "m39c: answers on N1-N4, DeiT as orthogonal, the Gumbel-Softmax mask with the ratio loss, and why compaction fails in training. s33y: that inference drops tokens, plus Performer (54.8) and Linformer (77.8) against DynamicViT-0.9 (79.8). Gaez: self-distillation from the same model and the 100-epoch argument, with no from-scratch run. NNmU: a conv-downsampling model trained from scratch (77.0 against 79.3) and the loss ablation."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'All the reviewers agree that the observations ... are interesting and the proposed dynamic token sparsification method is novel and effective', concerns 'address[ed] well', 'A clear acceptance.' Only s33y, Gaez and z3xW called the method new; m39c, b7CH and NNmU said nothing on novelty. 'Clear' overstates four 6s and two 7s.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "No rating below 6 after the rebuttal: four 6s and two 7s.",
+        "The same Table 1 result, read as practical: 'likely to be used in practice in future ViT-based models' (Reviewer_s33y).",
+        "Concerns read as experiment details and answered: token dropping at inference, distillation fairness, conv-downsampling and efficient-attention baselines.",
+        "The AC took the method as novel, the first token sparsification for vision transformers."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty limited by CNN spatially adaptive computation (Figurnov, Verelst, Wang) and early exit (Reviewer_mx5s, Reviewer_9buE); B's Reviewer_Gaez noted dynamic CNNs too but called the ViT version new",
+    "No channel-pruning or distillation baseline (Reviewer_mx5s)",
+    "DeiT-B and 384x384 results (Reviewer_9buE)",
+    "Random-drop and predict-at-start baselines, and the number of stages (Reviewer_9buE)",
+    "Learning-rate split, informative-token rate, misclassified images, NLP use (Reviewer_qFNP, Reviewer_yx6j)"
+  ],
+  "issues_only_b": [
+    "Transfer to detection and segmentation (Reviewer_b7CH, Reviewer_z3xW)",
+    "Efficient-attention baselines such as Performer and Linformer (Reviewer_s33y)",
+    "How N1 and N2 are set, and mask regularisation (Reviewer_m39c)",
+    "Why Eq. 9-11 instead of compaction or -inf masking, and training time (Reviewer_m39c, Reviewer_s33y)",
+    "Checklist missing from the submitted PDF (Reviewer_m39c)"
+  ],
+  "shared_issues": [
+    "No distillation and KL loss ablation in the main text (A: qFNP, mx5s, 9buE; B: NNmU, s33y)",
+    "Pretrained, self-distilled model with 30 extra epochs against baselines trained from scratch (A: qFNP; B: Gaez)",
+    "How dynamic sparsity gives a batched throughput gain (A: qFNP, 9buE; B: s33y)",
+    "Baselines that prune by attention score or downsample more strongly (A: 9buE, mx5s; B: s33y, NNmU)",
+    "Swin compatibility and missing societal-impact discussion (A: yx6j, 9buE; B: m39c)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. Each saw a simple, clearly written method with a large measured gain. Table 1 shows 31-37% fewer FLOPs and 43-54% more throughput, for at most 0.5 points of accuracy. No reviewer found an error beyond a typo. Apart from novelty, every weakness asked for an experiment or an explanation. Parallel rebuttals supplied them, and the same loss ablation went to both forums. Both slates sit at 6 with a ceiling of 7 (means 6.0 and 6.33). Nobody argued for a higher tier. The committees differed in tone only. A's reviewers cited CNN work on spatially adaptive computation, and A's AC called the novelty 'incremental'. B's AC called the method 'novel' and 'a clear acceptance'. One fairness doubt came up in both: a pretrained, self-distilled model with 30 extra epochs, set against baselines trained from scratch. The authors gave both forums the same argument and no experiment. Reviewer_Gaez accepted it. Reviewer_qFNP kept 5, and A's AC overruled that.",
+  "candidate_reasons": [
+    "Large speed-up, small accuracy loss",
+    "Weaknesses were requests for experiments",
+    "Parallel rebuttals answered both committees",
+    "Results outweighed incremental novelty",
+    "Lone mild detractor overruled by AC",
+    "No reviewer argued above poster"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Submitted paper Table 1 (FLOPs, throughput, accuracy)",
+    "Submitted paper l.63-64 and l.175-177 (fixed token count at inference)",
+    "Submitted paper l.186-187 (pretrained start, 30 epochs) and Table 3",
+    "Reviewer_qFNP review and 2021-08-18 follow-up",
+    "Reviewer_9buE 2021-08-18 comment ('I upgraded my rating')",
+    "Committee A meta-review",
+    "Reviewer_m39c and Reviewer_Gaez post-rebuttal edits",
+    "Committee B meta-review"
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-126",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_GXGY"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_GXGY",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only score below 6: a 5 against three 7s. Both reasons hold. The submission has no experiments (checklist 3(a): 'We did not run experiments'), and Example 1 (l.131-134) is the only link from the assumption to any problem class; the authors conceded in B that they have no concrete practical example. But the review took 1 hour, restates the abstract, and GXGY did not reply to the rebuttal (toy experiment, explanation of the alpha-interaction condition)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ukbE",
+          "evidence": "Called the rate optimal 'even in convex optimization for smooth functions (standard GD gives 1/eps^2, Nesterov's method gives 1/eps)'. Both rates are wrong for the gradient norm (the authors: O(1/ε) and O(1/ε^(2/3)), lower bound O(1/√ε)). ukbE conceded on 2021-08-17 ('I messed things up'), said his request for technical differences was answered 'after more careful reading on section 4', and kept 7 after his stated basis fell."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_xDiD",
+          "claim": "The theory covers only a narrow negative range, −1/(2L) < ρ < 0, although the paper frames negative comonotonicity as its main focus.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 4.1 (l.142) and Algorithm 1 require ρ > −1/(2L); l.128-130 call negative comonotonicity 'the main focus of this paper'. The authors retracted their claim that ρ ≤ −1/L is 'out of anyone's interest' and agreed to state the limitation."
+        },
+        {
+          "reviewer": "Reviewer_xDiD",
+          "claim": "The gains over prior bounds are constant factors: a ρ range four times that of EG+ and a constant 4/27 of EAG's.",
+          "checked_against_paper": "correct",
+          "evidence": "§4.1 (l.153-155): EG+ needs ρ > −1/(8L), FEG ρ > −1/(2L). §4.2 (l.159-165): EAG-C constant 260, EAG-V 27, FEG 4. Whether the gains appear numerically was answered only by one toy quadratic in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_xDiD",
+          "claim": "Example 1 credits Grimmer et al. with γ-smoothness; they assume weak convexity-weak concavity.",
+          "checked_against_paper": "correct",
+          "evidence": "Submission l.132: 'twice continuously differentiable and γ-smooth'. The camera-ready Example 1 reads 'γ-weakly-convex-weakly-concave'. The authors accepted the correction."
+        },
+        {
+          "reviewer": "Reviewer_ukbE",
+          "claim": "The O(1/ε) complexity for ‖F‖ ≤ ε is optimal even in smooth convex minimization, where GD needs 1/ε² and Nesterov 1/ε.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The authors gave GD O(1/ε), Nesterov O(1/ε^(2/3)) and the lower bound O(1/√ε); ukbE conceded. The paper's own optimality claim is for monotone minimax only (l.39-40, l.166-168)."
+        },
+        {
+          "reviewer": "Reviewer_GXGY",
+          "claim": "The paper has no numerical experiments and does not say which problems satisfy the alpha-interaction condition.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(a): 'We did not run experiments'. Example 1 (l.131-134) is the only example of the assumption. The camera-ready adds a toy quadratic (§4.4) but no application."
+        },
+        {
+          "reviewer": "Reviewer_h3Zc",
+          "claim": "Stochastic FEG has a bad dependence on the noise variance.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 6.1 (l.210-215) needs the variance to decay as ε/(6k); with constant variance the error grows as O(k). Reviewer_xDiD made the same point."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after the author replies of 2021-08-10. GXGY's edit (2021-07-16) came one day after posting, before the rebuttal. ukbE (2021-08-17): 'I keep my score'. xDiD (2021-08-18): 'My score (of Good paper, accept) remains unchanged'. h3Zc and GXGY did not reply.",
+        "what_convinced_or_not": "The replies corrected ukbE's rate error, promised a toy experiment and promised to state the ρ limitation. xDiD rejected the authors' claim that ρ ≤ −1/L is of no interest, and the authors retracted it. Nothing reached GXGY, the only score below 6, who never replied."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four reviews recommend acceptance. The meta-review says 'the reviewers felt that the paper makes an interesting theoretical progress' and repeats GXGY's point that the paper gives no practical example. The AC posted nothing in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "First O(1/k²) rate on the squared gradient norm under negative comonotonicity, against EG+'s O(1/k) (three 7s, meta-review).",
+        "Simple potential-function analysis with a smaller constant than EAG, which may support follow-up work (meta-review).",
+        "No practical example, no experiments and a narrow ρ range were accepted as limits of a theory paper."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_VnM6",
+        "Reviewer_ifPf",
+        "Reviewer_NehK"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8, 7, 6, 6 are graded; no score stands apart. VnM6's 8 is one point above KwBn's 7 and rests on a 4-hour review that checked the proof (found the V_1/V_0 slip at l.238) and engaged twice in discussion. The two 6s rose from below 6 after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ifPf",
+          "evidence": "Reported 72 hours for a main review of 95 words; the limitations field copies its three points verbatim. Point 1 misreads Theorem 4.1 by letting the fixed constant ρ depend on k. Point 2 asks how to set ρ, although the review's own summary names FEG-A, the paper's answer (Section 5)."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ifPf",
+          "claim": "The condition ρ > −1/(2L) in Theorem 4.1 must be modified, because ρ = 1/√k − 1/(2L) gives an O(1/k) rate.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Bound (2): ‖Fz_k‖² ≤ 4‖z0−z*‖²/((1/L+2ρ)²k²). ρ is a fixed property of F, so the rate is O(1/k²) for every ρ > −1/(2L). The kernel of truth is that the constant grows as (1/L+2ρ)^(−2) near the boundary, which (2) states openly. ifPf accepted the correction and restated the point as 'the complexity is still high'."
+        },
+        {
+          "reviewer": "Reviewer_ifPf",
+          "claim": "Algorithm 1 needs ρ, which is unknown for a practical problem.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 takes ρ as input. FEG-A (Section 5) removes the need for its value, but Theorem 5.1 (l.194) still needs ρ > −(1−δ)/(2L), and the Algorithm 2 input needs η0 > (1−δ)²/L + (1−δ)2ρ."
+        },
+        {
+          "reviewer": "Reviewer_VnM6",
+          "claim": "At l.239, V_1 is not 0; the proof needs V_0 ≤ 0.",
+          "checked_against_paper": "correct",
+          "evidence": "The display at l.238 reads '0 = V_1 ≥ V_k'. With α_0 = 1/L and b_0 = 0, a_0 = 0, so V_0 = 0; V_1 is not 0 in general. The result still holds. The camera-ready reads '0 = V_0 ≥ V_k'."
+        },
+        {
+          "reviewer": "Reviewer_VnM6",
+          "claim": "Lemma 8.1 may give a counterexample to Theorem 4.1.",
+          "checked_against_paper": "incorrect",
+          "evidence": "F is the constant (−√(LR), −√(LR)) on the line x = y (l.253). Any F that equals this constant on the whole line and has a zero somewhere violates comonotonicity for every finite ρ, so Theorem 4.1 does not apply. The authors showed this; their computation √(LR)(s−2x) → −∞ is correct."
+        },
+        {
+          "reviewer": "Reviewer_NehK",
+          "claim": "At ρ = 0, FEG differs from EAG only by the factor (1−β_k) on the first step, and the method cannot handle MVI or weak MVI.",
+          "checked_against_paper": "correct",
+          "evidence": "Compare (EAG) at l.37 with (Class FEG) at l.42 for ρ_k = 0; the parameter choices also differ (β_k = 1/(k+1) against 1/(k+2), α_k = 1/L). Table 1 has no FEG entry under MVI or weak MVI. The authors accepted the fact but denied it is a disadvantage: 'such limitation is inevitable for acceleration-based methods'."
+        },
+        {
+          "reviewer": "Reviewer_KwBn",
+          "claim": "S-FEG is not exactly an instance of FEG.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The Algorithm 3 updates equal Algorithm 1 at ρ = 0 with the noisy oracle in place of F. Its stray input 'ρ ∈ [−1/(2L), ∞)' invited the misreading; the authors withdrew it, and the camera-ready Algorithm 3 takes only z0 and L."
+        },
+        {
+          "reviewer": "Reviewer_KwBn",
+          "claim": "Line 104 states a lower bound in big-O.",
+          "checked_against_paper": "correct",
+          "evidence": "l.104: 'the lower complexity bound of first-order methods is O(1/k²)'. The camera-ready uses Ω(1/k²)."
+        },
+        {
+          "reviewer": "Area_Chair_QjAG (meta-review)",
+          "claim": "The line search is guaranteed to succeed only if the parameters fall within an unknown threshold.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 5.1 (l.194) needs ρ > −(1−δ)/(2L), with L and ρ unknown. Camera-ready footnote 6: 'This requires one to chooses τ−1 strictly greater than the unknown value −2ρ when ρ < 0.' The authors also found that the last inequality of Algorithm 2 points the wrong way."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_ifPf",
+          "Reviewer_NehK"
+        ],
+        "evidence": "Both edited their reviews on 2021-09-02, the day of their 'Change of score' comments. NehK: 'am increasing my score to accept'. ifPf: 'I increased my score'. VnM6's review, edited 2021-09-10, ends 'I decided to maintain my score'. KwBn (2021-08-29): 'happy to keep the rating'.",
+        "what_convinced_or_not": "Corrections and a toy experiment, not new theory. The authors showed ifPf that ρ is fixed, so Theorem 4.1 gives O(1/k²), and added a quadratic on which FEG converges at ρ = −1/(3L) while EG+, EAG-C and EAG-V diverge. NehK cited 'the other discussions' and still said the analysis adds little over [7, 38]. ifPf still asked whether any real problem satisfies Assumption 2. VnM6 got the experiment and the Lemma 8.1 answer that he said could raise his score, and kept 8."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final scores are 6 or above. The AC asked whether the line search terminates in finitely many steps (2021-08-27). The meta-review places the work against Yoon and Ryu, Diakonikolas et al. and Mertikopoulos et al. in the AC's own words, names a weakness no reviewer raised (the unknown line-search threshold), and calls the paper 'solid' with 'some technical contributions'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Clean extension of EAG to the negative comonotone class with an O(1/k²) rate (VnM6, KwBn, meta-review).",
+        "The rebuttal corrected ifPf's misreading and added a toy experiment, which lifted ifPf and NehK to 6.",
+        "Remaining doubts (no applications, little novelty over [7, 38], the unknown line-search threshold) kept it at poster."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Example 1 credits Grimmer et al. with γ-smoothness instead of weak convexity (Reviewer_xDiD; correct, fixed in the camera-ready)",
+    "The constant-factor gains over EG+ and EAG may come from the proof technique (Reviewer_xDiD)",
+    "Results are stated for the squared gradient norm, not the norm (Reviewer_ukbE)",
+    "Whether methods outside the span class, such as AGDA, escape Lemma 8.1 (Reviewer_xDiD)"
+  ],
+  "issues_only_b": [
+    "V_1 written for V_0 in the proof of Theorem 4.1 at l.238 (Reviewer_VnM6; correct, cosmetic)",
+    "Lemma 8.1 as a counterexample to Theorem 4.1, and the relation to the limit-cycle results of Hsieh et al. and Letcher (Reviewer_VnM6; the counterexample is wrong)",
+    "The constant blows up as ρ approaches −1/(2L) (Reviewer_ifPf; misframed as an O(1/k) rate)",
+    "FEG needs ρ (Reviewer_ifPf), and FEG-A still needs ρ above an unknown threshold (Area_Chair_QjAG; correct)",
+    "No MVI or weak-MVI coverage (Reviewer_NehK; correct)",
+    "S-FEG is not an instance of FEG (Reviewer_KwBn; wrong) and the lower bound at l.104 is in big-O (Reviewer_KwBn; correct)"
+  ],
+  "shared_issues": [
+    "No numerical experiments (h3Zc, GXGY, xDiD in A; VnM6, ifPf, NehK in B)",
+    "No machine-learning problem shown to satisfy negative comonotonicity (GXGY and the AC in A; VnM6, NehK, KwBn, ifPf in B)",
+    "Narrow admissible range ρ > −1/(2L) (xDiD in A; KwBn and ifPf in B)",
+    "The abstract and introduction oversell 'nonconvex-nonconcave' (ukbE in A; NehK in B)",
+    "Limited novelty over EAG and little insight into the reuse of Fz_k (ukbE, h3Zc in A; NehK, KwBn in B)",
+    "Weak stochastic result that needs decaying noise (h3Zc, xDiD in A; KwBn 'seems isolated', VnM6 'with vanishing noise!' in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Both saw a narrow but clean theoretical result: the first explicit method with an O(1/k²) rate on the squared gradient norm under negative comonotonicity, with a smaller constant than EAG when ρ = 0. Both saw the same limits: the theory covers only ρ > −1/(2L), no machine-learning problem is shown to satisfy the assumption, the submission has no experiments, and the analysis stays close to EAG and EG+. The committees weighed these facts the same way. A reached a poster with no score change; its one dissent, GXGY's 5, came from a 1-hour review whose author never replied to the rebuttal. B started borderline, with two reviewers below 6. The rebuttal corrected ifPf's misreading of Theorem 4.1 and added a toy quadratic on which FEG converges and EG+ and EAG diverge; ifPf and NehK rose to 6 and kept their objections. The agreement is robust: without A's two 1-hour reviews, A still has two 7s, and without ifPf, B has 8, 7 and 6. No reviewer in either committee found an error that affects a result. The errors suspected in B (ifPf's O(1/k) rate, VnM6's Lemma 8.1 counterexample, KwBn's S-FEG point) do not hold, and the one real slip (V_1 for V_0 at l.238) is cosmetic.",
+  "candidate_reasons": [
+    "Narrow but clean theoretical advance",
+    "Both committees saw same limits",
+    "Rebuttal corrected a theorem misreading",
+    "Toy experiment lifted borderline reviewers",
+    "Applicability doubts capped at poster",
+    "Thin lone detractor outweighed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Theorem 4.1 and bound (2), l.142-143",
+    "paper_submitted.pdf §4.1-4.2, l.153-168 (EG+ range −1/(8L); constants 260, 27, 4)",
+    "paper_submitted.pdf l.238 ('0 = V_1 ≥ V_k') and Lemma 8.1, l.250-255",
+    "paper_submitted.pdf Algorithm 2, Theorem 5.1 (l.194) and Algorithm 3 (stray ρ input)",
+    "paper_submitted.pdf checklist 3(a): 'We did not run experiments'",
+    "paper.pdf (camera-ready) Example 1, §4.4 toy example, footnote 6",
+    "Reviewer_GXGY final review (no reply to the rebuttal)",
+    "Reviewer_xDiD reply of 2021-08-18 and Reviewer_ukbE reply of 2021-08-17",
+    "Reviewer_ifPf and Reviewer_NehK 'Change of score' comments of 2021-09-02",
+    "Area_Chair_QjAG line-search question of 2021-08-27",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

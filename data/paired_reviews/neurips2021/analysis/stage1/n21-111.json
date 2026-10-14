@@ -1,0 +1,238 @@
+{
+  "pair_id": "n21-111",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_iyDf",
+        "Reviewer_tbHD"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/7/6 (iyDf, PwWa, tbHD) span one point. The only 7, Reviewer_PwWa's at confidence 4, rests on three sentences ('a pretty standard approach', 'a decent paper') with no weakness or question. It is the top of a narrow range, not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_PwWa",
+          "evidence": "7 at confidence 4 from a three-sentence main review that names no weakness and asks nothing ('All in all, it is a decent paper and worth presenting at NeurIPS'). Time spent: 'Refuse to time myself.' Its only post-rebuttal note: 'Review remain unaltered.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_iyDf",
+          "claim": "Theorem 3.3 (margin-dependent) and Theorem 4.1 have no matching lower bound.",
+          "checked_against_paper": "correct",
+          "evidence": "The only lower bound is Theorem 3.2 (l.186-188): worst case, single parameter, K = 2, Ω(√T/ε). Section 6 (l.288-289) leaves optimality in ε open for the multi-parameter case. The authors conceded and offered a roadmap to Ω(log T/ε²) via an LDP Van Trees inequality; the camera-ready adds the roadmap, not a proof."
+        },
+        {
+          "reviewer": "Reviewer_iyDf",
+          "claim": "The writing is careless: h_sub in Assumption 5 is undefined, and Assumption 6 refers to 'assumption as 4'.",
+          "checked_against_paper": "correct",
+          "evidence": "l.246 uses h_sub but says 'for some h > 0'; l.249 reads 'This is the same assumption as 4'. The authors conceded both; the camera-ready reads 'for some h_sub > 0'."
+        },
+        {
+          "reviewer": "Reviewer_iyDf",
+          "claim": "In the last column of Figure 2, LDP-SGD's regret grows linearly.",
+          "checked_against_paper": "correct",
+          "evidence": "In both real-data panels the LDP-SGD curve is a straight line (about 4.7x10^3 at t = 4.75x10^4 for ε = 1, about 2.8x10^3 for ε = 5), while LDP-GLOC bends. The authors blamed a horizon '1/10' of the synthetic one; Figure 2 shows 4.75x10^4 against 9.5x10^5, about 1/20. The camera-ready moves the real data to Appendix G."
+        },
+        {
+          "reviewer": "Reviewer_tbHD",
+          "claim": "The synthetic experiments are small: d = 2, K = 3 and 10.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2 panel titles: single-param (K = 10, d = 2), multi-param (K = 3, d = 2). The authors sent runs with K = d = 20 (single) and K = d = 10 (multi) at ε = 0.5 and 1, in which LDP-SGD had the lowest regret."
+        },
+        {
+          "reviewer": "Reviewer_tbHD",
+          "claim": "The parameters of the real-data experiment are not reported.",
+          "checked_against_paper": "not_checked",
+          "evidence": "l.282 defers details to Appendix C, which is in the supplement, not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_tbHD",
+          "claim": "The paper newly introduces the SGD estimator to bandit algorithms.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.72-75: the paper itself cites [12] for SGD with Thompson sampling and regret bounds, and [6, 27] for empirical SGD bandits. What is new is SGD under LDP with greedy arm choice, and its analysis."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_iyDf"
+        ],
+        "evidence": "Reviewer_iyDf, 2021-08-22: 'They are mostly clear. I'm happy to up my score to 5.' The final rating is 6 (edited 2021-08-25). The two numbers differ, but either way the pre-rebuttal rating was below 6. Reviewer_PwWa, 2021-08-26: 'Review remain unaltered.' Reviewer_tbHD's edit (2021-07-26) predates the 2021-08-10 responses, and tbHD did not reply.",
+        "what_convinced_or_not": "iyDf accepted explanations and promises, not new results: LDP noise widens LinUCB's confidence radius by (dt)^{1/4}, hence T^{3/4}; a roadmap to a margin-case lower bound; typo fixes; and a short-horizon reason for the linear real-data curve. tbHD received a table with larger K and d but did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'The algorithms are novel, problem is timely, and the results are interesting.' No weakness is named, not even iyDf's lower-bound or notation points.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three final ratings at or above threshold (6, 7, 6; mean 6.33) once Reviewer_iyDf raised to 6.",
+        "Novel SGD-based LDP estimator whose regret matches the non-private rate in T, against T^{3/4} for [36].",
+        "iyDf's concerns (missing lower bounds, careless notation, linear real-data curve) answered with explanations and promised fixes.",
+        "No reviewer argued for more than a 7; the AC restated the consensus."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        2,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_SZ1X"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/7/6/7 (SZ1X, 5SWK, ydgj, 9jC7). Reviewer_ydgj's 6 is one point below the rest and comes from a short review that disclaims bandit expertise; it is also the review that found the paper's one real error."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_9jC7",
+          "evidence": "The summary copies the abstract almost word for word. The main review answers the NeurIPS guideline questions in their own words ('technically sound, and claims are well supported', 'careful and honest about evaluating both the strengths and weaknesses'). Its only specific point is 'Line 115, what is this sigma?'. 7 at confidence 3, with 5 hours claimed."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ydgj",
+          "claim": "Lemma 2.1 omits the ε ≤ 1 condition of the cited Gaussian-mechanism theorem (Dwork and Roth, Theorem 3.22), yet the experiments use ε = 5.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemma 2.1 (l.95-97) gives no range for ε; Theorem 3.22 of [17] requires ε in (0, 1). Section 5 (l.272) and Figure 2 use ε = 1 and 5. The gap affects the privacy claim of LDP-OLS (Propositions 3.1, 4.1) and its ε = 5 runs; LDP-SGD uses the l2-ball mechanism (Lemma 2.2), valid for any ε. The authors called it a 'glitch' and reran at ε = 0.5; the camera-ready uses ε = 0.5 and 1 but leaves Lemma 2.1 unchanged."
+        },
+        {
+          "reviewer": "Reviewer_ydgj",
+          "claim": "Equation (3) should use the inverse of M_t.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (3) sends M_t; Eq. (4) sums M_1 to M_t, adds c̃√t I and then inverts. The authors' rebuttal is right."
+        },
+        {
+          "reviewer": "Reviewer_SZ1X",
+          "claim": "The private OLS mechanism perturbs sufficient statistics, as in [29] and [36].",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3)-(4) add Gaussian noise to x xᵀ and r x and shift by c̃√t I 'as in [29]' (l.180-181). The authors conceded the same mechanism and claimed only a different regret analysis."
+        },
+        {
+          "reviewer": "Reviewer_SZ1X",
+          "claim": "Notation slips: v undefined in Assumption 3; C1 and C2 named but C used in Theorem 3.3; sub-Gaussian noise at l.115 but bounded noise at l.127; context norm unstated; Reg_π defined but unused at l.188.",
+          "checked_against_paper": "correct",
+          "evidence": "All confirmed: l.166-168, l.199-204, l.115 and l.126-128, l.186-188. The camera-ready adds 'u, v' to Assumption 3, 'Euclidean norm' at l.127, and Reg_π."
+        },
+        {
+          "reviewer": "Reviewer_SZ1X",
+          "claim": "Assumption 3 defines a* but does not use it.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.168 defines P_u as the distribution of x_{t,a*}, so a* is used."
+        },
+        {
+          "reviewer": "Reviewer_SZ1X",
+          "claim": "At l.123 the outer product of e_i and θ* is a matrix.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.83 defines ⊗ as the Kronecker product, so e_i ⊗ θ* is a Kd-vector with θ* in block i, as l.124 requires."
+        },
+        {
+          "reviewer": "Reviewer_5SWK",
+          "claim": "The paper proves a lower bound that exposes a gap in existing results, and 'clearly solves the open problem' of matching non-private regret.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 3.2's Ω(√T/ε) is for the paper's own stochastic setting and shows that its rate is tight; l.189-191 call the stochastic-adversarial gap only 'possible'. The match is in T only: the authors told SZ1X that the single-parameter bound has d where non-private bounds have √d."
+        },
+        {
+          "reviewer": "Reviewer_9jC7",
+          "claim": "The σ at l.115 is unexplained.",
+          "checked_against_paper": "correct",
+          "evidence": "l.115 uses σ for the σ-field and for the sub-Gaussian parameter; neither is introduced. The authors answered only for the σ-field."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B reviewer posted after the 2021-08-10 responses. Reviewer_SZ1X's 2021-09-10 edit appended 'I thank the authors for their thorough response' with no score statement; any change is unknown. The other three reviews were never edited.",
+        "what_convinced_or_not": "Nothing needed convincing: all four ratings were at or above threshold. The authors conceded ydgj's ε point and sent an ε = 0.5 rerun in which LDP-OLS and LDP-SGD still beat LDP-UCB and LDP-GLOC (in the multi-parameter case LDP-OLS beat LDP-SGD). They rebutted the Eq. (3) point correctly. To SZ1X they conceded the shared OLS mechanism and the d versus √d gap. Nobody replied."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "One sentence: 'the reviewers were all positive about this paper.' It mentions neither the ε error nor any other issue.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four ratings of 6 or 7 (mean 6.75); the AC cites only that 'the reviewers were all positive'.",
+        "SGD solution judged elegant (Reviewer_SZ1X) and the multi-parameter synthetic update novel (Reviewer_5SWK).",
+        "The one real error, the Gaussian mechanism used at ε = 5, touched only LDP-OLS's privacy claim and runs, and an ε = 0.5 rerun fixed the experiments.",
+        "Notation slips treated as presentation fixes; no reviewer argued above 7."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No lower bound for the margin-dependent and multi-parameter bounds; gap in constants (Reviewer_iyDf)",
+    "Why LinUCB-style LDP methods are not enough (Reviewer_iyDf)",
+    "Linear real-data regret curve in Figure 2 (Reviewer_iyDf)",
+    "Small synthetic experiments, d = 2 and K = 3 or 10 (Reviewer_tbHD)",
+    "Real-data parameters not reported (Reviewer_tbHD)"
+  ],
+  "issues_only_b": [
+    "Gaussian mechanism (Lemma 2.1) valid only for ε < 1, but experiments use ε = 5 (Reviewer_ydgj)",
+    "Private OLS mechanism is the same as in [29] and [36] (Reviewer_SZ1X)",
+    "Dimension dependence d versus √d (Reviewer_SZ1X)",
+    "Statement-level notation slips in Assumption 3, Theorems 3.2-3.3, l.115 and l.127 (Reviewer_SZ1X, Reviewer_9jC7)",
+    "Why equivalent single- and multi-parameter settings need separate analyses (Reviewer_SZ1X)"
+  ],
+  "shared_issues": [
+    "SGD-based LDP estimator is the main novelty (A: Reviewer_iyDf, Reviewer_tbHD, AC; B: Reviewer_SZ1X, Reviewer_9jC7)",
+    "Tightness of the regret bounds (A: Reviewer_iyDf on lower bounds and constants; B: Reviewer_SZ1X on the T and d dependence)",
+    "Careless notation and typos (A: Reviewer_iyDf, Reviewer_tbHD; B: Reviewer_SZ1X, Reviewer_ydgj, Reviewer_9jC7)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. All seven final ratings are 6 or 7 (A: 6, 7, 6; B: 7, 7, 6, 7). Both sides valued the same main contribution: a locally private SGD estimator whose regret matches the non-private rate in T for stochastic contexts, where the adversarial LDP algorithms of [36] get T^{3/4}. No reviewer found an error in a regret theorem. The committees found different weaknesses, and each treated its own as revisions. In A, Reviewer_iyDf asked for lower bounds under the margin condition and flagged careless notation and a linear real-data regret curve in Figure 2. The submission confirms all three. Explanations and promises, not new results, moved iyDf from below threshold to 6. In B, Reviewer_ydgj found the only real error: Lemma 2.1 states the Gaussian mechanism without the ε < 1 condition of the cited theorem, yet Section 5 runs ε = 5. It touches only the privacy claim of LDP-OLS and those runs, because LDP-SGD uses the l2-ball mechanism, which is valid for any ε. The authors conceded and reran at ε = 0.5. Reviewer_SZ1X's long notation list is mostly right and was treated as presentation. No reviewer argued above 7. The 7s include two thin reviews: A's Reviewer_PwWa wrote three sentences, and B's Reviewer_9jC7 copied the abstract into its summary. Both meta-reviews restate the score consensus and name no issue.",
+  "candidate_reasons": [
+    "Uniform weak-accept slates in both",
+    "No advocate above poster",
+    "Different flaws found, same tier",
+    "Privacy-range error fixed by rerun",
+    "Rebuttal explanations lifted lone detractor",
+    "Meta-reviews restate score consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_iyDf final review and comment of 2021-08-22",
+    "Reviewer_PwWa final review and comment of 2021-08-26",
+    "Reviewer_tbHD final review",
+    "Authors' responses to Reviewer_iyDf and Reviewer_tbHD (2021-08-10)",
+    "Reviewer_ydgj final review and authors' response (2021-08-10)",
+    "Reviewer_SZ1X final review (edited 2021-09-10) and authors' response",
+    "Reviewer_9jC7 final review against the abstract",
+    "Reviewer_5SWK final review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Lemma 2.1 (l.95-97), Section 5 (l.272) and Figure 2",
+    "paper_submitted.pdf Eq. (3)-(4), l.83, l.123-124, Assumption 3 (l.166-168)",
+    "paper_submitted.pdf Theorem 3.2 (l.186-191), Assumptions 5-6 (l.245-250), Section 6",
+    "paper.pdf (camera-ready) Lemma 2.1 and Section 5"
+  ]
+}

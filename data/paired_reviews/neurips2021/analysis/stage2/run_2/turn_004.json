@@ -1,0 +1,100 @@
+{
+  "run": 2,
+  "turn": 4,
+  "pair_id": "n21-302",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In B, Reviewer_xSwS's writing criticism claimed Section 4.1's indices were undefined, but lines 104-105 declare the Einstein convention; no A reviewer made that error, though xSwS's 3 rested mainly on correct empirical points."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "A's AC gave a spotlight over 7/6/8 (mean 7.0) with DqnY still at 6 and no reviewer arguing for an award, and the meta-review gives no reason for the higher tier."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "A's top score, PQY3's 8 at confidence 4, rests on specific points; no high score in either committee rested on enthusiasm."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors told both committees that gas-container training was unreliable on a single trajectory and promised mean and standard deviation to both."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "A knew of the thin experiments and the missing spread, yet DqnY raised 'based on the assumption that the missing information will be added' and the AC conceded the experiments 'can be further improved' while giving a spotlight."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "The rebuttal moved scores in both committees: up in A (hnow, DqnY), and in B AB4a went 6 to 5 to 7 on the authors' replies."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised the untuned penalty weight, rank-1 D and missing code; only B raised the O(N^3) tensor cost, exactness under dopri5 and the unclear Section 5.4."
+    }
+  ],
+  "added": [
+    {
+      "id": "R08",
+      "name": "Committees weighted the same weakness differently",
+      "definition": "Both committees identified the same substantive weakness, but one treated it as minor or a revision item while the other treated it as grounds for a lower tier or rejection.",
+      "justification": "R05 covers a flaw one committee ignored; here both committees named and discussed the thin experiments, and the divergence is in the weight each gave it, which no existing reason names."
+    },
+    {
+      "id": "R09",
+      "name": "Area chair deferred to one reviewer",
+      "definition": "One committee's area chair resolved split reviews by adopting a single reviewer's position without stating an assessment of their own, so one reviewer set the outcome.",
+      "justification": "R02 covers a chair lifting the tier above the reviews on the chair's own reading; B's chair stated no reading and let a lone detractor decide a split, the opposite mechanism."
+    },
+    {
+      "id": "R10",
+      "name": "Reviewer moved after reading the other reviews",
+      "definition": "A reviewer in one committee changed their score because of the other reviewers' reviews rather than new evidence from the paper or the rebuttal, pulling the committee toward the others' position.",
+      "justification": "R06 covers score moves caused by the rebuttal; DeZu's drop came from the other reviews, not the authors' response."
+    },
+    {
+      "id": "R11",
+      "name": "Authors' replies misread or missed a reviewer",
+      "definition": "In one committee the authors misread a reviewer's question or left a reviewer's follow-up unanswered, which lowered or held down that reviewer's score.",
+      "justification": "R04 covers what the authors disclosed and R06 covers rebuttals that persuade; no reason covers author replies that misread a question or left a reviewer unanswered and so cost a score."
+    },
+    {
+      "id": "R12",
+      "name": "Thin, unengaged review entered the decision",
+      "definition": "One committee had a reviewer whose score rested on assertion rather than specifics and who did not engage with the rebuttal or discussion, and that score counted in the decision unchallenged.",
+      "justification": "R03 covers a thin high score that lifted a committee; D146's thin 5 lowered B's mean and never met the rebuttal, which R03's enthusiasm mechanism does not fit."
+    }
+  ],
+  "reasoning": "Stage 1 finds that both committees saw the same thin experiments and weighted them differently, so I added R08 for that core cause. On A's side the chair lifted 7/6/8 to a spotlight with no stated reason (R02), and A set the thin-experiment concern aside on promised additions (R05). On B's side the chair deferred to the lone detractor xSwS (R09), DeZu cut a point after reading the other reviews (R10), the authors misread AB4a twice and left DeZu unanswered (R11), and D146 gave a thin, unengaged 5 (R12). xSwS's writing complaint rested on a wrong claim about undefined indices (R01), and each committee raised issues the other missed (R07). R03 fails because no high score was enthusiasm-based, R04 because both forums heard the same disclosure about gas training, and R06 because the rebuttal moved scores in both committees.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12"
+  ]
+}

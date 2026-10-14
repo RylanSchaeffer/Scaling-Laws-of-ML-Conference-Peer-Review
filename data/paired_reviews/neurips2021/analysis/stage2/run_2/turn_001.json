@@ -1,0 +1,21 @@
+{
+  "run": 2,
+  "turn": 1,
+  "pair_id": "n21-294",
+  "kind": "spotlight",
+  "prompt_version": 2,
+  "reasons_before": [],
+  "judgements": [],
+  "added": [
+    {
+      "id": "R01",
+      "name": "Wrong factual claim drove one reviewer's criticism",
+      "definition": "A reviewer in one committee based a criticism or a lower score on a checkable factual claim about the paper or its prior work that was wrong, and the other committee had no reviewer making that error.",
+      "justification": "The set was empty. The only divergence in arguments between the committees is A's debate on conceptual gain, which rested on Reviewer_A5qv's incorrect prior-work attribution (DKS17 for a DKS19 bound that does not transfer); this mechanism is general and checkable in other pairs."
+    }
+  ],
+  "reasoning": "Both committees recommended a spotlight with near-identical ratings (A 7,8,8,8; B 7,7,8,8), the same reading of the contribution, the same SoS-versus-SQ caveat found independently and answered with the same text, and one thin 8 each, so these shared features explain agreement and are not causes of a difference. The one divergence short of the recommendation is in the arguments: only A questioned the conceptual gain, and that doubt came from a wrong checkable claim about prior work, which the rebuttal corrected (A5qv raised to 7). I added one reason for that mechanism and nothing else, since the other one-committee-only issues were clarification requests that moved no score.",
+  "reasons_after": [
+    "R01"
+  ]
+}

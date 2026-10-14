@@ -1,0 +1,265 @@
+{
+  "pair_id": "n21-110",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7,
+        6,
+        4
+      ],
+      "confidences": [
+        2,
+        4,
+        2,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_K6Cj",
+        "Reviewer_D3qF",
+        "Reviewer_9FH3",
+        "Reviewer_Rogp"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_WMkN",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6 (4, confidence 3), two points under the next lowest. The reason is specific but thin: building invariance in by construction already appears in ML for science, with one example, Ling et al. (2016), plus the generic point that the method cannot handle unknown symmetries. The submission does not cite Ling et al.; the authors conceded it presents 'a method similar to ours', and the camera-ready cites it as related prior work. The step from one related paper to 'not novel and significant enough' is not argued. WMkN posted on 2021-08-01, two weeks after the others, with a 149-word main review, and never replied to the rebuttal. Experiments, the fix that moved the others, do not touch its objection. The AC did not mention the 4."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_9FH3",
+          "evidence": "Rating 7 at confidence 2 from a self-declared 'beginner at invariant theory' who is 'not an expert in this field'. The review names no weakness. It praises Sections 5 to 7 as 'highly appealing for practitioners like me' but never notes that the paper has no experiment, which the checklist states ('We didn't run experiments') and three A reviewers flagged. It said its rating 'may be updated after discussing', but it never posted in the discussion. A's only 7 is not evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Rogp",
+          "claim": "Equation 17 overcounts the energy; the second sum should run over j > i.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Eq. 17 (l.282-283) sums G m_i m_j / |r_i - r_j| over all i and all j != i with no factor 1/2, so each pair counts twice. The camera-ready (Eq. 14) adds the factor 1/2."
+        },
+        {
+          "reviewer": "Reviewer_K6Cj",
+          "claim": "There is no proof of Proposition 9 in the paper or the appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "l.260-267 state Proposition 9 with no proof pointer, unlike Propositions 4, 5, 8 and 10. The appendix is not in the submitted PDF, but the authors conceded: 'We didn't spell out the proof'. The camera-ready adds 'The proof is analogous to the proof of Proposition 7.'"
+        },
+        {
+          "reviewer": "Reviewer_K6Cj",
+          "claim": "I checked most of the proofs and to the best of my knowledge they seem to be correct.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Proposition 8 (l.249-253) claims that every Lorentz-equivariant function is a sum of g_t(Minkowski inner products) times v_t. This fails for discontinuous functions: a nonzero null vector u and the zero vector have the same inner products. For example, h(v1, v2) = v2 if v1 != 0 and 0 otherwise is Lorentz-equivariant, but the configurations (u, u), (0, u) and (u, 0) force g_1(0) + g_2(0) = 1 and g_1(0) = g_2(0) = 0. The camera-ready adds 'A continuous function' to Propositions 8 to 11."
+        },
+        {
+          "reviewer": "Reviewer_D3qF",
+          "claim": "The paper confuses gauge symmetry with 'coordinate freedom' in the abstract and with the global symmetries of Tables 1 and 2.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted title: 'Gauge-equivariant machine learning'. Abstract l.2-3: 'respect the gauge symmetries—or coordinate freedom—of physical law'; l.14: 'gauge-invariant deep learning models'. Every group in Table 1 acts globally. The authors conceded and removed 'gauge' from the title."
+        },
+        {
+          "reviewer": "Reviewer_D3qF",
+          "claim": "The paper has no implementation and no experiments (also Reviewer_K6Cj and Reviewer_Rogp).",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(a): '[N/A] We didn't run experiments.' Abstract l.14-16 claims only that such models 'are feasible right now'. Section 7 describes a model in words and defers a message-passing construction to Appendix G."
+        },
+        {
+          "reviewer": "Reviewer_K6Cj",
+          "claim": "The section on the number of scalars gives only a high-level discussion with no theorems.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (l.299-322) 'remark[s]' that about (d+1)n scalars suffice, citing Example 4 of [59]. It states no theorem and gives no proof."
+        },
+        {
+          "reviewer": "Reviewer_WMkN",
+          "claim": "Building invariance in by construction already appears in ML for science, e.g. Ling et al. (2016).",
+          "checked_against_paper": "correct",
+          "evidence": "Ling et al. is not among the submitted references. The authors conceded it presents 'a method similar to ours'. The camera-ready cites two Ling et al. papers as one of 'two lines of prior work that develop approaches related to the one taken here'. Whether this removes the novelty is a judgement; the camera-ready argues for broader scope."
+        },
+        {
+          "reviewer": "Reviewer_Rogp",
+          "claim": "Gripaios et al. (2021) and Haddadin (2021) use invariant scalars for ML and are not cited; l.100 says 'deep nets' for 'deep sets'.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither paper is in the submitted references; the camera-ready adds both ([35], [37]). l.100 reads 'For instance, deep nets and pointnets'; Reviewer_D3qF found the same typo, and the camera-ready fixes it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_D3qF",
+          "Reviewer_Rogp"
+        ],
+        "evidence": "Reviewer_D3qF's review carries a 'Post rebuttal edit ... I have increased my score' (edited 2021-08-16), and its comment that day says 'Hence I have updated my score'. Its original rating is not shown but was at most 5. Reviewer_Rogp's review says 'leaning towards a score of 5'; on 2021-08-25 Rogp 'raised my score by one notch' to 6, and the review edit has the same date. Reviewer_K6Cj's edit (2021-08-03) predates the author responses (2021-08-09), and Reviewer_9FH3's edit is on its posting day. K6Cj, 9FH3 and WMkN did not reply. A's mean went from at most 5.4 to 5.8.",
+        "what_convinced_or_not": "New evidence, not argument, moved both. The authors linked an anonymised GitHub repository that reran experiments 1, 2 and 4 of Finzi et al. (EMLP, ICML 2021) and beat EMLP on several of them. D3qF: 'the results speak for themselves', although it had 'not thoroughly studied the code' and noted that the Lorentz experiment was missing. Rogp: 'quite preliminary ... fairly convincing'. The authors themselves said the method 'has only been tested on a few toy problems'. Argument did not convince: D3qF kept calling the method feature engineering without a locality prior and rejected the gauge reply, after which the authors dropped 'gauge' from the title. WMkN's novelty objection got a two-paragraph reply and no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four of five final ratings are 6 or 7, and the AC accepted. The meta-review restates the points of the two confidence-4 reviewers who engaged: Reviewer_D3qF's gauge objection, with the parallel transport that the authors' reply described, and Reviewer_Rogp's view of the experiments ('a bit preliminary but look promising'). It answers the novelty doubt in one clause ('well-known and commonly used in physics but has not been extensively explored in the ML literature'). It does not mention scores or WMkN's 4.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Post-rebuttal ratings 6, 6, 7, 6, 4 (mean 5.8): four of five at or above the threshold.",
+        "Correct, clearly written theory that gives a simple scalar-based route to equivariant models without irreps or Clebsch-Gordan coefficients (Reviewer_Rogp, Reviewer_D3qF, Reviewer_K6Cj).",
+        "The main objection, no implementation or experiments, was answered by the rebuttal repository; Reviewer_D3qF and Reviewer_Rogp rose to 6, and the AC called the results 'a bit preliminary but ... promising'.",
+        "The gauge overclaim was treated as a scope error, fixed by the new title (Reviewer_D3qF, AC).",
+        "Novelty doubts (classical invariant theory, Ling et al., Gripaios et al.) were judged not disqualifying; Reviewer_WMkN's 4 went unanswered."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_f6cj",
+        "Reviewer_jRKc",
+        "Reviewer_xhVY",
+        "Reviewer_StjN"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_StjN",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "A mild outlier: the only rating below 6 (5, confidence 4), one point under the next. Its premise is specific, and the paper confirms it: model building gets half a page (Section 7, l.355-380) with no comparison to prior models. After the rebuttal StjN called the GitHub results 'very promising' and rose from 4 to 5. It still argued that accepting would be 'premature' because the paper needs a '(non-minor) rewrite'. The AC overrode this and asked for revisions 'especially' per StjN's concerns."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_f6cj",
+          "claim": "No empirical analysis of the parametrisation and no comparison with alternative methods is provided.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(a): '[N/A] We didn't run experiments.' The main text has no numerical result."
+        },
+        {
+          "reviewer": "Reviewer_f6cj",
+          "claim": "The title refers to gauge-equivariant machine learning, but the groups covered are global symmetries.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted title: 'Gauge-equivariant machine learning'. Table 1 lists O(d), SO(d), T(d), E(d), O(1,d), IO(1,d) and S_n, all acting globally (Table 2). The authors removed 'gauge'."
+        },
+        {
+          "reviewer": "Reviewer_f6cj",
+          "claim": "The submission is mathematically sound and all claims are formally proven.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Proposition 9 has no proof (l.260-267; the authors conceded to A's Reviewer_K6Cj). Proposition 8 (l.249-253) claims the Lorentz characterisation for every function. It fails for discontinuous functions, because a nonzero null vector and the zero vector have the same Minkowski inner products. The camera-ready adds 'A continuous function' to Propositions 8 to 11. Reviewer_jRKc also called the proofs 'rigorous and mathematically sound'."
+        },
+        {
+          "reviewer": "Reviewer_f6cj",
+          "claim": "Section 5 is suggestive and not formulated as a theorem; it claims about (d+1)n scalars suffice.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (l.299-322) 'remark[s]' that the scalars are determined by a subset of size about (d+1)n, via Example 4 of [59]. No theorem is stated."
+        },
+        {
+          "reviewer": "Reviewer_jRKc",
+          "claim": "The conclusion is missing; l.29 lacks a closing bracket; l.311-313 is an incomplete sentence.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper ends with Section 7 (l.355-380) and goes to the references. l.28-29: 'Translation symmetry (including conservation of linear momentum, rotation symmetry'. l.311-313: 'In particular invariant functions ... expressed as (5) [equation] where M is either V^T V or V^T Λ V' has no main verb."
+        },
+        {
+          "reviewer": "Reviewer_xhVY",
+          "claim": "There is no discussion of the relationship between the proposed algorithm and recent O(3) graph models.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.106-131 discuss irreps-based rotation-equivariant point-cloud models ([71], [26]) and refer to Appendix A for more. l.79-80 present the message-passing construction as generalising EGNN [66]. The authors pointed to Appendix A, which is not in the submitted PDF. The discussion is brief, but it exists."
+        },
+        {
+          "reviewer": "Reviewer_StjN",
+          "claim": "Only half a page goes to model-building considerations (Section 7), with no comparison to prior models.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 7 is l.355-380 on page 9, with four displayed equations; it defers the message-passing construction to Appendix G and compares with no model. l.135 also has the typo 'Implementating' that StjN noted."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_f6cj",
+          "Reviewer_jRKc",
+          "Reviewer_xhVY",
+          "Reviewer_StjN"
+        ],
+        "evidence": "The meta-review gives the starting labels: one 'Clear reject', two 'Ok but not good enough', one 'Marginally above' (f6cj 3, jRKc 4, StjN 4, xhVY 6), all raised. f6cj had written 'I need to clearly reject'; on 2021-08-17 it said the experiments are 'reflected in the raised score' (now 7). xhVY updated its score on 2021-08-17 (6 to 7). jRKc: 'from 4 to 6' (2021-08-24). StjN: 'from a 4 to a 5' (2021-08-29). Each review's edit date matches its comment. The AC prompted jRKc and StjN on 2021-08-21. B's mean went from 4.25 to 6.25.",
+        "what_convinced_or_not": "The same GitHub repository convinced all four; missing experiments had been every B reviewer's main objection. f6cj: 'convincing and add a lot'. jRKc: 'convincing experiments on synthetic and real data', but the authors described only 'a few toy problems', and the camera-ready reports two toy tasks. The reply to StjN said it reproduced experiments of StjN's reference [c] (Finzi et al., ICML 2020, LieConv). The repository ('Comparison_EMLP') and the camera-ready use a different paper, EMLP (Finzi et al., ICML 2021); StjN did not notice. StjN accepted the results but not acceptance now. f6cj kept the gauge objection until the authors changed the title. jRKc's question on the polynomial results drew the admission that, in general, the coefficient functions can be discontinuous (the cube-root example)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review recounts the rating labels before and after the rebuttal ('The author rebuttals were successful and all the four reviewers raised their scores') and accepts on three ratings of 6 or more. It adds one judgement of its own: the theory is 'valuable to the community, although it is a direct application of existing invariant/equivariant theories in mathematics'. It answers StjN's case for rejection only by asking the authors to 'revise according to the reviewers' (especially Reviewer StjN's) concerns'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers rose after the rebuttal, from 3, 4, 6, 4 to 7, 6, 7, 5 (mean 4.25 to 6.25).",
+        "Every B reviewer's main objection was the missing experiments, and the rebuttal repository answered it (Reviewer_f6cj: 'convincing and add a lot').",
+        "The AC judged the theory valuable although 'a direct application of existing invariant/equivariant theories in mathematics'.",
+        "The gauge overclaim was fixed by the new title (Reviewer_f6cj, Reviewer_jRKc, AC).",
+        "Reviewer_StjN's case that acceptance needs a non-minor rewrite was overridden; the AC asked for revisions instead."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Eq. 17 counts each gravitational pair twice (Reviewer_Rogp; confirmed, fixed in the camera-ready)",
+    "No proof of Proposition 9 (Reviewer_K6Cj; conceded, proof pointer added in the camera-ready)",
+    "Feature engineering without a locality or scale-separation prior; polynomial models may be unstable or hard to optimise (Reviewer_D3qF)",
+    "Numerical stability of physical theories rewritten in scalars (Reviewer_Rogp)",
+    "Ling et al. (2016) as prior work; no handling of unknown symmetries (Reviewer_WMkN)",
+    "Generalisation to arbitrary representations via Gröbner bases (Reviewer_D3qF)",
+    "Lorentz experiment missing from the rebuttal repository (Reviewer_D3qF)",
+    "'Convolutional symmetry' wording, the universal-approximation lineage and the 'deep nets' typo (Reviewer_Rogp, Reviewer_D3qF)"
+  ],
+  "issues_only_b": [
+    "No conclusion, a missing bracket at l.29 and an incomplete sentence at l.311-313 (Reviewer_jRKc; confirmed)",
+    "Purpose of the polynomial results; the authors replied that general coefficient functions can be discontinuous (Reviewer_jRKc)",
+    "No support for scalar fields or sections of vector bundles (Reviewer_jRKc)",
+    "Unclear which results are new (Reviewer_xhVY)",
+    "Relation to O(3) graph models (Reviewer_xhVY; the main text and Appendix A partly cover it)",
+    "Too much space on characterisation and half a page on model building; acceptance before a non-minor rewrite is premature (Reviewer_StjN)",
+    "Physicists already build symmetric models; no comparison with Bogatskiy et al., Boyda et al. or Finzi et al. (Reviewer_StjN)"
+  ],
+  "shared_issues": [
+    "No implementation or experiments (A: Reviewer_K6Cj, Reviewer_D3qF, Reviewer_Rogp; B: all four)",
+    "'Gauge' in the title and abstract misnames global symmetries (A: Reviewer_D3qF, AC; B: Reviewer_f6cj, Reviewer_jRKc, AC)",
+    "Results are classical invariant theory or small extensions of it (A: Reviewer_Rogp, Reviewer_WMkN, Reviewer_K6Cj, AC; B: Reviewer_f6cj, Reviewer_jRKc, Reviewer_xhVY, Reviewer_StjN, AC)",
+    "Gripaios et al. (2021) as close, uncited prior work (A: Reviewer_Rogp; B: Reviewer_f6cj)",
+    "Section 5 on the number of scalars is suggestive, with no theorem (A: Reviewer_K6Cj; B: Reviewer_f6cj)",
+    "Clear, well-organised writing (both committees)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. The submission was pure theory. It characterised equivariant functions for O(d), Lorentz and related groups through scalar products, using classical invariant theory. It ran no experiments (checklist: \"We didn't run experiments\"), and seven of nine reviewers named this as a main weakness. Both committees got the same anonymised GitHub repository in the rebuttal. It reran toy tasks from Finzi et al.'s EMLP paper and beat EMLP. That one rebuttal moved six reviewers up: Reviewer_D3qF and Reviewer_Rogp in A, and all four B reviewers. Both committees also made the authors drop \"gauge\" from the title. Both ACs judged the idea known outside ML but useful within it. Only the path differed. B began further below the line (3, 4, 6, 4) and ended higher (7, 6, 7, 5; mean 6.25 against 5.8), because each B reviewer's main objection was the one the rebuttal fixed. In both committees the decisive evidence lay outside the reviewed PDF and got a light check. Both missed a flaw: Propositions 8 and 9 claim the Lorentz characterisation for every function. It fails for discontinuous ones, because a nonzero null vector and the zero vector have the same inner products. The camera-ready adds \"continuous\". Three reviewers had vouched for the proofs.",
+  "candidate_reasons": [
+    "Rebuttal experiments closed shared gap",
+    "Same rebuttal persuaded both committees",
+    "Classical theory valued as ML framing",
+    "Gauge overclaim fixed by retitling",
+    "Novelty detractor did not engage",
+    "Decisive evidence outside reviewed paper"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf checklist 3(a): 'We didn't run experiments'",
+    "paper_submitted.pdf title and abstract l.1-3, l.14-16 ('gauge')",
+    "paper_submitted.pdf Eq. 17 (l.282-283) against camera-ready Eq. 14",
+    "paper_submitted.pdf Propositions 8 and 9 (l.249-267) against the camera-ready's 'A continuous function'",
+    "paper_submitted.pdf Section 5 (l.299-322) and Section 7 (l.355-380); no conclusion",
+    "Reviewer_D3qF final review and comment of 2021-08-16",
+    "Reviewer_Rogp final review and comment of 2021-08-25",
+    "Reviewer_WMkN review (posted 2021-08-01; no reply)",
+    "Reviewer_f6cj review and comment of 2021-08-17",
+    "Reviewer_jRKc review updates and comments of 2021-08-24",
+    "Reviewer_StjN review and comment of 2021-08-29",
+    "Authors' reply to Reviewer_StjN (reference [c]) against the repository name 'Comparison_EMLP'",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Section 7 'Numerical experiments' and the related-work paragraph citing Ling et al. and Gripaios et al."
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "R01",
+    "name": "Wrong factual claim drove one reviewer's criticism",
+    "definition": "A reviewer in one committee based a criticism or a lower score on a checkable factual claim about the paper or its prior work that was wrong, and the other committee had no reviewer making that error.",
+    "created_by_pair": "n21-294",
+    "created_turn": 1,
+    "exemplar": "In A, Reviewer_A5qv doubted the conceptual gain because a d^2 SQ bound 'follows from DKS17', but the paper credits that bound to DKS19, which needs unknown covariance and does not transfer; after the rebuttal A5qv raised to 7, while B never raised this doubt."
+  },
+  {
+    "id": "R02",
+    "name": "Area chair set the award above reviewers' scores",
+    "definition": "One committee's area chair recommended a higher tier than its reviewers' ratings and arguments supported, on the chair's own reading, often with a meta-review that overstates reviewer consensus.",
+    "created_by_pair": "n21-133",
+    "created_turn": 2,
+    "exemplar": "Committee A's chair gave a spotlight over ratings 6, 6, 6, 7 at confidence 2 to 3 with no reviewer arguing for an award, writing that 'the reviewers and I are all in agreement that the results are strong' when only Reviewer_hyJf said so."
+  },
+  {
+    "id": "R03",
+    "name": "Enthusiastic low-confidence review carried weight",
+    "definition": "One committee had a reviewer whose high score rested on enthusiasm rather than specifics, often at low confidence, and that score or wording raised the committee's ratings or shaped its meta-review.",
+    "created_by_pair": "n21-133",
+    "created_turn": 2,
+    "exemplar": "In B, Reviewer_PKyu gave a praise-only 8 at confidence 2 while 'not very familiar with the topic', called the limitations discussion 'impeccable', and the meta-review copied PKyu's wording almost verbatim."
+  },
+  {
+    "id": "R04",
+    "name": "Authors disclosed a flaw to one committee only",
+    "definition": "The authors revealed an error or weakness in the paper on one committee's forum and not on the other's, so the two committees judged different information.",
+    "created_by_pair": "n21-133",
+    "created_turn": 2,
+    "exemplar": "The authors disclosed on B's forum that Theorem 1.1 omitted a sqrt(t·R(U∞)) term, but their reply the same day to Reviewer_ab3Y's early-stopping question on A's forum did not mention it."
+  },
+  {
+    "id": "R05",
+    "name": "Committee discounted a known substantive flaw",
+    "definition": "One committee learned of a substantive flaw, raised by a reviewer or admitted by the authors, yet its scores and meta-review did not weigh it, accepting a fix on trust or ignoring it.",
+    "created_by_pair": "n21-133",
+    "created_turn": 2,
+    "exemplar": "B learned that Theorem 1.1 as submitted was wrong and the fix changed the stated rates, yet Reviewer_9b2J wrote 'I have to trust that the proofs in appendix will be fine', no score fell, and the meta-review did not mention it."
+  },
+  {
+    "id": "R06",
+    "name": "Rebuttal moved scores in one committee only",
+    "definition": "The authors' rebuttal led one committee's reviewers to raise or lower their scores while the other committee's scores did not move, widening or narrowing the gap between them.",
+    "created_by_pair": "n21-133",
+    "created_turn": 2,
+    "exemplar": "In B, Reviewer_sDSa (confidence 4) raised from 7 to 8 after the rebuttal, while no reviewer in A stated a score change."
+  },
+  {
+    "id": "R07",
+    "name": "One committee raised an issue the other missed",
+    "definition": "A reviewer or the area chair in one committee raised a substantive, checkable concern about the paper that no one in the other committee raised, so the two committees weighed different sets of problems.",
+    "created_by_pair": "n21-083",
+    "created_turn": 3,
+    "exemplar": "In B, Reviewer_i9rh showed that the conclusion's claim that guidance narrows the sampling-time gap rests only on Table 4's 25-step rows, and B's AC flagged a possible interaction between the ImageNet guidance classifier and FID; no one in A raised either."
+  },
+  {
+    "id": "R08",
+    "name": "Committees weighted the same weakness differently",
+    "definition": "Both committees identified the same substantive weakness, but one treated it as minor or a revision item while the other treated it as grounds for a lower tier or rejection.",
+    "created_by_pair": "n21-302",
+    "created_turn": 4,
+    "exemplar": "Reviewers in both committees found the experiments thin (two toy benchmarks, only NODE and a penalty baseline, no spread on the gas result); A accepted this as 'can be further improved' and gave a spotlight, while B rejected on 'insufficient empirical evidence'."
+  },
+  {
+    "id": "R09",
+    "name": "Area chair deferred to one reviewer",
+    "definition": "One committee's area chair resolved split reviews by adopting a single reviewer's position without stating an assessment of their own, so one reviewer set the outcome.",
+    "created_by_pair": "n21-302",
+    "created_turn": 4,
+    "exemplar": "B's final positions were 3/6/7/5, and the two-sentence meta-review rejected because 'one reviewer is still strongly convinced about rejection', without weighing the two accept-side reviewers."
+  },
+  {
+    "id": "R10",
+    "name": "Reviewer moved after reading the other reviews",
+    "definition": "A reviewer in one committee changed their score because of the other reviewers' reviews rather than new evidence from the paper or the rebuttal, pulling the committee toward the others' position.",
+    "created_by_pair": "n21-302",
+    "created_turn": 4,
+    "exemplar": "In B, Reviewer_DeZu cut 7 to 6, citing 'the weaknesses in the experiments section as other reviewers have noted', and offered to return to 7."
+  },
+  {
+    "id": "R11",
+    "name": "Authors' replies misread or missed a reviewer",
+    "definition": "In one committee the authors misread a reviewer's question or left a reviewer's follow-up unanswered, which lowered or held down that reviewer's score.",
+    "created_by_pair": "n21-302",
+    "created_turn": 4,
+    "exemplar": "The authors misread Reviewer_AB4a's degeneracy question twice and AB4a dropped 6 to 5; DeZu offered to return to 7 and the authors never replied."
+  },
+  {
+    "id": "R12",
+    "name": "Thin, unengaged review entered the decision",
+    "definition": "One committee had a reviewer whose score rested on assertion rather than specifics and who did not engage with the rebuttal or discussion, and that score counted in the decision unchallenged.",
+    "created_by_pair": "n21-302",
+    "created_turn": 4,
+    "exemplar": "In B, Reviewer_D146 gave 5 after 2 hours on the assertion that 'learning entropy growth is not as exciting' and never replied to the authors' response."
+  }
+]

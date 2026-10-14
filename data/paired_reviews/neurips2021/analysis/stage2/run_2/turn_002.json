@@ -1,0 +1,58 @@
+{
+  "run": 2,
+  "turn": 2,
+  "pair_id": "n21-133",
+  "kind": "spotlight",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In A, Reviewer_Q5eH wrongly said the paper studies infinite-width networks and Reviewer_ab3Y wrongly called it a random-features analysis; both criticisms fed their 6s, the rebuttal corrected Q5eH, and no B reviewer made these errors."
+    }
+  ],
+  "added": [
+    {
+      "id": "R02",
+      "name": "Area chair set the award above reviewers' scores",
+      "definition": "One committee's area chair recommended a higher tier than its reviewers' ratings and arguments supported, on the chair's own reading, often with a meta-review that overstates reviewer consensus.",
+      "justification": "R01 concerns a reviewer's factual error; no existing reason covers a chair lifting the outcome above the reviews, which here is why A matched B's spotlight despite lower scores."
+    },
+    {
+      "id": "R03",
+      "name": "Enthusiastic low-confidence review carried weight",
+      "definition": "One committee had a reviewer whose high score rested on enthusiasm rather than specifics, often at low confidence, and that score or wording raised the committee's ratings or shaped its meta-review.",
+      "justification": "No existing reason covers a thin champion review inflating one committee's scores and meta-review; PKyu's 8 is part of why B's mean (7.0) exceeds A's (6.25)."
+    },
+    {
+      "id": "R04",
+      "name": "Authors disclosed a flaw to one committee only",
+      "definition": "The authors revealed an error or weakness in the paper on one committee's forum and not on the other's, so the two committees judged different information.",
+      "justification": "No existing reason covers an information asymmetry created by the authors; this is a divergence in what the committees knew."
+    },
+    {
+      "id": "R05",
+      "name": "Committee discounted a known substantive flaw",
+      "definition": "One committee learned of a substantive flaw, raised by a reviewer or admitted by the authors, yet its scores and meta-review did not weigh it, accepting a fix on trust or ignoring it.",
+      "justification": "R04 covers who was told; this covers how a committee that knew of a flaw weighed it, a separate mechanism no existing reason names."
+    },
+    {
+      "id": "R06",
+      "name": "Rebuttal moved scores in one committee only",
+      "definition": "The authors' rebuttal led one committee's reviewers to raise or lower their scores while the other committee's scores did not move, widening or narrowing the gap between them.",
+      "justification": "No existing reason covers a rebuttal acting differently on the two committees; sDSa's raise is one source of B's higher mean."
+    }
+  ],
+  "reasoning": "Both committees recommended a spotlight, so I judged divergences short of the recommendation. Scores diverged (A 6, 6, 6, 7; B 7, 6, 8, 8, 6), and the committees reached the same tier by different routes. R01 applies because two A reviewers misread the setting and criticized on that basis. A's spotlight came from the chair's own reading over borderline scores (R02). B's higher scores drew on a praise-only, low-confidence 8 that the meta-review copied (R03) and on one rebuttal-driven raise (R06). The authors disclosed the Theorem 1.1 error only to B (R04), and B accepted the fix on trust without weighing it (R05). I added no reason for the shared weaknesses both committees treated as minor, since shared features explain agreement, not a difference.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06"
+  ]
+}

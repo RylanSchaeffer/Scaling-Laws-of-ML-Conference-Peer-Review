@@ -1,0 +1,65 @@
+{
+  "run": 2,
+  "turn": 3,
+  "pair_id": "n21-083",
+  "kind": "spotlight",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In B, Reviewer_yLx5's 6 rested on the claim that most of the gain comes from manual architecture design, which is wrong for the ImageNet headline (unguided ADM loses to BigGAN-deep at 256 and 512 pixels); no A reviewer made that error."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Both ACs followed unanimous accept scores with mean 7.5; neither lifted the tier above the reviews."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "In A, Reviewer_Fjfm gave a praise-only 9 that names nothing it checked, despite confidence 5; it lifts A's mean from 7.0 to 7.5 and the meta-review borrows its phrase 'non-trivial insights'."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors told A's NiCt that high guidance scales give 'strangely washed-out images' while Inception Score keeps rising, and told only B's yLx5 that a roughly 300x per-sample speed gap to GANs remains; each weakness appears on one forum only."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "No substantive flaw was established and set aside; the limitations each committee knew of were treated as revision items, and stage 1 finds the same facts weighted the same way."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In A, Reviewer_H51k raised from 6 to 7 after the novelty reply; in B no score moved, and yLx5 did not answer a nearly identical reply."
+    }
+  ],
+  "added": [
+    {
+      "id": "R07",
+      "name": "One committee raised an issue the other missed",
+      "definition": "A reviewer or the area chair in one committee raised a substantive, checkable concern about the paper that no one in the other committee raised, so the two committees weighed different sets of problems.",
+      "justification": "R01 covers wrong claims and R04 covers what the authors disclosed; no reason covers a correct concern that one committee's own reviewers or chair found and the other never saw, which is the main divergence in arguments here."
+    }
+  ],
+  "reasoning": "Both committees recommended a spotlight with mean 7.5, so I judged divergences short of the recommendation. The score shapes differ (A 7, 7, 7, 9; B 6, 7, 8, 9). A's top vote is a thin, enthusiastic 9 that shaped the meta-review (R03), and A's only score move came from the rebuttal (R06). B's low 6 rests on a wrong claim about where the gains come from (R01). The authors disclosed different weaknesses on the two forums (R04). No chair overrode the reviews (R02), and no committee set aside an established substantive flaw (R05). B's reviewers and AC raised correct concerns that A never saw, such as the unsupported sampling-time claim and the FID-guidance interaction; no existing reason covers that, so I added R07.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07"
+  ]
+}

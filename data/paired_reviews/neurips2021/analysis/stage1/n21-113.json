@@ -1,0 +1,235 @@
+{
+  "pair_id": "n21-113",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_kRk6"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_jFCo), 6 (Reviewer_kRk6) and 7 (Reviewer_NEaE), all at confidence 3. The spread is one point. The 7 comes from a reviewer who spent 1.5 hours and wrote that robustness 'is not my main area of research', deferring to others on baselines, but it does not stand apart."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_jFCo",
+          "claim": "The improvements over the baselines are relatively marginal, and the variances are not low enough.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Tables 1-2 (submitted PDF not available): RIFT leads the runner-up by 1.0 to 2.9 points on IMDB and by 0.5 to 1.2 on SNLI. In five of eight settings (all four on SNLI, and BERT under PWWS on IMDB) the ± ranges of RIFT and the runner-up overlap, e.g. SNLI RoBERTa PWWS 81.1±0.4 against Adv-Mixout 80.6±0.3."
+        },
+        {
+          "reviewer": "Reviewer_jFCo",
+          "claim": "The paper needs an analysis of how RIFT reduces catastrophic forgetting compared with the baselines, since that is its main claim.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2 plots relative L2 distance for standard and adversarial fine-tuning only; RIFT, Adv-PTWD and Adv-Mixout are absent. No figure or table measures forgetting for RIFT. The authors pointed to the theory (Section 2.3) and the α ablation (Table 4: +0.2 vanilla points on IMDB) and asked jFCo what analysis would help. jFCo did not reply."
+        },
+        {
+          "reviewer": "Reviewer_kRk6",
+          "claim": "The catastrophic-forgetting claim rests on relative L2 distance in parameter space, which need not mean that the model forgets generic linguistic features.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.2's only evidence is Figure 2: relative L2 distance, at 15k iterations about 6.3% for adversarial against 4.6% for standard fine-tuning of BERT. The camera-ready introduction itself calls parameter change an imperfect proxy for change in function, to argue against pre-trained weight decay and Mixout. kRk6 cited 'Figures 1 and 2', but Figure 1 is the diagram of the objective."
+        },
+        {
+          "reviewer": "Reviewer_kRk6",
+          "claim": "The adversarial baseline may be too simple and may not include TRADES or early stopping.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Camera-ready Eq. 2 and Eq. 9 use the TRADES loss (Zhang et al. [79]) with the same β for every adversarial method, and Section 3.2 states that every compared method uses early stopping. The authors point to the submission's l.179-180, Eq. 8 and Appendix l.17-18. kRk6's follow-up dropped the point and asked about weight averaging instead."
+        },
+        {
+          "reviewer": "Reviewer_kRk6",
+          "claim": "The clean accuracy of the baseline is not reported (comment of 2021-08-25).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 4's α = 0 row is Adv-Base (its robust numbers equal those in Tables 1a and 2a) and gives its vanilla accuracy: 78.1% on IMDB and 79.4% on SNLI with BERT. Figure 4 plots the vanilla accuracy of Adv-Base and Adv-Mixout. The authors also cite appendix Tables 5-6, which the camera-ready PDF lacks. Only the vanilla accuracy of standard fine-tuning was missing; B's Reviewer_8Qx5 asked for it."
+        },
+        {
+          "reviewer": "Reviewer_NEaE",
+          "claim": "The variational lower bound on I(S;Y) is formed by dropping the +KL(p,q) term; NEaE was unsure whether this is valid.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 5-6 drop a non-negative KL term. This is the standard Barber-Agakov bound, so the bound is valid. The authors gave the same answer."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_kRk6"
+        ],
+        "evidence": "Reviewer_kRk6 wrote on 2021-08-31: 'The authors address most of my concerns. I am increasing my rating.' The review was edited that day and ends at 6, so it started at 5 or lower. Reviewer_jFCo and Reviewer_NEaE did not reply or edit.",
+        "what_convinced_or_not": "kRk6 first replied (2021-08-25) that the baselines might still be weak (no weight averaging), that results overlap within their variance, and that tuning fairness is unclear. The second reply (2021-08-28) moved kRk6: the same β for all adversarial methods, Figure 4 showing RIFT above the baselines on both accuracies, clean accuracies in appendix Tables 5-6, TRADES and early stopping in every baseline, a Mann-Whitney test, and the contrast with CEB. kRk6's remaining doubts (CEB in vision, tuning fairness) became the AC's revision requests. jFCo's request for a direct analysis of forgetting got a pointer and a question back. jFCo did not answer, and RIFT is still absent from Figure 2."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review accepts with generic praise ('The method performs well under a variety of scenarios. The paper is thorough and clear.') and three revision requests. Two quote Reviewer_kRk6's comment of 2021-08-25: information-theoretic defences in vision, and fair tuning of the baselines. The third asks for the extra runs and the significance test from the reply to Reviewer_jFCo. It weighs no weakness against acceptance.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All three final ratings at or above the threshold (6, 6, 7; mean 6.33), with no rating above 7.",
+        "RIFT has the best robust accuracy in all eight dataset-model-attack settings, 0.5 to 2.9 points over the runner-up (Tables 1-2).",
+        "Reviewers accepted the information-theoretic derivation and the clear writing (Reviewer_NEaE; Reviewer_jFCo: 'technically sound').",
+        "The rebuttal (same β, TRADES and early stopping in every baseline, Figure 4, a Mann-Whitney test) lifted Reviewer_kRk6 to 6, and the AC turned kRk6's remaining doubts into revision requests."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_CwDX"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_gPjn",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Ratings 7 (Reviewer_8Qx5), 5 (Reviewer_gPjn), 6 (Reviewer_aWT9) and 7 (Reviewer_CwDX). gPjn's 5 is the only rating below the threshold. It rests on one weakness: no early-stopping baseline, after Rice et al. The paper already early-stops every compared method (camera-ready Section 3.2; Appendix l.17-18 of the submission, per the authors). The concern is sound in general but misreads this paper. gPjn did not answer the rebuttal or edit the review, and the AC does not mention the 5."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_aWT9",
+          "evidence": "The summary and originality paragraphs reuse the paper's own wording, e.g. 'does not directly fit a conventional fine-tuning scenario'. The review says that all claims are well supported by theory and experiments, but it also asks whether L2 distance shows forgetting at all, which is the evidence for the first claimed contribution. It did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_gPjn",
+          "evidence": "The review's one weakness asks for an early-stopping baseline. The authors answered that every compared method already uses early stopping (submission Appendix l.17-18), and the camera-ready states this in Section 3.2. gPjn did not reply or edit and kept 5."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8Qx5",
+          "claim": "Adversarial robustness improves by 2-3 points from around 70-80%.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Tables 1-2 (submitted PDF not available): RIFT over Adv-Base is +1.8 to +3.2 points on IMDB but only +0.9 to +1.8 on SNLI. Robust accuracies range from 63.3% to 83.5%."
+        },
+        {
+          "reviewer": "Reviewer_8Qx5",
+          "claim": "The adversarially fine-tuned models reach about 80% vanilla accuracy on SNLI (Table 6a) against about 90% for a standard BERT, so robustness costs significant vanilla accuracy.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 4: RIFT with BERT reaches 78.3% vanilla accuracy on IMDB and 80.4% on SNLI. The authors gave standard fine-tuning at 93.1% and 89.2%, so the cost is about 15 and 9 points. RIFT recovers only 0.2 and 1.0 points over Adv-Base (α = 0 rows)."
+        },
+        {
+          "reviewer": "Reviewer_8Qx5",
+          "claim": "The batch sizes are surprisingly small for a contrastive loss.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The batch sizes are in the appendix, which the camera-ready PDF lacks. The authors conceded that larger batches help and that GPU memory limits them. Camera-ready Section 3.5 adds the point."
+        },
+        {
+          "reviewer": "Reviewer_gPjn",
+          "claim": "The baselines are weak: there is no early-stopping baseline, and weight decay or dropout are known to be insufficient against robust overfitting.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Camera-ready Section 3.2 states that every compared method uses early stopping on robust accuracy, citing Rice et al. [60]. The authors say the submission stated this in Appendix l.17-18 and promised to move it to the main text. The learning curves that gPjn also asked for are not in the camera-ready main text."
+        },
+        {
+          "reviewer": "Reviewer_aWT9",
+          "claim": "A greater relative L2 distance between the models need not mean more forgetting.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.2 rests on Figure 2, which shows parameter-space L2 distance only. The camera-ready introduction itself calls parameter change an imperfect proxy for change in function."
+        },
+        {
+          "reviewer": "Reviewer_CwDX",
+          "claim": "The adversarial examples are only perturbations on the embeddings; no actual adversarial text is generated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Half right. Training uses ASCC convex-hull perturbations in embedding space (Section 3.2 (ii)). The evaluation runs the Genetic and PWWS attacks, which substitute real words (Section 3.1). The authors said the same, and CwDX accepted it."
+        },
+        {
+          "reviewer": "Reviewer_CwDX",
+          "claim": "The improvement on SNLI seems small.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: 0.5 to 1.2 points over the runner-up, with overlapping ± ranges in all four SNLI settings. The rebuttal reports a single Mann-Whitney test (SNLI, BERT, five runs, p = 0.0425)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B reviewer says that a score changed. Reviewer_CwDX's only edit (2021-08-21) added 'All my questions are properly resolved' and names no new score; CwDX posted the same line on 2021-08-24. Reviewer_8Qx5 replied 'Thank you for your response!' (2021-08-26) and did not edit. Reviewer_gPjn and Reviewer_aWT9 did not reply.",
+        "what_convinced_or_not": "CwDX accepted the definition of B(x), the split between embedding-level training and word-level test attacks, and the Mann-Whitney test on SNLI. 8Qx5 got the standard fine-tuning accuracies, which confirm the cost in vanilla accuracy; the AC kept this as a limitation. gPjn's single concern was answered by the early-stopping pointer, but gPjn never acknowledged it. aWT9's GLUE question got the same text as Reviewer_jFCo's in A (SST-2 dev, 63.5%, +2.4 points), and its L2 question got an argument. aWT9 did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review sums up the reviews: 'well-motivated' (Reviewer_gPjn, Reviewer_CwDX), 'well-written' (Reviewer_aWT9, Reviewer_8Qx5), 'well supported theoretically' (CwDX, aWT9). Its one reservation, that 'the improvements in robustness have limited significance while there is still a drop in accuracy on the vanilla evaluation', is 8Qx5's. It says that the rebuttal 'answered the reviewers' questions' and does not mention gPjn's 5.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or 7 (7, 5, 6, 7; mean 6.25).",
+        "A well-motivated, theoretically supported method with consistent gains (Reviewer_CwDX, Reviewer_8Qx5, Reviewer_aWT9, AC).",
+        "Gains of 'limited significance' and a remaining drop in vanilla accuracy set the tier at poster (Reviewer_8Qx5, AC).",
+        "The lone 5 (Reviewer_gPjn) rested on an early-stopping concern that the paper already met; gPjn did not reply, and the AC said that the rebuttal answered the questions."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Whether RIFT itself forgets less than the baselines; no direct analysis (Reviewer_jFCo)",
+    "Fair tuning of the clean/robust trade-off; weight averaging and other tricks from Chen et al. 2021 (Reviewer_kRk6, AC)",
+    "Information-bottleneck defences (CEB) that fail under strong attacks in vision (Reviewer_kRk6, AC)",
+    "Gradient obfuscation and qualitative attack examples (Reviewer_kRk6)",
+    "Masked against autoregressive language models (Reviewer_kRk6)",
+    "Validity of the variational lower bound in Eq. 6 (Reviewer_NEaE; it is valid)"
+  ],
+  "issues_only_b": [
+    "Cost in vanilla accuracy against standard fine-tuning: about 15 points on IMDB and 9 on SNLI with BERT (Reviewer_8Qx5, AC)",
+    "Small batch size for the contrastive loss (Reviewer_8Qx5)",
+    "Continual-learning benchmarks (Reviewer_8Qx5)",
+    "Wording ('objective model', 'state-of-the-arts') and a verbose Section 2.4 (Reviewer_8Qx5)",
+    "Embedding-level training perturbations against word-level test attacks; size of B(x) (Reviewer_CwDX)",
+    "Extension to token-level tasks such as tagging (Reviewer_CwDX)",
+    "Learning curves of clean and robust accuracy over training (Reviewer_gPjn)"
+  ],
+  "shared_issues": [
+    "Small gains, mainly on SNLI, and their significance (A: Reviewer_jFCo, Reviewer_kRk6, AC; B: Reviewer_8Qx5, Reviewer_CwDX, AC)",
+    "Relative L2 distance as evidence of forgetting (A: Reviewer_kRk6; B: Reviewer_aWT9)",
+    "Strength of the baselines and early stopping (A: Reviewer_kRk6, also TRADES; B: Reviewer_gPjn); both answered with the same pointer",
+    "GLUE or wider benchmarks (A: Reviewer_jFCo, Reviewer_kRk6; B: Reviewer_aWT9); the same SST-2 dev result was given to both",
+    "Score function f_y and its effect on Lemma 1 (A: Reviewer_NEaE; B: Reviewer_8Qx5)",
+    "NLP-only scope (A: Reviewer_NEaE, Reviewer_kRk6 and the AC ask for vision experiments; B: Reviewer_8Qx5 names it as a limitation)",
+    "Clear motivation and writing (A: Reviewer_NEaE, AC; B: Reviewer_aWT9, Reviewer_8Qx5, Reviewer_CwDX, AC)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. RIFT adds a conditional mutual-information term to adversarial fine-tuning. It has the best mean in all eight dataset-model-attack settings, but by small margins: 1.0 to 2.9 points over the runner-up on IMDB and 0.5 to 1.2 on SNLI (Tables 1-2). No reviewer in either committee rated above 7 or found an error, so neither committee had a champion or a fatal flaw. Each committee had one reviewer who doubted the baselines: Reviewer_kRk6 in A and Reviewer_gPjn in B. The authors answered both with the same pointer: every compared method already uses early stopping. kRk6 engaged, got a second reply and rose to 6. gPjn did not reply and stayed at 5, and B's AC did not mention the 5. The authors reused the same rebuttal text in both forums (SST-2 dev results, one Mann-Whitney test), so both committees saw the same evidence. B's AC named the limits that Reviewer_8Qx5 raised: small gains and a cost in vanilla accuracy. A's AC turned kRk6's remaining doubts into revision requests. The committees weighed the same facts the same way. Neither pressed two weak points. In five of eight settings the ± ranges of RIFT and the runner-up overlap, and the rebuttal reports one significance test (SNLI, BERT; p = 0.0425). The forgetting evidence is parameter-space L2 distance, which the paper's introduction calls an imperfect proxy, and RIFT is absent from Figure 2. Claims were checked against the camera-ready paper.pdf, which has no appendix; the submitted PDF is not available.",
+  "candidate_reasons": [
+    "Consistent but small gains accepted",
+    "No champion and no error",
+    "Same rebuttal answered both committees",
+    "Baseline doubt answered by appendix pointer",
+    "Silent lone detractor discounted",
+    "Thin significance evidence went unchallenged"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_kRk6 final review, comment of 2021-08-25 and 'I am increasing my rating' (2021-08-31)",
+    "Authors' second response to Reviewer_kRk6 (2021-08-28: same β, Figure 4, TRADES and early stopping)",
+    "Authors' responses to Reviewer_jFCo and Reviewer_CwDX (SST-2 dev 63.5%; Mann-Whitney p = 0.0425 on SNLI, BERT)",
+    "Reviewer_gPjn review and the authors' reply (early stopping, Appendix l.17-18)",
+    "Reviewer_8Qx5 review and the authors' reply (standard fine-tuning: 93.1% IMDB, 89.2% SNLI with BERT)",
+    "Reviewer_aWT9 review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready; submitted PDF not available) Tables 1-2",
+    "paper.pdf Table 4 (vanilla accuracy; the α = 0 rows equal Adv-Base)",
+    "paper.pdf Figure 2 (relative L2 distance; RIFT not plotted) and introduction (parameter change as an imperfect proxy)",
+    "paper.pdf Section 3.2 (same β for all adversarial methods; early stopping for all methods) and Figure 4"
+  ]
+}

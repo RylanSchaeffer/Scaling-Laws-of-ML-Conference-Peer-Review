@@ -19,4 +19,4 @@ Accepted by both: report 99, public 99.
 Split decisions: report 203, public 199. A paper with one accept recommendation was accepted unless the other committee found a fatal flaw (the report's rule); the split pairs missing from the public record are those rejections, whose reviews are private.
 Rejected by both: report 462, public 11 (authors who opted in; 8 of them with only one copy public).
 
-Pairs: 309; both copies public: 301; reviews: 2373; reviews with revision history: 122; title match equals the official pairing: yes.
+Pairs: 309; both copies public: 301; reviews: 2373; reviews edited after posting: 1103; title match equals the official pairing: yes.

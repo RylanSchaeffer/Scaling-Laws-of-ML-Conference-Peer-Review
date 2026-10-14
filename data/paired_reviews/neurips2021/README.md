@@ -18,14 +18,13 @@ same pairs. Counts against the report's Table 1: `reconciliation.md`.
 - `pairs/<pair_id>/paper.json`: title, abstract, authors, keywords, code link, prior-submission declaration where given, both forums, final decision.
 - `pairs/<pair_id>/pair.md`: both committees' records side by side, readable.
 - `pairs/<pair_id>/a|b/decision.json`: own decision, other committee's recommendation, final decision, meta-review text, the program chairs' note.
-- `pairs/<pair_id>/a|b/reviews.jsonl`: every review, every field; `rating_initial` and `initial_version` from the revision history where the review was edited after posting; `rating_final` is what the forum shows now.
+- `pairs/<pair_id>/a|b/reviews.jsonl`: every review, every field, as the forum shows it now; `edited_after_posting` and `last_edited` say whether the reviewer changed it more than an hour after posting (OpenReview's API returns no earlier versions, so the pre-rebuttal rating is not recoverable).
 - `pairs/<pair_id>/a|b/discussion.jsonl`: author responses and reviewer, area-chair and public comments, threaded by `replyto`.
 - `pairs/<pair_id>/a|b/ethics.jsonl`: ethics reviews where they exist.
 - `pairs/<pair_id>/a|b/paper.pdf`: the submission as reviewed.
 
 Not public, so absent: reviewer, area-chair and senior-area-chair identities; the reviewer–area-chair
 discussion; the pairs rejected by both committees whose authors did not opt in; the four fatal-flaw
-rejections. `rating_initial` is the first saved version of the review on OpenReview; where a reviewer
-edited before the reviews were released to authors, it may already reflect that edit.
+rejections; the reviews' earlier versions.
 
 Counts: 309 pairs, 301 with both copies public, 2373 reviews.

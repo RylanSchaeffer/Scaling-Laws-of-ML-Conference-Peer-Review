@@ -9,9 +9,11 @@ recommendations they did, and in particular why one recommended more than the ot
 
 All files are under `{pair_dir}`:
 
-- `pair.md`: both committees' records side by side: every review (initial and final rating, confidence,
-  time spent, summary, main review, limitations), the author responses and discussion, and each
-  committee's meta-review and own decision. Read all of it.
+- `pair.md`: both committees' records side by side: every review (rating, confidence, time spent,
+  summary, main review, limitations, and whether and when the reviewer edited it after posting), the
+  author responses and discussion, and each committee's meta-review and own decision. Read all of it.
+  Ratings and text are the final versions; OpenReview exposes no earlier version, so a score change
+  after the rebuttal shows only as an edit date and in what reviewers say in the discussion.
 - `paper.json`: title, abstract, authors, final decision, the kind of discrepancy.
 - `a/` and `b/`: the same records as JSON lines (`reviews.jsonl`, `discussion.jsonl`, `decision.json`,
   `ethics.jsonl` where present) and the submitted PDF, `paper.pdf`. Read the PDF when you need to judge
@@ -49,12 +51,12 @@ plainly.
   "committees": {
     "a": {
       "own_decision": "...",
-      "ratings_initial": [..], "ratings_final": [..], "confidences": [..],
+      "ratings_final": [..], "confidences": [..], "reviews_edited_after_posting": ["Reviewer_..."],
       "outlier": {"present": true|false, "reviewer": "Reviewer_xxxx"|null, "direction": "champion"|"detractor"|null,
                   "basis": "principled"|"exuberant"|"inattentive"|"unclear"|null, "evidence": "..."},
       "inattentive_reviews": [{"reviewer": "...", "evidence": "..."}],
       "checkable_claims": [{"reviewer": "...", "claim": "...", "checked_against_paper": "correct"|"incorrect"|"not_checked", "evidence": "..."}],
-      "rebuttal": {"scores_moved": "up"|"down"|"none"|"mixed", "by_whom": ["Reviewer_..."], "what_convinced_or_not": "..."},
+      "rebuttal": {"scores_moved": "up"|"down"|"none"|"mixed"|"unknown", "by_whom": ["Reviewer_..."], "evidence": "edit dates and what reviewers said in discussion", "what_convinced_or_not": "..."},
       "ac": {"followed_reviews": "yes"|"partly"|"no", "evidence": "...", "meta_review_leans_on": "scores"|"a_specific_reviewer"|"own_reading"|"unclear"},
       "main_reasons_for_decision": ["...", "..."]
     },

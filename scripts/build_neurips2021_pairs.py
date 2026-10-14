@@ -2,7 +2,7 @@
 
 Inputs (raw API responses, never edited; scripts/fetch_openreview_neurips2021.py and fetch_openreview_revisions.py):
   data/raw/openreview/neurips2021/notes.jsonl       every public NeurIPS 2021 submission with every reply
-  data/raw/openreview/neurips2021/references.jsonl  revision history of each experiment review (initial ratings and text)
+  data/raw/openreview/neurips2021/references*.jsonl  the /references answer per review (one version each: the API exposes no edit history)
   data/raw/openreview/neurips2021/pdf/<forum>.pdf   each copy's PDF
 
 Every paper in the experiment carries, in its decision note, a `consistency_experiment` field that states
@@ -136,22 +136,17 @@ def main() -> None:
             # reviews, with initial and final versions
             revs = []
             for r in sorted(replies(n, "Official_Review"), key=lambda r: r["tcdate"]):
-                hist = revisions.get(r["id"], [])
-                first_v = hist[0]["content"] if hist else None
+                edited = r["tmdate"] - r["tcdate"] > 3600_000  # edited more than an hour after posting
                 rr = {"pair_id": pair_id, "side": side, "forum": fid, "review_id": r["id"], "reviewer": role(r["signatures"][0]),
                       "rating_final": leading_int(r["content"].get("rating")), "rating_final_label": r["content"].get("rating"),
-                      "rating_initial": leading_int(first_v.get("rating")) if first_v else np.nan,
-                      "rating_initial_label": first_v.get("rating") if first_v else None,
                       "confidence_final": leading_int(r["content"].get("confidence")), "confidence_label": r["content"].get("confidence"),
-                      "confidence_initial": leading_int(first_v.get("confidence")) if first_v else np.nan,
-                      "n_revisions": len(hist), "posted": ts(r["tcdate"]), "last_edited": ts(r["tmdate"]),
-                      **{f: r["content"].get(f) for f in REVIEW_FIELDS},
-                      "initial_version": {f: first_v.get(f) for f in ("summary", "main_review", "limitations_and_societal_impact")} if first_v and len(hist) > 1 else None}
+                      "edited_after_posting": edited, "posted": ts(r["tcdate"]), "last_edited": ts(r["tmdate"]) if edited else None,
+                      **{f: r["content"].get(f) for f in REVIEW_FIELDS}}
                 revs.append(rr)
             with open(os.path.join(sdir, "reviews.jsonl"), "w") as f:
                 for rr in revs:
                     f.write(json.dumps(rr) + "\n")
-            review_rows += [{k: v for k, v in rr.items() if k not in REVIEW_FIELDS and k != "initial_version"} |
+            review_rows += [{k: v for k, v in rr.items() if k not in REVIEW_FIELDS} |
                             {"len_main_review": len(rr.get("main_review") or ""), "time_spent_reviewing": rr.get("time_spent_reviewing")} for rr in revs]
             # discussion: author responses and reviewer / AC comments, threaded
             review_ids = {r["review_id"]: r["reviewer"] for r in revs}
@@ -169,9 +164,8 @@ def main() -> None:
                     for e in eth:
                         f.write(json.dumps(e) + "\n")
             fin = [r["rating_final"] for r in revs]
-            ini = [r["rating_initial"] for r in revs]
             rec.update({f"forum_{side}": fid, f"number_{side}": n["number"], f"own_decision_{side}": own, f"n_reviews_{side}": len(revs),
-                        f"mean_rating_initial_{side}": round(float(np.nanmean(ini)), 3) if revs and not all(np.isnan(ini)) else np.nan,
+                        f"n_reviews_edited_{side}": sum(r["edited_after_posting"] for r in revs),
                         f"mean_rating_{side}": round(float(np.mean(fin)), 3), f"min_rating_{side}": min(fin), f"max_rating_{side}": max(fin),
                         f"mean_confidence_{side}": round(float(np.mean([r["confidence_final"] for r in revs])), 3),
                         f"n_author_responses_{side}": sum(d["by"] == "Authors" for d in disc),
@@ -179,25 +173,23 @@ def main() -> None:
                         f"n_ac_comments_{side}": sum(d["by"].startswith("Area_Chair") for d in disc)})
             copy_rows.append({"pair_id": pair_id, "side": side, "forum": fid, "paper_number": n["number"], "own_decision": own,
                               "other_recommendation": oth, "final_decision": dec["content"]["decision"], "n_reviews": len(revs),
-                              "mean_rating_initial": rec[f"mean_rating_initial_{side}"], "mean_rating_final": rec[f"mean_rating_{side}"],
+                              "n_reviews_edited": rec[f"n_reviews_edited_{side}"], "mean_rating_final": rec[f"mean_rating_{side}"],
                               "len_meta_review": len(dec["content"].get("comment") or ""), "n_author_responses": rec[f"n_author_responses_{side}"],
                               "n_reviewer_comments": rec[f"n_reviewer_comments_{side}"], "n_ac_comments": rec[f"n_ac_comments_{side}"],
                               "n_ethics_reviews": len(eth)})
             # readable rendering
             md += [f"## Committee {side.upper()} (forum {fid}, paper {n['number']})", "",
                    f"Own decision: **{own}**. Other committee's recommendation: {oth}. Final decision: {dec['content']['decision']}.", "",
-                   "| Reviewer | Initial rating | Final rating | Confidence | Time spent (h) | Posted |", "|---|---|---|---|---|---|"]
+                   "| Reviewer | Rating | Confidence | Time spent (h) | Posted | Edited after posting |", "|---|---|---|---|---|---|"]
             for r in revs:
-                md.append(f"| {r['reviewer']} | {'' if np.isnan(r['rating_initial']) else int(r['rating_initial'])} | {int(r['rating_final'])} | {int(r['confidence_final'])} | {r.get('time_spent_reviewing') or ''} | {r['posted']} |")
-            md += ["", f"Mean rating: initial {rec[f'mean_rating_initial_{side}']}, final {rec[f'mean_rating_{side}']}.", ""]
+                md.append(f"| {r['reviewer']} | {int(r['rating_final'])} | {int(r['confidence_final'])} | {r.get('time_spent_reviewing') or ''} | {r['posted']} | {r['last_edited'] or 'no'} |")
+            md += ["", f"Mean rating {rec[f'mean_rating_{side}']}. Ratings and text are the final versions; OpenReview does not expose earlier versions, so a rating change after the rebuttal shows only as an edit date and in the discussion.", ""]
             for r in revs:
-                md += [f"### Review by {r['reviewer']} (final rating {r['rating_final_label']}; confidence {r['confidence_label']})", "",
+                md += [f"### Review by {r['reviewer']} (rating {r['rating_final_label']}; confidence {r['confidence_label']}{'; edited ' + r['last_edited'] if r['last_edited'] else ''})", "",
                        f"**Summary.** {r.get('summary') or ''}", "", f"**Main review.** {r.get('main_review') or ''}", "",
                        f"**Limitations and societal impact.** {r.get('limitations_and_societal_impact') or ''}", ""]
                 if r.get("ethical_concerns"):
                     md += [f"**Ethical concerns.** {r['ethical_concerns']}", ""]
-                if r.get("initial_version"):
-                    md += [f"*This review was edited after posting ({r['n_revisions']} versions; initial rating {r['rating_initial_label']}). Initial main review:* {r['initial_version'].get('main_review') or ''}", ""]
             if disc:
                 md += ["### Author responses and discussion", ""]
                 for d in disc:
@@ -238,7 +230,7 @@ def main() -> None:
     lines += ["", f"Accepted by both: report {both_acc(report)}, public {both_acc(ours)}.",
               f"Split decisions: report {split(report)}, public {split(ours)}. A paper with one accept recommendation was accepted unless the other committee found a fatal flaw (the report's rule); the split pairs missing from the public record are those rejections, whose reviews are private.",
               f"Rejected by both: report {report['reject']}, public {ours['reject']} (authors who opted in; {int((~pairs.both_public).sum())} of them with only one copy public).",
-              "", f"Pairs: {len(pairs)}; both copies public: {int(pairs.both_public.sum())}; reviews: {len(review_rows)}; reviews with revision history: {sum(1 for r in review_rows if r['n_revisions'])}; title match equals the official pairing: yes."]
+              "", f"Pairs: {len(pairs)}; both copies public: {int(pairs.both_public.sum())}; reviews: {len(review_rows)}; reviews edited after posting: {sum(1 for r in review_rows if r['edited_after_posting'])}; title match equals the official pairing: yes."]
     open(os.path.join(OUT, "reconciliation.md"), "w").write("\n".join(lines) + "\n")
     print("\n".join(lines))
 
@@ -262,15 +254,14 @@ same pairs. Counts against the report's Table 1: `reconciliation.md`.
 - `pairs/<pair_id>/paper.json`: title, abstract, authors, keywords, code link, prior-submission declaration where given, both forums, final decision.
 - `pairs/<pair_id>/pair.md`: both committees' records side by side, readable.
 - `pairs/<pair_id>/a|b/decision.json`: own decision, other committee's recommendation, final decision, meta-review text, the program chairs' note.
-- `pairs/<pair_id>/a|b/reviews.jsonl`: every review, every field; `rating_initial` and `initial_version` from the revision history where the review was edited after posting; `rating_final` is what the forum shows now.
+- `pairs/<pair_id>/a|b/reviews.jsonl`: every review, every field, as the forum shows it now; `edited_after_posting` and `last_edited` say whether the reviewer changed it more than an hour after posting (OpenReview's API returns no earlier versions, so the pre-rebuttal rating is not recoverable).
 - `pairs/<pair_id>/a|b/discussion.jsonl`: author responses and reviewer, area-chair and public comments, threaded by `replyto`.
 - `pairs/<pair_id>/a|b/ethics.jsonl`: ethics reviews where they exist.
 - `pairs/<pair_id>/a|b/paper.pdf`: the submission as reviewed.
 
 Not public, so absent: reviewer, area-chair and senior-area-chair identities; the reviewer–area-chair
 discussion; the pairs rejected by both committees whose authors did not opt in; the four fatal-flaw
-rejections. `rating_initial` is the first saved version of the review on OpenReview; where a reviewer
-edited before the reviews were released to authors, it may already reflect that edit.
+rejections; the reviews' earlier versions.
 
 Counts: {len(pairs)} pairs, {int(pairs.both_public.sum())} with both copies public, {len(review_rows)} reviews.
 """

@@ -1,0 +1,220 @@
+{
+ "pair_id": "n21-025",
+ "prompt_version": 1,
+ "kind": "spotlight/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [4, 7, 5, 4],
+   "confidences": [4, 3, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_Mncu", "Reviewer_La4a", "Reviewer_oDAB"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_La4a",
+    "direction": "champion",
+    "basis": "inattentive",
+    "evidence": "Ratings 4/7/5/4 (Mncu, La4a, oDAB, 41qE). La4a's 7 rests on two hours, confidence 3 ('Math/other details were not carefully checked') and generic praise ('pretty solid and comprehensive'). Its only weakness is a typo on L78. It does not weigh the overlap with Π-Net or the size of the gains. La4a never commented; the 2021-08-31 edit states no change. The AC wrote 'no one strongly in favor of acceptance'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_La4a",
+     "evidence": "Rating 7, 'deserves a clear acceptance', after two hours at confidence 3. No engagement with the Π-Net overlap that the other three reviewers raised. Silent after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_41qE",
+     "claim": "CoPE is a special case of Π-Net whose input is the concatenation of the conditioning input and the noise; the novelty reduces to structure imposed on blocks of the embedding matrices.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 2 adds U[n,I]^T z_I + U[n,II]^T z_II, which equals U[n]^T [z_I; z_II] with the two blocks stacked: Π-Net's recursion on the concatenated input. The authors conceded: 'the two different formulations could learn a similar model' and the differences 'are closer to design choices'."
+    },
+    {
+     "reviewer": "Reviewer_41qE",
+     "claim": "CoPE's gain over Π-Net on CIFAR10 is modest (FID 34.35 vs 37.26); the large gains are over Π-Net-SICONC; super-resolution compares CoPE only with Π-Net-SICONC, not Π-Net.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4: FID 34.35 ± 2.68 vs 37.26 ± 1.86, IS 7.87 ± 0.21 vs 7.54 ± 0.16. The rebuttal's '~18% improvement' is the IS gain over Π-Net-SICONC (7.87 vs 6.65); over Π-Net it is 4%. Table 5 has no Π-Net row, even in the camera-ready. Section 4.1 still says CoPE wins 'by a large margin'."
+    },
+    {
+     "reviewer": "Reviewer_41qE",
+     "claim": "No ablation isolates the design choices that separate CoPE from Π-Net.",
+     "checked_against_paper": "correct",
+     "evidence": "The camera-ready main text has no such ablation; the supplement is not in the folder. The authors did not dispute the point."
+    },
+    {
+     "reviewer": "Reviewer_41qE",
+     "claim": "The product of polynomials cannot represent every high-order polynomial, and the stability steps bound outputs but not gradients.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.2 lists uniform noise, a tanh output and batch normalisation; none bounds gradients. The authors conceded both: 'not all polynomials can be exactly reconstructed' and 'the gradients are not guaranteed to be bounded'."
+    },
+    {
+     "reviewer": "Reviewer_Mncu",
+     "claim": "Several bolded gains are not significant: Table 3 IS (CoPE vs SNGAN-SPADE) and FID (CoPE vs SNGAN), Table 4 CIFAR10 (CoPE vs Π-Net), Table 5 (CoPE vs SPADE-CoPE).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: IS 8.77 ± 0.12 vs 8.69 ± 0.19; FID 14.22 ± 0.66 vs 14.70 ± 0.97. Table 4: the ±1 SD bands of CoPE and Π-Net overlap in IS and FID. Table 5 at 8x: 62.76 ± 4.37 vs 64.76 ± 8.26. At 16x CoPE is clearly better (60.42 ± 6.19 vs 72.63 ± 3.18), and Cars196 class-conditional (Table 4) is a large gain that Mncu does not list."
+    },
+    {
+     "reviewer": "Reviewer_Mncu",
+     "claim": "Products of polynomials and the normalisation steps in Section 3 come from Π-Net (Chrysos et al. 2020).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1's caption and Section 2.2 credit products of polynomials to Π-Net [Chrysos et al., 2020]."
+    },
+    {
+     "reviewer": "Reviewer_oDAB",
+     "claim": "The paper reports SNGAN's FID as 21.7, which oDAB could not reproduce with the original code.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3: SNGAN 14.70 ± 0.97. The 21.74 ± 0.73 is SNGAN-SPADE. The authors corrected this; oDAB did not reply."
+    },
+    {
+     "reviewer": "Reviewer_oDAB",
+     "claim": "The gain on the common ResNet (SNGAN) generator is minimal, and the experiments are at 64x64 or less.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: FID 14.22 ± 0.66 vs 14.70 ± 0.97 for plain SNGAN. Section 4.3 gives 48 and 192 input dimensions at 16x and 8x, i.e. 64x64 RGB outputs; CIFAR10 is 32x32. The camera-ready's Section 5 concedes no large-scale synthesis."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_Mncu (edited 2021-07-14) and Reviewer_oDAB (2021-07-18) edited before the 2021-08-09 rebuttal. Reviewer_41qE never edited; its 2021-08-27 comment keeps the novelty objection ('which I don't believe to be substantial'). Reviewer_La4a edited on 2021-08-31 with no stated change; its final rating is 7. No reviewer answered the authors' 2021-08-29 reply.",
+    "what_convinced_or_not": "The authors conceded the core of 41qE's case: concatenation gives a similar model, the differences are design choices, not all polynomials are representable, and gradients are not bounded. Their counter, a 'flexible framework' with a '~18%' CIFAR10 gain, was measured against Π-Net-SICONC; 41qE pointed to Π-Net (34.35 vs 37.26). Mncu and oDAB received the polynomial orders, seeds, a parameter and speed table and the SNGAN FID correction, but posted nothing."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'there's general consensus among reviewers to reject the work, and with no one strongly in favor of acceptance'. It names the two criticisms that Mncu, oDAB and 41qE share: the contribution against Π-Net and the experiments. It discounts La4a's 7 and does not address the rebuttal or the Cars196 gain.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings below threshold (4, 5, 4; mean 5.0), none changed after the rebuttal",
+    "Novelty over Π-Net judged a set of design choices; the authors conceded that the two can learn a similar model (Reviewer_41qE, Reviewer_Mncu, Reviewer_oDAB)",
+    "CIFAR10 gains within the run-to-run spread, no state-of-the-art baselines, Π-Net absent from super-resolution (Reviewer_Mncu, Reviewer_oDAB, Reviewer_41qE)",
+    "The only positive review (Reviewer_La4a, 7) was brief and silent, so the AC saw no champion"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [7, 8, 7, 6],
+   "confidences": [4, 4, 3, 3],
+   "reviews_edited_after_posting": ["Reviewer_tbWn", "Reviewer_Rugm", "Reviewer_kHDT"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7/8/7/6 (tbWn, Rugm, 7vAs, kHDT). Rugm's 8 and kHDT's 6 are one point from the rest, and both responded to the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_7vAs",
+     "evidence": "Rating 7 on two sentences of praise and two clarity questions, after three hours at confidence 3 ('I am not an expert in this field'). Calls the improvements 'clear', which Table 3 and CIFAR10 in Table 4 do not support. No comment after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_kHDT",
+     "claim": "Table 4's GAN-CONC, GAN-ADD and SPADE score FID 290+ on CIFAR10, so the baselines may not be tuned.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4: 294.33, 298.53 and 294.21. The authors explained that these are activation-free variants that express first-degree polynomials. So they cannot model images at all and say little about CoPE; the informative comparisons are Π-Net and Π-Net-SICONC. The camera-ready caption adds the explanation."
+    },
+    {
+     "reviewer": "Reviewer_kHDT",
+     "claim": "No comparison with state-of-the-art conditional models that are not polynomial networks.",
+     "checked_against_paper": "correct",
+     "evidence": "The experiments compare only SNGAN variants, SPADE, Π-Net, Π-Net-SICONC, GAN-CONC and GAN-ADD. The rebuttal's sBN/BigGAN table is not in the camera-ready main text."
+    },
+    {
+     "reviewer": "Reviewer_kHDT",
+     "claim": "Super-resolution is judged by FID alone.",
+     "checked_against_paper": "not_checked",
+     "evidence": "No submitted PDF in the folder. The rebuttal supplied SSIM and LPIPS as a response; camera-ready Table 5 has them for 8x only. The rebuttal labels its middle row 'Π-net', but its numbers (0.31, 0.200, 186.42) are Π-Net-SICONC's in Table 5."
+    },
+    {
+     "reviewer": "Reviewer_Rugm",
+     "claim": "The baselines differ between Tables 4 and 5.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 has GAN-CONC, GAN-ADD, SPADE, Π-Net-SICONC and Π-Net; Table 5 has SPADE, Π-Net-SICONC and SPADE-CoPE. The authors declined to align them: Π-Net's conditional batch normalisation needs discrete classes."
+    },
+    {
+     "reviewer": "Reviewer_Rugm",
+     "claim": "Karras et al. (2020), Fig. 11b, report better conditional CIFAR10 IS and FID than CoPE.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Outside the paper. The authors did not dispute it; they said their FID uses 10k images and Karras et al. use 50k. Rugm then wrote 'fully addressed my concerns'."
+    },
+    {
+     "reviewer": "Reviewer_7vAs",
+     "claim": "The experiments show clear improvements over baselines.",
+     "checked_against_paper": "incorrect",
+     "evidence": "True for Cars196 (Table 4: 55.48 vs 120.40 for Π-Net) and for super-resolution against SPADE and Π-Net-SICONC (Table 5). Not for CIFAR10: in Table 3 the FID gain over SNGAN (0.48) and the IS gain over SNGAN-SPADE (0.08) are below one standard deviation."
+    },
+    {
+     "reviewer": "Reviewer_tbWn",
+     "claim": "Appendix D's matrix P should be (d1+d2) x o, not d1*d2 x o.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The supplement is not in the folder. The authors conceded a typo. Harmless."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_tbWn", "Reviewer_Rugm", "Reviewer_kHDT"],
+    "evidence": "Reviewer_tbWn (edited 2021-08-21): 'I'm therefore raising my score' (final 7). Reviewer_Rugm (edited 2021-08-27): 'fully addressed my concerns ... I am raising my score' (final 8). Reviewer_kHDT (comment and edit 2021-08-28): 'especially the tables, has addressed most of my concerns, and I decide to increase my score' (final 6). Reviewer_7vAs never edited or commented. The meta-review says 'one reviewer raising their score'.",
+    "what_convinced_or_not": "B's concerns were requests that a rebuttal can meet: SNGAN-CoPE and SPADE-CoPE construction, the discriminator, polynomial orders, baseline definitions, a three-Gaussian toy test, an sBN/BigGAN table and SSIM/LPIPS for super-resolution. Two tables are weaker than they look. The 'Π-net' super-resolution row is Π-Net-SICONC (camera-ready Table 5). The 'BigGAN' row has no IS, and its FID equals SNGAN's in Table 3 (14.70). Rugm's two requests (same baselines in Tables 4 and 5; the Karras et al. comparison) were declined or deferred, yet Rugm wrote 'fully addressed'."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Acceptance follows four ratings of 6 or more. The meta-review misstates the record twice: 'The reviewers all agree that the contribution is useful and novel' (kHDT: 'a straightforward follow-up') and 'one reviewer raising their score' (three did). It gives no reason for a spotlight; the top rating is a single 8.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at or above threshold (7, 8, 7, 6; mean 7.0) after three reviewers raised",
+    "One framework for five tasks and eight datasets, with discrete and continuous conditions (Reviewer_7vAs, Reviewer_Rugm, Reviewer_tbWn)",
+    "Closeness to Π-Net read as a natural, novel continuation (Reviewer_tbWn, Reviewer_Rugm)",
+    "The rebuttal answered requests for details and added state-of-the-art and SSIM/LPIPS tables (Reviewer_kHDT, Reviewer_Rugm)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "CoPE equals Π-Net on the concatenated input with a partitioned weight matrix; the authors conceded a similar model (Reviewer_41qE)",
+  "No ablation of the design choices that separate CoPE from Π-Net (Reviewer_41qE)",
+  "Bolded gains within the run-to-run spread in Tables 3-5 (Reviewer_Mncu, Reviewer_oDAB)",
+  "Product of polynomials cannot represent all high-order polynomials; stability steps do not bound gradients (Reviewer_41qE)",
+  "Methods section mostly restates Π-Net (Reviewer_Mncu)",
+  "Low resolution (64x64 or less), parameter count and speed (Reviewer_oDAB)"
+ ],
+ "issues_only_b": [
+  "FID alone cannot show super-resolution fidelity; asks for SSIM or PSNR (Reviewer_kHDT)",
+  "Activation-free baselines in Table 4 at FID 294+ look untuned (Reviewer_kHDT)",
+  "Published conditional CIFAR10 results in Karras et al. (2020) beat CoPE (Reviewer_Rugm)",
+  "Wants a toy test with a known distribution; asks why GANs, with a VAE in only one section (Reviewer_tbWn, Reviewer_kHDT)",
+  "Appendix D dimension typo; how products of polynomials are chained (Reviewer_tbWn, Reviewer_7vAs)"
+ ],
+ "shared_issues": [
+  "Closeness to Π-Net (A: Reviewer_41qE, Reviewer_Mncu, Reviewer_oDAB; B: Reviewer_Rugm, Reviewer_kHDT)",
+  "No comparison with state-of-the-art conditional models; SPADE a weak baseline (A: Reviewer_oDAB, Reviewer_Mncu; B: Reviewer_kHDT, Reviewer_Rugm)",
+  "Baselines differ between tables; Π-Net absent from super-resolution (A: Reviewer_41qE, Reviewer_Mncu; B: Reviewer_Rugm)",
+  "Missing details on polynomial orders, SNGAN-CoPE, SPADE-CoPE and GAN-CONC/GAN-ADD (A: Reviewer_Mncu; B: Reviewer_Rugm, Reviewer_7vAs, Reviewer_tbWn)",
+  "Section 4.2 (VAE) is qualitative, with baselines only in the appendix (A: Reviewer_Mncu; B: Reviewer_kHDT)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighted the same facts differently, and only A had a reviewer who tested the novelty claim. Both saw that CoPE is close to Π-Net and that no experiment compares it with state-of-the-art conditional models. In A, Reviewer_41qE showed that Eq. 2 is Π-Net's recursion on the concatenated input, with a partitioned weight matrix. The authors conceded that the two 'could learn a similar model' and that the differences are 'closer to design choices'. 41qE also pointed out that the rebuttal's gains are over the weak Π-Net-SICONC. Against Π-Net, CIFAR10 FID is 34.35 ± 2.68 vs 37.26 ± 1.86. Reviewer_Mncu's significance points hold for Tables 3 and 4. A's three scores of 4 and 5 never moved. A's only 7 (Reviewer_La4a) came from a two-hour review with no engagement, and the AC saw 'no one strongly in favor'. B read the same closeness as 'a natural continuation' (Reviewer_tbWn) or 'significant novelty' (Reviewer_Rugm). B's concerns were requests for details, metrics and comparisons, which a rebuttal can answer; three of four B reviewers raised. Two of B's rebuttal tables are weaker than they look: the 'Π-net' super-resolution row is Π-Net-SICONC, and the 'BigGAN' row gives no IS and the same FID as SNGAN in Table 3 (14.70). No reviewer found an error in a result. A underweighted the one large gain, Cars196 FID 55.48 vs 120.40 for Π-Net (Table 4). B's spotlight rests on a 7.0 mean, a single 8, and a meta-review that misstates the reviewers' positions.",
+ "candidate_reasons": [
+  "Novelty over prior work weighted differently",
+  "Detractor reduces method to prior work",
+  "Breadth of tasks outweighs small gains",
+  "Rebuttal answers clarifications, not novelty",
+  "Brief champion review discounted",
+  "Meta-review overstates reviewer consensus"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_41qE review (Weaknesses) and comment 2021-08-27",
+  "Authors' replies to Reviewer_41qE, 2021-08-09 and 2021-08-29",
+  "Reviewer_Mncu review, Experiments list",
+  "Reviewer_oDAB review, point 2.3, against paper Table 3",
+  "Reviewer_La4a review",
+  "Committee A meta-review",
+  "Reviewer_Rugm review and post-rebuttal update",
+  "Reviewer_kHDT comment 2021-08-28 and the authors' reply to kHDT (two tables)",
+  "Reviewer_7vAs review",
+  "Committee B meta-review",
+  "paper Eq. 2 (Section 3.1)",
+  "paper Tables 3, 4 and 5"
+ ]
+}

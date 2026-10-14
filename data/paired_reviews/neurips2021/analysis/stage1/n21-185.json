@@ -1,0 +1,211 @@
+{
+ "pair_id": "n21-185",
+ "prompt_version": 1,
+ "kind": "spotlight/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [6, 6, 5, 6],
+   "confidences": [2, 3, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_PzmP", "Reviewer_MgSk", "Reviewer_pviK"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/6/5/6 (PzmP, MgSk, Rm3m, pviK) lie within one point. There is no champion. The only 5, Reviewer_Rm3m, is also the most confident reviewer (4)."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_pviK",
+     "claim": "The experiments use one kernel for the proposed method and KCpA, with no bandwidth tuning, which is unfair to KCpA.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 274-275: 'for fairness we use the same kernel for ρ̂, ρ̌ and KCpA'. Only ρ̂_one-side gets a bandwidth search (line 273). The authors confirmed: 'We did not tune any parameters for any method'. The gap looks structural, not a tuning artefact. KCpA's Table 1 errors equal Q's in 9 of 10 columns. On the linear ramps they sit at 0.16-0.18, near the 1/6 bias of an argmax estimator that converges to the ramp midpoint 1/2. In the camera-ready's tuned-bandwidth Table 1b, ρ̌ beats KCpA in 9 of 10 columns and ties the tenth."
+    },
+    {
+     "reviewer": "Reviewer_pviK",
+     "claim": "The simulations do not report type I error.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5 reports power and l1 error only (line 282), with power details in the appendix. The authors promised a type I table. The camera-ready says its appendix adds type I error (p-value calibration)."
+    },
+    {
+     "reviewer": "Reviewer_pviK",
+     "claim": "The statistic is very similar to KCpA's, essentially without its covariance scaling.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (6) is v²(u−v)²/u² times the squared MMD between the two segments. KFDR whitens the same mean-embedding difference with a regularized covariance. The authors agreed and named a second difference, the scaling. The localization rules differ: KCpA takes an argmax, Eq. (12) averages threshold indicators."
+    },
+    {
+     "reviewer": "Reviewer_Rm3m",
+     "claim": "The detection statistic is incremental and mainly adapted from MMD-based methods.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors replied that Eq. (6) 'equals the re-scaled MMD'. The submission's reference list has no MMD work (no Gretton et al.)."
+    },
+    {
+     "reviewer": "Reviewer_Rm3m",
+     "claim": "The real-data examples give only the detected change points and compare no other method.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 6 compares the estimates with external events (Lehman Brothers, COVID-19) and one published value (1850, Berkes et al. 2009). No baseline runs on either dataset."
+    },
+    {
+     "reviewer": "Reviewer_Rm3m",
+     "claim": "Line 320 calls eq. (3) Vogt et al.'s estimator, but eq. (3) is not an estimator.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 320: 'Vogt et al. (2015) uses estimator (3)'. Eq. (3) is the volatility model; the estimator sits between lines 135 and 136. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_PzmP",
+     "claim": "In line 256 the linear change should be (3u − 1), not (3u − 3).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 256 reads (3u − 3), which jumps from 0 to −2 at u = 1/3 and so is not gradual. The camera-ready reads (3u − 1). A typo."
+    },
+    {
+     "reviewer": "Reviewer_MgSk",
+     "claim": "Line 111 says a sum of Gaussians is chi-square; it should be a sum of squared standard Gaussians.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 111: 'the sum of independent Gaussian r.v. follows a known distribution (chi-square)'. A wording error; Eq. (16) is stated correctly. The authors conceded."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_pviK"],
+    "evidence": "Reviewer_pviK (comment and edit 2021-09-10): 'I'm OK raising my score from 5 --> 6', but 'I do stand by my original comments re: experimental evaluation': tuning ('critical'), type I versus type II error ('very important'), other data structures. It was still 'confused re: the differences with KCpA/KFDR'. Reviewer_Rm3m (2021-08-28): 'I maintain my score'. Reviewer_PzmP's 2021-08-31 edit: the reply 'basically resolved my questions', score unchanged. Reviewer_MgSk posted nothing after the rebuttal; its last edit is 2021-07-15.",
+    "what_convinced_or_not": "The rebuttal answered with explanations and promises: a KCpA inconsistency example, kernel experiments, a type I table, an MMD discussion, string experiments. pviK raised 'in light of some of your other comments' but kept every experimental objection. Rm3m gave no reason. The AC did not accept promises: the comparison 'should not happen in the authors' response and should be an important part of the paper'."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The AC rejected although three of four reviewers rated 6 ('marginally above the acceptance threshold'). Both numbered demands come from the reviews: an MMD and KCpA comparison (Rm3m, pviK), and fair kernel and bandwidth experiments for the method and KCpA (pviK; all four raised kernel choice). The meta-review names no error and calls the proposal 'interesting'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Comparison with MMD-based methods and KCpA missing from the paper; rebuttal promises not accepted (meta-review point 1; Reviewer_Rm3m, Reviewer_pviK)",
+    "Simulations not fair or convincing: one untuned kernel for the method and KCpA, kernel and bandwidth effects unstudied (meta-review point 2; Reviewer_pviK)",
+    "No champion: three marginal 6s and a 5 (mean 5.75); the most confident reviewer was the detractor, and pviK's raise kept its objections"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [8, 5, 7, 7, 7],
+   "confidences": [5, 4, 2, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_W1jH", "Reviewer_oZvV"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_hFCk",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Ratings 8/5/7/7/7. hFCk's 5 sits two points below the median and is the only rating below threshold. hFCk reports 48 hours, and each checkable point holds against the paper (lines 45 and 82-83, Table 1 caption, lines 319-320). After the rebuttal it wrote 'I now lean to accept this paper' but never edited the 5."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_oZvV",
+     "evidence": "Rating 7 at confidence 2 after 2 hours; 'I did not carefully check the correctness'. It calls the related-work comparison 'rather exhaustive', but the paper cites no MMD work and dismisses kernel change-point methods in two sentences (lines 326-329). Its post-rebuttal note is one line."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_W1jH",
+     "claim": "The paper formulates a novel gradual change detection and localization problem.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 25-40 cite earlier gradual-change work, including 'Asymptotic tests for gradual changes' (Hušková and Steinebach, 2002). They name Vogt et al. (2015) as a general nonparametric method for the same problem. Assumptions 2 and 4 come from Vogt et al. (Remarks 4.2, 4.7). The detection step and the statistic are new; the problem is not."
+    },
+    {
+     "reviewer": "Reviewer_W1jH",
+     "claim": "Against three abrupt methods, the proposed algorithm achieves exceptional detection performance.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 283-285: power details are in the appendix, and 'performance of all abrupt as well as gradual CPD methods are similar'. The paper's advantage is in localization (Table 1)."
+    },
+    {
+     "reviewer": "Reviewer_ZPrG",
+     "claim": "The statistic is a special case of Vogt et al. (2015): set f to the kernel's feature map and apply the kernel trick.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (6) equals v²(u−v)²/u² times the squared MMD between the segments. That is the squared supremum of |C_T(u,v,f)| over the RKHS unit ball, so D_T is Vogt's D^gen (Eq. 4) over that class, squared. Lines 104-105 say as much: 'we allow implicitly a much larger F'. The rebuttal's reverse claim fails: its kernel Σ_f (f(y)−f(y'))² is not positive semidefinite."
+    },
+    {
+     "reviewer": "Reviewer_5aeA",
+     "claim": "The paper cites no MMD work, though Eq. 6 looks like the MMD between the groups before and after [Tv].",
+     "checked_against_paper": "correct",
+     "evidence": "No Gretton et al. in the reference list. The authors told Reviewer_Rm3m in A that Eq. (6) 'equals the re-scaled MMD'. The camera-ready adds an MMD paragraph."
+    },
+    {
+     "reviewer": "Reviewer_oZvV",
+     "claim": "The comparison with related work is rather exhaustive.",
+     "checked_against_paper": "incorrect",
+     "evidence": "No MMD citation. Kernel change-point methods get two sentences that call them 'fundamentally different' without an argument (lines 326-329). No trend-filtering work is cited."
+    },
+    {
+     "reviewer": "Reviewer_hFCk",
+     "claim": "The claim of applicability to any data type and any generating process overreaches: the theory assumes independence, and both real datasets are serially dependent.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 82-83 claim a statistic 'applicable to any data type and any generating process'. Line 45 assumes an 'independent sequence', and Assumption 2 assumes local stationarity. Lines 319-320: Vogt et al. 'allow correlated observations, while we assume independence'. The data are daily S&P 500 returns and annual temperature curves."
+    },
+    {
+     "reviewer": "Reviewer_hFCk",
+     "claim": "Table 1 summarizes only 20 replications.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 caption: 'over 20 simulations'. Standard errors of 0.00-0.04 are small next to most gaps, so the point carries little weight."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_W1jH's edit (2021-08-26) matches its comment 'my score stands unchanged'. Reviewer_oZvV's 2021-09-10 edit adds 'I decide to keep my score'. Reviewer_ZPrG (2021-08-26) kept 7. Reviewer_hFCk (2021-08-26): 'It addresses some of my concerns and I now lean to accept this paper'. Its review was never edited, so the 5 stands. Reviewer_5aeA posted nothing.",
+    "what_convinced_or_not": "hFCk did not say which answers convinced it. The answers on generality (soften the wording), categorical data (learned embeddings) and serial dependence (common practice) concede more than they refute. The reply to ZPrG wrongly claims that Vogt's statistic is a special case of the proposed one. No B reviewer challenged it."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Acceptance follows four ratings of 7-8 and hFCk's 'lean to accept'. The spotlight rests on the one 8. The three-sentence meta-review restates the abstract's generality claim, which hFCk showed overreaches. Its 'great scholarly work, from its writing to empirical demonstrations' mirrors W1jH's Scholarship, Experiments and Writing paragraphs. It names none of the weaknesses: novelty over Vogt and Dette (hFCk, ZPrG), missing MMD work (5aeA), independence (ZPrG, hFCk).",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Four of five ratings at 7 or 8, led by a confidence-5 8 (Reviewer_W1jH)",
+    "Generality with guarantees: no data model, data type or feature knowledge needed (meta-review, restating the abstract)",
+    "Writing, scholarship and experiments judged strong (meta-review, echoing Reviewer_W1jH)",
+    "The only detractor (Reviewer_hFCk) moved to 'lean to accept' after the rebuttal"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Baselines untuned: one kernel shared by the method and KCpA, no bandwidth search (Reviewer_pviK)",
+  "No type I error reported (Reviewer_pviK)",
+  "Statistic close to KCpA's KFDR; why KCpA does so badly (Reviewer_pviK)",
+  "Kernel and bandwidth sensitivity not studied (Reviewer_PzmP, Reviewer_MgSk, Reviewer_Rm3m, Reviewer_pviK)",
+  "No baselines on the real data; no theory on false alarms versus detection accuracy (Reviewer_Rm3m)",
+  "Localization rate on the T scale, online extension, trend-filtering literature, data types beyond graphs (Reviewer_MgSk, Reviewer_PzmP, Reviewer_Rm3m, Reviewer_pviK)"
+ ],
+ "issues_only_b": [
+  "Independence assumed, yet both real datasets are serially dependent (Reviewer_hFCk, Reviewer_ZPrG)",
+  "'Any data type and any generating process' overclaims; kernels for categorical data unclear (Reviewer_hFCk)",
+  "Section 4 assumptions poorly motivated; results only asymptotic (Reviewer_ZPrG, Reviewer_oZvV)",
+  "Table 1 averages only 20 replications (Reviewer_hFCk)",
+  "No algorithm summary; 'asymptotic' used loosely; lines 93-94 need a formal explanation (Reviewer_5aeA, Reviewer_W1jH, Reviewer_oZvV)"
+ ],
+ "shared_issues": [
+  "Statistic close to existing work: a kernelized Vogt and Dette statistic and a scaled MMD (A: Reviewer_Rm3m, Reviewer_pviK; B: Reviewer_hFCk, Reviewer_ZPrG, Reviewer_5aeA)",
+  "Computational complexity not stated (A: Reviewer_PzmP; B: Reviewer_5aeA)",
+  "Multiple change points not covered (A: Reviewer_PzmP, Reviewer_Rm3m; B: Reviewer_hFCk)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees saw the same paper and mostly the same facts, and weighted them differently. Reviewers in both found the statistic close to existing work, and they are right. Eq. (6) is a scaled squared MMD between two segments, so the statistic is Vogt and Dette's (2015) statistic over an RKHS unit ball. A's panel was lukewarm (6, 6, 5, 6) and had no champion. Its two most specific reviewers kept their objections after the rebuttal. Reviewer_pviK raised to 6 but called untuned baselines 'critical' and the missing type I error 'very important'; Reviewer_Rm3m held 5. AC A rejected against three marginal accepts, because the MMD and KCpA comparison and the kernel experiments existed only as promises. B's panel was warmer (8, 7, 7, 7, 5). Its confidence-5 champion, Reviewer_W1jH, credits a novel problem and 'exceptional' detection. The paper cites earlier gradual-change tests and reports similar power for all methods. B's only detractor, Reviewer_hFCk, wrote 'I now lean to accept' but kept 5. AC B gave a spotlight in three sentences that name no weakness. A's experimental concerns were real gaps but not fatal: KCpA's errors look structural, and the camera-ready's tuned-bandwidth table keeps the ranking. A rejected a borderline paper on undelivered promises; B over-rewarded it on partly misread praise.",
+ "candidate_reasons": [
+  "AC overrode marginal-accept majority",
+  "rebuttal promises not credited",
+  "baseline-fairness concerns only in A",
+  "champion praise rests on misreadings",
+  "lone detractor softened after rebuttal",
+  "spotlight meta-review names no weakness"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review (points 1 and 2)",
+  "Reviewer_pviK review (Originality, Quality) and comment 2021-09-10",
+  "Reviewer_Rm3m review and comment 2021-08-28",
+  "Reviewer_W1jH review (Novelty, Experiments)",
+  "Reviewer_hFCk review and comment 2021-08-26",
+  "Reviewer_ZPrG review and the authors' reply on Vogt (2015)",
+  "Committee B meta-review",
+  "paper Section 5, lines 273-285, and Table 1",
+  "paper lines 45 and 82-83; Section 7, lines 319-329",
+  "paper Eqs. (4), (6), (8) and lines 103-107",
+  "camera-ready Table 1b (tuned-bandwidth Setting II)"
+ ]
+}

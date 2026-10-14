@@ -1,0 +1,235 @@
+{
+  "pair_id": "n21-210",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 6, 5, 5],
+      "confidences": [4, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_FknY", "Reviewer_jxuz", "Reviewer_npqJ", "Reviewer_um9E"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 5, 5 (FknY, jxuz, npqJ, um9E). jxuz's 6 is the only score above the threshold, and after the rebuttal jxuz wrote that 'a major revision of this paper is required'. No reviewer argued for acceptance."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_FknY",
+          "claim": "The classical VAW (forward) bound with θ = θ* and a high-probability bound Y^2 = O(log T) gives regret of order d log^2 T, a factor of order d better than the paper's bound.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2.2 with θ = θ* gives L_T^f - L_T(θ*) <= λ||θ*||^2 + (Y^f)^2 d log(1+TX^2/λd), and Section 2.3 ('Time dependence', l. 184-189) itself puts (Y^f)^2 at order log T. Theorem 3.3's leading term is 2dσ^2 log(1+TX^2/λd) x (d/2) log(1+TX^2/λd), i.e. d^2 σ^2 log^2 T, and l. 249 admits 'an extra d factor'. The camera-ready keeps d^2 in the theorems and keeps the sentence that they are 'not a mere consequence of bounding Y^2 with high probability'."
+        },
+        {
+          "reviewer": "Reviewer_npqJ",
+          "claim": "Because |y_t| <= XS + |ε_t| and max|ε_t| = O(sqrt(log T)) with high probability, the existing forward bound already gives O(log^2 T) without the Y-scaling problem, so the new bounds add little.",
+          "checked_against_paper": "correct",
+          "evidence": "Same arithmetic as FknY's point; the paper's l. 188-189 say Y^f 'increases the order of the regret bound to log(T)^2'. The rebuttal answered only for ridge, whose Y^r includes the predictions."
+        },
+        {
+          "reviewer": "Reviewer_FknY",
+          "claim": "The 'stringent regularization limitation' (l. 144) is a made-up problem: against θ* the regularization cost is λ||θ*||^2, so λ need not depend on T.",
+          "checked_against_paper": "correct",
+          "evidence": "The limitation comes from the λ(Y^A)^2 T / λ_rT(G_T(0)) term of Corollary 2.3.1, which compares with the unregularized batch minimizer. Against θ* (Eq. 6, the regret of all new results) Theorem 2.2 costs only λS^2. The authors replied 'your intuition is true' and restated the adversarial case."
+        },
+        {
+          "reviewer": "Reviewer_FknY",
+          "claim": "Corollary 3.3.1 bounds R*_{T,[-Y,Y]}, a supremum over arbitrary bounded y_t, so it gives no lower bound for the stochastic setting.",
+          "checked_against_paper": "correct",
+          "evidence": "L. 135 defines R* as an inf over algorithms of a sup over x in [0,1]^d and |y_t| <= Y; Corollary 3.3.1 (l. 245) only inserts a random Y. The authors called 'for all Y > 0' a typo and redefined R* with a sup over 'sub-Gaussian' y_t, which FknY showed is still a worst case; FknY's request for a chain of inequalities (2021-08-31) got no reply. The camera-ready deletes Corollary 3.3.1 and the 'Lower bound' section, and now claims upper bounds of order dσ^2 log T log log T, which the submission's Ω(log^2 T) stochastic lower bound (l. 206) would forbid."
+        },
+        {
+          "reviewer": "Reviewer_FknY",
+          "claim": "The paper omits small-loss bounds (Orabona, Cesa-Bianchi, Gentile) and Corollary 8 of Abbasi-Yadkori, Pál, Szepesvári (2012), which already proves Lemma C.2.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither paper is in the submission's reference list. The authors conceded both, and the camera-ready adds them ([2], [18], Remark 1). Lemma C.2 itself is in the appendix, which the PDF does not contain."
+        },
+        {
+          "reviewer": "Reviewer_FknY",
+          "claim": "Lattimore and Szepesvári's book (note between Exercises 19.3 and 19.4) already removes the assumption <x, θ*> in [-1, 1] for linear bandits.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The claim is about the book, not the paper. The authors conceded: 'Evidently this methods implies the same bounds for the SLB, with only an additional second order term.' The camera-ready does not cite the book."
+        },
+        {
+          "reviewer": "Reviewer_jxuz",
+          "claim": "Lines 247-252 attribute the extra d factor to the time-uniformity of the upper bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "L. 249-250 say so. The authors replied that their 'intuition about the extra d factor was incorrect'; the camera-ready replaces the passage with a discussion of Tirinzoni et al."
+        },
+        {
+          "reviewer": "Reviewer_jxuz",
+          "claim": "The main text has no proof sketch of the high-probability bounds.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L. 228-233 give a five-line sketch for Theorem 3.3. It lists steps without the argument, so the request for more detail is fair."
+        },
+        {
+          "reviewer": "Reviewer_jxuz",
+          "claim": "Fig. 2 is labelled regret but does not increase, and the forward algorithm with λ = 0.001 has an unexplained bump.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 2 (p. 7) plots instantaneous regret under the label 'Online Regret'. Panel (b) has a spike to about 3x10^3 near observation 5, about 10 times the other curves. The camera-ready caption adds '(Instantaneous loss difference)'."
+        },
+        {
+          "reviewer": "Reviewer_npqJ",
+          "claim": "λ = 1/T in the bandit experiment is unfair to ridge.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3 uses λ = 10^-5 with ||x_t|| <= 200 (l. 299-302), and the text itself calls these 'aberrant regularization parameters'. The authors conceded that with constant λ 'both algorithms perform on par'."
+        },
+        {
+          "reviewer": "Reviewer_npqJ",
+          "claim": "Theorem 4.1 still needs the bounds X and S, which together imply Assumption 1 up to scaling, so 'unbounded rewards' is overstated.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 3 takes S as input and the OFUL^f bound contains (λ^1/2 + X)S; with ||x|| <= X and ||θ*|| <= S, |<x, θ*>| <= XS. The camera-ready adds Remark 4 with the authors' proposed workaround."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_FknY"],
+        "evidence": "FknY (edited 2021-08-30): 'I have raised the score from 4 to 5'. jxuz (edited 2021-09-01): 'I will not raise my score'. npqJ (edited 2021-08-30): 'I would like to keep my score'. um9E (edited 2021-09-10): 'I tend to keep my original score'. The mean went from 5.0 to 5.25.",
+        "what_convinced_or_not": "FknY accepted the Eq. 12 and Lemma C.1 argument for the step at appendix line 499, then found that Corollary 3.3.1 does not cover the stochastic case; the authors' 'typo' fix did not answer this, and FknY's last request got no reply. npqJ accepted that λ = 1/T serves a best-of-both-worlds goal but still found the title 'somewhat misleading'. jxuz was satisfied on its own points but backed the others' call for a 'major revision'. The authors conceded the wrong factor-d explanation, the textbook exercise, two missing references and parity of ridge and forward at constant λ."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 5, 6, 5, 5. The meta-review lists the reviewers' two issues: limited significance (no new algorithm or proof technique; labels bounded by O(sqrt(log T)) with high probability, so the bound may add little; d^2 against d) and an unclear motivation for scaling λ. It does not mention FknY's open lower-bound question.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "New bounds no better than the classical forward bound plus a high-probability bound on |y_t| (FknY, npqJ)",
+        "Analysis of known algorithms with standard techniques, a 'moderate increment' (um9E, npqJ, jxuz)",
+        "d^2 upper bound against a d lower bound, with a wrong explanation of the gap (jxuz)",
+        "Unclear motivation for λ = 1/T when a constant λ suffices in the stochastic setting (npqJ, FknY)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 7, 7, 8],
+      "confidences": [3, 3, 2, 4],
+      "reviews_edited_after_posting": ["Reviewer_WQsZ", "Reviewer_4n5Q"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 7, 8 (WQsZ, XAWf, YH9r, 4n5Q). 4n5Q's 8 is one point above the rest and comes with a substantive review at confidence 4, which also says ridge and forward 'are not that different most of the time'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_YH9r",
+          "evidence": "One hour, confidence 2, a three-sentence main review that lists no weakness and says 'I did not go through all the proofs'. It calls the forward algorithm 'a new algorithm' introduced by the authors; line 13 credits it to [22, 2] (Vovk 2001; Azoury and Warmuth 2001). No engagement after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_WQsZ",
+          "claim": "The last inequality in the proof of Lemma C.1 fails, because x/log(1+x) is non-increasing on (0, 1).",
+          "checked_against_paper": "incorrect",
+          "evidence": "f(x) = x/log(1+x) is non-decreasing on [0, inf) because log(1+x) >= x/(1+x); it rises from 1 at 0 to 1/log 2 = 1.44 at 1. The authors gave this proof and WQsZ retracted: 'I did one of those notorious sign errors'."
+        },
+        {
+          "reviewer": "Reviewer_WQsZ",
+          "claim": "Fig. 3 uses only λ = 1/T, although Fig. 2 shows that λ = 1 is much better for ridge; the two panels of Fig. 2 also have different y-axes.",
+          "checked_against_paper": "correct",
+          "evidence": "L. 302: λ = 10^-5 = 1/T. In Fig. 2a ridge with λ = 1 starts near 10^2 against about 10^7 for λ = 0.001. The y-axes run from 10^-2 to 10^8 and from 10^-2 to 10^4."
+        },
+        {
+          "reviewer": "Reviewer_XAWf",
+          "claim": "OFUL may do badly in Fig. 3 only because λ is fixed at 10^-5.",
+          "checked_against_paper": "correct",
+          "evidence": "L. 302 fixes λ = 10^-5 with ||x_t|| <= 200; the authors conceded that 'moderate values of λ lead to comparable performances'."
+        },
+        {
+          "reviewer": "Reviewer_XAWf",
+          "claim": "Corollary 3.3.1 holds only as T tends to infinity, not uniformly over time.",
+          "checked_against_paper": "correct",
+          "evidence": "L. 247 says so. XAWf did not ask whether the corollary covers the stochastic setting at all."
+        },
+        {
+          "reviewer": "Reviewer_YH9r",
+          "claim": "The key contribution is a new algorithm, the forward algorithm.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L. 13: 'The forward regression algorithm, popularized in [22, 2]'. The paper analyses existing algorithms; its only new algorithm is the OFUL^f variant in Section 4."
+        },
+        {
+          "reviewer": "Reviewer_4n5Q",
+          "claim": "Theorem 3.2 matches the lower bound only for large λ, where X^2/(λ log(1+X^2/λ)) is close to 1.",
+          "checked_against_paper": "correct",
+          "evidence": "The factor in Theorem 3.2 tends to 1 only as X^2/λ tends to 0 and grows like X^2/(λ log(X^2/λ)) for small λ. The authors agreed and pointed to Fig. 2a."
+        },
+        {
+          "reviewer": "Reviewer_4n5Q",
+          "claim": "The paper does not mention Vovk's older lower bound (Competitive on-line statistics, 2001).",
+          "checked_against_paper": "correct",
+          "evidence": "[22] is cited only for the algorithm and its early analysis (l. 13, 72, 112). The camera-ready still does not discuss that lower bound."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_WQsZ"],
+        "evidence": "WQsZ (edited 2021-08-24): 'I will increase my score to 7', after the Lemma C.1 thread; its pre-rebuttal text ('leaning towards accepting') fits a 6. 4n5Q edited on 2021-08-29 but added no post-rebuttal text, so any change is unknown. XAWf and YH9r never edited.",
+        "what_convinced_or_not": "The authors' derivative proof settled WQsZ's Lemma C.1 doubt, and they promised moderate-λ experiments while conceding that OFUL and OFUL^f perform on par at moderate λ. To XAWf they discussed why uniform lower bounds are hard; they did not tell B, as they told A, that their explanation of the extra d was wrong."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 7, 7, 7, 8. The four-sentence meta-review says 'The reviewers are in consensus that this paper should be accepted' and gives no reason for a spotlight. It says the paper removes a boundedness assumption 'on the inputs'; the paper removes it on observations and predictions, and X appears in every bound.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four accept ratings (7, 7, 7, 8) and no reviewer doubting significance",
+        "Paper's framing taken as stated: forward has better bounds than ridge and a matching lower bound (WQsZ, 4n5Q, YH9r)",
+        "The only soundness objection (Lemma C.1) was the reviewer's own sign error",
+        "Weak λ = 1/T experiment treated as fixable in revision (WQsZ, XAWf)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Classical forward bound plus a high-probability bound on |y_t| already gives d log^2 T, a factor of order d better than Theorem 3.3 (FknY, npqJ)",
+    "'Stringent regularization' is an artifact of comparing with the batch minimizer; a constant λ suffices in the stochastic setting (FknY, npqJ)",
+    "Corollary 3.3.1 bounds a worst case, not the stochastic regret (FknY); the camera-ready drops it",
+    "Removing Assumption 1 for linear bandits is a known textbook exercise (FknY; conceded)",
+    "Missing small-loss bounds and Abbasi-Yadkori, Pál, Szepesvári 2012 (FknY; conceded)",
+    "Wrong explanation of the extra d factor (jxuz; conceded)",
+    "Theorem 4.1 still needs X and S, so 'unbounded rewards' is overstated (npqJ)"
+  ],
+  "issues_only_b": [
+    "Last inequality of Lemma C.1 (WQsZ; a false alarm, retracted)",
+    "Vovk's 2001 lower bound not discussed (4n5Q)",
+    "Ridge upper bound matches the lower bound only for large λ (4n5Q)",
+    "Lower bound asymptotic, not uniform in time (XAWf)",
+    "Fig. 1 should plot the difference of the two forward terms; restate Theorem 2.3 for ||x|| <= X (WQsZ)"
+  ],
+  "shared_issues": [
+    "Bandit experiment uses only λ = 1/T = 10^-5; the authors conceded parity at moderate λ to both committees (npqJ; WQsZ, XAWf)",
+    "Ridge and forward perform alike most of the time (npqJ, rated 5; 4n5Q, rated 8)",
+    "Known algorithms analysed with mostly standard techniques (jxuz, um9E, npqJ; WQsZ)",
+    "Gap between upper and lower bounds (jxuz on d; XAWf on time-uniformity; 4n5Q on λ)",
+    "Figure labels and axes hard to read (jxuz; WQsZ)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee A's reviewers tested the paper's central claims and found them weaker than stated; Committee B's reviewers took the claims as stated. FknY and npqJ (A) showed that the classical forward (VAW) bound, with a high-probability bound on max|y_t|, already gives d log^2 T regret against θ*, while Theorem 3.3 gives d^2 log^2 T; the paper's own Section 2.3 and line 249 support this. FknY also showed that Corollary 3.3.1 bounds a worst case and not the stochastic regret; the authors did not answer, and the camera-ready deletes the corollary and claims upper bounds that a valid Ω(log^2 T) stochastic lower bound would forbid. The authors also conceded to A that the bandit relaxation is a textbook exercise, that their explanation of the extra d was wrong, and that ridge with a constant λ performs on par. A's reviewers (5 to 6 hours each) settled at 5, 6, 5, 5, and the AC followed. B's reviews took 1, 2, 3 and 7 hours and listed the 'better bounds' and the lower bound as strengths; YH9r took the forward algorithm for a new algorithm, and B's only soundness objection (WQsZ on Lemma C.1) was the reviewer's own sign error. B's AC turned 7, 7, 7, 8 into a spotlight in four sentences. The committees did weight some shared facts differently: npqJ (5) and 4n5Q (8) both saw that ridge and forward perform alike most of the time, and both committees heard the authors concede parity at moderate λ. The decisive difference is that only A found checkable weaknesses in the central claims, and they hold against the paper.",
+  "candidate_reasons": [
+    "classical bound already implies result",
+    "flawed lower bound caught once",
+    "light reviews accept paper's framing",
+    "known algorithm mistaken as new",
+    "same parity concession weighted differently",
+    "ACs follow reviewer score means"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_FknY final review and comments of 2021-08-30 and 2021-08-31",
+    "Reviewer_npqJ final review (post-rebuttal update)",
+    "Reviewer_jxuz final review and the authors' reply on lines 247-252",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_YH9r final review",
+    "Reviewer_WQsZ review and the Lemma C.1 thread (2021-08-23 to 2021-08-24)",
+    "Reviewer_4n5Q final review",
+    "b/paper_submitted.pdf Theorems 2.2 and 3.3 (pp. 4, 6) and Section 2.3 'Time dependence' (p. 5)",
+    "b/paper_submitted.pdf Corollary 3.3.1 and lines 247-252 (p. 7)",
+    "b/paper_submitted.pdf Fig. 2 (p. 7) and Fig. 3 with lines 293-302 (p. 9)",
+    "paper.pdf (camera-ready) Section 3.3 'Tightness of the bounds' and Remarks 1, 3, 4, 5: the lower bound is gone",
+    "a/ has no paper_submitted.pdf; b/paper_submitted.pdf is the same submission (A's line references match it); the appendix is in neither PDF"
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "pair_id": "n21-062",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 7, 8],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_e4Tf"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 8, all with confidence 4; no reviewer departs from the rest."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_e4Tf",
+          "claim": "Theorem 4 reads as holding for every decoder class; the proof supports only 'there exists a dataset X and a class of decoders'.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Theorem 4 (lines 205-209) begins 'Assume the constraint θ ∈ Θ and data X ... are such that' with no existential quantifier. The authors confirmed e4Tf's reading. The camera-ready restates it as 'there exists data X ... and decoder'."
+        },
+        {
+          "reviewer": "Area_Chair_ynFg",
+          "claim": "Eq. (6) is not a generic AE objective, because the same h penalises reconstruction and latent norms; the 'impossibility' conclusions are not fully shown.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (6) has one h in both terms (line 175), yet lines 171-173 say 'even arbitrary AE-based objectives will necessarily require penalty terms with infinite gradients' and line 217 says 'any possible AE architecture'. The camera-ready replaces (6) with L_{g,h} (Eq. 7)."
+        },
+        {
+          "reviewer": "Reviewer_9TAc",
+          "claim": "Below Eq. (5), plugging the optimal γ back into Eq. (3) leaves a 1/γ term that the argument ignores.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With γ* from Eq. (5), the 1/γ data term equals d, a constant, as the authors replied. The camera-ready adds a sentence saying so."
+        },
+        {
+          "reviewer": "Reviewer_9vZA",
+          "claim": "Line 47: the reparameterisation trick needs a specific functional form only for the encoder, not the decoder.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 47 says 'for the encoder and decoder distributions'; the camera-ready reads 'a specific functional form for the encoder distribution'. Minor."
+        },
+        {
+          "reviewer": "Reviewer_9vZA",
+          "claim": "Θ is used before it is defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Θ first appears in Eq. (6) (line 176) and is explained at lines 185-189. Minor."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_e4Tf"],
+        "evidence": "Reviewer_e4Tf edited 2021-08-12: 'The authors have addressed my two concerns. Given their response, I am raising my score' (final 8). Reviewer_9TAc (no edit), 2021-08-12: the clarifications 'address all my questions'. Reviewer_9vZA, 2021-08-17: 'I keep my score and remain in favor of accepting.'",
+        "what_convinced_or_not": "Promises of text changes: a reworded Theorem 4, and a note that decoder-parameter gradients also grow as 1/sqrt(γ). The AC accepted a promised extension of Theorem 4 to a separate reconstruction penalty g. Nobody asked to see revised text."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'This is a strong paper that all reviewers felt should be accepted to the conference; a viewpoint I concur with myself.' The AC's own discussion post found the shared-h problem in Eq. (6) and accepted the authors' fix for the final version ('quite important and should be incorporated'). The meta-review asks for 'slightly more careful quantification to avoid overclaiming', a new word for 'sparse' and a shorter introduction. It gives no reason for the spotlight tier beyond 'a strong paper'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept ratings 7, 7, 8 (mean 7.33), one raised after the rebuttal",
+        "Reviewers judged the theory novel, clearly written and well distinguished from Dai and Wipf (2019)",
+        "The AC's own generality objection (one h in Eq. 6) answered by an extension the AC accepted for the camera-ready",
+        "Overclaiming, the term 'sparse' and the long introduction treated as camera-ready edits"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 6, 5, 6],
+      "confidences": [3, 3, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_VPWz", "Reviewer_ATkA", "Reviewer_69AE", "Reviewer_f5mJ"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_69AE",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only rating below threshold (5), with the highest confidence (5), against 6, 6, 6. The original review, kept struck through, says 'I have patiently read this manuscript until page 5 ... then I gave up' and calls the paper 'a firm no'. Two of its concrete claims are wrong (PCA, overfitting). The final 5 rests on a premise objection that Reviewer_ATkA rejected; 69AE never answered the authors' reply to it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_69AE",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') after reading to page 5 and scrolling to the experiments. It asks what the abstract's last sentence means; Section 4 and the conclusion (pages 7-9), which it did not read, explain it. Its final post says it 'was unable to further engage with the author(s) as promised'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_69AE",
+          "claim": "The PCA example is inconsistent with Definition 1, because PCA's latent representation has no uncertainty.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Definition 1 has an explicit deterministic-AE clause (lines 99-101, 105-107), and lines 113-115 present PCA under it."
+        },
+        {
+          "reviewer": "Reviewer_69AE",
+          "claim": "The infinite gradient is simply overfitting in the finite-sample case.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper ties γ → 0 to data on an r-dimensional manifold under the ground-truth measure (lines 20-24, 57-63); that divergence does not need finite-sample overfitting. The camera-ready footnote 2 adds that an over-flexible decoder can also memorise a finite sample, a separate case."
+        },
+        {
+          "reviewer": "Reviewer_69AE",
+          "claim": "Zero reconstruction error forces p(x|z) to a Dirac delta and makes KL[q(z|x)||p(z)] degenerate, so Definition 1 does not fit variational inference.",
+          "checked_against_paper": "correct",
+          "evidence": "The fact holds, and the paper states it: the VAE meets criterion (i) only as γ → 0 and σ_z → 0, with unbounded terms (lines 126-133). Whether this makes the analysis irrelevant to VAEs is a judgment; Reviewer_ATkA disagreed. The camera-ready replaced the stochastic condition (Eq. 4) with a deterministic Definition 1."
+        },
+        {
+          "reviewer": "Reviewer_ATkA",
+          "claim": "Verbal claims (lines 219-220, line 327, 'any AE type architecture') are broader than the assumptions under which the results hold.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 171-173 and 217-220 extend Theorem 4 to 'arbitrary' or 'any possible' AE objectives, but the theorem covers Eq. (6) with one shared h and the lossless criterion of Definition 1. Line 327 reads 'Hence there is no obvious alternative'."
+        },
+        {
+          "reviewer": "Reviewer_ATkA",
+          "claim": "All claims strictly apply only to Gaussian-likelihood models with trainable variance.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 4 concerns a generic penalty h in the AE objective (6) (lines 175-209), with no likelihood or trainable precision; the Gaussian VAE enters only through Lemmas 2-3 with h = log. ATkA later said the criticism was 'not about the particular technical findings but about the main narrative'."
+        },
+        {
+          "reviewer": "Reviewer_ATkA",
+          "claim": "Only one experiment tests the γ-smoothing argument, with no repetitions, no comparison to other methods and no measure of sparsity.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 has one CelebA comparison, learned γ against fixed γ = γ* (Figure 4). Checklist 3(c) marks error bars 'N/A'. Figure 4 reports reconstruction error and MMD, not the number of active dimensions."
+        },
+        {
+          "reviewer": "Reviewer_f5mJ",
+          "claim": "Line 103 should say 'minimal', not 'maximal'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 103 counts latent dimensions that carry no information about X; that count should be maximal, as the authors replied. Reviewer_9TAc in Committee A found the same phrasing 'very difficult to digest'."
+        },
+        {
+          "reviewer": "Reviewer_f5mJ",
+          "claim": "Eq. (6) follows from the VAE loss (3) only under narrow conditions (constant σ_z, small γ).",
+          "checked_against_paper": "correct",
+          "evidence": "Lemma 2 needs an affine decoder, σ_z = s constant and γ → 0 (lines 191-193). Lemma 3 needs σ_z → 0 plus an added log transform of each ||z_k||² (lines 194-196). Both remain in the camera-ready."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "The paper needs a section on prior work on infinite gradients, with a detailed comparison to Dai and Wipf (2019).",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no related-work section. Dai and Wipf (2019) is cited nine times in the main text and supplies key steps of Section 2 (lines 116-118, 126-127, 139-141). The camera-ready adds no such section."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_ATkA", "Reviewer_f5mJ", "Reviewer_69AE"],
+        "evidence": "Reviewer_ATkA: 'I have raised my score accordingly from a 5 to a 6' (edited 2021-08-23). Reviewer_f5mJ, 2021-09-02: 'Decided to increase the score to 6 after analysing all discussions'. Reviewer_69AE, 2021-09-02: 'I retract my claim this is a bad paper ... I am adjusting my score' (final 5, after an original 'firm no'). Reviewer_VPWz edited 2021-08-27: 'I will keep my score' (6).",
+        "what_convinced_or_not": "The authors conceded scope: they accepted the label 'lossless', offered a deterministic Definition 1 and promised to narrow the claims. ATkA accepted the narrative 'if it is clearly expressed in paper', but would not give 'a very high score with high confidence' without seeing the revision. f5mJ raised after reading the others' exchanges, without taking part. 69AE stayed 'unconvinced of its relevance in VAE settings'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The AC adopted the reviewers' critiques but not their final ratings (6, 6, 6, 5); Reviewer_ATkA wrote that it 'will not oppose accepting the paper'. 'Most notably, they were not convinced by the claims of the applicability of the results to VAEs (e.g. the zero reconstruction error ...)': only Reviewer_69AE held that view, and ATkA wrote 'In contrast to reviewer 69AE ... broadly agree with the response'. The AC called the changes 'a major revision'; ATkA called them 'polishing (in terms of presentation and discussion, not necessarily on the technical level)'. The AC posted nothing in the discussion. Its summary limits the result to 'a Gaussian likelihood with a learned variance', ATkA's first reading; Theorem 4 covers any penalty h.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Claims judged imprecise and overstated, 'a serious issue for a theoretical work'",
+        "Applicability to VAEs doubted because Definition 1 requires zero reconstruction error (Reviewer_69AE's objection, presented as all reviewers' view)",
+        "AC judged the needed rewrite a major revision that requires resubmission",
+        "No prior-work section and no detailed comparison with Dai and Wipf (2019)",
+        "Borderline ratings 6, 6, 6, 5 (mean 5.75) and no champion"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theorem 4's quantifiers: the proof gives only an existence result over datasets and decoder classes (Reviewer_e4Tf)",
+    "Gradients of all decoder parameters, not only of γ, grow as 1/sqrt(γ) (Reviewer_e4Tf)",
+    "'Sparse' is the wrong word for dimensions that are always inactive; use 'minimal' (Committee A AC)",
+    "Introduction too long and generic (Committee A AC)",
+    "Minor points: line 47, Θ, a dropped 1/n in Eq. 13 (Reviewer_9vZA); speed of learning γ and bad local minima (Reviewer_9TAc)"
+  ],
+  "issues_only_b": [
+    "Zero reconstruction error is degenerate for a variational model (Reviewer_69AE)",
+    "The smoothing claim rests on one unrepeated CelebA run, with no other method and no sparsity measure (Reviewer_ATkA; Reviewer_69AE: 'experiments need to be substantially enriched')",
+    "Aggregate posteriors or trainable priors as another route to sparsity; line 327 'no obvious alternative' (Reviewer_ATkA)",
+    "Noise-free, perfect-reconstruction assumption unrealistic; narrow σ_z conditions in Lemmas 2-3 (Reviewer_f5mJ)",
+    "γ initialisation, two-stage sampling, OOD detection with fixed γ (Reviewer_VPWz)"
+  ],
+  "shared_issues": [
+    "Generality of Eq. (6) and Theorem 4 with one shared h: Committee A's AC accepted the extension to a separate g for the camera-ready; in B, Reviewer_f5mJ got the same answer and the AC counted overstatement as a reason to reject",
+    "Overclaiming beyond the theorem: A's AC asked for 'slightly more careful quantification'; B's AC called it 'a serious issue for a theoretical work'",
+    "Lossless optimality in Definition 1 against information-theoretic views: Reviewer_9TAc (A) found it 'very difficult to digest' and moved on; Reviewer_ATkA (B) made it a main concern",
+    "Non-Gaussian likelihoods: a question from Reviewer_9TAc (A), a scope objection from Reviewer_ATkA (B)",
+    "Dependence on Dai and Wipf (2019): A's reviewers judged the work a well-distinguished follow-up; Reviewer_f5mJ, Reviewer_ATkA and B's AC wanted a dedicated discussion",
+    "Confusing 'maximal' phrasing of Definition 1 (ii): Reviewer_9TAc (A), Reviewer_f5mJ (B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A recommended a spotlight and Committee B rejected, but they did not disagree about the facts. Both found the theory correct. Both saw that the verbal claims reach beyond Theorem 4 (one shared h in Eq. 6, a lossless notion of optimality, Gaussian scope) and that the work leans on Dai and Wipf (2019). A's reviewers raised these points as questions and rated 7, 7, 8. A's AC found the Eq. (6) gap personally, accepted a promised extension, and asked only for 'slightly more careful quantification'. B's two most critical reviewers read the paper from variational-inference and information-bottleneck positions and made the framing central. Reviewer_69AE opened with a confidence-5 'firm no' after reading five pages and kept a 5 on a premise objection that Reviewer_ATkA rejected. After long discussion B's ratings rose to 6, 6, 6, 5, and ATkA called the remaining work 'polishing' and would 'not oppose accepting'. B's AC, silent in the discussion, still called the rewrite 'a major revision' and presented 69AE's VAE objection as the reviewers' shared view. The split therefore comes from how two ACs priced the same overclaiming, amplified by reviewer background. The camera-ready shows the rewrite was large (Definition 1 and Theorem 4 restated, four remarks added), and it kept the conclusion's 'no obvious alternative' sentence.",
+  "candidate_reasons": [
+    "ACs differ on revision size",
+    "Overclaiming tolerated versus penalised",
+    "Reviewer background shapes framing objections",
+    "Confident partial-reading detractor sets tone",
+    "AC generalises one reviewer's objection",
+    "AC overrides borderline-positive scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Area_Chair_ynFg posts 2021-08-26 (Committee A discussion)",
+    "Reviewer_ATkA comments 2021-08-18 and 2021-08-23",
+    "Reviewer_69AE original review and posts 2021-08-11 and 2021-09-02",
+    "Reviewer_f5mJ comment 2021-09-02",
+    "Reviewer_e4Tf post-rebuttal edit",
+    "a/paper_submitted.pdf (the submission both committees saw) Definition 1, lines 96-115",
+    "paper_submitted lines 171-173, 205-220, 324-327 (Theorem 4 and its verbal claims)",
+    "paper_submitted Lemmas 2-3, lines 191-196",
+    "paper_submitted Section 4, Figure 4, checklist 3(c)",
+    "camera-ready paper.pdf: Definition 1, Remarks 1-4, Theorem 4, Conclusion"
+  ]
+}

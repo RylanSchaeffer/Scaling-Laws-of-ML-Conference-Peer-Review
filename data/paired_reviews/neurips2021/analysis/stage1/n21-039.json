@@ -1,0 +1,196 @@
+{
+  "pair_id": "n21-039",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 4, 4],
+      "confidences": [5, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_k8sL", "Reviewer_1kmf"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/4/4 (k8sL, XysC, 1kmf) lie within one point. Reviewer_k8sL wrote the only positive text ('experiments are adequate') but lowered its rating to 5 after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1kmf",
+          "evidence": "Calls novelty 'limited' on references [1-3]. Two prune or sparsify classification CNNs; [3] is a 2009 paper on kernel adaptive filters. None prunes an SR network. Calls SSA a 'similarity-based ... module', a term the paper does not use, and asks for an undefined 'Basic module ablation analysis'. No reply after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_k8sL",
+          "evidence": "1 hour at confidence 5 ('checked the math/other details carefully'). The main review is three sentences of praise; the substance is three requests under limitations. The final rating follows the other reviewers' arguments, not a new reading of the paper."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_k8sL",
+          "claim": "Quantitative improvements are marginal compared with LatticeNet and IMDN.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors' rebuttal Table 1-1 (x4): LatticeNet 32.30/28.68/27.62/26.25 vs ASSLN 32.29/28.69/27.66/26.27 dB on Set5/Set14/B100/Urban100, so -0.01 to +0.04 dB at 708K vs 777K parameters. Paper Table 2: ASSLN beats IMDN by 0.08 to 0.39 dB at nearly equal parameters and Mult-Adds (Table 3). 'Marginal' fits LatticeNet; against IMDN the margins are modest, not nil."
+        },
+        {
+          "reviewer": "Reviewer_k8sL",
+          "claim": "The SSA term only encourages m_i = m_j; it is not a strict constraint, yet residual blocks need exactly equal masks.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (5) is a soft penalty on Sigmoid masks (Section 3.2(4), Eq. 6). The authors conceded (A3-1): the term 'only encourages m_i = m_j instead of strictly guaranteeing it'."
+        },
+        {
+          "reviewer": "Reviewer_1kmf",
+          "claim": "Table 2 should compare with recent lightweight SR methods (MADNet, LatticeNet, s-LWSR).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2's newest baseline is IMDN (ACM MM 2019). The camera-ready still omits all three. The rebuttal comparison showed a near-tie with LatticeNet."
+        },
+        {
+          "reviewer": "Reviewer_1kmf",
+          "claim": "Novelty is limited because the idea of sparsity or redundancy in conv kernels is out of date [1,2,3].",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper claims only that lightweight SR methods neglect this redundancy (Section 1). None of [1-3] prunes an SR network or aligns pruned indices across residual connections. The specific prior SR pruning work (DHP; ICASSP 2020) was named only in Committee B."
+        },
+        {
+          "reviewer": "Reviewer_1kmf",
+          "claim": "The ablation analysis is not enough.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares ASSL only with scratch training and L1-norm pruning, on Set5 x2. No row removes the SSA term or weight normalization."
+        },
+        {
+          "reviewer": "Reviewer_XysC",
+          "claim": "Table 2 omits EDSR, and the method is not applied to RCAN.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 has no EDSR or RCAN row; Fig. 1 gives EDSR only as parameters and FLOPs. The rebuttal's RCAN+ASSL table gives no model size and shows the pruned model beating full RCAN on all five sets."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_k8sL"],
+        "evidence": "Reviewer_k8sL edited its review on 2021-08-27, the day of its 'Afer rebuttal' comment: 'I understand the contribution ... But I agree that the novelty of the current submission is not highlighted enough, and the quantitative improvements are marginal (compared with LatticeNet and IMDN). So I update my rates to 5.' The 'But' and the positive review text imply a higher earlier rating; its value is not recorded. Reviewer_XysC never edited. Reviewer_1kmf edited only on the posting day (2021-07-16), before the rebuttal. Neither posted after the rebuttal.",
+        "what_convinced_or_not": "k8sL's own requests (EDSR+KD, runtime, SSA) were answered, but k8sL moved on the other reviewers' novelty arguments and on the authors' own LatticeNet table, written for 1kmf, which showed a near-tie. The two 4s did not respond to RCAN+ASSL, the novelty arguments or the MADNet/LatticeNet/s-LWSR comparison. Nobody questioned the RCAN+ASSL table, which gives no model size and shows the pruned model beating full RCAN everywhere."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All three ratings sit below threshold (mean 4.33), and the AC rejected. The meta-review's two reasons, novelty not communicated and 'fairly small improvements', paraphrase k8sL's post-rebuttal comment. It says 'the authors seem to agree' with both; the record shows no such agreement on the size of the gains. Its 'over existing methods for pruning' does not match k8sL's comparison (lightweight SR networks), though Table 1's margins over L1-norm pruning (0.03 to 0.12 dB up to ratio 0.7) fit it.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All three final ratings below threshold (5, 4, 4; mean 4.33)",
+        "Novelty read as pruning applied to SR, not shown to be non-trivial (Reviewer_XysC, Reviewer_1kmf, Reviewer_k8sL after the rebuttal)",
+        "Small gains: near-tie with LatticeNet in the authors' own rebuttal table, modest margins over IMDN (Reviewer_k8sL)",
+        "Missing comparisons with 2020 lightweight SR networks and with RCAN or IPT (Reviewer_1kmf, Reviewer_XysC)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [8, 8, 8],
+      "confidences": [5, 5, 5],
+      "reviews_edited_after_posting": ["Reviewer_DsQ3", "Reviewer_Lh3t", "Reviewer_chSU"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8/8/8 (DsQ3, Lh3t, chSU), all at confidence 5."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_chSU",
+          "evidence": "2 hours at confidence 5 ('checked the math/other details carefully'). Lists the paper's 'first attempt to leverage filter pruning for efficient image SR' as a strength. Prior SR pruning work named by Reviewer_DsQ3 in the same committee contradicts that claim."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_chSU",
+          "claim": "The paper is 'the first attempt to leverage filter pruning for efficient image SR'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The quote is accurate (Section 1), but the claim is not. Reviewer_DsQ3 named DHP (ECCV 2020) and an ICASSP 2020 SR channel-pruning paper. The authors' reply (A3-2) lists differences and confirms the ICASSP paper pruned SRResNet/SRGAN and LapSRN. The camera-ready keeps the claim and cites neither paper."
+        },
+        {
+          "reviewer": "Reviewer_DsQ3",
+          "claim": "Related works [2, 3] (DHP; ICASSP 2020) also address efficient SR via network pruning and are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is in the reference list, also in the camera-ready, although the B meta-review asked the authors to update the draft with the reviewers' suggestions."
+        },
+        {
+          "reviewer": "Reviewer_DsQ3",
+          "claim": "The compressed models are 'obviously better (higher PSNR and sharper details)' than the comparison models.",
+          "checked_against_paper": "correct",
+          "evidence": "ASSLN is best in every column of Table 2, but its margin over IMDN is 0.08 to 0.39 dB at nearly equal size. Table 2 omits LatticeNet, which Committee A's rebuttal table puts within 0.04 dB. 'Obviously' overstates the margin."
+        },
+        {
+          "reviewer": "Reviewer_DsQ3",
+          "claim": "The only pruning baseline is L1-norm pruning [37].",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares ASSL with scratch training and L1-norm pruning only. The rebuttal added HRank: ASSL leads by 0.03 to 0.34 dB on Set5 x2."
+        },
+        {
+          "reviewer": "Reviewer_Lh3t",
+          "claim": "The paper uses the same pruning ratio for every layer.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.2(2): a local scheme with one pre-defined sparsity level r per layer."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Lh3t", "Reviewer_chSU"],
+        "evidence": "Reviewer_Lh3t (edit and comment 2021-08-22): 'I've decided to upgrade my rating slightly.' Reviewer_chSU wrote in its review 'The score would be upgraded, if my concerns are well addressed'; on 2021-08-20 it edited the review and wrote 'All my concerns have been well addressed'. The raise is inferred from that; chSU does not state it. Reviewer_DsQ3 decided 'to keep my initial rating' of 8. Earlier ratings are not recorded.",
+        "what_convinced_or_not": "New experiments closed every concern: weight normalization alone changes scratch training by at most 0.02 dB, PSNR varies by at most 0.05 dB over the tested Delta and T values, ASSL beats HRank by 0.03 to 0.34 dB, and training takes about 28 hours on one GPU. The runtime table shows parity with IMDN (51.0 vs 51.8 ms), not a speedup, yet Lh3t counted it as an answer. DsQ3 accepted the listed differences from DHP and the ICASSP paper. Nobody asked the authors to drop the 'first attempt' claim."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences: 'an exciting new approach', 'All the reviewers are positive about the paper', a request to update the draft, and 'Congratulations for a nice result!'. No reason beyond the reviewers' positivity, no mention of DsQ3's prior-work point, and nothing that sets the paper above a poster except the unanimous 8s.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 8s at confidence 5 after the rebuttal",
+        "Method judged novel: L2 regularization of weight-normalization scales and Gram-matrix alignment of soft masks (Reviewer_Lh3t, Reviewer_chSU)",
+        "Table 2 read as strong results: best on every dataset and scale against IMDN and older baselines (Reviewer_DsQ3, Reviewer_Lh3t)",
+        "Rebuttal experiments (weight-normalization ablation, sensitivity, HRank, runtime) answered every concern raised"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Near-tie with LatticeNet; 2020 lightweight SR baselines (MADNet, LatticeNet, s-LWSR) missing from Table 2 (Reviewer_1kmf, Reviewer_k8sL)",
+    "Novelty read as a plain combination of generic pruning and SR (Reviewer_XysC, Reviewer_1kmf)",
+    "SSA penalty does not guarantee aligned masks (Reviewer_k8sL)",
+    "No results on RCAN or IPT; EDSR missing from Table 2; IPT cited against the residual-block motivation (Reviewer_XysC)",
+    "No comparison with EDSR plus knowledge distillation (Reviewer_k8sL)",
+    "Introduction's NAS-cost framing unfair to most SR methods (Reviewer_1kmf)"
+  ],
+  "issues_only_b": [
+    "Prior SR pruning work (DHP, ICASSP 2020) uncited, against the 'first attempt' claim (Reviewer_DsQ3)",
+    "No recent pruning baseline such as HRank (Reviewer_DsQ3)",
+    "Gain may come from weight normalization rather than ASSL (Reviewer_chSU)",
+    "Sensitivity to Delta and T; meaning of gamma_th in Eq. 6 (Reviewer_chSU)",
+    "Uniform per-layer pruning ratio (Reviewer_Lh3t)",
+    "Training cost and need for a pretrained model (Reviewer_DsQ3)"
+  ],
+  "shared_issues": [
+    "No wall-clock runtime in the paper; both got the same table, which shows parity with IMDN (A: Reviewer_k8sL; B: Reviewer_Lh3t)",
+    "Ablations incomplete (A: Reviewer_1kmf, unspecified 'basic module'; B: Reviewer_chSU, weight normalization)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently, and the gap predates the rebuttal. Both saw one method and one Table 2, where ASSLN beats IMDN by 0.08 to 0.39 dB at nearly equal size. B's reviewers read this as 'strong' and 'obviously better' and called the alignment penalty novel. A's two 4s read the work as generic pruning applied to SR; neither was revised or posted after the rebuttal. DsQ3's 8 was its initial score. After the rebuttal, Lh3t raised its score, and chSU, who had promised a raise, called all concerns addressed. A's only positive reviewer, k8sL (1 hour, three-sentence main review), dropped to 5. k8sL cited the authors' own rebuttal table: LatticeNet (ECCV 2020) is within 0.04 dB of ASSLN at x4. That point is correct, and B never saw it. Only B heard of prior SR pruning work (DHP; ICASSP 2020) that contradicts the 'first attempt' claim chSU praised, and B did not weigh it. No reviewer found an error in a result. A's reject rests on a correct but small point and two 4s that never engaged. B's spotlight rests on unanimous confidence-5 8s that never tested the SOTA claim against 2020 baselines, and on a four-sentence meta-review.",
+  "candidate_reasons": [
+    "Same modest gains, opposite readings",
+    "Novelty read as mechanism versus application",
+    "Authors' rebuttal table exposed near-tie",
+    "Detractors silent after the rebuttal",
+    "Champion overlooked contradicting prior work",
+    "Meta-reviews add no own reading"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_k8sL 'Afer rebuttal' comment, 2021-08-27",
+    "Committee A authors' response to Reviewer_1kmf, Table 1-1 (LatticeNet, MADNet, s-LWSR)",
+    "Committee A meta-review",
+    "Reviewer_1kmf review, references [1-3]",
+    "Reviewer_DsQ3 review (missing related works [2, 3]) and authors' reply A3-2",
+    "Reviewer_chSU review ('first attempt') and comment 2021-08-20",
+    "Reviewer_Lh3t comment 2021-08-22; runtime table (51.0 vs 51.8 ms)",
+    "Committee B meta-review",
+    "paper Section 1 ('first attempt') and Section 3.2(4), Eqs. 5-6",
+    "paper Tables 1-3 (camera-ready; no submitted PDF in the folder)"
+  ]
+}

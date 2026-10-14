@@ -1,0 +1,246 @@
+{
+  "pair_id": "n21-033",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_uost",
+        "Reviewer_559w",
+        "Reviewer_icWA",
+        "Reviewer_P8yc"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/7/7/7 (uost, 559w, icWA, P8yc), all raised after the rebuttal (uost: 'from 6 to 7'). No reviewer argued for more than accept. Every confidence label says math and details were not carefully checked; Reviewer_P8yc is at confidence 2."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_uost",
+          "claim": "Section 3.2's toy example compares ICQ with BCQ before ICQ is described.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Section 3.2 still runs 'our method ICQ' on the toy MMDP; Section 4.1 defines ICQ. Reviewer_Rr7B made the same point in B."
+        },
+        {
+          "reviewer": "Reviewer_uost",
+          "claim": "The paper says the baselines use the hyperparameters their authors provided, but the rebuttal says they were fine-tuned on StarCraft II.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors' second reply (2021-08-17) concedes the paper used BCQ zeta=0.3 and CQL alpha=1. Their MMM sweep shows these were the best of five values each (BCQ-MA 10.2, CQL-MA 8.7, ICQ-MA 18.85). uost accepted that the conclusions hold."
+        },
+        {
+          "reviewer": "Reviewer_uost",
+          "claim": "The paper claims 'much more efficient learning' than AWR and ABM without comparing against them.",
+          "checked_against_paper": "correct",
+          "evidence": "The sentence is still in camera-ready Section 5. Table 1 adds AWR final scores copied from D4RL; there is no ABM and no learning-speed comparison."
+        },
+        {
+          "reviewer": "Reviewer_icWA",
+          "claim": "StarCraft II is not deterministic, contrary to Section 6.1.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded ('mostly deterministic'). Camera-ready Section 6.1 now says 'near deterministic'."
+        },
+        {
+          "reviewer": "Reviewer_P8yc",
+          "claim": "In Figure 4 behaviour cloning beats every baseline except ICQ-MA.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Section 6.1: QMIX, BCQ-MA and CQL-MA 'have poor performances' and 'BC-MA has a sound performance'. Reviewer_Rr7B in B read the same fact as a sign of weak baseline reproductions."
+        },
+        {
+          "reviewer": "Reviewer_559w",
+          "claim": "ICQ outperforms existing baselines in the single-agent case, which is 'already impressive'.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submitted PDF is missing and the camera-ready replaced the single-agent results. In B the authors conceded the submitted D4RL tests were 'simple' with 'a slight improvement compared with BCQ', and that their own CQL runs fell below CQL's published scores."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_uost",
+          "Reviewer_559w",
+          "Reviewer_icWA",
+          "Reviewer_P8yc"
+        ],
+        "evidence": "All four reviews were edited after the rebuttal (2021-08-19 to 2021-09-02). uost: 'raising the score from 6 to 7'. 559w (2021-08-30): 'I'm raising my score to a 7'. icWA: 'I've changed my ratings accordingly'; the authors thanked icWA for 'raising the score to 7' on 2021-08-14. P8yc commented on 2021-09-02 that most concerns were resolved; the authors thanked it for 'raising the score to 7' on 2021-09-04.",
+        "what_convinced_or_not": "The 26-task D4RL table answered icWA's single-agent question. The MMM hyperparameter sweep answered uost's tuning concern. Derivations of Z and the KL loss answered 559w and P8yc, and promised clarity edits covered the rest. The authors told icWA that ICQ 'maybe has a limited performance with randomly sampled data'; icWA accepted it as a limitation. The table A saw gives higher ICQ means than the table posted to B in 7 of the 8 rows where they differ, with identical standard deviations. The camera-ready gives a third version with far larger standard deviations (walker2d-medium +-0.7 became +-10.7)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Some reviewers raised their scores, resulting in a consensus recommendation to accept the paper.' The spotlight is the AC's own step, 'based on the strong theoretical insight and empirical results, as well as the timeliness'. No reviewer rated above 7, and every reviewer's confidence label says math was not carefully checked.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four 7s after the rebuttal; every concern raised was a clarification the authors answered",
+        "Rebuttal's 26-task D4RL table taken as 'substantial additional empirical evidence' for single-agent use",
+        "Large StarCraft II gains over BCQ-MA and CQL-MA, with a baseline sweep that satisfied Reviewer_uost",
+        "AC added the spotlight for 'strong theoretical insight' and the timeliness of offline multi-agent RL"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        5,
+        5,
+        6
+      ],
+      "confidences": [
+        5,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_xr9t",
+        "Reviewer_Rr7B",
+        "Reviewer_5dG2",
+        "Reviewer_xuSQ"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/5/5/6 (xr9t, Rr7B, 5dG2, xuSQ), split two and two around the threshold after every reviewer raised. Reviewer_xr9t has the highest confidence (5) and the least time spent (2 hours)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_xr9t",
+          "evidence": "2 hours at confidence 5 ('checked the math/other details carefully'). Its CQL point was correct, but it asked the authors to 'run baselines properly'. They copied CQL's published numbers instead, and xr9t raised to 6 with one line: 'The authors addressed my concern.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_xr9t",
+          "claim": "In the D4RL experiments CQL scores below BCQ, inconsistent with the CQL paper, so the baselines look badly run.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked through the authors' concession, not the submitted PDF (missing). They ran CQL's code 'without any modification', blamed hyperparameter sensitivity, and replaced the runs with CQL's published numbers. Camera-ready Table 1 says CQL results are 'taken from [14, 22]'. Reviewer_5dG2 and Reviewer_xuSQ raised the same point."
+        },
+        {
+          "reviewer": "Reviewer_5dG2",
+          "claim": "The single-agent evaluation is small (7 tasks, one dataset each) and ICQ often tracks behaviour cloning.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors told xr9t: 'We only test ICQ on simple D4RL tasks in the paper', with 'a slight improvement compared with BCQ'. Even in camera-ready Table 1, ICQ is within 7 points of BC on all three MuJoCo-medium tasks (71.8 vs 66.6, 55.6 vs 49.0, 42.5 vs 36.1) and below BC on hopper medium-expert (109.0 vs 111.9)."
+        },
+        {
+          "reviewer": "Reviewer_5dG2",
+          "claim": "The expanded results are mixed: ICQ is weak on poor-quality datasets and does well only where the behaviour policy is good.",
+          "checked_against_paper": "correct",
+          "evidence": "In the rebuttal table ICQ trails CQL on all six MuJoCo random and medium-replay tasks (halfcheetah-random 2.2 vs 35.4; walker2d-medium-replay 10.2 vs 26.7). Camera-ready Table 1 drops those six rows. 'Only' overstates: ICQ leads CQL on AntMaze medium and large (e.g. 80.0 vs 61.2), whose data do not come from a good task policy."
+        },
+        {
+          "reviewer": "Reviewer_5dG2",
+          "claim": "The implicit constraint matches the softmax backup that EMaQ ablates in its Appendix J.",
+          "checked_against_paper": "not_checked",
+          "evidence": "EMaQ is not among the pair's files. After the authors' reply 5dG2 agreed the methods differ but rest on 'the same high-level idea'. The camera-ready does not cite EMaQ, although the authors promised B to discuss it 'in the critical place of the paper'."
+        },
+        {
+          "reviewer": "Reviewer_Rr7B",
+          "claim": "All offline baselines except ICQ-MA score below behaviour cloning in StarCraft II, which casts doubt on the reproductions.",
+          "checked_against_paper": "correct",
+          "evidence": "The fact holds (camera-ready Section 6.1). The sweep sent to Rr7B shows tuning does not close the gap: BCQ-MA scores 9.1 to 10.2 over five zeta values, ICQ-MA 18.85 on MMM. No one checked whether the implementations are faithful."
+        },
+        {
+          "reviewer": "Reviewer_Rr7B",
+          "claim": "Section 3.2's toy example studies ICQ before ICQ is introduced.",
+          "checked_against_paper": "correct",
+          "evidence": "Unchanged in the camera-ready: Section 3.2 runs ICQ and Section 4.1 defines it. Reviewer_uost raised the same point in A."
+        },
+        {
+          "reviewer": "Reviewer_xuSQ",
+          "claim": "Baseline hyperparameters are defaults from prior work, tuned for other tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors told xuSQ 'we have fine-tuned hyperparameters', but told A's Reviewer_uost that the paper used the defaults (BCQ zeta=0.3, CQL alpha=1). Their sweep shows the defaults were the best of five values each, so the point does not change the StarCraft II ranking."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_xr9t",
+          "Reviewer_Rr7B",
+          "Reviewer_5dG2",
+          "Reviewer_xuSQ"
+        ],
+        "evidence": "All four reviews were edited after the rebuttal (2021-08-10 to 2021-08-20). 5dG2 (2021-08-10): 'I will increase my score by a point' (4 to 5), then 'keeping my weak rejection recommendation'. xuSQ: 'updating my score to 6' (2021-08-10). xr9t: 'I will raise my score to 6' (2021-08-19). Rr7B: 'I've increased my score' (2021-08-20), final 5.",
+        "what_convinced_or_not": "The expanded D4RL table and the swap to CQL's published numbers bought each reviewer a raise but no consensus. 5dG2 found the results 'mixed' and the case against modelling the behaviour policy 'weak'. Rr7B called copied baselines 'highly suspicious' and disagreed that single-agent methods cannot extend to multi-agent tasks. xuSQ's 6 came with a list of required revisions (BRAC and KL-control, harder D4RL tasks, CQL fixes, limitations). xr9t raised to 6 although the authors copied CQL's numbers instead of re-running it. To Rr7B the authors offered a new title and to move the multi-agent method to the appendix."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split 6, 6, 5, 5. 'Some of the reviewers are not fully convinced by the interpretation of the results' matches 5dG2's final comment, which Rr7B endorsed. The deciding line is the AC's own: the additional results 'require a set of further edits which warrant another round of reviews'. The meta-review names no specific flaw.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Split ratings (6, 6, 5, 5) after the rebuttal; Reviewer_5dG2 kept a weak reject",
+        "Submitted D4RL CQL baseline under-run; replaced by copied numbers that Reviewer_Rr7B distrusted",
+        "Expanded single-agent results mixed: ICQ trails CQL on low-quality datasets (5dG2, Rr7B)",
+        "Novelty limited by closeness to EMaQ, BRAC, KL-control and CQL (5dG2, xuSQ, xr9t)",
+        "Presentation and framing need revisions large enough to warrant another review round (AC)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Approximating the partition function Z by a softmax over the minibatch, and its batch-size effect (559w, P8yc, uost)",
+    "Derivation of the forward-KL policy loss and the dropped entropy term (559w, P8yc)",
+    "StarCraft II is not deterministic (icWA)",
+    "Seen/unseen notation and the claim that n-step returns 'eliminate' bias (icWA, uost)",
+    "'Much more efficient learning' claimed without comparing to AWR or ABM (uost)"
+  ],
+  "issues_only_b": [
+    "Submitted D4RL CQL baseline scored far below CQL's published results; authors conceded (xr9t, 5dG2, xuSQ)",
+    "Baseline numbers copied from other papers instead of re-run under the same conditions (Rr7B)",
+    "Novelty judged limited because of EMaQ, BRAC, KL-control, CQL and MOPO (5dG2, xuSQ, xr9t)",
+    "Single-agent evaluation small, gains over BC and BCQ slight, significance claim untested (5dG2, Rr7B, xr9t)",
+    "Multi-agent motivation without a multi-agent-specific method; the paper should centre on single-agent ICQ (Rr7B)",
+    "No DOP baseline for the policy that generated the StarCraft II data (Rr7B)",
+    "Importance sampling is fragile far from the behaviour policy (xuSQ)"
+  ],
+  "shared_issues": [
+    "Organisation: the Section 3.2 toy example runs ICQ before Section 4 defines it (uost; Rr7B)",
+    "Theorems lack intuition in the main text (P8yc; xuSQ)",
+    "Whether baseline hyperparameters were tuned for StarCraft II (uost; xuSQ)",
+    "Behaviour cloning beats every offline baseline except ICQ-MA in StarCraft II (P8yc; Rr7B)",
+    "Whether ICQ helps in single-agent tasks (icWA; xr9t, 5dG2, Rr7B)",
+    "Resemblance to advantage-weighted backups: AWR and ABM (icWA, uost); EMaQ (5dG2)",
+    "Meaning of the extra error term epsilon_b in the tabular analysis (uost; Rr7B)",
+    "Weak results on low-quality data, disclosed by the authors in both forums (icWA; xuSQ, 5dG2)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "A recommended a spotlight and B a rejection mainly because B's reviewers knew the single-agent offline RL literature and checked the baselines, and A's did not. Three of B's four reviewers saw that the submission's D4RL CQL scores fell far below CQL's published ones; the authors conceded and replaced their runs with copied numbers. B also tied the implicit constraint to EMaQ, BRAC and KL-control. A's reviewers, all at confidence 2 or 3, asked about derivations and notation and read the single-agent results as a strength. All eight reviewers raised their scores after the rebuttal, so the gap stayed: four 7s against 6, 6, 5, 5. The ACs then weighted the same rebuttal facts differently. A's AC called the new D4RL table 'substantial additional empirical evidence' and lifted the consensus to a spotlight. B's AC followed Reviewer_5dG2, who read that table as mixed because ICQ trails CQL on every MuJoCo random and medium-replay task, and judged the promised edits large enough to need another review round. On the single-agent evidence the record supports B: the camera-ready drops those six rows instead of discussing them. Neither committee refuted the StarCraft II gains, the paper's core result.",
+  "candidate_reasons": [
+    "baseline flaw caught by one committee",
+    "literature experts versus clarity-focused reviewers",
+    "same rebuttal table weighted differently",
+    "novelty overlap with prior offline methods",
+    "promised revisions judged to need re-review",
+    "AC lifted uniform sevens to spotlight"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_xr9t review, limitations section (CQL below its published scores)",
+    "Authors' replies to Reviewer_xr9t, Reviewer_5dG2 and Reviewer_xuSQ, 2021-08-10 (CQL run 'without any modification', replaced by published numbers)",
+    "Reviewer_5dG2 comment 'Thanks for clarifications', 2021-08-10 (results 'mixed', keeps weak reject)",
+    "Reviewer_Rr7B comment, 2021-08-10 (copied baselines 'highly suspicious')",
+    "Authors' reply to Reviewer_Rr7B, 2021-08-11 (offer to retitle and move the multi-agent method to the appendix)",
+    "Reviewer_uost comment, 2021-08-15, and authors' reply, 2021-08-17 (baseline defaults; MMM sweep)",
+    "Committee A meta-review ('substantial additional empirical evidence'; spotlight for 'strong theoretical insight')",
+    "Committee B meta-review ('warrant another round of reviews')",
+    "Authors' general remarks in both forums (ICQ means differ in 8 of 26 D4RL rows)",
+    "paper.pdf (camera-ready; submitted version missing): Table 1 has no random or medium-replay rows and takes CQL 'from [14, 22]'; Sections 3.2 and 6.1"
+  ]
+}

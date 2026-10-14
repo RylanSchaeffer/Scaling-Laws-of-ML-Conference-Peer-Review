@@ -13,6 +13,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,6 +30,11 @@ def get(url: str, token: str, raw: bool = False):
             with urllib.request.urlopen(req, timeout=120) as r:
                 b = r.read()
                 return b if raw else json.loads(b.decode())
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return None  # this revision's attachment is gone; the caller tries an earlier one
+            err = e
+            time.sleep(10 * (attempt + 1))
         except Exception as e:  # noqa: BLE001
             err = e
             time.sleep(10 * (attempt + 1))
@@ -52,10 +58,13 @@ def main() -> None:
             d = get(f"{API}/references?referent={n['id']}&original=true", token)
             revs = sorted(d.get("references", []), key=lambda r: r["tcdate"])
             with_pdf = [r for r in revs if r["content"].get("pdf") and r["tcdate"] < REVIEWS_RELEASED]
-            ref = with_pdf[-1]["id"] if with_pdf else None
-            if ref:
-                b = get(f"{API}/references/attachment?id={ref}&name=pdf", token, raw=True)
-                open(os.path.join(RAW, "pdf_submitted", f"{n['id']}.pdf"), "wb").write(b)
+            ref = None
+            for cand in reversed(with_pdf):  # the latest pre-review PDF whose attachment is still served
+                b = get(f"{API}/references/attachment?id={cand['id']}&name=pdf", token, raw=True)
+                if b:
+                    open(os.path.join(RAW, "pdf_submitted", f"{n['id']}.pdf"), "wb").write(b)
+                    ref = cand["id"]
+                    break
             out.write(json.dumps({"forum": n["id"], "reviewed_pdf_ref": ref,
                                   "revisions": [{"id": r["id"], "tcdate": r["tcdate"], "pdf": r["content"].get("pdf"), "fields": sorted(r["content"].keys())} for r in revs]}) + "\n")
             out.flush()

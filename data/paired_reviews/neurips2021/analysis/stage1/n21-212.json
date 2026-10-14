@@ -1,0 +1,256 @@
+{
+  "pair_id": "n21-212",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_omcp",
+        "Reviewer_PoYC"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_PoYC",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Ratings 5, 5, 7 (UycQ, omcp, PoYC); PoYC is the only score above the threshold. The first review is brief (2-3 hours, 'Appears to be a complete work'), but in discussion PoYC named specific gaps (Table 2 transfers only between ResNet50 ensembles that differ by seed; no adversarially trained targets) and raised to 7 only after the authors supplied cross-architecture and AdvProp results (2021-08-28)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_omcp",
+          "evidence": "Short pros/cons review that calls the experiments 'impressing' and rates 5 on two cons. Con 2 says no experiment supports the claim that the attack 'severely harms some of the most popular techniques'; Sections 5.1-5.4 (Tables 1-4) are exactly those experiments. After the rebuttal pointed this out and conceded con 1, omcp wrote only 'After reading the authors' response and also other reviews, I would like to keep my original score.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_UycQ",
+          "claim": "The proposed method is simply a rescaled version of FGSM (later: of PGD, with a line-searched scale).",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1: x' = x -/+ eps * sign(grad_x kappa), with eps multiplied by decay = 0.5 up to 15 times until the predicted label is unchanged (Section 5 setup). For the softmax score sign(grad p) = sign(grad log p), so each step is an FGSM step on the cross-entropy of the predicted label. It is single-step, so 'FGSM' fits better than 'PGD'."
+        },
+        {
+          "reviewer": "Reviewer_UycQ",
+          "claim": "Tables 1-4 report no comparison with standard FGSM or PGD at comparable eps.",
+          "checked_against_paper": "correct",
+          "evidence": "No baseline attack appears in Tables 1-4 or anywhere in Section 5. BIM and PGD appear only in Section 6 as possible improvements to ACE."
+        },
+        {
+          "reviewer": "Reviewer_UycQ",
+          "claim": "The paper does not discuss Ovadia et al. (2019) on uncertainty under dataset shift.",
+          "checked_against_paper": "correct",
+          "evidence": "Not among the 26 references; the authors conceded they 'overlooked' it."
+        },
+        {
+          "reviewer": "Reviewer_UycQ",
+          "claim": "There is no clear statement of limitations or negative societal impact.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist marks societal impact 'N/A' and points limitations to Section 6, which lists possible improvements to the attack, not limitations. PoYC judged the limitations adequate."
+        },
+        {
+          "reviewer": "Reviewer_omcp",
+          "claim": "The claim that the algorithm 'could easily be modified for regression' has no supporting experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 sketches a threshold-based conversion; no regression experiment exists. The authors conceded and offered to remove the claim."
+        },
+        {
+          "reviewer": "Reviewer_omcp",
+          "claim": "No experiments support the claim that the attack 'severely harms some of the most popular techniques for estimating uncertainty'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The sentence is in Section 6; Sections 5.1-5.4 and Tables 1-4 attack softmax, Deep Ensembles, MC-Dropout and SelectiveNet, with black-box AURC 3.5-6.5 times worse at unchanged accuracy (Section 5.1)."
+        },
+        {
+          "reviewer": "Reviewer_PoYC",
+          "claim": "The ensemble black-box result attacks one ResNet50 ensemble with another that differs only by training seed.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 / Table 2: five ResNet50 models attack five other ResNet50 models. Table 1, however, already transfers from a ten-ResNet50 proxy to EfficientNetB0, MobileNetV2, DenseNet161 and VGG16."
+        },
+        {
+          "reviewer": "Reviewer_PoYC",
+          "claim": "The main paper gives no evidence that the attack works against defended (adversarially trained) models.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 says adversarial training was deliberately not used for the ensembles; no adversarially trained target appears anywhere."
+        },
+        {
+          "reviewer": "Area chair (Committee A)",
+          "claim": "DeepFool is not considered as a label-preserving baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "DeepFool (Moosavi-Dezfooli et al., 2016) is not cited. No reviewer in either committee asked for it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_PoYC"
+        ],
+        "evidence": "PoYC's review was edited 2021-08-28 with 'Post-Rebuttal: ... I am raising my score', matching the 2021-08-28 comment 'I will raise my score' (final 7, probably from 6). UycQ never edited and wrote 2021-08-29 'I would like to keep my score'. omcp's only edit is on the posting day (2021-07-16), and on 2021-08-29 omcp kept 'my original score'.",
+        "what_convinced_or_not": "PoYC accepted the lending scenario and the new results (ensemble proxy of other architectures; AdvProp-trained EfficientNetB0 as vulnerable as the standard one). UycQ was not convinced: the reply gave no PGD comparison, answered the cross-entropy question only with a toy argument, and did not discuss data shift, so ACE still looked like 'a rescaled version of PGD'. omcp gave no reason, although the reply showed one con was a misread and conceded the other."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Reject matches two 5s against one 7. The reasoning is UycQ's: more evaluation against modified existing attacks. It credits omcp with 'supported the concern' and says 'all reviewers' agree; the public record shows only omcp keeping the score and PoYC raising to 7. It adds a DeepFool baseline that no reviewer raised, and still calls the paper 'an original work'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Technical contribution judged thin: ACE seen as FGSM/PGD with a line-searched eps (UycQ, endorsed by the AC)",
+        "No comparison with existing attacks (FGSM, PGD; the AC adds DeepFool)",
+        "Two 5s unchanged after the rebuttal; only PoYC moved, to 7"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_XqTW",
+        "Reviewer_qDh3"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 7 (XqTW, qDh3, bohc). No reviewer departs from the others, and no reviewer scores above 7 or argues for a spotlight."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bohc",
+          "evidence": "Rating 7 on four one-line bullets (originality, quality, clarity, significance) that name no weakness and ask no question; no edit and no discussion, despite 6 hours reported. The review adds a vote, not evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qDh3",
+          "claim": "The method is a weak FGSM attack with small eps: untargeted on correctly classified images, targeted toward the predicted class on misclassified ones.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 steps against sign(grad kappa) when f is correct and along it when f is wrong; for the softmax score this equals an FGSM step on the cross-entropy of the predicted label."
+        },
+        {
+          "reviewer": "Reviewer_qDh3",
+          "claim": "The algorithm searches downward for the largest eps that does not flip the label.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 lines 8-11: eps is multiplied by decay until the prediction is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_qDh3",
+          "claim": "RC and AURC are defined only in the appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 gives a three-sentence verbal description of AURC; the definition and example are in Appendix A, which Section 3 'strongly recommend[s] reading'."
+        },
+        {
+          "reviewer": "Reviewer_qDh3",
+          "claim": "Related work omits attacks that target distance to the decision boundary (CW, MMA).",
+          "checked_against_paper": "correct",
+          "evidence": "Related work covers only L-BFGS [24], FGSM [10] and transfer attacks [16]; CW, MMA and DeepFool are not cited."
+        },
+        {
+          "reviewer": "Reviewer_qDh3",
+          "claim": "Implied by the 2021-08-31 questions: the paper does not show that small-eps attacks transfer across architectures or work black-box.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 attacks EfficientNetB0, MobileNetV2, DenseNet161 and VGG16 through a proxy of ten ResNet50 models (Section 5). The authors pointed this out on 2021-09-02."
+        },
+        {
+          "reviewer": "Reviewer_XqTW",
+          "claim": "The attack needs the ground-truth label of each input.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 line 4 compares the prediction with the true label y to choose the direction. The authors conceded and proposed proxies."
+        },
+        {
+          "reviewer": "Reviewer_XqTW",
+          "claim": "The AURC numbers for EfficientNetB0 in Table 1 and Figure 4 disagree.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1's caption says black-box; Figure 4's caption and Section 5.1 say white-box. The clean baselines agree (AURC 69.1 in both)."
+        },
+        {
+          "reviewer": "Reviewer_XqTW",
+          "claim": "Ensemble and MC-Dropout are evaluated only with mean-softmax or entropy scores, not epistemic spread.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 uses the average softmax; Section 5.3 uses predictive entropy. No variance-based score is tested."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_XqTW",
+          "Reviewer_qDh3"
+        ],
+        "evidence": "XqTW wrote 2021-08-19 'I can raise my recommendation to an accept' and edited the review 2021-08-24 (final 7; earlier score not visible). qDh3 wrote 2021-08-31 'I have raised my score by 1' and 2021-09-03 'I have increased my score by one', last edit 2021-09-03 (final 6, so probably 4 before the rebuttal). bohc never edited or commented.",
+        "what_convinced_or_not": "XqTW accepted the proxy-label and partial-order arguments, on condition that the paper adds the promised discussion of scalable attacks and detection; the 'fresh perspective and paradigm shift' carried the decision. qDh3 moved once for the lending illustration and once for the AdvProp results, but still wanted real-world evidence and a main-text AURC definition."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows three scores at or above the threshold. The Spotlight does not: no reviewer scored above 7, qDh3 sits at 6 with open requests, and bohc's 7 is generic. The three-sentence meta-review says the paper was 'very well received' and adds 'I personally find the proposed method very interesting ... elegant'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Novel problem framing judged enough despite a simple method (XqTW 'paradigm shift', qDh3 'novel enough')",
+        "Rebuttal examples and new results (lending scenario, AdvProp, variance) raised XqTW and qDh3",
+        "AC's own enthusiasm ('elegant') set the Spotlight tier on scores 7, 6, 7"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No baseline attacks (FGSM, PGD) at comparable eps and no empirical cross-entropy ablation (UycQ)",
+    "DeepFool as a label-preserving baseline (A's AC only)",
+    "Dataset shift (Ovadia et al. 2019) makes the degradation unsurprising (UycQ)",
+    "Unsupported claim of an easy extension to regression (omcp)",
+    "Claim that the attack harms popular uncertainty methods called unsupported (omcp; wrong)",
+    "No limitations or societal-impact statement (UycQ)"
+  ],
+  "issues_only_b": [
+    "Attack needs ground-truth labels, costly at scale (XqTW)",
+    "Epistemic (variance-based) uncertainty not tested (XqTW)",
+    "Detection by monitoring AURC or calibration instead of accuracy (XqTW, qDh3)",
+    "RC and AURC defined only in the appendix (qDh3)",
+    "Related work omits boundary-distance attacks such as CW and MMA (qDh3)",
+    "AURC mismatch between Table 1 and Figure 4 (XqTW; a misread of black-box vs white-box)"
+  ],
+  "shared_issues": [
+    "ACE is a small-eps FGSM-style attack; the novelty is the problem, not the technique (UycQ; XqTW, qDh3)",
+    "Practical threat scenario not convincing in the submission (PoYC, UycQ; qDh3, XqTW)",
+    "No adversarially trained targets (UycQ, PoYC; qDh3)",
+    "Black-box transfer across architectures (PoYC on Table 2; qDh3, already answered by Table 1)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same facts and weighted them differently. Three reviewers (UycQ in A; XqTW and qDh3 in B) called ACE a standard gradient attack at small eps, and Algorithm 1 confirms it: one FGSM-style sign-gradient step whose eps is halved until the label is unchanged. B's critical reviewers put the novelty in the problem framing, called that enough ('completely fine', 'paradigm shift'), and raised their scores after the lending example and the AdvProp results. A's UycQ held technical depth as the bar; the rebuttal gave no PGD comparison and no empirical cross-entropy ablation, so the 5 stayed. A's second 5, from omcp, rests on a conceded side claim (regression) and a misread (Section 5 does test the 'popular techniques'), and omcp kept it without a reason; A's AC nevertheless cited omcp as support, added an unrequested DeepFool baseline, and rejected on 5, 5, 7. B's Spotlight does not follow from its reviews: scores 7, 6, 7, one generic 7 from bohc, and a three-sentence meta-review resting on the AC's view that the method is 'elegant'. The accept/reject split is a weighting difference amplified by an inattentive detractor in A; the Spotlight tier is AC enthusiasm.",
+  "candidate_reasons": [
+    "conceptual novelty versus technical depth",
+    "rebuttal answered one committee's requests",
+    "inattentive detractor score left standing",
+    "AC enthusiasm sets spotlight tier",
+    "AC adds unrequested baseline demand"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_UycQ review and 2021-08-29 comment",
+    "Reviewer_omcp review (con 2) and 2021-08-29 comment",
+    "Reviewer_PoYC comments of 2021-08-22 and 2021-08-28",
+    "Reviewer_qDh3 review and comments of 2021-08-31 and 2021-09-03",
+    "Reviewer_XqTW comments of 2021-08-19 and 2021-08-24",
+    "Reviewer_bohc review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper Algorithm 1 and Section 5 setup (decay 0.5, max_iterations 15)",
+    "paper Sections 5.1-5.4, Tables 1-4, and the Section 6 sentence 'This attack severely harms ...'",
+    "paper Table 1 and Figure 4 captions",
+    "all paper checks use b/paper_submitted.pdf (a/ has no submitted PDF; both forums reviewed the same submission)"
+  ]
+}

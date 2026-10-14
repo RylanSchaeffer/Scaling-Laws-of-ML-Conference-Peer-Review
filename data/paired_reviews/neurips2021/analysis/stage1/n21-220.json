@@ -1,0 +1,216 @@
+{
+  "pair_id": "n21-220",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 6, 7, 6],
+      "confidences": [5, 4, 4, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/7/6 (qGAU, SJG2, qxEj, sCgD), all within one point. The two 7s are the least argued: Reviewer_qxEj lists no weaknesses, and Reviewer_qGAU's review is brief but specific. The two 6s carry the detailed critique."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_qxEj",
+          "evidence": "Rating 7 on a review that lists three 'intriguing findings' and praises clarity and timeliness. No weaknesses, one suggested detection experiment, no reply after the rebuttal. Weak evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_sCgD",
+          "claim": "Two ResNet variants of one family do not support the paper's 'representative set of CNN' models (L65f).",
+          "checked_against_paper": "correct",
+          "evidence": "L65-67 list ResNet50x1 and ResNet152x2 as the only CNNs; every CNN result uses ResNets (Figure 13b adds a ResNet152). The same limitation sank the paper in B, but sCgD judged it non-fatal."
+        },
+        {
+          "reviewer": "Reviewer_sCgD",
+          "claim": "The conclusion that early local attention is important for performance (L133) is not tested; local attention may be a by-product of more data.",
+          "checked_against_paper": "correct",
+          "evidence": "L129-133 infer importance from two co-occurring facts: ImageNet-only ViT-L/16 and ViT-H/14 perform worse (citing [13]) and do not attend locally (Figure 4). No intervention on attention distance is run. The authors left it to future work."
+        },
+        {
+          "reviewer": "Reviewer_sCgD",
+          "claim": "The MLP-Mixer discussion is announced in the abstract but is not in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text mentions MLP-based models once (L251-253) and defers to appendix Section H."
+        },
+        {
+          "reviewer": "Reviewer_sCgD",
+          "claim": "Figure 5 includes block2unit{1,2}, although the text mentions only the first encoder block.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The legend entries block1unit1 to block2unit2 are ResNet layers. The caption compares ViT first-block head subsets with 'lower layer representations in the ResNet'."
+        },
+        {
+          "reviewer": "Reviewer_SJG2",
+          "claim": "ViT uses layer norm while the CNNs use batch norm, so taking features from normalization layers (L93) may produce the uniform ViT heatmap.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L92-94 confirm that normalization-layer features are included. The CNNs are the BiT ResNets ([15], L65), which use group norm, as the authors replied. The authors added heatmaps with channel-normalized ResNet features and called them 'qualitatively indistinguishable'. SJG2 did not reply."
+        },
+        {
+          "reviewer": "Reviewer_qGAU",
+          "claim": "No code is released, and ViT is trained on the private JFT dataset.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(a) answers [No] for code; L67 says models are trained on JFT-300M unless stated otherwise."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_sCgD (2021-09-02): 'Several of my concerns have been addressed' and 'I will stick to my original rating.' Reviewer_qGAU, Reviewer_SJG2 and Reviewer_qxEj posted nothing after the 2021-08-10 responses.",
+        "what_convinced_or_not": "sCgD accepted the ResNet choice as 'justified' but kept generalization to other CNNs as a limitation. sCgD found the analyses 'impressive' and 'clearly linked', still preferred depth on one aspect, and judged no weakness severe enough to reject. SJG2 had said the rating 'may be downgraded or upgraded' after the feedback. The authors answered every point and added a new normalization analysis; SJG2 stayed at 6 and silent."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Three sentences: 'A good paper on a timely topic. All reviewers recommend acceptance. Could be a spotlight presentation.' Acceptance follows the 7/6/7/6 ratings. The spotlight has no basis in the reviews: no rating above 7, two reviewers at 'marginally above the acceptance threshold', and no reason given.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or above threshold (7/6/7/6, mean 6.5); none changed",
+        "Timely question answered by a broad, clearly linked set of analyses (Reviewer_qGAU, Reviewer_qxEj, Reviewer_sCgD)",
+        "The most critical reviewer judged the one-CNN-family and depth limits non-fatal (Reviewer_sCgD)",
+        "AC raised the accept to a spotlight without stated reasons"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 6, 6, 5],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_NaL7", "Reviewer_MKzA", "Reviewer_fR12"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_16Eb",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Lowest score (4) and the only rating labelled a rejection; 2 hours. Its first weakness says the paper does not show 'why this kind of representation emerges'; Sections 5-6 do, with an intervention (Figure 8). Its second treats the 10-shot linear probes as the classification evaluation; they are an analysis tool. Its valid third point (only BiT ResNets) is the one Committee A's Reviewer_sCgD judged non-fatal. The 2021-08-31 reply repeats that there are 'no recommendations on how to use these results in practice' and does not engage with Sections 5-6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_16Eb",
+          "evidence": "Short review (2 hours). Two of its three weaknesses misread the paper: the explanation of why the representations arise (Sections 5-6, Figure 8), and the role of the linear probes (analysis, not evaluation)."
+        },
+        {
+          "reviewer": "Reviewer_NaL7",
+          "evidence": "Confidence 5 on a two-sentence main review with no weaknesses. Its one critique, missing concurrent work, places the overlap in T2T-ViT's 'Figure 1'; the authors identify the relevant figure as a feature-map visualization. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_16Eb",
+          "claim": "The paper does not allow one to understand why this kind of representation emerges.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 links the lower-layer difference to global attention (Figures 3-5). Section 6 links the uniform structure to skip connections and tests it by training ViTs without them (Figure 8). The causal tests are limited, but the explanation is there."
+        },
+        {
+          "reviewer": "Reviewer_16Eb",
+          "claim": "Classification results come only from linear probes, a limited setup.",
+          "checked_against_paper": "correct",
+          "evidence": "Figures 11 and 13 use 10-shot closed-form linear probes. They measure intermediate-layer quality; the paper makes no claim about classification performance, as the authors replied. The fact holds; the objection misses the purpose."
+        },
+        {
+          "reviewer": "Reviewer_16Eb",
+          "claim": "Only ViT transformers and only BiT ResNets are studied.",
+          "checked_against_paper": "correct",
+          "evidence": "L65-67: ViT-B/32, B/16, L/16, H/14 and ResNet50x1, ResNet152x2, chosen from Dosovitskiy et al. [13]. MLP-Mixer appears only in the appendix. The B AC's main request rests on this fact."
+        },
+        {
+          "reviewer": "Reviewer_NaL7",
+          "claim": "T2T-ViT, CaiT and DeepViT reported overlapping properties, and the paper does not discuss them.",
+          "checked_against_paper": "correct",
+          "evidence": "None of the three is among the 48 references. The overlap is partial: NaL7 cites T2T-ViT 'Figure 1', and the authors identify the relevant figure as a feature-map visualization, not a cross-layer similarity analysis."
+        },
+        {
+          "reviewer": "Reviewer_MKzA",
+          "claim": "The authors say Section H gives ramifications for future applications, but none are there.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L251-254: the results 'together answer central questions on differences between ViTs and CNNs, and ramifications for future applications'. Section H is cited only for MLP-based architectures. The sentence is loose, but it does not place ramifications in Section H."
+        },
+        {
+          "reviewer": "Reviewer_fR12",
+          "claim": "More analysis is needed of whether different heads have different mean attention distances.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 3 plots each head's mean distance, sorted, for four layers. L125-126 state that lower layers mix local and global heads."
+        },
+        {
+          "reviewer": "Reviewer_fR12",
+          "claim": "It is not clear how the ViT effective receptive field is defined and computed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The Figure 6 caption defines it: the absolute gradient of the centre feature-map location with respect to the input, after residual connections, averaged over channels and 32 images. L144 cites [22]. Brief, but defined."
+        },
+        {
+          "reviewer": "Reviewer_fR12",
+          "claim": "The claim that a CLS token preserves spatial information better than global average pooling needs more experiments; relevance to detection is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "Figures 9-11 show the CLS/GAP difference with CKA and per-token probes, for ViT-B/32 only. No detection experiment is run; L248-249 call the result 'promising for future uses in object detection'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": ["Reviewer_MKzA"],
+        "evidence": "Reviewer_MKzA edited the review on 2021-08-11, the day of its comment 'So, I rate the score to 6 regarding the detailed analysis on ViT and CNNs'. The earlier score is not recoverable; the preceding sentence ('The responses do not give attractive points to me') reads as a cut. Reviewer_16Eb ('So I keep my initial rating') and Reviewer_fR12 ('I stand by my original rating') held. Reviewer_NaL7 (2021-07-17) and Reviewer_fR12 (2021-07-21) edited before the 2021-08-10 responses. NaL7 posted nothing after the rebuttal.",
+        "what_convinced_or_not": "Nothing moved the reject side. On the CNN choice, the authors gave arguments (BiT is a strong ResNet; skip connections and stages are common to DenseNet and EfficientNet; prior CKA work) but no new experiment; 16Eb wrote that this 'does not seem very convincing'. MKzA judged the offered implication (hybrid architectures) already known from the ViT paper. fR12 still wanted design guidance and detection experiments for the CLS-versus-GAP claim."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The meta-review reports the split correctly (one reject, one lean reject, two lean accept) and breaks the tie toward reject. It says 'the reviewers all said' the work was not 'sufficiently thorough (i.e., do these findings extend to different CNN architectures?)'. Only Reviewer_16Eb and Reviewer_fR12 raised other CNNs, and fR12 and Reviewer_MKzA called the analysis 'thorough' and 'comprehensive'. The complaint about missing explanations or actions does appear in all four reviews. Its two reasons restate Reviewer_16Eb's review and reply ('why this kind of representation emerges', 'only one type of architecture'). The AC also cites private comments that are not in the record.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Borderline split 4/5/6/6 (mean 5.25); the two below-threshold reviewers held after the rebuttal",
+        "No practical guidance: all four reviewers said the findings do not tell practitioners what to prefer, build or improve (Reviewer_16Eb, Reviewer_NaL7, Reviewer_MKzA, Reviewer_fR12)",
+        "Only BiT ResNets as CNNs, so generality to other CNN families is untested (Reviewer_16Eb, Reviewer_fR12, AC)",
+        "AC broke the tie toward reject and presented both concerns as unanimous, following Reviewer_16Eb's framing"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Normalization confound in the CKA heatmaps, ViT layer norm against CNN normalization (Reviewer_SJG2); answered with new channel-normalized ResNet heatmaps",
+    "Early local attention linked to performance only by correlation; model-size confound in Figure 4 (Reviewer_sCgD, Reviewer_SJG2)",
+    "CKA uniformity against rising linear-probe accuracy; CKA limits under-discussed (Reviewer_sCgD)",
+    "Figure 5 restricted to the first encoder block, possibly cherry-picked (Reviewer_SJG2)",
+    "Reproducibility: private JFT-300M and no code (Reviewer_qGAU)",
+    "Hybrid CNN-ViT models not discussed; skip-removal test not run on ResNet; MLP-Mixer only in the appendix (Reviewer_qGAU, Reviewer_sCgD)"
+  ],
+  "issues_only_b": [
+    "No practical guidance for architecture design (Reviewer_16Eb, Reviewer_NaL7, Reviewer_MKzA, Reviewer_fR12, AC); in A, Reviewer_qxEj counted the potential to 'inspire new architectures' as a strength",
+    "Missing concurrent work with overlapping observations: T2T-ViT, CaiT, DeepViT (Reviewer_NaL7)",
+    "Classification measured only with linear probes (Reviewer_16Eb)",
+    "Unclear motivation for the study (Reviewer_MKzA, Reviewer_16Eb)",
+    "Model training details and accuracies not reported; ERF definition unclear (Reviewer_fR12)"
+  ],
+  "shared_issues": [
+    "Only one CNN family (BiT ResNets); generality to other CNNs untested (A: Reviewer_sCgD; B: Reviewer_16Eb, Reviewer_fR12, AC). A called it a limitation; B a reason to reject",
+    "Analyses broad but shallow; why the differences arise is not tested in depth (A: Reviewer_sCgD; B: Reviewer_16Eb, AC)",
+    "No detection experiment behind the CLS-versus-GAP localization result (A: Reviewer_qxEj as a suggestion; B: Reviewer_fR12 as a weakness)",
+    "Some findings may be unsurprising, including the stage blocks in the ResNet heatmaps (A: Reviewer_SJG2; B: Reviewer_fR12)",
+    "No societal-impact discussion (A: Reviewer_qGAU, Reviewer_qxEj, Reviewer_sCgD; B: Reviewer_fR12)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently, and both ACs turned a moderate rating gap (mean 6.5 against 5.25) into a spotlight-versus-reject split. Both saw a clear, timely CKA study of ViT against two BiT ResNets that explains its findings (global attention, skip connections, the Figure 8 intervention) but gives no design guidance and covers one CNN family. Committee A's most careful reviewer, Reviewer_sCgD, raised the one-family and depth points and judged neither 'severe enough' to reject. Committee B applied a test that A did not: an analysis paper must help design or improve architectures. All four B reviewers said the paper fails that test, while A's Reviewer_qxEj praised it because it 'might inspire new architectures'. B's lowest score (Reviewer_16Eb, 4, two hours) rests partly on misreadings: Sections 5-6 do explain why the representations arise. A's AC made 7/6/7/6 a spotlight in three sentences that cite only timeliness and unanimity. B's AC broke a two-two split toward reject and wrote that 'the reviewers all said' the study was not thorough on other CNNs; only 16Eb and fR12 said so, and fR12 and MKzA called the analysis 'thorough' and 'comprehensive'. No reviewer on either side found an error in a result.",
+  "candidate_reasons": [
+    "Analysis paper held to design-utility test",
+    "Single CNN family judged differently",
+    "Same weaknesses, different rejection threshold",
+    "Spotlight without stated justification",
+    "AC overstates reviewer consensus",
+    "Low detractor misreads paper's explanations"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_sCgD review and comment 2021-09-02",
+    "Committee A meta-review",
+    "Committee B meta-review ('the reviewers all said')",
+    "Reviewer_16Eb review and comment 2021-08-31",
+    "Reviewer_fR12 review (strength 2; weaknesses 1, 5, 6) and comment 2021-08-31",
+    "Reviewer_MKzA review, comment 2021-08-11 and edit date",
+    "Reviewer_NaL7 review, limitations section",
+    "Reviewer_SJG2 review and the authors' reply (channel-normalized ResNet heatmaps)",
+    "paper_submitted L65-67 (model set) and L129-133 (locality and performance)",
+    "paper_submitted Sections 5-6, Figures 3, 6 and 8, L251-254"
+  ]
+}

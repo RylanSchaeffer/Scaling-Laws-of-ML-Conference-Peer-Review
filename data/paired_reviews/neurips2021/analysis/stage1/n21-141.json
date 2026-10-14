@@ -1,0 +1,214 @@
+{
+  "pair_id": "n21-141",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 8, 5],
+      "confidences": [4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_tdpf"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_TwiA",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "8 against 5 and 5 (tdpf, xzpB). TwiA spent 1 hour at confidence 3. The main review is four sentences of praise ('strikingly simple', 'convincingly shows'); the only caveat, in the limitations box, is the compute cost of training N agents. TwiA posted nothing after the rebuttal, so A's only accept vote was never argued in discussion. The view matches Committee B's majority, but this review is weak evidence for it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_TwiA",
+          "evidence": "1 hour, a four-sentence main review that names no weakness, and no reply to the rebuttal. It is the only score above 5 in A."
+        },
+        {
+          "reviewer": "Reviewer_xzpB",
+          "evidence": "Both objections are generic: no theory ('Can the authors give theoretical proof of what the thought is effective?') and too few environments. The one specific novelty claim, a 'similar idea' in 'deep computer vision', has no reference. xzpB never answered the authors' request to explain it, nor their 2021-08-31 follow-up, and never posted in the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_tdpf",
+          "claim": "The claim that FCP achieves 'the highest scores across all maps' with humans is not supported per layout: in appendix Figure 20, FCP is close to BCP on Asymmetric and to PP on Forced.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission's Section 5.2 heading reads 'FCP coordinates best with humans, achieving the highest scores across all maps'. Figure 20 is in the supplement, not in the PDF, so the per-layout values were not read directly. The authors conceded 'our wording there was misleading', and the camera-ready says 'highest score across maps' and 'as well as or better than the other teams on each individual map'."
+        },
+        {
+          "reviewer": "Reviewer_tdpf",
+          "claim": "Using past checkpoints as partners of different skill levels is similar to Tylkin, Radanovic & Parkes (2020).",
+          "checked_against_paper": "correct",
+          "evidence": "The submission cites Tylkin et al. twice, as [62] and [63], only as examples of agent-assistant work (Sections 3.1 and 3.3), and never discusses the checkpoint overlap. The authors replied that FCP 'can be seen as an extension of theirs' (many seeds and skill levels instead of one). Table 1 shows past checkpoints are the ingredient FCP depends on (with H_proxy: FCP 10.6 vs FCP_-T 4.7)."
+        },
+        {
+          "reviewer": "Reviewer_tdpf",
+          "claim": "PLASTIC (Barrett, Rosenfeld, Kraus & Stone 2017), on learning with past or hand-coded teammates, is relevant prior work that the paper misses.",
+          "checked_against_paper": "correct",
+          "evidence": "No Barrett et al. entry among the submission's 69 references. The authors called it an oversight; the camera-ready cites it as [5]."
+        },
+        {
+          "reviewer": "Reviewer_tdpf",
+          "claim": "Architectural variation in the partner pool gives no benefit.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: FCP 10.6 / 11.2 / 8.6 vs FCP_+A 9.9 / 11.1 / 8.4 (H_proxy, diverse SP, random partners). The paper says the same."
+        },
+        {
+          "reviewer": "Reviewer_xzpB",
+          "claim": "The paper gives no theoretical basis and tests only one environment.",
+          "checked_against_paper": "correct",
+          "evidence": "The checklist marks theoretical results N/A. Section 6: 'We also focus on one domain'. All results use five Overcooked layouts. Both are true, but they describe an empirical paper, not an error."
+        },
+        {
+          "reviewer": "Reviewer_xzpB",
+          "claim": "A similar idea has already been realised in deep computer vision.",
+          "checked_against_paper": "not_checked",
+          "evidence": "No reference or description given; the authors asked what was meant and got no answer."
+        },
+        {
+          "reviewer": "AC (Committee A meta-review)",
+          "claim": "No baseline trains with only past checkpoints or only random partners, so the contribution of the fully trained partners is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 ablates only the removal of past checkpoints (FCP_-T) and the addition of architecture variation (FCP_+A, FCP_-T,+A). No variant drops the final checkpoints."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "tdpf edited on 2021-08-26 only to add 'Post-Reponse Comments' ending 'As such, I am keeping my score' (5). TwiA and xzpB never edited, and neither posted in the discussion. tdpf's reply of 2021-09-02 says 'I would have voted a clear accept but for the two issues below' and 'I am not opposed to acceptance if the other reviewers and AC find in favor of the work'.",
+        "what_convinced_or_not": "The authors separated FCP from Tylkin et al. (many seeds and skill levels at once, a BCP comparison, human preferences) and called it 'well above the novelty threshold'. tdpf still called the extension 'a small change' and asked for analysis of why FCP works, such as overlap between training-partner and human behaviour; the authors said there was no time before the deadline. Their defence of one environment (human studies are costly; the layouts pose different coordination problems) and of no theory drew no reply from xzpB."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The visible reviews were 8, 5, 5, and the most engaged detractor was 'not opposed to acceptance'. The AC called in an emergency reviewer, whose input is not on the forum, and rejected 'Based on this input and the discussions'. The meta-review says 'several reviewers' raised limited novelty and no theory, but each came from one reviewer (tdpf, xzpB). The AC also added its own points: FCP as 'a combination of fictitious self-play and training approaches in [62, 63]' (the Tylkin citations), a missing past-checkpoints-only baseline, and figure layout.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Novelty judged incremental over Tylkin et al.'s training against partly trained checkpoints (tdpf, AC)",
+        "Results from one environment; generality unclear (tdpf, xzpB, AC)",
+        "No theory linking the method to its effect (xzpB, AC)",
+        "An emergency reviewer, not on the record, shared these concerns and broke the 8/5/5 split",
+        "No analysis of why FCP works and no past-checkpoints-only baseline (tdpf, AC)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [9, 5, 8, 7],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_bYPA"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_bYPA",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "5 against 9, 8, 7. bYPA spent 11 hours, made one specific argument (the co-player is the 'environment', so FCP is 'a natural instantiation of domain randomization'), defended it over two posts, and rose from 4 to 5 on the evaluation points. bYPA conceded 'I'm indeed not aware of any prior work applying the domain randomization framework to the human co-play context'. The objection concerns framing and degree of novelty, not correctness."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5uRi",
+          "evidence": "Rating 9 on a 2-hour review: four sentences of praise, three questions, and 'Yes.' for limitations. The only post after the rebuttal is one line keeping 'a strong accept'. It is the highest score in either committee and is weak evidence for a spotlight."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_6sVb",
+          "claim": "Knott et al. 2021, 'Evaluating the Robustness of Collaborative Agents', is not currently cited.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission cites it as [35] in Section 2.3, in a list of Overcooked papers, without discussion. The authors' reply also wrongly called the citation an oversight; only the discussion was missing."
+        },
+        {
+          "reviewer": "Reviewer_6sVb",
+          "claim": "FCP adds randomly initialised agents to its training population.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.4: one of the three checkpoints per partner is 'at initialization (i.e. a low-skilled agent)'."
+        },
+        {
+          "reviewer": "Reviewer_6sVb",
+          "claim": "Adding network-architecture diversity to the population did not improve performance.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: FCP vs FCP_+A, 10.6 vs 9.9, 11.2 vs 11.1, 8.6 vs 8.4."
+        },
+        {
+          "reviewer": "Reviewer_bYPA",
+          "claim": "The held-out simulated partners are likely well represented in FCP's training pool.",
+          "checked_against_paper": "correct",
+          "evidence": "Two of the three held-out populations match FCP's pool: self-play agents varying in seed, architecture and training time, and randomly initialised agents. Section 4.2 says FCP 'is trained with non-held-out versions of such agents'. The third, H_proxy, is a BC model that FCP never trains with, and the human study is separate."
+        },
+        {
+          "reviewer": "Reviewer_bYPA",
+          "claim": "The paper does not discuss how the method differs from domain randomization.",
+          "checked_against_paper": "correct",
+          "evidence": "The only link is one sentence in Section 2.1 citing 'environmental variations [50]' (OpenAI's Rubik's cube). The submission never names domain randomization or cites Tobin et al. The camera-ready adds 'domain randomization [54, 56, 67]'."
+        },
+        {
+          "reviewer": "Reviewer_sJ2R",
+          "claim": "When to save checkpoints and which to train against is a single heuristic, glossed over in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.4 gives the rule (initialization, 50% of final reward, end of training) in three lines, with no sensitivity study in the main text."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_bYPA"],
+        "evidence": "bYPA edited on 2021-09-01: 'The authors addressed part of my concerns about experimental evaluations, and I, therefore, increase my rating from 4 to 5.' 5uRi (9), sJ2R (8) and 6sVb (7) never edited and posted 'maintaining' replies on 2021-09-01 and 2021-09-02.",
+        "what_convinced_or_not": "The authors' answer that agent-agent tests are a proxy, and that the held-out sets mix BC and RL agents, moved bYPA one point. Their claim that choosing which partner properties to vary is 'quite a departure from domain randomization' did not: bYPA called seeds and checkpoints 'a fairly natural choice in the solution space'. 6sVb's accept was conditional on clearer limitations (bias from no human data; robustness vs coordination); the authors agreed to both and 6sVb kept the 7."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review counts 'Three of the reviewers enthusiastically recommend acceptance', overrules bYPA in the AC's own words ('In my opinion, this setting is substantially different from traditional uses of domain randomization ... the details are (as far as I know) novel'), and picks a spotlight because the paper 'ought to be of broad interest'. It says the reviewers had no other major objections and does not mention 6sVb's conditions or the one-domain limit.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three accept votes (9, 8, 7), two from detailed reviews",
+        "Beats the human-data baseline BCP with real humans without using human data, plus a preference study",
+        "AC judged the domain-randomization novelty objection wrong on its own reading",
+        "Simple method, clear writing and broad interest, hence a spotlight"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Overlap with Tylkin et al. 2020/2021, who also trained helpers against partly trained checkpoints; cited in the submission but not discussed (Reviewer_tdpf, AC)",
+    "PLASTIC (Barrett et al. 2017) not cited (Reviewer_tdpf)",
+    "Heading claims 'the highest scores across all maps' while per-layout human results show near-ties on Asymmetric and Forced (Reviewer_tdpf)",
+    "No measure of how different the training and held-out partners are; no analysis of why FCP works (Reviewer_tdpf)",
+    "No baseline with only past checkpoints or only random partners; role of the final checkpoints unclear (AC)",
+    "Unreferenced claim of a similar idea in computer vision (Reviewer_xzpB)",
+    "Compute cost of training N partner agents in larger domains (Reviewer_TwiA)",
+    "Figures take space; per-layout results belong in the main text (AC)"
+  ],
+  "issues_only_b": [
+    "FCP as a special case of domain randomization and sim-to-real transfer (Reviewer_bYPA)",
+    "Held-out agent partners resemble FCP's own training pool (Reviewer_bYPA)",
+    "Without human data FCP is biased away from human-like partners; random-initialisation partners push toward independent play (Reviewer_6sVb)",
+    "Gains may come from general robustness rather than adaptation to conventions (Reviewer_6sVb)",
+    "Relation to Knott et al. 2021 not discussed (Reviewer_6sVb, who wrongly said it was uncited)",
+    "Checkpoint-selection hyperparameters glossed over; hard-to-parse notation (Reviewer_sJ2R)",
+    "Choice of V-MPO; quality of the human data behind the BC partner (Reviewer_5uRi)"
+  ],
+  "shared_issues": [
+    "Simple method with modest novelty relative to prior diversity and population training (A: tdpf, AC; B: bYPA, and 6sVb in passing)",
+    "One environment (Overcooked); generality unknown (A: tdpf, xzpB, AC; B: sJ2R, 6sVb)",
+    "No theoretical analysis (A: xzpB, AC; B: sJ2R, who discounted it because no suitable theory exists)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same strengths (a simple, clearly written method that beats the human-data baseline BCP with real humans, plus a preference study) and the same weaknesses (modest novelty, one environment, no theory). No reviewer found a flaw in the method or the experiments; the one factual catch, an overstated per-map heading, was conceded. The gap came from the reviewer draw and from how each AC settled novelty. Committee A's only accept vote was Reviewer_TwiA's 8 from a one-hour, four-sentence review that was never defended; its two 5s were a generic, unengaged review (Reviewer_xzpB) and a careful one (Reviewer_tdpf) who wrote 'I am not opposed to acceptance'. A's AC broke the 8/5/5 split with an emergency reviewer whose input is not on the record, and rejected for incremental novelty, one domain and no theory. Committee B drew three accept votes (9, 8, 7), two from careful reviews; its AC overruled the lone detractor's domain-randomization objection in its own words and chose a spotlight. A did hold one specific fact that B never weighed: Tylkin et al. also trained helpers against partly trained checkpoints, the ingredient Table 1 shows FCP depends on. The submission cites that work twice without discussing the overlap, and the authors conceded FCP extends it. That sharpens A's novelty concern, but it is about degree of novelty, not correctness. For the rest, the two committees weighted the same facts differently.",
+  "candidate_reasons": [
+    "Shared novelty concern weighted differently",
+    "Emergency reviewer tipped split panel",
+    "Reviewer draw: one versus three champions",
+    "Specific prior-work overlap raised once",
+    "AC overruled lone detractor",
+    "Thin champion left undefended"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review (emergency reviewer; [62, 63])",
+    "Reviewer_tdpf reply of 2021-09-02",
+    "Reviewer_TwiA review",
+    "Reviewer_xzpB review; unanswered author posts of 2021-08-11 and 2021-08-31",
+    "Committee B meta-review",
+    "Reviewer_bYPA post-rebuttal edit and reply of 2021-08-25",
+    "Reviewer_6sVb review ('not currently cited')",
+    "paper_submitted.pdf Sections 3.1 and 3.3, references [35], [62], [63]",
+    "paper_submitted.pdf Table 1",
+    "paper_submitted.pdf Section 5.2, Finding 1 heading",
+    "paper_submitted.pdf Section 4.2, randomly initialised partners paragraph"
+  ]
+}

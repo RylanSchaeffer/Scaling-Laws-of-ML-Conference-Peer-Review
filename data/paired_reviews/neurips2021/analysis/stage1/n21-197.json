@@ -1,0 +1,202 @@
+{
+  "pair_id": "n21-197",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [6, 9, 6, 7],
+      "confidences": [4, 5, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_oMsG"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_wEz8",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "9 ('Top 15% of accepted NeurIPS papers') at confidence 5 against 6, 6, 7, written in 2 hours. The review is mostly summary. Its criticisms are minor: pre-defined symbols (a limitation the paper states), loose use of 'soundness, consistency and coherence', and two missing citations. It calls the human study 'sound' and the results 'impressive' but does not address the rejected-sample selection that Reviewer_oMsG raised. wEz8 never replied to the rebuttal or joined the discussion. It is the only rating in either committee that supports a spotlight."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oMsG",
+          "claim": "The human study compares dual-system sentences only with single-system sentences that System 2 rejected, which inflates the result in favour of the dual system.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2, lines 281-284 and 291-294: 'We selected generations from the neural only baseline that were rejected by the System 2 model'. The description is right. The inflation inference is weaker than stated: the neural-NLI arm uses the same selection and gets near-chance preference (0.51 [0.40, 0.64]; 0.58 [0.48, 0.68], lines 310-313), so selection alone does not create the 0.84 and 0.79 preference. The overall rate of disagreement comes only from System 2's own judgments (Table 1), not from humans."
+        },
+        {
+          "reviewer": "Reviewer_oMsG",
+          "claim": "The paper ignores prior work on symbolic constraints over learned models (Roth et al., IJCAI 2005; Tsamoura and Michael) and on symbolic learning (Valiant, Michael, Juba).",
+          "checked_against_paper": "correct",
+          "evidence": "None of these authors is in the reference list. Related work covers generate-and-rerank, semantic parsing and lexical constrained decoding (Miao et al. 2019; Lu et al. 2020) only. The authors conceded 'it was an oversight'."
+        },
+        {
+          "reviewer": "Reviewer_oMsG",
+          "claim": "Around line 375 the paper says System 2 knowledge 'cannot be automatically learned or updated'.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 375-376 say this. Lines 376-378 then name learning System 2 knowledge as future work (Ellis et al. 2020; Mao et al. 2019). The authors called the sentence misworded."
+        },
+        {
+          "reviewer": "Reviewer_Tn5q",
+          "claim": "Table 1 reports the dual-system result for a maximum of 20 attempts.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 caption: 'up to a limit of ten'; line 300: 'within 10 attempts'; footnote 2: 'sampling budget of 10'. The authors answered with results for 5 versus 10 samples."
+        },
+        {
+          "reviewer": "Reviewer_Eow4",
+          "claim": "The limitations are adequately addressed: the approach is most useful where a small number of mission-critical constraints can be stated explicitly.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6, lines 361-367, says this and states that 'the minimal world model must be hand-engineered'. Committee B treated the same stated limitation as decisive."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_oMsG"],
+        "evidence": "oMsG edited the review on 2021-08-24, two weeks after the 2021-08-10 response, adding 'I have increased my score' (final 6; the earlier rating is not exposed). Eow4 discussed only the title (2021-08-25 and 2021-08-27) and did not edit. wEz8 and Tn5q neither replied nor edited.",
+        "what_convinced_or_not": "The response recast dual-process theory as inspiration only, promised the missing Tsamoura/Michael work, argued that improvement is not guaranteed (parser errors, recovery by System 1, human sensitivity), said the human study conditions on disagreement while Table 1 gives a 14-57% prevalence, and reworded the line-375 claim. oMsG called these clarifications that 'could help improve the readability and the impact'. No new result was shown; the score rose on explanation and promises."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four-sentence meta-review: 'all reviewers agree that the paper should be published', well written, clear, good results from human judgments. It names no weakness, answers none of oMsG's or Eow4's points, and gives no reason for a spotlight over a poster. Without wEz8's 9 the ratings are 6, 6, 7.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers at or above 6 after the rebuttal (6, 9, 6, 7; mean 7.0)",
+        "Clear writing and clearly explained ideas",
+        "Human judgments strongly prefer the dual-system continuations",
+        "Spotlight tier supported only by Reviewer_wEz8's 9; the meta-review gives no reason for it"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 4, 3, 5],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_2tE8"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 4, 3, 5 (2tE8, CnYk, Ms3t, jmVT), all at confidence 4. Ms3t's 3 is the lowest but within one point of CnYk's 4; all four are below the acceptance threshold."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CnYk",
+          "evidence": "The summary says the method 'pre-trains a GPT-3/BART model to extract ground atoms', and three questions build on this (how much supervised data for parsing; 'few-shot' versus 'no additional training'; why not fine-tune GPT-3 instead of BART). The paper states that parsing is few-shot GPT-3 without fine-tuning (Figure 1 caption; lines 158-160, 258-262) and that BART is the CLUTRR generator (lines 248-251). CnYk conceded the point on 2021-08-26 but kept the 4 on new grounds."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Ms3t",
+          "claim": "The human study does not compare System 1+2 with System 1; it compares System 1+2 with 'System 1 - 2', because the single-system sample is one that System 2 rejected.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2, lines 281-284 and 291-294, confirm the selection. But the neural-NLI arm uses the same selection and gets near-chance preference (0.51; 0.58, lines 310-313), so the design tests whether System 2's rejections are real errors to people; it does not make the result automatic. Neither side mentioned this control."
+        },
+        {
+          "reviewer": "Reviewer_Ms3t",
+          "claim": "The gSCAN experiment is invalid: once the goal location is known, the command sequence can be generated symbolically, so System 2 does not need System 1.",
+          "checked_against_paper": "incorrect",
+          "evidence": "System 2 only executes candidate sequences and checks that the agent ends at the predicted location (lines 343-351). gSCAN commands also carry verbs and adverbs (Table 2 splits 'adverb (k=1)', 'adverb to verb') that a path to the goal cannot produce. The main text never explains this; the authors conceded the description was incomplete."
+        },
+        {
+          "reviewer": "Reviewer_Ms3t",
+          "claim": "The experiments compare with no other technique (e.g., Welleck et al. 2018), only with a baseline.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper has an off-the-shelf RoBERTa-MNLI reranker as a dual-system baseline in bAbI QA (32.5% versus 100%, lines 209-216) and in the CLUTRR human study (Figure 5); footnote 1 explains why Welleck-style domain-trained NLI was not used. gSCAN compares with Heinze-Deml and Bouchacourt (2020) (Table 2)."
+        },
+        {
+          "reviewer": "Reviewer_CnYk",
+          "claim": "The parser is a pre-trained GPT-3/BART model that needs supervised data for semantic parsing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Parsing is few-shot GPT-3 prompting with no fine-tuning (lines 158-167, 258-262). BART is the System 1 generator for CLUTRR (lines 248-251)."
+        },
+        {
+          "reviewer": "Reviewer_CnYk",
+          "claim": "The paper misses neuro-symbolic work such as DeepProbLog, abductive learning and Evans et al. (2021).",
+          "checked_against_paper": "correct",
+          "evidence": "None is in the reference list. The authors promised to add them."
+        },
+        {
+          "reviewer": "Reviewer_jmVT",
+          "claim": "The paper gives no details on inference speed or the cost of the consistency check.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text reports no runtime or cost. The checklist points to the appendix for compute, which is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_2tE8",
+          "claim": "The method cannot bound the number of resampling trials and depends on luck.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Budgets are fixed: 10 samples per sentence in CLUTRR (footnote 2, failures counted as errors) and 50 in gSCAN (line 351). Table 1 shows 3.9% and 6.5% of stories still flawed after resampling, so the risk exists but is measured."
+        },
+        {
+          "reviewer": "Reviewer_2tE8",
+          "claim": "Errors in the neural parsing step can break the consistency check, and the paper does not address them.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text gives no parse accuracy for CLUTRR; it says only that 'this parsing approach worked well' (lines 259-260). bAbI QA at 100% implies accurate parsing on the synthetic domain only."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "2tE8 edited on 2021-08-29 to add 'I keep my initial rating'. CnYk (2021-08-26) and jmVT (2021-09-13) replied and kept their ratings. Ms3t neither replied nor edited.",
+        "what_convinced_or_not": "The response corrected two factual errors (the parser is few-shot GPT-3; gSCAN's System 2 tracks only the goal, so System 1 is needed) and gave Ms3t the same human-study explanation that moved oMsG in Committee A. CnYk accepted the correction ('answered my major concern') but kept 4, citing closed GPT-3 and lost novelty. Ms3t never responded. On the main concern the authors conceded that the world model must be designed for each domain; 2tE8 read this as confirmation ('The authors basically agree that the limitations exist') and jmVT was 'not convinced enough'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review collects each reviewer's concern (inference speed from jmVT, weak System 1/2 instantiation from Ms3t, parsing consistency from 2tE8, closed GPT-3 from CnYk) and names the hand-designed world model as the main concern. It cites 'all four reviewers ... agreed on rejection' and calls the paper 'close but just below the bar'. It does not note that Ms3t's gSCAN objection and CnYk's reading of the parser were wrong.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Hand-designed world model per domain with no general method for building one: doubts about scalability and generality",
+        "Simple domains that do not test generality; 'too much was being left to future work'",
+        "Weak instantiation of System 1/System 2 and limited novelty over generate-and-rerank and neuro-symbolic work",
+        "Secondary: inference speed, parser consistency, reliance on closed GPT-3",
+        "All four ratings below threshold (5, 4, 3, 5); none moved after the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Loose use of soundness, consistency and coherence (Reviewer_wEz8)",
+    "Title suggests end-to-end differentiable neuro-symbolic reasoning (Reviewer_Eow4)",
+    "Sensitivity to the resampling budget; annotators per item and their agreement (Reviewer_Tn5q)",
+    "Methods described at too high a level; filtering with sound constraints makes improvement trivial (Reviewer_oMsG)"
+  ],
+  "issues_only_b": [
+    "Inference speed of the symbolic check, not reported in the main text (Reviewer_jmVT)",
+    "Dependence on closed-source GPT-3 for practical and openness reasons (Reviewer_CnYk)",
+    "Unmeasured errors of the neural parser; resampling with no guarantee of success (Reviewer_2tE8)",
+    "Validity of the gSCAN experiment (Reviewer_Ms3t; the claim is wrong)",
+    "No comparison with other methods such as Welleck et al. 2018 (Reviewer_Ms3t; wrong, the paper has an NLI reranker baseline)",
+    "Tasks are easy toy domains (Reviewer_Ms3t, Reviewer_jmVT)"
+  ],
+  "shared_issues": [
+    "Hand-designed world model limits scalability (central for all four B reviewers and the B meta-review; in A noted by wEz8, Eow4 and Tn5q as a stated limitation)",
+    "System 1/System 2 framing is a stretch (A: oMsG, Eow4 through the title; B: Ms3t and the meta-review)",
+    "Limited novelty over constrained-output, generate-and-rerank and neuro-symbolic work (A: oMsG; B: Ms3t, CnYk)",
+    "Missing neuro-symbolic and symbolic-learning citations (A: oMsG, wEz8, Eow4; B: CnYk, Ms3t)",
+    "Human study pairs each dual-system sentence with a System-2-rejected sentence (A: oMsG; B: Ms3t)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same paper and largely the same faults; they weighted them differently. Reviewers in both noted the hand-designed world model, thin novelty over constrained decoding, generate-and-rerank and neuro-symbolic work, a stretched System 1/System 2 framing, missing citations, and a human study that pairs each dual-system sentence with one that System 2 rejected. Committee A treated these as stated limits of a clear proof of concept. Its main critic, Reviewer_oMsG, raised his score to 6 after explanations and promises, and a thin 9 at confidence 5 from Reviewer_wEz8 lifted the mean to 7.0, which a four-sentence meta-review turned into a spotlight without a stated reason. Committee B treated the hand-designed world model as fatal to significance and generality; the rebuttal conceded it, and no score moved. B's two lowest scores rest partly on misreadings that the rebuttal corrected, and neither reviewer changed the score: Reviewer_Ms3t on gSCAN, where System 1 is needed for verbs and adverbs, and Reviewer_CnYk on the parser, which is few-shot GPT-3 and not trained. Ms3t also never answered the near-identical framing and human-study explanation that moved oMsG. No reviewer found a real error in a result. The gap is calibration of the same facts (proof of concept versus generality), widened by an exuberant champion in A and uncorrected misreadings in B.",
+  "candidate_reasons": [
+    "acknowledged limitation weighted differently",
+    "thin high-confidence champion score",
+    "reviewer misreadings not revised",
+    "same rebuttal, opposite reviewer engagement",
+    "spotlight without stated reason",
+    "proof of concept versus generality"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_wEz8 review (9, confidence 5, 2 hours)",
+    "Reviewer_oMsG review and post-rebuttal note",
+    "Reviewer_Ms3t review (human study, gSCAN, comparisons)",
+    "Reviewer_CnYk review and 2021-08-26 comment",
+    "Reviewer_2tE8 post-rebuttal note",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper Section 4.2 (lines 281-296) and Figure 5 (NLI arm)",
+    "paper Table 1 caption and footnote 2",
+    "paper Section 5 and Table 2",
+    "paper Section 6 (lines 361-378)"
+  ]
+}

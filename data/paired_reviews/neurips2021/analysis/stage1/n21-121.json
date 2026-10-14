@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-121",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        4,
+        3,
+        5,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_iY4e",
+        "Reviewer_ZUMJ",
+        "Reviewer_oT7u"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 3, 5, 5 (iY4e, ZUMJ, oT7u, FY8L), all below threshold and within two points. ZUMJ's 3 is the lowest, but its reasons (unclear Section 3.1, no grid-based diffeomorphic baseline) are of the same kind as the others'. No reviewer argued for acceptance."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ZUMJ",
+          "claim": "Section 3.1 presents theorems without saying what the DMT computes, and the condition hL <= 1 is not built into the implementation.",
+          "checked_against_paper": "correct",
+          "evidence": "No sentence defines the DMT; it is only implied by l. 171-173 (v is the trilinear interpolation of the U-Net output U) and Eq. 4 (forward Euler on each vertex). L is not constrained in training: l. 207-208 say 'we use the rule of thumb hL <= 1, and check that for all considered examples', and Section 3.2 relies on the coarse-to-fine design to keep L small. Theorem 3.3 needs hL < 1. The camera-ready adds Algorithm 1 and a recurrence (Eq. 2) to fix this."
+        },
+        {
+          "reviewer": "Reviewer_ZUMJ",
+          "claim": "VoxelMorph, the closest diffeomorphic method, is missing as a baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares only DeepCSR, NMF, QuickNAT and Voxel2Mesh. Dalca et al. [13] is discussed in l. 126-139 but not run. Neither the submitted nor the camera-ready version tests grid-based scaling and squaring plus interpolation against per-vertex integration. B's EX4h asked for the same comparison as an ablation."
+        },
+        {
+          "reviewer": "Reviewer_ZUMJ",
+          "claim": "Section 2.2 unfairly faults VoxelMorph for a constant velocity field, which CorticalFlow also uses.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L. 126-139 only describe the field in [13, 41] as constant. The faults they name are grid-based scaling and squaring and non-invertible linear interpolation at off-grid vertices. L. 150 says CorticalFlow also uses 'a time-constant dense vector field'."
+        },
+        {
+          "reviewer": "Reviewer_oT7u",
+          "claim": "The benchmark omits EMD, which DeepCSR reports, and the Hausdorff distance can hinge on a few outliers.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither PDF reports EMD; the authors confirmed that DeepCSR computed it on 10k points. L. 269 names only 'Hausdorff distance (HD)'. The 90th percentile that the rebuttal says was used is stated in neither the submitted nor the camera-ready PDF."
+        },
+        {
+          "reviewer": "Reviewer_FY8L",
+          "claim": "Theorem 3.1 has no proof in the paper or the supplement.",
+          "checked_against_paper": "correct",
+          "evidence": "L. 166-170 state Theorem 3.1 with no proof and no citation; only Theorem 3.2 points to the supplement (l. 178). The authors conceded and promised a textbook reference (Hirsch). The camera-ready rewords the theorem but still gives no proof or reference. B's wgwm raised the same point."
+        },
+        {
+          "reviewer": "Reviewer_oT7u",
+          "claim": "The training loss is not defined in the main manuscript.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 2 uses L without a definition; Chamfer distance appears only as an evaluation metric (l. 267-270). The camera-ready adds the definition (Chamfer distance plus edge loss on 150k sampled points). FY8L and B's wgwm asked the same."
+        },
+        {
+          "reviewer": "Reviewer_iY4e",
+          "claim": "The surface-matching loss assumes vertex-to-vertex correspondence with the FreeSurfer surfaces.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The loss is a Chamfer distance between sampled point clouds (rebuttal; camera-ready Section 3), which needs no correspondence. The submitted main text never defines the loss, which invited the error."
+        },
+        {
+          "reviewer": "Reviewer_iY4e",
+          "claim": "Nothing guarantees that the inner and outer cortical surfaces do not cross each other.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither PDF discusses it. The rebuttal concedes that 'each model is trained independently for each surface, and no cross-penetration condition is enforced'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_oT7u"
+        ],
+        "evidence": "oT7u edited on 2021-08-16 and wrote 'raising my score to 5', still for rejection. iY4e edited on 2021-08-15 with no note, so any change is unknown. ZUMJ wrote 'I remain my rating' (3); its edit on 2021-07-07 predates the rebuttal. FY8L never edited and replied only 'I have read the rebuttal'.",
+        "what_convinced_or_not": "The answers on EMD cost, the HD percentile, manifoldness, the loss and template alignment were taken as clarifications. The promised rewrite was not taken as enough: oT7u said the changes 'require a major revision that is outside the scope of a conference cycle', and ZUMJ asked for a streamlined method section 'in their next submission'. The registration-versus-reconstruction answer on VoxelMorph did not move ZUMJ."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four ratings below threshold and a reject. The meta-review names no specific flaw. Its one reason is that the needed revisions 'would be sufficiently substantial to necessitate another round of reviews', which restates oT7u's post-rebuttal argument.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Section 3 judged unclear: theory mixed with implementation, DMT and loss not defined in the main text",
+        "Promised clarity fixes judged a major revision that needs a new review round (oT7u, repeated by the AC)",
+        "No comparison with grid-based diffeomorphic methods such as VoxelMorph",
+        "Four ratings below threshold; only oT7u moved, to 5"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_xE8n"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 7, 6 (wgwm, xE8n, 4s5o, EX4h). No reviewer departs from the others, none rated above 7, and none argued for a spotlight."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_4s5o",
+          "evidence": "Confidence 2 ('Math/other details were not carefully checked'), a list of minor comments and no discussion. It asks why diffeomorphic maps give self-intersecting faces, which l. 201-208 already answer. Its 7 rests on results that are 'very impressive'."
+        },
+        {
+          "reviewer": "Reviewer_wgwm",
+          "evidence": "2.5 hours, a bulleted review and no reply to the rebuttal. It calls the paper 'well embedded into the existing literature', but xE8n and B's own AC found prior work under-acknowledged. It says 'Limitations: are addressed', but the paper has no limitations discussion. Its one technical objection (the Lipschitz constant) is wrong."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_EX4h",
+          "claim": "CorticalFlow is very close to DeepCSR on most metrics; the clear gain is in Chamfer distance.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: CorticalFlow wins CH on all four surfaces (outer 0.68 vs 0.93 mm, inner 0.61 vs 0.65 mm) and HD on the outer surfaces (0.80 vs 0.90 mm). DeepCSR matches or leads on CHN, Dice, %SIF (0.000 vs up to 1.24) and inner HD (0.767 vs 0.785 mm). The large gains are runtime (1.1 s vs 577 s) and GPU memory (3.1 vs 11.1 GB). The authors told wgwm that CorticalFlow is 'as competitive as DeepCSR in terms of geometric accuracy'; the abstract says 'superior surfaces'."
+        },
+        {
+          "reviewer": "Reviewer_xE8n",
+          "claim": "The DMT, ODE integration of a stationary velocity field on mesh vertices, has been standard in computational anatomy for about ten years, so the paper overstates its novelty.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.2 cites the founding flow-ODE and LDDMM papers [6, 17, 18, 61], but it presents per-vertex integration as the new remedy for grid-based scaling and squaring (l. 131-153) and cites none of the mesh-based LDDMM work that xE8n lists. L. 323 calls the DMT 'a new diffeomorphic mesh transform'. The authors replied 'We are aware of this literature and we will refocus our statement'. The camera-ready adds an SVF/LDDMM paragraph that cites Charon and Feydy."
+        },
+        {
+          "reviewer": "Reviewer_wgwm",
+          "claim": "v is a trilinear interpolation, not differentiable at voxel boundaries, so its Lipschitz constant L in Theorem 3.3 would be infinite.",
+          "checked_against_paper": "incorrect",
+          "evidence": "A trilinear interpolant of finite grid values is continuous and piecewise polynomial with a bounded gradient, so it is Lipschitz with a finite L. L. 189 says 'v is only Lipschitz by construction', and the rebuttal answered correctly."
+        },
+        {
+          "reviewer": "Reviewer_wgwm",
+          "claim": "The paper addresses its limitations (xE8n: limitations and societal impact 'adequatly addressed').",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submitted paper has no limitations or societal-impact discussion; only the checklist answers [Yes] (l. 532-533). The camera-ready adds none. A's oT7u and B's 4s5o and EX4h said so."
+        },
+        {
+          "reviewer": "Reviewer_4s5o",
+          "claim": "Nonzero %SIF in Table 1 is at odds with transformations that are diffeomorphic.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L. 201-208 explain it: the guarantee holds for the continuous surface, but the mesh joins the displaced vertices with straight edges, and these can self-intersect."
+        },
+        {
+          "reviewer": "Reviewer_4s5o",
+          "claim": "Figure 5a has no arrows from CorticalFlow and two from NMF.",
+          "checked_against_paper": "correct",
+          "evidence": "Every arrow in Figure 5a starts on the NMF meshes, including the arrows to the zoom circles next to CorticalFlow. A's FY8L also found the red highlights in Figure 5 too small to see."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B review was edited after the rebuttal; xE8n's edit on 2021-07-23 predates it. Only xE8n replied (2021-08-13): it expects acceptance and repeats that ODE integration on mesh vertices is 'far from being a novel idea'. wgwm, 4s5o and EX4h did not reply.",
+        "what_convinced_or_not": "Nothing changed. EX4h's request for a scaling-and-squaring ablation got an argument, not an experiment, and EX4h stayed at 6 without comment. The new max-HD table (5.9 vs 7.8 mm against DeepCSR) drew no reply. xE8n accepted the promise to re-focus the statement of contributions."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accept follows 7, 7, 7, 6; the spotlight does not. xE8n wrote 'I would not overstate the significance of this work' and doubted the NeurIPS fit, and no reviewer asked for a highlight. The AC's discussion post called the dispute 'mostly minor disagreement about the state of the art'. The meta-review reuses positive phrases (xE8n's 'strong case for a deep diffeomorphic approach', wgwm's well-chosen baselines), adds 'strong and elegant', calls prior work 'the only controversy', and omits EX4h's point that the accuracy gains are small.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "About 500 times faster than DeepCSR, with less memory and genus-zero meshes",
+        "Three 7s and a 6, no reviewer below threshold",
+        "Overstated novelty treated as a citation fix for the camera-ready",
+        "Spotlight set by the AC without any reviewer asking for it"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No VoxelMorph or other registration-based baseline (ZUMJ)",
+    "EMD missing from the benchmark; HD may hinge on outliers (oT7u)",
+    "Inner and outer surfaces come from separate models and may cross (iY4e)",
+    "Template bias and affine pre-alignment not discussed (iY4e)",
+    "Notation and self-containment: Eq. 2 composition, mesh versus manifold, diffeomorphism undefined for non-specialists (oT7u, FY8L)",
+    "hL <= 1 checked after training, not enforced; design choices tuned to the dataset (ZUMJ)"
+  ],
+  "issues_only_b": [
+    "Specific prior art: ODE integration on mesh vertices standard in LDDMM for a decade (xE8n)",
+    "Accuracy gain over DeepCSR confined mostly to Chamfer distance (EX4h)",
+    "FreeSurfer pseudo-ground truth may only teach FreeSurfer's bias (wgwm)",
+    "Lipschitz constant of a trilinear field (wgwm, wrong)",
+    "ShapeFlow and Shen et al. not discussed (wgwm, xE8n)",
+    "Fit for NeurIPS versus MICCAI (xE8n)",
+    "Self-intersections despite diffeomorphism; Figure 5 arrows (4s5o)"
+  ],
+  "shared_issues": [
+    "Section 3.1 mixes theory with implementation; what the DMT computes is hard to find (ZUMJ, oT7u; EX4h)",
+    "Training loss missing from the main text (oT7u, FY8L; wgwm)",
+    "Theorem 3.1 has no proof or citation (FY8L, oT7u; wgwm)",
+    "Novelty over diffeomorphic registration unclear (FY8L, ZUMJ; xE8n, EX4h)",
+    "No test of per-vertex integration against grid-based SVF integration (ZUMJ's VoxelMorph baseline; EX4h's scaling-and-squaring ablation)",
+    "Limitations not discussed (oT7u; 4s5o, EX4h)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two committees saw mostly the same faults and weighted them in opposite directions. Both found Section 3.1 hard to follow, the loss and a proof of Theorem 3.1 missing from the main text, the novelty over diffeomorphic registration unclear, and no test against grid-based SVF integration. Committee A (4, 3, 5, 5) made the exposition decisive and, after the rebuttal, judged the promised rewrite a major revision that needs a new review round; its AC repeated that argument and named no specific flaw. Committee B (7, 7, 7, 6) treated the same faults as camera-ready fixes and weighted the results: a 500-fold speed-up over DeepCSR, genus-zero meshes and strong figures. B's critics raised points that cut deeper than A's, and the paper confirms them: xE8n showed that the core module is standard SVF/LDDMM integration, and EX4h showed that the accuracy gain over DeepCSR is mostly in Chamfer distance (Table 1; the authors conceded parity). No B score moved, two B 7s rest on weak or wrong claims, and B's AC raised the paper to a spotlight that no reviewer asked for, calling the novelty problem 'the only controversy'. The camera-ready made most of A's clarity changes in one extra page, so A treated fixable exposition as fatal, while B rewarded speed and topology more than its own reviewers' doubts allowed.",
+  "candidate_reasons": [
+    "Exposition faults judged fatal versus fixable",
+    "Speed and topology outweigh novelty doubts",
+    "Reader background shaped clarity verdicts",
+    "Weak or wrong claims behind sevens",
+    "Expert novelty critique softened by AC",
+    "Spotlight with no reviewer support"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_oT7u 'Update after rebuttal' and comment of 2021-08-16",
+    "Committee A meta-review",
+    "Reviewer_ZUMJ review and comment of 2021-08-16",
+    "Reviewer_xE8n review and reply of 2021-08-13",
+    "Reviewer_EX4h review; submitted paper Table 1",
+    "Authors' reply to Reviewer_wgwm ('as competitive as DeepCSR')",
+    "Committee B meta-review; Area_Chair_kKLw comment of 2021-08-17",
+    "Submitted paper Section 3.1, lines 163-208",
+    "Camera-ready Section 3: loss definition, Algorithm 1, SVF/LDDMM paragraph"
+  ]
+}

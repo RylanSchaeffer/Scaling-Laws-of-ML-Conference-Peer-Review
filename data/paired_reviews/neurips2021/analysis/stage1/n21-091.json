@@ -1,0 +1,217 @@
+{
+  "pair_id": "n21-091",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [5, 8, 7, 7],
+      "confidences": [4, 5, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_nVFq", "Reviewer_KMnW"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_nVFq",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "5 against 8, 7, 7; the only score below the threshold, raised from a reject score after the rebuttal. The reasons are specific and the authors' replies confirm them: no comparison with any other method (M2), no ablation of the Hessian-based step sizes (M1-B), and novelty that 'seems to boil down to applying [19] in the spectral space' (M1). The authors promised PnP/RED comparisons and a step-size ablation. One sub-point is wrong: nVFq expected the assumed independence of the null-space entries to follow from V being orthogonal, but the image prior, not the injected noise, couples those entries; the authors call it an approximation (reply to Committee B's GwuL)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_YnSg",
+          "evidence": "Rating 7 at confidence 5 ('checked the math/other details carefully') after 2 hours. The summary is pasted again as the main review. On significance it says 'I am unable to judge whether the proposed method is an improvement over existing methods ... I don't know.' Its claim that the compressive-sensing tests are pixel-domain undersampling is wrong. No discussion post. Its Stein-identity point was correct."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nVFq",
+          "claim": "The paper compares with no other method; the mean estimate could be compared with PnP or RED on PSNR.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors concede and promise PnP and RED comparisons. In the camera-ready main text the only PSNR table is still Table 1: SNIPS samples against their own mean, on 8 CelebA images. A RED deblurring comparison was added to the supplement only (Section 5)."
+        },
+        {
+          "reviewer": "Reviewer_nVFq",
+          "claim": "The benefit of the per-coordinate (Hessian-based) step sizes is not demonstrated.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors promise 'an ablation study'. The camera-ready main text still has none, although Section 1 says the step size 'is shown to be essential for its success'."
+        },
+        {
+          "reviewer": "Reviewer_KMnW",
+          "claim": "It is not true that most image restoration techniques aim at an MMSE estimate; most are MAP or regularized inversion.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors reply 'The reviewer is correct'. The camera-ready still says 'most image restoration techniques seek a reconstruction that minimizes the mean squared error' (Section 1)."
+        },
+        {
+          "reviewer": "Reviewer_KMnW",
+          "claim": "The cited PnP and RED papers do not use explicitly MMSE denoisers.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agree. The camera-ready drops 'MMSE' from that sentence and says PnP and RED 'focus on MAP or MMSE estimation'."
+        },
+        {
+          "reviewer": "Reviewer_YnSg",
+          "claim": "What the paper calls compressed sensing is undersampling in the pixel domain, not random projections.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 uses 'three random projection matrices with singular values of 1' that keep 25%, 12.5% and 6.25% of the measurements. The authors cite the same statement at submission line 263."
+        },
+        {
+          "reviewer": "Reviewer_YnSg",
+          "claim": "Identity (3), which the paper calls brilliant, is Stein's integration-by-parts trick, known for decades.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors concede. The camera-ready adds Miyasawa [32], Stein [47] and Efron/Tweedie [12] next to Eq. 3 and still calls it 'a brilliant relation'."
+        },
+        {
+          "reviewer": "Reviewer_y4bh",
+          "claim": "The approach is very similar to Bigdeli et al. 2017 (deep mean-shift priors), which the paper does not discuss.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agree on the shared idea. The camera-ready cites it only as [4] at the end of a list of PnP/RED follow-ups, without the promised discussion."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_nVFq"],
+        "evidence": "nVFq edited the review on 2021-09-01, the day of the comment 'I will therefor raise my rating to 5'; the review had said 'I recommend rejecting this paper'. KMnW's edit is dated the posting day (2021-07-16), and the 2021-08-31 comment says 'I keep my recommendation'. y4bh and YnSg never edited or replied.",
+        "what_convinced_or_not": "nVFq found the promised PnP/RED comparisons with PSNR and LPIPS 'satisfactory as it will allow to better evaluate the method'. nVFq stayed unconvinced on novelty over [19] and on realistic applications, still wanted the paper 'reworked a bit before publication', but would 'understand if this paper is accepted'. KMnW was satisfied by 'careful replies' that were mostly promised rewordings."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows the 8, 7, 7 majority ('the majority opinion is that the results are strong enough to warrant publication'). The spotlight tier is not argued. The meta-review lists overcomplicated derivations, missing prior work and 'the innovation over [19] isn't strong enough', and it omits the missing baselines that nVFq, y4bh and YnSg all raised. Its positive case is 'the actual experiment results shown in the figures speak for themselves'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 7 or 8 judged the method original and sound",
+        "The AC read the qualitative figures as decisive ('speak for themselves')",
+        "Overcomplicated derivations, missing prior work and a modest step over [19] judged outweighed by the results",
+        "The lone detractor accepted the promised PnP/RED comparisons and rose to 5"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 4, 4],
+      "confidences": [3, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_d1T5", "Reviewer_kSnH", "Reviewer_VyNV"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final 5, 5, 4, 4: no outlier. At posting, GwuL's 4 stood alone against 7, 7, 6 (d1T5 and kSnH say they dropped from 7, VyNV from 6). The other three moved to GwuL's position during the discussion. GwuL's basis was principled: no baseline, and no test of whether the SVD construction beats prior samplers on the same NCSNv2 prior."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_kSnH",
+          "evidence": "Two short paragraphs with one question (applications when the training database is not available). The original 7 rested on pictures that 'look really nice'. The drop to 5 cites 'issues with the derivations in Section 3' that the review never raised. No discussion post."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GwuL",
+          "claim": "There are literally no comparisons to baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors promise PnP/RED comparisons in reply. The camera-ready main text compares SNIPS only with its own mean (Table 1, 8 CelebA images), plus one sentence on a RED deblurring comparison in the supplement."
+        },
+        {
+          "reviewer": "Reviewer_GwuL",
+          "claim": "Prior work cited in the submission can handle deblurring and noisy super-resolution and compressed sensing, so it should be compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 says [15, 23] already sample such problems with non-annealed Langevin ('extremely slow', demonstrated only at 'very weak' noise); neither is run. The rebuttal's 'there is no alternative in the literature to compare with' contradicts the paper's own text."
+        },
+        {
+          "reviewer": "Reviewer_GwuL",
+          "claim": "The derivation only gives an approximation to the annealed posterior, with no error bound.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors concede an approximation 'assuming no statistical dependencies between transformed samples in the synthesized image and the null-space of H' and leave a bound to future work. The camera-ready main text (Section 3.2) never mentions it; the supplement is not in the PDF."
+        },
+        {
+          "reviewer": "Reviewer_GwuL",
+          "claim": "Calling NCSNv2 a denoiser is not accurate; it is a far more powerful generative model.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 3 and footnote 3: the score network output is the scaled MMSE denoising residual (Miyasawa/Tweedie), so NCSNv2 is an MMSE denoiser at each noise level. The point behind it, that the image quality may come from NCSNv2, cannot be tested without a baseline on the same prior."
+        },
+        {
+          "reviewer": "Reviewer_d1T5",
+          "claim": "The condition sigma_i s_j != sigma_0 suggests an instability when sigma_i s_j is close to sigma_0.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With the Eq. 12 step sizes, the drift for entry j is (y_T,j - s_j x_T,j)/s_j above the threshold (Eq. 8) and sigma_i^2 s_j (y_T,j - s_j x_T,j)/sigma_0^2 below it (Eq. 9). Both are finite and equal at sigma_i s_j = sigma_0, and the injected noise shrinks to zero there. A numerical check of these formulas confirms it. The camera-ready adds 'SNIPS works just as well for sigma_i s_j = sigma_0'."
+        },
+        {
+          "reviewer": "Reviewer_kSnH",
+          "claim": "The score function is estimated on the same dataset that the degraded test images come from.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5: each NCSNv2 is trained on the training set of CelebA, LSUN bedrooms or LSUN towers and tested on 'the respective test sets'. The test images are held out but in-distribution; Section 6 says SNIPS 'does not handle general content images'."
+        },
+        {
+          "reviewer": "Reviewer_VyNV",
+          "claim": "SNIPS solves noisy linear inverse problems via an approximate MMSE estimator.",
+          "checked_against_paper": "incorrect",
+          "evidence": "SNIPS draws posterior samples, and Section 1 argues against the MMSE estimate for perceptual quality. The mean of 8 samples appears only as an MMSE approximation in Table 1. Committee B's meta-review opens with VyNV's phrase."
+        },
+        {
+          "reviewer": "Reviewer_VyNV",
+          "claim": "The authors do not clearly state what the contributions of the paper are.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 1 ends with a three-item contributions list (submission lines 96-103, per the authors). The list is generic, but it is there."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_d1T5", "Reviewer_kSnH", "Reviewer_VyNV"],
+        "evidence": "kSnH (7 to 5) and VyNV (6 to 4) edited on 2021-09-06; d1T5 (7 to 5) on 2021-09-14. Each says it read the other reviews and the responses. Each cites the lack of baselines; kSnH and VyNV add Section 3 clarity. None of the three had raised baselines in its own review; only GwuL had. GwuL kept 4 (2021-09-07: 'Hence I am not increasing my score').",
+        "what_convinced_or_not": "The answers to d1T5, kSnH and VyNV promised clearer notation and explanations and did not discuss baselines. The promise of PnP/RED comparisons went to GwuL, who replied that they 'should have been included in the main submission' and that the needed test is prior samplers on the same NCSNv2 prior, to show 'whether the SVD techniques help in any way'. The authors' 'there is no alternative in the literature to compare with' did not persuade. GwuL still leaned on Jalal et al., an arXiv paper posted after the submission deadline."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final ratings are below the threshold. The two 'major problems' are GwuL's (no baselines; 'Many papers use NCSNv2 and the more updated Score_SDE') and VyNV's and GwuL's (unclear technical contribution). The opening sentence copies VyNV's misreading of SNIPS as 'an approximate MMSE estimator'. It credits the good images to the prior: 'The results look very good since the paper uses NCSNv2'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No baseline comparisons, raised by GwuL and adopted by all four reviewers in discussion",
+        "Technical contribution and Section 3 derivations judged unclear (d1T5, VyNV, GwuL)",
+        "Good images credited to the pretrained NCSNv2 prior, not to SNIPS",
+        "Promised PnP/RED comparisons judged too late to count"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty over [19]: SNIPS is [19] applied in the SVD domain with adapted step sizes (nVFq, A's meta-review)",
+    "No ablation of the Hessian-based step sizes (nVFq)",
+    "Posterior samples unsuitable where one best reconstruction is needed, e.g. medical imaging (KMnW, nVFq)",
+    "Misdescribed literature: 'most restoration methods are MMSE', PnP/RED said to use MMSE denoisers (KMnW)",
+    "Uncredited Stein/Tweedie identity and missing Bigdeli et al. 2017 (YnSg, y4bh)",
+    "Train/test split and sampler settings not described (nVFq)"
+  ],
+  "issues_only_b": [
+    "Whether the SVD construction beats prior samplers ([15, 23], naive score-based conditioning) on the same NCSNv2 prior (GwuL)",
+    "The score derivation is itself an approximation with no error bound (GwuL); A's nVFq saw the assumption but thought it held",
+    "Image quality may come from NCSNv2 rather than from SNIPS; generative-prior literature uncited (GwuL, B's meta-review)",
+    "Stability when sigma_i s_j is near sigma_0, and the i_1, 'white' and n_T notation (d1T5, VyNV)"
+  ],
+  "shared_issues": [
+    "No comparison with any other method (A: nVFq, y4bh, YnSg; B: GwuL, then all four reviewers and the meta-review)",
+    "Section 3 derivation hard to follow or more intricate than needed (A: KMnW, nVFq, meta-review; B: d1T5, VyNV, meta-review)",
+    "Unclear realistic applications beyond the prior's own image classes (A: nVFq; B: kSnH)",
+    "Visually strong, diverse samples (reviewers in both committees)",
+    "Requests for objective or perceptual metrics beyond PSNR (A: KMnW, y4bh; B: meta-review)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently, and the gap opened in the discussion, not in the first reviews. Both saw strong-looking samples, a hard Section 3 derivation and no baseline: the only PSNR figures compare SNIPS samples with their own mean. At posting the two were close: A had 8, 7, 7 and nVFq's reject score (mean at most 6.5), B had 7, 7, 6 and GwuL's 4 (mean 6.0). In A, the lone detractor nVFq accepted the promised PnP/RED comparisons as 'satisfactory' and rose to 5; the AC gave a spotlight because the figures 'speak for themselves' and never mentioned the missing baselines. In B, the lone detractor GwuL rejected the same promise as too late and as the wrong test: prior samplers that the paper itself cites ([15, 23]) should be run on the same NCSNv2 prior to show whether the SVD construction helps. Between 6 and 14 September the three other B reviewers, none of whom had raised baselines, each dropped two points (7, 7, 6 to 5, 5, 4) citing exactly that, and the AC rejected, crediting the good images to NCSNv2. GwuL's objection was principled, and the camera-ready still does not answer it: it adds only a RED comparison, in the supplement. A's spotlight rests partly on thin support, notably YnSg's 7 at confidence 5 after 2 hours from a reviewer 'unable to judge whether the proposed method is an improvement'.",
+  "candidate_reasons": [
+    "detractor's concern spreads through discussion",
+    "missing baselines fixable versus disqualifying",
+    "visual quality credited to prior",
+    "same rebuttal promise accepted versus rejected",
+    "spotlight not argued in meta-review",
+    "thin high-confidence supporting review"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_GwuL review and 2021-09-07 follow-up",
+    "Reviewer_d1T5 UPDATE (7 to 5, edited 2021-09-14)",
+    "Reviewer_kSnH and Reviewer_VyNV edit notes (7 to 5 and 6 to 4, edited 2021-09-06)",
+    "Reviewer_nVFq 2021-09-01 comment (raised to 5)",
+    "Reviewer_YnSg review (significance: 'I don't know')",
+    "Committee A meta-review ('the actual experiment results shown in the figures speak for themselves')",
+    "Committee B meta-review",
+    "paper Section 2 (refs [15, 23]) and Section 5, Table 1 (8 CelebA images)",
+    "paper Eqs. 8, 9 and 12 (step sizes cancel the sigma_i s_j = sigma_0 singularity)",
+    "paper.pdf is the camera-ready (built 2021-10-17); no paper_submitted.pdf was in the pair folder, so all paper checks use the camera-ready"
+  ]
+}

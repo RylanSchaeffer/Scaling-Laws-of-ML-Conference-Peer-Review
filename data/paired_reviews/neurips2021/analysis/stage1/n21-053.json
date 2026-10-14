@@ -1,0 +1,248 @@
+{
+  "pair_id": "n21-053",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 4, 5],
+      "confidences": [4, 3, 1, 3],
+      "reviews_edited_after_posting": ["Reviewer_c2bx", "Reviewer_uEGL"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 4, 4, 5 are tight and all below threshold. Reviewer_k7kf's 4 is weak evidence (confidence 1, one hour), but it agrees with the three detailed reviews."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_k7kf",
+          "evidence": "Confidence 1 ('educated guess'), 'One hour.', 133 words in all. Calls the paper a 'Good contribution' with 'promising' results, then rates 4 for one reason: music is a 'very narrow domain'. Says the model is applied to 'music data (two data sets)'; one of the two experiments is synthetic. Limitations answer: 'I think so.' Silent in the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_dyhB",
+          "claim": "The synthetic data are generated from a simplified RBN, so beating HC/CPD is not surprising.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 (lines 262-266) names no data source and defers to the Appendix. The authors confirmed that 'data were generated from a simplified RBN'. Reviewer_uEGL (A.4) and, in B, Reviewer_K4dB say the same."
+        },
+        {
+          "reviewer": "Reviewer_dyhB",
+          "claim": "The inferred tree for the C major prelude looks wildly different from the expert tree (Figure 6c).",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 6(c) caption: the model 'does not correctly infer the large-scale grouping'; line 297: 'considerable deviations'. Only the bottom, measure-wise level matches. The authors agreed that the upper levels 'have almost nothing in common'."
+        },
+        {
+          "reviewer": "Reviewer_dyhB",
+          "claim": "Only identity and fifth transpositions get weight, although the expert analysis contains others.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 293-295: identity 78%, fifth 22%, all others zero. The authors conceded 'some mismatch' and argued that most expert transitions are fifths 'in disguise'."
+        },
+        {
+          "reviewer": "Reviewer_dyhB",
+          "claim": "The learned major-key prior could be found by much simpler methods.",
+          "checked_against_paper": "correct",
+          "evidence": "The model was trained only on 'the 24 major preludes' (line 289), and line 293 says the major profile is 'as could be expected based on the training data'. The authors conceded that counting pitch classes gives the same profile."
+        },
+        {
+          "reviewer": "Reviewer_dyhB",
+          "claim": "The conversion to Chomsky normal form (Appendix A.1) omits epsilon rules and unary cycles.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is in neither PDF. The authors conceded: 'Thanks for pointing out the missing cases'."
+        },
+        {
+          "reviewer": "Reviewer_c2bx",
+          "claim": "The paper has no explicit discussion of its limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "No limitations section in the submission or the camera-ready; caveats are scattered (lines 171-173, 204-206, 297-298). The checklist still answers [Yes] to 'Did you describe the limitations of your work?'."
+        },
+        {
+          "reviewer": "Reviewer_c2bx",
+          "claim": "The method is compared with only one model from the literature, on one non-synthetic dataset.",
+          "checked_against_paper": "correct",
+          "evidence": "If anything understated: the one baseline (HC/CPD, lines 263-265) is used only on synthetic data. The music study has no baseline, only one expert annotation that the authors made themselves."
+        },
+        {
+          "reviewer": "Reviewer_c2bx",
+          "claim": "RBNs relate more to hidden tree Markov models than to 'Deep Belief Networks (DBNs)'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "In the paper DBN means dynamic Bayesian network (lines 29-30, 36-43). The HTMM point itself stands; the camera-ready cites HTMMs [36, 37]."
+        },
+        {
+          "reviewer": "Reviewer_c2bx",
+          "claim": "Section 3.1 refers to Figure 6(a), which belongs to the music experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 280 cites Figure 6(a) for the synthetic marginals; 6(a) is the learned pitch profile. Reviewer_uEGL (point I) found the same. The authors: it should be Figure 7."
+        },
+        {
+          "reviewer": "Reviewer_uEGL",
+          "claim": "The expert annotations used for comparison were presumably not independently reviewed.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper says only 'expert analysis' (Figure 6c caption). The authors' reply to Reviewer_dyhB calls it 'our own for the C major prelude'."
+        },
+        {
+          "reviewer": "Reviewer_k7kf",
+          "claim": "The model is applied to music data (two data sets).",
+          "checked_against_paper": "incorrect",
+          "evidence": "One experiment uses synthetic data (Section 3.1). Only the second uses music, the 24 major Bach preludes (Section 3.2)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_c2bx"],
+        "evidence": "Reviewer_c2bx's post-rebuttal note (edited 2021-08-25): 'I am fine in rasing a bit my score but I am still not convinced'; final 4, so at most 3 before. Reviewer_uEGL, 2021-09-02: 'I have kept my score at 5'. Reviewer_dyhB pressed on Figure 6c and the transpositions on 2021-08-17, got answers on 2021-08-18, and never edited (4). Reviewer_k7kf got no response and posted nothing.",
+        "what_convinced_or_not": "c2bx came to see the model as 'well founded and reasonable', but rejected the authors' dismissal of HTMMs ('little overlap') and still wanted results beyond the single music dataset. The authors added no experiments and asked c2bx to name a PCFG for raw polyphonic notes. uEGL wanted 'another review of a modified version' with comparisons on independent datasets. dyhB did not answer the authors' music-theory defence of the fifth-only transpositions."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Given the reviewer scores, after responses to the authors rebuttal, it is not possible to accept this paper.' The stated main issue is the AC's own: the extension of Bayesian networks to PCFGs is 'an old issue', continuous graphical models have 'a very large literature', and 'putting these things together' is not enough. The reviewers objected mainly to the evaluation and called the model original (Reviewer_uEGL) or well founded (Reviewer_c2bx). The AC names no prior work.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous below-threshold ratings after the rebuttal: 4, 4, 4, 5",
+        "Weak evaluation: synthetic data drawn from the model, one music corpus whose expert comparison fails at the large scale, no comparison on existing datasets",
+        "Missing related work (hidden tree Markov models, latent tree learning, factor graph grammars) and under-explained algorithms",
+        "AC's own view that combining PCFG structure with continuous variables is not novel enough"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 8, 6, 5],
+      "confidences": [4, 4, 3, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings spread evenly from 5 to 8. Reviewer_1oXa's 8 ('Top 50% of accepted NeurIPS papers') sits above its own text, which doubts any important application and says 'some much simpler method could also have done this'. Reviewer_K4dB's 5 is principled, and the AC adopted its concern."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_VzMU",
+          "evidence": "States that the music experiments 'demonstrate the effectiveness of the proposed approach' and that 'The limitations are discussed in the paper'. The paper has no music baseline, no limitations section, and a Figure 6c caption that reports a failure on the large-scale structure. Two points only (running example, SPNs); silent after the response."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_gxvj",
+          "claim": "RBNs show quantitative improvements on change point detection over the existing dedicated solution.",
+          "checked_against_paper": "correct",
+          "evidence": "The RBN tree estimate beats HC/CPD in precision and recall (Figure 6b). But the task is tree induction on data sampled from a simplified RBN, the baseline is a two-step pipeline the authors assembled, and the RBN marginals fall 'far below the baseline' in recall (lines 271-272). gxvj mentions none of this."
+        },
+        {
+          "reviewer": "Reviewer_VzMU",
+          "claim": "Experiments on a real-world music application demonstrate the effectiveness of the approach.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No baseline on music. The major prior follows from training only on major preludes (lines 289, 293). The one expert comparison fails at the large scale (Figure 6c caption)."
+        },
+        {
+          "reviewer": "Reviewer_VzMU",
+          "claim": "The limitations are discussed in the paper.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No limitations section or paragraph; only scattered caveats (lines 171-173, 204-206, 297-298)."
+        },
+        {
+          "reviewer": "Reviewer_K4dB",
+          "claim": "The synthetic data were simulated by an RBN, and only the appendix says so.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 (lines 262-266) names no data source and defers to the Appendix. The authors confirmed the simplified RBN to committee A."
+        },
+        {
+          "reviewer": "Reviewer_K4dB",
+          "claim": "Only the Gaussian case is worked out and used; the general or mixed RBN claimed is not delivered.",
+          "checked_against_paper": "correct",
+          "evidence": "Both experiments use Gaussian RBNs (Sections 2.3.1 and 3). The general MAP inference (lines 161-173) is never run, and lines 204-206 say joint gradient maximisation 'is quickly getting trapped in local optima'. The music model's discrete transposition (Eq. 32-33) is summed out as mixture components; the authors cite it as the mixed case."
+        },
+        {
+          "reviewer": "Reviewer_K4dB",
+          "claim": "Figure 1 suggests that 'continuous PCFG' is a more apt label.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1 puts RBNs in the 'Continuous' row, and the submitted abstract says 'tree-shaped Bayesian networks with continuous latent variables'. The camera-ready abstract now says 'discrete or continuous'."
+        },
+        {
+          "reviewer": "Reviewer_K4dB",
+          "claim": "The music data are discrete.",
+          "checked_against_paper": "correct",
+          "evidence": "Observations are normalised note counts (lines 242-244), mapped to log space by a Dirichlet-to-Gaussian approximation (Eq. 37)."
+        },
+        {
+          "reviewer": "Reviewer_1oXa",
+          "claim": "Mixtures of Gaussians are approximated by a single Gaussian by moment matching.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 189-193 and the Figure 4 caption ('moment-matching single Gaussian approximation')."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B review was edited after posting. Reviewer_1oXa, 2021-08-30: the response 'properly addressed two points'. Reviewer_gxvj, 2021-08-30: 'the phrase is clearer now'. Reviewer_K4dB, 2021-08-28 and 2021-09-03: 'what is claimed in the beginning (general RBN) is still not very close to what we get at the end'. Reviewer_VzMU posted nothing.",
+        "what_convinced_or_not": "The authors' general reply framed the paper as mainly theoretical; the positive reviewers already held that view, so nothing moved. K4dB rejected the claim that RBNs cover hybrid Bayesian networks in practice and still saw no musical insight in the fifth-transposition result."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts because 'the remaining reviewers are positive, in particular because there is potential for RBNs to be an important model'. But the AC shares Reviewer_K4dB's concern that the paper 'can give the impression to do more than it actually does', adds that it does not seem 'as efficient/tractable/general as one gets the impression in the beginning', and concludes only that the work 'may be enough for justifying publication'. Nothing in the text argues for a spotlight.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers above threshold (8, 7, 6), valuing the unifying formalism and its inference",
+        "Thin experiments praised without checking (Reviewer_gxvj, Reviewer_VzMU) or excused as early for a new model class (Reviewer_1oXa)",
+        "AC's view that RBNs could become 'an important model'",
+        "Detractor's overclaiming concern shared by the AC but outweighed by the majority"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Missing related work: hidden tree Markov models, tree automata and latent tree learning (Reviewer_c2bx), factor graph grammars (Reviewer_dyhB), Bayesian network structure learning (Reviewer_uEGL); the camera-ready adds most of it",
+    "Chomsky-normal-form conversion omits epsilon rules and unary cycles (Reviewer_dyhB); conceded",
+    "Error of the single-Gaussian approximation never measured (Reviewer_c2bx, Reviewer_dyhB, Reviewer_uEGL)",
+    "Inferred Bach tree misses the expert tree's large-scale structure (Reviewer_dyhB, Reviewer_uEGL)",
+    "Only identity and fifth transpositions learned (Reviewer_dyhB)",
+    "Expert annotation made by the authors themselves (Reviewer_uEGL)",
+    "No benchmark on existing datasets, for example NLP parsing (Reviewer_c2bx, Reviewer_uEGL)",
+    "No limitations or complexity statement (Reviewer_c2bx)",
+    "Combining PCFG structure with continuous variables is not novel enough (Committee A AC)"
+  ],
+  "issues_only_b": [
+    "Relation to sum-product networks (Reviewer_VzMU)",
+    "Monte Carlo inference as an alternative to moment matching (Reviewer_1oXa)",
+    "The name oversells; 'continuous PCFG' is more apt (Reviewer_K4dB)",
+    "Gaussian model for discrete note data; topic models and HMMs as simpler alternatives (Reviewer_K4dB)"
+  ],
+  "shared_issues": [
+    "Narrow empirical validation and unclear practical value (A: all four reviewers; B: Reviewer_1oXa, Reviewer_K4dB)",
+    "Synthetic data drawn from an RBN (A: Reviewer_dyhB, Reviewer_uEGL; B: Reviewer_K4dB)",
+    "Gap between the general RBN and the Gaussian case actually derived and tested (A: Reviewer_uEGL; B: Reviewer_K4dB, Committee B AC)",
+    "Simpler methods could recover the music findings (A: Reviewer_dyhB; B: Reviewer_1oXa, Reviewer_K4dB)",
+    "Dense presentation; inference and tree induction under-explained (A: Reviewer_c2bx, Reviewer_uEGL; B: Reviewer_gxvj, Reviewer_VzMU)",
+    "Unclear convexity sentence at line 173 (A: Reviewer_uEGL; B: Reviewer_gxvj)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently. Six of eight reviewers, including B's top scorer, doubted the evidence: one synthetic test on data sampled from an RBN, and one study of 24 major Bach preludes whose single expert comparison, by the paper's own caption, misses the large-scale grouping. Committee A made this decisive (4, 4, 4, 5). Its reviews were longer and more specific, and they found the normal-form gap, the synthetic test drawn from the model itself, and the failed Bach tree. Committee B's three positive reviewers valued the formalism. Two praised the experiments without checking them (Reviewer_gxvj 7, Reviewer_VzMU 6); Reviewer_1oXa (8) excused them as early while doubting any important application. B's one detractor, Reviewer_K4dB (5), showed a gap between the general RBN claimed and the Gaussian case delivered; the paper confirms it, and B's AC agreed. The rebuttal moved no B score and lifted one A score 'a bit', to 4. A's AC added a novelty objection that the reviewers had not made central. A post-acceptance comment on Gaussian mixture latent vector grammars, which the first author called 'closely related indeed', gives that doubt some support. Nothing in B's record argues for a spotlight: its meta-review says only that the work 'may be enough for justifying publication'.",
+  "candidate_reasons": [
+    "Same weaknesses, opposite weighting",
+    "Theory contribution versus empirical validation",
+    "Champions overlook or excuse weak experiments",
+    "Review depth exposes result failures",
+    "AC adds own novelty objection",
+    "Spotlight tier not argued"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_1oXa final review",
+    "Reviewer_VzMU final review",
+    "Reviewer_K4dB final review and comments of 2021-08-28 and 2021-09-03",
+    "Reviewer_dyhB comments of 2021-08-17 (Figure 6c, Transpositions) and author replies of 2021-08-18",
+    "Reviewer_c2bx post-rebuttal note",
+    "Reviewer_uEGL update of 2021-09-02",
+    "a/paper_submitted.pdf (b/ has no submitted copy): Figure 6 caption (c) and lines 289-299",
+    "a/paper_submitted.pdf: Section 3.1, lines 262-273 and 280",
+    "a/paper_submitted.pdf: abstract and Figure 1; camera-ready abstract",
+    "Committee B forum: public comment by ~Yanpeng_Zhao1 (2021-11-20) and reply by ~Robert_Lieck1 (2021-11-25)",
+    "camera-ready Section 1.1: adds latent vector grammars, factor graph grammars, hidden tree Markov models, latent tree learning"
+  ]
+}

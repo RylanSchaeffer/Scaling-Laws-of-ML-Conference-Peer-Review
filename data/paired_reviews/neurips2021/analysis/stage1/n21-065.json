@@ -1,0 +1,246 @@
+{
+ "pair_id": "n21-065",
+ "prompt_version": 1,
+ "kind": "spotlight/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [
+    9,
+    8,
+    6,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    5,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_u2eX",
+    "Reviewer_nnEq",
+    "Reviewer_T7tc",
+    "Reviewer_gM3z"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 9/8/6/7 (u2eX, nnEq, T7tc, gM3z) spread evenly around a mean of 7.5; none departs by more than 1.5. The top two are the most careful reviews: u2eX (7 h) found slips in the Theorem 3 proof and Appendix E, and nnEq (10 h) says it checked the proofs of Theorem 3 and Section 3."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_T7tc",
+     "evidence": "Confidence 5 ('checked the math/other details carefully'), yet point 5 reads the right side of eq. (15) as tending to 0 when ε → 0 and suspects a typo. The term ε^(1-d)/N grows without bound, as the authors replied. Point 3 says N must be 'proportional to d'; an N^(-1/d) rate needs N exponential in d. T7tc kept 6 with a generic note."
+    },
+    {
+     "reviewer": "Reviewer_gM3z",
+     "evidence": "Two hours, a one-sentence summary and three short comments. It places the bound on min F_N in 'Remark 1' (it is Remark 2; the authors corrected this) and lists 'Corollary 4, 5 and 7' (7 is a theorem). Raised to 7 with a one-line note."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_u2eX",
+     "claim": "Theorem 7's multi-step rate is slower than the N^(-1/d) reached after one step (Theorem 3, Corollary 4), so its interest is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (22) gives W2² = O(N^(-1/d² + α(1-1/d))) times a bounded factor, slower than N^(-1/d). Remark 5 notes the discrepancy in one sentence. The authors conceded and kept Theorem 7 for a proof strategy they hope extends to regression."
+    },
+    {
+     "reviewer": "Reviewer_u2eX",
+     "claim": "The Theorem 3 proof (l.170) transports cells to y_i instead of b_i(Y); in Appendix E (l.416/417) σm_σ does not tend to √(2π).",
+     "checked_against_paper": "correct",
+     "evidence": "The proof bounds W2²(ρ, δ_B) by ∫_{P_i}||x − y_i||² dρ, but the diameter bound needs b_i(Y). Eq. (26) gives σm_σ → 1/√(2π). Both are slips; the results stand."
+    },
+    {
+     "reviewer": "Reviewer_nnEq",
+     "claim": "The update needs the density ρ explicitly; in practice one has samples or a histogram.",
+     "checked_against_paper": "correct",
+     "evidence": "Proposition 1 defines b_i(Y) as integrals of ρ over power cells fixed by (10); no sample-based version is analysed. The authors: 'a good question that we haven't studied yet'."
+    },
+    {
+     "reviewer": "Reviewer_nnEq",
+     "claim": "The paper does not treat the regression problem θ ↦ W2(T_θ#μ, ρ) advertised in the introduction.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (2) frames the paper, lines 47-49 restrict it to F_N, and Section 5 lists regression as future work. Reviewer_fudr in B made the same point."
+    },
+    {
+     "reviewer": "Reviewer_T7tc",
+     "claim": "As ε → 0 the right side of eq. (15) tends to 0, so Theorem 3's assumption on Y has a typo.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. (15) is C_{d,Ω}(ε^(1-d)/N + 1 − Card(I_ε(Y))/N); the first term diverges as ε → 0 for d ≥ 2. The theorem holds for any Y off the diagonal."
+    },
+    {
+     "reviewer": "Reviewer_T7tc",
+     "claim": "The experiments are mainly in 2D.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 (line 229) reports results 'in dimension d = 2' only: one Lloyd step on an image and on a truncated Gaussian. Reviewer_gM3z asked for d ≥ 3 for the same reason."
+    },
+    {
+     "reviewer": "Reviewer_gM3z",
+     "claim": "The one-step rate does not match the N^(-2/d) bound on min F_N.",
+     "checked_against_paper": "correct",
+     "evidence": "Corollary 4 with β = d gives N^(-1/d); Remark 2 gives min F_N ≲ N^(-2/d); lines 205-206 admit (20) is not tight. Appendix E (Corollary 9) gives a lower bound N^(-(2-δ)/d) for N-dependent truncated Gaussians, so the exponent cannot improve uniformly over ρ, as the rebuttal said."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_gM3z"
+    ],
+    "evidence": "Rebuttal posted 2021-08-10. Reviewer_gM3z wrote 'I've updated my score accordingly' on 2021-08-27, the day its review was last edited; final 7. Reviewer_u2eX (last edit 2021-07-05) wrote 'Otherwise, I am convinced'; Reviewer_nnEq (last edit 2021-07-15) wrote 'Thank you for your answer!'; neither edited after the rebuttal. Reviewer_T7tc: 'I decide to keep my current score' (6).",
+    "what_convinced_or_not": "The tightness argument (Remark 3, Appendix E: one Lloyd step cannot beat N^(-1/d) uniformly in ρ, and more steps do not help in the counterexample) answered gM3z. u2eX accepted that Theorem 7 stays for a proof strategy that may extend to regression, a promise rather than a result. nnEq accepted 'not studied yet' on sample access. T7tc's requests (high-dimensional experiments, relaxing compactness) got 'low dimension, quadrature, Monte Carlo possible' and its score did not move."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Two-sentence meta-review: 'All the reviewers stressed that this paper presents strong theoretical and numerical contributions'. That fits the 9/8/7/6 ratings but not the text on experiments: T7tc called them 'quite poor' and gM3z asked for d ≥ 3. The rest is a request for citations (Ng 2000; Cuturi and Doucet, also raised by nnEq). Nothing explains a spotlight rather than a poster.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Two detailed reviews that checked the proofs rated 9 and 8 (Reviewer_u2eX, Reviewer_nnEq); mean 7.5, no rating below 6",
+    "Main result judged new and surprising: one Lloyd step from a well-separated start gives W2² ≲ N^(-1/d) despite non-convexity",
+    "Read as an explanation of why a non-convex method works, so practicality gaps (density access, 2D experiments, rate gap) counted as future work",
+    "Rebuttal on tightness (Appendix E) raised Reviewer_gM3z to 7; no reviewer argued against acceptance"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    7,
+    5,
+    5
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_t3bd",
+    "Reviewer_AWCx"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/7/5/5 (t3bd, fudr, Xcrv, AWCx) sit within 1.25 of the mean of 5.75. No reviewer rated above 7. The weakest vote is Reviewer_AWCx's 5 at confidence 2."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_AWCx",
+     "evidence": "Confidence 2. The summary restates the OpenReview abstract nearly word for word. Asks whether the power-cell Lloyd algorithm is a contribution, though the paper credits (10) to [11] and the gradient to [14] and claims only the analysis. Calls the paper 'not well-written' with 'a lot of details' to clarify, then lists four minor items. Edited 2021-08-31 without any comment."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Xcrv",
+     "claim": "The natural competitor is an N-sample from ρ, which reaches N^(-1/d) in W2 (Fournier and Guillin); the paper makes no comparison.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission never mentions i.i.d. sampling rates or Fournier and Guillin. Corollary 4 (β = d) gives W2² ≲ N^(-1/d); an N-sample has E W2² ≲ N^(-2/d) for d > 4. The authors conceded a random sample 'achieves a better convergence rate (although only on average)'. The camera-ready adds no comparison."
+    },
+    {
+     "reviewer": "Reviewer_Xcrv",
+     "claim": "Lines 150-151 (and the abstract) say experiments show the gradient flow avoids high-energy critical points, but no such experiment or citation appears.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 runs one Lloyd step from random or grid starts in d = 2; no run follows the flow to a critical point, and the sentence has no citation. The camera-ready keeps the sentence, still uncited, and adds no such run. The authors did not reply."
+    },
+    {
+     "reviewer": "Reviewer_Xcrv",
+     "claim": "The paper does not explain that N^(-2/d) is a lower bound for W2² with N points, which would show one step is optimal up to a square.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 2 states only upper bounds on min F_N. Xcrv sketched the lower bound in the discussion; it frames the result as a strength, not a flaw."
+    },
+    {
+     "reviewer": "Reviewer_t3bd",
+     "claim": "The paper does not say how power-cell barycenters are computed or at what cost.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither the main text nor the appendix names a solver, quadrature or complexity; the checklist points to code in the supplement. The rebuttal names PySDOT quadrature in 2D and Monte Carlo for high dimension. Reviewer_AWCx raised the same point."
+    },
+    {
+     "reviewer": "Reviewer_t3bd",
+     "claim": "The dimension dependence of the constants is not discussed.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3 gives C_{d,Ω} = 2^(2d-1)(diam Ω + 1)^(d+1)/ω_(d-1) with no comment; it grows exponentially in d, as the authors confirmed."
+    },
+    {
+     "reviewer": "Reviewer_AWCx",
+     "claim": "The power-cell Lloyd algorithm was studied in [11] and [14]; the paper should say whether it is a contribution.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paper credits the equal-mass condition (10) to [11] and the gradient to [14, Prop. 21], and line 83 names the analysis as the contribution. It never claims the algorithm."
+    },
+    {
+     "reviewer": "Reviewer_fudr",
+     "claim": "In Theorem 3 the point cloud Y should belong to D_{N,ε}.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 3 holds for any Y off the diagonal and any ε; the term 1 − Card(I_ε(Y))/N accounts for points closer than ε."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Rebuttal posted 2021-08-10. Reviewer_t3bd's edit of 2021-09-06 adds 'I will leave my score at a 6'. Reviewer_fudr and Reviewer_Xcrv never edited. Reviewer_AWCx edited on 2021-08-31 with no comment and no post-rebuttal text, so any change is invisible. Only Xcrv replied (2021-08-25), restating its concerns and adding the uncited-experiments point; the authors did not answer.",
+    "what_convinced_or_not": "The authors conceded Xcrv's main point (a random sample has a better rate, on average) and answered the cost questions with 'quadratures in low dimension, Monte Carlo in high dimension'. That confirmed the gaps rather than closing them. t3bd stayed at 6, citing 'issues raised by other reviewers' and 'limited practical experiments'."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings split two above and two below threshold (mean 5.75). The AC's three concerns come from Xcrv and t3bd: cost of computing the gradients, reliance on samples of ρ, and no comparison with an N-sample. It calls them 'important aspects that are not treated in the paper' and the work 'too preliminary'. It does not weigh fudr's 7 or t3bd's 'close to being ready for publication'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "No comparison with an N-sample from ρ, which the authors conceded has a better expected rate (Reviewer_Xcrv; AC)",
+    "Cost of computing power-cell barycenters and reliance on samples in high dimension not treated (Reviewer_t3bd, Reviewer_AWCx, Reviewer_Xcrv; AC)",
+    "Experiments only a 2D proof of concept; uncited claim that the gradient flow avoids bad critical points (Reviewer_t3bd, Reviewer_Xcrv)",
+    "Split ratings 6/7/5/5 with no champion above 7; no score moved after the rebuttal"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Slips in the Theorem 3 proof (y_i for b_i(Y)) and in Appendix E (σm_σ limit) (Reviewer_u2eX)",
+  "Whether the one-step behaviour holds for classical, non-uniform quantization (Reviewer_u2eX)",
+  "Whether the output is asymptotically optimal, F_N/min F_N → 1 (Reviewer_nnEq)",
+  "Relaxing compactness of Ω; choosing N; local strong convexity near minimisers (Reviewer_T7tc)",
+  "Missing references on constrained k-means and OT clustering (AC, Reviewer_nnEq, Reviewer_T7tc)"
+ ],
+ "issues_only_b": [
+  "No comparison with an N-sample from ρ, which has a better expected rate (Reviewer_Xcrv; AC)",
+  "Computational cost of power-cell barycenters not discussed (Reviewer_t3bd, Reviewer_AWCx; AC)",
+  "Uncited claim that experiments show the gradient flow avoids high-energy critical points (Reviewer_Xcrv)",
+  "Constants exponential in d not discussed; no hint which measures are easier (Reviewer_t3bd)",
+  "Missing lower-bound context (N^(-2/d)) and link to barycentric-projection map estimation (Reviewer_Xcrv, Reviewer_t3bd)"
+ ],
+ "shared_issues": [
+  "One-step rate N^(-1/d) is the square root of the optimal N^(-2/d) (A: Reviewer_gM3z, Reviewer_u2eX; B: Reviewer_fudr, Reviewer_Xcrv)",
+  "Theorem 7's multi-step rate is weaker than the one-step bound and poorly explained (A: Reviewer_u2eX, Reviewer_gM3z; B: Reviewer_t3bd, Reviewer_fudr)",
+  "Experiments only in d = 2 (A: Reviewer_T7tc, Reviewer_gM3z; B: Reviewer_t3bd)",
+  "The update needs the density ρ, while practice gives samples (A: Reviewer_nnEq; B: Reviewer_Xcrv, AC)",
+  "Introduction frames a Wasserstein regression problem the paper does not treat (A: Reviewer_nnEq; B: Reviewer_fudr)",
+  "Typos in key statements: barycenter definition, Theorem 3 and Corollary 4 hypotheses (A: Reviewer_u2eX, Reviewer_T7tc; B: Reviewer_fudr, Reviewer_AWCx)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighted the same facts differently; one correct point, the missing i.i.d.-sample comparison, reached only B. Both found the main result new: one Lloyd step from a well-separated start gives W2² ≲ N^(-1/d) despite non-convexity. No reviewer found an error in a result. A had two invested champions: Reviewer_u2eX (9, 7 h) and Reviewer_nnEq (8, 10 h) checked the proofs, and u2eX caught real slips in them. A read the paper as an explanation of why a non-convex method works. B read it as an approximation method and asked what it buys. Reviewer_Xcrv showed that an N-sample from ρ already has a better expected rate (E W2² ≲ N^(-2/d) for d > 4, against the paper's N^(-1/d)). The paper never makes this comparison, and the authors conceded the point. B also noted that the paper never says how the power-cell barycenters are computed or at what cost. Both committees saw the gap to the optimal N^(-2/d), the weak Theorem 7, the 2D-only experiments and the need for the density. A accepted these as future work. B's AC called them 'important aspects that are not treated' and rejected split ratings (6, 7, 5, 5). No B reviewer rated above 7 or spent more than 4 h. A's spotlight rests on a two-sentence meta-review that overstates the reviewers' view of the experiments.",
+ "candidate_reasons": [
+  "Theory insight versus practical significance",
+  "Missing i.i.d.-sample baseline comparison",
+  "Proof-checking champions in one committee",
+  "Computational cost left unaddressed",
+  "AC rejects split borderline ratings",
+  "Consensus meta-review overstates experiments"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_Xcrv review and comment 2021-08-25",
+  "Authors' response to Reviewer_Xcrv ('a random sample according to ρ achieves a better convergence rate')",
+  "Committee B meta-review",
+  "Reviewer_t3bd review, post-rebuttal paragraph (edited 2021-09-06)",
+  "Reviewer_u2eX review (minor mistakes l.170, l.416/417) and comments 2021-08-20 and 2021-08-25",
+  "Reviewer_nnEq review, question (a) and note on checked proofs",
+  "Reviewer_T7tc review point 5 against paper eq. (15)",
+  "Reviewer_gM3z comment 2021-08-27",
+  "Committee A meta-review",
+  "paper_submitted.pdf lines 150-153 (uncited 'Experiments suggest'), line 229 (d = 2 only), Remark 2, Corollary 4, Appendix E Corollary 9"
+ ]
+}

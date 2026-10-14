@@ -1,0 +1,274 @@
+{
+  "pair_id": "n21-096",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        7,
+        4,
+        4,
+        4,
+        5
+      ],
+      "confidences": [
+        5,
+        3,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_aK3Q",
+        "Reviewer_1PbL",
+        "Reviewer_EBwR"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_aK3Q",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "7 at confidence 5 against 4, 4, 4, 5. It is the most careful review in A (11 h). It ran the released code (it reports missing dependencies 'pyyaml, matplotlib, tqdm') and asked for per-module accuracy. The authors answered with new numbers: hallucinator per-entry accuracy 70.9-85.5%, executor success 93.8% per component. aK3Q replied 'answers my questions' and stopped. It never addressed the privileged-training and baseline concerns of Reviewer_kENU and Reviewer_EBwR. It calls the writing 'very clear', against three other A reviewers."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Wt3P",
+          "evidence": "4 at confidence 3 after 3.5 h. The main review is four clarification questions: why MPPS wins, how the hallucinator is trained, whether End-to-end has a hallucinator, and why programs are needed. It names no flaw that would justify a reject. Wt3P never replied to the rebuttal and never edited the review."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_kENU",
+          "claim": "The method uses the fully observed map in training: the executor learns from programs synthesized on the full map, and the hallucinator from true states.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Section 5: 'Just for training, we use the ground truth program p synthesized based on the fully observed environment'. The hallucinator is fit by supervised learning on (o_t, s_t) pairs. The authors confirmed both."
+        },
+        {
+          "reviewer": "Reviewer_kENU",
+          "claim": "The paper has no program-synthesis baselines that ignore partial observability; it compares only with neural approaches.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 (Table 6 in the submission) has an optimistic synthesizer and a random hallucinator. kENU conceded: 'I stand corrected'."
+        },
+        {
+          "reviewer": "Reviewer_kENU",
+          "claim": "The neural baselines look weak: 128- and 32-unit MLPs for actor and critic, and Relational does worse than the other neural baselines on Box-world, the reverse of the RRL paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.3 gives the 128/32-unit MLPs for all approaches. Table 1, Box-world reward: Relational 0.77, World models 0.80, End-to-end 0.85. The authors could not make Relational beat End-to-end. After new runs (baselines trained and tested on full maps reach 0.24, MPPS 0.70), kENU was 'more confident that the baselines are good'."
+        },
+        {
+          "reviewer": "Reviewer_kENU",
+          "claim": "Task and motion planning (TAMP) is not mentioned.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded ('We will include the TAMP literature'). The camera-ready adds Garrett et al. [26], Kaelbling and Lozano-Perez [43] and Phiquepal and Toussaint [52], all from kENU's list."
+        },
+        {
+          "reviewer": "Reviewer_1PbL",
+          "claim": "The authors compare their methods only to ablations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 compares with End-to-end, World models [29], Relational RL [76] and the program-guided oracle [62]. The ablations are a separate table (Table 2)."
+        },
+        {
+          "reviewer": "Reviewer_1PbL",
+          "claim": "Options are used before they are defined, and the motivating example in Section 2 uses notation that comes later.",
+          "checked_against_paper": "correct",
+          "evidence": "The introduction uses 'option [63]' on page 1 without a definition; the authors placed the definition in Section 3 (L149-151 of the submission). Reviewer_SkvM in B asked to 'Define option before using it' and to move Section 2 after the problem definition, but only as minor suggestions."
+        },
+        {
+          "reviewer": "Reviewer_EBwR",
+          "claim": "The End-to-end baseline has no hallucinator and is not recurrent.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors confirmed both. The point carries little weight: the environment is static and observed cells stay visible (Sections 2 and 6.1), so the input map holds the whole history. The MPPS options are not recurrent either."
+        },
+        {
+          "reviewer": "Reviewer_EBwR",
+          "claim": "The baselines do not separate the effect of the pre-trained options from the synergy of hallucinator and synthesizer.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 holds the options fixed and changes only the hallucinator: optimistic synthesizer 0.42, random hallucinator 0.48, MPPS 0.70 reward on 2D-craft. The real gap is narrower: no learned neural controller chooses among the same options. The authors called that future work and did not run it."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "POMCP (Silver and Veness) and TD-VAE (Gregor et al.) are neither cited nor compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither appears in the camera-ready's 79 references or in Tables 1-2. But the paper does not claim the generative model as new; it says the hallucinator is 'inspired by world-models [29]'. No reviewer in either committee raised these papers, and the authors had no chance to answer."
+        },
+        {
+          "reviewer": "Reviewer_aK3Q",
+          "claim": "The study of the number of hallucinator samples shows small margins.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Figure 6 (box-world): mean reward stays within 0.930-0.940 for m = 1 to 5; only the variance falls. Reviewer_F1k5 in B made the same observation."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_EBwR"
+        ],
+        "evidence": "EBwR's edit of 2021-09-02 says 'I slightly lower my score (6 -> 5)'. kENU wrote 'I am therefore keeping my score the same' on 2021-09-01. 1PbL edited its review on 2021-08-31, the day it replied that the paper still 'lacks clarity'; it states no change. aK3Q's edit (2021-07-12) came before the author response. Wt3P never replied.",
+        "what_convinced_or_not": "The authors gave new data: hallucinator and executor accuracy for aK3Q; baselines trained and tested on full maps (0.24 against 0.70) and the original Relational architecture for kENU. kENU accepted the baselines but kept 4 for clarity, privileged training and grounding in planning work, saying the changes 'warrant a complete re-review'. EBwR read the code and asked for a neural controller over the same options. The authors argued that such a controller is itself program synthesis and did not run it, so EBwR went down. 1PbL did not answer the authors' request to name the unclear parts."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Reject matches four of five ratings below 6, and 'clarity of exposition' comes from 1PbL, kENU and EBwR. But the 'mostly importantly' reason, novelty, rests on TD-VAE and POMCP, which no reviewer cited and the authors could not answer. The paper credits its generative model to world models and claims novelty for synthesis over hallucinated worlds. kENU, the main critic, called that approach 'a worthwhile contribution on its own'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Four of five ratings below the bar (4, 4, 4, 5)",
+        "Clarity: training, baseline and evaluation details missing from the paper (Reviewer_kENU, Reviewer_1PbL, Reviewer_EBwR)",
+        "Full-map information used in training (Reviewer_kENU, Reviewer_EBwR, AC)",
+        "No baseline isolates the synthesizer from the options (Reviewer_EBwR)",
+        "AC's own novelty objection: TD-VAE and POMCP not cited or compared"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        4,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_DgEc"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_456H",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "4 against 7, 7, 7, after 2 h. Two of its three arguments misread the paper. It says about 25 steps reveal the 10 x 10 map, but stone and water zones block movement until a tool is built (Section 2). It says privileged executor training explains why MPPS is close to the oracle, but the oracle uses the same executor (Section 6.2). It also writes 'I couldn't really understand what is the role of the executor network'. Its state-abstraction point is fair. 456H never replied to the rebuttal, which ran the explore-then-plan baseline it asked for (0.024 against 0.70)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_456H",
+          "evidence": "2 h, the shortest time in either committee. Two factual misreadings (see outlier). No reply to the rebuttal or to the new experiment it requested."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_456H",
+          "claim": "With a 5 x 5 view of a 10 x 10 map and 100 steps, about 25 steps make the map fully observable, so classical planning would suffice.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The map size, view and horizon are right (Section 6.1). But zones are separated by stone or water that the agent cannot cross without a tool (Section 2, Figure 1), so a 25-step sweep cannot always see every zone. In Table 2 the optimistic synthesizer loses 0.28 reward to MPPS, so the hidden parts matter within 100 steps. The authors' random explore-then-plan run scored 0.024; Section 6.4 of the camera-ready reports it."
+        },
+        {
+          "reviewer": "Reviewer_456H",
+          "claim": "Training the executor on programs from the fully observed map likely explains why MPPS is so close to the oracle.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 6.2 defines the oracle as 'our approach but given the ground truth program', so both use the same executor. The gap to the oracle (0.70 against 0.76 on 2D-craft) measures the quality of the synthesized programs, not executor training."
+        },
+        {
+          "reviewer": "Reviewer_DgEc",
+          "claim": "The generative model is trained with access to the true state of the world.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5: the hallucinator is fit by supervised learning on (o_t, s_t) pairs from random rollouts on the training tasks."
+        },
+        {
+          "reviewer": "Reviewer_F1k5",
+          "claim": "The related-work sentence that option-planning methods 'cannot be applied' to continuous or partially observed MDPs is false for continuous spaces and unproven for POMDPs.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agreed. The camera-ready now says this work handles continuous spaces but 'does not handle the challenge of partial observations', and it cites F1k5's four papers [6, 49, 64, 77]."
+        },
+        {
+          "reviewer": "Reviewer_SkvM",
+          "claim": "The hallucinator's random-agent training episodes are missing from the training curves.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded. The camera-ready Figure 4 caption now includes them (200 episodes against 400,000 for the executor in 2D-craft). Reviewer_kENU in A asked the same."
+        },
+        {
+          "reviewer": "Reviewer_F1k5",
+          "claim": "The number-of-samples study suggests that a non-sampled hallucinator might work as well.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 6: mean reward stays within 0.930-0.940 for m = 1 to 5 on box-world; only the variance falls."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The method 'does not depend on privileged information in the form of ground truth programs'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True at test time only. Section 5 trains the options on 'the ground truth program p synthesized based on the fully observed environment'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_DgEc"
+        ],
+        "evidence": "DgEc's review was edited on 2021-08-31 and now carries a 7, but its text still says the extensions are not 'enough to warranty an acceptance to this venue'. DgEc posted no comment. The AC writes that the consensus 'clearly shifted towards a mean of 7'. F1k5 and SkvM stayed at 7; SkvM called its score 'close to an upgrade but sadly not sufficient'. 456H did not reply.",
+        "what_convinced_or_not": "DgEc gave no reason. The authors had answered it with the random explore-then-plan run (0.024 against 0.70) and the multi-task argument for full-map training. F1k5 asked for a non-deterministic test; the authors ran it (MPPS 0.47, oracle 0.50, baselines 0.20-0.22) and agreed to tone down the related-work claim. SkvM left large observation spaces and option distribution shift as future work."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accept follows three 7s; the AC set aside 456H's 4 because it never replied. But no reviewer rated above 7 or argued for a higher tier. The spotlight rests on the AC's view that the paper is 'pretty cool' and that its quality 'warrants it being an exemplar'. The meta-review does not engage with the privileged-training concern of DgEc and 456H. It says the method does not depend on ground-truth programs, which holds at test time only.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three 7s; the only 4 was silent after the rebuttal and was set aside",
+        "Method judged novel: program synthesis over hallucinated worlds with MaxSAT (Reviewer_F1k5, Reviewer_SkvM, Reviewer_DgEc)",
+        "Paper judged clear and well written (Reviewer_F1k5, Reviewer_SkvM)",
+        "Large gains over non-program baselines and near-oracle results, backed by new non-deterministic and explore-then-plan runs",
+        "AC's enthusiasm for the research direction set the spotlight tier"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Baseline strength and implementation details: 128/32-unit MLPs, Relational below End-to-end, how End-to-end is built (Reviewer_kENU, Reviewer_Wt3P)",
+    "No learned neural controller over the same options; End-to-end without hallucinator or recurrence, found in the code (Reviewer_EBwR)",
+    "Framing as program synthesis rather than task planning; TAMP and SAT-planning work uncited; the claim that the user gives only a goal is overstated (Reviewer_kENU, Reviewer_EBwR)",
+    "Missing program-synthesis literature and the MaxSAT assumption (Reviewer_aK3Q)",
+    "AlphaNPI, Option-Critic and HAC as missing baselines (Reviewer_1PbL)",
+    "Only five seeds, on tasks without a known state of the art (Reviewer_EBwR)",
+    "POMCP and TD-VAE neither cited nor compared (Committee A AC)"
+  ],
+  "issues_only_b": [
+    "Partial observability is mild: about 25 steps reveal a small static map, so classical planning could suffice (Reviewer_456H)",
+    "Storing all past observations will not scale to 3D; options trained up front face distribution shift (Reviewer_SkvM)",
+    "Related-work sentence overstates that option planning cannot handle continuous or partially observed MDPs (Reviewer_F1k5, Reviewer_SkvM)",
+    "Older POMDP planning work (Bonet; Draper et al.) uncited (Reviewer_SkvM)"
+  ],
+  "shared_issues": [
+    "Full-map information in training: executor on full-map programs, hallucinator on true states (A: Reviewer_kENU, Reviewer_EBwR; B: Reviewer_DgEc, Reviewer_456H)",
+    "User-supplied state abstraction and components (A: Reviewer_kENU, Reviewer_EBwR; B: Reviewer_456H, Reviewer_DgEc, Reviewer_F1k5)",
+    "Exploration works because the environments are easy; no active information gathering (A: Reviewer_EBwR; B: Reviewer_DgEc)",
+    "Small symbolic grid worlds; doubts about harder domains (A: Reviewer_EBwR; B: Reviewer_456H, Reviewer_SkvM)",
+    "Static, deterministic environments only (A: Reviewer_kENU, as a limitation it did not ask the paper to fix; B: Reviewer_F1k5, who asked for a test and got one: MPPS 0.47, oracle 0.50, baselines 0.20-0.22)",
+    "Uncited work on planning under partial observability (A: Reviewer_kENU's belief-space TAMP papers, AC's POMCP; B: Reviewer_SkvM's Bonet and Draper et al.); A weighed it as a novelty and grounding problem, B as a helpful addition",
+    "Presentation: options used before definition, Section 2 before the formalism, train/test setup easy to miss (A: Reviewer_1PbL, Reviewer_kENU, Reviewer_EBwR; B: Reviewer_SkvM, Reviewer_F1k5)",
+    "Missing program-synthesis baselines (A: Reviewer_kENU; B: Reviewer_SkvM); Table 2 partly answers this",
+    "Hallucinator predicts features, not the full world (A: Reviewer_aK3Q; B: Reviewer_F1k5)",
+    "Hallucinator training data missing from the learning curves (A: Reviewer_kENU; B: Reviewer_SkvM)",
+    "Ant-craft adds little because a pre-trained low-level controller does the work (A: Reviewer_aK3Q; B: Reviewer_F1k5)",
+    "More hallucinator samples barely change mean reward (A: Reviewer_aK3Q; B: Reviewer_F1k5)",
+    "Strength seen by both: synthesizing a program over hallucinated worlds is new and promising (A: Reviewer_aK3Q, Reviewer_kENU, Reviewer_EBwR; B: Reviewer_F1k5, Reviewer_DgEc, Reviewer_SkvM)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A rejected and Committee B gave a spotlight, but the two committees mostly saw the same facts and weighted them differently. Both saw the privileged training: the executor learns from programs synthesized on the full map, and the hallucinator learns from true states. Both saw that the user supplies the state abstraction and that the tests are small static grids. Both praised the core idea. A's two careful critics, Reviewer_kENU and Reviewer_EBwR, held these limits against the paper. They added missing detail and the lack of a baseline that isolates the synthesizer. Even so, both called the idea worth publishing. A also drew two short 4s at confidence 3. Reviewer_Wt3P names no flaw. Reviewer_1PbL rests on clarity points that B's Reviewer_SkvM also saw and called minor. A's AC then made novelty the main reason, citing TD-VAE and POMCP. No reviewer had raised these papers, and the authors could not answer. In B, Reviewer_F1k5 and Reviewer_SkvM found the paper clear and novel. Reviewer_DgEc raised its rating to 7 but kept text that calls the work below the bar. The lone 4, Reviewer_456H (2 h), rests partly on misreadings and never answered the rebuttal. B's AC set it aside and chose a spotlight on personal enthusiasm; no reviewer rated above 7. So reviewer draw and the two ACs separate the outcomes. The A-only findings, a missing neural-controller baseline and weak grounding in planning work, are real but not fatal.",
+  "candidate_reasons": [
+    "Privileged training tolerated differently",
+    "Clarity judged differently by reviewers",
+    "Thin low-confidence rejections in A",
+    "AC introduced new novelty objection",
+    "Unexplained raise to 7",
+    "Silent mistaken detractor set aside",
+    "AC enthusiasm set spotlight tier"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Rating tables of both committees (A: 7, 4, 4, 4, 5; B: 7, 4, 7, 7)",
+    "Reviewer_kENU review and 'Thank you for the further details' (2021-09-01)",
+    "Reviewer_EBwR 'After rebuttal' section (6 -> 5) and 'Final comments on experiments' (2021-09-03)",
+    "Reviewer_1PbL review and reply (2021-08-31); Reviewer_Wt3P review",
+    "Committee A meta-review (TD-VAE, POMCP)",
+    "Reviewer_DgEc review text against its final rating 7 (edited 2021-08-31)",
+    "Reviewer_456H review; authors' explore-then-plan result (0.024 against 0.70)",
+    "Reviewer_F1k5 discussion and the non-deterministic results (2021-08-18); Reviewer_SkvM 'rebuttal discussions' (2021-08-29)",
+    "Committee B meta-review",
+    "paper Section 5 (full-map programs in training), Section 6.2 (oracle definition), Table 1, Table 2, Figure 6, reference list",
+    "a/paper.pdf is the camera-ready (author names, NeurIPS 2021 footer, created 2021-10-26); the pair folder has no paper_submitted.pdf"
+  ]
+}

@@ -1,0 +1,12 @@
+{"run": 2, "pair_id": "n21-003", "turn": 28, "prompt_version": 2,
+ "judgements": [
+  {"id": "R32", "applies": true, "justification": "A's AC wrote 'all reviewers were negative' although nMFp's 6 was never edited, and omitted the BDD100K test and KITTI-MOTS results the rebuttal supplied, toward A's reject."},
+  {"id": "R33", "applies": false, "justification": "No reviewer or chair in either committee called the paper of interest to few readers or suited to another venue; h7Rc's 'application paper' objection is about novelty, not breadth."},
+  {"id": "R34", "applies": false, "justification": "B, the accepting committee, had no low-scoring misreading detractor; A's misreading reviewer h7Rc sat in the rejecting committee."},
+  {"id": "R35", "applies": false, "justification": "A alone received BDD100K test and runtime results, but no A score rose; B's scores rose on the shared core rebuttal, not on results only B saw."},
+  {"id": "R36", "applies": false, "justification": "A's highest-confidence reviewer (x3ez, confidence 5) rated 5, not above the others; B's reviewers all had confidence 4."},
+  {"id": "R37", "applies": false, "justification": "No A review was edited after posting, and x3ez's 2021-08-29 comment was answered by the authors; no late unrebutted objection exists."},
+  {"id": "R38", "applies": false, "justification": "B's verbal assessments were more favourable (novelty found, 'a big step', concerns addressed) than A's ('pure application paper', 'trivial' gain), so the gap is not scoring leniency alone."},
+  {"id": "R39", "applies": true, "justification": "A's x3ez showed the efficiency claim holds for memory but not speed (63.2 vs 61.8 ms) and called the 0.5-0.6 AP gain trivial, a main reason for reject, while B's AC called the trade-off 'very strong'."},
+  {"id": "R40", "applies": false, "justification": "A's reviewers rated mostly 5 at confidence 3 to 5, below the marginal-accept rating, and B's flat 7s and 6 were at confidence 4 with no stated inability to check."}
+ ]}

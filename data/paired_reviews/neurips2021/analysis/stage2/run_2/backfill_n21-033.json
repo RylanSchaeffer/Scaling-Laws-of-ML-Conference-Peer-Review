@@ -1,0 +1,18 @@
+{
+  "run": 2,
+  "pair_id": "n21-033",
+  "turn": 25,
+  "prompt_version": 2,
+  "judgements": [
+    {"id": "R31", "applies": true, "justification": "B's reviewers knew single-agent offline RL, caught the under-run CQL baseline and tied the method to EMaQ, BRAC and KL-control; A's reviewers, at confidence 2 or 3, probed derivations and notation and praised the single-agent results."},
+    {"id": "R32", "applies": false, "justification": "B's AC said some reviewers were 'not fully convinced', which matches 5dG2's and Rr7B's final comments; no final position was misstated."},
+    {"id": "R33", "applies": false, "justification": "No reviewer or AC in either committee raised a narrow-audience or wrong-venue concern."},
+    {"id": "R34", "applies": false, "justification": "A had no low-scoring detractor, and B's AC rejected rather than argued for acceptance."},
+    {"id": "R35", "applies": false, "justification": "Both committees saw the expanded D4RL table and the MMM sweep; the CQL concession on B's forum did not raise B above A (R04 covers it)."},
+    {"id": "R36", "applies": false, "justification": "B's only confidence-5 reviewer, xr9t, was thin (2 hours) and the AC followed 5dG2 and its own re-review judgement, not a mean that overrode an expert."},
+    {"id": "R37", "applies": false, "justification": "All objections and score changes in both committees came during the discussion, and the authors answered them."},
+    {"id": "R38", "applies": false, "justification": "B's reviewers' text was more critical (mixed results, copied baselines, limited novelty), so the rating gap reflects different judgements, not scoring leniency."},
+    {"id": "R39", "applies": true, "justification": "B's Rr7B judged the offline multi-agent framing overstated for a method that is single-agent at heart, the authors offered to retitle, and B's AC required those edits to be re-reviewed; A took the framing at face value."},
+    {"id": "R40", "applies": false, "justification": "A's low-confidence reviewers settled on 7, not the marginal-accept 6, and A's AC lifted them to a spotlight rather than reading them as poster-level."}
+  ]
+}

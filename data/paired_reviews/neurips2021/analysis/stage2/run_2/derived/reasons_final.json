@@ -62,7 +62,7 @@
    "created_turn": 3,
    "exemplar": "In B, Reviewer_i9rh showed that the conclusion's claim that guidance narrows the sampling-time gap rests only on Table 4's 25-step rows, and B's AC flagged a possible interaction between the ImageNet guidance classifier and FID; no one in A raised either.",
    "absorbed": [],
-   "n_pairs": 43
+   "n_pairs": 44
   },
   {
    "id": "R12",
@@ -72,7 +72,7 @@
    "created_turn": 4,
    "exemplar": "In B, Reviewer_D146 gave 5 after 2 hours on the assertion that 'learning entropy growth is not as exciting' and never replied to the authors' response.",
    "absorbed": [],
-   "n_pairs": 42
+   "n_pairs": 44
   },
   {
    "id": "R08",
@@ -93,6 +93,16 @@
    "exemplar": "In B, Reviewer_PKyu gave a praise-only 8 at confidence 2 while 'not very familiar with the topic', called the limitations discussion 'impeccable', and the meta-review copied PKyu's wording almost verbatim.",
    "absorbed": [],
    "n_pairs": 36
+  },
+  {
+   "id": "R30",
+   "name": "Award tier assigned without a stated case",
+   "definition": "One committee placed the paper in an award tier although its meta-review argued only for acceptance, or doubted even that, and gave no reason for the higher tier, so the tier gap between committees rests on no stated assessment.",
+   "created_by_pair": "n21-053",
+   "created_turn": 23,
+   "exemplar": "B's AC shared K4dB's overclaiming concern and concluded only that the work 'may be enough for justifying publication', yet the paper became a spotlight.",
+   "absorbed": [],
+   "n_pairs": 35
   },
   {
    "id": "R01",
@@ -122,7 +132,7 @@
    "created_turn": 2,
    "exemplar": "In B, Reviewer_sDSa (confidence 4) raised from 7 to 8 after the rebuttal, while no reviewer in A stated a score change.",
    "absorbed": [],
-   "n_pairs": 28
+   "n_pairs": 29
   },
   {
    "id": "R05",
@@ -135,14 +145,14 @@
    "n_pairs": 24
   },
   {
-   "id": "R30",
-   "name": "Award tier assigned without a stated case",
-   "definition": "One committee placed the paper in an award tier although its meta-review argued only for acceptance, or doubted even that, and gave no reason for the higher tier, so the tier gap between committees rests on no stated assessment.",
-   "created_by_pair": "n21-053",
-   "created_turn": 23,
-   "exemplar": "B's AC shared K4dB's overclaiming concern and concluded only that the work 'may be enough for justifying publication', yet the paper became a spotlight.",
+   "id": "R31",
+   "name": "Only one committee's reviewers knew the baseline literature",
+   "definition": "One committee's reviewers knew the closely related prior literature and checked the paper's baselines and novelty against published results, while the other committee's reviewers, less familiar with it, scrutinised derivations and presentation and took the reported comparisons at face value.",
+   "created_by_pair": "n21-033",
+   "created_turn": 25,
+   "exemplar": "Three of B's reviewers saw that the submission's D4RL CQL scores fell far below CQL's published ones and tied ICQ to EMaQ, BRAC and KL-control, while A's reviewers, all at confidence 2 or 3, asked about the partition function and notation and called the single-agent results 'already impressive'.",
    "absorbed": [],
-   "n_pairs": 19
+   "n_pairs": 20
   },
   {
    "id": "R04",
@@ -162,7 +172,7 @@
    "created_turn": 13,
    "exemplar": "In B, Reviewer_YH9r (1 hour, confidence 2) gave 7 and named 'a new algorithm', the forward algorithm, as the key contribution, but line 13 of the paper credits it to Vovk and to Azoury and Warmuth (2001).",
    "absorbed": [],
-   "n_pairs": 15
+   "n_pairs": 17
   },
   {
    "id": "R21",
@@ -172,17 +182,27 @@
    "created_turn": 15,
    "exemplar": "A's chair rejected because the MMD and KCpA comparison and fair kernel experiments existed only as rebuttal promises, writing that the comparison 'should not happen in the authors' response'; B accepted with the same gaps.",
    "absorbed": [],
-   "n_pairs": 12
+   "n_pairs": 16
   },
   {
-   "id": "R31",
-   "name": "Only one committee's reviewers knew the baseline literature",
-   "definition": "One committee's reviewers knew the closely related prior literature and checked the paper's baselines and novelty against published results, while the other committee's reviewers, less familiar with it, scrutinised derivations and presentation and took the reported comparisons at face value.",
-   "created_by_pair": "n21-033",
-   "created_turn": 25,
-   "exemplar": "Three of B's reviewers saw that the submission's D4RL CQL scores fell far below CQL's published ones and tied ICQ to EMaQ, BRAC and KL-control, while A's reviewers, all at confidence 2 or 3, asked about the partition function and notation and called the single-agent results 'already impressive'.",
+   "id": "R39",
+   "name": "Headline claim judged overstated capped the tier",
+   "definition": "Reviewers or the area chair in one committee judged the paper's headline claim or title overstated relative to what it shows, and held the paper to a lower tier or required the claim to be narrowed, while the other committee took the claim at face value.",
+   "created_by_pair": "n21-301",
+   "created_turn": 45,
+   "exemplar": "B's AC accepted only as a poster, required citing Knight and van Vreeswijk and Sompolinsky, and suggested retitling 'arbitrarily fast computation with arbitrarily slow neurons' to stress credit assignment, while A's chair praised the model without qualification and gave an oral.",
    "absorbed": [],
-   "n_pairs": 12
+   "n_pairs": 13
+  },
+  {
+   "id": "R35",
+   "name": "New results shown to one committee only",
+   "definition": "In answer to a question only one committee asked, the authors posted new experiments or analyses on that committee's forum that raised its scores, while the other committee never saw those results and received only promised text.",
+   "created_by_pair": "n21-172",
+   "created_turn": 35,
+   "exemplar": "Only A's sKB5 asked about binding capacity; the authors answered with a new table (projected HRRs 384 error-free pairs at d=8100, naive 24), sKB5 rose to 8, while B received only promised text and a worked example.",
+   "absorbed": [],
+   "n_pairs": 11
   },
   {
    "id": "R09",
@@ -191,6 +211,16 @@
    "created_by_pair": "n21-302",
    "created_turn": 4,
    "exemplar": "B's final positions were 3/6/7/5, and the two-sentence meta-review rejected because 'one reviewer is still strongly convinced about rejection', without weighing the two accept-side reviewers.",
+   "absorbed": [],
+   "n_pairs": 9
+  },
+  {
+   "id": "R18",
+   "name": "Committees held one paper type to different bars",
+   "definition": "Both committees read the paper as the same kind of contribution, but one required it to deliver something the other did not ask of that kind of paper, such as practical guidance from an analysis study, and judged it against that extra requirement.",
+   "created_by_pair": "n21-220",
+   "created_turn": 11,
+   "exemplar": "All four of B's reviewers faulted the ViT-against-CNN analysis for giving no practical guidance for architecture design, and B rejected, while no one in A asked for it and A's Reviewer_qxEj praised the work because it 'might inspire new architectures'.",
    "absorbed": [],
    "n_pairs": 9
   },
@@ -215,12 +245,12 @@
    "n_pairs": 8
   },
   {
-   "id": "R18",
-   "name": "Committees held one paper type to different bars",
-   "definition": "Both committees read the paper as the same kind of contribution, but one required it to deliver something the other did not ask of that kind of paper, such as practical guidance from an analysis study, and judged it against that extra requirement.",
-   "created_by_pair": "n21-220",
-   "created_turn": 11,
-   "exemplar": "All four of B's reviewers faulted the ViT-against-CNN analysis for giving no practical guidance for architecture design, and B rejected, while no one in A asked for it and A's Reviewer_qxEj praised the work because it 'might inspire new architectures'.",
+   "id": "R38",
+   "name": "Committees scored similar assessments on different scales",
+   "definition": "Reviewers in one committee gave markedly higher ratings than the other committee's reviewers for verbal assessments that were no more favourable, so part of the rating gap reflects scoring leniency rather than a different judgement of the paper.",
+   "created_by_pair": "n21-092",
+   "created_turn": 40,
+   "exemplar": "A's Reviewer_vxWe called the proof technique 'fairly standard' and Reviewer_TdaR called the novelty 'merely' Lemma 2, yet A rated 8, 8, 8, 7; B's reviewers called the technique new and said the rebuttal satisfied them, yet rated 7, 6, 6, 6.",
    "absorbed": [],
    "n_pairs": 8
   },
@@ -242,17 +272,17 @@
    "created_turn": 21,
    "exemplar": "A's Reviewer_u2eX (9, 7 h) and Reviewer_nnEq (8, 10 h) checked the proofs and backed the paper, while no B reviewer rated above 7 or spent more than 4 h, and B's AC rejected split 6/7/5/5 ratings.",
    "absorbed": [],
-   "n_pairs": 6
+   "n_pairs": 7
   },
   {
-   "id": "R35",
-   "name": "New results shown to one committee only",
-   "definition": "In answer to a question only one committee asked, the authors posted new experiments or analyses on that committee's forum that raised its scores, while the other committee never saw those results and received only promised text.",
-   "created_by_pair": "n21-172",
-   "created_turn": 35,
-   "exemplar": "Only A's sKB5 asked about binding capacity; the authors answered with a new table (projected HRRs 384 error-free pairs at d=8100, naive 24), sKB5 rose to 8, while B received only promised text and a worked example.",
+   "id": "R32",
+   "name": "Area chair misstated reviewers' final positions",
+   "definition": "One committee's meta-review described its reviewers' final positions or the remaining concerns in a way the forum record contradicts, such as calling all reviewers negative when one rated above threshold or omitting results the rebuttal supplied, in the direction of the chair's lower decision.",
+   "created_by_pair": "n21-003",
+   "created_turn": 28,
+   "exemplar": "A's AC wrote 'In the end, all reviewers were negative' although Reviewer_nMFp's 6 was never edited, and its concern list omitted the BDD100K test and KITTI-MOTS results the rebuttal supplied.",
    "absorbed": [],
-   "n_pairs": 6
+   "n_pairs": 7
   },
   {
    "id": "R17",
@@ -263,16 +293,6 @@
    "exemplar": "In A, Reviewer_cSRr ('unable to assess the soundness', confidence 2) and Reviewer_g3MG ('a bit beyond my expertise') raised to 7 after the authors restated the problem and listed planned changes, and those 7s carried the spotlight.",
    "absorbed": [],
    "n_pairs": 5
-  },
-  {
-   "id": "R38",
-   "name": "Committees scored similar assessments on different scales",
-   "definition": "Reviewers in one committee gave markedly higher ratings than the other committee's reviewers for verbal assessments that were no more favourable, so part of the rating gap reflects scoring leniency rather than a different judgement of the paper.",
-   "created_by_pair": "n21-092",
-   "created_turn": 40,
-   "exemplar": "A's Reviewer_vxWe called the proof technique 'fairly standard' and Reviewer_TdaR called the novelty 'merely' Lemma 2, yet A rated 8, 8, 8, 7; B's reviewers called the technique new and said the rebuttal satisfied them, yet rated 7, 6, 6, 6.",
-   "absorbed": [],
-   "n_pairs": 4
   },
   {
    "id": "R13",
@@ -291,6 +311,26 @@
    "created_by_pair": "n21-197",
    "created_turn": 14,
    "exemplar": "In B, Reviewer_CnYk said the rebuttal's correction of the parser misreading 'answered my major concern', then kept 4 on new grounds, closed GPT-3 and novelty.",
+   "absorbed": [],
+   "n_pairs": 3
+  },
+  {
+   "id": "R22",
+   "name": "Reviewer's stated stance diverged from score",
+   "definition": "A reviewer in one committee stated a changed position in a comment, such as now leaning to accept, but never edited the score, and the committee acted on the stated position rather than the rating.",
+   "created_by_pair": "n21-185",
+   "created_turn": 15,
+   "exemplar": "In B, the only detractor, Reviewer_hFCk, wrote 'I now lean to accept this paper' after the rebuttal but kept its 5, and B accepted with a spotlight as if no reviewer opposed.",
+   "absorbed": [],
+   "n_pairs": 3
+  },
+  {
+   "id": "R29",
+   "name": "Reviewer's theoretical school contested the premise",
+   "definition": "Reviewers in one committee read the paper from a different theoretical tradition than its own and made the premise or framing a central objection, while the other committee's reviewers accepted the framing and judged the results within it.",
+   "created_by_pair": "n21-062",
+   "created_turn": 22,
+   "exemplar": "B's Reviewer_69AE and Reviewer_ATkA read the lossless-optimality framing from variational-inference and information-bottleneck positions and made it central, while A's 9TAc found it 'very difficult to digest' and moved on.",
    "absorbed": [],
    "n_pairs": 3
   },
@@ -315,16 +355,6 @@
    "n_pairs": 2
   },
   {
-   "id": "R22",
-   "name": "Reviewer's stated stance diverged from score",
-   "definition": "A reviewer in one committee stated a changed position in a comment, such as now leaning to accept, but never edited the score, and the committee acted on the stated position rather than the rating.",
-   "created_by_pair": "n21-185",
-   "created_turn": 15,
-   "exemplar": "In B, the only detractor, Reviewer_hFCk, wrote 'I now lean to accept this paper' after the rebuttal but kept its 5, and B accepted with a spotlight as if no reviewer opposed.",
-   "absorbed": [],
-   "n_pairs": 2
-  },
-  {
    "id": "R24",
    "name": "Reviewer expertise shaped clarity verdicts",
    "definition": "The committees' reviewers stood at different distances from the paper's field, so reviewers outside the field found the exposition unclear and penalised it, while a domain expert in the other committee read the same text as clear.",
@@ -341,6 +371,16 @@
    "created_by_pair": "n21-281",
    "created_turn": 31,
    "exemplar": "B's Reviewer_PpQM rated 3 at confidence 5 on misreadings of nonlinearity and vectorization; B's chair called it 'safe to ignore', recommended acceptance 'in this instance' and said nothing on tier, while A, with no detractor, got a spotlight on similar scores.",
+   "absorbed": [],
+   "n_pairs": 2
+  },
+  {
+   "id": "R40",
+   "name": "Unsure reviewers converged on marginal-accept scores",
+   "definition": "Reviewers in one committee who could not check the technical core each settled on the marginal-accept rating at low or middling confidence, so the flat scores carried no signal for an award and the area chair read them as a poster-level verdict, while the other committee's reviewers committed to higher ratings.",
+   "created_by_pair": "n21-048",
+   "created_turn": 49,
+   "exemplar": "All four of A's reviewers rated 6 at confidence 2 to 3, with two saying they did not or could not check the proofs, and A's chair turned the flat 6s into a poster while B's reviewers rated 8, 7 and 6.",
    "absorbed": [],
    "n_pairs": 2
   },
@@ -395,26 +435,6 @@
    "n_pairs": 1
   },
   {
-   "id": "R29",
-   "name": "Reviewer's theoretical school contested the premise",
-   "definition": "Reviewers in one committee read the paper from a different theoretical tradition than its own and made the premise or framing a central objection, while the other committee's reviewers accepted the framing and judged the results within it.",
-   "created_by_pair": "n21-062",
-   "created_turn": 22,
-   "exemplar": "B's Reviewer_69AE and Reviewer_ATkA read the lossless-optimality framing from variational-inference and information-bottleneck positions and made it central, while A's 9TAc found it 'very difficult to digest' and moved on.",
-   "absorbed": [],
-   "n_pairs": 1
-  },
-  {
-   "id": "R32",
-   "name": "Area chair misstated reviewers' final positions",
-   "definition": "One committee's meta-review described its reviewers' final positions or the remaining concerns in a way the forum record contradicts, such as calling all reviewers negative when one rated above threshold or omitting results the rebuttal supplied, in the direction of the chair's lower decision.",
-   "created_by_pair": "n21-003",
-   "created_turn": 28,
-   "exemplar": "A's AC wrote 'In the end, all reviewers were negative' although Reviewer_nMFp's 6 was never edited, and its concern list omitted the BDD100K test and KITTI-MOTS results the rebuttal supplied.",
-   "absorbed": [],
-   "n_pairs": 1
-  },
-  {
    "id": "R36",
    "name": "Expert review outweighed by low-confidence reviews",
    "definition": "One committee's only high-confidence expert review rated the paper above its less-informed, lower-confidence reviewers, and the area chair followed the mean of ratings without weighing expertise, so the non-expert scores set the tier.",
@@ -431,26 +451,6 @@
    "created_by_pair": "n21-127",
    "created_turn": 38,
    "exemplar": "In A, ecPK edited his review on 2021-09-06, a month after the author response, to add a new (wrong) mechanism-specificity objection and cut 6 to 5; no author reply exists and A's meta-review repeated the doubt as open, while B's eGa2 objection came in time, was refuted, and was withdrawn.",
-   "absorbed": [],
-   "n_pairs": 1
-  },
-  {
-   "id": "R39",
-   "name": "Headline claim judged overstated capped the tier",
-   "definition": "Reviewers or the area chair in one committee judged the paper's headline claim or title overstated relative to what it shows, and held the paper to a lower tier or required the claim to be narrowed, while the other committee took the claim at face value.",
-   "created_by_pair": "n21-301",
-   "created_turn": 45,
-   "exemplar": "B's AC accepted only as a poster, required citing Knight and van Vreeswijk and Sompolinsky, and suggested retitling 'arbitrarily fast computation with arbitrarily slow neurons' to stress credit assignment, while A's chair praised the model without qualification and gave an oral.",
-   "absorbed": [],
-   "n_pairs": 1
-  },
-  {
-   "id": "R40",
-   "name": "Unsure reviewers converged on marginal-accept scores",
-   "definition": "Reviewers in one committee who could not check the technical core each settled on the marginal-accept rating at low or middling confidence, so the flat scores carried no signal for an award and the area chair read them as a poster-level verdict, while the other committee's reviewers committed to higher ratings.",
-   "created_by_pair": "n21-048",
-   "created_turn": 49,
-   "exemplar": "All four of A's reviewers rated 6 at confidence 2 to 3, with two saying they did not or could not check the proofs, and A's chair turned the flat 6s into a poster while B's reviewers rated 8, 7 and 6.",
    "absorbed": [],
    "n_pairs": 1
   }

@@ -1,0 +1,80 @@
+{
+  "run": 1,
+  "turn": 2,
+  "pair_id": "n21-048",
+  "kind": "oral/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's area chair chose an oral that no reviewer asked for. B's top score was 8 ('Top 50% of accepted NeurIPS papers'), and the meta-review gives only 'a solid and novel theoretical contribution' as grounds."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No one on B forecast impact beyond causal identification. B's area chair praised only the theory, and Reviewer_iUkv's 'can be very impactful' came with B's lowest score, 6."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The response moved B's Reviewer_iUkv from 5 to 6 ('they have clarified my main concerns'), and B's area chair cited that raise. No A score moved; Reviewer_yA7o read the response and kept its concerns."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's scores rest on less scrutiny. Reviewer_yA7o spent 2 hours, did not check the proofs, and its update names no gap; Reviewer_6Pv4 did not check the claims. A's reported hours average 4.0, B's 6.3."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A's Reviewer_h23K said that Theorem 2's surrogate set turns the problem back into MGT. The paper confirms it, the response did not answer it, and it underlies h23K's 6. B's Reviewer_kvzq called the criteria 'a strict generalization'."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw dense notation and no experiments. A's area chair made 'very difficult to follow' the verdict, and Reviewer_yA7o held the missing experiments against the paper. B treated readability as fixable, and Reviewer_kvzq wrote 'I don't think that can be held against the work'."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "Reviewer_iUkv credited the authors' answers, not other reviewers, for its raise. A's area chair reports reviewer discussion, but no A score moved."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating clearly contradicts its text. Reviewer_h23K's 'not major' fits a 6 ('marginally above the acceptance threshold'), and Reviewer_rBKj's text gives no verdict on quality that its 6 could contradict."
+    }
+  ],
+  "added": [
+    {
+      "id": "R09",
+      "name": "Unsure reviewers defaulted to a borderline score",
+      "definition": "One committee's reviewers, more than the other's, said they could not judge the paper (proofs unchecked, key prior work unfamiliar) and gave borderline scores in place of a verdict, which held that committee's mean near the acceptance threshold.",
+      "justification": "Three of A's four reviewers said they could not judge the paper and rated 6, and A's area chair took the flat 6s as the verdict. In B only Reviewer_iUkv said so; B's other reviewers rated 8 and 7. R04 does not cover this: Reviewer_rBKj spent 7 hours and read closely, so its 6 shows doubt, not inattention. R08 does not fit, because these reviews state no verdict for the 6 to contradict."
+    }
+  ],
+  "reasoning": "Stage 1 puts the gap in the reviewer pools and in B's area chair, not in different facts. B's area chair chose an oral that no reviewer asked for (R01). The response moved B's Reviewer_iUkv but no A reviewer (R03). Both committees saw the same dense notation, missing experiments and missing completeness, and weighted them differently (R06). Only A's Reviewer_h23K raised the reduction of Theorem 2 to MGT (R05). A's reviews carry less scrutiny than B's (R04). One cause had no reason: three of A's four reviewers said they could not judge the paper and rated 6, so A's flat 6s record doubt, not a verdict. I added R09 for it. I did not apply R02, R07 or R08. No one forecast impact beyond the field, no score moved because of other reviewers, and no rating clearly contradicts its own text. I added no reason for Reviewer_9UEy's reading of the ICML 2021 reviews, because nothing shows that it moved a score.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09"
+  ]
+}

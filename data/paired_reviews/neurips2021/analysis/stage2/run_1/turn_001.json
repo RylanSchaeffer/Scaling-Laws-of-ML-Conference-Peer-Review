@@ -1,0 +1,71 @@
+{
+  "run": 1,
+  "turn": 1,
+  "pair_id": "n21-002",
+  "kind": "oral/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [],
+  "judgements": [],
+  "added": [
+    {
+      "id": "R01",
+      "name": "Area chair's own judgement drove the recommendation",
+      "definition": "One committee's area chair set the recommendation from their own reading or taste, above or below what that committee's reviewer scores and arguments supported.",
+      "justification": "The set was empty. B's area chair, not B's reviewers, carried the oral. This reason names who decided; R02 names what a decision rested on, and a reviewer can also make that kind of claim."
+    },
+    {
+      "id": "R02",
+      "name": "Recommendation rested on a forecast of broad impact",
+      "definition": "One committee's recommendation rested on a forecast of broad impact beyond the paper's own setting, a forecast that the paper does not demonstrate and the other committee did not make.",
+      "justification": "The set was empty. B's oral rests on a forecast of impact beyond BNNs, and the paper does not test that forecast. R01 covers an area chair who decides alone; this reason covers the content of the argument, from any member of a committee."
+    },
+    {
+      "id": "R03",
+      "name": "Rebuttal moved one committee but not the other",
+      "definition": "The authors' response persuaded one committee and moved its scores or recommendation, but left the other committee's scores and recommendation unchanged.",
+      "justification": "The set was empty. The response moved f6JJ's score and B's area chair called it 'particularly good', but no A score moved. R07 covers score changes that come from other reviewers, not from the response."
+    },
+    {
+      "id": "R04",
+      "name": "One committee's reviews were thin or inattentive",
+      "definition": "One committee's reviews were thin or inattentive (little time, few or no weaknesses named, mostly restated claims from the paper), so its scores rest on less scrutiny than the other committee's.",
+      "justification": "The set was empty. B's short, uncritical reviews helped put its mean (7.75) above A's (7.0). This reason names review quality; R05 names a specific missed issue and R08 a rating that contradicts its own text."
+    },
+    {
+      "id": "R05",
+      "name": "Only one committee raised a substantive concern",
+      "definition": "One committee raised a substantive concern about the paper's claims, method or evidence that the other committee never raised, and that concern counted against the paper in its recommendation.",
+      "justification": "The set was empty. A alone questioned the core motivation and the closest competitor, and A's area chair kept both as required revisions. R06 covers issues that both committees saw."
+    },
+    {
+      "id": "R06",
+      "name": "Committees weighted the same evidence differently",
+      "definition": "Both committees identified the same strength or weakness of the paper, but they gave it different weight in their recommendations.",
+      "justification": "The set was empty. The committees did not see different facts; they weighted the same facts differently. R05 covers an issue that only one committee saw."
+    },
+    {
+      "id": "R07",
+      "name": "Reviewer discussion moved one committee's scores",
+      "definition": "A reviewer on one committee changed their score after reading or discussing the other reviewers' assessments, not the authors' response, which moved that committee's recommendation away from the other's.",
+      "justification": "The set was empty. oG66 credited the other reviewers, not the authors, for the raise. R03 covers score changes that the response causes."
+    },
+    {
+      "id": "R08",
+      "name": "Reviewer's rating out of line with own text",
+      "definition": "A reviewer's numeric rating clearly disagreed with the verdict of their own written review, for example wholly positive text with a borderline score, and so moved that committee's average away from what its reviews said.",
+      "justification": "The set was empty. FCVA's 6 sits below its own positive text and lowered the mean that A's area chair leaned on. R04 does not fit: FCVA spent 10 hours, so the problem is the rating, not inattention."
+    }
+  ],
+  "reasoning": "Turn 1 starts from an empty set, so each cause in this pair needs a new reason. I kept each reason to one mechanism so that later pairs can apply them one at a time. The stage 1 notes give the oral to B's area chair: no B reviewer rated above 8, and the area chair added personal taste and a forecast of impact beyond BNNs (R01, R02). B's higher mean also helped. After the response, two B reviewers raised and no A reviewer did: f6JJ credited the response (R03) and oG66 credited other reviewers' comments (R07). B's reviews were thin (R04), and A's FCVA rated 6 against positive text (R08). Only A questioned why a Fourier series should beat other surrogates and asked for RBNN, and its area chair required both (R05). Both committees saw the same simplicity and the same modest gain over ReActNet but weighted them differently (R06). I added no reason for the overstated Theorem 1, because reviewers on both committees made that error, so it does not explain the split.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08"
+  ]
+}

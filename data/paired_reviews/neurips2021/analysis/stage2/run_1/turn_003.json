@@ -1,0 +1,79 @@
+{
+  "run": 1,
+  "turn": 3,
+  "pair_id": "n21-090",
+  "kind": "oral/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's area chair chose an oral that no reviewer asked for. B's ratings (4, 7, 7, 8; mean 6.5) sit below A's poster ratings (mean 6.67). B's meta-review calls the writing 'almost of the level of being considered unpublishable', and its 'absolutely above the bar' appears in no public review or comment."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No one rested a tier on a forecast of impact beyond decision-tree coresets. B's meta-review gives only 'technical novelty and strength', and Reviewer_nDd9's 'I can imagine a series of follow-on work' came with B's lowest score, 4."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The response moved no score in either committee. No B review was edited, and Reviewer_ybbQ wrote 'I will leave my rating unchanged'. A's Reviewer_eRj1 was 'satisfied with the response', but its 7 fits its pre-response text, and A's area chair still asked for the same justification of the assumption."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's only score above 7, Reviewer_1UMR's 8 at confidence 2, rests on a two-sentence main review that names no weakness and did not check the math. A's reviews also carry less scrutiny than B's other three: A averaged 3.0 hours against B's 4.0, and two A reviewers misstated the main bound as linear in k."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B raised the gap between single-tree theory and the forest and boosting experiments, the uncited database-histogram work and the Algorithm 2 flaw. Reviewer_nDd9's 4 rests partly on the first two, and B's meta-review lists 'comparison to past work' among its 'very substantial concerns'. These concerns helped put B's mean below A's, though B's area chair still chose an oral."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the first coreset for decision trees, weak exposition and thin related work. B's area chair judged the novelty 'absolutely above the bar' and treated the writing as fixable in revision. A's area chair gave the same praised novelty a poster."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score moved after discussion. No B review was edited after posting, and A's one edit, by Reviewer_eRj1, credits the authors' response, not other reviewers."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating clearly contradicts its text. Reviewer_1UMR's 'interesting', 'elegant' and 'useful' support an 8 despite 'perhaps not surprising'. Reviewer_nDd9's 4 matches 'not convinced this paper is ready', and Reviewer_QFcb's 6 matches praise for soundness mixed with four clarity problems."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither committee's unsure reviewers gave borderline scores. The least confident reviewers, B's Reviewer_1UMR (confidence 2) and A's Reviewer_tPz3 (confidence 3, math not checked), rated 8 and 7."
+    }
+  ],
+  "added": [],
+  "reasoning": "Stage 1 puts the oral in B's area chair, not in B's reviewers. B's mean (6.5) sits below A's (6.67), no B reviewer asked for an oral, and the meta-review quotes a judgement found in no public review (R01). Both committees saw the same novel first result with weak exposition, and the two area chairs weighted the novelty differently (R06). Only B found the forest gap, the uncited histogram work and the Algorithm 2 flaw. These lowered B's scores but did not stop the oral (R05). B's only score above 7 came from a thin review, and A's reviewers misread the main bound (R04). No score moved after the response or the discussion (R03, R07). No rating contradicts its text (R08), no unsure reviewer defaulted to a 6 (R09), and no one forecast broad impact (R02). I added no reason. The quote from outside the public record is evidence for R01, not a separate mechanism: whoever wrote it, the area chair set the tier above the record. I added no reason for misread facts. Nothing shows that A's misread bound or nDd9's misread dimensions moved a score, and A's Reviewer_QFcb made the same dimension error as nDd9.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09"
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "R01",
+    "name": "Area chair's own judgement drove the recommendation",
+    "definition": "One committee's area chair set the recommendation from their own reading or taste, above or below what that committee's reviewer scores and arguments supported.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "No B reviewer rated above 8, yet B's area chair recommended an oral on their own reading and taste ('a simple idea that works is the greatest to me')."
+  },
+  {
+    "id": "R02",
+    "name": "Recommendation rested on a forecast of broad impact",
+    "definition": "One committee's recommendation rested on a forecast of broad impact beyond the paper's own setting, a forecast that the paper does not demonstrate and the other committee did not make.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "B's area chair wrote that the idea 'can also be used in other areas besides BNN' and 'I am sure that this paper will be impactful'; no reviewer on either committee made that claim."
+  },
+  {
+    "id": "R03",
+    "name": "Rebuttal moved one committee but not the other",
+    "definition": "The authors' response persuaded one committee and moved its scores or recommendation, but left the other committee's scores and recommendation unchanged.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "Both committees got the same ReActNet result (+0.5 top-1); B's Reviewer_f6JJ raised ('The authors have solved my concerns greatly'), while A's Reviewer_KUr5 found the concerns 'well addressed' but kept 7."
+  },
+  {
+    "id": "R04",
+    "name": "One committee's reviews were thin or inattentive",
+    "definition": "One committee's reviews were thin or inattentive (little time, few or no weaknesses named, mostly restated claims from the paper), so its scores rest on less scrutiny than the other committee's.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "B's reviewers averaged 3.6 hours against A's 6.0 and mostly restated the paper's claims; B's Reviewer_Xxt6 rated 8 after 2 hours and named no weakness in the main review."
+  },
+  {
+    "id": "R05",
+    "name": "Only one committee raised a substantive concern",
+    "definition": "One committee raised a substantive concern about the paper's claims, method or evidence that the other committee never raised, and that concern counted against the paper in its recommendation.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "Only A asked why a Fourier series should beat tanh or SignSwish and asked for the RBNN comparison; A's area chair made both required revisions, and no B reviewer raised either."
+  },
+  {
+    "id": "R06",
+    "name": "Committees weighted the same evidence differently",
+    "definition": "Both committees identified the same strength or weakness of the paper, but they gave it different weight in their recommendations.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "Both committees saw a novel, simple idea and the same +0.5 top-1 gain over ReActNet; B's area chair took that simplicity as grounds for an oral, while A's recommended a poster."
+  },
+  {
+    "id": "R07",
+    "name": "Reviewer discussion moved one committee's scores",
+    "definition": "A reviewer on one committee changed their score after reading or discussing the other reviewers' assessments, not the authors' response, which moved that committee's recommendation away from the other's.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "B's Reviewer_oG66 raised to 8 'after reading comments from other reviewers', not citing the response, while no A reviewer posted in the discussion."
+  },
+  {
+    "id": "R08",
+    "name": "Reviewer's rating out of line with own text",
+    "definition": "A reviewer's numeric rating clearly disagreed with the verdict of their own written review, for example wholly positive text with a borderline score, and so moved that committee's average away from what its reviews said.",
+    "created_by_pair": "n21-002",
+    "created_turn": 1,
+    "exemplar": "A's Reviewer_FCVA called the paper 'a good work in both theoretical and experimental perspectives' and named no weakness in the main review, yet rated it 6, which lowered A's mean to 7.0."
+  },
+  {
+    "id": "R09",
+    "name": "Unsure reviewers defaulted to a borderline score",
+    "definition": "One committee's reviewers, more than the other's, said they could not judge the paper (proofs unchecked, key prior work unfamiliar) and gave borderline scores in place of a verdict, which held that committee's mean near the acceptance threshold.",
+    "created_by_pair": "n21-048",
+    "created_turn": 2,
+    "exemplar": "Three of A's four reviewers rated 6 after saying they could not judge the paper: Reviewer_6Pv4 wrote that checking the claims 'wasn't possible', and Reviewer_rBKj (confidence 2) knew the four key prior papers only 'at a high level'."
+  },
+  {
+    "id": "R10",
+    "name": "Area chair followed one outlying reviewer",
+    "definition": "One committee's area chair set the recommendation by a single reviewer whose score or view stood apart from the rest of that committee, adopting that reviewer's verdict, often verbatim, and setting the other reviewers' views aside.",
+    "created_by_pair": "n21-186",
+    "created_turn": 5,
+    "exemplar": "B's area chair gave no reason for the oral beyond two quotes, chiefly Reviewer_rfa1's 'clear, rigorous, and well written'; rfa1's 9 stood against four 7s, and three other B reviewers called the paper dense, hard to parse or abstract."
+  }
+]

@@ -4,7 +4,7 @@ export const meta = {
   phases: [{ title: 'Pass' }, { title: 'Blocks' }, { title: 'Back-fill' }, { title: 'Merge' }],
 }
 // args: { run: 1, mode: 'pass' | 'blocks' | 'backfill' | 'merge', order: [...all 301 pair ids in order...],
-//         start_turn, end_turn (pass, blocks; 1-based, inclusive), block_size (blocks), pairs: [...] (backfill) }
+//         start_turn, end_turn (pass, blocks; 1-based, inclusive), block_size (blocks), pairs: [...] (backfill), effort ('max' default) }
 // The set of reasons lives on disk at analysis/stage2/run_<run>/reasons.json; the script passes state only through files.
 // mode 'pass': one turn at a time; the turn's agent appends its new reasons to reasons.json itself.
 // mode 'blocks': block_size pairs judged at once against the same frozen set; each proposes reasons in its turn file and
@@ -12,7 +12,7 @@ export const meta = {
 //   new ones and writes block_<bbb>.json. Back-fill later judges, for each pair, every reason its turn did not judge.
 const ROOT = '/Users/rylanschaeffer/Documents/Scaling-Laws-of-ML-Conference-Peer-Review/data/paired_reviews/neurips2021'
 const RUN = `${ROOT}/analysis/stage2/run_${args.run}`
-const OPTS = { model: 'opus', effort: 'max' }
+const OPTS = { model: 'opus', effort: args.effort || 'max' }
 const pad = (n) => String(n).padStart(3, '0')
 const TURN = { type: 'object', properties: { pair_id: { type: 'string' }, applied: { type: 'array', items: { type: 'string' } },
   added: { type: 'array', items: { type: 'string' } }, n_reasons_after: { type: 'integer' }, wrote_turn_file: { type: 'boolean' } },

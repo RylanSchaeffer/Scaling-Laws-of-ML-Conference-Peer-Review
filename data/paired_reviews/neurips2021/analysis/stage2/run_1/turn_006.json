@@ -1,0 +1,86 @@
+{
+  "run": 1,
+  "turn": 6,
+  "pair_id": "n21-301",
+  "kind": "oral/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Neither area chair moved away from its scores and arguments. A's one-sentence meta-review restates the consensus behind 8, 7, 8, 9. B's area chair accepted on the grounds the 9 and the 8 gave and stopped at the poster that 9, 8, 3 (mean 6.67) supports. Its title suggestion grew from Reviewer_VGyX's prior-work point ('Related to this last point')."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No recommendation rests on a forecast beyond the paper's setting. A's meta-review makes no forecast. Reviewer_DcW4's 'potential impact of this paper is high' and Reviewer_ob4X's 'deserves wide dissemination' stay within bio-plausible backprop, neuromorphic hardware and neuroscience, which the paper itself addresses. B's supporters made like claims (Reviewer_gRxq: 'a valuable contribution to the field')."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The response moved A's Reviewer_BSPV up to 7 ('Based on the authors' response, I have revised my score to an accept') on the promise of a limitations section. No B score moved: Reviewer_VGyX stayed 'still convinced' at 3, and Reviewer_gRxq and Reviewer_iVNT kept 8 and 9."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's scores rest on less scrutiny. A's top score, Reviewer_DcW4's 9, came after 2 hours with generic praise, no weakness or question, and the wrong claim that prospective coding 'has no precedence in the literature'. Reviewer_ob4X's 8 came after 2 hours in one paragraph. No A reviewer raised the prior work on fast population responses. B's 9 (Reviewer_iVNT) also admits confusion, but B's Reviewer_VGyX ran the code and checked the literature."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B's Reviewer_VGyX showed that faster-than-τm responses were known and uncited (Knight 1972; van Vreeswijk and Sompolinsky 1998). He also showed that the noise filter uses synaptic time constants of 0.1 to 2 ms. The camera-ready concedes both points. His 3 rests on them, and B's area chair made both required revisions, suggested a new title and stopped at a poster. No A reviewer raised either point."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees questioned whether the model's fast transmission between rate units is biologically realistic. A's Reviewer_BSPV called it 'this major caveat to the biological plausibility of the model', then raised to 7 on a promised limitations section, and A's area chair did not mention it. B's area chair made 'the timescales of synaptic transmission' a required revision. This cause is secondary: the specific points B weighed came from VGyX alone (R05)."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score moved after reviewer discussion alone. A's Reviewer_BSPV credits the authors' response. B's Reviewer_iVNT read VGyX's prior-work critique and kept 9 ('I still think it is an interesting paper, despite the work of Bruce Knight and Sompolinsky')."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating clearly contradicts its text. Reviewer_VGyX's 3 fits his post-rebuttal 'still convinced that the study is 'solving' a problem that was already solved before'. Reviewer_iVNT's 9 fits 'a novel creative solution', and Reviewer_BSPV's 7 fits 'revised my score to an accept'. Reviewer_gRxq's 8 beside 'I strongly recommend acceptance' is at most one point off, and a 9 would leave B's mean at 7.0, still below A's 8.0."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No unsure reviewer gave a borderline score. No rating is 5 or 6. The confidence-3 reviewers (A's Reviewer_ztYa and Reviewer_ob4X, B's Reviewer_gRxq) all rated 8, and B's 3 came at confidence 4 with specific references."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's area chair took the outlier's points but not his verdict. It accepted on the supporters' grounds ('proposes a novel solution, and demonstrates that the solution works') and turned Reviewer_VGyX's points into revisions, so it did not set the other reviewers aside. A's area chair followed A's consensus."
+    }
+  ],
+  "added": [],
+  "reasoning": "Stage 1 finds that B's poster came from a specialist detractor whom A never had. Reviewer_VGyX alone showed that fast population responses were known and uncited, and that the noise filter needs very short synaptic time constants. The camera-ready concedes both, and B's area chair made both required revisions (R05). A's oral rests on uniform praise that includes a two-hour 9 with a wrong novelty claim (R04). The response moved A's Reviewer_BSPV to 7 and moved no B score (R03). Both committees questioned the biological realism of fast transmission. A's area chair ignored it, and B's required a revision on it (R06). I added no reason. The specialist detractor is how R05 happened in this pair, not a separate mechanism. VGyX's overreach ('already solved') is part of the same B-only concern, and Reviewer_DcW4's wrong novelty claim is evidence for R04. B's area chair accepted on the supporters' grounds and took only VGyX's points, so neither R10 nor R01 fits. No score moved after discussion alone (R07), no rating contradicts its text (R08), no rating is borderline (R09), and no one forecast impact beyond the paper's setting (R02).",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+  ]
+}

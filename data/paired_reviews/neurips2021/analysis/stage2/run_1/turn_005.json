@@ -1,0 +1,87 @@
+{
+  "run": 1,
+  "turn": 5,
+  "pair_id": "n21-186",
+  "kind": "oral/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "B's meta-review has no reading of its own. It gives no reason for the oral beyond quoting Reviewer_rfa1 and Reviewer_3m9X, so the tier follows rfa1's 9 (R10), not the chair's own taste. A's poster matches A's 6, 7, 7, 8."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No recommendation rests on a forecast beyond the paper's field. B's area chair quoted 'contributes to the foundations of imitation learning', which is the paper's own field. A made like claims: Reviewer_WPhA called it 'a complete solution to a problem of common interest in the decision-making community'."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The response moved scores on both committees, so neither stayed unchanged. In A, Reviewer_N9bU 'moved my score to an Accept'. In B, Reviewer_1SfX and Reviewer_3m9X raised to 7."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's only score above 7, Reviewer_rfa1's 9 at confidence 4, rests on three generic sentences ('clear, rigorous, and well written') and a list of presentation nits. It says nothing about the proofs, Algorithm 1 or the novelty over Zhang et al. (2020). Two more B reviewers rated 7 at confidence 1 without assessing the theory: Reviewer_nWYc knows 'very little about the technical details of causal learning', and Reviewer_4Bw1 gives no support for 'original and high quality'. Stage 1 finds no inattentive review in A."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "The concerns behind A's poster, dense exposition and idealized experiments, were raised in B too. A's own points concerned presentation or citation (a metric typo, an axis label, a cut-off Definition 2.2, the unexplained HighD evaluation, de Haan et al. 2019), and the authors conceded or answered most of them. B's own points, the strict imitation target and the known graph, did not count against its oral."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the same complete criterion, dense notation and idealized experiments. A's area chair called clarity 'the main shortcoming of the paper'. B's area chair quoted Reviewer_rfa1's 'clear, rigorous, and well written' and named no weakness, though Reviewer_1SfX, Reviewer_4Bw1 and Reviewer_3m9X called the paper dense, hard to parse or abstract."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No raise came from other reviewers alone. Reviewer_N9bU and Reviewer_3m9X cite the authors' responses as well as the other reviews, and Reviewer_1SfX cites only the response."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating clearly contradicts its text. Reviewer_rfa1's 9 fits its strongly positive verdict, which lacks only specifics (R04). Reviewer_aRng's 6 fits 'the main shortcoming of the paper is its clarity', and Reviewer_WPhA's 8 fits praise with one named weakness."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No unsure reviewer gave a borderline score. The confidence-1 reviewers, A's Reviewer_N9bU and B's Reviewer_nWYc and Reviewer_4Bw1, all rated 7. The only borderline score, Reviewer_aRng's 6, came at confidence 3 with A's most detailed critique."
+    }
+  ],
+  "added": [
+    {
+      "id": "R10",
+      "name": "Area chair followed one outlying reviewer",
+      "definition": "One committee's area chair set the recommendation by a single reviewer whose score or view stood apart from the rest of that committee, adopting that reviewer's verdict, often verbatim, and setting the other reviewers' views aside.",
+      "justification": "B's area chair gave an oral with no reason beyond two quotes, chiefly Reviewer_rfa1's 'clear, rigorous, and well written', and named none of the weaknesses that Reviewer_1SfX, Reviewer_4Bw1 and Reviewer_3m9X raised. Without rfa1's 9, B's mean equals A's 7.0. R01 does not fit: it needs the chair's own reading, and B's chair gave none; it passed on one reviewer's verdict. R04 covers how thin rfa1's review is, not the chair's choice to let one reviewer outweigh four. R06 covers how the two committees weighted clarity, not how one chair combined its own reviewers."
+    }
+  ],
+  "reasoning": "Stage 1 finds that both committees saw the same paper and that B's oral rests on one reviewer. Both saw a complete criterion in dense notation with idealized experiments. A's area chair made clarity the main shortcoming, while B's quoted Reviewer_rfa1's 'clear' (R06). rfa1's 9 rests on three generic sentences, and two B reviewers rated 7 at confidence 1 without assessing the theory (R04). Without rfa1's 9, B's mean equals A's 7.0. B's area chair gave no reason for the oral beyond two quotes, chiefly rfa1's, and named no weakness. No existing reason names a chair who sets the tier by one outlying reviewer. R01 needs the chair's own reading, and B's chair gave none, so I added R10. The response moved scores on both committees (R03 no), and every raise credits the response (R07 no). The concerns behind A's poster were shared, and B's own concerns did not count against its oral (R05 no). No rating contradicts its text (R08 no), no unsure reviewer gave a borderline score (R09 no), and 'foundations of imitation learning' stays within the paper's field (R02 no). I added no reason for B's extra raise or Reviewer_aRng's unmoved 6, because without rfa1's 9 the means are equal. Reviewer_N9bU misread the theory as relying on binary decision variables, but that set no final score: N9bU rose to 7, and A's area chair did not repeat the error.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+  ]
+}

@@ -1,0 +1,253 @@
+{
+ "run": 2,
+ "turn": 34,
+ "pair_id": "n21-178",
+ "kind": "spotlight/poster",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "B's Reviewer_wwer based its 3 partly on wrong claims: it calls the method 'one step gradients' though the paper trains Q^beta to convergence, and demands TD3+BC, posted after the deadline; no A criticism rested on such an error."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "A's chair gave a spotlight over 7, 7, 9, 8 (mean 7.75) with all four reviewers above threshold; the tier did not exceed the ratings."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "A's Reviewer_BBLZ gave the only 9 ('Top 15%') on the same strengths the other A reviewers scored 7 or 8, an exuberant rating that lifted A's mean to 7.75 and its spotlight."
+  },
+  {
+   "id": "R04",
+   "applies": false,
+   "justification": "The authors' concessions (overstated superiority, wrong Gulcehre citation) were made where reviewers raised them, and B's yZ2w raised both points too; neither committee lacked information the other had."
+  },
+  {
+   "id": "R05",
+   "applies": false,
+   "justification": "The flaws A learned of (3 seeds, overclaim, missing prior work) were answered with 10-seed results and conceded wording; A did not ignore a substantive flaw."
+  },
+  {
+   "id": "R06",
+   "applies": false,
+   "justification": "The rebuttal raised scores in both committees: vwkm and oZUe in A, yZ2w and fkPB in B."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "Issues raised by one side only (seeds, architecture in A; YOEO, theory in B) were answered or became points for the paper; the notes find no evidence one committee missed."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees raised under-credited prior one-step work; A treated it as a citation fix ('All issues solved'), while in B it dominated the reviews and yZ2w's final text still argues a weak reject."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "Neither chair adopted a single reviewer's position; A's chair reports a consensus and B's follows the ratings."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "The score changes in both committees followed rebuttal evidence (10-seed results, the YOEO table), not the other reviews alone."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors answered every reviewer, including wwer; no misread question or unanswered follow-up held a score down."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "B's Reviewer_wwer gave a 3 with 'not technically sound' and 'very hard to follow' and no example, never answered the rebuttal, and the 3 counted unchallenged, holding B's mean at 6.25."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "Neither chair went below its reviewers; B's poster matches three accept ratings and one reject."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "B's two-sentence meta-review states no reasoning about the mean or a threshold; the notes mark what it leans on as unclear."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "wwer's 3 rests on broad novelty, theory and clarity claims, not on a peripheral point answered by the authors."
+  },
+  {
+   "id": "R16",
+   "applies": false,
+   "justification": "Both committees read the paper as the same kind of contribution: a simple, strong empirical baseline for offline RL."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "No reviewer said the core was outside their expertise; the raises followed new experimental results."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "Both committees held the empirical paper to the same bar; B's theory complaint came from wwer alone and the paper claims no theory."
+  },
+  {
+   "id": "R19",
+   "applies": true,
+   "justification": "A's Reviewer_BBLZ backed its 9 by calling the claims 'modest and well validated', which Table 1 and the authors' concession to T3oZ contradict for the superiority claim."
+  },
+  {
+   "id": "R20",
+   "applies": false,
+   "justification": "No reviewer acknowledged a resolved concern and kept a low score; wwer never replied, and yZ2w and vwkm raised their scores."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "Both committees credited the rebuttal's promised citations and new tables; neither refused promised revisions."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "No reviewer stated a changed position without editing the score."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "No off-record extra reviewer appears in either committee."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "Only wwer called the paper hard to follow, and the notes give no sign that field distance caused it; its confidence was 4 like the others."
+  },
+  {
+   "id": "R25",
+   "applies": false,
+   "justification": "yZ2w's raise to 7 against its own text was not silent: it said it would update the score after the YOEO table; and the raise narrowed, not widened, the gap."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "B's chair counted wwer's 3, and A had no unengaged detractor to compare; no chair set a silent detractor aside."
+  },
+  {
+   "id": "R27",
+   "applies": false,
+   "justification": "BBLZ never argued in the discussion, and B also had accept advocates (8, 7, 7); the definition's lack of any advocate in the other committee fails."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "No reviewer admitted reading only part of the paper."
+  },
+  {
+   "id": "R29",
+   "applies": false,
+   "justification": "No reviewer contested the premise from a different theoretical tradition."
+  },
+  {
+   "id": "R30",
+   "applies": false,
+   "justification": "A's meta-review states a case for the spotlight: a reported consensus and praise for the simple method and clear message."
+  },
+  {
+   "id": "R31",
+   "applies": false,
+   "justification": "Both committees knew the prior one-step literature (A: vwkm on Gulcehre and Nadjahi; B: yZ2w and Uz96 on Gulcehre and YOEO) and A's T3oZ checked the baseline comparison."
+  },
+  {
+   "id": "R32",
+   "applies": false,
+   "justification": "B's meta-review names no reviewer and makes no claim about positions that the record contradicts."
+  },
+  {
+   "id": "R33",
+   "applies": false,
+   "justification": "No reviewer or chair raised a narrow-audience or venue-fit concern."
+  },
+  {
+   "id": "R34",
+   "applies": false,
+   "justification": "B's chair wrote two sentences praising the results and did not argue acceptance against wwer's 3; the defining meta-review behaviour is absent."
+  }
+ ],
+ "added": [],
+ "reasoning": "Each committee had one outlier in the opposite direction, and without them both panels end at 7, 7, 8. A's exuberant 9 (BBLZ), resting on a wrong 'modest and well validated' claim, is R03 and R19; B's inattentive, unengaged 3 (wwer), resting on misdescriptions, is R01 and R12. B's reviews also weighted the shared prior-work concern more heavily than A's (R08). The terse B meta-review simply passed the mean through, which R12's 'counted unchallenged' already covers, so no new reason was needed.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34"
+ ]
+}

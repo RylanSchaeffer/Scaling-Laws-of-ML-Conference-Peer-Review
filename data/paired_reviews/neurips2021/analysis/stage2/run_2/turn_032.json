@@ -1,0 +1,253 @@
+{
+  "run": 2,
+  "turn": 32,
+  "pair_id": "n21-258",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's Reviewer_Pvqb rated 6 before the rebuttal partly on a wrong reading that Algorithm 1 fails with a fresh mini-batch per round; the rebuttal corrected it and Pvqb rose to 7, and no B criticism rested on such an error."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's chair gave a spotlight over three 7s at confidence 2 to 3, with no reviewer arguing for a highlight."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's 7s rest on praise without specifics (Reviewer_1153's generic 'results are significant', Reviewer_Gr4i's readability-based 7 without knowing the related work), and B's meta-review echoes that praise ('well written, clear, and has novel results')."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors disclosed no flaw on either forum."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "No substantive flaw surfaced in either committee; the uncited Malach et al. work is minor and does not bear on the results."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In A, Reviewer_Pvqb raised from 6 to 7 after the rebuttal; no B score moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised the Algorithm 1 validity question, the improper PAC label, the bit-valued inputs and the novelty over Abbe and Sandon, so the committees weighed different sets of concerns, though A settled them."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Both committees accepted the shared weakness, the constructions' distance from practical deep learning, as inherent to the question."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither panel was split; every rating was 7."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer changed a score because of other reviews; B's Gr4i read them and kept its 7."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors left Gdae's related-work pointer unanswered, but Gdae still 'heartily' recommended acceptance at 7, so no score was held down."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's Reviewer_1153 gave a 7 on generic praise with no questions and no reply to the rebuttal, and A's Reviewer_uqhv gave a praise-only 7 without engaging; both counted unchallenged."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's poster matches four 7s; no chair went below its reviewers."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither chair decided by a threshold on a borderline mean."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "No below-threshold score exists in either committee."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as the same theory contribution, an extension of Abbe and Sandon to mini-batch SGD."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "Pvqb raised on a correction of its own misreading and did not say the core was outside its expertise."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both committees judged practical irrelevance as inherent to a theory paper; neither imposed an extra requirement."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No praise rests on a wrong factual claim; Gr4i's misdescription of rho as clipping error is not the basis of its score."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "Pvqb raised its score once its concern was answered; no one kept a low score."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee refused to credit promised revisions; A accepted the promised discussion of bit inputs and B needed none."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Every stated stance matches its rating."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No extra reviewer appears in either record."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Both committees found the paper clearly written; no clarity verdict diverged."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Pvqb's raise came with a stated reason that matched its updated text."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "No detractor existed in either committee."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee rated above 7."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted partial reading while claiming high confidence."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the paper's framing from another theoretical school."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "B's meta-review calls the paper 'a solid work worthy of acceptance' and gives no reason for the spotlight; A's chair also gives no tier reason, so the tier gap rests on no stated assessment."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's Pvqb and Gdae checked novelty against Abbe and Sandon and pointed to uncited prior work, while B's Gr4i 'was not familiar with the key related works' and 1153 called the literature review 'thorough', taking novelty at face value."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "Neither meta-review contradicts the record of reviewer positions."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "No one argued the paper suits too narrow an audience; the shared concern was practical relevance, accepted by both."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "Neither committee had a low-scoring detractor."
+    }
+  ],
+  "added": [],
+  "reasoning": "All seven reviewers rated 7 at confidence 2 to 3, and neither meta-review gives a reason for its tier, so the split is an area chair tier call on identical verdicts. R02 and R30 name that mechanism on B's side: a spotlight above what the reviewers argued for, with no stated case. The secondary differences are covered by existing reasons: A's greater scrutiny and settled doubts (R01, R06, R07, R31) and B's thin praise-based reviews (R03, R12). No cause remains that an existing definition does not fit on a plain reading, so no reason is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34"
+  ]
+}

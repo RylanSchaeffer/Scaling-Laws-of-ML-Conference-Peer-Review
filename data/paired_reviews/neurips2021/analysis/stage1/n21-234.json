@@ -1,0 +1,258 @@
+{
+  "pair_id": "n21-234",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_hGy7",
+        "Reviewer_ficQ"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7 (Reviewer_QWos), 6 (Reviewer_hGy7), 7 (Reviewer_ficQ) and 6 (Reviewer_Scao). The spread is one point. Reviewer_hGy7 was on the reject side before the rebuttal but ended at 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Scao",
+          "evidence": "The limitations field says 'This work is purely theoretical', but the evidence is nearly all experimental (Tables 1 and 3, Figures 1 and 2). The review rebuts a claim the paper does not make: 'I believe that the current evaluation protocol isn't invalid'. Scao did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_hGy7",
+          "evidence": "Summarised the paper as in-domain vs out-of-domain, the framing that l.77-81 reject. Read the BaseGen selection rule (l.327-345) as 'the lowest loss on the meta-train set'. Called the Table 1 gaps insignificant given the confidence intervals, which holds only on FEMNIST. Apologised ('apologize for the misunderstanding') and moved to 6."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_hGy7",
+          "claim": "In Table 1, PN, Ridge and SVM are within 1 point on all benchmarks, and the gaps are insignificant given the confidence intervals.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: PN leads SVM by 1.46 on Zappos-ID 2w5s and SVM leads PN by 1.50 on mini, against intervals of about +/-0.15. The gaps fall inside the intervals only on FEMNIST (+/-0.41 to 0.45). The gaps are small but real."
+        },
+        {
+          "reviewer": "Reviewer_hGy7",
+          "claim": "Evaluating on held-out images of base classes is not new (Gidaris et al.).",
+          "checked_against_paper": "correct",
+          "evidence": "The paper says so itself: l.85-89 cite Chen et al. [9] for the same ID construction, and l.90-92 cite Gidaris and Komodakis [15] for low-shot learning. The paper does not claim this step as a contribution."
+        },
+        {
+          "reviewer": "Reviewer_hGy7",
+          "claim": "The paper suggests selecting the snapshot with the lowest loss on the meta-train set.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.327-345 propose BaseGen selection: accuracy on fresh tasks built from held-out images of the base classes, not training loss."
+        },
+        {
+          "reviewer": "Reviewer_QWos",
+          "claim": "The conclusion flips may come from per-task variance, which exceeds the epsilon = 0.5% gap.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.384-386: each run evaluates both methods on 20,000 tasks, so task-sampling noise is far below 0.5 points. The flips come from which 20 novel classes are drawn, which is the paper's point."
+        },
+        {
+          "reviewer": "Reviewer_QWos",
+          "claim": "Typos at l.247-248 ('is in some sense fails') and l.392 ('set set').",
+          "checked_against_paper": "correct",
+          "evidence": "Both are in the submitted text. Reviewer_Qp31 in B found 'set set' too."
+        },
+        {
+          "reviewer": "Reviewer_Scao",
+          "claim": "The work is purely theoretical.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main evidence is experimental: Table 1, Figures 1 to 3. The one formal result is an informal sketch at l.130-142, with the proof in Appendix B."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_hGy7"
+        ],
+        "evidence": "Reviewer_hGy7, 2021-08-24: 'I change my vote to Accept'. The review was edited that day and ends at 6. Reviewer_ficQ, 2021-08-31: 'I'm keeping my original score'; its edit date (2021-07-15) is the posting day. Reviewer_QWos and Reviewer_Scao did not reply and did not edit.",
+        "what_convinced_or_not": "hGy7 moved on the in-distribution vs in-domain correction, not visibly on the effect-size argument or the 50-training-task Zappos table in the same reply. hGy7 kept the organisation concern, and the review text still says the claims are not 'sufficiently backed'. The reply to hGy7 repeats B's common response, including the claim that SVM beats PN OOD by at least 1 point on all four modified benchmarks. Figure 1(d) contradicts it: PN is ahead of SVM on cifar-M NovelGen (about 83.7 against 82.3). Nobody noticed."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences: 'While there are some concerns, reviewers unanimously agree that the theoretical and empirical analysis will be of value'. Final ratings 7, 6, 7, 6 are all at or above 6. The meta-review names no concern and no reviewer.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers judged the ID vs OOD distinction new and useful (QWos: 'a novel view'; ficQ: 'an important distinction'); the AC repeated this.",
+        "The only pre-rebuttal detractor, Reviewer_hGy7, moved to 6 once the in-distribution vs in-domain misreading was corrected, so all final ratings were 6 or 7.",
+        "The remaining concerns (small effect sizes, no model-selection recipe, organisation) were treated as minor."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        5,
+        8,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_rpPm"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_qFSe",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "8 at confidence 3, after two hours, in 263 words. The next-highest B rating is 6. qFSe praises 'strong supporting experiments' and 'the high degree of ranking flips', while the other three B reviewers flagged gaps of 1 to 2 points. qFSe overstates the result ('can in fact be the worst') and did not answer the authors or join the public discussion. Without this 8, B's mean is 5.3."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_qFSe",
+          "evidence": "Two hours, 263 words, rating 8. Cites no number from the paper, overstates the main result, and never replied to the authors."
+        },
+        {
+          "reviewer": "Reviewer_mSBf",
+          "evidence": "Read the ranking claim as an accuracy claim ('current meta learning methods are worse in the ID version'), although Figure 1 shows every method higher on BaseGen than on NovelGen. Read Figure 1(d), a FIX-ML vs ML comparison, as a method ranking. Wrote that clarity 'would improve my score', got the clarifications, and kept 5. The point that Table 1 is an uncontrolled comparison was sharp."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Qp31",
+          "claim": "In Table 1 the methods perform very similarly in both settings, except FO-MAML, which is last everywhere.",
+          "checked_against_paper": "correct",
+          "evidence": "PN, Ridge and SVM lie within 1.5 points in every column; FO-MAML ranks (4) in every column."
+        },
+        {
+          "reviewer": "Reviewer_rpPm",
+          "claim": "In Table 1 the difference between PN and Ridge is 0.01%.",
+          "checked_against_paper": "correct",
+          "evidence": "FEMNIST: 94.72 against 94.71. The paper ranks both (1), so it claims no difference there."
+        },
+        {
+          "reviewer": "Reviewer_mSBf",
+          "claim": "The paper says that methods do worse in the ID version of a dataset than in the OOD version.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The claim concerns rankings (l.36-37, l.239-241). Figure 1 shows every method's BaseGen (about 89.8 to 95.4) above its NovelGen (about 76 to 85)."
+        },
+        {
+          "reviewer": "Reviewer_mSBf",
+          "claim": "Figure 1(d) shows an ID/OOD inconsistency for only 2 of 5 methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 1(d) compares FIX-ML with standard training for PN, Ridge and SVM on cifar-M. It is not a method ranking. FIX-ML raises NovelGen and lowers BaseGen for all three."
+        },
+        {
+          "reviewer": "Reviewer_mSBf",
+          "claim": "Comparing rankings across different datasets (Table 1) is less controlled than converting each dataset into ID and OOD versions.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 sets ID ranks on FEMNIST and Zappos-ID against OOD ranks on mini. The one same-source pair, Zappos-ID (Table 1) against Zappos-OOD (Figure 3(c)), ranks the methods the same: PN >= Ridge > SVM > FO-MAML. The authors conceded this."
+        },
+        {
+          "reviewer": "Reviewer_Qp31",
+          "claim": "The proof's lower bound on the number of training tasks (l.135-136) is unrealistic when the class set is very large.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The assumption is only N = Omega(sqrt(|C_L|)), and l.141 cites N > 10^5 training tasks. That covers class sets up to about 10^10; Meta-Dataset has about 5,000 classes."
+        },
+        {
+          "reviewer": "Reviewer_Qp31",
+          "claim": "Figure 2(c) has no ValGen curve.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2(c) plots BaseGen and NovelGen only."
+        },
+        {
+          "reviewer": "Reviewer_qFSe",
+          "claim": "Methods that work on ID benchmarks can in fact be the worst for OOD benchmarks.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Overstated. PN, first on every ID benchmark, is third of four on mini (Table 1) and fifth of six in Figures 1(a) and 1(b). FO-MAML is below it each time."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_rpPm"
+        ],
+        "evidence": "Reviewer_rpPm, 2021-09-02: 'Updated to 6'. The review, edited 2021-09-12, opens 'Post rebuttal: updated score to 6'. Reviewer_mSBf (2021-08-13) and Reviewer_Qp31 (2021-08-15, 2021-08-28) replied warmly but did not edit; both stay at 5. Reviewer_qFSe did not reply.",
+        "what_convinced_or_not": "The 50-training-task Zappos-ID table (PN 77.67 against SVM 74.06) settled effect sizes for mSBf ('with fewer training tasks the gap is larger'), Qp31 ('a good sanity check') and rpPm ('the common response sounds good'). The camera-ready adds it to Table 1. rpPm also accepted the count of six ID datasets and the FEMNIST explanation. Qp31 stayed at 5 on significance: model selection has no take-away, larger benchmarks already address small test sets, and the OOD flips rest on three models. mSBf stayed at 5 and wanted more datasets. Nobody noticed that the common response overstates. It says SVM beats PN OOD by at least 1 point on all four modified benchmarks. Figure 1(d) shows PN ahead on cifar-M (about 83.7 against 82.3), and the authors' own reply of 2021-08-24 gives RR > PN > SVM on CIFAR-FS."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Final ratings 5, 5, 6, 8 split two against two. The AC lists the critics' three objections (inconclusive model selection; the field already moving to larger benchmarks; 6 ID and 4 OOD datasets too few). Then: 'I read the paper to form an independent opinion' and 'I don't believe any reviewer is indifferent to it'. Acceptance matches the two positive reviews and the critics' own borderline tone (Qp31, 2021-08-28: 'this paper is borderline').",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers and the AC valued the ID/OOD distinction and its mismatch with ID-based theory.",
+        "The effect-size worry was settled by the 50-training-task Zappos-ID result.",
+        "The two 5s rested on the significance of secondary analyses (model selection, small test sets, few datasets and methods), not on errors.",
+        "With a two-against-two split, the AC read the paper and accepted because no reviewer was 'indifferent' to it."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No explanation of why PN flips between ID and OOD while FO-MAML does not (Reviewer_QWos)",
+    "Per-task variance against the epsilon = 0.5% gap (Reviewer_QWos)",
+    "A Task2Vec measure of the gap between base and novel tasks (Reviewer_hGy7)",
+    "Only vision tasks, and little theory (Reviewer_ficQ)",
+    "Cross-domain few-shot work such as TAEML (Reviewer_Scao)",
+    "The logic that random class partitions do not give random task partitions (Reviewer_Scao)"
+  ],
+  "issues_only_b": [
+    "Table 1 compares ID and OOD ranks across different datasets; the same-source Zappos-ID/Zappos-OOD pair ranks the methods identically (Reviewer_mSBf)",
+    "BaseGen on mini tests no new classes, so it is not few-shot learning and may exaggerate the ID/OOD gap (Reviewer_mSBf, Reviewer_Qp31)",
+    "Section 4 (ID/OOD conflict) and Section 5 (BaseGen selection for OOD) pull in different directions (Reviewer_mSBf)",
+    "Small-test-set unreliability is already known; the field is moving to Meta-Dataset and VTAB; test-class diversity matters (Reviewer_Qp31, Committee B meta-review)",
+    "Zappos-OOD is a different problem, and OOD flips need more models or class re-splits (Reviewer_Qp31)",
+    "Proof assumption on the number of training tasks, and the Kendall rank metric (Reviewer_Qp31)",
+    "Hyperparameter grid search, and more datasets and methods (Reviewer_rpPm, Reviewer_mSBf)",
+    "Related work on degrees of generalization (Triantafillou et al. 2021; Arnold and Sha) (Reviewer_Qp31)",
+    "Counter-intuitive learning-rate result in Figure 1(c) (Reviewer_mSBf)"
+  ],
+  "shared_issues": [
+    "Small gaps between PN, Ridge and SVM (A: hGy7; B: Qp31, rpPm, mSBf)",
+    "The model-selection study gives no clear take-away (A: hGy7, ficQ; B: Qp31, meta-review)",
+    "The ID construction follows low-shot benchmarks of Gidaris et al. (A: hGy7; B: Qp31)",
+    "Few-shot evaluation is meant to be OOD, so the ID setting matters less (A: Scao; B: rpPm)",
+    "Crowded organisation, with key details in the appendix (A: QWos, hGy7, Scao; B: rpPm, mSBf)",
+    "Snapshot-selection terminology unclear (A: ficQ; B: mSBf)",
+    "No limitations or societal-impact discussion (A: QWos; B: mSBf, Qp31)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason: every reviewer valued the ID/OOD distinction, and no reviewer found a real error. Standard few-shot benchmarks test OOD generalization, much meta-learning theory assumes ID tasks, and the paper shows that method rankings can flip between the two. Both committees also saw the same weaknesses: gaps of 1 to 2 points between PN, Ridge and SVM, a model-selection study without a take-away, and a crowded paper. Committee B weighed these weaknesses more and scrutinised more (3,543 review words against 2,184). Its two most detailed reviewers, Qp31 and mSBf, stayed at 5 over the significance of the secondary analyses. B's mean of 6.0 rests on a two-hour, 263-word 8 from qFSe; without it the mean is 5.3. B's AC broke the two-against-two split by reading the paper and by the view that no reviewer was 'indifferent'. Committee A's only detractor, hGy7, had read in-distribution as in-domain; once corrected, hGy7 moved to 6, and A's AC followed ratings of 6 and 7. Both committees got the same rebuttal on effect sizes, and no reviewer disputed it. Its new result is genuine (with 50 Zappos-ID training tasks, PN beats SVM by 3.6 points). But its claim that SVM beats PN OOD by at least 1 point on all four modified benchmarks is wrong: Figure 1(d) shows PN ahead on cifar-M. No reviewer checked it.",
+  "candidate_reasons": [
+    "Core ID/OOD insight valued by all",
+    "Detractor's terminology misreading corrected",
+    "Effect-size rebuttal went unchallenged",
+    "Secondary analyses judged inconclusive in B",
+    "Thin champion offsets borderline rejects",
+    "AC's own reading breaks split"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_hGy7 final review and comment of 2021-08-24",
+    "Reviewer_Qp31 final review and comments of 2021-08-15 and 2021-08-28",
+    "Reviewer_mSBf final review and comment of 2021-08-13",
+    "Reviewer_rpPm final review and comments of 2021-08-31 and 2021-09-02",
+    "Reviewer_qFSe final review",
+    "Authors' common response in B and reply to Reviewer_hGy7 in A (effect sizes; 50-training-task Zappos-ID table)",
+    "Authors' reply to Reviewer_Qp31 of 2021-08-24 (RR > PN > SVM on CIFAR-FS)",
+    "paper_submitted.pdf Table 1 (ranks and confidence intervals)",
+    "paper_submitted.pdf Figure 1(a), 1(b), 1(d) (BaseGen and NovelGen per method; cifar-M PN above SVM on both)",
+    "paper_submitted.pdf Figure 3(c) (Zappos-OOD ranks equal Zappos-ID ranks)",
+    "paper_submitted.pdf l.77-81, l.85-92, l.135-141, l.327-345, l.384-386",
+    "paper.pdf (camera-ready) Table 1 (adds the 50-training-task Zappos-ID column)"
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "run": 2,
+  "turn": 31,
+  "pair_id": "n21-281",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's Reviewer_PpQM rated 3 on wrong claims that GDWS drops hidden-layer nonlinearities and that vectorization is a computation; A's Reviewer_t8ZX also wrongly called GDWS less robust than ADMM, but the error that drove a low score sits in B."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "A's chair gave a spotlight on 7/6/7 with no reviewer above 7, calling the method 'clever' (no reviewer's word) and claiming consensus while recasting the contested robustness claim as a bonus."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's Reviewer_7tWD gave 7 at confidence 3 after 2 hours, named no weakness, and its score held up A's 6.67 mean behind the spotlight."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors gave both forums the same fine-tuning table and the same concession that GDWS only preserves robustness."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Two of A's three reviewers called the robustness claim weak or a by-product and the authors conceded it, yet A's meta-review called robustness 'a nice bonus benefit' and weighed no weakness."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "No score moved in B, and no change is recorded in A; uhXk's silent edit has an unknown effect."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B's reviewers raised the correct limitations that ADMM reaches FPS GDWS cannot, that GDWS multiplies pruned model size, that FPS comes from one board with HYDRA run dense, and that attacks are PGD only."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Both committees saw the inherited-robustness weakness, but neither stated it as grounds for its tier; B's chair never discussed tier."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's chair discarded the outlier with its own reading and another reviewer's confirmation, and counted the 6/6/7 slate; it did not let one reviewer set the outcome."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer changed score after reading the others."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer in both forums; no misread question held a score down."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's Reviewer_7tWD's 7 rested on no specifics, with no rebuttal engagement, and counted unchallenged in A's spotlight."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "Neither chair went below its reviewers; B's poster matches a 6/6/7 effective slate."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither chair decided by a mean against its own stated view."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "PpQM's 3 rests on misreadings of the core method, not a peripheral point, and the chair discarded it."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees judged the paper as an efficiency method for robust networks."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No reviewer raised a score on the rebuttal."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Neither committee required something of the paper type that the other did not."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No reviewer's praise rested on a wrong factual claim; the 'clever' wording is the chair's, covered by R02."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "c4Yo kept a 6, which is above threshold, after most concerns were addressed; no below-threshold score held after its main concern was answered."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee refused or required promised revisions; both saw the same supplied tables."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer stated a changed position without editing the score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No off-record extra reviewer; B's chair cited an existing reviewer's view of PpQM."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No clarity verdict split on reviewer expertise."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "uhXk's edit has no recorded rating change, and B's only edit predates the rebuttal."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "PpQM did reply to the rebuttal; the chair discarded the 3 for misreading the method, not for silence."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee rated above 7 or argued for a higher tier."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "PpQM claimed a careful check at confidence 5, not a partial reading."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the premise from another theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "A's three-sentence meta-review argues only that the method is clever and significant and gives no case for the spotlight tier over a poster."
+    },
+    {
+      "id": "R31",
+      "applies": false,
+      "justification": "Both committees discussed ADMM, HYDRA and RobNet baselines; neither side clearly lacked the literature."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "A's chair misstated its reviewers' concerns, but upward, toward a higher tier; R32 names misstatements toward a lower decision."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "No one in either committee raised breadth of audience."
+    }
+  ],
+  "added": [
+    {
+      "id": "R34",
+      "name": "Misreading detractor kept chair arguing only acceptance",
+      "definition": "One committee had a low-scoring reviewer whose review misread the paper, and the area chair spent the meta-review justifying acceptance against that score and never weighed a higher tier, while the other committee, with no such detractor, considered the paper for an award.",
+      "justification": "R26 covers a detractor set aside for silence and R15 a low score held on a peripheral point; neither covers a misreading outlier that the chair rightly discounts but that turns the meta-review into a defence of acceptance, so tier is never weighed."
+    }
+  ],
+  "reasoning": "The committees split only on spotlight versus poster on near-equal support (A 7/6/7; B 6/6/7 after the chair discarded PpQM's misreading 3). The gap traces to A's side: a chair who asserted consensus and gave a spotlight with no case (R02, R30), propped by a thin, specific-free 7 (R03, R12) and a meta-review that recast a conceded robustness weakness as a bonus (R05). B surfaced correct limitations A missed (R07). PpQM's wrong claims drove a low score (R01). B's chair spent the meta-review defending acceptance against PpQM and never weighed tier; no existing reason names that, so I added R34. R32 was not applied because its definition fixes the direction toward a lower decision.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34"
+  ]
+}

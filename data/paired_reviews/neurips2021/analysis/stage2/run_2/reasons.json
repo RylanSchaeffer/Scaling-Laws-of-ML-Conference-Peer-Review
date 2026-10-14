@@ -254,5 +254,21 @@
     "created_by_pair": "n21-003",
     "created_turn": 28,
     "exemplar": "A's AC wrote 'In the end, all reviewers were negative' although Reviewer_nMFp's 6 was never edited, and its concern list omitted the BDD100K test and KITTI-MOTS results the rebuttal supplied."
+  },
+  {
+    "id": "R33",
+    "name": "Narrow-audience objection capped one committee's tier",
+    "definition": "Reviewers or the area chair in one committee judged the paper sound but of interest to few readers or better suited to another venue, and held it to a lower tier on that ground, while the other committee raised no concern about breadth.",
+    "created_by_pair": "n21-298",
+    "created_turn": 29,
+    "exemplar": "A's Reviewer_3GRx proposed STOC/FOCS/COLT, AuTG called the result 'somewhat niche' and the AC chose a poster for 'a handful of experts', while no B reviewer raised breadth and B gave a spotlight."
+  },
+  {
+    "id": "R34",
+    "name": "Misreading detractor kept chair arguing only acceptance",
+    "definition": "One committee had a low-scoring reviewer whose review misread the paper, and the area chair spent the meta-review justifying acceptance against that score and never weighed a higher tier, while the other committee, with no such detractor, considered the paper for an award.",
+    "created_by_pair": "n21-281",
+    "created_turn": 31,
+    "exemplar": "B's Reviewer_PpQM rated 3 at confidence 5 on misreadings of nonlinearity and vectorization; B's chair called it 'safe to ignore', recommended acceptance 'in this instance' and said nothing on tier, while A, with no detractor, got a spotlight on similar scores."
   }
 ]

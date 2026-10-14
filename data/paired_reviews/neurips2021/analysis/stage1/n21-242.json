@@ -1,0 +1,259 @@
+{
+  "pair_id": "n21-242",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        5,
+        8
+      ],
+      "confidences": [
+        4,
+        4,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_LcrW"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Bqwx",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "Ratings 6 (j3tj), 5 (LcrW), 5 (ZLX8), 8 (Bqwx); the 8 is two points above the next. Bqwx calls the paper 'very well written' with 'sound maths' and says 'The submission is technically sound'. LcrW found gaps that the authors partly conceded (Theorem 5 needs a bounded target), and the line-241 step is false. Bqwx read the long supplementary version (it cites 'theorem 7', which the main paper lacks) and calls the page limit 'largely overstepped', which is wrong for the 8-page main paper. Its only discussion post: 'I will keep my score as it is.'"
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LcrW",
+          "claim": "Line 241: the first inequality u'(K+ρI)⁻¹J⊥(K+ρI)⁻¹u ≥ λmin((K+ρI)⁻¹)² u'J⊥u is unjustified; it fails if J⊥(K+ρI)⁻¹u = 0 while J⊥u ≠ 0, and needs an argument such as commuting matrices.",
+          "checked_against_paper": "correct",
+          "evidence": "The step holds when (K+ρI)⁻¹ and J⊥ commute and fails in general. In the paper's own setting (Gaussian kernel of width 0.5, reflection group on [−1, 1], uniform µ, n = 2, X = (0.4, 0.9), ρ = 0.1, u = (−1, −0.28), the values of an even target) the left side is 0.0505 and the right side 0.0564. The authors' defence of 2021-09-03 ('line 241 is correct') assumes that J⊥u ≠ 0 puts u in the range of J⊥, which is false. The bias term of Theorem 5 then fails in expectation too: f* ≡ 1 (constant, invariant, bounded), Gaussian kernel of width 1, reflection group {x, −x} on [−1, 1], µ uniform, no noise, n = 20, ρ = 0.01: Monte Carlo gives E[Δ] ≈ 3×10⁻⁵ (two independent computations, 2.6×10⁻⁵ and 2.9×10⁻⁵) against the claimed lower bound 2.0×10⁻³; at ρ = 1 the ratio is still 0.37. The camera-ready keeps this term (E[f*(X)² j⊥(X,X)]) and adds only 'bounded'."
+        },
+        {
+          "reviewer": "Reviewer_LcrW",
+          "claim": "Line 244 and Theorem 5: the bound uses ⟨(f*)², (ẽ⊥α)²⟩ in L2, although f* is assumed only to be in L2.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 232 assumes only f* ∈ L2(X, µ); line 245 writes ⟨ι(f*)², (ẽ⊥α)²⟩. The authors first cited line 87 (functions in H are bounded), but f* need not be in H. On 2021-09-03 they conceded: 'The error here is in the statement of the theorem'. The camera-ready assumes f* bounded. B's Reviewer_Tnf7 noted that f* ∈ L2 suffices because e⊥α is bounded, so the term is finite; the gap is in the stated proof."
+        },
+        {
+          "reviewer": "Reviewer_LcrW",
+          "claim": "Line 250: the essential supremum of f*² need not be finite.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 250 bounds E[f*(X)² e⊥α(X)²] by ess sup f*², which is infinite for an unbounded f* ∈ L2. The authors fixed it by assuming a bounded target."
+        },
+        {
+          "reviewer": "Reviewer_LcrW",
+          "claim": "Footnote 1 (line 212) is irrelevant because ρ > 0.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The footnote is about the non-uniqueness of α in Eq. (4) when K is singular. ρ > 0 does not remove it: adding a null vector of K changes neither Kα nor α'Kα. LcrW later wrote 'agreed'."
+        },
+        {
+          "reviewer": "Reviewer_ZLX8",
+          "claim": "The relation at line 225 is the wrong way round.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 224 defines Δ(f, f′) = E[(f−f*)²] − E[(f′−f*)²]; line 225 says Δ > 0 means 'strictly better test performance from f than f′'. It means the reverse. The authors called it a typo; the camera-ready fixes it. B's Reviewer_xasM found the same."
+        },
+        {
+          "reviewer": "Reviewer_ZLX8",
+          "claim": "The averaged predictor at lines 215-216 should use an averaged Gram matrix, not only k̄x(X).",
+          "checked_against_paper": "incorrect",
+          "evidence": "O acts on the input x only. By linearity and Eq. (1), Of(x) = k̄x(X)'(K+ρI)⁻¹Y, as written. ZLX8 posed it as a question; the authors answered correctly."
+        },
+        {
+          "reviewer": "Reviewer_j3tj",
+          "claim": "The G-invariance of µ in the proof of Proposition 6 is not justified.",
+          "checked_against_paper": "incorrect",
+          "evidence": "It is an assumption: main paper line 78, 'admitting a finite, G-invariant Borel measure µ'. The authors pointed to it."
+        },
+        {
+          "reviewer": "Reviewer_j3tj",
+          "claim": "Related work misses Lyle et al. (2020), 'On the Benefits of Invariance in Neural Networks'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "It is reference [17], cited at lines 33 and 286. The other suggestion, Raj et al. (2017), is absent from the submission; the camera-ready adds it as [22]."
+        },
+        {
+          "reviewer": "Reviewer_Bqwx",
+          "claim": "The page limit seems largely overstepped.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submitted main paper has 8 pages of content; Related Work ends on page 8 and the references start on page 9. Only the long, self-contained version in the supplement, which Bqwx cites, exceeds the limit."
+        },
+        {
+          "reviewer": "Reviewer_Bqwx",
+          "claim": "The submission is technically sound ('sound maths').",
+          "checked_against_paper": "incorrect",
+          "evidence": "The line-241 step fails and the bias term of Theorem 5 is false (see Reviewer_LcrW's first claim). The authors also conceded that Theorem 5 needs a bounded target."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [
+          "Reviewer_LcrW"
+        ],
+        "evidence": "Reviewer_j3tj (2021-08-22): 'I will keep my scores'. Reviewer_Bqwx (2021-08-25): 'I will keep my score as it is.' Reviewer_ZLX8 (2021-08-31): 'will keep my score to 5'. Reviewer_LcrW (2021-08-25) was 'not satisfied' and 'inclined to lower my vote' without the answers it asked for. The authors replied on 2021-09-03. LcrW edited the review on 2021-09-13; the edit added at least 'The reviewer acknowledges the points made by the authors.' The final rating is 5. Whether it fell cannot be seen; LcrW is the only possible mover.",
+        "what_convinced_or_not": "Clarifications (derivation of Eq. 5, the prime that separates Lemma B.1 from Corollary B.2) satisfied j3tj, who still saw no reason to move. LcrW was not convinced: it asked for proofs, not promises, and called 'We will add an explanation' 'at best hand-waving'. The authors conceded the bounded-target error (lines 244, 250) but asserted line 241 with a wrong argument. ZLX8 kept 5 because 'reviewer LcrW has some concerns' and experiments were missing. The promise to move proofs to the appendix and add examples moved no one."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts over ratings 6/5/5/8, two below threshold. The first paragraph copies Reviewer_j3tj's summary nearly word for word ('The paper aims at quantifying the possible benefits of incorporating invariances to kernel methods...'), and 'potential of the work for motivating further research' echoes j3tj's 'could trigger some further research'. The AC concedes that reviewers 'are convinced that the paper requires improvements in terms of presentation and technical quality' and defers them to 'the final version'. It does not rule on LcrW's unresolved line-241 objection.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Reviewers valued extending the strict benefit of invariance in [8] from linear models to kernel ridge regression (j3tj, Bqwx, ZLX8).",
+        "The AC adopted Reviewer_j3tj's reading and its 'further research' framing.",
+        "The AC treated presentation and technical problems as camera-ready fixes and did not rule on the line-241 dispute.",
+        "Both 5s were soft: ZLX8 (confidence 2) declined to judge technical quality, and the authors conceded and patched part of LcrW's case (bounded target)."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        9,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Tnf7"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_6ik1",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "Ratings 7 (xasM), 5 (uJHC), 9 (6ik1), 7 (Tnf7). A 9 ('Top 15% of accepted NeurIPS papers, strong accept') after 3 hours. The main review has four sentences of generic praise ('technically sounds with ideas very well laid out') and no specific point. It names the final result 'Theorem 8', which the main paper does not have. 6ik1 never replied to the authors. Without it, B's mean is 6.33, the same as A's without ZLX8."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_6ik1",
+          "evidence": "Four-sentence main review after 3 hours; calls the paper technically sound with no check; cites a 'Theorem 8' absent from the main paper; no reply to the authors' response."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Tnf7",
+          "claim": "The use of Fubini's theorem at line 247 is not justified: condition (5) lacks absolute values, and integrability for i ≠ j is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (5), line 248, bounds the signed sum Σα λα² E[f*(Xi)e⊥α(Xi)e⊥α(Xj)f*(Xj)], not its absolute value; line 249 says only 'we have established that this holds'. The authors added a bounded target; Tnf7 noted that f* ∈ L2 suffices because e⊥α is bounded. This is the gap that A's Reviewer_LcrW raised at lines 244-250."
+        },
+        {
+          "reviewer": "Reviewer_Tnf7",
+          "claim": "Line 232 has a typo: E[ξi²] = 0.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 232 reads 'E[ξi] = 0 and E[ξi²] = 0', but the bound uses σ². The camera-ready reads E[ξi²] = σ² < ∞."
+        },
+        {
+          "reviewer": "Reviewer_xasM",
+          "claim": "The statement that Δ(f, f′) > 0 means f performs better is the wrong way round.",
+          "checked_against_paper": "correct",
+          "evidence": "Main paper line 225 (xasM cites lines 55-59 of the supplement's version). Fixed in the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_xasM",
+          "claim": "'Effective dimension' already names a different, regulariser-dependent quantity in Caponnetto and De Vito (2007), which the paper should cite or distinguish.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 192-197 define dim_eff(H) = E[j(X,X)] = Tr(Tk²), with no regulariser. Caponnetto and De Vito is not cited. The authors promised a comparison, but the camera-ready's references still lack it."
+        },
+        {
+          "reviewer": "Reviewer_xasM",
+          "claim": "The proofs, checked as far as possible, look correct.",
+          "checked_against_paper": "incorrect",
+          "evidence": "xasM read the supplement. The authors told LcrW that the supplement's Corollary B.2 proves the eigenvalue step used at line 241; that step fails, and the bias term of Theorem 5 is false (f* ≡ 1 (constant, invariant, bounded), Gaussian kernel of width 1, reflection group {x, −x} on [−1, 1], µ uniform, no noise, n = 20, ρ = 0.01: Monte Carlo gives E[Δ] ≈ 3×10⁻⁵ (two independent computations, 2.6×10⁻⁵ and 2.9×10⁻⁵) against the claimed lower bound 2.0×10⁻³; at ρ = 1 the ratio is still 0.37). The camera-ready's own example fails too: Theorem 7 with the linear kernel on the sphere in R³, G the permutations, θ = (1, 1, 1), n = 20, ρ = 0.01 and no noise gives E[Δ] ≈ 2×10⁻⁷ against a claimed bias term of 6.7×10⁻³."
+        },
+        {
+          "reviewer": "Reviewer_uJHC",
+          "claim": "The paper gives no example of incorporating an invariance and no experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted main paper has neither; uJHC's line references (80-81, 232) are to it. The supplement's version had a linear-kernel example on the sphere, which xasM and A's Bqwx (as 'theorem 7') describe."
+        },
+        {
+          "reviewer": "Reviewer_6ik1",
+          "claim": "The paper seems technically sound, leading to its final result, 'Theorem 8'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main result is Theorem 5; the main paper has no Theorem 8. The line-241 step fails and the bias term of Theorem 5 is false."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [
+          "Reviewer_Tnf7"
+        ],
+        "evidence": "Only Reviewer_Tnf7 replied (2021-08-10, 2021-08-11) and edited (2021-08-24). Its review says that if the Fubini uses are fixed it will 'raise my score'; the authors added a bounded target, and Tnf7 found that f* ∈ L2 suffices. The final 7 may be a raise, but the text still carries the conditional sentence. Reviewer_xasM, Reviewer_uJHC and Reviewer_6ik1 never replied and never edited.",
+        "what_convinced_or_not": "Tnf7 was 'mostly happy' with the step-by-step justification of the display below line 256 and closed the integrability point itself. uJHC's concerns (local invariance, approximate invariance, computing the effective dimension) got promises of added text and no reply. xasM's typos and terminology point got 'we will fix' answers."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three accepts (7, 9, 7) and one 5. The four-sentence meta-review calls the results 'novel and of high theoretical significance' and notes 'its practical meaning is not very clear in this paper', which is uJHC's point. It names no technical issue; no B reviewer raised the line-241 step.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers recommended acceptance (7, 9, 7); mean 7.0.",
+        "Theory judged novel and significant without experiments; xasM argued this in advance and the AC agreed.",
+        "Tnf7's one technical concern (Fubini, integrability of the target) was settled in discussion; the line-241 step was never raised.",
+        "uJHC's applicability concerns reached the meta-review ('practical meaning is not very clear') but did not outweigh the theory."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The eigenvalue step at line 241 in the proof of Theorem 5 is unjustified (Reviewer_LcrW); it is false, and the authors' defence fails",
+    "Hasty writing, ellipses in proofs, and theorems that differ between the main paper and the supplement (Reviewer_LcrW)",
+    "Kernel condition Eq. (1), the inner-product-kernel argument and orthogonal representations need a formal statement and examples (Reviewer_j3tj)",
+    "Notation: tensor product at line 182, undefined x_a and y_a, 'being okay' (Reviewer_LcrW, Reviewer_j3tj)",
+    "Page limit overstepped, true only of the supplement's long version (Reviewer_Bqwx)",
+    "Extension to other losses and to learnable kernels that meet the kernel condition (Reviewer_Bqwx)",
+    "Citations: Raj et al. 2017 (Reviewer_j3tj, missing), Lyle et al. 2020 (Reviewer_j3tj, already cited as [17]), Steinwart and Scovel 2012 (Reviewer_LcrW)",
+    "Move the proofs to the appendix and Section 4.1 to the front (Reviewer_ZLX8)"
+  ],
+  "issues_only_b": [
+    "Real invariances are local, targets are often only approximately invariant, and the effective dimension is hard to compute (Reviewer_uJHC)",
+    "'Effective dimension' already names a different, regulariser-dependent quantity in Caponnetto and De Vito 2007 (Reviewer_xasM)",
+    "Full support of µ on X and compactness of G limit generality (Reviewer_xasM)",
+    "Exact orbit averaging is intractable; analyse its Monte Carlo approximation over the Haar measure (Reviewer_Tnf7)",
+    "Lemma 2's source concerns equivariance; Bochner integrals in Lemma C.3 (Reviewer_Tnf7)"
+  ],
+  "shared_issues": [
+    "No experiments, not even synthetic (A: Reviewer_LcrW, Reviewer_ZLX8; B: Reviewer_uJHC; B's Reviewer_xasM called the theory sufficient)",
+    "Incremental over Elesedy and Zaidi [8] (A: Reviewer_LcrW; B: Reviewer_xasM)",
+    "Integrability of the target in Theorem 5: f* only in L2, Fubini without absolute values, ess sup (A: Reviewer_LcrW, lines 244-250; B: Reviewer_Tnf7, line 247); both got the same fix, a bounded target",
+    "No concrete example of a group or of the bound (A: Reviewer_j3tj, Reviewer_ZLX8; B: Reviewer_uJHC)",
+    "Reversed statement about the sign of Δ(f, f′) at line 225 (A: Reviewer_ZLX8; B: Reviewer_xasM)",
+    "Typos: M for M_k, 'Reisz' (A: Reviewer_j3tj, Reviewer_LcrW; B: Reviewer_xasM, Reviewer_Tnf7)",
+    "Value of extending the strict benefit from linear models to kernels (A: Reviewer_j3tj, Reviewer_ZLX8, Reviewer_Bqwx; B: Reviewer_xasM, Reviewer_Tnf7, Reviewer_6ik1)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason. The paper extends the strict benefit of invariance in Elesedy and Zaidi [8] from linear models to kernel ridge regression, and both accepted pure theory without experiments. B's higher mean (7.0 against 6.0) comes mainly from who reviewed and which version they read. The authors put a longer, self-contained version in the supplement. Reviewers whose comments point to it gave 6 to 8 (j3tj, Bqwx, xasM, Tnf7). The three whose comments cite only the 8-page main paper all gave 5 (LcrW, ZLX8, uJHC), and two of them sat in A. Each committee also had one weak rating: A's 5 from the self-declared non-expert Reviewer_ZLX8 (confidence 2), and B's 9 from Reviewer_6ik1's four-sentence review. Without these two, both means are 6.33. On the integrability gap in Theorem 5, the two committees weighed the same fact differently: LcrW saw haste, Tnf7 a minor fix. Only A tested the main proof. Reviewer_LcrW said that the eigenvalue step at line 241 can fail. The authors called it correct, with an argument that assumes J⊥u ≠ 0 puts u in the range of J⊥. LcrW is right: the step holds when (K+ρI)⁻¹ and J⊥ commute but fails in general. The bias term of Theorem 5 is false too. With a constant target, a Gaussian kernel of width 1, the reflection group on [−1, 1], no noise, n = 20 and ρ = 0.01, E[Δ] is about 3×10⁻⁵ against a claimed 2×10⁻³. The paper's own linear example (camera-ready Theorem 7) fails too. Only the noise term survives, so the proven strict benefit needs noisy labels. A's AC copied Reviewer_j3tj's summary and left 'technical quality' to the final version without ruling on the dispute. B's AC followed three accept scores. The camera-ready adds 'bounded' to Theorem 5 but keeps the false term, so both committees accepted a main theorem that neither verified.",
+  "candidate_reasons": [
+    "Reviewers read different paper versions",
+    "Uncritical 9 lifted B's mean",
+    "Low-confidence non-expert 5 in A",
+    "Correct proof objection rebutted wrongly",
+    "AC deferred correctness to camera-ready",
+    "Theory-only extension accepted on significance"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf lines 237-257 (proof of Theorem 5: eigenvalue step at line 241, Eq. (5), ess sup at line 250)",
+    "paper_submitted.pdf Theorem 5 (lines 231-236) and line 225",
+    "paper.pdf (camera-ready) Theorem 5 and Theorem 7",
+    "Reviewer_LcrW review, comment of 2021-08-25 and the authors' reply of 2021-09-03",
+    "Reviewer_Tnf7 review and the Fubini exchange of 2021-08-10 and 2021-08-11",
+    "Reviewer_xasM review ('My review is based on the supplementary material')",
+    "Reviewer_j3tj review ('based on the version attached as supplementary materials')",
+    "Reviewer_6ik1 review",
+    "Reviewer_ZLX8 'After rebuttal' comment of 2021-08-31",
+    "Committee A meta-review (copies Reviewer_j3tj's summary)",
+    "Committee B meta-review",
+    "Numerical check: Gaussian kernel, reflection group on [−1, 1], f* ≡ 1, no noise, n = 20, ρ = 0.01; and camera-ready Theorem 7 with d = 3"
+  ]
+}

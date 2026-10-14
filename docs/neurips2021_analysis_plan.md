@@ -1,6 +1,6 @@
 # Why two committees disagreed: the NeurIPS 2021 paired-review dataset and analysis
 
-Status: plan for sign-off, 2026-10-14.
+Status: approved 2026-10-14. Scope set by Rylan the same day: the analysis runs on the 50 pairs in which at least one committee recommended an oral or a spotlight (6 oral/poster, 16 spotlight/poster, 25 spotlight/reject, 3 spotlight/spotlight). The other 251 complete pairs stay in the dataset, unanalysed.
 
 ## 1. What we have
 
@@ -50,7 +50,7 @@ one script and ships with the release as a zip.
 **Model:** `claude-opus-5-5`, temperature 0, through the API. Every call's prompt, response,
 model id, prompt version and timestamp are saved. No step edits an earlier step's files.
 
-**Stage 1: notes per pair.** For each of the 301 pairs the model reads both committees' full
+**Stage 1: notes per pair.** For each of the 50 award pairs the model reads both committees' full
 records (reviews with initial and final ratings, rebuttals, discussion, meta-reviews, decisions)
 and writes succinct notes on where the two committees diverged, and why. The notes are
 structured: for each committee, the spread of ratings and whether one reviewer was an outlier
@@ -70,8 +70,8 @@ first showed it. At turn n the model reads pair n's stage 1 notes and the curren
 answers in structured form: which reasons in the set apply to this pair, one line each on why,
 and any new reason this pair needs, with a name and a definition. The new reasons join the set.
 Every turn is saved, `analysis/stage2/run_<k>/turn_<n>.json`: the set before, the pair, the
-answer, the set after. Order: the 47 award-discrepancy pairs first (oral/poster, spotlight/poster,
-spotlight/reject), then the accept/reject splits, then the agreed pairs.
+answer, the set after. Order: oral/poster, spotlight/poster, spotlight/reject, then the three spotlight/spotlight pairs
+(`analysis/order.json`).
 
 Two rules complete the record. *Back-fill:* a reason created at turn n has not been judged for
 pairs 1 to n-1; after the pass, each such reason is put to every earlier pair in the same form,
@@ -101,7 +101,7 @@ terms; our annotations the same.
 ## 5. Order of work
 
 1. Pull the review revision histories; build the dataset folder; write the README.
-2. Stage 1 on the 47 award-discrepancy pairs first; you read a few notes and the prompt is fixed
-   or changed once; then all 301.
+2. Stage 1 on the 50 award pairs, eight agents at a time; you read a few notes and the prompt is
+   fixed or changed once.
 3. Stage 2: the pass, back-fill, merge; two more orders; summary table.
 4. Release packaging.

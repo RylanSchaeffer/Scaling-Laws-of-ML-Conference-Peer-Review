@@ -2,9 +2,9 @@
 review has its initial (pre-rebuttal) and final rating and text. Also downloads each copy's PDF.
 
 Input:  data/raw/openreview/neurips2021/notes.jsonl (scripts/fetch_openreview_neurips2021.py)
-Output: data/raw/openreview/neurips2021/references.jsonl  one line per review: {"review_id", "forum", "references": [...]}
+Output: data/raw/openreview/neurips2021/references[_shard].jsonl  one line per review: {"review_id", "forum", "references": [...]}
         data/raw/openreview/neurips2021/pdf/<forum>.pdf
-Usage:  uv run python scripts/fetch_openreview_revisions.py
+Usage:  uv run python scripts/fetch_openreview_revisions.py [shard/nshards]   (run the shards in parallel)
 """
 from __future__ import annotations
 
@@ -33,14 +33,21 @@ def get(url: str, token: str, raw: bool = False):
 
 
 def main() -> None:
+    import glob
+    import sys
+    shard, nshards = (int(x) for x in (sys.argv[1] if len(sys.argv) > 1 else "0/1").split("/"))
     token = open(os.path.expanduser("~/.openreview_token")).read().strip()
     notes = [json.loads(l) for l in open(os.path.join(RAW, "notes.jsonl"))]
     flagged = [n for n in notes if [r for r in n["details"]["replies"] if r["invitation"].endswith("/Decision")][0]["content"].get("consistency_experiment")]
-    print(len(flagged), "experiment copies")
-    out_path = os.path.join(RAW, "references.jsonl")
+    if len(sys.argv) > 2:  # optional file of forum ids to restrict to (done first)
+        keep = set(open(sys.argv[2]).read().split())
+        flagged = [n for n in flagged if n["id"] in keep]
+    flagged = flagged[shard::nshards]
+    print(len(flagged), f"experiment copies in shard {shard}/{nshards}")
+    out_path = os.path.join(RAW, f"references_{shard}.jsonl" if nshards > 1 else "references.jsonl")
     done = set()
-    if os.path.exists(out_path):
-        done = {json.loads(l)["review_id"] for l in open(out_path)}
+    for f in glob.glob(os.path.join(RAW, "references*.jsonl")):
+        done |= {json.loads(l)["review_id"] for l in open(f)}
     os.makedirs(os.path.join(RAW, "pdf"), exist_ok=True)
     with open(out_path, "a") as out:
         for k, n in enumerate(flagged, start=1):

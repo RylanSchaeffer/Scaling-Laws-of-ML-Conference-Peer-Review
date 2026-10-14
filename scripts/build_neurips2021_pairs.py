@@ -67,9 +67,9 @@ def kind_of(a: str, b: str) -> str:
 def main() -> None:
     notes = [json.loads(l) for l in open(os.path.join(RAW, "notes.jsonl"))]
     byid = {n["id"]: n for n in notes}
-    refs_path = os.path.join(RAW, "references.jsonl")
+    import glob
     revisions = {}
-    if os.path.exists(refs_path):
+    for refs_path in sorted(glob.glob(os.path.join(RAW, "references*.jsonl"))):
         for l in open(refs_path):
             d = json.loads(l)
             revisions[d["review_id"]] = sorted(d["references"], key=lambda r: r["tcdate"])

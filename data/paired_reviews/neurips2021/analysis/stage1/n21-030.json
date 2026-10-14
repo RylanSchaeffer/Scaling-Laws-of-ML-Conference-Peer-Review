@@ -1,0 +1,224 @@
+{
+  "pair_id": "n21-030",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        8,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Cip6"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_nMGW",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "nMGW's 8 is three points above the other ratings (5, 5, 6). The review is specific: line-level points, and praise for splitting hard examples into three groups by train- and validation-split depth, which A's chair later named as a real finding. Its weaknesses are all presentation (density, altered template, unreported correlations). nMGW posted nothing after the rebuttal, so the 8 had no voice in the discussion that decided the paper."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Cip6",
+          "evidence": "The original review discusses no figure or result. Its novelty case quotes the abstract's list of 'separately reported phenomena', which the paper itself credits to prior work (L274-278). Its other objections are hypotheticals (a one-class dataset, a 1-layer network). After the rebuttal Cip6 conceded several points and based the final 5 on Reviewer_SfKb's evaluation."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_SfKb",
+          "claim": "The Sec. 3.3 intervention changes many training details at once, so it cannot isolate the link between margin and prediction depth (also Reviewer_GF8b and Reviewer_nMGW).",
+          "checked_against_paper": "correct",
+          "evidence": "L221-226: the intervention uses a zero-margin hinge loss with full-batch gradient descent and a very small learning rate; the control uses cross-entropy with SGD and a large learning rate. L219-221 concede 'there are many unknowns that may contribute to this effect', yet L228-232 call the result 'just as predicted' and 'remarkable'. The intermediate runs the rebuttal cites (Appendix A.7) are not in the supplied PDF."
+        },
+        {
+          "reviewer": "Reviewer_SfKb",
+          "claim": "The observations do not lead to actionable insights or testable predictions about how networks should be trained.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no experiment that uses prediction depth to change training or prediction. Sec. 5 only lists ideas (L291-293) and sends applications to Appendix D (L269-273). The camera-ready adds the rebuttal's layer-4 k-NN result (25% to 98% on 100 examples selected with training-split depth from 250 models); no committee reviewed it."
+        },
+        {
+          "reviewer": "Reviewer_Cip6",
+          "claim": "The paper's observations were previously reported ('early layers generalize while later layers memorize; early layers converge faster; and networks learn easy data and simple patterns first').",
+          "checked_against_paper": "incorrect",
+          "evidence": "The quoted phenomena are ones the paper itself presents as prior work that it connects (abstract L10-12; L274-278, refs [31, 32, 38-42]). The paper's own results, the linear bound on consensus-consistency (Fig. 4) and the train-versus-validation forms of difficulty (Fig. 7), are not addressed. Cip6 later raised the score, citing 'the insights that the prediction depth can give'."
+        },
+        {
+          "reviewer": "Reviewer_Cip6",
+          "claim": "The layer-wise k-NN probe was proposed by Cohen et al. (2018).",
+          "checked_against_paper": "correct",
+          "evidence": "L58-62 credit k-NN probes to [18] (Cohen et al., 2018) and state that [18] studied only average accuracies, not individual examples. The probe is prior work; the per-example depth is not."
+        },
+        {
+          "reviewer": "Reviewer_nMGW",
+          "claim": "The NeurIPS template was altered: there is basically no space between paragraphs.",
+          "checked_against_paper": "correct",
+          "evidence": "Page 2 of the submission sets consecutive paragraphs with no gap (L53-75), and much of the reasoning sits in long captions (Figs. 3-8)."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "Typos: 'Abstract:' inside the abstract; 'LL' at L249 is never introduced.",
+          "checked_against_paper": "correct",
+          "evidence": "L1 begins 'Abstract: Existing work'; L249-261 use (LLVal., LLTrain) with no definition. The camera-ready uses PDVal and PDTrain."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_Cip6"
+        ],
+        "evidence": "Cip6 edited the review on 2021-08-19, the day of the comment 'I increased my score to borderline' (final 5; the earlier value is not exposed). Reviewer_SfKb, 2021-08-12: 'not fully convinced to increase score'; no edit. Reviewer_GF8b, 2021-08-20: 'still leaning positive'; no edit. Reviewer_nMGW: no reply, no edit.",
+        "what_convinced_or_not": "The answer that difficulty is contextual and the 'connect the phenomena' framing moved Cip6 to borderline. SfKb was persuaded that Figs. 3-4 and the train/validation forms of difficulty are interesting, but not that the paper develops them; the authors' second reply (2021-08-22) offered rewrites and a new Sec. 3.3 title, not new results. GF8b stayed unconvinced by Sec. 3.3 despite the Appendix A.7 runs. Both 5s said they could not go higher without reviewing a revised PDF."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The ratings split 2-2 (5, 5 against 8, 6), and the chair sided with the two critics who engaged after the rebuttal. 'Might benefit from an additional round of reviews' and 'putting more emphasis on the findings in Fig. 3, 4 and 7' closely track Reviewer_SfKb's 2021-08-12 comment and Reviewer_Cip6's 'without the option to review the revision, I can't fully root for this submission'. The meta-review does not weigh nMGW's 8 or GF8b's 'worth being published to NeurIPS'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two engaged 5s wanted a reframed paper they could review again; no revised PDF was allowed",
+        "Doubts on novelty of the correlational results, actionable insight and conceptual depth (meta-review points a-c)",
+        "Paper too dense, with takeaways in captions and the appendix",
+        "Champion Reviewer_nMGW (8) absent from the discussion"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        7
+      ],
+      "confidences": [
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_UY6d"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 5, 7 span two points. The highest, Reviewer_YcZq's 7, rests on a three-sentence main review (see inattentive_reviews)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_YcZq",
+          "evidence": "Rating 7 with a three-sentence main review, no weaknesses and no questions; 3 hours; posted 2021-08-02, a month after the other B reviews; no reply to the authors. The summary reverses a main result: it says low-depth examples have lower output and input margins, while the paper says larger (L43-44, Fig. 6)."
+        },
+        {
+          "reviewer": "Reviewer_LUjh",
+          "evidence": "Confidence 3. The first listed concern, 'There is no analysis on prediction depth for training data', is false: L98-103 define depth for both splits and say 'We examine both notions', Figs. 1-2 use the training split, and Sec. 4 with Fig. 7 compares the two splits. No reply to the authors' correction."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LUjh",
+          "claim": "Prediction depth is analyzed only for validation points; the training-split notion is never studied.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L98-103 define both notions and say 'We examine both notions of computational difficulty in this paper'. Fig. 1 (right) and Fig. 2 use the training split. Sec. 4 and Fig. 7 build the four forms of difficulty from training- versus validation-split depth, the result Committee A's chair singled out."
+        },
+        {
+          "reviewer": "Reviewer_YcZq",
+          "claim": "Examples with low prediction depth have lower output margins and lower input margins.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L43-44 and the Fig. 6 caption: margins are larger for examples with smaller prediction depth (correlations -0.70 and -0.69). The summary reverses the direction."
+        },
+        {
+          "reviewer": "Reviewer_UY6d",
+          "claim": "In Fig. 5 test accuracy rises until epoch 20 and then falls while training accuracy keeps rising, a sign that the models overfit.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The Fig. 5 caption says the middle and right plots use CIFAR10 with 40% of training labels randomized; the test-accuracy peak is the expected effect of memorizing noisy labels [37]. It is no evidence about the clean-label runs behind the other figures. UY6d's broader concern, that memorized training points form the k-NN support, is not tested in the PDF."
+        },
+        {
+          "reviewer": "Reviewer_UY6d",
+          "claim": "The first claim of Sec. 2.2 (visually hard examples have larger depth) rests on 8 examples and 4 datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "L112-119 rest both sanity checks on Fig. 1: eight images (two CIFAR100 clocks and two SVHN 8s at depth 0, the same at depth 10) and the ordering of four dataset means."
+        },
+        {
+          "reviewer": "Reviewer_UY6d",
+          "claim": "Appendix A.3 trains for about 10,000 steps at batch 256 (about 50 epochs) without weight decay.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplied PDFs (submission and camera-ready) contain no appendix."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_UY6d"
+        ],
+        "evidence": "UY6d's review text says 'my rating of 4'; the comment of 2021-08-23 says 'I am happy to raise my note to 5'; the review was edited 2021-08-23. Reviewer_LUjh and Reviewer_YcZq did not reply or edit.",
+        "what_convinced_or_not": "Learning curves at an external link and the label-noise explanation of Fig. 5 partly eased UY6d's overfitting concern. The authors answered the other points with arguments, not new runs (support-set subsampling 'ought not to change the overall conclusions'). UY6d still wanted larger datasets and rejected the claim that limited data does not act like label noise; the authors' last reply (2021-08-24) only disagreed."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Acceptance matches the mean (6.0) and two of three ratings at or above 6. But the meta-review misstates the reviews. It says 'none argue for rejection', while UY6d rated 5 and wrote 'more experimental confirmation is needed before this paper can be published'. It says all reviewers found the paper 'clear', while LUjh found Fig. 3 'very difficult to understand' and UY6d found the paper 'difficult to understand on first read'. It defines depth by agreement with 'the correct label'; the paper uses the network's final prediction (L90-93). It leaves all remaining work to the camera-ready.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Mean 6.0 with two of three ratings on the accept side",
+        "All reviewers, including the 5, call the idea novel or important",
+        "Remaining experimental and clarity concerns left to the camera-ready",
+        "Chair read the committee as having no advocate for rejection"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty and information gain of the correlational results over existing difficulty measures (Reviewer_SfKb, Reviewer_Cip6)",
+    "No actionable insight in the main text, and no causal or principled account of the unifying picture or the linear bounds (Reviewer_SfKb; Reviewer_nMGW on Appendix D)",
+    "Sec. 3.3 intervention confounds loss, batch size and learning rate (Reviewer_SfKb, Reviewer_nMGW, Reviewer_GF8b)",
+    "Why k-NN probes rather than other classifiers (Reviewer_GF8b)",
+    "Altered template and unreported correlation coefficients (Reviewer_nMGW)"
+  ],
+  "issues_only_b": [
+    "Overfitting of the trained models and memorization in the k-NN support set (Reviewer_UY6d)",
+    "Robustness of the definition: the 'no change until output' rule, sparse neighbourhoods, support-set subsampling (Reviewer_UY6d)",
+    "Thin evidence for the visual sanity check and no dataset larger than CIFAR-100 (Reviewer_UY6d)",
+    "Training-split depth supposedly not analyzed (Reviewer_LUjh; a misreading)"
+  ],
+  "shared_issues": [
+    "Dense presentation, with takeaways in long captions and figures far from their text (Reviewer_nMGW, Committee A chair; Reviewer_LUjh, Reviewer_UY6d)",
+    "Unexplained 2D histograms in Figs. 3-4 (Reviewer_nMGW; Reviewer_LUjh)",
+    "Dependence of depth on the training data that forms the k-NN support (Reviewer_Cip6, Reviewer_SfKb; Reviewer_UY6d)",
+    "Typos such as 'of in' at L163 (Reviewer_nMGW; Reviewer_UY6d)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees ended at a mean rating of 6.0, so the split comes from who argued in the discussion and how each chair treated a paper that reviewers wanted rewritten. Committee A drew two engaged critics at 5. Reviewer_SfKb argued that the strongest results, the linear bound on consistency (Figs. 3-4) and the train-versus-validation forms of difficulty (Fig. 7), are under-developed, while the main narrative only correlates prediction depth with known difficulty measures; Reviewer_Cip6 agreed in substance. Both said they could not raise their scores without reviewing a revision, which NeurIPS 2021 did not allow. A's chair called the paper borderline and asked for 'an additional round of reviews'. A's champion, Reviewer_nMGW (8), wrote a careful review but never joined the discussion, and Reviewer_GF8b's 6 came with doubts about Sec. 3.3. Committee B had one critic, Reviewer_UY6d (4 raised to 5), whose concerns were experimental robustness and who still called the paper 'important'. B's positive reviews are weak: Reviewer_YcZq's 7 rests on a three-sentence main review whose summary reverses the margin result, and Reviewer_LUjh's 6 claims that training-split depth is never analyzed, which Sec. 4 contradicts. B's chair wrote that 'none argue for rejection', which misstates UY6d, and left the remaining work to the camera-ready. The same borderline profile met a 're-review the rewrite' bar in A and a 'fix it in the camera-ready' bar in B; A's critics also raised significance questions that no B reviewer raised.",
+  "candidate_reasons": [
+    "Same mean, different chair thresholds",
+    "Re-review demanded versus camera-ready trust",
+    "Engaged critics, silent champion",
+    "Thin positive reviews carried acceptance",
+    "Chair misstated the dissenting review",
+    "Significance of correlational findings disputed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_SfKb comment 2021-08-12",
+    "Reviewer_Cip6 comment 2021-08-19",
+    "Reviewer_GF8b comment 2021-08-20",
+    "Committee B meta-review",
+    "Reviewer_UY6d review and comment 2021-08-23",
+    "Reviewer_YcZq review (posted 2021-08-02)",
+    "Reviewer_LUjh review",
+    "paper_submitted.pdf L98-103, Sec. 4, Fig. 7 (training-split depth)",
+    "paper_submitted.pdf L43-44 and Fig. 6 caption (margin direction)",
+    "paper_submitted.pdf L219-232 (Sec. 3.3 intervention)",
+    "paper_submitted.pdf Fig. 5 caption (40% random labels)",
+    "Supplied PDFs have no appendix; appendix claims not checked"
+  ]
+}

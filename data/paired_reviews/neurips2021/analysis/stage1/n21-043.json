@@ -1,0 +1,191 @@
+{
+  "pair_id": "n21-043",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 6, 6, 5],
+      "confidences": [4, 3, 3, 5],
+      "reviews_edited_after_posting": ["Reviewer_GGZY", "Reviewer_ja4k"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/6/6/5 sit within 0.5 of the 5.5 mean. The split follows confidence: the two 5s carry confidence 4 (Reviewer_GGZY) and 5 (Reviewer_G5QY); the two 6s carry confidence 3 ('Math/other details were not carefully checked')."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ja4k",
+          "evidence": "The main review has one substantive point, that the MDP is time-homogeneous, plus a typo. It does not discuss the algorithm, the bounds or novelty. Confidence 3. It rose to 6 on a reply that 'partly addresses my major concern'. The 6 says little about the paper's quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GGZY",
+          "claim": "The efficient implementation costs a factor of d, so the d improvement over prior work rests on solving an intractable problem (4.3).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3: 'In general, solving the maximization problem (4.3) is hard'; the l1/LP relaxation is given for finite S only. Corollaries 4.4 and 5.3 give Õ(H^5 d^3 ε^-2) for both relaxed algorithms, the same d^3 as Wang et al. [17] (Õ(H^6 d^3 ε^-2)) and FRANCIS (Õ(H^5 d^3 ε^-2)) in Table 1."
+        },
+        {
+          "reviewer": "Reviewer_GGZY",
+          "claim": "The claimed match of upper and lower bounds holds only for H ≥ d, where the H dependence is suboptimal anyway.",
+          "checked_against_paper": "correct",
+          "evidence": "Remarks 5.2 and 6.2: for H ≥ d, UCRL-RFE+ needs Õ(H^5 d ε^-2) against the Ω(H^2 d ε^-2) of Theorem 6.1; for d > H it needs Õ(H^4 d^2 ε^-2), which matches only in ε."
+        },
+        {
+          "reviewer": "Reviewer_G5QY",
+          "claim": "The algorithms follow the methodology of [17], with the exploration-driven reward modified for linear mixture models (Remark 1); the paper should explain its technical challenges.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 4.1 names one difference from [17], regression on the pseudo value function u_h^k instead of V_h^k, and calls it 'mainly due to the different problem settings (linear MDP v.s. linear mixture MDP)'. No section discusses technical challenges. UCRL-RFE+ is 'inspired by [28]', the authors' own Bernstein-bonus work."
+        },
+        {
+          "reviewer": "Reviewer_G5QY",
+          "claim": "Table 1 lists FRANCIS [25] under linear MDPs, but it needs linear completeness and an explorability assumption.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 labels FRANCIS 'Linear MDP', while Section 1 says Zanette et al. consider 'a slightly larger class of MDPs with low inherent Bellman error'. The authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_ja4k",
+          "claim": "The MDP is time-homogeneous.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1, second contribution: the bound holds 'for time-homogeneous MDP'. Definition 3.1 has one kernel P for all steps. The authors called the extension easy but gave no final bound."
+        },
+        {
+          "reviewer": "Reviewer_a98J",
+          "claim": "The implementation seems limited to the tabular case, and no simple examples are given.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3 relaxes the hard step only 'for the finite state space case (|S| < ∞)' and leaves infinite S to state aggregation without analysis. The paper has no experiments; checklist item 3 is N/A."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_GGZY", "Reviewer_ja4k"],
+        "evidence": "Both reviews were edited on 2021-08-26, the day of their discussion comments. GGZY: 'I increased my score', to 5, so from at most 4; its text still says 'I recommend rejection'. ja4k: 'I've updated the score accordingly', to 6; the authors thanked it 'for increasing the score'. Reviewer_G5QY and Reviewer_a98J neither replied nor edited.",
+        "what_convinced_or_not": "GGZY credited the explanation and the promise to 'emphasize technical challenge (particularly, comparison to [17])'. It stayed 'not convinced on significance': the match holds only for H > d, and the algorithm is inefficient in continuous state spaces. The authors' claim that the algorithm is 'computationally efficient when the state space is finite' holds only for the LP relaxation, which loses a factor of d. ja4k accepted the claim that the time-inhomogeneous extension is easy. The novelty reply to G5QY (confidence 5) drew no response, and the AC did not accept the promise. The camera-ready main text adds no technical-challenges section and keeps Remark 4.1 unchanged."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split 5/6/6/5 (mean 5.5). The AC sided with the two confident 5s: 'I find it hard to identify the technical challenges and why certain technical tools are necessary. This concern was also raised by several reviewers.' It added that 'no reviewer was willing to champion the paper' and rejected for 'lack of clarity on the algorithmic choices and novelty to a field that has seen numerous advances in the last couple of years'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Technical challenges beyond Wang et al. [17] never explained (AC, Reviewer_G5QY, Reviewer_GGZY)",
+        "Algorithmic choices not justified, such as the pseudo value function and the several sources of optimism (AC, Reviewer_a98J)",
+        "No champion; the two most confident reviewers stayed at 5",
+        "Incremental step in a crowded reward-free exploration literature"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [4, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_6DWQ", "Reviewer_Zh4L"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 6. Two are post-rebuttal raises whose texts still argue below the bar: Reviewer_6DWQ ('slightly below the acceptance bar ... I choose the weak reject') and Reviewer_Zh4L ('the significance and novelty of the contribution seems to be lacking'). No reviewer championed the paper."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nnra",
+          "evidence": "Two hours. The first point is the title's similarity to Wang et al.'s paper. The rest is generic: 'results are technically correct', 'probably meet the bar', and the problem is 'an obvious extension of existing results'. No specific technical comment supports its 6 at confidence 4."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_6DWQ",
+          "claim": "Because Õ(H^4 d(H+d) ε^-2) ≥ Õ(H^4 d^2 ε^-2), the dependence on d is always quadratic, so the claimed match in d for H ≥ d lacks rigour.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Remark 5.2: for H ≥ d the bound reduces to Õ(H^5 d ε^-2), linear in d. The qualified claim holds as stated. Its real weakness is the H^5 versus H^2 gap, which Reviewer_USFu and Committee A's Reviewer_GGZY named."
+        },
+        {
+          "reviewer": "Reviewer_6DWQ",
+          "claim": "The tight lower bound is at least of order d^2, by translating the Ω(dH√T) regret lower bound of Zhou, Gu and Szepesvári (COLT 2021).",
+          "checked_against_paper": "not_checked",
+          "evidence": "A claim about the true minimax rate, which the paper does not settle. Remark 6.2 concedes a factor-d gap when d > H. The rebuttal's best-arm-identification example shows only that regret bounds do not convert automatically; it does not settle the rate either."
+        },
+        {
+          "reviewer": "Reviewer_6DWQ",
+          "claim": "Remark 3.2 calls the algorithms 'more general', although neither linear MDPs nor linear mixture MDPs contain the other.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 3.2: 'linear mixture MDPs do not need the reward function r to be linear, which makes our algorithms more general.' The authors agreed and promised a rephrase."
+        },
+        {
+          "reviewer": "Reviewer_USFu",
+          "claim": "The computationally efficient relaxation applies only to finite state spaces, and both relaxed algorithms have rate O(H^5 d^3/ε^2).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3 gives the relaxation 'for the finite state space case'. Corollaries 4.4 and 5.3 each give Õ(H^5 d^3 ε^-2)."
+        },
+        {
+          "reviewer": "Reviewer_USFu",
+          "claim": "UCRL-RFE+ reaches the lower bound's dependence on d only when H ≥ d, and never its dependence on H.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 6.2: Õ(H^5 d ε^-2) for d ≤ H and Õ(H^4 d^2 ε^-2) for d > H, against Ω(H^2 d ε^-2)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_6DWQ", "Reviewer_Zh4L"],
+        "evidence": "6DWQ edited its review on 2021-08-31, one day after the authors asked it to 'reconsider the rating'. It posted no comment, and its text still says 'I choose the weak reject' beside a 6. Zh4L edited on 2021-09-13: 'After the discussion and re-reading, I have updated the score.' This followed author follow-ups on 2021-08-30 and 2021-09-02; the second said 'the other reviewers are all satisfied with our response'. Reviewer_USFu (2021-08-18) and Reviewer_nnra (2021-08-30) kept 6.",
+        "what_convinced_or_not": "Neither raiser said what changed. 6DWQ's main objection, the loose lower bound, got a counter-argument and no reply. Zh4L's novelty objection got the pseudo-value-function answer that Committee A's AC found insufficient. The 'all satisfied' claim was an overstatement: USFu wrote that its opinion 'has not changed', and nnra only kept its score."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four 6s; the AC accepted. The meta-review repeats the reviewers' doubt ('the results and techniques are not very surprising, leaving most reviewers ambivalent') and accepts because the paper 'is executed well and fills a gap in the literature'. It notes the LP relaxation of the hard subproblem but does not weigh it. It does not ask for a champion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers at 6 after the rebuttal",
+        "Fills a gap: first reward-free results and lower bound for linear mixture MDPs",
+        "Well executed and clearly written; no reviewer found an error",
+        "Lack of surprise and novelty judged not disqualifying"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No section on technical challenges against Wang et al. [17] (Reviewer_G5QY, AC)",
+    "The d improvement holds only with the intractable step; the efficient version returns to the d^3 of prior work (Reviewer_GGZY)",
+    "Algorithmic choices unexplained: several sources of optimism, why the max over value functions (Reviewer_a98J, AC)",
+    "Time-homogeneous transitions only (Reviewer_ja4k)",
+    "Table 1 errors: FRANCIS labelled linear MDP (Reviewer_G5QY); tabular rates mixed across settings (Reviewer_a98J)",
+    "Proof-level corrections in the appendix (Reviewer_a98J)"
+  ],
+  "issues_only_b": [
+    "The true lower bound should scale as d^2, so the matching claim is vague (Reviewer_6DWQ)",
+    "Remark 3.2 overclaims generality (Reviewer_6DWQ)",
+    "Missing related work: FLAMBE, Qiu et al. 2021, a tabular offline reward-free lower bound (Reviewer_USFu, Reviewer_6DWQ)",
+    "Title nearly identical to Wang et al.'s paper (Reviewer_nnra)"
+  ],
+  "shared_issues": [
+    "Limited technical novelty, a combination of known tools (A: Reviewer_G5QY, Reviewer_GGZY, AC; B: Reviewer_Zh4L, Reviewer_nnra, AC)",
+    "Upper and lower bounds do not match; the H dependence is suboptimal (A: Reviewer_GGZY; B: Reviewer_6DWQ, Reviewer_USFu, Reviewer_Zh4L)",
+    "The d^2 rate needs a hard optimisation; the LP relaxation covers finite state spaces only (A: Reviewer_GGZY, Reviewer_a98J; B: Reviewer_USFu, AC)",
+    "Sound, well written and first in its setting (A: Reviewer_a98J, AC; B: all four reviewers, AC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two committees weighted the same facts differently. No reviewer found an error. Both committees saw the first reward-free results for linear mixture MDPs, built from known parts (the exploration-driven reward of Wang et al. [17], value-targeted regression, the Bernstein bonus of [28]), with a loose lower bound and a d^2 rate that needs a hard optimisation. Each committee got two post-rebuttal raises. In B, both raises (Reviewer_6DWQ, Reviewer_Zh4L) crossed to 6 without a stated reason, after the authors asked for reconsideration, and both texts still argue against acceptance. In A, Reviewer_GGZY stopped at 5 and Reviewer_G5QY (confidence 5) never moved. A's AC rejected because no reviewer would champion the paper and its technical challenges were never explained. B had no champion either, but its AC accepted because the paper 'fills a gap in the literature'. The paper bears out A's doubt: Remark 4.1 attributes the main difference from [17] to the change of setting, and the efficient relaxation falls back to the d^3 of prior work (Corollaries 4.4, 5.3). Neither committee rested on a factual error. A's reasons are specific and the paper confirms them; B's unanimity rests on two unexplained raises.",
+  "candidate_reasons": [
+    "Same facts, different novelty weighting",
+    "Unexplained post-rebuttal score raises",
+    "Author nudges lifted borderline scores",
+    "AC required a champion",
+    "Most confident reviewers below threshold",
+    "Gap-filling valued over technical novelty"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_G5QY review",
+    "Reviewer_GGZY review and post-rebuttal comment (2021-08-26)",
+    "Reviewer_6DWQ review text against its rating; edit 2021-08-31 after author follow-up of 2021-08-30",
+    "Author follow-ups to Reviewer_Zh4L (2021-08-30, 2021-09-02) and Zh4L reply (2021-09-13)",
+    "paper Remark 4.1",
+    "paper Section 4.3 and Corollaries 4.4, 5.3",
+    "paper Remarks 5.2 and 6.2"
+  ]
+}

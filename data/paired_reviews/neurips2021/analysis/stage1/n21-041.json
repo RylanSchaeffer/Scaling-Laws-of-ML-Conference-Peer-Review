@@ -1,0 +1,200 @@
+{
+ "pair_id": "n21-041",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [7, 7, 7, 6],
+   "confidences": [3, 3, 3, 4],
+   "reviews_edited_after_posting": ["Reviewer_YPjs", "Reviewer_wuG4"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7/7/7/6 (YPjs, bP1K, 7UgD, wuG4), all within one point. The two thinnest reviews (bP1K, 7UgD) give 7s, the same as YPjs's post-rebuttal 7."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_7UgD",
+     "evidence": "Rating 7 after '1 hour'. Two generic strengths, then 'No major weaknesses. This is a strong submission.' No question and no reply after the rebuttal. The AC's meta-review repeats its 'strong submission'."
+    },
+    {
+     "reviewer": "Reviewer_bP1K",
+     "evidence": "Rating 7 after 2 hours: three one-line pros and one con, the privacy cost of tuning the extra hyperparameters. Says the authors addressed limitations; Section 7 gives them four sentences (lines 362-367). No reply after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_wuG4",
+     "claim": "Theorem 1 needs 1−p_t = O(1/t²), but the experiments use slower schedules such as 1/√t, so the bound does not cover them.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 (line 248) requires 1−p_t = O(1/t²). Section 5.1 uses 1/√t (line 307) and Section 5.2 uses 1/t (line 334). Footnote 11 admits the gap. The rebuttal's 1/t² run still beats TS (0.068 vs 0.085 validation error)."
+    },
+    {
+     "reviewer": "Reviewer_wuG4",
+     "claim": "With 1−p_t = O(1/t²), the step that uses the other agents' information (Algorithm 2, line 7) almost never runs after a few iterations, so the bound is close to that of standard local BO.",
+     "checked_against_paper": "correct",
+     "evidence": "At t = 5 that probability is 0.04. Lines 259-264: the bound charges a worst-case error for the other agents. Lines 297-299: the practical benefit of DE 'is not reflected by Theorem 1'. The authors answered that the gain is early-stage acceleration only."
+    },
+    {
+     "reviewer": "Reviewer_YPjs",
+     "claim": "Figure 3 stops at 60 iterations although the methods have not converged.",
+     "checked_against_paper": "correct",
+     "evidence": "All curves in Fig. 3d-f still fall at 60 iterations. In the rebuttal's 200-iteration run (the Fig. 3e task) the gap narrows: TS 0.085 vs DP-FTS-DE about 0.062-0.071 at 60 (Fig. 3b), 0.032 vs 0.028-0.029 at 200. The camera-ready extends Fig. 3d-f to 200 iterations."
+    },
+    {
+     "reviewer": "Reviewer_YPjs",
+     "claim": "Proposition 1 is effectively the theorem of Abadi et al.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 241-242: the proof 'follows directly from Theorem 1 of [1]' (Abadi et al.)."
+    },
+    {
+     "reviewer": "Reviewer_YPjs",
+     "claim": "The paper engages with limitations and societal impact only as a token.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 7 (lines 362-367) gives two sentences to fairness and two to the moments accountant. The camera-ready adds the network-capability limitation that the rebuttal conceded."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_YPjs", "Reviewer_wuG4"],
+    "evidence": "YPjs edited its review on 2021-08-18: 'I have increased my score to 7 based on the authors response' (so at most 6 before). wuG4 replied on 2021-08-27 ('The table described in A5 is very impressive') and asked again about 1−p_t. After the authors' second answer it wrote 'I increased my score' (2021-09-01; final 6, so at most 5 before). bP1K and 7UgD did not post.",
+    "what_convinced_or_not": "New experiments: a 200-iteration run, a 1−p_t = 1/t² run that still beats TS, and a heterogeneity test (FTS-DE beats local TS at α = 0.7, loses at α = 1, nearly ties with 1−p_t = 1/t⁴). Threat-model answers: trusted server, untrusted clients, user-level adjacency. wuG4 accepted early-stage acceleration as the source of the gain. YPjs's doubt about the weighted average got only a theoretical answer."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Two sentences: the paper 'introduces the first federated Bayesian optimisation method with a rigorous privacy guarantee', and 'All reviewers recommend acceptance, noting that this is a strong submission'. Only 7UgD's one-hour review says 'strong submission'. No weakness is mentioned.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four final ratings at or above threshold (mean 6.75)",
+    "First federated BO method with a privacy guarantee, with theory and experiments (AC, Reviewer_7UgD)",
+    "Rebuttal experiments raised Reviewer_YPjs to 7 and Reviewer_wuG4 to 6",
+    "Combination of known parts read as well executed, not as a lack of novelty (Reviewer_YPjs)"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [6, 6, 5, 5],
+   "confidences": [3, 3, 3, 2],
+   "reviews_edited_after_posting": ["Reviewer_Tavh", "Reviewer_PjxP"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/6/5/5 (PEdv, Hm8b, Tavh, PjxP) straddle the threshold, all within one point. No reviewer champions the paper or rejects it outright."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_PjxP",
+     "evidence": "Out of its area rather than careless: 'not an expert in Federated Learning or Bayesian Optimization', confidence 2, and 'I totally gave up on understanding the settings of FBO here'. Its 5 rests on presentation for non-experts and on related work; it concedes writing 'is not a big problem for the expert'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Tavh",
+     "claim": "Sharing the same random features across agents, following [10], violates the privacy requirement, since [10] shares a neural network's first layer (its Appendix A).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 2 builds φ with random Fourier features [30], which approximate the kernel and use no client data (lines 99-101, 113-114). The authors said [10]'s Appendix A only draws an analogy. Tavh conceded on 2021-08-17: φ is 'a data-independent feature extractor'."
+    },
+    {
+     "reviewer": "Reviewer_PEdv",
+     "claim": "The privacy budget reaches 20, which gives no strong privacy guarantee.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 2c caption: privacy loss 20.12 at q = 0.5. Fig. 3a-c x-axes run to about 15. Section 5 sets δ = 1/N^1.1 (line 302), which is 0.014-0.025 for the real-world N of 29-50; no reviewer in either committee asked about δ."
+    },
+    {
+     "reviewer": "Reviewer_Hm8b",
+     "claim": "The utility guarantee does not show a benefit from federation and rests on local GP results.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 259-264: the bound charges a worst-case error for the other agents. Lines 297-299: the benefit of DE 'is not reflected by Theorem 1'. The authors conceded this to Hm8b, and to wuG4 in A."
+    },
+    {
+     "reviewer": "Reviewer_Hm8b",
+     "claim": "The clipping bound could use something like ||φ||₂ instead of φ_max, which should be smaller.",
+     "checked_against_paper": "incorrect",
+     "evidence": "φ_max is the largest single weight (line 223), so an L2 norm of any weight vector that contains it is at least φ_max. The authors said so; Hm8b thanked them 'in particular about φ_max'."
+    },
+    {
+     "reviewer": "Reviewer_Hm8b",
+     "claim": "The evaluation lacks complex problems such as deep learning hyperparameter tuning.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 5.2 tunes 3 hyperparameters of a CNN on EMNIST (lines 332-333). The valid part: every task has 2 or 3 dimensions."
+    },
+    {
+     "reviewer": "Reviewer_PjxP",
+     "claim": "Related work on federated learning with DP is not discussed.",
+     "checked_against_paper": "correct",
+     "evidence": "None of the four papers PjxP names is cited. FL with DP gets one sentence (lines 357-359)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_Tavh", "Reviewer_PjxP"],
+    "evidence": "Tavh (comment and edit, 2021-08-17): 'my privacy concern is solved. I have updated the score to reflect it' (final 5, so at most 4 before). PjxP's edit (2021-08-26): 'I will change my score from 4 to 5'. Hm8b (2021-08-23) thanked the authors 'in particular about φ_max and the averaging contribution' and stayed at 6. PEdv did not post.",
+    "what_convinced_or_not": "The random-feature clarification removed Tavh's correctness concern; its novelty concern remained. PjxP accepted that experts can read the paper but still wanted better presentation. B got a table showing TS needs 33-46 more iterations to match DP-FTS-DE at ε 2.2-7.2. B did not see the 200-iteration, 1/t² or heterogeneity runs; the authors told Hm8b that a heterogeneity test was future work."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings split 2-2 at the threshold (mean 5.5), and the AC rejected. The novelty reason matches PEdv, Hm8b and Tavh; the Theorem 1 reason matches Hm8b. 'Several reviewers were uncertain' about Theorem 1 has no public support beyond Hm8b, and PjxP praised the theorems' 'clear messages'. The complaint that the introduction 'focuses on algorithms' is the AC's own. It has a basis: lines 17-32 state the problem, and lines 33-82 describe algorithms.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Borderline ratings 6/6/5/5 (mean 5.5) with no champion",
+    "Limited novelty: the standard DP-FL recipe applied to FTS, with analyses that mirror prior work (Reviewer_PEdv, Reviewer_Hm8b, Reviewer_Tavh, AC)",
+    "Theorem 1 shows no gain over local BO, so significance is unclear (Reviewer_Hm8b, AC)",
+    "Problem setup and motivation unclear (AC, Reviewer_PjxP, Reviewer_Tavh)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Theorem 1 needs 1−p_t = O(1/t²) but the experiments use 1/√t and 1/t (Reviewer_wuG4)",
+  "Fig. 3 stops at 60 iterations before convergence (Reviewer_YPjs, Reviewer_wuG4)",
+  "Threat model, trust assumptions and adjacency not stated (Reviewer_YPjs)",
+  "Weighted average not principled; no comparison with local BO when objectives differ (Reviewer_YPjs)",
+  "Privacy cost of tuning the extra hyperparameters (Reviewer_bP1K)",
+  "Token treatment of limitations (Reviewer_YPjs)"
+ ],
+ "issues_only_b": [
+  "Privacy loss up to 20 (Reviewer_PEdv)",
+  "Shared random features may leak private data (Reviewer_Tavh; resolved)",
+  "Related work on FL with DP missing (Reviewer_PjxP)",
+  "No higher-dimensional or deep learning tasks (Reviewer_Hm8b)",
+  "Clipping bound in φ_max could be tighter (Reviewer_Hm8b; resolved)",
+  "Introduction discusses algorithms, not problems (AC)"
+ ],
+ "shared_issues": [
+  "Limited novelty: DP-FedAvg recipe plus FTS, privacy proof from Abadi et al. (A: Reviewer_wuG4, Reviewer_YPjs; B: Reviewer_PEdv, Reviewer_Hm8b, Reviewer_Tavh, AC)",
+  "Theorem 1 shows no gain over local BO (A: Reviewer_wuG4, Reviewer_YPjs; B: Reviewer_Hm8b, AC)",
+  "Setting and algorithm hard to follow (A: Reviewer_YPjs; B: Reviewer_Tavh, Reviewer_PjxP, AC)",
+  "Centralized GP over all clients' data as a comparison (A: Reviewer_YPjs; B: Reviewer_PEdv)",
+  "Distributed exploration is the new and useful part (A: Reviewer_YPjs; B: Reviewer_PEdv, Reviewer_Tavh)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighted the same facts differently, and B's AC broke a borderline tie toward reject. Without the thin and the non-expert reviews, both committees sat at 6 to 7: A's YPjs and wuG4 ended at 7 and 6, B's Hm8b and PEdv at 6. A's other two 7s come from a one-hour review with no weakness (7UgD) and a review with one concrete point (bP1K); A's AC repeated 7UgD's 'strong submission'. B's two 5s come from reviewers who said they do not know BO. Tavh's main objection, that shared random features leak data, was wrong, and Tavh withdrew it. PjxP 'totally gave up' on the FBO setting. Both committees saw the same weaknesses: the privacy proof 'follows directly' from Abadi et al., and Theorem 1 shows no gain over local BO. A's two engaged reviewers got new experiments and raised their scores; wuG4 accepted early-stage acceleration as the gain. B's AC rejected on novelty, significance and clarity, and overstated reviewer doubt about Theorem 1. The evidence also differed: on 2021-08-10 the authors showed A a heterogeneity test and told B that such a test was future work. No reviewer found an error that survived the rebuttal.",
+ "candidate_reasons": [
+  "AC rejects a borderline split",
+  "Thin enthusiastic reviews lift A",
+  "Non-expert detractors in B",
+  "Same novelty concern weighted differently",
+  "Worst-case theory shows no federated gain",
+  "Rebuttal evidence differed between committees"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Committee A meta-review",
+  "Reviewer_7UgD review",
+  "Reviewer_Tavh review and comment 2021-08-17",
+  "Reviewer_PjxP review and its post-rebuttal edit",
+  "Authors' response to Reviewer_YPjs, Q7 (alpha = 0.7 and alpha = 1 tables)",
+  "Authors' response to Reviewer_Hm8b ('we will explore this in future works')",
+  "Reviewer_wuG4 comments 2021-08-27 and 2021-09-01",
+  "paper Theorem 1 and footnote 11 (lines 245-254)",
+  "paper lines 241-242 and 259-264",
+  "paper Fig. 2c caption and Fig. 3"
+ ]
+}

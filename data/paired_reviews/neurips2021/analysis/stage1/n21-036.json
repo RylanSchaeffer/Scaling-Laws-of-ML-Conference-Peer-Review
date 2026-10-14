@@ -1,0 +1,195 @@
+{
+  "pair_id": "n21-036",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [3, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_75jQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/6/6/6 (GddM, 75jQ, pcux, 5Ear), all 'marginally above the acceptance threshold', confidences 3 to 4. No reviewer argued for more than a marginal accept, and none posted a comment in the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GddM",
+          "claim": "The method is inferior to FR-Train when FR-Train has clean validation data.",
+          "checked_against_paper": "correct",
+          "evidence": "True on COMPAS: Table 2 gives FR-Train accuracy .597 to .620 against .521 to .545 for Ours, though Ours has lower disparity in three of four settings. On synthetic data (Table 1) Ours beats FR-Train on both accuracy and disparity in all four settings."
+        },
+        {
+          "reviewer": "Reviewer_75jQ",
+          "claim": "The experiments use only one non-synthetic dataset.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 'Datasets' uses COMPAS and AdultCensus. The AdultCensus results are deferred to the supplementary 'as they are similar', so the main text shows only COMPAS. The authors corrected this in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_pcux",
+          "claim": "The trade-off parameters of the fairness baselines (e.g., Zafar et al. 2017) are not given.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 'Hyperparameters' gives only the step size alpha in {0.0001, 0.0005, 0.001} and defers the rest to the supplementary, which is not in the record. The authors did not point to it; they described a cross-validation procedure and promised to add it."
+        },
+        {
+          "reviewer": "Reviewer_5Ear",
+          "claim": "Recent work on fairness under corrupted data or noisy labels and attributes (Konstantinov and Lampert; Lamy et al.; Awasthi et al.; Mehrotra and Celis; Celis et al.) is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "None of the five is in the reference list. For noisy or missing group information the paper cites only Hashimoto et al., Lahoti et al. and Wang et al. 2020."
+        },
+        {
+          "reviewer": "Reviewer_5Ear",
+          "claim": "Performance is relatively inconsistent between datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "Ours beats FR-Train in all four synthetic settings (Table 1) but trails it by 6 to 10 accuracy points on COMPAS (Table 2). The paper attributes the gap to FR-Train's clean validation set."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": ["Reviewer_75jQ"],
+        "evidence": "Reviewer_75jQ edited on 2021-08-21 and added: 'the authors have convinced me that this combination of fairness/robustness due to dataset corruption is of more general interest than I had first thought.' Its final rating is 6. The edit states no score change, so a rise cannot be confirmed. GddM, pcux and 5Ear did not edit. No reviewer posted a comment in the discussion.",
+        "what_convinced_or_not": "The authors' significance argument (a 'nascent, but growing' field, citing Lee et al., SIGKDD 2021) convinced 75jQ. The other answers got no reply: Table 3's noisy-validation FR-Train for GddM, a runtime table with no clear winner (44.7 s against 91.0 s on synthetic data, 241.3 s against 230.3 s on COMPAS), the baseline tuning procedure for pcux, and promised citations for 5Ear."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers were unanimous in appreciating the paper's contribution to a topical problem.' The meta-review repeats pcux's praise of the motivating analysis and lists 5Ear's related work and 'technical details in the algorithm' as fixable. It does not mention 75jQ's 'pretty narrow problem', the reliance on ITLM and FairBatch, or the COMPAS accuracy gap to FR-Train.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four marginal accepts (6, 6, 6, 6) and no reviewer against",
+        "New problem setting: fairness and robustness together, with the Figure 1-2 finding that clean selection worsens fairness",
+        "Competitive with FR-Train without a clean validation set",
+        "Remaining issues judged fixable: related work and technical clarifications"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 4, 4, 5],
+      "confidences": [3, 3, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_Dqdb"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/4/4/5 (Dqdb, ERAJ, ifBb, 1QFb), all below threshold, spread of one point. Before the discussion Reviewer_Dqdb was above threshold: its edit says it lowered its score, and its final rating is 5."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1QFb",
+          "evidence": "Its 'most important issue' is why not filter noise first and then train fairly. The paper already motivates the joint approach (Section 2, Figures 1-2) and tests two such cascades, ITLM->FB and ITLM->Penalty, which are usually worse in Tables 1-2. The review does not mention them. It also says the method 'outperforms all the baselines considered both in terms of fairness and accuracy', which Table 2 contradicts. After the rebuttal pointed to the tables, 1QFb narrowed the point to stronger filters and tuning."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Dqdb",
+          "claim": "Eq. 6 should not contain the absolute value.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6 reads lambda(t+1) = lambda(t) - alpha * sign(|L(y,z') - L(y,z)|). The sign of an absolute value is never negative, so as printed the rule can only lower lambda. The authors called it a typo."
+        },
+        {
+          "reviewer": "Reviewer_ifBb",
+          "claim": "Robustness is evaluated only against label flipping.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 'Noise Injection' uses label flipping (Paudice et al.) and group-targeted label flipping only. The authors confirmed that the scope is label noise."
+        },
+        {
+          "reviewer": "Reviewer_ifBb",
+          "claim": "Mandal et al. (NeurIPS 2020) and Rezaei et al. (AAAI 2021) on fair and robust classifiers are neither cited nor compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is in the reference list. Both address distribution shift, not label noise, so they are related work rather than missing baselines."
+        },
+        {
+          "reviewer": "Reviewer_ifBb",
+          "claim": "The algorithm has no convergence guarantee.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper cites ITLM's convergence guarantee (Section 2) but gives none for Algorithm 2. The authors conceded: 'we do not have theoretical guarantees for convergence'."
+        },
+        {
+          "reviewer": "Reviewer_ERAJ",
+          "claim": "Against FR-Train the method sometimes improves fairness while worsening accuracy a bit.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 (synthetic): Ours is better on both. Table 2 (COMPAS): FR-Train has .597 to .620 accuracy against .521 to .545, a gap of 6 to 10 points, more than 'a bit'. Ours there sits near the roughly .53 majority-class rate implied by Figure 1a (y=0 is 40.3% + 12.9%). The rebuttal's trade-off table used synthetic data only."
+        },
+        {
+          "reviewer": "Reviewer_1QFb",
+          "claim": "The paper leaves open why a sequential approach (filter noise, then train fairly) would not work as well as joint training.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 2 and Figures 1-2 show that loss-based cleaning discards the smallest, highest-loss group, and Tables 1-2 test ITLM->FB and ITLM->Penalty, which are usually worse. But ITLM is the only filter and no post-processing fairness step is tested, so 1QFb's narrower follow-up (L2R, CRUST, FairBatch with a clean validation set) stands."
+        },
+        {
+          "reviewer": "Reviewer_1QFb",
+          "claim": "The method outperforms all baselines in both fairness and accuracy.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 (COMPAS): FR-Train is more accurate in all four settings, and ITLM alone is more accurate than Ours in two of four (.536 and .539 against .521)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_Dqdb"],
+        "evidence": "Reviewer_Dqdb edited on 2021-08-29: 'After reading the authors' response and others' comments, the contribution w.r.t. robustness is not convincing to me. Thus, I changed my score.' Its final rating is 5, so it was at least 6 before. Reviewer_1QFb replied on 2021-08-21 ('still a little unhappy'), got an answer on 2021-08-23, and did not reply again or edit. ERAJ and ifBb neither replied nor edited.",
+        "what_convinced_or_not": "The authors confirmed that robustness covers label noise only and offered extensions as future work; with 1QFb's thread this moved Dqdb down. The trade-off table for ERAJ used only synthetic data, where Ours already beat FR-Train, and left COMPAS, where the results were mixed, untested. On cascades the authors cited the FR-Train paper's L2R results and conceded their evidence is 'mainly empirical'. 1QFb's request for FairBatch with a clean validation set got only a prediction."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are below threshold. The meta-review names scope ('the specific types of robustness considered', as Dqdb and ifBb said) and novelty ('a very straightforward application of a known method', as 1QFb and ERAJ said). It states: 'Our private discussion largely followed the public commentary that occurred between Reviewer 1QFb and the authors.'",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Novelty: a straightforward combination of ITLM and FairBatch",
+        "Robustness scope limited to label flipping",
+        "No principled case for joint over sequential (filter-then-fair) training, per 1QFb's thread",
+        "No convergence guarantee and uncited fair-and-robust work (ifBb)",
+        "All four ratings below threshold after Dqdb's post-discussion drop"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why Eq. 2 caps group sample sizes instead of setting lower bounds (pcux)",
+    "Unreported trade-off parameters for the fairness baselines (pcux)",
+    "Uncited work on fairness under noisy labels or attributes: Konstantinov and Lampert, Lamy et al., Awasthi et al., Mehrotra and Celis, Celis et al. (5Ear)",
+    "Runtime against FR-Train, and FR-Train without clean validation data (GddM)"
+  ],
+  "issues_only_b": [
+    "Robustness limited to label flipping; no adversarial or distributional robustness (Dqdb, ifBb)",
+    "No principled reason for joint over sequential training; cascades with stronger filters (L2R, CRUST) and FairBatch with a clean validation set untested (1QFb)",
+    "No convergence guarantee for the alternating lambda and (theta, S) updates (ifBb)",
+    "Uncited fair-and-robust work on distribution shift: Mandal et al. 2020, Rezaei et al. 2021 (ifBb); RFLearn (1QFb)",
+    "Only logistic regression on binary tabular data; no deep models or multi-class tasks (1QFb)",
+    "Eq. 6 typo makes the lambda update one-directional (Dqdb)",
+    "No full accuracy-fairness trade-off curves against FR-Train (ERAJ)"
+  ],
+  "shared_issues": [
+    "The method combines existing ITLM and FairBatch: 'cleverly' in A (GddM; also 75jQ, 5Ear), 'incremental' in B (ERAJ, 1QFb; also Dqdb)",
+    "Lower accuracy than FR-Train, which uses clean validation data, on COMPAS (GddM, 5Ear; ERAJ)",
+    "Narrow scope or significance (75jQ; Dqdb, ifBb, 1QFb)",
+    "The Figure 1-2 demonstration that clean selection worsens fairness, praised in both (pcux; ERAJ)",
+    "Missing related work on fairness with corrupted data, with different papers in each committee (5Ear; ifBb, 1QFb)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "A accepted and B rejected because the two reviewer pools weighted the same facts differently. Both saw a method built from ITLM and FairBatch, robustness tested only against label flipping with logistic regression, and a 6 to 10 point accuracy gap to FR-Train on COMPAS. A's most detailed reviews (pcux, 5Ear) asked about the fairness half: Eq. 2's group caps, the fairness baselines, fairness under noise. A's reviewers called the combination clever and the problem new, and all four gave a marginal 6. None of them posted in the discussion, and the AC restated the unanimous scores. Three of B's reviewers probed the robustness half, the weaker one: attack types, label-flip scope, noise filters, distribution shift. B called the method incremental and narrow, and added a missing convergence guarantee and untested cascades with stronger filters. Reviewer_Dqdb, B's only reviewer above threshold before the discussion, dropped to 5 after reading the others, and the AC followed Reviewer_1QFb's thread. No reviewer found an error that sinks the paper, and 1QFb's main objection was partly answered by the paper's own cascade baselines. The means, 6.0 and 4.5, straddle the threshold, so the split reflects which four reviewers each committee drew.",
+  "candidate_reasons": [
+    "novelty-by-combination weighted differently",
+    "fairness-side versus robustness-side reviewers",
+    "narrow label-flip robustness scope",
+    "no discussion in accepting committee",
+    "score drop after reading peers",
+    "AC followed one engaged sceptic"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A reviews (four 6s) and discussion (author replies only, no reviewer comments)",
+    "Reviewer_75jQ review, 'Update after rebuttal' (edited 2021-08-21)",
+    "Committee A meta-review ('Reviewers were unanimous ...')",
+    "Reviewer_Dqdb review: Eq. 6 typo, and the edit of 2021-08-29 ('Thus, I changed my score')",
+    "Reviewer_ifBb review (label flipping only; no convergence guarantee; Mandal et al., Rezaei et al.)",
+    "Reviewer_1QFb review; its 'Clarification' comment of 2021-08-21 and the authors' reply of 2021-08-23",
+    "Authors' reply to Reviewer_ERAJ, 2021-08-10 (trade-off table on synthetic data only)",
+    "Committee B meta-review ('private discussion largely followed ... Reviewer 1QFb')",
+    "paper_submitted.pdf: Section 5 'Baselines' (ITLM->FB, ITLM->Penalty), Tables 1-3, Eq. 6, Figure 1a (COMPAS class shares)"
+  ]
+}

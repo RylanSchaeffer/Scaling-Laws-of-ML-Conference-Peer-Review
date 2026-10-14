@@ -1,0 +1,184 @@
+{
+  "run": 2,
+  "turn": 18,
+  "pair_id": "n21-121",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In A, Reviewer_iY4e assumed a correspondence-based loss that the paper does not use, and Reviewer_ZUMJ misread Section 2.2 as faulting VoxelMorph's constant field; no B reviewer made these errors."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight over 7, 7, 7, 6 with no reviewer asking for one, after xE8n warned 'I would not overstate the significance', and called prior work 'the only controversy'."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's Reviewer_4s5o (confidence 2, details 'not carefully checked') gave 7 on 'very impressive' results, and B's meta-review reused positive phrases from wgwm and xE8n."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors conceded on A's forum only that no cross-penetration condition is enforced, and on B's forum only that CorticalFlow is 'as competitive as DeepCSR' in accuracy, so each committee had different admissions."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B learned that the core module is standard LDDMM integration and that the accuracy gain is mostly in Chamfer distance, yet no B score fell and the meta-review omitted EX4h's point."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In A, Reviewer_oT7u raised to 5 after the rebuttal, while no B score moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised crossing inner and outer surfaces, missing EMD and outlier-sensitive HD; only B named the mesh LDDMM prior art and the narrow accuracy gain over DeepCSR."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees found Section 3.1 unclear, the loss and a proof of Theorem 3.1 missing, and novelty unclear; A judged these fatal, B judged them camera-ready fixes."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's AC restated oT7u's argument, but A's reviews were not split; all four ratings were below threshold."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer changed a score because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The notes record no misread question or unanswered follow-up by the authors."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's Reviewer_wgwm wrote a 2.5-hour bulleted review with a wrong objection and a wrong 'limitations are addressed', never replied to the rebuttal, and its 7 counted unchallenged."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's AC rejected over four below-threshold ratings; B's AC accepted a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC decided by a borderline mean against a stated contrary view."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's low scores rested on the method exposition and the missing baseline, which are central."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a method for cortical surface reconstruction; they weighted its faults differently, not its kind."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No B score moved after the rebuttal."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Neither committee asked the paper for a deliverable that the other did not ask of that kind of paper; the split is in weighting and in crediting promised fixes."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "B's Reviewer_wgwm praised the paper as 'well embedded into the existing literature' and said limitations 'are addressed', both wrong, and gave 7."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No reviewer said the rebuttal resolved the concern their score rested on and then kept the score."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "A rejected because the promised rewrite needed 'another round of reviews', while B accepted the promised novelty refocus and clarity fixes for the camera-ready."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "oT7u edited its score to 5 in line with its stated stance; no stated stance diverged from a score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC used an off-record extra reviewer."
+    }
+  ],
+  "added": [
+    {
+      "id": "R24",
+      "name": "Reviewer expertise shaped clarity verdicts",
+      "definition": "The committees' reviewers stood at different distances from the paper's field, so reviewers outside the field found the exposition unclear and penalised it, while a domain expert in the other committee read the same text as clear.",
+      "justification": "R08 says the same weakness was weighted differently but not why; R17 concerns non-experts raising scores. No reason names the reviewers' distance from the field as the cause of opposite clarity verdicts on the same text."
+    }
+  ],
+  "reasoning": "The committees saw mostly the same faults. A treated the exposition as fatal and refused to credit the promised rewrite; B treated it as a camera-ready fix (R08, R21). B discounted its own expert's novelty critique and the narrow accuracy gain (R05), carried two weak 7s, one thin and wrong and one at confidence 2 (R12, R19, R03), and its AC set a spotlight no reviewer asked for (R02). Each side raised issues the other missed (R07), the authors made different concessions on each forum (R04), and errors in A's reviews fed its criticism (R01). Only A's score moved (R06). Stage 1 also names reader background as part of the split; no existing reason covers that, so R24 is added. The other stage 1 candidates map to R08, R05, R12, R19 and R02.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24"
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "run": 2,
+  "turn": 16,
+  "pair_id": "n21-141",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "B's 6sVb wrongly said Knott et al. was uncited, but that was a minor point in the accepting committee and drove no lower score; A's claims checked out or were unchecked."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "B's spotlight rests on 9, 8, 7 accept votes with one 5; the tier is within what the reviewers' scores support."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's Reviewer_5uRi gave a praise-only 9 on a 2-hour review, the highest score in either committee, and it counted among the 'three' enthusiastic accepts in B's meta-review."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors conceded the per-map overclaim only on A's forum, but only because tdpf raised it there; no flaw was volunteered to one committee and withheld from the other."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "No substantive flaw in method or experiments was found by either committee; the conceded heading overclaim is minor."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In B, Reviewer_bYPA raised 4 to 5 after the rebuttal, while no score in A moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A (tdpf and the AC) raised the overlap with Tylkin et al.'s training against partly trained checkpoints, the ingredient Table 1 shows FCP depends on; B never weighed it."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw modest novelty, one environment and no theory; B's AC dismissed the novelty objection and sJ2R discounted theory, while A rejected on all three."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's AC leaned on an emergency reviewer but also stated its own points (FCP as a combination of fictitious self-play and [62, 63], a missing baseline), so it did not adopt one reviewer's position without its own assessment."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer in either committee changed score because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer; it was xzpB who left the authors' two requests unanswered."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "In A, Reviewer_xzpB's 5 rested on generic objections and an unreferenced 'similar idea' claim, and xzpB never engaged with the rebuttal or discussion, yet the score counted."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's final ratings were 5, 8, 5, so most reviewers were below threshold; the rejection did not go against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's AC rejected on stated concerns and an emergency review, not on a score-mean threshold against its own positive view."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's 5s rested on novelty, generality and theory, which are central, not peripheral, points."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as an empirical method for human-AI coordination."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No reviewer who disclaimed expertise raised a score on the rebuttal."
+    },
+    {
+      "id": "R18",
+      "applies": true,
+      "justification": "A's xzpB and AC required theory linking the method to its effect from an empirical method paper, while B's sJ2R noted the gap but waived it because no suitable theory exists."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No praise in either committee rested on a wrong factual claim."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "tdpf's main concerns, novelty over Tylkin et al. and no analysis of why FCP works, were not resolved by the rebuttal, so keeping 5 does not fit."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee's decision turned on refusing or crediting promised revisions; A's AC did not reject on that ground."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "tdpf wrote 'not opposed to acceptance' while keeping 5, but A did not act on that stance; it rejected."
+    }
+  ],
+  "added": [
+    {
+      "id": "R23",
+      "name": "Off-record extra reviewer broke a split panel",
+      "definition": "One committee's area chair called in an additional reviewer late in the process, whose review is not on the record for the authors or the other reviewers, and used that input to decide a split panel.",
+      "justification": "R09 requires the chair to adopt one reviewer's position with no assessment of its own, and A's AC added its own points; no reason covers a decisive input from an unseen reviewer that neither the authors nor the other reviewers could answer."
+    }
+  ],
+  "reasoning": "Both committees saw the same strengths and weaknesses; the gap came from the reviewer draw, from weighting, and from how each AC settled novelty. A drew a thin champion and a thin, unengaged 5, raised the Tylkin overlap that B never weighed, and demanded theory that B waived. B drew three accept votes, one thin, and moved bYPA up after the rebuttal. A's AC broke the 8/5/5 split with an emergency reviewer not on the record; no existing reason covers that, since R09 needs a chair without its own assessment, so R23 was added. The reviewer-draw and AC-overrules-detractor candidates were not added: the first restates the disagreement, and the second is covered by R08 at the AC level.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+  ]
+}

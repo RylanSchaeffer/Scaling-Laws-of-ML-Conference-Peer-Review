@@ -1,0 +1,276 @@
+{
+  "pair_id": "n21-174",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        5,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_6vBM"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "No outlier: the ratings run from 5 to 7 around a mean of 6.0. The low end, Reviewer_ae9r's 5 (confidence 5), is principled: the paper does not cite SAEF or Čermák et al. (confirmed), and the NXDO-on-Leduc plots that ae9r asked for show NFSP ahead (conceded: 'NFSP clearly outperforms NXDO in Leduc poker'). The high end, Reviewer_1Gab's 7, rests on a 2-hour review whose limitations field reads only 'Please address.', and 1Gab never joined the discussion. Its one specific point, the abstract's time claim, is correct."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_1Gab",
+          "claim": "The abstract's claim of 'over 11x lower exploitability than CFR and over 82x lower exploitability than PSRO and XFP in the same amount of time' has no support; the only related plot compares 2-Clone Leduc in states visited, not time.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted abstract (l.12-15) makes the claim. Fig. 3b (2-Clone Leduc) plots XDO, MCCFR-ES and CFR against states visited, and l.327 says 'Since XFP and PSRO only use oracles, we do not include them in this analysis.' No figure measures time. The authors conceded. The camera-ready abstract says 'a lower exploitability than CFR with the same amount of computation'."
+        },
+        {
+          "reviewer": "Reviewer_H8Fr",
+          "claim": "On Oshi-Zumo (Fig. 3c), XDO needs about twice CFR's state visits to reach exploitability 10^-2.",
+          "checked_against_paper": "correct",
+          "evidence": "In Fig. 3c, CFR drops below 10^-2 within about 0.05×10^9 states. XDO-CFR oscillates, spikes to about 3×10^-2 at 0.22×10^9 states, and stays below 10^-2 only from about 0.25×10^9 states, so the gap is larger than twice. XDO passes CFR only after about 0.45×10^9 states, near 2×10^-3. The text (l.333) still says that XDO 'outperforms CFR and MCCFR on Oshi-Zumo'. In the rebuttal the authors called XDO and CFR 'about the same' there."
+        },
+        {
+          "reviewer": "Reviewer_ae9r",
+          "claim": "XDO is close to SAEF (Brown & Sandholm, IJCAI 2015) and to Čermák et al. (IJCAI 2017), and the paper cites neither.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither paper is among the 28 submitted references (l.362-433). Of the three works ae9r named, the paper discusses only SDO ([3], l.126-135). After ae9r quoted SAEF Section 5, the authors conceded that SAEF with a best response 'would be very similar to a double oracle algorithm with warm starting'. The camera-ready cites both papers as methods that find abstractions. How close they are is a judgement; the missing citations are a fact."
+        },
+        {
+          "reviewer": "Reviewer_ae9r",
+          "claim": "The paper shows NXDO only on games where it helps, and it describes NXDO-VA too briefly to understand.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 tests NXDO only on 20-Clone Leduc and the Loss Game, and the authors built both (l.52-56). NXDO-VA gets three sentences (l.301-305). The rebuttal plots that ae9r asked for show NFSP ahead of NXDO on Leduc and 10-card Leduc, and the authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_6vBM",
+          "claim": "Proposition 2 should be stated for Double Oracle, not PSRO, because PSRO need not terminate (also Reviewer_ae9r: with exact best responses, tabular PSRO is DO).",
+          "checked_against_paper": "correct",
+          "evidence": "l.222 reads 'Proposition 2. PSRO terminates in at most ...'. The tabular experiments use PSRO with oracle best responses (l.307-308). The authors conceded both points: 'We will change this to be DO instead of PSRO' and 'There is no difference between tabular PSRO and DO'."
+        },
+        {
+          "reviewer": "Reviewer_H8Fr",
+          "claim": "Theorem 1 (Kuhn's theorem) needs a remark that the players have perfect recall.",
+          "checked_against_paper": "correct",
+          "evidence": "l.108-109 state Kuhn's theorem with no perfect-recall assumption, and Section 2 never assumes perfect recall. The camera-ready restricts the setting to 'perfect-recall extensive-form games'."
+        },
+        {
+          "reviewer": "Reviewer_H8Fr",
+          "claim": "The tabular experiments have no RM+ or CFR+ baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "l.307-310 use vanilla CFR from OpenSpiel and MCCFR with external sampling only. The authors posted CFR+ runs in the rebuttal, and the camera-ready uses CFR+."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_6vBM"
+        ],
+        "evidence": "Reviewer_6vBM's review was edited on 2021-08-31, the day it wrote 'The provided reasoning is convincing, please make sure to update the paper accordingly'. Its review had said 'I am willing to raise the overall score' if the SDO distinction held, so its final 6 is most likely a raise. Reviewer_ae9r posted five replies (2021-08-18 to 2021-09-03) but never edited its 5. Reviewer_H8Fr and Reviewer_1Gab never replied and never edited.",
+        "what_convinced_or_not": "The SDO explanation convinced 6vBM: XDO's population holds full behavioural strategies, not sequences, so its restricted game has no temporary leaves and grows fast enough for a neural version. ae9r did not move. The plots it asked for showed NFSP ahead of NXDO on Leduc and 10-card Leduc; ae9r said the gap is not 'slight', and the authors agreed. ae9r also disputed, quoting SAEF Section 5, the claim that SAEF does not add actions by best response; it later granted that SAEF used another heuristic but said a best response is a simple swap, and the authors agreed that the result 'would be very similar to a double oracle algorithm with warm starting'. The long exchange on warm starting was about future work. Nobody answered the AC's private question on a SAEF comparison (2021-08-13)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "With ratings 5, 6, 6, 7, the AC accepted. The meta-review says that the reviewers agree on strengths and weaknesses: a 'fairly straightforward idea', 'not a particularly novel direction', 'good results on games that the authors designed', and 'fairly weak performance' on existing games. It accepts because the paper is 'a pretty good reference point for the method', which is Reviewer_H8Fr's framing ('a clear reference point'). Two points do not match the record. 'the reviewers all felt that the authors did a good job experimentally' overstates: Reviewer_ae9r made the experiments its biggest criticism, and H8Fr called the instances 'too small to be convincing'. On 2021-08-13 the AC wrote privately that a simple algorithm needs 'very convincing' experiments and a SAEF comparison. The meta-review then calls the numerical strength 'not very positive', accepts all the same, and does not mention SAEF.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Ratings at the threshold (5, 6, 6, 7; mean 6.0), with three of four at 6 or above.",
+        "The AC valued the paper as 'a pretty good reference point', although it judged the idea not novel and the results on existing games 'fairly weak'.",
+        "The SDO explanation satisfied Reviewer_6vBM, which most likely raised its score to 6.",
+        "The rebuttal experiments (CFR+, NXDO on Kuhn and Leduc) showed where the method fails, and the AC asked for them in the final version.",
+        "Reviewer_ae9r's principled 5 (uncited SAEF and Čermák et al., NXDO's limits) did not move, but nobody argued for rejection in the discussion."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        3,
+        5,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_2oEE",
+        "Reviewer_7BdA",
+        "Reviewer_pMFZ"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "No outlier: the ratings are 5, 6, 6, 5. Reviewer_2oEE's 5 is a principled hold: it accepts the promised reframing but says that it 'requires another round of review'. Reviewer_nx7U's 5 rests partly on errors (it asks for definitions that the paper gives and lists ARMAC as missing although the paper cites it), and nx7U never engaged."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nx7U",
+          "evidence": "Rating 5 at confidence 3, with a reported 48 hours of work. It asks what the meta-Nash equilibrium and the restricted game are, but l.147-148 and Eq. 1 (l.182-185) define both. It lists ARMAC as missing related work, but the paper cites it ([9], l.121). It calls the paper 'not well written', against Reviewer_2oEE ('very easy to read and well written') and Reviewer_pMFZ ('well-organized and nicely written'). Its valid points (the ε schedule, vanilla CFR baselines) also appear in Reviewer_7BdA's review and in Committee A. It never replied to the rebuttal, and the AC did not mention it."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7BdA",
+          "claim": "The notation credited to DREAM describes partially observable stochastic games, not extensive-form games (also Reviewer_pMFZ: it is factored-observation stochastic game notation).",
+          "checked_against_paper": "correct",
+          "evidence": "l.67-74 say 'we use the same notation as in DREAM [25]' and then define world states, a transition function T(w, a), observations O_i and per-state rewards R_i(w). They define no information partition and no terminal utilities. The authors conceded. The camera-ready says 'We consider partially-observable stochastic games ... which correspond to perfect-recall extensive-form games'."
+        },
+        {
+          "reviewer": "Reviewer_7BdA",
+          "claim": "The ε-halving schedule in the text is missing from Algorithm 1 (also Reviewer_nx7U).",
+          "checked_against_paper": "correct",
+          "evidence": "l.192-195 describe a start with a high ε that is halved each time the meta-NE's exploitability falls below it. Algorithm 1 (page 5) uses one fixed ε. The authors replied that the stopping conditions are hyperparameters described in the appendix."
+        },
+        {
+          "reviewer": "Reviewer_7BdA",
+          "claim": "The paper does not make XDO's two-player zero-sum setting explicit until page three.",
+          "checked_against_paper": "correct",
+          "evidence": "The abstract (l.1-2) and the introduction (l.18-19) attach 'two-player zero-sum' only to PSRO. The first statement for XDO is l.160-161, on page 4. The camera-ready abstract adds 'for two-player zero-sum games' to XDO."
+        },
+        {
+          "reviewer": "Reviewer_7BdA",
+          "claim": "The claim that NXDO and PSRO produce strategies with 'low exploitability' in the Loss Game is not measured; the experiments measure only how well a trained deep-RL best response exploits them.",
+          "checked_against_paper": "correct",
+          "evidence": "l.295-296 make the claim. l.345-348 say that exact exploitability is intractable and measure a PPO best response's final reward instead. Fig. 4b-c label the axis 'Approx Exploitability' and use linear axes, unlike Fig. 3 and Fig. 4a."
+        },
+        {
+          "reviewer": "Reviewer_7BdA",
+          "claim": "SDO, the closest related work, is mentioned but neither compared in the experiments nor discussed further (also Reviewer_pMFZ and Reviewer_2oEE).",
+          "checked_against_paper": "correct",
+          "evidence": "SDO appears only in l.126-135, and Section 6 has no SDO baseline. The paragraph's only distinction is that DO, SDO and XDO 'operate on the normal form, sequence form, and extensive form, respectively' (l.130-131). The camera-ready adds SDO to its tabular figures."
+        },
+        {
+          "reviewer": "Reviewer_pMFZ",
+          "claim": "XDO avoids cloned actions possibly only because its best-response oracle breaks ties in favour of non-cloned actions.",
+          "checked_against_paper": "correct",
+          "evidence": "l.330-332 say that the oracle 'always chooses the first available best response', and that with a random choice 'XDO would still outperform CFR, but not by as much'. The authors confirmed the deterministic tie-breaking and posted a plot with random tie-breaking."
+        },
+        {
+          "reviewer": "Reviewer_2oEE",
+          "claim": "The paper does not compare NXDO with recent deep-RL game solvers such as DREAM, ReBeL and ARMAC.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 and l.311-314 compare NXDO only with PSRO and NFSP. The authors said that they considered and dropped DREAM, ReBeL, ARMAC and SD-CFR because they found no reproducible implementations that are not tied to specific games."
+        },
+        {
+          "reviewer": "Reviewer_nx7U",
+          "claim": "The paper does not define the meta-Nash equilibrium or the restricted game.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.147-148 define the meta-NE as the NE 'computed for the game restricted to policies in Π^t', and l.161-163 repeat this for XDO. l.182-185 and Eq. (1) define the restricted game's action sets formally."
+        },
+        {
+          "reviewer": "Reviewer_nx7U",
+          "claim": "Key related work is missing: Double Neural CFR, Single Deep CFR and ARMAC.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper cites ARMAC ([9], l.121-122 and l.382-384), as the authors replied. Double Neural CFR and Single Deep CFR are absent, so the claim is half right."
+        },
+        {
+          "reviewer": "Reviewer_nx7U",
+          "claim": "The tabular baselines are weak; stronger ones such as Lazy-CFR, linear CFR or vectorized-sampling CFR are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "l.307-310 use only vanilla CFR from OpenSpiel and MCCFR with external sampling. The authors replied with CFR+ runs, and the camera-ready uses CFR+."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_pMFZ",
+          "Reviewer_2oEE"
+        ],
+        "evidence": "Reviewer_pMFZ wrote 'I am raising my score from a 5 to a 6 and recommending acceptance' on 2021-08-12, its review's edit date. Reviewer_2oEE wrote 'I raise my score to 5, but not further' on 2021-08-23, its edit date, so it started at 4 or lower. Reviewer_7BdA's edit (2021-09-10) added an after-discussion note, and its 6 held ('I still think the paper is acceptable'). Reviewer_nx7U never replied and never edited. B's mean rose from at most 5.0 to 5.5.",
+        "what_convinced_or_not": "pMFZ moved on the SDO clarification, the plot with random tie-breaking, and two commitments: SDO comparisons, and a story that centres NXDO on large or continuous action spaces. Its remaining concern was that NXDO's edge shows only on new benchmarks. 7BdA and 2oEE liked the same reframing but would not credit it unseen: 7BdA called the changes 'too large to assume sight unseen', and 2oEE said the reframing 'requires another round of review'. The authors' general comment (2021-08-26) promised continuous-poker results and SDO comparisons. The camera-ready has the SDO comparisons but no continuous-poker experiment."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "With ratings 5, 6, 6, 5, the AC accepted, in line with the two 6s. It overrode the caveat that Reviewer_7BdA and Reviewer_2oEE shared, that the NXDO reframing needs another review: the AC wrote that it 'is easily fixed without (too) substantial modification to the text and does not require further review'. It called the theory 'significant and novel theoretical results', which no B reviewer said. XDO's linear bound is a short counting argument (l.174-178), and the submission puts the PSRO worst-case example in the supplement (l.227-228). The AC settled the novelty question against SDO by restating the authors' distinction, and it read the clone-game wins as support for the motivation. It added a missing citation itself (Čermák et al., IJCAI 2017) and did not mention Reviewer_nx7U.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Ratings at the threshold (5, 6, 6, 5; mean 5.5) after two raises (Reviewer_pMFZ from 5 to 6, Reviewer_2oEE up to 5).",
+        "The promised reframing around NXDO for large or continuous action spaces satisfied Reviewer_pMFZ and Reviewer_7BdA.",
+        "The AC judged the reframing a small fix that needs no further review, and overrode Reviewer_2oEE and Reviewer_7BdA on this point.",
+        "The AC credited 'significant and novel theoretical results' and accepted the authors' distinction between XDO and SDO.",
+        "Reviewer_nx7U's 5 rests partly on errors, nx7U never engaged, and the AC did not mention it."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The abstract claims gains 'in the same amount of time'; no experiment measures time, and the tabular modified-Leduc plot has no PSRO or XFP (Reviewer_1Gab; confirmed, conceded, fixed in the camera-ready)",
+    "On Oshi-Zumo, XDO needs more states than CFR to reach 10^-2 (Reviewer_H8Fr; confirmed in Fig. 3c)",
+    "SAEF (Brown & Sandholm 2015) as near prior work to XDO, and warm starting of restricted games (Reviewer_ae9r; the AC privately asked for a SAEF comparison)",
+    "Tabular PSRO is DO, and Proposition 2 should be stated for DO (Reviewer_ae9r, Reviewer_6vBM; conceded)",
+    "Kuhn's theorem stated without perfect recall (Reviewer_H8Fr; confirmed)",
+    "Temporary leaves and chance nodes in SDO against XDO (Reviewer_6vBM)",
+    "Game sizes not stated; Leduc and 2-Clone Leduc too small to show scalability (Reviewer_H8Fr)",
+    "Figure 3 choices: no CFR in Fig. 3a, CFR variant not stated, no log-log axes (Reviewer_ae9r)"
+  ],
+  "issues_only_b": [
+    "Notation credited to DREAM is POSG or FOSG notation, not extensive-form notation (Reviewer_7BdA, Reviewer_pMFZ; confirmed)",
+    "The two-player zero-sum setting for XDO is stated only on page 4 (Reviewer_7BdA; confirmed)",
+    "The ε-halving schedule is missing from Algorithm 1 (Reviewer_7BdA, Reviewer_nx7U; confirmed)",
+    "'Low exploitability' in the Loss Game is only approximate exploitability against a PPO best response (Reviewer_7BdA; confirmed)",
+    "The cloned-action result depends on deterministic tie-breaking; no error bars (Reviewer_pMFZ; the paper says random tie-breaking wins 'not by as much')",
+    "No comparison with DREAM, ReBeL, ARMAC or Deep CFR variants (Reviewer_2oEE, Reviewer_7BdA)",
+    "Whether the reframing around NXDO needs another review round (Reviewer_2oEE, Reviewer_7BdA say yes; the AC said no)",
+    "Unclear writing; meta-NE and restricted game undefined (Reviewer_nx7U; incorrect, the paper defines both)"
+  ],
+  "shared_issues": [
+    "Limited novelty against SDO (A: Reviewer_6vBM, Reviewer_ae9r; B: Reviewer_2oEE, Reviewer_7BdA, Reviewer_pMFZ, AC)",
+    "A straightforward extension of PSRO and DO (A: Reviewer_H8Fr, Reviewer_1Gab, AC; B: Reviewer_7BdA, AC)",
+    "NXDO's scope is unclear; it can fail in small action spaces, where its meta-action space grows past the base game (A: Reviewer_ae9r; B: Reviewer_2oEE, Reviewer_7BdA, Reviewer_pMFZ)",
+    "The wins come on benchmarks the authors built, m-Clone Leduc and the Loss Game (A: Reviewer_ae9r, AC; B: Reviewer_pMFZ, AC)",
+    "Weak tabular baselines: vanilla CFR, no CFR+ or newer variants (A: Reviewer_H8Fr; B: Reviewer_nx7U)",
+    "Čermák et al. (IJCAI 2017) not cited (A: Reviewer_ae9r; B: AC)",
+    "Best-response cost and running time not reported (A: Reviewer_6vBM; B: Reviewer_pMFZ)",
+    "NXDO-VA underspecified or costly (A: Reviewer_ae9r; B: Reviewer_pMFZ)",
+    "Scaling to large games such as Texas hold'em (A: Reviewer_ae9r, Reviewer_H8Fr; B: Reviewer_nx7U, Reviewer_pMFZ)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster, and both decisions sat at the threshold. Both saw a simple extension of double oracle to extensive-form games, close to SDO (Bošanský et al. 2014), that wins mostly on games the authors built (m-Clone Leduc, the Loss Game). In each committee the rebuttal moved one or two reviewers up (A: Reviewer_6vBM; B: Reviewer_pMFZ, Reviewer_2oEE), but nobody above 6. A ended at 5, 6, 6, 7 (mean 6.0) and B at 5, 6, 6, 5 (mean 5.5). Each AC then accepted, on opposite readings of the same facts. A's AC was grudging: the idea is 'not a particularly novel direction', the good results come on 'games that the authors designed', and performance on existing games is 'fairly weak', but the paper is 'a pretty good reference point'. Privately it had asked for 'very convincing' experiments, and it accepted below that bar. B's AC was generous. It read the clone-game wins as support for the motivation, called the theory 'significant and novel' (no B reviewer said so), and waived re-review of the reframing around NXDO, against Reviewer_2oEE and Reviewer_7BdA. So the agreement comes from two lenient calls on a borderline paper, not from strong reviews. The paper bears out the critics' checkable points. The submitted abstract claims 'over 82x lower exploitability than PSRO and XFP in the same amount of time', but no experiment measures time, and the tabular plot for modified Leduc has no PSRO or XFP. On Oshi-Zumo (Fig. 3c), XDO needs several times CFR's states to reach 10^-2 and leads only below about 2×10^-3.",
+  "candidate_reasons": [
+    "Both ACs accepted at threshold",
+    "Rebuttal promised NXDO-centred reframing",
+    "Novelty gap to SDO tolerated",
+    "Wins only on author-built games",
+    "AC waived re-review of reframing",
+    "AC accepted below own bar"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf abstract l.12-15 ('over 82x lower exploitability than PSRO and XFP in the same amount of time')",
+    "paper_submitted.pdf Fig. 3b-c and l.325-334 (2-Clone Leduc, Oshi-Zumo, tie-breaking)",
+    "paper_submitted.pdf l.126-135 (SDO paragraph) and references l.362-433 (no SAEF, no Čermák et al.)",
+    "paper_submitted.pdf l.67-74 (DREAM notation), l.108-109 (Kuhn's theorem), l.160-161 (two-player zero-sum), l.192-195 against Algorithm 1",
+    "paper_submitted.pdf l.147-148 and Eq. 1 (l.182-185); l.121-122 (ARMAC cited)",
+    "paper_submitted.pdf Fig. 4 and l.295-296, l.345-350 (NXDO experiments, approximate exploitability)",
+    "Reviewer_ae9r review and replies of 2021-08-18 to 2021-09-03",
+    "Reviewer_6vBM review (edited 2021-08-31) and comment of 2021-08-31",
+    "Reviewer_H8Fr review",
+    "Reviewer_1Gab review",
+    "Area_Chair_Umwu private comment of 2021-08-13 ('Sufficient comparison to SAEF?')",
+    "Committee A meta-review",
+    "Reviewer_pMFZ comment of 2021-08-12",
+    "Reviewer_7BdA review (after-discussion note) and comment of 2021-08-23",
+    "Reviewer_2oEE comment of 2021-08-23",
+    "Reviewer_nx7U review and the authors' reply of 2021-08-11",
+    "Authors' general comment of 2021-08-26 (Committee B)",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready): SDO and CFR+ added, SAEF and Čermák et al. cited, no continuous-poker experiment"
+  ]
+}

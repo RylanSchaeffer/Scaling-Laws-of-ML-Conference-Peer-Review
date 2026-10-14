@@ -1,0 +1,176 @@
+{
+  "run": 2,
+  "turn": 17,
+  "pair_id": "n21-128",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In B, Reviewer_6CYj faulted the paper for giving 'no clear cue' how the discriminator contributes, but Table 3 isolates it (22.60 to 23.53 BLEU-4); no A reviewer made this error."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "A's AC gave a spotlight over ratings 7, 6, 7, 7 with no rating above 7, no reviewer arguing for an award, and no argument for the tier beyond 'a novel algorithm design I have never seen'."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's Reviewer_pdQY praised the 'comprehensive evaluation' and the 'new' problem at face value, and A's meta-review paraphrased pdQY's and Reviewer_6a7g's praise ('seems very novel')."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Both committees received the same rebuttal material, including the zero-shot table; no flaw was disclosed to one committee only."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "A's Reviewer_pdQY asked for the visual-hint F1 results, the direct test of the central claim; the authors replied that no ground truth exists, and no one in A pressed or weighed it."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "No score moved after the rebuttal in either committee."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B raised that DH-VQG is missing from the human study and Section 3.4, that DH-GAN ties its own Generator in Table 2, and that augmentation gains are 0.1 to 0.2 points; no one in A raised these."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the same zero-shot table on the usefulness of generated questions; A's AC called the rebuttal 'a particularly good job', while B's AC said the results 'again miss comparison to prior work'."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's AC followed a unanimous reject consensus, and A's AC added an own assessment; neither resolved a split by adopting one reviewer."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer changed a score after reading the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer and followed up with Reviewer_W4CH; the reviewer, not the authors, failed to reply."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "Reviews in both committees gave specifics; A's Reviewer_Kags was thin but acknowledged the response, and B's unedited reviews rested on checkable points."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's AC rejected over unanimous below-threshold ratings 5, 4, 5, 5."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC decided by a borderline mean against a stated contrary view."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "B's low scores rested on novelty over DH-VQG and the weak evaluation, which are central, not peripheral."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a VQG methods contribution; they differed on what it had to show, not on its kind."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No A reviewer raised a score on the rebuttal, and A's confidences were 4 to 5."
+    },
+    {
+      "id": "R18",
+      "applies": true,
+      "justification": "B's reviewers and AC required the paper to show that VQG helps downstream VQA, judging the task's value, while A asked this only once and did not require it."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "A's Reviewer_pdQY called double-hint VQG 'new', but the paper credits that setting to Kai et al. [20]; A's AC repeated the error in the meta-review."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No reviewer acknowledged that the rebuttal resolved their main concern."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "The authors promised to add the DH-VQG comparison in revision; B's AC rejected because the comparison was missing, while A did not require it."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Reviewer_W4CH offered to reconsider but stated no changed position; no reviewer's stated stance diverged from the score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC used an off-record extra reviewer."
+    }
+  ],
+  "added": [],
+  "reasoning": "The split comes from A's uncritical reading and A's AC raising the tier: A's reviewers accepted the paper's framing, including a wrong novelty claim (R19, R03), let a non-answer on the central claim pass (R05), and A's AC gave an unargued spotlight over ratings capped at 7 (R02). B checked the evaluation against DH-VQG and raised issues A never saw (R07), weighed the same zero-shot evidence and the promised DH-VQG comparison oppositely (R08, R21), and demanded downstream value for VQG (R18). One minor wrong claim in B (R01) did not drive the outcome. The stage 1 candidates (effect sizes, missing baseline, task significance, AC upgrade, rebuttal read oppositely) all map to existing reasons, so no reason is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+  ]
+}

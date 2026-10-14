@@ -1,0 +1,267 @@
+{
+  "run": 1,
+  "turn": 43,
+  "pair_id": "n21-248",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "A's AC restated its two 4s and B's AC followed four above-threshold scores; neither set the outcome from their own reading."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or AC on either side rested the recommendation on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The 2021-09-03 thread cleared YbwL's additive-loss misreading and YbwL raised to 6 in B, while A got the same (1+ε) sketch and nobody moved."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Each committee had one weak review (A's K1Av partly inattentive, B's one-paragraph et4L 7); neither committee as a whole was thin."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A asked for a prediction-aware baseline and a closed-form ratio; A's meta-review counted the limited experiments against the paper, and no B reviewer questioned the ZCL-only design."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw that guarantees hold only for correct predictions and robustness comes from the one-sentence γ-split; A's two confidence-4 reviewers rated 4 on it, while B's PbZr called robustness trivial and YbwL made it a revision item."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "YbwL's raise came from the authors' clarification, not from other reviewers; no score moved on reviewer discussion."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No reviewer's rating plainly contradicts their own text; ZGPi's 6 with doubts is a borderline verdict, not a mismatch."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's confidence-4 reviewers gave clear 4s on stated grounds, and B's 6s came at confidence 4; no committee defaulted to borderline scores from uncertainty."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither AC followed a single outlying reviewer; A's AC followed the two 4s, the majority."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The committees' written verdicts differ in substance (A: incomplete, misleading framing; B: technically strong), so the gap is weighting, not scale calibration."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "B's AC cited 'technically strong and interesting', not reviewer agreement, and B held an 8, so the spotlight did not rest on unanimity alone."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "YbwL raised on a correct clarification of the paper's own index, not on unverified new results."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's short meta-review omits ZGPi's venue doubt but carries YbwL's additive-loss and incorrect-prediction points forward as revisions; it is not one-sided."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "A's K1Av said robustness is not discussed, though lines 87-89 state a worst-case bound, and A's xbrn offered a boundary counterexample outside the continuous model; both fed A's 4s."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The authors' concession of no closed-form ratio did not raise or hold an inflated score; A rejected anyway."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection or score drop came after the author-response period."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The committees' scores differ (means 5.0 and 6.75), so the split does not come from different tier cut-offs on near-identical scores."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither AC passed over a better-informed reviewer: A followed its confidence-4 reviewers, and B's confidence-4 reviewers gave 6, inside the accept verdict."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "B's main open concern was a misreading the authors could clear by clarification, while A's concerns (robustness trade-off, framing, prediction-aware baseline) needed new results that no response could supply."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "No single score crossed a boundary: A's 7 did not lift a 4/4 committee, and B is above threshold without the 8."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "A's outlying champion upZi was silent after the rebuttal, but its 7 was not a score the response had undercut; the silence is covered as a committee-wide pattern."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC set aside a detractor as unreliable."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Venue and motivation doubt came from both committees (A's K1Av, B's ZGPi), so it is not raised by one committee only."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "A's meta-review statement that the paper does not address inaccurate predictions is accurate for the submission; B's misstates nothing."
+    },
+    {
+      "id": "R26",
+      "applies": true,
+      "justification": "No A reviewer posted or edited after the rebuttal, so the (1+ε) sketch and the γ-split pointer went unanswered, while B's YbwL and PbZr engaged and YbwL revised."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "B's 8 (PbZr) and 7 (et4L) came at confidence 3 with math not carefully checked, while the two confidence-4 reviewers gave 6; the AC counted all four in full and reached a spotlight."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "A's 7/4/4 is not an even split."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "Both committees received the same (1+ε) sketch and the same γ-split pointer."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "No novelty verdict rested on a wrong account of prior work."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "B's three-sentence meta-review gives no reason for a spotlight over a poster with two 6s at confidence 4."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "A's critics applied the learning-augmented standard that the paper's own introduction invokes, not a neighbouring field's premises."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "A's champion upZi wrote a thorough five-hour review with 13 line comments, not a light one; the gap is post-rebuttal silence, covered by R26."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No committee rejected because promised fixes were too large."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "Neither AC relied on assessments outside the record."
+    },
+    {
+      "id": "R36",
+      "applies": true,
+      "justification": "A held the paper to the consistency-robustness standard of learning-augmented algorithms and counted the missing trade-off against it, while B valued interval-prediction consistency on its own terms and called robustness trivial."
+    }
+  ],
+  "added": [],
+  "reasoning": "The stage 1 verdict is that the committees weighted the same facts differently: robustness only via a one-sentence γ-split. A's confidence-4 reviewers held the paper to the learning-augmented consistency-robustness standard (R06, R36), with two checkable misreadings in A's critiques (R15) and an A-only baseline demand (R05). A stayed silent after the rebuttal while B engaged and YbwL raised on a clarification (R03, R20, R26). B's spotlight rests on unchecked confidence-3 scores and a meta-review with no tier argument (R27, R31). Each stage 1 candidate maps to an existing reason, so no reason is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ]
+}

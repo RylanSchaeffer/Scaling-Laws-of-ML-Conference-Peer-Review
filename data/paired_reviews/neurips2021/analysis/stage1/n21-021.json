@@ -1,0 +1,251 @@
+{
+  "pair_id": "n21-021",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "confidences": [
+        4,
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Yn2G",
+        "Reviewer_NNWU"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_fx4p",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 7 (4 against 7, 8, 8). Its objections are specific and mostly hold against the submission. The final doubt ('not sure whether the similarity-based information bottleneck alone can act as a solid information bottleneck method without the compounding proposed methods', 2021-09-15) matches l.283-285: without the auxiliary losses the model can only 'reconstruct source speech'. The close prior work it names (Kreuk et al., 2020; Choi et al., 2020) is cited in neither the submission nor the camera-ready, and the authors did not dispute the overlap. Its doubt about the phoneme-alignment claim is right (Figure 4 is one example). The 4 weighs novelty and attribution more heavily than the others did; it rests on no factual error. Without it, A's mean is 7.67."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_fx4p",
+          "claim": "The similarity-based bottleneck may not work as a bottleneck without the other proposed components (reply of 2021-09-15).",
+          "checked_against_paper": "correct",
+          "evidence": "l.283-285: 'when trained without any information bottleneck or all of the auxiliary losses, these models are not able to convert any voice, but only reconstruct source speech'. Table 3: without Lpos and Lneg, Similarity 42.3% and ASV EER 38.0% (full model 63.7% and 18.5%). The authors told Reviewer_yW2U the same: 'using only the positive contrastive loss causes the model to reconstruct only the source speech'."
+        },
+        {
+          "reviewer": "Reviewer_fx4p",
+          "claim": "Very similar ideas were proposed before: contrastive learning with adjacent-frame similarity to find boundaries (Kreuk et al., 2020) and self-learned embeddings that condition the discriminator (Choi et al., 2020).",
+          "checked_against_paper": "correct",
+          "evidence": "Neither paper is cited in the submission or the camera-ready. The segmentation step (adjacent cosine similarity, cut where it falls below the utterance average, l.108-112) and the conditioned discriminators (l.142-146) rest on the same ideas. The authors did not dispute the overlap ('we modified the method to disentangle the content and style information')."
+        },
+        {
+          "reviewer": "Reviewer_fx4p",
+          "claim": "Figure 4 does not support the claim that the bottleneck finds a phoneme alignment; panels (c) and (d) are not similar.",
+          "checked_against_paper": "correct",
+          "evidence": "One utterance and no boundary metric. Panel (c) ends near 66 segments and panel (d) near 52 phonemes; the first 65 frames form about 3 segments in (c) and about 13 phonemes in (d). The claim stays in the conclusion (l.314-315). The authors conceded to Reviewer_LWwC that it 'does not provide a perfect correspondence to the phoneme boundary'."
+        },
+        {
+          "reviewer": "Reviewer_fx4p",
+          "claim": "Subjective Similarity is higher in the zero-shot test than in the many-to-many test.",
+          "checked_against_paper": "correct",
+          "evidence": "VoiceMixer 63.4% (Table 2) against 55.9% (Table 1); AUTOVC (τ=32) 59.7% against 52.1%. ASV EER moves the other way (12.5% to 18.5%). The authors answered that the two listening tests were run separately."
+        },
+        {
+          "reviewer": "Reviewer_NNWU",
+          "claim": "Eq. 7 uses a constant k, so nothing is sampled, and it is undefined near the end of the sequence; Eq. 3 needs an undefined c_{T+1}.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 7 sums over i up to T with c_{i+k}; Eq. 3 shifts to (c_2, ..., c_{T+1}). The authors: 'There is a mistake in Equation 7', and c_{T+1} is a duplicated frame. The camera-ready Eq. 7 is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_NNWU",
+          "claim": "The 'too narrow'/'too wide' wording at l.85-86 reads backwards: a narrow bottleneck (large τ) should lower reconstruction quality.",
+          "checked_against_paper": "correct",
+          "evidence": "l.85-87 say a 'too narrow' τ gives higher reconstruction quality. The authors confirmed they meant a small τ, the reverse of the usual sense, and promised to clarify; the camera-ready text is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_H8yZ",
+          "claim": "The claim of 'only a small loss of content information' (l.9, 64, 275, 307, 314) lacks direct support, and the l.283-285 result is not in Table 3.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission supports content preservation only through FDSD (Table 1: 2.080 against 3.185 to 15.112). Table 3 has no row without a bottleneck or without all auxiliary losses. The rebuttal added WER 20.92% against 39.27% and 61.99% for AUTOVC; camera-ready Table 4 now holds it."
+        },
+        {
+          "reviewer": "Reviewer_Yn2G",
+          "claim": "The ablation does not isolate the bottleneck (no AutoVC with only the bottleneck replaced), and the tuning of the many loss weights is not described.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 13 and Eq. 19 give four reconstruction and four conversion losses; Eq. 21 adds Lpos, Lneg and Ladvsc (eleven terms, eight weights). Table 3 swaps in a fixed-length bottleneck with all losses kept (Naturalness 3.35 and 3.28 against 3.72) but has no AutoVC-plus-similarity-bottleneck row. The main text gives no tuning procedure; the grid search appears only in the rebuttal. The camera-ready adds no ablation."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_Yn2G"
+        ],
+        "evidence": "Reviewer_Yn2G edited the review on 2021-08-20 and wrote that day: 'I am raising my score from 6 to 7.' Reviewer_NNWU's edit (2021-07-17) predates the author responses (2021-08-10). Reviewer_H8yZ ('Concerns addressed', 2021-09-04) and Reviewer_fx4p ('I keep my initial score', 2021-09-15) did not edit.",
+        "what_convinced_or_not": "Yn2G accepted the tuning procedure (grid search on loss weights, keep models above 95% speaker-classification accuracy, then take the lowest reconstruction loss) and asked for it in the paper. H8yZ was convinced by the WER and CER results ('especially for the small loss of the content'). fx4p was not convinced that the bottleneck works without the other components, and the paper's own l.283-285 supports fx4p. Ethics_Reviewer_tLu4 accepted the draft broader-impact text (2021-08-28)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts with the 7-8-8 majority over Reviewer_fx4p's 4. Meets fx4p's novelty objection with one sentence ('the integration of these techniques is non-trivial and novel', echoing Reviewer_NNWU) and the ablation concern of fx4p and Reviewer_Yn2G with a request 'expected to be done in the camera ready'; the camera-ready Table 3 is unchanged. On ethics: 'the authors have explained that well', in line with Ethics_Reviewer_tLu4. The conditions for acceptance (broader impact, restricted release, mitigation) are word for word those in B's meta-review.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers accept (7, 8, 8): convincing audio demos, broad objective and subjective evaluation, a novel similarity-based bottleneck.",
+        "The AC judged the combination of known techniques 'non-trivial and novel' and set aside Reviewer_fx4p's prior-work objection.",
+        "The rebuttal moved Reviewer_Yn2G from 6 to 7 (tuning procedure) and satisfied Reviewer_H8yZ (WER and CER); fx4p's 4 stood alone.",
+        "Ethics concerns were judged answerable by a broader-impact section (Ethics_Reviewer_tLu4); the final conditions were set jointly for both copies."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_yW2U",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only rating below 7 (5 against 7, 7, 7), written in 2 hours. Two of its four weaknesses misread the paper: Eq. 18 compares per-block discriminator features, not final outputs, and l.79-82 define the notation it calls undefined. The remaining objection (many loss terms of borrowed origin) is shared by Reviewer_T6dF, who still gave 7. yW2U did not answer the rebuttal, which corrected the Eq. 18 reading. Its comparison of MCD and RMSEf0 against FDSD is accurate and is the best part of the review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yW2U",
+          "evidence": "2 hours. Calls the repulsive style loss 'theoretically incorrect' because 'both discriminators should output 1', but Eq. 18 uses block features D^s_i (l.149-156). Calls X_1 and X_{1->1} undefined, but l.79-82 define them. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_yW2U",
+          "claim": "The repulsive style loss (Eq. 18) is theoretically incorrect: it measures the difference between discriminator outputs, which should both be 1.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 18 sums L1 distances between the per-block features D^s_i of the style discriminator, normalised by N_i, the number of features in block i (l.149-156), under different conditions (S_1 and S_2). The authors' reply says so."
+        },
+        {
+          "reviewer": "Reviewer_yW2U",
+          "claim": "The notations X_1, X_{1->1} and so on are introduced without definition.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.79-82 define X_{1,A}, C_A, S_1 and the reconstruction X_{1->1,A}; Figure 1b shows the conversion X_{1->2,A}."
+        },
+        {
+          "reviewer": "Reviewer_yW2U",
+          "claim": "AutoVC is better on MCD and RMSEf0; VoiceMixer is better on FDSD.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: AUTOVC (τ=32) MCD 6.44 and RMSEf0 39.93 against VoiceMixer 6.77 and 42.76; FDSD 10.703 against 2.080."
+        },
+        {
+          "reviewer": "Reviewer_SxHX",
+          "claim": "Section 4.4 discusses only the metrics that favour the method and ignores MCD and RMSEf0, where some baselines are better.",
+          "checked_against_paper": "correct",
+          "evidence": "l.257-276 mention Naturalness, FDSD, Similarity and ASV EER only. In zero-shot (Table 2), VoiceMixer has the worst MCD of all methods (7.04 against 6.65 to 6.96). The authors promised to add this; the camera-ready Section 4.4 is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_SxHX",
+          "claim": "FDSD is computed between source and converted speech.",
+          "checked_against_paper": "correct",
+          "evidence": "l.212-213: 'we use FDSD between the converted speech and the source speech'. Whether this is the right reference stayed in dispute after the rebuttal (SxHX, 2021-09-01)."
+        },
+        {
+          "reviewer": "Reviewer_SxHX",
+          "claim": "StarGAN-VC (version 1) runs on mel-cepstra with the WORLD vocoder, while the other systems use HiFi-GAN.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The baseline setup is in Appendix A, which is in neither PDF. The main text names StarGAN-VC (Kameoka et al., 2018) and uses HiFi-GAN for the spectrogram systems (l.188-189). The authors did not dispute the point and called StarGAN-VC2 with HiFi-GAN 'more appropriate as a baseline'."
+        },
+        {
+          "reviewer": "Reviewer_T6dF",
+          "claim": "The negative loss of Eq. 7 can push apart embeddings i and i+k that carry the same content, for example a repeated word.",
+          "checked_against_paper": "correct",
+          "evidence": "l.131-134 take the k-th future frame (k = 24, about 0.3 s, l.234) as the only negative, whatever its content. The authors agreed ('Yes, your observation is correct') and argued that it averages out."
+        },
+        {
+          "reviewer": "Reviewer_LWwC",
+          "claim": "l.89 calls content loss inevitable; l.95 calls the pitch contour a supervised feature; l.111-112 do not say what is summed or over what unit the similarity is averaged.",
+          "checked_against_paper": "correct",
+          "evidence": "All three passages read as LWwC says. The authors clarified that d_n counts frames and that the average is over the utterance."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_T6dF (2021-08-25): 'I keep my recommendation'. Reviewer_SxHX (2021-09-01): 'Part of my concerns has been resolved; however, some concerns remain.' Reviewer_LWwC (2021-09-07) thanked the authors and asked for equal care on ethics. Reviewer_yW2U did not reply.",
+        "what_convinced_or_not": "The technical replies satisfied T6dF and LWwC, who were already at 7. SxHX still disputed the reasoning about conditional and unconditional FDSD and the missing output normalisation for StarGAN-VC and Blow. The authors answered yW2U's Eq. 18 objection correctly, but yW2U never responded, so the 5 stood. The draft broader-impact paragraph did not persuade the ethics reviewers ('this has left some reviewers unconvinced', AC)."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Follows the three 7s on technical merit ('technically sound overall, with a solid experimental section') and does not mention Reviewer_yW2U's 5. Overrides both ethics reviewers, who recommended rejection (Ethics_Reviewer_8woF: 'I cannot in good conscience recommend this paper for acceptance'; Ethics_Reviewer_teRM: 'recommend that the paper be rejected'), with a conditional accept. Two key sentences paraphrase Reviewer_T6dF: the complexity relative to AutoVC is justified by the results, and the paper should not be rejected 'simply because' of its area (T6dF, 2021-08-25).",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Three 7s and one 5: thorough experiments, artifact-free demos, and a learned bottleneck that replaces AutoVC's hand-tuned one (Reviewer_T6dF, Reviewer_SxHX).",
+        "The AC, following Reviewer_T6dF, judged the complexity justified by the results.",
+        "Reviewer_yW2U's 5 rested partly on misreadings and was not defended after the rebuttal.",
+        "The AC overrode the two ethics reviewers' reject recommendations with a conditional accept; joint conditions (broader impact, restricted release, mitigation) followed."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Uncited close prior work: contrastive phoneme segmentation (Kreuk et al., 2020) and self-supervised discriminator conditioning (Choi et al., 2020) (Reviewer_fx4p)",
+    "The bottleneck fails without the auxiliary losses; instance normalization as a second, uncontrolled bottleneck (Reviewer_fx4p)",
+    "Phoneme-alignment claim rests on one figure; zero-shot Similarity exceeds many-to-many; no IRB (Reviewer_fx4p)",
+    "Errors in Eq. 3 (undefined c_{T+1}) and Eq. 7 (indices past T), and the inverted 'too narrow/too wide' wording (Reviewer_NNWU)",
+    "No tuning procedure for eight loss weights; no study of sensitivity to bottleneck size (Reviewer_Yn2G)",
+    "No channel-axis bottleneck; the l.283-285 result is missing from Table 3 (Reviewer_H8yZ)"
+  ],
+  "issues_only_b": [
+    "Section 4.4 reports only favourable metrics; VoiceMixer trails AutoVC on MCD and RMSEf0 (Reviewer_SxHX; Reviewer_yW2U noted the trade-off)",
+    "Outdated baseline: StarGAN-VC version 1 with WORLD instead of StarGAN-VC2 or MaskCycleGAN-VC with HiFi-GAN (Reviewer_SxHX)",
+    "Unnormalised loudness in the listening tests; FDSD against source rather than target speech (Reviewer_SxHX)",
+    "No rhythm or prosody conversion; likely needs more training data than StarGAN-VC (Reviewer_SxHX)",
+    "Repulsive loss (Eq. 18) called 'theoretically incorrect' and notation called undefined, both misreadings (Reviewer_yW2U)",
+    "Ethics reviewers recommending rejection: the risks outweigh the benefits, and better disentanglement may defeat spoofing detection (Ethics_Reviewer_8woF, Ethics_Reviewer_teRM)"
+  ],
+  "shared_issues": [
+    "Many loss terms stacked on AutoVC; the ablations do not show what each adds (A: fx4p, Yn2G, AC; B: yW2U, T6dF, AC)",
+    "Misuse risk covered by one sentence; no broader-impact or mitigation section (A: fx4p, NNWU, Ethics_Reviewer_tLu4, Ethics_Reviewer_oFLP; B: T6dF, SxHX, LWwC, Ethics_Reviewer_8woF, Ethics_Reviewer_teRM)",
+    "Strong audio demos and a broad objective and subjective evaluation (A: Yn2G, NNWU, H8yZ; B: T6dF, SxHX, yW2U)",
+    "Evidence that content is preserved (A: H8yZ and NNWU asked for ASR; B: SxHX questioned the FDSD reference); the same WER results went to both",
+    "Eq. 7 negative sampling (A: NNWU, end of sequence; B: T6dF, repeated content)",
+    "Unclear similarity-based duration (d_n, average similarity) and the claim at l.88-89 that content loss is inevitable (A: NNWU; B: LWwC)",
+    "Assumption that similar embeddings mark phoneme boundaries (A: fx4p; B: LWwC, l.106)",
+    "Missing related work by Qian et al. (A: Yn2G, 2021; B: T6dF, 2020)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, and they weighed the same facts the same way. In each, three reviewers accepted on the same strengths: convincing audio demos and a broad evaluation in which VoiceMixer leads on naturalness, subjective similarity and FDSD (Tables 1-2). In each, one reviewer fell below the bar for the same reason: eleven generator losses stacked on AutoVC, with ablations that do not isolate the new bottleneck. A's detractor, Reviewer_fx4p (4), was the better founded: the paper itself says the bottleneck cannot convert voices without the auxiliary losses (l.283-285), the phoneme-alignment claim rests on one figure, and close prior work on contrastive segmentation (Kreuk et al., 2020) is uncited. B's detractor, Reviewer_yW2U (5, 2 hours), misread Eq. 18 and the notation and did not answer the rebuttal. Both ACs accepted the complexity (A: 'non-trivial and novel'; B: the results 'justify this additional complexity'), and nobody made a case above poster: A's two 8s say 'clear accept', and B has no rating above 7. The committees differed sharply only on ethics. B's two ethics reviewers recommended rejection, while A's judged the risks answerable. B's AC overrode them, and word-for-word identical conditions (broader impact, restricted release, mitigation) were attached to both meta-reviews. So the ethics outcome was not independent between the committees, and it did not separate them.",
+  "candidate_reasons": [
+    "Same strengths, same complexity concern",
+    "Lone detractor outvoted in each",
+    "Complexity excused by strong results",
+    "No case made above poster",
+    "AC overrode ethics reject recommendations",
+    "Joint ethics conditions on both copies"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_fx4p final review and reply of 2021-09-15",
+    "Reviewer_yW2U final review",
+    "Reviewer_Yn2G reply of 2021-08-20 (6 to 7)",
+    "Reviewer_NNWU final review and the authors' reply on Eq. 7",
+    "Reviewer_SxHX final review and reply of 2021-09-01",
+    "Reviewer_T6dF final review and reply of 2021-08-25",
+    "Ethics reviews: Ethics_Reviewer_tLu4 and Ethics_Reviewer_oFLP (A); Ethics_Reviewer_8woF and Ethics_Reviewer_teRM (B)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Tables 1-3 and l.283-285",
+    "paper_submitted.pdf Eq. 7, Eq. 18 and l.149-156",
+    "paper_submitted.pdf Figure 4",
+    "paper.pdf (camera-ready) Table 3, Eq. 7, Section 4.4 and Section 5"
+  ]
+}

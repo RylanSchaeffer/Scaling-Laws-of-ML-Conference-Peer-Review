@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-005",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_wH3w",
+        "Reviewer_j7qw"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_kMqF), 7 (Reviewer_wH3w) and 6 (Reviewer_j7qw), all at confidence 4. The spread is one point and no rating stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_wH3w",
+          "evidence": "Asked for 'an ablation over the number of synthetic trajectories', which l.359-360 of the submission says is in Appendix B. Said the authors did not discuss 'broader soceital impact', although checklist 1(c) points to Appendix D (Reviewer_j7qw and B's Reviewer_1uRz both saw that section). Then rose to 7 on a reply that mostly pointed back to the paper."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_wH3w",
+          "claim": "The Atari experiments 'don't seem to show too much of a benefit over the other methods'.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: median HNS 47.2% against SPR's published 41.5%, but PlayVirtual is below SPR in 13 of 26 games. Computed from Table 1, its mean HNS is 63.7% against SPR's 70.3%, and it is superhuman in 4 games against SPR's 7. The authors replied only with the relative median gain (13.7%)."
+        },
+        {
+          "reviewer": "Reviewer_wH3w",
+          "claim": "An ablation over the number of synthetic trajectories is missing and would be useful.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.359-360: 'We study the influence of the number of augmented virtual trajectories M and show the results in Appendix B.' The authors pointed to Appendix Table 3."
+        },
+        {
+          "reviewer": "Reviewer_wH3w",
+          "claim": "The paper discusses limitations but not broader societal impact.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Checklist 1(c): '[Yes] See Appendix D.' The appendix is not in the submitted PDF, but Reviewer_j7qw says the paper addresses societal impact, and B's Reviewer_1uRz describes the 'Potential Societal Impact' section as the last section of the appendix."
+        },
+        {
+          "reviewer": "Reviewer_j7qw",
+          "claim": "Line 345 says RDM where the rest of the paper says BDM.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted l.345: 'optimize the parameters of the encoder, DM and RDM'. B's Reviewer_ddpW found the same typo; the camera-ready fixes it."
+        },
+        {
+          "reviewer": "Reviewer_kMqF",
+          "claim": "The models are trained with a 'prediction loss over the observed next / previous states', i.e. the backward model is supervised by real previous states.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 2 supervises only forward predictions; Eq. 5 has no backward prediction loss; l.209-211: 'we do not need supervision of the states from real trajectories'. The authors confirmed that only the cycle loss trains the BDM. The misreading did not affect the rating."
+        },
+        {
+          "reviewer": "Reviewer_kMqF",
+          "claim": "The evaluation measures only the final policy, not the state representation or the dynamics models.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1 to 5 report only game scores, HNS and median scores. The authors added a frozen-encoder transfer test and a dynamics-model MSE comparison in the rebuttal."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_wH3w"
+        ],
+        "evidence": "Reviewer_wH3w wrote on 2021-09-01: 'I am willing to increase my rating to 7!' The review was edited that day. Reviewer_kMqF (2021-09-01): 'I am keeping my rating to recommend acceptance'; the review was not edited. Reviewer_j7qw's edit is dated 2021-07-17, the posting day, before the rebuttal; j7qw did not reply.",
+        "what_convinced_or_not": "Clarification, not new evidence, moved wH3w. The reply pointed to the existing ablation over M (Appendix Table 3), gave relative median gains (13.7% Atari, 16.8% DMControl) and restated how the method differs from SPR. wH3w: the response 'is quite helpful in understanding the paper better'. kMqF valued the frozen-encoder transfer and dynamics-model MSE tables ('I also appreciate the effort of running additional ablation experiments'). j7qw's question on degenerate virtual trajectories got argument only and no reply; in B the same concern got experiments."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The first paragraph copies Reviewer_kMqF's summary ('introducing cycle consistency objective and augmenting training with virtual trajectories generated by jointly learned dynamics models'). The second copies another kMqF phrase ('enforce consistencies between forward and backward state transitions on a given sequence of actions') and calls it 'a novel idea'. 'Most reviewers find the paper clearly written with a novel idea' matches wH3w and j7qw. The AC's one question, on using the model for model-based control, echoes kMqF's note that the models are not used for policy learning. The meta-review weighs no weakness.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 6.67 (7, 7, 6): higher medians than SPR on Atari-100k (47.2% against 41.5%) and than DrQ on DMControl-100k (800.5 against 685.5).",
+        "Reviewers and AC called the cycle loss on virtual trajectories novel, although the method builds on SPR.",
+        "Few and mild weaknesses, answered by clarification; Reviewer_wH3w rose to 7.",
+        "The AC restated Reviewer_kMqF's summary; no reviewer argued for more than a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_1uRz",
+        "Reviewer_aagy",
+        "Reviewer_ddpW"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_1uRz), 6 (Reviewer_aagy), 7 (Reviewer_ddpW) and 6 (Reviewer_Lrfb). The only 7, at confidence 5, comes with B's longest review (about 970 words) and its longest discussion thread, so it does not stand apart."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Lrfb",
+          "claim": "PlayVirtual performs worse than SPR, the baseline it builds on, in 12 of 26 Atari games.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: PlayVirtual is below SPR's published scores in 13 of 26 games (Amidar, Asterix, Bank Heist, Battle Zone, Chopper Command, Crazy Climber, Freeway, Gopher, Kangaroo, Private Eye, Road Runner, Seaquest, Up N Down). The authors' reply defended median HNS as a metric and did not address the count."
+        },
+        {
+          "reviewer": "Reviewer_Lrfb",
+          "claim": "There are no per-task SPR results on DMControl, so the source of the gain is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 has no SPR column; Table 3 gives only the SPR† median (728.0). The rebuttal supplied per-task numbers; the camera-ready adds an SPR† column to Table 2 (median 719.0 against 800.5 at 100k)."
+        },
+        {
+          "reviewer": "Reviewer_aagy",
+          "claim": "Laskin et al. 2020 (RAD) report DMControl performance on par with PlayVirtual, so the claim in l.14-15 is inaccurate.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract l.14-15: 'outperforms the current state-of-the-art methods by a large margin on both benchmarks.' RAD [27] is cited at l.98 but is absent from Table 2. The authors conceded ('We will make modifications to this claim'). The camera-ready abstract drops 'by a large margin', but its Table 2 still omits RAD."
+        },
+        {
+          "reviewer": "Reviewer_aagy",
+          "claim": "The paper reports only median HNS; it should also report mean HNS and the number of superhuman games, as SPR does.",
+          "checked_against_paper": "correct",
+          "evidence": "l.248-249 and Table 1 report only median HNS. Computed from Table 1, PlayVirtual's mean HNS is 63.7% against SPR's 70.3%, and it is superhuman in 4 games against SPR's 7. The authors' rebuttal table shows the same (63.7 against 70.4; 4 against 7). No B member commented on it."
+        },
+        {
+          "reviewer": "Reviewer_aagy",
+          "claim": "The text does not make clear whether PlayVirtual predicts raw states or latent states.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted abstract l.7-8: 'predicts future states based on the current state and action', with no mention of a latent space. The camera-ready abstract adds 'in a latent space'."
+        },
+        {
+          "reviewer": "Reviewer_aagy",
+          "claim": "The forward and backward latent dynamics models are trained by supervised learning from the ground truth.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Only the forward model has a supervised loss (Eq. 2). The BDM is trained only through the cycle loss (Eq. 5; l.209-211). The misreading did not affect the rating."
+        },
+        {
+          "reviewer": "Reviewer_ddpW",
+          "claim": "The paper does not cite Dwibedi et al. 2019, Temporal cycle-consistency learning.",
+          "checked_against_paper": "correct",
+          "evidence": "It is not among references [1] to [60] of the submission. The camera-ready adds it as [7]."
+        },
+        {
+          "reviewer": "Reviewer_1uRz",
+          "claim": "Line 22 should say 'data inefficient', and the expectation in Definition 1 has no stated distribution.",
+          "checked_against_paper": "correct",
+          "evidence": "l.22: 'is data efficient and prone to suboptimal convergence'. Definition 1 (l.214-219) states 'E[dM(z't, zt)] = 0' with no distribution named. The authors conceded both; the camera-ready fixes l.22."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_1uRz",
+          "Reviewer_aagy"
+        ],
+        "evidence": "Reviewer_1uRz edited the review on 2021-08-20: 'the authors responses have made me lean more towards acceptance than rejection and I have updated my rating'. Reviewer_aagy wrote on 2021-08-15 'I am struggling to recommend acceptance'. aagy then edited on 2021-08-27: 'I'm happy to change my recommendation to accept ... I have changed my ratings accordingly.' Reviewer_ddpW edited on 2021-08-27, the day it wrote 'I am inclined to accept the paper'; the review names no score change. Reviewer_Lrfb did not edit or reply.",
+        "what_convinced_or_not": "New experiments convinced them: frozen-encoder transfer (PlayVirtual's encoder scores higher than SPR's on 3 DMControl tasks), dynamics-model MSE, action-perturbation sensitivity and perturbed-action sampling. 1uRz: 'I particularly appreciate the experiment with the perturbed actions'. The k-NN retrieval of predicted latents on Cheetah-run moved aagy and satisfied ddpW after two follow-ups on the gallery. Not resolved: why cycle consistency helps. 1uRz: the takeaway is still 'cycle consistency is good'. aagy: 'a better understanding of why it worked would make the paper much stronger'. Nobody questioned that the MSE comparison spans two different learned latent spaces, or that the k-NN test covers one task. The reply to Lrfb's per-game point did not answer it, and the mean-HNS table given to aagy (PlayVirtual behind SPR's published mean and superhuman count) drew no response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'the reviewers have unanimously agreed to accept the paper.' It says 'All three reviewers' although B had four. The quoted reservation ('The paper would clearly be much stronger if it provided more insight as to why and in what way this cycle consistency loss improves the learned representations') is in no public review. The nearest is Reviewer_aagy's 'a better understanding of why it worked would make the paper much stronger'. The AC uses the reservation to set the tier: 'For this reason, I recommend accepting this paper as a poster.'",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal, mean 6.25 (6, 6, 7, 6), on the same benchmark gains that every reviewer accepted.",
+        "Rebuttal experiments (encoder transfer, model error, k-NN retrieval, action sampling) moved Reviewer_1uRz and Reviewer_aagy from the reject side to 6.",
+        "Novelty judged incremental over SPR (1uRz, aagy), which kept both at the threshold.",
+        "The remaining gap in insight into why cycle consistency helps set the tier at poster (AC)."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Which loss updates which module, and what Baseline+BDM contains (Reviewer_kMqF)",
+    "Ablation over the number of virtual trajectories (Reviewer_wH3w; already in Appendix B per l.359-360)",
+    "Safety of image-based robot RL as a societal impact (Reviewer_wH3w)"
+  ],
+  "issues_only_b": [
+    "Per-game Atari losses to SPR (13 of 26) and no per-task SPR results on DMControl (Reviewer_Lrfb)",
+    "Only median HNS reported; mean HNS and superhuman count trail SPR (Reviewer_aagy)",
+    "RAD omitted from Table 2 behind the abstract's 'by a large margin' claim (Reviewer_aagy)",
+    "Stochastic, partially observable and many-to-one dynamics, and missing limitations (Reviewer_1uRz, Reviewer_aagy, Reviewer_Lrfb)",
+    "Action-sampling strategy: random, policy-guided or surprise-based (all four B reviewers)",
+    "Misleading name, iterative against one-shot K-step prediction, loss curves, missing temporal cycle-consistency citation (Reviewer_ddpW)",
+    "Latent against observation space, raw against latent wording, Definition 1, real-world motivation against simulator tests (Reviewer_aagy, Reviewer_1uRz)"
+  ],
+  "shared_issues": [
+    "Builds on SPR: what it adds and whether that is enough (A: Reviewer_wH3w asks; B: Reviewer_1uRz and Reviewer_aagy call it incremental)",
+    "Little insight into why cycle consistency helps (A: Reviewer_wH3w; B: Reviewer_1uRz, Reviewer_aagy, AC)",
+    "Risk of degenerate or meaningless virtual trajectories and latents (A: Reviewer_j7qw; B: Reviewer_ddpW, Reviewer_1uRz, Reviewer_aagy)",
+    "No direct evaluation of the representation or the dynamics model (A: Reviewer_kMqF; B: Reviewer_aagy, Reviewer_Lrfb, Reviewer_ddpW)",
+    "Virtual trajectories and the model not used for policy learning (A: Reviewer_wH3w, AC; B: Reviewer_ddpW)",
+    "Atari gains modest or mixed (A: Reviewer_wH3w; B: Reviewer_Lrfb)",
+    "Strong benchmark results and informative ablations (all seven reviewers)",
+    "RDM typo at l.345 (A: Reviewer_j7qw; B: Reviewer_ddpW)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason. PlayVirtual adds a backward dynamics model and a cycle-consistency loss on random-action virtual trajectories to SPR. This raises the headline medians on both 100k benchmarks: Atari median HNS 47.2% against SPR's published 41.5%, and DMControl-100k 800.5 against DrQ's 685.5. Table 3 credits the virtual trajectories, not the backward model (Baseline+BDM 38.4%). No final rating is above 7 or below 6, so neither committee had a champion or a detractor. The committees differed in scrutiny, not in outcome. A's three reviews total about 1,000 words and call the idea novel; A's AC restates Reviewer_kMqF's summary. B's four reviews total about 2,850 words. Two B reviewers (Reviewer_1uRz, Reviewer_aagy) began on the reject side: an incremental add-on to SPR, with no insight into why it works. Rebuttal experiments moved both to 6, and B's AC used the remaining gap in insight to set the tier at poster. So B weighed the same facts more harshly on novelty. This explains its lower mean (6.25 against 6.67), but it did not cross the poster line. Neither committee weighed a weakness that B's record exposes. PlayVirtual is below SPR's published scores in 13 of 26 Atari games, and its mean HNS (63.7% against 70.4%) and superhuman count (4 against 7) trail SPR. The Atari claim rests on the median alone.",
+  "candidate_reasons": [
+    "Consistent median gains over SPR",
+    "Incremental novelty outweighed by results",
+    "Rebuttal experiments lifted borderline reviewers",
+    "No champion or detractor present",
+    "Insight gap capped tier at poster",
+    "Median-only Atari claim went unchallenged"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 1 (per-game Atari scores; median HNS only)",
+    "paper_submitted.pdf Table 2 (DMControl; no SPR or RAD column)",
+    "paper_submitted.pdf Table 3 (Baseline+BDM 38.4% against PlayVirtual 47.2%)",
+    "paper_submitted.pdf l.14-15 (abstract claim) and l.359-360 (ablation over M in Appendix B)",
+    "Reviewer_wH3w final review and reply of 2021-09-01",
+    "Reviewer_1uRz final review (post-rebuttal section)",
+    "Reviewer_aagy final review, comment of 2021-08-15 and 'Updates after rebuttal'",
+    "Authors' reply to Reviewer_aagy Q2 (mean HNS table) and to Reviewer_Lrfb Q1",
+    "Reviewer_ddpW follow-ups of 2021-08-27 to 2021-08-30",
+    "Committee A meta-review (copies Reviewer_kMqF's summary)",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) abstract and Table 2"
+  ]
+}

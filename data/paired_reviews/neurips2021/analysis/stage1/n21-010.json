@@ -1,0 +1,128 @@
+{
+  "pair_id": "n21-010",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 5, 7, 6],
+      "confidences": [4, 1, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_Xk7N", "Reviewer_Hc9Q"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Xk7N",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Top score (8, confidence 4) with specific reasons: an original method and a large measured speed-up, plus a pointed question about the complexity claim and Fig. 5. The pre-edit score was higher: the 2021-08-18 update says 'my rating was a bit of an outlier, so I revised to be more in line with the other ratings'. The final 8 is one point above the next score."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_7V4J", "evidence": "Confidence 1; 'I gave up on completely understanding the concepts'. Asks for results beyond 30 states, but Fig. 5 already runs to 400 states. The 5 rests on not following the paper, not on a flaw, and the reviewer defers: 'I will leave this judgement to other reviewers'."},
+        {"reviewer": "Reviewer_Hc9Q", "evidence": "The main review is three generic sentences ('the theoretical analysis is detailed and sound') under a confidence label that says math was not carefully checked. The only specifics are notation points. The post-rebuttal edit says all concerns were addressed but keeps 6 and gives no reason."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_Xk7N", "claim": "The quasi-linear complexity claim needs explaining: Fig. 5's relative runtime grows with the number of states, and the per-state baseline is quadratic when A = S.", "checked_against_paper": "correct", "evidence": "Theorem 4.1 bounds the update for one state, O(SA log S). The abstract says 'quasi-linear time in the number of states and actions' and does not say 'per state'. In Fig. 5 (log y-axis) the homotopy ratio rises from about 6 at 25 states to about 50 at 400, more than the log S factor the bound predicts if the non-robust update costs order SA. The 'straight line' reading ignores the log axis, but the point stands. The authors conceded the bound is per state."},
+        {"reviewer": "Reviewer_7V4J", "claim": "Results stop at 30 states ('would it be possible for the authors to apply it to problems with more than 30 states?').", "checked_against_paper": "incorrect", "evidence": "Fig. 5 runs the inventory problem from 25 to 400 states for a single-state update. Only the full-operator timings in Table 2 stop at 30 states. The authors' reply did not correct the misreading."},
+        {"reviewer": "Reviewer_7bXv", "claim": "The experiments time only the Bellman operator, not its use inside a full robust MDP solver.", "checked_against_paper": "correct", "evidence": "Table 2 caption: 'Time (ms) to compute T'. Fig. 5 times one state's update. No value or policy iteration run is reported."},
+        {"reviewer": "Reviewer_Hc9Q", "claim": "ξ in Eq. (3) and the subscript B at line 149 are not defined.", "checked_against_paper": "correct", "evidence": "ξ appears only as the first argument of q (lines 91-92). 'Each basis B' is first written at line 155, after its use at line 149. Cosmetic."}
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_Xk7N"],
+        "evidence": "Xk7N edited 2021-08-18: 'happy with the clarification ... about the complexity' and 'my rating was a bit of an outlier, so I revised to be more in line with the other ratings'. All other scores are below 8, so the move was down. Hc9Q edited 2021-08-31: 'My concerns have been addressed by the rebuttal, therefore I am inclined to maintain my original score.' 7V4J and 7bXv did not reply and did not edit.",
+        "what_convinced_or_not": "The per-state complexity answer satisfied Xk7N, but the score fell to match the other reviewers, not because of the answer. The replies to 7V4J (applications, L2 and KL sets) and 7bXv (a pointer to the authors' AISTATS 2021 paper) changed nothing."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'a solid paper with the most confident reviewers having the most favorable opinions'; the rest are 'minor quibbles'. This discounts the confidence-1 score of 5 from 7V4J and leans on Xk7N (8) and 7bXv (7), both confidence 4. No sign of the AC's own reading.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "The most confident reviewers (Xk7N 8, 7bXv 7, both confidence 4) were the most positive, and the AC weighted by confidence.",
+        "An exact algorithm with large measured speed-ups over Gurobi; no reviewer found an error.",
+        "The only score below threshold (7V4J, 5) had confidence 1 and named no flaw.",
+        "The remaining points (per-state complexity wording, notation, no results inside a full solver) were judged minor."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 5],
+      "confidences": [4, 2, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_n2xU"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Scores 5 to 7 around a mean of 6.0. Reviewer_hdeg (5, confidence 4) gives the only score below threshold, with a specific novelty objection. Reviewer_n2xU (7) gives the top score, but the review restates the paper."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_n2xU", "evidence": "Reports 10 hours, but the evaluative sentences are the paper's own. The summary copies lines 62-63, including the authors' 'our method is over 1, 000 times faster'. 'Lemma 3.3 limits the bases relevant to the optimization, which is crucial for building fast algorithms' is lines 162-163. The 'more subtle structure' sentence is lines 233-235. Only the typo list and one out-of-scope drawback are the reviewer's own."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_cHzA", "claim": "No evidence supports 'the computation time is insensitive to the particular choice of κ' (lines 280-281).", "checked_against_paper": "correct", "evidence": "The main text reports only κ = 1.2, and no figure or table varies κ (the supplement is not in the files). The rebuttal asserted independence without data."},
+        {"reviewer": "Reviewer_hdeg", "claim": "L∞ and L1 norms are equivalent up to a constant, so the L1 homotopy of Ho et al. (2018) with a rescaled κ could solve the L∞ case.", "checked_against_paper": "incorrect", "evidence": "Norm equivalence only nests the balls (‖x‖∞ ≤ ‖x‖1 ≤ S‖x‖∞). A rescaled L1 ball is a different set with a different worst case, so the L1 algorithm computes a different operator. The rebuttal made a similar point."},
+        {"reviewer": "Reviewer_hdeg", "claim": "Tables 2 and 3 show only how each method stands against Gurobi, not against each other.", "checked_against_paper": "incorrect", "evidence": "Both tables give absolute times on the same three domains. Read together, the S-rectangular L∞ Algorithm 2 (40, 52, 67 ms) is 13 to 40 times slower than the L1 algorithm of Ho et al. (1, 2, 5 ms). Its speed-up over Gurobi (3, 4, 41 times) is far below the L1 speed-up (79, 158, 452 times), against line 289's 'similar dramatic speedups'."},
+        {"reviewer": "Reviewer_n2xU", "claim": "The method is 'over 1, 000 times faster than using Gurobi ... when solving RMDPs with hundreds of states'.", "checked_against_paper": "incorrect", "evidence": "Copied from paper lines 62-63. At 100 to 400 states, Fig. 5 shows about 20 to 30 times (SA) and 50 to 100 times (S). Section 5 itself says 'about 100-times faster'. Ratios near 1,000 appear only for SA at 30 states or fewer (Table 2)."},
+        {"reviewer": "Reviewer_n2xU", "claim": "The paper does not discuss non-rectangular ambiguity sets.", "checked_against_paper": "incorrect", "evidence": "Lines 79-82 state that the general problem is NP-hard and that this is why work focuses on S- and SA-rectangular sets."},
+        {"reviewer": "Reviewer_So7E", "claim": "No results on larger state spaces, such as the discretized Cart-pole of Ho, Petrik and Wiesemann (2020).", "checked_against_paper": "correct", "evidence": "The largest full-operator test has 30 states (Table 2). Fig. 5 reaches 400 states for a single-state update only."}
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_n2xU (2021-08-11): 'I will maintain my score'; the review was edited on 2021-08-25 with no stated change. Reviewer_cHzA (2021-08-25): 'I would like to keep my score unchanged, leaning to acceptance.' hdeg and So7E did not reply and did not edit.",
+        "what_convinced_or_not": "The reply to hdeg restated the multi-donor difference and cited the authors' own AISTATS 2021 paper for why L∞ matters, with no new comparison. hdeg stayed at 5, and the AC still listed novelty as open. The reply to cHzA on κ gave no data."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accept matches three of four scores at 6 or more. The meta-review keeps the point from hdeg as a camera-ready request: 'in particular, the differences with Ho, Petrik and Wiesemann, 2018'. It says 'The reviewers and AC discussed the paper', but no reviewer-AC exchange is in the record.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers scored 6 or more, and all called the paper interesting or well written.",
+        "No reviewer found an error in the algorithm or the proofs; the speed-ups over Gurobi were taken as shown.",
+        "The novelty concern from hdeg (over Ho, Petrik and Wiesemann, 2018) was judged fixable in the camera-ready, not fatal.",
+        "Missing details, such as evidence for the κ claim, were deferred to the camera-ready."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The quasi-linear claim holds per state, not per sweep; Fig. 5 grows with S (Xk7N)",
+    "No results inside a full robust value or policy iteration (7bXv)",
+    "Hard to follow for non-experts; Example 3.1 and Fig. 2 unclear (7V4J, 7bXv)",
+    "Undefined notation (ξ, B) and the distinct-z tie-breaking assumption (Hc9Q)",
+    "Motivating applications and extension to L2 or KL sets (7V4J)"
+  ],
+  "issues_only_b": [
+    "Novelty over Ho, Petrik and Wiesemann (2018), and no direct comparison with it (hdeg)",
+    "Why L∞ rather than L1 sets, and whether a rescaled L1 set would do (hdeg)",
+    "No data for the κ-insensitivity claim (cHzA)",
+    "Non-rectangular ambiguity sets not covered (n2xU)"
+  ],
+  "shared_issues": [
+    "Benchmarks are small; results on larger state spaces wanted (7V4J in A, So7E in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. In each, three of four reviewers scored 6 or more, and no reviewer found an error. Each committee judged its criticisms fixable in the camera-ready. A's mean (6.5) is above B's (6.0). A had a confident champion, Reviewer_Xk7N (8), who praised the speed-up and had already lowered a higher score to conform. B had a confident detractor, Reviewer_hdeg (5), who questioned novelty over Ho, Petrik and Wiesemann (2018). Neither AC departed from the mean. A's AC weighted by confidence; B's AC moved the novelty point to the camera-ready. No reviewer noticed that the paper's own results fall short of its headline speed-up for the S-rectangular case in the title. Table 2 shows 3 to 4 times over Gurobi on MR and RS and 41 times on IM. Fig. 5 shows about 50 to 100 times at 100 to 400 states. The abstract claims 'several orders of magnitude'; the introduction claims 'over 1,000 times'.",
+  "candidate_reasons": [
+    "majority above threshold in both",
+    "no reviewer found an error",
+    "novelty concern deferred to camera-ready",
+    "AC weighted reviews by confidence",
+    "speed-up headline accepted unchecked",
+    "champion lowered score to conform"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_Xk7N final review, update paragraph (edited 2021-08-18)",
+    "Authors' reply to Reviewer_Xk7N ('Complexity Analysis')",
+    "Reviewer_hdeg review and the authors' reply",
+    "Reviewer_n2xU review against paper lines 62-63, 162-163, 233-235",
+    "Reviewer_cHzA review against paper lines 280-281",
+    "Reviewer_7V4J review against paper Figure 5",
+    "paper_submitted Table 2 and Table 3",
+    "paper_submitted Figure 5",
+    "paper_submitted lines 79-82 and 228-235"
+  ]
+}

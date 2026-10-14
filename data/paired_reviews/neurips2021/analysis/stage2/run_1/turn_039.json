@@ -1,0 +1,260 @@
+{
+ "run": 1,
+ "turn": 39,
+ "pair_id": "n21-212",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "B's AC set the Spotlight from personal enthusiasm ('I personally find ... elegant') on scores 7, 6, 7 with no reviewer above 7."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "Neither recommendation rests on a forecast of impact beyond the paper's setting; XqTW's 'paradigm shift' praises the framing."
+  },
+  {
+   "id": "R03",
+   "applies": false,
+   "justification": "The response moved scores in both committees (PoYC to 7 in A; XqTW and qDh3 in B), so A's scores were not left unchanged."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "B's bohc gave a 7 on four generic lines with no weakness and no discussion; A's omcp also wrote a short review and kept a 5 without a reason."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Only A asked for FGSM/PGD baselines at comparable eps and a cross-entropy ablation (plus the AC's DeepFool), and A's meta-review rests on it."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "UycQ (A) and qDh3, XqTW (B) all saw ACE as a small-eps FGSM-style attack; B held problem novelty enough, A held technical depth as the bar."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "Every score change followed the authors' response, not reviewer discussion."
+  },
+  {
+   "id": "R08",
+   "applies": false,
+   "justification": "No rating clearly contradicts its own text; omcp's 5 matches its two stated cons."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "All six reviewers gave confidence 4; none deferred to a borderline score for lack of expertise."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "A's AC followed UycQ, who was one of two 5s, not an outlier; B's AC followed no single reviewer."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "UycQ and qDh3 wrote similar critiques but differed in what they weighted after the rebuttal, not in scale calibration."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "B's meta-review cites 'very well received' and 'consensus in accepting' for a Spotlight though no reviewer exceeded 7, while A's 5, 5, 7 spread held it at reject."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "The new AdvProp and cross-architecture results went to both committees and were run by the authors; A's PoYC saw them too."
+  },
+  {
+   "id": "R14",
+   "applies": true,
+   "justification": "B's meta-review says the main concerns were addressed and omits qDh3's open requests and the shared point that the method is a simple FGSM-style attack."
+  },
+  {
+   "id": "R15",
+   "applies": true,
+   "justification": "omcp's con that no experiment supports harm to popular uncertainty methods is wrong (Sections 5.1-5.4), and omcp kept the 5 that helped sink A."
+  },
+  {
+   "id": "R16",
+   "applies": false,
+   "justification": "No concession about the results went unpunished; XqTW raised after the label-proxy argument, not after an unfavourable result."
+  },
+  {
+   "id": "R17",
+   "applies": true,
+   "justification": "A's AC raised a DeepFool baseline in the meta-review that no reviewer had asked for, so the authors never answered it and it stood in A's reject."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "The scores differ (5, 5, 7 against 7, 6, 7), so the split is not a tier threshold on near-identical reviews."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "All reviewers had confidence 4; A's AC followed the majority and no better-informed verdict was passed over."
+  },
+  {
+   "id": "R20",
+   "applies": true,
+   "justification": "B's requests (lending scenario, AdvProp, variance) were closable by new results, while UycQ's core objection, that ACE is a rescaled FGSM/PGD, no response could remove."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "PoYC's 7 is A's outlier but did not set the tier; A's other scores (5, 5) do not match B's."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "No outlying reviewer ignored the response; omcp, who replied only briefly, was not the outlier, and bohc's 7 matched B."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "No area chair discarded a detractor while defending acceptance."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "Neither committee raised audience breadth or venue fit."
+  },
+  {
+   "id": "R25",
+   "applies": true,
+   "justification": "A's meta-review says omcp 'supported the concern' and 'all reviewers' agree on more evaluations; the record shows PoYC raising to 7 and omcp giving no reason."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "Most reviewers in both committees replied to the response."
+  },
+  {
+   "id": "R27",
+   "applies": false,
+   "justification": "No reviewer said they could not verify the results; all had confidence 4."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "A split two to one, not evenly."
+  },
+  {
+   "id": "R29",
+   "applies": false,
+   "justification": "The notes record the same lending scenario and AdvProp results given to both committees."
+  },
+  {
+   "id": "R30",
+   "applies": false,
+   "justification": "No novelty verdict rested on a wrong account of prior work; the FGSM comparison is correct."
+  },
+  {
+   "id": "R31",
+   "applies": false,
+   "justification": "B's Spotlight has a stated ground, the AC's own enthusiasm, which R01 covers."
+  },
+  {
+   "id": "R32",
+   "applies": false,
+   "justification": "No reviewer contested the framing from a neighbouring field's premises."
+  },
+  {
+   "id": "R33",
+   "applies": false,
+   "justification": "Both committees had engaged positive reviewers (PoYC in A, XqTW in B), and none rated well above the accept level."
+  },
+  {
+   "id": "R34",
+   "applies": false,
+   "justification": "No one rejected the paper because promised revisions were too large."
+  },
+  {
+   "id": "R35",
+   "applies": false,
+   "justification": "Neither AC relied on input outside the record."
+  }
+ ],
+ "added": [],
+ "reasoning": "The accept/reject split is mainly a weighting difference (R06): both committees saw ACE as a simple FGSM-style attack, B judged problem novelty enough and A did not. The rebuttal could answer B's requests but not A's core objection (R20), A alone asked for baseline attacks (R05), and A kept an inattentive detractor score built partly on a misread (R04, R15) that its meta-review misreported as support (R25). A's AC added an unanswerable DeepFool demand (R17). The Spotlight tier comes from B's AC's own enthusiasm and a one-sided 'well received' meta-review (R01, R12, R14). The stage 1 candidates all map to existing reasons, so none was added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ]
+}

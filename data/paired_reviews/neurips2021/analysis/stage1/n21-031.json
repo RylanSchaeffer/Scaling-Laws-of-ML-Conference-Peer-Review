@@ -1,0 +1,256 @@
+{
+ "pair_id": "n21-031",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    8,
+    6
+   ],
+   "confidences": [
+    3,
+    3,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Ru8S"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_cawi",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "Rating 8 at confidence 4 (Ru8S 7, 54Kf 6, P63y 6), the only rating above 7 in either committee. The review is three sentences: 'The experimental results are exciting', 'very potential to be published in NeurIPS', and equations (8) and (9) are 'hard to interpret'; limitations field 'Yes'. It names no strength and no weakness of substance and posts nothing in the discussion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_cawi",
+     "evidence": "Three-sentence review behind an 8 at confidence 4 (5 hours reported). It names no specific result, assumption or experiment and does not reply to the authors. The 8 is a vote, not evidence."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Ru8S",
+     "claim": "Deep discretization can only merge the m initial intervals, so the result may depend on the initial m.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 162-164: the final partition 'will be constructed by adaptively combining some of these intervals'. The authors pointed to the m sensitivity study in Appendix B; Ru8S kept this as a 'lingering concern'."
+    },
+    {
+     "reviewer": "Reviewer_Ru8S",
+     "claim": "Scenario S2 in Section 5.1 is missing a '+' in its second term.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 301 reads 'sin(2πx(1))I(0.25 ≤ a < 0.5){0.5 − 8(x(1) − 0.75)^2}' with no '+'. The authors conceded; Reviewer_8Ltc found the same typo in B."
+    },
+    {
+     "reviewer": "Reviewer_Ru8S",
+     "claim": "Features have dimension 20 but the scenarios use about 2, possibly a typo.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 308 sets p = 20; Scenarios S1 to S4 (lines 300-304) use one to three features. The authors said the noise features are intentional, so it is not a typo."
+    },
+    {
+     "reviewer": "Reviewer_Ru8S",
+     "claim": "The paper does not analyse the computational complexity of fitting the separate MLPs.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission reports runtimes only (lines 315-318: under 1 minute for n = 50, 14 minutes for n = 300) and calls longer runtime 'a potential limitation' (lines 335-338). There is no complexity analysis; the authors supplied one in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_54Kf",
+     "claim": "The simulations use only small samples, n = 50 to 300.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 308: 'n = 50, 100, 200 or 300'. The authors replied with runtimes for n = 1000 to 10000 (15.92 minutes to 2.86 hours, Scenario 1)."
+    },
+    {
+     "reviewer": "Reviewer_54Kf",
+     "claim": "The paper does not cite Kallus and Uehara (NeurIPS 2020) or Demirer et al. (NeurIPS 2019).",
+     "checked_against_paper": "correct",
+     "evidence": "Neither appears in the submission's reference list (lines 368-466). Both are cited in the camera-ready."
+    },
+    {
+     "reviewer": "Reviewer_P63y",
+     "claim": "Tree-based discretization (Majzoubi et al. 2020) is an alternative the paper does not discuss.",
+     "checked_against_paper": "correct",
+     "evidence": "Not cited in the submission. The camera-ready adds a paragraph on it in Section 5."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Ru8S"
+    ],
+    "evidence": "Ru8S's review was edited on 2021-09-02, the day of its comment 'I have decided to raise my rating of this paper to fully reflect my estimation that it should be accepted'. The unchanged review text still says 'a little hesitant to recommend that this paper be published', so the earlier rating was below 7. 54Kf, cawi and P63y did not edit their reviews or reply.",
+    "what_convinced_or_not": "Point-by-point answers on data splitting, aggregation, the change-point list τ(v*), held-out estimation and the propensity model, plus a complexity analysis and the m sensitivity study in Appendix B. Ru8S kept one 'lingering concern': the partition only merges intervals, so it is not fully adaptive. 54Kf got runtimes up to n = 10000 and two promised citations but did not respond."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Meta-review: 'The reviewers support the paper overall and I recommend acceptance'. It singles out Ru8S and 54Kf for the revisions and asks the authors to incorporate the discussion. It adds no judgement of its own.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All final ratings 6 or above (7, 6, 8, 6) after Ru8S raised to 7",
+    "Method seen as new and well motivated by the toy example (54Kf, P63y, Ru8S)",
+    "Theory and simulations show gains over kernel-based OPE (Ru8S significance section, 54Kf)",
+    "Clarity, computation and related-work concerns answered with promised edits"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    7,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_fMSm",
+    "Reviewer_srXj",
+    "Reviewer_Dcr5"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 6, 7, 6 (fMSm, srXj, Dcr5, 8Ltc); no rating sits apart. The most critical reviewer, srXj (confidence 4), raised to 6 after the rebuttal."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Dcr5",
+     "claim": "Part III.3 of Algorithm 1 in the supplement trains O(m^2) DNNs, so total cost is at least O(n^3).",
+     "checked_against_paper": "not_checked",
+     "evidence": "The supplement is in neither PDF. The authors conceded: 'we did not present our algorithm correctly ... part III.3 of Algorithm 1 needs to be removed'. Main-text lines 206-210 fit DNNs only for v in the pruned set R_v*."
+    },
+    {
+     "reviewer": "Reviewer_Dcr5",
+     "claim": "Step 2 is the PELT algorithm with a DNN-based cost function.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 197: 'motivated by the pruned exact linear time method'; equations 8 and 9 are the PELT recursion and pruning rule. The authors agreed that only the cost function differs."
+    },
+    {
+     "reviewer": "Reviewer_fMSm",
+     "claim": "The notation J(D) in Theorem 1 is not defined anywhere.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 145-146: 'We use J(D) to denote the set of change point locations'."
+    },
+    {
+     "reviewer": "Reviewer_fMSm",
+     "claim": "Theorem 1 needs γn to decay slower than a minimum rate, while Theorem 2 fixes an exact rate.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 251 (Theorem 1): γn → 0 and γn ≫ n^(-2β/(2β+p)) log^8 n. Line 276 (Theorem 2): γn proportional to max{n^(-3/5), n^(-2β/(2β+p)) log^9 n}. The authors said this is intentional."
+    },
+    {
+     "reviewer": "Reviewer_8Ltc",
+     "claim": "Theorem 2's rate may not be tight and no lower bound is given.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 2 (line 276) gives only an upper bound, Op(n^(-1/5)) + Op{n^(-2β/(6β+3p)) log^3 n}; there is no lower bound. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_srXj",
+     "claim": "The work rests on the restrictive piecewise-constant assumption of Model 1.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 152: the method 'will work when either Model 1 or 2 holds'. Theorem 2 covers Lipschitz Q, at the slower rate n^(-1/5); Scenarios 3 and 4 and the Warfarin study use continuous Q (lines 305-306)."
+    },
+    {
+     "reviewer": "Reviewer_srXj",
+     "claim": "DJL trades the kernel bandwidth for another tuning parameter, the regularization parameter γn.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 179: 'we use cross-validation to select γn'; m = n/c is a second choice (lines 165-167). Equation 5 is not specific to continuous Q, but the point holds. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_srXj",
+     "claim": "The authors do not discuss limitations.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 335-338 name longer runtime than Colangelo & Lee as 'a potential limitation'; lines 290-291 say when kernel methods can converge faster. There is no dedicated limitations section, as Reviewer_8Ltc noted."
+    },
+    {
+     "reviewer": "Reviewer_srXj",
+     "claim": "The paper lacks standard OPE datasets, e.g. SLOPE's Mountain Car and GridWorld.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Mountain Car and GridWorld are sequential RL tasks; the paper's setting is a single-stage contextual bandit. It uses the Warfarin data of Kallus & Zhou (2018) (lines 340-342)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_fMSm",
+     "Reviewer_srXj",
+     "Reviewer_Dcr5"
+    ],
+    "evidence": "fMSm (edited 2021-08-11): 'I am willing to up my rating to a 7'. srXj (edited 2021-08-13): 'Post-rebuttal: ... I have updated my score accordingly', final 6. Dcr5 (edited 2021-08-21): 'I am increasing my score to a 7'. 8Ltc did not edit or reply. B's pre-rebuttal mean was therefore at most 5.75.",
+    "what_convinced_or_not": "The computation answer moved fMSm and Dcr5. The authors conceded that the supplement's pseudocode was wrong and claimed an expected O(m) number of DNN fits from PELT pruning (worst case O(m^2)). Dcr5 ran the code to count iterations; fMSm cited the 'extra details about running time of the PELT algorithm'. The cited linear-cost result (Killick et al. 2012) assumes that the number of change points grows with the data, but Theorem 1 fixes it (line 247); no reviewer noticed. The theory clarifications (Farrell et al. comparison, γn rates) also satisfied Dcr5 and fMSm. srXj gave no reason beyond 'addressing my concerns', although the authors rejected its novelty critique outright."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Meta-review: 'The reviewers appreciated the paper and agree it provides a useful new method ... that the paper should be accepted'. It asks for discussion of tightness (8Ltc), computation (fMSm, Dcr5) and comparisons to other work, as promised in the rebuttal.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All final ratings 6 or 7 after fMSm, srXj and Dcr5 raised",
+    "New, intuitive method with clear motivation and strong synthetic and semi-synthetic Warfarin results (Dcr5, fMSm)",
+    "Computation concern settled by the rebuttal: corrected pseudocode and an expected O(m) count of DNN fits, which Dcr5 checked by running the code",
+    "Theory judged appropriate; tightness and comparisons left to the final version"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Simulations only at n = 50 to 300; large-sample behaviour and the m = n/10 rule untested (Reviewer_54Kf)",
+  "Uncited related work: Kallus & Uehara (2020) and Demirer et al. (2019) (Reviewer_54Kf)",
+  "Tree-based discretization (Majzoubi et al. 2020) as an alternative (Reviewer_P63y)",
+  "Extension to sequential decisions and to multiple logging policies (Reviewer_Ru8S)",
+  "The partition can only merge the m initial intervals, so it is not fully adaptive (Reviewer_Ru8S)",
+  "Propensity-score estimation unspecified; most of the 20 simulated features are noise (Reviewer_Ru8S)",
+  "No guidance on choosing between Model 1 and Model 2 (Reviewer_Ru8S)"
+ ],
+ "issues_only_b": [
+  "Supplement's Algorithm 1 implies O(m^2) DNN fits; the authors conceded the pseudocode was wrong (Reviewer_Dcr5)",
+  "Theory: bias and variance rates differ in Theorem 1; γn conditions differ between Theorems 1 and 2 (Reviewer_fMSm)",
+  "No lower bound for Theorem 2; why Hölder classes (Reviewer_8Ltc)",
+  "Theoretical novelty relative to Farrell et al. (2021) and PELT unclear (Reviewer_Dcr5)",
+  "Discretization plus a standard DR estimator is not a new OPE estimator (Reviewer_srXj)",
+  "γn replaces the bandwidth as a tuning parameter; no standard OPE benchmarks (Reviewer_srXj)",
+  "Discretizing a continuous treatment needs justification (Reviewer_fMSm)",
+  "No explicit limitations section (Reviewer_8Ltc, Reviewer_srXj)"
+ ],
+ "shared_issues": [
+  "The deep-discretization dynamic program is hard to follow and τ(v*) is not defined; pseudocode belongs in the main text (Ru8S, cawi; fMSm, Dcr5, 8Ltc)",
+  "Computational cost of fitting many DNNs (Ru8S, P63y, 54Kf; fMSm, Dcr5, 8Ltc)",
+  "Adaptive or local-bandwidth kernels as an alternative (P63y; fMSm, 8Ltc)",
+  "Intuition for when Q is discontinuous in the treatment, such as pricing (Ru8S; Dcr5)",
+  "Missing '+' in Scenario S2, line 301 (Ru8S; 8Ltc)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster because both saw the same paper the same way. All eight final ratings are 6 to 8 (A: 7, 6, 8, 6; B: 7, 6, 7, 6), and no reviewer found an error in a theorem or an experiment. Both slates credited the same strengths: adaptive discretization by change-point detection removes the single-bandwidth limit of kernel methods, the toy example motivates it, and simulations and the calibrated Warfarin study favour it over three kernel baselines. Both found the same fixable weaknesses: an opaque dynamic program, an unclear cost of fitting many networks, and no discussion of local-bandwidth alternatives. The rebuttal answered these with promised edits and raised one score in A (Reviewer_Ru8S) and three in B (Reviewer_fMSm, Reviewer_srXj, Reviewer_Dcr5), so B, whose pre-rebuttal mean was at most 5.75, relied more on it. B's computation concern closed when the authors conceded a pseudocode error and claimed an expected linear number of network fits; the cited PELT result assumes a growing number of change points, which Theorem 1 does not, and no reviewer noticed. A's top score, Reviewer_cawi's 8, rests on a three-sentence review; without it A's mean is 6.33, below B's 6.5. Both meta-reviews restate the reviewer consensus. The committees weighed the same facts the same way.",
+ "candidate_reasons": [
+  "No error found in results",
+  "Shared, fixable clarity and cost concerns",
+  "Rebuttal lifted near-threshold scores",
+  "Clear toy-example motivation",
+  "Consistent gains over kernel baselines",
+  "Conceded pseudocode error treated as minor"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_Ru8S review and comment 'Concerns largely addressed' (2021-09-02)",
+  "Reviewer_cawi review (three sentences, rating 8, confidence 4)",
+  "Reviewer_54Kf review and the authors' reply with runtimes for n = 1000 to 10000",
+  "Reviewer_Dcr5 review (O(m^2) DNN fits) and 'Response to Rebuttal' (2021-08-21)",
+  "Authors' reply to Reviewer_Dcr5 ('part III.3 of Algorithm 1 needs to be removed') and to Reviewer_fMSm ('The worst-case computation time is quadratic in m')",
+  "Reviewer_fMSm 'Response to Rebuttal' (2021-08-11)",
+  "Reviewer_srXj review and post-rebuttal note",
+  "Committee A meta-review; Committee B meta-review",
+  "paper_submitted.pdf lines 145-146 (J(D) defined), 162-164 (merging only), 179 (γn by cross-validation), 206-210 (PELT pruning), 247 (fixed number of change points), 301 (S2 typo), 307-308 (p = 20; n = 50 to 300), 335-338 (limitation)",
+  "paper.pdf (camera-ready): complexity stated as O(mC_n); Majzoubi et al., Kallus & Uehara and the A-learning remark added",
+  "The supplement (Algorithm 1, Appendix B tables, proofs) is in neither PDF; claims about it are not checked"
+ ]
+}

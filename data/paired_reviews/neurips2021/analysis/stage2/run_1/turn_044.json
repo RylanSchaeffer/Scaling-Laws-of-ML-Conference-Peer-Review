@@ -1,0 +1,267 @@
+{
+  "run": 1,
+  "turn": 44,
+  "pair_id": "n21-255",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "A's AC followed four accept ratings and B's AC followed its reviewers; neither set the outcome from their own reading."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or AC rested the recommendation on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The rebuttal lifted B's U58y to 5, but that narrowed the gap and changed no recommendation; it is not a cause of the split."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's only 8 came from Reviewer_88jd after one hour, in four short paragraphs, with an incorrect 'thoroughly tested' claim and no reply to the rebuttal."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B raised that the full DBE trails its deterministic part DisAE+VAME, that interpretability is unproven, and that results rest on one dataset with single runs; these drove B's rejection."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the missing ablations, the shaky generated videos and the debt to [31]; A treated them as minor or future work, B counted them against the paper."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score moved because of reviewer discussion; poVh agreed with the criticism in private but kept 6."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each reviewer's rating matches the lean of their text; U58y's 5 matches 'still leaning towards rejection'."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No reviewer on either side said they could not judge the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's AC adopted U58y's points, but U58y's 5 sat in the middle of 4, 6, 5, not apart from the committee."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal verdicts differed (A accept, B reject on substance), so this is not a calibration gap."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A had an 8 above the accept level, and the other committee rejected, so agreement alone did not set A's tier against a spread."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's rebuttal added no experiment and no A score rose; B's U58y rose on experiments the authors ran."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's meta-review names no weakness, though its reviewers named missing ablations, poor generated videos, a code bug and clarity faults."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "A's Reviewer_88jd rated 8 on the model being 'thoroughly tested on two datasets', but WFCI appears in the main text only in Table 1."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The interpretability concession went to B, which rejected; A's only concession was a minor code bug."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection came after the response period closed."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The committees' scores were far apart (mean 7.25 against 5.0), not near-identical."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither AC passed over a better-informed reviewer; B's AC followed its most detailed reviewer, U58y."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "A's scores did not rise after the rebuttal, so the rebuttal did not lift one committee more than the other."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "No outlier in either committee; both spreads are tight around their means."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer stood apart from their committee."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No detractor was set aside in either committee."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No one raised audience breadth or venue fit."
+    },
+    {
+      "id": "R25",
+      "applies": true,
+      "justification": "A's meta-review credited 'the ablations performed', although A's Reviewer_Yzq9 said the paper 'lacks ablation studies' and Table 2 shows the stochastic part adds nothing."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "A's silent reviewers were already at accept, so their silence kept no low score unrevised; B's silence did not decide the outcome."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer said they could not verify the results."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "Neither committee split evenly between accept and reject."
+    },
+    {
+      "id": "R29",
+      "applies": true,
+      "justification": "Only B received new experiments ([31] baseline, view ablations, context results) and the authors' concession that they were 'perhaps overclaiming the interpretability'; A got neither."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "No reviewer gave a wrong account of prior work; B's reading of the debt to [31] is correct."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's spotlight rests on a generic meta-review ('a very good piece of work') with no argument for the tier."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "B's critics objected as methods reviewers to the model's added value, not from a neighbouring field's premises."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "Neither side had an engaged champion; A's 8 came from a one-hour review and B's 6 agreed with the criticism."
+    },
+    {
+      "id": "R34",
+      "applies": true,
+      "justification": "B's AC judged the reframing 'as a study of different representations' too significant for a camera-ready, while A treated its issues as camera-ready fixes."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "B's AC cited poVh's private agreement, but B was not split, and no off-record assessment settled the outcome."
+    },
+    {
+      "id": "R36",
+      "applies": true,
+      "justification": "A judged the paper as a neuroscience tool that beats baselines; B judged it as a methods paper and required the new stochastic model to add something, which it does not."
+    }
+  ],
+  "added": [],
+  "reasoning": "Both committees saw largely the same paper and facts. B read it as a methods paper and found, correctly, that the full DBE trails DisAE+VAME, that interpretability is unproven and that evidence rests on one dataset with single runs (R05, R36, R06). A read it as an applied tool, gave its only 8 after a one-hour review with a wrong claim (R04, R15), and its AC gave a spotlight with no stated reason, no weakness named and credit for ablations its reviewer said were missing (R14, R25, R31). B alone got the new experiments and the interpretability concession (R29), and B's AC judged the reframing too large (R34). The candidate reasons (full model trails its ablation, accepting committee missed weak component, application versus methods framing, spotlight without stated reason) all map onto existing reasons, so none was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "run": 1,
+  "turn": 42,
+  "pair_id": "n21-245",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "A's two-sentence meta-review follows its reviewers' themes and B's acceptance follows its scores; neither AC set the outcome from their own reading."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or AC on either side rested the recommendation on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The 11 August replies moved B's RJD5 from 4 to 6 and yRN6 to 7, while no A reviewer replied and A's mean stayed at 4.75."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Each committee had one thin review (A's MjL3, B's yRQF), and B's RJD5 wrote the most exact review on either side; neither committee as a whole was thin."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A raised the uncited degree-debiasing literature (APPR, Lasagne, Fairwalk, role2vec, DEMO-Net), and A's meta-review lists novelty and missing comparisons as reasons to reject."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the same Fig. 3 results, with Glove ahead on three of six graphs; A called it no clear superiority, B accepted 'the best or nearly the best'."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "B's raises cite the authors' edits and new baselines, not other reviewers' views, and A had no visible discussion."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "A's Reviewer_MjL3 wrote only praise with no weakness or question yet rated 6, the borderline accept level."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No reviewer on either side gave a borderline score for want of expertise; B's self-declared non-expert yRQF gave 8."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's meta-review does not adopt yRQF's verdict and borrows its closing phrase from eKFw; A's follows the majority."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments differed in substance (A: novelty and missing comparisons; B: valued insight), so this is not one verdict scored at two levels."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "Neither committee was unanimous; B's spotlight came with a spread of 6, 6, 8, 7."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's raises rested on new experiments the authors ran on the paper's own setup and on conceded corrections, not on copied results; R16 covers the mechanism."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "B's meta-review called the concerns 'mostly regarding the presentation', which drops RJD5's train-test leak fix and the offset-only result at 96% of r2v's AUC."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "A's Reviewer_2mkY wrongly said Glove is 'consistently performing better', and B's champion yRQF wrongly said r2v 'works empirically the best'; each claim fed that reviewer's score."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "B heard the authors concede that the degree offset alone reaches 96% of r2v's AUC and that node2vec beats r2v-dcSBM on impact factor after the leak fix, yet RJD5 raised from 4 to 6."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection or score cut came after the response period; MjL3's late edit is an acknowledgment only."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The scores differ widely (mean 4.75 against 6.75), so the split does not come from tier cut-offs on similar scores."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's most expert reviewer, HWNH (confidence 5), was negative and A's AC followed that view; B's AC did not pass over RJD5's final 6."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "A's main concerns (missing baselines and related work) were answerable, and the authors did answer them with Fairwalk, GAT and new text; A simply did not reply."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Without B's 8 the remaining scores (6, 6, 7) still do not match A's 4, 5, 4, so one outlier did not set the split."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "B's outlier yRQF did not reply, but its positive score was not one the response answered; A had no outlier."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC set aside a detractor and framed the decision as accept or reject."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No reviewer on either side raised audience breadth or venue fit."
+    },
+    {
+      "id": "R25",
+      "applies": true,
+      "justification": "A's meta-review lists 'lacking comparison' though the rebuttal added Fairwalk and GAT, and says the discussion 'converged on rejection' with no discussion on the forum and MjL3 at 6."
+    },
+    {
+      "id": "R26",
+      "applies": true,
+      "justification": "No A reviewer answered the 11 August replies, while B's RJD5 and yRN6 engaged over two rounds and raised."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "B's Reviewer_yRQF said it would 'rely on other reviewers to judge the originality' yet rated 8, and B's AC counted it in the mean behind the spotlight."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "A's scores 4, 5, 4, 6 are not an even split, and B had no split."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "The notes show both committees got long replies with new baselines and no conflicting numbers or one-sided concessions."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "A's novelty concern rests on real, relevant omitted work, and no B reviewer endorsed a 'first' claim; R05 covers the gap."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "B's spotlight on 6, 6, 8, 7 has no stated grounds in the meta-review, and no reviewer argued for a highlight."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "Neither committee's critics argued from a neighbouring field's premises against the paper's framing."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "B's only score above 7 came from a light five-sentence review with no reply after the rebuttal, so neither committee had an engaged champion above the accept level."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No reviewer or AC rejected the fixes as too large to accept without another review."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "A's AC cites a discussion not visible on the forum, but no off-record reviewer's verdict settled a split."
+    },
+    {
+      "id": "R36",
+      "applies": true,
+      "justification": "A judged the paper by state-of-the-art performance, which the authors asked q94Z not to use, while B accepted that understanding the degree bias, not accuracy, is the contribution."
+    }
+  ],
+  "added": [],
+  "reasoning": "The split has four parts, and existing reasons cover each one. First, A judged the paper against degree-debiasing work that only A raised (R05). Second, both committees saw the same mixed Fig. 3 results but weighed them differently (R06), and A asked for state-of-the-art performance where B valued the insight (R36). Third, B's reviewers engaged with the rebuttal and A's did not (R03, R26). B also kept its raises after damaging concessions on the offset-only baseline and the leak fix (R16). Fourth, B's spotlight rests on a non-expert 8 with no stated grounds for the tier (R27, R31). Both meta-reviews misreport their record (R14, R25), and reviewers on both sides misread Fig. 3 (R15). The candidate 'score raises for conceded corrections' is R03 plus R16, so the pair adds no reason.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ]
+}

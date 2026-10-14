@@ -1,0 +1,221 @@
+{
+  "pair_id": "n21-032",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_WTSt"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four reviewers gave 6 ('Marginally above the acceptance threshold') at confidence 3 or 4. No reviewer stands apart."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_WTSt",
+          "claim": "The '65x' speed-up (9.672/0.148 in Table 3) compares a student that reads embeddings stored offline with early-fusion models that compute everything online, so it may not be fair.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted abstract l.19 and l.82-84 claim 65x. The Table 3 caption says Student-F's 'embeddings are stored offline'; no baseline gets the same treatment. Against the offline-feature baselines the authors added (SimGNN-F 2.591 s), the factor on the AIDS test set is 17.5x. The camera-ready abstract says 'more than 10x'."
+        },
+        {
+          "reviewer": "Reviewer_WTSt",
+          "claim": "The Hungarian and GENN-A* times in Table 3 seem wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "l.304-305: both times are 'copied from [39]'. The authors conceded (reply to Reviewer_zANd) that [39] times one pair of graphs, while the rest of Table 3 times the whole test set (78,400 pairs). WTSt's pointer was off: per the authors, GENN-A*'s Table 3 times only the heuristic h(p). The error made GENN-A* look about as fast as SimGNN (13.323 s against 11.139 s); per pair it is about 94,000 times slower. It worked against the authors and did not inflate the 65x, which is measured against E-SimGNN."
+        },
+        {
+          "reviewer": "Reviewer_9hgj",
+          "claim": "l.174 should read sigma(x_n^T c) x_n, and Eq. 7 gives the binary Huber loss three arguments.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted l.174: h = sum_n sigma(x_n^T c x_n). Submitted Eq. 7: l_delta(psi_D(h^T_Ab, h^T_aB), h^S_Ab, h^S_aB). The authors confirmed l.174. The camera-ready fixes both."
+        },
+        {
+          "reviewer": "Reviewer_9hgj",
+          "claim": "Table 3 is unfair for new query graphs, whose embeddings must first be computed.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The paper cannot settle it: the Table 3 caption says only that Student-F's embeddings 'are stored offline'. The authors replied that the 0.148 s includes embedding the unseen query graphs. 9hgj accepted this ('I now better understand ... the comparison setting')."
+        },
+        {
+          "reviewer": "Reviewer_zANd",
+          "claim": "GENN-A* outperforms the model by a lot, especially on AIDS.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, AIDS: GENN-A* mse 0.635, rho 0.959, p@10 0.871 against the teacher's 1.601, 0.901, 0.658 and the student's 1.546, 0.898, 0.649. The paper concedes it at l.284-285."
+        },
+        {
+          "reviewer": "Reviewer_Srnx",
+          "claim": "The largest dataset contains a few hundred nodes per graph on average.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.253-260: AIDS and LINUX graphs have at most 10 nodes; IMDB has 1,500 graphs. The authors' statistics give IMDB 13.66 nodes per graph. Srnx's wider point, that the benchmarks are small, holds."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Responses posted 2021-08-10. Reviewer_WTSt edited on 2021-08-24 to add 'I would like to leave my score unchanged'. Reviewer_9hgj replied on 2021-08-18 ('I now better understand the contributions of this paper and the comparison setting') and did not edit. Reviewer_Srnx replied on 2021-09-15 ('I have taken your reply into considerations') and did not edit. Reviewer_zANd neither replied nor edited.",
+        "what_convinced_or_not": "The offline-feature baselines (SimGNN-F, E-SimGNN-F) and a per-pair timing table on four datasets settled the timing doubts of WTSt ('Thanks for the responses to address my concerns regarding the inference time') and 9hgj, but neither raised a 6. The novelty answer (first distillation over joint graph features) drew only 9hgj's thanks. Srnx got dataset statistics and timings on all four datasets, but no larger graphs and no MCS: the authors said GED labels for large graphs cannot be computed, and promised MCS later. Srnx kept 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review opens with Reviewer_WTSt's summary almost word for word ('a new teacher-student framework for efficient graph similarity computation'). It credits the rebuttal's 'new experimental results requested by the reviewer', notes the novelty concern, and sets it aside: 'the application of knowledge distillation for similarity computation itself is novel ... The results are significant.' This matches four 6s.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6: a clear idea, distilling an early-fusion model into a Siamese student through embedding decomposition, with a large inference speed-up.",
+        "The rebuttal's offline-feature baselines left a speed-up of 17.5x on AIDS, which settled the timing doubts of Reviewer_WTSt and Reviewer_9hgj.",
+        "The AC judged distillation for graph similarity novel although its parts (GIN, attention, relational distillation) are borrowed.",
+        "Requests for larger graphs, MCS and the AIDS gap to GENN-A* were treated as limits, not flaws."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_3zgJ"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6. Reviewer_quwN's 7 is one point above the others and decides nothing: A accepted with four 6s. The 7 is weak evidence of quality. It restates the paper's claims ('65x faster', 'cutting-edge accuracy on most datasets') without checking them, lists only presentation points, and quwN never joined the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3zgJ",
+          "claim": "The simpler student sometimes beats the teacher in accuracy (e.g., mse, p), so the teacher may not be needed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 has one such cell in 20: AIDS mse, student 1.546 against teacher 1.601; the paper states it at l.289-290. Table 2 already shows the teacher is needed: without distillation the student scores AIDS mse 1.77 and IMDB mse 0.763, against 1.546 and 0.581 with it."
+        },
+        {
+          "reviewer": "Reviewer_3zgJ",
+          "claim": "Table 3 is unfair: Student-F stores embeddings offline, and no baseline gets the same optimisation.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 has no offline variant of any baseline. The authors then added SimGNN-F (2.591 s) and E-SimGNN-F (3.464 s); Student-F (0.148 s) stays 17.5x faster than the better of them on AIDS."
+        },
+        {
+          "reviewer": "Reviewer_3zgJ",
+          "claim": "Many baseline results are copied from the relevant papers.",
+          "checked_against_paper": "correct",
+          "evidence": "l.279-280: 'Most of the baseline results are copied from their published papers'; l.304-305 says the same of the Hungarian and GENN-A* times. The authors' own E-SimGNN run has a worse AIDS mse (2.096) than the published SimGNN (1.189)."
+        },
+        {
+          "reviewer": "Reviewer_wszK",
+          "claim": "The author checklist is incomplete, with many 'See .' statements that point nowhere.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist items 1(b), 1(c), 2(a), 2(b) and 3(a)-3(d) read '[Yes] See .' with no pointer. Item 3(c) claims error bars, but Tables 1-3 have none. Items 2(a)-2(b) claim proofs, but the paper has no theorems."
+        },
+        {
+          "reviewer": "Reviewer_wszK",
+          "claim": "The benchmarks are small: under 2,000 graphs, each with about 10 nodes.",
+          "checked_against_paper": "correct",
+          "evidence": "l.253-261: 700, 1,000, 1,500 and 120 graphs; AIDS and LINUX graphs have at most 10 nodes. The authors' statistics give 7.59 to 13.66 nodes per graph."
+        },
+        {
+          "reviewer": "Reviewer_quwN",
+          "claim": "The distilled model is 65x faster than earlier co-attention methods.",
+          "checked_against_paper": "correct",
+          "evidence": "It matches submitted Table 3 (9.672 s against 0.148 s). But the factor sets stored embeddings against online baselines. Against the authors' own offline baselines it is 17.5x on AIDS, and 10.6x to 41.8x per pair across the four datasets."
+        },
+        {
+          "reviewer": "Reviewer_quwN",
+          "claim": "The teacher outperforms GraphSim [2] at comparable computation time.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: GraphSim has the lower mse on AIDS (0.787 against 1.601) and LINUX (0.058 against 0.163). The teacher wins rho and p@10 on those datasets and every metric on IMDB. Table 3 reports no GraphSim time."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [
+          "Reviewer_3zgJ"
+        ],
+        "evidence": "Responses posted 2021-08-10. Reviewer_3zgJ edited its review on 2021-08-29, the day it wrote 'I find author responses satisfactory and I am leaning towards an acceptance'. The review body still says 'the results are not convincing enough to justify such a complex solution' and has no post-rebuttal note. The record fits a rise from 5 to 6 but does not state one. Reviewer_quwN and Reviewer_wszK neither replied nor edited.",
+        "what_convinced_or_not": "3zgJ accepted the student-teacher answer, which cited Table 2 and the single AIDS mse cell, but still wanted 'more explanation on this dimension'. 3zgJ said nothing about the new offline baselines. wszK got dataset statistics, a per-pair timing table for all four datasets and an account of the AIDS gap to GENN-A*, and did not respond. quwN got answers on Fig. 7, code release and the joint-embedding ablation, and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The closing verdict echoes Reviewer_quwN, who wrote 'this paper has made a solid contribution to this field with comprehensive experimental results to support it'; the AC wrote 'this paper makes a solid technical contribution to this field'. The AC adds Reviewer_wszK's caveat ('the property for very large graph is still open to investigation'). It does not mention Reviewer_3zgJ's doubts about the timing comparison or the teacher's value.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No detractor (7, 6, 6). Reviewer_quwN's 7 called distillation into separate models 'a novel direction' and the speed-up 'overwhelming'.",
+        "Reviewer_3zgJ's doubt about the teacher's value was answered from the paper's own Table 2; 3zgJ ended 'leaning towards an acceptance'.",
+        "The same offline-baseline fix as in A kept a speed-up of 10.6x to 41.8x per pair across four datasets.",
+        "The AC: distillation for graph comparison 'is new and makes much sense'; very large graphs left open."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Equation errors at l.174 and in Eq. 7 (Reviewer_9hgj)",
+    "Copied GENN-A* and Hungarian times look wrong (Reviewer_WTSt); this drew the authors' admission of a per-pair against whole-test-set mismatch",
+    "Cost of embedding new query graphs at inference (Reviewer_9hgj)",
+    "Only GED is evaluated, not MCS (Reviewer_Srnx)"
+  ],
+  "issues_only_b": [
+    "The student beats the teacher on AIDS mse, so is the teacher needed? (Reviewer_3zgJ)",
+    "Baseline numbers copied from published papers (Reviewer_3zgJ)",
+    "Misuse for adversarial search, such as faster password search (Reviewer_3zgJ)",
+    "Incomplete author checklist with blank 'See .' pointers (Reviewer_wszK)",
+    "Presentation: why joint-embedding distillation fails, the delta in Fig. 7, a student t-SNE, Fig. 6 legibility, code release (Reviewer_quwN); define early fusion sooner (Reviewer_wszK)"
+  ],
+  "shared_issues": [
+    "Unequal timing comparison: the student reads stored embeddings, the baselines do not (A: WTSt, 9hgj; B: 3zgJ)",
+    "Limited novelty: GIN, attention and distillation are existing parts (A: 9hgj, AC; B: 3zgJ, quwN on the teacher)",
+    "Small benchmarks of about 10 nodes per graph, and behaviour on large graphs (A: Srnx; B: wszK, AC)",
+    "GENN-A* is more accurate on AIDS, and the speed-accuracy trade-off (A: zANd; B: wszK)",
+    "Timing reported only on AIDS (A: Srnx; B: wszK), and training cost (A: WTSt; B: wszK)",
+    "No limitations or societal-impact section in the main paper (A: zANd; B: wszK, 3zgJ); the l.126 typo (A: WTSt; B: wszK)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster from the same facts, weighed the same way. Six of seven reviewers gave 6, and no reviewer in either committee argued for rejection. Each committee had a reviewer who called the headline speed-up unfair: Reviewer_WTSt and Reviewer_9hgj in A, Reviewer_3zgJ in B. The submission claims 65x on AIDS (Table 3: E-SimGNN 9.672 s against Student-F 0.148 s), but only the student reads embeddings stored offline. The authors posted the same fix to both forums: against offline-feature baselines, the factor is 17.5x on AIDS and 10.6x to 41.8x per pair on four datasets. In both forums they also admitted that Table 3 set per-pair GENN-A* and Hungarian times beside whole-test-set times. No reviewer lowered a score, and the camera-ready abstract says 'more than 10x'. Both ACs gave the same reason: distillation is new for graph similarity, and the experiments support it. Neither committee tested the accuracy claim. In Table 1 the teacher's AIDS mse (1.601) is worse than that of SimGNN (1.189), GraphSim (0.787) and GENN-A* (0.635), and GraphSim beats it on LINUX mse (0.058 against 0.163). Reviewers in both committees (zANd, wszK) saw only the GENN-A* gap. The one rating above 6, Reviewer_quwN's 7 in B, restates the paper's claims and decided nothing.",
+  "candidate_reasons": [
+    "No detractor in either committee",
+    "Simple idea with large speed-up",
+    "Overstated speed-up corrected in both",
+    "Novelty doubts set aside by ACs",
+    "Accuracy table unchecked in both"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf abstract l.19 and l.82-84 (65x claim)",
+    "paper_submitted.pdf Table 3 and l.304-305 (timings; GENN-A* and Hungarian copied from [39])",
+    "paper_submitted.pdf Table 1 (AIDS and LINUX mse against SimGNN, GraphSim and GENN-A*)",
+    "paper_submitted.pdf Table 2 (student without distillation; Joint Feat)",
+    "paper_submitted.pdf l.174, Eq. 7 and checklist",
+    "Reviewer_WTSt final review and after-rebuttal note",
+    "Reviewer_9hgj final review and reply of 2021-08-18",
+    "Reviewer_3zgJ final review and comment of 2021-08-29",
+    "Reviewer_quwN final review",
+    "Authors' replies to Reviewer_zANd (A) and Reviewer_wszK (B): per-pair timing table and admission on the GENN-A* times",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) abstract: 'more than 10x'"
+  ]
+}

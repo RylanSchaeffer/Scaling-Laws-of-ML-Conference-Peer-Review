@@ -1,0 +1,224 @@
+{
+  "pair_id": "n21-026",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 5, 6],
+      "confidences": [5, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_bLjg", "Reviewer_R2hp"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 5, 6. The 5 (Reviewer_R2hp) is one point below the rest and rests on clarity, a concern Reviewer_bLjg shares. Before the rebuttal the ratings were 5, 5, 6, 6 (AC)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_R2hp",
+          "evidence": "1.5 hours. Three checkable complaints are contradicted by the text: the noisy transition does not drop the action (L236-237: the agent 'observes the current state as its next state despite taking any action'); a limitation and the societal impact are stated (L312-315); the 3D-navigation results are pointed to ('Appendix's Fig. 12', L302-303). The clarity complaint itself is specific and shared by Reviewer_bLjg."
+        },
+        {
+          "reviewer": "Reviewer_m2e7",
+          "evidence": "2 hours at confidence 5 ('checked the math/other details carefully'), yet the main review is six generic sentences and names no detail of the method or results. It calls the paper 'well written', against Reviewer_bLjg and Reviewer_R2hp. Its one concrete point (no Dreamer, SimPLe or Rainbow baselines) is valid and was B's main request. It did answer the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_m2e7",
+          "claim": "The experiments omit strong model-based baselines (Dreamer v1/v2, SimPLe) and strong model-free ones such as Rainbow.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists only Nature DQN, MFEC, NEC, EMDQN, EEVA and ERLAM; SimPLe [20] is cited only for Atari's stochasticity (L277). The authors argued scope and did not dispute it. They later ran Dreamer-v2 and SimPLe comparisons but posted them only to B."
+        },
+        {
+          "reviewer": "Reviewer_bLjg",
+          "claim": "Algorithm 1 lines 12-13 (and the end-of-episode block) fall outside the per-step for loop; Reviewer_Crem says the same of lines 12-16.",
+          "checked_against_paper": "correct",
+          "evidence": "In the submitted Algorithm 1 both 'if' blocks sit at the indentation of 'for t = 1, T do'. The authors called it a typo in both forums."
+        },
+        {
+          "reviewer": "Reviewer_bLjg",
+          "claim": "There is no focused related-work section on earlier episodic-control methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.2 ('Other Memory-based Controls', L88-99) covers LSTMs, MANNs, DRQN and within-episode memories; episodic-control methods appear only in L18-27. The camera-ready adds an episodic-control paragraph to Section 2.2."
+        },
+        {
+          "reviewer": "Reviewer_bLjg",
+          "claim": "Fig. 2(c) shows only a fragment of the training run.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted x-axis runs from 80K to 100K steps. The authors told B's Reviewer_BrPf 'It is an error'; the camera-ready axis starts at 0."
+        },
+        {
+          "reviewer": "Reviewer_R2hp",
+          "claim": "In the noisy-transition setting the action is randomly not executed, so the agent stays on the same trace.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L236-237: 'with probability ptr, the agent observes the current state as its next state despite taking any action'; the Fig. 4 caption says the same. The action executes and only the observation is stale, as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_R2hp",
+          "claim": "The paper has no discussion of limitations at all and no section on societal impact.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L312-313 name the large number of hyperparameters as a limitation; L313-315 address societal impact. Each takes one or two sentences, so 'thin' would be right; 'none' is wrong."
+        },
+        {
+          "reviewer": "Reviewer_bLjg",
+          "claim": "Table 1's '10 million frames' may be 10M agent steps, that is 40M emulator frames.",
+          "checked_against_paper": "not_checked",
+          "evidence": "L278 says MBEC++ 'adopts DQN [29] with the same setting', and DQN repeats each action for four frames. The authors replied that they count each timestep as one frame, without saying whether they skip frames. Appendix B.4, which would settle it, is in neither PDF. bLjg replied 'Thanks for the clarification' and nobody followed up."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_bLjg"],
+        "evidence": "The AC gives pre-discussion 5, 5, 6, 6 and post-discussion 5, 6, 6, 6. Reviewer_bLjg edited on 2021-08-19 and wrote that day 'I will raise my score to a 6'. Reviewer_R2hp edited on 2021-09-10 ('I will therefore stick to my vote'); its reply to the rebuttal survives only in the AC's quotation. Reviewer_m2e7 (2021-08-19): 'I will keep the score. But I do not agree with the rebuttal.' Reviewer_Crem did not respond.",
+        "what_convinced_or_not": "bLjg moved on promises: an episodic-control subsection, written heuristics for L, N and K, and clarity fixes. bLjg held back a 7 because the heuristics 'still lack empirical justification'. m2e7 rejected the scope argument: 'If all the EC baselines are using DQN as their backbone, this doesn't mean you are fine if you just follow them.' A received no new experiments. Its only model-based evidence was the authors' cross-budget claim that MBEC++ is 'far better than SIMPLE at 4M frames'; their matched-budget run, posted only to B, does not bear that out. R2hp found the clarity problem unresolved."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Reports pre- and post-discussion scores and walks through each reviewer with quotes, including an R2hp comment not in the public record. Sets aside m2e7's baseline concern as 'not shared by the other reviewers' and judges Crem's questions 'in my estimation addressed in the rebuttal'. Accepts on 'consensus on the paper having interesting contributions and an aggregate lean towards acceptance'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Borderline but positive ratings (6, 6, 5, 6; mean 5.75); all four reviewers called the idea novel, and the AC accepted on the 'aggregate lean towards acceptance'.",
+        "Clarity (R2hp, bLjg) and the number of hyperparameters (bLjg) were judged fixable in revision; bLjg rose from 5 to 6 on that assumption.",
+        "m2e7's request for model-based and stronger model-free baselines got no experiment in A, but m2e7 still voted 6 and the AC treated the concern as isolated.",
+        "The AC judged Crem's questions on memory-key consistency answered by the rebuttal."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 7],
+      "confidences": [4, 3, 5, 3],
+      "reviews_edited_after_posting": ["Reviewer_BrPf", "Reviewer_grEv", "Reviewer_trSB"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 7. Before the rebuttal Reviewer_grEv's 4 stood two points below the others; it rose to 6. Reviewer_trSB's 7 was a 6 and Reviewer_BrPf's was a 'borderline accept'; both rose on the new model-based baselines."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_BrPf",
+          "claim": "MFEC is not mentioned in Section 2.2.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.2 (L88-99) names LSTMs, MANNs, DRQN, policy-gradient memories and reward-shaping memories, but no episodic-control method. The camera-ready adds them."
+        },
+        {
+          "reviewer": "Reviewer_BrPf",
+          "claim": "MBEC is portrayed as the first deep RL method to explicitly model episodic memory.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L18-27 review MFEC [4], NEC [31] and the hybrids [30, 14, 25, 40]; L28-34 present MBEC as fixing their three weaknesses, not as the first such method."
+        },
+        {
+          "reviewer": "Reviewer_BrPf",
+          "claim": "MBEC alone (without DQN) is not evaluated on the stochastic, Atari or POMDP tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "L238, Table 1 and Section 4.4 use MBEC++ only; MBEC alone appears only in the maze (Section 4.1). The authors conceded and promised MBEC results for classical control and six Atari games."
+        },
+        {
+          "reviewer": "Reviewer_BrPf",
+          "claim": "Fig. 2(c) starts at step 80K.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted x-axis runs from 80K to 100K. Reviewer_G6K7 adds that it shows no variance, which is also true. The camera-ready axis starts at 0."
+        },
+        {
+          "reviewer": "Reviewer_grEv",
+          "claim": "A pretrained network supplies the targets of the TR/TP losses, and the paper never says how it is trained.",
+          "checked_against_paper": "correct",
+          "evidence": "L189-191: for image states the trajectory model 'learns to reconstruct the feature vector of the image input'; L199-200: in the noisy maze 'The image is preprocessed by a pretrained ResNet'. The authors told grEv 'We did not use any pretrain network to construct TR/TP loss' but told Reviewer_trSB the noisy-maze feature is a pretrained ResNet18 output. Every noisy-maze baseline receives the same vector, so the unfair-comparison worry does not follow there. The camera-ready says Atari uses DQN's standard CNN."
+        },
+        {
+          "reviewer": "Reviewer_grEv",
+          "claim": "The Atari results report only the best seeds, and the number of seeds is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 gives single numbers with no spread or seed count, although the checklist answers error bars '[Yes] See Sec. 4'. On 2021-08-18 the authors confirmed that only the games in Appendix Fig. 9 had five runs; every other game ran once, and the per-game test scores use the best model stored during training."
+        },
+        {
+          "reviewer": "Reviewer_grEv",
+          "claim": "Switching between the two reading rules is not ablated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L273-274 report the Appendix B.6 ablations: 'dynamic consolidation is better than fixed combinations and optimal pread is 0.7'. grEv apologised for missing it on 2021-08-16."
+        },
+        {
+          "reviewer": "Reviewer_trSB",
+          "claim": "The authors of 'ERLAM' call their algorithm NEC2DQN.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Reference [40] (Zhu et al., ICLR) is ERLAM; NEC2DQN is reference [30] (Nishio and Yamane). trSB's companion point, that 'EEVA' should be 'EVA' [14], is correct, and the camera-ready fixes it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_grEv", "Reviewer_trSB", "Reviewer_BrPf"],
+        "evidence": "Reviewer_grEv edited on 2021-08-23 and wrote 'score 4 --> 6'. Reviewer_trSB edited on 2021-08-30: 'raising my final score from a 6 to a 7'. Reviewer_BrPf edited on 2021-08-30: 'I'm updating my score to a 7', up from what the review calls a 'borderline accept'. Reviewer_G6K7 kept 6 and wrote on 2021-09-13 'I remain in support of accepting this paper'.",
+        "what_convinced_or_not": "New experiments did most of the work. trSB: 'I'm happy to see the new comparisons to model-based methods'; BrPf thanked the authors for 'the new model-based results' and moved to 7. grEv moved on the clarifications (no separate pretraining phase; the reading-rule ablation exists) and on a promise to state 'one seed for these games, best model'. G6K7 wanted the model-based baselines on all games but stayed in support. The new numbers show parity: Dreamer-v2's better run beats MBEC++ on Alien, Gopher and Hero, and MBEC++ beats both runs on Asterix, Breakout and Fishing Derby. At SimPLe's 400K-frame budget MBEC++ leads on four of six games, clearly only on Breakout and Fishing Derby, which undercuts the first rebuttal's 'far better than SIMPLE'. Nobody asked how the MBEC++ row of the Dreamer-v2 table was produced."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences. The first nearly copies the paper's L22-24 ('leverage both episodic and habitual learning by combining state-action episodic memories with parametric value functions like Deep Q-Network'). The strengths copy Reviewer_trSB ('compelling from a theoretical/neuroscience standpoint', 'The performance is strong') and Reviewer_BrPf ('dynamic weighting between memory-based and parametric values estimates is also novel'). The only concern named is complexity. It does not mention the new model-based results that moved two reviewers, or the single-seed Atari protocol.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal (7, 6, 6, 7; mean 6.5): novel trajectory memory, memory-based planning and dynamic weighting, with strong results in four domains.",
+        "Dreamer-v2 and SimPLe comparisons, run during the discussion at three reviewers' request, moved trSB and BrPf from 6 to 7.",
+        "grEv's objections were partly misreadings; the single-seed, best-checkpoint Atari protocol was accepted on a promise to disclose it (4 to 6).",
+        "The AC named complexity as the only concern and did not treat it as blocking."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Many hyperparameters with little guidance on setting them; it capped Reviewer_bLjg at 6",
+    "A stronger model-free backbone such as Rainbow (Reviewer_m2e7)",
+    "Stale memory keys as the encoder trains, and recall over very long Atari episodes (Reviewer_Crem)",
+    "Whether '10M frames' means 10M agent steps, that is 40M emulator frames; left unresolved (Reviewer_bLjg)",
+    "Noisy transition as too weak a stochasticity test, based on a misreading of L236-237 (Reviewer_R2hp)",
+    "'Episodic memory' terminology and the maze reward function missing from the main text (Reviewer_bLjg)"
+  ],
+  "issues_only_b": [
+    "Single-seed Atari runs with best-checkpoint test scores (Reviewer_grEv)",
+    "The pretrained network behind the image feature vectors used as TR targets (Reviewer_grEv, Reviewer_trSB)",
+    "The TR loss does not address stochastic rewards; neighbour averaging does (Reviewer_grEv)",
+    "MBEC alone not evaluated beyond the maze (Reviewer_BrPf)",
+    "Choice of baselines and balanced tuning effort, e.g. PPO (Reviewer_G6K7)",
+    "Training the consolidation weight by TD error, and gradient flow in Eq. 7-8 (Reviewer_grEv, Reviewer_trSB)"
+  ],
+  "shared_issues": [
+    "Novel trajectory memory, memory-based planning and dynamic weighting; broad experiments (all eight reviewers)",
+    "Missing model-based baselines such as Dreamer-v2 and SimPLe (A: m2e7; B: BrPf, trSB, G6K7); answered with experiments only in B",
+    "A complicated method that is hard to follow (A: R2hp, bLjg; B: trSB, grEv, G6K7)",
+    "Thin episodic-control related work; Section 2.2 omits MFEC (A: bLjg, R2hp; B: BrPf)",
+    "Algorithm 1 loop structure and the 'update'/'write' naming (A: bLjg, Crem; B: trSB); 'EEVA' should be 'EVA' (A: bLjg; B: trSB)",
+    "Fig. 2(c) shows only steps 80K to 100K (A: bLjg; B: BrPf)",
+    "Random switching between the two reading rules unexplained (A: bLjg; B: G6K7, grEv)",
+    "Thin limitations and societal-impact discussion (A: R2hp; B: G6K7)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. All eight reviewers called the trajectory memory, memory-based planning and dynamic consolidation novel, and the experiments broad. Most also found the method complicated and hard to follow. Both committees started at a mean of 5.5 (A: 5, 5, 6, 6, per its AC; B: 6, 6, 4, 6, from the edits). B ended higher, 6.5 against 5.75, because B saw evidence that A never saw. Three B reviewers pressed for model-based baselines, and Reviewer_G6K7 supplied code links. On 2021-08-23 the authors posted Dreamer-v2 and SimPLe comparisons on six Atari games to B's forum only, while A's discussion was still open. Reviewer_trSB and Reviewer_BrPf rose to 7 and cited these results. In A, Reviewer_m2e7 asked for the same baselines and got only a scope argument. m2e7 stayed at 6, and A's AC set the concern aside as 'not shared by the other reviewers'. The new numbers show parity, not superiority: Dreamer-v2's better run beats MBEC++ on three of six games, and MBEC++ wins the other three. No reviewer and neither AC argued for more than a poster.",
+  "candidate_reasons": [
+    "Shared view: novel but convoluted",
+    "Rebuttal experiments shown to one committee",
+    "Baseline concern isolated in one committee",
+    "Clarity treated as fixable",
+    "Single-seed results accepted on promise",
+    "No advocate above poster"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Authors' post 'More empirical evidence supporting our method', B forum, 2021-08-23",
+    "Reviewer_trSB review update and reply of 2021-08-30",
+    "Reviewer_BrPf reply of 2021-08-30",
+    "Reviewer_grEv reply 'Benefit of the doubt' (2021-08-23) and the authors' 'Experiment details' (2021-08-18)",
+    "Reviewer_m2e7 reply of 2021-08-19 (A)",
+    "Reviewer_bLjg review edit and reply of 2021-08-19",
+    "Reviewer_R2hp final review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1 and L278",
+    "paper_submitted.pdf L189-191 and L199-200",
+    "paper_submitted.pdf L236-237, L273-274, L302-303, L312-315",
+    "paper_submitted.pdf Section 2.2, Algorithm 1 and Fig. 2(c)"
+  ]
+}

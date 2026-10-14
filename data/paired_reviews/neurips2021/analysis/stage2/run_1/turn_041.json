@@ -1,0 +1,267 @@
+{
+  "run": 1,
+  "turn": 41,
+  "pair_id": "n21-230",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "B's AC added its own objection (ATE needs no counterfactuals, monotonicity easier to defend), but every B reviewer was below threshold, so the reject matches the scores; A's AC leaned on scores, and its unexplained tier is R31."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither committee's recommendation rests on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The same level-2/level-3 defence lifted Reviewer_g3MG, Reviewer_cSRr and Reviewer_4cdP to 7 in A; in B nothing moved."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Both committees had one inattentive reviewer (A's Reviewer_eGhr, B's Reviewer_XBKm) and both had thin reviews; the scrutiny gap is one of expertise (R27), not of attention."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B challenged the premise: Reviewer_ybLo on the unfalsifiable minimum-variance assumption, the AC on ATE estimation needing no counterfactuals; only B raised the vacuous Corollary 2 bound."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees found the paper hard to read and heard the same ATE-is-level-2 defence; A took it as a clarification, B's AC turned it against the authors."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "A's scores rose after the authors' replies, not after reviewer discussion; B had no discussion."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Reviewer_eGhr's text praises the theory ('I haven't seen any other papers like it') and lists only minor clarity points, yet the rating is 5."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's Reviewer_XBKm gave 5 without grasping the details, but A had more unsure reviewers and they gave 7, not borderline scores; B's mean is well below threshold."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's AC adopted Reviewer_ybLo's stance, but the other B reviewers also rated below threshold, so no reviewer's view was set aside."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The committees' verbal assessments differ; B challenged the premise, A did not."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A's scores were not unanimous (Reviewer_eGhr's 5)."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "A's three reviewers raised to 7 on clarifications and promised camera-ready changes (a promised Gumbel-max derivation, an extra-page rewrite); none re-examined proofs or experiments."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's meta-review names the clarity concerns before calling them cleared up; it does not drop or invert them."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "Reviewer_g3MG's Gumbel-softmax confusion and B's maximal-coupling misreading are wrong, but neither fed the scores or recommendation."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The concession that the choice 'cannot be falsified' went to B, which did not raise its scores; A received no damaging admission."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection came after the response period; B's objections were all in the initial reviews."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The reviews differ in substance and scores (7,7,7,5 vs 3,5,5); the split is not a tier cut-off on near-identical input."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No committee's best-informed reviewer was passed over; B's AC agreed with its reviewers and A's highest-confidence reviewers were followed."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "A's concerns were clarity gaps the authors closed with formal statements and Gumbel-max settings; B's main concern was the premise itself, which the authors conceded and no response could fix."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Without the outliers A is still 7,7,7 and B still 5,5; no single score crossed a tier boundary."
+    },
+    {
+      "id": "R22",
+      "applies": true,
+      "justification": "Reviewer_ybLo (3, B) and Reviewer_eGhr (5, A) never replied to the authors' answers; ybLo's 3 stood unrevised and the B AC adopted its stance."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "A's AC ignored Reviewer_eGhr's 5 without discussing it and still gave a spotlight."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No reviewer raised audience breadth or venue fit."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "A's meta-review's 'a majority of reviewers agreed' is accurate; it paraphrases the rebuttal but does not misreport the record."
+    },
+    {
+      "id": "R26",
+      "applies": true,
+      "justification": "No B reviewer replied to the authors' 2021-08-07 responses or joined the discussion, while three A reviewers engaged and raised their scores."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "A's Reviewer_g3MG ('a bit beyond my expertise') and Reviewer_cSRr ('unable to assess the soundness') gave 7 at confidence 3 and 2, and the AC counted them at full weight."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "Neither committee was evenly split."
+    },
+    {
+      "id": "R29",
+      "applies": true,
+      "justification": "On latent confounding A was told 'the same set of cases' as Oberst & Sontag and B 'Markovian models'; the 'cannot be falsified' concession went to B only."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "No novelty verdict rested on a wrong account of prior work."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A gave a spotlight at mean 6.5, top rating 7 and confidences 3,3,2,2, and its meta-review gives no reason for the tier."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "B's objection concerns the paper's own causal framing from within causal inference, not the premises of a neighbouring field."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "A's supporters rated only 7 at low confidence, two outside their expertise; they were not close-reading champions well above accept."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No committee rejected because promised fixes were too large."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "No off-record input appears in either committee's record."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "B's objection is to the premise of the method, not to a standard tied to the paper's kind of contribution."
+    }
+  ],
+  "added": [],
+  "reasoning": "The split is over the paper's premise. Both committees heard the same defence, that the ATE is a level-2 quantity so any mechanism may be chosen for low variance. A's low-expertise reviewers took it as a clarification and rose to 7 on promises (R03, R13, R20, R27), and A's AC turned a 6.5 mean into a spotlight without stated grounds (R31). B's Reviewer_ybLo and AC read it as an unfalsifiable assumption and a motive that needs no counterfactuals (R05, R06), and no B reviewer engaged after the rebuttal (R22, R26). The authors also told the committees different things about latent confounding and conceded falsifiability to B only (R29). Reviewer_eGhr's 5 contradicts its own text (R08). The stage 1 candidates all map to existing reasons, so none was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36"
+  ]
+}

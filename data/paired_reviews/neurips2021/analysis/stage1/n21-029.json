@@ -1,0 +1,205 @@
+{
+  "pair_id": "n21-029",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_9yjH",
+        "Reviewer_3V7a"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6, 7, 6, 7 (DW8T, 9yjH, 3V7a, LkFC) at confidence 3 or 4; no rating stands apart. Before the rebuttal the set was 6, 6, 5, 7. Reviewer_3V7a's 5 was one point below the rest, and 3V7a rose to 6."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3V7a",
+          "claim": "The algorithm is Exp3.G with only a different exploration distribution. The paper does not compare it with Exp3.G and does not say that its LP is efficiently solvable while the weak dominating set is NP-hard.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 (Section 3.2, l.219-237) is OSMD with negative entropy, the standard unbiased estimator and exploration u from LP (P). The submitted text never names Exp3.G and says nothing about computational cost. The authors agreed, and the camera-ready adds both points (p.7)."
+        },
+        {
+          "reviewer": "Reviewer_3V7a",
+          "claim": "BESTARMID (around l.351) is not defined in the main text.",
+          "checked_against_paper": "correct",
+          "evidence": "The term appears only at l.351; l.250-251 say 'best arm identification' in words. The authors admitted they forgot to define it. The camera-ready says it is constructed in the full version."
+        },
+        {
+          "reviewer": "Reviewer_3V7a",
+          "claim": "The related work (around l.118) credits [35] with the optimal regret bound, which [35] does not give.",
+          "checked_against_paper": "correct",
+          "evidence": "l.120-121: 'Another way to achieve the optimal regret bound is developed in [35]'. The authors conceded that [35] gives only sqrt(nT log T). The camera-ready drops the sentence and the reference."
+        },
+        {
+          "reviewer": "Reviewer_9yjH",
+          "claim": "In general a log n/log log n gap remains between the upper and lower bounds.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The figure is Table 1's entry for δ = log² n (p.3): lower bound Ω(log log n · T^(2/3)), gap O(log n/log log n). Theorem 8 (l.277-279) gives Ω(max{δ/log² n, log(δ/log n)}^(1/3) · T^(2/3)), which is Ω((log log n)^(1/3) · T^(2/3)) at δ = log² n. The real gap there is log n/(log log n)^(1/3). The table drops a cube root, so the reviewer understates the gap. The camera-ready keeps the table entry."
+        },
+        {
+          "reviewer": "Reviewer_9yjH",
+          "claim": "Table 1 runs past the margin, and the reference at l.63 prints as ??.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 extends to about x = 588 pt; the text block ends at 506 pt. l.63 ends 'are in ??'. The camera-ready fixes the reference ('Appendix E') but not the table width."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_3V7a",
+          "Reviewer_9yjH"
+        ],
+        "evidence": "Reviewer_3V7a edited the review on 2021-08-17. It still ends 'I give the marginally below the acceptance threshold rating' (a 5) and adds 'I increase my score based on this'; the final rating is 6. On 2021-08-13 3V7a wrote that it is 'probably more meaningful for the community to know the right graph parameter' and that for lower bounds 'you can always pick the better one'. Reviewer_9yjH edited on 2021-08-20 ('the score is increased from 6 to 7') and wrote the same day: 'The practical motivations look reasonable and the authors promise to add experiments'. Reviewer_DW8T and Reviewer_LkFC did not reply.",
+        "what_convinced_or_not": "3V7a: the argument that δ* is a reasonable candidate for the right graph parameter, since matching lower bounds hold on some families, so the step matters even if the gain is incremental; the confirmation that the exploration LP is efficient where the weak dominating set is NP-hard (a point 3V7a raised); and taking the better of the old and new lower bounds. 9yjH: ad and short-video examples of bounded in-degree graphs, and a promise of experiments. The camera-ready main text has no experiments and no application text. It does add the Exp3.G comparison and the LP-efficiency remark that 3V7a asked for."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences. It opens 'Several reviewers raised their scores after discussing with the authors' and calls the contribution 'significant enough for better understanding the minimax regret'. It names no weakness and no detail of the paper.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Final ratings 6, 7, 6, 7 (mean 6.5): all four above the threshold after two rebuttal raises.",
+        "δ* and the LP-duality route to lower bounds read as progress toward the right graph parameter (3V7a, LkFC, DW8T), with optimal rates on complete bipartite and F_2^k graphs (9yjH).",
+        "The rebuttal settled 3V7a's novelty and comparability concerns and 9yjH's request for motivation.",
+        "The meta-review rests on the raised scores and weighs no weakness."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        3,
+        2,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 5 (G8Mu, xh89, pb7N, hwCL); each is within one point of the median 6. The 7 (Reviewer_G8Mu, confidence 3, no proof checked) is the thinnest review. The 5 (Reviewer_hwCL, confidence 4, one hour) is a specific objection to significance, not a rejection."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_pb7N",
+          "claim": "For general graphs the gap between the bounds 'may be of order δ*/n', which makes it larger than in previous work.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollary 10 (Lemma 9, α = O(n/δ*)) gives Ω((δ*²/n)^(1/3) · T^(2/3)), so its gap to the upper bound is (n log n/δ*)^(1/3), the inverse of the reviewer's expression. This can exceed the O(log n) gap of [1], and Table 1's general-graph row states only the δ*/α bound. But Theorem 8 (l.268, l.277-281) recovers and strengthens the lower bound of [1], and δ* ≤ δ. The paper's best bounds therefore never leave a larger gap than [1]. The point holds for Theorem 3 alone, not for the paper."
+        },
+        {
+          "reviewer": "Reviewer_pb7N",
+          "claim": "Theorem 8 beats [1] only for log n < δ < log² n.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 8's max{δ/log² n, log(δ/log n)} exceeds the max{δ/log² n, 1} of [1] for ω(log n) < δ < o(log² n · log log n). Line 281 covers only δ of order log² n and above; pb7N gave only the part below log² n. The authors restated the full range, and the camera-ready uses it."
+        },
+        {
+          "reviewer": "Reviewer_hwCL",
+          "claim": "Previous algorithms are optimal up to a ln n gap; with the new theorems the worst-case gap is still at least ln n/ln ln n.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 gives the previous gap as O(log n). At δ = log² n, Theorem 8 leaves a gap of log n/(log log n)^(1/3), which is at least log n/log log n. 'At least' holds even though the table entry it echoes is wrong."
+        },
+        {
+          "reviewer": "Reviewer_xh89",
+          "claim": "The paper has no numerical experiments and no discussion of practical applications, and it states the results before the model.",
+          "checked_against_paper": "correct",
+          "evidence": "The checklist marks every experiment item N/A, and the text names no application. Theorems 1-3 (l.57-80) come before the formal definitions of weak observability and δ* (l.151-162). The camera-ready main text still has no experiments or applications, although the authors promised both."
+        },
+        {
+          "reviewer": "Reviewer_G8Mu",
+          "claim": "l.63 lacks a section number, l.272 reads 'If fact', and the bound of Corollary 10 is not simplified.",
+          "checked_against_paper": "correct",
+          "evidence": "l.63 'are in ??'; l.272 'If fact'; l.296 Ω((δ*/(n/δ*))^(1/3) · T^(2/3)). The camera-ready fixes all three."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_pb7N wrote on 2021-08-19: 'I am not fully satisfied with the answer from the authors ... I thus decide to keep my score of 6.' Reviewer_G8Mu, Reviewer_xh89 and Reviewer_hwCL never replied.",
+        "what_convinced_or_not": "Nothing moved a score. The authors' first reply to pb7N skipped the main concern; on 2021-08-22 they wrote 'we apologize for skipping over your main concern' and sent nearly the text that A's authors had sent 3V7a on 2021-08-09, which moved 3V7a. It came after pb7N had kept 6 and drew no reply. hwCL's doubt about significance got only the ad and short-video examples, the text that moved 9yjH in A; hwCL did not answer. xh89 and G8Mu got promises of experiments, figures and proofreading."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "It reports the reviewers' limits ('they only apply to weakly observable graphs and the improvements are within log factors', from pb7N and hwCL) and their praise ('a very basic and challenging problem'; 'from a mathematical point of view it contains some interesting ideas', close to G8Mu's 'interesting from a mathematical perspective'). It adds 'and I concur' and calls 'the connection to integrality gaps of LPs' 'particularly compelling'. It accepts a 6.0 mean with no score changes.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 7, 6, 6, 5 (mean 6.0): three of four above the threshold, and the one 5 is a borderline doubt about significance.",
+        "The chair judged the problem basic and hard and the LP integrality-gap link compelling, and put this above the log-factor gains and the weakly-observable-only scope.",
+        "No reviewer found an error; hwCL wrote that 'the proofs seem to be correct'."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The algorithm is Exp3.G with a new exploration distribution, and the paper does not compare it with Exp3.G (Reviewer_3V7a)",
+    "BESTARMID undefined in the main text; [35] wrongly credited with the optimal rate (Reviewer_3V7a)",
+    "Extension to adaptive settings; uncertain novelty of the graph-theory step in Theorem 3 (Reviewer_DW8T)",
+    "Disjointed argument at supplement l.741-750 (Reviewer_LkFC)",
+    "Missing self-loops in the authors' video-recommendation example (Reviewer_3V7a, discussion)"
+  ],
+  "issues_only_b": [
+    "Hard to read: results before the model, no intuition or figures for the graph notions (Reviewer_xh89)",
+    "The general-graph gap of Theorem 3 with Lemma 9 can exceed that of [1] (Reviewer_pb7N)",
+    "The regime where Theorem 8 beats [1] is misstated at l.280-281 (Reviewer_pb7N)",
+    "The results cover only weakly observable graphs (Committee B AC)",
+    "Wording: Lemma 7 'The graph', 'If fact' at l.272, the unsimplified Corollary 10, the Theorem 8 sentence (Reviewer_G8Mu, Reviewer_xh89, Reviewer_pb7N)"
+  ],
+  "shared_issues": [
+    "Gains are logarithmic and tight only on special graph families (A: 9yjH, 3V7a, LkFC; B: pb7N, hwCL, AC)",
+    "The new lower bound is not directly comparable with [1], and 'we can not find an instance' is weak (A: 3V7a, LkFC; B: pb7N, hwCL)",
+    "The upper bound uses standard OSMD with negative entropy; the only new part is the LP-based exploration (A: DW8T, 3V7a, LkFC; B: hwCL, pb7N)",
+    "LP duality and rounding for the lower bound is the main technical contribution (A: DW8T, LkFC; B: G8Mu, pb7N, AC)",
+    "No experiments and no practical motivation (A: 9yjH; B: xh89, pb7N)",
+    "Cost of solving the LP (A: 3V7a; B: pb7N)",
+    "Oversized Table 1 and the '??' reference at l.63 (A: 9yjH; B: G8Mu, xh89, pb7N)",
+    "A log n/log log n gap remains in general (A: 9yjH; B: hwCL); the figure comes from Table 1, which understates the gap"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, and they agree because they read the paper the same way. Before the rebuttal their ratings were the same set, 5, 6, 6, 7 (mean 6.0). B's ratings never changed; in A, 3V7a started at 5 and 9yjH at 6. Reviewers in both committees credited the same strength: the LP-duality link that ties δ* to the lower bound, with optimal rates on complete bipartite and F_2^k graphs. They discounted the same weaknesses: log-factor gains, tightness only on special families, a standard OSMD/Exp3.G algorithm, and no experiments. The rebuttal is the only difference, and the authors sent both committees nearly the same text. In A, 3V7a agreed that finding the right graph parameter matters even when the gain is incremental, and that one can take the better of the old and new lower bounds (5 to 6). 9yjH accepted the ad and video examples and a promise of experiments (6 to 7); the camera-ready main text has no experiments. In B, the authors' first reply skipped pb7N's main concern, the full argument came after pb7N had kept 6, and the other three reviewers never replied. pb7N's remaining objection, a general-graph gap worse than in [1], holds for Theorem 3 alone but not for the paper, because Theorem 8 recovers [1]. Both chairs accepted a borderline-positive slate. A's chair cited the raised scores; B's chair named the limits and found the LP integrality-gap link compelling. The rebuttal moved A's mean from 6.0 to 6.5 but decided neither outcome.",
+  "candidate_reasons": [
+    "Identical pre-rebuttal rating sets",
+    "Shared view of log-factor gains",
+    "LP-duality idea valued by both",
+    "Rebuttal engagement lifted only A",
+    "Score raised on promised experiments",
+    "Borderline slates accepted by chairs"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_3V7a final review and 2021-08-13 comment",
+    "Reviewer_9yjH final review and 2021-08-20 comment",
+    "Reviewer_pb7N final review and 2021-08-19 comment",
+    "Authors' 2021-08-22 reply to Reviewer_pb7N (B) and 2021-08-09 reply to Reviewer_3V7a (A)",
+    "Reviewer_hwCL final review and the authors' reply to it",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1 (p.3) and Theorem 8 (l.277-281)",
+    "paper_submitted.pdf Lemma 9 and Corollary 10 (l.294-296)",
+    "paper.pdf (camera-ready) p.7: Exp3.G and LP-efficiency paragraph; no experiments anywhere in the main text"
+  ]
+}

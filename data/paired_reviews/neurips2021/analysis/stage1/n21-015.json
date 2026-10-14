@@ -1,0 +1,245 @@
+{
+  "pair_id": "n21-015",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        5,
+        8,
+        4
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_YN6e",
+        "Reviewer_H5Nm"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_CBqV",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Reviewer_CBqV's 4 is the only 'rejection' rating. Reviewer_Y7ES's 5 is also below the threshold but states no reason. CBqV's points are specific, and the submission confirms them: Theorem 1 has no sketch (lines 162-166), the converses of Proposition 1 have no examples (lines 182-184), and the experiments use one loss family with only post-hoc recalibration baselines (Section 5). CBqV spent 2 hours and did not reply to the rebuttal, which skipped the experiments point."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Y7ES",
+          "evidence": "2 hours, confidence 3. The main review is three questions with no stated strength or weakness and no reason for a 5. The paper answers two of them: line 100 says α and y0 follow from the loss function, and Section 3.1 (lines 108-121) says one forecaster serves many decision makers with different losses, which is why the task is regression. No reply to the rebuttal. The chair set the review aside."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_CBqV",
+          "claim": "Theorem 1 has no proof sketch or intuition in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted lines 162-166 state Theorem 1 and only restate it ('In other words, ...'). Line 145 defers the proof to Appendix B. The camera-ready adds a sketch after Theorem 1, taken from the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_CBqV",
+          "claim": "Line 182 asserts that the converses of Proposition 1 fail, with no proof or counterexample.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 182-184 assert both non-implications with no example. The rebuttal offered a Google Drive illustration, and the camera-ready adds '(see Appendix C)'. Reviewer_YN6e asked for the same examples."
+        },
+        {
+          "reviewer": "Reviewer_CBqV",
+          "claim": "The experiments are narrow: few loss functions and decision rules, one kind of recalibration map, and no baseline that optimizes the decision loss directly.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.3 (lines 254-264) uses one loss family, 10c·I(a=1, y≥y0) + 10(1−c)·I(a=0, y<y0), over a 50 × 50 grid of (y0, c). The baselines (lines 250-252) are the uncalibrated forecaster and post-hoc average and distribution calibration. The authors' reply to CBqV does not address this point."
+        },
+        {
+          "reviewer": "Reviewer_H5Nm",
+          "claim": "Definitions 5 and 6 are written for a fixed x, which literally defines individual calibration; the Appendix uses the correct notation.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 170 reads 'Pr[h[x](Y) ≤ c] = c ∀x ∈ X', and line 176 is the same. The authors conceded 'an unfortunate typo in Definition 3-6 and Lemma 1'. The camera-ready writes h[X] and drops ∀x. This is the flaw that Reviewer_vtF8 in Committee B called 'fundamentally flawed notation'."
+        },
+        {
+          "reviewer": "Reviewer_YN6e",
+          "claim": "The definition does not make clear whether the reliability gap can be negative.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Definition 2 (after line 127) is an absolute value, and line 39 calls the gap 'the absolute difference'. The authors pointed this out."
+        },
+        {
+          "reviewer": "Reviewer_Y7ES",
+          "claim": "The paper leaves open how α and y0 are chosen and why the problem is regression rather than classification.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 100: α and y0 are parameters 'that depends on the loss function'. Lines 111-112 and 118-119: the provider does not know the downstream task, and many decision makers with different losses share one forecaster."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_H5Nm"
+        ],
+        "evidence": "Reviewer_H5Nm, 2021-09-10: 'I am happy to raise my score to 8'; the review was edited the same day. Reviewer_YN6e edited on 2021-09-10 to add 'I am happy to stay at my suggested grade 8'. Reviewer_Y7ES and Reviewer_CBqV did not reply and did not edit.",
+        "what_convinced_or_not": "H5Nm raised after the notation concession, a working code link and the answer on validation-set size, and still asked for an ablation on recalibration-set size. CBqV got a sketch of Theorem 1, a counterexample link and an empirical answer on sample complexity (835 samples, test TCE 0.12 to 0.07), but no answer on the experiments. CBqV did not respond."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The chair followed the two 8s ('Following the recommendation of Reviewer H5Nm and YN6e') and overruled the 4 and the 5. The meta-review reduces Reviewer_CBqV's review to its experiments point, the one point the rebuttal left unanswered, and calls it 'relatively weak'. It ignores CBqV's points on Theorem 1, Proposition 1 and sample complexity. It quotes Reviewer_YN6e's phrase 'fill an important gap' as if both 8s wrote it. It calls the paper 'well-written', although the authors conceded the notation errors on this forum. It adds the chair's own reading: 'quite timely' and 'thought-provoking'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Threshold calibration fills the gap between average and distribution calibration (Reviewer_YN6e, quoted by the chair)",
+        "Two 8s at confidence 4, one raised after the rebuttal (Reviewer_H5Nm)",
+        "Chair judged Reviewer_CBqV's call for more experiments 'relatively weak' and set aside Reviewer_Y7ES's unexplained 5",
+        "Chair's own reading: a timely, well-written, thought-provoking paper"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        4,
+        9
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_VsY9",
+        "Reviewer_vtF8"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_vtF8",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Reviewer_vtF8's 4 (confidence 4, 6 hours) is the only rating below the threshold. Each specific claim checks out against the submission, and the authors conceded the notation and the empirical-only guarantee. vtF8 said the notation made the content after Section 3.3 unreadable, so the 4 rests on presentation and an overstated theorem, not on a wrong result. The high-side counterpart is Reviewer_eKGZ's 9 at confidence 2. Its basis is exuberant: it praises clear notation and 'intuition and examples for each theoretical result', and the submission contradicts both."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_APiD",
+          "evidence": "Confidence 3, no reply to the rebuttal. Describes the aim as cost reduction by 'optimising the values for the thresholds'. The paper predicts decision loss and says this 'should not be confused with enabling decision makers to make optimal decisions' (lines 324-326). Asks the authors to cite Song et al. 2019, which is already reference [30] and the source of the distribution-calibration baseline. Asks for a complete results table, although line 229 points to Appendix A."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vtF8",
+          "claim": "Definition 3 does not parse: h[x](y0) is a fixed value, so conditioning on h[x](y0) ≤ α makes no sense; Definition 6 has the same problem.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 147 conditions on h[x](y0) ≤ α with ∀x ∈ X. Lines 74-77 say that h[x](y) is a value and h[X](Y) is the random variable. Line 176 conditions on h[x] = g. The authors conceded a typo in Definitions 3-6 and Lemma 1, and the camera-ready uses h[X]."
+        },
+        {
+          "reviewer": "Reviewer_vtF8",
+          "claim": "The definition does not capture 'condition on predicted CDFs which have α-quantile equal to y0'.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 148 gives that gloss. The event h(y0) ≤ α holds when the α-quantile is at or above y0, not equal to it. The camera-ready replaces the sentence with 'average-calibrated on subsets of the predicted CDFs that satisfy h[X](y0) ≤ α'."
+        },
+        {
+          "reviewer": "Reviewer_vtF8",
+          "claim": "Algorithm 1 needs the true TCE and recalibration maps, which only lines 211-212 mention; Theorem 2 makes no claim about generalization, so line 201 and Theorem 2 overstate the result.",
+          "checked_against_paper": "correct",
+          "evidence": "The input line of Algorithm 1 lists only h and ε. Theorem 2 (lines 218-219) has no sample qualifier. Lines 211-212 defer finite samples to Appendix A. The authors conceded that the guarantee holds 'on the empirical distribution' and that 'Generalization is a separate question'. The camera-ready adds a paragraph after Theorem 2 that says so, but its abstract still says the algorithm 'provably outputs a threshold-calibrated forecaster'."
+        },
+        {
+          "reviewer": "Reviewer_vtF8",
+          "claim": "'c percent of the times' (line 172) is wrong for c in [0, 1], and reference [10] (line 373) is not a proper citation.",
+          "checked_against_paper": "correct",
+          "evidence": "Both are in the submission. The camera-ready drops the Dawid reference and keeps 'c percent'."
+        },
+        {
+          "reviewer": "Reviewer_eKGZ",
+          "claim": "The paper provides intuition and examples for each theoretical result and is written clearly, with well-organized notation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Only Theorem 2 has an intuition (lines 213-217). Theorem 1 has none (lines 162-166), the converses of Proposition 1 have no examples (lines 182-184), and the one gloss on Definition 3 misstates it (line 148). The authors conceded the notation errors on both forums."
+        },
+        {
+          "reviewer": "Reviewer_eKGZ",
+          "claim": "Section 5.3 says 'all k decision makers' where M is meant, and the value of M is not given.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 265 says 'k'. The authors gave M = 2500, and the camera-ready reads 'all M decision makers'."
+        },
+        {
+          "reviewer": "Reviewer_APiD",
+          "claim": "Related work should add Song et al. 2019, 'Distribution calibration for regression'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "It is reference [30], cited at lines 42, 48, 173, 240 and 316, and it defines the distribution-calibration baseline."
+        },
+        {
+          "reviewer": "Reviewer_VsY9",
+          "claim": "The distribution-calibration baseline uses grid-level isotonic calibration, not the method of [30].",
+          "checked_against_paper": "not_checked",
+          "evidence": "Appendix A is not in the submitted PDF. The authors confirmed it: 'Our implementation uses binning, while [30] fits a Gaussian process'. The paper's claim that distribution calibration degrades complex forecasters (lines 293-307) rests on this implementation."
+        },
+        {
+          "reviewer": "Reviewer_VsY9",
+          "claim": "Section 7 does not discuss societal impact.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 324-332 cover the estimation-versus-optimal-decision caveat, performative effects and binary actions. There is no societal-impact discussion, although the checklist says '[Yes] See Section 7'. The camera-ready adds a fairness paragraph and the marginal-distribution limitation that VsY9 suggested."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_VsY9 edited on 2021-09-10: 'I will keep current score of 7'. Reviewer_vtF8's only edit (2021-07-29) predates the rebuttal (2021-08-10). On 2021-09-01 vtF8 wrote 'I am excited about reading the paper once the notation is updated' and stayed at 4. Reviewer_eKGZ replied on 2021-08-31, 'they address my concerns', without an edit; the score stays 9. Reviewer_APiD did not reply.",
+        "what_convinced_or_not": "Runtime figures (17 s per iteration, 40 iterations, 80 ms of isotonic fitting) satisfied eKGZ. VsY9 accepted them but noted the O(MN) cost and still wanted a stronger distribution-calibration baseline. vtF8 accepted the promised notation fix without raising. The concession that Theorem 2 holds only on the empirical distribution drew no comment from any reviewer or from the chair."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three ratings at 7 or above support acceptance. The meta-review cites 'general agreement among the reviewers on the novelty and significance', which even vtF8 shares ('highly relevant to the field and has not been studied before'). It says the presentation 'could be further improved' and lists three revisions. It reduces vtF8's review to 'polishing of the notation' and omits the overstated Theorem 2. It does not mention eKGZ's 9.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Agreement on novelty and significance, including from the detractor Reviewer_vtF8",
+        "Three ratings at 7 or above (9, 7, 7)",
+        "Notation flaw treated as fixable; the authors conceded it and promised the fix",
+        "Rebuttal answers on runtime, baselines and related work accepted (Reviewer_eKGZ: 'they address my concerns')"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No sketch of Theorem 1 in the main paper (Reviewer_CBqV)",
+    "No counterexamples for the converses of Proposition 1 (Reviewer_YN6e, Reviewer_CBqV)",
+    "Narrow experiments: one loss family, no simulations, no baseline that optimizes the decision loss (Reviewer_CBqV)",
+    "Scope beyond threshold decisions; predictive accuracy after recalibration (Reviewer_CBqV)",
+    "Why regression rather than classification; how α and y0 are chosen (Reviewer_Y7ES)",
+    "No hyperparameter details, broken code link, unspecified isotonic interpolation (Reviewer_H5Nm, Reviewer_YN6e)"
+  ],
+  "issues_only_b": [
+    "Algorithm 1 hides its TCE oracle, and Theorem 2 reads as a population guarantee (Reviewer_vtF8)",
+    "Running time and scalability of the grid search and chained isotonic maps (Reviewer_eKGZ, Reviewer_VsY9)",
+    "Fairness, and no societal-impact discussion in Section 7 (Reviewer_eKGZ, Reviewer_VsY9)",
+    "Related work on survival analysis and cost-sensitive regression (Reviewer_APiD)",
+    "Post-hoc calibration is limited by the base model (Reviewer_VsY9)",
+    "Typos and citation: k for M, 'c percent', the Dawid reference (Reviewer_eKGZ, Reviewer_vtF8)"
+  ],
+  "shared_issues": [
+    "Definitions 3-6 written with a fixed x instead of the random X (A: Reviewer_H5Nm, 'slightly off'; B: Reviewer_vtF8, 'fundamentally flawed', and Reviewer_VsY9)",
+    "Definition 3 is hard to grasp without intuition (A: Reviewer_CBqV; B: Reviewer_vtF8, Reviewer_VsY9)",
+    "No finite-sample guarantee for the recalibration (A: Reviewer_CBqV on sample complexity, Reviewer_H5Nm on recalibration-set size; B: Reviewer_vtF8)",
+    "Weak or narrow baselines: distribution calibration's poor result may come from its implementation or a small recalibration set, and every method is an isotonic variant (A: Reviewer_H5Nm, Reviewer_CBqV; B: Reviewer_VsY9)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. Most reviewers on each side found the question new and important: average calibration does not guarantee accurate decision-loss estimates, and threshold calibration is the exact condition that does. Each committee had one 4 whose specific complaints the submission confirms. In A, Reviewer_CBqV found no sketch of Theorem 1, no counterexamples for Proposition 1, and experiments with one loss family and only post-hoc recalibration baselines. In B, Reviewer_vtF8 found that Definitions 3-6 condition on a fixed x and do not parse, and that Theorem 2 holds only on the recalibration data, which the main text does not say. Both chairs overruled the 4. A's chair reduced CBqV's review to the experiments point, which the rebuttal had left unanswered, and called it 'relatively weak'. B's chair reduced vtF8's review to 'polishing of the notation'. On both forums the authors conceded the same notation 'typo' and admitted there is no finite-sample guarantee. The camera-ready fixes most of the flaws that the two 4s named. The notation flaw drew an 8 from Reviewer_H5Nm in A ('slightly off') and a 4 from vtF8 in B. The reviewers weighted that fact differently; the two committees did not. Neither committee went above a poster. A's two 8s did not argue for an award. B's top score is Reviewer_eKGZ's 9 at confidence 2. It praises the paper's intuition and notation, and the submission contradicts both.",
+  "candidate_reasons": [
+    "Lone principled detractor overruled",
+    "Notation errors treated as typos",
+    "Same flaw, opposite reviewer scores",
+    "Chair dismisses unanswered experiments critique",
+    "Low-confidence champion does not lift tier",
+    "Novel question carries both panels"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_CBqV final review and the authors' reply (no answer on experiments)",
+    "Reviewer_H5Nm final review and discussion comment, 2021-09-10 (raised to 8)",
+    "Reviewer_vtF8 final review and discussion comment, 2021-09-01",
+    "Reviewer_eKGZ final review (Clarity paragraph)",
+    "Authors' replies to Reviewer_H5Nm (A) and Reviewer_vtF8 (B): notation typo conceded",
+    "paper_submitted.pdf Definitions 3-6 (lines 147-176), Theorem 1 (lines 162-166), Proposition 1 (lines 180-184), Algorithm 1 and Theorem 2 (lines 199-219), Section 5.3 (lines 254-266), Section 7",
+    "paper.pdf (camera-ready) Section 3.3 sketch of Theorem 1, paragraph after Theorem 2, Section 7, abstract"
+  ]
+}

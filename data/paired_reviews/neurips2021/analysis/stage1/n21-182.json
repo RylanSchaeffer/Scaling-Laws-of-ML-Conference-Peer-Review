@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-182",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 7, 7, 3, 6],
+      "confidences": [4, 3, 4, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_uWwa", "Reviewer_BvU8", "Reviewer_MkB1"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_7u8M",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Ratings 6/7/7/7/3/6 (uWwa, c8qX, BvU8, i6Ex, 7u8M, MkB1). 7u8M's 3 is 3.6 points below the mean of the other five (6.6). Its checkable points hold: the main text gives no hyper-parameters for the baselines (lines 235-245), never says that SocialPool [2] was reimplemented, and says only that the pose-centred LTD and HRI 'allow absolute coordinate inputs' (lines 240-241; line 68 concedes that such methods 'fix the pose center'). uWwa called the [2] point 'a valid comment' and BvU8 repeated it. But a 'clear rejection' for these fixable gaps is severe. The rest of the case is a sweeping claim that the paper 'does not offer any novel theoretical and practical contribution', plus requests to compare with scene-context methods (Cao et al. [11]) and the SoMoF benchmark, which target other settings. 2 hours spent; no reply to the rebuttal or to the authors' 2021-09-02 reminder. The AC set it aside as 'overly harsh'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_c8qX",
+          "evidence": "2 hours, confidence 3. Two strengths ('The evaluation is thorough', 'well-written'), one suggestion on the user study and a typo. It says the limitations are adequately addressed, but the main paper has only a two-sentence Broader Impact (lines 324-326). Its whole follow-up is 'Thank you for your responses.' The 7 adds little evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7u8M",
+          "claim": "No implementation details or hyper-parameters are given for the competing methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3 (lines 235-245) gives one sentence per baseline and 'We use the same data to train these methods'; no hyper-parameters. The supplementary was not available to check. The authors promised details 'in our future revision'."
+        },
+        {
+          "reviewer": "Reviewer_7u8M",
+          "claim": "LTD [44] and HRI [43] predict pose only and [2] has no public code, so the fairness of the comparison is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 68: most prior methods 'fix the pose center and ignore the global body trajectory'. Lines 240-241 say only that LTD and HRI 'allow absolute coordinate inputs'. Lines 242-245 never say that SocialPool was reimplemented; the authors confirmed it in the rebuttal. In A the authors answered with a pointer to line 241 and no numbers; the root/pose split appeared only in B's forum."
+        },
+        {
+          "reviewer": "Reviewer_c8qX",
+          "claim": "All user-study scores, ground truth included, are very close (also Reviewer_BvU8).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: the method leads the best baseline by 0.01 (CMU-Mocap, 3.62 vs LTD 3.61) to 0.03 (Mix1), with standard deviations of 0.78-0.98, and it scores above ground truth on 3DPW (3.78 vs 3.77). The paper gives no rater or sample count. Line 270 calls the spread 'standard error'; the caption says 'standard deviations'."
+        },
+        {
+          "reviewer": "Reviewer_MkB1",
+          "claim": "The discriminator gives only marginal improvements on most datasets (Tables 1-3).",
+          "checked_against_paper": "correct",
+          "evidence": "3 s MPJPE without vs with D: MuPoTS-3D 2.26 vs 2.22, Mix1 4.00 vs 3.97, Mix2 2.95 vs 2.82, 3DPW 8.09 vs 7.83. Only CMU-Mocap shows a large gain (2.57 vs 2.18). The rebuttal added only a GIF, and MkB1 still called the discriminator possible 'dead weight'."
+        },
+        {
+          "reviewer": "Reviewer_MkB1",
+          "claim": "The local-range encoder and the DCT input encoding are not ablated.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-3 ablate only the global encoder, the discriminator and SPE. The authors pointed to supplementary Tables 1-2; the camera-ready adds an 'Ours w/o Local' row."
+        },
+        {
+          "reviewer": "Reviewer_MkB1",
+          "claim": "The MPJPE metric has no unit.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 248: 'We report the MPJPE in 0.1 meters'."
+        },
+        {
+          "reviewer": "Reviewer_i6Ex",
+          "claim": "The discriminator consists of fully-connected layers (MkB1 similarly asks why it does not share the predictor's architecture).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 110 and 172-173: a Transformer encoder 'with the same architecture of the local-range encoder' plus two fully connected layers. The authors' reply to MkB1 accepted the misreading ('using a transformer for discriminator is certainly a choice'), which contradicts their own text."
+        },
+        {
+          "reviewer": "Reviewer_BvU8",
+          "claim": "The authors have adequately discussed the limitations (also Reviewer_c8qX and Reviewer_i6Ex).",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main paper has no limitations text; the conclusion ends with a two-sentence Broader Impact (lines 324-326). Checklist item 1(b) points to 'Section 4 and supplementary material', and Section 4 has none. Reviewer_uWwa and Reviewer_MkB1 noted the gap."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_uWwa", "Reviewer_MkB1"],
+        "evidence": "uWwa edited on 2021-08-28, the day it wrote 'As a result, I am upgrading my rating' (final 6). MkB1 edited on 2021-09-02, the day it wrote 'I am updating my rating to 6'. BvU8's edit (2021-07-18) predates the rebuttal; on 2021-08-31 it wrote 'I will retain my rating'. c8qX replied only 'Thank you for your responses.' i6Ex and 7u8M did not reply.",
+        "what_convinced_or_not": "uWwa accepted the local/global argument and the new ablation of the growing input length (3 s MPJPE 2.91 with a fixed length vs 2.18), but still asked that the reimplementation of [2] be stated. BvU8 found the local/global argument 'convincing' and treated multiple futures as 'an extension'. MkB1 raised while still rejecting the DCT justification ('other paper uses it so it is good') and calling the discriminator possible 'dead weight'; it gave the other reviewers' positive feedback as a reason. No A reviewer asked for the user-study size, so the authors' claim that the scores are 'statistically meaningful' went unchallenged. 7u8M's fairness point got a pointer to line 241 and a promise of details."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Meta-review: 'The majority of the reviewers agreed that this is a solid paper that deserves acceptance. The negative assessment by one of the reviewers was considered overly harsh by the ACs.' It names no technical point and asks the authors to implement the improvements promised in the rebuttal.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Five of six reviewers at 6 or 7 after the rebuttal",
+        "Consistent MPJPE gains over three baselines on five test sets",
+        "Local/global Transformer for multi-person pose seen as new (MkB1, BvU8)",
+        "Lone 3 from Reviewer_7u8M judged overly harsh by the AC"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 4, 5, 6],
+      "confidences": [3, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_3D5S"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/4/5/6 (yyef, 7KAw, 3D5S, jyew). The lowest, 7KAw's 4, is one point below the next and 1.7 below the mean of the other three, and 3D5S aligned with it after the rebuttal ('as pointed out by reviewer 7KAw'). No outlier. 7KAw wrote the most detailed review (8 hours) and supplied both concerns that the meta-review names."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yyef",
+          "evidence": "A few lines of praise that call multi-person motion prediction 'a novel task', although lines 79-82 cite prior multi-person pose forecasting ([57, 56, 3, 2]). It asks for a spatial-positional-encoding ablation that Tables 1-3 already report ('Ours w/o SPE'). Its follow-up says only that the authors 'addressed almost all points'; no edit."
+        },
+        {
+          "reviewer": "Reviewer_jyew",
+          "evidence": "1 hour, confidence 3. One concern (few baselines), and it calls SocialPool [2] 'not originally designed in the same domain', although [2] forecasts multi-person pose and trajectory. Follow-up: 'I decide to keep my original rating', with no reasons."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7KAw",
+          "claim": "In Table 2 on MuPoTS-3D at 1 s, SocialPool and all ablations score exactly the same.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: SocialPool, w/o Global, w/o D and w/o SPE all score 0.92; the full model scores 0.89. On 3DPW at 1 s, SocialPool, w/o Global and w/o D all score 4.17."
+        },
+        {
+          "reviewer": "Reviewer_7KAw",
+          "claim": "In Table 5, decoder queries of 1, 2 or 4 frames perform exactly the same, and half the sequence equals the whole sequence.",
+          "checked_against_paper": "correct",
+          "evidence": "True at 1 s (0.96, 0.96, 0.96; 1.03, 1.03) and nearly true at 2 s. At 3 s the values differ (2.18, 2.22, 2.26; 2.44, 2.50)."
+        },
+        {
+          "reviewer": "Reviewer_7KAw",
+          "claim": "MPJPE is computed without aligning, so root and pose errors are mixed, which is unfair to the pose-only baselines [43, 44] (Ln. 226-227).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 226-228: MPJPE 'without aligning' 'will reflect the error caused by both trajectory and pose'. The rebuttal's split keeps the method ahead on aligned pose error at 1-3 s on CMU-Mocap (3 s: 1.22 vs LTD 1.37) and MuPoTS-3D (1.19 vs 1.30). On 3DPW, HRI is better at 1 s (1.43 vs 1.52) and ties at 2 s. Root error carries most of the CMU-Mocap gain (3 s: 1.71 vs 2.62)."
+        },
+        {
+          "reviewer": "Reviewer_7KAw",
+          "claim": "All user-study averages are within one standard deviation of the ground-truth average, and the sample size is not reported (also Reviewer_3D5S).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: every mean lies within one SD of ground truth (e.g. CMU-Mocap GT 3.78 +/- 0.76, HRI 3.36). Lines 232-234 and 269-272 give no rater or sample count. The rebuttal disclosed 50 samples per dataset and 3 users per comparison. The camera-ready table is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_7KAw",
+          "claim": "The distribution metric of Fig. 4 measures only how far joints travel between the start and end of a prediction.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 229-231: 'the mean L2 distance between the start and end skeleton joint positions'."
+        },
+        {
+          "reviewer": "Reviewer_7KAw",
+          "claim": "The paper does not adequately address its limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 319-326: a four-line conclusion and a two-sentence Broader Impact; no limitations."
+        },
+        {
+          "reviewer": "Reviewer_3D5S",
+          "claim": "The paper itself credits part of the gain to predicting Δx, which confounds the architecture comparison (paragraph at line 262).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 268-269: 'using the decoder to output a ∆x motion is also beneficial to model the position movement'. The rebuttal said that SocialPool also predicts Δx, but it did not address LTD or HRI."
+        },
+        {
+          "reviewer": "Reviewer_yyef",
+          "claim": "An ablation of the temporal and spatial positional encodings is needed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Tables 1-3 already report 'Ours w/o SPE' on all five test sets. Only the temporal-encoding ablation is missing."
+        },
+        {
+          "reviewer": "Reviewer_jyew",
+          "claim": "The paper compares with only two prior methods on the task and one interaction method.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 239-245: LTD, HRI and SocialPool only. jyew's description of SocialPool as outside the domain is wrong; [2] forecasts multi-person pose and trajectory."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_3D5S"],
+        "evidence": "3D5S edited on 2021-08-30, the day it wrote 'I have decided to update my score by one point' (to 5); it added that 'this work needs further revisions on the evaluation side', 'as pointed out by reviewer 7KAw'. 7KAw wrote 'I decided to keep my initial score' on 2021-08-30 (no edit). jyew kept its rating on 2021-08-29. yyef wrote on 2021-08-26 that the authors 'addressed almost all points' but did not edit.",
+        "what_convinced_or_not": "The new root/pose tables answered 7KAw's fairness point; 7KAw did not return to it. The masking answer on varying numbers of people and the SPE clarification closed the clarification questions. Not convinced: the claim that interaction constrains motion enough for MPJPE at 3 s (7KAw: 'in a walking sequence, a small amount of change in the pace may easily lead to very large errors'); the user study once the authors disclosed 3 users ('3 users are not enough'); and the videos ('very often the characters are just doing something'). The authors' last reply (2021-09-07), which cites Cao et al. [11] for MPJPE beyond 1 s and [64, 73] for 3-5 users, drew no response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Meta-review: 'The final scores for this paper are just below the usual threshold'; 'half of the reviewers' found that the experiments needed more work. It names 'the number of users used for the human evaluation' and the metrics for 'motions of longer duration', which are 7KAw's post-rebuttal points. It does not mention the two 6s.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Mean rating 5.25, just below the threshold",
+        "MPJPE beyond 1 s judged inconclusive for stochastic motion (7KAw)",
+        "User study with 3 raters per comparison shows no clear differences (7KAw, 3D5S)",
+        "Half the panel asked for a revised evaluation"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty against the original encoder-decoder Transformer and prior interaction models (uWwa, 7u8M)",
+    "Need for the local-range encoder and for DCT (uWwa, MkB1, BvU8)",
+    "Undisclosed reimplementation of SocialPool [2] and missing baseline hyper-parameters (7u8M; endorsed by uWwa, BvU8)",
+    "Comparison with scene-context methods and the SoMoF benchmark (7u8M)",
+    "Ablation of the growing input length at inference (uWwa)"
+  ],
+  "issues_only_b": [
+    "MPJPE beyond 1 s is inconclusive; distribution metrics needed (7KAw)",
+    "Root and pose errors not reported separately (7KAw)",
+    "User-study sample size and statistical significance (7KAw, 3D5S)",
+    "Foot skating and bone-length changes in the videos (7KAw)",
+    "Joint definitions differ across the merged datasets (7KAw)",
+    "Identical numbers across ablations; bottleneck and naturalness claims unsupported (7KAw)",
+    "Δx output as a confound for the gains (3D5S)",
+    "Error accumulation, horizons beyond 3 s and positional-encoding ablations (7KAw, yyef)"
+  ],
+  "shared_issues": [
+    "User-study scores too close to separate the methods (c8qX, BvU8 / 7KAw, 3D5S)",
+    "One deterministic prediction of a stochastic future (uWwa, MkB1 / 7KAw, 3D5S)",
+    "Fairness of comparing with pose-only baselines [43, 44] (7u8M / 7KAw)",
+    "Few baselines (7u8M / jyew)",
+    "Value of the discriminator (MkB1 / 7KAw, 3D5S)",
+    "Grouping in mixed scenes may reflect spatial proximity (uWwa / 7KAw)",
+    "How multi-dataset scenes are merged (i6Ex / 7KAw)",
+    "No limitations discussion (uWwa, MkB1 / 7KAw, 3D5S, jyew)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw mostly the same weaknesses and weighted them differently. Both saw that the user study cannot separate the methods and that one deterministic prediction is scored against one ground truth up to 3 s ahead. In A, supporters treated these as minor or as future work, no reviewer asked how many people rated the videos, and the AC set aside the lone 3 (Reviewer_7u8M, mostly a novelty objection) as 'overly harsh' against five ratings of 6 or 7, two of them raised after the rebuttal. In B, Reviewer_7KAw (8 hours) built a detailed evaluation critique whose checkable claims the submitted paper confirms. The rebuttal disclosed only to B that each user-study comparison had 3 raters, which hardened the objection. Reviewer_3D5S rose only to 5 and deferred to 7KAw, B's two 6s were thin (1 hour; a few lines of praise), and the AC rejected on 7KAw's two remaining points. No reviewer found an error in a result: the method beats all three baselines in every MPJPE cell of Tables 1-3, and the aligned-pose split in B's rebuttal keeps that lead except on 3DPW. The evidence for natural motion is as weak as B said.",
+  "candidate_reasons": [
+    "same weaknesses weighted differently",
+    "thorough evaluation-focused detractor in B",
+    "AC set aside harsh lone detractor",
+    "thin positive reviews in B",
+    "rebuttal revealed weakness to one committee",
+    "larger panel with substantive supporters"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_7KAw final review and 2021-08-30 reply",
+    "Reviewer_3D5S 2021-08-30 reply",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_7u8M final review",
+    "Reviewer_uWwa 2021-08-28 and Reviewer_MkB1 2021-09-02 replies",
+    "Authors' Response to reviewer 7KAw (part 1): root/pose tables and user-study size",
+    "Authors' responses to Reviewer_c8qX and Reviewer_BvU8: user study 'statistically meaningful', no size",
+    "submitted paper Table 4 (user study)",
+    "submitted paper Table 2, MuPoTS-3D and 3DPW 1 s columns",
+    "submitted paper lines 226-228 (unaligned MPJPE) and 239-245 (baselines)",
+    "camera-ready Tables 2 and 3"
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "pair_id": "n21-181",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 5, 6],
+      "confidences": [4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_hnrw"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/5/6, mean 6.0, a two-point spread; no score departs from the rest. Reviewer_RYit's 7 (confidence 4, 3 hours) is the high end. It calls the method 'technically correct' without a visible check and does not notice that all qualitative results come from one game. But it asks real scaling questions and replied to the rebuttal. Reviewer_NQFz's 5 rests on a framing objection (weak link to RL), and NQFz did not engage after the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_hnrw",
+          "claim": "IDOE is MONet with a conditional encoder and prior taken from the identifiable VAE; the paper does not make this clear and presents it as a new model.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 158-161: IDOE '1) utilizes a Multi-Object Network (MONet) [34] structure' and '2) builds a conditionally factored prior', 'Following an Identifiable VAE (IVAE) design [33]'. The paper cites both, but lines 44-50 present IDOE as one of the two components of the contribution. The authors agreed to rename it; the camera-ready calls it IMONet."
+        },
+        {
+          "reviewer": "Reviewer_hnrw",
+          "claim": "Proposition 1's tree-structure cost is the encoding of Quinlan and Rivest [42], and the paper does not make clear that it is an existing method.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 216 cites [42] for the depth-first string encoding, but Proposition 1 (Eq. 5) is stated as the paper's own result. The authors replied that Proposition 1 'is mainly based on the theory in [42]'. The appendix proof (B.3), which hnrw says repeats equations 6 and 8 of [42], is not in the submitted PDF and was not checked."
+        },
+        {
+          "reviewer": "Reviewer_hnrw",
+          "claim": "The joint RAMi objective is not used to train one system end-to-end; the representation and the tree are trained separately.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 119-123 split the bound of Eq. (2) into an ELBo for IDOE (Section 4) and an IB-MDL objective for MCRTS (Section 5). Lines 191-193 sample latents from the trained encoder and feed them to MCRTS. The authors confirmed the two-stage procedure."
+        },
+        {
+          "reviewer": "Reviewer_hnrw",
+          "claim": "The Z2,3 latent traversal changes not only the left pillar's length but also the bottom pillars, so the claims that rule out confounders should be toned down.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2, bottom row: from min(Z2,3) to max(Z2,3) the top-left pillar shortens and both bottom pillars grow. The caption says Z2,3 'captures the length of the left pillar'. Lines 137-138 and 321 assume 'no (observed/unobserved) confounder between latent variables' to read tree splits as causal."
+        },
+        {
+          "reviewer": "Reviewer_hnrw",
+          "claim": "In Figure 5(c) the intervened prediction should differ from 0.23; as drawn, the intervention changes nothing.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 5(b) and Figure 5(c) both show 0.23 at the final leaf. Line 335 says '0.23 versus 0.11'. The authors told Reviewer_nsW5 that the figure should read 0.15. Reviewer_RYit also flagged this panel."
+        },
+        {
+          "reviewer": "Reviewer_hnrw",
+          "claim": "The entropy sign in equation (1) should be a plus.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (1) has no entropy term. In Eq. (2) the term -λH[q(φ|z)] sits inside a bracket that is subtracted, so the entropy enters the maximized bound with a plus sign, as the variational IB bound requires."
+        },
+        {
+          "reviewer": "Reviewer_NQFz",
+          "claim": "The paper lacks qualitative results for the representation (visualization, comparison).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 2 shows masks, per-object reconstructions and two latent traversals. Figure 1 compares MCC for VAE, conditional VAE, MONet and IDOE in all three games. NQFz's narrower point holds: all visualizations are from Flappy Bird (line 201)."
+        },
+        {
+          "reviewer": "Reviewer_NQFz",
+          "claim": "The mimic tree's regression target is the state value function of the trained agent.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The target is the action advantage y = Q(s,a) - V(s) (lines 96-98). NQFz's wider point holds: the IB-MDL objective and MCRTS treat the task as generic regression on [z, a, r] (lines 191-193, 259)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_hnrw edited the review on 2021-09-05 to add a post-rebuttal update that ends 'I intend to keep my current score of a 6'. Reviewer_RYit's comment of 2021-08-13 is titled 'No change to rating'. Reviewer_NQFz neither replied nor edited.",
+        "what_convinced_or_not": "hnrw accepted the promise to credit MONet, IVAE and Quinlan and Rivest, and to rename IDOE (the authors proposed I-MONet). hnrw still held that the shared RAMi objective 'contributes little understanding', because nothing is trained end-to-end. RYit called answers (2) to (4) satisfactory and asked only how K is set. NQFz never acknowledged the reply on the RL framing (Markov assumption, advantage target)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 7/5/6, mean 6.0, two of three above threshold; the AC accepted. The meta-review repeats Reviewer_hnrw's two issues (a conditioned MONet 'implying novelty'; the end-to-end objective against a two-stage pipeline) and asks for the edits hnrw requested. Its statement that 'the reviewers agree' that the IB-driven tree learning is novel and the experiments 'quite thorough' overstates: Reviewer_NQFz questioned MCRTS's originality against VIPER, and hnrw wrote that the derivation 'largely follows prior work'. NQFz's RL-framing objection is not mentioned.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two of three reviewers above threshold; Reviewer_hnrw, the most detailed reviewer, wanted acceptance because 'the results are impressive'",
+        "AC judged the IB-driven tree search novel and the experiments 'quite thorough'",
+        "Framing problems (MONet renamed as IDOE, an unused joint objective, unclear attribution of Proposition 1) judged fixable in the camera-ready"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 6, 6, 6],
+      "confidences": [3, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_nsW5", "Reviewer_SaJC"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_zwwU",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only rating below threshold: 4 against three 6s. One-sentence summary ('The paper proposed a new explanation approach for reinforcement learning.'), 2.5 hours, no reply to the rebuttal. It wrongly says the paper has no experimental comparison with saliency and attention methods (Section 6.2, Figure 5d-f, human study). Its valid points (one unquantified counterfactual, simple games, no IRB statement) are shared with Reviewer_nsW5 and Reviewer_SaJC, who both rated 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zwwU",
+          "evidence": "One-sentence summary, 2.5 hours, 'a little bit incremental' with no prior method named, a wrong claim that no comparison with saliency or attention methods exists, and no engagement after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_8RF7",
+          "evidence": "Rating 6 after 2 hours. The weaknesses are three line-level remarks (lines 18, 185, 188) on citations, data collection and U-Net cost; nothing on the IB objective, MCRTS or the results. The whole post-rebuttal comment: 'Thanks for your response. I keep the same rating.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_zwwU",
+          "claim": "The paper does not conduct an experimental comparison with saliency-map and attention-based explanation methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 6.2 (lines 336-345, Figure 5d-f) compares super-pixels, a saliency map and an attention mask on the same game. The human study (lines 346-360) has 12 participants compare saliency maps and a super-pixel tree with the method. What is missing is a quantitative comparison."
+        },
+        {
+          "reviewer": "Reviewer_zwwU",
+          "claim": "The counterfactual analysis shows one case and does not quantify fidelity.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 328-335 report one intervention, do(Z3,1 = 0), on one tree path. The reported effect is a change in the tree's prediction, and Figure 5(c) shows 0.23 before and after, against '0.23 versus 0.11' in the text."
+        },
+        {
+          "reviewer": "Reviewer_zwwU",
+          "claim": "It is not clear that IRB approval was obtained for the human study.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper gives no IRB statement. Checklist item 5(b) answers [N/A]: 'We did not collect any personal data.' The rebuttal to zwwU does not answer the question."
+        },
+        {
+          "reviewer": "Reviewer_nsW5",
+          "claim": "Fidelity is evaluated only as approximation accuracy; nothing tests whether the explanations reflect the original agent's decisions.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.1, Table 1 and Figure 4 report variance reduction and leaf counts against the network's advantage values (RMSE and MAE are in the appendix). Apart from a visual agreement with saliency and attention maps (lines 341-345), the only explanation-level test is the single counterfactual above. On 2021-08-16 the authors agreed that a test on the original agents 'is necessary' and that agreement with attention maps 'should not be rigorous evidence of fidelity'."
+        },
+        {
+          "reviewer": "Reviewer_nsW5",
+          "claim": "Explanations are shown for only one of the three environments.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.2 'uses the Flappy Bird environment as an example' (line 308), and the Figure 2 traversals are also from Flappy Bird (line 201). The authors said the other two games were cut for space."
+        },
+        {
+          "reviewer": "Reviewer_SaJC",
+          "claim": "In Figure 4 only the right panel has confidence bands.",
+          "checked_against_paper": "correct",
+          "evidence": "The Assault panel shows bands for all five methods; the Flappy Bird and Space Invaders panels show none. Reviewer_hnrw in Committee A made the same point."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_SaJC"],
+        "evidence": "Reviewer_SaJC's review was edited on 2021-08-25, the day SaJC wrote 'I have updated my score accordingly' after thanking the authors for their clarifications. The final 6 sits on a review that lists many weaknesses, so the change was upward. Reviewer_nsW5 edited on 2021-09-10 to add post-rebuttal comments and kept 6 ('inclined to maintain my current score'). Reviewer_8RF7: 'I keep the same rating.' Reviewer_zwwU did not reply.",
+        "what_convinced_or_not": "SaJC accepted the point-by-point clarifications (MCC as the identifiability test, the human-study protocol, promised examples for the other games). nsW5 was not convinced: the counterfactual measures the mimic tree, not the agent, and attention maps can mislead. The authors conceded both points and promised to add the agent's outputs on decoded images. The rebuttal left zwwU's IRB question unanswered."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Ratings 4/6/6/6, mean 5.5, three of four marginally above threshold. The AC rejected and wrote: 'While the majority of reviewers ended up mildly positive, I believe this paper can be substantially improved by taking the comments to heart in guiding further experiments.' The three-sentence meta-review names no reviewer and no specific flaw beyond 'fidelity and practicality'. Those words point to Reviewer_nsW5's unresolved fidelity request and to the doubts of Reviewer_zwwU and Reviewer_SaJC about complex games.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Explanation fidelity measured only as regression accuracy, with no test against the original agent (Reviewer_nsW5, Reviewer_zwwU; the authors conceded)",
+        "Practicality: simple games, one illustrated game, doubts about complex environments (Reviewer_zwwU, Reviewer_SaJC, Reviewer_8RF7)",
+        "AC wanted further experiments and overrode three 'marginally above threshold' ratings"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "IDOE is MONet plus an IVAE-style conditional prior under a new name (Reviewer_hnrw)",
+    "Proposition 1's tree-encoding cost comes from Quinlan and Rivest without clear attribution (Reviewer_hnrw)",
+    "The joint RAMi objective adds nothing because the two stages are trained separately (Reviewer_hnrw)",
+    "Latent Z2,3 is entangled, which weakens the no-confounder assumption behind the causal claims (Reviewer_hnrw)",
+    "Weak link to RL: the tree objective is generic regression on a value target (Reviewer_NQFz)",
+    "Originality of MCRTS against VIPER unclear (Reviewer_NQFz)"
+  ],
+  "issues_only_b": [
+    "Explanation fidelity against the original agent never quantified; no perturbation metric (Reviewer_nsW5, Reviewer_zwwU)",
+    "Incremental: one more interpretation method for RL (Reviewer_zwwU)",
+    "Human study's validity and ethics; no IRB statement (Reviewer_zwwU, Reviewer_SaJC)",
+    "No gradient-boosting baseline and no task performance for the mimic (Reviewer_SaJC)",
+    "Object representation needs more data than real-world RL allows (Reviewer_8RF7)"
+  ],
+  "shared_issues": [
+    "Doubt that the method scales to complex, cluttered environments (Reviewer_RYit, Reviewer_NQFz; Reviewer_zwwU, Reviewer_SaJC, Reviewer_nsW5)",
+    "Qualitative results for Flappy Bird only; possible cherry-picking (Reviewer_hnrw, Reviewer_NQFz; Reviewer_nsW5, Reviewer_SaJC)",
+    "Small human study of 12 participants (Reviewer_RYit, Reviewer_hnrw; Reviewer_SaJC)",
+    "Unclear presentation of IDOE and MCRTS (Reviewer_RYit, Reviewer_NQFz, Reviewer_hnrw; Reviewer_SaJC, Reviewer_nsW5)",
+    "Figure faults: error bars on one Figure 4 panel only, wrong Figure 5(c) value (Reviewer_hnrw, Reviewer_RYit; Reviewer_SaJC, authors' reply to Reviewer_nsW5)",
+    "How the number of objects K is chosen (Reviewer_RYit; Reviewer_SaJC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The split comes mostly from the two area chairs (ACs), who judged near-identical borderline reviews differently. Neither committee found an error in the method. Committee A rated the paper 7/5/6 (mean 6.0). A's AC accepted, called the experiments 'quite thorough', and treated Reviewer_hnrw's attribution and framing complaints as camera-ready fixes. Committee B rated it 4/6/6/6 (mean 5.5). B's AC rejected against three 6s and cited 'fidelity and practicality'. That AC conceded that 'the majority of reviewers ended up mildly positive'. Fidelity is the one substantive issue that only B raised, and the paper confirms it. The paper measures fidelity only as regression accuracy against the network's advantage values. Its single counterfactual test (Figure 5c) shows no change, because of a figure error. The authors conceded the gap, but Reviewer_nsW5, who raised it most fully, kept a 6. The half-point score gap comes from one reviewer per side: Reviewer_RYit's reasoned 7 in A and Reviewer_zwwU's thin, partly wrong 4 in B. On the shared facts, the two ACs set different bars. These facts are one illustrated game, a 12-person human study, and doubts about complex games.",
+  "candidate_reasons": [
+    "AC overrode mildly positive majority",
+    "borderline scores, different AC bars",
+    "explanation-fidelity critique only in B",
+    "thin detractor review in B",
+    "attribution problems judged fixable in A"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_nsW5 review, post-rebuttal comments and 2021-08-16 discussion",
+    "Authors' 2021-08-16 reply to Reviewer_nsW5",
+    "Reviewer_zwwU review",
+    "Reviewer_hnrw review and post-rebuttal update",
+    "paper Section 6.1 and Table 1",
+    "paper Section 6.2, lines 328-345, Figure 5(c)",
+    "paper Figure 2, Z2,3 traversal",
+    "paper Section 4.2, lines 156-161"
+  ]
+}

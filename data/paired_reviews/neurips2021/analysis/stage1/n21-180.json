@@ -1,0 +1,227 @@
+{
+  "pair_id": "n21-180",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        5,
+        8,
+        8
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_GLcW",
+        "Reviewer_XbsB"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_XbsB",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "XbsB's 5 is the only rating below threshold; the others are 6, 8 and 8. Its reasons are specific, and the paper confirms them: no experiments (every experiment item of the checklist is N/A); guarantees only for binary features under the uniform distribution (lines 159-163); and FindCertificate always returns a certificate of the full depth k (Figure 1; lines 294-295), which the authors conceded. It called the lack of empirical evaluation the 'more severe' limitation. It edited on 2021-08-16, after the rebuttal, with no update text, and ended at 5. A's reject matches this review alone."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ikim",
+          "evidence": "An 8 ('Top 50% of accepted NeurIPS papers') resting on two generic sentences: 'strong theoretical guarantees' and 'The proposed contribution is significant.' The summary is one sentence, and the review never assesses the theorem, its bounds or the proofs. It credits implicit tree learning to 'earlier work', but the paper introduces that problem (line 84). The rest asks for experiments and lists missing formal-XAI work, points that cut against the score. 3 hours; no edit and no reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XbsB",
+          "claim": "FindCertificate always returns a certificate of size k or none: it checks precision only at the leaf, so it misses shorter precise certificates on the path.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1 adds a feature at every node until IsLeaf, then checks precision once (step 4). With the complete depth-k tree of Definition 9, IsLeaf is true 'iff α corresponds to a path of length exactly k' (lines 294-295). On the paper's own parity example (lines 324-328), the algorithm therefore pads {i, j} with k-2 irrelevant features, the kind of failure it charges to [RSG18]. The authors conceded and promised a remark; the camera-ready keeps Figure 1 unchanged and adds no remark."
+        },
+        {
+          "reviewer": "Reviewer_XbsB",
+          "claim": "No experimental evaluation on real data and no comparison with SHAP, LIME, anchors or prime-implicant methods (also Reviewer_ikim; Reviewer_22UY in B).",
+          "checked_against_paper": "correct",
+          "evidence": "The paper has no experiments; every experiment item of the checklist is N/A. [RSG18] is compared only through a constructed parity example (lines 314-330). The camera-ready adds no experiments."
+        },
+        {
+          "reviewer": "Reviewer_GLcW",
+          "claim": "The polynomial in the certificate-size bound has non-trivial powers, so the succinctness is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 states only poly(C(f), 1/ε, 1/δ). The proof (lines 308-311) combines D(f, εδ) ≤ O(C(f)^2/(εδ)^9) from Corollary 3.1 with k ≤ O((D(f, εδ)/ε)^3), so the size bound is of order C(f)^6/(ε^30 δ^27). For ε = δ = 0.1 the factor ε^-30 δ^-27 alone is 10^57. (Applying Theorem 3 at error εδ divides by εδ, not ε; this slip only worsens the δ exponent, and no reviewer noticed.) The authors answered 'This is a good point' and offered no tighter bound."
+        },
+        {
+          "reviewer": "Reviewer_NH6L",
+          "claim": "The size guarantee is relative to the average certificate complexity, not to the smallest certificate of the given instance.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (lines 34-38) bounds the size by poly(C(f), ...), and C(f) is the expectation over x of C(f, x) (line 172). The authors replied that approximating the per-instance optimum is NP^PP-hard [WMHK19]."
+        },
+        {
+          "reviewer": "Reviewer_ikim",
+          "claim": "Definition 1 matches the definition in Wäldchen et al. (JAIR 2021), and the paper cites an older version.",
+          "checked_against_paper": "correct",
+          "evidence": "[WMHK19] cites the 2019 arXiv preprint. Definition 1 (lines 25-30) carries no citation, while lines 77-78 describe [WMHK19]'s problem as deciding whether 'an ε-error certificate of size k' exists. The camera-ready updates the citation to JAIR 2021 but still credits the notion to [RSG18] only."
+        },
+        {
+          "reviewer": "Reviewer_GLcW",
+          "claim": "The method works only for binary features under the uniform distribution (also Reviewer_XbsB, Reviewer_NH6L; Reviewer_22UY in B).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 159-163; lines 337-342 call it 'the main limitation'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_GLcW"
+        ],
+        "evidence": "Author responses 2021-08-10. GLcW edited on 2021-08-18: 'after the rebuttal i will increase my score to a 6'. XbsB edited on 2021-08-16 with no update text and ended at 5; any change is unknown. NH6L and ikim never edited and posted no reply.",
+        "what_convinced_or_not": "GLcW accepted that the reduction (Lemma 2.1) is distribution-free, that top-down learners such as ID3, C4.5 and CART could instantiate it, and that experiments are follow-up work: 'i do not think the paper should be rejected due to lack of experiments'. That sentence shows missing experiments was the live objection in A. The authors offered no experiments, only 'a concrete direction for followup work', and XbsB stayed at 5. They conceded XbsB's size-k point and promised a remark that the camera-ready lacks."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Three of four ratings are above threshold (6, 8, 8; mean 6.75, higher than B's 6.67), yet A rejected. The meta-review names no flaw, no reviewer and no missing element: the reviewers 'all agreed that the paper discusses an interesting problem', but it 'was judged as not quite ready for publication', and the authors should revise 'according to the comments provided by the reviewers'. The passive 'was judged' does not say who judged or why.",
+        "meta_review_leans_on": "unclear"
+      },
+      "main_reasons_for_decision": [
+        "No stated reason: the meta-review says only 'not quite ready for publication'",
+        "No experiments: Reviewer_XbsB's 'more severe' limitation, also requested by Reviewer_ikim; Reviewer_GLcW's update argues against rejecting on that ground",
+        "Guarantees only for binary features under the uniform distribution (Reviewer_GLcW, Reviewer_XbsB, Reviewer_NH6L)",
+        "Doubtful practical succinctness: large polynomial powers (Reviewer_GLcW) and certificates padded to depth k (Reviewer_XbsB)",
+        "The two 8s gave little support: Reviewer_ikim's rests on two generic sentences, Reviewer_NH6L credits the main technical results to prior papers, and neither engaged after the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_YjV9",
+        "Reviewer_f3tU",
+        "Reviewer_22UY"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/7 sit within one point. The 6 (Reviewer_f3tU) is itself a post-rebuttal raise from 5."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_f3tU",
+          "evidence": "The main-review field still opens with the form's template prompt ('Provide a full review of the submission...'). Two questions misread the paper: it asks whether p in Definition 6 should be 1/2 'since you are working under the uniform distribution', but p is the noise rate; and it says the algorithm ignores the answer at each node, but Figure 1 step 3(c) adds 'i = x_i'. Its confidence-3 label says math was not carefully checked. It raised 5 to 6 after the rebuttal corrected these readings."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_YjV9",
+          "claim": "Lines 81-82 say Theorem 1 escapes the hardness results only because it may fail on a δ fraction of instances, but the bound is relative to average certificate complexity, so the results are incomparable.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 81-82 give the 1-δ relaxation as the only reason, while the hardness results of lines 76-80 concern the instance's smallest certificate. The authors replied 'Great catch!', and the camera-ready adds 'and only returns a small certificate relative to the average certificate complexity'. The broader claims that the algorithm 'circumvents' hardness results (lines 42-43, 336) stay."
+        },
+        {
+          "reviewer": "Reviewer_f3tU",
+          "claim": "In Definition 6, p should be 1/2 because the paper works under the uniform distribution.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 256-259 define p as the noise rate: each coordinate of x is rerandomised with probability p. The input distribution is separate, and Theorem 3 sets p = O(ε/D(f, ε)) (line 305)."
+        },
+        {
+          "reviewer": "Reviewer_f3tU",
+          "claim": "The algorithm records the queried coordinate at each node but ignores the answer that decides the path.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 1 step 3(c) sets α ← α ∪ {i = x_i}, so the path follows x's value; lines 192-193 define α as a restriction of the queried features."
+        },
+        {
+          "reviewer": "Reviewer_22UY",
+          "claim": "Juba and Li (AAAI 2020), an analogous distribution-free model, is not referenced.",
+          "checked_against_paper": "correct",
+          "evidence": "It is absent from the reference list, and the camera-ready still omits it. The authors argued that its lower bound assumes a k-DNF model and is incomparable."
+        },
+        {
+          "reviewer": "Reviewer_YjV9",
+          "claim": "Typos at lines 32, 91, 97 and 110.",
+          "checked_against_paper": "correct",
+          "evidence": "'certificates the it returns' (32), 'an certificate' (91, 95, 102), 'lies in fact that' (97), 'we able' (110). The camera-ready fixes all of them."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_f3tU"
+        ],
+        "evidence": "Author responses 2021-08-10. f3tU edited on 2021-08-30: 'I am increasing my rating from 5 to 6'. YjV9 edited on 2021-08-25 only to acknowledge the rebuttal. 22UY edited on 2021-09-09: the response 'did not detract from my original opinion'.",
+        "what_convinced_or_not": "f3tU credited the other reviews and the author response, which explained α, the noise rate p, and why one path costs time polynomial in the depth while the full tree can have exponentially many leaves. YjV9's overclaim at lines 81-82 was conceded with a reworded sentence, which the camera-ready uses. 22UY kept 7 after the authors argued that Juba and Li assume a k-DNF model."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Recommends acceptance with all three ratings above threshold. The meta-review is the AC's own account: it ties explanations to 'certificate complexity studied in computational complexity theory' and calls the paper 'innovative' and a 'fresh theoretical approach'. It mentions no weakness: not the uniform-distribution restriction, the missing experiments, or the conceded overclaim at lines 81-82.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three ratings above threshold (7/6/7) after Reviewer_f3tU raised 5 to 6",
+        "AC valued a 'fresh theoretical approach' to interpretability and the link to certificate complexity",
+        "Reviewer_22UY judged the uniform-distribution limit to be the state of the art: 'not much scope for the work to accomplish much more'",
+        "Experiments treated as an improvement, not a requirement (Reviewer_22UY)",
+        "The rebuttal fixed the lines 81-82 overclaim and cleared Reviewer_f3tU's misreadings"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "FindCertificate pads every certificate to depth k instead of stopping at the first precise prefix (Reviewer_XbsB)",
+    "The size bound's polynomial powers make succinctness doubtful in practice (Reviewer_GLcW)",
+    "No comparison with SHAP, LIME, anchors or prime-implicant methods, and no evidence of how ε and k trade off in practice (Reviewer_XbsB)",
+    "Definition 1 matches Wäldchen et al.; cite the JAIR version (Reviewer_ikim)",
+    "Formal-XAI work on explaining decision trees: tree paths can be far longer than succinct explanations (Reviewer_ikim)",
+    "The main technical results come from prior papers, stated as a caveat (Reviewer_NH6L)"
+  ],
+  "issues_only_b": [
+    "Lines 81-82 overstate why Theorem 1 escapes the hardness results (Reviewer_YjV9); conceded and fixed",
+    "Juba and Li (AAAI 2020) not cited; distribution-free conjunctive explanations would yield DNF learners (Reviewer_22UY)",
+    "Notation of Definition 4, a missing illustration, and why Definition 9's tree must be complete (Reviewer_f3tU)"
+  ],
+  "shared_issues": [
+    "No experiments (A: Reviewer_XbsB, Reviewer_ikim, Reviewer_GLcW's update; B: Reviewer_22UY). XbsB called it the more severe limitation; 22UY kept a 7",
+    "Binary features and uniform distribution only (A: Reviewer_GLcW, Reviewer_XbsB, Reviewer_NH6L; B: Reviewer_22UY)",
+    "Why learn the tree implicitly rather than build it in full (A: Reviewer_XbsB; B: Reviewer_f3tU Q1 and Q3); both accepted the depth-versus-size answer",
+    "The guarantee is relative to average certificate complexity, not the instance's smallest certificate (A: Reviewer_NH6L; B: Reviewer_YjV9 via lines 81-82)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same facts differently, and A's AC overrode its own reviewers. Both saw a pure-theory paper with no experiments, with guarantees only for binary features under the uniform distribution, built mostly from prior results (Smyth's theorem and the BGLT20 learner). A's reviewers rated it higher (6/5/8/8, mean 6.75) than B's (7/6/7, mean 6.67), and three of A's four were above threshold. A's AC still rejected it, with a meta-review that names no flaw: the paper 'was judged as not quite ready'. The only objection argued as decisive in A's record is the missing experiments: Reviewer_XbsB called it the 'more severe' limitation, and Reviewer_GLcW's update argued against rejecting on that ground. B's Reviewer_22UY also wanted experiments but kept a 7, and B's AC praised a 'fresh theoretical approach'. A did raise two correct points that B missed: FindCertificate pads every certificate to depth k (Figure 1; lines 294-295), and lines 308-311 imply a size bound of order C(f)^6/(ε^30 δ^27). A's meta-review cites neither. A's two 8s were weak support: Reviewer_ikim's rests on two generic sentences, and neither 8 engaged after the rebuttal. The discrepancy sits with A's AC, not in the reviews.",
+  "candidate_reasons": [
+    "AC overrode positive reviewer majority",
+    "boilerplate reject meta-review, no reason",
+    "missing experiments weighed as decisive",
+    "theory-valuing AC accepted on novelty",
+    "thin champion reviews without engagement",
+    "practical succinctness of bound doubted"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_XbsB review (main review and limitations)",
+    "Reviewer_GLcW review, Update section",
+    "Reviewer_ikim review",
+    "Reviewer_NH6L review",
+    "Authors' responses in A, 2021-08-10 (to XbsB and GLcW)",
+    "Reviewer_22UY review and authors' reply",
+    "Reviewer_YjV9 review (lines 81-82) and authors' reply",
+    "Reviewer_f3tU review (R1, Q2, after-rebuttal note) and authors' reply",
+    "Committee B meta-review",
+    "paper_submitted Figure 1 and Lemma 4.1 proof, lines 294-295",
+    "paper_submitted proof of Theorem 1, lines 308-311; Corollary 3.1; Theorem 3",
+    "paper_submitted lines 76-82 and parity example, lines 324-330",
+    "paper_submitted checklist item 3 and reference [WMHK19]",
+    "paper.pdf (camera-ready): Figure 1 unchanged, no experiments, lines 81-82 reworded"
+  ]
+}

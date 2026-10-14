@@ -1,0 +1,245 @@
+{
+  "pair_id": "n21-177",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_4XMJ",
+        "Reviewer_kyrg",
+        "Reviewer_nCmj"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_nCmj",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The 5 against two 7s. After the rebuttal nCmj gave specific reasons that the paper supports: the Section 5 partition into exploring and imitating agents is centralized (lines 256-260; the authors conceded it), and the Theorem 3 proof sketch applies 'a result similar to Lemma 2 of Joulani et al. (2013)' (lines 230-233). The opening 'biggest concern' is weak: a known upper bound on the variance proxy, and the value of cooperation when all agents face the same arms, are standard in the literature the paper builds on."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_4XMJ",
+          "evidence": "States that communication failure 'has not been studied before', although the paper's own related work (lines 84-85) cites Madhushani and Leonard (2019, 2020, 2021) on stochastic communication. Confidence 3, math not checked. The score rose after one typo (line 45) was explained."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_4XMJ",
+          "claim": "RCL-LF assumes that the link probability p is known (line 45).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 45 reads 'with a known probability p'. The tuning p_i = d_min(G)/d_i(G) (Remark 2, line 195) does not use p, so the authors' 'typo' reply is consistent with the algorithm. The camera-ready says 'unknown probability p'."
+        },
+        {
+          "reviewer": "Reviewer_4XMJ",
+          "claim": "Communication failure in cooperative bandits has not been studied before.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 84-85: 'multi-agent networked bandits with stochastic communication was considered in Madhushani and Leonard (2019, 2020, 2021), however, only for d-regular networks and multi-star networks.' The new part is general graphs."
+        },
+        {
+          "reviewer": "Reviewer_kyrg",
+          "claim": "The paper gives no algorithm (pseudo-code) for RCL-LF.",
+          "checked_against_paper": "correct",
+          "evidence": "RCL-LF is described only in prose (lines 162-170). The only algorithm float is Algorithm 1 (CHARM, the corruption algorithm). The authors posted pseudo-code in the rebuttal and promised to add it."
+        },
+        {
+          "reviewer": "Reviewer_kyrg",
+          "claim": "Chawla et al. (AISTATS 2020), a gossip algorithm with an order-N speedup for every agent, is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Not in the reference list (lines 366-434). The camera-ready adds a paragraph that compares with it."
+        },
+        {
+          "reviewer": "Reviewer_nCmj",
+          "claim": "Every agent must know a uniform upper bound on all arms' variance proxies.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 107-108: 'unknown variance proxy sigma_k^2 upper bounded by a known constant sigma^2'. The same assumption appears in the cited cooperative-bandit work (Kolla et al. 2018; Dubey and Pentland 2020a), so it is weak grounds for a low score."
+        },
+        {
+          "reviewer": "Reviewer_nCmj",
+          "claim": "The Section 5 algorithm needs a centralized partition into exploring and imitating agents.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 256-260: the exploring set I is 'a minimal dominating set of G_gamma', chosen in advance; the experiments compute it with networkx (line 348). The abstract (line 10) calls all the algorithms decentralized. The authors conceded the partition."
+        },
+        {
+          "reviewer": "Reviewer_nCmj",
+          "claim": "Theorem 3 (stochastic delays) is incremental, as its proof sketch shows.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 230-233: the proof bounds the outstanding messages and then applies 'a result similar to Lemma 2 of Joulani et al. (2013)'. Remark 4 says the single-agent result 'has a similar dependence'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_kyrg",
+          "Reviewer_4XMJ"
+        ],
+        "evidence": "Reviewer_kyrg, 2021-08-28: 'I have updated my score to 7' (review edited the same day; the original called its score 'low'). Reviewer_4XMJ, 2021-09-01: 'I have updated my score' (edited the same day). The authors thanked both 'for increasing the score'. Reviewer_nCmj edited 2021-09-02 to add an update that ends 'I decide to keep the score'.",
+        "what_convinced_or_not": "kyrg accepted that the broadcast model 'necessitates regulation' of information, and accepted the comparison with Chawla et al. 4XMJ accepted that 'known probability p' was a typo. nCmj was not convinced: per clique the setting is 'essentially equivalent' to one agent pulling M arms at once, Theorems 1 and 3 are incremental, and Section 5 needs a centralized partition. The authors' reply of 2021-09-11 came after nCmj's update and drew no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts with 7/7/5 'to recommend the opinion of the majority of the reviewers'. On nCmj's incrementality charge: 'I respectfully disagree with this reviewer, as I think each of these problems themselves is quite essential'. Simple proofs 'should be a positive thing, rather than a reason for rejection'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Two reviewers at 7 after the rebuttal settled their clarification questions (known p, message discarding, Chawla et al.)",
+        "The AC judged each of the three imperfect-communication problems important in itself",
+        "The AC treated simple proof techniques as a strength and set aside the one incrementality objection (Reviewer_nCmj)"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_huWS",
+        "Reviewer_CiVs"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 5, 6 lie within one point. Reviewer_CiVs's 6 is above threshold, but the text ends 'I still feel that this paper is incremental and hence retain my score'."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_9KQ6",
+          "claim": "The bounds indicate that not discarding messages gives the best upper bound on regret.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (line 172) has the factor sum_i (1 - p_i p) + chi_bar(G) p max_i p_i. With equal p_i = q it equals N - qp(N - chi_bar(G)), which is smallest at q = 1. With Remark 2's tuning, max_i p_i = 1 and the factor again falls as each p_i rises."
+        },
+        {
+          "reviewer": "Reviewer_9KQ6",
+          "claim": "The paper gives no empirical evidence that discarding messages helps.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 7 (lines 341-345) and the top row of Figure 3(a)-(b): on multi-star and random-tree graphs RCL-LF has lower group regret than the p_i = 1 baselines for p above about 0.5. On Erdos-Renyi graphs the curves coincide. The authors did not point to this figure in their reply."
+        },
+        {
+          "reviewer": "Reviewer_9KQ6",
+          "claim": "Equation (62) misses a factor 3 inside a log, so the statement of Theorem 1 must change.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in the 12-page PDF. The authors conceded the error. The term sits in the constant f(M, G) (line 112), not in the log T term."
+        },
+        {
+          "reviewer": "Reviewer_huWS",
+          "claim": "Of the five upper bounds only one has a lower bound, and that lower bound does not match.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorems 1-5 are problem-dependent O(log T / Delta) upper bounds. Theorem 6 (lines 318-323) is a minimax sqrt(KNT)-type bound for perfect communication. Nothing bounds the link-failure, delay or corruption settings from below, yet the abstract claims 'near-optimal guarantees' and 'tight network-dependent minimax lower bounds'."
+        },
+        {
+          "reviewer": "Reviewer_huWS",
+          "claim": "Section 4 drops the message-passing protocol without a real reason.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 219-221: 'We assume for simplicity that each message is sent only once in the network ... and leave the message-passing setting as future work.' The rebuttal gave the reason: multiple delayed paths make the analysis hard."
+        },
+        {
+          "reviewer": "Reviewer_huWS",
+          "claim": "Remark 2's tuning of p_i needs the global minimum degree d_min(G).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 195: p_i = d_min(G)/d_i(G). The authors agreed and proposed workarounds that are not in the paper."
+        },
+        {
+          "reviewer": "Reviewer_huWS",
+          "claim": "The first bound of Theorem 6 uses terms dbar_{=i} that are never introduced.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 322 defines d_tilde(G) through dbar_{=i}, which appears neither in Table 1 nor in the text. The authors gave the definition in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_CiVs",
+          "claim": "In Remark 1 the 'probabilities' (max_i p_i) p and sum_i (1 - p_i p) do not add to one.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 192-193: the second quantity ranges up to N, so it is not a probability. The authors called it a typo for (1/N) sum_i (1 - p_i p)."
+        },
+        {
+          "reviewer": "Reviewer_CiVs",
+          "claim": "The paper does not show that Theorem 1's bound beats no communication for all p and p_i.",
+          "checked_against_paper": "correct",
+          "evidence": "The factor equals N - p(sum_i p_i - chi_bar(G) max_i p_i), which exceeds N whenever sum_i p_i < chi_bar(G) max_i p_i. Remark 2's tuning allows this, for example on a complete bipartite graph with one pendant agent. The rebuttal's clique-wise refinement is always at most N, so it settles the point; CiVs still called the answer unclear."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_9KQ6's review was never edited; on 2021-09-10: 'For these reasons I am keeping my score'. Reviewer_CiVs edited 2021-09-06 to add 'retain my score'. Reviewer_huWS edited 2021-09-06 to add a final comment that chooses weak reject 'considering all comments and the discussion with the other reviewers'; it states no score change.",
+        "what_convinced_or_not": "The authors defended novelty by listing lemmas that 'pose significant challenges'; no reviewer accepted this. 9KQ6 rejected the clique-partition argument: forwarded messages or shared mean estimates remove the chi_bar factor from the log T term at a constant cost. CiVs found the answer to the first question unclear. The AC countered the claim that arm elimination under delays is unexplored with Lancewicki et al. (ICML 2021); the authors noted that it appeared after the deadline."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "One-sentence meta-review: 'The paper failed to generate sufficient support among the reviewers, who consider the results to be incremental.' It engages with neither the rebuttal nor any specific issue. In discussion the AC challenged one novelty claim and wrote 'personally, I am not a big fan of arm elimination'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers judged the analyses incremental extensions of known techniques (Reviewer_9KQ6, Reviewer_huWS, Reviewer_CiVs)",
+        "The results were judged incomplete: no matching lower bounds, message-passing dropped under delays, global knowledge needed (Reviewer_huWS)",
+        "The theory does not support message discarding, and the clique-cover factor on log T is avoidable (Reviewer_9KQ6)",
+        "No score moved after the rebuttal; the only score above threshold (Reviewer_CiVs, 6) came with text calling the work incremental"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Line 45 says p is known (Reviewer_4XMJ); a typo, since RCL-LF never uses p",
+    "Comparison with Chawla et al. (AISTATS 2020), whose gossip algorithm gives every agent an order-N speedup (Reviewer_kyrg)",
+    "Lines 148-152 on poorly connected agents seem to contradict Chawla et al. (Reviewer_kyrg)",
+    "A known uniform variance-proxy bound, and whether cooperation is needed when every agent faces the same arms (Reviewer_nCmj)",
+    "Per clique the setting reduces to one agent pulling M arms per round (Reviewer_nCmj)"
+  ],
+  "issues_only_b": [
+    "Theorem 1's bound is smallest with no discarding, so the theory does not support the discarding rule (Reviewer_9KQ6)",
+    "The clique-cover factor on log T is avoidable by forwarding messages or sharing mean estimates; the independence number may be the right scaling (Reviewer_9KQ6, Reviewer_huWS)",
+    "No lower bounds for the imperfect-communication settings; Theorem 6 matches no upper bound and uses undefined terms (Reviewer_huWS)",
+    "Message-passing dropped under stochastic delays 'for simplicity' (Reviewer_huWS)",
+    "A collection of loosely related results without one clear message (Reviewer_huWS)",
+    "Errors in the details: a missing factor 3 in (62), no update rule for Delta in Algorithm 1, o(1) for O(1), RCL-AC/CHARM/RCL-RC naming, Remark 1 'probabilities' that do not sum to one (Reviewer_9KQ6, Reviewer_huWS, Reviewer_CiVs)",
+    "Related work on delays and arm elimination: Joulani et al., Martinez-Rubio et al., Hsieh et al., Lancewicki et al. (Reviewer_9KQ6, Reviewer_huWS, AC)"
+  ],
+  "shared_issues": [
+    "The analyses are incremental, especially for delays (Reviewer_nCmj in A; all three reviewers in B)",
+    "Whether Theorem 1 shows a benefit over no communication, as Remark 1 claims (Reviewer_nCmj; Reviewer_CiVs)",
+    "Tuning p_i = d_min/d_i needs network-level information (Reviewer_nCmj; Reviewer_huWS)",
+    "RCL-AC needs a precomputed dominating set, so it is not fully decentralized (Reviewer_nCmj; Reviewer_9KQ6, Reviewer_huWS)",
+    "Why agents discard useful messages (Reviewer_kyrg, satisfied by the rebuttal; Reviewer_9KQ6, not satisfied)",
+    "RCL-LF has no pseudo-code of its own, and Figure 3 panel labels are wrong (Reviewer_kyrg, Reviewer_nCmj, Reviewer_4XMJ; Reviewer_huWS, Reviewer_9KQ6)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw a borderline paper with the same core weakness: its analyses extend known techniques (clique-cover UCB, the delay lemma of Joulani et al., corrupted-bandit arm elimination). Committee A's two 7s came from reviewers whose concerns were clarifications (a 'known p' typo at line 45, why agents discard messages, the missing Chawla et al. comparison). The rebuttal resolved these and both raised their scores. A's AC then overrode the one incrementality objection (Reviewer_nCmj) on the grounds that the problems are important and simple proofs are a virtue. Committee B's reviewers spent more time (8, 10 and 7 hours against 5.5, 2 and 6) and raised novelty and completeness concerns that no rebuttal can fix. The paper confirms most of them: the Theorem 1 bound is smallest with no discarding, the only lower bound is a minimax bound that matches no upper bound, message-passing is dropped under delays 'for simplicity', and the p_i tuning needs the global minimum degree. No B score moved, and the AC adopted the 'incremental' consensus in one sentence. The discrepancy is mainly the same facts weighted differently, sharpened by B's more thorough panel. B's reject rests on better-checked evidence than A's accept.",
+  "candidate_reasons": [
+    "AC overrode incrementality objection",
+    "rebuttal resolved clarification questions",
+    "more thorough reviewers found gaps",
+    "novelty doubts immune to rebuttal",
+    "problem importance outweighed technical depth"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_kyrg comment 2021-08-28",
+    "Reviewer_nCmj final review (Sep 2 update)",
+    "Reviewer_9KQ6 comment 2021-09-10",
+    "Reviewer_huWS final review",
+    "Area_Chair_UFXc comment 2021-08-24",
+    "paper_submitted lines 45, 84-85, 107-108, 192-195, 219-221, 256-260",
+    "paper_submitted Theorem 1 (line 172) and Theorem 6 (lines 318-323)",
+    "paper_submitted Figure 3(a)-(b) and lines 341-345"
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "pair_id": "n21-179",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 6, 6, 6],
+      "confidences": [4, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_y2sg"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Jhjk",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Jhjk gave 4 (confidence 4, 6 to 8 hours) against three 6s from N9WH, y2sg and KAbu. It is the most detailed critique in either committee, and the paper confirms its checkable points. Theorem 7's TV term depends on the sampled perturbations, against the 'independent from the kind of attacks' claim (line 46). PGD_U adds noise after the attack (lines 249-251). The claim of non-vacuous guarantees on the classical adversarial risk (lines 303-305) does not follow from the theorems. Randomized-smoothing and distributional-robustness work is not cited. The authors conceded the wording and added two of the citations. Jhjk did not reply to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_KAbu",
+          "evidence": "Rating 6, confidence 4, 5 hours. The review has a loose summary ('the input covariates \"X\" is adding some noise'), one question on why Theorem 6 does not depend on n, and three wording fixes (lines 15-17, 19, 74). It calls the results 'an important contribution' but does not address the relaxed risks. KAbu did not reply to the rebuttal. The AC used the review only for its typos."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Jhjk",
+          "claim": "Theorem 7's TV term depends on the perturbation sets E_i drawn from D, so the bounds are not independent of the attack, as line 46 claims.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 7 (lines 202-205) adds a TV term computed on each E_i. Line 46 and the abstract say the bounds are 'independent from' the attack type. The authors replied that 'independent' is 'not the right term'. The camera-ready abstract says 'valid for any kind of attacks'."
+        },
+        {
+          "reviewer": "Reviewer_Jhjk",
+          "claim": "The experiments estimate the adversarial risk with one specific, possibly suboptimal attack, so the paper should not claim non-vacuous bounds on the adversarial risk.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 303-305 say the bounds 'give non-vacuous guarantees on the classical risks R^ROB_T(H_Q)'. The theorems bound only the relaxed risks, and Proposition 3 places these below R^ROB. R^ROB_T is a PGD or IFGSM test estimate (Table 1 caption). The perturbed test sets come from attacks on the prior H_P, not the learned H_Q (lines 266-268). The rebuttal did not answer this point, and the camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_Jhjk",
+          "claim": "PGD_U and IFGSM_U inject uniform noise after the attack, which has no reason to give stronger adversarial examples; random restarts would be a stronger randomized attack.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 249-251 sample n=100 uniform perturbations in [-0.01, 0.01] 'from the attacked example'. The authors confirmed epsilon = epsilon_1 + epsilon_2 and moved random restarts to future work. In Table 1 (H_SIGN, no defense) the max over 100 noisy copies beats plain PGD only slightly (A_T .325 against R^ROB_T .315) and falls below plain IFGSM (.106 against .117)."
+        },
+        {
+          "reviewer": "Reviewer_Jhjk",
+          "claim": "The paper does not discuss randomized smoothing (Cohen et al.; Salman et al.) or distributional analyses of adversarial risk (Pydi and Jog; Meunier et al.).",
+          "checked_against_paper": "correct",
+          "evidence": "None of these works is in the submission's references. The camera-ready adds Cohen et al. and Salman et al. to the related work."
+        },
+        {
+          "reviewer": "Reviewer_N9WH",
+          "claim": "The learning procedure does not optimize the TV term; it removes the term by sampling one perturbation per example.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 252: 'We set n=1 when these attacks are used as defense mechanism in Algorithm 1.' At evaluation n=100. For the voter set H, the TV term then pushes every attacked Theorem 7 bound in Table 1 above 1 (1.33 to 1.67; lines 287-289). The authors agreed the TV term 'should be considered in a learning procedure as future work'."
+        },
+        {
+          "reviewer": "Reviewer_y2sg",
+          "claim": "The TV distance in Proposition 4 can be arbitrarily large, and MNIST and Fashion-MNIST are too easy to show that the gap to the worst-case risk is small.",
+          "checked_against_paper": "correct",
+          "evidence": "Proposition 4 puts no bound on TV(Pi||Delta). Lines 261-263 list six binary MNIST and Fashion-MNIST tasks and nothing else. The authors agreed that the TV distance 'may be arbitrarily large'."
+        },
+        {
+          "reviewer": "Reviewer_y2sg",
+          "claim": "Section 4.2 has no single-classifier adversarial-training baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "All main-text models are majority votes of differentiable decision trees. The authors pointed to appendix Tables 6-7, which also use majority votes, and called a single classifier an unfair comparison."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_y2sg edited the review on 2021-08-27 to add 'After consideration, I decided to keep my score the same'. Reviewer_N9WH wrote on 2021-08-24: 'I have decided to leave my score unchanged'. Reviewer_Jhjk and Reviewer_KAbu did not edit their reviews and did not reply.",
+        "what_convinced_or_not": "On the central issue the rebuttal conceded or deferred. It said 'independent' was 'not the right term'. It said the TV term 'should be considered in a learning procedure as future work', and it moved random restarts to perspectives. It told y2sg that a valid guarantee allows attacks on the prior network only. y2sg doubted the claimed extension to specific attack algorithms: 'not fully sure that it follows immediately'. The reply to Jhjk skipped the two central points of its Quality section: an n-dependent link to the worst-case risk, and the non-vacuous claim."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The meta-review says y2sg, Jhjk and N9WH 'questioned these definitions'. That matches their reviews, although N9WH's doubt is one sentence. The AC rejects although three of four reviewers rated 6. It asks the authors to 'either work on the worst-case risk, or explain' how the average risks relate to it. It cites KAbu only for typos. The AC did not post in the discussion.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Bounds cover non-standard relaxed risks, not the worst-case adversarial risk (Jhjk, y2sg, N9WH; meta-review)",
+        "The link to the worst-case risk runs through a TV term that can be arbitrarily large",
+        "AC judged that the authors did not show the results are useful to the adversarial-robustness community",
+        "No score moved after a rebuttal of concessions and deferrals; three marginal 6s did not carry the paper"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7],
+      "confidences": [4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_mbWu", "Reviewer_pSP3", "Reviewer_YUnr"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7 (mbWu, pSP3, YUnr). YUnr's 7 is one point above the others and follows a detailed review and a post-rebuttal increase."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_pSP3",
+          "evidence": "Two hours. One paragraph of general praise ('elegant analysis', 'a principled approach to adversarial training with theoretical guarantees') with no specific point on the theorems. Its only criticism asks for more baselines. It mentions 'a few minor typos' but lists none. pSP3 did not reply in the discussion. The guarantees it praises cover relaxed risks under model-independent perturbations, which the review does not mention."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_mbWu",
+          "claim": "The bounds hold either for random noise that does not depend on the model, or with extra terms that are hard to interpret.",
+          "checked_against_paper": "correct",
+          "evidence": "Perturbations are drawn from omega_(x,y), which depends only on the example (lines 132-134). Theorem 7 requires each pi_i to be 'independent from a voter h' and adds a TV term (lines 202-205). The authors told Committee A that a valid guarantee allows attacks on the prior network only."
+        },
+        {
+          "reviewer": "Reviewer_mbWu",
+          "claim": "Boosting-based generalization results for adversarially robust learning (Montasser et al. 2019, 2020) are not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither paper is in the submission's references. The camera-ready cites and discusses both."
+        },
+        {
+          "reviewer": "Reviewer_mbWu",
+          "claim": "Line 137 states the sample space wrongly: the whole product, including B^n, must be raised to the power m.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 137 writes S in (X x Y)^m x B^n. The m pairs ((x_i, y_i), E_i) live in ((X x Y) x B^n)^m."
+        },
+        {
+          "reviewer": "Reviewer_mbWu",
+          "claim": "Theorem 5 restates a well-known fact about the Gibbs surrogate; it is not a new result.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 178-181 call the surrogate 'a common surrogate in PAC-Bayes (known as the Gibbs risk)'. Theorem 5 is the classical factor-2 bound of the majority-vote risk by the linear Gibbs loss, applied to perturbed inputs."
+        },
+        {
+          "reviewer": "Reviewer_YUnr",
+          "claim": "Theorem 7's bound is independent of the type and degree of perturbation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The bound holds for any perturbation distribution. But its empirical term and its TV term are computed on the sampled perturbations E_i. This is the line-46 claim that Reviewer_Jhjk disputed in Committee A and that the authors withdrew there. Committee B's meta-review repeats it."
+        },
+        {
+          "reviewer": "Reviewer_YUnr",
+          "claim": "Theorem 6's statement hides that the sample S depends on n.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 137 defines S as an m x n sample. Theorem 6 (lines 191-192) mentions neither n nor the perturbation sets. Lines 193-194 present the bound as independent of n."
+        },
+        {
+          "reviewer": "Reviewer_YUnr",
+          "claim": "Algorithm 1 fixes the perturbation distribution through adversarial training, so the averaged-max risk can lose its link to the adversarial risk; a Dirac distribution makes n irrelevant.",
+          "checked_against_paper": "correct",
+          "evidence": "The experiments draw uniform noise in [-0.01, 0.01] around a PGD or IFGSM point on the prior (lines 249-251). That support does not cover the ball B (b=1 for l2, 0.1 for l-infinity). So the n-to-infinity convergence that the authors promised is not ensured. The authors deferred the link to future work on 2021-08-27."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_mbWu", "Reviewer_YUnr"],
+        "evidence": "Reviewer_mbWu edited the review on 2021-08-24 and wrote the same day: 'In light of clarifications, I can increase my score' (final 6). Reviewer_YUnr edited on 2021-08-24 and wrote: 'I am happy with your response and am increasing my score' (final 7). Reviewer_pSP3's edit is on its posting day, 2021-07-19, before the rebuttal; pSP3 did not reply.",
+        "what_convinced_or_not": "mbWu had made acceptance conditional on 'a good comparison' with Montasser et al. The rebuttal gave one (VC and dual-VC dependence, large constants, unweighted votes) and promised the citations. YUnr accepted that the averaged-max risk tends to the adversarial risk as n grows 'under the mild hypothesis that the event of drawing an adversarial example is not null'. YUnr also liked a TV-free form of Theorem 7. YUnr's last concern stayed open: an arbitrary perturbation distribution loses the link to adversarial examples. The authors deferred it on 2021-08-27, after YUnr had already raised the score."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The short meta-review credits novelty. It says the main concerns 'were addressed in the rebuttal (some reviewers increased their scores as a result)'. It leaves the remaining limitations to a discussion in the revision. It repeats the claim that the bounds are 'independent of the type of perturbations', which the authors withdrew in Committee A. The AC did not post in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "First PAC-Bayes analysis of adversarial robustness; all three reviewers call the direction novel",
+        "Rebuttal met the concrete requests: a Montasser et al. comparison, an n-to-infinity remark, a TV-free bound",
+        "Two reviewers raised their scores, to 6 and 7",
+        "AC left the remaining limitations to a discussion in the camera-ready"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The claim of non-vacuous guarantees on the classical adversarial risk does not follow from the theorems (Reviewer_Jhjk); the rebuttal did not answer it",
+    "PGD_U and IFGSM_U add noise after the attack, a weak adversary; random restarts suggested (Reviewer_Jhjk)",
+    "No comparison with randomized smoothing or distributional-robustness theory (Reviewer_Jhjk)",
+    "Low TV means all voters fall to the same perturbation, against the case for a majority vote (Reviewer_Jhjk)",
+    "Test perturbations come from attacks on the prior H_P, not the learned H_Q (surfaced by Reviewer_y2sg's question)",
+    "Only MNIST and Fashion-MNIST; no CIFAR-10 (Reviewer_N9WH, Reviewer_y2sg)",
+    "No single-classifier adversarial-training baseline (Reviewer_y2sg)"
+  ],
+  "issues_only_b": [
+    "Boosting-based robust-learning results (Montasser et al.) not cited (Reviewer_mbWu)",
+    "Notation errors at lines 73, 137 and 138 (Reviewer_mbWu)",
+    "Theorem 5 is a known fact presented as a theorem (Reviewer_mbWu)",
+    "No high-level account of how the experiments relate to the theory (Reviewer_mbWu)",
+    "Proposition 4's distribution Pi depends on Q, and the paper does not say so (Reviewer_YUnr)"
+  ],
+  "shared_issues": [
+    "Bounds hold for relaxed risks under perturbations that cannot depend on the learned model (A: Jhjk, y2sg, N9WH; B: mbWu, YUnr)",
+    "TV term hard to interpret and possibly large (A: Jhjk, y2sg; B: mbWu, YUnr)",
+    "Link between the averaged-max risk and the adversarial risk as n grows (A: Jhjk; B: YUnr, mbWu); only B received an answer",
+    "Algorithm 1 removes the TV term by drawing one perturbation per example (A: N9WH; B: YUnr comment 6)",
+    "Theorem 6 appears not to depend on n (A: KAbu; B: YUnr)",
+    "Few comparisons with other adversarial-training methods (A: y2sg; B: pSP3)",
+    "Typos and wording, including 'adversarial robustness' at line 15 (A: KAbu; B: mbWu, pSP3)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same weakness. The bounds hold for averaged and averaged-max risks under perturbation distributions that cannot depend on the learned model. They reach the worst-case adversarial risk only through a TV term that can be arbitrarily large. Before the rebuttal the scores were close: A had 4, 6, 6, 6, and B had at most 5, 6, 6, because mbWu and YUnr both said they raised. The rebuttal phase split them. In A, Reviewer_Jhjk wrote the most detailed critique in either committee, and the paper confirms its points. The TV term depends on the attack, PGD_U adds noise after the attack, and lines 303-305 claim 'non-vacuous guarantees on the classical risks' that the theorems do not give. The rebuttal skipped that claim and conceded or deferred the rest, and no A score moved. A's AC read three marginal 6s, each with a stated doubt about the relaxed risk, as a failure to show relevance to adversarial robustness. In B, the two engaged reviewers asked answerable questions: a comparison with Montasser et al., and convergence as n grows. They got answers and raised to 6 and 7. The third B review is a two-hour paragraph of praise. B's AC followed the scores and left the limitation to the camera-ready. The committees weighed the same facts differently. A detailed detractor in A and a rebuttal that met B's concrete requests decided the outcomes.",
+  "candidate_reasons": [
+    "Detailed detractor only in rejecting committee",
+    "Rebuttal moved only accepting committee",
+    "Relaxed risk: fatal versus acceptable",
+    "AC overrode three marginal accepts",
+    "Rebuttal skipped detractor's central points",
+    "Accepting AC deferred limitations to revision"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_Jhjk final review (Quality and Originality paragraphs)",
+    "Authors' reply to Reviewer_Jhjk, 2021-08-09 ('independent' is 'not the right term')",
+    "Authors' reply to Reviewer_y2sg, 2021-08-09 ('we can only attack the prior network'); Reviewer_y2sg after-rebuttal edit, 2021-08-27",
+    "Authors' reply to Reviewer_N9WH, 2021-08-09; Reviewer_N9WH reply, 2021-08-24",
+    "Reviewer_mbWu review ('Assuming that the authors can provide a good comparison') and reply, 2021-08-24",
+    "Reviewer_YUnr comments 1, 5 and 6; YUnr reply, 2021-08-24; authors' reply, 2021-08-27",
+    "Committee A meta-review; Committee B meta-review",
+    "paper_submitted.pdf line 46, Theorem 7 and lines 202-209, lines 249-252, lines 266-268, lines 287-289, lines 303-305, Table 1",
+    "paper.pdf (camera-ready): abstract ('valid for any kind of attacks'); last paragraph of Section 4.2 keeps the non-vacuous claim"
+  ]
+}

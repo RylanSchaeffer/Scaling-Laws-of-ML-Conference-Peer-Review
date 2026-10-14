@@ -1,0 +1,257 @@
+{
+ "pair_id": "n21-187",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    4,
+    7,
+    5
+   ],
+   "confidences": [
+    5,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_t8Ys"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_BEb7",
+    "direction": "champion",
+    "basis": "inattentive",
+    "evidence": "The only rating above threshold (7) against 4, 4 and 5. The main review is four generic sentences ('convincingly presents the idea', 'well written', 'theoretical justifications seem correct') and lists no weakness. It calls the theory correct although the Section 3.1 argument is flawed as written (Reviewer_t8Ys; the authors conceded it 'reads unclear' and that the gradient 'does not diverge'). BEb7 never posted in the discussion, and the AC's meta-review does not draw on this review."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_BEb7",
+     "evidence": "Rating 7 with a four-sentence main review, no weaknesses, no questions and no reply to the rebuttal. It calls the experiments extensive and the theory correct without naming one result, table or equation."
+    },
+    {
+     "reviewer": "Reviewer_ojXE",
+     "evidence": "The summary paraphrases the abstract and the main review copies lines 45-55 of the introduction nearly word for word. The one critical sentence is that performance is 'similar' to the state of the art. ojXE asks what the underlines mean, but lines 238-240 define them. ojXE asks for hyperparameter robustness that lines 225-232 and the supplement address. The final reply keeps 5 because points remain 'as other reviewers pointed out', with no point of its own."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_t8Ys",
+     "claim": "The line 108 argument is incorrect: as F(x_i)^T w_k rises, p rises, 1-p falls, and the gradient norm shrinks.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 4 gives the gradient as F(x_i)(1[y_i=k] - p_ik). With the feature norm fixed, a rising logit lowers 1-p. Lines 108-109 attribute the 'explosion' to the rising inner product; any growth must come from the feature norm (Fig. 2a), which the sentence does not separate. The authors first conceded the argument 'reads unclear due to missing details', then argued that the feature norm grows faster than p. Their Table R3 shows p rising from 0.013 to 0.245 while the feature norm quadruples."
+    },
+    {
+     "reviewer": "Reviewer_t8Ys",
+     "claim": "ACGAN's early training collapse is not rigorously defined and not shown either empirically or theoretically.",
+     "checked_against_paper": "correct",
+     "evidence": "The term appears at lines 8, 33, 83, 110, 113, 115 and 175 with no definition. The only direct evidence is Fig. 2c, where ACGAN's FID stalls near 100-140. A definition (FID stops improving while classification error keeps falling) appears only in the rebuttal. On ImageNet, the authors' own ACGAN run does not collapse: FID 26.35 against BigGAN's 24.68 (Table 2)."
+    },
+    {
+     "reviewer": "Reviewer_t8Ys",
+     "claim": "The gradients in Figure 2b do not diverge (discussion, 2021-08-19).",
+     "checked_against_paper": "correct",
+     "evidence": "The ACGAN ('Softmax') curve in Fig. 2b rises steeply in the first 15K iterations to about 0.5 and then stays flat to 60K. The authors conceded that 'the gradient does not diverge' and promised to 'refine this expression'."
+    },
+    {
+     "reviewer": "Reviewer_t8Ys",
+     "claim": "The paper does not cover multi-task discriminators and gives no reason for using DiffAug instead of ADA.",
+     "checked_against_paper": "correct",
+     "evidence": "No multi-task discriminator, R1 regularization, FUNIT or StarGAN v2 appears in the submission. ADA appears only as future work (lines 296-297). The rebuttal added a multi-task discriminator run on Tiny-ImageNet (FID 43.38 against 30.33 for ACGAN with normalization)."
+    },
+    {
+     "reviewer": "Reviewer_HH86",
+     "claim": "Eq. 5 is very similar to Eq. 7 of ContraGAN, and ContraGAN also normalizes embeddings onto a sphere.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 177-189 state the differences from the 2C loss as motivation and as which similarity terms enter the numerator and denominator; the form is shared. The authors wrote that D2D-CE 'has a similar form with that of ContraGAN's 2C loss' and that ContraGAN uses the same normalization. The text presents normalization as its own finding (lines 114-117); only the Figure 1(d) schematic shows ContraGAN on the hypersphere. The ContraGAN paper itself was not opened."
+    },
+    {
+     "reviewer": "Reviewer_HH86",
+     "claim": "Gains on CIFAR10 and Tiny-ImageNet overlap within one standard deviation, so state of the art cannot be fully verified there.",
+     "checked_against_paper": "correct",
+     "evidence": "Partly. Under the convention of lines 238-240, the base-row FID gains (7.88 against 8.08; 27.10 against 28.55) are outside one standard deviation, but IS, F0.125 and F8 on CIFAR10 are within it (Table 1). With consistency regularization, ReACGAN is not best in FID on either dataset (7.20 against CR-BigGAN 7.18; 19.69 against CR-ContraGAN 19.21). The conclusion holds; the FID part of the premise does not."
+    },
+    {
+     "reviewer": "Reviewer_HH86",
+     "claim": "Appendix Table A9 shows the D2D-CE auxiliary classifier is worse than ACGAN's, so the model is not an auxiliary classifier GAN.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The supplement is not in the files. The authors describe Table A9 as top-1 accuracy of generated images (ACGAN 62.4%, ReACGAN about 20%, ContraGAN 2.9%), and Reviewer_KmwA in B reads it the same way. On that description, HH86 took a measure of the generator's samples for the accuracy of the discriminator's classifier."
+    },
+    {
+     "reviewer": "Reviewer_ojXE",
+     "claim": "Compared with existing state-of-the-art methods, the performance is similar.",
+     "checked_against_paper": "incorrect",
+     "evidence": "True only for CIFAR10 and Tiny-ImageNet (FID 7.88 against 8.08; 27.10 against 28.55). Not for CUB200 (15.40 against 18.30) or ImageNet at batch size 256 (14.59 against 18.28 reported for SAGAN and 24.68 for the authors' BigGAN run), Tables 1 and 2."
+    },
+    {
+     "reviewer": "Reviewer_ojXE",
+     "claim": "The meaning of the underlined values in the results table is not explained.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 238-240: bold marks the best value, underline marks values within one standard deviation of the best. Table 2 has no underlines; Table 1 has them."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The normalization analysis is positioned only within the narrow angle of the ACGAN model.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.1 analyses only the softmax classifier of ACGAN. In B's forum, the authors' Table R9 shows that normalization also repairs TACGAN on Tiny-ImageNet (FID 67.86 to 29.07). Committee A never saw this."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses on 2021-08-10, follow-ups on 2021-08-23 and 2021-08-26. Reviewer_t8Ys: 'Major concerns are not fully addressed. I am keeping my score' (2021-08-19). Reviewer_HH86: 'Major concerns are still not answered. Retaining my score' (2021-08-23). Reviewer_ojXE: 'I will stick with my original opinion' (2021-09-03). Reviewer_BEb7 never posted. The only edit, by t8Ys, is dated 2021-07-15, the day of posting and before the rebuttal.",
+    "what_convinced_or_not": "t8Ys accepted the answers on SimCLR-style related work and on renaming thresholds as margins. t8Ys rejected the new definition of collapse ('Non-increasing FID is not enough'), noted that Fig. 2b does not diverge, and kept the line 108 objection ('It is not about being close to 0 or being negligible, but about getting smaller'). The multi-task discriminator run led only to a question on R1 regularization. HH86 was unmoved by the debiasing ablation (Table R2) and still doubted the novelty of normalization and the ReACGAN name. ojXE deferred to the other reviewers."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings are below threshold (4, 4, 5; mean 5.0), and the AC rejected. The AC made Reviewer_HH86's originality concerns 'the major issue that was not easily addressed': normalization, with the AC's own point that the analysis stays in 'the narrow angle of the ACGAN model', and the similarity to ContraGAN 'in their final form'. The AC called t8Ys's definition issue one that 'could be addressed easily', set the naming dispute aside ('not taken as the key factor'), and said the rebuttal results 'need more efforts to be blended to the main paper'. The AC also wrote that reviewers found 'the convincing argument from the claimed issue of ACGAN to the improved model', which understates t8Ys's main objection.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Originality of normalization: standard in SimCLR, MoCo and ContraGAN, and analysed only for ACGAN (Reviewer_HH86; AC's 'narrow angle')",
+    "D2D-CE not shown to differ enough from ContraGAN's 2C loss (Reviewer_HH86, adopted by the AC)",
+    "Two reviewers, one at confidence 5, kept 4 after the rebuttal; the only 7 is a thin review",
+    "Rebuttal experiments judged preliminary and in need of integration before publication",
+    "Imprecise 'early training collapse' and 'gradient exploding' claims (Reviewer_t8Ys), treated by the AC as fixable"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    6,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_KmwA"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 6, 6, 7 (mean 6.5) sit together. The two 6s come from the reviewers with the most doubts: Reviewer_JFMx on the root cause of the instability and Reviewer_mphj on novelty."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_JFMx",
+     "claim": "The experiments are limited to BigGAN-related backbones.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 names the model 'Big + D2D-CE', and lines 215-218 fix one backbone set; no StyleGAN or other backbone carries ReACGAN in the submission. The rebuttal added SNCNN and SNResNet runs; StyleGAN2 failed to train."
+    },
+    {
+     "reviewer": "Reviewer_mphj",
+     "claim": "D2D-CE is similar to ContraGAN's loss, and the motivation of the thresholds is similar to focal loss.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 177-189 (shared form with 2C loss). Lines 128-129 and 162-165: the thresholds stop gradients from easy samples, the motivation of focal loss. The authors conceded the threshold motivation 'seems to be similar to the motivation of Focal loss'."
+    },
+    {
+     "reviewer": "Reviewer_mphj",
+     "claim": "MHGAN reported IS and FID on ImageNet, but Table 2 does not include it.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 has no MHGAN row; the MH loss appears only in Table 3 (CIFAR10, Tiny-ImageNet, CUB200). The authors said MHGAN used batch size 1024 and reran it at 256 for the rebuttal (FID 74.23)."
+    },
+    {
+     "reviewer": "Reviewer_1hzt",
+     "claim": "The results are significant, especially on ImageNet.",
+     "checked_against_paper": "correct",
+     "evidence": "Against the submission: Table 2 gives FID 14.59 against 18.28 (SAGAN, reported) and 24.68 (authors' BigGAN run) at batch size 256. It is a single run (checklist 3(c)). The authors' batch-2048 run in B's rebuttal (Table R1) trails the same-library BigGAN in FID (8.23 against 7.89) and IS (92.74 against 99.71). Nobody in B commented on it."
+    },
+    {
+     "reviewer": "Reviewer_1hzt",
+     "claim": "There is not any section about limitations.",
+     "checked_against_paper": "correct",
+     "evidence": "The only limitation is one sentence in the conclusion on extra hyperparameters (lines 291-293); checklist 1(b) points to it."
+    },
+    {
+     "reviewer": "Reviewer_KmwA",
+     "claim": "The method performs poorly on ImageNet classification, as Table A9 shows.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The supplement is not in the files. The authors' replies in A's forum give about 20% for ReACGAN against 62.4% for ACGAN. KmwA reads it as an evaluation limit and asks for a classifier trained on generated data."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses on 2021-08-10 and 2021-08-18. Reviewer_KmwA's edit (2021-07-15) predates the rebuttal; no B review was edited afterwards. KmwA: 'Thanks for your response which address my concerns' (2021-08-21). Reviewer_JFMx: 'I like the added analysis, which would make the rationality of the proposed method stronger' (2021-08-25). Reviewer_mphj and Reviewer_1hzt did not post.",
+    "what_convinced_or_not": "New experiments satisfied the two reviewers who replied: TAC-GAN synthetic and real-data runs (Tables R7-R9), SNCNN and SNResNet backbones (Tables R2-R4), and lower loss weights and clipping against normalization (Table R6). KmwA accepted that ReACGAN fails on overlapping class supports as a limitation to document. Nobody answered the batch-2048 ImageNet run (Table R1), where ReACGAN trails BigGAN in FID and IS. All ratings were already at or above the threshold."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four ratings are 6 or 7, and the AC accepted 'given its novelty and impressive performance'. The meta-review says 'The reviewers agree that the proposed method is technically sound, novel', but Reviewer_mphj named novelty as the concern and Reviewer_1hzt wrote that L2 normalization and contrastive learning 'are certainly not novel'. The AC took Reviewer_KmwA's overlapping-support result as the main weakness, called the method 'rather heuristic', and asked for TAC simulations in the final version.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Four ratings at or above threshold (7, 6, 6, 7) and no detractor",
+    "Strong empirical results, especially on CUB200 and ImageNet at batch size 256 (Reviewer_1hzt, Reviewer_mphj)",
+    "Novelty doubts (ContraGAN, focal loss) outweighed by results; the AC called the method novel",
+    "Rebuttal experiments (TAC-GAN, more backbones, clipping and loss weights) satisfied Reviewer_KmwA and Reviewer_JFMx",
+    "Failure on overlapping class supports accepted as a limitation to report"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "'Early training collapse' is undefined and 'gradient exploding' overstates Fig. 2b (Reviewer_t8Ys)",
+  "The line 108 gradient argument does not follow from Eq. 4 (Reviewer_t8Ys)",
+  "No comparison with multi-task discriminators or R1 regularization; no reason for DiffAug over ADA (Reviewer_t8Ys)",
+  "L2 normalization is standard in SimCLR, MoCo and CLIP and the related work omits it (Reviewer_t8Ys, Reviewer_HH86)",
+  "The 'Rebooting ACGAN' name is misleading because the final model behaves like ContraGAN (Reviewer_HH86)",
+  "Gains on CIFAR10 and Tiny-ImageNet are within noise or similar to the state of the art (Reviewer_HH86, Reviewer_ojXE)",
+  "No comparison with hard-negative-mining or debiased contrastive losses (Reviewer_HH86)",
+  "Sensitivity to tau, m_p and m_n; m_p = 1 - m_n is unjustified (Reviewer_ojXE)",
+  "The normalization analysis is confined to ACGAN (Committee A AC)"
+ ],
+ "issues_only_b": [
+  "ReACGAN fails on class distributions with overlapping supports in the TAC-GAN synthetic test (Reviewer_KmwA, Committee B AC)",
+  "Accuracy of a classifier trained on generated data as a quality-and-diversity test (Reviewer_KmwA)",
+  "Only BigGAN-type backbones; StyleGAN untested (Reviewer_JFMx)",
+  "Alternatives to normalization (gradient clipping, a lower auxiliary loss weight) and spectral normalization on the last layer (Reviewer_JFMx)",
+  "The thresholds resemble focal loss (Reviewer_mphj)",
+  "The MHGAN ImageNet result is missing from Table 2 (Reviewer_mphj)"
+ ],
+ "shared_issues": [
+  "D2D-CE resembles ContraGAN's 2C loss and L2 normalization is not new (A: Reviewer_HH86, Reviewer_t8Ys; B: Reviewer_mphj, Reviewer_1hzt)",
+  "Whether exploding gradients are the real cause of ACGAN's failure (A: Reviewer_t8Ys wanted rigour; B: Reviewer_JFMx wanted alternative fixes)",
+  "Low top-1 accuracy of ReACGAN's generated images in Table A9 (A: Reviewer_HH86 as a flaw; B: Reviewer_KmwA as an evaluation limit)",
+  "Training-time cost of the D2D-CE loss (A: Reviewer_HH86; B: Reviewer_KmwA)",
+  "The limitations discussion is too thin (A: Reviewer_HH86; B: Reviewer_1hzt)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B recommended a poster and A a reject because the two reviewer pools weighed the same weaknesses differently. Both pools saw that L2 feature normalization is standard and that D2D-CE has the form of ContraGAN's 2C loss (Reviewer_HH86 in A; Reviewer_mphj and Reviewer_1hzt in B). B's reviewers accepted this because of strong results ('Despite the concerns, the authors showed strong experimental results', mphj) and rated 6 or 7. In A, HH86 and Reviewer_t8Ys (confidence 5) kept 4 after the rebuttal. A's only 7 (Reviewer_BEb7) is four generic sentences, and Reviewer_ojXE's 5 mostly paraphrases the paper. Both area chairs followed their reviewers. A's AC made originality decisive and treated t8Ys's rigour complaints as fixable; B's AC accepted on 'novelty and impressive performance' and overstated reviewer agreement on novelty. t8Ys's specific objections are correct on the submission: 'early training collapse' is never defined, the line 108 argument does not follow from Eq. 4, and Fig. 2b shows no divergence. Nobody in B examined the authors' batch-2048 ImageNet run, where ReACGAN trails the same-library BigGAN in FID and IS. No fatal flaw separates the committees; the split follows the reviewer draw.",
+ "candidate_reasons": [
+  "same novelty facts, different weight",
+  "confident rigour-focused detractor in A",
+  "strong results excused incremental novelty",
+  "thin lone champion in A",
+  "rebuttal additions seen as revision burden",
+  "B meta-review overstated novelty consensus"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_t8Ys review (Quality section) and 2021-08-19 reply",
+  "Reviewer_HH86 review and 2021-08-23 reply",
+  "Reviewer_BEb7 review",
+  "Reviewer_ojXE review and 2021-09-03 reply",
+  "Committee A meta-review",
+  "Reviewer_mphj review ('Despite the concerns')",
+  "Reviewer_1hzt review (Originality)",
+  "Reviewer_KmwA 2021-08-16 and 2021-08-21 replies; authors' Tables R7-R9",
+  "Committee B meta-review",
+  "Authors' reply to Reviewer_mphj, Table R1 (batch-2048 ImageNet)",
+  "paper_submitted lines 101-113, Eq. 4 and Figure 2b",
+  "paper_submitted Table 1 and lines 238-240",
+  "paper_submitted Tables 2 and 4 (ImageNet ACGAN and +Normalization rows)",
+  "paper_submitted lines 177-189 (differences from ContraGAN)"
+ ]
+}

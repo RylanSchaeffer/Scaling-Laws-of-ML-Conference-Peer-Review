@@ -1,0 +1,211 @@
+{
+  "pair_id": "n21-176",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 4, 6, 7],
+      "confidences": [5, 4, 4, 2],
+      "reviews_edited_after_posting": ["Reviewer_eWPQ", "Reviewer_1r48", "Reviewer_Q2rC"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_ML4S",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6: a 4 at confidence 4 after '20+ hours'. Its sharpest point holds. Zhang et al. (CVPR 2020), the paper's [19], already used a logit loss for targeted UAPs, and the submission never says so. On 2021-08-26 ML4S conceded the iteration point ('it is indeed not meaningful to directly compare the number of iterations in different tasks') but kept 'it is just a parameter-tuning'. ML4S wrote 'I hope the AC can ignore my negative score' if the concerns were met, and did not answer the authors' second reply."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Q2rC",
+          "evidence": "A 7 at confidence 2. The main review is two sentences and calls the contribution 'original', although the paper says 'the idea of attacking logits is not new' (line 40). Its two requests, C&W details and epsilon = 8/255, were valid. The post-rebuttal note is two lines. Thin support, not evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_1r48",
+          "claim": "Zhang et al. [19] also optimize the perturbation directly and also tested a logit loss; the paper does not distinguish its UAP method or its loss from [19].",
+          "checked_against_paper": "correct",
+          "evidence": "The submission cites [19] only for proxy-data UAPs (lines 144-146, 335-337, 345-347). It names only C&W as a similar logit loss (lines 40-42, 188-190). The authors confirmed in the rebuttal that [19] uses a clamped logit loss. The camera-ready adds that [18] (the same paper) adopted 'another logit loss that is similar to the C&W loss'."
+        },
+        {
+          "reviewer": "Reviewer_ML4S",
+          "claim": "The paper presents the logit loss as its main technical finding without discussing the same loss in prior work ([2], Zhang et al., CVPR 2020).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 37-42 call 'identifying the general superiority of a simple logit loss' a key contribution. They concede only that 'the idea of attacking logits is not new' and name C&W. [19] is never linked to a logit loss. The authors' second reply called the question 'not relevant'."
+        },
+        {
+          "reviewer": "Reviewer_1r48",
+          "claim": "The 'training-free' claim for UAPs is wrong, because each UAP still needs 300 iterations of optimization.",
+          "checked_against_paper": "correct",
+          "evidence": "The abstract (line 16) and Section 4.3 (lines 337-340) say 'without any actual data and training', and generate each UAP 'with 300 iterations'. The authors agreed to drop 'training-free'. The camera-ready abstract says 'data-free' only."
+        },
+        {
+          "reviewer": "Reviewer_1r48",
+          "claim": "The claim that C&W performs worse has no results and no stated setup.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 190-192 give a bare claim: C&W 'yields 20% worse performance on average' for the ResNet50 source. No table, no kappa or c value. Reviewer_Q2rC (A) and Reviewer_c8VG (B) made the same point. The rebuttal's kappa sweep and the camera-ready Appendix A fill the gap."
+        },
+        {
+          "reviewer": "Reviewer_1r48",
+          "claim": "The authors did not state limitations or give a paragraph on societal impact.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 362-364 state a limitation (degradation on some architectures). Lines 364-369 discuss harm and social-good uses. The text is short but present, and checklist items 1(b) and 1(c) point to it."
+        },
+        {
+          "reviewer": "Reviewer_eWPQ",
+          "claim": "Section 4.3 does not show what the UAPs look like or how strong they are relative to the image range.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3 (lines 331-347) has only Table 7: no figure and no norm bound. The camera-ready adds Figure 6 with epsilon = 16."
+        },
+        {
+          "reviewer": "Reviewer_Q2rC",
+          "claim": "All bounded experiments use epsilon = 16/255.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 223: 'the perturbations are restricted by L-infinity = 16/255'. Only the unbounded FDA comparison differs. The rebuttal added epsilon = 8/255 results, where the logit attack beat TTP by a larger margin."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_eWPQ", "Reviewer_1r48", "Reviewer_Q2rC"],
+        "evidence": "Reviewer_eWPQ, edited 2021-08-22: 'With my concerns resolved, I would like to increase my score to 7 and argue for acceptance'. Reviewer_1r48, comment and edit 2021-08-31: 'The authors addressed my concerns well, hence I raised my score'; the unedited body still says 'marginally below the acceptance threshold', so 5 to 6. Reviewer_Q2rC, comment and edit 2021-09-01: 'hence I raised my score' (final 7). Reviewer_ML4S, 2021-08-26: 'addressed part of my concerns'; no edit and no later reply.",
+        "what_convinced_or_not": "The rebuttal added a gradient derivation (the CE gradient -1 + p_t vanishes; the logit gradient is constant), a C&W kappa sweep where the logit loss wins every cell, epsilon = 8/255 results, and MNIST results. It conceded 'training-free'. eWPQ accepted the 'methodological correction' framing: 'I don't think this should be a reason of rejection.' ML4S's remaining question, whether the loss equals the L_L of Zhang et al., got the answer that it is 'not relevant'; ML4S did not come back."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Post-rebuttal ratings 7/4/6/7, mean 6.0, three of them raised. The meta-review concedes 'Reviewers were happy with authors' responses during the rebuttal', then rejects: 'Overall, I feel the paper lacks depth in the contributions.' It repeats ML4S's framing ('improved hyper-parameter tuning'). It asks for 'more analysis/experiments' without naming any, and ignores the analyses the rebuttal supplied. It overrides the confidence-5 Reviewer_eWPQ, who argued for acceptance on the novelty point itself.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own judgment that a known loss plus more iterations 'lacks depth in the contributions' (meta-review)",
+        "Novelty framed as 'improved hyper-parameter tuning' (Reviewer_ML4S; Reviewer_1r48 before the rebuttal)",
+        "Originality doubts, including the undisclosed overlap with the logit loss of Zhang et al., CVPR 2020 (Reviewer_ML4S, Reviewer_1r48)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 4, 6],
+      "confidences": [2, 3, 3, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_dgjq",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6: a 4 at confidence 3. It rests on novelty and missing theory, points that all B reviewers share. Its one cited precedent, Naseer et al. (NeurIPS 2019), trains a generator with a relativistic cross-entropy for non-targeted perturbations, a weaker match than Zhang et al. [19], which dgjq does not name. It says results 'were mentioned in previous works' with no reference, and adds 'admittedly it was not explicitly stated before'. dgjq did not reply to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yhEq",
+          "evidence": "A 6 after two hours, in three short paragraphs. It asks the authors to 'share their code', but line 58 and checklist item 3(a) say the code was submitted as supplementary material. Under limitations it writes 'No discussion', but lines 362-369 contain both limitations and societal impact. No reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_nyxN",
+          "evidence": "A 7 after two hours: three strength bullets and one weakness ('extremely simple and not that novel'). No question, no checkable point, no reply to the rebuttal. A thin champion, not evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_c8VG",
+          "claim": "The C&W loss at line 192 is not defined; its hyperparameter kappa is not given, so the comparison cannot be judged.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 188-194 give a '20% worse' figure with no definition, no kappa and no table."
+        },
+        {
+          "reviewer": "Reviewer_c8VG",
+          "claim": "The source-model settings for Table 2, Figure 3 and Table 3 are not described precisely.",
+          "checked_against_paper": "correct",
+          "evidence": "Correct for Table 2 and Table 3. Table 2 names only the hold-out models and cites 'common practice' [4, 6, 21, 38]. The Table 3 text (lines 263-277) names no source or target model. Figure 3's ensemble follows from the four models of line 222."
+        },
+        {
+          "reviewer": "Reviewer_c8VG",
+          "claim": "Section 4.3 does not say whether the UAP is bounded.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 337-340 give the start image and 300 iterations but no norm bound. The camera-ready adds epsilon = 16."
+        },
+        {
+          "reviewer": "Reviewer_dgjq",
+          "claim": "No theoretical analysis explains why the logit loss beats other losses or why more iterations help.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 183-187 and 195-198 give only an informal vanishing-gradient argument that cites Li et al. [21]. The rebuttal added a two-line gradient derivation, and the camera-ready includes it."
+        },
+        {
+          "reviewer": "Reviewer_dgjq",
+          "claim": "Similar losses were already proposed, for instance by Naseer et al. (NeurIPS 2019).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submission cites Naseer et al. (2019) as [28], only among UAP methods. The authors replied, uncontested, that its loss is a relativistic cross-entropy for training a generator. The closer precedent, Zhang et al. [19], no B reviewer named."
+        },
+        {
+          "reviewer": "Reviewer_yhEq",
+          "claim": "The code is not shared (implied by the request to share it).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 58: 'The code has been submitted as the supplemental material.' Only the Google Cloud Vision code was missing."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B review was edited after posting, and no B reviewer posted a comment. The authors' replies of 2021-08-10 got no response.",
+        "what_convinced_or_not": "Unknown. The authors gave B the same gradient derivation and C&W kappa sweep as A. dgjq's 4 stood. The AC decided on the original ratings."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 6/7/4/6, mean 5.75, three at 6 or 7. The meta-review lists the positives ('simple but effective', experiments 'interesting and well executed'). It does not mention dgjq's 4 or the novelty doubts of nyxN and yhEq. It names Zhang et al. (CVPR 2020) as related work 'the reviewers ... point out', but no public B review names it. It asks only for a discussion in the camera-ready.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Simple loss with strong, broad empirical results (all four reviewers, AC)",
+        "Three of four ratings at 6 or 7, and the AC followed them",
+        "Low novelty judged acceptable because of the simplicity (Reviewer_nyxN: 'somewhat acceptable'; Reviewer_c8VG)",
+        "Related work, including Zhang et al. (CVPR 2020), left to the camera-ready (AC)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Zhang et al. [19] already used a logit loss for targeted UAPs and optimized the perturbation directly; the submission does not say so (Reviewer_ML4S, Reviewer_1r48)",
+    "The 'training-free' UAP claim is wrong; the authors conceded (Reviewer_1r48)",
+    "Results at a smaller budget, epsilon = 8/255 (Reviewer_Q2rC)",
+    "Attack cost: many per-image iterations against the setup cost of TTP and FDA (Reviewer_eWPQ)",
+    "Whether 'attacking robust features' holds under small bounded perturbations (Reviewer_eWPQ)",
+    "Smaller datasets such as MNIST and SVHN (Reviewer_ML4S)"
+  ],
+  "issues_only_b": [
+    "Source-model settings for Table 2 and Table 3 not given (Reviewer_c8VG)",
+    "Combining the logit loss with FDA or TTP (Reviewer_yhEq)",
+    "Code release, including the Google Cloud Vision experiments (Reviewer_yhEq); the ImageNet code was already in the supplement",
+    "Logit-MI and other variants in Figure 1 (Reviewer_c8VG)",
+    "Naseer et al. (2019) as a similar loss (Reviewer_dgjq)"
+  ],
+  "shared_issues": [
+    "Low technical novelty: a known logit loss plus a hyper-parameter change (A: Reviewer_ML4S, Reviewer_1r48, AC; B: Reviewer_dgjq, Reviewer_nyxN, Reviewer_yhEq)",
+    "C&W comparison stated without setup or kappa (A: Reviewer_1r48, Reviewer_Q2rC; B: Reviewer_c8VG)",
+    "No theoretical explanation of the logit loss's advantage (A: Reviewer_Q2rC; B: Reviewer_c8VG, Reviewer_dgjq, Reviewer_yhEq)",
+    "UAP section under-specified: no visualization, no bound (A: Reviewer_eWPQ; B: Reviewer_c8VG)",
+    "Strong, broad experiments, praised by both panels and by both detractors (Reviewer_ML4S 'solid results'; Reviewer_dgjq 'claims are well supported empirically')"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently, and the area chairs, not the reviewers, made the difference. Both panels saw a known logit loss and a longer attack schedule that give strong, broad results, and both detractors praised the experiments. Each panel had one novelty-based 4 and three ratings of 6 or 7. Committee A's panel was the more expert and engaged one. After a rebuttal with a gradient derivation, a C&W kappa sweep and epsilon = 8/255 results, three A reviewers raised their scores, to a mean of 6.0. No B reviewer responded, and B stayed at 5.75. A's AC wrote that 'Reviewers were happy with authors' responses during the rebuttal' and rejected anyway: 'I feel the paper lacks depth in the contributions'. That echoes Reviewer_ML4S's 'parameter-tuning' framing and overrides the confidence-5 Reviewer_eWPQ, who wrote that novelty should not be 'a reason of rejection'. ML4S had one valid, unanswered point: Zhang et al. (CVPR 2020) already used a near-identical logit loss for targeted UAPs, and the submission does not say so. B's AC named the same paper and asked only for a citation. B's AC accepted on the scores with a generic meta-review.",
+  "candidate_reasons": [
+    "AC overrode post-rebuttal score gains",
+    "AC novelty bar for re-evaluation papers",
+    "detractor's parameter-tuning framing adopted",
+    "terse AC accepted on scores",
+    "no reviewer engaged with rebuttal",
+    "undisclosed prior logit loss"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_eWPQ edit after rebuttal (2021-08-22)",
+    "Reviewer_ML4S comment 2021-08-26 and the authors' further response 2021-08-26",
+    "Reviewer_1r48 review and post-rebuttal comment 2021-08-31",
+    "Reviewer_Q2rC review and comment 2021-09-01",
+    "Committee B meta-review",
+    "Reviewer_dgjq review and the authors' response",
+    "Reviewer_c8VG review",
+    "paper_submitted lines 37-42 and 182-194 (logit loss, C&W)",
+    "paper_submitted lines 141-151 and 331-347 (Sections 2.3 and 4.3, [19], training-free)",
+    "paper_submitted lines 362-369 (limitations, societal impact) and line 58 (code)",
+    "camera-ready Section 3.2 (adds the [18] sentence and the gradient derivation)"
+  ]
+}

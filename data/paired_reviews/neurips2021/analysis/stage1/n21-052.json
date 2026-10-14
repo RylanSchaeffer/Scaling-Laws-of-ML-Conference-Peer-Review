@@ -1,0 +1,165 @@
+{
+  "pair_id": "n21-052",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 6, 6, 5],
+      "confidences": [4, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_UFXP"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/6/5 sit evenly around 6; no reviewer stands apart. The lone sub-threshold score (Reviewer_Vgsv, 5, confidence 3, 3.5 hours) is one point below the median. It rests on scope requests (partial observability, learning the representation online with the policy), not on a flaw: the same review calls the experiments 'sufficient to endorse their theoretical claims' and the writing clear. Vgsv never replied to the rebuttal, which answered both requests. The reject came from the area chair, not from an outlying reviewer."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_jykz",
+          "claim": "Proposition 2 might be flawed: the aliased representation reaches only ln 2 while the maximum attainable MI is ln 3, so calling it a maximizer of J_state is imprecise.",
+          "checked_against_paper": "incorrect",
+          "evidence": "In the Figure 2 MDP with a uniform policy (lines 199-200), I(S_{t+1}; S_t) = ln 4 - ln 2 = ln 2. By the data-processing inequality no representation exceeds this, so ln 3 is not attainable. Figure 2 (right) shows the identity (star) and the s0/s3 aliasing (diamond) both at about 0.69 = ln 2, so the aliased map is a maximizer and the counterexample stands. The authors gave this calculation; jykz did not reply. jykz is right that the main text omits the calculation and that the proposition statement does not mention the data-collection policy (the proof does, line 200)."
+        },
+        {
+          "reviewer": "Reviewer_UFXP",
+          "claim": "Lemma 2 confuses a conditional density with a random variable, Eqs. 12-17 are hard to follow, and the Lemma 1 Markov chain (line 565) has Z_t -> S_t where the model has S_t -> Z_t.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Appendix A.1 is in neither PDF (paper_submitted.pdf ends at the checklist; paper.pdf has 13 pages and no appendix). The authors conceded both typos (the right-hand side of Lemma 2 should be E_{p(Z|X=x)}[p(Y|Z)]; the arrow should be Z_t <- S_t) and gave a line-by-line derivation. UFXP accepted it on 2021-08-16."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "Proposition 1 'seems to assume that the identity transformation is analyzed', so its sufficiency result is not surprising; a setting with a bottleneck that removes irrelevant information would be better.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 146-148 define an objective as sufficient if all representations that maximize it are sufficient, and Proposition 1 (line 190) states that J_fwd is sufficient, i.e. a claim about every maximizer. Lines 188-189: a maximizer 'can still discard information in the original state, such as independent random noise at each timestep'. The identity is one maximizer, not the object of the theorem. The fair part: J_fwd maximizers keep all predictable information, which the paper concedes (lines 186-188, 324-329)."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "The experiments use only 5 seeds and default hyperparameters, and one approach uses a bottleneck while another does not, with insufficiently explicit hyperparameter choices.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Seeds, hyperparameters and the bottleneck are in Appendix A.2 (line 252 defers to it), which neither PDF contains. The main text never mentions an information bottleneck, so 'insufficiently explicit' holds for the main text. The authors told Reviewer_mtq5 that the experiments minimize I(Z;S) as a bottleneck to pick the smallest maximizer."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_UFXP"],
+        "evidence": "Authors responded 2021-08-11. Reviewer_UFXP's review ends 'I will raise my score if the authors could address my concerns properly'. On 2021-08-16 UFXP wrote 'The proofs now make sense to me. I do not have additional concerns', and the review shows an edit the same day (final 6). Reviewer_jykz, Reviewer_mtq5 and Reviewer_Vgsv never replied and did not edit.",
+        "what_convinced_or_not": "The admitted typos plus the line-by-line Lemma 2 derivation convinced UFXP. The Proposition 2 calculation for jykz, the decoupling argument for mtq5, and the partial-observability and full-coverage answers for Vgsv drew no reply. The AC sided with the authors on the offline setting ('I do not share this concern') but raised experimental concerns the authors never saw."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Rejects over ratings 7/6/6/5 (mean 6.0, three at or above threshold). The meta-review calls the paper 'very nicely written' and 'a useful paper for the community' and says 'If there is room in the program, this paper could be accepted.' Its two main concerns are its own: weak experiments (5 seeds, default hyperparameters, bottleneck use) and narrow scope (three objectives, no compactness, Proposition 1 unsurprising). No A reviewer questioned the experiments; Reviewer_mtq5 called them 'carefully designed', Reviewer_UFXP 'extensive', Reviewer_Vgsv 'sufficient to endorse their theoretical claims'. It explicitly sets aside the reviewers' shared concern about the offline setting.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own judgement that the experimental evidence is weak: 5 seeds, default SAC hyperparameters, unclear bottleneck use",
+        "AC's view that the scope is narrow: three objectives, no compactness, Proposition 1 unsurprising (resting partly on a misreading of Proposition 1)",
+        "Borderline ratings (mean 6.0, one 5) with acceptance framed as conditional on 'room in the program'",
+        "Typos in the Lemma 2 proof (a minor point in the meta-review)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 7],
+      "confidences": [5, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_nwZo", "Reviewer_Ncmr"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/6/6/7 are tight. The 7 (Reviewer_w9XU) is one point above the rest; it is thin (see inattentive_reviews) but not an outlier by score. The one strong objection (Reviewer_nwZo, 'the proof of Proposition 1 is false') was withdrawn after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_w9XU",
+          "evidence": "Rating 7, confidence 3, 'Math/other details were not carefully checked'. The main review is four sentences with no specific point about the method or the results. It says the proof, 'including the proof of Lemma 2, is now corrected', yet it was posted 2021-07-31, before any author response (2021-08-06); the authors later conceded a typo in the statement of Lemma 2. It did not reply to the authors."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nwZo",
+          "claim": "The proof of Proposition 1 is false: with independent contextual bandits J_fwd is zero for any representation, so a constant representation maximizes it without being Q*-sufficient; the Lemma 2 condition I(X;Y) = I(Y;Z) fails.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The counterexample needs action-dependent reward. Line 95 defines r: S -> R, and footnote 1 (page 3) restricts the paper to rewards that are a function of the state; line 101 defines Q* as a sum from t = 1, excluding the current reward. With state-only reward and that Q*, the constant representation is Q*-sufficient in nwZo's example. nwZo's narrower point is correct: lines 100-102 write r(S_t, A_t) and r(s_t, a_t), which obscures the assumption. The line-102 Bellman equation also adds the current reward, and with that Q* the constant representation would fail even with state-only reward; the theorem rests on the line-101 definition, which the authors confirmed ('not including the reward at the current timestep'). nwZo conceded and raised to 6."
+        },
+        {
+          "reviewer": "Reviewer_Ncmr",
+          "claim": "The Lemma 1 Markov chain Z_t -> S_t -> S_{t+k} -> Z_{t+k} reverses the S_t -> Z_t arrow of the graphical model, and the reversal may invalidate the data-processing step.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Appendix A.1 is in neither PDF; the authors conceded the arrow is a typo. The concern does not hold: Z_t <- S_t -> S_{t+k} -> Z_{t+k} has no collider, so it implies the same conditional independences as the forward chain and the DPI applies. Ncmr's Y = Z example fails, because Y independent of Z given X with Y = Z forces Y to be a function of X, so I(Y;Z) = I(Y;X). Ncmr itself believed the lemma correct."
+        },
+        {
+          "reviewer": "Reviewer_Ncmr",
+          "claim": "The experiments are rather artificial and specifically designed to showcase the weaknesses of the two objectives that lack sufficiency.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.2 uses catcher because the agent does not control the fruit, which J_inv may drop (lines 254-260), and builds catcher-grip so that J_state may drop the gripper (lines 273-277). Lines 237-239 say the aim is only to see whether sufficiency 'can translate into quantifiable performance differences'. All experiments use catcher variants."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_nwZo"],
+        "evidence": "Authors responded 2021-08-06. Reviewer_nwZo replied the same day ('with the additional assumption, the theory should be correct'); the review, edited 2021-08-16, reads 'I am willing to raise my score to a weak accept' (final 6). Reviewer_Ncmr's review was edited 2021-08-17, the day of its comment titled 'Updated review'; no direction is stated (final 6). Reviewer_qUv5 (2021-08-18): the response 'sufficiently clarified key issues'. Reviewer_w9XU did not reply.",
+        "what_convinced_or_not": "Pointing nwZo to the state-only reward assumption removed the correctness objection; nwZo asked that the assumption leave the footnote. The d-separation argument settled Ncmr's DPI question. Answers on generalizability, end-to-end failure and the costs of J_fwd satisfied qUv5. Ncmr's practical-relevance and novelty concerns got only promises of added discussion, and Ncmr asked that these go into the main text."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two-sentence meta-review: 'All the reviewers found the paper worthy of acceptance at NeurIPS and I am happy to accept it.' It asks only that the rebuttal clarifications go into the final version and engages with no concern (practical relevance, novelty, purpose-built experiments).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four final ratings at or above 6 (mean 6.25)",
+        "Rebuttal removed both correctness challenges (Reviewer_nwZo on Proposition 1, Reviewer_Ncmr on Lemma 1)",
+        "Reviewers valued the sufficiency lens on popular MI objectives as novel and the counterexamples as illuminating"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Experimental rigour: only 5 seeds, default SAC hyperparameters, inconsistent and unstated bottleneck (Committee A AC only)",
+    "Proposition 1 read as an analysis of the identity map and so unsurprising (Committee A AC)",
+    "Proposition 2 counterexample imprecise about the MI maximum and the data-collection policy (Reviewer_jykz)",
+    "No partial observability or temporal representations (Reviewer_Vgsv)",
+    "'Sufficient' versus 'necessary' wording; value of MI terms as auxiliary or partly maximized losses (Reviewer_mtq5, Reviewer_UFXP)"
+  ],
+  "issues_only_b": [
+    "Proposition 1 needs state-only reward, an assumption in a footnote and at odds with the r(s,a) notation (Reviewer_nwZo)",
+    "Bias of InfoNCE estimates of MI (Reviewer_nwZo)",
+    "Novelty limited relative to state-abstraction sufficiency work such as Li, Walsh and Littman 2006 (Reviewer_Ncmr)",
+    "No evidence that sufficiency matters on standard benchmarks; generality across classes of RL problems (Reviewer_Ncmr, Reviewer_qUv5)",
+    "Why end-to-end RL fails with distractors (Reviewer_qUv5)"
+  ],
+  "shared_issues": [
+    "Typos and unclear steps in the Lemma 1 and Lemma 2 proofs (A: Reviewer_UFXP, Committee A AC; B: Reviewer_nwZo, Reviewer_Ncmr); conceded and explained in both rebuttals",
+    "Representation learned offline from full-coverage data, separate from RL (A: Reviewer_mtq5, Reviewer_Vgsv, Reviewer_UFXP, Reviewer_jykz; B: Reviewer_Ncmr, Reviewer_nwZo)",
+    "J_fwd keeps all predictable, task-irrelevant information; no compactness (A: Reviewer_mtq5, Committee A AC; B: Reviewer_Ncmr, Reviewer_qUv5)",
+    "One-sided comparison and experiments built to make the insufficient objectives fail (A: Committee A AC; B: Reviewer_Ncmr)",
+    "Results are intuitive (A: Reviewer_Vgsv, Committee A AC; B: Reviewer_qUv5)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The reviewers did not cause the split; the area chairs did. Both committees scored the paper a borderline accept (A 7/6/6/5, mean 6.0; B 6/6/6/7, mean 6.25), and both saw the same weaknesses: typos in the Lemma 1 and 2 proofs, an offline full-coverage setting, a forward objective that keeps task-irrelevant information, and experiments built around the counterexamples. In each committee a reviewer who doubted the proofs accepted the rebuttal (Reviewer_UFXP in A, Reviewer_nwZo in B). A's AC then added a critique no A reviewer made: only 5 seeds, default hyperparameters, unclear bottleneck use, and a Proposition 1 that 'seems to assume that the identity transformation is analyzed'. Three A reviewers had praised the experiments. The Proposition 1 reading is wrong: the paper calls an objective sufficient only if every maximizer is sufficient (lines 146-148) and notes that maximizers can discard noise (lines 188-189). The seed and hyperparameter points rest on an appendix that neither PDF contains. The AC still wrote that the paper 'could be accepted' if there was room, and A rejected. B's AC accepted in two sentences because 'All the reviewers found the paper worthy of acceptance'; A could not say that, because Reviewer_Vgsv kept a 5 that no flaw supports and never answered the rebuttal. The committees weighed the same facts differently: A's AC treated thin, purpose-built experiments as decisive at a mean of 6, and B's AC did not weigh them at all.",
+  "candidate_reasons": [
+    "Equal borderline scores, opposite AC calls",
+    "AC-only experimental rigour critique",
+    "AC misreads main theorem's scope",
+    "Score-only two-sentence acceptance",
+    "Accept-if-room framing ends in reject",
+    "Unengaged lone sub-threshold reviewer"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_UFXP review and comment 2021-08-16",
+    "Reviewer_nwZo review (Update, Weaknesses) and comment 2021-08-06",
+    "Reviewer_jykz review, Quality section (Proposition 2)",
+    "Reviewer_Ncmr review (first concern; Lemma 1 question)",
+    "Reviewer_Vgsv review",
+    "Reviewer_w9XU review",
+    "paper_submitted.pdf lines 146-148 and 183-190 (sufficiency over all maximizers; Proposition 1)",
+    "paper_submitted.pdf line 95 and footnote 1 (state-only reward); lines 100-102 (r(s,a) notation)",
+    "paper_submitted.pdf Figure 2 and lines 199-208 (Proposition 2)",
+    "paper_submitted.pdf Sections 6.1-6.2, lines 236-285 (experiments)"
+  ]
+}

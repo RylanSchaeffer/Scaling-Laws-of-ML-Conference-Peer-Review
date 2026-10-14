@@ -1,0 +1,272 @@
+{
+  "pair_id": "n21-045",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        8,
+        5,
+        4
+      ],
+      "confidences": [
+        3,
+        3,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_sjbW",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "An 8 ('clear accept') against 6, 5 and 4; without it the A mean is 5.0. Two hours at confidence 3, one 'Minor' con (the word 'slot'), no reply to the rebuttal. The summary sells the work as improving out-of-distribution generalisation of RL agents and calls it relevant to the RL community; the paper has no RL or out-of-distribution test."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_sjbW",
+          "evidence": "Two hours, confidence 3. Four pros and one minor con. Misses the single external baseline, the best-of-runs Table 1 and the absence of any downstream task, and frames the paper as an RL generalisation result it never tests."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ApBk",
+          "claim": "ARI is computed per time step, so nothing measures slot consistency across time.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 269-280 define Encoding and Unroll ARI as mask accuracy against ground truth; no metric tracks identity across frames. The rebuttal says alignment cannot be measured directly 'because the model is unsupervised', but lines 279-280 and Section 4.2 already use ground-truth masks, which give each object's identity."
+        },
+        {
+          "reviewer": "Reviewer_ApBk",
+          "claim": "No quantitative curve of performance against rollout length.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 gives one number per model; Figures 5 and 7 are qualitative."
+        },
+        {
+          "reviewer": "Reviewer_ApBk",
+          "claim": "The paper does not discuss SCALOR or the other object-centric video models [1-4].",
+          "checked_against_paper": "correct",
+          "evidence": "None of the four is among the 35 references. The closest cited work is the benchmark of Weis et al. [34]."
+        },
+        {
+          "reviewer": "Reviewer_ApBk",
+          "claim": "The model keeps track of at most M = 12 objects.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 242: K = 10 MONet slots, M = 12 memory slots. Lines 235-236: each Playroom room holds 10 to 45 objects. Robotics uses M = 8 (Appendix A.1.1)."
+        },
+        {
+          "reviewer": "Reviewer_ApBk",
+          "claim": "Lines 128-129 suggest the memory is fixed during rollout.",
+          "checked_against_paper": "correct",
+          "evidence": "The unroll equation outputs a memory delta but states no memory update. In B the authors told Reviewer_eFBe the memory updates 'as the equations show'; the equations do not show it."
+        },
+        {
+          "reviewer": "Reviewer_ApBk",
+          "claim": "Table 1 does not state the unroll length, and footnote 3 is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "The Table 1 caption gives no length (rebuttal: 15). Footnote mark 3 at line 307 has no text; page 8 carries only footnote 4."
+        },
+        {
+          "reviewer": "Reviewer_ayAi",
+          "claim": "Only AlignNet is new; the transition model is a simple LSTM.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 133-136 and Appendix A.3: the transition model is a transformer followed by a SlotLSTM, and Figure 10 compares it with other cores. MONet is reused, as the paper says."
+        },
+        {
+          "reviewer": "Reviewer_ayAi",
+          "claim": "In Figure 5 the model has no input information about the red object it predicts after t = 16.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The caption names it the avatar's base, which appears when the agent looks down, so the action input carries it; the Figure 17 caption calls the avatar's appearance a 'predictable consequence of the action space'. The rebuttal instead said the object is visible at t = 0 to 2; those frames show no base."
+        },
+        {
+          "reviewer": "Reviewer_ayAi",
+          "claim": "No planning or model-based RL experiment, although OP3 has one.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper has no RL or planning experiment; lines 362-363 leave planning to future work."
+        },
+        {
+          "reviewer": "Reviewer_NjnN",
+          "claim": "The relation to Ding et al. (2020) is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Not cited in the submission."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Reviewer_NjnN (2021-08-17): 'I'll leave my review as is' and 'I too would like to have seen a comparison to SCALOR'. Reviewer_ayAi, Reviewer_ApBk and Reviewer_sjbW posted nothing after the responses. The responses to ayAi and ApBk are dated 2021-08-25, 15 days after those to NjnN and sjbW; the ApBk one apologises for an earlier mislabelling.",
+        "what_convinced_or_not": "Nothing visibly moved anyone. The authors dismissed Ding et al. as unpublished, told ApBk a SCALOR baseline 'is not grounds for rejection' and called one of ApBk's statements 'incorrect'. They told ayAi they hoped to share RL results 'in the next few days'; none was posted in A, although B received robot-stacking results on 2021-08-26."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split two above and two below threshold. The meta-review takes its reasons from the critics: SCALOR and quantitative evaluation (Reviewer_ApBk, echoed by Reviewer_NjnN) and overall contribution (Reviewer_ayAi). It gives sjbW's 8 no visible weight. Its 'lack of demonstration of object permanence' overstates the reviews: ApBk listed predicted re-appearance after long occlusion as a strength and asked only for recognition at encoding steps, and Figures 6 (t = 30) and 7 (t = 54) show predicted re-appearance qualitatively.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Only one external baseline (OP3); no SCALOR or other object-centric video model",
+        "Contribution judged small: AlignNet is the only new module",
+        "Evaluation measures neither slot consistency over time nor decay with rollout length",
+        "AC judged object permanence not demonstrated"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        8,
+        7,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        5,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_V6Rr",
+        "Reviewer_gBUs"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings run from 5 to 8 around a 6.5 mean; no single score stands apart. The lowest, Reviewer_eFBe's 5, rests on presentation points and a misreading of the task. The highest, Reviewer_sozU's 8, is generous next to its own criticism that the ARI numbers 'did not relate to my visual inspection'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_eFBe",
+          "evidence": "Describes the goal as parsing objects 'from third person views' and reads the work as segmentation; the authors had to restate that it is an action-conditioned transition model. Asks where the actions come from, which lines 236-238 state. Opens with a complaint about appendices after the checklist. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_gBUs",
+          "claim": "Table 1 gives no seed variance for OAT.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 caption and checklist 3(c): 'For Table 1 we show the best value for each model' (best of 3 OAT runs and best of 10 OP3 runs, selected on Unroll ARI)."
+        },
+        {
+          "reviewer": "Reviewer_gBUs",
+          "claim": "The abstract's claim that other transition models do not handle persistence and identity satisfactorily ignores SCOFF and NPS.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither SCOFF nor NPS is cited in the submission; the authors agreed to add them."
+        },
+        {
+          "reviewer": "Reviewer_sozU",
+          "claim": "Unroll pixel error includes the background, which dominates it.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 274 defines it over whole images; lines 277-279 concede the background 'often accounts for most of the pixels'."
+        },
+        {
+          "reviewer": "Reviewer_sozU",
+          "claim": "The paper does not define the unroll step precisely.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 119-130 define it: after four observed frames the model feeds back its own predictions with the actions; line 255 restates that it sees only the first four frames."
+        },
+        {
+          "reviewer": "Reviewer_V6Rr",
+          "claim": "The claim that C-SWM will not scale to partially observable scenes has no supporting result.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 214-218 assert it without an experiment; the authors conceded and offered to revise it."
+        },
+        {
+          "reviewer": "Reviewer_eFBe",
+          "claim": "The work parses objects from third-person views, and the task is segmentation rather than video prediction.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Playroom frames are the agent's own view (line 103; Figure 5 caption: the base appears 'when looking down'). The main output is an action-conditioned transition model (Section 2.3)."
+        },
+        {
+          "reviewer": "Reviewer_eFBe",
+          "claim": "Appendix content sits in the main PDF after the references and checklist (pages 12-21).",
+          "checked_against_paper": "correct",
+          "evidence": "Appendices A-D fill pages 12-21 of the 21-page submission. NeurIPS 2021 allowed technical appendices in the submission PDF, so this is not a violation."
+        },
+        {
+          "reviewer": "Reviewer_eFBe",
+          "claim": "Lines 128-129 leave unclear what happens to the memory delta in the unroll.",
+          "checked_against_paper": "correct",
+          "evidence": "The unroll equation outputs a memory delta but states no update; the same gap Reviewer_ApBk found in A."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_gBUs"
+        ],
+        "evidence": "Reviewer_gBUs (review edited 2021-08-26): 'I've increased the score to 6', the day the authors posted robot-stacking RL results. Reviewer_V6Rr edited on 2021-09-10 to add 'most of my concerns were resolved'; any rating change is not visible. Reviewer_sozU (2021-08-28) kept 8. Reviewer_Jy59, Reviewer_vmwV and Reviewer_eFBe posted nothing after the responses.",
+        "what_convinced_or_not": "gBUs tied the score only to a downstream task ('My rating is not effected by how relevant work is mentioned'). The stacking results met that bar although they are thin: OAT against MONet features only, three seeds, one near parity, harder tasks mid-training. gBUs accepted them after the authors said they ran only those seeds. eFBe received clarifications of the task, the actions and the memory update but did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'Reviewers agreed that this is a solid paper that deserves acceptance', plus a request to make the promised changes. Five of six ratings are 6 or above, but eFBe's 5 stood, so 'agreed' overstates. The meta-review names no strength or issue.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three reviewers (8, 7, 7) found the alignment module and object-level loss well motivated and ablated",
+        "Beats OP3 in a 3D partially observable setting",
+        "Rebuttal added a downstream robot-stacking result; Reviewer_gBUs rose to 6",
+        "Remaining concerns treated as camera-ready fixes"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No metric of slot consistency across time; ARI scores each frame (Reviewer_ApBk)",
+    "No curve of performance against rollout length (Reviewer_ApBk)",
+    "SCALOR and propagation-discovery video models neither cited nor compared (Reviewer_ApBk, Reviewer_NjnN)",
+    "Recognition of objects that re-appear during encoding, after long occlusion, untested (Reviewer_ApBk)",
+    "Contribution too small for NeurIPS (Reviewer_ayAi)",
+    "'Object-level rather than pixel-level' wording confusing (Reviewer_ayAi)",
+    "Whether the model can forget objects; request for pseudo-code (Reviewer_NjnN)"
+  ],
+  "issues_only_b": [
+    "No seed variance for OAT; Table 1 shows best runs (Reviewer_gBUs)",
+    "Abstract's novelty claim conflicts with SCOFF and NPS (Reviewer_gBUs)",
+    "Pixel error dominated by background; ARI does not match visible rollouts (Reviewer_sozU)",
+    "Figures too small or blurry (Reviewer_sozU, Reviewer_vmwV, Reviewer_eFBe)",
+    "Untested claim that C-SWM will not scale (Reviewer_V6Rr)",
+    "New dataset instead of OP3's; appendix inside the main PDF (Reviewer_eFBe)",
+    "Intuition for the alignment loss unclear (Reviewer_eFBe)"
+  ],
+  "shared_issues": [
+    "Only OP3 as external baseline; other object-centric models not compared (A: ApBk, NjnN; B: Jy59, gBUs)",
+    "No downstream RL or planning evaluation (A: ayAi; B: gBUs)",
+    "Scalability to many objects and complex scenes (A: ApBk; B: vmwV)",
+    "Alignment and re-appearance shown only qualitatively (A: ApBk; B: V6Rr)",
+    "Memory update during the unroll unclear at lines 128-129 (A: ApBk; B: eFBe)",
+    "MONet description not self-contained (A: ayAi; B: eFBe)",
+    "Relation to Ding et al. 2020 (A: NjnN; B: gBUs)",
+    "MONet and SlotLSTM reused from prior work (A: ayAi; B: gBUs)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw the same paper with the same gaps and weighted them differently; B also saw evidence that A never saw. The gaps are real: OP3 is the only external baseline, there is no downstream or planning task, Table 1 reports best runs without variance, and re-appearance rests on single qualitative examples. In A, Reviewer_ayAi (confidence 5) and Reviewer_ApBk held these gaps against the paper, and the only champion, Reviewer_sjbW (8), wrote a two-hour review with one minor con that the AC gave no visible weight. B drew three satisfied reviewers (Reviewer_sozU 8, Reviewer_vmwV 7, Reviewer_Jy59 7) who accepted the OP3 comparison and the ablation. The authors posted a robot-stacking RL result only in B, and Reviewer_gBUs rose to 6; in A, ayAi was promised RL results 'in the next few days' and none arrived. A's critics got their responses on 2021-08-25, 15 days after the other A responses, including a reply that a missing baseline 'is not grounds for rejection', and neither replied. A's AC then cited a 'lack of demonstration of object permanence', which overstates ApBk's narrower request. No one found an error in a key result; the split comes from reviewer draw, different tolerance for thin baselines, and rebuttal evidence given to one committee only.",
+  "candidate_reasons": [
+    "Rebuttal evidence posted to one committee",
+    "Thin champion discounted by AC",
+    "Missing baselines weighted differently",
+    "Late, combative rebuttal to critics",
+    "AC overstated object-permanence gap",
+    "Lenient reviewer draw in B"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_ApBk review and the authors' 2021-08-25 response",
+    "Authors' 2021-08-25 response to Reviewer_ayAi (RL results promised)",
+    "Committee B: authors' 'Results on a downstream robotics task' (2021-08-26) and Reviewer_gBUs replies",
+    "Reviewer_sjbW review (2 hours, one minor con)",
+    "Reviewer_NjnN reply of 2021-08-17",
+    "Committee B meta-review",
+    "paper Table 1 caption and checklist 3(c)",
+    "paper lines 128-129 (unroll equations)",
+    "paper lines 235-242 (10 to 45 objects per room, M = 12)",
+    "paper Figures 6 and 7 (re-appearance) and Figure 5 caption (avatar's base)"
+  ]
+}

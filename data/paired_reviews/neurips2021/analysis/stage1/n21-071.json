@@ -1,0 +1,222 @@
+{
+ "pair_id": "n21-071",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    4,
+    4
+   ],
+   "confidences": [
+    3,
+    2,
+    2
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All three ratings are 4. The spread is in confidence only: Reviewer_odbV 3, Reviewer_JUUq 2, Reviewer_Cw4U 2 ('quite likely that you did not understand central parts')."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_JUUq",
+     "evidence": "The main review is one paragraph. It asks 'What are the significant and new ideas ... to distinguish it from prior work?' Lines 36-43 of the paper answer this (cubic cost of [10-12], linear cost with a Markov prior). Limitations field: 'Yes'. After the authors restated the answer, JUUq kept the 4 'After reading other reviews', with no word on the reply."
+    },
+    {
+     "reviewer": "Reviewer_odbV",
+     "evidence": "2 hours. The verdicts 'boilerplate', 'mash-up of a many different algorithms' and 'not significant' carry no specifics. The one technical charge (Eq. 2 is not an integrated Wiener process) is wrong. odbV did not answer the rebuttal that corrected it."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_odbV",
+     "claim": "Eq. (2) is not the integrated Wiener process; the integrated Wiener process of [6] cannot be written as the solution of an SDE, so the authors fundamentally misunderstand [6].",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 48-54 define Y = [Y0, ..., Y_nu] as the solution of dY = AY dt + B dW, with A and B 'specified by the integrated Wiener process' and cited to [6, Equation 2]. This is the standard state-space (LTI SDE) form of the nu-times integrated Wiener process, also in [23]. The rebuttal gave the explicit A and B."
+    },
+    {
+     "reviewer": "Reviewer_JUUq",
+     "claim": "The paper does not show what new ideas separate it from GOODE [12], whose claims are similar.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 36-43: [10-12] solve a least-squares problem per iteration, so their cost is cubic in the grid size; the Markov prior gives linear time. Lines 253-259: none of [10-12] exploits state-space structure or does error estimation and mesh refinement."
+    },
+    {
+     "reviewer": "Reviewer_Cw4U",
+     "claim": "The prior of Eq. (2) is not constrained at the boundaries; the boundary conditions enter through the likelihood (Eq. 3), so the abstract's 'Gauss-Markov prior tailored to BVPs' is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (3) is a likelihood. The 'bridge prior' of Section 3.2 (Eq. 8) conditions the Eq. (2) prior on the boundary conditions before the ODE measurements. Lines 129-132: 'the changed order of updates is only relevant for the initialisation'."
+    },
+    {
+     "reviewer": "Reviewer_Cw4U",
+     "claim": "The drift and diffusion of the prior are not specified, and the paper is not self-contained: it points to equations in other papers.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 52-54 leave A and B to '[6, Equation 2]'. Other deferrals: '[5, Section 2.1]' (line 55), '[22, Theorem 12.5 and Algorithm 12.7]' (line 228), '[28, Appendix J]' (line 190)."
+    },
+    {
+     "reviewer": "Reviewer_Cw4U",
+     "claim": "The paper does not discuss Chkrebtii et al. or Cockayne et al.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is in the submitted reference list. The camera-ready (paper.pdf) adds both."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after posting. Reviewer_JUUq (2021-08-22): 'After reading other reviews, I keep my score.' Reviewer_odbV and Reviewer_Cw4U posted nothing after their reviews. The authors replied to odbV and JUUq on 2021-08-06 but never to Cw4U, whose review came on 2021-08-05.",
+    "what_convinced_or_not": "The authors told JUUq that the Markov prior gives linear time where [10-12] are cubic, and that [10-12] lack initialisation, error estimation and mesh refinement. JUUq deferred to the other 4s instead of engaging. The authors showed odbV the explicit A and B that make Eq. (2) the integrated Wiener process of [6]. odbV did not answer, and the AC did not rule on the point."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'Based on all reviewers' feedback, we can do nothing but reject this paper.' The AC also writes that 'some reviewer didn't fully understand the technicality of the paper' and that the reviewer who 'knows the subject better' (only odbV fits: sole confidence 3, sole 'not significant') 'did not appreciate the significance'. It adds its own venue judgement: the paper 'is not presented in a way to appeal to the machine learning community'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Unanimous 4s from three reviewers with confidence 3, 2 and 2; no score moved after the rebuttal",
+    "Doubt about novelty over filtering-based IVP solvers [6] and GP-based BVP solvers [12] (odbV, JUUq)",
+    "Presentation not self-contained: prior not fully specified, equations deferred to other papers (Cw4U, odbV)",
+    "AC's view that the topic and presentation do not suit an ML audience; it recommends a differential-equations venue"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    8,
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    2,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_zNRW",
+    "Reviewer_j7RB"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_iTr9",
+    "direction": "champion",
+    "basis": "principled",
+    "evidence": "8 against three 6s, with confidence 4. The reasons are specific: initialisation, calibration and mesh refinement 'are often neglected in similar papers', 'rigorous', 'clear writing', Appendix A 'well written'. The review asks detailed questions on Figs. 3 and 6 and engages in discussion. One lapse: it says 'benchmarking is not provided', but Figs. 6-7 compare wall-clock time with SciPy and show the solver about 100 times slower."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_iTr9",
+     "evidence": "Partial only. It asks 'Did you compare your method (in wall clock time ...) to existing solvers ...?' Figs. 6-7 already do this against SciPy. The rest of the review reads the paper closely."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_iTr9",
+     "claim": "No benchmarking against existing solvers in wall-clock time is provided.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Fig. 6 (centre panels) plots RMSE against time and time against grid size with a SciPy reference. Fig. 7 annotates the runtime of the solver and of SciPy on five test problems."
+    },
+    {
+     "reviewer": "Reviewer_iTr9",
+     "claim": "Calibration in Fig. 6 (right) is under-confident and gets worse as the number of grid points grows.",
+     "checked_against_paper": "correct",
+     "evidence": "For nu = 3 the chi-squared statistic falls from about 1 to about 2e-3 as N grows. Lines 245-246: uncertainties 'tend to be under-confident'."
+    },
+    {
+     "reviewer": "Reviewer_9rs3",
+     "claim": "The solver is about 100 times slower than the off-the-shelf SciPy solver.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 6 caption: 'roughly by factor ~100 slower'. Fig. 7 runtimes: 0.1-2.0 s for the solver against 0.001-0.01 s for SciPy."
+    },
+    {
+     "reviewer": "Reviewer_zNRW",
+     "claim": "There is no comparison of the full solver with a vanilla IEKS, and no ablation of all parts.",
+     "checked_against_paper": "correct",
+     "evidence": "No end-to-end comparison exists. Fig. 3 ablates initialisation (bridge prior and EKS) and Fig. 5 ablates EM updates, each on one test problem."
+    },
+    {
+     "reviewer": "Reviewer_zNRW",
+     "claim": "Eq. (4) looks linear, so it is unclear why l_n is nonlinear.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. (4) is Y1(t) - f(Y0(t), t). Line 64 states that the non-linearity of f 'implies non-linearity in all l_n'."
+    },
+    {
+     "reviewer": "Reviewer_j7RB",
+     "claim": "The paper does not compare with or situate itself against earlier Bayesian BVP work (Chkrebtii et al.; O'Leary and Harker).",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is cited in the submission; the camera-ready adds both. Section 6 compares only with SciPy, not with any probabilistic solver, including [10-12]."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_zNRW",
+     "Reviewer_j7RB"
+    ],
+    "evidence": "Both reviews were edited on 2021-08-16. Reviewer_zNRW: 'GOODE is clearly not as scalable as your method. I'm changing my review score to 6.' Reviewer_j7RB: 'After seeing the response and the discussions with other reviewers, I'm changing my review score to 6.' The starting scores are not exposed; the authors called j7RB's score 'low'. Reviewer_iTr9 continued 'to recommend acceptance'; Reviewer_9rs3: 'I keep my current rating.'",
+    "what_convinced_or_not": "The argument that GOODE [12] and [10, 11] cost O(N^3) while the Markov prior gives O(N), plus mesh refinement, calibration and initialisation that GOODE lacks. For j7RB, also a promise to cite and discuss Chkrebtii et al. No new experiment was offered. iTr9 wanted the answers on linearisation and the choice of nu put into the paper; the authors agreed."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review names no reviewer. It states its own view: it believes the claim that the method is 'useable out of the box', calls it 'the first practical method for BVPs', and expects 'significant interest' because NeurIPS has long been interested in GP-based ODE solvers. It does not mention the ~100x runtime gap or the missing probabilistic baselines.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Expert champion (iTr9, 8, confidence 4) valued the practical machinery: initialisation, mesh refinement, calibration",
+    "Linear-time cost against cubic GOODE [12] moved zNRW and j7RB up to 6",
+    "AC's own view: first practical probabilistic BVP solver, of interest to the NeurIPS community working on GP-based ODE solvers",
+    "Weaknesses (about 100 times slower than SciPy, no probabilistic baseline, dense notation) treated as fixable"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Eq. (2) allegedly not an integrated Wiener process; authors said to misunderstand [6] (odbV; wrong)",
+  "Initialisation, error estimation and calibration dismissed as 'boilerplate' and a 'mash-up' (odbV)",
+  "Prior drift and diffusion not specified; abstract's 'prior tailored to BVPs' unclear because boundary conditions enter as a likelihood (Cw4U; correct)",
+  "Cockayne et al. not discussed (Cw4U)",
+  "Topic far from mainstream ML and presentation not aimed at ML readers; better at a differential-equations venue (AC A)"
+ ],
+ "issues_only_b": [
+  "Solver about 100 times slower than SciPy (9rs3, zNRW; confirmed by Fig. 6)",
+  "No end-to-end ablation against a vanilla IEKS and no empirical comparison with any probabilistic BVP solver (zNRW, j7RB)",
+  "'First usable solver' claim needs evidence that [10-12] are not usable (zNRW)",
+  "Under-confident calibration that worsens with grid size (iTr9; confirmed by Fig. 6 right)",
+  "Choice of nu, Bayesian-quadrature accuracy, EKS linearisation on dense grids, random boundary conditions (iTr9)",
+  "Ill-posed BVPs with several solutions (j7RB)",
+  "Code not released (iTr9) and unexplained harm from too-frequent EM updates (9rs3)"
+ ],
+ "shared_issues": [
+  "Dense, not self-contained notation; prior, likelihood and posterior hard to follow (odbV, Cw4U; zNRW)",
+  "Relation to GOODE [12] and other GP-based BVP solvers (JUUq; zNRW)",
+  "Missing discussion of Chkrebtii et al. (Cw4U; j7RB)",
+  "Incremental step from filtering-based IVP solvers (odbV; iTr9 'initially seems like a minor extension', AC B 'builds on earlier work')"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B recommended more because it had reviewers who knew the field, not because it saw a better paper. Both committees saw a careful, practically complete extension of filtering-based IVP solvers to BVPs, with dense notation and thin positioning against GOODE [12] and Chkrebtii et al. Committee A's AC could not recruit experts. Its three reviewers (confidence 3, 2, 2) gave identical 4s for generic reasons, and none engaged with the rebuttal. A's only claim of a technical error is wrong: Reviewer_odbV said Eq. (2) is not an integrated Wiener process, but it is the standard SDE form of [6]. A's AC doubted its reviewers' grasp of the paper but still followed their scores, and added that the paper does not suit an ML audience. B had an expert champion, Reviewer_iTr9 (8, confidence 4), who valued the initialisation, mesh refinement and calibration that odbV called 'boilerplate'. B's two low-confidence reviewers rose to 6 after the linear-versus-cubic argument against GOODE. The same argument, in the paper and in the rebuttal, did not move Reviewer_JUUq in A. B was the more critical committee on substance: it found the 100-fold runtime gap to SciPy and the missing probabilistic baselines, and judged them fixable. B's AC judged the topic of interest to NeurIPS.",
+ "candidate_reasons": [
+  "AC could not recruit experts",
+  "AC deferred to doubted scores",
+  "factually wrong technical objection unrebutted",
+  "same rebuttal, opposite reviewer uptake",
+  "practical engineering valued oppositely",
+  "opposite AC venue-fit judgements"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Reviewer_odbV main review (Eq. 2 claim) and author reply point 3",
+  "paper_submitted.pdf lines 48-54 (Eq. 2 prior)",
+  "paper_submitted.pdf lines 36-43 and 253-259 (cubic vs linear cost of [10-12])",
+  "Reviewer_JUUq post-rebuttal comment, 2021-08-22",
+  "Reviewer_zNRW and Reviewer_j7RB comments, 2021-08-16",
+  "Reviewer_iTr9 review",
+  "paper_submitted.pdf Figures 6-7 (SciPy runtime comparison)",
+  "paper_submitted.pdf lines 107-132 (bridge prior used only for initialisation)",
+  "Committee B meta-review"
+ ]
+}

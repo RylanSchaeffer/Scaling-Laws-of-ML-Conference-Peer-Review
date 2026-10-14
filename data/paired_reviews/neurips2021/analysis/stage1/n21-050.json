@@ -1,0 +1,243 @@
+{
+  "pair_id": "n21-050",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [8, 6, 5, 5],
+      "confidences": [4, 4, 3, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_N5WW",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "N5WW's 8 is two points above the next rating (6, 5, 5). It is the most technically informed review in either committee: five hours, confidence 4, an accurate account of Theorem 1 as a reduction to bounded-radius locality, and a reading of Appendix G. Its minor points check out: E-hat is undefined above line 269, and StreamBP beating offline BP at small R goes unexplained (Figure 2). It saw the known-parameter issue and called the Appendix A sensitivity study 'particularly interesting'. It never posted in the discussion, so Reviewer_QSCc's case went unanswered."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Y4Hw",
+          "evidence": "Rating 5, confidence 4, three hours. The main review opens by repeating the summary word for word, then adds two points. It asks how the graphs were streamed; the model fixes a uniformly random arrival order (lines 94-96), though Section 5 does not restate it. It asks for GraphSAGE, node2vec and DeepWalk baselines without engaging with the theory or with OracleBP as the full-information benchmark. It says nothing about the theorems and did not reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QSCc",
+          "claim": "The BP update assumes a and b are known; the estimates used in the experiments need the true communities.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 5 uses a and b. Lines 331-338: real-data runs use oracle estimates computed from the ground-truth communities, which 'cannot be implemented in practice'. The robustness evidence is deferred to Appendix A, which is not in the submitted main text."
+        },
+        {
+          "reviewer": "Reviewer_QSCc",
+          "claim": "The theoretical results cover only the two-group symmetric SBM.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 and Corollary 2 are stated for StSSBM(n, 2, a, b, alpha); line 214: 'For the sake of simplicity, we analyze this algorithm in the two-group symmetric model'. Theorem 1 and Corollary 1 cover general k in the symmetric model."
+        },
+        {
+          "reviewer": "Reviewer_QSCc",
+          "claim": "The BP updates, and so Algorithms 1 and 2, are defined only for two groups.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 5 is written for k groups: messages lie in the simplex over [k] and BP0 depends on k. It is defined for the symmetric model; line 198 calls the asymmetric extension 'immediate'."
+        },
+        {
+          "reviewer": "Reviewer_QSCc",
+          "claim": "The neighbourhoods V^t_v should be symmetric, so their definition may be wrong.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 142-143: 'Let us emphasize that the neighborhoods G_v^t are not symmetric'. The asymmetry is by design."
+        },
+        {
+          "reviewer": "Reviewer_QSCc",
+          "claim": "Optimality of StreamBP is only conjectured.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollary 2 proves information-theoretic optimality for k = 2 under three stated conditions. Only optimality in general is conjectured (lines 236-242)."
+        },
+        {
+          "reviewer": "Reviewer_QSCc",
+          "claim": "No code is shared and the paper has no discussion section.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist line 484: 'We will submit the code with the camera ready version.' The paper ends with Section 5.3 at line 347; it has no conclusion or limitations section, and the checklist points to the Introduction for limitations."
+        },
+        {
+          "reviewer": "Reviewer_WcZo",
+          "claim": "The introduction says StreamBP does not outperform offline BP, Theorem 2 says it does at least as well, and the experiments show it doing better at fixed R without explanation.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 69-71: 'we do not claim (nor do we expect) STREAMBP to outperform offline BP'. In every panel of Figure 2, and in Figure 3a, StreamBP lies above OracleBP at small R. Section 5 does not discuss this."
+        },
+        {
+          "reviewer": "Reviewer_WcZo",
+          "claim": "StreamBP behaves erratically in Figures 4a and 4c, and Section 5.1 does not explain why.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4c (Polblogs): StreamBP falls to about 0.59 at R = 7, below the 0.70 side-information line and below all three voting baselines. Figure 4a (Cora): StreamBP stays near 0.72 from R = 2 on, while OracleBP reaches about 0.78. Lines 344-346 call the Cora results 'high-quality' and attribute Polblogs to Section 5.1 with 'likely'."
+        },
+        {
+          "reviewer": "Reviewer_WcZo",
+          "claim": "The temporal-network literature gets only a brief mention.",
+          "checked_against_paper": "correct",
+          "evidence": "One sentence (lines 24-25) cites [HS12, CSG16, ZWCY19, MKV+20], with no comparison. The reviewer's 'single paper' understates the count, not the gap."
+        },
+        {
+          "reviewer": "Reviewer_N5WW",
+          "claim": "The estimator E-hat above line 269 is not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "The accuracy formula between lines 268 and 269 uses E-hat with no definition; the authors confirmed it is an average over runs."
+        },
+        {
+          "reviewer": "Reviewer_Y4Hw",
+          "claim": "The experiment description does not say how the graph was fed to the streaming algorithms.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (lines 260-263) says vertices are revealed one at a time but not in what order. The model section (lines 94-96) specifies a uniformly random permutation, which the authors confirmed they used."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Author responses posted 2021-08-10. Reviewer_QSCc (2021-08-27): 'I will still keep my score', because 'the used estimates of a and b are not available online'. The authors (2021-08-29) sketched an online moment estimator. QSCc (2021-09-02): estimation 'needs to be included in the proof and the analysis. Otherwise, the theory for the proposed algorithm is incomplete', and the paper 'is not ready for acceptance yet'. Reviewer_N5WW, Reviewer_WcZo and Reviewer_Y4Hw did not reply.",
+        "what_convinced_or_not": "QSCc accepted some answers but not the parameter argument. The appeals to Appendix A robustness, the [MNS15] estimator and the moment-matching sketch did not meet its demand that estimation be part of the proof. The authors confirmed WcZo's fixed-R reading and promised a conclusion; WcZo did not respond. Y4Hw's baseline request was answered with the BP-optimality argument; Y4Hw did not respond."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Rejects at mean 6.0 (8, 6, 5, 5). The four-sentence meta-review names no reviewer and does not mention the rebuttal. Its three requests (motivate the model, discuss parameter estimation, more thorough experiments) come from QSCc, WcZo and Y4Hw. It says 'as is evident from multiple reviews, the paper writing is suboptimal', but N5WW called the exposition 'quite clear', WcZo 'much clearer and more accessible', and Y4Hw 'Sections 2-4 are quite well written'. It adds its own point that a dynamic SBM 'can be defined in multiple ways'. N5WW's 8 gets no mention.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Known a and b: the theory assumes them and the real-data runs use oracle estimates (Reviewer_QSCc, held through two post-rebuttal comments; adopted by the AC)",
+        "Weak motivation for the StSBM, a static SBM revealed in random order (Reviewer_QSCc; the AC's 'can be defined in multiple ways')",
+        "Presentation: no conclusion and unexplained experimental behaviour (Reviewer_WcZo, Reviewer_QSCc), read by the AC as poor writing",
+        "Thin experiments and baselines (Reviewer_Y4Hw; Reviewer_WcZo's '(limited) real-world scenarios')",
+        "The two positive reviewers did not defend the paper in discussion"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 7],
+      "confidences": [3, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_LCrq"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 7, all at confidence 3. No reviewer stands apart and none rated below threshold."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_YnVr",
+          "evidence": "Rating 7, confidence 3, three hours, 'Math/other details were not carefully checked'. Two of its three weaknesses are answered in the paper. It calls B_R^t undefined at line 129; line 114 defines it. It asks about recovery up to permutation without side information; Eq. 2 already maximises over label permutations, and Corollary 1, which YnVr itself summarises, shows no local streaming algorithm beats 1/k there. Its praise ('well motivated', 'novel', 'well written') is generic."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LCrq",
+          "claim": "a and b are assumed known in the message-passing algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 5 uses a and b; lines 331-338 use oracle estimates from the ground-truth communities on real data."
+        },
+        {
+          "reviewer": "Reviewer_LCrq",
+          "claim": "Offline BP is conjectured to be optimal, and this is proven in special cases.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 236-242 and Corollary 2 (three regimes for k = 2, via [MX16])."
+        },
+        {
+          "reviewer": "Reviewer_y2ff",
+          "claim": "The edges and labels are defined independently of the node ordering.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 92-96: G(n) is drawn first, then the arrival order is an independent, uniformly random permutation."
+        },
+        {
+          "reviewer": "Reviewer_y2ff",
+          "claim": "Eq. 2 should read tau∘pi, because the permutation acts on nodes.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 123: pi ranges over S_k, the permutations of the label set [k], so pi∘tau is right."
+        },
+        {
+          "reviewer": "Reviewer_YnVr",
+          "claim": "B_R^t is not defined at its first use (line 129).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 113-116 (Section 2.1) define B_R^t(v) as the radius-R ball in G(t)."
+        },
+        {
+          "reviewer": "Reviewer_YnVr",
+          "claim": "Recovery up to permutation, without side information, is not addressed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 2 maximises over label permutations. Corollary 1 shows that without side information no R-local streaming algorithm beats 1/k under that metric."
+        },
+        {
+          "reviewer": "Reviewer_YnVr",
+          "claim": "For k > 2 the experiments show StreamBP as good as offline BP.",
+          "checked_against_paper": "correct",
+          "evidence": "True on synthetic data (Figure 2c-e: StreamBP at or above OracleBP). On Cora (k = 7, Figure 4a) StreamBP stays near 0.72 against about 0.78 for OracleBP; only StreamBP* matches."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_LCrq's edit (2021-07-21) predates the 2021-08-10 author responses. Reviewer_YnVr (2021-08-30): 'This answers my questions about the technical contribution. For this I am keeping my current positive evaluation.' Reviewer_y2ff and Reviewer_LCrq did not reply.",
+        "what_convinced_or_not": "YnVr accepted that Theorem 2's proof does not reuse the techniques of [MX16]. LCrq's known-parameter concern was answered with Appendix A robustness and the [MNS15] estimator; LCrq did not reply. The authors conceded y2ff's point that 'streaming' differs from the streaming-algorithms literature; y2ff did not reply and stayed at 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two-sentence meta-review: 'Each reviewer has a positive opinion of this submission, which deals with a relevant problem. I recommend acceptance.' It does not mention the known-parameter, model-motivation or notation concerns that LCrq and y2ff raised.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings at or above threshold (7, 6, 7); the AC followed them",
+        "The result was valued: an impossibility result without side information, and StreamBP matching offline BP (all three reviewers)",
+        "Writing praised (Reviewer_LCrq 'The writing is excellent', Reviewer_YnVr 'well written')",
+        "Known a and b and the artificial arrival model raised but treated as minor (Reviewer_LCrq, Reviewer_y2ff)",
+        "YnVr's doubt about novelty relative to [MX16] resolved by the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No conclusion or discussion section; experiments not tied back to the theory (Reviewer_WcZo, Reviewer_QSCc)",
+    "StreamBP beats OracleBP at fixed R, contrary to the introduction, without explanation (Reviewer_WcZo, Reviewer_N5WW)",
+    "Missing temporal-network literature (Reviewer_WcZo)",
+    "Missing GraphSAGE, node2vec and DeepWalk baselines; streaming protocol not stated in the experiments (Reviewer_Y4Hw)",
+    "No code at submission (Reviewer_QSCc); criticisms from an earlier review round left unaddressed (Reviewer_WcZo)"
+  ],
+  "issues_only_b": [
+    "Novelty of Theorem 2's proof relative to [MX16] (Reviewer_YnVr)",
+    "'Streaming' does not match the standard streaming-algorithms model (Reviewer_y2ff)",
+    "Number of communities growing as nodes arrive (Reviewer_LCrq)",
+    "Heavy notation; a notation table and a figure of the StSBM requested (Reviewer_y2ff, Reviewer_YnVr)",
+    "How large r_epsilon in Theorem 1 must be (Reviewer_y2ff)"
+  ],
+  "shared_issues": [
+    "a and b assumed known (A: Reviewer_QSCc, decisive; B: Reviewer_LCrq, a minor negative; A's Reviewer_N5WW valued the sensitivity study)",
+    "Motivation of the StSBM: a static SBM revealed in random order (A: Reviewer_QSCc and the AC; B: Reviewer_y2ff)",
+    "Realism of the side-information model (A: Reviewer_QSCc; B: Reviewer_y2ff)",
+    "Theory only for the two-group symmetric model (A: Reviewer_QSCc; B: Reviewer_YnVr, who judged it extendable)",
+    "SBM fit to real graphs with skewed degrees (A: Reviewer_QSCc; B: Reviewer_y2ff)",
+    "Erratic StreamBP behaviour: a flaw for A's Reviewer_WcZo, a strength for B's Reviewer_LCrq because it motivated StreamBP*",
+    "No limitations discussion (A: Reviewer_QSCc; B: Reviewer_y2ff)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw largely the same weaknesses and weighted them differently; panel dynamics and the area chairs (ACs) did the rest. B's reviewers (7, 6, 7, all confidence 3) raised the two concerns that sank the paper in A. Reviewer_LCrq noted that the BP updates assume the parameters a and b are known. Reviewer_y2ff noted that the StSBM is a static SBM revealed in random order. Both treated these as minor, and B's AC accepted in two sentences that restate the scores. B's support is thin: LCrq says it is 'not an expert', and two of Reviewer_YnVr's three weaknesses are answered in the paper. A's ratings were lower (8, 6, 5, 5; mean 6.0), and its discussion was one-sided. Reviewer_QSCc alone posted after the rebuttal, twice, and held that parameter estimation 'needs to be included in the proof'. The champion, Reviewer_N5WW (8, the most technically informed review), and Reviewer_WcZo (6) never replied. A's AC adopted QSCc's points and rejected at a 6.0 mean. It also called the writing poor, although three of A's four reviewers praised its clarity. QSCc's core fact is right: the paper says its real-data estimates of a and b 'cannot be implemented in practice' (lines 337-338). Whether that disqualifies a theory paper is a judgement. The authors note that the offline results they build on also assume known parameters, and N5WW called the Appendix A sensitivity study 'particularly interesting'. A also found real presentation defects that B missed. The paper has no conclusion. StreamBP beats OracleBP at small R in every synthetic panel, though the introduction says this is not expected. On Polblogs, StreamBP falls below the side-information baseline. These defects are fixable, and no reviewer in either committee found an error in a theorem.",
+  "candidate_reasons": [
+    "Known-parameter assumption weighted differently",
+    "Engaged detractor, silent champion",
+    "AC rejects at 6.0 mean",
+    "Score-following two-sentence acceptance",
+    "Low-expertise accepting panel",
+    "Missing conclusion, unexplained experiments"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_QSCc comments 2021-08-27 and 2021-09-02",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_N5WW review",
+    "Reviewer_WcZo review",
+    "Reviewer_LCrq review (disclaimer and negative comments)",
+    "Reviewer_y2ff review",
+    "Reviewer_YnVr review and comment 2021-08-30",
+    "paper_submitted lines 331-339 (oracle a, b on real data)",
+    "paper_submitted lines 69-71 against Theorem 2 and Figure 2",
+    "paper_submitted Figure 4a and 4c",
+    "paper_submitted line 347 (paper ends without a conclusion)",
+    "paper_submitted lines 142-143 and Eq. 5 (QSCc misreadings)",
+    "paper_submitted line 114, Eq. 2 and Corollary 1 (YnVr misreadings)"
+  ]
+}

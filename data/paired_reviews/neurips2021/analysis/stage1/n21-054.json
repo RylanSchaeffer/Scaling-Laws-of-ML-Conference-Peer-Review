@@ -1,0 +1,237 @@
+{
+  "pair_id": "n21-054",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 5, 7],
+      "confidences": [4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_KSRV", "Reviewer_3wdy"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_2HKg",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Before the rebuttal A stood at 5, 5, 7. 2HKg is the only one of six reviewers in both committees above 6. It spent eight hours, wrote a structured review and replied after the rebuttal. Its reasons are specific and partly right: AR beats its own baseline on all five data sets (Tables 2-4). Its novelty call is generous: 'combines reweighting scheme and adversarial learning, which is a brand-new idea', although IWAN [46], cited in the paper, already does that. It also wrote that AR 'is not state-of-the-art' and still rated 7."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_KSRV",
+          "evidence": "Five short bullets; three concern captions and typos. The one substantive point (no robustness test of AR itself) is valid. The upgrade comment gives no specifics."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3wdy",
+          "claim": "The noise simulation gives all source-only classes the same weight, which real data will not do.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 138-139 set every source-only class to p/(K-|Y^t|) and every shared class to (1-p)/|Y^t|."
+        },
+        {
+          "reviewer": "Reviewer_3wdy",
+          "claim": "Weight noise is tested on the alignment losses but not on the reweighted source classification loss.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 1 plots MMD, PADA, BAA and w/o alignment only. Rebuttal Tables r2-1 and r2-2 added the classification-loss case. It degrades more slowly: on S→R it falls from 86.24 to 83.74 at noise 0.4, against 55.77 to 58.97 for the alignment losses."
+        },
+        {
+          "reviewer": "Reviewer_3wdy",
+          "claim": "No ablation of the Wasserstein distance against JS divergence or MMD.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2 and Fig. 3(a) compare weight sources (classifier, discriminator), not divergences. Rebuttal Table r2-3 added it: JS 76.12, MMD 75.55, Wasserstein 78.29 on Office-Home."
+        },
+        {
+          "reviewer": "Reviewer_KSRV",
+          "claim": "The paper motivates AR by robustness to noisy weights but never tests the robustness of AR itself.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 1 tests only the competing alignment losses; Sections 2 and 4 have no noise experiment for AR. Rebuttal Tables r3-1 and r3-2 added it: AR stays above the baseline up to noise 0.4."
+        },
+        {
+          "reviewer": "Reviewer_2HKg",
+          "claim": "The tables report BAA instead of the full BA3US [22].",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 2-4 list 'BAA [22]' (Office-Home 73.40, Office-31 96.20). Full BA3US reaches 75.98 and 97.81 (rebuttal Table r1-2). AR (78.29) still leads on Office-Home but trails on Office-31 (96.93)."
+        },
+        {
+          "reviewer": "Reviewer_2HKg",
+          "claim": "Combining reweighting and adversarial learning is a brand-new idea.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper cites IWAN [46] and ETN [5], which take source weights from an adversarially trained discriminator (lines 55-56, 294-295). It also cites [16] and [2], which learn weights to align distributions (lines 62-69). The new part is making the weights the minimising player against a Wasserstein critic."
+        },
+        {
+          "reviewer": "Reviewer_2HKg",
+          "claim": "The method consistently improves its baseline across data sets.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 287-289: +3.61 (Office-Home), +1.41 (DomainNet), +5.27 (Office-31), +3.59 (ImageNet-Caltech), +7.94 (VisDA-2017)."
+        },
+        {
+          "reviewer": "Reviewer_2HKg",
+          "claim": "SHOT is missing from Table 2 and reaches 78.3% on Office-Home PDA.",
+          "checked_against_paper": "not_checked",
+          "evidence": "SHOT is absent from the reference list. Its score is external to the paper."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_KSRV"],
+        "evidence": "KSRV's review was edited 2021-08-28, the day of its comment raising the rating from 5 to 6. Reviewer_2HKg (2021-09-03): 'Most of my concerns are solved ... I'm keeping my original rating' (7). Reviewer_3wdy's only edit is from its posting day (2021-07-16); it did not reply to the 2021-08-10 response.",
+        "what_convinced_or_not": "KSRV's concerns were experimental and presentational. The AR noise tests (Tables r3-1, r3-2) and the new captions answered them: 'the authors have given enough results to demonstrate the effectiveness'. 2HKg accepted the full BA3US comparison and the AR+AUS and AR+LS results (79.43 and 79.44 on Office-Home). 3wdy's reaction is unknown."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two of three ratings are above threshold after the rebuttal (7, 6, 5; mean 6.0). The meta-review quotes 2HKg's 'brand-new idea' and KSRV's upgrade. The AC itself ruled that the rebuttal answers 3wdy, who never replied. It asks that the new experiments go into the final paper.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Two of three reviewers above threshold after the rebuttal (7 and 6)",
+        "2HKg judged the method novel and its gains over the baseline consistent",
+        "The AC judged the rebuttal experiments sufficient for 3wdy's unanswered concerns"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 5],
+      "confidences": [5, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_jtrd"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All three rated 5 before and after the rebuttal. The equal scores hide different first reasons: Xqv1 cited only experimental issues; Hqei and jtrd cited novelty and fairness."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_jtrd",
+          "evidence": "Confidence 3, four hours. Its novelty objection names no prior work: 'making me feel like a combination' and 'seems too simple'. It says the authors discuss negative societal impact adequately, but the checklist marks that item N/A."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Hqei",
+          "claim": "The paper wrongly says prior PDA methods set weights heuristically; [5, 46] learn them through adversarial training.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 55-59 call the weights of [5, 46] heuristic and say AR, unlike them, learns weights 'automatically'. The authors conceded and rewrote the sentence."
+        },
+        {
+          "reviewer": "Reviewer_Hqei",
+          "claim": "The classifier differs from prior PDA methods (a spherical layer), so the comparisons are unfair.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 264-265 use the spherical logistic layer of [13]. With a linear classifier (rebuttal Tables r2-3 to r2-7), AR still beats full BA3US on Office-Home (77.11 vs 75.98), ImageNet-Caltech (83.81 vs 83.68), VisDA-2017 (80.09 vs 68.71) and DomainNet (65.76 vs 60.63). It trails on Office-31 (96.71 vs 97.81)."
+        },
+        {
+          "reviewer": "Reviewer_Hqei",
+          "claim": "RTNet and DPDAN results are missing on ImageNet-Caltech, VisDA-2017 and DomainNet.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 shows dashes for RTNet on both data sets and for DPDAN except S→R. Table 3 omits both. The rebuttal did not fill them, because neither method has public code."
+        },
+        {
+          "reviewer": "Reviewer_Hqei",
+          "claim": "AR differs from earlier kernel-MMD and optimal-transport reweighting only in the divergence it minimises.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 62-69 cite Huang et al. [16] (KMM reweighting) and Balaji et al. [2] (robust OT). The stated differences are network depth, the PDA setting and the adversarial Wasserstein model. Whether that suffices for NeurIPS is judgment."
+        },
+        {
+          "reviewer": "Reviewer_jtrd",
+          "claim": "AR barely improves on the Baseline on DomainNet.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: 65.47 vs 64.06 (+1.41). AR is below the Baseline on C→S, S→P and S→R."
+        },
+        {
+          "reviewer": "Reviewer_jtrd",
+          "claim": "The naive Baseline outperforms other PDA methods by a large margin.",
+          "checked_against_paper": "correct",
+          "evidence": "True on VisDA-2017 (75.68 vs DRCN 65.70, Table 4) and DomainNet (64.06 vs BAA 58.07, Table 3). Not true on Office-31 (91.66, below most prior methods). Reviewer_Xqv1 made the same point."
+        },
+        {
+          "reviewer": "Reviewer_Xqv1",
+          "claim": "The paper compares a weak variant, BAA, not full BA3US, which does better on Office-31 and on tasks like I→C.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 2-4 list BAA. Full BA3US beats AR on Office-31 (97.81 vs 96.93) and C→I (83.35 vs 82.24). It loses on I→C (84.00 vs 87.12), so Xqv1 named the wrong direction."
+        },
+        {
+          "reviewer": "Reviewer_Xqv1",
+          "claim": "The hyperparameters in Fig. 3 look sensitive.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 3(d) on Ar→Cl moves between about 65.9 and 67.8 over all settings. Every setting stays above the Baseline (61.61) and BA3US (60.62). Only one task is shown."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "AR does not clearly outperform existing methods by a large margin.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 281-283 report +17.92 over DRCN on VisDA-2017 and +7.40 over BAA on DomainNet. With a linear classifier, AR beats full BA3US there by 11.38 and 5.13. The claim holds only for Office-31, Office-Home and ImageNet-Caltech (-1.10 to +1.13). Much of the large margins comes from the Cls+Ent baseline, and the authors ran the DomainNet competitors themselves (line 276)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after the 2021-08-10 response; jtrd's edit is from its posting day (2021-07-17). Reviewer_jtrd (2021-08-31): 'I am satisfied for the results ... The major concern on novelty is still not addressed'. Reviewer_Hqei (2021-09-05): 'novelty is still my main concern'. Reviewer_Xqv1 (2021-09-05): 'I'm convinced that the experiments are sufficient. However, I agree with the other reviewers that the novelty of this work is limited.'",
+        "what_convinced_or_not": "The linear-classifier variant, full BA3US results, the JS ablation and the noise-level measure settled the experimental objections, by every reviewer's own account. Experiments cannot fix novelty, so no score moved. Xqv1 had raised no novelty concern and had called the instance-level weights 'interesting and new'. It kept 5 by adopting the others' objection once its own were met. jtrd had offered to consider an upgrade after a strong rebuttal and did not upgrade."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Unanimous 5s, and the AC names novelty as the main reason, as every reviewer did. Points 1 to 3 of the meta-review track Hqei's review closely. The AC also restates motivation, fairness and margin concerns that no reviewer pressed after the rebuttal. It counts the new results against the paper: 'a long list of new results ... means the manuscript needs significant modifications'. It does not discuss the linear-classifier results that answered the architecture objection.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers kept 5 for limited novelty: known reweighting with a different divergence",
+        "Motivation judged weak: 'challenging' data sets unexplained, prior methods called heuristic",
+        "Doubts on fair comparison (spherical classifier, strong baseline) and on the size of the gains",
+        "So many rebuttal results that the AC judged a major revision necessary"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Noise simulation gives all source-only classes one weight (3wdy)",
+    "Weight noise untested on the reweighted classification loss (3wdy)",
+    "Why the learned features place shared-class source data nearer the target (3wdy)",
+    "Per-sample weights add parameters compared with per-class weights (3wdy)",
+    "No robustness test of AR itself (KSRV)",
+    "Convergence and stability of the adversarial weight learning (2HKg, KSRV)",
+    "SHOT missing from the comparison (2HKg)",
+    "Unclear captions and typos (KSRV)"
+  ],
+  "issues_only_b": [
+    "Limited novelty: a known reweighting idea with a different divergence (Hqei, jtrd; adopted by Xqv1)",
+    "Spherical classifier makes the comparisons unfair (Hqei)",
+    "Baseline far above prior PDA methods, so the comparison looks suspect (Xqv1, jtrd)",
+    "Small gain over the baseline on DomainNet (jtrd)",
+    "'Challenging' data sets not explained; prior weighting wrongly called heuristic (Hqei)",
+    "RTNet and DPDAN results missing on the larger data sets (Hqei)",
+    "Hyperparameter choice without target labels; Fig. 3(b) lacks BA3US (Xqv1)",
+    "Reweighting alone may not close a large domain shift (Hqei)"
+  ],
+  "shared_issues": [
+    "Comparison with the weak BAA variant instead of full BA3US (2HKg in A; Xqv1 in B)",
+    "Wasserstein choice not ablated against JS divergence (3wdy in A; Xqv1 in B)",
+    "Section 2 analysis of why prior methods fail is thin (KSRV, 3wdy in A; Hqei in B)",
+    "State-of-the-art claim questioned against stronger methods (2HKg in A; Xqv1, Hqei in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees disagreed on novelty, not on facts. Before the rebuttal they differed by one reviewer: A stood at 5, 5, 7 and B at 5, 5, 5. A's Reviewer_2HKg (7) called the method 'a brand-new idea', and no A reviewer doubted novelty. B's Reviewer_Hqei and Reviewer_jtrd judged it a known reweighting scheme with a different divergence. The rebuttal's many new experiments satisfied both committees; every B reviewer said so. Experiments cannot answer a novelty objection. So A's Reviewer_KSRV, whose concerns were experimental, rose from 5 to 6, and no B score moved. B's Reviewer_Xqv1 had praised the instance-level weights as 'interesting and new'. It kept 5 by adopting the others' novelty objection once its own concerns were met. The paper's related work supports B's reading more than 2HKg's: IWAN [46] and ETN [5] already pair reweighting with adversarial discriminators, and [16] and [2] already learn weights to align distributions. Whether a Wasserstein critic for the weights clears the bar is judgment. The ACs then read the same rebuttal oppositely. A's AC called the new experiments sufficient. B's AC took their volume as a sign that the paper needed major revision, and it restated concerns the reviewers had dropped, including an overstated claim of small margins.",
+  "candidate_reasons": [
+    "Novelty bar set differently",
+    "Single champion in accepting committee",
+    "Rebuttal fixes experiments, not novelty",
+    "Reviewer adopts peers' novelty objection",
+    "ACs read rebuttal volume oppositely",
+    "Meta-review restates resolved concerns"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_2HKg review, Originality ('brand-new idea')",
+    "Reviewer_KSRV comment 2021-08-28 (5 to 6)",
+    "Reviewer_3wdy review (no reply to the rebuttal)",
+    "Committee A meta-review",
+    "Reviewer_Xqv1 review, Pros, and comment 2021-09-05",
+    "Reviewer_Hqei review, limitations bullets 3, 5 and 6",
+    "Reviewer_jtrd review and comment 2021-08-31",
+    "Committee B meta-review, points 1 to 3",
+    "Authors' response to Reviewer_Hqei, Q8 (linear-classifier Tables r2-3 to r2-7)",
+    "paper lines 55-69 (heuristic-weights claim; Huang et al. [16], Balaji et al. [2])",
+    "paper lines 138-139 (uniform noise simulation)",
+    "paper lines 264-265 (spherical classifier)",
+    "paper Tables 2-4 (BAA, Baseline, AR)",
+    "paper Fig. 3(d) (hyperparameter sensitivity)"
+  ]
+}

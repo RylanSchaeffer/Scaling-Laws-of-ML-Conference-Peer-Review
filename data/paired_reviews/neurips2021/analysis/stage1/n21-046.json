@@ -1,0 +1,235 @@
+{
+ "pair_id": "n21-046",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_FkXz",
+    "Reviewer_Sz2Y"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All four reviewers rated 6 (confidence 4, 4, 4, 5). No rating stands apart. Reviewer_ySnr, Reviewer_FkXz and Reviewer_kMq3 wrote specific reviews and engaged in discussion. Reviewer_Sz2Y spent 2 hours, but its three points are specific and it engaged too."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_ySnr",
+     "claim": "The proof of Theorem 1 needs the Hessian term to be positive (a positive-definiteness assumption) that the paper does not state.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 as stated (lines 196-199) has no curvature or convexity assumption, and the checklist says all assumptions are stated in the theorems. The proof is in Appendix F, which is not in the submitted PDF. The authors replied: 'You are absolutely right that the positive-definiteness assumption is missing.'"
+    },
+    {
+     "reviewer": "Reviewer_ySnr",
+     "claim": "Eq. (5) is invalid because Delta_t comes from the gradient of L^{eps_t} while H_t is the Hessian of L^eps, so the budgets differ.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 203: H_t Delta_t approximates the change in the gradient of L^eps along the step Delta_t. The budget used to compute the step does not enter; the authors' Taylor-expansion reply is right. A related mismatch does exist: Figure 1 measures gradient differences at the scheduled eps_t, not at the target eps."
+    },
+    {
+     "reviewer": "Reviewer_FkXz",
+     "claim": "At eps = 8/255 the method is worse than CROWN-IBP (1->0).",
+     "checked_against_paper": "correct",
+     "evidence": "Section 7, lines 333-337: CROWN-IBP 1->0 from the literature reaches 66.94 verified error; the method reaches 68.44 (Delta = -1.50). Table 1 itself compares only CROWN-IBP with beta = 1."
+    },
+    {
+     "reviewer": "Reviewer_FkXz",
+     "claim": "The link between sparse lower slopes and a smooth relaxed gradient is shown only for a small 2-layer example.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 233-238 derive the bound for a 2-layer network only; deeper networks rely on the empirical Figure 2."
+    },
+    {
+     "reviewer": "Reviewer_kMq3",
+     "claim": "The method seems to hurt at the smallest epsilon.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: at the smallest eps the method is second, never first, in all four settings (MNIST 0.1: 2.36 vs 2.10; CIFAR-10 Shallow 2/255: 49.42 vs 48.50; Deep 2/255: 47.89 vs 46.22; SVHN 0.01: 39.44 vs 37.09). 'Hurt' overstates it: it still beats IBP each time, as the authors replied."
+    },
+    {
+     "reviewer": "Reviewer_Sz2Y",
+     "claim": "The IBP results are weak compared with newer IBP training (Shi et al., Fast Certified Robust Training with Short Warmup).",
+     "checked_against_paper": "not_checked",
+     "evidence": "Shi et al. is not cited in the submission, and its numbers are not in the PDF. The authors attribute the gap to BatchNorm."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_FkXz",
+     "Reviewer_Sz2Y"
+    ],
+    "evidence": "Responses posted 2021-08-06 to 2021-08-10. Reviewer_FkXz edited its review on 2021-08-20, the day it wrote 'I would like to increase my score to 6'. Reviewer_Sz2Y edited on 2021-08-31, the day it wrote 'I raised my score to 6'. Reviewer_ySnr (2021-09-01): 'I keep my score of 6 unchanged.' Reviewer_kMq3 replied on 2021-08-26 with detailed notation complaints; its review was not edited.",
+    "what_convinced_or_not": "FkXz: the answers on the Eq. 7 sparsity argument, on Figure 3 (test set), and the claim that CROWN-IBP 1->0 wins at 8/255 through smoothness ('All my concerns have been well addressed'). Sz2Y: the smoothness-versus-tightness discussion (C2); the dropped terms in the tightness argument still concerned it. ySnr: promised fixes to the proofs; it asked for more rigour in the revision. kMq3: promised notation fixes; the authors withdrew their 'not bad smoothness' explanation for small eps and gave a new one, which kMq3 did not answer."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Four 6s after the rebuttal. The meta-review praises the 'novel interesting question' and the smoothness-tightness trade-off, and says the method 'performs favorably in a wide range of perturbations'. It names only the proof-rigour concern (Reviewer_ySnr) and trusts the final version to fix it. It does not mention the gap to CROWN-IBP 1->0 (Reviewer_FkXz) or the notation (Reviewer_kMq3).",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Novel, important question: why looser IBP bounds train better than tighter relaxations (all reviewers, AC)",
+    "Smoothness-tightness explanation backed by experiments and theory (Reviewer_ySnr, Reviewer_kMq3, AC)",
+    "Method performs well across a wide range of eps against the paper's own baselines (AC)",
+    "Rebuttal resolved the concerns of Reviewer_FkXz and Reviewer_Sz2Y; both raised to 6",
+    "Proof-rigour gaps judged fixable for the camera-ready (Reviewer_ySnr, AC)"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    3,
+    4,
+    4
+   ],
+   "confidences": [
+    4,
+    5,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Bv3w"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5/3/4/4 span two points. Reviewer_fj3F's 3 is the lowest and rests partly on a misreading (see inattentive_reviews). Without it the committee still averages 4.33, a reject, so no single reviewer decided the outcome."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_fj3F",
+     "evidence": "Confidence 5 ('checked the math/other details carefully'), yet the review discusses no theorem and no number. Its summary restates prior work, not the paper. Its central complaint, that the paper never says whether the landscape is over inputs or weights, is contradicted by line 107 (L^eps(theta) as a function of the parameters), line 194 ('with respect to weight parameters') and line 220. Its wish for an input-space landscape misses the paper's optimisation question. It never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_iUZ4",
+     "claim": "Assumption 1 assumes a Lipschitz (hence continuous) relaxation, but CROWN-IBP is discontinuous (Jovanovic et al.), so the theorems cannot explain its poor performance.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 1 (lines 208-211) requires Lipschitz bounds on the bias gradient and on p for all theta_1, theta_2. CROWN-IBP's lower slope is an indicator, 1[u+ + l- > 0] (lines 140, 282), so the bound jumps as theta changes. The authors conceded: 'the Lipschitzness assumptions are no longer applied'. Jovanovic et al. is not cited."
+    },
+    {
+     "reviewer": "Reviewer_iUZ4",
+     "claim": "Eq. (5) approximates a Hessian-vector product by a gradient difference with unknown error, so there is no formal upper bound.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 203: 'we can approximate'. The chain from Theorem 1 to Theorem 2 passes through this approximation."
+    },
+    {
+     "reviewer": "Reviewer_iUZ4",
+     "claim": "On CIFAR-10, CROWN-IBP is ~3% better at 8/255 and COLT ~8% better at 2/255; no improvement over prior work.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2: COLT 39.5 vs 47.89 verified error at 2/255 (8.39 points), though COLT is certified with an exact MILP verifier and the method with its own bound (line 293). Section 7: CROWN-IBP 1->0 66.94 vs 68.44 at 8/255, 1.50 points for the Deep model (2.76 for the Shallow model's 69.70); the authors' '1.5%p' is the Deep figure."
+    },
+    {
+     "reviewer": "Reviewer_Bv3w",
+     "claim": "Where the method achieves SOTA, the improvement is marginal, roughly 1-2%.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: the method is best in 8 of 12 settings, by 0.36 to 2.54 points over the best baseline. The checklist says no error bars were reported."
+    },
+    {
+     "reviewer": "Reviewer_fj3F",
+     "claim": "The paper never states whether the loss landscape is with respect to the inputs or the weights.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 107 defines L^eps(theta) as a function of the parameters; line 194 analyses 'the Hessian of the loss function with respect to weight parameters'; line 220 repeats 'with respect to weight parameters'."
+    },
+    {
+     "reviewer": "Reviewer_fj3F",
+     "claim": "For some epsilon values previous methods significantly outperform the proposed one.",
+     "checked_against_paper": "correct",
+     "evidence": "Overstated for Table 1, where the method loses only at the smallest eps, by 0.26 to 2.35 points. The one large gap is COLT at CIFAR-10 2/255 in Table 2 (8.39 points)."
+    },
+    {
+     "reviewer": "Reviewer_fogS",
+     "claim": "The loss-variation smoothness measure is only referenced to [29], not explained in the paper.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 172-173 describe it in one phrase, 'as in Santurkar et al. [29]'; definitions are deferred to Appendix A (line 155)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "unknown",
+    "by_whom": [],
+    "evidence": "Responses posted 2021-08-10. Reviewer_fogS (2021-08-16): 'I do not have any follow-up questions/comments at this point', with no edit, rating 4. Reviewer_fj3F and Reviewer_iUZ4 never replied and never edited. Reviewer_Bv3w edited its review on 2021-08-21 without any comment, and the text does not mention the rebuttal, so any rating change is unknown.",
+    "what_convinced_or_not": "Nothing in the record shows the rebuttal moved anyone. To the results concerns of four reviewers it pasted one paragraph of deltas against the weaker baseline for each eps (IBP and CROWN-IBP 1->0 at 2/255; CROWN-IBP beta = 1 at 8/255), and said 'our goal is rather to understand ... than to beat the SOTA methods'. It conceded that the Lipschitz assumption fails for discontinuous relaxations. The AC's two reasons match the pre-rebuttal reviews."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four ratings are below threshold. The meta-review gives two reasons. First, presentation: 'Even for expert reviewers ... the paper is very hard to follow', from Reviewer_fogS and Reviewer_fj3F, though Reviewer_Bv3w called the paper 'well-written'. Second, 'marginal or even no improvement over state-of-the-arts' (Reviewer_Bv3w, Reviewer_iUZ4), from which it infers that the smoothness claim 'remains shady'. It does not mention the theory concerns.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Paper very hard to follow; dense notation (Reviewer_fogS, Reviewer_fj3F, AC)",
+    "Marginal or no improvement over the state of the art: COLT at 2/255, CROWN-IBP 1->0 at 8/255 (Reviewer_iUZ4, Reviewer_Bv3w, AC)",
+    "Hence the claim that smoothness is critical is not established (AC, Reviewer_Bv3w)",
+    "Theory gives only upper bounds through an approximation, under a Lipschitz assumption CROWN-IBP violates (Reviewer_iUZ4)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Proof of Theorem 1 lacks a positive-definiteness assumption; choice of alpha = 2 (Reviewer_ySnr)",
+  "Theorem 2's third term L^(m) depends on the relaxation (Reviewer_ySnr)",
+  "Sparse-lower-slope argument shown only for a 2-layer network; Eq. 7 sparsity argument hard to follow; direct smoothness regularisation as an alternative (Reviewer_FkXz)",
+  "Whether Figure 3 uses training or test data (Reviewer_FkXz)",
+  "Smoothness and tightness effects of the method not separated; IBP baseline weaker than newer IBP training (Reviewer_Sz2Y)",
+  "Randomized-smoothing training mischaracterised in related work (Reviewer_ySnr)"
+ ],
+ "issues_only_b": [
+  "Assumption 1 (Lipschitz) fails for discontinuous relaxations such as CROWN-IBP; no discussion of Jovanovic et al. (Reviewer_iUZ4)",
+  "Upper bounds are uninformative; a lower bound for non-smooth relaxations is needed (Reviewer_iUZ4)",
+  "COLT 8.4 points better at CIFAR-10 2/255 (Reviewer_iUZ4)",
+  "'Loss landscape' and 'favorable' not defined; smoothness measures left to the appendix (Reviewer_fj3F, Reviewer_fogS)",
+  "No l2 threat model (Reviewer_fj3F)",
+  "Theorems not linked to certified accuracy (Reviewer_Bv3w)",
+  "Method described too briefly to implement (Reviewer_fogS)"
+ ],
+ "shared_issues": [
+  "Dense notation and hard reading (A: Reviewer_kMq3; B: Reviewer_fogS, Reviewer_fj3F, AC); each committee also had a reviewer who found it well written (A: Reviewer_ySnr; B: Reviewer_Bv3w)",
+  "Small, eps-dependent gains: not best at the smallest eps, behind CROWN-IBP 1->0 at 8/255 (A: Reviewer_FkXz, Reviewer_kMq3; B: Reviewer_Bv3w, Reviewer_fj3F, Reviewer_iUZ4, Reviewer_fogS)",
+  "Loose theory: the Eq. 5 approximation and the tightness of Theorem 2's bound (A: Reviewer_ySnr, Reviewer_Sz2Y; B: Reviewer_iUZ4)",
+  "The question is important and interesting (all reviewers in both committees)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A accepted on four 6s; Committee B rejected on 5, 3, 4, 4, and both saw the same main facts. The method's gains over the paper's own baselines are small (0.4 to 2.5 points where it wins, with no error bars), and it never wins at the smallest eps. Table 1 runs CROWN-IBP with beta = 1 only; Section 7 shows the standard 1->0 schedule beats the method at CIFAR-10 8/255 (66.94 against 68.44 verified error), and Table 2 shows COLT 8.4 points ahead at 2/255. The notation is dense, and the theory rests on an approximation (Eq. 5) and upper bounds. A read the paper as an analysis of an open question and judged these defects fixable; Reviewer_FkXz raised the 8/255 gap and still raised to 6. B judged the method against the state of the art and treated the writing as disqualifying (Reviewer_fogS based its 4 on the writing). B's AC then took the weak numbers as a sign that the smoothness claim 'remains shady'; A did not link the two. Engagement also differed: two A reviewers raised their scores to 6 after a long exchange, while B's two confidence-5 detractors (Reviewer_fj3F, Reviewer_iUZ4) never answered the rebuttal. B found one real theory flaw that A missed: Assumption 1 requires Lipschitz continuity, which CROWN-IBP's indicator slope violates, and the authors conceded it. B's decision did not rest on it. The split is one of weighting, not of facts.",
+ "candidate_reasons": [
+  "analysis versus SOTA-method framing",
+  "writing weighted as disqualifying",
+  "rebuttal raised scores only in A",
+  "detractors silent after rebuttal",
+  "weak gains taken to refute thesis",
+  "theory flaw seen by one committee"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Committee A meta-review",
+  "Reviewer_iUZ4 review (state-of-the-art gaps; Assumption 1 versus Jovanovic et al.)",
+  "Authors' response to Reviewer_iUZ4, C3 (concedes the Lipschitz assumption fails for discontinuous relaxations)",
+  "Reviewer_FkXz review item 4 and comment 2021-08-20",
+  "Reviewer_Sz2Y comment 2021-08-31",
+  "Reviewer_ySnr review (Theorem 1 proof) and authors' response R2",
+  "Reviewer_fogS review, conclusion",
+  "Reviewer_fj3F review",
+  "paper_submitted.pdf Table 1 and Table 2",
+  "paper_submitted.pdf Section 7, lines 333-340 (CROWN-IBP 1->0 66.94 vs 68.44)",
+  "paper_submitted.pdf Assumption 1 (lines 208-211) and CROWN-IBP slope (line 140)",
+  "paper_submitted.pdf lines 107, 194, 220 (landscape over weights)",
+  "paper_submitted.pdf checklist, experiments item on error bars (answered No)"
+ ]
+}

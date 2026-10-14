@@ -1,0 +1,230 @@
+{
+  "pair_id": "n21-059",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        5,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_xee8",
+        "Reviewer_ET9m"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 5, 6 (xee8, Vxyf, HQy7, ET9m); no reviewer departs from the rest. Reviewer_xee8's pre-rebuttal 3 was the only outlier, and it ended at 5. ET9m's edit (2021-07-24) predates the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Vxyf",
+          "evidence": "A 6 after 2 hours with four short points: two generic strengths ('very neat', 'reasonably good') and two questions. The authors say appendix §A answers the λ question. No reply to the rebuttal and no argument for acceptance."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HQy7",
+          "claim": "Transfer to finite-width networks is not SOTA in 50% of the cases.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: KIP to NN beats DC/DSA in 7 of 14 settings (Fashion-MNIST 1 and 10, SVHN 1, CIFAR-10 1, 10 and 50, CIFAR-100 1) and loses in the other 7."
+        },
+        {
+          "reviewer": "Reviewer_xee8",
+          "claim": "On CIFAR-100 the method falls below prior art beyond one image per class.",
+          "checked_against_paper": "correct",
+          "evidence": "True for transfer: Table 2 gives 28.3% against 32.3% (DSA) at 10 images per class. The kernel result in Table 1 beats prior art (49.5% against 32.3%). The 50-image setting was not run."
+        },
+        {
+          "reviewer": "Reviewer_xee8",
+          "claim": "No new algorithm: the paper uses the methods of Nguyen et al. 2021 directly.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 36-38: 'we perform a large-scale extension of the methods of Nguyen et al. [2021]' and apply KIP and LS, 'first developed in Nguyen et al.'. What changes is the kernel (ConvNet with average pooling, lines 82-84) and the distributed implementation."
+        },
+        {
+          "reviewer": "Reviewer_xee8",
+          "claim": "The approach section is missing from the main paper; the parallelization is only in the supplement. Reviewer_HQy7 said the same of the distributed framework.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 'Setup' reviews background and the KIP and LS algorithms; Section 3 is results. Contribution 2 (lines 56-57) points to appendix §B.2."
+        },
+        {
+          "reviewer": "Reviewer_ET9m",
+          "claim": "The main text does not say which architectures were trained on the distilled data.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 82-84 and the Table 2 caption name ConvNet. Figures 1 and 2 test Conv-Vec3, Conv-Vec8, Myrtle5 and normalization variants."
+        },
+        {
+          "reviewer": "Reviewer_Vxyf",
+          "claim": "The choice of λ is not discussed.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The main text calls λ only 'a fixed regularization parameter' (line 95). The authors say appendix §A sets λ = 1e-6; the appendix is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Area chair A (meta-review)",
+          "claim": "The paper gets 64.3% on CIFAR with one image per class, against 29% for previous distillation methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Submitted Table 1: CIFAR-10 at one image per class is 63.4%; 64.3% is the SVHN entry. The previous best on CIFAR-10 is KIP FC at 40.5%; 28.3% and 28.8% are DC and DSA. The gain over the best baseline is about 23 points, not 35."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_xee8"
+        ],
+        "evidence": "xee8 edited its review on 2021-08-24 ('I have increased the score from 3 to 5') and gave the reason in discussion the same day: 'since I am late in responding ... it would be unfair of me to penalize them'. HQy7 (2021-08-28): 'retain my earlier score'. ET9m's edit (2021-07-24) predates the rebuttal, and ET9m did not reply. Vxyf did not reply.",
+        "what_convinced_or_not": "The rebuttal convinced no one on substance. xee8 rose for fairness, stayed 'not convinced about Table 2 results', conceded that NAS is out of scope, and capped its score at 5 over novelty. HQy7 granted the engineering value but kept 5 because it is 'not given the center stage in the paper'. ET9m had offered to raise its score if transfer was explained; it did not respond. The authors' later CIFAR-100 50-image preview and DC/DSA-to-kernel table drew no reviewer reply."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepted with two 5s and a mean of 5.5. 'The AC considers the improvement of dataset distillation on MNIST and CIFAR is significant'; 'it's hard to imagine that one can get 64.3% performance on CIFAR with 1 image per class'. Asked the authors to move the distributed algorithm into the main text and left ImageNet scale to future work. xee8 had left novelty to the AC: 'if the ACs and other reviews do not think this is a concern, I would be okay with accepting this paper'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Large accuracy gain over prior dataset distillation, e.g. CIFAR-10 at one image per class",
+        "Engineering effort valued; moving the appendix-only algorithm into the main text treated as a camera-ready change",
+        "Inability to reach ImageNet scale accepted as future work"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_UNoV"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_AopF",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold (5 against 6 and 6). The score gap is one point; the gap in recommendation is larger, since AopF alone asked for resubmission: 'I would suggest including all those changes and resubmitting'. 7 hours, two replies in discussion, and its main claim matches the paper: Section 2 'Setup' is background and the framework sits in appendix §B.2."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zgVX",
+          "evidence": "A 6 after 3 hours. Generic praise ('well written and very clear', 'technically sound overall'), an unfinished sentence on significance ('but on the extremely large datasets such as ImageNet.'), then a list of questions. No reply to the rebuttal and no response to AopF's structural complaint."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AopF",
+          "claim": "Section 2 'Set up' is almost entirely background; the method section is non-existent and Related Work is too short.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 sub-heads: 'Background on infinitely wide convolutional networks', 'Specific models considered', 'Background on algorithms'. Section 3 is 'Experimental Results'. The distributed framework is only in appendix §B.2. Related Work runs 13 lines (200-213)."
+        },
+        {
+          "reviewer": "Reviewer_AopF",
+          "claim": "Line 183 does not explain what intrinsic dimension is or why it matters.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 183-186 name the two-nearest-neighbour estimator of Facco et al. but do not define intrinsic dimension or say why it matters for distillation."
+        },
+        {
+          "reviewer": "Reviewer_AopF",
+          "claim": "Whether the method uses fixed or random initialization is not reported anywhere.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 106-107: 'We also initialize our support images to be a subset of natural images, though they could also be initialized randomly.' A fixed network-weight initialization does not arise for an infinite-width kernel."
+        },
+        {
+          "reviewer": "Reviewer_AopF",
+          "claim": "CIFAR-100 at 50 images per class is missing from Table 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists CIFAR-100 at 1 and 10 images per class only."
+        },
+        {
+          "reviewer": "Reviewer_UNoV",
+          "claim": "The checklist promises compute information that the appendix lacks (GPU count, GPU type, run time, cluster).",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3(d) answers Yes but says the details 'will be further detailed in Appendix'. The authors gave GPU counts and GPU-days only in the rebuttal; they say appendix §B.1 names the V100. The appendix is not in the submitted PDF."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_UNoV"
+        ],
+        "evidence": "UNoV edited its review on 2021-08-12, struck the line that held its score at 5 ('the paper should have rate 6'), and wrote 'My questions are mostly answered and I have raised my score accordingly'. AopF replied on 2021-08-12 and 2021-08-23 and kept 5. zgVX did not reply.",
+        "what_convinced_or_not": "Compute details (100-400 V100 GPUs, several hundred GPU-days) met UNoV's checklist complaint. New continual-learning results (KIP replay 74.8% against 73.1% for natural images) and an intrinsic-dimension comparison across distillation methods did not move AopF, who wanted a revised paper: 'reviewers cannot see an updated manuscript, it's hard to accept a paper with so many issues even when there seems to be a clear path for improving it'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Rejected against two 6s (mean 5.67). 'The main concern was raised by Reviewer AopF', then restates AopF's complaint in the first person: 'the \"Set up\" section looks more like a Related Work section and the method is never clearly specified'. Adds zgVX's point that 'some large scale results are missing'. Does not mention the accuracy gains.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Paper structure: no method section and a background-only Section 2 (Reviewer_AopF)",
+        "Significant rewriting needed that reviewers could not check before acceptance",
+        "Missing large-scale (ImageNet) results (Reviewer_zgVX)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Venue fit: engineering better suited to MLSys (Reviewer_xee8)",
+    "Transfer below DC/DSA in 7 of 14 settings (Reviewer_HQy7) and on CIFAR-100 at 10 images per class (Reviewer_xee8)",
+    "Usefulness for neural architecture search (Reviewer_xee8)",
+    "Unexplained difference between these images and those of Nguyen et al. 2021 (Reviewer_xee8)",
+    "Choice of λ and why hundreds of GPUs are needed (Reviewer_Vxyf)",
+    "Irreproducibility under heavy compute (Reviewer_ET9m)"
+  ],
+  "issues_only_b": [
+    "Overall structure: Section 2 is background, and experiments crowd out method and related work (Reviewer_AopF; decisive for the AC)",
+    "Intrinsic dimension and Figure 4 checkpoints unexplained; analyses not tied to the method or compared across distillation methods (Reviewer_AopF)",
+    "Which component causes the gain, and why the method needs more compute (Reviewer_AopF)",
+    "Continual-learning benchmark (Reviewer_AopF)",
+    "Initialization (Reviewer_AopF, Reviewer_zgVX); adversarial robustness and the LS transfer gain on SVHN (Reviewer_zgVX)",
+    "Compute details promised by the checklist; limitations of kernel methods (Reviewer_UNoV)"
+  ],
+  "shared_issues": [
+    "Algorithm taken from Nguyen et al. 2021, limited novelty (A: Reviewer_xee8, Reviewer_HQy7, Reviewer_ET9m; B: Reviewer_AopF, Reviewer_zgVX, Reviewer_UNoV)",
+    "Distributed framework only in the appendix (A: Reviewer_xee8, Reviewer_HQy7, AC; B: Reviewer_AopF, AC)",
+    "Small datasets only, no ImageNet, heavy compute (A: Reviewer_ET9m, Reviewer_xee8, AC; B: Reviewer_zgVX, Reviewer_UNoV, Reviewer_AopF, AC)",
+    "CIFAR-100 at 50 images per class missing (A: Reviewer_xee8; B: Reviewer_AopF)",
+    "Transfer to other architectures (A: Reviewer_ET9m; B: Reviewer_UNoV)",
+    "Large accuracy gains over prior art (every reviewer in both committees)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B rated the paper slightly higher than Committee A (mean 5.67 against 5.5) but rejected it. The area chairs (ACs) made the difference, not the scores. The gains are large: one image per class gives 63.4% on CIFAR-10, against 40.5% for KIP FC (Table 1). The algorithm (KIP and LS) comes from Nguyen et al. 2021; the kernel and the engineering are new. The submission has no method section. Section 2, \"Setup\", is background, and the distributed framework (contribution 2) is only in appendix §B.2. The firm detractor in each committee made this same point. Reviewer_HQy7 in A called the main contribution \"an engineering novelty that is not given the center stage\". Reviewer_AopF in B said the engineering \"should be in the main text\". AC A overrode HQy7. It called the gain significant, asked for the algorithm in the main text, and left ImageNet scale to future work. AC B adopted AopF's complaint almost word for word, cited missing large-scale results, and did not mention the gains. AopF kept its 5 after new continual-learning and intrinsic-dimension results, because \"reviewers cannot see an updated manuscript\". The camera-ready added a short §2.1 on the distributed workflow. The committees weighted the same facts differently. One AC saw a presentation flaw to fix at camera-ready; the other saw grounds to resubmit.",
+  "candidate_reasons": [
+    "Same flaw: fix versus resubmit",
+    "AC adopts lone detractor's view",
+    "AC overrides borderline reviewer scores",
+    "Headline accuracy gain outweighs novelty",
+    "Core method left in appendix",
+    "Reviewers cannot see revised manuscript"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review (restates Reviewer_AopF)",
+    "Reviewer_AopF review and comments 2021-08-12 and 2021-08-23",
+    "Reviewer_HQy7 comment 2021-08-28",
+    "Reviewer_xee8 comment 2021-08-24",
+    "Reviewer_UNoV review (struck text) and comment 2021-08-12",
+    "Authors' reply to Reviewer_AopF 2021-08-21 (continual-learning and intrinsic-dimension tables)",
+    "paper Section 2 'Setup' (lines 62-110) and contributions list (lines 50-61)",
+    "paper Table 1 (CIFAR-10 63.4% against KIP FC 40.5%; SVHN 64.3%)",
+    "paper Table 2 (KIP to NN against DC/DSA)",
+    "paper lines 106-107 (initialization) and 183-186 (intrinsic dimension)",
+    "paper checklist item 3(d)",
+    "camera-ready §2.1 Client-Server Distributed Workflow"
+  ]
+}

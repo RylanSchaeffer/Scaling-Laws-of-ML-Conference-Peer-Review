@@ -1,0 +1,192 @@
+{
+  "pair_id": "n21-055",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 5, 7, 3],
+      "confidences": [2, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_djMH", "Reviewer_KJKZ", "Reviewer_ALYo"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_dv2E",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "dv2E's 3 is two points below the next-lowest A rating (Reviewer_KJKZ, 5) and pulls the A mean from 6.0 to 5.25. Its 'main correctness concern' is that P_inf(t_hat < inf) < gamma in eq. (5) and (10) cannot hold because 'any change point detection algorithms will stop sooner or later'. That is true for fixed thresholds, not for these: the thresholds in eq. (3) and (9) grow with t (log(72 t^3 / (gamma c_min h^d)); 5 log t + log(32/gamma)), so a union bound over all (s, t) bounds the total false-alarm probability. The paper takes this framework from its reference [33]. The objection rests on a misreading. The other points (CUSUM naming, Assumption 4 'hard to parse', motivation, experiments) are requests for explanation, not grounds for 'clear rejection'. dv2E neither replied nor edited after the authors' 2021-08-10 explanation of the union bound."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ALYo",
+          "evidence": "Rating 7, confidence 4, two hours. Generic praise ('a high quality paper with important contributions', 'Quality: a very high quality paper') with no reference to any theorem, assumption or proof. Its one criticism, no experiments, is called 'minor'. Its only discussion post: 'I will take it into my consideration.'"
+        },
+        {
+          "reviewer": "Reviewer_djMH",
+          "evidence": "Rating 6 at confidence 2, two hours: 'My views are based on the superficial skimming of the proofs.' It engages with no result. Its one idea, a DP generative model trained on prior data 'from a global perspective', changes the privacy model. The post-rebuttal edit adds only 'I have read authors' response.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_dv2E",
+          "claim": "The false-alarm guarantee P_inf(t_hat < inf) < gamma in eq. (5) and (10) is doubtful, because any change point detection algorithm stops sooner or later; the classical constraint is on the average run length.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The thresholds b_{s,t} in eq. (3) contain log(72 t^3 / (gamma c_min h^d)) and are infinite for short segments; eq. (9) contains 5 log(t) + log(32/gamma). Because they grow with t, a union bound over all (s, t) sums to at most gamma. Lines 192-199 explain this only briefly, so the request for more explanation is fair; the correctness objection is not. Theorems 2 and 4 use the same class D(gamma), following reference [33]."
+        },
+        {
+          "reviewer": "Reviewer_KJKZ",
+          "claim": "Theorem 1 assumes that M_0, sigma, C_Lip and kappa are known to the operator.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) uses M_0, sigma, C_Lip and c_min. Eq. (4) requires M >= M_0 + sigma * sqrt(2 log(2 + sigma/h) + log log(2 + sigma/h)). Line 176 requires h <= C kappa."
+        },
+        {
+          "reviewer": "Reviewer_KJKZ",
+          "claim": "N_h is exponential in the dimension d.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 96-98 partition the bounded set X into cubes of volume h^d, so N_h grows like h^(-d). The authors confirmed it in the rebuttal. Lines 113-116 call the storage and computation costs 'high'."
+        },
+        {
+          "reviewer": "Reviewer_KJKZ",
+          "claim": "The supplement opens with a self-contained treatment of a different problem.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 276-281 and 299-300: supplement Section S.1 is a self-contained analysis of the univariate mean problem, which lines 86-89 list as a contribution."
+        },
+        {
+          "reviewer": "Reviewer_djMH",
+          "claim": "The paper has no experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3: 'We ran no experiments.' Reviewer_ALYo and Reviewer_dv2E say the same."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Responses posted 2021-08-10. Reviewer_KJKZ's edit (2021-08-30): 'My overall impression is about the same ... I suggest rejecting the current version of the paper.' Reviewer_djMH's edit (2021-08-31) adds only 'I have read authors' response'; it states no change. Reviewer_ALYo's edit (2021-07-15) predates the responses; its 2021-08-31 post says only 'I will take it into my consideration.' Reviewer_dv2E neither edited nor replied.",
+        "what_convinced_or_not": "KJKZ was not convinced that tuning parameters can be set by 'data-driven' methods: 'you can get the problem parameters fine, but for some reason change point detection must be done privately?' The authors' 2021-08-31 reply (thresholds calibrated by permuting an initial privatised stream; M set to a known response bound) came after KJKZ's update and got no answer. dv2E never answered the union-bound explanation that resolves the correctness concern."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Rejects on a 2-2 split (7 and 6 against 5 and 3; mean 5.25). The meta-review gives no reason beyond 'just misses the bar'. 'The reviewers agree that while this is a solid paper' misstates the split: Reviewer_ALYo called it 'a very high quality paper' and Reviewer_dv2E rated it 'clear rejection'. The method description copies Reviewer_dv2E's summary almost word for word ('first uses a locally private mechanism to transform the data point (x,y) to another random pair and then uses ... change point detection algorithm'). It says nothing about dv2E's correctness concern or about the rebuttal.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Mean rating 5.25 on a 2-2 split, read by the AC as 'just misses the bar'",
+        "Limited practicality: tuning needs M_0, sigma, C_Lip and kappa, and N_h is exponential in d (Reviewer_KJKZ)",
+        "No new conceptual insight about local privacy (Reviewer_KJKZ)",
+        "Reviewer_dv2E's 3 on an incorrect false-alarm objection, never revisited after the rebuttal",
+        "Method framed as an LDP channel plus an existing detection algorithm, with no experiments"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6],
+      "confidences": [4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_P1kk"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All three ratings are 6 (marginally above the threshold), with confidences 4, 3 and 4. No reviewer argued strongly for or against."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_P1kk",
+          "claim": "The privacy mechanism is simply the Laplace mechanism, and its privacy analysis is referred to previous work.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 98-101 add standard Laplace noise to bin indicators and truncated responses: 'It is shown in Proposition 1 in [4] ... that this non-interactive mechanism is an alpha-LDP channel.'"
+        },
+        {
+          "reviewer": "Reviewer_P1kk",
+          "claim": "Almost a full page is left unused, yet the main text gives no proof sketch of the lower bound (Reviewer_FYQ4: 'an entire page left unused').",
+          "checked_against_paper": "correct",
+          "evidence": "The main text ends at line 300, near the top of page 9; references fill the rest. Lines 216-223 discuss Theorem 2 in one paragraph that names the tool (Lemma 1 of [12]) but gives no sketch. 'Entire page' slightly overstates about three-quarters of a page."
+        },
+        {
+          "reviewer": "Reviewer_FYQ4",
+          "claim": "The univariate problem is listed as one of three main contributions, but the main text says little about it.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 86-89 list it. Lines 276-281 and 299-300 send the reader to supplement Section S.1."
+        },
+        {
+          "reviewer": "Reviewer_gcFi",
+          "claim": "The detection statistic is not new; the lower bound uses tools from Duchi, Jordan and Wainwright.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 111: 'Algorithm 1 is a standard online change point detection procedure.' Line 122: 'In [22], a similar CUSUM was proposed.' Lines 218-219 use Lemma 1 of [12] (Duchi, Jordan and Wainwright)."
+        },
+        {
+          "reviewer": "Reviewer_P1kk",
+          "claim": "The detection statistic has very high computation cost, as previous work points out; Theorem 1 needs the assumption parameters, in particular a large enough clip M.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 113-116 call the storage and computation costs 'high', citing [33]. Eq. (4) sets M >= M_1, which depends on M_0 and sigma."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Responses posted 2021-08-10. Reviewer_P1kk's edit (2021-08-25): 'I have read the author comments and will keep my score unchanged.' Reviewer_gcFi (2021-08-27): 'I maintain my score.' Reviewer_FYQ4 (2021-08-27): 'thanks for the rebuttal and intention to incorporate the suggestions.' Reviewer_gcFi and Reviewer_FYQ4 did not edit their reviews.",
+        "what_convinced_or_not": "The responses were promises: a proof sketch of the lower bound, a comparison with prior work, the univariate case in the main text and experiments. They also stated that the Section 3.1 assumptions serve utility only and that C_epsilon = O(1). All three reviewers were already at 6 and stayed there."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts on 6/6/6: 'All the reviewers agree that the problem ... would be of interest' and 'the innovation in the paper is interesting'. The second phrase is generous: Reviewer_P1kk and Reviewer_FYQ4 called the mechanism and method standard and placed the novelty in the lower bound. The request to 'improve the presentation substantially' matches P1kk and FYQ4.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6s; no reviewer below the threshold",
+        "Near-matching private upper and lower bounds seen as the main contribution (Reviewer_P1kk, Reviewer_FYQ4, Reviewer_gcFi)",
+        "First work on locally private change point detection, judged of interest to NeurIPS",
+        "Presentation gaps (unused page, no proof sketch, univariate case in the supplement) treated as fixable in the camera-ready"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Validity of overall false-alarm control versus average run length (Reviewer_dv2E; incorrect)",
+    "Calling Definition 1 a CUSUM statistic; Assumption 4 hard to parse; why detect changes in the regression function and not in the data (Reviewer_dv2E)",
+    "Missing related work on LDP tracking of evolving data, arXiv 1802.07128 and 1811.12469 (Reviewer_KJKZ)",
+    "No new conceptual insight about LDP, since non-interactive optimality is already common (Reviewer_KJKZ)",
+    "Data-driven tuning sits oddly with a local-privacy setting (Reviewer_KJKZ, after the rebuttal)",
+    "A DP generative model trained on prior data; move Section 3.3 to the supplement to make room for experiments (Reviewer_djMH)"
+  ],
+  "issues_only_b": [
+    "No proof sketch or intuition for the lower bound in the main text (Reviewer_P1kk, Reviewer_FYQ4)",
+    "Almost a page of unused space (Reviewer_P1kk, Reviewer_FYQ4)",
+    "Laplace mechanism and privacy proof taken from prior work; innovations over prior work not highlighted (Reviewer_P1kk, Reviewer_FYQ4)",
+    "Order of the constant C_epsilon (Reviewer_gcFi)",
+    "Whether the Section 3.1 assumptions serve privacy, utility or both; alpha in place of epsilon; Apple citation (Reviewer_P1kk)"
+  ],
+  "shared_issues": [
+    "No experiments, not even simulations (A: Reviewer_djMH, Reviewer_ALYo, Reviewer_dv2E; B: Reviewer_gcFi)",
+    "Built from standard parts, an LDP channel plus an existing detection procedure (A: Reviewer_KJKZ, Reviewer_dv2E, AC; B: Reviewer_P1kk, Reviewer_FYQ4, Reviewer_gcFi)",
+    "Tuning needs known model parameters (A: Reviewer_KJKZ; B: Reviewer_P1kk, 'Theorem 1 requires knowledge of the assumption parameters')",
+    "High computation and storage cost (A: Reviewer_KJKZ, N_h exponential in d; B: Reviewer_P1kk)",
+    "Univariate mean problem left to the supplement (A: Reviewer_KJKZ; B: Reviewer_P1kk, Reviewer_FYQ4)",
+    "Near-matching upper and lower bounds and clear writing as the strengths (most reviewers in both)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same paper and largely the same facts; they differ in the reviewer draw and in the weight given to practicality. The paper is theory only: a standard Laplace channel feeds a standard CUSUM-type procedure, and the contribution is near-matching private upper and lower bounds. It has no experiments, its tuning needs known model constants, and N_h is exponential in d. In B, Reviewer_P1kk listed most of these weaknesses and still gave 6 for the lower bound; all three B reviewers gave 6, and the AC accepted. In A, Reviewer_KJKZ, the most careful A reviewer, treated the same weaknesses as decisive and gave 5: no 'tools that we might use in the real world' and nothing new 'conceptually about differential privacy'. A also drew Reviewer_dv2E, whose 3 rests on a wrong objection: that overall false-alarm control P_inf(t_hat < inf) < gamma is impossible. The thresholds in eq. (3) and (9) grow with t, so a union bound gives it; the authors said so, and dv2E never replied. Without dv2E, A's mean is 6.0, equal to B's. A's positive reviews were thin (Reviewer_ALYo's 7 is generic praise; Reviewer_djMH's 6 is a 'superficial skimming' at confidence 2), so they gave the AC little to set against the negatives. A's AC called the 2-2 split a consensus that the paper 'just misses the bar' and gave no reason. Neither committee found a real flaw that the other missed.",
+  "candidate_reasons": [
+    "Detractor's mistaken correctness objection",
+    "Same weaknesses weighted differently",
+    "Practicality versus theory valuation",
+    "Thin champions in rejecting committee",
+    "AC misstates split as consensus",
+    "Uniform lukewarm scores clear threshold"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_dv2E review, first paragraph (false-alarm 'correctness concern')",
+    "Authors' response to Reviewer_dv2E, 2021-08-10 (union bound over t)",
+    "paper eq. (3)-(5) and (9)-(10): thresholds that grow with t",
+    "Reviewer_KJKZ review and update after the response",
+    "Authors' reply to Reviewer_KJKZ, 2021-08-31",
+    "Reviewer_P1kk review",
+    "Reviewer_ALYo review",
+    "Reviewer_djMH review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper lines 98-101 (Laplace mechanism, privacy from [4]) and 111-117 (standard procedure, high cost)",
+    "paper page 9 (main text ends at line 300)",
+    "paper checklist item 3 ('We ran no experiments')"
+  ]
+}

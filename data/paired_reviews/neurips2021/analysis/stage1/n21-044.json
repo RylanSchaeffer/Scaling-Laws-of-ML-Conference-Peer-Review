@@ -1,0 +1,250 @@
+{
+ "pair_id": "n21-044",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    7,
+    7,
+    5
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_p3QD",
+    "Reviewer_edev",
+    "Reviewer_LqNe"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No single outlier: the panel splits 2-2 around the threshold (Reviewer_p3QD 4 and Reviewer_c92W 5 against Reviewer_edev 7 and Reviewer_LqNe 7; mean 5.75). Each side holds one specific review (p3QD, edev) and one thin one (c92W, LqNe)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_LqNe",
+     "evidence": "Praise-only review (3 hours) with no weakness listed; calls the method 'well-explained' although Reviewer_edev found a sigmoid error in Eq. 5 that the authors conceded and Reviewer_p3QD found undefined notation. Its 2021-09-13 edit says the authors 'addressed my comments successfully', but its only comment was that limitations were not discussed, which the authors answered with a pointer to lines 314-316."
+    },
+    {
+     "reviewer": "Reviewer_c92W",
+     "evidence": "Rates 5 while its own text calls the paper effective, 'generally correct', 'well written and easy to read' and its related work 'comprehensive'. Its two weaknesses (similarity to GEM, no time-complexity analysis) got direct answers on 2021-08-10; c92W never replied or edited."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_p3QD",
+     "claim": "G_att^(c) differs across instances of the same class, so the 'class-wise' pre-training does not by itself give class-level explanations; only L_cts ties instances together.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 3-5: M is computed from Z = GNN(G, X) for each instance; only the attributor parameters are shared within a class. The authors' response concedes that G_att^(c) 'is specific for each graph instance'. Checked in the camera-ready PDF; the submitted PDF is not available."
+    },
+    {
+     "reviewer": "Reviewer_p3QD",
+     "claim": "Eq. (4) contains only M, not M^(c), so it is unclear how class c enters.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 3.1 gives each class its own attributor T^(c) and states that the superscript is omitted for conciseness. The authors quote the same sentence from line 113 of the submission."
+    },
+    {
+     "reviewer": "Reviewer_p3QD",
+     "claim": "G_exp^(c) has only a verbal description and no formula.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The camera-ready defines G_exp = A (element-wise) S in Section 2 and S^(c) by Eq. 9; the submitted PDF is not available. The rebuttal pointed only to the verbal statement at line 94, which p3QD rejected as no answer."
+    },
+    {
+     "reviewer": "Reviewer_edev",
+     "claim": "Eq. (5) wrongly applies a sigmoid to alpha = MLP(z_i, z_j).",
+     "checked_against_paper": "correct",
+     "evidence": "The authors conceded the error; the camera-ready Eq. 5 reads alpha_ij = MLP([z_i, z_j])."
+    },
+    {
+     "reviewer": "Reviewer_c92W",
+     "claim": "Time-complexity analysis and experiments are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors promised to add them; the camera-ready adds Table 4. Per-instance fine-tuning takes 0.42-0.82 s against 0.03-0.04 s for PGExplainer (13-27x), which the rebuttal and the camera-ready call 'computationally comparable'."
+    },
+    {
+     "reviewer": "Reviewer_c92W",
+     "claim": "The class-aware attribution module is similar to GEM (ICML 2021).",
+     "checked_against_paper": "not_checked",
+     "evidence": "Comparison with an external paper. The authors promised a comparison; the camera-ready does not cite GEM."
+    },
+    {
+     "reviewer": "Reviewer_LqNe",
+     "claim": "The pre-training part alone already outperforms other approaches to some extent.",
+     "checked_against_paper": "correct",
+     "evidence": "Camera-ready Table 2: ReFine-FT beats every baseline on Mutagenicity, VG-5 and BA-3motif, but trails PGM-Explainer on MNIST (0.587 vs 0.615)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Responses posted 2021-08-10. Reviewer_p3QD's update (edit 2021-08-25): 'keep my score unchanged'. Reviewer_LqNe's edit (2021-09-13): 'I will keep my (positive) rating'. Reviewer_c92W never edited or replied. Reviewer_edev edited on 2021-08-18 with no note, so a silent change cannot be ruled out.",
+    "what_convinced_or_not": "p3QD wrote that the authors 'do not really understand' its questions: asked for the formula of G_exp^(c), they restated that it is the explanatory subgraph; asked what an 'attentive graph' is, they called it the saliency map, which p3QD found inconsistent with the paper's 'further result in'. The camera-ready defines G_att = A (element-wise) M, distinct from M, so that answer was itself imprecise. No other A reviewer said what the rebuttal changed."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Rejects at a 2-2 split (mean 5.75). The summary sentence copies Reviewer_p3QD's summary nearly word for word. The AC grants that the GNN formulation 'has some merits' over 'the recent works (NeurIPS 2020)' (the A reviews name two: MAME from p3QD, PGExplainer from edev), then rejects on unnamed 'concerns in experiments'. All four A reviews praise the experiments; the only experimental requests were time cost (c92W) and an order-swap ablation (edev). The reviewer-AC discussion the meta-review mentions is not public.",
+    "meta_review_leans_on": "unclear"
+   },
+   "main_reasons_for_decision": [
+    "Panel split 2-2 (4, 5 vs 7, 7) and the AC took the below-threshold side",
+    "Reviewer_p3QD's notation and method-design objections stayed open after the rebuttal",
+    "AC cited unnamed 'concerns in experiments'; novelty over NeurIPS 2020 work was not the stated reason"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_AmNU",
+    "Reviewer_gLGL",
+    "Reviewer_TzAp"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/7/6/6 sit within one point of the 6.25 mean. The 7 (Reviewer_gLGL, confidence 3) is the least supported score but does not decide the outcome."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_gLGL",
+     "evidence": "Rates 7 at confidence 3 ('Math/other details were not carefully checked') while its main weakness is that the method is 'a combination of existing techniques' with no theory; its strengths are generic ('reasonable and easy-to-understand'). No reply after the rebuttal; last edit 2021-07-23 predates it."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_6Ffx",
+     "claim": "Fine-tuning gives a large gain on MNIST but little on the other datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Camera-ready Table 2 (submission Table 1): ReFine minus ReFine-FT is +0.049 ACC-AUC on MNIST against +0.010, +0.008 and +0.014 on Mutagenicity, VG-5 and BA-3motif. Table 3: +30.0/+20.6 points on MNIST, at most +2.2 on Mutagenicity and VG-5."
+    },
+    {
+     "reviewer": "Reviewer_6Ffx",
+     "claim": "Most of the gain comes from the contrastive loss rather than fine-tuning (also Reviewer_TzAp).",
+     "checked_against_paper": "correct",
+     "evidence": "Contrastive loss (ReFine-FT minus ReFine-CT) adds +0.057, +0.015, +0.061, +0.006; fine-tuning adds +0.010, +0.008, +0.049, +0.014, so the contrastive loss leads on three of four datasets. The per-class attributors (ReFine-CT minus PGExplainer: +0.257, +0.101, +0.022, +0.024) give the largest share on Mutagenicity, VG-5 and BA-3motif."
+    },
+    {
+     "reviewer": "Reviewer_6Ffx",
+     "claim": "Fine-tuning is essentially stochastic edge dropout on the pre-trained edge probabilities.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.2: H samples edges by their probabilities, and the selection 'possibly acts as a dropout function to avoid the overfitting'."
+    },
+    {
+     "reviewer": "Reviewer_6Ffx",
+     "claim": "Figure 4 (Mutagenicity) has no pre-trained versus fine-tuned comparison.",
+     "checked_against_paper": "correct",
+     "evidence": "Camera-ready Figure 4 shows selection ratios 10-50% only. Camera-ready Figure 1 shows one before/after fine-tuning example on VG-5; whether the submission had it is not known."
+    },
+    {
+     "reviewer": "Reviewer_TzAp",
+     "claim": "ReFine-CT differs from PGExplainer only by fine-tuning, so PGExplainer versus ReFine-CT shows little benefit from fine-tuning.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Camera-ready Table 1 and the rebuttal: ReFine-CT has the class-wise attributors only, with neither the contrastive loss nor fine-tuning. The text still describes ReFine-CT only as removing the contrastive loss, which invites the misreading."
+    },
+    {
+     "reviewer": "Reviewer_TzAp",
+     "claim": "ReFine trains one attributor per class, so it has more parameters than PGExplainer.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.1 defines C attributors T^(c). The authors confirmed it and added PG-Explainer* with C times the parameters; ReFine still led on every dataset (e.g. Mutagenicity 0.955 vs 0.685)."
+    },
+    {
+     "reviewer": "Reviewer_AmNU",
+     "claim": "Compared with PGExplainer, the only difference is the proposed loss functions.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Camera-ready Table 1 lists per-class attributors, the contrastive loss and a fine-tuning stage with stochastic selection. Each attributor is PGExplainer's generator, so the point that the architectural change is small stands."
+    },
+    {
+     "reviewer": "Reviewer_gLGL",
+     "claim": "Pre-training is PGExplainer per class plus a contrastive loss; fine-tuning selects subgraphs by simulated annealing.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.1 builds the attributors from PGExplainer's generative model [7] and adds L_cts (Eq. 8); the rebuttal confirms simulated annealing for the selection module."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_TzAp"
+    ],
+    "evidence": "Reviewer_TzAp, 2021-08-23: 'I increased my score from 5 to 6' (review edited the same day). Reviewer_AmNU, 2021-08-23: concerns 'mostly addressed', score unchanged. Reviewer_6Ffx, 2021-08-27: keeps the original rating. Reviewer_gLGL's last edit (2021-07-23) predates the responses; no reply.",
+    "what_convinced_or_not": "TzAp credited 'the clear explanation and the addition experiments': a PGExplainer baseline with C times the parameters (ReFine still ahead on all datasets) and a table of what each ablation removes. 6Ffx was not moved: the response restated Table 1 as contribution shares but did not explain 'why edge dropout brings out the local explainability'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four ratings at 6 or 7. The meta-review lists the reviewers' praise (impact, performance, motivation, ease of implementation), says the authors addressed concerns 'particularly around novelty', and asks for 6Ffx's missing intuition on edge dropout in the camera-ready. Only TzAp moved (5 to 6); AmNU kept 6.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four reviewers at 6 or 7 after Reviewer_TzAp rose from 5 to 6 on a parameter-matched PGExplainer baseline",
+    "Reviewers weighed an important task, ACC-AUC gains on four datasets and a simple method above limited novelty",
+    "Reviewer_6Ffx's open question on why edge dropout gives local explanations was passed to the camera-ready"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Undefined or confusing notation: attentive graph, M^(c), G', G_exp^(c) (Reviewer_p3QD)",
+  "Missing related work: MAME, NeurIPS 2020 (Reviewer_p3QD); GEM, ICML 2021 (Reviewer_c92W); graph contrastive learning (Reviewer_edev)",
+  "No time-complexity analysis (Reviewer_c92W); the rebuttal's own table shows per-instance fine-tuning 13-27x slower than PGExplainer",
+  "Sigmoid error in Eq. 5, conceded by the authors (Reviewer_edev)",
+  "Why the PGExplainer mutual-information loss sits in the 'global' phase, and an ablation that swaps the phase order (Reviewer_edev)"
+ ],
+ "issues_only_b": [
+  "Parameter count of one attributor per class versus one PGExplainer, answered with a parameter-matched baseline (Reviewer_TzAp)",
+  "Sampler details and hyperparameter sensitivity of the fine-tuning (rho, annealing schedule) (Reviewer_TzAp, Reviewer_AmNU)",
+  "Fine-tuning helps mainly on MNIST and the contrastive loss carries more of the gain (Reviewer_6Ffx, Reviewer_TzAp)",
+  "No theoretical analysis (Reviewer_gLGL)",
+  "Graph classification only, no node classification (Reviewer_AmNU); Figure 3 lacks digit labels (Reviewer_6Ffx)"
+ ],
+ "shared_issues": [
+  "Whether the two phases really give class-level (global) and instance-level (local) explanations (A: Reviewer_p3QD, Reviewer_edev; B: Reviewer_6Ffx, Reviewer_TzAp)",
+  "Limited technical novelty: PGExplainer generators plus a contrastive loss (A: Reviewer_edev, Reviewer_p3QD; B: Reviewer_AmNU, Reviewer_gLGL, Reviewer_TzAp)",
+  "Strong empirical results on four datasets (all eight reviewers)",
+  "'Figure 3.1' should be Figure 2 (A: Reviewer_p3QD, Reviewer_c92W; B: Reviewer_gLGL)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "B accepted because all four of its reviewers ended at 6 or 7 (mean 6.25) and its AC followed them; A rejected because its panel split 2-2 (4, 5, 7, 7; mean 5.75) and its AC took the negative side. Both committees saw the same doubts. In each, at least one reviewer questioned whether the method gives the 'multi-grained' explanations of the title: Reviewer_p3QD (A, 4) noted that the 'class-wise' masks are per-instance outputs, and Reviewer_6Ffx (B, 6) called fine-tuning 'a stochastic version of edge dropout'. The paper supports both readings: Eq. 3-5 compute each mask from the instance, and Section 3.2 says the selection 'possibly acts as a dropout function'. Both committees also heard that the method is PGExplainer per class plus a contrastive loss (A: Reviewer_edev; B: Reviewer_AmNU, Reviewer_gLGL, Reviewer_TzAp). B scored these doubts at 6; p3QD scored them at 4. Each A half holds one specific and one thin review: Reviewer_c92W's 5 rests on two points the rebuttal answered and c92W never revisited, and Reviewer_LqNe's 7 is praise only. A's AC granted the formulation 'some merits' on novelty, then rejected on unnamed 'concerns in experiments', although all four A reviews praise the experiments. In B, a parameter-matched PGExplainer baseline moved Reviewer_TzAp from 5 to 6 and made the panel unanimous above threshold. The discrepancy is calibration of shared doubts plus an AC call at a split panel, not a flaw that only one committee found.",
+ "candidate_reasons": [
+  "Split panel, AC sides negative",
+  "Meta-review reason absent from reviews",
+  "Same doubts, different score calibration",
+  "Rebuttal experiment lifts borderline reviewer",
+  "Praise-only champion review",
+  "Unengaged borderline detractor"
+ ],
+ "confidence": "medium",
+ "evidence_pointers": [
+  "Reviewer_p3QD final review and post-rebuttal update",
+  "Authors' response to Reviewer_p3QD (G_att^(c) is instance-specific)",
+  "Committee A meta-review",
+  "Reviewer_LqNe final review",
+  "Reviewer_c92W review and authors' time-cost tables",
+  "Reviewer_edev review (Eq. 5) and authors' response",
+  "Reviewer_6Ffx review and 2021-08-27 comment",
+  "Reviewer_TzAp 2021-08-23 comment and authors' PG-Explainer* table",
+  "Committee B meta-review",
+  "paper Eq. 3-5 and Section 3.2 last paragraph (camera-ready; submitted PDF not available)",
+  "paper Tables 1-3 (camera-ready; Table 2 is the submission's Table 1)",
+  "paper Table 4 (camera-ready time costs)"
+ ]
+}

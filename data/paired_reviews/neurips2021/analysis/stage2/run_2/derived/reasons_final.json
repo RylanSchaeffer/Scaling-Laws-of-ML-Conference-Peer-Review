@@ -52,7 +52,18 @@
   "n21-048",
   "n21-002"
  ],
- "merges": [],
+ "merges": [
+  {
+   "keep": "R01",
+   "absorb": "R19",
+   "why": "Both name one mechanism: a reviewer in one committee based a score on a checkable factual claim about the paper or its prior work that was wrong. R01 covers the error that lowered a score and R19 the error that raised one; the sign of the error is the only difference, and either sign opens the same gap between committees."
+  },
+  {
+   "keep": "R04",
+   "absorb": "R35",
+   "why": "Both name one mechanism: the authors posted information on one committee's forum only, so the two committees judged different information. R04 covers a disclosed flaw and R35 new results; the content's direction is the only difference."
+  }
+ ],
  "reasons": [
   {
    "id": "R07",
@@ -111,8 +122,10 @@
    "created_by_pair": "n21-294",
    "created_turn": 1,
    "exemplar": "In A, Reviewer_A5qv doubted the conceptual gain because a d^2 SQ bound 'follows from DKS17', but the paper credits that bound to DKS19, which needs unknown covariance and does not transfer; after the rebuttal A5qv raised to 7, while B never raised this doubt.",
-   "absorbed": [],
-   "n_pairs": 29
+   "absorbed": [
+    "R19"
+   ],
+   "n_pairs": 34
   },
   {
    "id": "R02",
@@ -145,6 +158,18 @@
    "n_pairs": 24
   },
   {
+   "id": "R04",
+   "name": "Authors disclosed a flaw to one committee only",
+   "definition": "The authors revealed an error or weakness in the paper on one committee's forum and not on the other's, so the two committees judged different information.",
+   "created_by_pair": "n21-133",
+   "created_turn": 2,
+   "exemplar": "The authors disclosed on B's forum that Theorem 1.1 omitted a sqrt(t\u00b7R(U\u221e)) term, but their reply the same day to Reviewer_ab3Y's early-stopping question on A's forum did not mention it.",
+   "absorbed": [
+    "R35"
+   ],
+   "n_pairs": 23
+  },
+  {
    "id": "R31",
    "name": "Only one committee's reviewers knew the baseline literature",
    "definition": "One committee's reviewers knew the closely related prior literature and checked the paper's baselines and novelty against published results, while the other committee's reviewers, less familiar with it, scrutinised derivations and presentation and took the reported comparisons at face value.",
@@ -153,26 +178,6 @@
    "exemplar": "Three of B's reviewers saw that the submission's D4RL CQL scores fell far below CQL's published ones and tied ICQ to EMaQ, BRAC and KL-control, while A's reviewers, all at confidence 2 or 3, asked about the partition function and notation and called the single-agent results 'already impressive'.",
    "absorbed": [],
    "n_pairs": 20
-  },
-  {
-   "id": "R04",
-   "name": "Authors disclosed a flaw to one committee only",
-   "definition": "The authors revealed an error or weakness in the paper on one committee's forum and not on the other's, so the two committees judged different information.",
-   "created_by_pair": "n21-133",
-   "created_turn": 2,
-   "exemplar": "The authors disclosed on B's forum that Theorem 1.1 omitted a sqrt(t\u00b7R(U\u221e)) term, but their reply the same day to Reviewer_ab3Y's early-stopping question on A's forum did not mention it.",
-   "absorbed": [],
-   "n_pairs": 18
-  },
-  {
-   "id": "R19",
-   "name": "Wrong factual claim inflated one reviewer's praise",
-   "definition": "A reviewer in one committee based praise or a higher score on a checkable factual claim about the paper's novelty or results that was wrong, such as crediting the authors with a method the paper itself attributes to prior work.",
-   "created_by_pair": "n21-210",
-   "created_turn": 13,
-   "exemplar": "In B, Reviewer_YH9r (1 hour, confidence 2) gave 7 and named 'a new algorithm', the forward algorithm, as the key contribution, but line 13 of the paper credits it to Vovk and to Azoury and Warmuth (2001).",
-   "absorbed": [],
-   "n_pairs": 17
   },
   {
    "id": "R21",
@@ -193,16 +198,6 @@
    "exemplar": "B's AC accepted only as a poster, required citing Knight and van Vreeswijk and Sompolinsky, and suggested retitling 'arbitrarily fast computation with arbitrarily slow neurons' to stress credit assignment, while A's chair praised the model without qualification and gave an oral.",
    "absorbed": [],
    "n_pairs": 13
-  },
-  {
-   "id": "R35",
-   "name": "New results shown to one committee only",
-   "definition": "In answer to a question only one committee asked, the authors posted new experiments or analyses on that committee's forum that raised its scores, while the other committee never saw those results and received only promised text.",
-   "created_by_pair": "n21-172",
-   "created_turn": 35,
-   "exemplar": "Only A's sKB5 asked about binding capacity; the authors answered with a new table (projected HRRs 384 error-free pairs at d=8100, naive 24), sKB5 rose to 8, while B received only promised text and a worked example.",
-   "absorbed": [],
-   "n_pairs": 11
   },
   {
    "id": "R09",

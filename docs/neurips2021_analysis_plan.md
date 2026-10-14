@@ -1,6 +1,6 @@
 # Why two committees disagreed: the NeurIPS 2021 paired-review dataset and analysis
 
-Status: approved 2026-10-14. Scope: all 301 complete pairs, the 50 oral and spotlight pairs first.
+Status: approved 2026-10-14. Stage 1 done for all 301 pairs; stage 2 done for the 50 award pairs (two runs). Outcome: the model's award step (`docs/neurips2021_stage2_results.md`, paper Section "The award step").
 
 ## 1. What we have
 

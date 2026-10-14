@@ -5,6 +5,7 @@ W=${WORKERS:-5}
 uv run python scripts/iclr_data.py
 uv run python scripts/run_calibration.py --workers "$W"
 uv run python scripts/run_sweeps.py g h f b a d e c --workers "$W"
+uv run python scripts/fit_award_noise.py
 uv run python scripts/run_validation_neurips2021.py --workers "$W"
 uv run python scripts/run_validation_iclr.py --workers "$W"
 uv run python scripts/run_best_paper_robustness.py --workers "$W"

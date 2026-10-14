@@ -5,6 +5,16 @@ Scope: the 50 NeurIPS 2021 pairs in which at least one committee recommended an 
 growing one shared set of reasons; every judgement is on disk (`analysis/stage2/run_1/`). The chart:
 `figures/stage2_matrix_run1.pdf` (pairs by reasons) and `figures/stage2_reasons_by_kind_run1.pdf`.
 
+## What it changed in the model
+
+The award tier was a chair's call in most pairs, so the model now cuts the award tiers on an award ordering,
+the score plus a chair noise η ~ N(0, σ_η²) within the accepted set, redrawn by a second review. σ_η = 0.59 on
+the 1-10 axis, fitted so that the model's awards fall inside each committee's score top-K as often as the real
+ones did (26 of 53; `scripts/fit_award_noise.py`, `results/award_noise.json`, bootstrap 90% range 0.42 to 0.76).
+Held out: the model then predicts 4.6 shared awards (observed 3, P = 0.32) and 33% of award papers rejected by
+the other committee (observed 48%, P = 0.02; was 5.6 and 30% without the step). Paper: Section "The award step",
+Appendix "The NeurIPS 2021 paired reviews".
+
 ## What the matrix says
 
 Three mechanisms are present in almost every award split: the committees weighted the same evidence differently

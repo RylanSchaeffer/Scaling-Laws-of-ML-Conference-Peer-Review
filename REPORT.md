@@ -11,6 +11,9 @@ Ranges run from the pessimistic level ($\rho^2 = 0.44$) to the optimistic level
 
 ## 1. Summary
 
+> **14 October 2026.** The model gained an award step: within the accepted set the award tiers are cut on the score plus a chair noise η (σ_η = 0.59, fitted on the NeurIPS 2021 pairs' scores; `results/award_noise.json`). Every simulated result was rerun; the paper (`paper/main.pdf`) holds the current numbers, and the tables below predate the step. Finding 8 below is resolved by it: see the paper's Section "The award step".
+
+
 > **10 October 2026.** The paper's numbers now come from the real review form (integer 1 to 10 scores, four reviews per paper); see decision 16 in Section 8 for the current headline numbers. The sections below describe the continuous-score model and remain as the derivation and the check.
 
 The paper asks one question: as submissions grow, does review still give its awards to the

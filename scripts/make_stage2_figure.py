@@ -110,5 +110,35 @@ def main(run: str) -> None:
     print(f"figures/stage2_matrix_run{run}.pdf  figures/stage2_reasons_by_kind_run{run}.pdf  ({n_pairs} pairs x {n_reasons} reasons)")
 
 
+def paper_figure(run: str) -> None:
+    """Appendix figure of the paper: every reason, pairs in which it applies, stacked by the two committees' tiers."""
+    D = f"{A}/stage2/run_{run}/derived"
+    rows = list(csv.DictReader(open(f"{D}/ticks.csv")))
+    final = json.load(open(f"{D}/reasons_final.json"))["reasons"]
+    cols = [r["id"] for r in final]
+    names = {r["id"]: r["name"] for r in final}
+    kinds = [k for k in ("oral/poster", "spotlight/poster", "spotlight/reject", "spotlight") if any(r["kind"] == k for r in rows)]
+    short = {"oral/poster": "Oral vs Poster", "spotlight/poster": "Spotlight vs Poster", "spotlight/reject": "Spotlight vs Reject", "spotlight": "Spotlight, Spotlight"}
+    colors = {"oral/poster": P.BLUE[650], "spotlight/poster": P.BLUE[450], "spotlight/reject": P.BLUE[250], "spotlight": P.CAT[1]}
+    P.setup()
+    n = len(cols)
+    fig, ax = plt.subplots(figsize=(P.CANVAS_W, (0.165 * n + 0.9) * P.S))
+    left = np.zeros(n)
+    for k in kinds:
+        v = np.array([sum(int(r[c]) for r in rows if r["kind"] == k) for c in cols], float)
+        ax.barh(np.arange(n), v, left=left, height=0.72, color=colors[k], label=f"{short[k]} ($n={sum(r['kind'] == k for r in rows)}$)")
+        left += v
+    ax.set_yticks(range(n)); ax.set_yticklabels([tex(cap(names[c])) for c in cols]); ax.set_ylim(n - 0.5, -0.5)
+    ax.tick_params(axis="y", labelsize=P.LEGEND_PT)
+    ax.set_xlabel("Pairs in which the reason applies (of 50)"); ax.set_xlim(0, 50)
+    ax.legend(loc="lower right", handlelength=1.0)
+    ax.grid(axis="y", visible=False)
+    P.save(fig, f"{ROOT}/figures/fig7_reasons")
+    print(f"figures/fig7_reasons.pdf ({n} reasons)")
+
+
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "1")
+    if "--paper" in sys.argv:
+        paper_figure(next((a for a in sys.argv[1:] if not a.startswith("--")), "1"))
+    else:
+        main(sys.argv[1] if len(sys.argv) > 1 else "1")

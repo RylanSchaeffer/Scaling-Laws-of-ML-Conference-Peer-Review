@@ -12,6 +12,8 @@ for everything above plain acceptance.
 | spotlight, oral | the two award tiers that grow more slowly than submissions (N^0.72, N^0.59) | "highlights (spotlights and orals)" |
 | Best Paper | the top award tier, a constant number (1 to 13 a year; the model holds it at N^0; the NeurIPS fit, N^0.34, rests on too few papers to show a trend); "the best-paper award" when the noun is needed | "the award", "awards" for this tier alone |
 | fixed proportion, constant number, between | the three scaling classes of a tier's count in N | "share" |
+| award ordering | the ranking on which the award tiers are cut within the accepted papers: the score plus a chair noise η (SD σ_η = 0.59 on the 1-10 axis, fitted on the NeurIPS 2021 pairs' scores); the Best Paper is its first paper; two committees' award orderings correlate at ρ_a² < ρ² | "award score", "the chairs' ranking" |
+| chair noise | η in the award ordering: the area, senior area and program chairs' own call on a paper's tier, redrawn by a second review with u and ε | "AC noise", "subjectivity" |
 | a second review | peer review run again on the same papers with new reviewers and area chairs, as in the NeurIPS 2014 and 2021 experiments; the model redraws u and ε, so a paper's two scores correlate at ρ² | "a second committee" (reads as a best-paper committee) |
 | lands in tier X / X again | under a second review the Best Paper is ranked within tier X's count | "oral range" |
 | in the top ten again | ranked within the second review's ten best scores: a constant-number tier larger than one | |

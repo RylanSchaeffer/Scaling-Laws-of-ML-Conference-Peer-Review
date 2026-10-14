@@ -1,0 +1,251 @@
+{
+  "pair_id": "n21-157",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 3, 4, 4],
+      "confidences": [5, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_SCqH", "Reviewer_YPXK"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 3, 4, 4 (SCqH, uZ3D, Exeq, YPXK). Reviewer_uZ3D's 3 is one point below the others and rests on the same clarity and formulation concerns. All four are below the threshold."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_SCqH",
+          "claim": "Major baselines such as hindsight experience replay are missing, and the method does not use hindsight relabeling.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 317-325 list RRT*, NEXT, SGTPG, SAC, PPO, SoRB and an HRL method. HER is cited ([3]) but not compared. The camera-ready adds HER. The rebuttal's maze table gives DQN+HER 89.1/82.6/78.8 against CO-PILOT 94.0/87.3/78.3 (2D/3D/5D)."
+        },
+        {
+          "reviewer": "Reviewer_SCqH",
+          "claim": "The planner cost (Eq. 12) uses a dense Euclidean signal that sparse-reward baselines do not see, so the evaluation is inconclusive.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 12 mixes the Euclidean distance with the predicted time cost. D_tau starts with 50,000 Euclidean tuples (lines 327-328). Alpha falls only from 0.9 to 0.1 'throughout every episode' (line 334), so the Euclidean term never leaves the cost. This contradicts the rebuttal's 'warm start' only claim. Segments that cross obstacles get a +10 penalty (lines 332-333). SGTPG and RRT* also use Euclidean distance; SAC, PPO and SoRB get no such prior."
+        },
+        {
+          "reviewer": "Reviewer_SCqH",
+          "claim": "Appendix Fig. 6 shows that without the Euclidean term CO-PILOT is inferior to SoRB.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in paper_submitted.pdf (13 pages: main text, references, checklist). The authors did not dispute the result. They called that comparison 'unfair to our method' and blamed the missing warm start."
+        },
+        {
+          "reviewer": "Reviewer_SCqH",
+          "claim": "The 'monotonic hyperbolic model' at line 217 is not defined, and the paper does not say how it predicts the cost (also Reviewer_uZ3D and Reviewer_YPXK).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 216-218 name the model and say c_phi 'is trained with planner'. Eq. 11 only clips it at tau_max. Algorithm 1 line 9 says 'Update the prediction model c in Eq. (11)'. The main text gives no loss or training rule."
+        },
+        {
+          "reviewer": "Reviewer_SCqH",
+          "claim": "The c_phi objective given in the rebuttal is not sound: it is unbounded, and the hyperparameter b has zero gradient.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked by calculation, since the paper gives no loss. J = (e^{a c_phi} - 1)/(e^{a c_bar} + 1) + b is strictly increasing in c_phi, so it has no optimum at c_phi = c_bar, and b does not change any gradient. The authors agreed that 'b can be removed' and that a better objective 'might exist'."
+        },
+        {
+          "reviewer": "Reviewer_SCqH",
+          "claim": "Eq. 9 has no step that keeps sub-goals in valid states; the collision re-sampling in the rebuttal is not in the paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 9 is a plain expectation over samples from pi_p. The text mentions only a +10 cost for segments that cross obstacles (lines 332-333), not rejection of sub-goals inside obstacles."
+        },
+        {
+          "reviewer": "Reviewer_Exeq",
+          "claim": "In the Ant maze the walls are ignored and the ant cannot rotate around its centre.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 305-306: 'navigate in the maze without self-rotation and collisions to the wall'. The wording is ambiguous but does not say that walls are removed. The authors said walls and rotation are present."
+        },
+        {
+          "reviewer": "Reviewer_Exeq",
+          "claim": "No code is provided.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3.1 answers [No]: 'Code will be released after accepted.'"
+        },
+        {
+          "reviewer": "Reviewer_uZ3D",
+          "claim": "The 'bipedal' walker has four legs in the figure.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3(c) is titled 'Quadrupedal agents'. Line 313 says the authors designed three agents with different legs."
+        },
+        {
+          "reviewer": "Reviewer_uZ3D",
+          "claim": "CO-PILOT is seeded with 50K data tuples, so the baselines should get an equal amount of extra data.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 327-328: the 50,000 tuples carry Euclidean distances, not environment interactions. They are a prior, not extra samples."
+        },
+        {
+          "reviewer": "Reviewer_YPXK",
+          "claim": "Eq. 6 is a sum of sparse rewards, so the claim that the reward becomes denser as T grows is unexplained.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6 averages indicator rewards over sub-goals. Line 160 asserts that the reward 'becomes denser' without argument. YPXK accepted the rebuttal's reframing as a shorter-horizon problem."
+        },
+        {
+          "reviewer": "Reviewer_uZ3D",
+          "claim": "The text of the submitted PDF is not interactive.",
+          "checked_against_paper": "correct",
+          "evidence": "The PDF producer is 'Microsoft: Print To PDF'. Text extraction returns only the labels of Figure 1. Reviewer_qKpT in Committee B reported the same problem."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "SCqH edited the review on 2021-08-07 and added an update: 'None of the issues I raised in the review are addressed.' YPXK edited on 2021-09-03: 'will maintain this score'. Exeq replied on 2021-08-18: 'I keep my score'. uZ3D's review is unedited, and uZ3D never replied.",
+        "what_convinced_or_not": "YPXK accepted the clarifications of Eqs. 6, 11 and 12 and the HER table, but asked why the hyperbolic loss was chosen and how general the method is. SCqH found the rebuttal unsound: the c_phi loss has no optimum at the true cost, its b term is inert (the authors agreed), the collision re-sampling is not in the paper, and the 'warm start' defence does not answer the appendix result. YPXK and Exeq said the necessary changes were too large to accept without new review."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The two-sentence meta-review says 'all reviewers agreed that the writing of the paper is not clear enough, and the comparison to baselines needs to be improved'. These are the two points common to all four reviews. The AC did not post in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Writing and method specification too unclear to accept (all four reviewers and the meta-review)",
+        "Weak baseline comparison: no HER, and a Euclidean prior that the sparse-reward baselines lack",
+        "Rebuttal exposed undocumented steps and an unsound c_phi loss; reviewers judged the rewrite to need new review",
+        "Unanimous below-threshold ratings (mean 3.75) that did not move"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Fa86", "Reviewer_qKpT"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four reviewers (Fa86, 8yHH, NJTw, qKpT) gave 6, 'marginally above the acceptance threshold'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Fa86",
+          "evidence": "Short review that calls the paper 'well written' although line 217 leaves the cost model undefined. Its points are minor (related work, a caption, test-pair distribution, run time, RRT*). Fa86 replied 'The authors have addressed my concerns' to answers that missed the questions: a training-time figure (minutes to reach 50% success) for a request about execution time, and the claim that RRT* 'does not take the obstacles into account', which the paper's own Fig. 4(c) contradicts by counting RRT* collision checks."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8yHH",
+          "claim": "The paper's statements about planning are wrong: fine-grained discretisation is not required, and multi-query planners such as PRM are designed for reuse across tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 35-36 say every-step planning 'requires fine-grained discretization impractical for high-dimensional states'. Lines 37-39 say the sampling-based graph 'cannot be shared across tasks'. The paper cites PRM (Kavraki et al., [28]) and uses RRT*, which does not discretise."
+        },
+        {
+          "reviewer": "Reviewer_8yHH",
+          "claim": "The paper has no clear statement of limitations; the word 'limitation' does not appear.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text has no limitations section, and the conclusion (lines 404-408) states none. Checklist 1.2 answers [Yes]. Reviewer_YPXK in Committee A made the same point."
+        },
+        {
+          "reviewer": "Reviewer_8yHH",
+          "claim": "The Maze and Ant-v1 tasks are neither high-dimensional nor long-range; 8 dimensions is not high-dimensional.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 305: Ant-v1 'with an 8-dim action space'. The maze agents are 2D, 3D and 5D (Fig. 2 caption)."
+        },
+        {
+          "reviewer": "Reviewer_8yHH",
+          "claim": "SoRB sometimes reaches similar asymptotic performance but needs more data.",
+          "checked_against_paper": "correct",
+          "evidence": "In Fig. 2(b) (Ant) and Fig. 3(b) (BipedalWalker) SoRB ends level with CO-PILOT. Lines 366-367: 'The final performance is comparable with SoRB'."
+        },
+        {
+          "reviewer": "Reviewer_qKpT",
+          "claim": "Figures 2a, 2c, 4a, 4b and 4c show no variance.",
+          "checked_against_paper": "correct",
+          "evidence": "These bars and curves have no error bars or bands. Only Fig. 2(b) and Fig. 3 show shaded regions. Checklist 3.3 answers [Yes] to error bars."
+        },
+        {
+          "reviewer": "Reviewer_NJTw",
+          "claim": "On the maze task used for the visualisation, other methods are about as good as CO-PILOT.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4(a): final success is about 0.94 for CO-PILOT, 0.91 for NEXT and 0.88 for SGT."
+        },
+        {
+          "reviewer": "Reviewer_NJTw",
+          "claim": "The paper does not say how c_phi is optimised or what its objective is.",
+          "checked_against_paper": "correct",
+          "evidence": "Same gap as in Committee A (lines 216-218, Algorithm 1 line 9). On 2021-08-10 the authors told NJTw they minimise 'the difference' between predicted and true costs. On 2021-08-07 they had given Committee A an explicit formula that has no optimum at the true cost."
+        },
+        {
+          "reviewer": "Reviewer_qKpT",
+          "claim": "The PDF does not support search.",
+          "checked_against_paper": "correct",
+          "evidence": "The PDF producer is 'Microsoft: Print To PDF', and it has no text layer outside Figure 1."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Fa86's edit (2021-07-13) predates the rebuttal, and on 2021-09-01 the authors still asked Fa86 to 'reconsider your ratings'. qKpT edited on 2021-09-11 to point to the post-rebuttal comment, which says 'I keep my score'. NJTw replied on 2021-09-11: 'I will keep my score the same'. 8yHH's review is unedited, and 8yHH is 'still predisposed to recommend'.",
+        "what_convinced_or_not": "The answers cleared confusions about c_phi training, the L2 warm start, the test pairs and HER, and Fa86, NJTw and qKpT said so. No score rose. qKpT and NJTw kept 6 because the domains are simple and the analysis of components is thin. 8yHH was 'left with more questions' about what the method can do that the field cannot, and saw 'structural weakness in the argument'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review cites 'interesting ideas', 'generally clear presentation' and 'detailed responses', and names no weakness. It omits 8yHH's 'structural weakness in the argument' and the domain concerns of NJTw and qKpT. The AC's only discussion post praises 8yHH's review and the late recruitment of qKpT.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Mutual training of planner and RL agent judged interesting and potentially novel",
+        "Presentation judged generally clear (Fa86, NJTw, qKpT and the meta-review)",
+        "Rebuttal answered the questions and added a HER comparison in the maze",
+        "Remaining weaknesses (simple domains, related work, ablations, limitations) treated as camera-ready revisions",
+        "Unanimous marginal 6 ratings that did not move"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The c_phi loss given in the rebuttal is unsound: no optimum at the true cost, inert b (Reviewer_SCqH)",
+    "No mechanism keeps sub-goals in free space; the rebuttal's re-sampling step is not in Eq. 9 or the text (Reviewer_SCqH)",
+    "Without the Euclidean prior CO-PILOT falls below SoRB (appendix Fig. 6; Reviewer_SCqH)",
+    "Test-time execution unspecified; stochastic costs and costs pooled across tree levels strain the SGT policy gradient (Reviewer_uZ3D)",
+    "The learned 'planner' is a policy, not a planner, and is trained on one maze layout (Reviewer_Exeq)",
+    "Ant-maze and BipedalWalker setups unclear (state spaces, meaning of sub-goals); no code (Reviewer_uZ3D, Reviewer_Exeq)",
+    "Writing and specification too unclear to accept without new review (all four A reviewers)"
+  ],
+  "issues_only_b": [
+    "Thin engagement with hierarchical-abstraction and motion-planning work; no comparison to learned sampling distributions (Reviewer_8yHH)",
+    "Inaccurate statements about planning, e.g. that sampling-based graphs cannot be shared across tasks (Reviewer_8yHH)",
+    "Limited novelty over sub-goal trees (Reviewer_qKpT)",
+    "Non-stationarity of joint training; no completeness or optimality guarantees for the planner (Reviewer_qKpT)",
+    "No variance shown in Figs. 2a, 2c and 4a-c (Reviewer_qKpT)",
+    "Distribution of test pairs and run time not reported (Reviewer_Fa86)"
+  ],
+  "shared_issues": [
+    "No HER baseline (A: SCqH, YPXK, treated as major; B: qKpT, treated as optional)",
+    "Planner cost relies on Euclidean distance (A: SCqH, uZ3D, Exeq; B: NJTw)",
+    "Training of the cost model c_phi not specified (A: SCqH, uZ3D, YPXK; B: NJTw)",
+    "Few, simple evaluation domains (A: Exeq; B: 8yHH, NJTw, qKpT)",
+    "No limitations discussion (A: YPXK; B: Fa86, 8yHH, NJTw)",
+    "Missing ablations of components (A: uZ3D; B: NJTw, qKpT)",
+    "Generalisation beyond one environment not shown (A: Exeq; B: Fa86)",
+    "Dynamical distance learning (Hartikainen et al.) not discussed (A: YPXK; B: NJTw)",
+    "PDF text not searchable (A: uZ3D; B: qKpT)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees read the same submitted PDF and found mostly the same faults: no HER baseline, a planner cost that leans on Euclidean distance, an unspecified cost model c_phi, simple domains and no limitations section. No score moved in either committee, so the decisions follow the first reviews (A: 4, 3, 4, 4; B: 6, 6, 6, 6), and each AC restated its reviewers. The difference is weight and depth. All four A reviewers judged the method too underspecified to accept. Reviewer_SCqH pressed the rebuttal until it showed an undocumented sub-goal re-sampling step and a c_phi loss with no optimum at the true cost. Reviewer_YPXK and Reviewer_Exeq then said the rewrite needed new review. Three B reviewers called the same text well written. B accepted a vaguer answer on c_phi ('minimizing the difference') and left the faults to the camera-ready, although no B reviewer argued strongly. The paper supports A's specific claims. Line 217 names a 'monotonic hyperbolic model' with no definition or loss. Line 334 keeps the Euclidean term (alpha from 0.9 to 0.1), against the rebuttal's 'warm start' claim. The authors' own HER table puts HER within 5 points of CO-PILOT in 2D and 3D, and ahead in 5D.",
+  "candidate_reasons": [
+    "Clarity judged oppositely on identical PDF",
+    "Rejecting committee probed method specification deeper",
+    "Rebuttal exposed unsound, undocumented details",
+    "Shared weaknesses: fatal versus fixable",
+    "Lukewarm unanimous sixes carried acceptance",
+    "Vaguer rebuttal answer satisfied accepting committee"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_SCqH final review and reply of 2021-08-07 ('Response creates more questions than it answers')",
+    "Authors' reply to Reviewer_SCqH's reply, 2021-08-07 ('b can be removed')",
+    "Authors' c_phi answers: formula to Reviewer_YPXK, Reviewer_uZ3D, Reviewer_SCqH (2021-08-07) against 'minimizing the difference' to Reviewer_NJTw (2021-08-10)",
+    "Reviewer_YPXK reply 2021-08-13; Reviewer_Exeq reply 2021-08-18",
+    "Reviewer_8yHH replies 2021-08-27 and 2021-09-11; Reviewer_qKpT post-rebuttal comment 2021-08-26; Reviewer_Fa86 reply 2021-08-17",
+    "Committee A meta-review; Committee B meta-review",
+    "Authors' HER table, 2021-08-10 (posted to both committees)",
+    "paper_submitted.pdf lines 216-218, Eq. 9, Eq. 12, lines 327-334",
+    "paper_submitted.pdf lines 317-325 (baselines), Fig. 2(a), Fig. 3(c), Fig. 4(a) and 4(c)",
+    "paper_submitted.pdf lines 35-39 (claims about planning); checklist items 1.2, 3.1, 3.3",
+    "paper_submitted.pdf metadata (Microsoft Print To PDF; no text layer)"
+  ]
+}

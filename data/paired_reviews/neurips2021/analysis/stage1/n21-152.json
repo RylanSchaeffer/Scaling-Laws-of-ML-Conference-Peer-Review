@@ -1,0 +1,243 @@
+{
+  "pair_id": "n21-152",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 4, 5],
+      "confidences": [5, 4, 3, 5],
+      "reviews_edited_after_posting": ["Reviewer_6UFN"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/5/4/5 sit within one point. The two confidence-5 reviews (Reviewer_6UFN, Reviewer_HW1P, 6 hours each) are long, line-level and specific. Reviewer_dgsE's 4 (confidence 3) rests on the thin experimental analysis, a point the others share."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HW1P",
+          "claim": "Lines 38-41 are wrong: the Query2Box distance is continuous (piecewise linear), so border discontinuity is not a problem of prior methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 38-41 and 84 call the box distance 'discontinuous'. The Query2Box distance, dist_outside + α·dist_inside, is continuous in the point. The authors conceded on 2021-08-24 ('Yes, you are right') and the camera-ready says 'non-smooth'. Reviewer_6UFN made the same point."
+        },
+        {
+          "reviewer": "Reviewer_HW1P",
+          "claim": "Eq. 7 is ill-defined: it takes exp of a density function to get a scalar weight, and the mixture at line 138 omits the weights φ_i.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 7 sets φ_i = exp(N(µ_ei, Σ_ei)) / Σ_j exp(N(µ_ej, Σ_ej)); line 138 writes p = Σ_i N(µ_i, Σ_i). The authors replied that attention really uses the (µ, Σ) vectors, which HW1P noted the equation does not say."
+        },
+        {
+          "reviewer": "Reviewer_HW1P",
+          "claim": "In Figure 2, Hinton's distance to the union is smaller than his distance to European and to Canadian; this needs explaining.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2(c), Gaussian mixture: Hinton 1.347 (European), 1.118 (Canadian), 0.766 (union). Under Eq. 7 the union distance is a softmax-weighted mean of the component distances, so it must lie between 1.118 and 1.347. The authors called the figure 'a real example' and did not reconcile it with Eq. 7."
+        },
+        {
+          "reviewer": "Reviewer_6UFN",
+          "claim": "The product of two Gaussian densities is only proportional to a Gaussian; Eq. 6 writes equality, and the derivation may contain an error.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6 writes N(µ_e1, Σ_e1)N(µ_e2, Σ_e2) = N(µ_3, Σ_3). The derivation drops the -1/2 and the normalising constant, and gives µ_3 = Σ_3(Σ_2⁻¹µ_1 + Σ_1⁻¹µ_2) with the precisions swapped; the correct form is Σ_3(Σ_1⁻¹µ_1 + Σ_2⁻¹µ_2). The authors conceded proportionality but blamed it for weak intersection results, which does not follow: normalising gives an exact Gaussian."
+        },
+        {
+          "reviewer": "Reviewer_HW1P",
+          "claim": "Storing Σ⁻¹ with d parameters means a d×1 factor L, a large approximation.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 151-154: Σ⁻¹ = LLᵀ with 'd for Σ⁻¹' parameters. The authors confirmed to Reviewer_6UFN that L is a d×1 vector, so the precision matrix has rank one and the 'multivariate Gaussian' is degenerate. Neither reviewer pressed the point further."
+        },
+        {
+          "reviewer": "Reviewer_TYBk",
+          "claim": "The mixture union places an entity that fully satisfies both disjuncts (Hinton) far from each single query, e.g. far from 'Canadians'.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2(c): Hinton is 1.118 from Canadian, against 0.146 for Bengio. The authors' reply proposed a post-hoc thresholding of mixture weights that is not in the paper."
+        },
+        {
+          "reviewer": "Reviewer_6UFN",
+          "claim": "On FB15k-237, BQE performs best (on intersection-type queries), not the bolded entry.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, FB15k-237, ∩t column: BQE .224 against the bolded CQD .129. But the BQE row is BetaE's published MRR (39.0, 10.9, 10.0, 28.8, 42.5, 12.4, 22.4, 12.6, 9.7; avg 20.9), labeled HITS@3 and with the pi and ip values in swapped columns, so the observation rests on mislabeled numbers."
+        },
+        {
+          "reviewer": "Reviewer_dgsE",
+          "claim": "The paper does not explain why PERM wins on some query types and loses on others.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 (lines 207-214) reports only gains. The last row of Table 1 shows PERM below CQD on 2t (-0.9%), 3t (-2.4%) and t∩ (-5.5%), with no comment."
+        },
+        {
+          "reviewer": "Reviewer_dgsE",
+          "claim": "Table 2 does not state which benchmark its results are for.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The Table 2 caption says the metrics are 'an average over all the datasets', with per-dataset results in Appendix E."
+        },
+        {
+          "reviewer": "Reviewer_TYBk",
+          "claim": "Key training details are missing: how training queries are produced and the embedding dimension.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text gives neither the dimension (the authors gave 200 in the rebuttal) nor the loss nor the query generation; it defers to prior work and the code."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_6UFN edited on 2021-09-02, the day of its reply, and wrote that 'a rating of 5 is appropriate'. Reviewer_HW1P (2021-08-22) rejected the continuity and Eq. 7 answers; no edit. Reviewer_TYBk (2021-08-23) wrote that the paper 'can be accepted at a major conference' only with a better answer on union logic; no edit after the 2021-08-24 reply. Reviewer_dgsE did not reply or edit.",
+        "what_convinced_or_not": "The authors conceded the continuity error and the proportionality in Eq. 6 and promised clarifications, but gave no new analysis or results. The union answer proposed a post-hoc thresholding that is not in the paper. 6UFN concluded that the representation has 'fundamental incongruencies' and that 'the aspects which lead to improved performance have not been sufficiently explored'; the scalability claim was never tested."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects with all four ratings below threshold (mean 4.75). The meta-review repeats 6UFN's closing point (the reasoning does not match the results) and dgsE's requests (clearer visualization, failure cases). It misstates the pitch: the method 'especially fits well for intersection'; the paper argues for union, and the authors concede weakness on intersection.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers below threshold, two at confidence 5",
+        "Stated motivation (discontinuous box distance) is false; the authors conceded",
+        "Gains unexplained: no per-query-type or failure analysis",
+        "Equation errors and unmotivated operator design (Eqs. 6-7, rank-one precision)",
+        "Visualization unconvincing and presentation hard to follow"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 7],
+      "confidences": [3, 4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_dcyX", "Reviewer_y6MJ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/6/7 sit within one point. The two 7s come from short reviews: Reviewer_LbhD (2 hours, confidence 3) and Reviewer_y6MJ (3 hours, one con). The only long review, Reviewer_dcyX (24 hours), began with 'the reviewer cannot trust the experimental results' and rose to 6 after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_MHQ9",
+          "evidence": "1 hour, confidence 3. The limitations field says 'did not see this section'; Section 7 discusses dependence on KG integrity and the checklist points to it. The praise is generic ('seems technically sound', 'mostly supports the hypothesis')."
+        },
+        {
+          "reviewer": "Reviewer_LbhD",
+          "evidence": "2 hours, confidence 3. Spotted that the CQD numbers do not match the CQD paper, which undercuts the main claim on NELL995, yet rated 7 and did not follow up when the authors called it 'typos' and kept the row."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LbhD",
+          "claim": "The CQD numbers in Table 1 do not match the CQD paper; NELL995 1t should be 0.667, not 0.567.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Table 1, CQD NELL995: .567 .294 .253 .350 .476 .441 .131 .233 .109, avg .317. The CQD paper (Table 2, CQD-Beam) gives .667 .350 .288 .410 .529 .531 .171 .277 .156, avg .375; its FB15k-237 row matches the submission exactly. The camera-ready adopts the published row. CQD then beats PERM on NELL995 (.375 against .328) and on 8 of 9 query types, and the 6.2% average gain over CQD becomes about 2.2%; the paper does not recompute it."
+        },
+        {
+          "reviewer": "Reviewer_dcyX",
+          "claim": "The FB15k-237 and NELL995 versions differ from the standard ones in [7, 10] (474 relations and 149,689 edges against 237 and 272,115).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 169-173: FB15k-237 has 149,689 triples and 474 relations; NELL995 has 107,982 triples and 400 relations. The standard Query2Box splits have 237 and 200 relations (camera-ready Table 1: 272,115 and 114,213 training edges)."
+        },
+        {
+          "reviewer": "Reviewer_dcyX",
+          "claim": "Baseline numbers are borrowed from each paper although the datasets differ.",
+          "checked_against_paper": "correct",
+          "evidence": "The GQE and Q2B NELL995 rows and the CQD FB15k-237 row of submitted Table 1 equal the published HITS@3 table of the CQD paper (Table 2) digit for digit. Those numbers come from the standard splits."
+        },
+        {
+          "reviewer": "Reviewer_dcyX",
+          "claim": "The BQE paper gives HITS@1 and MRR, not HITS@3, and this paper reports MRR as HITS@3.",
+          "checked_against_paper": "correct",
+          "evidence": "BetaE reports MRR (Table 1) and H@1 (appendix), no H@3. The submitted BQE FB15k-237 row (.390 .109 .100 .288 .425 .124 .224 .126 .097, avg .209) is BetaE's MRR row; the NELL995 row matches it in 8 of 9 entries and the average (.246). The authors said they ran the BQE code for HITS@3, yet the rebuttal table and the camera-ready each give a different BQE row."
+        },
+        {
+          "reviewer": "Reviewer_dcyX",
+          "claim": "The BetaE results in Table 1 and in appendix Table 5 are identical.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_MHQ9",
+          "claim": "CQD outperforms PERM on 2t, 3t and t∩ queries.",
+          "checked_against_paper": "correct",
+          "evidence": "Last row of Table 1: -0.9%, -2.4% and -5.5% against CQD. The authors blamed the intersection approximation, but the same row shows PERM ahead of CQD on 2∩ (+2.0%) and 3∩ (+5.8%)."
+        },
+        {
+          "reviewer": "Reviewer_y6MJ",
+          "claim": "The logical structure of each query must be given at training and test time.",
+          "checked_against_paper": "correct",
+          "evidence": "Sections 3-4 define operators applied to a given query graph; the authors agreed ('the reviewer has correctly pointed out')."
+        },
+        {
+          "reviewer": "Reviewer_MHQ9",
+          "claim": "The paper has no limitations section.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 7 (Broader Impact) discusses dependence on KG integrity and the spread of attacks through chained queries; checklist item 1(b) points to it. It is thin but present."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_dcyX"],
+        "evidence": "dcyX edited on 2021-08-29: 'The authors have provided experimental results on standard dataset. Since the concerns about the experiments were addressed, I raised my score' (final 6; the earlier rating is not exposed). Reviewer_y6MJ's edit is on its posting day, before the rebuttal. No B reviewer posted in the discussion.",
+        "what_convinced_or_not": "dcyX accepted a table presented as new results on the standard datasets. For PERM, GQE, Q2B and CQD it repeats submitted Table 1 digit for digit, including the CQD NELL995 row that LbhD had flagged; only BQE changed. So it gave no new evidence on PERM. LbhD's flag drew 'Thanks a lot for pointing the typos... we could verify the model's accuracy again' and no correction; LbhD did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'I am happy to go with the reviewer consensus.' The AC calls it 'a strong paper' on 'fairly unanimous consensus' after 'a cursory read through'. The meta-review does not mention LbhD's or dcyX's concerns about the numbers. Its own point, the missing differentiable-prover related work, it explicitly did not weigh.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Reported average gain over CQD and other baselines on four datasets",
+        "Novel Gaussian formulation, clearly written",
+        "dcyX's dataset and baseline concerns judged resolved by the rebuttal table",
+        "AC deferred to unanimous above-threshold scores"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Motivating claim that box distances are discontinuous is false; the authors conceded (Reviewer_HW1P, Reviewer_6UFN)",
+    "Equation errors: Eq. 7 exponentiates a density, line 138 drops the weights, Eq. 6 equates a product of densities with a normalized Gaussian (HW1P, 6UFN)",
+    "Rank-one precision: Σ⁻¹ = LLᵀ with L a d×1 vector (6UFN, HW1P)",
+    "Figure 2(c) union distance for Hinton is below both component distances, which Eq. 7 cannot give (HW1P)",
+    "Mixture union places entities that satisfy both disjuncts far from each one (TYBk)",
+    "BetaE's De Morgan union is already closed, so the closure advantage is overstated (HW1P)",
+    "Scalability from closed-form chaining claimed but not tested (6UFN)",
+    "Translation covariance and entity-entity intersection not motivated (HW1P)",
+    "Visualization rests on one example (dgsE)"
+  ],
+  "issues_only_b": [
+    "CQD NELL995 row is below the published one; with the published row CQD beats PERM on NELL995 (LbhD)",
+    "Non-standard dataset versions, with baseline rows copied from papers that used the standard splits (dcyX)",
+    "BQE row is BetaE's published MRR labeled HITS@3 (dcyX)",
+    "Query structure must be given at training and test time (y6MJ)",
+    "Unweighted average over query types, number of queries per type, drug ground truth (MHQ9)",
+    "Robustness to missing facts; colour-blind-unfriendly figures and abstract wording (LbhD)",
+    "Missing differentiable-prover related work (B area chair, not weighed)"
+  ],
+  "shared_issues": [
+    "Novel use of Gaussians and clear writing (praised in both)",
+    "PERM loses on some query types with no explanation (dgsE, 6UFN in A; MHQ9 in B)",
+    "Limited to existential positive queries, no negation (TYBk in A; dcyX in B)",
+    "Missing training details: query generation, dimension, objective (TYBk in A; dcyX in B)",
+    "Need for failure or prediction examples (dgsE in A; LbhD in B)",
+    "Weak justification for the Gaussian design choices (HW1P in A; dcyX in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "The committees judged different evidence. Committee A's reviewers (5, 5, 4, 5; Reviewer_6UFN and Reviewer_HW1P at confidence 5) read the method line by line. They showed that the central motivation is false (the Query2Box distance is continuous; the authors conceded), that Eqs. 6-7 are wrong and Figure 2(c) contradicts Eq. 7, and that the gains are unexplained. No score moved, and the AC rejected on that consensus. Committee B (7, 6, 6, 7; confidence 3-4; two reviews of 1-2 hours) accepted on the reported 6.2% average gain over CQD and on novelty. Two B reviewers correctly doubted that table: Reviewer_LbhD found the CQD NELL995 row below the published one, and Reviewer_dcyX found non-standard datasets, copied baseline rows and BetaE's MRR labeled HITS@3. The authors answered with a 'standard dataset' table that repeats submitted Table 1 digit for digit for PERM, GQE, Q2B and CQD. dcyX raised the score anyway, LbhD did not follow up, and the AC deferred to the consensus. The camera-ready adopts the published CQD row; under it CQD beats PERM on NELL995 (.375 against .328) and the average gain over CQD falls to about 2%, yet the text still claims 6.2%. A's rejection rests on confirmed flaws; B's acceptance rests on numbers that its own reviewers doubted correctly. This is not the same facts weighted differently: A never questioned where the baseline numbers came from, and B never checked the equations.",
+  "candidate_reasons": [
+    "Method scrutiny only in one committee",
+    "Conceded false motivation drove rejection",
+    "Rebuttal table repeated submitted numbers",
+    "Correct red flags not followed up",
+    "Low-effort reviewers trusted SOTA table",
+    "Area chairs deferred to score consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_HW1P review and 2021-08-22 response",
+    "Authors' 2021-08-24 reply to Reviewer_HW1P (continuity conceded)",
+    "Reviewer_6UFN 2021-09-02 comment",
+    "Reviewer_TYBk 2021-08-23 comment on union logic",
+    "Reviewer_LbhD review (CQD numbers) and the authors' reply",
+    "Reviewer_dcyX review, 2021-08-29 update, and the authors' 'standard dataset' table",
+    "paper_submitted.pdf lines 38-41, Eqs. 6-7, lines 151-154, lines 169-173, Figure 2(c), Table 1",
+    "paper.pdf (camera-ready) Table 2 CQD NELL995 row and the 6.2% claim",
+    "CQD paper (Arakelyan et al., ICLR 2021) Table 2; BetaE paper (Ren and Leskovec, NeurIPS 2020) Table 1",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

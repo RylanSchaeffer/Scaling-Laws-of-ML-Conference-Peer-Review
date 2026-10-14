@@ -1,0 +1,221 @@
+{
+  "pair_id": "n21-149",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 5, 4, 7],
+      "confidences": [1, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_wNLY"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/5/4/7 spread evenly around the 5.5 mean; no single score departs from the rest. The AC, not an outlying reviewer, set the outcome. The two votes above threshold are weak: Reviewer_bKGv's 6 is at confidence 1 after one hour, and Reviewer_1R9o's 7 concedes 'there is no algorithmic novelty'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bKGv",
+          "evidence": "Rating 6 at confidence 1 ('educated guess'), one hour spent. Five one-line sections ('The paper is of good quality'). It calls the analysis 'technically sound' although its confidence label says the math was not checked. Its only question asks why entropy regularization matters at all. No discussion comment."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_v4uF",
+          "claim": "PU differs from the extra mirror descent of Mertikopoulos et al. only in that the extragradient step is applied to the bilinear term, not to the entropy regularizer.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1, step 4: mu(t+1) is proportional to mu(t)^(1-eta*tau) exp(eta[A nubar(t+1)]). The entropy term stays at the base point; only the bilinear gradient uses the midpoint. The authors conceded on 2021-08-11 ('the reviewer is right'). The camera-ready adds a remark that says exactly this."
+        },
+        {
+          "reviewer": "Reviewer_v4uF",
+          "claim": "Algorithm 2 (OMWU) is the specialization of a known algorithm, so presenting both algorithms as new is excessive.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.2 (lines 205-208) says OMWU is 'adapted from Rakhlin and Sridharan (2013); Daskalakis et al. (2011)', and lines 221-223 say it reduces to the known method at tau = 0. Yet line 78 says 'We propose two policy extragradient algorithms', and the abstract says 'we develop provably efficient extragradient methods'."
+        },
+        {
+          "reviewer": "Reviewer_v4uF",
+          "claim": "PU and OMWU perform almost identically, and there are no empirical comparisons to other methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1 is the only experiment: one random 100x100 payoff matrix, tau = 0.01, eta = 0.1. The solid (PU) and dashed (OMWU) curves overlap on every metric. No other method appears. The checklist answers 'No' to error bars."
+        },
+        {
+          "reviewer": "Reviewer_1R9o",
+          "claim": "There is no algorithmic novelty; the methods are the same as in previous work, applied to a regularized payoff.",
+          "checked_against_paper": "correct",
+          "evidence": "True for OMWU by the paper's own attribution (lines 206-208, 221-223). PU is a close variant of extra mirror descent (see Reviewer_v4uF). The new part is the analysis (Theorem 1)."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "By targeting the QRE, which is unique by strong convexity, the paper side-steps the uniqueness requirement: it proves convergence to a perturbed equilibrium, not to a Nash equilibrium.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 168-169: the QRE 'is unique whenever τ > 0 (due to the presence of strong concavity/convexity)'. Lines 255-266: an eps-NE follows from fixing tau = eps/(4(log|A|+log|B|)) in advance. The paper then contrasts this with prior exact-NE results: 'unlike prior work ... our last-iterate convergence does not require the NE of (1) to be unique'."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "The authors do not make clear that the convergence is to a perturbed equilibrium.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Overstated. The abstract (line 15) says 'approximate Nash equilibrium', the Section 1.2 bullet says 'ε-NE', and lines 168-169 attribute QRE uniqueness to strong convexity. What the paper omits is that the prior results it contrasts with (lines 92-93, 264-266) target an exact NE."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "The algorithms are not exactly MWU/OMWU run on the regularized game, but closely related to it.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithms 1 and 2 take the entropy gradient at mu(t) (the factor mu(t)^(1-eta*tau)) in both steps. Standard mirror-prox or optimistic mirror descent on f_tau would take it at the midpoint."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "The paper works in a full-information framework: each player observes expected payoffs for all its actions, not only realized payoffs.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 1: the oracle 'returns the exact values of' mu^T A and A nu. Definition 2 does the same per state. The abstract's 'using its own payoff without observing the opponent's actions directly' rests on this oracle."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "Leslie and Collins (2005) and Coucheney et al. (2015), on entropic regularization with partial information, are relevant and missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is in the reference list (pages 10-12). The conclusion (lines 348-351) poses the two-time-scale question that Leslie and Collins study. Relevance is the AC's judgment."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_wNLY"],
+        "evidence": "Reviewer_wNLY's review, edited 2021-09-02, ends 'Rating changed, see my response below'. The same-day comment says 'after reading the other reviews and discussing with the AC and the reviewers, I share some of their concerns', and that the changes 'would require another round of reviews'. The original text calls the paper 'technically sound and ... quite clear' and lists one weakness, so the change to the final 5 was downward. No other A review was edited.",
+        "what_convinced_or_not": "The rebuttal settled wNLY's own question on Zhao et al. 2021 ('I had misunderstood'). It did not settle positioning. Reviewer_v4uF asked twice whether the PU variant changes behaviour. The authors replied that it gives 'a more concise closed-form update rule and leads to a cleaner analysis', and that they knew of no analysis of the standard method. v4uF had called the first of these reasons aesthetic and kept 4. The AC-led discussion turned positioning into a request for another review round."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings 6/5/4/7, mean 5.5, two above and two below threshold. The AC sided with the two confidence-4 reviewers (Reviewer_wNLY, Reviewer_v4uF) and discounted the confidence-1 six and the seven. The meta-review's main arguments appear in no review: QRE uniqueness is immediate, a geometric rate is expected for a strongly monotone game, the full-information limit, and the Leslie and Collins and Coucheney et al. references. wNLY's post-discussion list repeats the AC's points.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Algorithms are minor variants of known extra mirror descent and OMWU, framed as new, with no shown benefit (Reviewer_v4uF, AC)",
+        "The uniqueness-free result comes from the unique QRE of a strongly monotone game, and the paper does not position it as such (AC, Reviewer_wNLY)",
+        "Full-information oracle and missing literature on entropic learning in games (AC)",
+        "Revision judged too large for a camera-ready; needs another review round (AC, Reviewer_wNLY)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 5, 6],
+      "confidences": [3, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Q1Zp", "Reviewer_3nt9", "Reviewer_KD2g"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/7/5/6, mean 6.25. The one rating below threshold, Reviewer_uEKj's 5, is one point from the next score. uEKj raised specific novelty points but did not reply to the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Q1Zp",
+          "claim": "Prior OMWU results need a unique NE and give dimension-dependent rates after a two-phase analysis; regularization removes both problems.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 112-117 describe Wei et al. (2021b) as sublinear then linear, with pessimistic dimension dependence. Theorem 1 gives one global, nearly dimension-free rate. The removal holds for the QRE and an eps-NE, not an exact NE (the Committee A AC's point)."
+        },
+        {
+          "reviewer": "Reviewer_3nt9",
+          "claim": "The proofs do not cover tau = 0, and the accuracy eps must be fixed in advance to set tau.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1's contraction factor is (1 - eta*tau), which equals 1 at tau = 0. Lines 259-263 set tau = eps/(4(log|A|+log|B|)) before the run. The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_3nt9",
+          "claim": "Step 5 of Algorithm 3 needs the policies of both players, which undercuts decentralization.",
+          "checked_against_paper": "correct",
+          "evidence": "Step 5 sets V(s) = f_tau(Q(s); mubar(s), nubar(s)), which includes both players' entropies. The Definition 2 oracle returns only Q(s)nu(s) and Q(s)^T mu(s). The authors' answer (V is 'computed by the sampling oracle') extends the oracle beyond Definition 2."
+        },
+        {
+          "reviewer": "Reviewer_uEKj",
+          "claim": "Algorithm 3 is named as a policy optimization method but is value iteration; the extragradient method only solves a subroutine.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 3, 'Policy Extragradient Method for Entropy-regularized Markov Game', runs value iteration (10)-(11) and calls PU or OMWU per state in step 4. The authors conceded and promised a new name."
+        },
+        {
+          "reviewer": "Reviewer_uEKj",
+          "claim": "The Markov-game part follows the framework of Perolat et al. (2015), with value iteration in place of policy iteration.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.2 (lines 302-305) itself says value iteration for Markov games is known from Perolat et al. (2015). Proposition 2, the gamma-contraction, is stated without new technique. Theorem 2 combines it with Theorem 1."
+        },
+        {
+          "reviewer": "Reviewer_KD2g",
+          "claim": "On the simplex, mirror-prox and its variants reduce to PU and OMWU.",
+          "checked_against_paper": "correct",
+          "evidence": "Approximately right. PU and OMWU are mirror-prox and optimistic mirror descent with KL, except that the entropy gradient stays at the base point (Algorithms 1-2). The authors did not dispute this in B and argued only that the analysis is new."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "The proposed algorithm appears to be novel.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 2.2 says OMWU is 'adapted from Rakhlin and Sridharan (2013); Daskalakis et al. (2011)'. PU differs from the extra mirror descent of Mertikopoulos et al. only in where the entropy term is taken, as the authors conceded in A. B's own Reviewer_uEKj and Reviewer_KD2g questioned this. The new part is the analysis."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_3nt9"],
+        "evidence": "Reviewer_3nt9, edited 2021-08-19: 'The score has been increased accordingly' (final 7). Reviewer_KD2g, edited 2021-08-29: 'The authors address my concerns. I maintain my previous rating.' Reviewer_Q1Zp, edited 2021-08-30: 'I remain in favor of accepting this submission'. Reviewer_uEKj neither edited nor replied.",
+        "what_convinced_or_not": "3nt9 accepted the answers on tau = 0, a diminishing tau, an approximate NE for Markov games and the decentralization of step 5, after running the code and rechecking proofs. KD2g accepted that the proof of Mokhtari et al. is Euclidean and unconstrained and needs a triangle inequality that KL lacks. uEKj's Mokhtari and Perolat points got the same kind of answer but no visible response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Five-sentence meta-review: 'The proposed algorithm appears to be novel. The paper provides a good contribution to the literature. I recommend acceptance of the work.' It names no reviewer, does not mention uEKj's or KD2g's novelty doubts, and defers 'a few comments from reviewers' to the camera-ready. It matches the 7/7/6 majority.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "New linear, nearly dimension-free last-iterate rate without a unique-NE assumption (Reviewer_Q1Zp, Reviewer_3nt9, Reviewer_KD2g)",
+        "Rebuttal answered the mirror-prox and Mokhtari et al. novelty question to Reviewer_KD2g's satisfaction; Reviewer_uEKj did not respond",
+        "Reviewer_3nt9 ran the code, rechecked proofs and raised the score",
+        "AC treated the remaining comments as camera-ready revisions"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why a new variant of extra mirror descent at all, and why both PU and OMWU when they perform identically (Reviewer_v4uF; Figure 1 confirms)",
+    "No empirical comparison with other methods (Reviewer_v4uF); B's Reviewer_3nt9 called the same single figure 'convincing'",
+    "The 'no uniqueness assumption' headline is a side-step via the unique QRE (AC, Reviewer_wNLY)",
+    "Missing literature on entropic learning in games: Leslie and Collins 2005, Coucheney et al. 2015 (AC)",
+    "Comparison with recent Markov-game methods: Zhao et al. 2021, Wei et al. 2021a, Daskalakis et al. 2020 (Reviewer_wNLY)",
+    "Why last-iterate convergence matters versus averaged mirror-prox (Reviewer_wNLY)"
+  ],
+  "issues_only_b": [
+    "Algorithm 3 is value iteration but is named as a policy method (Reviewer_uEKj)",
+    "Step 5 of Algorithm 3 needs both players' policies (Reviewer_3nt9)",
+    "Proofs exclude tau = 0; tau must be fixed from eps in advance; a diminishing tau schedule (Reviewer_3nt9)",
+    "Missing Markov-game code and an unclear proof step at supplement line 170 (Reviewer_3nt9)",
+    "Why the rate does not depend on the number of states (Reviewer_uEKj)"
+  ],
+  "shared_issues": [
+    "Algorithms are close to known mirror-prox and OMWU methods; the novelty is the analysis (A: Reviewer_v4uF, Reviewer_1R9o, Reviewer_bKGv, AC; B: Reviewer_uEKj, Reviewer_KD2g)",
+    "A linear rate is expected once regularization makes the game strongly convex-concave (A: AC, Reviewer_wNLY; B: Reviewer_uEKj, Reviewer_KD2g)",
+    "The exact expected-payoff oracle is unrealistic for learning (A: AC, 'full-information'; B: Reviewer_uEKj on Definition 2)",
+    "The Markov-game part is known value iteration plus the matrix-game result; is Proposition 2 new (A: Reviewer_v4uF; B: Reviewer_uEKj)",
+    "An approximate NE for Markov games, not only the regularized Q-function (A: Reviewer_wNLY; B: Reviewer_3nt9)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently. Both saw a new linear, nearly dimension-free last-iterate rate for entropy-regularized PU and OMWU. Both saw that the algorithms are close to known mirror-prox and OMWU methods, and no one found an error. Committee A's AC rejected because the positioning needed another review round. Committee B's AC accepted a 7/7/6/5 panel in five sentences and called the algorithm novel, although the paper attributes OMWU to prior work. Two things moved A. Reviewer_v4uF asked twice whether PU's departure from the extra mirror descent of Mertikopoulos et al. matters; the authors conceded the departure but could not show it matters. The AC then argued, from its own expertise, that strong convexity makes the QRE unique, so the paper side-steps uniqueness rather than removing it. The AC-led discussion moved Reviewer_wNLY to 5. A's support was thin: a 6 at confidence 1 after one hour, and a 7 that concedes no algorithmic novelty. B asked an easier novelty question, whether the rate was already known. The rebuttal answered it, and B's most engaged reviewer, Reviewer_3nt9, raised the score after running the code.",
+  "candidate_reasons": [
+    "expert AC overrode split panel",
+    "terse AC accepted on scores",
+    "detractor extracted novelty concession in discussion",
+    "low-confidence champion carried little weight",
+    "positioning flaws judged needing re-review",
+    "easier novelty question answered by rebuttal"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_v4uF comments 2021-08-10 and 2021-08-11; authors' replies 2021-08-11 and 2021-08-12",
+    "Reviewer_wNLY response to rebuttal, 2021-09-02",
+    "Reviewer_1R9o review",
+    "Reviewer_bKGv review",
+    "Committee B meta-review",
+    "Reviewer_3nt9 post-rebuttal note",
+    "Reviewer_KD2g update and the authors' reply to Reviewer_KD2g",
+    "paper_submitted Section 2.2 and Algorithms 1-2",
+    "paper_submitted Figure 1",
+    "paper_submitted lines 168-169 and 255-266",
+    "paper_submitted Definitions 1-2 and Algorithm 3"
+  ]
+}

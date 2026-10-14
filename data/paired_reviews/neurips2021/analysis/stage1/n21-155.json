@@ -1,0 +1,186 @@
+{
+  "pair_id": "n21-155",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 6, 5, 6],
+      "confidences": [3, 4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_pdrf", "Reviewer_HgrD", "Reviewer_FaWn"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/6/5/6 split evenly, with no rating apart from the rest. Before the responses they were 5/5/5/6; Reviewer_HgrD's raise to 6 made the 2-2 tie."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HgrD",
+          "claim": "α* is never mentioned or discussed in the experiments; only test accuracy is reported.",
+          "checked_against_paper": "correct",
+          "evidence": "Correct in substance. Tables 1-4 report accuracies only. α1 appears once, in Figure 2, to show that Algorithm 1 converges on A→D. No per-source α* is reported or compared with task similarity. The rebuttal's values (0.19, 0.01, 0.09, 0.56) are in neither the submission nor the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_HgrD",
+          "claim": "The paper states no properties of the transferability measure (Eq. 4).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 106-124 discuss how α* depends on the χ² distance, n0, n1 and V(0), and read Eq. (8) as a bias-variance trade-off. But the paper gives the direction two opposite ways: lines 45-47 say α* rises with source samples and similarity and falls with model complexity; lines 111-114 say the reverse."
+        },
+        {
+          "reviewer": "Reviewer_pdrf",
+          "claim": "The convex combination is motivated by a weighted log-loss (KL) objective, but the loss used is the χ² distance.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 2 derives Eq. (2) from a convex combination of log-losses [4]. Lines 88-90 switch to χ² because the log risk can be infinite (footnote 3)."
+        },
+        {
+          "reviewer": "Reviewer_FaWn",
+          "claim": "Experiments use only three datasets and few competing methods.",
+          "checked_against_paper": "correct",
+          "evidence": "CIFAR-10, Office-31 and Office-Caltech. The multi-source experiment (Table 2) compares only with target-only training and random search over α. Tables 3-4 are single-source few-shot settings with baselines from 2012 to 2018."
+        },
+        {
+          "reviewer": "Reviewer_NvNX",
+          "claim": "|X||Y|−1 depends only on the problem specification, so calling it model complexity is forced.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 106: V(0) = |X||Y| − 1, the number of free parameters of an unrestricted pmf on X×Y. The alphabet sizes fix it, not a chosen model class."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_HgrD"],
+        "evidence": "Responses posted 2021-08-10. Reviewer_HgrD edited 2021-08-29: 'increase my score from 5 to 6'. Reviewer_FaWn edited 2021-08-30: questions 'partially answered', kept 5. Reviewer_NvNX replied 2021-08-29 and kept 6. Reviewer_pdrf's only edit (2021-07-16) predates the responses, and pdrf never replied.",
+        "what_convinced_or_not": "HgrD said only 'I am happy with the response'. That response argued that α* drives Algorithm 1 and gave new per-source values 0.19, 0.01, 0.09, 0.56, which rank sources 2 and 3 opposite to their single-source accuracies (59.7, 56.2). FaWn got no specific answer: the authors did not understand the request for 'principled' justification and deferred the validity of the convex-combination form to 'a follow-up paper'. NvNX still found calling |X||Y|−1 'learning capacity' 'a bit far-fetched'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split 2-2 (mean 5.5). The AC sided with the two 5s: 'two important concerns remain'. The theory point ('justification/proofs/lower bound results on the measure') repeats Reviewer_FaWn's unspecific request. The empirical point ('more evidence on success of the proposed measure') repeats Reviewer_pdrf and Reviewer_HgrD, although HgrD wrote 'I am happy with the response'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Experiments do not validate α* as a transferability measure",
+        "No justification of the convex-combination framework beyond its closed form",
+        "Even 2-2 split at mean 5.5 after the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 5, 6, 6],
+      "confidences": [4, 3, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_CHLY", "Reviewer_9X81", "Reviewer_thNZ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/5/6/6. Reviewer_CHLY's 7 is the highest of the eight ratings across both committees, but it is one point above the 6s, and B keeps a 3-to-1 majority at 6 or above without it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CHLY",
+          "evidence": "The 2-hour first review rests on a misreading: it says the measure 'is not related to model complexity or sample size', but Eq. (6) contains n0, n1 and V(0). CHLY then engaged over two rounds and corrected this, so the final 7 rests on fixing a misreading, not on new evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_CHLY",
+          "claim": "The transferability measure is not related to model complexity or sample size; it only measures how close the two discretized distributions are.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (6): α1* = (V(0)/n0) / (χ²(P0,P1) + V(0)/n0 + V(1)/n1), with V(0) = |X||Y| − 1 (line 106). CHLY accepted the correction in discussion and raised to 7."
+        },
+        {
+          "reviewer": "Reviewer_CHLY",
+          "claim": "No error margins are given for the small improvements.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-4 give means only. Checklist item 3(c) answers [No]: error bars 'are not related to the core result'. The authors' reply did not address this."
+        },
+        {
+          "reviewer": "Reviewer_CHLY",
+          "claim": "In Section 2 the 'learned models' are just empirical distributions; nothing is trained.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 79-80: the empirical distributions 'can be regarded as the models learned'. The authors agreed and called them 'seemly trivial'."
+        },
+        {
+          "reviewer": "Reviewer_9X81",
+          "claim": "Improvements over the baselines in Tables 3 and 4 are not significant.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: the method and UDDA both average 85.9; three wins, one tie, two losses, all within 1 point. Table 4 is stronger: +1.8 to +4.2 over CPNN in four of six settings, -0.6 and -0.3 in two. No error bars anywhere."
+        },
+        {
+          "reviewer": "Reviewer_thNZ",
+          "claim": "Transferability measures such as LEEP and NCE are neither discussed nor cited, and no comparison is made.",
+          "checked_against_paper": "correct",
+          "evidence": "Correct in substance. LEEP appears once, as [13] in footnote 4, to name the retrain-head method, never as a transferability measure. NCE is absent. No experiment compares α* with another measure."
+        },
+        {
+          "reviewer": "Reviewer_thNZ",
+          "claim": "The compared methods are not the current state of the art.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 baselines date from 2015 to 2017, Table 4 baselines from 2012 to 2018."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_CHLY", "Reviewer_thNZ"],
+        "evidence": "Responses posted 2021-08-10. Reviewer_CHLY edited 2021-08-26: 'raise my score to 7 and vote for acceptance'. Reviewer_thNZ edited 2021-09-01: 'increased my rating to 6'. Reviewer_9X81's edit (2021-07-28) predates the responses; the AC says 9X81 kept the 'originally negative rating of 5'. Reviewer_HA1J never edited (6).",
+        "what_convinced_or_not": "CHLY was convinced once the authors explained that the Section 2 models are empirical pmfs and that V(i) are constants, not distances; CHLY asked to rename 'model complexity' to 'task complexity'. thNZ raised on promised related-work discussion, although the authors declined to compare α* with LEEP-based weights ('α* is theoretically optimal') and thNZ wanted to see the revision. 9X81 doubted the regression extension and the estimation of P_XY(0) from few labels and did not reply to the answer. HA1J called the first answer 'quite vague' and did not reply to the second. The camera-ready added a short paragraph on LEEP, NCE and meta-learning, but no α* values, error bars or new baselines."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four at 6 or above after two raises (mean 6.0). The AC notes the remaining 5 and overrides it: 'I found that the authors have given clear explanations'. The AC concedes that the evaluation 'can be more convincing by conducting experiments on more challenging datasets' and asks for clearer writing in the revision.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Theory judged novel and interesting",
+        "Rebuttal judged to resolve most concerns; two reviewers raised scores",
+        "Weak experiments judged not fatal; clarity and related work left to the revision"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No direct test of α* as a measure: a synthetic task with a known best source (Reviewer_HgrD) or a monotonic link to accuracy gain (Reviewer_pdrf)",
+    "No principled theoretical justification; 'fundamental insights' unsubstantiated (Reviewer_FaWn)",
+    "Switch from a log-loss motivation to a χ² loss (Reviewer_pdrf)",
+    "Alternating algorithm may be replaceable by joint first-order optimization (Reviewer_FaWn)",
+    "Discrete-X assumption, meaning of Ṽ in Theorem 4, no closed form for multi-source α* (Reviewer_NvNX)"
+  ],
+  "issues_only_b": [
+    "Missing transferability-measure literature (LEEP, NCE) and no comparison with it (Reviewer_thNZ)",
+    "Missing relation to meta-learning and other task-similarity measures (Reviewer_HA1J)",
+    "No error bars (Reviewer_CHLY)",
+    "Estimating P_Y(0) and P_XY(0) from few target labels (Reviewer_9X81, Reviewer_CHLY)",
+    "Section 2 'learned models' are only empirical distributions (Reviewer_CHLY)",
+    "Unsupervised and regression settings; missing multi-source GP work (Reviewer_9X81)",
+    "Datasets suit domain adaptation, not transferability benchmarks such as VTAB; outdated baselines (Reviewer_thNZ)"
+  ],
+  "shared_issues": [
+    "Experiments do not show that the measure itself is useful (Reviewer_HgrD, Reviewer_pdrf in A; Reviewer_thNZ in B)",
+    "Calling |X||Y|−1 'model complexity' (Reviewer_NvNX in A; Reviewer_CHLY, Reviewer_thNZ in B)",
+    "Limited experiments: few datasets, few or weak baselines, small gains (Reviewer_FaWn in A; Reviewer_9X81, Reviewer_thNZ, Reviewer_CHLY in B)",
+    "Convex-combination model and χ² distance limit generality (Reviewer_pdrf in A; Reviewer_9X81 in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same borderline paper and mostly the same weaknesses; they weighed them differently, and the discussion phase moved B's scores more. A ended at 5/6/5/6 (mean 5.5) and rejected; B ended at 7/6/6/5 (mean 6.0) and accepted. In B, Reviewer_CHLY rose to 7 after the authors corrected CHLY's misreading of Theorem 2, and Reviewer_thNZ rose to 6 on promised related-work changes. In A, only Reviewer_HgrD rose (5 to 6); Reviewer_FaWn kept 5 and Reviewer_pdrf never replied. Reviewers in both committees said the experiments do not show that α* works as a transferability measure (HgrD and pdrf in A, thNZ in B). A's AC made that, with FaWn's unspecific call for theoretical justification, the reason to reject; B's AC found the replies clear and accepted on the majority. A's main objection points at a real gap in the paper; B's main objection was a misreading that the authors could correct. The paper supports A's concern: Section 4 reports only accuracies without error bars, the multi-source experiment has no baseline from the literature, and the only per-source α* values (from A's rebuttal) rank two of four sources opposite to their single-source accuracies.",
+  "candidate_reasons": [
+    "Post-rebuttal raises tipped B",
+    "Same weaknesses, different AC weighting",
+    "Unvalidated measure decisive in A",
+    "B's main objection was a misreading",
+    "Promised revisions accepted in B",
+    "Silent detractor kept A split"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_HgrD final review, after-rebuttal note",
+    "Authors' replies to Reviewer_HgrD and Reviewer_pdrf (α* = 0.19, 0.01, 0.09, 0.56)",
+    "Reviewer_CHLY review and follow-ups of 2021-08-11 and 2021-08-17",
+    "Reviewer_thNZ discussion of 2021-08-24 and 2021-09-01",
+    "paper Theorem 2, Eq. (6)",
+    "paper lines 45-47 vs lines 111-114",
+    "paper Tables 1-4, Figure 2, checklist item 3(c)"
+  ]
+}

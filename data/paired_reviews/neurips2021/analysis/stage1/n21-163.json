@@ -1,0 +1,271 @@
+{
+  "pair_id": "n21-163",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_CbiF",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "The only rating above threshold (6 against three 4s). The review is specific: it asks why a geometric mean, notes that the ImageNet model is not named, and sets Table 2 (about 6 points lost at 75% of FLOPs) against pruning results. It took 1.5 hours and called the idea 'novel' without knowing ISC. The AC writes that this reviewer 'decreases the original score' after learning of Li et al. 2019, but the review was never edited after posting and still reads 6, and CbiF posted nothing public."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5x5Z",
+          "evidence": "Two hours and three short points: Eq. (1) notation, a wish for theory, and a request for other contributions. None is a reason to reject, and the summary calls the approach 'interesting' with impact 'beyond early exit applications'. On 2021-09-10 it thanked the authors for 'this wonderful piece of work' and left the 4 unchanged."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ZimZ",
+          "claim": "Direct connections between ICs were already proposed as Inline Subnetwork Collaboration (ISC) in Li et al., ICCV 2019.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission's 40 references do not include Li et al. 2019. The authors conceded: 'Indeed, ISC also uses direct connections between ICs'. They defended mainly the setting (ICs on a frozen pre-trained backbone) plus details such as concatenating logits. The camera-ready cites it as [25] in one clause and does not compare with it."
+        },
+        {
+          "reviewer": "Reviewer_etSV",
+          "claim": "ISC (Li et al. 2019) and MSDNet are missing, and ZTW should be compared with them.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is cited in the submission. Section 4 compares only with SDN and PBEE (lines 201-202). The authors replied that a fair comparison 'seems impossible' because those methods train the backbone. The camera-ready adds both citations, still without a comparison."
+        },
+        {
+          "reviewer": "Reviewer_etSV",
+          "claim": "Phuong & Lampert 2019 is a missing reference.",
+          "checked_against_paper": "incorrect",
+          "evidence": "It is reference [34], discussed at lines 96-99 as averaging the answers of heads for anytime prediction. etSV's point that it also ensembles all completed exits is right, and the paper says so."
+        },
+        {
+          "reviewer": "Reviewer_etSV",
+          "claim": "Table 1's percentages are defined as FLOPs (line 224) but described as time (line 226).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 222-226 say 'fraction of the computational power (measured in floating point operations)' and then 'average inference time is smaller than, for example, 25% of the original time'. The authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_etSV",
+          "claim": "ZTW's gains may come from extra training (ICs for 50 epochs, the ensemble for 500 epochs).",
+          "checked_against_paper": "not_checked",
+          "evidence": "Appendix A.1 is in the supplement, which is not in the PDF here. The main text (lines 108-109, 114) freezes the backbone for all methods, and the second stage of Algorithm 1 trains only the ensemble weights w and b."
+        },
+        {
+          "reviewer": "Reviewer_ZimZ",
+          "claim": "In Figure 3, single ICs often do better than early exiting.",
+          "checked_against_paper": "correct",
+          "evidence": "On Pong both IC markers (returns of about 18.7 and 19.3 at roughly 37% and 67% of inference time) lie above the ZTW curve at the same cost. On Q*bert the second IC lies below the curve. The authors conceded and cited large standard deviations."
+        },
+        {
+          "reviewer": "Reviewer_5x5Z",
+          "claim": "Eq. (1) is unclear about whether g_phi takes one or two arguments.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (1) gives g_phi_m two arguments but writes the previous IC as the composition g_phi_(m-1) o f_theta_(m-1)(x), a one-argument use. The authors promised to rewrite it. The flaw is notational, not technical."
+        },
+        {
+          "reviewer": "Reviewer_CbiF",
+          "claim": "The ImageNet model is not named, and ZTW loses about 6 points of top-1 accuracy at 75% of FLOPs.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 215 says only 'a single architecture'. Table 2: ZTW 70.6 at 75% against 76.3 at 100%. The authors confirmed ResNet-50."
+        },
+        {
+          "reviewer": "Area chair of Committee A (meta-review)",
+          "claim": "Testing on larger-scale datasets such as ImageNet would be beneficial.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 215-216 and Table 2 already report ImageNet results for SDN, PBEE and ZTW. The meta-review does not mention them."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. The authors answered all four reviewers on 2021-08-09. Only Reviewer_5x5Z replied (2021-09-10), with thanks and no change from 4. Reviewer_etSV, Reviewer_ZimZ and Reviewer_CbiF posted nothing public. The AC says the positive reviewer lowered the score after discussion; the record shows CbiF's review unedited at 6.",
+        "what_convinced_or_not": "The authors conceded the ISC overlap and argued a different setting: ICs trained on a frozen pre-trained backbone. The AC was not persuaded ('very similar ... although the setting is claimed to be different'). The authors pointed ZimZ to the cascading-versus-ensembling ablation in Appendix C.1; no reviewer acknowledged it. A received no new experiments."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review counts '3 negative and 1 positive scores' and names novelty as the main problem: direct connections between ICs are 'very similar' to Li et al. 2019 (misattributed to 'Zhang et al.'). It states that the positive reviewer lowered the score, which the record does not show. It adds a request for 'larger scale datasets such as ImageNet', which Table 2 already covers.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three reviewers at 4, and the lone 6 reported by the AC as lowered",
+        "Cascade connections anticipated by ISC (Li et al. 2019), which the submission does not cite",
+        "Baselines limited to SDN and PBEE; no MSDNet-type multi-exit networks",
+        "AC's wish for larger-scale (ImageNet) tests"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        5,
+        5,
+        7
+      ],
+      "confidences": [
+        5,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_6Qh4",
+        "Reviewer_AQfs",
+        "Reviewer_WikB"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_6Qh4",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "An 8 with confidence 5 ('checked the math/other details carefully') after 1.5 hours. The review is general praise: 'old machine learning' applied to deep learning, 'experimental evaluation is extensive'. It says 'related work is adequate', but the submission omits Li et al. 2019 and MSDNet, which the camera-ready adds. It says 'the equations seem correct', but Eq. (1) misuses g's arguments and the HI_m formula uses an intersection where the text says 'any' (the camera-ready uses a union). 6Qh4 posted nothing in discussion; its edit (2021-08-03) predates the author responses."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_6Qh4",
+          "evidence": "Confidence 5 after 1.5 hours, generic praise, two checkable statements (adequate related work, correct equations) that the paper contradicts, and no discussion."
+        },
+        {
+          "reviewer": "Reviewer_Z6co",
+          "evidence": "Calls a missing ablation 'crucial', but lines 55-56 point to the ablation in the Appendix; B's AC called the concern 'clearly unfounded'. After the rebuttal it kept 5 for unnamed 'concerns about the technical contribution' and did not answer the authors' request to name them."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AQfs",
+          "claim": "Experiments use only CIFAR-10/100 and mini-ImageNet; full ImageNet is missing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 215-216 and Table 2 report ImageNet; the small dataset is Tiny ImageNet. AQfs conceded on 2021-08-27: 'Sorry I missed the Table 2 results on ImageNet before'."
+        },
+        {
+          "reviewer": "Reviewer_AQfs",
+          "claim": "There is no ablation of ZTW with and without ensembling.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 55-56: 'We provide ablation study and additional analysis of the proposed method in the Appendix'; lines 149 and 175 cite Appendices C.3 and C.2. The supplement is not in the PDF here; the authors and B's AC say Appendix C.1 tests each component alone."
+        },
+        {
+          "reviewer": "Reviewer_AQfs",
+          "claim": "Line 80 wrongly describes SACT [29] as skipping intermediate layers.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 79-80 cite [29] (Figurnov et al., SACT) for 'skipping intermediate layers'. The authors agreed, and the camera-ready drops SACT and cites SkipNet there."
+        },
+        {
+          "reviewer": "Reviewer_AQfs",
+          "claim": "'None of these methods are designed to work with pre-trained models' (lines 99-100) is too bold, given IDK Cascades.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The sentence closes the Ensembles paragraph (lines 92-100), so 'these methods' are the layer ensembles of Scardapane et al. and Phuong & Lampert, not cascades of separate models. The wording is ambiguous, and the camera-ready rewrites it as 'none of the ensemble methods mentioned above'."
+        },
+        {
+          "reviewer": "Reviewer_Z6co",
+          "claim": "The paper has no ablation of its two techniques.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Same pointer as for AQfs (lines 55-56). The authors admitted the pointer was easy to miss."
+        },
+        {
+          "reviewer": "Reviewer_Z6co",
+          "claim": "ZTW's ensembling is a direct extension of logit-average ensembling.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (2) with the log form at line 178 gives q_m = softmax(ln b_m + sum_j w_m^j z_j), where z_j are the IC logits: a learned weighted sum of logits with a class bias."
+        },
+        {
+          "reviewer": "Reviewer_6Qh4",
+          "claim": "Related work is adequate.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission cites neither Li et al. 2019 (ISC), nor MSDNet, nor IDK Cascades. The authors conceded these gaps, and the camera-ready adds all three."
+        },
+        {
+          "reviewer": "Reviewer_6Qh4",
+          "claim": "The equations seem correct.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The HI_m formula intersects the earlier correct sets, but lines 262-263 define HI by examples correct for 'any of the previous ICs', a union; the camera-ready changes it. Eq. (1) is inconsistent about g's arguments."
+        },
+        {
+          "reviewer": "Area chair of Committee B (meta-review)",
+          "claim": "The HI_m definition should use a union, not an intersection.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted formula uses a big intersection over n<m; the text says 'any of the previous ICs'. The camera-ready formula uses a union."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_WikB"
+        ],
+        "evidence": "Reviewer_WikB edited on 2021-08-17 and added 'Round 2': 'I have upgraded my recommendation'. Its first text placed the paper 'around the borderline, perhaps slightly below it'; the final rating is 7. Reviewer_AQfs edited on 2021-08-27, the day it posted 'concerns remain', and its rating is 5; the AC counts only one increase. Reviewer_Z6co (2021-08-25) kept 5. Reviewer_6Qh4's edit (2021-08-03) predates the author responses (2021-08-09).",
+        "what_convinced_or_not": "WikB was convinced by a new transfer-learning test on Retinal OCT images (ZTW 98.5% against 94.6% for the backbone) and by the answers to others. Those images are not the huge, time-critical images WikB had asked about. AQfs accepted the ImageNet correction but kept asking for comparisons with non-early-exit methods, which the authors declined as out of scope; the AC reports that AQfs privately wondered if it had 'set the bar too high'. Z6co got a CIFAR-2 test, where PABEE still trails, and the ablation pointer, and named no remaining concern."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split two and two. The AC 'carefully also read the paper' and would have given it a 7. It called Z6co's ablation concern 'clearly unfounded' and judged AQfs's comparison request reasonable but 'very harsh' grounds for rejection. Its own checks hold: the ablation pointer exists, and the HI_m error it found is real. It listed the algorithm's originality as a strength; no B reviewer had raised ISC. It did not weigh 6Qh4's thin 8.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own reading: thorough, well written, strong and extensive experiments",
+        "Two reviewers for acceptance (8, and 7 after the rebuttal)",
+        "Detractors' concrete objections (no ablation, no ImageNet) were wrong; the rest judged fixable",
+        "Novelty doubts (PABEE, cascades) judged no ground for rejection"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Cascade connections already proposed as ISC in Li et al. 2019, uncited (Reviewer_etSV, Reviewer_ZimZ; the AC's main reason)",
+    "No comparison with multi-exit architectures such as MSDNet, RANet and GFNet (Reviewer_etSV, Reviewer_ZimZ)",
+    "Possible unfairness from extra IC and ensemble training (Reviewer_etSV)",
+    "Single ICs beat early exiting on Pong in Figure 3 (Reviewer_ZimZ)",
+    "Eq. (1) notation and no theory for why ensembling helps (Reviewer_5x5Z)",
+    "Pruning saves more FLOPs on ImageNet ResNet-50 without accuracy loss (Reviewer_CbiF)"
+  ],
+  "issues_only_b": [
+    "Model cascades (IDK Cascades), dynamic routing and anytime methods not discussed or compared; a FLOPs leaderboard requested (Reviewer_AQfs)",
+    "SACT miscast and the 'pre-trained models' claim too broad (Reviewer_AQfs)",
+    "The ensemble extends PABEE-style voting and logit averaging; PABEE's weakness may come from the class count (Reviewer_Z6co)",
+    "Cascading may add little to residual features (Reviewer_Z6co)",
+    "Value in domains where time is critical, such as large medical images (Reviewer_WikB)",
+    "HI_m uses an intersection instead of a union; test accuracy and validation use not stated (B's AC)"
+  ],
+  "shared_issues": [
+    "Limited novelty of a combination of known parts (A: Reviewer_etSV, Reviewer_ZimZ, the AC; B: Reviewer_AQfs, Reviewer_Z6co)",
+    "Incomplete related work (A: Reviewer_etSV, Reviewer_ZimZ; B: Reviewer_AQfs, Reviewer_6Qh4)",
+    "Baselines limited to SDN and PBEE (A: Reviewer_etSV, Reviewer_ZimZ; B: Reviewer_AQfs)",
+    "Whether both components are needed (A: Reviewer_ZimZ; B: Reviewer_Z6co, Reviewer_AQfs); both forums were pointed to Appendix C.1",
+    "ImageNet scale (A: Reviewer_CbiF, the AC; B: Reviewer_AQfs), though Table 2 exists",
+    "FLOPs against wall-clock time (A: Reviewer_etSV; B: Reviewer_AQfs)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee B recommended a poster and Committee A rejected mainly because the committees held different facts and their area chairs (ACs) used them differently. In A, the two most careful reviewers (Reviewer_etSV, 24 hours; Reviewer_ZimZ, confidence 5) showed that cascade connections, one of the paper's two components, already exist as Inline Subnetwork Collaboration (ISC) in Li et al. 2019. The submission does not cite it, and the authors conceded the overlap, defending mainly the frozen-backbone setting. A's AC made this the main reason to reject. No B reviewer raised ISC, and B's AC listed the algorithm's originality as a strength. B also had a champion that A lacked: Reviewer_6Qh4 gave an 8 with confidence 5 after 1.5 hours, in a generic review that wrongly calls the related work adequate and the equations correct, and it never joined the discussion. B's two 5s rested partly on claims the paper contradicts (no ablation, no ImageNet), and B's AC checked and discounted them. Reviewer_WikB rose from 'around the borderline' to 7 after a medical-imaging experiment that only B saw. B's AC then read the paper, said it would give a 7, and overrode the 5s. A's AC followed three 4s, reported a score cut by the lone 6 (Reviewer_CbiF) that the record does not show, and asked for ImageNet tests that Table 2 already reports. On what both committees saw, an incremental combination of known parts with extensive and consistent experiments, neither found a fatal flaw.",
+  "candidate_reasons": [
+    "Prior art found by one committee",
+    "Thin exuberant champion in one committee",
+    "AC's own reading overrode detractors",
+    "Detractors' factual errors discounted by AC",
+    "New experiments shown to one committee",
+    "Meta-review misstates the record"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_etSV review (weaknesses 1, 2 and 5)",
+    "Reviewer_ZimZ review (point 1) and the authors' reply ('Indeed, ISC also uses direct connections between ICs')",
+    "Reviewer_CbiF review: rating 6, not edited after posting",
+    "Reviewer_5x5Z comment, 2021-09-10",
+    "Reviewer_6Qh4 review",
+    "Reviewer_WikB review, 'Round 2' note (edited 2021-08-17)",
+    "Authors' response to Reviewer_WikB (Retinal OCT table), 2021-08-09",
+    "Reviewer_AQfs comment, 2021-08-27 ('Sorry I missed the Table 2 results')",
+    "Reviewer_Z6co comment, 2021-08-25",
+    "paper_submitted.pdf: reference list (no Li et al. 2019, no MSDNet), lines 55-56, 92-100, 215-216, 222-226, Eq. 1, Eq. 2, HI_m formula, Table 2, Figure 3",
+    "paper.pdf (camera-ready): references [16] MSDNet and [25] Li et al.; HI_m with a union"
+  ]
+}

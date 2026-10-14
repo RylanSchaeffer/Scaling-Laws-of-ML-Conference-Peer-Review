@@ -1,0 +1,242 @@
+{
+ "pair_id": "n21-151",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    4,
+    5
+   ],
+   "confidences": [
+    3,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_fews",
+    "Reviewer_WA6U"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5/6/4/5 sit within two points around a mean of 5.0. Reviewer_ZF6P's 4 (ten hours, confidence 4) is the low end, but it rests on specific points that the paper confirms (method built on DiGCN's Laplacian; no large-scale data). Its two complaints, novelty and scale, became the meta-review's two reasons. The only rating above threshold, Reviewer_haDS's 6, came with no reply to the rebuttal, so A had no champion."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_fews",
+     "claim": "The last equality of Eq. 5 is wrong, because vector multiplication is not commutative.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Eq. 5 turns (1/n)(α/(1+α))·1^{1×n}·[(1+α)π^t·1^{n×1}], a uniform row vector, into (α/n)π^t. The authors conceded. The camera-ready Eq. 5 ends with (α/n)π^t·1^{n×n}. Reviewer_eZud in B flagged the same error."
+    },
+    {
+     "reviewer": "Reviewer_fews",
+     "claim": "Therefore the power method is not applicable.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The corrected recursion π^{t+1} = (1−α)π^t P̃ + (α/n)π^t·1^{n×n} is still a linear power iteration. The error is a derivation slip, not a flaw in the method."
+    },
+    {
+     "reviewer": "Reviewer_WA6U",
+     "claim": "Eq. 10 takes an expectation over Δα1, Δα2, so it does not require the encoder to work for all Δα as the text says; fixing one view unperturbed departs from the objective.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 173-174 say the expectation 'requires the obtained optimal encoder works well with ∀Δα1, Δα2'. An expectation imposes no for-all condition. Line 181 then fixes Δα1 = 0. The authors replied 'We fully agree'."
+    },
+    {
+     "reviewer": "Reviewer_WA6U",
+     "claim": "GRACE's CiteSeer accuracy here (61.20) is far below the 72.1 that GRACE reports.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 lists GRACE at 61.20 ± 0.20 on CiteSeer. The paper trains the classifier on 20 labels per class (line 272), so the gap follows from the split and is not an error. The authors said so."
+    },
+    {
+     "reviewer": "Reviewer_WA6U",
+     "claim": "(Discussion) Curriculum learning gives a marginal improvement that might be caused by randomness.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1, easy-to-hard minus random order: +1.01 on Cora-ML (random-order STD 1.66), +0.27 (STD 0.82), +0.38 (STD 0.46), −0.06 on PubMed, +0.12 (STD 0.14). So line 307's 'easy-to-hard > random order' fails on PubMed. Against fixed views ('No Curr') the gain is +0.43 to +2.09; the authors' reply cited only that comparison."
+    },
+    {
+     "reviewer": "Reviewer_ZF6P",
+     "claim": "The experiments use few, small datasets; no large-scale (OGB) evaluation.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 uses Cora-ML, CiteSeer, AM-Photo, PubMed and DBLP; MVGRL is already out of memory on DBLP. The only scaling evidence is augmentation time on random graphs (Figure 3(b)). In the rebuttal, GRACE, GCA and DiGCL all ran out of memory at 50K nodes on a 12 GB GPU, and the authors cited 'hardware limitations'."
+    },
+    {
+     "reviewer": "Reviewer_ZF6P",
+     "claim": "The theory is incremental and similar to Digraph Inception Convolutional Networks (DiGCN, NeurIPS 2020).",
+     "checked_against_paper": "correct",
+     "evidence": "Eqs. 1-2, α = 0.1 and the property π_appr·1 = 1/(1+α) are taken from [38] (lines 88-94, 114). Definition 1 perturbs DiGCN's teleport probability α. New parts are the power-iteration speed-up, two entropy bounds and the curriculum. The authors called [38] the 'theoretical basis'."
+    },
+    {
+     "reviewer": "Reviewer_haDS",
+     "claim": "Section 2.3 (von Neumann entropy) is disconnected from the InfoNCE framework of Section 3.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3 uses Section 2.3 only to motivate the difficulty score (line 202, 'Referring to DEFINITION 3'). The authors replied: 'There is actually no story connection between Section 2.3 and Section 3.'"
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": [
+     "Reviewer_WA6U"
+    ],
+    "evidence": "No reviewer reports a raise. Reviewer_WA6U edited its review on 2021-09-01, the day of its 'Update on the review' ('I found the novelty of this paper is limited'). The review text carries no added update, so the edit was most likely to the rating. Its first review had called the curriculum 'a very effective modification'; the authors asked 'what made you change your mind'. Reviewer_fews edited on 2021-09-10 to add a post-rebuttal note that keeps a no-accept recommendation; no rating change is stated. ZF6P (4) and haDS (6) never edited. haDS never replied to the rebuttal, and ZF6P did not answer the authors' second reply.",
+    "what_convinced_or_not": "fews accepted the node-level focus but held that the 'infinite views' are SimCLR-style two views; the authors conceded and promised to remove the phrase. ZF6P accepted the motivation answer but called the move from supervised to self-supervised 'somewhat trivial' and wanted real large-scale results. The authors offered one medium dataset (Amazon-Computer), cited 'hardware limitations', and showed their model out of memory at 50K nodes. WA6U, at confidence 3 and 'not very familiar with graph learning', adopted fews's views argument and ZF6P's experiment complaint. fews's final note: the paper 'doesn't provide either strong theoretical results or compelling experiments'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5/6/4/5, mean 5.0, three below threshold. The meta-review calls the idea novel, then finds 'the concerns on the novelty and significance' outweigh the pros (ZF6P's first point). It cites the missing large-scale experiments (haDS, ZF6P). It turns the authors' 'not the focus' reply into a higher bar for theory, 'which the paper does not seem to meet so far'. That is Reviewer_fews's post-rebuttal verdict. It names no specific technical flaw.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Novelty judged incremental: Laplacian perturbation shifts DiGCN's teleport probability, and ZF6P called the self-supervised adaptation 'somewhat trivial'",
+    "No large-scale experiments; the authors cited hardware limits and their model ran out of memory at 50K nodes",
+    "The 'infinite views' claim was shown to be two views per step and was conceded, which deflated the multi-view contribution (fews, WA6U)",
+    "Theory judged too weak to carry an algorithmic paper without scale results (fews post-rebuttal note; meta-review)",
+    "No champion: the only 6 (haDS) never joined the discussion, and WA6U turned negative after reading fews and ZF6P"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_bT23",
+    "Reviewer_FASr"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7/6/6/6 sit within one point. The 7 (Reviewer_6X4F) comes from the lightest review in either committee (see inattentive_reviews). The decision does not depend on it, because the other three ratings end at 6."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_6X4F",
+     "evidence": "One hour spent; the only 7 in either committee. Summary and strengths restate the abstract ('solid theoretical analysis', 'technically sound') and miss the Eq. 5 error that eZud found. It asks how the easy-to-hard scheme affects performance, which Table 1 already answers with No Curr, Random, Anti Curr and Curr rows; the authors' reply just transcribed Table 1. Its post-rebuttal note, posted the day of the rebuttal, is one sentence."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_FASr",
+     "claim": "From the Table 1 ablation, Laplacian perturbation alone is not comparable to many baselines; the major gain comes from curriculum learning.",
+     "checked_against_paper": "correct",
+     "evidence": "'Ours + No Curr' trails the best baseline on Cora-ML (75.86 vs DiGCN 77.03), AM-Photo (87.32 vs 88.66) and PubMed (79.57 vs GMI 80.27). It leads on CiteSeer (66.99 vs 65.04) and DBLP (78.28 vs 78.03). Table 2 adds that, inside DiGCL, Laplacian perturbation beats random edge removal by 0.96-2.45 points."
+    },
+    {
+     "reviewer": "Reviewer_eZud",
+     "claim": "Laplacian perturbation also changes the digraph structure, because the teleport probability adds edges back to the start node.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. 2 builds L_appr from P̃ = D̃^{-1}Ã, which does not depend on α; only Π_appr changes with α (lines 101-103). The edge set and the sparsity of the Laplacian stay fixed (line 107); only edge weights change. Teleport enters only through π_appr in Eq. 1."
+    },
+    {
+     "reviewer": "Reviewer_eZud",
+     "claim": "There are proof mistakes such as Eq. 5.",
+     "checked_against_paper": "correct",
+     "evidence": "Same error as Reviewer_fews found in A: the last equality of Eq. 5 drops 1^{n×n}. The authors conceded and corrected it."
+    },
+    {
+     "reviewer": "Reviewer_eZud",
+     "claim": "DiGCL still depends on pre-defined parameters: start and end difficulty, step size and pacing family.",
+     "checked_against_paper": "correct",
+     "evidence": "d_a = 1/9 and d_b = 1 (lines 217-219), step size 1 (lines 214-215) and the log family (line 284) are set by hand. Line 66 claims learning from all views 'eliminates the needs to adjust the augmentation parameters'. The authors narrowed the claim in reply."
+    },
+    {
+     "reviewer": "Reviewer_eZud",
+     "claim": "DiGCL does not provide more contrastive views than other augmentation methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 11 contrasts two views per sub-task, one always unperturbed (Δα1 = 0, line 181). Any continuous augmentation also gives new views each epoch. In A the authors conceded the 'infinite views' phrasing to Reviewer_fews; in B they defended it to eZud and bT23 the same day."
+    },
+    {
+     "reviewer": "Reviewer_bT23",
+     "claim": "There are no edge-level (link prediction) results.",
+     "checked_against_paper": "correct",
+     "evidence": "The paper reports node classification (Table 1) and graph classification (Figure 3(c)); it has no edge-level task. bT23's 'node classification only' overlooks Figure 3(c). Link-prediction tables appeared only in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_bT23",
+     "Reviewer_FASr"
+    ],
+    "evidence": "bT23 edited its review on 2021-08-15, the day it wrote 'I raise my rating from 5 to 6'. FASr edited on 2021-08-12, the day it wrote 'I would like to increase my score to 6'. 6X4F (7) and eZud (6) never edited. 6X4F replied the day of the rebuttal: 'novel enough to warrant an acceptance'. eZud: 'basically convincing and thus i support the acceptance of this work while be modest (due to the remaining concerns on novelty)'.",
+    "what_convinced_or_not": "bT23 accepted the authors' claim that Laplacian perturbation is 'the first data augmentation method designed specifically for digraphs', which 'should not be classified as no novelty'. FASr accepted the supplementary table that moves Laplacian perturbation into MVGRL and GCA (CiteSeer 62.22 to 65.79 and 63.25 to 67.09). Neither dropped its reservation: FASr 'still can not give more score' because the techniques are blended. No B reviewer challenged the 'infinite' views claim that the authors restated to bT23 and eZud."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 7/6/6/6 after two raises. The meta-review says the rebuttal's 'additional experiments on link predictions and appropriate ablation studies' 'satisfactorily address these concerns', and cites 'a general consensus among the reviewers to accept'. It does not weigh the novelty reservations that FASr and eZud kept. It twice calls the method 'Laplacian permutation'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "The rebuttal moved two reviewers up to 6, so all four ratings ended at or above threshold",
+    "bT23 accepted Laplacian perturbation as the 'first data augmentation method designed specifically for digraphs' despite its own incremental-novelty concern",
+    "FASr accepted supplementary results that Laplacian perturbation also helps MVGRL and GCA",
+    "Consistent, modest gains over 11 baselines on five datasets, read as 'good experimental results'",
+    "The AC credited the rebuttal's link-prediction and ablation tables and the reviewer consensus"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether preserving structure is desirable on noisy citation and social graphs, where perturbation invariance may add robustness (Reviewer_haDS)",
+  "Section 2.3 entropy theory not connected to the InfoNCE objective of Section 3 (Reviewer_haDS; conceded)",
+  "Eq. 10 expectation described as 'for all' Δα, and one view fixed unperturbed (Reviewer_WA6U; conceded)",
+  "Easy-to-hard ordering gain marginal, possibly noise (Reviewer_WA6U; Table 1 supports it against random order)",
+  "GRACE CiteSeer number far below GRACE's published value (Reviewer_WA6U; explained by the split)",
+  "Presentation: Figure 1 caption, dense Section 2 that leans on prior work, pacing-function notation, choice of M (Reviewer_WA6U, Reviewer_fews)"
+ ],
+ "issues_only_b": [
+  "Laplacian perturbation alone does not beat the baselines; the gain comes from the curriculum (Reviewer_FASr)",
+  "Teleportation adds edges, so Laplacian perturbation changes the structure (Reviewer_eZud; incorrect)",
+  "Method not specific to directed graphs (Reviewer_eZud)",
+  "No link-prediction results (Reviewer_bT23)",
+  "No comparison with InfoMin view selection and no spectral analysis of perturbed graphs (Reviewer_6X4F)",
+  "Techniques blended; contributions not isolated (Reviewer_FASr)"
+ ],
+ "shared_issues": [
+  "Incremental novelty over DiGCN's approximate digraph Laplacian (ZF6P in A; bT23, FASr, eZud in B)",
+  "Overstated 'infinite' or 'more' views claim (fews, WA6U in A; eZud in B)",
+  "No large-scale real-world experiments (haDS, ZF6P in A; 6X4F in B)",
+  "Derivation error in Eq. 5 (fews in A; eZud in B)",
+  "Curriculum depends on hand-set pacing choices (fews, ZF6P in A; eZud in B)",
+  "Which component drives the gain (ZF6P, WA6U in A; FASr in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same facts differently. Both flagged incremental novelty over DiGCN, an overstated 'infinite views' claim, no large-scale experiments and an error in Eq. 5. Both received nearly the same rebuttal. In B, Reviewer_bT23 accepted the novelty argument and Reviewer_FASr a supplementary table; both raised their ratings to 6. With a one-hour 7 from Reviewer_6X4F, the mean reached 6.25, and the AC followed the consensus. In A, no rating rose. The authors conceded the views claim and admitted hardware limits on scale. Reviewer_ZF6P held at 4 and called the self-supervised adaptation of DiGCN 'somewhat trivial'. The low-confidence Reviewer_WA6U turned negative after reading fews and ZF6P. The only positive reviewer, haDS, never replied. The AC echoed fews: neither strong theory nor compelling experiments. The paper supports several of A's points. Easy-to-hard ordering beats random ordering by at most 1.01 points, inside the random-order spread. The entropy bounds feed only a heuristic difficulty score. No dataset approaches OGB scale. Neither committee found a fatal flaw; Eq. 5 is a derivation slip.",
+ "candidate_reasons": [
+  "same weaknesses weighted differently",
+  "rebuttal persuaded only one committee",
+  "reviewer turned by peer reviews",
+  "silent positive reviewer, no champion",
+  "authors conceded overclaim in one forum",
+  "AC raised bar for theory"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_ZF6P review and 2021-08-30 comment",
+  "Reviewer_WA6U 2021-09-01 'Update on the review'",
+  "Reviewer_fews post-rebuttal update (review edited 2021-09-10)",
+  "Committee A meta-review",
+  "Reviewer_bT23 2021-08-15 comment",
+  "Reviewer_FASr 2021-08-12 comment",
+  "Committee B meta-review",
+  "Authors' 2021-08-31 reply to Reviewer_ZF6P (out of memory at 50K nodes)",
+  "Authors' 2021-08-10 replies to Reviewer_fews (A) and Reviewer_bT23 (B) on 'infinite' views",
+  "paper_submitted.pdf Table 1, Eqs. 2, 5 and 10, lines 173-182 and 217-219"
+ ]
+}

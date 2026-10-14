@@ -1,0 +1,208 @@
+{
+  "pair_id": "n21-161",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 7, 6],
+      "confidences": [4, 4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_kc6w", "Reviewer_uazG"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4/5/7/6 spread evenly around the 5.5 mean; no single rating stands apart. The split is two below threshold (Reviewer_JRfY 4, Reviewer_kc6w 5) against two above (Reviewer_ZFQx 7, Reviewer_uazG 6). The 7 is the highest of eight ratings across both committees and comes from the thinnest review (confidence 3, three short paragraphs)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ZFQx",
+          "evidence": "Rating 7 at confidence 3 ('Math/other details were not carefully checked'). Three short paragraphs; the only caveat is that the idea 'is not new'. It calls the results 'convincing' without noting the 0.5-1.1 point gains, the missing seeds or the two-language ablation. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_JRfY",
+          "claim": "The primary omission is any empirical comparison with the most similar prior work, StructBERT and LIMIT-BERT.",
+          "checked_against_paper": "correct",
+          "evidence": "Both are cited only in the introduction (line 30, refs [12], [13]) and related work (lines 58-62, refs [23], [13]). No table has a StructBERT or LIMIT-BERT row, including the PTB column of Table 5. The authors answered with arguments and a promise to add the comparison 'in the future version'."
+        },
+        {
+          "reviewer": "Reviewer_JRfY",
+          "claim": "The parser is trained on 60 UD languages and tested on 22; the MLM covers 104 Wikipedia languages; languages outside the UD training data are not analysed.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 157-166 (104 Wikipedia languages; UD v2.2 training treebanks for 60 languages), lines 188-189 and Table 8 (22 evaluation languages). The paper never identifies which evaluation languages lack UD training data or analyses them. The rebuttal's direct-parse score (UAS 91.1, LAS 86.4) pools covered and uncovered treebanks."
+        },
+        {
+          "reviewer": "Reviewer_kc6w",
+          "claim": "The biaffine softmax adds a matrix to two vectors without stated processing, and the link from R_m and S^k to L_USL is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Equation after line 106: Softmax(R_dep^T U1 R_head + u2^T R_head + u3^T R_dep + b) with no broadcasting stated. The authors conceded 'there are some extra processing' (unsqueezing) left out because it 'is not our innovation'."
+        },
+        {
+          "reviewer": "Reviewer_kc6w",
+          "claim": "The UD models have more parameters and see extra UD plain text, so the gains may not come from structural supervision.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 133-134 add an extra Transformer layer; lines 164-166 add the UD training sentences to the MLM data. The authors report 192.0M vs 177.9M parameters for the m-BERT size. Moreover, the Table 1 baselines are the numbers published in the XLM-R paper (m-BERT 66.3, XLM-R base 76.2, XLM-R large 80.9 XNLI averages), while the UD models were pre-trained from scratch (lines 171-172). Only Table 7 and the rebuttal table compare models from the same pre-training set-up."
+        },
+        {
+          "reviewer": "Reviewer_kc6w",
+          "claim": "The dependency parsing experiments train a separate parser instead of using the one learned in pre-training.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 190-193: a separate biaffine parser per language on PrLM features. The rebuttal adds a direct-parse result (UAS 91.1) on a sampled test set."
+        },
+        {
+          "reviewer": "Reviewer_uazG",
+          "claim": "The improvements are very marginal and the experiments were not repeated with different random seeds.",
+          "checked_against_paper": "correct",
+          "evidence": "Gains: XNLI +1.1/+0.7/+0.5 (lines 215-216), XQuAD +1.0/+0.6/+0.8 F1 (lines 230-231). Checklist 3(c) answers [No] for error bars, and the paper never mentions seeds. Five-seed averaging appears only in the rebuttal ('Although we didn't mention it in the paper')."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "The comparisons conflate integration gains with multilingual gains; it is unknown whether a parsing objective helps a multilingual encoder 'without other architectural changes'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 7's 'w/o Universal Structure Integration' row is exactly a multilingual encoder with the parsing objective and no integration layer (SPMRL LF1 ar 88.85, eu 91.29, against m-BERT 88.60, 91.06 and UD-BERT 89.97, 92.23). The rebuttal extends it to XQuAD for four languages. The test is narrow, but it exists; Reviewer_JRfY noted it 'suggest[s] that this feeding back approach is effective'. The monolingual comparison the AC also asks for is indeed absent."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": ["Reviewer_uazG"],
+        "evidence": "Author responses posted 2021-08-10 and 2021-08-26. No A reviewer posted in the discussion. Reviewer_uazG edited the review on 2021-08-25, after the responses, with no stated change; Reviewer_kc6w's edit (2021-07-15) predates them; Reviewer_JRfY and Reviewer_ZFQx never edited. The authors' 2021-08-26 post thanks reviewers 'with the score increased', but the same post appears verbatim in B's forum.",
+        "what_convinced_or_not": "No A reviewer said. A received the same responses as B: the four-language XQuAD ablation, parameter counts, a claim of five-seed averages and a direct-parse UAS of 91.1. Reviewer_JRfY's central request, a StructBERT/LIMIT-BERT comparison, got only arguments that it is off-topic and a promise for a future version. The AC's meta-review does not mention the rebuttal."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split two-two (mean 5.5). The AC sided with the two low ratings and made Reviewer_JRfY's point decisive: 'how does the method compare with related baselines like Struct-BERT or LIMIT-BERT' mirrors JRfY's 'primary ommission'. The AC extends it to monolingual and multilingual control experiments, overlooks Table 7's existing objective-only row, and does not weigh the rebuttal.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No empirical comparison with StructBERT or LIMIT-BERT, the closest prior work (Reviewer_JRfY, adopted by the AC)",
+        "AC judged that the experiments do not separate gains from feeding parse scores back from gains of multilingual training",
+        "Ratings split two-two (4, 5 against 6, 7) with no reviewer engaging after the rebuttal",
+        "AC wanted new experiments and invited a resubmission"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_WQqW", "Reviewer_RgYB", "Reviewer_Cgr3", "Reviewer_dbNQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four final ratings are 6 at confidence 4. All four were raised to 6 after the rebuttal; before it, at least three stood at 5 or below (Reviewer_WQqW stated 5; Reviewer_dbNQ and Reviewer_Cgr3 'raise ... to 6')."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_RgYB",
+          "evidence": "Four of six 'critical questions' (2 hours spent) rest on missing the XLM-R large rows in Tables 1 and 2, which are there. RgYB later wrote 'I sincerely apologize for missing the XML-R large rows in the tables.' The remaining questions, on All-FT results and on the need for UD annotations, are substantive."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_RgYB",
+          "claim": "Tables 1 and 2 have no head-to-head XLM-R large baseline in the cross-lingual setting.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 cross-transfer lists XLM-Rlarge (average 80.9) next to UD-XLM-Rlarge (81.4); Table 2 lists XLM-Rlarge (F1 77.2) and UD-XLM-Rlarge (78.0). RgYB conceded and raised the score."
+        },
+        {
+          "reviewer": "Reviewer_dbNQ",
+          "claim": "The ablation is done only on a syntactic parsing task in two languages.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 7: SPMRL constituency parsing, ar and eu only (Reviewer_WQqW and Reviewer_Cgr3 say the same). The rebuttal added XQuAD for en, ar, de and el at the m-BERT size, with no variance; no XNLI ablation."
+        },
+        {
+          "reviewer": "Reviewer_Cgr3",
+          "claim": "The UD parsing evaluation is boosted because pre-training has seen UD data.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 260-261 attribute the cross-lingual UD gains 'in large part' to UD annotations in pre-training; footnote 2 concedes Table 4 is not strictly zero-shot."
+        },
+        {
+          "reviewer": "Reviewer_dbNQ",
+          "claim": "In the second equation under line 106, k appears on the left-hand side but not on the right.",
+          "checked_against_paper": "correct",
+          "evidence": "S^k = Softmax(R_dep^T U1 R_head + u2^T R_head + u3^T R_dep + b), k in [arc, label]; the parameters' dependence on k is given only in lines 107-108."
+        },
+        {
+          "reviewer": "Reviewer_Cgr3",
+          "claim": "The paper does not explain how training is interleaved between the two tasks.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Algorithm 1 and Section 3.6 (lines 145-154): USL and MLM train in parallel in phase one; in phase two USL trains with probability p = 0.8 (line 176). The paper does not discuss overfitting the much smaller UD data, which was Cgr3's underlying question."
+        },
+        {
+          "reviewer": "Reviewer_Cgr3",
+          "claim": "Results are not averaged over seeds with standard deviations, so significance is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(c) answers [No] for error bars; no seed or variance appears in Tables 1-6. The authors' rebuttal argument, that gains above 0.5 are 'statistically significant', is not a significance test."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_WQqW", "Reviewer_RgYB", "Reviewer_Cgr3", "Reviewer_dbNQ"],
+        "evidence": "Reviewer_WQqW (edited 2021-08-21): 'rating 5 --> 6'. Reviewer_RgYB (edited 2021-08-10): 'I updated my score accordingly' after conceding the XLM-R large misreading. Reviewer_dbNQ (comment 2021-08-27, edited same day): 'I will raise my rating to 6'. Reviewer_Cgr3 (comment 2021-08-31, edited same day): 'I will raise the score to 6'.",
+        "what_convinced_or_not": "The four-language XQuAD ablation 'partially' answered dbNQ and matched what WQqW had asked for, though WQqW still wants XNLI/XQuAD ablations. After the rebuttal RgYB still doubts the assessment of parsing pre-training and wants UD text added to the baselines. RgYB's main questions dissolved once RgYB found the XLM-R large rows. Cgr3 raised while insisting 'I did not misunderstand the work'. Every reviewer moved on a partial answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts on four post-rebuttal 6s. The meta-review is warmer than the reviews: 'breaks new ground', 'carefully done', 'the results are strong'. It omits the reviewers' open concerns (parameter and UD-text confounds, no seed variance) and keeps only the request to include 'the follow-up results on XNLI/XQuAD tasks'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6s after every reviewer raised the score following the rebuttal",
+        "AC saw a well-executed, natural next step: explicit structural supervision in a multilingual pre-trained LM",
+        "Consistent gains over m-BERT and XLM-R on XNLI, XQuAD and parsing; the rebuttal's XQuAD ablation partly answered the attribution concern"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No empirical comparison with StructBERT or LIMIT-BERT, and no monolingual test of feeding parse scores back (Reviewer_JRfY; decisive for the AC). B's Reviewer_WQqW cited both papers but asked only to state the differences",
+    "Token-level versus word-level parsing, and alternatives to summing the structure into the representation (Reviewer_JRfY)",
+    "A separately trained parser is used for UD evaluation, which undercuts the data-efficiency case (Reviewer_kc6w)",
+    "No task shown that clearly needs explicit syntax; results look incremental (Reviewer_kc6w)"
+  ],
+  "issues_only_b": [
+    "Ablation limited to SPMRL in two languages; asked for XNLI/XQuAD ablations (Reviewer_WQqW, Reviewer_dbNQ, Reviewer_RgYB, Reviewer_Cgr3)",
+    "UD parsing results inflated because pre-training saw UD data (Reviewer_Cgr3); the paper's footnote 2 concedes it",
+    "Evaluate on XTREME; why pre-train from scratch instead of from the released weights (Reviewer_WQqW)",
+    "Missing XLM-R large baseline, a misreading of Tables 1 and 2 (Reviewer_RgYB)",
+    "Related work on syntax learned without supervision and Swayamdipta et al. 2019; bold-face errors; unreported compute; missing learning rate and USL/MLM balance (Reviewer_Cgr3, Reviewer_WQqW)"
+  ],
+  "shared_issues": [
+    "Monolingual syntax-aware pre-training carried to the multilingual setting; limited novelty (A: Reviewer_JRfY, Reviewer_uazG, Reviewer_ZFQx; B: Reviewer_WQqW, Reviewer_Cgr3, the AC's 'not overly surprising')",
+    "Small gains without seed variance or significance (A: Reviewer_uazG; B: Reviewer_Cgr3)",
+    "Extra parameters and extra UD text confound the gains (A: Reviewer_kc6w; B: Reviewer_dbNQ, Reviewer_RgYB)",
+    "Unclear equations in Section 3.3 (A: Reviewer_kc6w; B: Reviewer_dbNQ, Reviewer_Cgr3)",
+    "Languages without UD training data not analysed (A: Reviewer_JRfY; B: Reviewer_RgYB)",
+    "No analysis or probing of what the representations encode (A: Reviewer_JRfY; B: Reviewer_Cgr3)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw a borderline paper and mostly the same concerns; they split on how the rebuttal landed. Reviewers on both sides saw monolingual syntax-aware pre-training (StructBERT, LIMIT-BERT) carried to the multilingual setting, small gains (0.5 to 1.1 points on XNLI and XQuAD) without error bars, and gains confounded by extra parameters and extra UD text. Both forums received identical author responses. Their main new experiment, a four-language XQuAD ablation, answered what B's reviewers had asked for, and all four B reviewers raised to 6, at least three from 5 or below; part of the rise corrects Reviewer_RgYB's misreading of Tables 1 and 2. B's AC then wrote a meta-review warmer than four 6s ('carefully done', 'results are strong'). A's central request, Reviewer_JRfY's comparison with StructBERT and LIMIT-BERT, got only a promise. No A reviewer replied, ratings ended at 4, 5, 7, 6, and the accept side rested on a thin 7 at confidence 3 and a 6 whose one concern, random seeds, the rebuttal addressed. A's AC made JRfY's missing comparison decisive without mentioning the rebuttal, and overstated the gap: Table 7's 'w/o Universal Structure Integration' row already tests a multilingual parsing objective without the architectural change, on two languages. The paper bears out the shared doubts more than B's AC allows: the checklist reports no error bars, and the Table 1 baselines are the XLM-R paper's published numbers (XNLI 66.3, 76.2, 80.9) while the UD models were pre-trained from scratch, so only Table 7 and the rebuttal table hold the pre-training fixed. The same facts were weighted differently; the flip came from reviewer uptake of the rebuttal and from each AC's weighting.",
+  "candidate_reasons": [
+    "Same rebuttal, unequal reviewer uptake",
+    "Rebuttal experiment matched one committee's request",
+    "Silent reviewers after author response",
+    "AC made missing baselines decisive",
+    "Lenient AC reading of partial ablations",
+    "Borderline scores near acceptance threshold"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_JRfY review, first weakness",
+    "Reviewer_ZFQx review",
+    "Reviewer_WQqW post-rebuttal update ('rating 5 --> 6')",
+    "Reviewer_RgYB 'Updates after the author response'",
+    "Reviewer_dbNQ comment 2021-08-27; Reviewer_Cgr3 comment 2021-08-31",
+    "Authors' General Response 2021-08-10 (XQuAD ablation table), identical in both forums",
+    "Authors' response to Reviewer_JRfY (promise of StructBERT/LIMIT-BERT comparison)",
+    "paper Table 7 and Section 5",
+    "paper Tables 1-2 baseline rows and lines 171-172",
+    "paper checklist 3(c)",
+    "paper lines 133-134 and 164-166",
+    "paper lines 260-261 and footnote 2"
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "run": 1,
+  "turn": 48,
+  "pair_id": "n21-083",
+  "kind": "spotlight",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both meta-reviews restate the reviewers' consensus and lean on the scores; neither area chair set the tier by their own reading."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "B's Reviewer_i9rh compared the paper to StyleGAN and BigGAN, but both committees rested the spotlight on the measured FID results, not on a forecast."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The same novelty reply (scaled guidance on a class-conditional model is new) moved A's Reviewer_H51k from 6 to 7, while B's Reviewer_yLx5 got nearly the same reply and stayed at 6 without answering."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's only top-tier vote is Reviewer_Fjfm's 9: about ten lines of generic praise and one question at confidence 5, with no detail checked; B's 9 and 8 come with specific reviews (B's 6 from yLx5 is also thin)."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "B's area chair raised the title and a possible FID-guidance interaction that A never raised, but treated both as revision requests that did not count against the paper."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "The notes find the committees weighed the same facts the same way: both ranked the novelty doubts below the benchmark results."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score moved through reviewer discussion; H51k's change followed the authors' reply."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "A's Reviewer_Fjfm gave 9 ('Top 15% of accepted papers') while the text concedes 'Most of the ideas in this paper are not brand new' and ends 'I think it is a good paper', a 7-level verdict."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's Reviewer_yLx5 wrote at confidence 3 but stated a verdict (limited novelty), not an inability to judge; no reviewer said they could not assess the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "A's meta-review borrows Fjfm's phrase 'non-trivial insights' but follows the unanimous consensus and rkcu's points, not one outlier's verdict."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "Both means are 7.5 and the verbal assessments sit at matching scores; no calibration gap produced a difference."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "Each committee had a 9, so the spotlight did not rest on agreement alone with no rating above accept."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "H51k's rise rested on a novelty argument that Table 3 of the paper supports, not on unchecked rebuttal evidence; the model-release promise was secondary."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's meta-review notes the novelty concern and sets it aside; B's carries the title and FID reservations forward."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "B's Reviewer_yLx5 held a 6 on the claim that most of the gain comes from manual architecture design, which is wrong for the ImageNet headline, where unguided ADM loses to BigGAN-deep at 256 and 512 pixels."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The authors' remark to NiCt that high guidance scales give washed-out images concerns settings beyond the reported results and did not leave either committee higher than the other."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection or score change came after the author-response period."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both area chairs gave the same tier from the same mean; no threshold difference shows."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither area chair passed over its best-informed reviewer; B's AC follows i9rh's and jJSL's points, and A's follows the consensus."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "Both committees' main concern was the same novelty question, answered by the same reply."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Fjfm's 9 stands apart in A, but both committees reached the same tier at the same mean, and A's other scores (7, 7, 7) do not match B's (6, 7, 8); no tier boundary was shown to turn on it."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Fjfm did not reply, but its 9 rested on praise the response did not answer; B has no outlier, so yLx5's silence is not this mechanism."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither committee had a discarded detractor."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No reviewer or area chair raised audience breadth or venue fit."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Neither meta-review misreports the reviewers' positions or the rebuttal; B's statement that the authors did not answer the title complaint is correct."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Half of B's reviewers (NtJ2, i9rh) and three of A's four replied; most reviewers in neither committee left the response unanswered."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "B's only low-confidence reviewer gave a 6 that pulled the mean down, not up; Fjfm claimed to have checked carefully."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "Neither committee was split; all eight reviewers recommended acceptance."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "The authors gave both committees nearly the same novelty reply, almost word for word."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "H51k's initial novelty verdict credited scaled guidance to [59] and [63], which do not do it, but H51k accepted the correction and raised the score, so the final scores do not rest on it."
+    },
+    {
+      "id": "R31",
+      "applies": false,
+      "justification": "Both spotlights rest on a 7.5 mean with a 9 in each committee, so neither tier exceeds what its scores supported."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "No reviewer objected to the paper's framing from a neighbouring field's premises."
+    },
+    {
+      "id": "R33",
+      "applies": true,
+      "justification": "B's Reviewer_i9rh rated 9 with the most specific review, compared the paper to StyleGAN and BigGAN, and engaged after the rebuttal; A's most positive reviewer, Fjfm, gave a light 9 and never replied."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No committee judged the promised fixes too large without re-review."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "Neither area chair used input outside the record."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "Both committees valued the empirical contribution on its own terms."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "B's lowest score, yLx5's 6, is above the acceptance threshold, so no below-threshold score held on a peripheral point."
+    }
+  ],
+  "added": [],
+  "reasoning": "Both committees recommended a spotlight at a mean of 7.5 for the same reasons, so I judged only the divergence in how the tier was supported. Four existing reasons name mechanisms present here: the same novelty reply moved A's H51k but not B's yLx5 (R03); A's only top-tier vote is a thin 9 whose text reads as a 7 (R04, R08), while B had an engaged, argued champion (R33); and B's 6 rested on a wrong reading of where the ImageNet gains come from (R15). The remaining divergences (B's AC's revision requests, issues raised by one committee only) changed no score or tier, and the Algorithm 2 error went unseen by both committees. No cause outside the existing set appears, so I added no reason.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ]
+}

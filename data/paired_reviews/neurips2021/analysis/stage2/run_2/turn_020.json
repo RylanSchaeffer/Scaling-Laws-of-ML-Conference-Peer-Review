@@ -1,0 +1,197 @@
+{
+  "run": 2,
+  "turn": 20,
+  "pair_id": "n21-091",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's VyNV wrongly said the paper states no contributions (lines 96-103 list three), and that fed the meta-review's 'unclear technical contribution' problem; GwuL's wrong claim that NCSNv2 is not a denoiser underlies B's crediting of the images to the prior. No A reviewer made these errors."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "A's AC gave a spotlight over 5, 8, 7, 7 without arguing the tier, conceding 'the innovation over [19] isn't strong enough' and resting on its own view that the figures 'speak for themselves'."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "A's thin YnSg 7 was not enthusiastic praise (it said 'I don't know' on significance and made a critical Stein point); B's kSnH 7 on pictures that 'look really nice' fell to 5 and did not carry weight. R12 covers YnSg."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors conceded to B's GwuL that the derivation assumes no dependence between the image and the null space of H, an unbounded approximation; on A's forum they never said so, and A's nVFq thought the assumption held."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "A knew from nVFq, y4bh and YnSg that the paper had no comparison with any method, accepted the PnP/RED comparison on promise, and its meta-review omitted the missing baselines."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "After the rebuttal A's nVFq rose from a reject score to 5, while B's d1T5, kSnH and VyNV each fell two points; the moves went in opposite directions and widened the gap."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B asked whether the SVD sampler beats prior samplers on the same NCSNv2 prior, treated the admitted approximation as a flaw, and credited the image quality to NCSNv2; only A raised novelty over [19] and the missing step-size ablation."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw no baseline comparison and a hard Section 3 derivation; A accepted the missing baselines as a revision item and gave a spotlight, while B made them its first ground for rejection."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's AC took GwuL's points, but all four of B's final ratings were below threshold, so the AC did not resolve a split panel; A's AC followed the majority."
+    },
+    {
+      "id": "R10",
+      "applies": true,
+      "justification": "B's d1T5, kSnH and VyNV, none of whom raised baselines in their own reviews, each read the other reviews and dropped two points citing the baselines only GwuL had raised."
+    },
+    {
+      "id": "R11",
+      "applies": true,
+      "justification": "The authors misread GwuL's baseline request as a call to compare with Jalal et al. ('I wasn't asking for a comparison to [2]') and never answered GwuL's 2021-09-07 follow-up, and GwuL held 4."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's YnSg gave 7 at confidence 5 after 2 hours with the summary pasted as the review, said 'I don't know' on significance, never posted in discussion, and the 7 counted toward the spotlight."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's AC rejected over final ratings 5, 5, 4, 4, all below threshold, so it did not go against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC stated a positive view yet decided by a mean threshold; A's AC accepted on the majority, and B's AC was negative."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "The low scores rested on missing baselines, novelty and derivation clarity, which are central to the contribution."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a posterior-sampling method for inverse problems and judged it as such."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's only raise came from nVFq at confidence 4 with specific reasons; no reviewer who disclaimed expertise raised on the rebuttal."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The baseline demand was shared by reviewers in both committees; the difference lies in its weight (R08), not in an extra requirement for the paper type."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No reviewer's praise rested on a wrong claim; YnSg's wrong pixel-domain claim and VyNV's MMSE misreading were not grounds for praise."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "nVFq raised its score after the baseline promise, and GwuL did not concede that its concern was answered."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "A's nVFq found the promised PnP/RED comparisons 'satisfactory' and rose to 5, while B's GwuL said they 'should have been included in the main submission' and B's AC rejected without crediting them."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "nVFq's comment ('I will understand if this paper is accepted') matched its edit to 5; no stated stance diverged from an unchanged score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC called in an off-record extra reviewer."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "The notes do not tie the clarity verdicts to the reviewers' distance from the field."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "nVFq stated its reason for raising, and KMnW's edit fell on the posting day; no silent raise against the reviewer's own text."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Neither AC set aside a silent detractor's rating."
+    }
+  ],
+  "added": [],
+  "reasoning": "Both committees saw the same strong-looking samples, the same hard derivation and the same missing baselines, and weighted the baselines differently (R08). The gap opened in discussion: A's lone detractor accepted the promised comparisons and rose (R21, R06), the AC gave an unargued spotlight that omitted the baselines (R02, R05), and a thin high-confidence 7 counted (R12). In B, the authors misread GwuL's request and left its follow-up unanswered (R11), conceded an approximation A never heard about (R04), and the other three reviewers dropped after reading GwuL's review (R10); B also raised the same-prior test and credited the images to NCSNv2 (R07), partly on wrong reviewer claims (R01). Every mechanism here fits an existing reason, so none was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26"
+  ]
+}

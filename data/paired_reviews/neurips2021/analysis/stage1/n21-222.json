@@ -1,0 +1,228 @@
+{
+  "pair_id": "n21-222",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_enbB"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All three final ratings are 6 (Reviewer_ts1e, Reviewer_enbB, Reviewer_Hnha). Reviewer_enbB began below 6 ('therefore I give a borderline-reject rating') and rose to 6 after the rebuttal. No rating stands apart."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_enbB",
+          "claim": "The Euler discretization in eq (12) cannot be written as the two affine-coupling blocks claimed at l.306-307.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted eq (12) updates x_{n+1} with v_n, but l.306 composes (x_n, v_n) -> (x_n, v_{n+1}) -> (x_{n+1}, v_{n+1}), which needs v_{n+1} in the x-update. The authors conceded a typo ('alternating Euler'). The camera-ready adds a two-block expansion with v_{n+1}, but its eq (13) still prints v_n."
+        },
+        {
+          "reviewer": "Reviewer_enbB",
+          "claim": "Fact 1 is missing the Hessian: it should read ∇²U ⪰ λI.",
+          "checked_against_paper": "correct",
+          "evidence": "l.174: 'such that U(x) ⪰ λI'. Reviewer_Hnha and B's Reviewer_Jjda flagged the same line, and the authors conceded. The camera-ready Fact 1 is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_enbB",
+          "claim": "The derivative in Lemma 1, above l.244, should be with respect to (x_0, v_0), not x_0 alone.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemma 1 (l.242-243) says 'at x_0, v_0' but writes ||D_w T_t(x_0)||. The authors conceded; the camera-ready still writes T_t(x_0)."
+        },
+        {
+          "reviewer": "Reviewer_enbB",
+          "claim": "Zhang et al. [2020] proved a neural-ODE result, not an affine-coupling result, so the discussion at l.43-45 needs care.",
+          "checked_against_paper": "correct",
+          "evidence": "l.144-146: 'The former two show universal approximation of affine couplings'. The paper's own reference (l.431) is titled 'Approximation capabilities of neural odes and invertible residual networks'. The authors promised to add the subtleties; the camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_ts1e",
+          "claim": "Teshima et al. (2020) is in the references but not in the main text.",
+          "checked_against_paper": "correct",
+          "evidence": "The entry (l.422-424) has no back-reference page, while cited entries have one (Turaev: '5, 6, 7, 17, 20'), and the text never names it. Reviewer_enbB made the same point."
+        },
+        {
+          "reviewer": "Reviewer_ts1e",
+          "claim": "Remark 5 gives no explicit bound on the depth of the constructed flow.",
+          "checked_against_paper": "correct",
+          "evidence": "l.131-132: 'We do not provide a bound on the number of affine coupling blocks, although a bound can be extracted from our proofs.' The rebuttal gave polylog(ε)/ε^O(κ), and the camera-ready Remark 5 states it. No reviewer commented on its size."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_enbB"
+        ],
+        "evidence": "Reviewer_enbB's review was edited on 2021-08-24, the day of its comment 'I have increased my rating to 6 accordingly'. Its limitations text still says 'therefore I give a borderline-reject rating'. Reviewer_ts1e and Reviewer_Hnha did not reply or edit.",
+        "what_convinced_or_not": "Clarification, not new results. The common response explained where log-concavity enters (a Hessian bound under Gaussian convolution, Lemma 7). The authors also offered to retitle the paper and conceded the eq (12) typo. enbB: the problem 'seems innately non-trivial' and 'The authors have addressed most of my concerns'. Not resolved: the scope 'is still limited to log-concave distributions'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three 6s and a poster. The meta-review tracks Reviewer_enbB's post-rebuttal comment: 'the scope of the paper remains limited (log-concave distribution)' against enbB's 'still limited to log-concave distributions', and 'a strong foundation for future theoretical studies' against enbB's 'beneficial to the research in better understanding the expressive power of invertible architectures'. 'Clear exposition' follows Reviewer_ts1e, although enbB said the proof organization 'needs more work'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6 after the rebuttal: a novel proof that Gaussian-padded affine couplings approximate log-concave targets with a well-conditioned Jacobian.",
+        "The restriction to log-concave targets held every reviewer at 'marginally above'; Reviewer_enbB began at borderline reject on that ground alone.",
+        "The errors found (eq (12), Fact 1, Lemma 1 notation) were typos that the authors conceded.",
+        "The AC accepted the limited scope for the value of the technique to future theory, as a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Jjda",
+        "Reviewer_PyGo",
+        "Reviewer_yz9H",
+        "Reviewer_rkxh"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_NQpX), 7 (Reviewer_Jjda), 7 (Reviewer_PyGo), 7 (Reviewer_Z2tC), 6 (Reviewer_5zdr), 7 (Reviewer_yz9H), 7 (Reviewer_rkxh). Reviewer_5zdr's 6 is one point below the rest, and its text is as positive as any ('The novelty of this paper is high'), so it is not a detractor."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Z2tC",
+          "evidence": "195 words of generic praise ('the paper is very well written', 'sufficient merit') at confidence 2. It asks no question and names no section, equation or weakness. It answers limitations with 'I don't think this applies' and did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_5zdr",
+          "evidence": "225 words. It says 'I have checked the technique parts and find that the proofs are solid' but names no step, and it chose confidence 3, whose label says math was not carefully checked. It calls the related work 'adequately cited', while Reviewer_PyGo and A's Reviewer_enbB list omissions. It says the limitations are 'adequately addressed'; the paper states one limitation, in the last sentence of the conclusion (l.358). It did not reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_rkxh",
+          "claim": "Well-conditioning holds only for the full flow map; single affine-coupling layers may be ill-conditioned.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (l.110-113) bounds ||D_w f|| for the whole network f only. The authors: 'We don't explicitly have conditioning guarantees for individual layers, although we believe that they hold.' The camera-ready adds no per-layer result."
+        },
+        {
+          "reviewer": "Reviewer_rkxh",
+          "claim": "The first equation of system (1) has a wrong minus sign, and the covariance of ξ_t at l.250 is missing γ.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq (1) reads dx_t = −ζv_t dt, while the discretization at l.250 uses x_{t+η} = x_t + ηv_t. l.250 has ξ_t ~ N(0, 2ηI_d), against the √(2γ) dB_t noise in (1). The authors conceded both. The camera-ready fixes the γ and keeps the minus sign."
+        },
+        {
+          "reviewer": "Reviewer_Jjda",
+          "claim": "'U(x) ⪰ λI' at l.174 is confusing because U is a scalar.",
+          "checked_against_paper": "correct",
+          "evidence": "l.174 reads 'U(x) ⪰ λI'; the Hessian is missing. A's Reviewer_enbB and Reviewer_Hnha found the same typo."
+        },
+        {
+          "reviewer": "Reviewer_PyGo",
+          "claim": "The condition I_d ⪯ −∇² log p ⪯ κI_d restricts the class of targets.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (l.107) requires it, so the result covers strongly log-concave, smooth targets. That is narrower than 'any log-concave distribution' (abstract l.13-14, l.103) and Definition 2 (∇²U ⪰ 0). The authors' rescaling reply still needs a strictly positive lower bound. No reviewer in either committee pointed out the gap to the abstract."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_yz9H"
+        ],
+        "evidence": "Reviewer_yz9H's review, edited 2021-08-14: 'I'm increasing my score to 7'. Reviewer_PyGo (edited 2021-08-13) and Reviewer_Jjda (edited 2021-09-02) say they keep 7. Reviewer_rkxh (edited 2021-08-24) only thanks the authors. Reviewer_NQpX replied on 2021-08-18 and kept 7. Reviewer_Z2tC and Reviewer_5zdr did not reply or edit.",
+        "what_convinced_or_not": "The common response: log-concavity is needed for the Hessian bound under convolution (Lemma 7), and the result extends to continuous normalizing flows and residual flows. yz9H was 'satisfied' on both points. NQpX welcomed the extension but kept two reservations: log-concavity 'does restrict quite strongly the class', and nothing shows that trained flows approximate the Langevin map. rkxh's per-layer question drew a concession and no follow-up."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Six 7s and a 6, and a poster. The meta-review restates consensus strengths: 'clearly written and technically sound' (Reviewer_5zdr: 'technically sound', 'clearly written') and 'interesting connections between normalising flows, Langevin diffusions, Hénon maps' (Reviewer_rkxh: 'interesting connections between normalizing flows, Langevin evolution, and earlier research on Hénon maps'). It names no weakness, although five of seven reviewers raised log-concavity or practical relevance.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Six of seven reviewers gave 7 (mean 6.86) for a novel proof technique that links SDEs, Hénon maps and affine couplings, in a clear paper.",
+        "The log-concave scope and the missing practical implications counted against significance, not against acceptance (Reviewer_PyGo: the technique matters more than the result).",
+        "The rebuttal extended the result to continuous and residual flows and explained where log-concavity enters; Reviewer_yz9H rose to 7.",
+        "No reviewer argued for more than a poster; the AC restated the consensus strengths."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Title 'Universal Approximation' overclaims for log-concave targets (Reviewer_enbB); the camera-ready title adds 'For Log-concave Distributions'",
+    "Eq (12) is not the claimed two-block affine-coupling composition, and Lemma 1 drops v_0 (Reviewer_enbB; the paper confirms both)",
+    "Prior work: Huang et al. already noted the singularity and a different augmented ODE; Zhang et al. is a neural-ODE result; Teshima et al. is listed but never cited (Reviewer_enbB, Reviewer_ts1e)",
+    "Polynomial non-linearities rather than neural networks (Reviewer_ts1e, Reviewer_enbB)",
+    "Brownian motion B_t not defined in eq (1) (Reviewer_Hnha)"
+  ],
+  "issues_only_b": [
+    "No conditioning guarantee for single layers, only for the composed map (Reviewer_rkxh; conceded)",
+    "Why underdamped Langevin rather than the optimal-transport map, and whether trained flows learn the Langevin map (Reviewer_NQpX)",
+    "Extension to continuous normalizing flows and residual flows (Reviewer_NQpX, Reviewer_yz9H)",
+    "Missing work on the origin of flows and on ill-conditioned flows: Tabak and Vanden-Eijnden, Cornish et al., Behrmann et al. 2021 (Reviewer_PyGo)",
+    "Strength of the I ⪯ −∇² log p ⪯ κI condition, need for 2d padding, growth of the set C as ε falls (Reviewer_PyGo)",
+    "Sign error in eq (1) and missing γ at l.250 (Reviewer_rkxh)"
+  ],
+  "shared_issues": [
+    "Restriction to log-concave targets (A: Reviewer_ts1e, Reviewer_enbB, AC; B: Reviewer_NQpX, Reviewer_PyGo, Reviewer_5zdr, Reviewer_rkxh)",
+    "No experiments or practical implications (A: Reviewer_ts1e, Reviewer_Hnha; B: Reviewer_NQpX, Reviewer_PyGo, Reviewer_yz9H)",
+    "Hessian missing in Fact 1 at l.174 (A: Reviewer_enbB, Reviewer_Hnha; B: Reviewer_Jjda)",
+    "No explicit depth bound (A: Reviewer_ts1e; B: Reviewer_Jjda, Reviewer_NQpX)",
+    "Terse proof sketch; unclear roles of lemmas and parameters (A: Reviewer_enbB; B: Reviewer_NQpX, Reviewer_Jjda)",
+    "Where Gaussian padding and log-concavity enter the proof (A: Reviewer_enbB; B: Reviewer_rkxh, Reviewer_yz9H)",
+    "Related work on the universality of other flow families (A: Reviewer_ts1e, Reviewer_enbB; B: Reviewer_NQpX)",
+    "Limitations not clearly discussed (A: Reviewer_Hnha; B: Reviewer_NQpX, Reviewer_PyGo)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reasons. The paper proves that Gaussian-padded affine-coupling flows can approximate log-concave targets with a well-conditioned Jacobian. Reviewers in both committees called the proof technique novel, and nobody found an error beyond typos. Most reviewers named the same limits: log-concave targets only, and no experiments. No final rating is below 6 or above 7, so neither committee had a champion or a detractor. The committees weighted the same facts differently, and the difference stayed inside the poster band. Committee A gave three 6s (mean 6.0): a useful technique, but a narrow result. Committee B gave six 7s and one 6 (mean 6.86) for the same reading. Reviewer_PyGo, for example, calls the result unsurprising and the technique the contribution, and gives 7. B's thin reviews do not cause the gap: B's five substantive reviewers all gave 7. Neither committee weighed two points that the paper confirms. First, Theorem 1 (l.107) needs I ⪯ −∇² ln p ⪯ κI, a strongly log-concave and smooth target. That is narrower than \"any log-concave distribution\" in the abstract. Second, the rebuttal gave a depth bound of polylog(ε)/ε^O(κ), and nobody commented on its size.",
+  "candidate_reasons": [
+    "Novel technique outweighs narrow scope",
+    "Same facts, different score calibration",
+    "No champion, detractor or fatal flaw",
+    "Rebuttal lifted one reviewer each",
+    "Errors found were fixable typos",
+    "Theorem narrower than abstract, unnoticed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_enbB final review (limitations: 'borderline-reject rating') and comment of 2021-08-24",
+    "Reviewer_ts1e final review",
+    "Reviewer_PyGo final review, Significance section",
+    "Reviewer_yz9H final review, post-rebuttal line",
+    "Reviewer_rkxh final review and the authors' reply on per-layer conditioning",
+    "Reviewer_NQpX reply of 2021-08-18",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf abstract l.13-14 and Theorem 1 (l.105-113)",
+    "paper_submitted.pdf eq (1), Fact 1 (l.173-174), Lemma 1 (l.240-244), l.250",
+    "paper_submitted.pdf eq (12) and l.306-307",
+    "paper_submitted.pdf Remark 5 (l.131-132), related work l.144-146, references l.422-431",
+    "paper.pdf (camera-ready) title, Remarks 5-6, Fact 1, eq (13)"
+  ]
+}

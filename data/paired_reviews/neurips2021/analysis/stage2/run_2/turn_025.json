@@ -1,0 +1,233 @@
+{
+  "run": 2,
+  "turn": 25,
+  "pair_id": "n21-033",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "5dG2's 'only does well' with a good behaviour policy overstates (ICQ leads on AntMaze medium and large), but its core claim, ICQ trailing CQL on random and medium-replay tasks, is correct."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "A's AC lifted four 7s at confidence 2 to 3, with no reviewer arguing above accept, to a spotlight on 'strong theoretical insight' that no reviewer said it had checked."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's Reviewer_P8yc gave 7 at confidence 2 with no reason beyond 'seem to gain improved performance', and that 7 made up A's uniform 'consensus' the AC built the spotlight on."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors conceded the under-run CQL baseline and swapped in published numbers only on B's forum; A's forum has no such concession, and A's D4RL table shows higher ICQ means than B's in 7 of 8 differing rows."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "Neither committee ignored a known flaw: A never learned of the CQL under-run, and both weighed the poor-data weakness, A as a limitation."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "All eight reviewers in both committees raised after the rebuttal."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B's reviewers caught that the submitted CQL scores fell far below CQL's published ones and tied the method to EMaQ, BRAC and KL-control; no A reviewer raised either."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the expanded D4RL table and the weak results on low-quality data; A's AC called the table 'substantial additional empirical evidence' and icWA filed the weakness as a limitation, while B's 5dG2 read it as 'mixed' and kept a weak reject."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's meta-review echoes 5dG2's 'not fully convinced', but its deciding line is the AC's own judgement that the edits need another review round."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer cited the other reviews as the reason for a score change."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "No reviewer's score fell or held because the authors misread or skipped a question."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "P8yc's and xr9t's reviews are thin but both engaged with the rebuttal; P8yc's case is covered by R03."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's final ratings were 6, 6, 5, 5, not a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC stated a positive view and then decided on a score threshold."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "B's sub-threshold 5s rest on central points, the mixed single-agent results and the framing and baselines."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "A judged an offline multi-agent RL contribution and praised its timeliness, while B judged it against the single-agent offline RL literature, and Rr7B argued the method is single-agent at heart."
+    },
+    {
+      "id": "R17",
+      "applies": true,
+      "justification": "In A, every confidence label says the math was not checked; P8yc (confidence 2) and 559w raised to 7 after derivations of Z and the KL loss plus promised clarity edits, and those 7s formed the consensus."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The different bars here come from different kinds of contribution (R16) and different scrutiny of baselines (R07), not one paper type held to an extra requirement."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's praise for the single-agent results rested on the paper's own flawed baseline, not on a reviewer's wrong factual claim."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No reviewer said its main concern was resolved and then kept the same score; all raised."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "B's AC rejected because the rebuttal's results and promised retitling and edits 'warrant another round of reviews', while A credited the rebuttal table and promised clarity edits."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer's stated stance diverged from its rating."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No off-record extra reviewer appears in either committee."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "The expertise gap shaped the checking of baselines and novelty, not verdicts on clarity."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Every raise came with a stated reason, and no raised reviewer's text still argued against acceptance."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "No AC set aside a silent detractor."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee rated above 7 or argued for more than accept."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "xr9t spent 2 hours at confidence 5 but admitted no partial reading."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "Rr7B's single-agent objection is about framing the contribution, not a rival theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "A's AC gave reasons for the spotlight (theoretical insight, empirical results, timeliness); R02 covers the gap."
+    }
+  ],
+  "added": [
+    {
+      "id": "R31",
+      "name": "Only one committee's reviewers knew the baseline literature",
+      "definition": "One committee's reviewers knew the closely related prior literature and checked the paper's baselines and novelty against published results, while the other committee's reviewers, less familiar with it, scrutinised derivations and presentation and took the reported comparisons at face value.",
+      "justification": "R07 names the effect, an issue raised in one committee only, and R24 ties expertise to clarity verdicts; neither names the cause here, a gap in familiarity with the prior literature that set how deeply each committee checked baselines and novelty."
+    }
+  ],
+  "reasoning": "The stage 1 verdict puts the main cause in reviewer expertise: B's reviewers knew single-agent offline RL and checked the CQL baseline and novelty, A's did not. R07 captures what B raised; the new R31 captures why. The authors' concession of the CQL under-run reached B's forum only (R04, checked in A's discussion). Beyond that, the ACs weighted the same rebuttal table differently (R08), B's AC demanded re-review of promised edits (R21), and A's AC lifted uniform 7s from low-confidence reviewers, one praise-only at confidence 2, to a spotlight (R02, R03, R17). A judged an offline multi-agent contribution and B a single-agent method (R16).",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31"
+  ]
+}

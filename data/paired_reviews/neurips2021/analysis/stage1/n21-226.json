@@ -1,0 +1,238 @@
+{
+  "pair_id": "n21-226",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        2,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_SRUt"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_SRUt, confidence 2), 6 (Reviewer_mM4N, confidence 3) and 6 (Reviewer_jHsk, confidence 4). There is no spread."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_mM4N",
+          "claim": "The upper bound (15), even with (14), does not prove consistency in the sense of (3).",
+          "checked_against_paper": "correct",
+          "evidence": "(3) needs Δ⁻¹ d_Haus → 0. With (13), the bound (15) gives only Δ⁻¹ d_Haus ≤ C/c, a constant. The submission still claims (3): l.142-143 ('the final output Λ̂ satisfies (3)'), l.229-230 and l.256-257 ('is consistent for the partition recovery problem'). The authors replied 'we do not claim that Theorem 2 implies consistency in the sense of (3)' and gave the missing condition. The camera-ready adds 'provided that κ⁻²σ²k_dyad(θ*)log(N)/Δ → 0'."
+        },
+        {
+          "reviewer": "Reviewer_SRUt",
+          "claim": "The P_N condition in Proposition 3 does not yield κ²Δ ≥ σ² log(N)/6.",
+          "checked_against_paper": "correct",
+          "evidence": "l.287 reads 'κ√Δ/σ ≥ σ² log(N)/6'. The authors called it a typo on 2021-09-02. The camera-ready reads 'κ²Δ/σ² ≥ log(N)/6'."
+        },
+        {
+          "reviewer": "Reviewer_SRUt",
+          "claim": "Assumption 1 has the same scaling as the result of Theorem 2, and the paper does not discuss why.",
+          "checked_against_paper": "correct",
+          "evidence": "(12), and (13) solved for Δ, are both of order k_dyad(θ*)κ⁻²σ² log(N), the order of the bound in (15). l.245-250 explain the assumption but not this match. The authors explained it in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_SRUt",
+          "claim": "In Theorem 2 (l.252) the second λ1 should be λ2.",
+          "checked_against_paper": "correct",
+          "evidence": "l.252: 'λ1 = C1σ² log(N), λ1 = C2 k_dyad(θ*)σ² log(N)'. B's Reviewer_qw8i found the same typo. The camera-ready fixes it."
+        },
+        {
+          "reviewer": "Reviewer_SRUt",
+          "claim": "The experiments do not show that the theoretical findings are mirrored in practice.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 uses one lattice size, (d, n) = (2, 2^7) (l.325), so no rate in N is tested. It also runs 'the naive two-step estimator detailed in Section S4' (l.317), the η-free variant of l.277-280, not the estimator of Theorem 2."
+        },
+        {
+          "reviewer": "Reviewer_mM4N",
+          "claim": "The two-step estimator beats the TV-based estimator on dist2 but not systematically on dist1.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: better on dist2 in all 12 cells. On dist1 the TV-based estimator is lower in setting 4 at every σ and in setting 2 at σ = 0.5 (4 of 12 cells)."
+        },
+        {
+          "reviewer": "Reviewer_jHsk",
+          "claim": "The upper and lower bounds differ by a factor k*, which is removed only under an extra assumption that the partition is not dense.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2, (15), against Proposition 3. Corollary 4 (l.303-309) reaches σ²κ⁻² log(N) under Assumption 2 (l.299). The paper calls the k_dyad factor an open problem (l.249-250, l.344-346)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_SRUt"
+        ],
+        "evidence": "Reviewer_SRUt's review was edited on 2021-09-02: 'Raise rating from 5 to 6, as discussed in comments/responses below.' SRUt's comment that day: 'I'm very happy to raise my rating to a 6 (was previously 5)'. Reviewer_jHsk (2021-09-01): 'My main concerns ... remain and therefore I will maintain my score.' Reviewer_mM4N did not edit or reply.",
+        "what_convinced_or_not": "Clarification moved SRUt: the authors said that the Theorem 2 rate is set jointly by Assumption 1 and the optimal rate, and that Assumption 1 makes the problem easier by a factor k_dyad relative to Proposition 3. They also conceded the P_N typo that SRUt then found. jHsk was not moved: the k* gap and the simple merging fix remain, and the authors confirmed that their bound for the NP-hard estimator keeps k*. mM4N's consistency objection got a denial plus the missing condition and no reviewer response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences of problem summary, then: 'modulo some issues with the presentation, the reviewers agreed that this work is slightly above the acceptance threshold.' This matches the three 6s. The meta-review names no strength, no specific weakness and no reviewer.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6 after Reviewer_SRUt rose from 5: new theory for partition recovery in d ≥ 2, built on a well-known algorithm.",
+        "Weaknesses judged not fatal: the k* gap between the bounds and a 'straightforward' merging fix (Reviewer_jHsk), an overstated consistency claim (Reviewer_mM4N), dense presentation and typos (Reviewer_SRUt).",
+        "The AC ratified the scores as 'slightly above the acceptance threshold'."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_2a7D"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_ZZUp, confidence 3), 6 (Reviewer_2a7D, confidence 2) and 7 (Reviewer_qw8i, confidence 4). The 7 is one point above the others. It rests on generic praise ('supported by solid theory and experiments') and clarification questions. qw8i did not reply after the rebuttal, and the meta-review does not cite it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_2a7D",
+          "evidence": "Confidence 2, 5 hours. The paper contradicts both experimental objections as stated: Figure 3 already has regions of unequal size, and the TV-based competitor (l.322-324) is a denoise-then-prune baseline. 2a7D raised the score citing 'the link between partition geometry and performances', which the authors' reply states in one unsupported sentence ('as the support sizes grow larger, the performance ... would deteriorate')."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qw8i",
+          "claim": "The description does not make clear whether (4) and (8) are solved by greedy splits or by an exhaustive search.",
+          "checked_against_paper": "correct",
+          "evidence": "l.58 says DCART computes partitions 'in a greedy manner', l.115-116 describe split-by-split selection, and l.129 cites 'the greedy nature' of the procedure. But (4) is an exact arg min over all dyadic partitions. The authors replied that DCART uses Donoho's dynamic programming and 'is not a greedy algorithm'. The camera-ready drops 'greedy' and says the estimator 'can be obtained via dynamic programming with a computational cost of O(N)'."
+        },
+        {
+          "reviewer": "Reviewer_qw8i",
+          "claim": "Theorem 2 has a typo: one λ1 should be λ2.",
+          "checked_against_paper": "correct",
+          "evidence": "l.252. A's Reviewer_SRUt found the same typo. The camera-ready fixes it."
+        },
+        {
+          "reviewer": "Reviewer_qw8i",
+          "claim": "The merge rule (9) does not require the two rectangles to be neighbours.",
+          "checked_against_paper": "correct",
+          "evidence": "(9) is dist(R_i, R_j) ≤ η. The authors defended it as deliberate."
+        },
+        {
+          "reviewer": "Reviewer_ZZUp",
+          "claim": "Definition 1 switches from θ ∈ R^{L_{d,n}} to θ ∈ L_{d,n}.",
+          "checked_against_paper": "correct",
+          "evidence": "l.33-34: 'associated with a vector θ ∈ R^{L_{d,n}}' and then 'For a vector θ ∈ L_{d,n}'."
+        },
+        {
+          "reviewer": "Reviewer_ZZUp",
+          "claim": "The text from l.327 mislabels the columns of Figure 3.",
+          "checked_against_paper": "correct",
+          "evidence": "l.327-328 put the signal in the third column and DCART and the two-step estimator in the first and second. The caption puts y, θ*, DCART and the merged estimate in columns 1 to 4."
+        },
+        {
+          "reviewer": "Reviewer_ZZUp",
+          "claim": "The estimator is minimax optimal only when k_dyad(θ*) is constant.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollary 4 (l.303-309) gives the optimal rate σ²κ⁻² log(N) with diverging k_dyad(θ*) under Assumption 2: 'even if k_dyad(θ*) is diverging ... one can still achieve the minimax optimal estimation error rate'. The SNR condition (13) still carries the k_dyad factor, so ZZUp's concern about growth in d stands for Theorem 2 and (13)."
+        },
+        {
+          "reviewer": "Reviewer_2a7D",
+          "claim": "The experiments lack cases in which the constant regions have different support sizes.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 3, scenario 4: four small corner rectangles, a larger centre rectangle and a large background. Scenario 3: an L-shaped strip and a corner block. What is missing is a sweep over region size or number of regions."
+        },
+        {
+          "reviewer": "Reviewer_2a7D",
+          "claim": "A naive baseline that denoises and then thresholds to recover the partition is missing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.322-324: the competitor is the same pruning applied to the total-variation estimator, a denoise-then-merge baseline. Only a low-pass filter variant is absent."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_2a7D"
+        ],
+        "evidence": "Reviewer_2a7D's review, edited 2021-08-22, adds 'UPDATE AFTER DISCUSSION ... I have updated my score as I believe that with those discussions, the paper would be above the acceptance level'. The earlier score is not visible; the wording puts it below the threshold. Reviewer_ZZUp (2021-09-01): 'will stick to my current evaluation of a weak accept'. Reviewer_qw8i did not edit or reply.",
+        "what_convinced_or_not": "Assertion and promises moved 2a7D: a stock motivation paragraph (biclustering, surveillance, anomalous clusters; the same text went to Reviewer_ZZUp and to A's Reviewer_jHsk), a remark on non-axis-aligned data, a promise of more experiments, and one unsupported sentence on support size. ZZUp found the motivation reply 'very helpful' but still saw no application where signal recovery fails. ZZUp kept the d-suboptimality objection, which the authors conceded ('the dependence on the dimensionality d is not satisfactory'). qw8i's questions got full answers (exact dynamic programming, O(n^d) cost, why merging is still needed) and no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'an interesting framework', 'a few interesting theoretical results', and 'Given that the authors address the concerns of the reviewers satisfactorily, the paper should be accepted'. This matches 6, 6, 7. It overstates the rebuttal: Reviewer_ZZUp's last comment says the motivation and d-suboptimality concerns remain.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All ratings at or above 6 after Reviewer_2a7D rose: Reviewer_ZZUp ('I really like the technical contributions') and Reviewer_qw8i ('solid theory') valued the analysis.",
+        "Weak motivation for partition over signal recovery and the k_dyad suboptimality held Reviewer_ZZUp at weak accept. No reviewer argued for more than a poster.",
+        "The AC accepted on the view that the rebuttal resolved the concerns."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theorem 2 does not give consistency (3) without a further signal-to-noise condition (Reviewer_mM4N; confirmed, fixed in the camera-ready)",
+    "Assumption 1 has the same scaling as the Theorem 2 bound; the Proposition 3 example against Assumption 1, and its wrong P_N condition (Reviewer_SRUt; typo confirmed)",
+    "The merging fix is 'a bit straightforward'; can an inefficient (NP-hard) estimator close the k* gap (Reviewer_jHsk)",
+    "No simulation of the rate in N and no complexity analysis of the merging step (Reviewer_mM4N); brief evaluation, Δ not reported, theory not mirrored (Reviewer_SRUt)",
+    "Value of general d beyond 3 or 4 (Reviewer_SRUt)"
+  ],
+  "issues_only_b": [
+    "How (4) and (8) are solved and how large the search space is; the paper calls DCART greedy (Reviewer_qw8i; confirmed, fixed in the camera-ready)",
+    "Why merge when the penalty already discourages over-partitioning, and why merge non-adjacent rectangles (Reviewer_qw8i)",
+    "Non-axis-aligned partitions, oblique and differentiable trees (Reviewer_2a7D)",
+    "Experiments with other region sizes and naive baselines (Reviewer_2a7D; contradicted in part by Figure 3 and the TV-based competitor)",
+    "k_dyad can grow exponentially in d, e.g. for hypercubes; Definition 1 and Figure 3 text slips (Reviewer_ZZUp; slips confirmed)"
+  ],
+  "shared_issues": [
+    "The k_dyad(θ*) factor: the upper bound exceeds the lower bound, and optimality holds only in special cases (A: Reviewer_jHsk, Reviewer_SRUt; B: Reviewer_ZZUp)",
+    "Thin motivation and an unclear relation between partition recovery and signal estimation (A: Reviewer_SRUt, Reviewer_jHsk; B: Reviewer_ZZUp, Reviewer_2a7D)",
+    "Dense or ambiguous presentation (A: Reviewer_SRUt, Reviewer_mM4N, AC; B: Reviewer_qw8i, and Reviewer_ZZUp on Definition 1)",
+    "λ1 written for λ2 in Theorem 2, l.252 (A: Reviewer_SRUt; B: Reviewer_qw8i)",
+    "New, technically clean theory for d ≥ 2 (all six reviewers)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. All six reviewers rated the paper at the threshold or one point above it (A: 6, 6, 6; B: 6, 6, 7). All six saw new, clean theory for partition recovery on d-dimensional lattices. They also saw the same limits: a simple merging step on a known algorithm (DCART), thin motivation for partition recovery over signal recovery, and a k_dyad(θ*) gap between the upper and lower bounds that the paper itself admits (l.249-250, l.344-346). In each committee, one confidence-2 reviewer started below the threshold and rose to 6 after the rebuttal (Reviewer_SRUt from 5 in A; Reviewer_2a7D in B). Neither committee had a champion or a detractor, and both ACs restated the scores. So the agreement shows a uniformly lukewarm reception, not a strong paper. The committees differed in what they probed, not in what they concluded. A probed the theorems: Reviewer_mM4N correctly found that the bound (15) does not give the consistency (3) that the paper claims, and Reviewer_SRUt found a wrong condition in Proposition 3. B probed the algorithm and the motivation: Reviewer_qw8i correctly found that the paper calls DCART greedy although (4) is an exact minimization. Both committees treated these errors as fixable presentation, and the camera-ready fixes all three. No reviewer noticed that the experiments run the η-free variant of Section S4 (l.317) at one lattice size, so the simulations test neither the estimator of Theorem 2 nor its rate.",
+  "candidate_reasons": [
+    "Uniform near-threshold scores on both",
+    "Same strengths and gaps recognised",
+    "Rebuttal lifted one low-confidence reviewer",
+    "No champion and no detractor",
+    "Technical errors treated as presentation",
+    "ACs ratified reviewer scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_SRUt final review (edit note '5 to 6') and comments of 2021-09-02",
+    "Reviewer_mM4N final review and authors' reply on Theorem 2 consistency",
+    "Reviewer_jHsk final review and comment of 2021-09-01",
+    "Reviewer_ZZUp final review and comment of 2021-09-01",
+    "Reviewer_2a7D 'UPDATE AFTER DISCUSSION' section and authors' reply of 2021-08-10",
+    "Reviewer_qw8i final review and authors' reply on the algorithm",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf l.142-143, l.229-230, l.256-257 (consistency claims) and Assumption 1, (12)-(13)",
+    "paper_submitted.pdf l.252 (λ1 twice) and l.287 (P_N condition)",
+    "paper_submitted.pdf l.58, l.115-116, l.129 (DCART called greedy) against (4)",
+    "paper_submitted.pdf Corollary 4 (l.303-309)",
+    "paper_submitted.pdf Section 3: l.317, l.322-325, Table 1, Figure 3",
+    "paper.pdf (camera-ready): Theorem 2 remark and the dynamic-programming sentence after (4)"
+  ]
+}

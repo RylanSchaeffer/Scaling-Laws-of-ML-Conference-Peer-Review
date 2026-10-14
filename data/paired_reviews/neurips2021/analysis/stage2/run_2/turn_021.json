@@ -1,0 +1,205 @@
+{
+  "run": 2,
+  "turn": 21,
+  "pair_id": "n21-065",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's AWCx (5, confidence 2) asked whether the power-cell Lloyd algorithm is a contribution, though the paper credits it to [11] and [14] and claims only the analysis; A's T7tc misread eq. (15) but its suspected typo did not drive its score, and no A reviewer made AWCx's error."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's AC overstated the reviewers' view of the experiments, but the spotlight matches ratings 9/8/7/6 (mean 7.5); the chair followed the scores rather than setting a tier above them."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "A's high ratings (u2eX 9, nnEq 8, both confidence 4) rest on detailed proof checks, not enthusiasm; B's light fudr 7 at confidence 3 did not carry B's decision."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Only on B's forum did the authors concede to Xcrv that an i.i.d. N-sample from rho 'achieves a better convergence rate'; A never saw this admission."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "A learned that the method needs the density ('not studied yet') and that Theorem 7 is weaker than the one-step bound, yet accepted Theorem 7 on a promise of a future proof strategy, and its meta-review did not weigh these gaps."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In A, gM3z raised its score to 7 after the tightness reply; in B no score moved after the rebuttal."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B raised the missing comparison with an i.i.d. N-sample (Xcrv), the cost of computing power-cell barycenters (t3bd, AWCx) and the uncited gradient-flow claim, and B's AC built the rejection on these."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the gap to the optimal N^(-2/d), the weak Theorem 7, 2D-only experiments and the need for the density; A treated them as future work, B's AC as 'important aspects that are not treated'."
+    },
+    {
+      "id": "R09",
+      "applies": true,
+      "justification": "B's AC split ratings 6/7/5/5 by adopting Xcrv's i.i.d.-sample point and t3bd's cost point and did not weigh fudr's 7 or t3bd's 'close to being ready for publication'; stage 1 marks the meta-review as leaning on a specific reviewer."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "t3bd cited 'issues raised by other reviewers' but kept its 6; no score moved because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": true,
+      "justification": "The authors did not answer Xcrv's follow-up on the uncited gradient-flow experiments, and Xcrv stayed at 5, the score the AC leaned on."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's AWCx (5, confidence 2) restated the abstract, listed only minor items and posted nothing after the rebuttal, and its below-threshold rating counted in a split panel."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's ratings 6/7/5/5 split two and two; the AC did not reject against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's AC stated no positive view of the paper; it called the work 'too preliminary'."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "Xcrv's 5 rests on the i.i.d.-sample comparison, which is central to what the result buys, and the authors conceded rather than answered it."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "A read the paper as an explanation of why a non-convex method works; B read it as an approximation method and asked what it buys over sampling and at what cost."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "gM3z (confidence 3) raised on the technical tightness argument and did not say the core was outside its expertise."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The difference is in what kind of contribution each committee read (R16), not two bars for one agreed kind."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's overstatement of 'strong numerical contributions' came from the AC's meta-review, not from a reviewer's wrong claim behind a high score."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No below-threshold reviewer said its main concern was resolved; Xcrv's concern was conceded, not answered, and t3bd stayed at 6."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "No record shows the authors promised B the sample comparison or a cost analysis; the difference is how the same gaps were weighted (R08)."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer stated a changed position that its score did not reflect."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No late extra reviewer appears in either committee."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "AWCx's 'not well-written' is a low-confidence complaint, but no A domain expert is on record reading the exposition as clear in contrast, and clarity did not drive B's decision."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "AWCx edited its review without comment, but no raised rating against its own text is visible."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Neither AC set aside a silent detractor."
+    }
+  ],
+  "added": [
+    {
+      "id": "R27",
+      "name": "Invested champion present in one committee only",
+      "definition": "One committee had a reviewer who rated the paper well above the acceptance threshold on a detailed, checked reading and argued for it, while the other committee had no reviewer rating it that high, so no one there advocated for acceptance.",
+      "justification": "R03 covers a champion whose score rests on enthusiasm, not specifics; no reason names the opposite mechanism, a well-grounded advocate present in one committee and absent in the other, which here separates a 7.5 mean with two proof-checked high ratings from a 5.75 mean with none above 7."
+    }
+  ],
+  "reasoning": "Stage 1 finds the committees weighted the same facts differently and that one correct point, the missing i.i.d.-sample comparison, reached only B, where the authors conceded it. That gives R04, R07, R08 and R16. The rebuttal moved gM3z in A only (R06). B's AC built the reject on Xcrv's and t3bd's points (R09), with Xcrv's follow-up unanswered (R11) and AWCx's thin 5 counted (R12, R01 for its wrong contribution claim). A accepted density access and Theorem 7 as future work on a promise (R05). The remaining asymmetry, two proof-checking champions rating 9 and 8 in A against no B rating above 7, has no existing reason, so R27 is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27"
+  ]
+}

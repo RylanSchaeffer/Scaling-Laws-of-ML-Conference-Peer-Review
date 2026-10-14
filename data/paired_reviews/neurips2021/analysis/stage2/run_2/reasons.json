@@ -190,5 +190,69 @@
     "created_by_pair": "n21-121",
     "created_turn": 18,
     "exemplar": "A's Reviewer_oT7u 'had to read into related work' to follow the method and asked for rejection over the rewrite, while B's computational-anatomy expert xE8n called the paper well written."
+  },
+  {
+    "id": "R25",
+    "name": "Reviewer raised score silently against own text",
+    "definition": "A reviewer in one committee raised their rating after the rebuttal with no stated reason while their review text still argued against acceptance, and the committee counted the raised rating.",
+    "created_by_pair": "n21-096",
+    "created_turn": 19,
+    "exemplar": "B's Reviewer_DgEc edited its rating to 7 on 2021-08-31 with no comment, while its text still says the extensions are not 'enough to warranty an acceptance', and B's AC read the panel as having 'clearly shifted towards a mean of 7'."
+  },
+  {
+    "id": "R26",
+    "name": "Area chair set aside a silent detractor",
+    "definition": "One committee's area chair discounted a low rating because its reviewer did not respond to the rebuttal or discussion, so the decision followed the remaining reviewers, while the other committee counted a comparable unengaged rating.",
+    "created_by_pair": "n21-096",
+    "created_turn": 19,
+    "exemplar": "B's AC set aside Reviewer_456H's 4 because it never replied to the rebuttal and accepted on three 7s, while A's equally silent Reviewer_Wt3P's 4 counted toward rejection."
+  },
+  {
+    "id": "R27",
+    "name": "Invested champion present in one committee only",
+    "definition": "One committee had a reviewer who rated the paper well above the acceptance threshold on a detailed, checked reading and argued for it, while the other committee had no reviewer rating it that high, so no one there advocated for acceptance.",
+    "created_by_pair": "n21-065",
+    "created_turn": 21,
+    "exemplar": "A's Reviewer_u2eX (9, 7 h) and Reviewer_nnEq (8, 10 h) checked the proofs and backed the paper, while no B reviewer rated above 7 or spent more than 4 h, and B's AC rejected split 6/7/5/5 ratings."
+  },
+  {
+    "id": "R28",
+    "name": "Partial-reading reviewer claimed high confidence",
+    "definition": "A reviewer in one committee admitted reading only part of the paper yet rated with high or top confidence, and that review's objections set the tone or entered the decision.",
+    "created_by_pair": "n21-062",
+    "created_turn": 22,
+    "exemplar": "B's Reviewer_69AE gave a confidence-5 'firm no' after reading 'until page 5 ... then I gave up', and B's AC presented its VAE objection as the reviewers' shared view."
+  },
+  {
+    "id": "R29",
+    "name": "Reviewer's theoretical school contested the premise",
+    "definition": "Reviewers in one committee read the paper from a different theoretical tradition than its own and made the premise or framing a central objection, while the other committee's reviewers accepted the framing and judged the results within it.",
+    "created_by_pair": "n21-062",
+    "created_turn": 22,
+    "exemplar": "B's Reviewer_69AE and Reviewer_ATkA read the lossless-optimality framing from variational-inference and information-bottleneck positions and made it central, while A's 9TAc found it 'very difficult to digest' and moved on."
+  },
+  {
+    "id": "R30",
+    "name": "Award tier assigned without a stated case",
+    "definition": "One committee placed the paper in an award tier although its meta-review argued only for acceptance, or doubted even that, and gave no reason for the higher tier, so the tier gap between committees rests on no stated assessment.",
+    "created_by_pair": "n21-053",
+    "created_turn": 23,
+    "exemplar": "B's AC shared K4dB's overclaiming concern and concluded only that the work 'may be enough for justifying publication', yet the paper became a spotlight."
+  },
+  {
+    "id": "R31",
+    "name": "Only one committee's reviewers knew the baseline literature",
+    "definition": "One committee's reviewers knew the closely related prior literature and checked the paper's baselines and novelty against published results, while the other committee's reviewers, less familiar with it, scrutinised derivations and presentation and took the reported comparisons at face value.",
+    "created_by_pair": "n21-033",
+    "created_turn": 25,
+    "exemplar": "Three of B's reviewers saw that the submission's D4RL CQL scores fell far below CQL's published ones and tied ICQ to EMaQ, BRAC and KL-control, while A's reviewers, all at confidence 2 or 3, asked about the partition function and notation and called the single-agent results 'already impressive'."
+  },
+  {
+    "id": "R32",
+    "name": "Area chair misstated reviewers' final positions",
+    "definition": "One committee's meta-review described its reviewers' final positions or the remaining concerns in a way the forum record contradicts, such as calling all reviewers negative when one rated above threshold or omitting results the rebuttal supplied, in the direction of the chair's lower decision.",
+    "created_by_pair": "n21-003",
+    "created_turn": 28,
+    "exemplar": "A's AC wrote 'In the end, all reviewers were negative' although Reviewer_nMFp's 6 was never edited, and its concern list omitted the BDD100K test and KITTI-MOTS results the rebuttal supplied."
   }
 ]

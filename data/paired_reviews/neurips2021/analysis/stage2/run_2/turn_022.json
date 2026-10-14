@@ -1,0 +1,219 @@
+{
+  "run": 2,
+  "turn": 22,
+  "pair_id": "n21-062",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's Reviewer_69AE based its 'firm no' partly on two wrong claims (PCA inconsistent with Definition 1; the infinite gradient is overfitting), and ATkA's wrong 'Gaussian likelihood only' scope claim reached B's meta-review; A's one wrong claim (9TAc on 1/γ) did not affect its score."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's spotlight follows unanimous 7, 7, 8 (mean 7.33); the AC concurred with the reviewers rather than setting a tier above them."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "A's high ratings all carry confidence 4 and rest on specific checks, such as e4Tf's quantifier point; no enthusiasm-only review."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors conceded to B only that the claims should be limited to lossless settings and offered a narrower Definition 1; they confirmed to A only that Theorem 4 is an existence result."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "A learned that Theorem 4 holds only existentially and that Eq. (6) is not generic, yet accepted promised rewordings on trust and asked only for 'slightly more careful quantification'; nobody asked to see the revised text."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "Scores rose after the rebuttal in both committees (e4Tf in A; ATkA, f5mJ, 69AE in B)."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B raised the single unrepeated CelebA experiment with no sparsity measure, the degenerate zero-reconstruction case for VAEs and the missing prior-work section, and B's AC used these."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the claims overreach Theorem 4 and the dependence on Dai and Wipf (2019); A treated this as camera-ready edits, B's AC as 'a serious issue for a theoretical work' needing 'a major revision'."
+    },
+    {
+      "id": "R09",
+      "applies": true,
+      "justification": "B's AC presented 69AE's VAE-applicability objection as the reviewers' shared view ('they were not convinced'), though ATkA wrote 'In contrast to reviewer 69AE', and the AC posted nothing of its own."
+    },
+    {
+      "id": "R10",
+      "applies": true,
+      "justification": "B's Reviewer_f5mJ raised to 6 'after analysing all discussions' without taking part in them."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "No sign the authors misread or ignored a reviewer; 69AE, not the authors, left the exchange unanswered."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "69AE's review is inattentive but not thin: it makes specific claims, posted twice and adjusted its score, and ATkA challenged it; R28 names its mechanism."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "B's AC rejected on final ratings 6, 6, 6, 5 with three of four above threshold and ATkA 'will not oppose accepting'; no score moved down to back the decision."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's AC stated no positive view of its own and did not decide by a score threshold."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "69AE's 5 rests on VAE applicability, which is central to the paper's claims, not peripheral."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees evaluated the paper as a theoretical analysis of VAE/AE objectives."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's reviewers all had confidence 4 and engaged the theory; no reviewer said the core was outside their expertise."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The extra demands in B (precise claims, prior-work comparison) are the same weaknesses weighted differently (R08), not a different bar for the paper type."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No praise in A rests on a wrong checkable claim."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "69AE moved up from a 'firm no' to 5 after retracting its 'bad paper' claim; no reviewer kept the same score after conceding its main concern."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "A's AC accepted the promised extension of Theorem 4 for the camera-ready; B's AC called the same changes 'a major revision' requiring resubmission, and ATkA would not rate high without seeing the revision."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "ATkA's 'will not oppose accepting' matches its 6; no stance diverged from a score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No extra reviewer was called in."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Background shaped premise objections in B, not clarity verdicts; reviewers in both committees found Definition 1 (ii) hard to read."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "f5mJ raised with a stated reason; no rating rose against its own text."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "B's AC did not set aside 69AE; it adopted 69AE's objection."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "A's Reviewer_e4Tf rated 8 at confidence 4 after a detailed reading that found the Theorem 4 quantifier gap; B had no rating above 6 and stage 1 notes 'no champion'."
+    }
+  ],
+  "added": [
+    {
+      "id": "R28",
+      "name": "Partial-reading reviewer claimed high confidence",
+      "definition": "A reviewer in one committee admitted reading only part of the paper yet rated with high or top confidence, and that review's objections set the tone or entered the decision.",
+      "justification": "R12 covers a thin review that does not engage; 69AE engaged and made specific claims, but rated with top confidence a paper it admittedly had not finished, a separate failure no reason names."
+    },
+    {
+      "id": "R29",
+      "name": "Reviewer's theoretical school contested the premise",
+      "definition": "Reviewers in one committee read the paper from a different theoretical tradition than its own and made the premise or framing a central objection, while the other committee's reviewers accepted the framing and judged the results within it.",
+      "justification": "R24 covers expertise distance shaping clarity verdicts and R16 different kinds of contribution; neither names reviewers whose own school of thought made them reject the paper's premise."
+    }
+  ],
+  "reasoning": "Stage 1 finds both committees agreed on the facts but priced the same overclaiming differently (R08): A accepted promised fixes on trust (R05, R21), while B's AC rejected 6, 6, 6, 5 ratings as needing a major revision (R13) and presented 69AE's objection as everyone's (R09). Each side heard different concessions (R04), B alone raised the thin experiment and VAE degeneracy (R07), f5mJ moved on the others' discussion (R10), wrong claims fed B's criticism (R01), and A had a checked 8 with no B counterpart (R27). Two causes lacked a reason: 69AE's top-confidence review of a half-read paper (R28), and B reviewers' theoretical school turning the framing into a premise objection (R29).",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29"
+  ]
+}

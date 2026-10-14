@@ -1,0 +1,252 @@
+{
+  "pair_id": "n21-209",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_WpYg",
+        "Reviewer_Zj7z",
+        "Reviewer_tJ9n",
+        "Reviewer_kQGn"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6/7/6/7 within one point. Before the rebuttal the spread was wider: Reviewer_tJ9n at 4 or lower ('I update my score to be five', 2021-08-12) and Reviewer_WpYg at 5 or lower ('I raise my rating'), but both ended at 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_tJ9n",
+          "evidence": "2 hours. Says the datasets are 'limited to Omniglot and MNIST' (FashionMNIST is the third). Its discussion objections, that the 'hard regioning' of Eq. 4-5 will 'damage the parameter inference' and should be softened with a Lagrange multiplier, treat case definitions over discrete samples as optimisation constraints; tJ9n conceded on 2021-08-14 ('Hm. I see.')."
+        },
+        {
+          "reviewer": "Reviewer_WpYg",
+          "evidence": "Compares Table 1 with another paper's table 'From a quick reading'. Claims stick-breaking forces a power-of-2 cardinality, which the paper restricts to the tree variant only (line 157). Its main concern is one uncited method (JSA) that optimises a different objective."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_WpYg",
+          "claim": "Because the method uses the stick-breaking construction, the cardinality of the latent variable must be a power of 2.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 117-122 define the stick-breaking construction for any C. Line 157 ('For simplicity, we only consider balanced binary trees (i.e., C a power of 2)') applies to DisARM-Tree only, as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_WpYg",
+          "claim": "The Table 1 results are much worse than Table 2 of Ou and Song (2020, JSA).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The JSA paper is not in the record. The submission uses dynamically binarized MNIST (line 223; Table 1 'Dynamic MNIST') and 32 variables of 64 categories, so a cross-paper ELBO comparison is not like for like."
+        },
+        {
+          "reviewer": "Reviewer_tJ9n",
+          "claim": "RLOO is the only baseline in Tables 1 and 2.",
+          "checked_against_paper": "correct",
+          "evidence": "Both tables list DisARM-IW, DisARM-Tree, DisARM-SB and RLOO only. RELAX was promised in the discussion and never posted. The camera-ready Table 1 adds RELAX, which has the best train ELBO on all three datasets (e.g. Omniglot -120.40 ± 0.16 against the best proposed -121.99 ± 0.17), while its text still says RLOO performs at least as well as RELAX."
+        },
+        {
+          "reviewer": "Reviewer_tJ9n",
+          "claim": "The 'hard regioning' of Eq. 4 and Eq. 5 may damage parameter inference and could be softened with a Lagrange multiplier.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 4-5 define the estimator by cases over the discrete samples (z, z~); the estimator is smooth in the parameters and unbiased. No optimisation constraint exists. tJ9n accepted the correction and raised to 6."
+        },
+        {
+          "reviewer": "Reviewer_tJ9n",
+          "claim": "The paper has no discussion of limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 1(b) answers '[Yes] See throughout and Section 6', but Section 6 covers only societal impact. Scattered remarks exist (linear models show no gain, line 248). The authors posted a limitations note in both forums; the camera-ready adds it to Section 6."
+        },
+        {
+          "reviewer": "Reviewer_Zj7z",
+          "claim": "DisARM-* are compared only with a 2-sample RLOO, while the ARS/ARSM comparisons give RLOO more samples; scaling with sample size is untested.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 236-238 (2-independent-sample RLOO) and 257-260 (C and C(C-1)/2+1 samples). The rebuttal's 10- and 20-sample runs kept DisARM-* ahead, with a 4% to 10% variance reduction; Zj7z raised to 7."
+        },
+        {
+          "reviewer": "Reviewer_Zj7z",
+          "claim": "On line 133 the sum should start at j=i, not j=i+1.",
+          "checked_against_paper": "correct",
+          "evidence": "With 'logit', the Bernoulli parameter of line 120 has the sum from j=i. Reviewer_AbN2 in B found the same slip. The authors confirmed and said the code is correct."
+        },
+        {
+          "reviewer": "Reviewer_kQGn",
+          "claim": "The statistical significance of the gains over RLOO is a concern.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 Omniglot: RLOO -122.70 ± 0.80 overlaps all three proposed estimators, and DisARM-Tree (-123.08 ± 0.43) is worse. The authors' own t-statistics for Omniglot are 0.42-0.86 at 500K steps and 0.32-0.55 at 1M. kQGn raised to 7 without remarking on Omniglot."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_WpYg",
+          "Reviewer_Zj7z",
+          "Reviewer_tJ9n",
+          "Reviewer_kQGn"
+        ],
+        "evidence": "Reviewer_WpYg, 2021-08-13: 'I raise my rating' (final 6, edit 2021-08-13). Reviewer_tJ9n: 'I update my score to be five' (2021-08-12), then 'raise my rating to be 6' (2021-08-14, edit same day). Reviewer_kQGn: 'I raise my score to 7' (edit 2021-08-24). Reviewer_Zj7z: 'Currently, I gave it a 6' and 'I increased my score to 7' (2021-09-08, edit same day). Pre-rebuttal mean 5.25 or lower.",
+        "what_convinced_or_not": "Zj7z: the 10- and 20-sample runs, where DisARM-* still beat RLOO. kQGn: t-tests, 1M-step runs and the answers on duplicate samples and baselines ('address all my concerns convincingly'). tJ9n: the authors' correction of its 'hard regioning' and Lagrange misreadings, then deference to 'a consensus between reviewers'. WpYg: the reply that JSA solves a different problem on static binarization, though WpYg still wanted JSA mentioned. The RELAX baseline promised to tJ9n never came."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'Four knowledgeable reviewers recommend accepting this submission. I agree.' plus one generic sentence on 'new inference techniques'. No weakness is mentioned.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous post-rebuttal support: 6, 7, 6, 7 (mean 6.5)",
+        "New importance-sampling derivation of DisARM that extends to categorical variables, judged a valuable addition",
+        "Rebuttal multi-sample runs and t-tests answered the doubts on sample scaling and significance"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        4,
+        6,
+        5,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_AbN2"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_u8r7",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 5 (4, confidence 4, 8 hours); Reviewer_ozdD's 5 is the other vote below the bar. u8r7's reasons are a sole baseline, a VAE-only task and a gap 'too marginal' for a more complex method. Tables 1-2 and Section 5 confirm all three. u8r7 never replied to the rebuttal, and the AC overrode it through the added expert review."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ozdD",
+          "claim": "The claim that all three estimators beat RLOO 'across all datasets' (lines 239-240) does not match the figures, e.g. on Omniglot.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 Omniglot: RLOO -122.70 ± 0.80; DisARM-Tree -123.08 ± 0.43 is worse, and DisARM-IW (-122.25 ± 0.35) and DisARM-SB (-121.99 ± 0.17) sit within RLOO's error. The authors conceded. The camera-ready narrows that sentence to DisARM-IW and DisARM-SB, but its conclusion still says the estimators 'all outperform RLOO'."
+        },
+        {
+          "reviewer": "Reviewer_u8r7",
+          "claim": "Baselines are limited (RLOO only; UnOrd and other estimators missing) and the task is limited to VAEs.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 benchmarks only categorical VAEs on three binarized image datasets; Tables 1-2 compare only with RLOO. The camera-ready Table 1 adds RELAX, which beats every proposed estimator in train ELBO."
+        },
+        {
+          "reviewer": "Reviewer_u8r7",
+          "claim": "The authors say the conclusion states the limitations, but it does not.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 1(b) cites 'throughout and Section 6'; Section 6 has no limitations paragraph in the submission."
+        },
+        {
+          "reviewer": "Reviewer_AbN2",
+          "claim": "Lines 127-128 should read p >= 0.5, and a ratio of exactly 0.5 (line 131) would violate the support condition.",
+          "checked_against_paper": "correct",
+          "evidence": "The inequality is right: with b = 1[u<p] and b~ = 1[1-u<p], P(b=0, b~=0) = max(0, 1-2p), which is 0 at p = 0.5. The support worry does not bite: ascending order caps the ratio at 1/3 for i <= C-2 (line 134), and at i = C-1 equality removes only z = z~ = C, where the integrand is zero. The authors conceded without noting this."
+        },
+        {
+          "reviewer": "Reviewer_AbN2",
+          "claim": "The antithetic Bernoulli coupling is used throughout but never defined.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 77, 115 and 121 use it without a definition. Reviewer_Zj7z in A said the same. The camera-ready adds a footnote definition."
+        },
+        {
+          "reviewer": "Reviewer_Msvo",
+          "claim": "The computational cost is not shown; the experiments plot ELBO against training steps, not wall-clock time.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 reports per-step curves only; line 236 asserts 'only 2 expensive function evaluations regardless of the number of categories' with no timing."
+        },
+        {
+          "reviewer": "Reviewer_KiRx",
+          "claim": "The variance of the new estimators is not calculated or bounded, so the recommendation of DisARM-IW (lines 279-280) lacks analytic support.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 110-114 argue informally that moving mass off z_k = z~_k reduces variance; no variance expression or bound appears. The conclusion recommends DisARM-IW as 'simpler to implement, more natural to understand'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_AbN2 edited (2021-08-21): 'I am still positive on the paper and will keep the same score.' Reviewer_u8r7, Reviewer_Msvo, Reviewer_ozdD and Reviewer_KiRx never edited. Reviewer_ozdD (2021-09-01): 'Thanks for your clarifications.' Reviewer_Msvo (2021-09-01): 'taken it into account in the discussion with the other reviewers.' u8r7 never replied.",
+        "what_convinced_or_not": "B got much the same rebuttal as A: the limitations note, the argument that RLOO matches RELAX/REBAR/UnOrd in high dimensions, and the 1M-step table. It never got the t-tests. The multi-sample tables came on 2021-08-27, in reply to the late review. The RELAX and REBAR runs promised to Msvo never came, which the AC noted. Nothing answered u8r7's baseline and marginal-gain objections."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Facing 6/4/6/5, the AC 'sought' an additional expert review (Reviewer_KiRx, 6, posted 2021-08-25) and 'agrees with the expert reviewer that the submission's overall contribution is enough to justify acceptance'. The AC records the shared concerns on baselines and clarity and that promised results were not posted, and accepts over u8r7 (4) and ozdD (5).",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Expert review (Reviewer_KiRx, 6): 'definitely a valuable contribution, without being a huge leap forward'",
+        "Three of five reviewers at 6; the AC reports agreement that the work is novel and interesting",
+        "Missing baselines and unclear writing treated as fixable in the camera-ready"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Whether RLOO overtakes the coupled estimators at larger sample sizes (Reviewer_Zj7z); answered with 10- and 20-sample runs",
+    "Statistical significance of the gains (Reviewer_kQGn); the authors' t-tests show none on Omniglot",
+    "Whether the gain comes only from avoiding duplicate samples (Reviewer_kQGn)",
+    "No comparison with Joint Stochastic Approximation (Reviewer_WpYg)",
+    "Near-identity of DisARM-SB and DisARM-Tree, and 'hard regioning' (Reviewer_tJ9n; the second a misreading)",
+    "Missing citations: Mnih and Rezende 2016 for RLOO, local expectation gradients, biased estimators, stick-breaking VAEs (Reviewer_Zj7z, Reviewer_tJ9n)"
+  ],
+  "issues_only_b": [
+    "Overclaim of gains on all datasets; Omniglot does not support it (Reviewer_ozdD), conceded",
+    "No computational-cost or wall-clock comparison (Reviewer_Msvo, Reviewer_u8r7, Reviewer_KiRx)",
+    "ARS+/ARSM+ section detached and not compared with DisARM-* (Reviewer_AbN2, Reviewer_Msvo, Reviewer_ozdD, Reviewer_KiRx)",
+    "No variance analysis to guide the choice of estimator (Reviewer_KiRx)",
+    "Support condition at p = 0.5 and no proof that Eq. 3 recovers DisARM (Reviewer_AbN2)",
+    "Missing ARMS (Reviewer_KiRx), other references (Reviewer_Msvo) and unsupported assertions (Reviewer_ozdD)"
+  ],
+  "shared_issues": [
+    "Small gains over RLOO relative to the added complexity (A: Zj7z, kQGn; B: u8r7, ozdD, KiRx)",
+    "RLOO the only baseline; RELAX, REBAR, UnOrd and others missing (A: tJ9n, kQGn; B: u8r7, Msvo)",
+    "Only categorical VAEs on three similar datasets (A: kQGn, tJ9n, WpYg; B: u8r7, ozdD, KiRx)",
+    "Unclear exposition: undefined antithetic coupling, notation, relations among estimators; the line-133 index typo (A: Zj7z, WpYg, tJ9n; B: AbN2, Msvo, ozdD, KiRx)",
+    "No limitations discussion (A: tJ9n; B: u8r7, Msvo, ozdD)",
+    "Incremental novelty over DisARM/U2G (A: tJ9n; B: AbN2, u8r7, KiRx)",
+    "Missing related work (A: Zj7z, kQGn, tJ9n, WpYg; B: Msvo, KiRx)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reason. Reviewers on both sides saw a sound, new importance-sampling derivation of DisARM, extended to categorical variables, with small gains over a strong RLOO baseline, and no reviewer found an error beyond notation slips and one overclaim. Before the rebuttal the committees stood level: by the reviewers' own notes A started at a mean of 5.25 or lower, and B's first four reviews averaged 5.25. The final gap (6.5 against 5.4) arose in the discussion. All four A reviewers engaged and raised their scores: Reviewer_Zj7z and Reviewer_kQGn after multi-sample runs and t-tests, and Reviewer_tJ9n (from 4 or lower to 6) after the authors corrected its misreading. B received much the same rebuttal, without the t-tests, and no B reviewer changed a score; Reviewer_u8r7 (4) never replied. B's AC settled the 6/4/6/5 split with a late expert review (Reviewer_KiRx, 6) and followed it. So A accepted on unanimous scores and B on one added reviewer, over the same open weaknesses: RLOO as the only baseline, VAE-only tests and unclear exposition. Those weaknesses were real. In the paper's two-sample runs Omniglot shows no reliable gain (Table 1; the authors' t-statistics 0.3 to 0.9), as only B's Reviewer_ozdD noticed, and the camera-ready adds RELAX, which has the best train ELBO on all three datasets.",
+  "candidate_reasons": [
+    "sound incremental extension, modest gains",
+    "pre-rebuttal scores level in both",
+    "rebuttal engagement raised every score",
+    "silent reviewers left scores unchanged",
+    "AC recruited expert tie-breaker review",
+    "missing strong baseline excused in both"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A discussion: Reviewer_tJ9n 2021-08-12 ('update my score to be five') and 2021-08-14 ('raise my rating to be 6')",
+    "Committee A: authors' reply to Reviewer_kQGn with t-statistics (Omniglot 0.32-0.86)",
+    "Reviewer_Zj7z final review, update paragraph",
+    "Committee A meta-review",
+    "Reviewer_ozdD review, Quality point 1, and the authors' concession",
+    "Reviewer_KiRx review (the sought expert review, posted 2021-08-25)",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1 (Omniglot row) and lines 239-240",
+    "paper_submitted.pdf lines 117-134 and 157 (stick-breaking, support condition, power of 2 only for the tree)",
+    "paper.pdf (camera-ready) Table 1, RELAX column"
+  ]
+}

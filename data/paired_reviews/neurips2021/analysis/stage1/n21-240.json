@@ -1,0 +1,209 @@
+{
+ "pair_id": "n21-240",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 7, 7],
+   "confidences": [4, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_i3gM", "Reviewer_SYb7"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No outlier in the final ratings (6, 7, 7). Before the rebuttal Reviewer_i3gM was a detractor at 4 ('increase my score from 4 to 5', 2021-08-19). Its main objection, that Figure 1 compares a tuned bound with an untuned [26], was wrong: bound (9) is [26]'s bound with m, k and T tuned, and i3gM conceded 'the comparison in Figure 1 is fair'. Its remaining doubt, the novelty of Algorithm 3 over the uniform case, is a judgement, not an error."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_ETi1",
+     "evidence": "Rating 7, confidence 4, 3 hours. Two short paragraphs of generic praise ('discusses fundamental questions in Online Learning'). Its only question, 'who is H in (3) and (9)?', is answered by the definition of the binary entropy at line 49 of the submission. No reply to the rebuttal and no discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_i3gM",
+     "claim": "Figure 1 is unfair: the paper's bound needs m and k, while [26] needs no such knowledge.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Bound (9) (line 115) contains H(k/(T-1)) and H(k/((m-1)(T-1))), i.e. [26]'s parameters tuned with m, k and T; the authors cite [26, Theorem 4]. i3gM checked [26] and conceded."
+    },
+    {
+     "reviewer": "Reviewer_i3gM",
+     "claim": "The update in step 9 of Algorithms 1&2 is taken from [26]'s Markov-chain update.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Updates (17)-(18) are convex mixtures of weight vectors; [26]'s update (line 303) acts on awake and sleeping weights. Their equivalence is Proposition 5, proved in Appendix D. i3gM conceded 'Algorithm 1&2 are not directly from [26]'."
+    },
+    {
+     "reviewer": "Reviewer_i3gM",
+     "claim": "When m << k the improvement over [26] is minimal.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 248-250 give an improvement of about c m ln(T/k) when m << k. At Figure 1's settings (n = 500,000, k = 40, T = 4000) and m = 2, bound (9) is 474c and bound (19) is 470c. The gain grows with m, so it is small rather than 'constant'."
+    },
+    {
+     "reviewer": "Reviewer_ETi1",
+     "claim": "H in (3) and (9) is not defined (implied by the question).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 49 defines H(p) as the binary entropy."
+    },
+    {
+     "reviewer": "Reviewer_SYb7",
+     "claim": "Line 79 should read ln nT.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 79 states the static bound c ln n for (c, 1/c)-realizable losses, which is the standard horizon-free bound; the authors said so and SYb7 did not reply."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_i3gM"],
+    "evidence": "Reviewer_i3gM wrote on 2021-08-19 'I would love to increase my score from 4 to 5'. Its review was last edited on 2021-08-31 and the final rating is 6. The edited review calls 'the revelation of the Markov prior over partition specialists corresponding to a geometrically-decaying mixing scheme' 'not trivial', in the authors' own words from their reply of 2021-08-27. Reviewer_ETi1 never edited. Reviewer_SYb7 edited on 2021-07-27, the day after posting and before the rebuttal. Neither replied to the authors.",
+    "what_convinced_or_not": "The authors showed that [26, Theorem 4] is also tuned with m, k and T, so the Figure 1 objection fell (4 to 5). Their second reply argued that the Share-theta/Markov-prior correspondence (Proposition 5) is a new insight, and i3gM adopted that framing before reaching 6. i3gM stayed unconvinced that the non-uniform linear-time projection (Algorithm 3) is a significant step over the uniform case of [23]."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review reports that after discussion 'the reviewers and I all agree' on 'a solid contribution (albeit on a somewhat niche problem)' and asks the authors to clarify the relation to prior work, 'paying particular attention to comments by Reviewer i3gM'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Unanimous support after discussion (6, 7, 7)",
+    "Well written; improves the best known efficient bound for tracking with memory",
+    "Techniques judged of interest: Share-theta/Markov-prior link and linear-time projection",
+    "Niche problem and modest gain kept it at poster"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 6, 6, 7, 7],
+   "confidences": [4, 2, 4, 4, 5],
+   "reviews_edited_after_posting": ["Reviewer_dt3a", "Reviewer_gqjS"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "No outlier in the final ratings (6, 6, 6, 7, 7). Before the rebuttal Reviewer_gqjS (confidence 5) gave 'a do not accept score' because Theorem 3 might hide an O(km) term. Its counterexample assumed theta = O(k/T); Theorem 3 (line 246) sets theta = (k-m+1)/((m-1)(T-2)), and gqjS admitted 'my oversight of missing the m term in theta' and rose to 7."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_GNro",
+     "evidence": "Rating 6, confidence 2, two questions. The second asks for a complexity comparison with existing methods that the paper gives (lines 101, 115, 234-235) and that GNro's own review states ('share the same computational costs'). No reply to the rebuttal. Its first question, on a constant-factor gain, is fair but adds nothing beyond the other reviews."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_gqjS",
+     "claim": "Theorem 3 may not cover all sequences: experts that activate late start at weight (1-theta)^O(T) alpha/n, which with theta = O(k/T) adds an O(km) term.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 3 (line 246) tunes theta = (k-m+1)/((m-1)(T-2)) = O(k/(mT)), so the example costs O(k), inside the bound. gqjS conceded the oversight on 2021-08-12."
+    },
+    {
+     "reviewer": "Reviewer_gqjS",
+     "claim": "The method is worse than Fixed-Share when T/k > n and m = o(k); Figure 1 does not cover such cases.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 130-136 claim an improvement over Fixed-Share 'under mild assumptions on n'; Figure 1 uses n = 500,000 with T = 4000 and k = 40. With bounds (3) and (19) at those T and k, the improvement holds for all m in [2, k] only if n exceeds about 424,000 (margin 0.2c at m = 40 with n = 500,000); with n = 100,000 it fails at m = 39. The authors conceded; the camera-ready says 'for sufficiently large n'."
+    },
+    {
+     "reviewer": "Reviewer_gqjS",
+     "claim": "The procedure in the paragraph at line 199 is a heuristic whose optimality is not proved.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paragraph describes Algorithm 3, whose correctness is Theorem 1; line 220 points to the proof in Appendix A."
+    },
+    {
+     "reviewer": "Reviewer_gqjS",
+     "claim": "Theorem 4 may not apply to the projection algorithm as run.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4 (lines 265-274) compares one update from the same weights with beta = alpha v; lines 266-268 say the two algorithms' weights generally differ, so it is no guarantee over a run (the reason is not the moving limits that gqjS named). Its strict inequality also fails when v = w, which the authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_AJRz",
+     "claim": "The square loss has c = 1/2 only if the prediction and outcome domains are [0,1] (line 70).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 70 states c = 1/2 with no domain; the authors called it 'an oversight on our part'."
+    },
+    {
+     "reviewer": "Reviewer_AJRz",
+     "claim": "The bound improves on Fixed-Share whenever m < k, and the factor-2 gain closes the gap to the best inefficient algorithm.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The Fixed-Share improvement needs large n (see gqjS's claim). Lines 254-255 show the double payment remains for the k-m+1 switches back to a remembered expert, so against (4) an extra (k-m+1) ln((T-2)/(k-m+1)) remains; line 128 claims only 'progress in closing this gap'."
+    },
+    {
+     "reviewer": "Reviewer_GNro",
+     "claim": "The order of the regret bound improves only by constant factors.",
+     "checked_against_paper": "correct",
+     "evidence": "Bound (10) and the upper bound after line 253 have the same order; the gain is about c m ln(T/k) when m << k (line 249)."
+    },
+    {
+     "reviewer": "Reviewer_t33Y",
+     "claim": "Generalizing the results to the Hedge setting is not trivial, contrary to lines 70-72.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The paper asserts 'straightforward' in one sentence without proof; the authors answered with [20] and a known global learning rate. Settling it needs the cited work, not the submission."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_gqjS"],
+    "evidence": "Reviewer_gqjS's review says 'I give a do not accept score'; on 2021-08-12 it wrote 'I'm raising my score given this response', the review was edited the same day, and the final rating is 7. Reviewer_dt3a's 2021-08-31 edit only adds 'I prefer to keep my score' (6). Reviewer_AJRz: 'I decide to keep my score of 6' (2021-08-19). Reviewer_t33Y: 'I stick to my score' (7; its review text says 'Overall rating: 6.5'). Reviewer_GNro never replied.",
+    "what_convinced_or_not": "The authors showed that gqjS's Theorem 3 counterexample dropped the m in theta. gqjS raised its score at once but deferred 'the other technical claims' and never returned; its review text still says 'do not accept'. AJRz and t33Y accepted the answers but kept their scores because the result is 'pretty specialized'; no rebuttal could answer the niche-scope objection. dt3a kept 6 after the authors deferred tuning and experiments to discussion and future work."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review lists the reviewers' strengths ('novel', 'nicely written', 'good ideas') and weaknesses ('only interesting to a small part of the community', 'a little improvement', parameters needed in advance) and concludes 'the positives outweigh the negatives'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All five ratings at 6 or 7 after gqjS's rise",
+    "Novel, well-written results with a clean bound improvement",
+    "Linear-time projection judged of independent interest",
+    "Niche audience, small gain and need for known T, k, m kept it at poster"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Novelty of the non-uniform projection (Algorithm 3) over the uniform case of [23] (Reviewer_i3gM; unresolved)",
+  "Whether Algorithms 1&2 derive from [26]'s Markov-chain update (Reviewer_i3gM; withdrawn)",
+  "Fairness of the Figure 1 comparison with respect to tuning (Reviewer_i3gM; withdrawn after checking [26])",
+  "Closing the loop between (12) and the PoDS-theta rule (15) (Reviewer_SYb7)",
+  "Notation queries answered by the paper: H (Reviewer_ETi1), line 79 (Reviewer_SYb7)"
+ ],
+ "issues_only_b": [
+  "Improvement over Fixed-Share holds only for large n; Figure 1 uses n = 500,000 (Reviewer_gqjS, Reviewer_AJRz; conceded)",
+  "Need to know T, k and m in advance as a practical limitation (Reviewer_dt3a, Reviewer_AJRz, Reviewer_gqjS; in the meta-review)",
+  "No empirical evaluation or simulations (Reviewer_dt3a, Reviewer_AJRz, Reviewer_t33Y)",
+  "Correctness of Theorem 3 (Reviewer_gqjS; resolved as the reviewer's oversight)",
+  "Scope and strictness of Theorem 4 (Reviewer_gqjS; strictness error conceded)",
+  "Missing information-theory literature on switching sources (Reviewer_gqjS; added in the camera-ready)",
+  "Claim that the Hedge generalization is straightforward (Reviewer_t33Y; disputed)",
+  "Square-loss constant c = 1/2 needs [0,1] domains (Reviewer_AJRz; conceded)"
+ ],
+ "shared_issues": [
+  "Small improvement over [26] when m << k (Reviewer_i3gM in A; Reviewer_dt3a, Reviewer_GNro, Reviewer_AJRz, Reviewer_t33Y in B)",
+  "Niche or specialized problem (A meta-review; Reviewer_AJRz, Reviewer_t33Y and the B meta-review)",
+  "Clear, well-written paper (both committees)",
+  "Linear-time relative entropy projection as possibly of independent interest (Reviewer_ETi1, Reviewer_SYb7; Reviewer_dt3a, Reviewer_GNro, Reviewer_AJRz, Reviewer_t33Y), doubted by Reviewer_i3gM",
+  "No known lower bound for tracking with memory (Reviewer_SYb7 in A; Reviewer_dt3a in B)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster because they saw the same paper and weighted it the same way: a clean, correct theory contribution that improves the best known efficient bound for tracking experts with memory, but by a small amount and on a niche problem. Each committee had one early detractor whose main objection was a misreading that the rebuttal corrected. In A, Reviewer_i3gM (4) thought Figure 1 compared a tuned bound with an untuned [26]; bound (9) is [26]'s tuned bound, and i3gM rose to 6. In B, Reviewer_gqjS ('do not accept', confidence 5) built a Theorem 3 counterexample that dropped the m in theta; it rose to 7. No reviewer in either committee rated above 7 or argued for more than acceptance, and both ACs named the narrow scope and the small gain. B's five reviewers raised more issues (parameter knowledge, no experiments, an overstated Fixed-Share claim that holds in Figure 1 only because n = 500,000, missing information-theory work), but none became a reject argument. A's support is thinner than its 6.7 mean suggests: Reviewer_ETi1's 7 rests on a two-paragraph review whose only question the paper answers at line 49.",
+ "candidate_reasons": [
+  "Sound but incremental niche theory",
+  "Rebuttal corrected detractors' misreadings",
+  "No champion above accept",
+  "Both ACs restated reviewer consensus",
+  "Small gain capped at poster"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_i3gM review (edited 2021-08-31) and comment of 2021-08-19",
+  "Authors' replies to Reviewer_i3gM of 2021-08-10 and 2021-08-27",
+  "Reviewer_ETi1 review; paper_submitted.pdf line 49 (definition of H)",
+  "Reviewer_SYb7 review; paper_submitted.pdf line 79",
+  "Committee A meta-review",
+  "Reviewer_gqjS review and comment of 2021-08-12",
+  "paper_submitted.pdf Theorem 3, line 246 (theta = (k-m+1)/((m-1)(T-2)))",
+  "paper_submitted.pdf lines 130-136 and Figure 1 caption (n = 500,000, k = 40, T = 4000); bounds (3), (9), (19) evaluated at those values",
+  "paper_submitted.pdf lines 248-255 (size of the improvement) and Theorem 4, lines 265-274",
+  "Reviewer_AJRz and Reviewer_t33Y comments of 2021-08-19; Reviewer_dt3a edit of 2021-08-31",
+  "Committee B meta-review",
+  "paper.pdf (camera-ready): 'for sufficiently large n'; Shtarkov, Merhav and Shamir references added"
+ ]
+}

@@ -1,0 +1,212 @@
+{
+  "pair_id": "n21-223",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 3, 8, 8],
+      "confidences": [3, 4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_TaGg", "Reviewer_q9ZD"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_TaGg",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Rating 3 (confidence 4, 8 hours, the longest A review at about 730 words) against 7, 8 and 8. Its specific claims mostly hold in the submission: no work on formal or sufficient-reason explanations is cited (references [1]-[59]); the accuracy 'ground truth' is the same estimator at N = 10,000 (l.245-247); the out-of-distribution attack of reference [15] is cited (l.337) but not discussed for the new method; focused sampling has no guarantee (Section 3.3; the authors conceded). Remark 3.1 confirms that the point estimate is LIME's or KernelSHAP's, so the method does 'inherit' their weaknesses, as TaGg says. One claim is overstated: interpretable models are cited in one sentence (l.327-329). The objection concerns framing and literature, not a wrong result, so a 3 is severe; the AC treated it as a dismissal of a whole line of work. TaGg replied once after the rebuttal (2021-09-02) and kept 3; the only review edit (2021-07-15) predates the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_VUsD",
+          "evidence": "Rating 8 at confidence 5 ('checked the math/other details carefully') after 3 hours, with no comment on any equation. The review calls the paper 'a very good contribution to ICLR'. The summary reproduces the abstract nearly verbatim (about three quarters of its characters match the abstract in order). Strength 4 breaks off mid-sentence ('several ablation studies to'). No reply in the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TaGg",
+          "claim": "The paper ignores logic and formal-reasoning work on provably correct explanations, such as sufficient reasons and probabilistic sufficient reasons.",
+          "checked_against_paper": "correct",
+          "evidence": "None of references [1]-[59] of the submission is such work. The camera-ready main text adds a four-line 'Logical and Formal Reasoning' paragraph citing [58]-[62], with none of the 'empirical comparisons' the authors promised."
+        },
+        {
+          "reviewer": "Reviewer_TaGg",
+          "claim": "The accuracy experiments treat a 10,000-sample estimate as ground truth.",
+          "checked_against_paper": "correct",
+          "evidence": "l.245-247 and the Table 1 caption: true values 'estimated on 10, 000 perturbations' of the same method. The authors confirmed that 'ground truth' means the best-fit local linear model that LIME or SHAP would converge to."
+        },
+        {
+          "reviewer": "Reviewer_TaGg",
+          "claim": "The method inherits the weaknesses of LIME and SHAP and proposes nothing toward true reliability (post-rebuttal comment).",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 3.1 (l.126-128): the posterior mean equals the LIME or KernelSHAP feature importances. Prop 3.2's 'true feature importance' is the infinite-sample LIME or SHAP fit. The authors conceded that 'reliability' only means that uncertainty is reported."
+        },
+        {
+          "reviewer": "Reviewer_TaGg",
+          "claim": "The paper does not discuss whether the approach is susceptible to out-of-distribution attacks.",
+          "checked_against_paper": "correct",
+          "evidence": "Reference [15] ('Fooling LIME and SHAP') appears only at l.337, in a list of vulnerabilities of post hoc methods. The camera-ready conclusion adds that BayesLIME and BayesSHAP 'will likely be vulnerable' to these attacks."
+        },
+        {
+          "reviewer": "Reviewer_TaGg",
+          "claim": "There is no accuracy guarantee for focused sampling.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.3 (l.191-213) states no result; l.291-293 point to an empirical bias check in Appendix C. The authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_TaGg",
+          "claim": "The related work ignores the body of work on interpretable models.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.327-329 cite additive models [33, 34], decision lists and sets [35, 36] and instance-based explanations [37]. The coverage is one sentence."
+        },
+        {
+          "reviewer": "Reviewer_q9ZD",
+          "claim": "The image experiments use one class each for MNIST and ImageNet, and the stability test uses 40 points.",
+          "checked_against_paper": "correct",
+          "evidence": "l.229-232: digit '4' is the MNIST target class and 100 'French bulldog' images form the ImageNet test set. l.305: '40 points in the test data'."
+        },
+        {
+          "reviewer": "Reviewer_w3MC",
+          "claim": "The 95% credible intervals are close to the true value for BayesSHAP and 'certainly' for BayesLIME.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: BayesLIME coverage 94.8 to 97.2%. BayesSHAP coverage is 87.9 to 90.1%, which is 5 to 7 points below nominal; l.250 gives 89.6 to 90.1% and omits COMPAS's 87.9. The 'true value' is the 10,000-perturbation estimate."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_q9ZD"],
+        "evidence": "Reviewer_q9ZD on 2021-08-19: 'The authors have addressed my concerns. I am increasing my score'. The review was edited the same day, and the authors thanked q9ZD for raising it to 'clear accept' (8). Reviewer_TaGg on 2021-09-02: 'I am going to keep my score'; TaGg's only edit (2021-07-15) predates the rebuttal. Reviewer_w3MC and Reviewer_VUsD never replied and did not edit.",
+        "what_convinced_or_not": "New evidence convinced q9ZD: calibration on five more MNIST digits and three more ImageNet classes, a Wilcoxon test and 80 points for stability, and calibration near the decision boundary. TaGg got a redefinition and a promise: 'reliability' means only that uncertainty is reported, and the formal methods would be cited and compared later. TaGg replied that 'it's not enough to cite these works in passing'. Unlike B, A got no synthetic ground-truth experiment."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The AC accepted with the majority: 'Given the very favorable reviews from others, I am inclined to accept this paper.' Most of the meta-review weighs TaGg's dissent against the AC's own view. The AC grants the factual point (LIME and SHAP are 'not reliable in some absolute sense') and values the line of work for its popularity. The AC recasts TaGg's logic-based 'sufficient reasons' as 'probability of sufficiency/ necessity etc (causal notions)' and argues that these need causal models; TaGg's cited notions need a formal model of the classifier, not a causal model of the data. The 'three extremely favorable reviews' include VUsD's inattentive review and w3MC's 2-hour review, which names no weakness. The AC asks only for a scope note.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers recommended accept (7, 8, 8); Reviewer_q9ZD, the one substantive supporter, rose to 8 on new calibration and stability results.",
+        "The AC judged Reviewer_TaGg's dissent a rejection of the whole LIME and SHAP line of work and weighed it below the majority.",
+        "No reviewer found an error in the method; the dispute was about what 'reliable' means and about missing literature.",
+        "No reviewer argued for more than a poster; Reviewer_VUsD's 8 itself recommends 'a poster or short presentation'."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 7],
+      "confidences": [3, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_3HHm", "Reviewer_2EPP"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7 (Reviewer_3HHm), 6 (Reviewer_Cozt) and 7 (Reviewer_2EPP). No rating stands apart. Before the rebuttal no B reviewer was above 6."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3HHm",
+          "claim": "The calibration test uses a pseudo feature importance from many perturbations, so it differs from the tested method only in the number of perturbations.",
+          "checked_against_paper": "correct",
+          "evidence": "l.245-247: 'we use feature importances computed using a large value of N (N = 10, 000), and treat the resulting estimates as ground truth.' The authors agreed and added a synthetic piecewise-linear test."
+        },
+        {
+          "reviewer": "Reviewer_3HHm",
+          "claim": "Line 230 suggests that all user-study images were the digit 4.",
+          "checked_against_paper": "correct",
+          "evidence": "l.229-230 make digit 4 the MNIST target class. The user study (l.316) says only 'We randomly select 15 correctly predicted test images'. The authors replied that this subsection describes sampling 'from the entire MNIST test set'; it does not, and the camera-ready text is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_3HHm",
+          "claim": "Theorem 3.3 depends on S being large enough.",
+          "checked_against_paper": "correct",
+          "evidence": "The proof sketch (l.182-189) approximates Student's t by a Normal '(here, S should be large enough)', treats features as Bernoulli(0.5) and assumes that the SSE scales linearly with S. The theorem body states none of these, although checklist 2(a) says it does. The authors answered with a rule of thumb (more than 30) and said they 'theoretically prove that G is the correct number'."
+        },
+        {
+          "reviewer": "Reviewer_2EPP",
+          "claim": "Eq. 3 uses the same σ² for the prior on φ and for the error term.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 3: the error is N(0, σ²/πx(z)) and φ|σ² is N(0, σ²I). The authors called it a modelling choice that gives closed-form posteriors."
+        },
+        {
+          "reviewer": "Reviewer_2EPP",
+          "claim": "Novelty is limited because Bayesian or uncertainty-aware explanation methods exist, and Bykov et al. is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "l.347-351 cite Guo et al. [32] and BayLIME [57], and l.285-290 benchmark against [32]. Bykov et al. is not cited in the submission; the camera-ready adds it as [65]. l.244 still says 'there are no methods to provide uncertainty estimates for LIME and SHAP'."
+        },
+        {
+          "reviewer": "Reviewer_Cozt",
+          "claim": "Typos: 'deployed in domain such as', 'We carry out theoretical analysis', 'A screen shot of the task is show'.",
+          "checked_against_paper": "correct",
+          "evidence": "l.22, l.58 and l.319 of the submission."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_3HHm", "Reviewer_2EPP"],
+        "evidence": "Reviewer_3HHm's review was edited on 2021-08-11, the day of the rebuttal: 'All my questions and weakness concerns were appropriately addressed, therefore I raised my score.' Reviewer_2EPP on 2021-08-13: 'I'd like to change my interim score to 7'; the review was edited on 2021-08-26: 'I've raised my score to a 7.' Reviewer_Cozt never replied and did not edit (6).",
+        "what_convinced_or_not": "New experiments and clarifications: a synthetic piecewise-linear function with known coefficients (tighter intervals gave smaller L1 error), calibration on more MNIST digits and ImageNet classes, a half-G run that gave wider intervals, the reason for the shared σ², and animated example explanations. 3HHm also accepted two replies that the paper does not back: that the user-study images came from all digits, and that G is proven correct, although Theorem 3.3 rests on approximations."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'Reviewers unanimously recommend acceptance. Authors are strongly encouraged to incorporate review comments and rebuttal discussion into their final revision.' The AC weighs no weakness and names no reviewer.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal (7, 6, 7); before it, no reviewer was above 6.",
+        "A synthetic ground-truth test and wider calibration results answered the main doubt of Reviewer_3HHm and Reviewer_2EPP.",
+        "Reviewers judged uncertainty for LIME and SHAP useful and the method sound, with limited novelty (Reviewer_2EPP) and minor concerns (Reviewer_Cozt).",
+        "The AC followed the unanimous scores."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Missing logic and formal-reasoning work on provably correct explanations, so the 'reliable' title overclaims (Reviewer_TaGg; confirmed: none cited)",
+    "Whether the method inherits the out-of-distribution attack of reference [15] (Reviewer_TaGg; confirmed: not discussed)",
+    "No accuracy guarantee for focused sampling (Reviewer_TaGg; conceded)",
+    "Dense, formula-heavy presentation (Reviewer_TaGg; Reviewer_w3MC, Reviewer_q9ZD, Reviewer_Cozt and Reviewer_2EPP found the paper clear)",
+    "Only 40 stability points, points near the decision boundary, and why BayesSHAP is less calibrated (Reviewer_q9ZD)",
+    "Move the related work forward and add a comparison table (Reviewer_VUsD)"
+  ],
+  "issues_only_b": [
+    "Limited novelty given existing Bayesian and uncertainty-aware explanation methods (Reviewer_2EPP)",
+    "The shared σ² in the priors of Eq. 3, and irreducible error uncertainty against arbitrarily tight intervals (Reviewer_2EPP)",
+    "Whether G overestimates; the assumptions of Appendix B.1 and the size of S in Theorem 3.3 (Reviewer_3HHm)",
+    "Applicability beyond LIME and KernelSHAP, and relation to other XAI methods such as BEEF (Reviewer_Cozt)",
+    "Qualitative example explanations (Reviewer_2EPP) and typos (Reviewer_Cozt)"
+  ],
+  "shared_issues": [
+    "The calibration 'ground truth' is the same method at 10,000 perturbations (A: Reviewer_TaGg; B: Reviewer_3HHm, Reviewer_2EPP)",
+    "User-study design that masks the important pixels (A: Reviewer_TaGg wants a third colour; B: Reviewer_3HHm asks why erase rather than keep)",
+    "Image evaluation on one class (A: Reviewer_q9ZD, all image experiments; B: Reviewer_3HHm, the user study)",
+    "Incomplete related work, with different gaps (A: formal methods and interpretable models, Reviewer_TaGg; B: Bykov et al. and S-LIME, Reviewer_2EPP; BEEF, Reviewer_Cozt)",
+    "Explanations can still be wrong and invite over-reliance (A: Reviewer_w3MC; B: Reviewer_3HHm)",
+    "Praise for estimating the number of perturbations (A: Reviewer_q9ZD, Reviewer_TaGg; B: Reviewer_2EPP)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reason: uncertainty estimates and a perturbation budget for LIME and KernelSHAP are useful, and no reviewer found an error. The method's point estimate is LIME's or KernelSHAP's own (Remark 3.1), so its credible intervals measure only sampling uncertainty around the large-sample LIME or SHAP fit, and Table 1's 'ground truth' is the same estimator at 10,000 perturbations. Both committees saw this fact, and neither treated it as fatal. In B, Reviewer_3HHm and Reviewer_2EPP took it as a clarification and rose to 7 after a synthetic ground-truth test. In A, Reviewer_TaGg gave 3, because this fact and the ignored formal-explanation literature made the title's 'Reliable' an overclaim. The paper confirms TaGg's specific claims, but they concern framing and related work, not correctness. A's AC overrode TaGg as dismissing a popular line of work, partly by recasting TaGg's logic-based 'sufficient reasons' as causal notions. So A had to set aside one principled detractor and B had none; both ACs then followed the scores. B's acceptance leaned more on the rebuttal: before it, no B reviewer was above 6, whereas A already had a 7 and an 8. A's support is thinner than its mean suggests: Reviewer_VUsD's 8 is inattentive ('a very good contribution to ICLR') and Reviewer_w3MC's 7 names no weakness. Neither committee noticed that the user study reports standard errors of 0.003 with p = 0.028 for a 5-point gap (l.322-323), which cannot both be right.",
+  "candidate_reasons": [
+    "Useful add-on to popular explainers",
+    "Rebuttal experiments lifted lukewarm reviewers",
+    "AC overrode principled paradigm dissent",
+    "Reliability overclaim treated as framing",
+    "Score-following meta-reviews in both",
+    "Inattentive 8 counted as support"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_TaGg final review and 'after rebuttal' comment (2021-09-02)",
+    "Committee A meta-review",
+    "Reviewer_VUsD final review ('a very good contribution to ICLR')",
+    "Reviewer_q9ZD final review and comment of 2021-08-19",
+    "Reviewer_3HHm final review ('After Authors' Response')",
+    "Reviewer_2EPP final review and follow-up of 2021-08-13",
+    "Authors' General Response in B (synthetic piecewise-linear test, calibration on more classes)",
+    "Committee B meta-review",
+    "paper_submitted.pdf Remark 3.1 (l.126-128), l.245-247 and Table 1",
+    "paper_submitted.pdf l.182-189 (proof sketch of Theorem 3.3)",
+    "paper_submitted.pdf l.229-232, l.305 and l.316 (single-class images, 40 stability points, user-study sampling)",
+    "paper_submitted.pdf l.322-323 (user-study standard errors and p-value)",
+    "paper_submitted.pdf l.327-354 and references [1]-[59] (no formal-reasoning work; [15] only at l.337)",
+    "paper.pdf (camera-ready) Section 5 'Logical and Formal Reasoning' and Conclusion"
+  ]
+}

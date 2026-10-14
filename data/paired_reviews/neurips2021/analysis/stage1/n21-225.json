@@ -1,0 +1,256 @@
+{
+  "pair_id": "n21-225",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        8,
+        8,
+        7
+      ],
+      "confidences": [
+        5,
+        5,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_33q7",
+        "Reviewer_4hbV"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_33q7",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only reviewer on the reject side before the rebuttal (Reviewer_4hbV, 2021-08-29: 'there was only one reviewer who supported rejection'). The case was novelty against Efrat et al. ('not the first dataset or the first application of T5'), but the submission calls that work concurrent at l.62, l.83 and l.317. 33q7 on 2021-09-07: 'I did not initially observe quite how contemporaneous this work and the Efrat et al paper were.' Final rating 6 after the retraction."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_33q7",
+          "evidence": "Based its negative case on overlap with Efrat et al. and missed the three places where the submission calls that work concurrent (l.62, l.83, l.317); it conceded this. It also placed the l.62 citation typo at 'Line 52'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_33q7",
+          "claim": "The corpus is not the first cryptic dataset, and T5 has already been applied to the task (Efrat et al.).",
+          "checked_against_paper": "correct",
+          "evidence": "l.83-84: Efrat et al. [6] 'release a similar dataset of cryptic crossword clues and present a neural baseline using T5-large'. The same lines call it 'work concurrent to ours', which 33q7 later conceded."
+        },
+        {
+          "reviewer": "Reviewer_4hbV",
+          "claim": "The paper releases only code to scrape The Guardian, not the dataset.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 4(d): 'we do not release the dataset but instead make available the code we used to download and process it.' The authors committed to release it; camera-ready footnote 1 releases it."
+        },
+        {
+          "reviewer": "Reviewer_4hbV",
+          "claim": "SentencePiece tokenization comes up only late, in Section 6.3.",
+          "checked_against_paper": "correct",
+          "evidence": "l.269 is the only main-text mention of SentencePiece. The camera-ready adds it to the introduction."
+        },
+        {
+          "reviewer": "Reviewer_4hbV",
+          "claim": "Top-1 and top-10 accuracy may be inappropriate because clues may not have unique answers.",
+          "checked_against_paper": "not_checked",
+          "evidence": "A claim about the domain, not the paper. The authors replied that definition plus wordplay makes a cryptic answer unique; 4hbV withdrew the point ('Sorry about the confusion re: evaluation metrics!')."
+        },
+        {
+          "reviewer": "Reviewer_2QZg",
+          "claim": "All example clues are about BERT and were written by the authors, not taken from the dataset.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 gives five clue types, all for BERT; l.33 calls the first 'this NLP-centric cryptic crossword clue'."
+        },
+        {
+          "reviewer": "Reviewer_2QZg",
+          "claim": "There is no human evaluation of task difficulty.",
+          "checked_against_paper": "correct",
+          "evidence": "No human accuracy is reported, yet the abstract (l.17-18) and l.72 say that models do not generalize as humans do. B's Reviewer_zZBA raised the same gap."
+        },
+        {
+          "reviewer": "Reviewer_inbY",
+          "claim": "The dataset has about 142K clues from 5K Guardian puzzles.",
+          "checked_against_paper": "correct",
+          "evidence": "l.58 and l.87-88: 142,380 clues from 5,518 puzzles, July 1999 to October 2020."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_33q7",
+          "Reviewer_4hbV"
+        ],
+        "evidence": "Reviewer_33q7 commented on 2021-09-07: 'I've updated my score to reflect this and apologize for the oversight'; the review was edited that day (final 6). Reviewer_4hbV's review, edited 2021-08-29: 'I have increased my score to an 8 following the updated information about the dataset release'. The same update says 'there was only one reviewer who supported rejection', so 33q7 was below 6 before. Reviewer_2QZg and Reviewer_inbY did not edit or reply.",
+        "what_convinced_or_not": "Clarification, not new evidence. 33q7 moved on a fact already in the paper: Efrat et al. is concurrent. 4hbV moved on a commitment to release the full dataset, made after advice from a person who publishes crossword datasets, and on the explanation that cryptic clues have unique answers. 33q7's question on gains beyond anagram clues got only unreported results; 2QZg's request for a human evaluation got a promise of future work. Neither reviewer followed up."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review weighs one issue, Efrat et al.: 'The reviewers agree that the paper should not be penalized'. That was the view of Reviewer_4hbV and Reviewer_inbY, and 33q7 conceded it. 'carefully constructed splits of the dataset to test generalization' echoes inbY's 'carefully constructed splits to test more challenging model generalization'. It names no weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three reviewers at 7 to 8 valued a new, hard benchmark with careful splits (Reviewer_4hbV, Reviewer_2QZg, Reviewer_inbY).",
+        "The only reject-side case, novelty against concurrent work by Efrat et al., was withdrawn by Reviewer_33q7; the AC endorsed not penalizing concurrent work.",
+        "The commitment to release the dataset raised Reviewer_4hbV to 8.",
+        "The curricular method was seen as a modest extension, so no one argued for more than a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        8,
+        7
+      ],
+      "confidences": [
+        4,
+        5,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_oTbN",
+        "Reviewer_T9VZ"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_T9VZ",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below the threshold (5 against 7, 8, 7). The core objection is checkable and right: Tables 2 to 5 contain no character-level model, although the task needs character manipulation and T5 uses SentencePiece. The prefix-LM point (l.65, l.154) is also right. The review is weaker elsewhere: 1 hour at confidence 5, and it says that the tokenization issue 'is not discussed', but Sections 6.1 and 6.3 test it. The AC accepted the objection and deferred it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zZBA",
+          "evidence": "214 of its 389 words are in verbatim spans of 8 or more words from the submission. Examples: 'While Efrat et al. [6] conclude that train/test disjointness is important ...' (l.318-320, with the citation number) and the limitations field, which copies checklist 1(b) with 'our approach'. Its one original point is 'No formal comparison with human performance'. Its reply to the rebuttal: 'Thanks for your response.' The 8 (confidence 3, 1.5 hours) carries little weight."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_T9VZ",
+          "claim": "There is no character-level baseline, although the task needs character manipulation and T5 uses subword tokens.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 2 to 5 contain only WordNet, rule-based, KNN and T5 models. The camera-ready still has none; its Section 7 argues that one is not needed."
+        },
+        {
+          "reviewer": "Reviewer_T9VZ",
+          "claim": "The SentencePiece limitation is not discussed in the paper.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.269 names SentencePiece. Section 6.1 tests whether T5 learns the length enumeration (Table 3b: 48.5% of test outputs have the correct length with the enumeration, 16.2% without). Section 6.3 tests descrambling (63.8% top-1 on the random split). The main text does not call tokenization a limitation; only checklist 1(b) does."
+        },
+        {
+          "reviewer": "Reviewer_T9VZ",
+          "claim": "The paper uses the T5 prefix-LM variant, not the standard encoder-decoder.",
+          "checked_against_paper": "correct",
+          "evidence": "l.65: 'T5 [28], a Transformer-based prefix-LM'; l.154: 'T5 is a prefix-LM model'. The authors called it a writing error; the camera-ready says 'encoder-decoder'."
+        },
+        {
+          "reviewer": "Reviewer_T9VZ",
+          "claim": "The 'curricular' model is supervised pre-training on related datasets with augmentation, not curriculum learning.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2: finetune on supplementary tasks, then on cryptics with periodic replay. The submission cites no curriculum-learning work (references [1] to [35]). The authors conceded that the term differs from current use."
+        },
+        {
+          "reviewer": "Reviewer_oTbN",
+          "claim": "The related work is about 10 lines and covers only crossword work.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 is l.75-85. One clause cites puns and American crosswords; no curriculum or pre-finetuning work is cited. The camera-ready adds Aghajanyan et al., Geva et al. and Wu et al., as oTbN and Reviewer_toeW asked."
+        },
+        {
+          "reviewer": "Reviewer_toeW",
+          "claim": "The '(7)' in the Section 5.1 examples is a typo.",
+          "checked_against_paper": "correct",
+          "evidence": "l.191, l.195 and l.199 give '(7)' for PETAL, a 5-letter answer. The authors confirmed it."
+        },
+        {
+          "reviewer": "Reviewer_toeW",
+          "claim": "The authors do not address limitations or negative societal impact.",
+          "checked_against_paper": "correct",
+          "evidence": "There is no limitations section, and checklist 1(c) answers [No]. Checklist 1(b) claims a discussion of subword tokenization, but the main text does not present it as a limitation."
+        },
+        {
+          "reviewer": "Reviewer_zZBA",
+          "claim": "The curricular approach outperforms Efrat et al. on different kinds of splits.",
+          "checked_against_paper": "correct",
+          "evidence": "True on the two disjoint splits only (Table 5: 19.9 against 10.9; 12.8 against 4.9). On the naive split it is lower: 52.1 against 53.2 (replication) and 56.2 (reported). The sentence restates the paper's own claim at l.60-62."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_oTbN",
+          "Reviewer_T9VZ"
+        ],
+        "evidence": "Reviewer_oTbN's review, edited 2021-08-24: 'I'm updating my score from 6 to 7'; its comment that day: 'I will revise my score up to 7'. Reviewer_T9VZ's review, edited 2021-08-17: 'I've updated my score assuming this is added' (earlier score not shown; final 5). Reviewer_zZBA replied only 'Thanks for your response.' (2021-08-25). Reviewer_toeW did not edit or reply.",
+        "what_convinced_or_not": "Promises, not results. oTbN rose because the discussion can improve the paper, 'especially its positioning and the discussion around character based models'. T9VZ was not convinced on substance: the model 'must learn the length of tokens to properly do the task'. T9VZ still wanted a character-level model such as ByT5, and raised the score only on condition that the rebuttal's arguments enter the paper. The prefix-LM point was settled as a writing error. The authors described an unreported experiment with space-separated characters but showed no numbers."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers agree that this is a well written paper and the dataset is interesting to a lot of people.' The meta-review names only Reviewer_T9VZ's character-level baseline, agrees 'this would be something good to add', and defers it to 'the next version of the paper'. It does not weigh the novelty concerns (T9VZ, Reviewer_toeW) or the related-work concerns (Reviewer_oTbN, toeW).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Reviewer_oTbN, Reviewer_zZBA and Reviewer_toeW (7, 8, 7) valued the dataset, the word-initial split and the clear writing.",
+        "The AC treated Reviewer_T9VZ's missing character-level baseline as future work.",
+        "Promises to rework related work and positioning raised Reviewer_oTbN from 6 to 7.",
+        "The method was judged not novel (T9VZ, toeW), which kept enthusiasm at poster level."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty against Efrat et al. as a reason to reject (Reviewer_33q7; withdrawn)",
+    "Dataset not released, only scraping code (Reviewer_4hbV; released in the camera-ready)",
+    "Top-1 and top-10 metrics and answer uniqueness; MRR or accuracy@k (Reviewer_4hbV)",
+    "Whether curricular gains extend beyond anagram clues; combining the two corpora (Reviewer_33q7)",
+    "Whether a niche puzzle task can test human-like thinking (Reviewer_2QZg)",
+    "Comparison with American crosswords and open-domain QA; Deits solver details; answer-length handling (Reviewer_4hbV)"
+  ],
+  "issues_only_b": [
+    "No character-level baseline (Reviewer_T9VZ, Reviewer_oTbN; AC)",
+    "Whether the task is hard enough to be a benchmark, and whether larger T5 models do better (Reviewer_T9VZ)",
+    "T5 described as a prefix-LM; 'curricular' a misnomer for supervised pre-finetuning (Reviewer_T9VZ)",
+    "Thin related work with no curriculum-learning or pre-finetuning literature (Reviewer_oTbN, Reviewer_toeW)",
+    "No real-world motivation or experiments on other data (Reviewer_oTbN)",
+    "No limitations or societal-impact discussion; '(7)' typo; contrast with Muppet; lexical-similarity measure (Reviewer_toeW)"
+  ],
+  "shared_issues": [
+    "Dataset and task as the main contribution (all eight reviewers)",
+    "Curricular method not novel or secondary to the dataset (A: Reviewer_33q7, Reviewer_4hbV, Reviewer_2QZg; B: Reviewer_T9VZ, Reviewer_toeW)",
+    "SentencePiece tokenization for a character-level task (A: Reviewer_4hbV, as a framing note; B: Reviewer_T9VZ, Reviewer_oTbN, as a missing baseline)",
+    "No human performance comparison (A: Reviewer_2QZg; B: Reviewer_zZBA)",
+    "Better fit for an NLP venue (A: Reviewer_33q7; B: Reviewer_oTbN, Reviewer_toeW)",
+    "Clue-type labels or per-type analysis (A: Reviewer_33q7; B: Reviewer_toeW)",
+    "Missing brackets in the Efrat citation at l.62 (A: Reviewer_33q7, as 'Line 52'; B: Reviewer_toeW)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason. All eight reviewers valued the dataset and task, and most judged the curricular method a modest add-on. Each committee had one detractor, and the rebuttal moved both up. In A, Reviewer_33q7 began on the reject side because Efrat et al. had a similar dataset and T5 baseline. The submission calls that work concurrent three times (l.62, l.83, l.317). 33q7 admitted the oversight and rose to 6. In B, Reviewer_T9VZ (5) found a real gap: a character-level task, a subword-tokenized model and no character-level baseline. Tables 2 to 5 confirm the gap. B's AC agreed and deferred it to \"the next version\". ByT5, the model T9VZ names, appeared only in late May 2021, the month of submission. The committees read the tokenization fact in opposite ways. A's Reviewer_4hbV took it as a sign that the task needs new architectures, and gave 8. T9VZ took it as a reason to doubt the task's difficulty, and gave 5. B's one 8 is weak evidence: 55% of Reviewer_zZBA's words are verbatim spans of the submission. No reviewer argued for more than a poster. Neither committee noticed that the claimed gain over Efrat's best model holds only on the disjoint splits (Table 5, naive split: 52.1 against 53.2), or that every result is a single run (checklist 3(c)).",
+  "candidate_reasons": [
+    "Dataset valued over modest method",
+    "Concurrent-work penalty retracted after rebuttal",
+    "Missing character baseline deferred",
+    "Rebuttal promises lifted borderline scores",
+    "Tokenization gap read in opposite ways",
+    "No champion argued above poster"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.62, l.83-84, l.317 (Efrat et al. called concurrent)",
+    "paper_submitted.pdf l.65 and l.154 ('prefix-LM')",
+    "paper_submitted.pdf l.269, Section 6.1 with Table 3b, Section 6.3 with Table 4b (SentencePiece and character-level tests)",
+    "paper_submitted.pdf Tables 2 to 5 (no character-level baseline) and Table 5 (naive split 52.1 against 53.2 and 56.2)",
+    "paper_submitted.pdf Section 2, l.75-85, and references [1] to [35] (no curriculum-learning work)",
+    "paper_submitted.pdf checklist 1(b), 1(c), 3(c), 4(d)",
+    "Reviewer_33q7 final review and comment of 2021-09-07",
+    "Reviewer_4hbV 'UPDATES AFTER AUTHOR RESPONSE'",
+    "Reviewer_T9VZ 'Update after author response'",
+    "Reviewer_oTbN EDIT and comment of 2021-08-24",
+    "Reviewer_zZBA review (verbatim spans from the submission)",
+    "Committee A meta-review; Committee B meta-review",
+    "paper.pdf (camera-ready) Section 1, Section 2, Section 7 and footnote 1"
+  ]
+}

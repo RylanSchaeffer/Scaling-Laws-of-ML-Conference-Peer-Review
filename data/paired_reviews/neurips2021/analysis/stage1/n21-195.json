@@ -1,0 +1,264 @@
+{
+  "pair_id": "n21-195",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 7, 7, 6],
+      "confidences": [3, 3, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_7TvM", "Reviewer_j63f", "Reviewer_i77r", "Reviewer_juSM"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_7TvM), 7 (Reviewer_j63f), 7 (Reviewer_i77r), 7 (Reviewer_AHNy) and 6 (Reviewer_juSM). The spread is one point and no rating stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_7TvM",
+          "evidence": "Says the work is 'not directly in my field of studies'. The summary misstates the result: it says the average Lipschitz constant 'at the beginning of the learning process can predict various aspects of the entire learning process', whereas the paper infers complexity from bias updates over any interval (Theorem 1). The critique is generic (notation, toy experiments). After the rebuttal it raised only its confidence, to 3, citing the other reviews."
+        },
+        {
+          "reviewer": "Reviewer_juSM",
+          "evidence": "Opens with 'Note: this is a light review'. Says the experimental findings are not novel because Arpit et al. showed them, but the paper credits Arpit et al. ([3]) for exactly that at l.26-28 and l.287. Reads the motivating question as a claim. Lists only 'Major problems', yet the final rating is 6. Did not reply to the rebuttal; the review, edited 2021-09-01, carries no post-rebuttal note."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AHNy",
+          "claim": "The upper bound of Theorem 1 needs sigma_n(W_1) > 0, and the statement omits this condition.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Theorem 1 (l.144-145) divides by sigma_n(W_1^(t)) with no positivity condition; the camera-ready adds '> 0'. Reviewer_i77r made the same point. The condition is not sufficient either: since grad_x f = W_1^T df/db_1 (camera-ready display after Theorem 1), the upper bound needs W_1^T to have no null space, i.e. a first layer no wider than the input. Counterexample: f(x) = ReLU(x+1) + ReLU(1-x) is flat on (-1, 1), so its Lipschitz constant there is 0, but df/db_1 = (1, 1). No reviewer in either committee saw this; it affects Theorem 1's upper bound and Corollary 3 only."
+        },
+        {
+          "reviewer": "Reviewer_i77r",
+          "claim": "Corollary 1 needs more conditions; Theorem 1 and Definition 1 do not bound the Lipschitz constant at every training point.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 1 (l.175-176) bounds only the bias step at the point sampled at iteration t, so it cannot bound the Lipschitz constant at every training point at every t, as Corollary 1 (l.178-179) states. The authors agreed and sent a proof sketch; the camera-ready restates Corollary 1 for a random iteration, 'with probability that converges to 1 as |T| grows'."
+        },
+        {
+          "reviewer": "Reviewer_i77r",
+          "claim": "lambda_f^steady is never defined in the main paper.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The display after l.243 defines lambda^steady = (phi c / 4) log(sum_l n_l), as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_i77r",
+          "claim": "In the sinusoid regression, the first-layer weights are fixed to the identity.",
+          "checked_against_paper": "correct",
+          "evidence": "l.275-276: 'with the 1st layer weights being identity'. This is the one case in which the bias gradient equals the input gradient, so Task 1 cannot test the role of W_1's singular values. The authors promised a camera-ready experiment without it."
+        },
+        {
+          "reviewer": "Reviewer_i77r",
+          "claim": "The proof of Claim 1 in the appendix has notational errors, e.g. sum_{i=1}^k s_{t,l}(x).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in paper_submitted.pdf. The authors conceded that the index i is missing throughout the proof."
+        },
+        {
+          "reviewer": "Reviewer_j63f",
+          "claim": "Assumption 1 keeps the activation pattern fixed, which makes the network essentially a linear model.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Assumption 1 (l.222-223) fixes s_t(x) over t >= tau separately for each training point; different points keep different patterns, so the function stays piecewise linear (l.224-225). j63f accepted the correction on 2021-09-02 but still doubts the assumption holds in practice."
+        },
+        {
+          "reviewer": "Reviewer_juSM",
+          "claim": "The experimental findings are not novel; Arpit et al. showed that target complexity slows convergence.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper claims no such novelty: l.26-28 and l.287 ('As similar studies have reported [1, 3]') credit Zhang et al. and Arpit et al. for the slowdown. The new measurements are the normalized bias trajectory, its variance and the distance to initialization."
+        },
+        {
+          "reviewer": "Reviewer_juSM",
+          "claim": "The experiments vary the target (frequency, label corruption), not the training on a fixed target, so they cannot show that training behaviour reveals the learned function.",
+          "checked_against_paper": "correct",
+          "evidence": "Task 1 varies frequency from 0.25 to 1; Task 2 corrupts 0 to 60% of labels (l.270-283). The appendix architecture (B.5) and batch-size (B.6) experiments, cited in the rebuttal, are not mentioned in the main text."
+        },
+        {
+          "reviewer": "Reviewer_juSM",
+          "claim": "'Steadily' is undefined in the abstract.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract l.10: 'biases are trained more steadily'; the term is defined only at Definition 1 (l.175). The camera-ready adds '(i.e., slowly and with little variation)'."
+        },
+        {
+          "reviewer": "Reviewer_7TvM",
+          "claim": "The experiments are mostly toy settings.",
+          "checked_against_paper": "correct",
+          "evidence": "Task 1 fits a 2-D sinusoid embedded in 10 dimensions from 100 training points; Task 2 trains a 2-convolutional-layer CNN on 10,000 CIFAR-10 images of two classes (l.270-286)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_i77r", "Reviewer_j63f"],
+        "evidence": "Reviewer_i77r, 'After Rebuttal': 'I have increased my score to 7' (review edited 2021-08-26); the original held back pending the Dropout argument. Reviewer_j63f, 2021-09-02: 'I have raised my score' (review edited the same day; final 7). Reviewer_7TvM kept 6 and raised its confidence to 3 (edited 2021-09-04). Reviewer_juSM's review was edited 2021-09-01 but carries no post-rebuttal note, and juSM did not reply, so any change is unrecorded. Reviewer_AHNy never edited. The AC: 'some reviewers increased their score after the discussion'.",
+        "what_convinced_or_not": "Concessions and promises, not new results; no new experiment was posted. i77r rose after the authors confirmed its reading of the Dropout argument, fixed the Claim 1 index, conceded sigma_n > 0 and sent a proof sketch for a probabilistic Corollary 1. j63f rose after the clarification that Assumption 1 fixes each point's pattern over time and after the reply on the appendix B.5 MLP-versus-CNN experiment (rerun MNIST1000 longer; state that the Lipschitz constant is not the sole factor in generalization). j63f still doubts Assumption 1 holds in practice. 7TvM kept 6 because readability remains 'a significant problem'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Five knowledgeable reviewers recommend this paper for acceptance ... I agree with the reviewers. Hence I recommend this paper for acceptance.' Four of the five chose confidence 3 ('Math/other details were not carefully checked'), Reviewer_juSM called its review 'light' and Reviewer_7TvM said the work is outside its field, so 'knowledgeable' is generous. The praise it cites ('very concrete strong theoretical contributions') appears in no public review. The four residual concerns match 7TvM (clarity), j63f (Assumption 1) and two private comments on experiments.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All five ratings at 6 or 7 (mean 6.6); no reviewer below the acceptance threshold.",
+        "Reviewers saw a novel, rigorous link between first-layer bias updates and the Lipschitz constant, with no assumption on initialization or width (Reviewer_i77r, Reviewer_AHNy, Reviewer_j63f).",
+        "The rebuttal conceded the theorem fixes (sigma_n > 0, Corollary 1, Dropout intuition) and cleared j63f's misreading of Assumption 1; i77r and j63f rose to 7.",
+        "Clarity, toy experiments and the realism of Assumption 1 stayed open but were judged non-fatal."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 8, 5, 6],
+      "confidences": [3, 3, 4, 2],
+      "reviews_edited_after_posting": ["Reviewer_8FRD", "Reviewer_KizT", "Reviewer_BRU5", "Reviewer_9MLt"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_BRU5",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Ratings split 8, 8 against 6, 5. BRU5's 5 is the only rating below 6 among the nine reviews of both committees, given at B's highest confidence (4). Its basis is specific and the paper confirms it: Corollary 1 is 'an immediate corollary' of Definition 1 (l.177), and the authors concede that the analysis fails without a first-layer bias. It held after the rebuttal ('very fragile'), and the AC adopted the point. The two 8s (Reviewer_8FRD, Reviewer_KizT) are engaged reviews at confidence 3, one by a self-declared non-expert."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8FRD",
+          "claim": "Theorem 1 needs |T| above a bound that may be unattainable, e.g. if sigma_n(W_1) shrinks like 1/T.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted l.145: |T| = Omega(avg_t (lambda^max / (sigma_n(W_1^(t)) delta))^2), which grows without limit as sigma_n goes to 0. The authors conceded ('might not always be achievable'); the camera-ready drops the condition and bounds the sampled points instead."
+        },
+        {
+          "reviewer": "Reviewer_8FRD",
+          "claim": "The CIFAR-10 task uses only the 'dog' and 'airplane' classes.",
+          "checked_against_paper": "correct",
+          "evidence": "l.279-281. The authors said the choice was arbitrary and ran no other pair."
+        },
+        {
+          "reviewer": "Reviewer_8FRD",
+          "claim": "Several appendix experiments (MNIST, batch size, architecture, total trajectory length) are never mentioned in the main text.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text cites Appendix B only for the Task 1 setup (B.1) and one figure (B.2); its conclusion even lists batching as an open question (l.309-310)."
+        },
+        {
+          "reviewer": "Reviewer_KizT",
+          "claim": "In the lazy/NTK regime the bias trajectory is short while the Lipschitz constant can be large, so Theorem 1 seems not to hold.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 bounds the trajectory normalised by alpha_t times the loss derivative (l.158-159). Its lower bound rests on lambda_f(R_x) = ||W_1^T df/db_1|| <= sigma_1(W_1) ||df/db_1||, which holds for any network, lazy or not; a short raw trajectory from small steps does not contradict it. The authors' reply made this point loosely."
+        },
+        {
+          "reviewer": "Reviewer_KizT",
+          "claim": "Theorem 2 bounds only points whose activation is a linear combination of training activations; a global bound needs N >= prod_l n_l.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2's constraint s_t(x) = S_T k and l.231-233. The authors confirmed."
+        },
+        {
+          "reviewer": "Reviewer_BRU5",
+          "claim": "The steady-learner definition bounds the bias step in order to bound the Lipschitz constant, so the argument is circular.",
+          "checked_against_paper": "correct",
+          "evidence": "For Corollary 1, l.177 calls it 'an immediate corollary (the proof follows from Lemma 1 and Definition 1)'. Theorems 2 and 3 add content beyond this (empty regions, Dropout)."
+        },
+        {
+          "reviewer": "Reviewer_BRU5",
+          "claim": "Without a first-layer bias the analysis says nothing.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded: 'the arguments provided do not work when the first layer has no bias'. Reviewer_9MLt added that a constant input coordinate can replace a bias."
+        },
+        {
+          "reviewer": "Reviewer_BRU5",
+          "claim": "l.45 should say 'with a bounded Lipschitz constant'; l.70 wrongly says sample complexity must grow exponentially with depth; l.207 'find near solutions' is garbled.",
+          "checked_against_paper": "correct",
+          "evidence": "All three sentences appear as quoted (l.45-46, l.69-70, l.207). VC-dimension bounds for ReLU networks do not grow exponentially with depth."
+        },
+        {
+          "reviewer": "Reviewer_BRU5",
+          "claim": "The theory concerns the learned network's Lipschitz constant, but the experiments vary the target's.",
+          "checked_against_paper": "correct",
+          "evidence": "Task 1 varies frequency and Task 2 label corruption (l.270-283); no experiment reports the trained network's Lipschitz constant. The authors argued that a small loss makes the two nearly equal, but fitting the training points bounds the network's slope only from below."
+        },
+        {
+          "reviewer": "Reviewer_9MLt",
+          "claim": "Theorem 1's inequalities involve singular values of the weight matrices, which can vary over a wide range.",
+          "checked_against_paper": "correct",
+          "evidence": "Only the first layer's sigma_1 and sigma_n appear (l.144-145), as the authors replied, but sigma_n can be near zero; the camera-ready concedes 'the smallest may be (close to) zero'."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The gradients with respect to the first-layer bias and with respect to the input are equal.",
+          "checked_against_paper": "incorrect",
+          "evidence": "grad_x f = W_1^T df/db_1 (camera-ready display after Theorem 1; submitted l.150-154 states the link), so the two coincide only when W_1 = I, as in Task 1 (l.276). The AC's conclusion, that the link is simple, stands."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_8FRD: 'I am satisfied with the author's response and retain my score' (edited 2021-09-07). Reviewer_KizT: 'I still believe that this paper is good' (edited 2021-08-24). Reviewer_BRU5: 'Therefore, I maintain my score' (edited 2021-09-09). Reviewer_9MLt's only edit (2021-07-26) predates the rebuttal (2021-08-10); its reply of 2021-08-26 keeps its doubts.",
+        "what_convinced_or_not": "Nothing moved a score. BRU5 rejected the defence of the bias: removing it breaks the result, which 'hints that the overall result is very fragile'. 9MLt answered the expressivity argument (a constant input neuron replaces a bias) and repeated that Section 6 shows only qualitative, expected effects. 8FRD and KizT were already positive; KizT asked for transparency on Lipschitz smallness being sufficient but not necessary, and on networks without a bias. The authors posted no new results; they said they had checked a direct Lipschitz estimate for the MLP but left it out."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The majority of reviewers were positive' and 'Despite the above, the paper was deemed interesting and significant enough to warrant acceptance.' Bullet 1 restates Reviewer_KizT's post-rebuttal request ('a small Lipschitz constant is sufficient but not necessarily for generalization') and Reviewer_9MLt's doubt about the Lipschitz constant as a complexity measure. Bullet 2 restates Reviewer_BRU5's post-rebuttal verdict ('fragile') and the bias questions of KizT and 9MLt. Its own gloss, that the bias and input gradients 'are equal', is imprecise: they differ by W_1^T.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Majority positive: two 8s (Reviewer_8FRD, Reviewer_KizT) for an exciting question and a generalization bound that does not grow exponentially with depth; mean 6.75.",
+        "Only one rating below the threshold (Reviewer_BRU5, 5); Reviewer_9MLt's 6 came at confidence 2 with admitted non-understanding.",
+        "The AC accepted on the majority and kept BRU5's fragility point and KizT's sufficient-not-necessary point as caveats for the camera-ready."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theorem 1 omits sigma_n(W_1) > 0 (Reviewer_AHNy, Reviewer_i77r; confirmed, fixed in the camera-ready)",
+    "Corollary 1 does not follow from Definition 1 (Reviewer_i77r; confirmed, restated probabilistically)",
+    "Assumption 1 read as forcing linearity, and doubted in practice (Reviewer_j63f)",
+    "Data on a low-dimensional subspace, first layer fixed to the identity in Task 1, biases of deeper layers (Reviewer_i77r)",
+    "Opening sentence overstates how often architecture search is needed to avoid overfitting (Reviewer_juSM)",
+    "Appendix B.5 MLP-versus-CNN comparison confounded by MLP underfitting; vary optimisation hyperparameters on a fixed task instead (internal discussion relayed by Reviewer_i77r)",
+    "Notation errors in the appendix proof of Claim 1 (Reviewer_i77r)"
+  ],
+  "issues_only_b": [
+    "Steady-learner definition makes Corollary 1 circular (Reviewer_BRU5)",
+    "Analysis fails without a first-layer bias, so the result looks fragile (Reviewer_BRU5, Reviewer_KizT, Reviewer_9MLt, AC)",
+    "Theorem 1's |T| condition may be unattainable as sigma_n shrinks (Reviewer_8FRD)",
+    "NTK/lazy regime and the role of the optimiser (Reviewer_KizT)",
+    "Theorem 2's linear-combination condition and N >= prod n_l (Reviewer_KizT)",
+    "Theorem 3 phrased through phi rather than local Lipschitz constants (Reviewer_8FRD)",
+    "Arbitrary dog-versus-airplane split; appendix experiments not cited in the main text (Reviewer_8FRD)",
+    "No direct estimate of the trained network's Lipschitz constant (Reviewer_KizT, Reviewer_BRU5)",
+    "Errors at l.45, l.70 and l.207; trajectory length undefined (Reviewer_BRU5)"
+  ],
+  "shared_issues": [
+    "Bounds depend on W_1's singular values (A: Reviewer_j63f, Reviewer_AHNy, Reviewer_i77r; B: Reviewer_8FRD, Reviewer_KizT, Reviewer_9MLt)",
+    "Why the first-layer bias is the object of analysis (A: Reviewer_juSM, Reviewer_j63f; B: Reviewer_8FRD, Reviewer_KizT, Reviewer_BRU5, Reviewer_9MLt)",
+    "Small experiments that vary the target, not the training (A: Reviewer_7TvM, Reviewer_juSM; B: Reviewer_BRU5)",
+    "Experimental effects expected without the theory (A: Reviewer_juSM; B: Reviewer_9MLt)",
+    "Whether low complexity is what drives generalization (A: internal discussion relayed by Reviewer_i77r; B: Reviewer_KizT, Reviewer_9MLt, AC)",
+    "Why Dropout is needed in Theorem 3 (A: Reviewer_i77r; B: Reviewer_BRU5)",
+    "Dense notation and a hard-to-parse Corollary 2; readability judged poor by A's Reviewer_7TvM and Reviewer_juSM but good by Reviewer_j63f and B's Reviewer_KizT",
+    "Novel approach with no assumption on initialization or width (A: Reviewer_i77r, Reviewer_AHNy, Reviewer_7TvM; B: Reviewer_8FRD, Reviewer_KizT, Reviewer_BRU5)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Both saw a novel, simple link between how fast SGD moves the first-layer bias and the network's local Lipschitz constant, extended to empty regions and to a Dropout generalization bound that grows only poly-logarithmically with the number of neurons. Both also saw its limits: small experiments that vary the target rather than the training, dense notation, and a result that rests on one parameter. A's five ratings sit at 6 or 7 (mean 6.6). B split 8, 8, 5, 6 (mean 6.75): the 8s came from confidence-3 reviewers, one a self-declared non-expert (Reviewer_KizT), and the 5 came from B's most confident reviewer (Reviewer_BRU5), who held that the result is fragile because the bias gradient only mirrors the input gradient. B's AC kept BRU5's point and KizT's sufficient-not-necessary point as caveats and accepted on the majority. A's rebuttal conceded theorem fixes (sigma_n > 0, Corollary 1) and cleared a misreading of Assumption 1, and Reviewer_i77r and Reviewer_j63f rose to 7; B's rebuttal moved no one. The committees weighed the same facts alike; A's reviewers mostly checked statements and B's mostly questioned the framing. Neither saw that Theorem 1's upper bound needs a first layer no wider than the input: grad_x f = W_1^T df/db_1, so f(x) = ReLU(x+1) + ReLU(1-x), flat on (-1, 1), still has bias gradient (1, 1). Task 1 fixes W_1 to the identity, where the two gradients coincide, and the camera-ready keeps the bound. Corollary 3 inherits the gap; Corollaries 1 and 2 and Theorems 2 and 3 use only the valid direction, so the generalization results stand.",
+  "candidate_reasons": [
+    "Same strengths and limits seen",
+    "Toy experiments capped enthusiasm",
+    "Rebuttal conceded theorem fixes",
+    "Lone principled detractor outvoted",
+    "Low-confidence reviews on both sides",
+    "Shared blind spot in Theorem 1"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Theorem 1 (l.144-145): sigma_n(W_1) in the upper bound, no positivity condition, |T| condition",
+    "paper_submitted.pdf Definition 1 and Corollary 1 (l.175-179)",
+    "paper_submitted.pdf Assumption 1 (l.222-226)",
+    "paper_submitted.pdf l.270-286 (Task 1 with identity first layer; Task 2 dog versus airplane with label corruption)",
+    "paper_submitted.pdf l.26-28 and l.287 (Arpit et al. [3] credited)",
+    "paper_submitted.pdf display after l.243 (lambda^steady)",
+    "paper.pdf (camera-ready) Theorem 1, Corollary 1 and the identity grad f = (df/db_1)^T W_1",
+    "Reviewer_i77r final review and comment of 2021-08-24",
+    "Reviewer_j63f comment of 2021-09-02",
+    "Reviewer_BRU5 final review (post-rebuttal paragraph)",
+    "Reviewer_KizT final review (point 4 and post-rebuttal paragraph)",
+    "Reviewer_9MLt comment of 2021-08-26",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

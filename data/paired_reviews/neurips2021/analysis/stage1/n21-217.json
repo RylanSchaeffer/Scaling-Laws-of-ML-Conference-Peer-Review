@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-217",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ExtA",
+        "Reviewer_efTh"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_nEjk), 6 (Reviewer_ExtA) and 7 (Reviewer_efTh). The spread is one point. ExtA's 6 rests on doubt about significance, not on an error, and the rebuttal answered it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nEjk",
+          "evidence": "Thin, not wrong. The 115-word main review says 'I read all the proofs and they seem okay' but names no step or issue. It recommends acceptance 'mainly due to the fact that I find the setting interesting'. Its one request (state the main proof difficulties) got an answer; the reply was 'Thanks for the feedback and the clarifications!'. The 7 adds little evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_efTh",
+          "claim": "The paper claims TRUNC is better than the naive (bucketing) approach for small m, but at m = 10 TRUNC performs worse.",
+          "checked_against_paper": "correct",
+          "evidence": "l.62-63: TRUNC 'has better sample complexity than the reduction approach with data batches for small and medium m'. Figure 3, m = 10 panel: TRUNC's power is below BUNIF's for φ from 0.90 to about 0.97 and slightly above only near 0.98. The authors conceded ('The proper claim should be small m and when φ is close to 1'). The camera-ready introduction keeps 'for small and medium m'."
+        },
+        {
+          "reviewer": "Reviewer_efTh",
+          "claim": "Bounds such as O(1/m^{1/2}) go to 0, although the paper says one sample cannot be enough; a constant term is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract l.6 states O(m^-1/2) samples, and Theorem 5 states k = Θ((1/μ²)√(ln(1/δ)/m)). l.163-165: 'we cannot test uniformity with less than 2 samples'. Algorithm 2 line 5 keeps the '1 +' term that the theorem drops. The authors said the constant is 'hidden by the big O notation'; efTh did not accept that."
+        },
+        {
+          "reviewer": "Reviewer_efTh",
+          "claim": "For CDP and LDP the largest domain size in the experiments is only m = 1000.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3 uses m ∈ {10, 100, 500, 1000}. The abstract's m = 10000 applies only to the non-private tests (Figures 1 and 2). The authors promised larger runs in an appendix."
+        },
+        {
+          "reviewer": "Reviewer_efTh",
+          "claim": "The paper has no lower bounds, except for a special case that reduces to testing a Bernoulli distribution.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 8, l.326-340, leaves lower bounds as future work. It gives only the m = 2 reduction to Bernoulli testing (an Ω(1/ε₀) central and an Ω(1/ε₀²) local lower bound). The AC repeats this point."
+        },
+        {
+          "reviewer": "Reviewer_efTh",
+          "claim": "φ_ε seems hard to compute in practice, and the paper gives no method.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 line 2 and Algorithm 2 line 3 define φ_ε only as a supremum; the main text gives no procedure. The rebuttal gave a quadratic-time formula with Mahonian numbers plus binary search; the camera-ready adds it."
+        },
+        {
+          "reviewer": "Reviewer_ExtA",
+          "claim": "The Mukherjee (2016) application that the rebuttal cites is missing from the submitted version.",
+          "checked_against_paper": "correct",
+          "evidence": "Mukherjee is not among references [1]-[26] of the submission, and the paper gives no application. The camera-ready cites it ([28]) together with the fair-lending paragraph from the rebuttal."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_efTh"
+        ],
+        "evidence": "Reviewer_efTh, 2021-08-22: 'You addressed my concerns and I have increased my score' (final 7; review edited that day). Reviewer_ExtA edited on 2021-08-22 and added 'Update After Rebuttal': the rebuttal 'gives much-needed motivation'. Its final rating is 6; the original text reads as below the threshold, but no score change is stated. Reviewer_nEjk did not edit and replied 'Thanks for the feedback and the clarifications!'.",
+        "what_convinced_or_not": "efTh: O(m) space and time linear in m per sample, a binary-search method for φ_ε, and a narrower TRUNC claim. efTh still wanted a constant in bounds that go to 0. ExtA: a fair-lending use case and the Mukherjee (2016) draft-lottery test supplied the motivation that the paper lacked. nEjk: the explanation that a random reference ranking makes a constant fraction of the pairwise statistics deviate under any unknown center."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences: the problem, 'novel algorithms for this problem, both private and non-private', 'a nice contribution to the literature', and efTh's suggestion to add remarks on lower bounds. It does not mention ExtA's doubt about significance or efTh's TRUNC point.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 6.67 (7, 6, 7); no reviewer found an error in a theorem or proof.",
+        "Reviewers and AC judged the private and non-private testers novel for an unstudied problem ('a nice contribution', AC).",
+        "The rebuttal answered efTh's questions on complexity and φ_ε (score raised to 7) and gave ExtA the motivation that the paper lacked (final 6).",
+        "Support was thin and no reviewer argued for more than a poster: nEjk's 7 rests on finding the setting interesting."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_G2iJ",
+        "Reviewer_r9MB"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_G2iJ), 7 (Reviewer_Czjv), 6 (Reviewer_r9MB) and 6 (Reviewer_C58N). The spread is one point and no rating stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_C58N",
+          "evidence": "Posted 2021-08-02, two to four weeks after the others; 2-3 hours; confidence 3. It reverses the core test: 'if the null hypothesis is satisfied value of the above random variable is large'. But l.176-180 and Algorithm 2 line 10 make Y small under H0 and reject when Y is large. It did not reply to the rebuttal. Its 6 rests on a general doubt that the problem is 'too simple and uninteresting'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_G2iJ",
+          "claim": "Line 202 gives the variance of a Laplace with scale b as 8b²; it should be 2b².",
+          "checked_against_paper": "correct",
+          "evidence": "l.202: 'V[Lap(2m/ε₀)] = 8(2m/ε₀)²'. The correct value is 2(2m/ε₀)² = 8(m/ε₀)², so the stated variance is four times too large. It serves only to show that the naive private test is costly. The authors conceded; the camera-ready prints 8(m/ε₀)²."
+        },
+        {
+          "reviewer": "Reviewer_Czjv",
+          "claim": "In the abstract and conclusions, with φ suppressed, the sample complexity is below 1 (m^-1/2).",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract l.6: 'O(m^-1/2) samples'; conclusion l.319: 'O(1/√m)'. Both suppress the dependence through μ. l.163-165 say at least 2 samples are needed. The camera-ready abstract still says O(m^-1/2)."
+        },
+        {
+          "reviewer": "Reviewer_Czjv",
+          "claim": "2SAMP accepts or rejects correctly as long as φ is large enough (> 1 - Ω(m)).",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.150-151 and l.156 require φ_ε ≤ 1 - Ω(1/m), that is, φ_ε bounded away from 1. Reviewer_G2iJ states the condition correctly. The slip did not affect Czjv's rating."
+        },
+        {
+          "reviewer": "Reviewer_r9MB",
+          "claim": "Valiant and Valiant (2017) and Batu and Canonne (2017) are not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is among references [1]-[26]. The authors agreed; the camera-ready cites both ([7], [31])."
+        },
+        {
+          "reviewer": "Reviewer_r9MB",
+          "claim": "φ_ε would be more accurately defined with an infimum over the central ranking π₀.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Algorithm 2 line 3 already notes 'φ_ε does not depend on π₀': relabelling the items maps any center to any other. The authors replied the same."
+        },
+        {
+          "reviewer": "Reviewer_r9MB",
+          "claim": "The paper does not explain how μ, and so the sample complexity, depends on m and ε.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 5 gives k through μ = (1 - φ_ε^{m/8})/(1 + φ_ε^{m/8}), and φ_ε is defined only implicitly. The authors conceded that no closed form exists and showed that μ is constant in m only when ε = Ω(1/√m)."
+        },
+        {
+          "reviewer": "Reviewer_C58N",
+          "claim": "The test statistic is large under the null hypothesis and significantly smaller under the Mallows alternative.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.176-180: Y is O(m) under H0 and Ω(mkμ²) under H1. Algorithm 2 line 10 rejects when Y ≥ m/2 + 2√(m ln(1/δ))."
+        },
+        {
+          "reviewer": "Reviewer_C58N",
+          "claim": "The two-sample result also follows from the O(1/√m) result, so one result would suffice.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 line 5 sets k = 1 + ⌈μ⁻²(12m ln(2/δ)/m₁² + 10√(m ln(2/δ)/m₁²))⌉ with m₁ ≈ m/8. So k = 2 once m is large and μ is bounded below, which holds in 2SAMP's regime. The authors answered that 2SAMP has higher power with two samples (Figure 1, l.282-283)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "No B reviewer states a score change. Reviewer_G2iJ's edit of 2021-08-17 tags both minor comments '[response acknowledged]' (final 7). Reviewer_r9MB edited on 2021-08-23 with no visible update text and posted no reply (final 6). Reviewer_Czjv did not edit and wrote 'I am happy with the way the authors addressed my comments' (final 7). Reviewer_C58N neither edited nor replied (final 6). The AC reports 'a consensus to accept during discussion'.",
+        "what_convinced_or_not": "The authors conceded the variance and notation errors and promised the missing citations and a φ_ε remark. They explained that disjoint consecutive pairs give independent statistics, and showed that μ is constant in m when ε = Ω(1/√m). Czjv accepted the answer on parameter dependence. Nothing shows that r9MB or C58N moved. The authors gave no closed form for μ and no optimality result. They answered C58N's 'too simple' doubt with an unproven extension to generalized Mallows models."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "It summarises the praise ('natural and well-motivated problem', 'simplicity and practicality') and calls the concerns 'low-level technical concerns, primarily about notation and about details of subroutines', 'sufficiently addressed in author feedback'. This understates r9MB's points on parameter dependence and optimality and omits C58N's doubt about significance.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 6.5 (7, 7, 6, 6); the concerns were about presentation and missing detail, not errors in results.",
+        "Reviewers valued a natural problem and simple, practical algorithms with central and local DP versions (AC).",
+        "The authors conceded the variance and notation errors and supplied the φ_ε method and the μ-dependence; the AC reports consensus.",
+        "Unclear parameter dependence and unknown optimality (r9MB) and a possibly too-simple alternative class (C58N) held two reviewers at 6."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "TRUNC's claimed advantage for small m contradicted by Figure 3 at m = 10 (Reviewer_efTh)",
+    "Private experiments stop at m = 1000 while the abstract advertises m = 10000 (Reviewer_efTh)",
+    "No application given for the problem; Mukherjee (2016) not cited (Reviewer_ExtA)",
+    "Undefined k in the LDP experiments (Reviewer_efTh)",
+    "Main proof difficulties and novel arguments not stated (Reviewer_nEjk)"
+  ],
+  "issues_only_b": [
+    "Laplace variance at l.202 four times too large (Reviewer_G2iJ)",
+    "ε and δ overloaded between testing and privacy parameters (Reviewer_G2iJ)",
+    "Missing citations: Valiant and Valiant 2017; Batu and Canonne 2017 (Reviewer_r9MB)",
+    "Why only disjoint consecutive pairs; X_{i(i+1)} notation; unclear discussion after Theorem 5; known-center case underplayed; δ-dependence (Reviewer_r9MB)",
+    "2SAMP redundant given UNIF (Reviewer_C58N)",
+    "Typos and grammar, e.g. l.88 (Reviewer_Czjv)"
+  ],
+  "shared_issues": [
+    "Sample complexity stated as O(m^-1/2), below the two samples the paper says are needed (A: Reviewer_efTh; B: Reviewer_Czjv)",
+    "No method to compute φ_ε and no explicit dependence on ε (A: Reviewer_efTh; B: Reviewer_r9MB, Reviewer_Czjv)",
+    "No lower bounds, so optimality is unknown (A: Reviewer_efTh, AC; B: Reviewer_r9MB)",
+    "Running time not discussed (A: Reviewer_efTh; B: Reviewer_r9MB)",
+    "Proofs and DP tools largely standard (A: Reviewer_nEjk; B: Reviewer_C58N, Reviewer_G2iJ)",
+    "Doubt that the problem matters (A: Reviewer_ExtA on motivation; B: Reviewer_C58N on a too-simple alternative class)",
+    "Novel problem with simple, practical testers (A: Reviewer_nEjk, Reviewer_efTh, AC; B: all four reviewers, AC)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster because they saw the same paper and weighed it the same way. The paper gives simple testers for a new, narrow problem, with presentation gaps and no error in a result. All seven final ratings are 6 or 7 (A: 7, 6, 7; B: 7, 7, 6, 6). So neither committee had a champion for a higher tier or a detractor for rejection. In each committee, one reviewer doubted that the problem matters and settled at 6 (A: Reviewer_ExtA, on missing motivation; B: Reviewer_C58N, on a too-simple alternative class). The technical points overlap. The stated sample complexity, O(m^-1/2), falls below the two samples that the paper says are necessary (A: Reviewer_efTh; B: Reviewer_Czjv). The paper gives no method to compute φ_ε and no explicit ε-dependence (A: efTh; B: Reviewer_r9MB), and no lower bounds (A: efTh and the AC; B: r9MB). The authors answered the φ_ε question with the same paragraph in both forums. The errors that the paper confirms are in side remarks, and none breaks a result. l.202 gives a Laplace variance four times too large (B: Reviewer_G2iJ). Figure 3 contradicts at m = 10 the introduction's claim that TRUNC beats bucketing for small m (A: efTh). B wrote about twice as many review words (1,734 against 827) and found more small faults. Both ACs wrote short meta-reviews that follow the unanimous scores.",
+  "candidate_reasons": [
+    "Uniform 6-7 ratings, no outlier",
+    "No error in main results",
+    "Presentation gaps judged fixable",
+    "Same rebuttal answers both forums",
+    "Narrow problem limited enthusiasm",
+    "Score-following meta-reviews in both"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_efTh final review and reply of 2021-08-22",
+    "Reviewer_ExtA 'Update After Rebuttal'",
+    "Reviewer_G2iJ minor comment on line 202; paper_submitted.pdf l.202",
+    "paper_submitted.pdf Figure 3 (m = 10 panel) and l.62-63",
+    "paper_submitted.pdf abstract l.6, l.163-165, Algorithm 2 lines 5 and 10, Theorem 5",
+    "paper_submitted.pdf Section 8 l.326-340 (lower bounds)",
+    "Authors' responses to Reviewer_efTh (A) and Reviewer_r9MB (B): same φ_ε paragraph",
+    "Reviewer_C58N and Reviewer_Czjv main reviews",
+    "paper.pdf (camera-ready) introduction and references"
+  ]
+}

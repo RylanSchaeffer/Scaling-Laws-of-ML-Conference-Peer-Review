@@ -1,0 +1,225 @@
+{
+  "run": 2,
+  "turn": 24,
+  "pair_id": "n21-039",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's Reviewer_1kmf called novelty 'limited' on references [1-3], none of which prunes an SR network (one is a 2009 kernel adaptive filter paper); B had no such error behind a criticism."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "B's AC followed unanimous confidence-5 8s; the spotlight does not sit above the reviewers' ratings."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "B's 8s came at confidence 5 and rested on Table 2 and the rebuttal experiments; A's one enthusiastic review (k8sL) fell to 5 and did not lift A."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Only A's forum holds the authors' own table putting LatticeNet within 0.04 dB of ASSLN and their concession that the SSA penalty does not guarantee aligned masks."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B heard from DsQ3 of prior SR pruning work (DHP; ICASSP 2020) that contradicts the 'first attempt' claim, yet its scores and meta-review did not weigh it and the claim stayed."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "After the rebuttal B's Lh3t and chSU rose while A's k8sL fell to 5; opposite moves widened the gap."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised the near-tie with 2020 lightweight SR networks (LatticeNet, MADNet, s-LWSR); only B raised the uncited prior SR pruning work and HRank."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the same Table 2 margins over IMDN (0.08 to 0.39 dB) and the runtime parity; A's k8sL and AC called the gains 'marginal' and 'fairly small', B's DsQ3 called them 'obviously better'."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's AC paraphrased k8sL, but A's reviews were not split (5, 4, 4), so no single reviewer resolved a split."
+    },
+    {
+      "id": "R10",
+      "applies": true,
+      "justification": "A's k8sL lowered its score to 5 saying 'I agree that the novelty ... is not highlighted enough', adopting the other reviewers' novelty argument."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "No evidence that the authors misread a question or left a follow-up unanswered in either committee."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's two 4s (1kmf, XysC) never replied to the rebuttal, which added RCAN+ASSL and three new baselines for them, and 1kmf's novelty objection rested on unrelated references."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's AC rejected with all ratings below threshold; no positive majority was overridden."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's AC stated no positive assessment; B's AC simply followed unanimous 8s."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's 4s rest on novelty and missing baselines, central points, not a peripheral detail."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "A read the work as generic pruning applied to SR, B as a new mechanism (weight-normalization scales and Gram-matrix mask alignment), so they judged novelty by different questions."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "B's raisers rated at confidence 5 and got new experiments, not mere clarifications on a core they could not check."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both read the paper as an SR efficiency method; the gap in baselines is a raised-only-in-A issue, not a different bar for the paper type."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "B's chSU praised the paper as 'the first attempt to leverage filter pruning for efficient image SR', which DsQ3's cited prior work shows is wrong."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "A's 4s did not acknowledge the rebuttal at all; k8sL lowered rather than kept its score."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee is recorded refusing or crediting promised revisions as the deciding point."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer's stated stance diverged from the rating acted on."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No off-record extra reviewer in either committee."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Clarity was not a deciding issue, and no expertise gap drove a clarity verdict."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "chSU and Lh3t raised with stated reasons ('All my concerns have been well addressed'; 'upgrade my rating slightly'), and their texts did not argue against acceptance."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "A's AC counted its silent 4s rather than setting them aside."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "B's DsQ3 rated 8 on a 15-hour, detailed reading and kept it after the rebuttal, while no A reviewer rated above 5 after the rebuttal."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted reading only part of the paper."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the premise from a different theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "B's four-sentence meta-review cites only the reviewers' positivity and 'a nice result', giving no case for a spotlight over a poster."
+    }
+  ],
+  "added": [],
+  "reasoning": "The stage 1 verdict names same facts weighted differently, an authors' table seen only by A, prior work seen only by B and not weighed, silent detractors in A, a wrong 'first attempt' claim praised in B, opposite score moves after the rebuttal, and a thin B meta-review. Each candidate reason maps to an existing entry: R08 and R16 for the opposite readings of gains and novelty, R04 for the LatticeNet near-tie table, R05 and R19 for the uncited prior SR pruning work, R12 for A's unengaged 4s, R10 for k8sL following the others, R06 for opposite moves, R27 for DsQ3, and R30 for the meta-review. No new reason is needed.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30"
+  ]
+}

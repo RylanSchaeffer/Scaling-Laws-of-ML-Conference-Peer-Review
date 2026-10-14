@@ -1,0 +1,242 @@
+{
+  "pair_id": "n21-252",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 7, 7, 5],
+      "confidences": [4, 4, 3, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_E993", "Reviewer_xYbr", "Reviewer_n5i1", "Reviewer_4uZD"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_4uZD",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only rating below threshold (5, confidence 3), against 6, 7, 7 and 7. The review gave dataset scale as its reason: 'I recommend the score 5 due to the major weakness on evaluation datasets'. It promised to consider an upgrade after 'a strong rebuttal'. The authors added ImageNet. On 2021-08-27, 4uZD kept 5 on new grounds that misread the record. It read Figure 1 as 'more generated data make the testing accuracy dropping', but that holds only for self-distillation (Fig. 1a); the Fig. 1(b) caption says 'test accuracy now slightly increases'. It said ImageNet accuracy 'is not improved along with the increasing fidelity, and the IMDB is opposite', but both rebuttal tables show student accuracy and agreement rising together. It did not answer the authors' follow-up, and the AC did not mention it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CMC1",
+          "evidence": "A 7 that rests on a nine-word main review: 'This paper is novel, high quality, clear and significant.' Its six questions sit in the limitations box. The first ties the approximation at l.66-71 to a correct teacher, but L_KD (Eq. 1) has no label term. It did not take part in the discussion."
+        },
+        {
+          "reviewer": "Reviewer_xYbr",
+          "evidence": "One hour and 154 words. It says the paper 'did not address the limitations and potential negative societal impact', but checklist l.439-441 point to Appendices D.1 and D.2, which E993, n5i1 and 4uZD read. The post-rebuttal edit adds one sentence ('I tend to accept this work') and gives no reason for the 7."
+        },
+        {
+          "reviewer": "Reviewer_4uZD",
+          "evidence": "The summary credits 'previous knowledge distillation methods' with the paper's own data experiments. After the rebuttal it misread Figure 1 and both new tables (see outlier)."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_E993",
+          "claim": "The claims rest only on CIFAR-100 with ResNets, plus a few VGG results in the appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "Every low-fidelity result in the main text uses CIFAR-100 (ResNet-56, ResNet-20); l.178-179 put VGG in Appendix B.1. The only other dataset, MNIST with LeNet-5 (Section 4.1, Fig. 2), is the case where distillation reaches over 99% agreement. ImageNet and IMDB came only in the rebuttal (camera-ready Appendices C.3 and C.4)."
+        },
+        {
+          "reviewer": "Reviewer_CMC1",
+          "claim": "The approximation at l.66-71 works only when the teacher makes the correct prediction.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L_KD in Eq. 1 contains no label term. The equivalences at l.66-71 and the large-temperature gradient approximation at l.74-75 (gradient of L_KD close to z_t - z_s) do not depend on whether the teacher is right. The authors answered the same."
+        },
+        {
+          "reviewer": "Reviewer_CMC1",
+          "claim": "Lines 146 and 159 contradict each other; higher fidelity is not correlated with better generalization.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.146: higher-fidelity students 'do not always have better generalization'. l.159: improving fidelity is 'the most obvious way' to close the gap to a large teacher. The lines are in tension, not in contradiction. l.143-144 report that in ensemble distillation 'fidelity becomes positively correlated with generalization' (Fig. 1b)."
+        },
+        {
+          "reviewer": "Reviewer_xYbr",
+          "claim": "The paper does not address limitations or potential negative societal impact.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Checklist l.439-441: '[Yes] (see Appendix D.1)' for limitations and '(see Appendix D.2)' for societal impact. E993, n5i1 and 4uZD all report seeing this section."
+        },
+        {
+          "reviewer": "Reviewer_n5i1",
+          "claim": "Statements about the drop in train agreement are too general: with baseline augmentation, 100% agreement seems achievable.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 5 shows about 100% train agreement for CIFAR-100 only (left), D0 (middle) and Baseline (right); l.268-270 say 'almost perfect teacher-student agreement'. Test agreement in those settings is about 71% to 85% (Figs. 1, 3, 4). So for ResNet-56 the failure to fit the distillation data appears only when the distillation data go beyond the teacher's training set. In the base case it is shown only for a ResNet-20 with LayerNorm (l.287-294). The abstract's 'difficulties in optimization as a key reason' is broader than this."
+        },
+        {
+          "reviewer": "Reviewer_n5i1",
+          "claim": "The evidence that more training epochs cannot reach perfect agreement is not conclusive.",
+          "checked_against_paper": "correct",
+          "evidence": "l.300-306: 78.95% train agreement at 300 epochs and 83.3% at 5k. The paper concedes: 'It is possible, though unlikely, that if we train for even more epochs the train agreement could reach 100%.'"
+        },
+        {
+          "reviewer": "Reviewer_4uZD",
+          "claim": "In Fig. 1, more generated data lowers test accuracy while fidelity rises, so the student overfits the teacher.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True only for self-distillation (Fig. 1a), where student accuracy falls toward the teacher's own accuracy as fidelity rises (l.130-133). Fig. 1(b) caption: 'test accuracy now slightly increases'. The authors replied that the problem is underfitting (Fig. 5)."
+        },
+        {
+          "reviewer": "Reviewer_4uZD",
+          "claim": "In the rebuttal results, ImageNet accuracy does not improve with fidelity, and IMDB shows the opposite.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Checked against the rebuttal tables, not the paper. ImageNet: student accuracy 75.30, 75.45, 75.62% while agreement rises 85.5, 87.8, 88.4%. IMDB: 80.35, 81.13, 81.17% while agreement rises 86.5, 89.8, 90.8%. Both rise together in both tables; the ImageNet gain is small (0.3 points)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_E993", "Reviewer_n5i1"],
+        "evidence": "Reviewer_E993 (2021-08-27): 'I increase my rating to 6'; the review was edited that day. Reviewer_n5i1 (2021-09-01): 'I will personally increase my score from 6 to 7'; edited that day. Reviewer_xYbr edited on 2021-08-26 to add 'I tend to accept this work', with no stated score change. Reviewer_4uZD (2021-08-27): 'I will keep my initial score'. Reviewer_CMC1 did not edit or reply.",
+        "what_convinced_or_not": "The ImageNet and IMDB tables answered the shared request for more datasets. E993: 'The newly added experiments in the general author response are very useful', although the work still gives no 'perfect solution'. E993 also cited the other reviewers' support. n5i1 accepted the replies on temperature, augmentation and teacher initialization, and read the open questions as 'good motivation for future work'. 4uZD got the ImageNet run it asked for but kept 5 on misreadings of Figure 1 and the new tables. The authors' follow-up to 4uZD got no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "One sentence: 'The answer of the authors and subsequent discussion made most reviewers agree that this paper presents results about distillation that are solid and of interest to the community.' Four of five reviewers ended at 6 or 7, and E993 and n5i1 credited the rebuttal. The meta-review names no weakness and does not address Reviewer_4uZD's 5.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four of five final ratings at 6 or 7 (mean 6.4); reviewers valued the first systematic study of student fidelity and the optimization finding.",
+        "The rebuttal's ImageNet and IMDB results met the shared scope concern; E993 rose to 6 and n5i1 to 7.",
+        "The lone 5 (Reviewer_4uZD) rested after the rebuttal on misreadings, and the AC passed over it.",
+        "No champion: the 7s are thin (CMC1, xYbr) or qualified (n5i1 asks for experiments to support 'the very strong claims'), so the tier stopped at poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 7, 7, 6],
+      "confidences": [4, 4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_oZSf", "Reviewer_1LbM", "Reviewer_KHGR"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_oZSf",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold (5, confidence 4), against 7, 7 and 6. oZSf raised it from 4 on the rebuttal day: 'It mainly addresses some of the technical concerns but my concerns for its narrative stand.' The final 5 rests on framing: 'you don't need that scary title. Our field doesn't need any more clickbait.' Reviewer_1LbM ('The title exaggerates this paper') and the AC share this view, and l.34-36 do say KD transfers 'very limited knowledge'. Several of its technical objections missed the paper (see inattentive_reviews), but the authors' replies settled those."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_oZSf",
+          "evidence": "Partly. It treats KD as multitask, so that 'the student can be optimized to minimize L_NLL rather than the fidelity', but l.71-73 set α = 0 for all main-text experiments. It asks 'why not split the dataset and hold out a subset?', which Section 5.2 does. It calls randomness 'missing from the discussion', but Fig. 6(b) varies the student initialization and Section 3.2 adds students of independent teachers as a control. Its objections to the framing are sound."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oZSf",
+          "claim": "KD is a multitask problem (Eq. 1), so the student can minimize L_NLL instead of matching the teacher.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.71-73: 'we choose α = 0 for all experiments in the main text to avoid any confounding from true labels'."
+        },
+        {
+          "reviewer": "Reviewer_oZSf",
+          "claim": "GAN data add confounders; the authors should split the dataset and hold out a subset.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5.2 (l.234-237) splits CIFAR-100 into D0 and D1, trains the teachers on D0, and distills on D0, D1 or both."
+        },
+        {
+          "reviewer": "Reviewer_oZSf",
+          "claim": "Fig. 1(a) has a simpler explanation: noisy GAN labels hurt student accuracy but raise fidelity.",
+          "checked_against_paper": "incorrect",
+          "evidence": "In Fig. 1(b) the same GAN data slightly raise student accuracy. In Fig. 1(a) accuracy falls toward the teacher's own accuracy (l.130-133). Section 5.2 shows the same split between accuracy and fidelity with no GAN data."
+        },
+        {
+          "reviewer": "Reviewer_oZSf",
+          "claim": "The paper concludes that KD does not work because it 'transfers very limited knowledge'.",
+          "checked_against_paper": "correct",
+          "evidence": "l.34-36: 'No, in that knowledge distillation often fails to live up to its name, transferring very limited knowledge from teacher to student.' Section 4 is titled 'Knowledge Distillation Transfers Knowledge Poorly'. The same lines give 'Yes' for generalization. The camera-ready keeps the title, these lines and the Section 4 title."
+        },
+        {
+          "reviewer": "Reviewer_KHGR",
+          "claim": "The claim at l.335 that fidelity correlates with calibration lacks support; Test ECE and Test Agreement in Fig. 4 show no obvious correlation.",
+          "checked_against_paper": "correct",
+          "evidence": "Partly. l.335-336 say the highest-fidelity student 'is always the best calibrated', with no pointer to evidence. In Fig. 4 the D0∪D1 student has the highest test agreement at every point, but the D1 student has the lowest ECE. The claim holds only if fidelity means test KL, where D1 is also lowest. The authors cited appendix Figs. 11 and 13 and called KL 'the most reliable metric'. The camera-ready keeps the bullet."
+        },
+        {
+          "reviewer": "Reviewer_KHGR",
+          "claim": "'Distillation data quality' at l.339 is not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "No definition in the text. The authors conceded: 'Quality may have been an imprecise choice of wording'. The camera-ready keeps the phrase."
+        },
+        {
+          "reviewer": "Reviewer_G2ra",
+          "claim": "Typos at l.102, l.183, l.186 and l.284.",
+          "checked_against_paper": "correct",
+          "evidence": "l.102 'why high fidelity an important objective'; l.183 and l.186 start with lower-case 'the' and 'we'; l.284 'teacher labels match the teacher'. The camera-ready fixes l.102 only."
+        },
+        {
+          "reviewer": "Reviewer_1LbM",
+          "claim": "The study covers only logit distillation, classification and images, with experiments only on CIFAR-100 and MNIST.",
+          "checked_against_paper": "correct",
+          "evidence": "Main text: MNIST/EMNIST with LeNet-5 and CIFAR-100 with ResNets; Eq. 1 is Hinton's logit loss; fidelity is top-1 agreement and predictive KL (Eqs. 2-3). VGG appears only in Appendix B.1."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_oZSf", "Reviewer_1LbM"],
+        "evidence": "Reviewer_oZSf (2021-08-10, the rebuttal day): 'I hereby raise my recommendation from 4 to 5'; edited that day. Reviewer_1LbM's edit of 2021-08-28 adds 'some of my concerns (CKA) have been addressed ... So I tend to give rate 7'; the review had said 'I tend to increase my rate if the authors can address them'. The earlier score is not given. Reviewer_KHGR's edit (2021-07-18) predates the rebuttal; on 2021-08-26 it wrote 'I still lean toward a favorable rating'. Reviewer_G2ra (2021-08-26): 'I remain supportive'; no edit.",
+        "what_convinced_or_not": "Technical answers moved oZSf one point, but not on the narrative. It still asked for a toned-down title, a discussion of earlier uses of 'fidelity', and citations to earlier work on understanding KD. 1LbM credited only the CKA numbers from the teacher-initialization run and did not mention the ImageNet results it had asked for. It still wanted feature-distillation experiments and a better title: 'I think this paper should be accepted, but it is also ok for rejecting it.' KHGR's follow-up was a question for future work."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers have found the work insightful and well presented.' The AC adds praise warmer than the 6.25 mean: 'a great example for how a well designed set of experiments can lead to better understanding of a popular learning paradigm'. The one negative, 'over-selling and the title misleading', comes from Reviewer_oZSf and Reviewer_1LbM. The AC asks the authors to address it. The camera-ready keeps the title and l.34-36.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four final ratings at 6 or 7 (mean 6.25); reviewers praised the hypothesis-by-hypothesis experimental design.",
+        "The rebuttal raised Reviewer_oZSf from 4 to 5 and Reviewer_1LbM to 7.",
+        "The lone 5 (oZSf) objected to the narrative and the title, not to the results.",
+        "Over-selling and narrow scope (logit KD, CIFAR-100) kept every rating at 7 or below; 1LbM: 'it is also ok for rejecting it'."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Near-perfect train agreement with baseline augmentation, so the optimization claim is broader than its evidence (Reviewer_n5i1; confirmed by Fig. 5 and l.268-270)",
+    "Inconclusive evidence that longer training cannot close the gap; temperature and its annealing (Reviewer_n5i1)",
+    "Overfitting to the teacher at high fidelity (Reviewer_4uZD; a misreading of Fig. 1)",
+    "KD approximation and teacher correctness (Reviewer_CMC1; incorrect)",
+    "Missing limitations section (Reviewer_xYbr; incorrect, see checklist and Appendix D)",
+    "No measure of the distance between distillation and training distributions (Reviewer_E993)"
+  ],
+  "issues_only_b": [
+    "Over-selling title and framing, 'clickbait' (Reviewer_oZSf, Reviewer_1LbM, AC); l.34-36 do claim KD transfers 'very limited knowledge'",
+    "Undefined 'distillation data quality' at l.339 (Reviewer_KHGR)",
+    "GAN data as a confounder, the lottery ticket hypothesis, earlier uses of 'fidelity' (Reviewer_oZSf)",
+    "Self-distillation undefined, teacher and student terms confusing, Fig. 6(c) axes unexplained, typos (Reviewer_G2ra)",
+    "Feature-level similarity such as CKA (Reviewer_1LbM)",
+    "Small student with a very large dataset, where fidelity and accuracy may conflict (Reviewer_KHGR)"
+  ],
+  "shared_issues": [
+    "Narrow scope: CIFAR-100 (and MNIST) only, ImageNet or other domains wanted (A: E993, 4uZD, n5i1; B: 1LbM); the same rebuttal added ImageNet and IMDB in both",
+    "Only vanilla logit KD; feature and newer KD methods left out (A: E993, xYbr; B: 1LbM)",
+    "No practical remedy or takeaway (A: E993; B: oZSf, KHGR)",
+    "Why fidelity matters when accuracy is the goal; fidelity and generalization in tension (A: 4uZD, CMC1; B: oZSf)",
+    "Findings not surprising (A: E993; B: oZSf)",
+    "Related work thin (A: 4uZD; B: oZSf)",
+    "Calibration claim at l.335 under-supported (A: CMC1 asks what it means, n5i1 says ECE gets little space; B: KHGR shows Fig. 4 does not support it for agreement)",
+    "Initialization and seed effects (A: n5i1; B: oZSf); the same teacher-initialization run answered both"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Each read the paper as a solid empirical study of student fidelity with a narrow scope: CIFAR-100 and logit distillation only. No reviewer found an error in a result. Both committees got the same rebuttal, with new ImageNet, IMDB and teacher-initialization results. Scores rose in both: in A, Reviewer_E993 to 6 and Reviewer_n5i1 to 7; in B, Reviewer_oZSf from 4 to 5 and Reviewer_1LbM to 7. Each committee ended with one 5 and no rating above 7 (means 6.4 and 6.25). The two dissents differ in quality. A's Reviewer_4uZD asked for ImageNet, got it, and kept 5 on misreadings. It read the accuracy drop in Fig. 1(a) as overfitting, but Fig. 1(b) shows accuracy rising. It said the ImageNet and IMDB tables disagree, but both show accuracy and agreement rising together. B's Reviewer_oZSf kept 5 for the narrative and the title, and Reviewer_1LbM and B's AC shared that view. Neither committee had a champion. A's 7s include a nine-word main review (Reviewer_CMC1) and a one-hour review (Reviewer_xYbr). B's Reviewer_1LbM gave 7 but wrote 'it is also ok for rejecting it'. So both committees stopped at poster. The sharpest technical point came only from A's Reviewer_n5i1. With baseline augmentation, the ResNet-56 student matches the teacher on its training data almost perfectly (Fig. 5, l.268-270). So for ResNet-56 the optimization failure appears only when the distillation data go beyond the teacher's training set. This narrows the abstract's main claim, but it changed no score.",
+  "candidate_reasons": [
+    "Same rebuttal lifted both committees",
+    "Lone sub-threshold reviewer outvoted",
+    "No champion above seven",
+    "Scope limits judged non-fatal",
+    "Over-framed title capped enthusiasm",
+    "Detractor misread figures and tables"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.34-36 ('transferring very limited knowledge') and the Section 4 title",
+    "paper_submitted.pdf l.71-73 (α = 0 in all main-text experiments)",
+    "paper_submitted.pdf Figure 1 captions (a) and (b); l.130-133 and l.143-146",
+    "paper_submitted.pdf Section 5.2, l.234-237 (D0/D1 split) and Figure 4 (ECE, agreement, KL)",
+    "paper_submitted.pdf Figure 5 and l.268-270 (near-100% train agreement with baseline augmentation); l.287-294 (ResNet-20 with LayerNorm)",
+    "paper_submitted.pdf l.300-306 (epochs), l.335-341 (calibration and 'quality' bullets), checklist l.439-441",
+    "Authors' general response with ImageNet, IMDB and teacher-initialization tables (both forums, 2021-08-10)",
+    "Reviewer_4uZD post-rebuttal discussion (2021-08-27)",
+    "Reviewer_n5i1 review and post-rebuttal feedback (2021-09-01)",
+    "Reviewer_E993 post-rebuttal feedback (2021-08-27)",
+    "Reviewer_oZSf 'After rebuttal' (2021-08-10)",
+    "Reviewer_1LbM final review (post-response section)",
+    "Reviewer_KHGR review, Quality points 1 and 2",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready): title and l.34-36 unchanged; ImageNet and IMDB in Appendices C.3 and C.4"
+  ]
+}

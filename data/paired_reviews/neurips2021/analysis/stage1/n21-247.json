@@ -1,0 +1,214 @@
+{
+  "pair_id": "n21-247",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6],
+      "confidences": [4, 2, 2],
+      "reviews_edited_after_posting": ["Reviewer_Zo8z", "Reviewer_dTFu", "Reviewer_SSUu"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All three final ratings are 6, at confidences 4 (Reviewer_Zo8z), 2 (Reviewer_dTFu) and 2 (Reviewer_SSUu). No rating stands apart, and no reviewer argued for more than a marginal accept."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Zo8z",
+          "claim": "Theorems 9 and 10 take N→∞ first and t→∞ second, whereas training holds N fixed and lets t grow.",
+          "checked_against_paper": "correct",
+          "evidence": "l.273 defines V*(t) as a limit N→∞; Theorems 9 and 10 (l.289-295) then state V*(t)→0 as t→∞. The authors conceded: 'we are unfortunately unable to do this yet for the fluctuation.'"
+        },
+        {
+          "reviewer": "Reviewer_Zo8z",
+          "claim": "Theorem 10 seems to include Theorem 9 as a special case.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Under Theorem 9's hypothesis the MF limit does not move, so Theorem 10's integral condition holds and V*(t)→0 is common to both. Only Theorem 9 proves that V*(t) is non-increasing (l.289-290 against l.294-295), as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_dTFu",
+          "claim": "The paper shows that the output variance vanishes 'in the large depth large time limit'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The limit is in width at fixed depth L: Assumption 1 sets N1 = ... = NL-1 = N 'with ideally N → ∞' (l.139), and V*(t) is a limit N→∞ (l.273)."
+        },
+        {
+          "reviewer": "Reviewer_dTFu",
+          "claim": "Eq. (1) carries a 1/N_i normalisation, unlike the standard 1/sqrt(N_i), NTK or Yang-Hu parametrizations, and the paper does not connect it to practical networks.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (1) averages with E_J over J_i ~ Unif([N_i]) (l.94-98). The submission never mentions NTK or standard parametrization. The camera-ready adds a paragraph that calls all feature-learning scalings 'only proxies of practical networks'."
+        },
+        {
+          "reviewer": "Reviewer_dTFu",
+          "claim": "In the update rule below l.101, lowercase n_i should be N_i.",
+          "checked_against_paper": "correct",
+          "evidence": "The update after l.101 reads 'ji ∈ [ni], ji−1 ∈ [ni−1]'. The authors conceded the typo."
+        },
+        {
+          "reviewer": "Reviewer_dTFu",
+          "claim": "The paper contains no experimental results.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3 is N/A throughout. The camera-ready adds Section 5 and Figure 1 with the MNIST runs from the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_SSUu",
+          "claim": "As in [3], the decay argument rests on the fluctuation lying in the range of a negative semi-definite linear operator.",
+          "checked_against_paper": "correct",
+          "evidence": "l.303-306: A is 'self-adjoint and has non-positive eigenvalues', and 'if at initialization Ĝ(0,·) lies in the range of A, we reach the desired conclusion'. The authors agreed and placed the difference in the multilayer covariance structure."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_SSUu"],
+        "evidence": "Reviewer_SSUu, 2021-08-30: 'I will raise my rating from 5 to 6'; the review was edited that day. Reviewer_Zo8z edited on 2021-08-16 and appended that it is 'happy to recommend acceptance' if the new results count; the text names no score change, so a rise is possible but not shown. Reviewer_dTFu, 2021-08-17: 'Overall, I tend to keep my score'; its only edit is dated the posting day, 2021-07-19.",
+        "what_convinced_or_not": "The MNIST plots (3-layer tanh network, Huber loss, 100 training images, N = 50 to 400) convinced SSUu: figures (c)-(e) 'show the variance reduction effect in actual NNs'. Zo8z took them as evidence for the exchanged limits that the authors cannot prove. dTFu welcomed the plots but not the answer on parametrization: the 1/width factor 'is unnatural' and Yang-Hu scaling 'is much closer to practice'. The authors' long reply (more is known in the mean-field regime; vanishing gradients are avoidable by initialization) drew no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'While referees have concerns on the practicality of the parametrization, they find the result interesting and novel, especially with the newly added numerical experiments.' The parametrization concern is dTFu's and SSUu's. The AC adds no reading of its own and does not note that two of three reviewers declared the math unchecked (confidence 2).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 6 (mean 6.0): the first fluctuation analysis for multilayer mean-field networks was judged novel and interesting.",
+        "The rebuttal MNIST illustration met the shared request for experiments; Reviewer_SSUu rose from 5 to 6 and Reviewer_Zo8z tied its acceptance to it.",
+        "Doubts on the practicality of the 1/N parametrization and on the order of limits stayed open but were not treated as blocking.",
+        "No reviewer reports checking the proofs (confidences 4, 2, 2), and none pushed for more than a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 5, 6],
+      "confidences": [3, 3, 1, 3],
+      "reviews_edited_after_posting": ["Reviewer_D7BN", "Reviewer_EQhg", "Reviewer_ErCU", "Reviewer_PZpb"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_D7BN), 6 (Reviewer_EQhg), 5 (Reviewer_ErCU) and 6 (Reviewer_PZpb). The lone 5 is one point lower, at confidence 1, from a reviewer who wrote 'I did not understand it'. The AC gave it no weight ('Reviewers agreed')."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ErCU",
+          "evidence": "Confidence 1: 'I had a strong interest in the purpose of the manuscript, but unfortunately I did not understand it' and 'I have no experience in theoretical analysis of DNNs using mean field theory'. Two of its four 'careless mistakes' are conventions: the shared numbering of Definition 1 and Theorem 2, and bibliography dashes for repeated authors. It asks twice whether the paper 'is incomplete'. ErCU did not reply to a rebuttal that answered every point."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_EQhg",
+          "claim": "The structure of the fluctuations is complex and only fully described in the appendix; the main text has only a couple of brief proof sketches.",
+          "checked_against_paper": "correct",
+          "evidence": "l.181: 'The covariance structure of G in Theorem 2 is explicit but lengthy; we refer to the appendix for full details.' l.159: 'All proofs are deferred to the appendix.' The sketches are Section 3.4 and l.300-313."
+        },
+        {
+          "reviewer": "Reviewer_EQhg",
+          "claim": "50 pages of detailed proofs are deferred to the appendix.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submitted PDF has 11 pages and no appendix; the supplement is not in the record. B's AC repeats the figure."
+        },
+        {
+          "reviewer": "Reviewer_EQhg",
+          "claim": "The paper is purely theoretical and has no numerical experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3 is N/A throughout, and the 11 pages contain no result figure or table."
+        },
+        {
+          "reviewer": "Reviewer_PZpb",
+          "claim": "Equation 3, a 4-line equation, describes the evolution of the fluctuations, and the results cannot be verified from the main text.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) on p.6 spans four lines. Theorem 5 (l.208) bounds the weight-fluctuation error by K_T/N, and its proof is in the appendix (l.159)."
+        },
+        {
+          "reviewer": "Reviewer_PZpb",
+          "claim": "Weight fluctuations scale as 1/sqrt(N), and the output CLT bounds the error by an inverse power of the width.",
+          "checked_against_paper": "correct",
+          "evidence": "l.209 gives the expansion w ≈ w + N^(-1/2) R; Theorem 6 bounds the moment error by K_{T,m}/sqrt(N) (l.225)."
+        },
+        {
+          "reviewer": "Reviewer_ErCU",
+          "claim": "There is a Theorem 2 at l.179 but no Theorem 1, which suggests the paper is incomplete.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Definition 1 (l.170) precedes Theorem 2 in one shared sequence: Theorem 3, Remark 4, Theorem 5, Theorem 6, Definition 7, Proposition 8, Theorems 9 and 10."
+        },
+        {
+          "reviewer": "Reviewer_ErCU",
+          "claim": "References [12], [21] and [22] have no author names.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.341 and l.362-363: each begins with the bibliography dash that repeats the authors of the entry above ([11] Nguyen; [20] Sirignano and Spiliopoulos)."
+        },
+        {
+          "reviewer": "Reviewer_ErCU",
+          "claim": "'GD' and 'ODEs' appear without definition, and l.20 'helps reducing and' is ungrammatical.",
+          "checked_against_paper": "correct",
+          "evidence": "'ODEs' first appears at l.59 and 'GD' at l.60, before 'gradient descent (GD)' at l.66; l.20 reads 'helps reducing and eventually eliminating'. Cosmetic; the camera-ready expands both abbreviations."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_PZpb"],
+        "evidence": "Reviewer_PZpb edited on 2021-08-30 ('In light of these results I am updating my score and recommend accepting the paper') and commented the same day. Its original text, 'I will vote to accept the paper if the authors provide empirical evidence', implies a pre-rebuttal rating below 6. Reviewer_D7BN (2021-07-26), Reviewer_EQhg (2021-07-18) and Reviewer_ErCU (2021-07-21) last edited before the 2021-08-10 rebuttal, so their ratings did not move.",
+        "what_convinced_or_not": "The same MNIST figure that A saw. PZpb: 'numerical experiments verifying key results'. D7BN: the responses 'addressed most of my concerns'. EQhg: 'The experiments definitely improve the paper', but the paper is still 'a little too theoretical and complicated for this venue'; EQhg listed four clarity fixes, which the authors promised. ErCU's itemised questions were all answered; ErCU did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers agreed that the technical contribution is significant enough to warrant publication, however no reviewer had time to go over the 50 pages of proofs'. 'Although I am still hesitant ..., I will side with the reviewers in light of the experimental confirmation provided during the rebuttal period'. The AC set aside its own doubt, gave ErCU's 5 no weight, and described the model as 'standard feed forward networks', although the paper uses mean-field 1/N scaling.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 after the rebuttal (6, 6, 5, 6; mean 5.75); the 5 came at confidence 1.",
+        "Reviewers called the multilayer fluctuation result new and significant (Reviewer_D7BN, Reviewer_EQhg, Reviewer_PZpb).",
+        "Reviewer_PZpb made acceptance conditional on empirical support for Theorem 5 and Section 4; the MNIST figure moved it to 6 and satisfied D7BN and EQhg.",
+        "The AC accepted despite stated hesitation over 50 pages of unchecked proofs, and took the rebuttal experiment as 'experimental confirmation'."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Order of limits: N→∞ before t→∞, against fixed-width training (Reviewer_Zo8z)",
+    "Realism of the 1/N per-layer mean-field scaling against standard and Yang-Hu parametrizations; vanishing gradients at depth 100 (Reviewer_dTFu; kept in A's meta-review)",
+    "Relation of the proof to the shallow CLT of Chen et al. [3] (Reviewer_SSUu)",
+    "Whether Theorem 10 subsumes Theorem 9; meaning of c_* and O_{D,T} (Reviewer_Zo8z)"
+  ],
+  "issues_only_b": [
+    "Notation gaps and supposed careless mistakes: theorem numbering, reference authors, undefined GD and ODEs (Reviewer_ErCU)",
+    "A toy example and plainer meanings of 'sampled neurons' and 'second-order MF limit' (Reviewer_EQhg)",
+    "Significance as an extension of the shallow result of Chen et al. (Reviewer_D7BN)",
+    "Equation numbering and theorem references in the introduction (Reviewer_PZpb)"
+  ],
+  "shared_issues": [
+    "No numerical experiments; six of seven reviewers asked for them (A: Reviewer_dTFu, Reviewer_SSUu; B: all four)",
+    "Proofs unchecked (A: Reviewer_dTFu, Reviewer_SSUu; B: Reviewer_EQhg, Reviewer_PZpb, AC), with a journal or another venue suggested (A: Reviewer_dTFu, Reviewer_SSUu; B: Reviewer_EQhg). Only B's AC made it a stated reason to hesitate.",
+    "Unclear practical relevance or implications of the fluctuation result (A: Reviewer_Zo8z, Reviewer_dTFu, AC; B: Reviewer_D7BN, Reviewer_EQhg)",
+    "Dense notation that is hard for a NeurIPS audience (A: Reviewer_SSUu, Reviewer_dTFu; B: Reviewer_EQhg, Reviewer_ErCU, Reviewer_PZpb)",
+    "Mean-field initialization against common practice (A: Reviewer_SSUu; B: Reviewer_EQhg)",
+    "Novel extension of the fluctuation analysis from shallow to multilayer networks (all seven reviewers)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. The paper extends the mean-field fluctuation (CLT) analysis from shallow to multilayer networks, and all seven reviewers called this novel or interesting. No reviewer reports checking the proofs, which are all in the appendix (l.159), and the submission has no experiments. Six of seven reviewers asked for a numerical check. The authors posted one MNIST illustration in both forums (3-layer tanh network, 100 training images, widths 50 to 400). It decided the borderline votes. Reviewer_SSUu (A) rose from 5 to 6, Reviewer_PZpb (B) rose to 6 as it had promised, and Reviewer_Zo8z (A) tied its acceptance to it. After the rebuttal, six of seven ratings were 6. The only 5 (Reviewer_ErCU, confidence 1) came from a self-declared non-expert, and two of its four 'careless mistakes' are misread conventions. No rating exceeded 6, so neither committee had a champion for a higher tier. Both ACs followed the scores. B's AC named the weakness ('hesitant to accept an almost purely theoretical work where no reviewer had time to go over the proofs') and accepted anyway. The agreement rests on shared taste and one rebuttal figure, not on verified proofs. The committees weighed the same facts the same way.",
+  "candidate_reasons": [
+    "Shared rebuttal experiment satisfied both",
+    "Novel multilayer extension judged interesting",
+    "Unchecked proofs accepted on trust",
+    "Uniform borderline scores, no champion",
+    "Out-of-area detractor carried no weight",
+    "ACs deferred to reviewer consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.159 ('All proofs are deferred to the appendix') and checklist item 3 (no experiments)",
+    "paper_submitted.pdf Section 4, l.273-295 (V*(t) as N→∞, then t→∞; Theorems 9 and 10)",
+    "paper_submitted.pdf l.170-179 and references [11]-[12], [20]-[22] (Reviewer_ErCU's numbering and author-name claims)",
+    "Authors' general response of 2021-08-10 (MNIST figure), posted in both forums",
+    "Reviewer_SSUu comment of 2021-08-30 (5 to 6)",
+    "Reviewer_Zo8z final review, post-rebuttal paragraph",
+    "Reviewer_dTFu update of 2021-08-17",
+    "Reviewer_PZpb final review (update) and comment of 2021-08-30",
+    "Reviewer_EQhg comment of 2021-08-31",
+    "Reviewer_ErCU review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Section 5, Figure 1 and the MF-scaling paragraph in Section 1"
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "pair_id": "n21-193",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        2,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ckCN",
+        "Reviewer_dfab",
+        "Reviewer_JCRj",
+        "Reviewer_2Bce"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6 (Reviewer_ckCN), 7 (Reviewer_dfab), 6 (Reviewer_JCRj) and 7 (Reviewer_2Bce). The spread is one point. Before the rebuttal JCRj was at 5 and 2Bce at 6, and no rating stood apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_dfab",
+          "evidence": "One hour, confidence 2. The main review summarises the setting and the contributions and ends 'Both theoretical guarantees and numerical experiments are provided to show the outstanding performance'. It names no weakness beyond a 'minor suggestion' about NEIS in the introduction, and dfab never replied to the authors. The 7 is not evidence of quality."
+        },
+        {
+          "reviewer": "Reviewer_2Bce",
+          "evidence": "An 85-word review with a one-line summary. Its main objection, 'I don't understand what is difference with [23]', is answered in the submission: l.51-53 and l.249-254 say NEO-IS is unbiased for any step size, unlike NEIS, and l.230-232 say NEIS has no sampler. After the rebuttal 2Bce wrote 'I should admit my understanding wasn't fully correct' and rose to 7."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ckCN",
+          "claim": "The kernel in eq. 15 does not satisfy the condition at l.225-226.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted eq. 15 starts with a product of m(x^{j-1}, x^j) for j = 2 to i-1. This never links x^i to x^1..x^{i-1}, so rho(x^i) r_i is not the same for every i, as l.225-226 require. The authors conceded a typo and gave the backward product m(x^{j+1}, x^j); the camera-ready eq. 15 uses it."
+        },
+        {
+          "reviewer": "Reviewer_ckCN",
+          "claim": "l.173 should not condition on I^N, and l.188 should read P(Y_{n-1}, A).",
+          "checked_against_paper": "correct",
+          "evidence": "l.172-173 state E[f(U^N) | X^{1:N}, I^N] = J^NEO(f), which holds only without I^N. The camera-ready states E[f(U^N) | X^{1:N}] = J^NEO(f), not ckCN's unconditional form. l.187-188 write the kernel as P(Y_n, A); the camera-ready keeps that typo."
+        },
+        {
+          "reviewer": "Reviewer_JCRj",
+          "claim": "NEO is compared with NEIS only in the appendix, and only on low-dimensional MG25.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 compares NEO-IS with IS, AIS and NIS only (l.263-264); NEIS appears only in the Section 4 theory. The authors confirmed that the appendix test uses MG25 in dimensions 5 and 10. The camera-ready main text still has no NEIS experiment."
+        },
+        {
+          "reviewer": "Reviewer_JCRj",
+          "claim": "Section 6 lists future work but says little about limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "l.313-327 give a summary, three extensions and a broader-impact paragraph. Checklist 1(b) points to Section 6 for limitations. The camera-ready Section 6 adds none."
+        },
+        {
+          "reviewer": "Reviewer_2Bce",
+          "claim": "The difference between NEO and NEIS [23] is unclear.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.51-52: 'Contrary to NEIS, the NEO-IS estimator of Z is unbiased'. l.251-254: NEO-IS 'is unbiased for any stepsize h > 0', while the NEIS discretization 'is biased which prevents the use of this approach to develop MCMC'. 2Bce re-read the paper and conceded."
+        },
+        {
+          "reviewer": "Reviewer_2Bce",
+          "claim": "The only transform given is the conformal Hamiltonian integrator, and Orbital MCMC is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "l.133-151 and Section 5 use only the conformal symplectic Euler map; l.320-321 list other transforms as future work. Orbital MCMC is not among references [1]-[33]. The camera-ready references do not add it, although the authors promised a discussion."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_JCRj",
+          "Reviewer_2Bce"
+        ],
+        "evidence": "Reviewer_JCRj wrote on 2021-08-23 'Updated score: 5-> 6'; the review was edited that day. Reviewer_2Bce wrote 'Hence, I adjust my score' on 2021-08-23, and the review, edited that day, says 'Upd. 6->7'. Reviewer_ckCN asked a follow-up on 2021-08-31 and edited on 2021-09-22: 'I decided to keep my score'. Reviewer_dfab's edit (2021-07-29) predates the author responses of 2021-08-10; dfab did not reply.",
+        "what_convinced_or_not": "Clarification and promises, not new evidence. 2Bce was moved by the restatement that NEO-IS is unbiased where NEIS is not, and that NEIS has no sampler: 'I re-read the paper and found your claims correct'. JCRj was moved by the promise of higher-dimensional NEIS comparisons: 'I look forward to seeing the complete experiments in the updated version'. ckCN got a conceded typo in eq. 15 and the answer that L is generic in Theorem 1, and kept 6. The forum update of 2021-09-01 (SNF, Orbital MCMC, Contour SGLD, banana target) came after every score change, and no reviewer answered it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'From a technical perspective the insights are definitely above the bar.' The AC names the concern 'the reviewers and I shared': presentation and missing intuition. It singles out Section 2, as Reviewer_2Bce's re-grade did ('specially in Sec.2'), and echoes Reviewer_JCRj's request for motivation and intuition. It calls the experiments 'lacking' but credits the additions of 2021-09-01, which no reviewer evaluated.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All four final ratings on the accept side (6, 7, 6, 7; mean 6.5), after two rebuttal raises.",
+        "Technical contribution judged above the bar: an estimator of Z that is unbiased for any step size, unlike NEIS, and a new NEO-MCMC sampler with ergodicity guarantees.",
+        "Dense presentation (Section 2) and narrow experiments (NEIS only in the appendix, few recent baselines) held every rating at 6 or 7.",
+        "The AC counted the authors' late additional experiments as an improvement."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        9,
+        6
+      ],
+      "confidences": [
+        2,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_8kXR"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_n3jg",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "A 9 ('Top 15% of accepted NeurIPS papers') against 7, 6 and 6. The main review is 100 words of general praise ('the contribution is significant. The theoretical analysis is thorough') and names 'the major drawback' as the missing comparison with trainable samplers. n3jg posted one reference list (2021-08-16), did not answer the authors' new results of 2021-08-30 and never edited the review. The 9 is not evidence of quality, and B's AC did not act on it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8kXR",
+          "claim": "l.105 misnames the inequality: it is Jensen's, not Cauchy-Schwarz.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.105-106 derive E[(sum_k w_k L(T^k X))^2] >= Z^2 from unbiasedness. Jensen and Cauchy-Schwarz (with the constant 1) both give E[Y]^2 <= E[Y^2]. The authors showed the Cauchy-Schwarz step; the camera-ready keeps the wording."
+        },
+        {
+          "reviewer": "Reviewer_8kXR",
+          "claim": "The comparison with NEIS is only in the supplement.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 has no NEIS baseline; l.263-264 list IS, AIS and NIS. This is the same finding as A's Reviewer_JCRj."
+        },
+        {
+          "reviewer": "Reviewer_8kXR",
+          "claim": "Total computational cost and runtime are not addressed in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "No runtime is reported. The main text says only that budgets were matched: AIS at 'a complexity comparable to NEO-IS' (l.268), 'the same clock time' (l.277-278), 'the same computational complexity' (l.308). Checklist 3(d) defers compute to the supplement."
+        },
+        {
+          "reviewer": "Reviewer_8kXR",
+          "claim": "The MCMC extension mostly builds on iterated sampling importance resampling.",
+          "checked_against_paper": "correct",
+          "evidence": "l.177-178: NEO-MCMC 'in a nutshell consists in iterating the SIR procedure while keeping a conditioning point', based on particle MCMC [3]. The authors agreed that it generalizes particle Gibbs (reply to Reviewer_DsB6)."
+        },
+        {
+          "reviewer": "Reviewer_8kXR",
+          "claim": "There is no comparison with recent samplers such as Contour SGLD (Deng et al., NeurIPS 2020).",
+          "checked_against_paper": "correct",
+          "evidence": "Not cited. The sampling baselines are NUTS and i-SIR (l.273-274), plus HMC for inpainting (l.307). The camera-ready main text still has neither the citation nor the comparison."
+        },
+        {
+          "reviewer": "Reviewer_n3jg",
+          "claim": "There is no comparison with trainable samplers such as stochastic normalizing flows, ergodic inference or variational contrastive divergence.",
+          "checked_against_paper": "correct",
+          "evidence": "None of them is cited in the submission. Levy et al. [15] is cited only as the source of the inpainting task (l.299). The camera-ready adds SNF [33] to Figure 2 only."
+        },
+        {
+          "reviewer": "Reviewer_btQo",
+          "claim": "The introduction says too much about Neural IS and too little about NEIS.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Neural IS gets about five lines (l.31-35). NEIS gets a full paragraph (l.36-46), and its contrast with NEO-IS gets another (l.47-53)."
+        },
+        {
+          "reviewer": "Reviewer_btQo",
+          "claim": "There is no banana-shaped target and no effective sample size.",
+          "checked_against_paper": "correct",
+          "evidence": "The targets are MG25, Funnel and CelebA inpainting (Section 5), and no ESS is reported. The authors added banana results in the discussion and rejected ESS for chains that have not converged."
+        },
+        {
+          "reviewer": "Reviewer_DsB6",
+          "claim": "In Algorithm 1, step 2, the weight index should run from 0 to K, like the path.",
+          "checked_against_paper": "correct",
+          "evidence": "Step 2 computes the path T^j(X^i) for j = 0..K but the weights w_j for j in Z; step 3 sums over k = 0..K. The authors conceded; the camera-ready indexes both over Z."
+        },
+        {
+          "reviewer": "Reviewer_DsB6",
+          "claim": "Figure 1 is unclear: it has no axis labels and does not say what the contours are.",
+          "checked_against_paper": "correct",
+          "evidence": "Page 4: no panel has axis labels. The caption calls K an 'optimization step' and does not explain the contours. The camera-ready caption calls K 'the length of trajectories'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_btQo wrote on 2021-08-31 that it read the rebuttals 'and keep my score'; the review was not edited. Reviewer_n3jg and Reviewer_DsB6 never edited. Reviewer_8kXR edited on 2021-08-19 to thank the authors for 'the clarification' and the planned Contour SGLD comparison; the addendum names no score change.",
+        "what_convinced_or_not": "Nothing needed to move: every rating was already on the accept side. 8kXR accepted the Cauchy-Schwarz answer and the promise of a Contour SGLD comparison, and asked for a discussion of when the method fails. The authors rejected btQo's ESS request ('only when chains have reached convergence') and promised a banana target; btQo kept 6. No reviewer answered the results of 2021-08-30 (SNF, Orbital MCMC, Contour SGLD, banana); btQo's one-line reply of 2021-08-31 answers the earlier rebuttal."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers are in consensus that the paper has merits for publication.' The first sentence echoes Reviewer_DsB6 ('an innovative class of importance sampling and MCMC schemes'). The revision request, 'comparison to existing methods and additional relevant sampling tasks', combines Reviewer_n3jg, Reviewer_8kXR and Reviewer_btQo. The three-sentence meta-review does not mention n3jg's 9 or a higher tier.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept: 7, 6, 9, 6 (mean 7.0), with no recorded rating below 6.",
+        "Novel and sound: an unbiased discretization of NEIS (Reviewer_8kXR, Reviewer_btQo, Reviewer_DsB6) with thorough theory (Reviewer_n3jg).",
+        "Narrow experiments (no recent baselines, NEIS only in the supplement, no banana target or ESS) and hard reading held three of four ratings at 6 or 7.",
+        "The AC relied on the consensus and did not use the lone 9 to argue for a higher tier."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Wrong dependent-proposal kernel in eq. 15 and notation typos at l.173 and l.188 (Reviewer_ckCN; the paper confirms all three)",
+    "Guarantees for NEO-IS with a general test function f, not only f = L (Reviewer_ckCN)",
+    "Whether the discrete proposal makes rho_T a worse approximation of pi and so raises E_T (Reviewer_JCRj)",
+    "Only one transform T (conformal Hamiltonian) and no recipe for others; Orbital MCMC not cited (Reviewer_2Bce)"
+  ],
+  "issues_only_b": [
+    "Runtime and total computational cost not reported (Reviewer_8kXR)",
+    "NEO-MCMC is mostly iterated SIR, so a lesser contribution (Reviewer_8kXR)",
+    "Trainable samplers absent: SNF, ergodic inference, variational contrastive divergence, L2HMC (Reviewer_n3jg)",
+    "No banana or Ising targets, no ESS, and a CelebA inpainting test that a pretrained VAE may bias (Reviewer_btQo)",
+    "Unlabelled Figure 1, index error in Algorithm 1, choice of K, discarded orbit points in NEO-MCMC, links to elliptical slice and Gibbs sampling (Reviewer_DsB6)",
+    "Cauchy-Schwarz against Jensen at l.105 (Reviewer_8kXR; both are valid)"
+  ],
+  "shared_issues": [
+    "Strength: an estimator of Z that is unbiased for any step size, unlike NEIS, plus a new sampler with guarantees (no reviewer in either committee disputed it)",
+    "Dense presentation; Section 2 needs intuition (A: Reviewer_JCRj, Reviewer_2Bce, Reviewer_ckCN on the proofs, AC; B: Reviewer_8kXR, Reviewer_DsB6)",
+    "NEIS comparison only in the appendix (A: Reviewer_JCRj; B: Reviewer_8kXR)",
+    "Introduction should explain what NEO-IS adds to NEIS (A: Reviewer_dfab, Reviewer_2Bce; B: Reviewer_btQo)",
+    "Too few recent baselines (A: Reviewer_2Bce on Orbital MCMC, AC; B: Reviewer_8kXR on Contour SGLD, Reviewer_n3jg, AC)",
+    "Limitations and failure cases not discussed (A: Reviewer_JCRj; B: Reviewer_8kXR's addendum)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster because they read the paper the same way. Every reviewer accepted the core result: a discrete-time version of NEIS whose estimator of Z is unbiased for any step size (Theorem 1, l.249-254), and a new NEO-MCMC sampler with ergodicity guarantees. Both committees also named the same two weaknesses: dense presentation, especially in Section 2, and narrow experiments, with the NEIS comparison only in the appendix and no recent samplers such as SNF, Orbital MCMC or Contour SGLD. These weaknesses held seven of eight final ratings at 6 or 7. The only recorded rating below the threshold is Reviewer_JCRj's initial 5 in A. The rebuttal moved JCRj to 6 on a promise of more NEIS experiments, and moved Reviewer_2Bce to 7 after 2Bce re-read the paper and conceded a misreading. B's higher mean (7.0 against 6.5) comes from one rating. Reviewer_n3jg gave a 9 with a 100-word review that calls the experimental comparison 'the major drawback'. B's AC cited 'consensus' and did not act on the 9; without it, B's mean is 6.33. The errors that reviewers found and the paper confirms (eq. 15, l.173, Algorithm 1, Figure 1) are notation, not flaws. The authors posted the same new experiments in both forums, so both ACs saw the same rebuttal evidence and asked for the same revisions.",
+  "candidate_reasons": [
+    "Unbiased NEIS discretization valued by all",
+    "Dense presentation held ratings borderline",
+    "Narrow baselines capped tier at poster",
+    "Lone exuberant champion discounted by AC",
+    "Rebuttal clarification lifted borderline reviewers",
+    "Identical rebuttal experiments in both forums"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.47-53, l.230-232 and l.249-254 (NEO-IS against NEIS)",
+    "paper_submitted.pdf Section 5, l.263-264 and l.273-274 (baselines: no NEIS, no recent samplers)",
+    "paper_submitted.pdf eq. 15 and l.225-226; camera-ready eq. 15",
+    "paper_submitted.pdf l.172-173 and l.187-188",
+    "paper_submitted.pdf Algorithm 1 (page 3) and Figure 1 (page 4)",
+    "paper_submitted.pdf l.105-106 (Cauchy-Schwarz) and l.177-178 (iterated SIR)",
+    "Reviewer_n3jg final review and comment of 2021-08-16",
+    "Reviewer_2Bce 'Re-grade' comment of 2021-08-23 and 'Upd. 6->7'",
+    "Reviewer_JCRj comment of 2021-08-23 ('Updated score: 5-> 6')",
+    "Authors' identical updates: A forum post of 2021-09-01, B comment of 2021-08-30",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Figure 2 and bibliography (adds SNF [33] only)"
+  ]
+}

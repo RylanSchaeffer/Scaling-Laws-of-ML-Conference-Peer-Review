@@ -1,0 +1,241 @@
+{
+ "pair_id": "n21-232",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    7,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_anCt",
+    "Reviewer_YvmA"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Final ratings span only 6 to 7. The 6 is Reviewer_2XLh's, at confidence 2, and it names no weakness. Before the rebuttal Reviewer_anCt was below 7 ('I am quite borderline on this paper') and then raised to 7."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_uotf",
+     "evidence": "5 hours, confidence 3. The review is a few lines of praise and one question: does the method 'only work on small datasets like MNIST'. The submission already tests a CNN on CIFAR-10, where EmpCov 'significantly improves performance across the board' (lines 306-309, Figure 5 right). Limitations: 'Yes.' No reply to the rebuttal. A 7 on this basis is weak evidence of quality."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_anCt",
+     "claim": "The paper presents the accuracy drop under shift as surprising (lines 26-29).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 28-29: 'This result is particularly surprising given that on the in-distribution test data, the BNN outperforms the MAP solution by over 5%.' The abstract (line 6) and line 45 also say 'surprising'. The authors offered to remove the word."
+    },
+    {
+     "reviewer": "Reviewer_anCt",
+     "claim": "Lines 326-330 say that MAP and the BMA predictive mean coincide for linear models, but that holds only for regression.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 326-328 name 'Bayesian linear regression and Gaussian processes' and say 'the MAP and the predictive mean under BMA coincide', with no restriction to regression. The authors conceded: 'only for linear regression (or GP regression)'."
+    },
+    {
+     "reviewer": "Reviewer_anCt",
+     "claim": "The main text ignores uncertainty calibration and reports accuracy only (discussion, 2021-08-30).",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 2, 3 and 5 plot accuracy only. The main text reports no log-likelihood, ECE or calibration result."
+    },
+    {
+     "reviewer": "Reviewer_anCt",
+     "claim": "In appendix Figure 6 the Gaussian-prior BNN has about the same test log-likelihood and ECE as the EmpCov BNN.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Neither PDF here contains the appendix (13 and 14 pages). The authors replied that EmpCov 'significantly improves both the log-likelihoods and ECE'. anCt withdrew the point on 2021-08-30: 'I apologize for mis-stating that the uncertainty was not improved over standard priors - I found the figures a bit hard to read'."
+    },
+    {
+     "reviewer": "Reviewer_YvmA",
+     "claim": "Propositions 2 and 3 apply only to Gaussian priors.",
+     "checked_against_paper": "correct",
+     "evidence": "Both propositions assume an i.i.d. Gaussian N(0, α²) prior on the first layer (lines 216-217, 249-250). The rebuttal reported the same Figure 4 behaviour under a Laplace prior."
+    },
+    {
+     "reviewer": "Reviewer_uotf",
+     "claim": "The analysis and the EmpCov prior may work only on MNIST-like data.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The submission evaluates a CNN on CIFAR-10-C and STL-10 (Figure 3) and shows EmpCov gains there (Figure 5 right, lines 306-309). Only larger scales are untested, and the Limitations paragraph says so (lines 339-340)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_anCt"
+    ],
+    "evidence": "Reviewer_anCt edited the review on 2021-08-29 and wrote on 2021-08-30: 'I am happy to raise my score to reflect that. In retrospect I was likely too harsh'. The final rating is 7, so the earlier rating was below 7; the review text still says 'quite borderline'. Reviewer_YvmA's edit on 2021-08-16 added a post-rebuttal note: 'I am keeping the rating unchanged'. Reviewer_2XLh, 2021-09-01: 'I will leave my score unchanged.' Reviewer_uotf did not reply or edit.",
+    "what_convinced_or_not": "anCt accepted the authors' list of contributions and their argument that the paper does not depend on the result being 'surprising'. anCt also withdrew the Figure 6 misreading. The NNGP experiment did not convince anCt ('classification-by-regression'), and anCt still asked for log-likelihood and ECE in the main text. 2XLh received a new MFVI analysis and experiment and kept 6."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review is four generic sentences. It rests on 'the most active reviewers who are championing this manuscript continue to lean towards acceptance' and names no reviewer, issue or result. It places the paper in 'the under-represented and -valued field of model evaluation', which misdescribes a paper on Bayesian inference under covariate shift.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at 6 or 7 after the rebuttal; no reviewer below the threshold",
+    "Mechanism (Propositions 2-3, Figure 4) plus a working fix (EmpCov) judged convincing (Reviewer_YvmA: 'quite convincing'; Reviewer_anCt: 'a relatively simple fix')",
+    "Reviewer_anCt dropped the framing objection and the Figure 6 misreading after the rebuttal",
+    "No reviewer rated above 7, so no case for a spotlight"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_SBkb",
+    "Reviewer_rUts",
+    "Reviewer_SrTJ"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Final ratings span only 6 to 7. Reviewer_SBkb's 6 is the lowest. Before the rebuttal SBkb was below the threshold ('I am not currently recommending acceptance') for specific reasons that the submission confirms. SBkb raised after the authors answered them."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_8WYY",
+     "evidence": "Reports 15 hours, confidence 3, but twice calls the EmpCov prior an 'initialization method' ('the proposed initialization method is simple and effective'). Section 6.1 defines EmpCov as a prior on the first-layer weights. The Figure 1(b) and variational-inference comments are sound. No reply to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_SBkb",
+     "claim": "The BMA integral uses only 90 HMC samples.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 101-103: 'a single chain of HMC for 100 iterations discarding the first 10 iterations as burn-in'. The rebuttal table for the MNIST MLP shows accuracy at 100 samples within about 0.01 of 1200 samples, except stripe (0.348 against 0.380). SBkb accepted this but asked for the same check on non-MNIST data."
+    },
+    {
+     "reviewer": "Reviewer_SBkb",
+     "claim": "The paper says EmpCov gives little gain for the CNN on MNIST but shows no figure for it.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 310-313 state the result and point to Appendix I. The authors admitted: 'we indeed forgot to include the results for the EmpCov prior on the MNIST CNN'. Their numbers show gains on the noise corruptions (Gaussian noise 58.3% against 32.7%), no significant gain on brightness or fog, and a small loss on stripe."
+    },
+    {
+     "reviewer": "Reviewer_SBkb",
+     "claim": "Before Section 5 the only new material over Izmailov et al. (2021) is MNIST and smaller LeNet-style networks.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 4 also tests the cold-posterior conjecture that Izmailov et al. made (lines 99-101, 130-133), adds a Laplace prior (lines 98-99) and adds domain shift to SVHN and STL-10 (Section 4.2). Only Figure 1(a) reuses results from that paper (caption: 'See Izmailov et al. [18] for details')."
+    },
+    {
+     "reviewer": "Reviewer_SrTJ",
+     "claim": "The Figure 4 priors have a small scale, so prior draws are almost zero, which would undercut the paper's argument.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The prior variances are 1/100 and 1/30 (Figure 4 panel titles), so the scale reading is right. The inference is wrong: Figure 4(b) shows BNN accuracy falling from about 1.0 to about 0.3 under noise along the last 50 principal components, while MAP stays near 1.0."
+    },
+    {
+     "reviewer": "Reviewer_rUts",
+     "claim": "In Figure 4(a) the posterior along the high-variance components is wider than the prior.",
+     "checked_against_paper": "correct",
+     "evidence": "For the CNN with prior N(0, 1/100), the BNN band for the first few components reaches about ±1, against a prior band of about ±0.2. The MLP panel shows a small excess at the first components."
+    },
+    {
+     "reviewer": "Reviewer_8WYY",
+     "claim": "The paper proposes a simple initialization method.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 6.1 (lines 283-286) defines EmpCov as the prior p(w1) = N(0, αΣ + εI) on the first-layer weights. The paper never presents it as an initialization."
+    },
+    {
+     "reviewer": "Reviewer_8WYY",
+     "claim": "The paper gives no results for variational inference.",
+     "checked_against_paper": "correct",
+     "evidence": "The submitted main text never mentions variational inference. Section 5.4 (lines 266-274) covers SWAG, MC dropout and deep ensembles only. Reviewer_SrTJ made the same point. Both forums received a new MFVI analysis and an MNIST experiment in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_SBkb",
+     "Reviewer_SrTJ"
+    ],
+    "evidence": "Reviewer_SBkb, 2021-08-16: 'I have increased my score'. The review edit has the same date, and the text still says 'I am not currently recommending acceptance', so the earlier rating was below the threshold. Reviewer_SrTJ, 2021-08-16: 'I will increase my score to 7 for acceptance'; edited the same day. Reviewer_rUts's edit (2021-07-17) is one day after posting and before the rebuttal; on 2021-08-18 rUts wrote 'I maintain that this a good paper'. Reviewer_8WYY did not reply or edit.",
+    "what_convinced_or_not": "SBkb: 'My main hesitation was around the missing figure for EmpCov'. The authors' MNIST-CNN numbers and the sample-convergence table settled it. SBkb stayed unpersuaded on the term 'covariate shift' but called it 'not a big deal'. SrTJ accepted that corrupted but recognizable inputs still need predictions, not only OOD detection."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The first paragraph repeats Reviewer_rUts's summary almost word for word ('Weakly informative likelihoods cause a lack of posterior contraction'). The second reuses rUts's main review ('proposes a plausible explanation for the observed phenomenon'). The third lists the concerns of Reviewer_SBkb and Reviewer_SrTJ as resolved: Monte Carlo samples, novelty over Izmailov et al. 2021, and alternative explanations, which 'the reviewers didn't consider ... a significant weakness'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at 6 or 7 after the rebuttal, two of them raised (Reviewer_SBkb, Reviewer_SrTJ)",
+    "Section 5 and Figure 4 judged 'a clever test of the hypothesis' (Reviewer_SBkb) and a plausible explanation (Reviewer_rUts)",
+    "The rebuttal closed the Monte Carlo and missing-figure concerns with new numbers (Reviewer_SBkb)",
+    "Novelty over Izmailov et al. 2021 accepted after the authors listed the Section 4 additions",
+    "No reviewer rated above 7, so no case for a spotlight"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Framing: the accuracy drop is not surprising, and BNNs should be judged on calibration, which the main text omits (Reviewer_anCt)",
+  "The linear-model claim (lines 326-328) holds only for regression; asked for an NNGP or GP-classification comparison (Reviewer_anCt)",
+  "MLE training without L2 regularization (Reviewer_anCt)",
+  "Propositions 2-3 need Gaussian priors; heavy-tailed or spike-and-slab priors (Reviewer_YvmA)",
+  "Cost of computing the empirical covariance on large data (Reviewer_uotf)",
+  "Link to model misspecification (Reviewer_2XLh)"
+ ],
+ "issues_only_b": [
+  "Monte Carlo error from only 90 HMC samples (Reviewer_SBkb)",
+  "Missing figure for EmpCov on the MNIST CNN, and uneven EmpCov gains (Reviewer_SBkb)",
+  "Novelty over Izmailov et al. 2021 (Reviewer_SBkb, Reviewer_SrTJ)",
+  "Alternative explanations (Domingos 2000, Minka 2000) and whether this mechanism is the main cause (Reviewer_SBkb)",
+  "The term 'covariate shift' for corruptions and domain shift (Reviewer_SBkb)",
+  "Risks of a data-dependent prior (Reviewer_SBkb)",
+  "Why predict on OOD inputs instead of detecting them (Reviewer_SrTJ)",
+  "Full-rank data, the small-data regime, and a title qualifier for over-parameterized models (Reviewer_rUts)",
+  "Whether posterior-averaged first-layer weights are really unstructured, Figure 1(b) (Reviewer_8WYY)"
+ ],
+ "shared_issues": [
+  "No variational-inference results (Reviewer_2XLh in A; Reviewer_8WYY and Reviewer_SrTJ in B). The authors posted the same MFVI analysis and experiment to both forums.",
+  "Small-scale experiments and doubt about larger data or deeper networks (Reviewer_uotf and Reviewer_YvmA in A; Reviewer_SBkb in B)",
+  "The mechanism explains only part of the failure (Reviewer_YvmA in A: 'incomplete' for later layers; Reviewer_SBkb in B: 'an issue', maybe not the main one)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster, from the same final ratings: 7, 7, 7 and 6 (mean 6.75). Both reached those ratings through the rebuttal. In A, Reviewer_anCt was borderline on framing and calibration. In B, Reviewer_SBkb was below the threshold and Reviewer_SrTJ was below 7. Their concerns were Monte Carlo error, a missing figure, novelty and the OOD motivation. The authors answered both forums with new experiments and posted the same variational-inference analysis to both. All three critics raised their scores. The committees raised mostly different concerns, and none was decisive. The checkable ones were either correct and answered, or misreadings that did not survive the rebuttal. No reviewer on either side rated above 7, so neither committee had a case for a spotlight. Neither chair changed the outcome. A's chair wrote a generic note that leans on the scores. B's chair copied Reviewer_rUts's summary and listed the resolved concerns.",
+ "candidate_reasons": [
+  "rebuttal converted borderline critics",
+  "identical post-rebuttal score profiles",
+  "different concerns, none decisive",
+  "no reviewer above seven",
+  "same new evidence both forums",
+  "chairs deferred to reviewer consensus"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_anCt discussion comment, 2021-08-30",
+  "Reviewer_SBkb 'Edit note' and reply, 2021-08-16",
+  "Reviewer_SrTJ reply, 2021-08-16",
+  "Committee A meta-review",
+  "Committee B meta-review (compare Reviewer_rUts summary)",
+  "submitted paper lines 98-103 (priors, cold-posterior test, 100 HMC iterations with 10 burn-in)",
+  "submitted paper lines 310-313 (EmpCov on the MNIST CNN)",
+  "submitted paper lines 326-329 (linear Bayesian models)",
+  "submitted paper Figure 4",
+  "submitted paper Section 6.1 (EmpCov prior)"
+ ]
+}

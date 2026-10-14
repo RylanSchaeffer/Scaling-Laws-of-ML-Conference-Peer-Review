@@ -1,0 +1,135 @@
+{
+  "pair_id": "n21-196",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 7, 5],
+      "confidences": [5, 3, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_WL2f", "Reviewer_ah52", "Reviewer_C1hv"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_C1hv",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only score below threshold (5, confidence 3), one point under the next. The objection is specific and only about structure: each section is poorly motivated and the paper is 'simply enumerating many experimental results', with examples for Sections 3.1 to 3.4 and the stochastic-mask paragraph at L158. Reviewer_WL2f (confidence 5) endorsed it: 'I agree with rev C1hv on the fact that the narrative of the paper should be improved'. C1hv rose from a lower score to 5 on 2021-09-03, credited 'the significance and importance of the scientific findings' and said 'I will not strongly argue for reject as before'."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_giJs", "evidence": "Rating 7 with 12 hours reported, but the summary and quality paragraphs restate the abstract ('selective sparsity achieves better generalization in a range of few-shot and continual learning problems'; 'a powerful inductive bias for meta-learning systems'), and limitation (2) restates the paper's own limitations section ('two important approximations'). The only specific points are a clarity request (binary against soft masks) and a BatchNorm question. No post in the discussion and no edit. The 7 is weak evidence of quality."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_WL2f", "claim": "All experiments use the same Conv4 VGG-like model; no other architecture is tested.", "checked_against_paper": "correct", "evidence": "paper_submitted.pdf is not in the files; the authors conceded ('It is computationally intensive and difficult to apply meta-learning methods based on MAML ... to more complex architectures') and ran ResNet-12 during the discussion. Camera-ready Table 2 adds it."},
+        {"reviewer": "Reviewer_WL2f", "claim": "Training uses transductive BatchNorm, which may confound the comparison.", "checked_against_paper": "correct", "evidence": "Authors to giJs: 'Yes (for all methods)'. They promised a main-text note and a non-transductive control. The word 'transductive' does not appear in the camera-ready main text (paper.pdf)."},
+        {"reviewer": "Reviewer_ah52", "claim": "Eq. 5 updates only parameters with a non-negative product of the outer gradient and the summed inner gradients, which is more restrictive than GEM.", "checked_against_paper": "incorrect", "evidence": "Eq. 5 is an additive update, m <- m + alpha*gamma_m E[g_out o sum_k g_in,k], to a real-valued m. The gate 1_{m>=0} follows the sign of m accumulated over meta-training, so one negative product does not freeze a weight. The paper says learning 'intends to be shut off' where E[g_out g_in] < 0 (camera-ready p. 3). The authors' reply made the same point."},
+        {"reviewer": "Reviewer_ah52", "claim": "Sparse-La-MAML has worse BTI than the baseline and MER on Rotations MNIST, and the paper does not explain it.", "checked_against_paper": "correct", "evidence": "Camera-ready Table 5, Rotations: BTI -8.16 for sp-LaM against -5.44 for the baseline and -5.60 for MER. sp-LaM has the best BTI on no variant. The camera-ready adds only a one-line caption remark about the baseline's lower accuracy."},
+        {"reviewer": "Reviewer_ah52", "claim": "The continual learning experiments cover only domain-incremental tasks.", "checked_against_paper": "correct", "evidence": "Conceded; the authors ran class-incremental Split-CIFAR-10. In the camera-ready these results are in the SM ('additional experiments using the CIFAR-10 dataset are provided in the SM'), not in the main text as the rebuttal said."},
+        {"reviewer": "Reviewer_C1hv", "claim": "The experiments are poorly motivated; for example, stochastic gradient masks appear without context at L158 inside Section 3.3.", "checked_against_paper": "not_checked", "evidence": "paper_submitted.pdf is not in the files. The authors conceded. The camera-ready opens Sections 3.1 to 3.4 with the motivation sentences from their change summary, and the stochastic-mask paragraph now states its purpose."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_WL2f", "Reviewer_ah52", "Reviewer_C1hv"],
+        "evidence": "WL2f edited 2021-08-31: 'I decided to increase my score from 5 to 7'. ah52 on 2021-09-01: 'I raised my score to 6' (edited the same day). C1hv on 2021-09-03: 'I decided to increase my score to 5' (edited the same day) and 'I will not strongly argue for reject as before'. giJs did not edit or post. Pre-rebuttal scores were about 5, 5 or less, 7 and 4 or less.",
+        "what_convinced_or_not": "WL2f was moved by the ResNet-12 table ('support your previous findings and in my opinion make the paper stronger'), the meta-shrinkage numbers and a ten-item change list that WL2f requested, while agreeing with C1hv that the narrative needed work. ah52 accepted the clarifications and the class-incremental Split-CIFAR-10 results. C1hv credited the findings but not the promised rewrite: 'the paper needs a significant amount of rewriting'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'Echoing the reviewers ... the experimental section is thoroughly done', plus credit for 'the engagement from the authors, and the correction they proposed' (the change list WL2f requested), 'which I hope will be reflected in the camera ready'. No AC post in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "A clear, thorough empirical study judged useful to the meta-learning community (WL2f, giJs; AC: 'experimental section is thoroughly done').",
+        "The rebuttal added ResNet-12 and class-incremental results and a list of committed changes; three of four reviewers raised their scores.",
+        "The only score below threshold (C1hv, 5) rested on presentation alone and credited the findings' significance.",
+        "Modest gains and the small-ConvNet scope kept the top score at 7."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 5, 6],
+      "confidences": [3, 4, 1, 4],
+      "reviews_edited_after_posting": ["Reviewer_u5xJ", "Reviewer_bJTT", "Reviewer_HSzX"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Scores 5 to 6 around a mean of 5.75. The only 5 is Reviewer_Lbaj at confidence 1 ('I am not familiar with the benchmarks presented in the paper'), one point below the rest."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_Lbaj", "claim": "In Table 1, sparse-MAML loses to MT-Net and Meta-SGD.", "checked_against_paper": "correct", "evidence": "Camera-ready Table 1, 1-shot: sparse-MAML 50.35±0.39 against MT-net 51.70±1.84 and Meta-SGD 50.47±1.87, inside the baselines' error bars. In 5-shot sparse-MAML (67.03) beats Meta-SGD (64.03); MT-net has no 5-shot entry. The authors did not dispute the numbers and argued computational cost instead."},
+        {"reviewer": "Reviewer_Lbaj", "claim": "In the cross-domain table, sparse-MAML sometimes loses to ANIL and BOIL.", "checked_against_paper": "correct", "evidence": "True for BOIL: camera-ready Table 4 has sparse-MAML below BOIL in 4 of 6 cells (CUB 1-shot 41.37 against 44.20; Cars 1-shot 35.90 against 36.12; TieredImageNet 5-shot 68.83 against 69.37; CUB 5-shot 60.58 against 60.92). It beats ANIL in all 6 cells there. The authors did not answer this point, and the text still says sparse-MAML 'consistently improves cross-domain adaptation'; only sparse-MAML+ beats BOIL in 5 of 6."},
+        {"reviewer": "Reviewer_Lbaj", "claim": "Sparse-MAML+ is less sparse than sparse-MAML.", "checked_against_paper": "correct", "evidence": "A correct reading of a wrong number. The authors: 'We are sorry for this error in the SM, this value was incorrectly inserted'. Camera-ready Table 3 gives 78.05 (1-shot) and 76.66 (5-shot) for sparse-MAML+ against 79.04 and 74.98 for sparse-MAML."},
+        {"reviewer": "Reviewer_HSzX", "claim": "The paper ignores older work on meta-learning step sizes, IDBD (Sutton, 1992) and SMD (Schraudolph).", "checked_against_paper": "correct", "evidence": "Conceded: 'an important family of methods that we were not aware of'. The camera-ready Discussion now cites both ([52], [53]), and Table 1 adds the exponential baseline (exp-MAML) that HSzX asked for."},
+        {"reviewer": "Reviewer_u5xJ", "claim": "The final sparsification factors are not large (2x to 4x gradient reduction).", "checked_against_paper": "correct", "evidence": "Camera-ready Table 3: 73.5 to 79% sparsity on the ConvNet, about 4 to 5 times fewer updated weights at the best setting. Figure 1 shows lower final sparsity at lower initial sparsity. The rebuttal reports about 30% overall sparsity on ResNet-12."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_u5xJ", "Reviewer_HSzX"],
+        "evidence": "u5xJ edited 2021-08-26: 'I am changing my review from a 5 to a 6'. HSzX on 2021-08-30: 'I'm increasing my score by one point' (edited the same day), so 5 to 6. bJTT's only edit (2021-07-18) predates the rebuttal, and bJTT never replied. Lbaj neither edited nor replied. Pre-rebuttal scores were 5, 6, 5, 5.",
+        "what_convinced_or_not": "u5xJ was moved by the post-hoc mask control ('the sparsification needs to happen during learning'), the mask-reversion analysis and the ResNet-12 results. HSzX got the IDBD/SMD discussion and the exponential baseline asked for, but read the baseline's weak result as evidence that 'contradicts their hypothesis'. The authors' later answers (learning-rate histograms, a vanishing meta-gradient argument, a 2021-09-03 rerun) drew no reply. The replies to bJTT (Split-CIFAR-10, width table, continual-learning paragraph) and to Lbaj (cost argument, SM correction) changed no score."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences: a method summary, then 'Although some work has been done in this direction such as MT-Net, reviewers are generally positive after rebuttal phase and find this to be worthwhile contribution'. No AC post in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "A simple, clearly written first-order method with consistent but modest gains over MAML (all four reviewers).",
+        "The rebuttal answered each reviewer with a new experiment; u5xJ and HSzX each moved from 5 to 6.",
+        "The only score below threshold (Lbaj, 5) came at confidence 1 from a reviewer outside the area.",
+        "Closeness to MT-Net and small margins over strong baselines kept every score at 6 or below."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Experiments poorly motivated; the paper reads as a list of results (C1hv, endorsed by WL2f)",
+    "No comparison with weight-sparsity regularizers (L1/L0) or meta-shrinkage (WL2f)",
+    "Extra meta-parameters double the parameter count; fairness against MAML (WL2f)",
+    "Transductive BatchNorm may drive the results (WL2f, giJs)",
+    "Mask rule said to be stricter than GEM and to cut plasticity (ah52)",
+    "Worse BTI than the baseline and MER on Rotations MNIST (ah52)",
+    "Frozen bias parameters; how learning starts from 100% initial sparsity (ah52)"
+  ],
+  "issues_only_b": [
+    "Older step-size adaptation work (IDBD, SMD) missing (HSzX)",
+    "Exponential step-size baseline, and whether its weak result undercuts the freezing hypothesis (HSzX)",
+    "Small sparsification factor; would masks learned after MAML do as well (u5xJ)",
+    "Rate of mask reversion (u5xJ)",
+    "Why sparsity falls as layer width grows (bJTT)",
+    "Merits of meta-learning continual learning against other families (bJTT)",
+    "sparse-MAML below MT-Net and Meta-SGD in 1-shot and below BOIL in cross-domain tests (Lbaj)",
+    "Wrong sparse-MAML+ sparsity value in the supplement (Lbaj)"
+  ],
+  "shared_issues": [
+    "Few-shot results only on a small ConvNet; scaling to larger models (WL2f in A; u5xJ, bJTT in B)",
+    "Why binary masks should beat learned step sizes such as Meta-SGD (WL2f, giJs in A; HSzX in B)",
+    "Small gains over related methods (ah52 in A; u5xJ, bJTT, Lbaj in B)",
+    "Continual learning only on MNIST variants; the same Split-CIFAR-10 class-incremental run answered both (ah52 in A; bJTT in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Both started at the borderline: before the rebuttal A stood at about 5, 5 or less, 7 and 4 or less, and B at 5, 6, 5, 5. Both read the same paper: a simple first-order method, clearly written, with many experiments; it gains 2 to 4 points over MAML, under 1 point over BOIL and nothing over MT-net or Meta-SGD in 1-shot, and the submission's few-shot results used only a 4-layer ConvNet. Both received a large rebuttal with new experiments, and two or three reviewers in each then raised their scores. No reviewer found an error in the method or the main results, none argued for more than a poster, and neither AC departed from the post-rebuttal scores. A's higher mean (6.25 against 5.75) does not change the tier; it comes from its most expert reviewer, Reviewer_WL2f (confidence 5), who rose from 5 to 7 after the ResNet-12 results, and from a thin 7 by Reviewer_giJs that restates the abstract. The concerns differed (A: presentation, regularizer and shrinkage baselines, BatchNorm; B: older step-size work, an exponential baseline, mask dynamics), but the authors answered both sets. Neither committee tested the new evidence. The rebuttal put sparse-MAML above ANIL on ResNet-12 (73.11 against 72.52, 5-shot), a result WL2f cited and u5xJ called 'encouraging'; camera-ready Table 2 shows a tie (70.02 against 70.03). Camera-ready Table 4 has sparse-MAML below BOIL in 4 of 6 cross-domain cells, yet the text says it 'consistently improves' on manual freezing; only Reviewer_Lbaj, at confidence 1, raised this.",
+  "candidate_reasons": [
+    "borderline start, rebuttal lifted both",
+    "modest gains capped scores at poster",
+    "no error found in main results",
+    "detractors weak: presentation-only, out-of-area",
+    "ACs followed post-rebuttal scores",
+    "rebuttal results accepted without checking"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_WL2f final review (5 to 7) and 2021-08-24 'Reponse to rebuttal'",
+    "Reviewer_C1hv review and 2021-09-03 discussion post",
+    "Reviewer_ah52 review and 2021-09-01 discussion post",
+    "Reviewer_giJs review against the paper's abstract and Limitations",
+    "Reviewer_u5xJ review update paragraph and 2021-08-20 post",
+    "Reviewer_HSzX review and 2021-08-30 discussion post",
+    "Reviewer_Lbaj review and the authors' reply (SM sparsity error)",
+    "Authors' ResNet-12 post, 2021-08-20, in both forums",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready; no paper_submitted.pdf in the files) Tables 1, 2, 3, 4 and 5, Eq. 5"
+  ]
+}

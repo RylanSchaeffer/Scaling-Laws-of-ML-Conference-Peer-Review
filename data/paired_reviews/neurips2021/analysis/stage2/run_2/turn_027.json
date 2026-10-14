@@ -1,0 +1,232 @@
+{
+  "run": 2,
+  "turn": 27,
+  "pair_id": "n21-017",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's Reviewer_jeQC based its 3 partly on the wrong claim that Arora et al. and Zou et al. are 'not given nor discussed' (Appendix A discusses both); B's r4iB made a different wrong claim (triviality via Euler analysis) that the rebuttal corrected and that r4iB dropped."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight on a 7.0 mean with one 8, writing that 'all the reviewers agree' the work is 'a strong contribution', which overstates r4iB's 6 ('results are not surprising') and the confidence-1 and -2 sevens."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's Reviewer_hENG gave 7 at confidence 1 'based on the theorem statements only' as 'not a theorist', and that 7 counted in B's 7.0 mean behind the spotlight."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The only concession unique to one forum, the lambda_min 'non-negative' wording, answered A's own reviewer's question; the authors hid no flaw from either committee."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B knew of the dense layout, the untested exponentially small step size and the overlarge scope, and its champion 4TKP accepted the fix on trust ('the proposed changes completely address my concerns'); the promised tightness experiments never reached the camera-ready main text."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Four of B's five reviewers raised their scores after the rebuttal (4TKP 6 to 8, kYKg 6 to 7, r4iB and DACB up), while no score moved in A, whose mean stayed at 5.0."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A's Reviewer_jeQC noted that Theorem 4's step size shrinks with the target accuracy, so it needs about 1/eps iterations against log(1/eps) in Arora et al.; and only A's x5V9 asked whether trajectory comparison is less efficient than direct discrete proofs."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees found the main text dense, the guarantee linear-only and the step size exponentially small in depth; A treated the presentation as grounds to reject, B as a revision item."
+    },
+    {
+      "id": "R09",
+      "applies": true,
+      "justification": "A's AC settled a 2-2 split by adopting Reviewer_x5V9's (i)/(ii) positioning critique by name and did not address the two accept-side scores; its own additions were minor remarks."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Reviewer_nsKx agreed with x5V9 on presentation after the discussion but kept its 6; no score moved because of other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer; the unanswered exchange was jeQC not replying to the authors, not the reverse."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's Reviewer_4GXj gave 7 on generic praise with no weakness and never replied, and B's hENG gave 7 at confidence 1 without reading the proofs and never replied; both ratings counted unchallenged."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's final ratings split 2-2 (4, 3, 7, 6), so the rejection did not go against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's AC stated no positive view of the paper and did not decide on a threshold; it adopted x5V9's critique."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's low scores rested on presentation, positioning and the Arora comparison, which are central to the contribution."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a theory contribution, a GF-to-GD bridge with a deep-linear guarantee; A's positioning complaint is about clarity, not a different kind of contribution."
+    },
+    {
+      "id": "R17",
+      "applies": true,
+      "justification": "B's Reviewer_DACB (confidence 2, 'cannot intuitively understand or vouch for the new results') raised to 7 on the restructuring promise and answers about Proposition 5, with no check of the proofs."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Neither committee's decision turned on a requirement the other did not ask of this kind of paper; B's request for tightness experiments did not lower its tier."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "B's Reviewer_kYKg gave 7 and praised a 'first convergence proof' for fixed-size deep networks, but the paper's own related work lists earlier fixed-size deep-linear GD guarantees and claims 'first' only under random near-zero initialization."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "A's detractors said their core concerns were not answered, and nsKx's held score was 6, above the threshold."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "A's x5V9 saw 'little guarantee that the weaknesses will be fixed' and jeQC found the changes 'too consequent' to accept unseen, while B's 4TKP raised 6 to 8 on the same promised restructuring."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer stated a position that differed from its final score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC used an extra reviewer."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Reviewers in both committees found the main text dense; the clarity verdicts did not split by distance from the field."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Every raised score in B came with a stated reason, such as r4iB's 'This response clarifies the settings' and DACB's restructuring comment."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Neither AC set aside a silent reviewer's rating; A's silent 4GXj was on the accept side and was simply not addressed."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "B's Reviewer_4TKP (8, 12 hours) wrote the most careful review on either side and argued for the paper, while A's highest rating was 4GXj's generic, unengaged 7."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "The reviewer who did not read the proofs, B's hENG, rated at confidence 1, not high confidence."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the paper's premise from another theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "B's three-sentence meta-review argues only that the work is a strong contribution and gives no reason for a spotlight over a poster."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's jeQC checked Theorem 4 against Arora et al. (2019) and x5V9 named the missing Orvieto and Lucchi (2019), while no B reviewer compared Theorem 4 with prior deep-linear GD results and kYKg took the 'first' claim at face value."
+    }
+  ],
+  "added": [],
+  "reasoning": "The pair is a 2-2 reject in A against a spotlight in B on the same facts. The main mechanisms are already in the set: the rebuttal moved four of B's scores and none of A's (R06), B credited the promised restructuring while A refused it unseen (R21), and both committees weighted the same density and scope weaknesses differently (R08). B's tier rests on one careful champion (R27), low-confidence and thin sevens (R03, R12, R17), and a meta-review that overstates consensus and gives no case for a spotlight (R02, R30). A's side shows a detractor's partly wrong claim (R01), an issue only A raised against Arora et al. (R07, R31), and an AC who adopted one reviewer's critique (R09). B's kYKg praised an overbroad 'first' claim (R19). Every stage 1 candidate reason maps to an existing entry, so the turn adds none.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31"
+  ]
+}

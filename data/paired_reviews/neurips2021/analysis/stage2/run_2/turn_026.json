@@ -1,0 +1,232 @@
+{
+  "run": 2,
+  "turn": 26,
+  "pair_id": "n21-025",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's Reviewer_oDAB criticised reproducibility on a misread SNGAN FID of 21.7 (Table 3 gives 14.70; 21.74 is SNGAN-SPADE); B had no such error, though oDAB's other points hold."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight on a 7.0 mean with a single 8, and the meta-review overstates consensus ('all agree ... novel', while kHDT called it 'a straightforward follow-up')."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's Reviewer_7vAs ('not an expert', confidence 3) gave 7 on two sentences of praise, and that 7 counted in B's 7.0 mean."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Only on A's forum did the authors concede that CoPE and Π-Net 'could learn a similar model', that not all polynomials are representable and that gradients are not bounded; B got a list of differences instead."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B knew of the Π-Net closeness and the missing state-of-the-art comparison; Rugm called his declined requests 'fully addressed' and the meta-review called the work novel."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Three of B's reviewers raised their scores after the rebuttal (tbWn, Rugm, kHDT); none of A's scores moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A's Reviewer_41qE showed Eq. 2 is Π-Net on the concatenated input and asked for an ablation; only A's Mncu checked bolded gains against the standard deviations."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the closeness to Π-Net and the lack of state-of-the-art baselines; A rejected on them, while B read the closeness as 'a natural continuation'."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's AC followed three concordant detractors, not one reviewer; B's AC followed all four ratings."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Every score change in B cites the rebuttal; no reviewer moved because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer, including 41qE's follow-up; no misreading held a score down."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's Reviewer_7vAs gave 7 on assertion and never commented after the rebuttal, and that score counted unchallenged; A's thin 7 (La4a) was discounted by its AC."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's AC rejected with three of four ratings below threshold (4, 5, 4)."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC stated a positive view that a score threshold overrode."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's low scores rest on core novelty and experimental concerns, not peripheral points."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees judged the paper as a methods contribution extending Π-Net; they weighed its novelty differently."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "B's raisers (tbWn, Rugm, kHDT) did not say the core was outside their expertise; the self-declared non-expert (7vAs) did not raise."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The difference is in which concerns each committee raised and how it weighed them, not in a different bar for one paper type."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "B's Reviewer_7vAs rated 7 on 'clear improvements over baselines', which fails for CIFAR10 (Table 3 gains below one standard deviation)."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No A reviewer acknowledged that the rebuttal resolved their main concern; 41qE kept the novelty objection, and Mncu and oDAB stayed silent."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "B credited tables delivered in the rebuttal, not promises, and A's committee did not state a refusal to credit promised changes."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer stated a changed position without editing the score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No extra reviewer was called in."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Clarity was not a point of difference between the committees."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "B's three raisers each gave a stated reason for raising."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "A's AC discounted a silent champion (La4a's 7), not a silent detractor."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "B's only 8 (Rugm) accepted declined requests as 'fully addressed' and did not argue for the paper in discussion; A also had a 7."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted reading only part of the paper."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the premise from another theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "B's meta-review argues only for acceptance and gives no reason for the spotlight."
+    },
+    {
+      "id": "R31",
+      "applies": false,
+      "justification": "B's reviewers also knew the prior work (Rugm cited Karras et al. 2020; kHDT called the paper a follow-up of Π-Net) and questioned the baselines."
+    }
+  ],
+  "added": [],
+  "reasoning": "The stage 1 verdict says the committees weighted the same facts differently (R08), and only A tested the novelty claim against Π-Net (R07), drawing concessions that B never saw (R04). B's concerns were requests a rebuttal could answer, so three B reviewers raised while A's scores held (R06). B's ratings include a thin, inattentive 7 resting on a wrong claim of clear gains (R03, R12, R19), and its AC gave a spotlight with no stated case and an overstated consensus (R02, R30). B treated known gaps as resolved (R05). oDAB's misread FID is a minor wrong claim in A (R01). The candidate 'rebuttal answers clarifications, not novelty' is the cause behind R06 together with R07, so no new reason was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31"
+  ]
+}

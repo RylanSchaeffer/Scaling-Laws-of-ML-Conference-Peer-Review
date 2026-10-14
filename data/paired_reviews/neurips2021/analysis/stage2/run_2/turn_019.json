@@ -1,0 +1,198 @@
+{
+  "run": 2,
+  "turn": 19,
+  "pair_id": "n21-096",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's Reviewer_456H based its 4 on two wrong claims (a 25-step sweep reveals the map, though stone and water zones block it; executor training explains the near-oracle gap, though the oracle shares the executor); A's Reviewer_1PbL wrongly said the paper compares 'only to ablations'."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight with no reviewer above 7 and none asking for an award, on its own view that the paper is 'pretty cool' and an 'exemplar', and wrote that consensus 'clearly shifted towards a mean of 7' over ratings 7, 4, 7, 7."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "No praise-only low-confidence review: A's champion aK3Q was the most careful reviewer (confidence 5, 11 h, ran the code), and B's 7s were at confidence 4 with specifics."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "No flaw was disclosed on one forum only; the authors confirmed the full-map training on both forums."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B learned from DgEc and 456H that the executor trains on full-map programs and the hallucinator on true states, yet its meta-review did not weigh this and stated the method does not depend on ground-truth programs, true at test time only."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "After the rebuttal A's Reviewer_EBwR lowered 6 to 5 when the authors declined the neural-controller run, while B's Reviewer_DgEc rose to 7, so score movement in opposite directions widened the gap."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised baseline strength (128/32-unit MLPs, Relational below End-to-end), a neural controller over the same options, the TAMP framing, and the AC's POMCP and TD-VAE; no one in B raised these."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw privileged full-map training, user-supplied state abstraction, small static grids and the same presentation slips; A's kENU and EBwR held them against the paper while B's reviewers rated 7 and SkvM called the clarity points minor."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither AC adopted one reviewer's position: A's AC added its own novelty objection, and B's AC followed three 7s and its own enthusiasm."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer is recorded as moving because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered each reviewer; 1PbL, not the authors, left the request to name unclear parts unanswered, and EBwR's drop came from a declined experiment, not a misreading."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's Reviewer_Wt3P gave 4 after four clarification questions, named no flaw, never replied, and its rating counted among A's four below-threshold scores."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's majority was negative (4, 4, 4, 5 against one 7), so its reject did not go against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC stated a positive view while deciding by a mean threshold; A's AC was negative and B's AC went above the scores."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "The low scores rested on clarity, privileged training and baselines, which are central to the contribution, not peripheral points."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as program synthesis over hallucinated worlds and praised that idea; A's task-planning framing point is a missed-literature issue, not a different kind of contribution."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No reviewer who disclaimed expertise raised on the rebuttal; DgEc's raise came at confidence 4 with no stated reason."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Neither committee demanded a deliverable of this paper type that the other did not; the differences lie in weighting and in issues raised."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No reviewer's praise rested on a wrong claim; the wrong 'no privileged information' statement came from B's AC in the meta-review, which R05 covers."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "A's Reviewer_kENU conceded 'I stand corrected' on the program-synthesis baselines and was 'more confident that the baselines are good' after new runs, yet kept 4 on clarity and saying the changes 'warrant a complete re-review'."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "A's kENU refused to credit the rebuttal's new runs and promised changes, saying they 'warrant a complete re-review', while B accepted the new non-deterministic and explore-then-plan runs and the promised related-work fix."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "DgEc's mismatch runs the other way: it edited its rating to 7 but its text still argued against acceptance and it posted no comment, so no stated stance diverged from an unchanged score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "Neither AC called in an off-record extra reviewer."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Clarity verdicts split, but the notes do not tie them to reviewers' distance from the field; A's confidence-5 aK3Q called the writing very clear while confidence-3 reviewers did not."
+    }
+  ],
+  "added": [
+    {
+      "id": "R25",
+      "name": "Reviewer raised score silently against own text",
+      "definition": "A reviewer in one committee raised their rating after the rebuttal with no stated reason while their review text still argued against acceptance, and the committee counted the raised rating.",
+      "justification": "R22 covers a stated change of stance with an unchanged score; here the score changed and the text did not. R06 covers rebuttal-driven score moves but not a raise with no reason that contradicts the reviewer's own text."
+    },
+    {
+      "id": "R26",
+      "name": "Area chair set aside a silent detractor",
+      "definition": "One committee's area chair discounted a low rating because its reviewer did not respond to the rebuttal or discussion, so the decision followed the remaining reviewers, while the other committee counted a comparable unengaged rating.",
+      "justification": "R12 covers an unengaged review that counted unchallenged; no reason covers the opposite step, an AC removing an unengaged detractor's rating from the decision."
+    }
+  ],
+  "reasoning": "The two committees mostly saw the same facts and weighted them differently (R08), with A-only issues on baselines, framing and the AC's uncited POMCP and TD-VAE (R07). Reviewer draw and the ACs separated the outcomes: A counted a thin silent 4 (R12) and kENU kept 4 after conceding points and refusing to credit revisions (R20, R21); B's lone 4 rested on misreadings (R01) and was set aside by the AC (new R26), DgEc rose silently to 7 against its own text (new R25), and the AC chose a spotlight above the scores while misstating the privileged-training point (R02, R05). Rebuttal moves went in opposite directions (R06).",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26"
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "run": 2,
+  "turn": 28,
+  "pair_id": "n21-003",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's Reviewer_h7Rc doubted the method suits multi-object tracking because YouTube-VIS is 'mainly for' VOS, which Section 4.1 refutes (classify, segment and track 40 categories); no B reviewer made that error."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight on ratings 7/6/7/7 with no rating above 7, praising a 'very strong' cost-accuracy trade-off that holds for memory, not speed, on the chair's own reading."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "B's raises came from reviewers at confidence 4 with specific points; no high score rested on enthusiasm alone, and A's nMFp gave only a 6 that did not shape A's outcome."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors told A only that PCAN is slower than non-local attention (63.2 vs 61.8 ms per frame) and that STMask runs at 28 FPS; B's reply left STMask out and B never saw the runtime comparison."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "B's speed and clarity concerns were answered with new results and details, not ignored; the difference in treatment of shared weaknesses is a weighting difference (R08)."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "After a near-identical rebuttal, B's NPPQ (6 to 7) and HvVc (to 7) raised, while no A score moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "A's x3ez showed PCAN gains only 0.5-0.6 AP over non-local attention with no runtime gain, and q7JA flagged tuning on the reporting split and missing MAST; no B reviewer raised these."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the same gaps (frame-prototype count, missing details, no KITTI-MOTS, slower than one-stage rivals, modest novelty); B treated them as revision items, A as grounds to reject."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's AC followed the score count and the reviewers' collective concerns, not a single reviewer."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer's change is attributed to the other reviews; B's raises cite the rebuttal."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered x3ez's follow-up with a fixed-memory comparison; x3ez simply did not reply, so no reply was misread or missed."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's h7Rc (confidence 3, a wrong benchmark claim) and nMFp (four one-line strengths) never engaged after the rebuttal, and both ratings counted unchallenged in A's score count."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's reject matched three of four ratings below threshold; it did not go against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's AC decided by the score count but stated no positive assessment of its own; it agreed the reviewers were negative."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's low scores rested on novelty, efficiency and missing details, which are central, not peripheral."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "A's h7Rc and AC read the paper as a pure application paper combining existing techniques without insight, while B's NPPQ and TiXB read it as a new attention mechanism and judged its novelty as a method."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "NPPQ admitted not being an MOTS expert and raised, but the rebuttal gave new results (frame-prototype ablation, KITTI-MOTS), not only clarifications."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Where both read the paper the same way, the gap is weighting of shared weaknesses (R08), not an extra requirement for that paper type."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "B's NPPQ praised clustering pixels for attention as new ('I couldn't find a work'), though Section 2 cites EM-based prototype attention [19] by the paper's own second author."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "A's x3ez wrote 'Most of my concerns are addressed', then called the 0.5-0.6 AP gain 'trivial' and stayed at 5, not answering the authors' fixed-memory reply."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "B's HvVc raised to 7 on promised revisions of a paper it called 'badly written', while A's AC listed concerns as if the rebuttal's BDD100K test and KITTI-MOTS results did not exist."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "x3ez's 'most concerns addressed' was not a stated change of position to accept, and A acted on the rating, not on that comment."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "A's AC cites non-public discussion, but no extra reviewer was called in."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Clarity complaints arose in both committees (HvVc in B, q7JA in A); expertise distance did not split the clarity verdicts."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "B's raises came with stated reasons in comments; no silent raise against the review text."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "A's AC counted its silent reviewers rather than setting them aside, and B had no silent detractor."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee rated above 7."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted reading only part of the paper."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the premise from a different theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "B's meta-review argues only for acceptance from 'all four reviewers recommend acceptance' and gives no reason for the spotlight."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's x3ez and q7JA knew the self-supervised memory-tracker literature and checked the non-local baseline, while B's NPPQ, not an MOTS expert, took novelty at face value and missed cited prior work."
+    }
+  ],
+  "added": [
+    {
+      "id": "R32",
+      "name": "Area chair misstated reviewers' final positions",
+      "definition": "One committee's meta-review described its reviewers' final positions or the remaining concerns in a way the forum record contradicts, such as calling all reviewers negative when one rated above threshold or omitting results the rebuttal supplied, in the direction of the chair's lower decision.",
+      "justification": "R02 covers a chair overstating consensus to lift a tier; no reason covers a chair misstating the record toward a lower outcome, here calling all reviewers negative against nMFp's unedited 6 and ignoring rebuttal results."
+    }
+  ],
+  "reasoning": "Both committees saw the same strengths and largely the same gaps, so the core is weighting (R08) and rebuttal response (R06): B's reviewers raised on a near-identical rebuttal, while A's x3ez said most concerns were addressed yet held 5 (R20) and A's other reviewers stayed silent (R12). Errors pushed both ways: A's h7Rc misread the benchmark (R01), B's NPPQ credited novelty that Section 2 attributes to prior work (R19). A heard things B did not, both from its reviewers (R07, R31) and from the authors (R04). A read the paper as an application, B as a method (R16). B's spotlight has no rating above 7 and no stated case (R02, R30); B credited promises A did not (R21). A's AC misstated the reviewers' final positions, which no reason covered, so I added R32.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32"
+  ]
+}

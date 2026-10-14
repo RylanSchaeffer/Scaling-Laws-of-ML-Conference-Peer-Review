@@ -1,0 +1,236 @@
+{
+  "pair_id": "n21-221",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        5
+      ],
+      "confidences": [
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_r1m9"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_kohp",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Ratings 7 (Reviewer_TRky), 7 (Reviewer_r1m9) and 5 (Reviewer_kohp). The 5, at confidence 4, is the only rating below 7 in either committee. The review calls the paper 'original and useful' and the theory 'good'. The 5 rests on Table 1 alone: what F1, precision and recall measure, which graph is the reference, and which code ran the baselines. The submitted paper states none of these (Section 4, l.276-314). After the rebuttal, kohp wrote 'I am happy with acceptance for this paper' (2021-08-28) but did not edit the review. The record therefore keeps a 5 that kohp no longer held."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_r1m9",
+          "evidence": "One hour, confidence 3, 185 words. r1m9 writes: 'I am not sufficiently familiar with constraint-based algorithms for MAG learning to evaluate the theoretical results directly, or to confirm their novelty'. The review lists no weakness and asks no question. It calls the empirical validation 'properly performed', but Table 1 does not say what its metrics measure (Reviewer_kohp's point). The only edit adds 'my score is unchanged'. The 7 is not evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TRky",
+          "claim": "Figure 1(c) is wrong: in Figure 1(a) the path Z, T, W, U, Y d-connects Z and Y given W, but 1(c) implies that Y and Z are independent given W.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Fig. 1(a) draws T → W and T → Z. W is then a collider on Y ← U → W ← T → Z, and conditioning on W opens the path. So T is not removable, contrary to l.63-65 ('if we start with the choice of X = T, we can correctly learn the subgraph of M'). TRky names the edge W–Z, a slip; the argument concerns Y and Z. The authors conceded, and the camera-ready reverses the edge to W → T."
+        },
+        {
+          "reviewer": "Reviewer_TRky",
+          "claim": "The argument at l.257 needs a removable vertex in every remaining set, which the paper does not show.",
+          "checked_against_paper": "correct",
+          "evidence": "l.256-258 apply Proposition 2 to 'the first removable variable' at each iteration. Theorem 2 (l.250-252) assumes only faithfulness, and the main text never states that a removable vertex exists. The authors replied that this needs a chordal undirected-edge subgraph (Appendix D) and gave a new two-case proof. The camera-ready adds the condition, and 'the set of removable vertices in G is non-empty', to its Theorem 2."
+        },
+        {
+          "reviewer": "Reviewer_TRky",
+          "claim": "FCI+ is cited but not compared, and it needs only an upper bound on the degree, not the exact value the paper states.",
+          "checked_against_paper": "correct",
+          "evidence": "l.278-279 compare only FCI, RFCI, MBCS* and M3HC. l.51-53 say that FCI+ ([2]) needs 'the exact value of the maximum degree'. The authors' reply itself speaks of 'using an upper bound for delta' and offers a bound comparison, not an experiment. The camera-ready still omits FCI+ and keeps 'exact value'."
+        },
+        {
+          "reviewer": "Reviewer_TRky",
+          "claim": "Typos: the TC statement at l.230 should have dependence on its left side, and l.201 should say X1 instead of X.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted l.230 reads (X ⊥⊥ Y | V\\{X, Y}) ⟺ X ∈ Mb(Y) and Y ∈ Mb(X); the camera-ready prints the dependence sign. l.200-201 and l.206 mix X and X1; B's Reviewer_Wz2i found the same. The camera-ready uses Xi throughout."
+        },
+        {
+          "reviewer": "Reviewer_kohp",
+          "claim": "Table 1 does not say whether F1, precision and recall score adjacencies, or which graph is the reference.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither Section 4 nor the Table 1 caption defines the metrics or the reference graph, in the submission or in the camera-ready. The authors confirmed adjacency-only scores against the ground-truth PAG. Table 1 therefore measures no orientation accuracy, although the task is to learn the PAG."
+        },
+        {
+          "reviewer": "Reviewer_kohp",
+          "claim": "The paper does not name the implementations that ran the baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 names no package, although checklist 4(a) answers '[Yes] See Section 4'. The authors named the M3HC authors' code and the causal_graphs package. The camera-ready Section 4 adds only the link to its own code."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_TRky (2021-08-26): 'I keep my original rating'; the review was not edited. Reviewer_r1m9 edited the review on 2021-08-27 to add 'my score is unchanged'. Reviewer_kohp (2021-08-28): 'I am happy with acceptance for this paper'; the review was not edited, so the 5 stands.",
+        "what_convinced_or_not": "The chordality condition and the two-case proof answered TRky's existence question; TRky did not comment on it. The proof holds against the camera-ready's graphical criterion (its Theorem 1): a vertex with no children or neighbours, or a simplicial vertex, meets both conditions. A bound argument did not replace an FCI+ experiment for TRky: 'it would be helpful to include a comparison in the empirical results'. Promises to describe the metrics and name the packages moved kohp to support acceptance, but not to edit the score. r1m9 got a two-line thank-you."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'All of the reviewers agreed that the approach is novel and interesting, and there is a consensus to recommend acceptance.' That matches all three reviews and kohp's comment of 2021-08-28, although kohp's recorded rating is 5. The meta-review names no weakness: not the Figure 1 error, the unstated existence condition, the missing FCI+ comparison or the Table 1 gaps.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Novel removable-variable recursion that keeps soundness and completeness for MAGs (all three reviewers, AC).",
+        "Fewer CI tests, shorter runtime and higher adjacency F1 than FCI, RFCI, MBCS* and M3HC on all seven benchmarks in Table 1 (TRky, r1m9).",
+        "Every weakness judged fixable: the Figure 1 error, the unstated existence condition and the Table 1 reporting gaps.",
+        "kohp's 'happy with acceptance' completed the consensus; no rating above 7, so nobody argued for more than a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        2,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_QNSv",
+        "Reviewer_SAUv"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four final ratings are 7 (Reviewer_pWDU, Reviewer_QNSv, Reviewer_Wz2i, Reviewer_SAUv). QNSv's rating was lower before the rebuttal: 'I have increased my score to a 7' (2021-08-18)."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Wz2i",
+          "claim": "The existence result excludes MAGs with chordless undirected cycles of length at least four, and only the supplement says so.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text states no such condition. Theorem 2 (l.250-252) assumes only faithfulness, and checklist 2(a) answers '[Yes] See Section 3' for the full set of assumptions. The authors conceded and promised to move Remark 1 into the main text. The camera-ready's Theorem 2 adds the chordality condition. Reviewer_SAUv ('only in the appendix'), Reviewer_pWDU and Reviewer_QNSv raised the same point."
+        },
+        {
+          "reviewer": "Reviewer_Wz2i",
+          "claim": "The definition of an m-connecting path is not accurate.",
+          "checked_against_paper": "correct",
+          "evidence": "l.110-112 require each collider to be in Anc({X, Y} ∪ Z), not in Anc(Z). A path that meets this need not itself be m-connecting, but m-separation is unchanged, as the authors replied. The camera-ready keeps the definition."
+        },
+        {
+          "reviewer": "Reviewer_Wz2i",
+          "claim": "The experiments omit FCI+ and do not compare sparse and dense graphs.",
+          "checked_against_paper": "correct",
+          "evidence": "l.278-279 omit FCI+. All synthetic graphs are sparse: Erdős-Rényi with p = 1/ñ^0.9, and DAGs with at most 3 or 4 parents (Fig. 2). In the densest setting (Fig. 2e, up to 4 parents), RLCD's CI-test count and runtime match RFCI's; RLCD leads there on F1 only."
+        },
+        {
+          "reviewer": "Reviewer_SAUv",
+          "claim": "Proposition 3 omits the cost of the initial Markov boundary discovery.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6 has no n² term. But l.265-267 already say that Markov boundary discovery adds 'up to a quadratic term', and l.74 states O(n² + …). The camera-ready moves n² into Eq. 6."
+        },
+        {
+          "reviewer": "Reviewer_SAUv",
+          "claim": "l.133 cites the wrong source: [26] does not treat selection variables; Richardson and Spirtes (2002) does.",
+          "checked_against_paper": "correct",
+          "evidence": "[26] is Verma and Pearl (1991), cited at l.124 for the 'embedded pattern' of latent variables. Definition 2 and Eq. 2 condition on S. The camera-ready changes the l.133 citation to Richardson and Spirtes."
+        },
+        {
+          "reviewer": "Reviewer_QNSv",
+          "claim": "In Table 1, RFCI's precision is almost one while RLCD's is not.",
+          "checked_against_paper": "correct",
+          "evidence": "RFCI has 0.99 to 1.00 and RLCD 0.97 to 0.99, so the gap is 0.01 to 0.03. The claim overstates it. RLCD has the higher recall and F1 on all seven structures."
+        },
+        {
+          "reviewer": "Reviewer_pWDU",
+          "claim": "The IsRemovable call in Algorithm 1 (line 8) does not match the inputs and output of Algorithm 2.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 passes (Xi, MbV(Xi), PV|S, A) and receives (isR, A). Algorithm 2 takes (X, MbV(X), Adj(X), PV) and returns a boolean. The camera-ready aligns the two."
+        },
+        {
+          "reviewer": "Reviewer_SAUv",
+          "claim": "The limitations discussion mentions only the accuracy of the Markov boundaries.",
+          "checked_against_paper": "correct",
+          "evidence": "l.325-328 name only the reliance on accurate Markov boundaries; the chordality condition is absent. Reviewer_pWDU: 'just one sentence in Conclusion'. The camera-ready conclusion is unchanged."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_QNSv"
+        ],
+        "evidence": "QNSv edited the review on 2021-08-18, the day it wrote 'I have increased my score to a 7'. SAUv edited on 2021-09-01 to add 'I will keep my original score of \"accept\"'. Reviewer_pWDU (2021-08-19): 'I will keep my original score.' Reviewer_Wz2i (2021-08-17): 'my score remains unchanged'.",
+        "what_convinced_or_not": "The chordality condition, a new two-case proof (a vertex with no children or neighbours; a simplicial vertex of a chordal graph) and the promise to move Remark 1 into the main text satisfied all four. QNSv rose on 'clarifications' and on the answers to 'all other reviewers'. Its concern about errors in the Markov boundary input got no answer. Wz2i accepted a bound argument in place of an FCI+ experiment. SAUv got a reason to marginalise rather than condition on the removed variable and asked for it in the camera-ready."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Generic: 'a novel notion of ``removal variable'' which many reviewers find interesting and reasonable' and 'All reviewers found the paper useful for the ML community'. It misnames the removable variable and abbreviates MAG as 'MG'. It does not mention the chordality condition that all four reviewers raised. It asks only for updates 'based on the reviewers' comments and suggestions'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Removable variables extended from DAGs ([9]) to latent and selection variables, with soundness, completeness and a near-matching lower bound (all four reviewers).",
+        "Experiments judged thorough and impressive (pWDU, Wz2i): fewest CI tests and best adjacency F1 on all seven benchmarks.",
+        "The unstated chordality condition judged rare and fixable by moving Remark 1 into the main text (Wz2i, SAUv).",
+        "Unanimous 7 after QNSv's rise; no rating above 7, so nobody argued for more than a poster."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Figure 1, the motivating example, is wrong: T is not removable as drawn (Reviewer_TRky; confirmed, fixed in the camera-ready)",
+    "Table 1 scores adjacencies only, against an unstated reference graph, with no orientation metric (Reviewer_kohp)",
+    "Baseline implementations not named (Reviewer_kohp)",
+    "Coefficient range that excludes (-0.5, 0.5) (Reviewer_kohp)",
+    "Wrong independence sign at l.230 and n undefined at l.74 (Reviewer_TRky)"
+  ],
+  "issues_only_b": [
+    "Relation to the authors' DAG version in [9] (Reviewer_Wz2i, who judged the extension real)",
+    "Non-standard m-connecting path definition (Reviewer_Wz2i)",
+    "Proposition 3 omits the Markov boundary cost; the lower bound is worst-case, not instance-wise (Reviewer_SAUv)",
+    "Wrong citation for the projection with selection variables at l.133; ancestors against anteriors (Reviewer_SAUv)",
+    "Why marginalise rather than condition on the removed variable (Reviewer_SAUv)",
+    "Reliance on accurate Markov boundaries and a one-sentence limitations discussion (Reviewer_QNSv, Reviewer_SAUv, Reviewer_pWDU)",
+    "Why assume an SEM, and why RLCD's precision trails RFCI's (Reviewer_QNSv)",
+    "No sparse against dense comparison (Reviewer_Wz2i)",
+    "IsRemovable signature mismatch, 'Proposition 5' at l.74, Figure 2 axis label (Reviewer_pWDU, Reviewer_Wz2i)"
+  ],
+  "shared_issues": [
+    "A removable vertex exists only under a chordality condition that only the appendix states (A: Reviewer_TRky; B: all four reviewers)",
+    "No empirical comparison with FCI+ (A: Reviewer_TRky; B: Reviewer_Wz2i)",
+    "X written for X1 at l.201 and l.206 (A: Reviewer_TRky; B: Reviewer_Wz2i)",
+    "A sound recursion that cuts the number of CI tests; six of seven call it new or surprising (all seven reviewers)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Six of seven reviewers called the removable-variable recursion new or surprising, and no reviewer found an error in a proof. Table 1 supports the empirical claim: RLCD uses the fewest CI tests and has the best adjacency F1 on all seven benchmarks. Both committees found the same main weakness. A removable vertex exists only if the undirected-edge subgraph of the MAG is chordal, and only the appendix says so; the submitted Theorem 2 assumes only faithfulness. Reviewer_TRky in A and all four B reviewers raised it. A two-case proof in the rebuttal and a promise to move the condition into the main text satisfied all of them. Both committees also saw that FCI+ is cited but not compared, and neither treated that as decisive. No rating is above 7, so nobody argued for more than a poster. The gap in means (6.33 against 7.0) is not a different judgment. Reviewer_kohp gave A's 5 for Table 1 reporting gaps that the paper confirms. kohp then wrote 'I am happy with acceptance for this paper' but did not edit the score. In B, Reviewer_QNSv rose to 7. The committees differed in what they caught, not in outcome. TRky found that Figure 1, the motivating example, is wrong: T is not removable as drawn. B's longer reviews (1,928 words against 919) examined definitions, citations and the bound. No reviewer noted that in the densest synthetic setting (Figure 2e) RLCD runs as many CI tests as RFCI.",
+  "candidate_reasons": [
+    "Novel recursion with sound theory",
+    "Shared weakness judged fixable",
+    "Rebuttal proof settled hidden assumption",
+    "No champion beyond poster level",
+    "Detractor conceded without editing score",
+    "Missing baseline not treated as decisive"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Figure 1 and l.62-67 (T drawn as removable)",
+    "paper_submitted.pdf l.250-258 (Theorem 2 and the use of Proposition 2; no existence condition)",
+    "paper_submitted.pdf Section 4 and Table 1 (metrics, reference graph and implementations unstated; FCI+ absent)",
+    "paper_submitted.pdf Figure 2e (RLCD and RFCI equal in CI tests and runtime)",
+    "Reviewer_TRky review and reply of 2021-08-26",
+    "Reviewer_kohp review and comment of 2021-08-28",
+    "Reviewer_Wz2i and Reviewer_SAUv reviews (chordality condition only in the appendix)",
+    "Reviewer_QNSv comment of 2021-08-18",
+    "Authors' two-case existence proof (replies to TRky, QNSv, pWDU and SAUv)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Theorem 2, Proposition 3 and Figure 1"
+  ]
+}

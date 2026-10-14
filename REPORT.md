@@ -519,7 +519,7 @@ out of the main analyses.
 
 17. **An award step: awards are a chair's call (14 October 2026).** Without it the model over-predicted
     the NeurIPS 2021 committees' award agreement (5.6 shared orals and spotlights against 3 observed; 30%
-    rejected by the other committee against 48%, P = 0.007). A two-stage language-model reading of the
+    rejected by the other committee against 48%, P = 0.006). A two-stage language-model reading of the
     50 award pairs' public records (`data/paired_reviews/neurips2021/analysis/`,
     `docs/neurips2021_stage2_results.md`) found that the award tier came from the meta-review rather than
     the scores in most pairs: higher tier with no stated grounds in 30 of 50, stated weaknesses dropped in

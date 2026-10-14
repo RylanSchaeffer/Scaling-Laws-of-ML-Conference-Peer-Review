@@ -1,0 +1,598 @@
+{
+ "run_a": "1",
+ "run_b": "2",
+ "reasons_a": 33,
+ "reasons_b": 38,
+ "a_reappearing_in_b": [
+  "R01",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R23",
+  "R24",
+  "R27",
+  "R29",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35",
+  "R36",
+  "R37"
+ ],
+ "n_a_reappearing": 26,
+ "b_new": [
+  "R11",
+  "R14",
+  "R24",
+  "R26",
+  "R31",
+  "R39"
+ ],
+ "n_b_new": 6,
+ "cell_agreement": 0.8266666666666667,
+ "mean_pair_jaccard": 0.5184035860080752,
+ "per_pair": [
+  {
+   "pair_id": "n21-002",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.5,
+   "yes_a": 9,
+   "yes_b": 9
+  },
+  {
+   "pair_id": "n21-003",
+   "agree": 0.696969696969697,
+   "jaccard": 0.47368421052631576,
+   "yes_a": 16,
+   "yes_b": 12
+  },
+  {
+   "pair_id": "n21-017",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.625,
+   "yes_a": 13,
+   "yes_b": 13
+  },
+  {
+   "pair_id": "n21-023",
+   "agree": 0.9696969696969697,
+   "jaccard": 0.8333333333333334,
+   "yes_a": 5,
+   "yes_b": 6
+  },
+  {
+   "pair_id": "n21-025",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.5333333333333333,
+   "yes_a": 13,
+   "yes_b": 10
+  },
+  {
+   "pair_id": "n21-028",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.5833333333333334,
+   "yes_a": 11,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-033",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.5833333333333334,
+   "yes_a": 11,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-034",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.5555555555555556,
+   "yes_a": 8,
+   "yes_b": 6
+  },
+  {
+   "pair_id": "n21-039",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.5333333333333333,
+   "yes_a": 11,
+   "yes_b": 12
+  },
+  {
+   "pair_id": "n21-048",
+   "agree": 0.9090909090909091,
+   "jaccard": 0.75,
+   "yes_a": 10,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-053",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.46153846153846156,
+   "yes_a": 8,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-057",
+   "agree": 0.9090909090909091,
+   "jaccard": 0.625,
+   "yes_a": 7,
+   "yes_b": 6
+  },
+  {
+   "pair_id": "n21-062",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.5333333333333333,
+   "yes_a": 9,
+   "yes_b": 14
+  },
+  {
+   "pair_id": "n21-065",
+   "agree": 0.7272727272727273,
+   "jaccard": 0.35714285714285715,
+   "yes_a": 8,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-083",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.375,
+   "yes_a": 5,
+   "yes_b": 6
+  },
+  {
+   "pair_id": "n21-090",
+   "agree": 0.9393939393939394,
+   "jaccard": 0.75,
+   "yes_a": 8,
+   "yes_b": 6
+  },
+  {
+   "pair_id": "n21-091",
+   "agree": 0.7272727272727273,
+   "jaccard": 0.4375,
+   "yes_a": 12,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-092",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.5555555555555556,
+   "yes_a": 7,
+   "yes_b": 7
+  },
+  {
+   "pair_id": "n21-096",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.5882352941176471,
+   "yes_a": 15,
+   "yes_b": 12
+  },
+  {
+   "pair_id": "n21-104",
+   "agree": 0.9090909090909091,
+   "jaccard": 0.7272727272727273,
+   "yes_a": 11,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-121",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.5,
+   "yes_a": 10,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-127",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.45454545454545453,
+   "yes_a": 9,
+   "yes_b": 7
+  },
+  {
+   "pair_id": "n21-128",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.5454545454545454,
+   "yes_a": 8,
+   "yes_b": 9
+  },
+  {
+   "pair_id": "n21-133",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.6153846153846154,
+   "yes_a": 11,
+   "yes_b": 10
+  },
+  {
+   "pair_id": "n21-136",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.42857142857142855,
+   "yes_a": 5,
+   "yes_b": 5
+  },
+  {
+   "pair_id": "n21-141",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.5384615384615384,
+   "yes_a": 12,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-156",
+   "agree": 0.9393939393939394,
+   "jaccard": 0.7142857142857143,
+   "yes_a": 5,
+   "yes_b": 7
+  },
+  {
+   "pair_id": "n21-168",
+   "agree": 0.7575757575757576,
+   "jaccard": 0.2727272727272727,
+   "yes_a": 6,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-172",
+   "agree": 0.7575757575757576,
+   "jaccard": 0.3333333333333333,
+   "yes_a": 8,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-178",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.3333333333333333,
+   "yes_a": 8,
+   "yes_b": 4
+  },
+  {
+   "pair_id": "n21-185",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.625,
+   "yes_a": 16,
+   "yes_b": 10
+  },
+  {
+   "pair_id": "n21-186",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.4,
+   "yes_a": 6,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-197",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.5833333333333334,
+   "yes_a": 10,
+   "yes_b": 9
+  },
+  {
+   "pair_id": "n21-210",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.6666666666666666,
+   "yes_a": 12,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-212",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.6666666666666666,
+   "yes_a": 11,
+   "yes_b": 9
+  },
+  {
+   "pair_id": "n21-219",
+   "agree": 0.7575757575757576,
+   "jaccard": 0.42857142857142855,
+   "yes_a": 11,
+   "yes_b": 9
+  },
+  {
+   "pair_id": "n21-220",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.46153846153846156,
+   "yes_a": 9,
+   "yes_b": 10
+  },
+  {
+   "pair_id": "n21-230",
+   "agree": 0.7272727272727273,
+   "jaccard": 0.4,
+   "yes_a": 10,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-245",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.6428571428571429,
+   "yes_a": 11,
+   "yes_b": 12
+  },
+  {
+   "pair_id": "n21-248",
+   "agree": 0.8181818181818182,
+   "jaccard": 0.5384615384615384,
+   "yes_a": 9,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-255",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.6666666666666666,
+   "yes_a": 9,
+   "yes_b": 11
+  },
+  {
+   "pair_id": "n21-258",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.2857142857142857,
+   "yes_a": 2,
+   "yes_b": 7
+  },
+  {
+   "pair_id": "n21-262",
+   "agree": 0.8787878787878788,
+   "jaccard": 0.6,
+   "yes_a": 7,
+   "yes_b": 9
+  },
+  {
+   "pair_id": "n21-281",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.5454545454545454,
+   "yes_a": 9,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-284",
+   "agree": 0.7575757575757576,
+   "jaccard": 0.3333333333333333,
+   "yes_a": 11,
+   "yes_b": 5
+  },
+  {
+   "pair_id": "n21-294",
+   "agree": 0.9090909090909091,
+   "jaccard": 0.25,
+   "yes_a": 3,
+   "yes_b": 2
+  },
+  {
+   "pair_id": "n21-295",
+   "agree": 0.8484848484848485,
+   "jaccard": 0.5833333333333334,
+   "yes_a": 11,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-298",
+   "agree": 0.7575757575757576,
+   "jaccard": 0.3333333333333333,
+   "yes_a": 8,
+   "yes_b": 8
+  },
+  {
+   "pair_id": "n21-301",
+   "agree": 0.7878787878787878,
+   "jaccard": 0.4166666666666667,
+   "yes_a": 11,
+   "yes_b": 6
+  },
+  {
+   "pair_id": "n21-302",
+   "agree": 0.696969696969697,
+   "jaccard": 0.375,
+   "yes_a": 11,
+   "yes_b": 11
+  }
+ ],
+ "per_reason": [
+  {
+   "run_a": "R06",
+   "name": "Committees weighted the same evidence differently",
+   "n_a": 45,
+   "n_b_aligned": 40
+  },
+  {
+   "run_a": "R04",
+   "name": "One committee's reviews were thin or inattentive",
+   "n_a": 39,
+   "n_b_aligned": 45
+  },
+  {
+   "run_a": "R05",
+   "name": "Only one committee raised a substantive concern",
+   "n_a": 39,
+   "n_b_aligned": 44
+  },
+  {
+   "run_a": "R14",
+   "name": "Meta-review dropped the reviewers' stated weaknesses",
+   "n_a": 33,
+   "n_b_aligned": 7
+  },
+  {
+   "run_a": "R31",
+   "name": "Higher tier given with no stated grounds",
+   "n_a": 30,
+   "n_b_aligned": 35
+  },
+  {
+   "run_a": "R03",
+   "name": "Rebuttal moved one committee but not the other",
+   "n_a": 26,
+   "n_b_aligned": 29
+  },
+  {
+   "run_a": "R15",
+   "name": "Score rested on a factual misreading of the paper",
+   "n_a": 24,
+   "n_b_aligned": 34
+  },
+  {
+   "run_a": "R01",
+   "name": "Area chair's own judgement drove the recommendation",
+   "n_a": 20,
+   "n_b_aligned": 30
+  },
+  {
+   "run_a": "R20",
+   "name": "Rebuttal could answer one committee's concerns only",
+   "n_a": 19,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R27",
+   "name": "Non-expert reviewers' accept scores counted in full",
+   "n_a": 19,
+   "n_b_aligned": 36
+  },
+  {
+   "run_a": "R16",
+   "name": "Damaging rebuttal admission did not lower scores",
+   "n_a": 18,
+   "n_b_aligned": 24
+  },
+  {
+   "run_a": "R36",
+   "name": "Committees applied different standards for the contribution type",
+   "n_a": 15,
+   "n_b_aligned": 16
+  },
+  {
+   "run_a": "R13",
+   "name": "Scores rose on unverified rebuttal evidence",
+   "n_a": 12,
+   "n_b_aligned": 5
+  },
+  {
+   "run_a": "R26",
+   "name": "One committee's reviewers left the rebuttal unanswered",
+   "n_a": 12,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R30",
+   "name": "Novelty judged against wrong or ignored prior work",
+   "n_a": 12,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R29",
+   "name": "Authors told the two committees different things",
+   "n_a": 10,
+   "n_b_aligned": 23
+  },
+  {
+   "run_a": "R08",
+   "name": "Reviewer's rating out of line with own text",
+   "n_a": 9,
+   "n_b_aligned": 4
+  },
+  {
+   "run_a": "R12",
+   "name": "Unanimous scores read as grounds for higher tier",
+   "n_a": 9,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R21",
+   "name": "One outlying score set the tier",
+   "n_a": 9,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R33",
+   "name": "Only one committee had an engaged champion",
+   "n_a": 9,
+   "n_b_aligned": 7
+  },
+  {
+   "run_a": "R34",
+   "name": "Promised fixes judged too large without re-review",
+   "n_a": 9,
+   "n_b_aligned": 16
+  },
+  {
+   "run_a": "R10",
+   "name": "Area chair followed one outlying reviewer",
+   "n_a": 8,
+   "n_b_aligned": 9
+  },
+  {
+   "run_a": "R02",
+   "name": "Recommendation rested on a forecast of broad impact",
+   "n_a": 7,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R07",
+   "name": "Reviewer discussion moved one committee's scores",
+   "n_a": 5,
+   "n_b_aligned": 7
+  },
+  {
+   "run_a": "R17",
+   "name": "Late objection left the authors no reply",
+   "n_a": 5,
+   "n_b_aligned": 1
+  },
+  {
+   "run_a": "R28",
+   "name": "Area chair settled an even split for one side",
+   "n_a": 5,
+   "n_b_aligned": 0
+  },
+  {
+   "run_a": "R11",
+   "name": "Reviewers placed similar verdicts at different scores",
+   "n_a": 4,
+   "n_b_aligned": 8
+  },
+  {
+   "run_a": "R35",
+   "name": "Area chair relied on off-record reviewer input",
+   "n_a": 4,
+   "n_b_aligned": 1
+  },
+  {
+   "run_a": "R37",
+   "name": "Low score held on a peripheral point",
+   "n_a": 3,
+   "n_b_aligned": 5
+  },
+  {
+   "run_a": "R09",
+   "name": "Unsure reviewers defaulted to a borderline score",
+   "n_a": 2,
+   "n_b_aligned": 2
+  },
+  {
+   "run_a": "R24",
+   "name": "Audience or venue-fit objection lowered one committee",
+   "n_a": 2,
+   "n_b_aligned": 3
+  },
+  {
+   "run_a": "R32",
+   "name": "Neighbouring-field reviewers contested the paper's framing",
+   "n_a": 2,
+   "n_b_aligned": 3
+  },
+  {
+   "run_a": "R23",
+   "name": "Discarded detractor framed decision as accept-or-reject",
+   "n_a": 1,
+   "n_b_aligned": 2
+  }
+ ]
+}

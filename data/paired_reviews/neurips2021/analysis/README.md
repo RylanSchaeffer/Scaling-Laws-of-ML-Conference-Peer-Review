@@ -39,5 +39,7 @@ empty). `scripts/make_stage2_figure.py <run>` draws `figures/stage2_matrix_run<k
 `figures/stage2_reasons_by_kind_run<k>.pdf`.
 
 Run 1 (2026-10-13 to 14): 50 turns, 37 reasons, 4 merges, 33 reasons after merge, 466 ticks, full coverage.
-Turns 1 to 6 ran at effort `max`, the rest at `high` (see `run_1/README.md`). Run 2: the same 50 pairs in
-reverse order, as a stability check.
+Turns 1 to 6 ran at effort `max`, the rest at `high` (see `run_1/README.md`). Run 2 (reverse order, effort `high` throughout): 50 turns, 40 reasons, 2 merges, 38 after merge, 485 ticks.
+Alignment of run 2's reasons to run 1's: `alignment_run1_run2.json`; stability numbers: `stability_run1_run2.json`
+(26 of 33 run 1 reasons reappear, 83% cell agreement on aligned reasons). Summary for readers:
+`docs/neurips2021_stage2_results.md`.

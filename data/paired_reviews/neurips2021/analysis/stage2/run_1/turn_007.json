@@ -1,0 +1,94 @@
+{
+  "run": 1,
+  "turn": 7,
+  "pair_id": "n21-023",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Neither area chair departed from its scores. A's three-sentence meta-review states the consensus behind 7, 7, 7, 8 and stops at poster. B's meta-review says the reviewers agreed on 'a solid theoretical contribution', and spotlight matches B's 7.75 mean."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "B's area chair wrote that the work is 'of clear interest to the NeurIPS audience' given how widely kernel methods are used. That is a remark on audience, not a forecast of impact beyond the paper's setting, and the recommendation leans on B's scores."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The response moved a reviewer up in both committees: A's Reviewer_rN14 to 7 on the Marteau-Ferey rate comparison, and B's Reviewer_v7Aq from weak reject to 7 on the qualification concession. It did not move one committee and leave the other unchanged."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's higher mean rests partly on thin support. Reviewer_KRE1 gave 8 at confidence 5 with a six-sentence review of praise, no technical criticism and no sign of a math check, and it missed the qualification error. A's thin review (Reviewer_xAhK, 3 hours) gave only 7, in line with A's other reviewers."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "The substantive concerns were shared: the qualification error (CRtT in A, v7Aq in B) and incrementality over Marteau-Ferey (rN14 in A, r7mh in B). The issues raised by one committee only are minor, and stage 1 finds that none explains the tier."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw that the work extends Marteau-Ferey et al. with the same tools. A's Reviewer_rN14 called the gain 'somewhat incremental', and A's area chair made the comparison its only request. B's Reviewer_r7mh called the same fact a small issue and framed the result as the answer to an open question, which B's area chair repeated."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score moved after reviewer discussion alone. Both score changes (rN14 in A, v7Aq in B) cite the authors' response."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating contradicts its own text. A's 7s fit reviews that praise soundness and clarity but do not argue significance. B's 8s fit reviews that call the result significant (KRE1, 7njB) or the paper strong (r7mh)."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No reviewer gave a borderline score. All final ratings are 7 or 8. B's least confident reviewer, Reviewer_r7mh (confidence 2), rated 8, and A's Reviewer_xAhK, who did not check the math, rated 7."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither area chair followed one outlying reviewer. Both committees' ratings span only 7 to 8, and each meta-review summarizes the consensus."
+    }
+  ],
+  "added": [
+    {
+      "id": "R11",
+      "name": "Reviewers placed similar verdicts at different scores",
+      "definition": "The two committees' reviewers wrote similar verbal assessments of the paper but placed them at different points of the rating scale, and area chairs who set the tier by the mean turned that calibration gap into different recommendations.",
+      "justification": "Stage 1 calls the split 'score calibration, not substance'. R06 covers the one weighting difference (novelty), but most of the gap is reviewers on both sides giving the same verbal verdict different numbers, which no existing reason names. R08 is a single reviewer's text against their own rating, and here each rating fits its text."
+    }
+  ],
+  "reasoning": "Stage 1 finds that the spotlight/poster split is score calibration, not substance. Both committees saw a sound extension of Marteau-Ferey et al. with modest novelty and dense notation, and both found the same qualification error. Three A reviewers gave 7 and three B reviewers gave 8 for similar assessments, and each area chair followed its mean. No existing reason names that calibration gap, so I added R11. The one visible weighting difference is novelty: A's Reviewer_rN14 called the gain incremental, while B's Reviewer_r7mh called it a small issue (R06). B's mean also rests partly on Reviewer_KRE1's thin 8 at confidence 5 (R04). The response moved one reviewer up in each committee, so R03 does not apply. Neither area chair overrode its scores or followed an outlier, no rating is borderline, and no rating contradicts its text.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11"
+  ]
+}

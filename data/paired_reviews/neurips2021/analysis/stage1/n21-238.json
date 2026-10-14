@@ -1,0 +1,235 @@
+{
+ "pair_id": "n21-238",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_H6i6",
+    "Reviewer_ZMnJ"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Final ratings 7, 7, 6, 7 (H6i6, UjXF, ZMnJ, BB7T): no outlier. H6i6 had been one. Its edit of 2021-08-18 says 'Seeing that my rating was a bit of an outlier in comparison with the others, I have revised it to be more in line with them'. Its text calls the results 'very significant' and 'a solid advance', so the earlier score was above 7. The change was conformity, not a response to the paper or the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_H6i6",
+     "evidence": "Two hours. The summary says the authors 'prove asymptotic convergence for each' of the convex, element-wise convex and deep-network schemes. The guarantees are non-asymptotic and cover only the first two; end-to-end guarantees for deep OMAC are listed as future work (lines 299-300). The rest is generic praise ('very significant', 'solid advance') and one ablation request. It then moved its score toward the others' for conformity."
+    },
+    {
+     "reviewer": "Reviewer_BB7T",
+     "evidence": "A 7 at confidence 4 whose only assessment of the theory is 'novel and has a theoretically sound basis'. Every specific comment is an experimental weakness: only a simple pendulum, generality not supported, no comparison with state-of-the-art adaptive control. Those comments do not support a 7. It never posted in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_UjXF",
+     "claim": "The inverted pendulum in the experiments is not fully actuated, so it does not satisfy the theory's assumption.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 1 (lines 83-84) requires rank(B(x)) = n. The pendulum (lines 237-241) has state (theta, theta-dot) and one scalar torque u, so rank(B) = 1 < 2. ZMnJ, 7eB6, ic62 and vw5a made the same point. The authors answered with a matched-uncertainty extension not in the submission."
+    },
+    {
+     "reviewer": "Reviewer_UjXF",
+     "claim": "The paper wrongly frames e-ISS as standard in nonlinear adaptive control and cites the recent [12] for it.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 95-96: 'e-ISS assumption is standard in both online adaptive linear control [20, 14, 21] and nonlinear control [12]'. The authors agreed to say the assumption is strong."
+    },
+    {
+     "reviewer": "Reviewer_UjXF",
+     "claim": "The experiment does not reset the state between episodes, though the analysis sets x_1 = 0; and it is unclear whether the experiment satisfies N > T.",
+     "checked_against_paper": "correct",
+     "evidence": "Lemma 1 and lines 89-91 assume x_1^(i) = 0. The experiment switches the wind every 2 s over a 60 s horizon, N = 30 (lines 258-259); the authors confirmed 'we don't reset the initial state'. They gave delta = 0.01 s, so T = 200 steps > N = 30. Corollary 4 states OMAC's advantage for N > T (lines 183-184), so the experiment runs outside that regime. No one followed up."
+    },
+    {
+     "reviewer": "Reviewer_ZMnJ",
+     "claim": "Corollary 4's baseline adapts both Theta-hat and c-hat, but the experimental baseline adapts only c-hat, which limits its capacity and makes the comparison unfair.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 182: 'the baseline adaptive control which uses OGD to adapt Theta-hat and c-hat at each time step'. Lines 253-254: 'Baseline has the same procedure except with Theta-hat(i) = Theta-hat(1), i.e., it ... does not update Theta-hat'. The authors claimed in the rebuttal that OMAC also beats the Corollary 4 baseline but gave no numbers."
+    },
+    {
+     "reviewer": "Reviewer_ZMnJ",
+     "claim": "The experiments follow the theory only in the jointly convex case.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 250-252: the element-wise convex experiment drops ObserveEnv = True, which Theorem 5 requires. Deep OMAC (Table 4) has no guarantee."
+    },
+    {
+     "reviewer": "Reviewer_H6i6",
+     "claim": "The paper proves convergence for each scheme, the deep neural network included.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorems 3, 5 and 6 cover the convex, element-wise convex and bilinear cases. Section 5 gives deep OMAC no guarantee, and lines 299-300 list it as future work. The guarantees are non-asymptotic, not asymptotic."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "mixed",
+    "by_whom": [
+     "Reviewer_H6i6",
+     "Reviewer_ZMnJ"
+    ],
+    "evidence": "Author responses 2021-08-10 and 2021-08-11; drone table posted 2021-08-22. H6i6 edited on 2021-08-18 and lowered its score 'to be more in line' with the others, while saying the rebuttal addressed its review. ZMnJ wrote on 2021-08-31 that the additional experiments and clarifications 'will sufficiently improve the paper' and 'I will update my review accordingly', and edited the same day. Its unchanged text still says the paper is 'hindered by limited experiments', so the 6 most likely dates from that edit, up from a lower score; the direction is inferred. UjXF and BB7T never posted or edited.",
+    "what_convinced_or_not": "ZMnJ was moved by the matched-uncertainty explanation and by promised experiments. Of the four studies promised (Corollary 4 baseline, offline MAML-style comparison, supervised-learning ablation, drone), only the drone table came with numbers. H6i6 accepted the supervised-learning study, which the authors described but did not show. In the camera-ready, the drone experiment is a different simulation. There OMAC (convex) is 'only marginally better than the baseline' (0.251 vs 0.283)."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 7, 7, 6, 7 (mean 6.75). The meta-review has four generic sentences. It names no weakness and asks for 'the promised changes'. 'The approach is sufficiently evaluated' ignores ZMnJ's 'limited experiments' and BB7T's 'only address a relatively simple pendulum'. The AC posted nothing in the discussion.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three 7s and a 6; no reviewer argued for rejection",
+    "First non-asymptotic guarantee for multi-task nonlinear control, read as a clean unifying formulation (UjXF, H6i6, BB7T)",
+    "Straightforward use of online convex optimization not held against the paper (ZMnJ, UjXF)",
+    "Rebuttal drone table and promised experiments satisfied the main critic, ZMnJ; AC accepted on 'the promised changes'"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    6,
+    6,
+    4
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_ic62",
+    "Reviewer_vw5a"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4, 6, 6, 4 (xzK3, 7eB6, ic62, vw5a) split two against two; no single outlier. The decisive reviewer is xzK3, a detractor whose novelty case the AC adopted by name."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_xzK3",
+     "claim": "Once c^(i) is observed, the proof of Theorem 5 is a simple modification of the proof of Theorem 3.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 5 (lines 208-210) states the same bound as Theorem 3 (lines 170-172). Table 2 differs from Table 1 only in using non-linearized costs and the observed c^(i) in G^(i) (lines 204-207). With c^(i) known, both costs are convex, so the regret splits into the inner and outer regrets as in Lemma 2. The proofs are in the supplement, which is not in the PDF; this check rests on the main text."
+    },
+    {
+     "reviewer": "Reviewer_xzK3",
+     "claim": "Theorem 6 adds to Theorem 5 only a standard martingale concentration bound for regularized least squares.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 sets A1 to ridge regression, and Theorem 6 adds sub-Gaussian noise and an environment-diversity eigenvalue condition (lines 216-223). The camera-ready proof sketch confirms the structure: 'martingale concentration bound [32] and the environment diversity assumption' for the outer loop, then Lemma 1. The claim that the diversity condition is 'nearly identical' to [5] was not checked."
+    },
+    {
+     "reviewer": "Reviewer_xzK3",
+     "claim": "OMAC is compared with an upper bound on the omniscient controller's ACE, not with that ACE, so it need not approach omniscient performance.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorems 3 and 5 bound ACE by gamma/(1-rho) sqrt(W^2 + o(T)/T + o(N)/N), which tends to gamma W/(1-rho), the upper bound on ACE(omniscient) at line 115. The design goal (lines 136-138) speaks of converging to ACE(omniscient). The authors conceded the point and defended the bound as tight under adversarial noise (footnote 2)."
+    },
+    {
+     "reviewer": "Reviewer_xzK3",
+     "claim": "The baseline already performs well (an error of about 0.2 rad in Figure 1), so the gain from meta-learning is modest.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1 reports baseline ACE 0.204 against 0.062-0.128 for OMAC. Table 5 (10 seeds): no-adapt 0.663, baseline 0.311, OMAC 0.093-0.147, omniscient 0.034. The numbers are as read. Whether a 2-3x reduction is modest is a judgment."
+    },
+    {
+     "reviewer": "Reviewer_vw5a",
+     "claim": "Equation (1) is less general than the 'Generality' paragraph claims, because B cannot depend on the environment.",
+     "checked_against_paper": "correct",
+     "evidence": "Equation (1) and lines 62-63: B : R^n -> R^(n x m) is known and depends only on x. Lines 99-100 claim generality for 'general fully-actuated robotic systems'. The authors replied that a known B(x, c) is supported, which the submission does not state."
+    },
+    {
+     "reviewer": "Reviewer_7eB6",
+     "claim": "Adversarial disturbances are not considered in the theorems or the experiments.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Assumption 1 bounds w only by ||w|| <= W, so Theorems 3 and 5 hold for any bounded, possibly adversarial disturbance; only Theorem 6 assumes sub-Gaussian noise. The experiments do not test adversarial disturbances."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_ic62"
+    ],
+    "evidence": "General response and individual replies 2021-08-11; drone table added to the general response about 2021-08-22. ic62 edited on 2021-08-15: 'the reviewer raises the score to 6 from 5'. vw5a edited on 2021-08-22: 'I decided to keep my rating the same'. xzK3 replied on 2021-08-14 and 2021-08-27 and kept 4. 7eB6 wrote on 2021-08-23 'I can't further raise my scores'. The AC asked xzK3 on 2021-08-27 whether the drone table changed its view.",
+    "what_convinced_or_not": "ic62 accepted the claim of 'the first end-to-end theoretical results for multi-environment control in nonlinear systems'. xzK3 rejected general response (C) at proof level. It argued that observing c^(i) 'simplifies away much, if not all, of the complexity'. It said the drone results 'do not obviate my remaining concerns outlined in (1) and (2)'. 7eB6 found the matched-uncertainty generality unconvincing but welcomed the drone result. vw5a kept its certainty-equivalence objection and cited xzK3 on novelty."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 4, 6, 6, 4 (mean 5.0). The meta-review quotes the strengths, then states 'The main weakness is described by Reviewer xzK3'. It quotes xzK3's 'simple extension combining ... Boffi et al. [12] and Agarwal et al. [24]' and vw5a's concurrence. It adds weak experiments as a second concern and ends 'especially xzK3'. The AC asked xzK3 to reconsider the drone data before deciding. It misnames 7eB6 as 'Reviewer 72B6'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Theory judged a straightforward combination of Boffi et al. [12] and Agarwal et al. [24], with Theorems 5-6 made easy by observing c^(i) (xzK3; AC; ic62 and vw5a concur)",
+    "Thin experiments: one 2-D pendulum and one ablation baseline; the rebuttal drone table helped only partly (xzK3, 7eB6, ic62, vw5a; AC)",
+    "Certainty-equivalence pseudo-inverse control seen as not advancing adaptive control (vw5a)",
+    "Mean 5.0 with two 4s; only ic62 moved, from 5 to 6"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Experimental baseline adapts only c-hat while Corollary 4's baseline adapts Theta-hat and c-hat (ZMnJ)",
+  "No state reset between episodes although the analysis assumes x_1 = 0 (UjXF)",
+  "Whether N > T holds in the experiment; the authors' delta = 0.01 s gives T = 200 > N = 30 (UjXF)",
+  "Computational trade-off between N and T (UjXF)",
+  "Supervised-learning ablation to separate approximation quality from adaptation (H6i6)",
+  "e-ISS framed as 'standard' and cited to the recent [12] (UjXF)"
+ ],
+ "issues_only_b": [
+  "Theory a straightforward combination of [12] and [24], held as a reason to reject (xzK3; ic62 and vw5a concur). ZMnJ in A noted the same 'straightforward application' without objecting",
+  "Bound converges to an upper bound on the omniscient ACE, not to the omniscient ACE (xzK3)",
+  "Greedy certainty-equivalence pseudo-inverse control does not advance adaptive control; safety and stability not considered (vw5a)",
+  "Actuation matrix B cannot depend on the environment, so the 'Generality' claim is overstated (vw5a)",
+  "Emphasis on adversarial disturbances unnecessary (7eB6)",
+  "Assumptions remove any need for exploration (ic62)"
+ ],
+ "shared_issues": [
+  "Full-actuation assumption excludes under-actuated systems, and the pendulum itself violates it (UjXF, ZMnJ in A; 7eB6, ic62, vw5a in B)",
+  "Thin experiments: one 2-D pendulum, one ablation baseline, no comparison with other adaptive or meta-learning methods (ZMnJ, BB7T in A; xzK3, 7eB6, ic62, vw5a in B)",
+  "Observed-context assumption (ObserveEnv) behind Theorems 5 and 6 is strong (ZMnJ in A; vw5a, xzK3 in B)",
+  "Realizability: the true f must lie in the model class with known functional form (ZMnJ in A; xzK3, ic62 in B)",
+  "Generality claims outrun the evidence (BB7T in A; 7eB6, vw5a in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same paper and the same weaknesses. The theory needs full actuation, which the pendulum experiment itself violates. The evaluation is one 2-D pendulum with one ablation baseline. Theorems 5 and 6 need the true context c^(i) after each episode. The split is over whether a clean but technically easy assembly of known tools merits acceptance. In B, Reviewer_xzK3 knew both precursors, Boffi et al. [12] and Agarwal et al. [24]. It argued at proof level that the results are 'a simple extension' of them. The main text supports this: Theorem 5 states the same bound as Theorem 3, and the observed c^(i) leaves only the nested regret split. xzK3 declined to credit unseen rebuttal experiments and kept 4 after the AC pointed it to the drone table. vw5a added a scope objection to certainty-equivalence control. B's AC named xzK3's critique 'the main weakness' and rejected at mean 5.0. A's reviewers saw the same fact and did not hold it against the paper. ZMnJ called it 'a straightforward application' of online convex optimization. UjXF counted the nested-OCO formulation as a contribution. Two of A's 7s are thin. H6i6's summary credits a guarantee for the neural network that the paper does not have. BB7T's specific comments are all experimental weaknesses. ZMnJ most likely moved to 6 on promised experiments, most shown without numbers. A's AC wrote four generic sentences and accepted on scores and 'the promised changes'. The facts were shared; the two pools weighted the novelty of the theory differently.",
+ "candidate_reasons": [
+  "Easy theory: clean versus incremental",
+  "Expert detractor knew precursor papers",
+  "AC adopted detractor's novelty case",
+  "Promised rebuttal results credited unequally",
+  "Thin positive reviews, generic meta-review",
+  "Certainty-equivalence control rejected on scope"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_xzK3 review and discussion replies of 2021-08-14 and 2021-08-27, Committee B",
+  "Area_Chair_MFgq comment of 2021-08-27 and Committee B meta-review",
+  "Reviewer_vw5a review and update (edited 2021-08-22), Committee B",
+  "Reviewer_ic62 update (edited 2021-08-15), Committee B",
+  "Reviewer_UjXF review and author reply of 2021-08-11 (delta = 0.01), Committee A",
+  "Reviewer_ZMnJ review and comment of 2021-08-31, Committee A",
+  "Reviewer_H6i6 review update (edited 2021-08-18), Committee A",
+  "Committee A meta-review",
+  "paper_submitted.pdf Assumption 1 (lines 83-86) and pendulum model (lines 237-241)",
+  "paper_submitted.pdf Theorems 3 and 5 (lines 170-172, 208-210), Tables 1-3, Lemma 2 (lines 167-168)",
+  "paper_submitted.pdf Corollary 4 (lines 175-188) and baseline definition (lines 253-254)",
+  "paper_submitted.pdf line 115 and lines 136-138 (omniscient upper bound and design goal)",
+  "paper_submitted.pdf Figure 1 and Table 5",
+  "paper.pdf (camera-ready) Theorem 6 proof sketch and drone results in Table 5"
+ ]
+}

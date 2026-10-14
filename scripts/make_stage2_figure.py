@@ -51,14 +51,15 @@ def main(run: str) -> None:
     n_pairs, n_reasons = M.shape
 
     P.setup()
-    cell = 0.22 * P.S  # inches per cell as drawn
-    fig_w = max(P.CANVAS_W, n_reasons * cell + 4 * P.S)
-    fig_h = n_pairs * cell + 5.5 * P.S
-    fig, (ax, axb) = plt.subplots(1, 2, figsize=(fig_w + 4 * P.S, fig_h), gridspec_kw={"width_ratios": [n_reasons * cell, 3.4 * P.S], "wspace": 0.04})
+    cw, ch = 0.30 * P.S, 0.17 * P.S  # cell width and height in inches as drawn
+    fig_w = n_reasons * cw + 6.5 * P.S
+    fig_h = n_pairs * ch + 6.5 * P.S
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+    fig.subplots_adjust(left=(3.2 * P.S) / fig_w, right=1 - (3.3 * P.S) / fig_w, top=1 - (0.9 * P.S) / fig_h, bottom=(5.4 * P.S) / fig_h)
 
-    # Panel a: the binary matrix. Rows coloured by kind through the tick colour; filled cells in one ink.
+    # The binary matrix: filled cells in one ink; row labels coloured by kind of discrepancy.
     cmap = ListedColormap([P.SURFACE, P.BLUE[500]])
-    ax.imshow(M, cmap=cmap, vmin=0, vmax=1, aspect="equal", interpolation="nearest")
+    ax.imshow(M, cmap=cmap, vmin=0, vmax=1, aspect="auto", interpolation="nearest")
     ax.set_xticks(np.arange(-0.5, n_reasons, 1), minor=True)
     ax.set_yticks(np.arange(-0.5, n_pairs, 1), minor=True)
     ax.grid(which="minor", color=P.GRID, lw=0.5 * P.S)
@@ -71,28 +72,24 @@ def main(run: str) -> None:
     ax.tick_params(axis="y", labelsize=P.LEGEND_PT)
     for lbl, r in zip(ax.get_yticklabels(), rows):
         lbl.set_color(KIND_COLOR[r["kind"]])
-    # separators and group labels
+    # separators between kinds and a group label left of the row labels
     start = 0
     for k in kinds_present:
         n = sum(r["kind"] == k for r in rows)
         if start > 0:
             ax.axhline(start - 0.5, color=P.INK, lw=1.2 * P.S)
-        ax.text(-0.5 - 0.36 * n_reasons / 10 - 2.2, start + n / 2 - 0.5, tex(KIND_LABEL[k]) + f" ($n={n}$)", ha="right", va="center", color=KIND_COLOR[k], rotation=0)
+        ax.annotate(tex(KIND_LABEL[k]) + f" ($n={n}$)", xy=(0, start + n / 2 - 0.5), xycoords=("axes fraction", "data"),
+                    xytext=(-78 * P.S / 2.875 * 1.0, 0), textcoords="offset points", ha="right", va="center", color=KIND_COLOR[k], fontsize=P.LEGEND_PT)
         start += n
-    for s in ax.spines.values():
-        s.set_visible(True); s.set_color(P.INK); s.set_linewidth(0.8 * P.S)
+    for sp in ax.spines.values():
+        sp.set_visible(True); sp.set_color(P.INK); sp.set_linewidth(0.8 * P.S)
     ax.set_xlim(-0.5, n_reasons - 0.5); ax.set_ylim(n_pairs - 0.5, -0.5)
-    ax.set_title("Reasons the two committees recommended differently", pad=8 * P.S)
-
-    # Panel b: pairs per reason, stacked by kind, in the matrix's column order rotated to rows.
-    axb.set_ylim(n_pairs - 0.5, -0.5)
-    axb.axis("off")
-    # a per-reason bar chart does not share the y axis with pairs; put reason totals under panel a instead
-    totals = M.sum(axis=0)
-    for j, t in enumerate(totals):
-        ax.text(j, n_pairs - 0.5 + 0.35, str(t), ha="center", va="top", fontsize=P.LEGEND_PT, color=P.INK2)
+    # column totals above the matrix
+    for j, t in enumerate(M.sum(axis=0)):
+        ax.text(j, -0.5, str(int(t)), ha="center", va="bottom", fontsize=P.LEGEND_PT, color=P.INK2, transform=ax.transData)
+    ax.set_title("Reasons the two committees recommended differently", pad=10 * P.S)
     handles = [Patch(facecolor=P.BLUE[500], label="Reason applies")] + [Line2D([], [], color=KIND_COLOR[k], lw=4 * P.S, label=tex(KIND_LABEL[k])) for k in kinds_present]
-    axb.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.0, 1.0), borderaxespad=0)
+    ax.legend(handles=handles, loc="upper left", bbox_to_anchor=(1.01, 1.0), borderaxespad=0)
     os.makedirs(f"{ROOT}/figures", exist_ok=True)
     P.save(fig, f"{ROOT}/figures/stage2_matrix_run{run}", width=fig_w)
 

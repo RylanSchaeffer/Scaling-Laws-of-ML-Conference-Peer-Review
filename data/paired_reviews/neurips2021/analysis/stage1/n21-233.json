@@ -1,0 +1,269 @@
+{
+  "pair_id": "n21-233",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [3, 4, 4, 7],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Kznb"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_tRT5",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The 7 sits 3.3 points above the mean of the other three (3, 4, 4). The review is short. It calls the short-training/witness-function observation 'insightful' and says the method 'solves the computational and memory difficulties', which the submitted paper never measures (no runtime or memory result; Reviewer_QV5c in B makes this point). It does not mention the experiments, calls the reliance on Cheng and Xie (2021) a minor concern, and was never edited. The AC's meta-review does not mention it. The opposite pole, Reviewer_Kznb's 3, is principled: 24 hours, specific checkable points, and a post-rebuttal reply."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_e8cj",
+          "evidence": "1 hour at confidence 4. Its summary recasts the paper as 'a theoretical method to analyze' network-based tests rather than a new test statistic. It asks the authors to cite work showing that network-based tests matter; lines 20-28 already cite kernel-expressiveness limits [22, 27, 34] and classifier tests [35, 8]. It offered to raise its score if convinced but never edited. Its summary sentence opens the AC's meta-review."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "Power is only comparable to the Gaussian-kernel MMD test, also in change-point detection.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 281-283: 'comparable but slightly worse power than the other two benchmarks on the mean shift', 'equally good power as the Gaussian MMD' on covariance shift. Figure 4: the Gaussian MMD and NTK-MMD curves have the same shape (lines 336-338)."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "No comparison with other methods in the MNIST experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3 (lines 311-315) and Figure 3 show NTK-MMD only against its own bootstrap null."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "No linear-time baselines such as Chwialkowski et al. (2015) or Jitkrittum et al. (2016).",
+          "checked_against_paper": "correct",
+          "evidence": "The only baselines are Hotelling's T and median-bandwidth Gaussian MMD (lines 277-278, 335-336). Jitkrittum et al. is cited as [27] but not run."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "Theorem 3.2 analyses a test with a concentration-inequality threshold, not the permutation threshold used in the experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 3.2 sets t_thres = 4(sqrt(1.1) lambda_(2),1 + lambda_(1)) sqrt(nu/(c_a n)). Section 4.1 (lines 272-276) uses the bootstrap quantile of (18). The paper does not relate the two."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "The full-bootstrap test has no proof, unlike the test-only bootstrap.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 3.3, 'Test power of T_a, full bootstrap', is the counterpart of Theorem 3.2 (lines 225-228). Both use a concentration threshold, so neither covers the bootstrap threshold itself."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "The statistic is not guaranteed to separate any two distributions.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 3.1 assumes as condition (i) that the population NTK-MMD is strictly positive under H1. The paper does not show that the finite-width NTK is characteristic."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "The change-point experiment only tracks a statistic, with no threshold.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.4 and Figure 4 plot statistic curves only: no threshold, detection delay or false-alarm rate, although Section 3.2 describes a pilot-data calibration."
+        },
+        {
+          "reviewer": "Reviewer_Kznb",
+          "claim": "Post-rebuttal: the added results show no significant gain over the linear-time ME test.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked against the camera-ready (paper.pdf), since the rebuttal is not in the record. Table 1 (Gaussian mixture, d = 10): NTK-MMD 7.1-17.9% power, ME about 10-75%, C2ST-L (Adam, 1 epoch) 14.1-92.9%. The text says NTK-MMD 'is worse than the other baselines' except SCF and one C2ST variant."
+        },
+        {
+          "reviewer": "Reviewer_e8cj",
+          "claim": "The Eq. (3) loss is ill-defined, with no global convergence.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 92-93: optimizing it 'will lead to divergence of the network function if we train for a long time'. The method uses short training by design, so this is a stated limitation, not an error."
+        },
+        {
+          "reviewer": "Reviewer_e8cj",
+          "claim": "The paper does not say or cite why network-based two-sample tests matter.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 20-28 cite kernel-expressiveness limits [22, 27, 34] and classifier two-sample tests [35, 8]. The paper does not claim that such tests beat classical ones."
+        },
+        {
+          "reviewer": "Reviewer_aee6",
+          "claim": "The power bounds have no specific relation to the NTK and hold for general PSD kernels.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 172-174: the proof extends [10] 'to the general PSD kernel'. The NTK enters only through the O(t) approximation (Proposition 2.1)."
+        },
+        {
+          "reviewer": "Reviewer_aee6",
+          "claim": "The experiments use finite networks, far from the infinite width that NTK theory needs.",
+          "checked_against_paper": "incorrect",
+          "evidence": "K0 is the finite-width tangent kernel at initialization (Eq. 8), and Lemma 2.2 bounds the error in training time, not width. Section 4.2 compares the trained network with that exact finite-width kernel and finds almost the same power. The camera-ready adds a sentence that says so. The introduction's 'over-parametrized' framing (lines 32-36) invites the misreading."
+        },
+        {
+          "reviewer": "Reviewer_tRT5",
+          "claim": "The paper treats only balanced samples.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (14), Eq. (19) and line 229 assume 'balance-ness' (fixed proportions in (0, 1)). Every experiment uses nearly equal sample sizes."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_Kznb edited (2021-09-10), adding a post-rebuttal section: 'My evaluation on this work remains the same'. Reviewer_e8cj offered to raise its score if shown that Eq. (3) is useful, but never edited. Reviewer_aee6 and Reviewer_tRT5 never edited. No author responses or discussion are in the record.",
+        "what_convinced_or_not": "The rebuttal corrected Kznb's misreading of the statistics and added tables, but did not convince Kznb. The T_net test's threshold needs an unknown approximation constant and was never run. 'Additional Table 3' shows no significant gain over the linear-time ME test. 'Additional Table 4' beats linear-time MMD but omits ME. The usefulness of the Eq. (5) witness function is not shown. Nothing shows what the other three reviewers made of the response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects with the 3-1 majority. The first sentence paraphrases Reviewer_e8cj's summary ('a theoretical method to analyze the neural network-based two-sample test methods'). 'Dense and solid ... the motivation is not very clear' paraphrases Reviewer_aee6, and 'numerical experiments were not convincing' matches Reviewer_Kznb. It says 'the reviewers agree', but Reviewer_tRT5's 7 was never edited, and the meta-review does not mention tRT5's case.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unclear motivation for network-based tests and for the Eq. (3) loss (Reviewer_e8cj, Reviewer_aee6)",
+        "Power theory adds little NTK-specific insight (Reviewer_aee6)",
+        "Experiments show no gain over Gaussian MMD and lack baselines on MNIST and linear-time competitors (Reviewer_Kznb)",
+        "Validity and practical use of the network test unresolved after the rebuttal (Reviewer_Kznb)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 7],
+      "confidences": [3, 3, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_AatE", "Reviewer_jdVg", "Reviewer_QV5c"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 7 span one point. Three reviewers (Reviewer_VLkd, Reviewer_AatE, Reviewer_QV5c) are at confidence 3, 'Math/other details were not carefully checked'. Reviewer_VLkd's 7 rests on generic praise, and its own summary reports 'similar test power compared to 2 baselines'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_AatE",
+          "evidence": "3 hours at confidence 3. It states 'ReLU activation function is used' in the experiments; line 274 says soft-plus, and no main-text experiment names ReLU. It asked what role the NTK plays, which lines 117-122 and Proposition 2.1 state (the bridge from T_net to exact NTK-MMD). It raised its score once the rebuttal explained this: 'Now I understand how NTK is involved'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_VLkd",
+          "claim": "On simulated data NTK-MMD has test power similar to the two baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.1 compares with Hotelling's T and Gaussian MMD only; lines 281-283 report 'comparable but slightly worse' and 'equally good' power."
+        },
+        {
+          "reviewer": "Reviewer_VLkd",
+          "claim": "The assumption K0 ~ K_t at line 115 is central.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 115: 'Assuming K0 ~ K_t in Lemma 2.1'; Eq. (9) and Proposition 2.1 rest on it."
+        },
+        {
+          "reviewer": "Reviewer_AatE",
+          "claim": "The proofs of Theorems 3.1-3.3 follow Cheng et al. (2021) and barely use the NTK.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 172-174: the U-statistic analysis of [10] (Cheng and Xie 2021) extended to any bounded PSD kernel."
+        },
+        {
+          "reviewer": "Reviewer_AatE",
+          "claim": "The experiments use the ReLU activation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 274: 'a 2-layer network (1 hidden layer) with soft-plus activation' for Sections 4.1-4.2. The main text names no ReLU network; the MNIST and change-point activations are in the supplement, which is not in the record."
+        },
+        {
+          "reviewer": "Reviewer_AatE",
+          "claim": "Typo in the definition of nu_pp in Eq. (13).",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (13) defines nu_pp with x ~ p, y ~ q, the same as nu_pq."
+        },
+        {
+          "reviewer": "Reviewer_jdVg",
+          "claim": "The baselines are weak (Gaussian MMD with median bandwidth), and mean and covariance shifts are not representative.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 268-278: the only synthetic tests are Gaussian mean and covariance shift, and the baselines are Hotelling's T and median-bandwidth Gaussian MMD."
+        },
+        {
+          "reviewer": "Reviewer_QV5c",
+          "claim": "The networks have one hidden layer and soft-plus activation.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 274."
+        },
+        {
+          "reviewer": "Reviewer_QV5c",
+          "claim": "The MNIST experiment has no baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.3 and Figure 3 report NTK-MMD only."
+        },
+        {
+          "reviewer": "Reviewer_QV5c",
+          "claim": "The computational advantages of NTK-MMD are not illustrated.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted paper asserts efficiency (abstract, lines 24, 68, 146-148) but reports no runtime or memory result. The camera-ready adds Section 2.4, which argues the point."
+        },
+        {
+          "reviewer": "Reviewer_QV5c",
+          "claim": "The squared MMD estimator used is the biased one.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 77: 'The (squared and biased) empirical kernel MMD statistic'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_AatE", "Reviewer_jdVg", "Reviewer_QV5c"],
+        "evidence": "Reviewer_AatE edited 2021-08-18: 'I decided to increase my score' (final 6). Reviewer_jdVg edited 2021-08-10: its review first says 'happy to accept ... if more experiments', then 'addressed my concerns well. I tend to accept this paper now' (final 6, so a raise from below threshold). Reviewer_QV5c edited 2021-08-15: from 'Marginally above the acceptance threshold' to 'Good paper, accept' (6 to 7). Reviewer_VLkd never edited. No author responses or discussion are in the record.",
+        "what_convinced_or_not": "AatE: the explanation of how the NTK links the computed statistic to exact NTK-MMD. jdVg and QV5c: new experiments with the requested baselines ('provides the suggested new material'). None says whether NTK-MMD beat those baselines. Camera-ready Table 1 shows it mostly did not: 7.1-17.9% power against about 10-75% for ME and 14.1-92.9% for C2ST-L (Adam, 1 epoch)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts on four ratings of 6-7. It repeats the reviewers' praise of the new NTK-MMD link and concedes 'The experimental comparisons could be improved, but generally acceptable.'",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers valued the new NTK-MMD connection and its efficiency argument",
+        "Rebuttal added baselines and clarified the NTK's role; three reviewers raised their scores",
+        "Weak experiments judged fixable, not disqualifying (Reviewer_QV5c, AC)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Weak motivation for network-based two-sample tests and an artificial Eq. (3) loss that diverges under long training (Reviewer_e8cj, Reviewer_aee6, AC)",
+    "Validity of the symmetric T_net test: its threshold needs unknown kernel and approximation constants, and it was never run (Reviewer_Kznb)",
+    "Power theorems use concentration thresholds, not the permutation thresholds of the experiments (Reviewer_Kznb)",
+    "NTK-MMD is not shown to separate all distributions; Theorem 3.1 assumes a positive population MMD (Reviewer_Kznb)",
+    "Change-point study has no threshold or detection metric; downstream use of the witness function not shown (Reviewer_Kznb)",
+    "Unequal sample sizes (Reviewer_tRT5)"
+  ],
+  "issues_only_b": [
+    "HDGM benchmark of Liu et al. with C2ST and optimised-kernel baselines; mean and covariance shift not representative (Reviewer_jdVg)",
+    "Efficiency gain never measured (Reviewer_QV5c)",
+    "Trade-off between training length, approximation error and power (Reviewer_VLkd)",
+    "ReLU smoothness under the assumptions; SGD analysis covers one pass only (Reviewer_AatE)",
+    "Biased estimator, batch size 1, deeper ReLU networks (Reviewer_QV5c)",
+    "Why NTK-MMD is efficient is unclear to readers new to the NTK (Reviewer_jdVg)"
+  ],
+  "shared_issues": [
+    "Power theory is generic kernel-MMD theory, not NTK-specific, and follows Cheng and Xie 2021 (A: Reviewer_aee6, Reviewer_tRT5; B: Reviewer_AatE, Reviewer_QV5c)",
+    "No power gain over median-bandwidth Gaussian MMD; weak baselines (A: Reviewer_Kznb; B: Reviewer_jdVg, Reviewer_QV5c, Reviewer_VLkd's summary, AC)",
+    "No baseline in the MNIST experiment (A: Reviewer_Kznb; B: Reviewer_QV5c)",
+    "Missing linear-time competitors such as the ME test (A: Reviewer_Kznb; B: Reviewer_QV5c, Reviewer_jdVg)",
+    "Validity of the lazy-training approximation at finite width, with little empirical check (A: Reviewer_aee6, Reviewer_Kznb; B: Reviewer_VLkd, Reviewer_AatE, Reviewer_QV5c)",
+    "The NTK-MMD connection is new and interesting (A: Reviewer_e8cj, Reviewer_tRT5; B: all four reviewers)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same weaknesses and weighted them differently. Reviewers on both sides called the NTK-MMD link new, noted that the power theorems are generic kernel-MMD results (lines 172-174), and found no power gain over a median-bandwidth Gaussian MMD, no baseline on MNIST and no linear-time competitor. A treated these facts as decisive (3, 4, 4, 7); B treated them as fixable (7, 6, 6, 7; AC: 'could be improved, but generally acceptable'). The rebuttal widened the gap. In B, Reviewer_AatE, Reviewer_jdVg and Reviewer_QV5c raised their scores after the authors explained the NTK's role and added baselines; none said what the new results showed. In A, Reviewer_Kznb (24 hours) read the added tables, found no gain over the linear-time ME test, and kept a 3; camera-ready Table 1 bears this out (NTK-MMD 7-18% power against about 10-75% for ME). Reviewer mix mattered too. A drew an expert detractor whose checkable points mostly hold, and a 1-hour reviewer who rejected on motivation and whose summary opens the AC's meta-review. A's only champion, Reviewer_tRT5, wrote a thin review that the AC ignored. B drew four moderately positive reviewers, three at confidence 3.",
+  "candidate_reasons": [
+    "Same weaknesses weighted differently",
+    "Novelty of connection over practical value",
+    "Score raises for added experiments",
+    "Expert detractor read rebuttal results",
+    "Thin champion ignored by AC",
+    "Motivation objection from one-hour review"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_Kznb final review and post-rebuttal section",
+    "Reviewer_e8cj review",
+    "Reviewer_tRT5 review",
+    "Committee A meta-review (first sentence paraphrases Reviewer_e8cj's summary)",
+    "Reviewer_jdVg review, Cons 1 and post-rebuttal line",
+    "Reviewer_QV5c review, Contribution and Post-Rebuttal Update",
+    "Reviewer_AatE post-rebuttal note",
+    "Committee B meta-review",
+    "paper_submitted.pdf Section 4.1, lines 272-283 (soft-plus, two baselines, 'comparable but slightly worse')",
+    "paper_submitted.pdf Sections 4.3-4.4 and Figures 3-4 (no MNIST baseline, no change-point threshold)",
+    "paper_submitted.pdf lines 172-174 and Theorems 3.1-3.3 (generic kernel theory, concentration thresholds)",
+    "paper.pdf (camera-ready) Table 1 (NTK-MMD against ME, SCF and C2ST)"
+  ]
+}

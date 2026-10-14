@@ -1,0 +1,108 @@
+{
+  "run": 1,
+  "turn": 8,
+  "pair_id": "n21-028",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "A's area chair gave no reading or taste of their own: the two-sentence meta-review cites only what 'all the reviewers' said. The spotlight follows the reviewers' unanimity, which R12 names, not a personal judgement set against the reviews."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither meta-review forecasts impact beyond the paper's setting. A's area chair cites an important problem and clear writing; B's cites soundness and open concerns."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The response moved both committees up: three A reviewers (z1y4, FpoL, h4G7) and two B reviewers (oTxs, YyKC) raised. It did not leave one committee unchanged."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's record is thinner: about 10.5 reviewer-hours against B's 26, and Reviewer_aGgD gave 7 at confidence 1 after 1.5 hours and a 'cursory glance', praised the flawed Fig. 6, and still counted toward A's unanimous 7s."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B found the undisclosed CIFAR-10-C loader bug behind Fig. 6 and pressed the DSCS-kernel motivation until the authors' ablation showed a quadratic kernel nearly matches it. B's area chair cited unresolved motivation for the poster, and B's two 6s stayed."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw that the main experiments use only last-layer Laplace (A's Reviewer_z1y4, B's Reviewer_d2CF). B's area chair listed it as a remaining concern behind the poster; A's area chair did not mention it."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "Every score change in both committees cites the authors' response or rerun, not other reviewers' assessments."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating clearly contradicts its text. A's z1y4 called significance 'somewhat limited' at 7, which is consistent with an accept; B's 6s come with stated open concerns."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "The least sure reviewers did not give borderline scores in place of a verdict: A's aGgD (confidence 1) gave 7, and B's 4z2v (confidence 2) gave 6 after 8 hours with specific, unresolved objections."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither committee had an outlying reviewer, and neither area chair adopted one reviewer's verdict against the rest. B's meta-review summarises the open points of two reviewers."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The committees' verbal assessments differ in substance, not only in scale: B knew of the loader bug and the kernel ablation, and A did not. The means (7.0 and 6.75) are close, and the tier did not follow the mean gap."
+    }
+  ],
+  "added": [
+    {
+      "id": "R12",
+      "name": "Unanimous scores read as grounds for higher tier",
+      "definition": "One committee's area chair took the reviewers' agreement, with no dissenting score, as grounds for a higher tier, although no reviewer rated above the accept level or argued for that tier, while the other committee's spread of scores held it lower at a similar or higher mean or maximum.",
+      "justification": "R01 needs the area chair's own reading or taste, and A's meta-review gives none. R10 needs an outlying reviewer, and A had none. R11 is a calibration gap between similar verbal verdicts. None names agreement itself, rather than the level of the scores, setting the tier."
+    },
+    {
+      "id": "R13",
+      "name": "Scores rose on unverified rebuttal evidence",
+      "definition": "One committee's reviewers raised their scores on rebuttal material that was not checked under the paper's own protocol, such as results copied from other papers or promised revisions, which lifted that committee's scores further than the evidence the other committee saw.",
+      "justification": "R03 requires that the response leave the other committee unchanged, and here it moved both. The mechanism is the quality of the evidence behind A's raises, which turned A's mixed 6s and 7s into the unanimous 7s that preceded the spotlight; B's raises came only after a rerun."
+    }
+  ],
+  "reasoning": "Stage 1 finds that both committees accepted and that the tier split is area-chair discretion applied to records of very different depth. B's reviewers spent more than twice A's hours, found an undisclosed loader bug and an ablation that undercut the DSCS motivation, and kept two 6s (R05, R04). Both committees saw the last-layer-Laplace-only experiments, but only B's area chair counted it (R06). A's 7s became unanimous only after two raises on baselines copied from other papers (new R13), and A's area chair turned that unanimity into a spotlight with no reviewer above 7 and no stated reason, while B held the only 8 and got a poster (new R12). R01 does not apply because A's chair cited only the reviewers' consensus, not a reading of their own. The response moved both committees, so R03 does not apply, and no outlier, discussion-driven change, borderline default or calibration gap appears.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13"
+  ]
+}

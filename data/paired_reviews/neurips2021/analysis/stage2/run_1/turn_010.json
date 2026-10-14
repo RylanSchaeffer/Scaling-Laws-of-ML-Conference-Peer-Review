@@ -1,0 +1,84 @@
+{
+  "run": 1,
+  "turn": 10,
+  "pair_id": "n21-057",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14"],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "No B reviewer rated above 7 or argued for a highlight, yet B's area chair gave a spotlight on its own reading ('a very strong contribution', 'I found the assumption ... odd'), one tier above what B's 7, 6, 7, 7, 7 supported."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's meta-review said the paper 'should be of interest not only to researchers in online learning but also the broader community'; no reviewer on either committee made that forecast, and A's area chair did not."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The response moved A's Reviewer_oRvo (5 to 6) and Reviewer_i7rY up to 7, while no B score moved; here the asymmetry narrowed the gap rather than widened it."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's Reviewer_8ugy gave a thin 7 (generic praise, three questions, posted late, no reply to the rebuttal), and B's reviewers averaged 4.4 hours against A's 6.0."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A's reviewers found the undefined fairness link, the incomplete and mis-cited related work, and the uncited standard tools, all confirmed by author concession or the camera-ready text; A's area chair called these 'major presentation concerns' and stopped at poster."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw that Lemma 3.1 and the importance weighting are standard; B's Reviewer_dTZk listed them as pros and B's area chair praised the negative result, while A's Reviewer_i7rY counted them as known results without attribution."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "Both A score changes cite the authors' response, and no B score moved; no reviewer changed after reading other reviewers."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each rating fits its text: A's 6s carry specific positioning objections, and B's 7s and 6 carry positive text with minor questions."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "No reviewer on either committee said they could not judge the paper; confidences are similar (A 4, 3, 4, 3; B 4, 3, 4, 4, 3)."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Stage 1 finds no outlier in either committee; all ratings lie within one point, and neither area chair adopted a single reviewer's verdict."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments differ in content (A's reviewers found positioning faults that B's did not), not in calibration, and B's area chair did not set the tier by the mean."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's meta-review cited 'The reviewers were uniformly positive' among its grounds for a spotlight although no B reviewer rated above 7, while A's 6, 6, 7, 7 had the same maximum and a similar mean and got a poster."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's raises rested on promised citations and explanations, not on unchecked evidence for the results, and they lifted the committee that ended lower, so they did not create the gap."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's meta-review carried forward Reviewer_ZiMd's two main weaknesses (lower-bound intuition, probability-driven impact), calling them minor, so it is not a one-sided account of B's reviews."
+    }
+  ],
+  "added": [],
+  "reasoning": "Stage 1 puts the tier split on B's area chair, who promoted near-equal, accept-level reviews to a spotlight on its own reading, a forecast of broad interest and the reviewers' uniform positivity (R01, R02, R12). Only A's reviewers found correct positioning faults, which A's area chair named as major concerns (R05), and the committees weighed the standard components in opposite directions (R06). B had a thin, late review (R04), and the response moved only A's scores (R03). The candidate reasons in the notes all map to existing entries: AC enthusiasm to R01, faults found only in A to R05, known components read as strengths to R06, and near-equal scores with the AC setting the tier to R01 and R12. So no new reason is needed.",
+  "reasons_after": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14"]
+}

@@ -1,0 +1,255 @@
+{
+ "pair_id": "n21-236",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    1,
+    3,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_a6qx"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All three final ratings are 7. Reviewer_a6qx reached 7 only after the rebuttal ('am going to increase the rating to 7', 2021-08-16)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_MfJp",
+     "evidence": "Rating 7 at confidence 2 after 2 hours. The evaluation is one sentence: 'The theoretical contributions seem to be very strong, although I must admit that this work is outside my area of expertise.' Its one technical question, which results need distinct supports, is answered by Definitions 1, 2 and 4 (lines 180-182, 204-206, 225-227). It cites line 372 for text that is at lines 171-173. The post-rebuttal reply is one line. The 7 is not evidence of quality."
+    },
+    {
+     "reviewer": "Reviewer_kx4J",
+     "evidence": "Rating 7 at confidence 1 after 2 hours: 'The technical parts are quite involved and out of my expertise, so I cannot comment much on it.' The praise is general: 'good theoretical contributions', complete related work, polished writing. Both substantive points misread the text: Corollary 1, not Theorem 4, carries the quasi-polynomial claim, and lines 283-285 already pair 'without any assumptions' with Corollary 1 and 'extremely mild assumptions' with Theorems 3 and 4. The 7 carries little information."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_kx4J",
+     "claim": "The abstract's 'quasi-polynomial in ℓ' (line 16) conflicts with Theorem 4, whose exponent grows linearly in ℓ.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 4 sets w = ⌈(2ℓ−1)/(r−1)⌉ (line 270), so for fixed r its bound is exponential in ℓ. The abstract rests on Corollary 1 (lines 258-260), O(ℓ^3 (ℓk)^(log ℓ+2) log(ℓkn) log n), which holds for every set of vectors; the rebuttal adds that Theorem 4 is used only when w < log ℓ. Corollary 1's degree in k is also log ℓ + 2, so 'polynomial in k' holds only for fixed ℓ; nobody raised this."
+    },
+    {
+     "reviewer": "Reviewer_kx4J",
+     "claim": "Line 283 says 'without any assumptions', but the three support conditions are assumptions.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 274-276 and 283-285 attach 'without any assumptions' to Corollary 1 only, and 'extremely mild assumptions' to Theorems 3 and 4. The MLR results do assume a known lower bound δ on non-zero magnitudes (lines 70-72), which kx4J did not mention."
+    },
+    {
+     "reviewer": "Reviewer_a6qx",
+     "claim": "Lines 195-198 misstate p-identifiability: 'for each unknown vector' should be 'for some', uniqueness is not needed, and 'for some j' is wrong.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 194-198 say 'for each unknown vector v ∈ V with a distinct support, there exists a unique set C', but Definition 1 (lines 177-179) guarantees only one identifiable column at each peeling step, and j is used before it is quantified. The proof of Theorem 1 (lines 308-327) peels correctly, so no result is affected. The authors conceded ('We thank the author for catching this error'); the camera-ready rewrites the paragraph."
+    },
+    {
+     "reviewer": "Reviewer_a6qx",
+     "claim": "The tightness of Corollary 1 and Theorems 3 and 4 is not discussed, and the bounds are not compared with the state of the art.",
+     "checked_against_paper": "correct",
+     "evidence": "The main text has no lower bound and no discussion of tightness; the checklist (lines 500-501) says a matching lower bound is open. Section 1.1 compares prior work by its assumptions only, never by query counts. The rebuttal to a6qx skipped this point, and a6qx did not press it."
+    },
+    {
+     "reviewer": "Reviewer_a6qx",
+     "claim": "The cover-free families in the proof of Lemma 2 are only shown to exist, so the algorithms cannot be simulated.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Lemma 2's proof is in the supplement, which is not in the record. The reference list includes Kautz and Singleton [24], 'Nonrandom binary superimposed codes', and Stinson and Wei [40], the source the rebuttal gives for an explicit construction. Random Bernoulli designs are cover-free with high probability, and the rebuttal experiment used a random design."
+    },
+    {
+     "reviewer": "Reviewer_MfJp",
+     "claim": "It is unclear which results need distinct supports; Corollary 1 drops Theorem 2's distinct-column condition.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Definitions 1, 2 and 4 define each property for a set V through 'the matrix obtained by deleting duplicate columns of A' (lines 180-182, 204-206, 225-227), so Theorem 2 applies to any V. Algorithm 1 returns multiplicities (step 6). The sentence MfJp quotes is at lines 171-173, not 372."
+    },
+    {
+     "reviewer": "Reviewer_MfJp",
+     "claim": "The paper has no empirical comparison with [44, 27, 29].",
+     "checked_against_paper": "correct",
+     "evidence": "The submission has no experiments; checklist item 3 is N/A throughout (lines 509-517). The camera-ready main text adds none."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_a6qx"
+    ],
+    "evidence": "Reviewer_a6qx wrote on 2021-08-16 'am going to increase the rating to 7' and edited the review on 2021-08-23. Reviewer_kx4J (2021-08-19) and Reviewer_MfJp (2021-08-23) replied that they keep 7 and did not edit their reviews.",
+    "what_convinced_or_not": "a6qx: 'They have addressed my comments appropriately. Thus, I agree with the evaluation of the other reviewers'. The authors conceded and corrected the lines 194-198 error, said random Bernoulli designs are cover-free with high probability, named an explicit Reed-Solomon construction, and posted a run of Algorithm 1 on one hand-built instance (ℓ = 3, n = 60; exact recovery 0.02 at T = 5, 0.9 at T = 50). The rebuttal did not answer a6qx's tightness question. kx4J and MfJp accepted the answers on Corollary 1 and on duplicate supports."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'All reviewers have very positively received this paper; all marks match to a clear accept, that I will follow.' The AC calls the concerns 'fully answered', asks for the rebuttal experiments in an appendix and cites 'the originality of the results'. The meta-review does not weigh that two of the three 7s come from reviewers outside their area (confidence 1 and 2), or that a6qx's tightness question went unanswered.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three 7s; the AC followed the scores",
+    "Originality of the results and quality of the writing (AC; Reviewer_a6qx locates the originality in Lemma 2)",
+    "Concerns judged answered by the rebuttal, with the experiments promised for an appendix"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    3,
+    3,
+    3,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_8hHY",
+    "Reviewer_WFKv",
+    "Reviewer_LAr2"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Final ratings 6, 7, 6, 6. Reviewer_8hHY's 7 is one point above the rest and rests on a detailed, engaged review."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_LAr2",
+     "evidence": "1 hour, confidence 2, a six-sentence main review. It places the problem 'in the tensor setting' and asks for a title change, but the problem is vector support recovery and tensors are a tool in Algorithms 2 and 3 only. It criticises 'the use of low CP-rank assumption', which the paper does not make. After the authors pointed to the Kruskal rank, LAr2 wrote 'The CP-rank ... indeed refers to the Kruskal rank', which confuses the rank of a tensor with a property of the support matrix (Definition 3). It raised to 6 'By checking other review comments'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_riqJ",
+     "claim": "Eq. (1) minimises over ℓ, the number of vectors; there are also typos at lines 88 and 122 and an indexing clash at line 130.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (1), after line 78, takes max over i and min over ℓ. Line 88 has 'that does not have', line 122 has 'the the set S is flipped', and lines 124-125 index tensor entries from 0 while line 130 uses z_{i_j}. The authors conceded; the camera-ready minimises over j ∈ [ℓ]."
+    },
+    {
+     "reviewer": "Reviewer_riqJ",
+     "claim": "It is not clear that this line of work has found applications.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 34-36 cite applications of mixture models fitted to passive data (machine translation, behavioural health, medicine, object recognition). The active-query setting is introduced at lines 50-52 with no application. The recommender-system and crowdsourcing example appears only in the rebuttal, not in the camera-ready main text."
+    },
+    {
+     "reviewer": "Reviewer_8hHY",
+     "claim": "For MLR, estimating E[y² x_i²] for each coordinate under a Gaussian design might recover the supports more simply.",
+     "checked_against_paper": "incorrect",
+     "evidence": "That moment is a constant plus (1/ℓ) Σ_j (v_j^i)², so it reveals only the union of the supports. The paper already computes the union as a preprocessing step (lines 209-210; Algorithm 2, step 1). The rebuttal said so, and 8hHY did not dispute it."
+    },
+    {
+     "reviewer": "Reviewer_8hHY",
+     "claim": "For MLR the query complexity is of much higher order in k than [29], which is linear in k.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 needs O(ℓ^3 (ℓk)^(p+2) log(ℓkn) log n) MLR queries with p ≥ 1, Theorem 3 (ℓk)^4 and Lemma 2 (ℓk)^(s+1), so every bound is at least cubic in k. [29] covers ℓ = 2 only (lines 86-87). The authors agreed that for ℓ = 2 a passive Gaussian design gives complexity linear in k."
+    },
+    {
+     "reviewer": "Reviewer_8hHY",
+     "claim": "The paper does not compare with Diakonikolas and Kane (2021).",
+     "checked_against_paper": "correct",
+     "evidence": "Not cited in the submission (references [1]-[46]) or in the camera-ready. The authors replied that it has better running time but higher sample complexity and needs pairwise separation."
+    },
+    {
+     "reviewer": "Reviewer_WFKv",
+     "claim": "The work mainly extends [29] by relaxing some assumptions, so it is incremental and lacks originality.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The method generalises [19], not [29]: 'we generalize the techniques of [19]' (line 66); Algorithm 1 extends [19]'s algorithm (lines 185-200); p-identifiability generalises [19]'s separability (lines 273-274); [19] already computed the occ counts for single indices and pairs (lines 191-193). [29] is the MLR comparison point and covers ℓ = 2 only (lines 86-87). The paper's own framing gives an incremental reading some support, but against [19]; the tensor-based Algorithms 2 and 3 are new to this line."
+    },
+    {
+     "reviewer": "Reviewer_WFKv",
+     "claim": "The paper ends with no conclusion section and has no numerical results.",
+     "checked_against_paper": "correct",
+     "evidence": "The main text ends with the proof of Theorem 4 (line 381), followed by the references; there are no experiments. The camera-ready main text adds neither. NeurIPS has no rule that requires either, as the authors replied."
+    },
+    {
+     "reviewer": "Reviewer_LAr2",
+     "claim": "The algorithms use a low CP-rank assumption whose motivation is unclear.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paper makes no such assumption. Theorem 4 assumes that the deduplicated support matrix has Kruskal rank r (Definitions 3-4, lines 223-227); the constructed tensor has rank at most ℓ because the data come from ℓ vectors (Eq. 3, lines 366-368). CP rank belongs to a tensor and Kruskal rank to a matrix, so LAr2's later 'The CP-rank ... indeed refers to the Kruskal rank' is also wrong."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_8hHY",
+     "Reviewer_WFKv",
+     "Reviewer_LAr2"
+    ],
+    "evidence": "Reviewer_8hHY's post-rebuttal addendum says 'I increased my score accordingly' (edited 2021-08-28; final 7). Reviewer_WFKv wrote 'I have increased my score' on 2021-08-25 (last edit 2021-08-29; final 6). Reviewer_LAr2 wrote 'I am willing to increase my score' on 2021-08-29 and edited the review that day (final 6). Reviewer_riqJ kept 6 without an edit and wrote 'may even have a slightly higher opinion of the work'.",
+    "what_convinced_or_not": "8hHY accepted the motivation as a 'more unified approach for mixture of linear models' and credited Lemma 2, but still wondered 'how significant the results are for MLR'. WFKv accepted the Corollary 1 worst-case point and the other reviewers' views, held that 'novelty is limited', and offered a further raise for more experiments; the authors' Jennrich run came on 2021-08-31, after WFKv's last edit, and the rating stayed 6. LAr2 found the synthetic tests 'look good but without comparison with any other competitive algorithms'. riqJ accepted the applications answer and agreed that experiments are not required. The final texts of WFKv ('does not meet the standards for NeurIPS publication') and LAr2 ('seems incomplete') still carry the pre-rebuttal verdicts."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The AC rejected against four final ratings of 6 or 7, three of them raised after the rebuttal; no reviewer argued for rejection in the discussion. The reasons come from review text, mostly written before the rebuttal. 'the reviewers feel that the contributions are somewhat incremental given the existing work in [19,27,29,44]' generalises Reviewer_WFKv, the only reviewer who said so; WFKv repeated 'novelty is limited' on 2021-08-25 while raising the score. Poor motivation echoes riqJ, 8hHY and LAr2. 'without numerical experiments for their new algorithms' echoes WFKv and LAr2 and omits the two rebuttal experiments. The key sentence is garbled: 'It is currently clear if this results are of significance interest to the NeurIPS community'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Contribution judged 'somewhat incremental' over [19, 27, 29, 44] (AC, following Reviewer_WFKv)",
+    "Problem setting and assumptions poorly motivated (AC; Reviewer_riqJ, Reviewer_8hHY, Reviewer_LAr2)",
+    "Significance to NeurIPS unclear for a theory-only paper without experiments (AC; Reviewer_WFKv, Reviewer_LAr2)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Error in the intuition for p-identifiability at lines 194-198 (Reviewer_a6qx); conceded and fixed in the camera-ready",
+  "Whether the cover-free families can be constructed, so that the algorithms can run (Reviewer_a6qx)",
+  "Quasi-polynomial claim against Theorem 4, and the 'without any assumptions' wording (Reviewer_kx4J)",
+  "Which results need distinct supports (Reviewer_MfJp)",
+  "More explanation of why a unique CP decomposition gives the supports, and of 'occ' (Reviewer_a6qx, Reviewer_kx4J)"
+ ],
+ "issues_only_b": [
+  "Applications and motivation of the active-query setting (Reviewer_riqJ, Reviewer_8hHY, Reviewer_WFKv, Reviewer_LAr2; AC)",
+  "MLR bounds weaker in k than [29] or a passive Gaussian design for ℓ = 2, and whether a simple moment estimator suffices (Reviewer_8hHY)",
+  "No comparison with Diakonikolas and Kane (2021) (Reviewer_8hHY)",
+  "Naturalness of flip-independence, and how it relates to p-identifiability (Reviewer_8hHY)",
+  "Why only supports and not the vectors themselves (Reviewer_8hHY)",
+  "Contribution called incremental over [27, 29, 44] (Reviewer_WFKv; AC)",
+  "No conclusion section (Reviewer_WFKv); typos in Eq. (1) and at lines 88, 122 and 130 (Reviewer_riqJ)"
+ ],
+ "shared_issues": [
+  "No numerical experiments (A: Reviewer_a6qx, Reviewer_MfJp; B: Reviewer_WFKv, Reviewer_LAr2); both forums got the same Algorithm 1 run",
+  "Practical value of algorithms that exist only in proofs (A: Reviewer_a6qx; B: Reviewer_WFKv, Reviewer_LAr2)",
+  "Tightness and lower bounds (A: Reviewer_a6qx, never answered; B: Reviewer_8hHY, answered as open)",
+  "Lemma 2 as the core contribution, with its proof only in the supplement (A: Reviewer_a6qx; B: Reviewer_8hHY)",
+  "Terse presentation; definitions and algorithm overviews need more explanation (A: Reviewer_a6qx, AC; B: Reviewer_riqJ, Reviewer_8hHY)",
+  "Generalisation of [19] and [29] under milder assumptions, read as original by A's AC and as incremental by B's AC"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same facts differently, and the area chairs (ACs) made the difference. A's AC accepted on three 7s: 'all marks match to a clear accept, that I will follow'. B's AC rejected on 6, 7, 6, 6, although three B reviewers had raised their ratings after the rebuttal and no reviewer argued for rejection in the discussion. B's AC cited an incremental contribution over [19, 27, 29, 44], weak motivation and no experiments. Only Reviewer_WFKv called the work incremental, and WFKv named [29] as its base, while the paper generalises [19] (line 66). Both forums got the same Algorithm 1 experiment, B also got a Jennrich run, and B's meta-review mentions neither. No reviewer found an error in a theorem or proof. The one real error, found by A's Reviewer_a6qx, is in an intuition paragraph (lines 194-198), and the proof of Theorem 1 is correct. All seven reviewers say they did not check the mathematics carefully. A's 7s are weak evidence: Reviewer_kx4J and Reviewer_MfJp declared the work outside their expertise (confidence 1 and 2, 2 hours each), and a6qx's move to 7 came with 'I agree with the evaluation of the other reviewers'. B's critiques have a basis in the paper. It cites applications of passive mixture models only, not of the active-query setting it studies (lines 34-36, 50-52), and its MLR bounds are at least cubic in k, while Reviewer_8hHY notes that [29] is linear in k for ℓ = 2. These are judgements of significance, not defects, and B's AC gave them more weight than B's own reviewers did.",
+ "candidate_reasons": [
+  "AC overrode accept-side final scores",
+  "AC deferred to unanimous scores",
+  "low-confidence out-of-area champions",
+  "one reviewer's incrementality view generalised",
+  "rebuttal experiments ignored in meta-review",
+  "theory paper without experiments penalised"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_a6qx review and 2021-08-16 reply",
+  "Reviewer_kx4J and Reviewer_MfJp reviews",
+  "Reviewer_WFKv review and replies of 2021-08-25 and 2021-08-29",
+  "Reviewer_LAr2 review and 2021-08-29 reply",
+  "Reviewer_8hHY review and post-rebuttal addendum",
+  "Authors' Algorithm 1 experiment (replies to Reviewer_MfJp and Reviewer_a6qx in A, Reviewer_LAr2 in B) and 'Additional Simulations' of 2021-08-31 (B only)",
+  "paper_submitted lines 34-36 and 50-52",
+  "paper_submitted lines 66, 185-200 and 273-274",
+  "paper_submitted lines 194-198, Definition 1 (lines 174-182) and proof of Theorem 1 (lines 308-327)",
+  "paper_submitted Corollary 1 (lines 258-260) and Theorem 4 (lines 269-272)",
+  "paper_submitted checklist lines 497-501"
+ ]
+}

@@ -1,0 +1,207 @@
+{
+ "pair_id": "n21-237",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    7,
+    6,
+    3
+   ],
+   "confidences": [
+    3,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_e4YX"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_W1WL",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "3 against 7 (Reviewer_gFL6) and 6 (Reviewer_e4YX). The objection is specific and checkable: a barycenter with n support points is an n-clustering of the pooled input points under extra coupling constraints, and MMR19 preserves the cost of every n-clustering, so it implies Theorem 4.1. W1WL wrote the reduction out in the comment of 2021-08-10. The authors conceded it on 2021-08-10 and 2021-08-12. The submission's Definition 2.2 and line 174 confirm the clustering form of the cost. W1WL credited the other results as 'interesting' and objected to the framing, not to correctness."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_W1WL",
+     "claim": "[MMR19] directly implies Theorem 4.1: the barycenter problem with support n is an n-clustering of the pooled multiset with coupling constraints, and MMR preserves the cost of every n-clustering, so it preserves every constrained one.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 2.2 defines cost_p(S) as the minimum over centres of (1/k) times the sum over j and x in S_j of w_j(x)||x - nu_j||^p, a weighted n-clustering cost; line 174 calls each term 'just a weighted k-means problem'. Theorem 4.1 (lines 241-243) holds 'for all solutions S', as MMR holds for all clusterings, and its dimension does not depend on the number or size of the input distributions. The authors (2021-08-10) said the proof of Theorem 4.1 already takes the multiset view and 'the discretization does not affect the assumptions required for the dimensionality reduction maps'; on 2021-08-12 they promised to add 'the elegant connection between [MMR] and one of our theorems'. The camera-ready deletes the paragraph (submission lines 261-278) listing four difficulties beyond MMR, which the rebuttal had cited as the novelty."
+    },
+    {
+     "reviewer": "Reviewer_W1WL",
+     "claim": "The assumption that each input distribution has support poly(n) seems unnecessary; only the barycenter support size n matters.",
+     "checked_against_paper": "correct",
+     "evidence": "Through the conceded reduction, the MMR dimension depends on the number of clusters, not on the number of points. The rebuttal recast the assumption as a modelling choice and named no proof step that needs it."
+    },
+    {
+     "reviewer": "Reviewer_gFL6",
+     "claim": "On MNIST the reduced-dimension run takes 73% of the full-dimension time, against 9% on FACES.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 354-355 give 73% and 9%. gFL6 asked twice for the MNIST per-step breakdown; the authors gave a sparsity guess, then FACES timings only (0.02 s projection, 0.43 s solver, 0.17 s reconstruction, against 7.81 s)."
+    },
+    {
+     "reviewer": "Reviewer_e4YX",
+     "claim": "The coreset comparison with uniform sampling gives only numbers, with no graphs and no variance.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3 (page 9) is a table of mean percentage errors over 10 repetitions with no spread. The camera-ready keeps the same table."
+    },
+    {
+     "reviewer": "Reviewer_e4YX",
+     "claim": "The coreset size is O(n^8), from the VC-dimension bound, and so is impractical for large n.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The main text states only poly(n, d)/epsilon^2 (Theorem 5.2, line 310); the exponent is in Supplementary Theorem C.9, which is not in the PDF. The authors agreed that the bound is not tight."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after the rebuttal: Reviewer_e4YX's edit is dated 2021-07-15, the day it was posted. Reviewer_W1WL (2021-08-12) found the extra results 'interesting' but wrote that 'the main result (Theorem 1.1) and most of the technical work is a direct corollary of [MMR]' and kept 3. Reviewer_gFL6 (2021-08-11) and Reviewer_e4YX (2021-08-12) posted follow-up requests and did not post again.",
+    "what_convinced_or_not": "The authors first called barycenters and clustering 'fundamentally different' and cited lines 261-278. W1WL's written reduction answered this, and the authors conceded and promised to add the connection. W1WL accepted the other results as merits but held that the write-up must change before publication. gFL6's MNIST breakdown was answered with FACES numbers. e4YX got timing numbers in text, not the requested graphs."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings 7, 6, 3 (mean 5.33). The meta-review opens 'As pointed out by the reviewer W1WL ... the main result follows relatively directly from [MMR]' and asks for 'a major rewrite'. It overrides the 7 and the 6, whose reviewers never addressed MMR. Its second point, that 'some reviewers' were not satisfied with the MNIST time breakdown, is right in substance, since the authors answered with FACES; but only Reviewer_gFL6 asked, and gFL6 did not comment on the answer.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "The main result, Theorem 4.1, follows from MMR19 through a constrained n-clustering reduction (Reviewer_W1WL); the authors conceded",
+    "The paper presents that corollary as its main and 'surprising' result, so the AC judged that it needs 'a major rewrite'",
+    "The rebuttal answered the MNIST time-breakdown question with FACES numbers (Reviewer_gFL6)",
+    "The positive ratings (7, 6) did not engage with the MMR point"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    7,
+    6
+   ],
+   "confidences": [
+    3,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_GF2E"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 7, 7, 6 (Reviewer_y9H3, Reviewer_GF2E, Reviewer_SYrR, Reviewer_1Zyc). No reviewer is more than one point from the others."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_y9H3",
+     "claim": "The coreset experiment uses Dirac measures with p = 2, so the barycenter is the Euclidean mean and the experiment does not test Wasserstein geometry.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 359-362: k = 50,000 distributions, each a single point mass in R, p = 2, barycenter support 1. The camera-ready keeps the experiment unchanged."
+    },
+    {
+     "reviewer": "Reviewer_y9H3",
+     "claim": "FACES uses k = 2, and the barycenter support is capped at 5 points (FACES) and 40 points (MNIST).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 336 (k = 2, left- and right-facing) and lines 342-345 (at most 5 and at most 40 support points)."
+    },
+    {
+     "reviewer": "Reviewer_1Zyc",
+     "claim": "The paper builds on MMR19, originally devised for k-means, to beat the naive JL bound.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 81-83 and 251 say so. 1Zyc did not ask whether Theorem 4.1 is a corollary of MMR19."
+    },
+    {
+     "reviewer": "Reviewer_1Zyc",
+     "claim": "Only two small image datasets (FACES has 698 images), MNIST runs at 73% of full-dimension time with no timing variance, and only one barycenter implementation is tested.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 335 (698 images), 348 (only the [Ye19] code) and 354-355 (73%, means only). Figure 2 shades one standard deviation for the cost ratio, not for time."
+    },
+    {
+     "reviewer": "Reviewer_GF2E",
+     "claim": "Bounds on the approximate barycenter hold only for Gaussian matrices; for general JL maps the results cover only the cost.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 4.1 covers any family of random JL maps and all solutions (lines 193-195, 241-243). Only the lower bounds (Theorems 4.2 and 4.3) use Gaussian matrices. GF2E withdrew the point on 2021-08-17: 'I was under the impression that Theorem 4.3 ... was proposing a result on the optimal barycenter itself'."
+    },
+    {
+     "reviewer": "Reviewer_SYrR",
+     "claim": "'Coreset' is misspelled 'corset' (e.g. lines 305, 314), and Figure 3 is a table.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 305 'epsilon-corset', line 314 'corsets'; Figure 3 is a table. Both survive in the camera-ready."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_GF2E"
+    ],
+    "evidence": "Reviewer_GF2E edited the review on 2021-08-17 and wrote 'I have decided to increase my score' (the earlier rating is not visible). Reviewer_y9H3 (2021-08-17): 'I will maintain my score'. Reviewer_SYrR (2021-08-18, 2021-08-24): 'I confirm my score'. Reviewer_1Zyc (2021-08-19) kept 6: 'above the acceptance threshold for its theoretical strengths'.",
+    "what_convinced_or_not": "GF2E's confusion about Theorem 4.3 was cleared, and the authors promised a comparison with Huang et al.; the camera-ready main text has none, and its experiments section is unchanged. y9H3 accepted the rationale for FACES and MNIST but stayed 'quite unconvinced' by the coreset experiment. 1Zyc was not convinced that two small datasets corroborate the theory but kept 6. The rebuttal never had to defend the novelty against MMR19."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 7, 7, 7, 6. The meta-review says 'all the reviewers are supportive of acceptance' and puts the 'a bit weak' simulations aside. It calls the results 'simple to understand yet non trivial' without testing them against MMR19. It suggests Muzellec and Cuturi (Subspace Detours) as related work; the camera-ready cites it as [MC19].",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at or above the threshold (7, 7, 7, 6), with no detractor",
+    "The dimensionality-reduction theorem was taken as the main strength ('quite strong', 'impressive'); no reviewer tested it against MMR19",
+    "Weak experiments judged acceptable for a theory paper (Reviewer_y9H3, Reviewer_SYrR, Reviewer_1Zyc, AC)",
+    "Reviewer_GF2E raised the rating after a misreading was cleared and comparisons were promised"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Theorem 4.1, the main result, is a direct corollary of MMR19 through a constrained n-clustering reduction (Reviewer_W1WL, Committee A AC)",
+  "The assumption that each input has poly(n) support looks unnecessary (Reviewer_W1WL)",
+  "Per-step time breakdown of Algorithm 1 on MNIST, and speed-up as a function of barycenter support size (Reviewer_gFL6, Committee A AC)",
+  "The coreset follows a standard sensitivity route once the weak triangle inequality holds; the O(n^8) size is impractical and the VC bound may not be tight (Reviewer_e4YX)",
+  "Coreset error against total runtime, compared with uniform sampling (Reviewer_e4YX)"
+ ],
+ "issues_only_b": [
+  "The coreset experiment uses single point masses with p = 2, so it never involves Wasserstein geometry (Reviewer_y9H3)",
+  "Restrictive settings: k = 2 on FACES and barycenter supports of 5 and 40; images treated as points in R^d (Reviewer_y9H3, Reviewer_SYrR)",
+  "Coreset construction missing from the main text, and coresets need an approximate barycenter first (Reviewer_y9H3)",
+  "Missing comparison with projection-robust Wasserstein barycenters (Reviewer_GF2E) and Subspace Detours (Committee B AC)",
+  "Only one barycenter solver tested and no timing variance (Reviewer_1Zyc)"
+ ],
+ "shared_issues": [
+  "Dependence on MMR19 (A: Reviewer_W1WL, as a corollary that removes the novelty; B: Reviewer_1Zyc, as a foundation the paper 'builds upon')",
+  "Small speed-up on MNIST, 73% of the full-dimension time (A: Reviewer_gFL6; B: Reviewer_1Zyc)",
+  "Thin coreset evidence: one synthetic dataset and a table without graphs or variance (A: Reviewer_e4YX; B: Reviewer_y9H3, Reviewer_SYrR, Reviewer_1Zyc)",
+  "Figure 3 should be a table (A: Reviewer_gFL6; B: Reviewer_SYrR)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Committee A rejected because Reviewer_W1WL showed that the main result is a corollary of MMR19; Committee B never tested this. Theorem 4.1 says that a JL map to O(log n) dimensions preserves the cost of every barycenter solution with n support points. W1WL wrote the barycenter problem as an n-clustering of the pooled input points with extra coupling constraints; MMR19 preserves the cost of every n-clustering, so it also preserves every constrained one. The submission's Definition 2.2 and line 174 give the cost exactly this clustering form. The authors first called the problems 'fundamentally different', then conceded and promised to add 'the elegant connection between [MMR] and one of our theorems'. The camera-ready deletes the paragraph (submission lines 261-278) that claimed four new difficulties beyond MMR. A's AC made this decisive against the 7 and 6 of two reviewers who never addressed MMR, and added that the authors answered the MNIST timing question with FACES numbers. B's four reviewers took the dimensionality reduction as the paper's main strength ('quite strong', 'impressive'); only Reviewer_1Zyc mentioned MMR19, as a foundation. B's criticisms were thin experiments and presentation, which both committees saw and neither treated as fatal. The decisive fact reached only A, so this is not the same facts weighted differently. The paper keeps real results beyond Theorem 4.1 (coresets, NP-hardness, lower bounds), and the program chairs accepted on B's recommendation.",
+ "candidate_reasons": [
+  "main theorem follows from prior work",
+  "novelty critique seen by one committee",
+  "AC sided with lone principled detractor",
+  "novelty credited without prior-work check",
+  "rebuttal dodged requested timing breakdown"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_W1WL review and comment 'connection between barycenter and clustering?', 2021-08-10",
+  "Authors' replies to Reviewer_W1WL, 2021-08-09, 2021-08-10 and 2021-08-12",
+  "Reviewer_W1WL 'Thanks for the reply', 2021-08-12",
+  "Committee A meta-review",
+  "Reviewer_gFL6 'Further Question', 2021-08-11, and the authors' FACES-only reply",
+  "Committee B meta-review",
+  "Reviewer_y9H3 review and post-rebuttal comment, 2021-08-17",
+  "Reviewer_1Zyc review",
+  "Reviewer_GF2E 'Response to authors', 2021-08-17",
+  "paper_submitted.pdf Definition 2.2, line 174, Theorem 4.1 (lines 241-243), lines 251-278",
+  "paper_submitted.pdf lines 335-362 (experiments, 73% and 9% runtimes, coreset setup) and Figure 3",
+  "paper.pdf (camera-ready) Section 4: four-difficulties paragraph removed; no Huang et al. comparison"
+ ]
+}

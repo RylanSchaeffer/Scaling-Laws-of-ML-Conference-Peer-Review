@@ -78,5 +78,45 @@
     "created_by_pair": "n21-186",
     "created_turn": 5,
     "exemplar": "B's area chair gave no reason for the oral beyond two quotes, chiefly Reviewer_rfa1's 'clear, rigorous, and well written'; rfa1's 9 stood against four 7s, and three other B reviewers called the paper dense, hard to parse or abstract."
+  },
+  {
+    "id": "R11",
+    "name": "Reviewers placed similar verdicts at different scores",
+    "definition": "The two committees' reviewers wrote similar verbal assessments of the paper but placed them at different points of the rating scale, and area chairs who set the tier by the mean turned that calibration gap into different recommendations.",
+    "created_by_pair": "n21-023",
+    "created_turn": 7,
+    "exemplar": "Three of A's reviewers gave 7 and three of B's gave 8 for similar assessments of a sound, clearly written extension of Marteau-Ferey et al., so the means were 7.25 and 7.75, and each area chair's short meta-review followed its mean to poster and spotlight without arguing the tier."
+  },
+  {
+    "id": "R12",
+    "name": "Unanimous scores read as grounds for higher tier",
+    "definition": "One committee's area chair took the reviewers' agreement, with no dissenting score, as grounds for a higher tier, although no reviewer rated above the accept level or argued for that tier, while the other committee's spread of scores held it lower at a similar or higher mean or maximum.",
+    "created_by_pair": "n21-028",
+    "created_turn": 8,
+    "exemplar": "A's four 7s, with no reviewer above 7 or arguing for a spotlight, became a spotlight on a meta-review citing only 'all the reviewers'; B's 6, 7, 8, 6 held the only 8 in either committee and got a poster."
+  },
+  {
+    "id": "R13",
+    "name": "Scores rose on unverified rebuttal evidence",
+    "definition": "One committee's reviewers raised their scores on rebuttal material that was not checked under the paper's own protocol, such as results copied from other papers or promised revisions, which lifted that committee's scores further than the evidence the other committee saw.",
+    "created_by_pair": "n21-028",
+    "created_turn": 8,
+    "exemplar": "A's Reviewer_z1y4 and Reviewer_h4G7 raised to 7 on Mahalanobis and DUQ comparisons that the authors copied from Meinke and Hein's Table 2 and the DUQ paper, not rerun, and against DUQ RGPR only ties on AUROC (92.6 vs 92.7)."
+  },
+  {
+    "id": "R14",
+    "name": "Meta-review dropped the reviewers' stated weaknesses",
+    "definition": "One committee's meta-review summarised the paper without the weaknesses its own reviewers had named, or stated the opposite of them, so the recommendation rested on a one-sided account of that committee's reviews while the other committee's meta-review carried its reviewers' reservations forward.",
+    "created_by_pair": "n21-034",
+    "created_turn": 9,
+    "exemplar": "B's meta-review restated the abstract, named no weakness, and said the authors 'illustrated how to further boost adversarial robustness', where B's Reviewer_aQh1 wrote 'The robustness improvement is limited' and Reviewer_HkhD 'moderate improvement'."
+  },
+  {
+    "id": "R15",
+    "name": "Score rested on a factual misreading of the paper",
+    "definition": "A reviewer or area chair on one committee stated a checkable claim about the paper's results that was wrong, overstating or understating them, and that error fed that committee's scores or recommendation.",
+    "created_by_pair": "n21-092",
+    "created_turn": 11,
+    "exemplar": "A's Reviewer_PMym rated 8 citing a gain from O(eps^-2.5) to O(eps^-2), but the paper's Table 1 already lists stocBiO and STABLE at O(eps^-2), and A's area chair called the analysis 'tight' though the paper proves no lower bound."
   }
 ]

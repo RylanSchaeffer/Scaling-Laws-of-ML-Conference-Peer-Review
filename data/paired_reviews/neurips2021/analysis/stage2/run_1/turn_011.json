@@ -1,0 +1,122 @@
+{
+  "run": 1,
+  "turn": 11,
+  "pair_id": "n21-092",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both area chairs followed their mean ratings: A's spotlight cites only reviewer 'consensus' on a 7.75 mean, and B's poster says 'All reviewers give positive evaluation ... So do I' on a 6.25 mean."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither meta-review nor any reviewer forecast impact beyond the paper's own setting."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The response moved B's Reviewer_b2gP up ('I have updated my score') after correcting its compositional misreading, while no A reviewer recorded a score change; here the asymmetry narrowed the gap."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's three 8s include two thin reviews: Reviewer_PMym (two-sentence review, 2 hours, math not checked) and Reviewer_vxWe (no weakness named, confidence 3), against B reviews of 12 and 20 hours."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B found the impossible min-max assumption, the 'complements, rather than improves' concession, the hidden log factor, the kappa^4 inner loop against STABLE and the eq. (48) error; B's area chair made the kappa comparison a requirement."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "The committees did not weigh one shared finding differently: A called the Lemma 2 novelty thin while B called the technique new, which is a different reading, not a different weight, and the shared experiments request was answered the same way for both."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No score moved after reviewer discussion; the only discussion posts were thanks or restated concerns."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each rating matches its own text: A's 8s come with wholly positive reviews, and B's 6s and 7 come with positive reviews that name real limits."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's unsure reviewers (confidence 3, math not checked) gave 8s, not borderline scores, and B's 6s rest on specific concerns, not on an inability to judge."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither committee had an outlying reviewer, and neither area chair adopted one reviewer's verdict."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The score gap tracks a difference in what the reviews found (B's conceded limits against A's unqualified praise), not similar verdicts placed at different scale points."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A's spotlight cites consensus, but A's reviewers rated 8, above the accept level, and B's spread had both a lower mean and a lower maximum."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "The only score rise, B's Reviewer_b2gP, rested on a correct clarification that h is a general function; no A score rose on the copied-in portfolio table."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's three-sentence meta-review omitted Reviewer_TdaR's novelty doubt ('merely' Lemma 2) and the missing conclusion and called the analysis 'tight', while B's meta-review carried Reviewer_wdT9's kappa request forward as a requirement."
+    }
+  ],
+  "added": [
+    {
+      "id": "R15",
+      "name": "Score rested on a factual misreading of the paper",
+      "definition": "A reviewer or area chair on one committee stated a checkable claim about the paper's results that was wrong, overstating or understating them, and that error fed that committee's scores or recommendation.",
+      "justification": "R04 covers thin or inattentive reviews, not a wrong statement about the paper's results; here a wrong claim in favour of the paper (PMym's overstated gain, the AC's 'tight') fed A's 8 and spotlight, and two wrong claims against it (b2gP's quadratic-only reading, wdT9's two-loop reading) fed B's early objections."
+    }
+  ],
+  "reasoning": "Stage 1 finds that both area chairs followed their mean ratings and that the gap comes from scrutiny, not a disputed fact. A's 8s rest on short reviews that took the headline claim at face value (R04), and A's meta-review dropped its own reviewer's novelty doubt and overstated the analysis as 'tight' (R14). Only B's longer reviews tested the special cases and found limits the authors conceded (R05). The response lifted B's Reviewer_b2gP while no A score moved (R03). No existing reason names a wrong factual claim about the paper feeding a score, which appears on both sides here, so I added R15. The novelty contrast is a different reading, not a different weight (R06 no), and the score gap tracks different findings, not calibration (R11 no). No area chair override, impact forecast, outlier, discussion-driven change, borderline default, unanimity argument or unverified rebuttal evidence appears.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "run": 1,
+  "turn": 9,
+  "pair_id": "n21-034",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "B's area chair gave a spotlight on their own reading ('a hot research topic', 'will interest many readers') although no B reviewer rated above 7 or asked for a highlight, so the tier sits above what B's 6/7/6 and arguments supported."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's spotlight rested on the area chair's forecast that the paper 'will interest many readers' in 'a hot research topic'; no reviewer on either committee made that forecast, and the paper's own gains are small."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The response moved all three A reviewers up one point (mean 5.0 to 6.0), while no B reviewer replied to it or changed a score, so B's ratings stayed at their pre-rebuttal 6/7/6."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's reviews were thin: Reviewer_HkhD gave the committee's top 7 after two hours with generic praise, Reviewer_aQh1 wrote two questions and a wrong limitation, and no B reviewer engaged after the rebuttal."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A's Reviewer_7cFv showed that clean accuracy rises as much as AutoAttack accuracy (Table 3 confirms) and that pre-training plus retraining at least doubles cost; A's area chair carried 'the experimental results could be stronger' into the poster."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the small robustness gain and the linearization gap; A's area chair named both as reservations behind the poster, while B's area chair named no weakness and wrote that the authors 'illustrated how to further boost adversarial robustness'."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "Every score change (all in A) cites the authors' response; no reviewer moved after reading other reviewers."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No rating contradicts its text: A's 7cFv gave 5 with specific objections, and B's HkhD gave 7 with generic praise and 'moderate improvement', which fits an accept."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Confidences match across committees (5/4/3 in both), and no reviewer said they could not judge the paper and defaulted to a borderline score."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Stage 1 finds no outlier in either committee; A's area chair echoed Reviewer_7cFv, but 7cFv's 5 sits one point from the mean, and its view matched Reviewer_cKPT's."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments differ in depth rather than in calibration, and B's area chair did not set the tier by the mean; a 6.33 mean with no rating above 7 does not explain a spotlight."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "B's meta-review cites topical interest, not reviewer agreement, as the ground for the spotlight, and B's mean (6.33) is higher than A's (6.0), not similar or lower."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's raises followed new TRADES and FAT results the authors ran over five seeds, not copied or promised material, and the raises did not lift A to the higher tier."
+    }
+  ],
+  "added": [
+    {
+      "id": "R14",
+      "name": "Meta-review dropped the reviewers' stated weaknesses",
+      "definition": "One committee's meta-review summarised the paper without the weaknesses its own reviewers had named, or stated the opposite of them, so the recommendation rested on a one-sided account of that committee's reviews while the other committee's meta-review carried its reviewers' reservations forward.",
+      "justification": "R01 names the area chair's own taste setting the tier, and R06 names different weights on shared evidence. Neither names the area chair misreporting the committee's own record: B's meta-review omitted every weakness B's reviewers listed and contradicted Reviewer_aQh1's 'The robustness improvement is limited'. An area chair can do this while following the mean, so the mechanism is separate from R01."
+    }
+  ],
+  "reasoning": "Stage 1 finds near-identical ratings (A 5/7/6, B 6/7/6) and puts the tier split on the area chairs. B's area chair gave a spotlight on topical interest and a forecast of wide readership, with no reviewer support for a highlight (R01, R02), and dropped every weakness B's reviewers had named (new R14). A's reviewers tested the results harder, found a confound that Table 3 confirms, and engaged after the rebuttal; A's area chair carried their unresolved reservations into a poster (R05, R06). B's reviews were thin and silent after the response, while A's all moved (R04, R03). No outlier, discussion-driven change, calibration gap, unanimity argument or unverified rebuttal evidence appears.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14"
+  ]
+}

@@ -1,0 +1,297 @@
+{
+ "pair_id": "n21-239",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    6,
+    8
+   ],
+   "confidences": [
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_5Yxy"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_h9LY",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only rating above 6: an 8 ('clear accept') at confidence 3, whose label says 'Math/other details were not carefully checked'. The positive case is that the paper is 'very well-written', that using algorithm stability is 'novel to me', and that the experiments verify the theory. h9LY did engage: 16 hours, three specific questions (fixed stepsize in Theorem 3.4, the Lyapunov function, the missing SPP curve) and a reply on 2021-08-27. But the review never weighs the A5 restriction that both co-reviewers raised, and the novelty judgement missed Wang, Wang and Srebro (2017), which B's Reviewer_Kosw found and the authors conceded. The 8 did not decide A's outcome, because the two 6s already clear the threshold."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Cw8j",
+     "claim": "In the stability definition, Eq. (7), both samples are ξ'.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (7) reads |E[h(x+_{B_i}, ξ'_i) − h(x+_B, ξ'_i)]| ≤ ε; both terms use ξ'_i. The authors thanked the reviewer for 'pointing out the typos'."
+    },
+    {
+     "reviewer": "Reviewer_Cw8j",
+     "claim": "A5 grants a descent-lemma-like bound, close to assuming a Lipschitz gradient for SGD, so the linear speedup under A5 is 'rather natural'.",
+     "checked_against_paper": "correct",
+     "evidence": "A5 (line 125) is a two-sided quadratic bound on the model error. For the SGD model it is exactly L-smoothness of the loss (Remark 2, lines 134-135). For SPL it needs a smooth inner map (lines 131-133). Remark 2 concedes that A5 fails for SGD with a non-smooth loss."
+    },
+    {
+     "reviewer": "Reviewer_Cw8j",
+     "claim": "The bound counts proximal steps, not total complexity, and the paper does not say how to carry out the minibatch update in general.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 7 (lines 189-191) says the result covers iteration complexity only and defers subproblem routines to the appendix."
+    },
+    {
+     "reviewer": "Reviewer_5Yxy",
+     "claim": "SPL needs a smooth inner map C, stated only near line 133; it should appear in the early sections and in the assumptions.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 2 (line 95) says only that C is 'continuously differentiable'. The Lipschitz-smooth requirement appears only inside Remark 2 (lines 131-133), and Table 1 lists the SPL/SPP problem class as 'f: nonsmooth'. The authors agreed to move it."
+    },
+    {
+     "reviewer": "Reviewer_5Yxy",
+     "claim": "Prox-SGD needs a smooth loss, a setting already studied in [8].",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 lists 'f = ℓ + ω; ℓ: smooth' for Prox. SGD, with the same rate, O(1/(mε⁴) + 1/ε²), in the 'Current Best [8]' and 'Ours' columns."
+    },
+    {
+     "reviewer": "Reviewer_5Yxy",
+     "claim": "SPP assumes an exact subproblem solution in each iteration.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 solves subproblem (6) exactly, and Remark 7 defers solvers to the appendix. The authors answered with a prox-linear inner solver that converges linearly."
+    },
+    {
+     "reviewer": "Reviewer_h9LY",
+     "claim": "Theorem 3.4 fixes γ = max(ρ+τ, λ+η) instead of allowing a range of stepsizes.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 173 sets γ_k = γ = max{ρ+τ, λ+η} with a single tuned η, while the experiments sweep α0. The authors promised to leave η free."
+    },
+    {
+     "reviewer": "Reviewer_h9LY",
+     "claim": "The paper promises a unified Lyapunov analysis, but no Lyapunov function is visible.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 55 claims 'a unified Lyapunov analysis'; Section 4 only defines a 'potential function' (18). The authors conceded the naming and corrected a typo in (18)."
+    },
+    {
+     "reviewer": "Reviewer_h9LY",
+     "claim": "Figure 1 compares only SPL and SGD; SPP is missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 1 and 2 plot SPL and SGD only. The authors said their interior-point solver failed for SPP subproblems when m exceeds 10."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_5Yxy"
+    ],
+    "evidence": "Reviewer_5Yxy edited the review on 2021-08-21 and wrote 'Overall, I raise my score to 6'. Reviewer_Cw8j replied on 2021-08-23: 'I will keep my score unchanged'. Reviewer_h9LY replied on 2021-08-27 and did not edit the 8.",
+    "what_convinced_or_not": "5Yxy accepted the answers on SPP subproblem cost (a few prox-linear steps with linear convergence) and on why the inner map must be smooth, but still found the work 'limited to special classes of problems' and the SGD rate no better than prior work. Cw8j shared that concern ('quite close to those that are smooth') and asked for rephrasing. The authors then promised to retitle the paper to 'weakly convex', drop A6 and A7, and compare with Asi et al. (2020) and Chadha, Cheng and Duchi (2021). h9LY accepted the stepsize and Lyapunov answers and was 'okay' with a theory-practice gap in Figure 2."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Accepted with ratings 6, 6, 8. The meta-review summarises the method, says 'The reviewers assessed the paper favorably', claims an own reading ('I have read the paper myself and agree'), and asks for proofreading. It does not mention the near-smooth restriction that Cw8j and 5Yxy kept after the rebuttal, or the promised retitle.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Every rating at or above the threshold after the rebuttal (6, 6, 8)",
+    "First linear minibatch speedup for model-based methods on weakly convex problems (Reviewer_5Yxy: 'rare in the area'; Reviewer_h9LY)",
+    "Rebuttal fixes accepted: retitle to 'weakly convex', drop A6 and A7, an SPP subproblem solver; Reviewer_5Yxy raised to 6",
+    "AC endorsed the favourable reviews and asked only for proofreading"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    3,
+    6,
+    4,
+    6
+   ],
+   "confidences": [
+    4,
+    5,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Kosw"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_cuoE",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "A 3 at confidence 4 after 1 hour, the first review posted (2021-06-30). It says 'I don't understand what makes those methods different from classical stochastic optimization method' and that Algorithm 1 'boils down to any proximal and regularized gradient step', which ignores that the claimed contribution is a convergence rate, not a new update rule. Its checklist complaint ('[Yes] See Section ??') quotes the NeurIPS template's instruction block, not the authors' answer. After the rebuttal it kept the 3 for unnamed 'important flaws' and did not answer when the authors asked which ones. The B AC does not cite it."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_cuoE",
+     "evidence": "1 hour. Misreads the checklist instruction block (submission lines 379-389) as the authors' answer. Treats the paper as proposing an ordinary proximal gradient step and does not engage with any theorem. Post-rebuttal reply cites 'important flaws' without naming one and never answers the authors' follow-up."
+    },
+    {
+     "reviewer": "Reviewer_37oF",
+     "evidence": "3 hours at confidence 5, whose label says 'checked the math/other details carefully'. The review is a few sentences. It says A5 'is never used in the literature', although Remark 2 derives A5 from the standard prox-linear setting, and says the result requires A6 and A7, which the paper labels '(Optional)' (lines 126-128, Remark 3). It never replied to the rebuttal or to the authors' 8/17 update."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_cuoE",
+     "claim": "The checklist answers the license question with '[Yes] See Section ??'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "That line is the template's example inside the instruction block (lines 379-389), which the authors failed to delete. Their actual answer, item 4(b), is '[No] The dataset used is published on an open site without license.'"
+    },
+    {
+     "reviewer": "Reviewer_cuoE",
+     "claim": "Figures 1 and 2 compare the method only with plain SGD.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 1 and 2 show SPL and SGD only. Figure 3 adds SPP and the three extrapolated methods. All baselines come from the same model-based family, by design."
+    },
+    {
+     "reviewer": "Reviewer_cuoE",
+     "claim": "Algorithm 1 does not say how the stepsize and batch sizes are set or what it outputs.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 lists no output. Theorem 3.4 sets γ and m and analyses a uniformly random iterate x^{k*}, which Algorithm 1 does not mention."
+    },
+    {
+     "reviewer": "Reviewer_Kosw",
+     "claim": "Theorem 3.2 is, up to minor differences, identical to Lemma 2 of Wang, Wang and Srebro (COLT 2017).",
+     "checked_against_paper": "correct",
+     "evidence": "The submission's 29 references do not include Wang et al. (2017). The authors replied that 'their key lemma is very similar to our Theorem 3.2'. The camera-ready adds it as [30]."
+    },
+    {
+     "reviewer": "Reviewer_Kosw",
+     "claim": "Theorems 4.2 and 4.3 show no significant improvement over the method without momentum.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4.2 gives O(1/√K) and Theorem 4.3 gives O(1/K + 1/√(mK)), the same orders as Theorem 3.4 and [8]. Table 1 lists O(1/ε⁴) for every extrapolated row without minibatching. The authors agreed."
+    },
+    {
+     "reviewer": "Reviewer_Kosw",
+     "claim": "The plots have no error bars.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist item 3(c) answers '[No]' and says the error bars 'are relatively thin'."
+    },
+    {
+     "reviewer": "Reviewer_37oF",
+     "claim": "Assumption A5 is never used in the literature.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Remark 2 (lines 129-135) shows that A5 holds trivially for SPP and, for SPL, follows from a Lipschitz convex outer function and a smooth inner map. That two-sided bound is the standard accuracy property of the prox-linear model in the composite literature the paper cites ([7], [11]). The authors pointed to page 4 of [7]; 37oF did not reply."
+    },
+    {
+     "reviewer": "Reviewer_37oF",
+     "claim": "The improved result requires the additional assumptions A5, A6 and A7.",
+     "checked_against_paper": "incorrect",
+     "evidence": "A6 and A7 are labelled '(Optional)' (lines 126-128). Remark 3 says removing them does not affect the main result, and the bound in Lemma 3.1 has a branch free of M and D. Only A5 is required."
+    },
+    {
+     "reviewer": "Reviewer_37oF",
+     "claim": "A5 does not cover the stochastic subgradient method on non-smooth problems.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 2, point 4 (lines 135-138), Remark 6 and the Discussion (lines 305-306) concede this."
+    },
+    {
+     "reviewer": "Reviewer_kmZz",
+     "claim": "The linear speedup holds only while the batch size m is not too large.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 4 gives T_ε = max{O(Δ/ε²), O(L²Δ/(mε⁴))}, so the gain stops once m exceeds about L²/ε². The authors' new table shows the SPL speedup flat at 300 from m = 240."
+    },
+    {
+     "reviewer": "Reviewer_kmZz",
+     "claim": "Line 149 lacks an equals sign in the definition of B'; line 205 lacks 'a'.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 149 reads 'We denote B'{ξ'_1, ξ'_2, ..., ξ'_n}'; line 205 reads 'Despite such relation'."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "Because most of the models linearize, A5 is essentially smoothness, which conflicts with the paper's non-smooth emphasis.",
+     "checked_against_paper": "incorrect",
+     "evidence": "True only for the SGD model, where A5 equals L-smoothness of the loss (Remark 2, lines 134-135). The SPL model linearizes only the smooth inner map, and A5 holds for the non-smooth f = h(C(x)) (lines 131-133). The paper's own test problem, robust phase retrieval with an ℓ1 loss (Eq. 21), is non-smooth and is solved by SPL. For SPP, A5 holds trivially."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "Theorem 3.4 is hard to parse; the batch size m is hidden in several new constants.",
+     "checked_against_paper": "correct",
+     "evidence": "η is defined piecewise through C1 and C2, which mix m, M and D (lines 172-174); the factor-m gain is stated only in Remark 4 (lines 179-180). In B's own forum the authors had already promised to drop A6 and A7, which reduces the bound to O(1/K + 1/√(mK))."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "Defazio (arXiv:2010.00406) on momentum SGD in the non-convex setting is a further reference for the authors.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The submission already cites this preprint as [9] (lines 41 and 73), under its earlier title."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Kosw"
+    ],
+    "evidence": "Reviewer_Kosw replied on 2021-08-26 ('I thus would upgrade my score to a positive 6') and edited the review on 2021-08-29 ('change my rating one grid up to 6'). Reviewer_cuoE replied on 2021-08-16: 'I am not changing the score given important flaws in the paper'. Reviewer_kmZz replied on 2021-08-24 ('looks good to me') and kept 6. Reviewer_37oF never replied or edited.",
+    "what_convinced_or_not": "Kosw moved for a new result posted only in B's forum: a bound showing that extrapolated SMOD keeps its iterates bounded in the convex case, linked anonymously. Kosw still called the minibatch part 'too incremental for NeurIPS given the prior work of Wang et al. (2017) and Davis & Drusvyatskiy (2019)'. cuoE named no flaw and did not answer when the authors asked which ones. The authors' 8/17 defence of A5 (Remark 2; page 4 of [7]) got no reply from 37oF."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Rejected with ratings 3, 6, 4, 6 (mean 4.75), so the outcome matches the mean. The reasons go beyond the reviews. The AC asserts that A5 'is essentially smoothness', which Remark 2 contradicts for SPL. It cites Kosw's novelty doubt, but Kosw ended at 6. It says the paper 'wasn't clear or accessible enough for most of the reviewers', yet Kosw praised the 'clear and clean writing style' and 37oF wrote 'the writing is clear to me'. It adds its own reading of Theorem 3.4 and concedes 'The technical contribution of the paper may be sound and novel'. It does not mention cuoE's 3 or kmZz's 6.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Two low ratings (Reviewer_cuoE 3, Reviewer_37oF 4) held the mean at 4.75; neither engaged after the rebuttal",
+    "A5 judged to make the setting 'essentially smooth', at odds with the non-smooth framing (AC, building on Reviewer_37oF)",
+    "Minibatch stability analysis judged incremental given Wang, Wang and Srebro (2017) and Davis and Drusvyatskiy (2019) (Reviewer_Kosw)",
+    "Theorem 3.4 hard to parse and positioning in the literature unclear (AC's own reading)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Cost of solving the minibatch subproblems, especially exact SPP steps; the bounds count proximal steps only (Reviewer_5Yxy, Reviewer_Cw8j)",
+  "Comparison with Zhang and Xiao (2020) on variance-reduced prox-linear methods (Reviewer_5Yxy) and with Asi et al. (2020) and Chadha, Cheng and Duchi (2021) (Reviewer_Cw8j)",
+  "Fixed stepsize in Theorem 3.4 against a tuned range in the experiments; SPP missing from Figure 1; Lyapunov function not visible (Reviewer_h9LY)",
+  "Typo in the stability definition, Eq. (7) (Reviewer_Cw8j)"
+ ],
+ "issues_only_b": [
+  "Theorem 3.2 nearly duplicates the uncited stability lemma of Wang, Wang and Srebro (2017) (Reviewer_Kosw); the authors conceded",
+  "Momentum gives no rate gain over the plain method (Reviewer_Kosw; Reviewer_kmZz on 'possibly improve')",
+  "Speedup stops once the batch size is large; effect of the target accuracy (Reviewer_kmZz)",
+  "No error bars (Reviewer_Kosw); only SGD as a baseline in Figures 1 and 2 (Reviewer_cuoE)",
+  "Theorem 3.4 hard to parse; further references on minibatch and momentum SGD, one already cited (AC)",
+  "Whether the method differs from a classical proximal gradient step at all (Reviewer_cuoE)"
+ ],
+ "shared_issues": [
+  "A5 confines the speedup to well-structured, near-smooth problems (A: Reviewer_Cw8j, Reviewer_5Yxy; B: Reviewer_37oF, AC)",
+  "No speedup for SGD on non-smooth losses (A: Reviewer_5Yxy; B: Reviewer_37oF)",
+  "Title and framing overstate generality (A: Reviewer_5Yxy, Reviewer_Cw8j, leading to a promised retitle; B: AC)",
+  "A6 and A7 add little and clutter the results (A: Reviewer_Cw8j; B: Reviewer_Kosw, Reviewer_37oF)",
+  "Under A5 the speedup is unsurprising (A: Reviewer_Cw8j, 'rather natural'; B: Reviewer_37oF, 'not surprising', and Reviewer_Kosw, 'more or less straightforward')",
+  "Missing related work, with different papers named in each committee",
+  "Clear writing praised (A: Reviewer_h9LY; B: Reviewer_Kosw, Reviewer_37oF)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same central fact differently, and the reviewer draw set the scores. Both saw that Assumption A5 confines the minibatch speedup to well-structured, near-smooth problems and excludes SGD on non-smooth losses. In A, Reviewer_Cw8j and Reviewer_5Yxy raised it, asked for narrower framing, and stayed at 6. In B, the two engaged reviewers also ended at 6 (Reviewer_Kosw, Reviewer_kmZz). B's mean sat at 4.75 because of two weak low reviews. Reviewer_cuoE gave a 3 after one hour, misread the checklist template as the authors' answer, and never named its 'important flaws'. Reviewer_37oF gave a 4 at confidence 5, claimed that A5 'is never used in the literature', which Remark 2 contradicts, and never replied. B's area chair then rejected on the claim that A5 'is essentially smoothness'. That holds for the SGD model only; the prox-linear model satisfies A5 on non-smooth objectives such as the paper's robust phase retrieval. The AC also called the paper unclear to 'most of the reviewers', though two B reviewers praised its clarity. One B-only fact has real weight: Reviewer_Kosw showed that Theorem 3.2 nearly duplicates an uncited lemma of Wang, Wang and Srebro (2017), and the authors conceded it. A never saw it, and Reviewer_h9LY's 8 rested partly on the stability idea being 'novel to me'. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "inattentive detractor drawn in B",
+  "detractor's wrong claim left unanswered",
+  "AC misstated assumption as smoothness",
+  "prior-work precedent found only in B",
+  "same restriction: reframe versus reject",
+  "AC clarity claim contradicts reviewers"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_cuoE review and 2021-08-16 reply",
+  "Reviewer_37oF review; authors' 8/17 update (no reply)",
+  "Reviewer_Kosw review, post-rebuttal update and 2021-08-26 reply",
+  "Authors' reply to Reviewer_Kosw ('their key lemma is very similar to our Theorem 3.2')",
+  "Committee B meta-review",
+  "Reviewer_Cw8j review and 2021-08-23 reply",
+  "Reviewer_5Yxy review and 2021-08-21 reply",
+  "Reviewer_h9LY review",
+  "Committee A meta-review",
+  "paper_submitted A5-A7, Remarks 2 and 3 (lines 125-141)",
+  "paper_submitted Theorem 3.4 and Remark 4 (lines 172-180)",
+  "paper_submitted Eq. 21 (robust phase retrieval, non-smooth)",
+  "paper_submitted checklist instruction block (lines 378-389)",
+  "paper_submitted reference list (no Wang, Wang and Srebro 2017; Defazio cited as [9])",
+  "camera-ready reference [30] (Wang, Wang and Srebro 2017)"
+ ]
+}

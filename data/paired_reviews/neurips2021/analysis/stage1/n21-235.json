@@ -1,0 +1,216 @@
+{
+  "pair_id": "n21-235",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 4, 8, 5],
+      "confidences": [3, 4, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_j4pt"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 4, 8, 5 split two against two around the 6.0 mean; no single rating stands apart. Both poles are principled. Reviewer_nQ7Q's 8 rests on a long review and two discussion comments. Reviewer_j4pt's 4 rests on checkable points that the paper confirms (three seeds, 'optimal' language), restated after the rebuttal. The weakest vote is Reviewer_VGKK's 7: one hour, confidence 3, and an admission that VGKK cannot judge 'how unique this contribution is'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_VGKK",
+          "evidence": "One hour at confidence 3. Asks for 'the code!' and for the computational requirements. The abstract (lines 21-22) links a website 'with code', Reviewer_nQ7Q found the source code in the supplementary, and lines 273-277 give the hardware and run time. VGKK writes 'I don't know the landscape ... so I can not properly judge how unique this contribution is' and never replied to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_j4pt",
+          "claim": "Each optimisation is run only 3 times per task, too few for a rigorous comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3 caption: 'averaged over 3 different random seeds'. The ranking 'overall, GA outperforms' (line 280) rests on these runs. The authors blamed 'the huge computation cost of co-optimization'; the camera-ready uses 6 seeds."
+        },
+        {
+          "reviewer": "Reviewer_j4pt",
+          "claim": "The paper talks of 'optimal' control and designs, but nothing shows optimality.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 63, 125 and 220 say the inner loop computes 'the optimal control(ler)'; line 322 calls the evolved designs 'the optimal robots'. PPO gives no such guarantee. The authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_j4pt",
+          "claim": "Algorithm 1 restarts controller optimisation from scratch for every design.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 passes the dataset S only to OptimizeDesign; OptimizeControl takes only (T, Dj)."
+        },
+        {
+          "reviewer": "Reviewer_j4pt",
+          "claim": "There is no noise on sensing or actuation, and each manipulation task uses one object of fixed shape and size.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.3 defines exact observations and actuation targets with no noise. Section 3.5 names one fixed object per task ('a small, soft rectangular object', 'a soft rectangular box'). Only Catcher randomises the drop."
+        },
+        {
+          "reviewer": "Reviewer_523c",
+          "claim": "The environment cannot model rotational joints or motors, and there is no evidence for rigid-only robots.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 148 lists the voxel types: Empty, Rigid, Soft, Horizontal Actuator, Vertical Actuator. Design optimisation requires actuator voxels (line 226). The authors answered that stiff and mixed voxels approximate both."
+        },
+        {
+          "reviewer": "Reviewer_523c",
+          "claim": "Robots are limited to about 100 voxels, with no analysis of how the engine scales with voxel count.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text gives no robot size, simulator timing or scaling result. The rebuttal says robots have under 100 voxels and adds a one-core table: 239 steps/s at 25 voxels, 31 steps/s at 900."
+        },
+        {
+          "reviewer": "Reviewer_nQ7Q",
+          "claim": "Control optimisation is limited to a single algorithm, PPO.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2, lines 264-265; all three baselines pair a design optimiser with PPO (lines 270-273)."
+        },
+        {
+          "reviewer": "Reviewer_nQ7Q",
+          "claim": "The limitations discussion is very short and societal impact is not mentioned.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 (lines 331-345) lists future directions only; checklist 1(c) answers societal impact '[N/A]'. The camera-ready adds a Societal Impact paragraph."
+        },
+        {
+          "reviewer": "Reviewer_VGKK",
+          "claim": "The code and the computational requirements are not available to judge usability and cost.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The abstract (lines 21-22) links a website 'with code, environments, and videos', and Reviewer_nQ7Q found the source code in the supplementary. Lines 273-277 give the hardware (80-processor Xeon, no GPU) and several to twenty hours per algorithm per task."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_j4pt"],
+        "evidence": "Reviewer_j4pt's review was edited 2021-08-21 with 'UPDATED (following rebuttal)' and 'I have changed the overall rating from 5 to 4'. Reviewer_nQ7Q (2021-09-01) warned 'I might lower a bit my score' without concrete extensibility plans, then (2021-09-02) accepted the authors' promises; the 8 was never edited. Reviewer_VGKK and Reviewer_523c never replied and never edited.",
+        "what_convinced_or_not": "The promise of 6 seeds did not satisfy j4pt: 'This would seem to set low standards, especially for a benchmark paper'; the difficulty ranking is 'somewhat subjective'. The authors' 2021-08-26 follow-up got no answer. nQ7Q found the first replies' general statements unconvincing and was won over by promised API documentation, task tutorials and a joint design-control GA example. 523c never answered the scaling table."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts a two-two split (mean 6.0) 'despite the borderline score of 6'. Frames the dispute as realism against deliberate simplicity, quotes Reviewer_nQ7Q twice, then adds its own case: the OpenAI Gym analogy, a bridge between RL and evolutionary computation, and access for people without large compute. It omits Reviewer_j4pt's stated reasons for lowering to 4 (three seeds; bounded, subjective task difficulty). The access argument sits poorly with the paper's runs of several to twenty hours on 80-processor machines (lines 273-277) and the authors' 'huge computation cost' reply to j4pt.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own view: a simple, fast co-design benchmark will serve the NeurIPS RL community, as OpenAI Gym did, though not real robot design",
+        "Hard tasks stay unsolved, so the simplified benchmark has headroom (Reviewer_nQ7Q, quoted by the AC)",
+        "First co-design benchmark, well written (all four reviewers)",
+        "Authors promised tutorials and API documentation for extensibility (Reviewer_nQ7Q's request)"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 8, 6],
+      "confidences": [4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_rqAv"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_t5kh",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The 8 at confidence 5 sits 2.5 points above the mean of the other two B ratings (5, 6). It rests on two hours, a short review of three questions, and 'I do not have any serious objections'; t5kh never replied to the rebuttal. Its one specific point (lines 30-31 understate prior work) is correct. The B AC did not mention this review. Without it, B's mean is 5.5."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_1ku4",
+          "claim": "Claims of 'user-friendly Python interfaces', an 'expressive' design space and 'flexibility of the controller parametrisation' are not supported, and documentation is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "The phrases are at lines 118-120. The paper shows no API, code example, documentation, timing or comparison with other tools, and every experiment uses PPO with the Section 3.3 observations."
+        },
+        {
+          "reviewer": "Reviewer_t5kh",
+          "claim": "Lines 30-31 understate prior work; Hejna et al. 2021 co-adapts morphology for arbitrary tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 29-31 say prior co-optimisation covers 'only a few simple tasks (e.g., running, jumping)'. Hejna et al. is not in the submission's references. The authors conceded, and the camera-ready cites it."
+        },
+        {
+          "reviewer": "Reviewer_rqAv",
+          "claim": "The paper calls voxel robots a 'general and universal representation' of robot 'categories' without saying which.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 46-47 and 135-136 repeat the phrase and name no category. Reviewer_j4pt in A flagged the same phrase. The B AC's 'sufficiency of a voxel-based representation' concern rests on it."
+        },
+        {
+          "reviewer": "Reviewer_rqAv",
+          "claim": "The reality gap is not discussed, and real sensors may not supply the Section 3.3 observations.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 and checklist 1(b) name no 2D, physics, sensing or sim-to-real limitation. The robot state is every voxel corner's position relative to the centre of mass (lines 153-155). The camera-ready still has no sim-to-real discussion."
+        },
+        {
+          "reviewer": "Reviewer_rqAv",
+          "claim": "The paper does not say how its simulator differs from Medvet et al. 2020 (citation 21).",
+          "checked_against_paper": "correct",
+          "evidence": "[21] is 2D-VSR-Sim, a simulator for 2D voxel-based soft robots. The paper cites it as a light-weight simulator (line 51) and for fixed-shape co-optimisation (lines 92-94) but never compares the simulators. The authors replied that the two are 'similar to ours' with 'comparable speeds'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_rqAv"],
+        "evidence": "Reviewer_rqAv's review was edited 2021-08-30, the day of the comment 'I will increase my score from 5 to 6'. Reviewer_1ku4 (2021-08-23): 'I will maintain my current rating.' Reviewer_t5kh never replied.",
+        "what_convinced_or_not": "rqAv accepted that the tie-in to modular robotics 'justifies voxels enough', and that the simple, fast physics is chosen to 'match' what current algorithms can handle; rqAv asked the authors to put that argument in the paper. 1ku4 agreed the benchmark is 'a very valuable contribution' but kept 5 because the paper spends its space on experiments with 'limited new insight'; the authors' 2021-08-26 promise to rewrite got no answer. The B meta-review does not mention the rebuttal."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Rejects ratings 5, 8, 6 (mean 6.33), two above threshold and one raised after the rebuttal. Its three named concerns (voxel representation, simplistic physics, no sim-to-real discussion) are Reviewer_rqAv's pre-rebuttal points, which rqAv then judged answered well enough to move to 6. It never mentions the rebuttal, Reviewer_t5kh's 8, or Reviewer_1ku4's actual objection (experiments crowd out the framework). Its conclusion, limited benefit to soft roboticists, is the AC's own.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Doubts about the sufficiency of the voxel design space and the simplistic physics (Reviewer_rqAv's pre-rebuttal points)",
+        "No discussion of the sim-to-real gap, which the simple physics and design space make worse",
+        "Unclear target community: suits robot learning, limited benefit to soft roboticists (the AC's own conclusion)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Only three random seeds per task, a low standard for a benchmark (Reviewer_j4pt; the stated reason for lowering 5 to 4)",
+    "Noise-free sensing and actuation, fixed object shapes, no tasks of scalable complexity, subjective difficulty ranking (Reviewer_j4pt)",
+    "'Optimal' language; controller retrained from scratch for every design (Reviewer_j4pt)",
+    "Rotational motors, rigid-only robots, scaling to 1,000-10,000 voxels (Reviewer_523c)",
+    "One control algorithm (PPO), a fixed bi-level procedure, no societal-impact discussion (Reviewer_nQ7Q)",
+    "Contact or range sensors as part of the design space (Reviewer_VGKK)"
+  ],
+  "issues_only_b": [
+    "Experiments on well-known algorithms add little and crowd out evidence for the framework's claimed advantages (Reviewer_1ku4)",
+    "Simulator not distinguished from Medvet et al. 2020 (2D-VSR-Sim), which the authors called 'similar to ours' (Reviewer_rqAv)",
+    "Fabricability of voxel robots, the need for feedback control, gradient-based design optimisation (Reviewer_rqAv)"
+  ],
+  "shared_issues": [
+    "2D, simplified mass-spring physics limits realism and use for real robots (A: Reviewer_j4pt, Reviewer_523c, AC; B: Reviewer_rqAv, Reviewer_t5kh on 3D, AC)",
+    "Which community gains: both ACs say robot or RL learning, not real or soft robotics; A accepts on it, B rejects on it",
+    "'General and universal representation' claim unsupported (A: Reviewer_j4pt; B: Reviewer_rqAv)",
+    "Idealised observations that real sensors could not supply (A: Reviewer_j4pt, Reviewer_VGKK; B: Reviewer_rqAv)",
+    "Simulation speed never quantified in the paper (A: Reviewer_523c; B: Reviewer_t5kh, Reviewer_1ku4); the authors told B it is slower than MuJoCo",
+    "Extensibility and documentation of the library (A: Reviewer_nQ7Q, Reviewer_j4pt; B: Reviewer_1ku4)",
+    "Missing prior co-design work (A: Reviewer_nQ7Q's four papers; B: Reviewer_t5kh's Hejna et al. 2021)",
+    "Plain GA's surprising lead over BO and CPPN-NEAT (A: Reviewer_j4pt; B: Reviewer_rqAv)",
+    "Clear writing and a first co-design benchmark (most reviewers; both ACs)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two area chairs (ACs), not the reviewers, made the split, and they weighted the same facts in opposite directions. Both panels saw a clearly written first benchmark for soft-robot co-design, simplified on purpose (2D voxels, mass-spring physics), whose hard tasks no baseline solves. B's panel was the more positive: mean 6.33 against 6.0, and two of three ratings above threshold against two of four. The rebuttal raised a B score (Reviewer_rqAv, 5 to 6) and lowered an A score (Reviewer_j4pt, 5 to 4). Both ACs then wrote nearly the same judgment. A's AC: 'likely not going to be of any direct use for designing real world physical robots', but 'The RL community ... will have something to gain'. B's AC: usable 'for the (robot) learning community', but the benefit to soft roboticists 'appears limited'. A's AC accepted a two-two split on its own case: the OpenAI Gym analogy, a bridge to evolutionary computation, and access without large compute. The record strains the access point: runs take several to twenty hours on 80-processor machines (lines 273-277), and the authors blamed 'huge computation cost' for using three seeds. B's AC rejected on the voxel representation, the simplistic physics and the missing sim-to-real discussion. These are rqAv's pre-rebuttal points; rqAv then judged the voxel choice justified 'enough' and raised the score. The concerns have a textual basis: the paper twice calls voxels a 'general and universal representation' (lines 46-47, 135-136), and Section 6 names no limitation of the physics. Neither AC addressed the one confirmed, checkable flaw that moved a score: Figure 3 averages only three seeds, raised only in A.",
+  "candidate_reasons": [
+    "Same facts, opposite AC weighting",
+    "ACs differ on target community",
+    "AC's own case breaks tie",
+    "AC rejects above-threshold panel",
+    "AC cites concerns the rebuttal resolved",
+    "Rebuttal moved scores opposite ways",
+    "Thin champion review discounted"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_rqAv comment 2021-08-30 (score 5 to 6)",
+    "Reviewer_j4pt review, 'UPDATED (following rebuttal)' (score 5 to 4)",
+    "Reviewer_nQ7Q comments 2021-09-01 and 2021-09-02",
+    "Reviewer_1ku4 comment 2021-08-23",
+    "Authors' response to Reviewer_j4pt, point 7 ('huge computation cost'; 6 seeds)",
+    "Authors' response to Reviewer_rqAv, point 6 (Medvet et al. 'similar to ours')",
+    "Authors' response to Reviewer_t5kh, point 2 (slower than MuJoCo)",
+    "Authors' response to Reviewer_523c, point 2 (scaling table)",
+    "paper Figure 3 caption (3 seeds)",
+    "paper lines 273-277 (compute per run)",
+    "paper lines 46-47 and 135-136 ('general and universal representation')",
+    "paper Section 6 and checklist 1(b)-(c)",
+    "paper abstract lines 21-22 (code URL)",
+    "paper line 148 (voxel types)",
+    "paper lines 29-31 (prior work)"
+  ]
+}

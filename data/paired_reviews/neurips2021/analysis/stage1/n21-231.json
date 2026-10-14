@@ -1,0 +1,228 @@
+{
+  "pair_id": "n21-231",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 8, 6, 5, 6],
+      "confidences": [2, 2, 3, 3, 5],
+      "reviews_edited_after_posting": ["Reviewer_RRS5", "Reviewer_8N9C"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_AauR",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "An 8 ('Top 50% of accepted NeurIPS papers, clear accept') against 5, 6, 5, 6, at confidence 2 ('Math/other details were not carefully checked') after 4 hours. The review calls it 'a very well-written paper with valuable theoretical and empirical contributions', while the most confident reviewer (Reviewer_8N9C, confidence 5) found the writing 'not very logical' and the main theorem 'a bit weak'. AauR calls the core hypothesis 'a very intuitive statement' and does not test the theory. The random-initialisation sanity check (C1) is a useful request. AauR never posted in the discussion."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_mMWd",
+          "evidence": "The summary and pros say the authors 'propose a practical framework to compute the alignment' and 'quantitatively measure ... the alignment of the network'. The submission says the opposite: 'we use alignment more as a qualitative rather than quantitative measure in this paper' (lines 126-127). The 6 rests partly on this misreading. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_RRS5",
+          "claim": "Theorem 2 states its premise ('a network N well-aligned with f') through predictive power, not alignment (lines 155-156).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 155-156: 'a neural network N well-aligned with f such that P_j(f, N, C) is small when training N on clean data'. The authors answered that Theorem 1 links the two, but the main-text Theorem 1 (lines 129-132) bounds the trained network's error, not P_j; the link is in the appendix."
+        },
+        {
+          "reviewer": "Reviewer_RRS5",
+          "claim": "Theorem 2 lacks the condition on the clean-set size |C| that its appendix proof uses.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 (lines 154-159) states no condition on C. The appendix proof is in neither PDF, but the authors conceded: 'we will add this assumption to Theorem 2'."
+        },
+        {
+          "reviewer": "Reviewer_RRS5",
+          "claim": "Alignment is never computed; architectures are only described qualitatively as more or less aligned.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 126-127 say alignment is used 'more as a qualitative rather than quantitative measure'. Lines 224-227 and 262-265 assert alignment. The one measurement is Figure 6 (sample complexity of MLP and CNN on CIFAR-Easy), which the authors cited in reply."
+        },
+        {
+          "reviewer": "Reviewer_NWJ7",
+          "claim": "Figure 7 adds nothing beyond CNNs and ResNets learning CIFAR better than MLPs, independent of noise level.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, vanilla training at 20% uniform noise on CIFAR-10: MLP 51.8, CNN 80.9, ResNet 84.4. The ranking in Figure 7 follows clean-task ability at every noise level. CIFAR-Easy (Figures 6 and 8) reverses alignment and clean-task ability together, so no experiment separates the two."
+        },
+        {
+          "reviewer": "Reviewer_NWJ7",
+          "claim": "The vision section has no explicit discussion or experiment on alignment with the noise function.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 255-257 and 269-271 make the CIFAR-Easy instance-dependent noise the CIFAR-10 class label and state that CNNs align with it; Figure 8 tests it, and lines 310-311 use it to explain DivideMix. The noise alignment is asserted, not measured, so the 'overconfident' charge has a basis."
+        },
+        {
+          "reviewer": "Reviewer_8N9C",
+          "claim": "In Table 2, DivideMix with a 4-layer MLP works at 80% uniform noise but fails at 50%.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2, 4-layer FC, DivideMix: 10.00 at 50% uniform noise, 99.99 at 80%, 16.22 at 90%. The authors attributed this to DivideMix's unstable data split and said the result varies with the random seed."
+        },
+        {
+          "reviewer": "Reviewer_8N9C",
+          "claim": "Assumption (a) of Theorem 4, a function h shared by target and noise, is not justified.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Theorem 4 is in the appendix, which neither PDF contains. The informal Theorem 2 (lines 156-158) makes the same assumption with f_r linear, and lines 151-153 justify it only by the example of class-dependent noise."
+        },
+        {
+          "reviewer": "Reviewer_mMWd",
+          "claim": "The paper does not say whether the models reach 100% training accuracy.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text of the submission reports no training accuracy. The authors answered that the classification models fit the noisy labels almost perfectly."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": ["Reviewer_8N9C"],
+        "evidence": "Author replies on 2021-08-14. Reviewer_RRS5's only edit was on the posting day (2021-07-08), before the rebuttal. Reviewer_AauR, Reviewer_mMWd and Reviewer_NWJ7 never edited. Reviewer_8N9C edited on 2021-09-24, four days before the decision, and posted nothing in the discussion; the record does not show what changed. Reviewer_NWJ7 replied on 2021-08-19 that the answers were not 'convincing enough'.",
+        "what_convinced_or_not": "NWJ7 was not convinced on novelty (citing Zhang et al. 2017 and work on noisy labels versus noisy features), on the synthetic GNN experiments, or on the noise-alignment answer, and objected that the authors quoted only half the question. The authors replied combatively and pointed NWJ7 to the reviewer guidelines. RRS5 had offered to raise the 5 if the concerns were resolved; the authors gave a proof sketch for Theorem 3 and conceded the |C| assumption, but RRS5 never replied or edited. The other reviewers were silent."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 6.0, three of five ratings at 6 or above, and the AC accepted. The meta-review says 'All the reviewers agree that the paper is interesting' and adopts one reviewer's view that the work 'can be potentially very useful in several areas'. That is Reviewer_RRS5, a 5 at confidence 2, whose review made usefulness conditional: 'if the paper can provide more clear theoretical and empirical justifications'. The AC sets the doubts aside as 'Reviewers RRS5 and NWJ7 concern that the theoretical analysis is limited, the paper has certain merits in empirical contributions', although NWJ7's objections were mostly to the empirical design and the intuitive conclusion. The AC does not mention Reviewer_8N9C's objections to the theorem's assumptions. It asks that 'overconfident' writing be revised (NWJ7's point 4).",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All five reviewers found the question new and interesting: how architecture affects robustness to noisy labels",
+        "Three of five ratings at 6 or above (mean 6.0), lifted by Reviewer_AauR's confidence-2 8",
+        "The AC judged the GNN and vision experiments enough to offset the limited theory",
+        "The AC adopted Reviewer_RRS5's 'potentially very useful' remark (architecture search, noisy-label training, representation learning) without its condition"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [3, 7, 6],
+      "confidences": [4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_G3rQ", "Reviewer_oX51"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Qmfd",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "A 3 at confidence 4 against 7 and 6. The reasons are specific and cite lines: alignment 'cannot be computed in practice (as admitted by the author on line 126)', and which architecture is better aligned is asserted 'based on intuition (line 224-227 and line 262-265)'. Both hold on the submission. The review overstates one point: Figure 6 does measure sample complexity on CIFAR-Easy. Qmfd never replied to the rebuttal, which pointed to Figure 6, or to the authors' reminder of 2021-08-25. The AC's reasons follow this review."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Qmfd",
+          "claim": "The authors admit at line 126 that the alignment measure cannot be computed in practice.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 126-127: 'as it is often non-trivial to compute the exact alignment for functions without clear algorithmic structures [44], we use alignment more as a qualitative rather than quantitative measure in this paper.'"
+        },
+        {
+          "reviewer": "Reviewer_Qmfd",
+          "claim": "Which architecture is better aligned is asserted from intuition at lines 224-227 and 262-265.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 262-265 rest CNN alignment on CIFAR-10/100 on CNNs being 'similar to human perception system'. Lines 224-227 assert GNN alignment by a structural argument and citations [44, 46], with no measurement."
+        },
+        {
+          "reviewer": "Reviewer_Qmfd",
+          "claim": "The alignment measure is not used at all in the experiments.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 6 plots test accuracy against training-set size for MLP and CNN on CIFAR-Easy: the MLP reaches about 100% with under 2,000 samples, the CNN needs about 5,000. This is alignment with n = 1 (Remark, lines 124-125), and lines 266-269 use it to rank the two. It is the paper's only such measurement."
+        },
+        {
+          "reviewer": "Reviewer_G3rQ",
+          "claim": "Hypothesis 1 has no condition on the noise function, although Section 4.2 relies on alignment with the noise.",
+          "checked_against_paper": "correct",
+          "evidence": "Hypothesis 1 (lines 145-150) conditions only on alignment with f. Lines 310-311 explain DivideMix's failure on CNNs by their alignment with the noise. The authors conceded and promised to add the assumption."
+        },
+        {
+          "reviewer": "Reviewer_G3rQ",
+          "claim": "Without a decomposition, alignment is just sample complexity and Theorem 1 is a tautology.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark, lines 124-125: with n = 1 'the definition of alignment degenerates into the sample complexity measure'. The only measured alignment, Figure 6, is of this kind."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The representation beats the model because the linear probe is trained on clean labels while the model is trained on noisy labels.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 1 fits the probe on a clean set, and the main-text vision results use 10% clean labels (line 238); the rebuttal's '10 labels per class' refers to an appendix table. Table 1 shows the effect plainly: under 80% flipped noise on CIFAR-100, DivideMix scores 0.2 (ResNet) and 0.3 (CNN), its probe 76.1 and 68.8. That noise shifts labels to the next class (line 252), so the network learns a relabelled task and a clean probe undoes the shift. The probe budget is equal across architectures, so this does not explain the architecture gaps in Figure 4."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The paper shows only that better alignment gives better predictive power, yet uses predictive power to evaluate alignment.",
+          "checked_against_paper": "correct",
+          "evidence": "Hypothesis 1 (eq. 4) and Theorem 2 run one way. Lines 285-287 then propose to 'evaluate the predictive power in their representations to test alignment', which needs the converse."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "It was already known that DNNs learn useful representations under noisy labels.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper says so itself, citing [41, 42]: 'models with large test errors may still learn useful predictive hidden representations' (lines 29-30)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Author replies on 2021-08-11. Reviewer_oX51 edited on 2021-08-18 to add 'I have read the authors' responses as well as the other reviews. I will stick with my score.' Reviewer_G3rQ's only edit (2021-07-12) predates the rebuttal. Reviewer_Qmfd never edited or replied.",
+        "what_convinced_or_not": "oX51 wrote 'Most of my questions are clarified' (random-initialisation results, logistic probe, appendix baselines) but kept 6. G3rQ accepted the clarifications but still held that 'there does not appear to be strong experimental evidence' for the decomposition behind alignment, and that sample complexity should be emphasised instead. Qmfd did not answer the claim that Figure 6 gives a quantitative alignment comparison."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Two of three reviewers recommended acceptance (Reviewer_G3rQ 7, Reviewer_oX51 6; mean 5.33). The AC rejected 'Based on my reading of the paper', for two reasons. (1) There is a gap between 'alignment' and its proxy, 'representation predictive power', so alignment 'is a qualitative measure and lacks rigor'. (2) It is 'not a surprising result': the probe's advantage comes from clean labels, and 'it's already known that DNNs tend to learn useful representations even in the presence of noisy labels'. Reason 1 restates Reviewer_Qmfd and matches G3rQ's post-rebuttal remark; the clean-label argument is the AC's own.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own reading: alignment is qualitative and never measured; the experiments measure only predictive power, which the paper also uses to infer alignment (lines 126-127, 285-287)",
+        "The result is unsurprising: an architecture better suited to the task gives better representations regardless of noise, and the probe's gain over the model comes from its clean labels",
+        "Useful representations under noisy labels were already known",
+        "Reviewer_Qmfd's 3 made the same case; the positive reviews were moderate (7, 6) and conceded the same limits (Reviewer_oX51's cons, Reviewer_G3rQ's 2021-08-18 comment)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theorem 2 omits the clean-set size condition its proof needs, and states its premise as clean-data predictive power rather than alignment (Reviewer_RRS5)",
+    "Assumption (a) of the main theorem, a function h shared by target and noise, is unjustified, and the theorem is 'a bit weak' (Reviewer_8N9C)",
+    "DivideMix entries in Table 2 are erratic: 10.00% at 50% uniform noise, 99.99% at 80% (Reviewer_8N9C)",
+    "The writing is unclear and 'not very logical'; prior work and contribution are hard to separate; the PCA figure is unclear (Reviewer_8N9C, Reviewer_RRS5)",
+    "The MLP-versus-CNN vision study is 'low-hanging fruit', Table 3 compares models with very different vanilla accuracy, and noise alignment in the vision section is overclaimed (Reviewer_NWJ7)",
+    "Novelty contested against Zhang et al. (2017) and work on noisy labels versus noisy features (Reviewer_NWJ7, discussion)",
+    "Missing links to spectral bias (Reviewer_mMWd) and to vision transformers (Reviewer_AauR)"
+  ],
+  "issues_only_b": [
+    "The linear probe is fit on clean labels, so its gain over the trained model reflects those labels (Committee B AC); clean labels are hard to obtain in practice (Reviewer_oX51)",
+    "The paper uses predictive power to infer alignment but argues only that alignment implies predictive power (Committee B AC)",
+    "The decomposition in the alignment definition has no experimental support; plain sample complexity would do (Reviewer_G3rQ)",
+    "No mechanism for why noisy training leaves the representations useful (Reviewer_G3rQ)",
+    "Tables 1 and 2 lack baselines beyond DivideMix; a logistic rather than linear probe for classification (Reviewer_oX51)"
+  ],
+  "shared_issues": [
+    "Alignment is qualitative, never computed, and asserted per architecture (A: Reviewer_RRS5, Reviewer_8N9C; B: Reviewer_Qmfd, Reviewer_oX51, Reviewer_G3rQ, AC)",
+    "The main finding is intuitive or unsurprising (A: Reviewer_NWJ7, Reviewer_AauR; B: Reviewer_Qmfd, AC)",
+    "Gaps between architectures may reflect overall model quality, not robustness to noise (A: Reviewer_NWJ7; B: AC)",
+    "The theory covers only a simplified noise setting under strong assumptions (A: Reviewer_8N9C, Reviewer_RRS5, AC; B: Reviewer_Qmfd)",
+    "Predictive power and alignment come from Alain and Bengio [43] and Xu et al. [44] (A: Reviewer_RRS5; B: Reviewer_Qmfd, Reviewer_oX51)",
+    "The role of the noise function's alignment is under-specified (A: Reviewer_NWJ7; B: Reviewer_G3rQ)",
+    "Randomly initialised baselines and training accuracy should be reported (A: Reviewer_AauR, Reviewer_mMWd; B: Reviewer_oX51)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two area chairs weighted the same facts differently. Reviewers leaned positive in both committees: A rated 5, 8, 6, 5, 6 (mean 6.0) and B rated 3, 7, 6 (mean 5.33). Both committees flagged the same core weaknesses: 'alignment' is never measured, the finding is intuitive, and the theory covers only a simplified noise case. The submission concedes the first: it uses alignment 'more as a qualitative rather than quantitative measure' (lines 126-127), and it grounds CNN alignment on CIFAR in CNNs being 'similar to human perception system' (lines 262-265). A's AC accepted because 'All the reviewers agree that the paper is interesting'. It borrowed Reviewer_RRS5's 'potentially very useful' without RRS5's condition, recast Reviewer_NWJ7's mostly empirical objections as theoretical, and did not address Reviewer_8N9C (confidence 5). A's top score is Reviewer_AauR's 8 at confidence 2, with no discussion. B's AC overrode two positive reviewers 'Based on my reading of the paper' and took the side of the lone 3, Reviewer_Qmfd. Qmfd never answered the rebuttal and overlooked Figure 6, but the review's other checkable claims hold. B's AC added a point that no A reviewer made: the probe is fit on clean labels, so its gain over the trained model reflects those labels. Table 1 supports this: under 80% flipped noise on CIFAR-100, DivideMix scores 0.2% and its probe 76.1% (ResNet), because that noise shifts each label to the next class and a clean linear probe undoes the shift. A raised more specific flaws than B and still accepted. No fatal error separates the committees; AC discretion on a borderline paper does.",
+  "candidate_reasons": [
+    "AC overrode majority on own reading",
+    "same weaknesses, different AC weighting",
+    "lone detractor's critique adopted by AC",
+    "clean-label probe gains judged trivial",
+    "novel question outweighed thin theory",
+    "AC cited conditional praise unconditionally"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_RRS5 review (main review and Significance paragraph)",
+    "Reviewer_AauR review (8, confidence 2)",
+    "Reviewer_mMWd review (summary and pros)",
+    "Reviewer_NWJ7 review and 2021-08-19 comment",
+    "Reviewer_8N9C review (edited 2021-09-24)",
+    "Reviewer_Qmfd review",
+    "Reviewer_G3rQ 2021-08-18 comment",
+    "Reviewer_oX51 final review ('I will stick with my score')",
+    "paper_submitted lines 123-127 (alignment used qualitatively)",
+    "paper_submitted lines 262-265 and 285-287",
+    "paper_submitted Theorem 2 (lines 154-159)",
+    "paper_submitted Figure 6",
+    "paper_submitted Table 1 (80% flipped noise, CIFAR-100)",
+    "paper_submitted Table 2 (4-layer FC, DivideMix row)"
+  ]
+}

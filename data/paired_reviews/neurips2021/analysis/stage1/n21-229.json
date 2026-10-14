@@ -1,0 +1,252 @@
+{
+ "pair_id": "n21-229",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    5
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_8Tiy",
+    "Reviewer_iosT"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5 to 7 around a mean of 6.0. Reviewer_w9mr's 7 is one point above two 6s and rests on a clear but unverified review ('The derivations seem correct, but I did not check them thoroughly'). Reviewer_iosT's 5 is one point below."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_xMat",
+     "claim": "Eq. 2 (the trajectory-level MaxEnt distribution) holds only for deterministic dynamics.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 2 defines Γ as stochastic transition probabilities (line 68), and Section 6.1 uses non-deterministic transitions (lines 284-285). Theorem 1 rests on Eq. 2 with no restriction on dynamics. The authors' reply to xMat does not address the point."
+    },
+    {
+     "reviewer": "Reviewer_xMat",
+     "claim": "Section 6.2 omits the logarithmic (MaxEnt) loss, and the random and 0-1 losses are weak comparisons.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1 compares only 0-1, action, random and Euclidean losses."
+    },
+    {
+     "reviewer": "Reviewer_w9mr",
+     "claim": "Solving Eq. 4 still needs an inner reinforcement-learning step; it goes away only when w is eliminated in Section 5.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 4 is a max-min over valid marginals Ω for each w_t, which is a planning problem. The authors agree the projection step is 'loosely' the inner RL step, though cheaper. The abstract says the method 'does not require repeatedly solving an inner reinforcement learning problem'."
+    },
+    {
+     "reviewer": "Reviewer_8Tiy",
+     "claim": "In Eq. 5, p_0(s) should be p_0(s').",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 5 reads sum_a ρ(s',a) = p_0(s) + sum_{s,a} γP(s'|s,a)ρ(s,a) for all s ∈ S."
+    },
+    {
+     "reviewer": "Reviewer_8Tiy",
+     "claim": "The number of deterministic policies is exponential in the state space, not the action space (line 173).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 172 gives |Υ| ∈ O(|A|^{|S|T}) and calls it 'exponential in size of action space'. The exponent is |S|T."
+    },
+    {
+     "reviewer": "Reviewer_iosT",
+     "claim": "The experiments do not show how Double Oracle performs.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 2 reports Double Oracle cost next to DRIL's at six grid sizes (for example Double Oracle -58.9, DRIL -58.7 at size 5500). Only the highway experiment omits it."
+    },
+    {
+     "reviewer": "Reviewer_iosT",
+     "claim": "MaxEnt is never compared in experiments, and the most recent baseline is more than 10 years old.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 6.3 compares MMP (2006), Abbeel and Ng (2004) and LEARCH (2009); no experiment includes MaxEnt IRL. Double Oracle (2016) appears only in the runtime table."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_iosT"
+    ],
+    "evidence": "Reviewer_iosT edited on 2021-08-26: 'After reading the response from the authors, I increase my score from 4 to 5.' Reviewer_8Tiy edited on 2021-08-11: 'I will keep my original score.' Reviewer_w9mr wrote on 2021-09-01: 'I stick to my initial assessment.' Reviewer_xMat posted nothing after the rebuttal. The mean went from 5.75 to 6.0.",
+    "what_convinced_or_not": "Point-by-point answers on notation (Lemma 1 symbols, w0 a scalar, additive loss defined, Γ known) and the statement that Double Oracle gives the same policies lifted iosT one point. They did not change iosT's view that the theory is 'minor' and the assumptions strong. Promises of new baselines came with no results."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings at 6 or above (mean 6.0), and the AC accepted. The meta-review lists the reviewers' downsides: discrete spaces 'severely limiting its practical relevance', 'experimental comparisons are also outdated', and 'limited technical difficulty'. It accepts because 'impact is subjective and at least half of the reviewers found the ideas to be interesting'. It calls the paper 'correct', although three of four reviewers say they did not check the math carefully. It does not mention the missing MaxEnt comparison.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "MaxEnt IRL as a special case of distributionally robust IL is 'interesting & underexplored' (AC; Reviewer_xMat, Reviewer_w9mr, Reviewer_8Tiy)",
+    "Faster optimization than Double Oracle at equal cost (Table 2), which the AC calls a 'minor contribution'",
+    "Three of four ratings at 6 or above (mean 6.0); Reviewer_w9mr's 7 judged the tabular scope and old baselines not major",
+    "The AC treated limited impact and limited technical difficulty as subjective, not disqualifying"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    5,
+    5,
+    6
+   ],
+   "confidences": [
+    3,
+    2,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_4tjM",
+    "Reviewer_KGfa"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4 to 6 around a mean of 5.0. Reviewer_4tjM's 4 and Reviewer_rEEu's 6 each sit one point from the two 5s."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_4wnP",
+     "evidence": "Short, generic review (3 hours). It praises originality and writing and says 'Empirical results show the performance gain', then rates 5 on scalability and 'no simple mujoco evaluation'. Section 7 already states both limits (lines 388-391). No technical question and no reply after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_4tjM",
+     "claim": "The solution for w in line 251 is missing the denominator λ.",
+     "checked_against_paper": "correct",
+     "evidence": "Minimising Eq. 7 over w gives w = (µ̃ - Φ sum_t q_t)/λ. Line 251 omits 1/λ, while the -1/(2λ) term in Eq. 8 matches the correct form, so it is a typo."
+    },
+    {
+     "reviewer": "Reviewer_4tjM",
+     "claim": "Algorithm 1 uses the gradient of f(Q^i) 'in Equation (8)', but f is never defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 8 defines no f; Algorithm 1 is the only place f appears."
+    },
+    {
+     "reviewer": "Reviewer_4tjM",
+     "claim": "The method is never compared empirically with MaxEnt IRL.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 6.3 compares only MMP, Abbeel and Ng, and LEARCH; Figure 1 has no log loss. The highway demonstrations are 'sampled from the stochastic MaxEnt policy' (lines 339-340), so MaxEnt's own noise model generated the data. The authors replied that the comparison 'seems out of the scope'."
+    },
+    {
+     "reviewer": "Reviewer_KGfa",
+     "claim": "Lines 363-369 are not correct: with demonstrations from a stochastic MaxEnt policy, more data should help the baselines.",
+     "checked_against_paper": "correct",
+     "evidence": "The paper says the decline of MMP and Abbeel and Ng 'matches theory' but gives no theory or citation. The MaxEnt sampler fixes the noise ratio. The authors gave KGfa one explanation (more suboptimal decisions) and Committee A's Reviewer_xMat another (less noisy feature estimates)."
+    },
+    {
+     "reviewer": "Reviewer_KGfa",
+     "claim": "Runtime is compared only against Double Oracle, and Syed et al.'s LP method [25] is neither contrasted nor compared.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 is the only runtime comparison. Reference [25] is cited once, at line 238, for the mapping between occupancy measures and policies."
+    },
+    {
+     "reviewer": "Reviewer_KGfa",
+     "claim": "BROIL (Brown et al. 2020) and Bayesian IRL are missing as related work and baselines.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is among the 31 references. The only Bayesian IRL work cited is Zheng et al. 2014 [29], in the introduction."
+    },
+    {
+     "reviewer": "Reviewer_rEEu",
+     "claim": "The ability to use different losses (Section 6.2) is not specific to this method; Chen et al. 2016 could use them too.",
+     "checked_against_paper": "correct",
+     "evidence": "Reference [5] is titled 'Adversarial inverse optimal control for general imitation learning losses and embodiment transfer'. The authors replied 'That is right'."
+    },
+    {
+     "reviewer": "Reviewer_rEEu",
+     "claim": "Lemma 1 reverses the order of max and min relative to Eq. 1.",
+     "checked_against_paper": "correct",
+     "evidence": "Lemma 1 writes a max over q in Ξ̃ of a min over p; Eq. 1 writes a min over the learner of a max over the demonstrator in Ξ̃."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_4tjM edited on 2021-08-27: 'the response does not change my opinion and I still rate the paper as a rejection.' Reviewer_KGfa edited on 2021-08-17: 'Unfortunately, I do not think this paper is ready for NeurIPS.' Neither note reports a change. Reviewer_4wnP and Reviewer_rEEu posted nothing after the rebuttal.",
+    "what_convinced_or_not": "Nothing moved a score. The authors called the MaxEnt comparison out of scope while agreeing it would help, promised more baselines with no results, deferred scalability to future work, and conceded that the Section 6.2 loss flexibility is not specific to their method."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings below 6 (mean 5.0), and the AC rejected. The meta-review names 'scalability' and 'the lack of comparison to maxEntIRL, given its relation to the proposed approach'. These restate Reviewer_4tjM's two major issues and post-rebuttal note. It claims 'a consensus that this paper is not ready', which ignores Reviewer_rEEu's 6 and rEEu's view that the reformulation is 'a significant contribution'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Scalability: discrete states and actions, a known transition matrix and fixed features (Reviewer_4tjM, Reviewer_4wnP, Reviewer_KGfa, AC)",
+    "Unconvincing experiments: 2004-2009 baselines, simple domains, and no MaxEnt IRL comparison despite Theorem 1 (Reviewer_4tjM, Reviewer_KGfa, AC)",
+    "The rebuttal promised baselines but gave no new results; no score moved",
+    "The AC read three sub-threshold ratings as a consensus and discounted Reviewer_rEEu's 6"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Eq. 2 (trajectory MaxEnt) holds only for deterministic dynamics, which limits Theorem 1; the authors did not answer (Reviewer_xMat)",
+  "Solving Eq. 4 still needs an inner RL step; draw the link to GAIL (Reviewer_w9mr)",
+  "The worst-case demonstrator still matches the features of suboptimal demonstrations, so poor demonstrations still give a poor policy (Reviewer_xMat)",
+  "No comparison with modern distribution-matching imitation learning (RCE, RED, VDI, disagreement-regularized IL), and a name clash with the latter (Reviewer_8Tiy)",
+  "Eq. 5 p_0(s) typo; the policy count is exponential in |S|T, not in |A| (Reviewer_8Tiy)",
+  "Generalized-entropy background (Grünwald and Dawid) is under-explained (Reviewer_xMat)",
+  "The MaxEnt connection has limited technical difficulty (Reviewer_iosT, Committee A AC)"
+ ],
+ "issues_only_b": [
+  "Missing 1/λ in line 251 and an undefined f in Algorithm 1 (Reviewer_4tjM)",
+  "Relation to Syed et al.'s LP apprenticeship learning [25] unclear and not compared (Reviewer_KGfa)",
+  "Missing robust baselines: BROIL and Bayesian IRL (Reviewer_KGfa)",
+  "The setting is too limited next to model-free deep IRL such as AIRL (Reviewer_4tjM)",
+  "The loss flexibility of Section 6.2 already exists in Chen et al. 2016; the authors agreed (Reviewer_rEEu)",
+  "Which policy to deploy (P, Q or the one from w), and report P and Q in Section 6.3 (Reviewer_rEEu)",
+  "No MuJoCo or large-sample experiment (Reviewer_4wnP)"
+ ],
+ "shared_issues": [
+  "Tabular scope: discrete states and actions, known dynamics, fixed features (A: Reviewer_iosT, Reviewer_w9mr, AC; B: Reviewer_4tjM, Reviewer_4wnP, Reviewer_KGfa, AC)",
+  "Baselines from 2004-2009 (A: Reviewer_w9mr, Reviewer_iosT, Reviewer_8Tiy, AC; B: Reviewer_KGfa)",
+  "No MaxEnt IRL comparison despite Theorem 1 (A: Reviewer_xMat, Reviewer_iosT; B: Reviewer_4tjM, Reviewer_KGfa, AC)",
+  "Unexplained decline of MMP and Abbeel and Ng with more demonstrations, Figure 3 and lines 363-369 (A: Reviewer_xMat; B: Reviewer_KGfa, Reviewer_rEEu)",
+  "Undefined expectation in Eq. 1 and unclear Lemma 1 notation (A: Reviewer_xMat, Reviewer_iosT; B: Reviewer_4tjM, Reviewer_rEEu)",
+  "Weak loss experiments: random and 0-1 losses, and a uniform random loss on the highway (A: Reviewer_xMat; B: Reviewer_KGfa, Reviewer_rEEu)",
+  "Relax exact feature matching to a norm ball around the data (A: Reviewer_xMat; B: Reviewer_4tjM)",
+  "Transfer environments not described (A: Reviewer_w9mr; B: Reviewer_rEEu)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A accepted and Committee B rejected on the same facts. Both saw the same three weaknesses. The method is tabular and needs known dynamics and fixed features. The policy-quality baselines date from 2004 to 2009. No experiment includes MaxEnt IRL, although Theorem 1 makes MaxEnt a special case. A's AC named the first two weaknesses, called the scope 'severely limiting', and accepted anyway because 'impact is subjective' and half the reviewers liked the ideas. B's AC rejected on scalability and the missing MaxEnt comparison, restating Reviewer_4tjM. The paper supports that objection: the highway demonstrations are 'sampled from the stochastic MaxEnt policy' (lines 339-340), so MaxEnt IRL is the natural baseline. The reviewer pools sat one point apart (means 6.0 and 5.0; pooled 5.5). A had Reviewer_w9mr's 7, who judged the limits not major but did not check the derivations; B had 4tjM's 4, who made the MaxEnt omission decisive. B's AC called the result a consensus, which ignores Reviewer_rEEu's 6 from a 12-hour review. Neither committee found a fatal error. The split comes from how much each AC tolerated a correct but modest tabular contribution.",
+ "candidate_reasons": [
+  "same weaknesses, different weighting",
+  "lenient AC: impact is subjective",
+  "missing MaxEnt baseline judged decisive",
+  "tabular-only scope excused versus penalised",
+  "reviewer pools one point apart",
+  "AC claimed consensus over dissent"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_w9mr review (Significance) and 2021-09-01 reply",
+  "Reviewer_iosT final review (4 to 5 after rebuttal)",
+  "Reviewer_xMat review (Eq. 2, Figure 3, log loss)",
+  "Reviewer_4tjM final review and 'Update after rebuttal'",
+  "Reviewer_KGfa final review (lines 363-369, Syed et al., baselines)",
+  "Reviewer_rEEu review (6, 12 hours)",
+  "Authors' reply to Reviewer_4tjM (MaxEnt comparison 'out of the scope')",
+  "paper_submitted Section 6.3, lines 314-316 and 338-340 (baselines; demonstrations from the stochastic MaxEnt policy)",
+  "paper_submitted lines 360-370 ('This matches theory')",
+  "paper_submitted Eq. 7-8, line 251 and Algorithm 1",
+  "paper_submitted Eq. 2, line 68 and lines 284-285",
+  "paper_submitted Table 2 (Double Oracle cost)",
+  "paper_submitted Eq. 5 and line 172"
+ ]
+}

@@ -1,0 +1,243 @@
+{
+  "pair_id": "n21-300",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        7,
+        5,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 5, 5 (Reviewer_nvUU, Reviewer_YfRX, Reviewer_L7uL) lie within two points. nvUU's 7 is the only score above the threshold, and the review behind it is thin (see inattentive_reviews); it is not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nvUU",
+          "evidence": "Writes 'The only (positive) example given in this paper was in Section 5'; Proposition 2 in Section 4 is also a positive consistency result, and the authors called the remark 'inexact'. Asks whether a rate of approximation is available; Theorem 1 states an explicit bound epsilon_n and the abstract says the paper quantifies 'the speed of convergence'. Four hours; no reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nvUU",
+          "claim": "The only positive example in the paper is the smooth stacked estimator of Section 5.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Proposition 2 (Section 4, lines 241-243) proves bootstrap consistency in d_F for the softmax two-sample kernel statistic."
+        },
+        {
+          "reviewer": "Reviewer_nvUU",
+          "claim": "The paper gives no rate of approximation for the bootstrap (implied by Q2).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 (line 179) bounds d_F by epsilon_n, an explicit function of R_n1, R_n2, R_n3 and n^(-1/6). Only the applications (Propositions 2 and 3) state convergence without a rate."
+        },
+        {
+          "reviewer": "Reviewer_YfRX",
+          "claim": "The manuscript ends abruptly, with no numerical experiments and no data example.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text ends with a remark after Proposition 3 (lines 283-287). It has no conclusion, no experiments and no data example; the checklist nonetheless answers [Yes] to every experiment item."
+        },
+        {
+          "reviewer": "Reviewer_L7uL",
+          "claim": "The discussion of the C3-approximability assumption is deferred to Appendix C.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 173-174 send the motivating counterexamples to Appendix C. The main text keeps only the short Remark 2 (lines 186-192)."
+        },
+        {
+          "reviewer": "Reviewer_L7uL",
+          "claim": "Lines 47-49 need citations; Koltchinskii (2020) is not cited; the paper has no discussion section.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 47-49 cite nothing for the econometric applications. Koltchinskii is absent from the 55 references. No discussion or conclusion section exists."
+        },
+        {
+          "reviewer": "Reviewer_L7uL",
+          "claim": "The paper does not show established results as special cases of its master theorem.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text never states which known results Theorem 1 recovers. The authors pointed to one appendix result (Deng & Zhang 2020); the supplement is not in the record."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_L7uL (2021-08-25): 'Unfortunately, my original evaluation remains in light of the technicality and the applications that the authors show in the current draft.' Reviewer_nvUU and Reviewer_YfRX never replied.",
+        "what_convinced_or_not": "The rebuttal was short and promissory: a proof overview, a lemma diagram and more discussion of assumptions 'for the camera-ready version', plus pointers to appendix counterexamples. L7uL found recovering one known result 'somewhat limited' and the Chatterjee extension not a 'big' extension. The authors' 2021-08-27 list of other recoverable results (t-statistics, von Mises functionals, M-estimators) drew no response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review names two problems: how the results are 'positioned in relation to existing theoretical results', and 'the lack of discussion on the validity of the assumptions'. It says the authors promised fixes but 'the former problem in particular requires significant revision'. This matches the two 5s and L7uL's post-rebuttal stance. It slightly overstates consensus ('All reviewers agreed ... its contributions are novel'); YfRX called the developments 'nice', not novel.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 7, 5, 5 (mean 5.67): two of three reviewers marginally below the threshold.",
+        "The AC judged that positioning the results against existing bootstrap theory 'requires significant revision'; the main text never says which known results the theorem recovers.",
+        "No discussion of when Assumption 1 and the conditions of Theorem 2 hold (Reviewer_YfRX, Reviewer_L7uL, Reviewer_nvUU).",
+        "The rebuttal promised camera-ready changes and moved no score; the only favourable reviewer, nvUU, was thin and silent."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        8,
+        3
+      ],
+      "confidences": [
+        3,
+        1,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_iK1w",
+        "Reviewer_XTTq"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_XTTq",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "A 3 against 7, 7, 8, from the only reviewer in B who probed the proofs and the metric, followed by four long comments in the discussion. Right, and conceded by the authors: Section 4 overclaims consistent p-values; the proof of Theorem 1 cites a missing 'Theorem 19'; Theorem 2 intervals widen with C_n. Wrong, and conceded by XTTq: that d_F convergence does not give convergence in distribution ('your argument in the proof is completely sound'), and that Theorem 2 needs a Lipschitz statistic ('I was sloppy'). Contested: that both applications are smooth-max statistics within reach of CCK. The correct points concern overclaiming and scope, not errors in the main theorems, so 'Clear rejection' is harsher than the evidence."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_iG7z",
+          "evidence": "Confidence 1 and two hours. Writes 'I am not very familiar with the statistical approaches and therefore not qualified to comment on its soundness', yet rates 7 and calls the originality and contribution 'definitely very strong'. The minor comments are accurate (duplicate definitions at lines 123 and 126-127). No post-rebuttal message on record."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XTTq",
+          "claim": "Section 4's claim of consistent p-values (lines 241-243) does not follow from Proposition 2, even with Proposition 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 222 promises 'consistent p-values'; Proposition 2 only gives d_F convergence, and Proposition 1 turns that into coverage of an epsilon-enlarged set (lines 132-149 admit this weaker notion). The authors conceded on 2021-08-19: 'This is true'; only an upper bound on the p-value follows."
+        },
+        {
+          "reviewer": "Reviewer_XTTq",
+          "claim": "d_F does not metrize weak convergence; d_F(X,Y)=0 may not imply X and Y have the same law, so Proposition 2 is of little use.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Proposition 1 (lines 132-135) bounds P(X in the 6-epsilon enlargement of A) for fixed epsilon; letting n go to infinity first and epsilon to zero second, at continuity points of the limit, gives convergence in distribution. XTTq conceded on 2021-08-20 ('your argument in the proof is completely sound'). The no-limit, high-dimensional case stays at the weaker coverage statement."
+        },
+        {
+          "reviewer": "Reviewer_XTTq",
+          "claim": "Theorem 2 holds only for statistics that are Lipschitz in the l-infinity norm, so intervals grow with the Lipschitz constant.",
+          "checked_against_paper": "incorrect",
+          "evidence": "(H3) (lines 218-219) is alpha-Hölder continuity of x -> E[g_n(Y^n + x/sqrt(n))], not of the statistic; XTTq conceded 'I was sloppy'. The derived point is right: Theorem 2's t_g condition scales with C_n, and the authors conceded 'this is a weakness'."
+        },
+        {
+          "reviewer": "Reviewer_XTTq",
+          "claim": "The proof of Theorem 1 cites a Theorem 19 that is not in the supplement.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplement is not in the record. The authors conceded a LaTeX label error: it is Lemma 19."
+        },
+        {
+          "reviewer": "Reviewer_XTTq",
+          "claim": "The applications of Sections 4 and 5 are essentially smoothed maximum statistics that CCK-style theory could handle.",
+          "checked_against_paper": "incorrect",
+          "evidence": "As stated, no: T_n (page 7) is a softmax-weighted average of kernel MMD statistics with weights from estimated power p_theta, and Section 5 is the empirical risk of a softmax-weighted ensemble on the points not used to fit the base models; both are functions of a smooth argmax. XTTq accepted the distinction ('absolutely correct') but kept the scope objection."
+        },
+        {
+          "reviewer": "Reviewer_FFbw",
+          "claim": "The final statement of Theorem 2 should read P(E[g_n(Y^n)] not in [interval]) <= beta.",
+          "checked_against_paper": "correct",
+          "evidence": "Page 7 prints P(E(g_n(Y^n)) <= [interval]) <= beta. The authors conceded the typo."
+        },
+        {
+          "reviewer": "Reviewer_FFbw",
+          "claim": "The kernel two-sample test analysed is a softmax variant, substantially different from the discrete kernel selection the abstract suggests.",
+          "checked_against_paper": "correct",
+          "evidence": "The abstract says 'two-sample kernel tests after kernel selection'; page 7: 'The test statistics that we propose is a softmax'. iK1w later called it 'not ... a standard kernel test'."
+        },
+        {
+          "reviewer": "Reviewer_iG7z",
+          "claim": "The equations after lines 123 and 127 are identical.",
+          "checked_against_paper": "correct",
+          "evidence": "Both define the centred bootstrap sample Z-tilde as Z - Xbar + E[X_1] (lines 123 and 126-127). Reviewer_FFbw noted the same."
+        },
+        {
+          "reviewer": "Reviewer_iK1w",
+          "claim": "In Section 5 the i-th base estimator is fit on x_1..x_i, and beta_n must go to infinity, collapsing the ensemble onto the best estimator.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 264: all base estimators are built on the first m_n points. Lines 269-270 require only beta_n = o(sqrt(n - m_n)); Proposition 3 calls beta_n 'increasing', which invites the misreading. The authors corrected both."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_iK1w"
+        ],
+        "evidence": "iK1w's edit of 2021-09-01: 'This, combined with XTTq's points about the relation to the existing literature, have led me to decrease my score somewhat. I'm still in favor of an accept' (final 7). XTTq's review was edited 2021-08-18, the day of the 'Complete Rebuttal' comment; the final rating is 3 and the direction of any change is unknown. FFbw and iG7z did not edit; the AC says the favourable reviewers defended their scores in discussion.",
+        "what_convinced_or_not": "The authors convinced XTTq that d_F convergence gives convergence in distribution for a fixed limit, corrected the Lipschitz misreading, and separated argmin-type statistics from maxima. XTTq stayed unconvinced on scope: the applications use smooth-max weighting, Assumption 1.2 is hard when d_n >> n, and appendix examples are low-dimensional. The authors conceded the p-value overclaim and the C_n dependence. iK1w moved down on the literature points and the non-standard kernel test. The AC found the replies 'very convincing'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review lists XTTq's objections ('stability condition, consistency in high dimensions and the generality of the specific kernel'), notes the other reviewers' 'high scores that they were willing to defend in the discussion', and decides on 'In my opinion the author rebuttal was very convincing'. It does not mention the conceded p-value overclaim or iK1w's downgrade.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 7, 7, 8, 3 (mean 6.25): three of four reviewers above the threshold, who per the AC defended their scores in discussion.",
+        "The AC judged the authors' replies to XTTq 'very convincing'; in the thread XTTq conceded the convergence-in-distribution and Lipschitz points.",
+        "General stability conditions for bootstrap consistency, with two ML applications, were seen as novel and useful (Reviewer_iK1w, Reviewer_FFbw, Reviewer_iG7z).",
+        "Remaining objections (narrow scope, p-value overclaim, positioning against CCK) were treated as camera-ready fixes."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Missing citations at lines 47-49; Koltchinskii (2020) not cited or compared (Reviewer_L7uL).",
+    "Venue fit: better suited to a statistics journal, JMLR or a TCS conference (Reviewer_L7uL).",
+    "No example where Assumption 1 fails yet the bootstrap is consistent (Reviewer_L7uL).",
+    "No discussion of societal impact (Reviewer_YfRX).",
+    "Request for a rate of approximation (Reviewer_nvUU; Theorem 1 already gives one)."
+  ],
+  "issues_only_b": [
+    "Section 4 overclaims consistent p-values; only an upper bound on the p-value follows (Reviewer_XTTq; conceded by the authors).",
+    "Whether convergence in d_F gives convergence in distribution or Kolmogorov consistency (Reviewer_XTTq; resolved for a fixed limit, open without one).",
+    "Both applications rely on smooth-max weighting and sit close to CCK's max-statistics; appendix examples are low-dimensional (Reviewer_XTTq).",
+    "Assumption 1.2 is hard to meet when d_n >> n; Theorem 2 intervals widen with C_n (Reviewer_XTTq).",
+    "Broken 'Theorem 19' reference in the proof of Theorem 1 (Reviewer_XTTq).",
+    "The kernel test is a non-standard softmax variant that the abstract does not flag (Reviewer_FFbw, Reviewer_iK1w).",
+    "Typo in Theorem 2's final statement; duplicated definition of Z-tilde (Reviewer_FFbw, Reviewer_iG7z).",
+    "Section 5 details: role of beta_n, base estimators exempt from Assumption 1; GLMs with growing covariates remain uncovered (Reviewer_iK1w)."
+  ],
+  "shared_issues": [
+    "Positioning against existing bootstrap theory and how far the proofs extend Chatterjee's Lindeberg method (Reviewer_L7uL and Reviewer_nvUU in A; Reviewer_XTTq and Reviewer_iK1w in B).",
+    "Strength and verifiability of Assumption 1 and of Theorem 2's conditions (all three reviewers in A; Reviewer_XTTq in B).",
+    "Few, somewhat artificial applications; the stacking estimator is non-standard (Reviewer_nvUU in A; Reviewer_iK1w and Reviewer_XTTq in B).",
+    "Dense presentation, long appendix proofs, no proof overview, no conclusion or limitations section (Reviewer_L7uL and Reviewer_YfRX in A; Reviewer_iK1w, Reviewer_iG7z and Reviewer_FFbw in B).",
+    "No numerical experiments (Reviewer_YfRX in A counts it against the paper; Reviewer_iG7z in B calls it 'not a must')."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B accepted and Committee A rejected because B drew three favourable reviewers (7, 7, 8) and A drew two lukewarm ones (5, 5) beside one thin 7; each area chair followed its majority. The criticism does not explain the gap: B's reviewers raised more objections, and more severe ones. B's Reviewer_XTTq (3) showed that Section 4 overclaims 'consistent p-values' (lines 222, 241-243) when Proposition 2 bounds only d_F, which with Proposition 1 covers an epsilon-enlarged region only; the authors conceded. XTTq was wrong that d_F convergence fails to give convergence in distribution and that Theorem 2 needs a Lipschitz statistic, and conceded both in the thread. A's objections were milder and the same in kind: positioning against Chatterjee- and CCK-type results, strong assumptions, density, no conclusion. The main text supports them; it never says which known results the theorem recovers. A's rebuttal was promissory and moved no one; L7uL, the only reviewer who replied, held at 5, and the AC said the positioning 'requires significant revision'. B's AC called the rebuttal 'very convincing' and leaned on scores that are softer than they look: iG7z's 7 comes at confidence 1 with 'not qualified to comment on its soundness', FFbw's 8 rests on editorial comments, and iK1w lowered the score after the discussion. The committees weighted the same facts differently.",
+  "candidate_reasons": [
+    "reviewer draw: lukewarm versus enthusiastic",
+    "same weaknesses, different AC thresholds",
+    "detractor partly refuted in discussion",
+    "promissory rebuttal moved no one",
+    "low-confidence champion counted fully",
+    "positioning gap judged major revision"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_L7uL reply of 2021-08-25",
+    "Reviewer_XTTq comments of 2021-08-18, 2021-08-19 and 2021-08-20",
+    "Authors' reply to Reviewer_XTTq of 2021-08-19 (p-value concession)",
+    "Reviewer_iK1w update of 2021-09-01",
+    "Reviewer_iG7z review (confidence 1)",
+    "paper_submitted.pdf lines 132-149 (Proposition 1 and the weaker coverage notion)",
+    "paper_submitted.pdf lines 218-219 (H3), Theorem 2 and Section 4 lines 222, 236-243",
+    "paper_submitted.pdf lines 173-174, 264 and 269-270"
+  ]
+}

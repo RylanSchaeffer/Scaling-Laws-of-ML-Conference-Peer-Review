@@ -1,0 +1,232 @@
+{
+  "pair_id": "n21-303",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 7, 7],
+      "confidences": [4, 3, 2],
+      "reviews_edited_after_posting": ["Reviewer_uq7X", "Reviewer_bMDY"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8, 7, 7 lie within one point. The panel's weakness is depth, not an outlier: two of the three reviews took 2 hours, at confidence 3 and 2."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bWET",
+          "evidence": "2 hours, confidence 3, 'Math/other details were not carefully checked'. Two short paragraphs: praise for the writing, then questions about the NTK and triple descent. Says 'The empirical results confirm the theoretical claims', although the paper calls the neural-network link 'a conjecture for further exploration' (line 309) and its test-error peak 'relatively small' (line 277). No post after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_bMDY",
+          "evidence": "2 hours, confidence 2 ('quite likely that you did not understand central parts'). Calls the bounds 'sharp enough to allow some meaningful analysis', but the paper has no tightness result. Raised the score after a reply that repeated the general NTK paragraph and said 'We will try to integrate these suggestions'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_uq7X",
+          "claim": "The high-probability statement in Theorems 2 and 3 is unexplained: the expectation already covers S and W_0, and the appendix has no such statement.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 155-156 and 174-175 say 'with probability 1 - e^{-x} over random samples S', yet x appears in neither bound, and both bounds are expectations. The authors called it a typo and said the expectation is conditional on the inputs. The camera-ready restates both theorems."
+        },
+        {
+          "reviewer": "Reviewer_uq7X",
+          "claim": "Line 47 overstates Belkin et al. (2019): the test error can, but need not, be lower in the overparameterised regime.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 46-48: 'one will observe a second descent of the test error that asymptotes in the limit to smaller values than those in the underparametrized regime', with no qualification. The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_bMDY",
+          "claim": "Double descent in the number of steps T is not represented in the bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "In Theorems 2 and 3, T enters only through E[(1 - alpha*λ̂min+)^{2T}], which falls as T grows; no other term depends on T. The bounds cannot rise and then fall in T. The authors answered a different point: the peak in d sharpens as T grows."
+        },
+        {
+          "reviewer": "Reviewer_bMDY",
+          "claim": "The bounds are sharp enough to allow meaningful analysis.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper has no lower bound and no tightness result. In Figure 1 the bound at d = n is about 1.3, 1.2 and 0.8 for T = 100, 1000 and 10000; the measured excess risk there is about 0.007, 0.015 and 0.043. Only the location of the peak matches, and only for T of 1000 and above."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_uq7X", "Reviewer_bMDY"],
+        "evidence": "Reviewer_uq7X had written 'I will increase my score if this is properly addressed'; the edit of 2021-08-26 adds 'The authors have properly addressed my concerns, I am therefore increasing my score' (final 8). Reviewer_bMDY's edit of 2021-08-18: 'I think this is a good contribution and raise my score accordingly' (final 7). Reviewer_bWET neither edited nor posted. Earlier ratings are not exposed.",
+        "what_convinced_or_not": "uq7X was convinced by a one-line correction of a real error in the theorem statements, a legitimate reason. bMDY was convinced by nothing new: the reply repeated the NTK paragraph sent to every reviewer, restated that the peak sharpens with T, and promised presentation changes. Nobody in A asked about tightness, prior work on λ̂min+ or the large-T regime, so the rebuttal never had to answer them."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: a one-line summary and 'All reviewers agreed that the paper made a useful contribution for the community.' It omits uq7X's 'The empirical argument does not seem so strong' and bMDY's doubt that the bounds carry over to deep networks.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings above the threshold (8, 7, 7; mean 7.33), two of them raised after the rebuttal.",
+        "Reviewers took the link between finite-T gradient descent, λ̂min+ and the peak at d = n as new; Reviewer_uq7X: 'a very exciting new avenue of research'.",
+        "The limitation to least squares and the weak neural-network evidence were noted but treated as scope, not as defects."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 5],
+      "confidences": [4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_rFdx", "Reviewer_g8ya"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 4, 5 lie within one point, all below the threshold. Reviewer_g8ya, the highest, lowered the score to 5 during the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XaVR",
+          "claim": "The smallest nonzero eigenvalue of the Gram matrix is the well-known cause of double descent in least squares; analyses of minimum-norm and ridge solutions identify the same quantity.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission's related work is Appendix A, which is not in the PDF; Reviewer_g8ya reports that it credits Derezinski et al. 2020, Rangamani et al. 2020 and Hastie et al. 2019 with noting λ̂min+. Section 2 of the camera-ready (paper.pdf) says the same: the spectrum controls DD (Derezinski), the smallest non-zero eigenvalue 'was briefly noticed' (Rangamani), and the Bai-Yin connection to DD 'was noted' (Hastie). What is new is the finite-T GD term, not λ̂min+. The rebuttal's 'have not been made explicit in any work we are aware of' conflicts with this."
+        },
+        {
+          "reviewer": "Reviewer_XaVR",
+          "claim": "The bound becomes tight only for large T; before that, double descent does not appear, as the paper's own experiments show.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1, T = 100: the measured excess risk is flat near 0.007 around d = n = 20, with no visible peak, while the bound there is about 1.3. At T = 1000 and 10000 both peak at d = 20, but the bound is still about 80 and 20 times the measured risk. Only the shape becomes right."
+        },
+        {
+          "reviewer": "Reviewer_XaVR",
+          "claim": "Once T is large enough for the smallest-eigenvalue component to dominate, the GD solution is already close to the minimum-norm solution, so 'the role of optimization' does not make much sense.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True away from d = n, false at the peak. Figure 1, third row: at T = 10000 the estimated optimisation error is zero except near d = 20, where it peaks. Near d = n, λ̂min+ is close to zero and GD is far from its limit; that is the paper's noiseless claim (abstract, lines 14-16)."
+        },
+        {
+          "reviewer": "Reviewer_XaVR",
+          "claim": "The bound characterises only the peak at d = n, not the first descent in the underparameterised regime.",
+          "checked_against_paper": "correct",
+          "evidence": "The excess risk is measured against the best d-dimensional predictor (line 112), which leaves out the approximation error behind the classical U-curve. For d < n the noiseless bound only rises toward d = n (lines 216-218)."
+        },
+        {
+          "reviewer": "Reviewer_XaVR",
+          "claim": "For least squares the GD iterate and its risk have closed forms, so the (Delta, M)-admissibility route is unnecessary.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 55-56: least squares 'allows us to work with analytic expressions for all the quantities involved'. Theorem 1 is general, but the paper applies it only to least-squares GD. Whether the general route has value is a matter of taste, not an error."
+        },
+        {
+          "reviewer": "Reviewer_g8ya",
+          "claim": "Only upper bounds are given; without a lower bound, a bound near 1 may reflect looseness rather than a peak.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorems 1-3 are upper bounds. Neither the submission nor the camera-ready has a lower bound or a tightness statement. The authors answered by pointing to Figure 1, which shows the bound 20 to 200 times above the measured excess risk at d = n."
+        },
+        {
+          "reviewer": "Reviewer_g8ya",
+          "claim": "The related work is only in the appendix, and the difference from Derezinski, Rangamani and Hastie is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 53 sends the reader to Appendix A; the main text gives prior work three lines (69-72). The camera-ready moved the related work into Section 2."
+        },
+        {
+          "reviewer": "Reviewer_rFdx",
+          "claim": "The term E[||w*||^2_(I-M)] goes to zero only for large n; the case of fixed n and growing d is not covered.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 161-163: the term is small 'whenever the eigenvalues have exponential decay', and is then of order ||w*||^2/sqrt(n) 'as n -> infinity'; lines 165-166 call it negligible '(consider the limit of infinite data)'. Section 2.3 assumes isotropic inputs (line 196), which have no eigenvalue decay. The rebuttal adds that the term is non-zero 'only when d > n', the regime of interest."
+        },
+        {
+          "reviewer": "Reviewer_rFdx",
+          "claim": "The experiments use only MNIST and FashionMNIST, networks with one or three hidden layers, and no regularisation.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 268-272: one-hidden-layer MLPs trained by GD on 1000 examples; lines 288-292 add a three-hidden-layer network. The rebuttal confirms plain GD without regularisation."
+        },
+        {
+          "reviewer": "Reviewer_rFdx",
+          "claim": "The theory concerns the eigenvalue of the fixed inputs; the experiments use the eigenvalue of a trained hidden layer, which changes during training.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 258-260 treat the earlier layers as 'some random projection, ignoring that learning is affecting this projection as well'. Figure 2 tracks λ̂min+ of the hidden activations over training. There the MNIST test-error bump at width 1000 is under one percentage point, while λ̂min+ falls by five or more orders of magnitude."
+        },
+        {
+          "reviewer": "Reviewer_rFdx",
+          "claim": "Showing several iteration counts is unexplained and wastes space; double descent concerns trained models; the title does not fit a paper about an eigenvalue.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Finite T is the paper's thesis. The bound is a function of T (line 58), lines 220-224 study it 'for a given fixed dataset size n and fixed number of gradient updates T', and lines 236-240 tie λ̂min+ to the convergence of the optimisation."
+        },
+        {
+          "reviewer": "Reviewer_rFdx",
+          "claim": "Lines 699-700 say deeper networks are harder to train, but Figure 6 shows deeper networks with lower test error.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in the 12-page submitted PDF. The authors conceded that Figure 6 shows test accuracy, mislabelled as test error."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "Late in a run GD is close to convergence, that is to the Moore-Penrose solution, so the regime where the analysis is valid is already well understood.",
+          "checked_against_paper": "incorrect",
+          "evidence": "This repeats XaVR's argument, which g8ya relayed on 2021-08-29. It fails at d close to n, where Figure 1 shows the optimisation error concentrated at T = 10000. The AC's other half, that the bound is not tight early in training, matches Figure 1."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_g8ya"],
+        "evidence": "Reviewer_g8ya posted 'My concerns remain' on 2021-08-29, the date of the review's edit, and wrote 'I decided to change my score to 5', citing XaVR's large-T argument. The wording implies a cut; the earlier value is not exposed. Reviewer_rFdx's edit of 2021-09-05: 'After reading the author's response my concerns remain, and I retain my score.' Reviewer_XaVR never replied.",
+        "what_convinced_or_not": "The rebuttal answered g8ya's request for a lower bound by pointing to Figure 1, which gives none. It declined to compare with Moore-Penrose analyses ('not on the equal ground') and said DD happens 'partly because of optimization', which g8ya read as a concession. It told XaVR that the λ̂min+ connection had not been 'made explicit in any work we are aware of', against its own related work. It left broader experiments to future work. Nothing addressed tightness."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers reached a consensus' (4, 4, 5). Bullet 1 is g8ya's lower-bound point. Bullet 2 restates XaVR's large-T argument as g8ya relayed it, flaw included. Bullet 3 is rFdx's point on the experiments. No point is the AC's own.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No lower bound: a peak in an upper bound does not establish a peak in the risk (Reviewer_g8ya, AC).",
+        "Weak significance: λ̂min+ is a known driver of double descent, and the bound matches the risk only late in training, which the panel took to be the well-studied Moore-Penrose regime (Reviewer_XaVR, Reviewer_g8ya, AC).",
+        "Small neural-network experiments, loosely tied to the theory (Reviewer_rFdx, AC).",
+        "All three ratings below the threshold (4, 4, 5); g8ya lowered the score during the discussion."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Spurious high-probability statement in Theorems 2 and 3 (Reviewer_uq7X).",
+    "Line 47 overstates Belkin et al. 2019 (Reviewer_uq7X).",
+    "Extending the analysis to SGD (Reviewer_uq7X).",
+    "The bounds cannot show double descent in T (Reviewer_bMDY).",
+    "Triple descent, and the NTK as a route to deep networks (Reviewer_bWET)."
+  ],
+  "issues_only_b": [
+    "No lower bound, so the peak in the bound may be looseness (Reviewer_g8ya, AC).",
+    "The bound is loose early in training, and late in training the analysis approaches the Moore-Penrose solution (Reviewer_XaVR, Reviewer_g8ya, AC).",
+    "λ̂min+ is already known to drive double descent in minimum-norm and ridge analyses; the comparison with Derezinski, Rangamani and Hastie sits in Appendix A (Reviewer_XaVR, Reviewer_g8ya).",
+    "GD on least squares has a closed form, so the (Delta, M)-admissibility route is unnecessary (Reviewer_XaVR).",
+    "The bound does not capture the first descent (Reviewer_XaVR).",
+    "The term E[||w*||^2_(I-M)] vanishes only as n grows, not for fixed n and growing d (Reviewer_rFdx).",
+    "Experimental scope: two small datasets, MLPs only, no regularisation, few ablations; a trained layer's eigenvalue instead of the inputs' (Reviewer_rFdx).",
+    "Notation (capitalised vectors, the M-norm defined only in the appendix), an unclear Section 3, a mislabelled Figure 6 (Reviewer_rFdx, Reviewer_XaVR).",
+    "The neural-network peak sits at width n, not at Belkin et al.'s parameter count (Reviewer_XaVR)."
+  ],
+  "shared_issues": [
+    "The theory covers only least squares and shows no route to deep networks (Reviewer_uq7X, Reviewer_bMDY, Reviewer_bWET in A; Reviewer_g8ya, Reviewer_rFdx, AC in B).",
+    "Weak neural-network evidence (Reviewer_uq7X in A: 'does not seem so strong'; Reviewer_rFdx and the AC in B).",
+    "Dense text and small, hard-to-read figures (Reviewer_bMDY, Reviewer_uq7X in A; Reviewer_rFdx in B).",
+    "Typo 'parammetrization' in the title of Section 3 (Reviewer_uq7X in A; Reviewer_rFdx in B)."
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee B rejected because its panel raised objections that Committee A's never did, and most of them hold on the paper. Reviewer_XaVR (confidence 5) argued that λ̂min+ is already the known driver of double descent and that the bound fits the risk only late in training. Reviewer_g8ya asked for a lower bound and, after the rebuttal, lowered the score to 5, citing XaVR. The AC restated both, plus Reviewer_rFdx's point that the neural-network experiments are small and loosely tied to the theory. On the paper, no lower bound exists; at T = 100 the measured excess risk in Figure 1 has no visible peak at d = n, and at d = n the bound sits 20 to 200 times above it; the paper's own related work credits Derezinski, Rangamani and Hastie with linking the spectrum or λ̂min+ to double descent. One step of B's case fails: XaVR and the AC say that late in training GD is near the Moore-Penrose solution, but at d close to n it is not (Figure 1, third row), and the paper's noiseless claim sits exactly there. Committee A's acceptance rests on one careful review, Reviewer_uq7X's, which found a real error in Theorems 2 and 3 and raised its score when the authors fixed it; on two 2-hour reviews at confidence 3 and 2 that asserted sharp bounds and confirming experiments; and on a two-sentence meta-review that follows the scores. Both committees saw that the theory covers only least squares and that the neural-network evidence is weak; A called that scope, B a defect. The decisive difference is panel expertise: B had a reviewer who knew the minimum-norm literature and pressed on novelty and tightness, and A had none.",
+  "candidate_reasons": [
+    "expert detractor disputes novelty",
+    "no lower bound for peak",
+    "thin low-confidence accepting reviews",
+    "score-following two-sentence meta-review",
+    "AC adopts flawed reviewer argument",
+    "least-squares scope weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_XaVR review, main points 1-3",
+    "Reviewer_g8ya review and post of 2021-08-29",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_uq7X review and edit of 2021-08-26",
+    "Reviewer_bWET and Reviewer_bMDY reviews (2 hours each)",
+    "Authors' replies to Reviewer_g8ya and Reviewer_XaVR",
+    "paper_submitted.pdf Figure 1 (bound and measured excess risk at T = 100, 1000, 10000)",
+    "paper_submitted.pdf lines 155-156 and 174-175 (Theorems 2 and 3)",
+    "paper_submitted.pdf lines 161-167 and 196",
+    "paper_submitted.pdf Figure 2 and lines 276-283",
+    "paper.pdf Section 2 (related work)"
+  ]
+}

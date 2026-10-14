@@ -1,0 +1,210 @@
+{
+  "pair_id": "n21-304",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 6, 6, 7],
+      "confidences": [3, 3, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_gr67", "Reviewer_qvkL", "Reviewer_t5N6", "Reviewer_nvNV"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7, 7, 6, 6, 7 (gr67, qvkL, t5N6, nvNV, GDC1); no reviewer stands apart. Before the rebuttal the panel ran from 4 (t5N6) and 5 (nvNV) to 7 (GDC1), with gr67 and qvkL below their final 7 (earlier values not on record), so the pre-rebuttal mean was at most 5.6."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GDC1",
+          "claim": "The coverage results to trust are in Figure 1 of the appendix, not in the main paper.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors confirmed they 'caught a bug in our coverage metrics' after the main-paper deadline, so the submitted Figure 5 coverage panel is the buggy one. The submitted paper also disagrees with itself: Table 1 gives EDDICT's Montezuma episodic coverage as 0.75k at 250M frames, while Figure 5 (left, 'Average Episodic Coverage') shows about 5.8k at the same point. The appendix is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_GDC1",
+          "claim": "The Montezuma's Revenge results are 'very impressive', with EDDICT 'successfully solving Montezuma's revenge'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 5 (right): EDDICT's average episodic return ends near 50 (d=2) and 80 (d=4) at 1e9 frames, with wide bands; Table 1 gives 5.49 at 250M frames. EDDICT is the only intrinsic-control method above zero, which is what the paper claims, but this is not solving the game. RVIC's curve stops at about 0.27e9 frames (footnote 6), so the 'wide margin' over RVIC rests on an unfinished run."
+        },
+        {
+          "reviewer": "Reviewer_gr67",
+          "claim": "Eq. 3 is equivalent to Eq. 2, yet line 133 presents it as a different, greedy optimisation.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 3 is the sum over i of E[O(i)], which is Eq. 2 written compactly; the greedy intent appears only in the words 'wrt. the fixed distribution' at line 134. The authors conceded it was 'poorly thought out'. Reviewer_CKtR in Committee B made the same point."
+        },
+        {
+          "reviewer": "Reviewer_gr67",
+          "claim": "Line 256 says the ablation relates nearby states more weakly, but Figure 4a is captioned as VIC against EDDICT, with no ablation.",
+          "checked_against_paper": "correct",
+          "evidence": "The Figure 4 caption reads '(top) VIC (bottom) EDDICT'. The authors said 'VIC' should read 'EDDICT-Δ'; the camera-ready caption says so."
+        },
+        {
+          "reviewer": "Reviewer_t5N6",
+          "claim": "The intrinsic reward in Algorithm 1 drops the -log p(z_i | z_{i-1}) term of the objective.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 (page 6) sets r = log q_w(z | s_K); Eq. 2 contains -log p(z_i | z_{i-1}). With Δ uniform on the disc the term is a constant, as the authors replied, but the paper does not say so. Reviewer_CKtR raised the same point in Committee B."
+        },
+        {
+          "reviewer": "Reviewer_nvNV",
+          "claim": "There is no comparison with exploration methods such as ICM, RND, CPT or APT.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 233-241: the baselines are VIC, RVIC, the EDDICT-Δ ablation and a reward-trained Q(λ). Lines 308-309 concede that single-policy methods [10, 11] do better, with no numbers."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_t5N6", "Reviewer_nvNV", "Reviewer_gr67", "Reviewer_qvkL"],
+        "evidence": "t5N6 4 to 6 (review update; comment and edit 2021-08-22). nvNV 5 to 6 (comment and edit 2021-08-25). gr67: 'I'll increase my rating' (comment and edit 2021-08-28, final 7). qvkL: 'increasting my score to a 7' (comment and edit 2021-09-01). GDC1 stayed at 7, never edited, and posted nothing after the rebuttal.",
+        "what_convinced_or_not": "t5N6 credited the DIAYN table (one configuration at 500M steps, shown through an image link) and the promised clarity fixes. nvNV credited the random-policy baseline and added 'I really hope the authors can make the promised experiments'; the ICM/RND/CPT/APT comparison it asked for came only as a promised table of published numbers. gr67 and qvkL raised with one-line notes after rebuttals made mostly of promised notation fixes, DM Control visualisations and citations. No A reviewer asked about seeds or the code-size selection, and none tested the promises."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers generally agree that the paper should be accepted but there are still many pending updates that authors have promised to finish. AC agrees with the reviewers and suggests acceptance.' The meta-review cites no result. It says 'all the reviewers responded to the rebuttal', but GDC1 posted nothing after it.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Final ratings 7, 7, 6, 6, 7 (mean 6.6) after four rebuttal raises.",
+        "The rebuttal's DIAYN table and random-policy baseline, plus promises of more baselines, ablations, notation fixes and code.",
+        "The Montezuma's Revenge return, the only non-zero score among intrinsic-control methods, read as strong evidence (GDC1).",
+        "The AC accepted on the promised camera-ready changes without checking any of them."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 6, 5, 5],
+      "confidences": [5, 3, 3, 1],
+      "reviews_edited_after_posting": ["Reviewer_kZgT", "Reviewer_GBWd"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 5, 5 (CKtR, kZgT, GBWd, 5fT8); no reviewer stands apart. Before the rebuttal all four were 5. Two of the final 5s were declared provisional and never finalised: CKtR 'I am not providing my final decision at this time' and 5fT8 'I will change my score in the rebuttal stage'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5fT8",
+          "evidence": "Confidence 1, 'I am not an expert in this research field'. The only weaknesses are 'The experimental result part is not sufficient' and a figure-numbering slip, yet it reports 6 hours. It promised to 'give my final rating in the rebuttal stage' and never posted again, so its 5 is a placeholder."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Area chair (meta-review)",
+          "claim": "'For EDDICT-based agents, we pick the best metric across code sizes' biases Table 1 and makes it incomparable with the baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "The sentence is in the Table 1 caption (page 9). EDDICT and EDDICT-Δ take the best of at least two code sizes (d=2 and d=4 in Figure 5), separately for each metric, while VIC Cat(50) and RVIC Cat(16) appear at one setting each. With 3 seeds, several margins over RVIC are small enough for this to matter (Private Eye 4.99 vs 4.85 and 85.7 vs 79.3). It does not touch the headline Montezuma return: Figure 5 plots both code sizes, and both are above every baseline. No reviewer raised the point, and the authors had no chance to answer it. The camera-ready caption keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_CKtR",
+          "claim": "The initial code distribution p(z0) is unconditional and never specified, so the method has a hidden assumption that the initial-state distribution is narrow.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The derivation names p(z0) without defining it ('EDDICT Posterior' paragraph, page 4), so that omission is real. But Algorithm 1 sets z ← Δz + μ_w(s0) at every option period, so each code is anchored to the code the reverse predictor infers for the current state, and the environment is not reset between options. The authors said this on 2021-08-11 and 2021-08-16; CKtR did not reply again."
+        },
+        {
+          "reviewer": "Reviewer_CKtR",
+          "claim": "Line 142 says the code most likely to have produced s_i is used, but Eq. 4 samples it from the reverse predictor.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 takes an expectation over q_w(z_{i-1} | s_i); line 142 says 'the code most likely'; Algorithm 1 uses the mean μ_w. The authors confirmed that the mean is used."
+        },
+        {
+          "reviewer": "Reviewer_GBWd",
+          "claim": "The paper claims to solve the 'noisy TV problem', but no experiment contains a noisy TV.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 253-254: EDDICT 'effectively solves the well known \"noisy TV problem\"'. The only distractor is a target position set once per episode, and Figure 4a colours codes only by the point mass's own coordinates, so invariance to the target is not shown. The authors conceded it is 'not obviously the case from the present Figure'."
+        },
+        {
+          "reviewer": "Reviewer_GBWd",
+          "claim": "Table 1 rests on 3 seeds with no error bars, and the seed count of the other results is not given.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 caption: 'based on mean performance over 3 seeds'; the main text shows no spread for it. The Figure 5 caption gives no seed count. Reviewer_kZgT raised the same point."
+        },
+        {
+          "reviewer": "Reviewer_GBWd",
+          "claim": "The conclusion's statement that EDDICT falls short of single-policy exploration methods is not supported by any reported result.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 308-309 make the statement; no single-policy method appears in any table or figure."
+        },
+        {
+          "reviewer": "Reviewer_kZgT",
+          "claim": "The EDDICT-Δ ablation is 'quite competitive'.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: EDDICT-Δ is best on Berzerk episodic coverage (0.43) and return (500) and on Ms. Pacman return (518). The authors are also right that it scores 0 on Montezuma. RVIC, not EDDICT, is best on all three Hero metrics."
+        },
+        {
+          "reviewer": "Reviewer_5fT8",
+          "claim": "There are errors in Figures 2 and 3.",
+          "checked_against_paper": "correct",
+          "evidence": "Page 7: the image is labelled 'Figure 2', the caption under it begins 'Figure 3', and the caption stops mid-sentence ('taking the pixel-wise maximum'). Reviewer_t5N6 in Committee A noted the same slip."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_kZgT"],
+        "evidence": "kZgT 5 to 6 on 2021-09-03 (edit the same day). GBWd's only edit is on its posting day, 2021-07-16. On 2021-08-24 GBWd wrote 'I'm happy to raise my score if you can provide some indications that the main results still hold with more seeds'; the authors replied to GBWd with 10-seed results on 2021-09-01 ('Main results hold with more seeds'), and GBWd never answered. CKtR replied once (2021-08-14), was answered on 2021-08-16, and kept the provisional 5. 5fT8 never posted.",
+        "what_convinced_or_not": "kZgT raised 'to acknowledge their outstanding effort' but stayed at borderline: 'a robust assessment would require a re-evaluation of the updated manuscript', and it doubted that mutual information is the right tool for hard exploration. GBWd stayed unconvinced on transfer, the noisy-TV claim and the 3 seeds, then went silent once the 10-seed table arrived. The material that moved Committee A (the DIAYN table, the random baseline, the promised revisions) moved no other reviewer here."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The reject matches the borderline scores, but the decisive argument is the AC's own. The meta-review grants 'compelling motivation and theory' and that with more seeds 'EDDICT still significantly beats' RVIC and EDDICT-Δ. It then rejects because weak experiments are 'compounded by the potentially biased evaluation maximizing over different code-sizes', a line it quotes from the Table 1 caption and no reviewer raised. It does not note that two of the four scores were never finalised, or that the condition GBWd set for raising was met.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Experiments judged unconvincing: 3 seeds, few clear wins outside Montezuma's Revenge, missing baselines.",
+        "The AC's own finding that EDDICT's Table 1 numbers take the best code size per metric.",
+        "Final ratings 5, 6, 5, 5 (mean 5.25), none above 6, and the 6 given partly for effort.",
+        "Reviewers wanted to see the revised manuscript rather than credit promised changes."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The main-paper coverage figure came from a buggy metric; the corrected one is only in the appendix (GDC1).",
+    "No ablations of greedy optimisation and hindsight correction (GDC1).",
+    "Linear latent dynamics may fail in nonlinear environments; no DM Control Suite results; bisimulation methods not discussed (qvkL).",
+    "No code and inconsistent notation make the method hard to reproduce (t5N6).",
+    "No comparison with Go-Explore (qvkL, GDC1)."
+  ],
+  "issues_only_b": [
+    "Table 1 takes EDDICT's best code size per metric (area chair only).",
+    "Only 3 seeds and no confidence intervals; with the appendix intervals EDDICT is clearly better only on Montezuma's Revenge (GBWd, kZgT).",
+    "Unspecified p(z0) and an alleged narrow initial-state assumption (CKtR).",
+    "Unclear goal (skill discovery, hard exploration or state coverage) and doubt that mutual information suits hard exploration (kZgT).",
+    "Greedy optimisation and hindsight correction presented as unmotivated empirical tricks (kZgT).",
+    "Unsupported 'noisy TV' claim (GBWd).",
+    "How EDDICT's relative options would serve transfer or hierarchical RL at test time (GBWd, CKtR).",
+    "Missing DISCERN, VISR, VALOR and APS baselines (CKtR, kZgT)."
+  ],
+  "shared_issues": [
+    "Missing DIAYN baseline (t5N6; GBWd, kZgT).",
+    "No comparison with single-policy exploration methods such as RND, ICM, CPT or APT (nvNV, qvkL, GDC1, gr67; GBWd, kZgT).",
+    "Unclear notation and derivation: Eq. 2 vs Eq. 3, inconsistent q_w, prior term missing from Algorithm 1's reward (gr67, t5N6; CKtR).",
+    "No downstream or hierarchical-RL use of the learned options (gr67; GBWd, CKtR).",
+    "Figure 2/3 numbering slip (t5N6; 5fT8)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees read the same paper and the same rebuttal, and they began close: A ran from 4 to 7 (mean at most 5.6), B was four 5s. A recommended more because four of its five reviewers raised their scores after the rebuttal (t5N6 4 to 6, nvNV 5 to 6, gr67 and qvkL to 7). They credited a one-configuration DIAYN table, a random-policy baseline and promised fixes, and A's AC accepted on 'pending updates that authors have promised to finish'. In B only kZgT moved, to 6 'to acknowledge their outstanding effort', and it asked to see the revised manuscript first. GBWd offered to raise if the results held with more seeds, received a 10-seed table, and never replied or raised; CKtR and 5fT8 kept 5s they had called provisional. B's AC then rejected on its own reading: Table 1 takes EDDICT's best code size per metric. That is true and favours EDDICT, but no reviewer raised it, the authors never answered it, and it does not affect the Montezuma result, where both code sizes are plotted and both lead. No fatal flaw separates the committees. The evidence is thin in both copies (3 seeds, a coverage-metric bug, an RVIC run stopped at about 0.27e9 frames, a Montezuma return under 100). A forgave it on promises; B did not.",
+  "candidate_reasons": [
+    "Rebuttal moved one committee only",
+    "Promised revisions credited versus required",
+    "Provisional scores never finalised",
+    "Conditional raise never carried out",
+    "AC's own unrebutted concern decided",
+    "Thin evidence weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_t5N6 review update and 2021-08-22 comment (4 to 6)",
+    "Reviewer_nvNV 2021-08-25 comment (5 to 6)",
+    "Reviewer_gr67 2021-08-28 and Reviewer_qvkL 2021-09-01 comments",
+    "Committee A meta-review",
+    "Reviewer_GBWd 2021-08-24 comment and the authors' 2021-09-01 reply 'Main results hold with more seeds'",
+    "Reviewer_kZgT 2021-09-03 'Final comment'",
+    "Reviewer_CKtR review ('I am not providing my final decision at this time') and 2021-08-14 reply",
+    "Reviewer_5fT8 review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1 caption and Figure 5 (page 9)",
+    "paper_submitted.pdf Algorithm 1 (page 6), lines 133-134, 142, 253-254, 308-309"
+  ]
+}

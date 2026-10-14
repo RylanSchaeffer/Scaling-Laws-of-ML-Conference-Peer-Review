@@ -1,0 +1,240 @@
+{
+  "pair_id": "n21-306",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        2,
+        1,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7k7P"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Four 7s at confidences 2, 1, 3 and 4; no reviewer departs from the rest. The agreement is thin. Only Reviewer_oGv3 discusses the technique in depth. Reviewer_77iV calls its assessment 'an educated guess', and the questions of 77iV and Reviewer_1hLE rest on misreadings. No reviewer reports checking the proofs; three confidence labels say 'Math/other details were not carefully checked'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_77iV",
+          "evidence": "Confidence 1, 'an educated guess'. The main review is one sentence asking for experiments and one question: 'Why a weaker oracle leads to a more difficult problem?' A weak oracle fixes u_t before the query and returns +u_t or -u_t (lines 146-147), which is a valid strong-oracle answer. So the strong-oracle bounds of Theorems 4.1 and 4.2 also hold against it, and Theorem 5.2 only adds a T-free O(d^5 log^2 d) bound. The summary writes 'cutting-edge algorithm' for cutting-plane."
+        },
+        {
+          "reviewer": "Reviewer_1hLE",
+          "evidence": "Confidence 4, 3-4 hours. Asks whether the exp(d) bound is trivial 'as there can only be O(2^d) distinct X_ts possible'. The paper allows any X_t in the unit ball, 'potentially very large' (lines 33-35, 219-220), with bounds independent of |X_t| (line 51). Praises 'near-optimal bounds', but the main text claims near-tightness only for the local variant (lines 80-82) and has no lower bound for Theorems 4.1-4.2 (lines 337-339). Calls the problem 'contextual search'. Post-rebuttal reply: 'Author responses are satisfactory'."
+        },
+        {
+          "reviewer": "Reviewer_7k7P",
+          "evidence": "Confidence 2. Reports 25 hours for a 314-word review with a 127-word main review. Its one weakness asks whether the algorithms 'can be efficiently implemented'; lines 52-54 and 158 state poly(d, T) time, given linear optimization over X_t. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oGv3",
+          "claim": "In the contextual-search sketch (supplement line 314; main text lines 291-295), a loss of about dr incurred O(d log(2/r)) times sums to O(d^2), not O(d log d).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Step 2 sets r = 2^ceil(lg(w/10d)) (line 285), and the width w is at most 2, so r is O(1/d). The largest scale then gives O(d^2 r log(2/r)) = O(d log d), as the authors replied. Line 294's 'powers of 2 less than 1' is loose wording, not a wrong bound."
+        },
+        {
+          "reviewer": "Reviewer_oGv3",
+          "claim": "The bounds for local contextual recommendation grow linearly in |X_t|/(L-1).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 78-80: gamma = A/(L-1) with A = max_t |X_t|; regret O(gamma d log T) and gamma exp(O(d log d))."
+        },
+        {
+          "reviewer": "Reviewer_oGv3",
+          "claim": "The strong-oracle results, especially O(d log T), seem similar to and maybe recoverable from the contextual-search algorithm [supp 20].",
+          "checked_against_paper": "incorrect",
+          "evidence": "Similar, not recoverable. Lines 137-141: the algorithms of [6] and [7] need v_t before the guess, so they cannot run against a separation oracle. The new algorithms query a centroid or John-ellipsoid center and adapt the Steiner-potential analysis (lines 326-328, 341-344), with Grunbaum's theorem in place of exact bisection (lines 175-181)."
+        },
+        {
+          "reviewer": "Reviewer_77iV",
+          "claim": "Against a weak separation oracle the regret (Theorem 5.2) is worse than against a strong one, so the weaker oracle makes the problem harder.",
+          "checked_against_paper": "incorrect",
+          "evidence": "A weak-oracle answer is a valid strong-oracle answer (lines 146-147), so Theorems 4.1 and 4.2 hold against weak oracles too. Theorem 5.2 (lines 387-389) adds O(d^5 log^2 d), free of T and polynomial where Theorem 4.1 is exp(O(d log d))."
+        },
+        {
+          "reviewer": "Reviewer_1hLE",
+          "claim": "The exp(d) bound follows trivially because only O(2^d) distinct action sets X_t are possible.",
+          "checked_against_paper": "incorrect",
+          "evidence": "X_t is any subset of the unit ball, 'potentially very large' (lines 33-35, 219-220); the bounds are independent of |X_t| (line 51). The authors replied that action sets need not be finite."
+        },
+        {
+          "reviewer": "Reviewer_7k7P",
+          "claim": "It is unclear whether the algorithms can be implemented efficiently.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 52-54: 'efficiently implementable given an efficient procedure for optimizing a linear function over the sets X_t'; line 158: 'efficiently implementable (in poly(d, T) time)'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "Reviewer_1hLE, 2021-08-27: 'I keep my score unchanged and vote for accepting the submission.' Reviewer_7k7P's review was edited 2021-08-26, after the 2021-08-11 responses, with no comment and no post-rebuttal text, so a change cannot be read from it. Reviewer_oGv3 and Reviewer_77iV neither edited nor replied.",
+        "what_convinced_or_not": "The responses corrected misreadings: action sets need not be finite (1hLE), the O(d log d) sum holds because r is O(1/d) (oGv3), and the weak-oracle bounds are polynomial in d (77iV). 1hLE called them satisfactory. The response to oGv3 offered the doctor-and-lawyer example as motivation; oGv3 did not answer. Committee B's 7jBU rejected the same example. Since all ratings were already 7, the rebuttal did not decide anything."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences. 'The reviewers found that the results are novel and technically interesting', and formalizing regret for cutting-plane methods 'was valuable, and is likely to find further use', restates oGv3's 'main significance'. It adds its own caveat, 'slightly niche for the NeurIPS community', and asks for motivation (oGv3) and implementation (7k7P). It does not weigh the low confidences or compare the model with earlier ones.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 7s from four reviewers (mean 7.0), at confidences 2, 1, 3 and 4.",
+        "New problem, and the formalization of low-regret cutting-plane methods judged likely to find further use (oGv3; AC).",
+        "New convex-geometry tools valued: the centroid analogue of Steiner's formula and the curvature path (oGv3, 7k7P).",
+        "No experiments, thin motivation and niche fit treated as suggestions, not grounds for rejection (AC)."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        8,
+        3,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7jBU"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_7jBU",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The 3 is three points below the panel median of 6 and four below every rating in A. It is argued at length: 10 hours and two replies to the authors. Its ground is a judgment that the adversarial, noiseless best-action model is 'pathological', while it calls the technique 'solid and interesting' and suggests to 'submit it as a purely technical paper'. Its supporting technical claims are weaker: the results are not 'just an application' of contextual search (lines 137-141), and it wrongly denied that adversarial upper bounds hold in stochastic settings. Its related-work point is right for the main text."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Wg9U",
+          "claim": "Lines 130-134 write w* where v_t is meant, and line 122 switches the domain from the unit ball to [0,1]^d.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 131-133 compare <p_t, w*> with <v_t, w*> and give the loss as |<v_t, w*> - <p_t, w*>|; the oracle condition at line 96 is <w*, v_t> >= <p_t, v_t>. Line 122 has w* in [0,1]^d against the unit ball at lines 93 and 217. The forum PDF repeats the submitted text, errors included."
+        },
+        {
+          "reviewer": "Reviewer_7jBU",
+          "claim": "The proof is just an application of the existing contextual-search results.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 137-141: the contextual-search algorithms of [6] and [7] need v_t before the guess and cannot be applied verbatim. The strong-oracle analyses reuse the Steiner-potential argument (lines 115-118, 324-326, 341-344), but the reduction (Theorem 3.1) and the curvature-path results of Section 5 are new."
+        },
+        {
+          "reviewer": "Reviewer_7jBU",
+          "claim": "Related work is inadequate: Abbasi-Yadkori et al. 2011 and Bastani et al. 2021 are missing, and the only bandit papers cited are stochastic.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text has eight references; its two bandit papers, Auer 2002 [1] and Chu et al. 2011 [4], are stochastic. Line 214 puts the related-work survey in the supplement, which is not in the record."
+        },
+        {
+          "reviewer": "Reviewer_7jBU",
+          "claim": "With noiseless best-action feedback there is no exploration-exploitation trade-off.",
+          "checked_against_paper": "correct",
+          "evidence": "The feedback x*_t does not depend on the action played (lines 221-222), and B's AC called it 'action independent'. The same passage's 'we would surely find the best action' is wrong: X_t changes adversarially every round (lines 34-35), so the learner must learn w*, not one action."
+        },
+        {
+          "reviewer": "Reviewer_7jBU",
+          "claim": "(Discussion, 2021-08-16 and 08-24) Adversarial regret bounds do not carry over to the stochastic setting; the authors do not understand basic bandit results.",
+          "checked_against_paper": "incorrect",
+          "evidence": "A worst-case upper bound holds on every instance, stochastic ones included. 7jBU's next reply retreats to 'Its bound will be very loose'. Its point that stochasticity 'mainly comes from the noisy reward observations' does not apply, because the model observes no rewards (lines 221-222)."
+        },
+        {
+          "reviewer": "Area_Chair_SEhk",
+          "claim": "If the best action beats the second-best by gamma every round, the classical center-of-gravity method has regret O(d log 1/gamma).",
+          "checked_against_paper": "correct",
+          "evidence": "Each mistake cuts the knowledge set through its centroid, while a ball of radius about gamma/4 around w* survives every cut; so mistakes are O(d log 1/gamma), each costing at most 2. The authors replied 'this is true' and added that one violated round breaks the bound. The main text never mentions a margin."
+        },
+        {
+          "reviewer": "Area_Chair_SEhk",
+          "claim": "With X_t = {Phi(x_t, y)}, the protocol is the single-vector online multiclass model of Crammer et al. 2006, Section 7; only the loss differs.",
+          "checked_against_paper": "correct",
+          "evidence": "Predict argmax_y <w, Phi(x_t, y)>, then see the true label; with realizable u = w* that label is x*_t. The authors' second reply accepts the mapping and disputes only whether guarantees transfer ('the two problems have different goals'). The main text cites no online classification work."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "No reviewer reports a change. Reviewer_Wg9U and Reviewer_51YE neither edited nor posted after the rebuttal. Reviewer_7jBU's review was edited 2021-09-08, during the AC's thread with the authors (2021-09-01 to 09-11) and after the authors' last reply of 09-07. Its 2021-08-16 reply says 'I still think that this paper does not deserve to be accepted by Neurips, so I will have a lower score' and offers to revise 'If I am shown a compelling example'. The edit changed a sentence that the 08-16 reply quotes: 'implies that the problem setting is pathological' became 'does not negate the fact that the problem setting is pathological'. A drop to 3 at that edit cannot be ruled out.",
+        "what_convinced_or_not": "The doctor-and-lawyer example and 'any regret bound in the adversarial setting immediately carries over to the stochastic setting' did not move 7jBU ('I am not convinced with these examples'). The appeal to the experts setting and to Awerbuch-Kleinberg drew 'They are also not discussed in the main paper at all'. In the AC thread, the authors' first answer ('linear partition') missed the AC's mapping; after the AC restated it, the authors conceded the O(d log 1/gamma) margin bound and promised a discussion. The AC replied 'I agree that your paper has made nontrivial contributions' but kept both points in the meta-review. Wg9U and 51YE got short replies and never posted again."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Two of three ratings are above the bar (8 and 6; mean 5.67), and the AC rejected. The positives restate the reviewers ('looks solid and interesting to the reviewers'). The first two negatives, online multiclass classification and the gamma-margin baseline, come from the AC's own thread with the authors, opened with 'some of us (AC and reviewers)'; no review raises them. The third, no experiments, comes from 7jBU and 51YE. 'More appropriate for a theoretical CS conference such as SODA' echoes 7jBU's 'submit it as a purely technical paper'. The summary: 'a good paper, but is at the borderline of acceptance bar'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Model judged too close to full-information online multiclass classification in the single-vector model, with no comparison in the paper (AC).",
+        "Significance of the gamma-free bounds questioned: with a per-round margin, a naive center-of-gravity method gets O(d log 1/gamma) regret (AC; conceded by the authors).",
+        "No experiments (7jBU, 51YE; AC).",
+        "Adversarial, noiseless best-action model judged poorly motivated (7jBU's 3), leaving a split panel of 8, 3, 6.",
+        "Venue fit: 'more appropriate for a theoretical CS conference such as SODA' (AC)."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Bounds for local contextual recommendation grow linearly in |X_t|/(L-1), which may be impractical (oGv3).",
+    "Whether the O(d log d) contextual-search sum is right (oGv3); it is, since r is O(1/d).",
+    "Whether the algorithms can be implemented efficiently (7k7P); lines 52-54 and 158 say yes.",
+    "Why a weak oracle gives worse regret (77iV) and whether finitely many action sets make exp(d) trivial (1hLE); both misreadings.",
+    "Ranking feedback over the top m actions as an extension (1hLE)."
+  ],
+  "issues_only_b": [
+    "The protocol matches full-information online multiclass classification in the single-vector model (Crammer et al. 2006; Fink et al. 2006), and the paper makes no comparison (AC).",
+    "With a per-round margin gamma, a naive center-of-gravity method gets O(d log 1/gamma) regret (AC; conceded).",
+    "Missing bandit and learning-to-rank work: Abbasi-Yadkori et al. 2011, Bastani et al. 2021, diversity in ranking, best-of-both-worlds bandits (7jBU).",
+    "Robustness to noisy or corrupted best-action feedback (51YE, 7jBU; AC).",
+    "Action-independent feedback with no exploration-exploitation trade-off, so the 'contextual bandits' label misleads (7jBU; AC)."
+  ],
+  "shared_issues": [
+    "No experiments (A: 7k7P, 77iV, oGv3; B: 7jBU, 51YE, AC).",
+    "Motivation of the model: A's oGv3 doubted that users always pick the optimal action; B's 7jBU doubted adversarial action sets and noiseless feedback; both ACs asked for more justification. Both rebuttals offered the same doctor-and-lawyer example.",
+    "Overlap of the strong-oracle analyses with contextual search (A: oGv3, hedged, 'maybe even recoverable by [supp 20]', rating 7; B: 7jBU, 'just an application', rating 3).",
+    "Fit of a theory-CS paper at NeurIPS (A's AC: 'slightly niche'; B's AC: 'SODA').",
+    "Stochastic rather than adversarial action sets (A: 1hLE, as a question; B: 7jBU, as a ground for rejection).",
+    "Typos and undefined notation, e.g. the undefined K at line 81 (A: oGv3; B: Wg9U)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees disagreed about significance and venue, not correctness. No reviewer in either committee reports checking the proofs, which are all in the supplement, and nobody claimed an error in a main result. Committee A gave four 7s at confidences 2, 1, 3 and 4. Only Reviewer_oGv3 engaged with the technique; Reviewer_77iV and Reviewer_1hLE rest their 7s on misreadings, and nobody in A compared the model with earlier online-learning models. Committee B split 8, 3, 6. Its detractor, Reviewer_7jBU, read the paper as a bandit paper, as the abstract invites, and called the adversarial, noiseless best-action model 'pathological'; some of its technical claims are wrong. With two of three ratings above the bar, Area_Chair_SEhk's own analysis decided the outcome. The AC argued that the protocol is full-information online multiclass classification in the single-vector model (Crammer et al. 2006), and showed that with a per-round margin gamma a naive center-of-gravity method already gets O(d log 1/gamma) regret. The authors conceded the margin bound, and the main text discusses neither point. The AC still called the bounds new and the contributions 'nontrivial', and rejected on significance and fit ('more appropriate for a theoretical CS conference such as SODA'). A's AC saw the same fit problem ('slightly niche for the NeurIPS community') and accepted on unanimous ratings. Both committees saw no experiments and a thin motivation; A treated them as suggestions, B counted them against the paper. B's margin argument is valid but not a fatal flaw: it narrows where the gamma-free bounds matter and refutes nothing.",
+  "candidate_reasons": [
+    "AC's own margin-baseline argument",
+    "Overlap with online multiclass classification",
+    "Bandit-lens detractor rejects motivation",
+    "Uniform low-confidence accept votes",
+    "Theory-venue fit weighed differently",
+    "Split panel left AC deciding"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_oGv3 review (Committee A)",
+    "Reviewer_77iV review, question on Theorem 5.2 (Committee A)",
+    "Reviewer_1hLE review and 'Post rebuttal' of 2021-08-27 (Committee A)",
+    "Reviewer_7k7P review, edited 2021-08-26 (Committee A)",
+    "Reviewer_7jBU review, edited 2021-09-08, and replies of 2021-08-16 and 2021-08-24 (Committee B)",
+    "Area_Chair_SEhk comments of 2021-09-01, 2021-09-06 and 2021-09-11, and the authors' replies of 2021-09-02 and 2021-09-07 (Committee B)",
+    "Committee B meta-review",
+    "Reviewer_Wg9U review (Committee B)",
+    "Reviewer_51YE review (Committee B)",
+    "paper_submitted lines 33-35, 51, 219-222 (adversarial, possibly infinite X_t; action-independent feedback)",
+    "paper_submitted lines 52-54, 158 (efficient implementability)",
+    "paper_submitted lines 130-141 (w* for v_t errors; contextual-search algorithms need v_t first)",
+    "paper_submitted lines 284-295 (contextual-search sketch; r set from w/10d)",
+    "paper_submitted lines 146-147 and Theorem 5.2, lines 387-389 (weak oracle; O(d^5 log^2 d))",
+    "paper_submitted lines 337-339 (no lower bound for Theorems 4.1-4.2)",
+    "paper_submitted line 214 and references [1]-[8] (related work deferred to the supplement)",
+    "paper.pdf (forum version): main text identical to the submission"
+  ]
+}

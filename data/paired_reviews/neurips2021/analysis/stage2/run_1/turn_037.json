@@ -1,0 +1,260 @@
+{
+ "run": 1,
+ "turn": 37,
+ "pair_id": "n21-197",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": false,
+   "justification": "Both area chairs followed their reviewers' scores; neither set the recommendation from their own reading."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "Neither committee's recommendation rests on a forecast of impact beyond the paper's setting."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "A's main critic oMsG raised his score to 6 after the response; in B the near-identical framing and human-study explanation moved no score."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "A's spotlight rests on wEz8's 9 at confidence 5, a two-hour review that is mostly summary with three minor points and never addresses the sample selection."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Only B raised unreported inference speed (jmVT) and unmeasured parser errors (2tE8), and B's meta-review cites both against the paper."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "Both committees saw the hand-designed world model, thin novelty and stretched System 1/2 framing; A took them as stated limits of a proof of concept, B as fatal to generality."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "No score moved from reviewer discussion; oMsG's rise followed the authors' response."
+  },
+  {
+   "id": "R08",
+   "applies": false,
+   "justification": "Each rating matches its review's verdict; CnYk's 4 sits with a review that names applicability, novelty and openness concerns."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "Confidences are 4 or 5 throughout; no reviewer said they could not judge the paper."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "A's meta-review cites consensus and the mean, not wEz8's verdict; B's chair summarised all four reviews."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "B's reviewers did not write accept-like verdicts at low scores; they judged the world model too limiting, a different verdict, not a different calibration."
+  },
+  {
+   "id": "R12",
+   "applies": false,
+   "justification": "A's meta-review cites unanimity, but wEz8 rated 9, above the accept level, so the reason's condition fails."
+  },
+  {
+   "id": "R13",
+   "applies": true,
+   "justification": "oMsG raised his score on reframing, arguments and promised citations and wording fixes; no new result was shown."
+  },
+  {
+   "id": "R14",
+   "applies": true,
+   "justification": "A's four-sentence meta-review names no weakness, dropping oMsG's novelty, evaluation and citation points, while B's meta-review carries every reviewer's concern forward."
+  },
+  {
+   "id": "R15",
+   "applies": true,
+   "justification": "B's two lowest scores rest partly on wrong claims: Ms3t (3) on gSCAN validity and missing baselines, CnYk (4) on a supervised-trained parser."
+  },
+  {
+   "id": "R16",
+   "applies": false,
+   "justification": "The concession that the world model must be designed per domain went to B, which already rejected; A received no damaging concession about results."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "CnYk's post-response grounds (closed GPT-3, novelty) were already in the original review, and the authors had answered them."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "The committees' scores are far apart (mean 7.0 against 4.25), not near-identical."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "No area chair passed over a better-informed reviewer; B's reviewers are all at confidence 4 and A's chair followed all four."
+  },
+  {
+   "id": "R20",
+   "applies": true,
+   "justification": "A's critic raised framing, citation and evaluation-design points the response could clarify; B's decisive concern, the hand-built world model, is scope the response could only concede."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "wEz8's 9 lifts A from poster to spotlight territory, but A's other scores (6, 6, 7) still sit well above B's (5, 4, 3, 5)."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "wEz8, the flagged outlier, never engaged, but the response answered no point its 9 rested on; Ms3t ignored the response but is not an outlier in B."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "Neither committee had a discarded detractor."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "No reviewer raised audience breadth or venue fit."
+  },
+  {
+   "id": "R25",
+   "applies": false,
+   "justification": "Neither meta-review misstates the reviewers' final positions or the response; B's omits the corrected misreadings but does not rest on them."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "B's reviewers mostly replied to the response and kept their scores; A's non-engaging reviewers held scores whose basis the response did not answer."
+  },
+  {
+   "id": "R27",
+   "applies": false,
+   "justification": "All reviewers are at confidence 4 or 5 and none said they could not verify the results."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "Neither committee was split evenly."
+  },
+  {
+   "id": "R29",
+   "applies": false,
+   "justification": "The authors gave both committees the same account of the framing and the human study; the world-model limitation is stated in the paper itself."
+  },
+  {
+   "id": "R30",
+   "applies": false,
+   "justification": "Novelty criticism in both committees cites relevant prior work correctly; no wrong precedent or accepted false first claim."
+  },
+  {
+   "id": "R31",
+   "applies": true,
+   "justification": "A's meta-review gives no reason for a spotlight over a poster, and only wEz8's thin 9 supports that tier."
+  },
+  {
+   "id": "R32",
+   "applies": false,
+   "justification": "The framing objections (System 1/2) came from both committees and were not argued from a neighbouring field's premises."
+  },
+  {
+   "id": "R33",
+   "applies": false,
+   "justification": "A's only high-scoring reviewer, wEz8, gave a light review and never engaged, so A had no engaged champion either."
+  },
+  {
+   "id": "R34",
+   "applies": false,
+   "justification": "No committee rejected because promised revisions were too large."
+  },
+  {
+   "id": "R35",
+   "applies": false,
+   "justification": "No off-record input appears in either committee's record."
+  }
+ ],
+ "added": [],
+ "reasoning": "The core of the split is the same facts weighted differently: A took the hand-built world model, thin novelty and stretched framing as stated limits of a proof of concept, B as fatal to generality (R06, R20). The rebuttal moved A's critic on explanations and promises but no B score (R03, R13). A's spotlight rests on one thin 9 and a meta-review that names no weakness and gives no reason for the tier (R04, R14, R31). B's lowest scores rest partly on misreadings (R15), and B alone raised inference speed and parser errors (R05). The stage 1 candidates all map to existing reasons: CnYk's closed-GPT-3 ground was in the original review, so no late-objection or shifted-ground reason is needed. R21 fails because A's other scores stay well above B's. No new reason was added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ]
+}

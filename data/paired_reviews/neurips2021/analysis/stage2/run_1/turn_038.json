@@ -1,0 +1,260 @@
+{
+ "run": 1,
+ "turn": 38,
+ "pair_id": "n21-210",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": false,
+   "justification": "Both area chairs followed their reviewers' scores; neither set the recommendation from their own reading."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "Neither committee's recommendation rests on a forecast of impact beyond the paper's setting."
+  },
+  {
+   "id": "R03",
+   "applies": false,
+   "justification": "The response moved one score in each committee (FknY 4 to 5 in A, WQsZ 6 to 7 in B); neither committee's recommendation moved."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "B's reviews took 1, 2, 3 and 7 hours against 5 to 6 in A; YH9r (one hour, confidence 2) named no weakness, and B took the 'better bounds' and lower bound as stated."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Only A showed that the classical forward bound plus a high-probability bound on |y_t| already beats Theorem 3.3 by a factor of d, and that Corollary 3.3.1 is no stochastic lower bound; A's meta-review cites the first."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "npqJ (A, 5) and 4n5Q (B, 8) both saw that ridge and forward perform alike most of the time, and both committees heard the parity concession at moderate lambda, but only A held it against the paper."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "Every score change followed the authors' response, not reviewer discussion."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "jxuz kept a 6 (above the threshold) while writing that 'a major revision of this paper is required', so A's only accept-side score contradicts its own text."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "No reviewer in either committee gave a borderline score because they could not judge the paper; B's least sure reviewer gave a 7."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "Neither committee had an outlying reviewer, and neither AC adopted a single reviewer's verdict."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The verbal assessments differ in substance: A found the central bounds weaker than stated, B took them as stated."
+  },
+  {
+   "id": "R12",
+   "applies": false,
+   "justification": "4n5Q rated 8, above the accept level, and A's lower tier comes from a much lower mean, not a spread of scores."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "WQsZ's rise rested on the authors' derivative proof for Lemma C.1, which holds; no score rose on copied or promised results."
+  },
+  {
+   "id": "R14",
+   "applies": true,
+   "justification": "B's four-sentence meta-review cites only consensus and drops its reviewers' weaknesses (lambda = 1/T experiment, matching bound only for large lambda, standard techniques), while A's carries its reviewers' issues forward."
+  },
+  {
+   "id": "R15",
+   "applies": true,
+   "justification": "YH9r's 7 rests on calling the forward algorithm 'a new algorithm', although line 13 credits it to Vovk and Azoury and Warmuth; B's AC also misstated the removed assumption as one 'on the inputs'."
+  },
+  {
+   "id": "R16",
+   "applies": true,
+   "justification": "The authors conceded to B that OFUL and OFUL^f perform on par at moderate lambda and that the ridge bound matches only for large lambda; no B reviewer lowered, and WQsZ rose to 7."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "FknY's lower-bound objection was raised during the discussion and drew a 'typo' reply; the record does not show it came after the response period closed."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "The two committees' scores differ widely (5, 6, 5, 5 against 7, 7, 7, 8), so the split is not a tier cut-off on similar reviews."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "A's AC followed its most expert reviewer FknY on the main points, and B's AC followed its expert 4n5Q's 8."
+  },
+  {
+   "id": "R20",
+   "applies": false,
+   "justification": "Both committees' scores rose by one point in total after the response, so the response did not lift one committee further than the other."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "Neither committee had an outlying score; jxuz's 6 and 4n5Q's 8 sit one point from their committees' other scores."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "Neither committee had an outlying reviewer."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "No AC discarded a detractor; B had no low score and A had no champion."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "Neither committee raised audience breadth or venue fit."
+  },
+  {
+   "id": "R25",
+   "applies": false,
+   "justification": "B's AC misstated the paper ('on the inputs'), not the reviewers' positions or the rebuttal; A's meta-review omits FknY's open question but misstates nothing."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "Two B reviewers never replied, but the response did not answer points that would have raised their scores; the unrevised scores are already high."
+  },
+  {
+   "id": "R27",
+   "applies": true,
+   "justification": "YH9r (confidence 2, 'I did not go through all the proofs') and XAWf (2 hours) gave 7s that B's AC counted in full as 'consensus'."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "Neither committee split evenly; A had no reviewer arguing for acceptance and B had none against."
+  },
+  {
+   "id": "R29",
+   "applies": true,
+   "justification": "The authors told A that their explanation of the extra d factor was wrong and conceded the textbook exercise and missing references; they told B none of this."
+  },
+  {
+   "id": "R30",
+   "applies": true,
+   "justification": "YH9r credited the authors with a new algorithm that line 13 attributes to prior work, and B never saw the textbook exercise or Abbasi-Yadkori et al. 2012 that A found against the paper's novelty."
+  },
+  {
+   "id": "R31",
+   "applies": true,
+   "justification": "B's meta-review gives no reason for a spotlight, and no B reviewer argued for a tier above accept."
+  },
+  {
+   "id": "R32",
+   "applies": false,
+   "justification": "Both committees' reviewers read the paper from within online learning; no framing objection came from a neighbouring field."
+  },
+  {
+   "id": "R33",
+   "applies": false,
+   "justification": "A's most positive reviewer jxuz engaged after the rebuttal and backed a major revision, so the definition's other half does not hold."
+  },
+  {
+   "id": "R34",
+   "applies": true,
+   "justification": "jxuz and npqJ called for a 'major revision' and A's AC asked for a resubmission with better presentation, discussion and references, while B treated the weak lambda experiment as fixable in revision."
+  },
+  {
+   "id": "R35",
+   "applies": false,
+   "justification": "Neither AC cites an assessment outside the committee's record."
+  }
+ ],
+ "added": [],
+ "reasoning": "The split comes mainly from scrutiny: A's reviewers tested the central bounds against the classical bound and found them weaker by a factor of d (R05), while B's lighter reviews, two by unsure reviewers, took the claims as stated (R04, R27) and one misread the algorithm as new (R15, R30). B's meta-review dropped all weaknesses and gave no grounds for a spotlight (R14, R31). The authors conceded more to A than to B (R29), and B kept its scores after the parity concession (R16). Smaller mechanisms: the shared parity fact weighted differently (R06), jxuz's 6 against a 'major revision' text (R08), and A's major-revision framing (R34). Every stage 1 candidate maps to an existing reason, so no reason is added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ]
+}

@@ -1,0 +1,269 @@
+{
+ "pair_id": "n21-305",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    4,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_RKc5"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_Xmig",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Lone 4 against 6, 7, 6. Its specific requests hold against the paper: the main text has no sensitivity study for the alpha or beta schedules, no score-function baseline, and Tables 3-4 report no confidence intervals. Two lapses: it says the vanishing-gradient hypothesis lacks 'experimental backups', though Figure 4 plots gradient magnitudes per GNN round, and one question breaks off mid-sentence ('Is there any particular reason for'). Xmig posted on 2021-08-31 and 2021-09-01, called the work 'very novel', and kept 4 because the score-function comparison 'is not addressed'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_b78f",
+     "evidence": "Five short paragraphs after 3 hours, with no question and no reference to any section, table or figure. It says 'I am not very familiar with the corresponding application domains to be able to judge the significance of the presented results' and calls the work 'rather incremental', yet rates 6. No post in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_RKc5",
+     "claim": "TempMatch (raising beta at fixed tau) equals lowering the effective temperature to tau/beta while scaling the logits by 1/beta.",
+     "checked_against_paper": "correct",
+     "evidence": "Follows from Eq. 4 with noise Gumbel(0, beta) = beta times Gumbel(0, 1): softmax((theta + beta*eps)/tau) = softmax((theta/beta + eps)/(tau/beta)). Authors: 'This derivation is correct, at least for beta > 0'."
+    },
+    {
+     "reviewer": "Reviewer_RKc5",
+     "claim": "The 'simplified arborescence prior' does not enforce an arborescence; it is a directed pseudoforest prior.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 217-219: a Gumbel-softmax over all possible parents for each node; nothing excludes cycles. The authors conceded and will rename it."
+    },
+    {
+     "reviewer": "Reviewer_RKc5",
+     "claim": "The claimed analytical demonstration of vanishing gradients is only the softmax derivative plus an assertion.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 47-48 claim to 'show both analytically and empirically'; the analysis is Eq. 5 and the informal lines 90-98, with no stated result (checklist items 2a-2b answered N/A)."
+    },
+    {
+     "reviewer": "Reviewer_RKc5",
+     "claim": "REBAR [27] and RELAX [7] already treat multilayer or sequential stochastic nodes, against the paper's single-node framing of prior work.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 6-8, 41-43 and 171-173 cast prior estimators as single-node; REBAR's experiments include two-layer sigmoid belief networks. The authors agreed to revise the related work."
+    },
+    {
+     "reviewer": "Reviewer_RKc5",
+     "claim": "The MNIST claim that the learned operation is 'modular and likely able to extrapolate' has no experiment behind it.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 313-314 assert it; Section 4 reports no such experiment. The authors cited unreported generalization runs."
+    },
+    {
+     "reviewer": "Reviewer_Xmig",
+     "claim": "The multi-hop knowledge-graph experiments report no confidence intervals.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 3 and 4 give point values only."
+    },
+    {
+     "reviewer": "Reviewer_Xmig",
+     "claim": "The vanishing-gradient hypothesis has no experimental backup.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Figure 4 plots mean absolute gradients per GNN round on ListOps with and without dropout residuals; Figure 3 adds a toy."
+    },
+    {
+     "reviewer": "Reviewer_nNqs",
+     "claim": "Comparisons with tau annealing and with non-stochastic residuals appear for one task each.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 5 (MNIST addition) and Figure 6 (ListOps) only; the full ablation, Table 2, is ListOps only."
+    },
+    {
+     "reviewer": "Reviewer_nNqs",
+     "claim": "On multi-hop reasoning the model beats the much larger CoKE baseline.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: Freebase MQ 97.9 vs 95.0 and H@10 89.6 vs 77.7; WordNet MQ tied at 94.2 and H@10 68.8 vs 67.9. No intervals."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_RKc5"
+    ],
+    "evidence": "RKc5's review edit (2021-08-26) and post 'Further reflection and raising my score' (2021-08-26): 5 to 6. Xmig posted on 2021-08-31 and 2021-09-01 and kept 4, with no edit. nNqs and b78f neither posted nor edited.",
+    "what_convinced_or_not": "RKc5 rose on promises: 'the promised formalization', clarity fixes and planned experiments, while still calling the vanishing-gradient hand-waving 'the largest remaining weakness'. On 2021-08-30 RKc5 showed that the authors' formalization sketch conflated two meanings of 'more uniform' ('it suggests that TempMatch will generally make gradients smaller'), but judged the analysis incomplete rather than the method unsound; the 6 stayed. Xmig welcomed the planned ablations and simplex plots but held 4: the score-function comparison was not addressed, and wider applicability (Kool et al.) was untested."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four reviewers at 6 or 7. The meta-review says the reviewers 'agreed that the techniques are novel' and calls the results 'impressive'. It treats more ablations, a REINFORCE-plus-variance-reduction baseline, a formal vanishing-gradient argument and clarity as improvements. It does not mention b78f's 'rather incremental' or Xmig's 4.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four reviewers at 6 or 7, led by Reviewer_nNqs (7, confidence 4): 'a clear accept given its positive finding and the amount of substance'.",
+    "Strong extrapolation on ListOps (Table 1) and knowledge-graph results above CoKE (Tables 3-4), read as proof that discrete components help.",
+    "The two tricks were judged simple and novel (RKc5, nNqs, Xmig, AC).",
+    "Gaps in theory, ablations and baselines were treated as revisions; RKc5 raised 5 to 6 on promised fixes.",
+    "Xmig's 4 rested on requests, not errors, and did not move the majority."
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    7,
+    5,
+    4
+   ],
+   "confidences": [
+    4,
+    2,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Thd9",
+    "Reviewer_Uy2p"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_DtA3",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "Lone 7 against 5, 5, 4, with confidence 2 ('quite likely that you did not understand central parts') after 1.25 hours. Its basis, 'two novel tricks' and 'strong results for extrapolation', matches Tables 1 and 4. But its own three weaknesses (unexplained annealing schedules, DropRes overfitting 'merely an empirical observation', no theoretical link for beta) are the detractors' points, and the 7 does not weigh them. No forum post; the AC reports a reject consensus of all reviewers."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_DtA3",
+     "evidence": "Light rather than wrong: 1.25 hours, confidence 2, a short review that summarises correctly but gives a 7 without weighing its own listed weaknesses. No forum post, and it did not hold out in the committee discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Uy2p",
+     "claim": "Every (tau, beta) pair equals a pair (alpha, tau') with beta = 1, where alpha rescales the logits, and the network can learn alpha.",
+     "checked_against_paper": "correct",
+     "evidence": "Same identity as RKc5's in A, from Eq. 4. Authors: 'As the reviewer correctly deduced, one could equivalently scale the two parameters alpha and tau simultaneously while keeping beta constant'."
+    },
+    {
+     "reviewer": "Reviewer_Uy2p",
+     "claim": "Table 2's standard deviations are too large to show any benefit from TempMatch.",
+     "checked_against_paper": "correct",
+     "evidence": "With DropRes, removing TM moves task accuracy 96.1 +/- 0.4 to 95.1 +/- 1.7, edge precision 82.3 +/- 1.1 to 76.9 +/- 12.1, and d=10 extrapolation 86.9 +/- 4.9 to 83.7 +/- 4.0: each gap is smaller than the ablated row's spread. Without DropRes, TM lifts task accuracy from 56.2 +/- 5.0 to 74.8 +/- 11.5, as the authors replied. So the claim holds for the recommended full model only."
+    },
+    {
+     "reviewer": "Reviewer_Uy2p",
+     "claim": "The Figure 3 toy uses a degenerate target.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 125: cross-entropy against the constant target (1.0, 0.0)."
+    },
+    {
+     "reviewer": "Reviewer_Uy2p",
+     "claim": "The paper lacks a comparison of tuning tau against tuning tau and beta.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Figure 5 compares tau annealing (beta = 1) with beta annealing (tau = 4) on 3-image MNIST addition, with bands. It is one task and plots accuracy, not loss."
+    },
+    {
+     "reviewer": "Reviewer_Thd9",
+     "claim": "The comparisons with custom-tuned models do not show the source of the improvement; ablation exists for one problem.",
+     "checked_against_paper": "correct",
+     "evidence": "Only ListOps has a full ablation (Table 2). Lines 290-292 credit the knowledge-graph gains 'solely' to discrete components, but Table 3 has no ComplEx-based continuous baseline trained the same way; Table 5 (MNIST) has no ablation in the main text."
+    },
+    {
+     "reviewer": "Reviewer_Thd9",
+     "claim": "There is no comparison with score-function (REINFORCE) or variance-reduced estimators.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 compares Gumbel-softmax variants and non-stochastic models only; the authors called the comparison 'interesting future work'."
+    },
+    {
+     "reviewer": "Reviewer_UQHi",
+     "claim": "Jang et al. and Shayer et al. are absent from the draft.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Jang et al. is reference [11], cited at lines 42, 47 and 167. Shayer et al. is indeed absent."
+    },
+    {
+     "reviewer": "Reviewer_UQHi",
+     "claim": "Interpretability is claimed without demonstration.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 253 and Table 5 ('Interpretable: Yes') assert it; the only evidence is the intermediate-accuracy column of Table 1. No example or visualisation."
+    },
+    {
+     "reviewer": "Reviewer_DtA3",
+     "claim": "The overfitting that motivates DropRes is only an empirical observation.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 141-143 assert it ('We show empirically ...'); the main text's only support is Figure 6, which compares edge precision, not train-test gaps."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Uy2p edited on 2021-08-19: 'I am keeping my score unchanged' (4). Thd9 edited on 2021-09-02 to urge more ablations, with no sign of a change (final 5). UQHi and DtA3 did not edit. No reviewer posted in the forum; the AC reports a private committee discussion with all reviewers.",
+    "what_convinced_or_not": "Nothing new was delivered. The authors promised more ablations, schedules in the main text and related work. They defended the toy example as 'straightforward', said of Gumbel-Tree-LSTM 'We will have a look into it', and deferred the score-function comparison to 'future work'. Uy2p: 'more work is required'. Thd9: ablation studies 'should be the primary empirical justification'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four reviewers at 4 or 5 with confidence 4. The meta-review lists generic 'common concerns' (novelty, motivation, rigorous analysis, experiments, positioning) and reports a decision 'based on the consensus of all the reviewers and AC'. It cites no specific result and does not mention DtA3's 7.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three confident reviewers at 4 or 5 (Uy2p, Thd9, UQHi), none moved by the rebuttal.",
+    "The experiments do not isolate the source of the gains: one full ablation (ListOps), custom-model comparisons elsewhere, no score-function baselines (Thd9, Uy2p).",
+    "TempMatch judged unjustified: reducible to logit scaling, shown on a degenerate toy, and within noise in Table 2 once DropRes is used (Uy2p).",
+    "Novelty and positioning doubts (Jang et al.'s annealing, stochastic depth, Shayer et al.; 'somewhat unsurprising'), adopted by the AC.",
+    "The only 7 had confidence 2 and joined the reject consensus."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "The 'arborescence' prior is really a directed pseudoforest prior (RKc5); conceded.",
+  "REBAR and RELAX already handle multilayer or sequential stochastic nodes, against the paper's single-node framing (RKc5).",
+  "The MNIST extrapolation claim is unsupported, and DropRes applies only to shape-preserving discrete steps, not to graph edges (RKc5).",
+  "Sections 2 and 4 and Figure 1 are hard to follow (RKc5); B's reviewers called the paper well written.",
+  "No confidence intervals for the knowledge-graph results; fit to combinatorial optimisation (Kool et al.) and the title's scope (Xmig)."
+ ],
+ "issues_only_b": [
+  "With DropRes in place, TempMatch's gain in Table 2 is within the standard deviations (Uy2p).",
+  "Both tricks add bias to an already biased estimator, so the gains may be implicit regularisation (Thd9).",
+  "ListOps should be tested with a Gumbel-Tree-LSTM, which makes more stochastic decisions than the GNN (Uy2p).",
+  "Missing related work: Shayer et al. 2018 and stochastic depth (Huang et al. 2016) (UQHi).",
+  "Interpretability is claimed but never shown (UQHi)."
+ ],
+ "shared_issues": [
+  "The vanishing-gradient argument and TempMatch's mechanism are informal (A: RKc5, nNqs, b78f, AC; B: Uy2p, DtA3, AC).",
+  "TempMatch equals a temperature change plus logit rescaling (A: RKc5; B: Uy2p).",
+  "The Figure 3 toy does not show what it claims (A: RKc5; B: Uy2p).",
+  "Ablations and comparisons with tau annealing and plain residuals cover one task each (A: nNqs, Xmig, AC; B: Thd9, Uy2p).",
+  "No score-function or variance-reduced baselines (A: Xmig, AC; B: Thd9).",
+  "Annealing schedules for alpha and beta are neither given nor studied in the main text (A: Xmig, RKc5; B: DtA3, UQHi).",
+  "Effect on single-discrete-node models such as discrete VAEs (A: Xmig; B: DtA3)."
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same facts and weighted them differently. The paper is borderline, and before the rebuttal the ratings were nearly the same (A 4, 5, 6, 7; B 4, 5, 5, 7). Both found the vanishing-gradient argument informal, both saw that TempMatch is a temperature change plus logit rescaling (Reviewer_RKc5 in A, Reviewer_Uy2p in B), and both asked for ablations beyond ListOps and for score-function baselines. Committee A had a confident champion, Reviewer_nNqs (7, confidence 4: 'a clear accept given its positive finding and the amount of substance'), and a thin 6 from Reviewer_b78f, who called the work 'rather incremental' and could not judge the applications. RKc5 raised 5 to 6 on promised fixes, four days before showing that the authors' formalization sketch conflated two meanings of 'more uniform'; the 6 stayed. Committee B's three confident reviewers (UQHi 5, Thd9 5, Uy2p 4) did not credit promises, and its only 7 (Reviewer_DtA3) had confidence 2 after 1.25 hours and joined the reject consensus. On the disputed facts B is better grounded: with DropRes in place, removing TempMatch moves each Table 2 metric by less than the ablated row's spread, and the knowledge-graph gains have no same-scorer continuous baseline, so their source is not isolated (Thd9). A's case rests on extrapolation and knowledge-graph numbers that no reviewer disputed. Neither committee found an error that breaks the results. The split comes from reviewer draw and from whether promised revisions counted.",
+ "candidate_reasons": [
+  "confident champion only in accept committee",
+  "lone champion low-confidence and folded",
+  "score raised on promised revisions",
+  "ablation gaps weighted as decisive",
+  "novelty discounted via related tricks",
+  "borderline scores, reviewer draw decides"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_nNqs final review",
+  "Reviewer_b78f final review",
+  "Reviewer_RKc5 posts of 2021-08-26 (raise to 6) and 2021-08-30 (flaw in the formalization sketch)",
+  "Reviewer_Xmig posts of 2021-08-31 and 2021-09-01",
+  "Reviewer_Uy2p final review and 2021-08-19 edit",
+  "Reviewer_Thd9 final review and 2021-09-02 edit",
+  "Reviewer_DtA3 review (confidence 2, 1.25 hours)",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf Table 2 (TempMatch and DropRes ablation)",
+  "paper_submitted.pdf Tables 3-4 and lines 290-292 (no same-scorer continuous baseline, no intervals)",
+  "paper_submitted.pdf Figure 5 (tau versus beta annealing) and Figure 3 (toy target, line 125)",
+  "paper_submitted.pdf lines 217-219 (pseudoforest prior)"
+ ]
+}

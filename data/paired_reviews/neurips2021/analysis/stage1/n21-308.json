@@ -200,7 +200,7 @@
         "meta_review_leans_on": "scores"
       },
       "main_reasons_for_decision": [
-        "Unanimous ratings above threshold after two post-rebuttal raises from 5 to 6",
+        "Unanimous ratings above threshold after two post-rebuttal raises to 6 (qLjo from 5)",
         "Relevant problem and a structure-aware model shown on real data",
         "Rebuttal answered the convergence, initialisation, segmentation and runtime questions",
         "Single dataset and missing literature treated as minor"
@@ -232,7 +232,7 @@
     "'Exponential-Solution' typo in the abstract (Reviewer_767p; Reviewer_qLjo)"
   ],
   "same_facts_weighted_differently": true,
-  "verdict": "Both committees saw a borderline paper and weighted the same two facts differently: the submission compares only with DF (2013) and DMHP (2017), and it uses one real dataset. Before the rebuttal the committees were close (A 5, 5, 7, 4; B 5, at most 5, 7, 6). The same rebuttal split them. It moved Reviewer_qLjo (confidence 1) and Reviewer_3ktE in B from 5 to 6, because their questions on convergence, initialisation, day segmentation and bandwidth could be answered in text. It moved nobody in A, where Reviewer_aevy and Reviewer_jQiC wanted new baselines and datasets in the paper itself. A's area chair rejected on exactly those two points. The baseline point is accurate: the paper's own reference [25] is a 2020 event-sequence clustering method that it cites but does not compare, although the AC's 'did not even mention' overstates the case. B's reviewers saw the single dataset as a minor flaw and never raised baseline recency. Their reviews were thin (2 to 3 hours each, mean confidence 2.5 against A's 3.5, two self-declared non-experts), and B's AC followed the unanimous 6 and 7 ratings with a hedged meta-review. Two A detractors misread the paper (Reviewer_SZaC on the baselines, Reviewer_jQiC on the levels), but the reasons A's AC used are accurate.",
+  "verdict": "Both committees saw a borderline paper and weighted the same two facts differently: the submission compares only with DF (2013) and DMHP (2017), and it uses one real dataset. Before the rebuttal the committees were close (A 5, 5, 7, 4; B 5, at most 5, 7, 6). The same rebuttal split them. It raised Reviewer_qLjo (confidence 1) from 5 to 6 and Reviewer_3ktE to 6 in B, because their questions on convergence, initialisation, day segmentation and bandwidth could be answered in text. It moved nobody in A, where Reviewer_aevy and Reviewer_jQiC wanted new baselines and datasets in the paper itself. A's area chair rejected on exactly those two points. The baseline point is accurate: the paper's own reference [25] is a 2020 event-sequence clustering method that it cites but does not compare, although the AC's 'did not even mention' overstates the case. B's reviewers saw the single dataset as a minor flaw and never raised baseline recency. Their reviews were thin (2 to 3 hours each, mean confidence 2.5 against A's 3.5, two self-declared non-experts), and B's AC followed the unanimous 6 and 7 ratings with a hedged meta-review. Two A detractors misread the paper (Reviewer_SZaC on the baselines, Reviewer_jQiC on the levels), but the reasons A's AC used are accurate.",
   "candidate_reasons": [
     "Rebuttal moved only one committee",
     "Newer baselines demanded only in A",

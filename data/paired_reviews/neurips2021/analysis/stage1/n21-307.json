@@ -1,0 +1,257 @@
+{
+ "pair_id": "n21-307",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    4,
+    6,
+    5,
+    7,
+    8
+   ],
+   "confidences": [
+    2,
+    3,
+    2,
+    3,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_xjw9"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_uLNB",
+    "direction": "champion",
+    "basis": "principled",
+    "evidence": "The only 8 and the only confidence 5 among the ten reviewers of both committees. Without it, A's mean falls from 6.0 to 5.5. The review is specific: it asks whether Theorem 1's root alpha_0 exists, asks for a fuller proof of the piercing-number estimator, and flags a concurrent paper on the same problem (arXiv 2106.05951). It accepted the authors' derivation (alpha_0 = p'/2, which holds) and kept 8. Its case is the open problem of GMP'20 ('a big step'). It never addresses the exponential query complexity or the existence-only form of Theorem 1. It calls the paper 'quite well-written'; six of the other nine reviewers found parts hard to follow."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_jx9h",
+     "evidence": "Comments on 'the two halves of Figure 5', but the submission has no figures. On 2021-08-19 the reviewer called it 'a mixup between reviews'. It also asks how tau > 0 affects Theorems 2 and 3, which fix tau = 0 (Problem 1, lines 110 and 116). The 6 rests on a short review that is partly about another paper."
+    },
+    {
+     "reviewer": "Reviewer_WBt8",
+     "evidence": "Confidence 2. The strengths are one line. The concerns are vague ('not sure ... novel enough', 'not sure that the contribution is large enough'). 'Reference starts at page 9' is no violation: the main text ends on page 9. 'Limitations are not discussed' is wrong: lines 79-85, Remark 1 and Section 6 discuss them. No reply to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_xjw9",
+     "claim": "The learning procedure for either problem is never spelt out; it seems to enumerate sparse hypergraphs.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission has no pseudocode. Section 4.5 says only that H_B 'can be uniquely reconstructed' (lines 250-251). The authors conceded that the scheme 'implicitly involves enumerating over a family of hypergraphs'. The camera-ready adds Algorithm 1, an enumeration."
+    },
+    {
+     "reviewer": "Reviewer_xjw9",
+     "claim": "Remark 1 is misleading: the query complexity is exponentially worse than the noiseless bound of GMP'20.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 needs O(k l^3 max(2el, 2ek)^min(l,k) log^2 n) queries, exponential in min(l,k). GMP'20 needs O(l^6 k^3 log^2 n) under its separability assumption (camera-ready Table 1). Remark 1 (lines 133-137) admits a better GMP'20 bound only 'for some parameter regimes'. Theorem 1 does settle feasibility without the assumption."
+    },
+    {
+     "reviewer": "Reviewer_jx9h",
+     "claim": "The differences between the two halves of Figure 5 are minor.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The submission has no figures. The reviewer withdrew the remark on 2021-08-19."
+    },
+    {
+     "reviewer": "Reviewer_jx9h",
+     "claim": "It is not clear how the noise level tau > 0 affects Theorems 2 and 3.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorems 2 and 3 solve Problem 1, which fixes tau = 0 (lines 110 and 116). Only Theorem 1 handles noise."
+    },
+    {
+     "reviewer": "Reviewer_WBt8",
+     "claim": "Limitations are not discussed.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 79-82 leave an efficient decoder open. Remark 1 says GMP'20 is better in some regimes. Section 6 lists open problems. The discussion is short but present."
+    },
+    {
+     "reviewer": "Reviewer_uLNB",
+     "claim": "Theorem 1 does not show that the positive root alpha_0 of f exists, nor characterise it.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 128-129 define alpha_0 only as 'the least positive root'. The root exists: f(0) = -log(1-p') > 0, f(p'/2) = 0, and f decreases on (0, p'/2), as the authors showed on 2021-08-23. The theorem holds; the statement is opaque."
+    },
+    {
+     "reviewer": "Reviewer_zJ8u",
+     "claim": "The submission relaxes the separability assumption of GMP'20 to require only that no support is contained in another.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 1 (lines 145-149) is the containment condition, used for approximate recovery. Support recovery (Theorem 1) needs no assumption."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "The abstract and introduction should make clear that the problems were studied before.",
+     "checked_against_paper": "correct",
+     "evidence": "The submitted abstract says the model 'naturally generalizes its noiseless version' in Gandikota et al., 2020, but Problem 1 is that noiseless problem. The camera-ready abstract says the model 'was introduced in the work of Gandikota et al., 2020'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_uLNB, 2021-08-24: 'I will keep my score of 8'. Reviewer_xjw9 edited on 2021-08-26: 'I am inclined to retain my score'. Reviewer_jx9h, 2021-08-19, withdrew the Figure 5 remark and said nothing about the score. Reviewer_WBt8 and Reviewer_zJ8u did not reply.",
+    "what_convinced_or_not": "uLNB accepted the alpha_0 = p'/2 derivation ('Satisfactory Response') and asked that the algorithm and its complexity be spelt out. xjw9 said its points 'cannot easily be addressed in a rebuttal without a revision'. It then added 'Other reviewers seem to be viewing the paper positively' and 'I would be fine with accepting'. The rebuttal and the other reviews moved xjw9's stance, not its score."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Mean 6.0: ratings 6, 7 and 8, and xjw9 'fine with accepting'. The meta-review is generic: 'a non-trivial problem and contains good results', with clarity fixes requested. It adds one point that no public review made: credit GMP'20 with the problems. It does not mention the exponential bound or the missing algorithm.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Theorem 1 answers the open problem of GMP'20: support recovery without structural assumptions (Reviewer_uLNB, Reviewer_zJ8u)",
+    "Robustness to adversarial sign flips and new combinatorial tools, robust-resolvable and robust cover-free matrices (Reviewer_uLNB, Reviewer_xjw9)",
+    "A high-confidence champion (Reviewer_uLNB, 8, confidence 5) who engaged in discussion and kept the score",
+    "Mean 6.0; the substantive critic (Reviewer_xjw9) deferred to the positive majority",
+    "Clarity and missing-algorithm issues treated as camera-ready fixes (AC)"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    4,
+    4,
+    5,
+    5
+   ],
+   "confidences": [
+    1,
+    3,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_QFJA",
+    "Reviewer_dmUb",
+    "Reviewer_mc9P"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4 to 5, all below the threshold. No champion. The weakest review is Reviewer_QFJA (confidence 1, 2 hours, 'out of my expertise'), and its main point, exponential query complexity, the others also make."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_mc9P",
+     "claim": "For fixed l and large k, the support-recovery bound is no worse than GMP'20 only when l = 2, and for l = 2 GMP'20 needs no separability assumption.",
+     "checked_against_paper": "correct",
+     "evidence": "For fixed l and k > l, Theorem 1 gives k l^3 (2ek)^l log^2 n, which grows as k^(l+1). GMP'20 gives O(l^6 k^3 log^2 n) (camera-ready Table 1). The orders in k match only at l = 2. Lines 44-46 confirm that GMP'20 handles two vectors under a mild assumption. Remark 1 concedes that GMP'20 is better for fixed k >= 4 and large l."
+    },
+    {
+     "reviewer": "Reviewer_mc9P",
+     "claim": "Theorem 3 always needs more samples than Theorem 2 in the same setting.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3: O((k^2/eps) l^3 M log n log(n/eps) log(k/eps)), with M = max(2el, 2ek)^min(l,k). This exceeds both terms of Theorem 2, O(k l^3 M log^2 n + l^3 (k/eps) log(k/eps) log(n/eps)). Its only gain is a single non-adaptive stage (lines 76-78). Reviewer_dmUb made the same point."
+    },
+    {
+     "reviewer": "Reviewer_QFJA",
+     "claim": "All results in Section 3 need query complexity exponential in k and l.",
+     "checked_against_paper": "correct",
+     "evidence": "The factor max(2el, 2ek)^min(l,k) appears in Theorems 1-3. It is exponential in min(l,k) and polynomial when either parameter is fixed. The authors conceded: 'The bound is indeed exponential if both parameters k and l are large'."
+    },
+    {
+     "reviewer": "Reviewer_dmUb",
+     "claim": "No algorithm is outlined; the single-stage algorithm of Theorem 3 is never described and has no proof sketch in the main text.",
+     "checked_against_paper": "correct",
+     "evidence": "No pseudocode. Section 5 proves only Theorem 2. Lines 91-92 move 'one theorem' to the appendix. Lines 76-78 give Theorem 3 one sentence."
+    },
+    {
+     "reviewer": "Reviewer_aD1b",
+     "claim": "Line 48 claims 'a new support recovery algorithm', but the paper only proves that one exists.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 says 'there exists an algorithm'. Lemmas 6 and 7 are random-coding existence results. Lines 79-82 leave an efficient decoder open. The camera-ready rewrites line 48 as 'showing the existence of a learning algorithm'."
+    },
+    {
+     "reviewer": "Reviewer_DGsh",
+     "claim": "Theorems 2 and 3 follow from Theorem 1 and a known Gaussian-query result (Lemma 8, [16]), so Theorem 1 is the main contribution.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5 combines Lemma 8 from [16] with the Gaussian-query emulation of Lemma 9. Lines 72-73 say GMP'20 used 'a similar technique'. The authors agreed: 'our primary contribution is Theorem 1'."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "No motivation is given for this problem other than that it generalises 1-bit compressed sensing.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 82-85 give two sentences of motivation, citing GMP'20: modelling heterogeneous data and privacy-preserving recommendation systems. The motivation is thin and borrowed, not absent."
+    },
+    {
+     "reviewer": "Reviewer_dmUb",
+     "claim": "d_H is not defined and the norm in Problem 1 is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 104 uses d_H without a definition. Problem 1 uses an unnamed norm; only Theorem 2 says 'Euclidean'. Reviewer_mc9P, Reviewer_aD1b and Reviewer_DGsh made the same points. Minor."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_DGsh, 2021-08-16: 'my overall score will remain the same'. Reviewer_dmUb edited on 2021-08-24: 'I will stick with my original score of 4'. Reviewer_mc9P, 2021-08-24: 'keep my score unchanged'; its 2021-07-16 edit predates the rebuttal. Reviewer_QFJA edited on 2021-09-10: 'I decide to keep my score'. Reviewer_aD1b did not reply.",
+    "what_convinced_or_not": "The authors promised pseudocode, a complexity analysis and comparisons. To mc9P they wrote 'We disagree' on the exponential bound and cited a lower bound for non-adaptive edge-detecting hypergraph queries, a different query model. To aD1b they said the dependence on k and l is probably not optimal. Nobody was convinced. DGsh restated its bar for pure theory: 'a first proof for outstanding problems', a novel technique, or tight bounds. mc9P cited 'the reviewers' common concern about the exponential sample complexity'. The AC granted the lower-bound argument and turned it against the paper."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All five ratings are 4 or 5, mean 4.6. The meta-review names the two shared critiques: the bound is exponential when k and l are both large (QFJA, mc9P, aD1b), and the only motivation is the generalisation of 1-bit compressed sensing (dmUb, mc9P). It adds its own reading of the rebuttal: if exponential cost is the expected answer, 'that seems to further detract from the utility of studying this problem'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Query complexity exponential in min(k, l) and worse than GMP'20 in most regimes (Reviewer_QFJA, Reviewer_mc9P, AC)",
+    "Existence-only result with no explicit or efficient algorithm; NeurIPS should require a constructive proof (Reviewer_DGsh, Reviewer_dmUb, Reviewer_aD1b)",
+    "Weak practical motivation beyond generalising 1-bit compressed sensing (Reviewer_dmUb, Reviewer_mc9P, AC)",
+    "Presentation: algorithms never stated; Theorem 3 undescribed and dominated by Theorem 2 (Reviewer_dmUb, Reviewer_mc9P, Reviewer_aD1b)",
+    "No champion: five ratings of 4 or 5, none moved after the rebuttal"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Comparison with a concurrent paper on the same problem, arXiv 2106.05951 (Reviewer_uLNB)",
+  "Theorem 1's alpha_0 not characterised; proof of the piercing-number estimator too short (Reviewer_uLNB)",
+  "Abstract and introduction should credit GMP'20 with the problems (Committee A AC)",
+  "Remark 1 overstates the resolution of the GMP'20 open problem (Reviewer_xjw9)",
+  "Missing 1-bit compressed sensing and mixed linear regression references (Reviewer_WBt8)",
+  "Page-limit worry, without basis (Reviewer_WBt8)"
+ ],
+ "issues_only_b": [
+  "Regime-by-regime comparison with GMP'20: no better except at l = 2 or small k (Reviewer_mc9P)",
+  "Theorem 3 dominated by Theorem 2 and not described in the main text (Reviewer_mc9P, Reviewer_dmUb)",
+  "Vector recovery through support recovery inherits its cost; k-dependence worse than 1-bit CS and mixed-regression results (Reviewer_mc9P)",
+  "Weak practical motivation (Reviewer_dmUb, Reviewer_mc9P, Committee B AC)",
+  "NeurIPS should require a constructive proof or tight bounds (Reviewer_DGsh)",
+  "Undefined notation: norm in Problem 1, d_H; Gaussian queries not stated in Theorem 2 (Reviewer_dmUb, Reviewer_aD1b, Reviewer_mc9P, Reviewer_DGsh)"
+ ],
+ "shared_issues": [
+  "Existence-only result with no explicit or efficient algorithm (A: Reviewer_xjw9, Reviewer_uLNB after the rebuttal; B: Reviewer_dmUb, Reviewer_DGsh, Reviewer_aD1b)",
+  "Query complexity exponential in min(k, l) and worse than GMP'20 (A: Reviewer_xjw9; B: Reviewer_QFJA, Reviewer_mc9P, AC)",
+  "No experiments or simulations (A: Reviewer_xjw9, Reviewer_zJ8u; B: Reviewer_DGsh)",
+  "Proofs and presentation hard to follow (A: Reviewer_WBt8, Reviewer_jx9h, Reviewer_xjw9; B: Reviewer_DGsh, Reviewer_dmUb, Reviewer_aD1b)",
+  "No lower bound; optimality unknown (A: Reviewer_zJ8u; B: Reviewer_QFJA, Reviewer_aD1b)",
+  "Novelty of the techniques: a vague doubt in A (Reviewer_WBt8) against a detailed 'standard tools' case in B (Reviewer_DGsh, Reviewer_mc9P); Reviewer_uLNB and Reviewer_xjw9 praised them"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same facts and weighted them differently. No reviewer found an error. Theorem 1 shows that support recovery without the separability assumption of GMP'20 is possible, robust to sign flips. But it is an existence result with no stated algorithm, and it needs O(k l^3 max(2el, 2ek)^min(l,k) log^2 n) queries. Committee A had a high-confidence champion, Reviewer_uLNB (8, confidence 5), and Reviewer_zJ8u (7). Both read the paper as solving an open problem. A's best critic, Reviewer_xjw9, raised B's objections but deferred to the positive majority. Committee B had no champion. Reviewer_mc9P showed that the bound is no better than GMP'20 except at l = 2 or small k. Reviewer_DGsh set the bar: pure theory needs 'a first proof for outstanding problems' or tight bounds. A treated the open problem as outstanding; B did not. B's main claims hold against the submission. A's support is thinner than its 6.0 mean: without uLNB it is 5.5, and Reviewer_jx9h's 6 discusses a Figure 5 that does not exist. The camera-ready, posted after the decisions, concedes that running time is exponential in k and l. It also cites a concurrent paper, flagged by uLNB, that solves the same problem efficiently with quasi-polynomial queries.",
+ "candidate_reasons": [
+  "high-confidence champion in one committee",
+  "existence-only result valued differently",
+  "exponential query complexity weighted differently",
+  "different bar for pure theory",
+  "critics deferred to committee majority",
+  "rebuttal lower-bound argument backfired"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_uLNB final review and 2021-08-24 comment",
+  "Reviewer_xjw9 final review (post-rebuttal paragraph, edited 2021-08-26)",
+  "Reviewer_jx9h 2021-08-19 comment",
+  "Reviewer_mc9P final review and 2021-08-24 comment",
+  "Reviewer_DGsh 2021-08-16 response",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "submitted paper Section 3, page 4 (Theorems 1-3, Remark 1)",
+  "submitted paper Section 1.1, lines 48 and 79-85",
+  "camera-ready Table 1 and Remark 1"
+ ]
+}

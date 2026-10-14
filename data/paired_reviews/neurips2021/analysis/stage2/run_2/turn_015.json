@@ -1,0 +1,170 @@
+{
+  "run": 2,
+  "turn": 15,
+  "pair_id": "n21-185",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Every checkable claim behind A's criticism (untuned shared kernel, no type I error, MMD closeness, no real-data baselines) is correct, and B's detractor hFCk's claims are also correct."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's chair gave a spotlight over 8, 5, 7, 7, 7 that rests on the one 8, in a three-sentence meta-review that restates the abstract's overclaimed generality and names none of the weaknesses its reviewers raised."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "In B, oZvV gave 7 at confidence 2 after 2 hours without checking correctness, and the meta-review's 'great scholarly work' echoes the praise of W1jH and oZvV rather than specifics."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors made the same kinds of concessions (MMD link, wording errors) on both forums; no flaw was disclosed to one committee only."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B's reviewers showed that 'any data type and any generating process' conflicts with the independence assumption and serially dependent real data, yet no B score fell and the meta-review restated the overclaim."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In A, pviK raised 5 to 6 after the rebuttal, while no B reviewer changed a score."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised the untuned shared kernel, the missing type I error and the absent real-data baselines; only B raised independence against serially dependent data and the overclaimed generality."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Reviewers in both committees found the statistic a scaled MMD close to Vogt and Dette; A's chair made the missing MMD and KCpA comparison a ground for rejection, while B's ZPrG and 5aeA saw it and still gave 7s."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's chair drew its two demands from two reviewers (Rm3m and pviK) and stated its own view on promises; B's reviews were not split on acceptance."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer in either committee cited the other reviews as the reason for a score change."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "No reviewer's score was held down by an author misreading or an unanswered follow-up."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "In B, oZvV's 7 rested on assertions such as 'rather exhaustive' related work, with a one-line post-rebuttal note, and counted unchallenged."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "A's chair rejected over final ratings 6, 6, 5, 6, with three of four above threshold and the only score change moving up."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's chair rejected on the missing comparisons and experiments, not on whether the mean cleared a threshold."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "Rm3m's held 5 rested on the MMD closeness and missing real-data baselines, which are central to the contribution, not peripheral."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a methods contribution to gradual change-point detection."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No reviewer raised a score on the rebuttal while saying the core was outside their expertise; pviK raised but kept its technical objections."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The extra demands in A are specific experimental gaps and promises, not a different bar for a kind of paper."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "B's champion W1jH (8, confidence 5) credited 'a novel ... problem' and 'exceptional performance on detection', but the paper cites earlier gradual-change tests and reports similar power for all methods."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "hFCk kept 5 while writing 'I now lean to accept' and gave no new grounds; PzmP's unchanged score was 6, above threshold."
+    }
+  ],
+  "added": [
+    {
+      "id": "R21",
+      "name": "Promised revisions credited by one committee only",
+      "definition": "One committee judged the paper as submitted and refused to credit comparisons, experiments or fixes the authors only promised in the rebuttal, while the other committee accepted such promises or did not require them.",
+      "justification": "R05 covers a committee that ignores a known flaw and R13 a chair who rejects against a positive majority; neither names the chair's refusal to credit promised revisions as the cause."
+    },
+    {
+      "id": "R22",
+      "name": "Reviewer's stated stance diverged from score",
+      "definition": "A reviewer in one committee stated a changed position in a comment, such as now leaning to accept, but never edited the score, and the committee acted on the stated position rather than the rating.",
+      "justification": "R06 requires a score to move and R20 a reviewer who keeps a score on new grounds; neither covers a reviewer whose words moved while the score stayed, removing the committee's only opposition."
+    }
+  ],
+  "reasoning": "The committees saw mostly the same facts and weighted them differently (R08). A's lukewarm panel had no champion, and its chair rejected over three 6s (R13) because the needed comparisons existed only as rebuttal promises, a mechanism no existing reason names (R21). B's spotlight rests on a champion whose praise misread the paper (R19), a thin low-confidence 7 (R03, R12), a chair who set the tier above the arguments and named no weakness (R02), and known overclaims that no score counted (R05). B's only detractor softened in words but not in score, which a new reason covers (R22). Only A's score moved (R06), and each committee raised issues the other missed (R07).",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22"
+  ]
+}

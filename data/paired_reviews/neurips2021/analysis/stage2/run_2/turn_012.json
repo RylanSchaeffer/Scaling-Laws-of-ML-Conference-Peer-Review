@@ -1,0 +1,31 @@
+{
+ "run": 2,
+ "turn": 12,
+ "pair_id": "n21-212",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18"],
+ "judgements": [
+  {"id": "R01", "applies": true, "justification": "In A, Reviewer_omcp's 5 rests partly on the wrong claim that no experiment supports the attack harming popular uncertainty methods, though Sections 5.1-5.4 test exactly those; B's misreads (XqTW's AURC mismatch, qDh3's transfer question) did not hold a score down."},
+  {"id": "R02", "applies": true, "justification": "B's chair gave a spotlight over 7, 6, 7 with no reviewer arguing for an award, citing a 'very well received' paper and the chair's own view that the method is 'elegant'."},
+  {"id": "R03", "applies": true, "justification": "In B, Reviewer_bohc gave a 7 on four generic praise bullets naming no weakness, and that 7 is one of the scores behind the 'very well received' spotlight."},
+  {"id": "R04", "applies": false, "justification": "The authors gave both committees the same lending scenario and AdvProp results; no flaw was disclosed on one forum only."},
+  {"id": "R05", "applies": false, "justification": "B saw that ACE is a small-eps FGSM step and judged the problem framing enough; that is a different weighting (R08), not an ignored flaw."},
+  {"id": "R06", "applies": false, "justification": "Scores moved up in both committees (PoYC in A; XqTW and qDh3 in B), so the rebuttal did not move one committee only."},
+  {"id": "R07", "applies": true, "justification": "Only A asked for FGSM and PGD baselines at comparable eps and a cross-entropy ablation, and A's AC added DeepFool; A's meta-review rests on this, and no one in B raised it."},
+  {"id": "R08", "applies": true, "justification": "UycQ in A and XqTW and qDh3 in B all saw that ACE is a standard sign-gradient attack at small eps; B called the conceptual novelty 'completely fine', while A held it as grounds for rejection."},
+  {"id": "R09", "applies": false, "justification": "A's reject follows two of three scores and the AC added its own DeepFool point, so no single reviewer set the outcome against a split."},
+  {"id": "R10", "applies": false, "justification": "omcp mentioned the other reviews but kept the score; no reviewer changed a score because of the other reviews."},
+  {"id": "R11", "applies": true, "justification": "The rebuttal gave UycQ no PGD comparison, only a toy argument on cross-entropy and no data-shift discussion, and UycQ kept the 5 that A's reject rests on."},
+  {"id": "R12", "applies": true, "justification": "A's omcp kept a 5 after the rebuttal with no reason and the AC cited it as support; B's bohc gave a generic 7 and never joined the discussion; both counted unchallenged."},
+  {"id": "R13", "applies": false, "justification": "A's final ratings 5, 5, 7 are not a positive majority."},
+  {"id": "R14", "applies": false, "justification": "A's AC rejected on UycQ's missing-baseline argument, not on whether a mean cleared a threshold."},
+  {"id": "R15", "applies": true, "justification": "omcp's 5 rests on a regression extension the paper only mentions, which the authors conceded and offered to remove, and omcp kept the 5, one of A's two sub-threshold ratings."},
+  {"id": "R16", "applies": false, "justification": "Both committees read the paper as a new attack on uncertainty estimates with a simple method; they differed on whether conceptual novelty suffices, not on its kind."},
+  {"id": "R17", "applies": false, "justification": "Every reviewer in both committees had confidence 4, and none said the core was beyond their expertise."},
+  {"id": "R18", "applies": true, "justification": "A's UycQ and AC required a new attack paper to show technical depth and beat existing attacks at comparable eps, a requirement B's reviewers explicitly waived for a problem-framing contribution."}
+ ],
+ "added": [],
+ "reasoning": "The accept/reject split comes from one fact weighted two ways: all critical reviewers saw that ACE is a small-eps FGSM step, and B accepted the problem framing as the contribution while A demanded technical depth and baseline attacks (R08, R18, R07). The rebuttal could answer B's requests with examples and new results but left A's baseline request open (R11). A's second detractor, omcp, kept a 5 resting on a misread and a conceded side claim and gave no reason (R01, R12, R15). B's spotlight tier comes from the chair's own enthusiasm over 7, 6, 7, helped by a generic 7 (R02, R03, R12). Existing reasons cover every cause, so none was added; the AC's DeepFool demand falls under R07, which includes area chairs.",
+ "reasons_after": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18"]
+}

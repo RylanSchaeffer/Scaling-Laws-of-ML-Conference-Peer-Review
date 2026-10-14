@@ -1,0 +1,279 @@
+{
+  "pair_id": "n21-190",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        5,
+        7
+      ],
+      "confidences": [
+        3,
+        2,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ahTk",
+        "Reviewer_NYB7",
+        "Reviewer_SiHy"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_npTm",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Ratings 6 (ahTk), 7 (NYB7), 5 (npTm), 7 (SiHy). The 5 is mild, but it is the only rating below 6 in either committee, at A's highest confidence (4). The review calls the framework 'technically sound', the results 'convincing' and the work 'likely to be important', so the 5 rests on clarity alone. Its clarity points are specific and the paper confirms them: 'Lemma 2' at l.152, subroutines described only by role at l.135-145, Table 1 placed before the trace is defined (l.119-121). npTm did not reply to the rebuttal or edit the review. The AC passed over it: 'no reviewers felt that this disqualified the paper from publication'."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ahTk",
+          "claim": "'SST', the baseline in all experiments, is never explained.",
+          "checked_against_paper": "correct",
+          "evidence": "SST first appears at l.251 ('our implementation of SST') and in Tables 2-4. The main text never expands it; 'stochastic softmax tricks' occurs only in the title of reference [31]. Reviewer_SiHy and B's Reviewer_eF5a found the same gap. The authors: 'this detail slipped out of our sight'. The camera-ready defines SST."
+        },
+        {
+          "reviewer": "Reviewer_ahTk",
+          "claim": "The definition of 'stochastic invariant' first appears at l.131.",
+          "checked_against_paper": "correct",
+          "evidence": "l.45 names the property without a definition. l.116 explains it for top-k ('the input distribution class is invariant throughout the recursion'). l.131-132 give the general statement. Reviewer_npTm and B's AC make the same point."
+        },
+        {
+          "reviewer": "Reviewer_ahTk",
+          "claim": "The proposed estimator has larger variance than the standard score function estimator on X (l.205).",
+          "checked_against_paper": "correct",
+          "evidence": "l.203-206: 'varT[gT] >= varX[gX]. Therefore, the standard score function estimator is preferable when the score of X is available. In other cases, gT is a practical alternative.' B's Reviewer_eF5a read the same passage. ahTk's second point, 'needs a lot of computation', is not in the paper; the rebuttal timings show T-REINFORCE+ 11% slower than SST on spanning trees and 42% slower on arborescences."
+        },
+        {
+          "reviewer": "Reviewer_NYB7",
+          "claim": "SST results are worse than in Paulus et al.; Table 2 gives 2.93 MSE for the complex SST model, against <= 2.7 there.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2, complex, k=5: SST 2.93 +- 0.09. l.252 and the Table 2 caption state that results are averaged across random seeds, which is the protocol difference the authors gave. Paulus et al.'s numbers were not checked here, and the authors' statement that their implementation reproduces them is not shown."
+        },
+        {
+          "reviewer": "Reviewer_NYB7",
+          "claim": "The paper does not explain why Prim's algorithm cannot be handled.",
+          "checked_against_paper": "correct",
+          "evidence": "l.174-175 say only 'Interestingly, we could not represent Prim's algorithm ... with the stochastic invariant.' The rebuttal gave a three-vertex example."
+        },
+        {
+          "reviewer": "Reviewer_npTm",
+          "claim": "In l.135-145 the subroutines, e.g. f_map, are not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "l.135-145 give f_split, f_map, f_combine and f_stop one sentence each, by role. The main text never instantiates them, even for top-k, except f_combine at l.144. The authors: 'Indeed, thank you.' The camera-ready rewrites the section to motivate each subroutine."
+        },
+        {
+          "reviewer": "Reviewer_npTm",
+          "claim": "'Lemma 2' at l.152 is a typo.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text has only Lemma 1 (l.64). Reviewer_SiHy and B's Reviewer_eF5a flagged the same line. The camera-ready reads 'generalizing Lemma 1'."
+        },
+        {
+          "reviewer": "Reviewer_SiHy",
+          "claim": "The conclusion's claim that the multi-sample estimator with a smaller batch is 'more stable' than the single-sample estimator with a control variate (l.321-322) is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "No stability measure is reported. Only Table 4 shows a smaller spread for T-REINFORCE+ than for RELAX (accuracy std 3.00 against 9.36); Tables 2 and 3 show similar spreads. The authors answered with better means, not with stability."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_ahTk"
+        ],
+        "evidence": "Reviewer_ahTk on 2021-08-13: 'I do recognize the contribution of the paper so I raised my score'; on 2021-08-17: 'Therefore, I raised my score to 6.' The review's last edit is 2021-08-17. Reviewer_NYB7 edited on 2021-08-15 to add 'Author response clarified experimental numbers. The remaining concern is writing, but the paper is understandable'; it names no score change (7). Reviewer_SiHy edited on 2021-08-31: 'I stand with my initial assessment' (7). Reviewer_npTm did not edit or reply (5).",
+        "what_convinced_or_not": "Argument, not new results. ahTk was moved by examples of an intractable score function of X (a Gibbs distribution over matchings, whose normaliser is a permanent; the k! orderings of a subset) and by a follow-up on energy-based alternatives: 'for some distributions, the sampling might be a bottleneck and then the proposed method is useful.' NYB7 accepted that the SST gap to Paulus et al. comes from averaging over seeds. Timings (T-REINFORCE+ 137 against SST 123 ms per iteration on spanning trees, 249 against 175 on arborescences) drew no comment. SiHy wanted a few added sentences on motivation, R, the subroutines and 'stability'. Clarity was not resolved; each reply promised a rewrite."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'After the response period and discussion, most reviewers agreed that this is an interesting and valuable contribution.' The AC passes over npTm's 5 ('no reviewers felt that this disqualified the paper from publication'), which npTm's own praise of soundness supports. The AC then gives two reasons of its own: the stochastic invariant 'is of independent interest in cases beyond those considered here', and it allows 'lower variance gradient estimation'. It asks for 'minor' revisions on motivation, the definition of stochastic invariance and the algorithm details.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Reviewers judged the trace-based score-function estimator new and sound; no technical error was found.",
+        "Results competitive with SST in Tables 2-4.",
+        "Clarity faults acknowledged by everyone but judged fixable with minor revisions.",
+        "Rebuttal arguments lifted Reviewer_ahTk to 6; Reviewer_npTm's unrevised 5 did not weigh.",
+        "AC's own view that the stochastic invariant has independent interest."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7,
+        6
+      ],
+      "confidences": [
+        2,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_9Dk3",
+        "Reviewer_eF5a",
+        "Reviewer_ZnaB"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (9Dk3), 7 (Csyp), 7 (eF5a), 6 (ZnaB); the spread is one point. The weakest review (Reviewer_9Dk3, 2 hours, confidence 2) gave 6, in line with the others."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_9Dk3",
+          "evidence": "2 hours, confidence 2, limitations 'None'. Took RELAX for the baseline and the other rows of Tables 2-4 for the proposed variants; RELAX is the authors' own trace-based estimator (Eq. 8) and SST is the baseline. Said SST still outperforms 'in particular in structure recovery', which Table 4 contradicts. Treated incorporating prior knowledge as a benefit of the score-function estimator rather than of the model class. Still 'not totally convinced' after the reply, but rated 6."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_9Dk3",
+          "claim": "The baseline is RELAX, and the other rows of Tables 2-4 are variants of the proposed method.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.92-94 and Eq. 8: RELAX is the estimator of [10], extended by the authors to the trace. SST is the external baseline (l.251). The paper never calls SST a baseline, which invited the misreading."
+        },
+        {
+          "reviewer": "Reviewer_9Dk3",
+          "claim": "SST still outperforms the proposed method, in particular in structure recovery.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True only for Graph Layout (Table 3: edge precision 87 against 70, recall 93 against 86; l.269-271). Table 4 reverses it: T-REINFORCE+ precision 77.93 against 56.84, recall 61.10 against 30.18."
+        },
+        {
+          "reviewer": "Reviewer_Csyp",
+          "claim": "The method performs better than SST in most cases.",
+          "checked_against_paper": "correct",
+          "evidence": "On the objective, T-REINFORCE+ has the better mean in 7 of 8 comparisons: 5 of 6 L2X MSEs (Table 2), Graph Layout ELBO (Table 3), ListOps accuracy (Table 4). On structure metrics it is better in 5 of 10."
+        },
+        {
+          "reviewer": "Reviewer_Csyp",
+          "claim": "There is only one baseline algorithm, SST.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 2-4 compare SST only with the authors' own estimators (E-REINFORCE+, T-REINFORCE+, RELAX). B's AC also asked for more baselines."
+        },
+        {
+          "reviewer": "Reviewer_eF5a",
+          "claim": "Section 4 says the standard score function estimator has lower variance than the proposed variants.",
+          "checked_against_paper": "correct",
+          "evidence": "l.203-206: varT[gT] >= varX[gX]; the standard estimator 'is preferable when' the score of X is available."
+        },
+        {
+          "reviewer": "Reviewer_eF5a",
+          "claim": "'SST' and 'SST (Our Impl.)' appear in the experiments without introduction.",
+          "checked_against_paper": "correct",
+          "evidence": "Same finding as A's Reviewer_ahTk: l.251 and Tables 2-4 use the acronym; the main text never expands it."
+        },
+        {
+          "reviewer": "Reviewer_eF5a",
+          "claim": "In Algorithm 1, T denotes an index, while the text uses T for the execution trace.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 sets T as the single arg min index. l.119-120 then call the concatenation T := (T^1, ..., T^k) the trace, 'with a slight abuse of notation'."
+        },
+        {
+          "reviewer": "Reviewer_ZnaB",
+          "claim": "The definition of T is not given explicitly or implicitly.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.105 introduces T as the execution trace; Algorithms 1 and 2 set T and T_i to arg mins; l.119-121 define T as the concatenation over recursion depths; l.147-148 state T = T(E). The definition is scattered and informal, not missing. ZnaB's own guess, the key removed at each step, matches l.119-120."
+        },
+        {
+          "reviewer": "Reviewer_ZnaB",
+          "claim": "The need for partitioning the indices in Algorithm 2 is not explained.",
+          "checked_against_paper": "correct",
+          "evidence": "l.135-139 describe the partition mechanically. The reason, column-wise minima in the Chu-Liu-Edmonds algorithm, appears only in the rebuttal and in the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_ZnaB",
+          "claim": "The paper gives no gradient-variance comparison and no train-set performance.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 2-4 report test metrics only. l.200-201 assert 'a significant difference in optimization due to the reduced variance' with no variance measurement. The rebuttal added train-set tables and gradient standard deviations at three checkpoints: T-REINFORCE+ at 10 to 42 times SST's."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_eF5a",
+          "Reviewer_ZnaB"
+        ],
+        "evidence": "Reviewer_eF5a on 2021-08-25: 'I will increase my score, recommending to accept the paper'; edited the same day (final 7). Reviewer_ZnaB's review: 'EDIT: After rebuttal I have raised my score'; comment of 2021-09-02 'I have updated my score'; edited that day (final 6). Reviewer_9Dk3 wrote on 2021-08-24 that it was 'willing to reassess my score' and edited the review that day (final 6); the direction is not stated. Reviewer_Csyp: 'I'll keep my score' (7), no edit.",
+        "what_convinced_or_not": "ZnaB was moved by new numbers: train-set tables for the three SST tasks and gradient standard deviations at three checkpoints ('I appreciate the additional results'). Those deviations put T-REINFORCE+ at 10 to 42 times SST. The authors called the two 'not directly comparable'; eF5a's objection ('the scale of the problem should not change significantly, no?') got no direct answer. eF5a was moved by the authors' confirmation of scope: the estimator is for models whose score function of X is intractable. 9Dk3 stayed 'not totally convinced from the experiment design and the results' but called the work 'relevant and detailed'. Clarity was promised, not shown."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Overall the reviewers were generally positive about the paper ... and all backing its acceptance.' The AC agrees the clarity needs 'non-negligable work' but judges it fixable for the camera-ready. The AC read the paper: it backs ZnaB on 'stochastic invariance', asks for a formal definition at l.131-132, wants E-REINFORCE framed as a baseline and more baselines, and suggests probabilistic programming and Lee et al. 2018. None of this changed the recommendation.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal, mean 6.5 (6, 7, 7, 6).",
+        "Novelty and soundness praised; the method brings score-function estimation to perturbation models without relaxations.",
+        "New train-set and gradient tables lifted Reviewer_ZnaB; the scope clarification lifted Reviewer_eF5a to 7.",
+        "AC judged substantial clarity work fixable for the camera-ready."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "SST numbers worse than in Paulus et al., e.g. Table 2 complex 2.93 (Reviewer_NYB7)",
+    "Speed per iteration and batch-size fairness against SST (Reviewer_NYB7)",
+    "Why Prim's algorithm has no stochastic invariant (Reviewer_NYB7)",
+    "Novelty over [31], which already noted the Kruskal and Chu-Liu-Edmonds cases (Reviewer_npTm); similarity to prior work raised at an earlier ICML 2021 submission (Reviewer_SiHy)",
+    "Unsupported 'more stable' claim at l.321-322 (Reviewer_SiHy)",
+    "Why subtract the minimum before the recursion (Reviewer_SiHy)",
+    "Energy-based score function as an alternative (Reviewer_ahTk follow-up)"
+  ],
+  "issues_only_b": [
+    "Only one external baseline; reweighted wake-sleep and others (Reviewer_Csyp, AC)",
+    "Train-set performance and gradient variance during training (Reviewer_ZnaB)",
+    "Weaker structure recovery than SST despite a better objective, and the role of prior knowledge (Reviewer_9Dk3)",
+    "Results do not strongly favour the method (Reviewer_ZnaB, Reviewer_9Dk3)",
+    "Grammar of 'stochastic invariant' and the title (Reviewer_ZnaB, AC)",
+    "E-REINFORCE to be framed as a baseline; probabilistic programming; Lee et al. 2018 (AC)"
+  ],
+  "shared_issues": [
+    "New and sound idea (A: Reviewer_ahTk, Reviewer_NYB7, Reviewer_npTm, Reviewer_SiHy; B: Reviewer_Csyp, Reviewer_eF5a, Reviewer_ZnaB; both ACs)",
+    "Hard to follow: late or informal definitions of stochastic invariant, T, X and the subroutines; Table 1 placed early (A: Reviewer_ahTk, Reviewer_NYB7, Reviewer_npTm; B: Reviewer_9Dk3, Reviewer_eF5a, Reviewer_ZnaB; both ACs)",
+    "SST never defined in the main text (A: Reviewer_ahTk, Reviewer_SiHy; B: Reviewer_eF5a; Reviewer_9Dk3 misread the baseline)",
+    "'Lemma 2' typo at l.152 (A: Reviewer_npTm, Reviewer_SiHy; B: Reviewer_eF5a)",
+    "Overloaded T in Algorithm 1 (A: Reviewer_SiHy; B: Reviewer_eF5a)",
+    "Role of the auxiliary variable R and of f_split and the partition (A: Reviewer_SiHy, Reviewer_NYB7, Reviewer_npTm; B: Reviewer_9Dk3, Reviewer_ZnaB)",
+    "When the score function of X is intractable, given that it has lower variance (A: Reviewer_ahTk, Reviewer_NYB7; B: Reviewer_Csyp, Reviewer_eF5a)",
+    "Scope and limits of the algorithm family (A: Reviewer_NYB7, Reviewer_npTm; B: Reviewer_Csyp)",
+    "Direct measure of gradient quality: error or bias against an exact gradient, variance (A: Reviewer_NYB7; B: Reviewer_ZnaB, Reviewer_eF5a)",
+    "Why leave-one-out beats RELAX (A: Reviewer_NYB7; B: Reviewer_Csyp)",
+    "Which real problems rule out relaxations (A: Reviewer_SiHy; B: Reviewer_eF5a, AC)",
+    "Choice of the name 'stochastic invariant' (A: Reviewer_NYB7; B: Reviewer_ZnaB, AC)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Six reviewers called the method new. Five called it technically sound. No reviewer found an error. The method computes score-function gradients through the execution trace of recursive exponential-min algorithms. Both committees found the same weakness: the paper is hard to follow. Their clarity complaints match almost item by item, and the submitted paper confirms them. The main text never expands 'SST', the only external baseline. 'Lemma 2' at l.152 should be Lemma 1. The general statement of 'stochastic invariant' comes only at l.131-132. The subroutines of Algorithm 2 get one sentence each, by role only. Both ACs judged these faults fixable for the camera-ready. The results are competitive, not dominant. Against SST, T-REINFORCE+ wins clearly on ListOps (accuracy 87.3 against 78.4). It has the lower L2X MSE in 5 of 6 settings, by 0.07 to 0.18. It recovers less structure on Graph Layout (edge precision 70 against 87). No rating is above 7, so nobody argued for more than a poster. The small gap in means (6.25 against 6.5) comes from Reviewer_npTm's 5 in A. npTm gave the 5 for clarity alone, called the work 'technically sound', and did not answer the rebuttal. Neither committee resolved one rebuttal result. The gradient standard deviation of T-REINFORCE+ is 10 to 42 times that of SST. The authors called the two 'not directly comparable', and Reviewer_eF5a's objection got no direct answer.",
+  "candidate_reasons": [
+    "Novel idea outweighed poor clarity",
+    "Clarity judged fixable for camera-ready",
+    "Competitive but mixed results against SST",
+    "No champion beyond poster level",
+    "Rebuttal clarifications lifted borderline scores",
+    "Unengaged clarity-only detractor in A"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.45, l.116, l.131-132 (stochastic invariant)",
+    "paper_submitted.pdf l.152 ('Lemma 2'; only Lemma 1 exists)",
+    "paper_submitted.pdf l.135-145 (subroutines by role only)",
+    "paper_submitted.pdf l.203-206 (gX has lower variance than gT)",
+    "paper_submitted.pdf l.251 and Tables 2-4 (SST never expanded; T-REINFORCE+ against SST)",
+    "paper_submitted.pdf l.269-271 and l.321-322",
+    "Reviewer_npTm final review (5, no reply)",
+    "Reviewer_ahTk comments of 2021-08-13 and 2021-08-17",
+    "Reviewer_9Dk3 final review and comment of 2021-08-24",
+    "Authors' reply to Reviewer_ZnaB (train-set tables, gradient std table)",
+    "Reviewer_eF5a comment of 2021-08-25",
+    "Reviewer_ZnaB final review and comment of 2021-09-02",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Section 2.2 and Section 6 (SST defined, 'Lemma 1')"
+  ]
+}

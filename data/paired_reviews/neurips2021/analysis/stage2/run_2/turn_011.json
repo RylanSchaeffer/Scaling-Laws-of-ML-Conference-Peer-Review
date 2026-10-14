@@ -1,0 +1,142 @@
+{
+ "run": 2,
+ "turn": 11,
+ "pair_id": "n21-220",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "In B, Reviewer_16Eb's 4 rests partly on the wrong claim that the paper does not show 'why this kind of representation emerges', though Sections 5-6 and the Figure 8 intervention do; A's SJG2 error (batch norm) did not lower its 6."
+  },
+  {
+   "id": "R02",
+   "applies": true,
+   "justification": "A's chair made 7/6/7/6 a spotlight in three sentences citing only timeliness and unanimity, with two reviewers marginally above threshold and none arguing for a highlight."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "In A, Reviewer_qxEj gave a praise-only 7 with no weaknesses, and that 7 is one of the two that lift A's mean to 6.5."
+  },
+  {
+   "id": "R04",
+   "applies": false,
+   "justification": "The authors made the same arguments to both committees; no flaw was disclosed on one forum only."
+  },
+  {
+   "id": "R05",
+   "applies": false,
+   "justification": "A weighed the one-family and correlational-locality points through sCgD and judged them non-fatal; that is a different weighting (R08), not an ignored flaw."
+  },
+  {
+   "id": "R06",
+   "applies": false,
+   "justification": "No score moved in A; in B only MKzA's edit is possible and its earlier score is unknown, while 16Eb and fR12 held."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only B (NaL7) flagged the missing concurrent work T2T-ViT, CaiT and DeepViT, correctly; only A probed the normalization confound and the untested locality-performance claim."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees saw that only BiT ResNets are studied; A's sCgD called it a non-fatal limitation, while B and its AC made it a reason to reject."
+  },
+  {
+   "id": "R09",
+   "applies": true,
+   "justification": "B's AC broke a two-two split toward reject on two reasons that restate Reviewer_16Eb's review and reply, presenting them as what 'the reviewers all said'."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "No reviewer in either committee cited the other reviews as the reason for a score change."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors answered every point in both committees; no reviewer was misread or left unanswered in a way that moved a score."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "A's Reviewer_qxEj gave a 7 on praise alone and posted nothing after the rebuttal, and that 7 counted unchallenged toward the spotlight."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "B's final ratings 4, 6, 6, 5 are split two-two, not a positive majority."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "B's AC stated no positive view of the paper, and A's AC did not decide by a threshold against its own reading."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "B's held low scores rest on central points (design guidance, one CNN family, the explanation of the representations), not peripheral ones."
+  },
+  {
+   "id": "R16",
+   "applies": false,
+   "justification": "Both committees read the paper as the same kind of contribution, an analysis study of ViT against CNNs; they differed on the bar for it, not on its kind."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "No reviewer in either committee raised a score on the rebuttal."
+  }
+ ],
+ "added": [
+  {
+   "id": "R18",
+   "name": "Committees held one paper type to different bars",
+   "definition": "Both committees read the paper as the same kind of contribution, but one required it to deliver something the other did not ask of that kind of paper, such as practical guidance from an analysis study, and judged it against that extra requirement.",
+   "justification": "R16 needs the committees to classify the contribution differently and R08 needs a weakness both raised; here both read the paper as an analysis study, and only B made 'no practical guidance for architecture design' a test, which A did not apply and A's qxEj even counted the paper's potential to 'inspire new architectures' as a strength."
+  }
+ ],
+ "reasoning": "The split is a moderate rating gap (mean 6.5 against 5.25) that both ACs widened: A's chair gave a spotlight without reasons (R02), helped by a praise-only 7 (R03, R12), and B's chair broke a tie by restating Reviewer_16Eb, whose 4 rests partly on a misreading (R01, R09). Both saw the one-CNN-family limit and weighted it differently (R08), and each raised checkable points the other did not (R07). The main cause no reason covered is that all four B reviewers held an analysis paper to a design-utility test that A did not apply, so R18 was added. The AC's overstated consensus in B is the vehicle of R09 here and needed no separate reason.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18"
+ ]
+}

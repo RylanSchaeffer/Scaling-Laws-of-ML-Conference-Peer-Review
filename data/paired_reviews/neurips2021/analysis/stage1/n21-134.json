@@ -1,0 +1,240 @@
+{
+  "pair_id": "n21-134",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7,
+        8
+      ],
+      "confidences": [
+        3,
+        3,
+        2,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7nrA",
+        "Reviewer_7Peg"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_7nrA), 7 (Reviewer_PEqh), 7 (Reviewer_nSDq) and 8 (Reviewer_7Peg). Each is within one point of the mean of 7.0. The 8 comes at confidence 2 and overstates the experiments, but it does not stand apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nSDq",
+          "evidence": "Confidence 2. Asks that the main body describe 'the high-level idea' of the decoupling technique, but Remark 4 (l.216-224) already gives both ideas: indicator functions for stability and the shift f(w_{t-1}) = f(w_{t-2}) + O(eta_{t-1}) for optimization. Reviewer_PEqh summarised exactly these two ideas from the same text. Calls the experiments 'exhaustive', where the paper says 'preliminary experiments' (l.318) and shows one table and one figure."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7nrA",
+          "claim": "The work is an extension of [20] obtained by setting the buffer size to 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 4 (l.211-212): 'Algorithm 1 can be considered as a specific case of the classic pairwise learning algorithm [20] with a FIFO buffering set ... of size s = 1.' The authors agreed in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_7nrA",
+          "claim": "Experimental results are weak and improvements are not significant, especially against [25] and [24].",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: the method is within 0.001 AUC of SGDpair [25] on all six datasets and within 0.006 of SPAUC [24]; SPAUC is higher on german (.799 against .793). l.338-339: CPU time of the method and SGDpair 'are similar'. The paper itself claims only 'competitive' performance (l.333)."
+        },
+        {
+          "reviewer": "Reviewer_7Peg",
+          "claim": "Experiments show 'excellent results both in average AUC score and CPU running time when compared to the state-of-the-art'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 shows a tie with SGDpair [25] (differences of at most 0.001) and a loss to SPAUC on german. l.338-339 says the running time is similar to SGDpair's; only the buffer methods OLP and OAM are slower."
+        },
+        {
+          "reviewer": "Reviewer_nSDq",
+          "claim": "The main body should describe the high-level idea of the decoupling technique (implying it does not).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Remark 4 (l.216-224) states the generalization idea (stability as a deterministic function of indicator functions, expectation delayed) and the optimization idea (f(w_{t-1}) = f(w_{t-2}) + O(eta_{t-1})). The authors pointed to Remark 4."
+        },
+        {
+          "reviewer": "Reviewer_nSDq",
+          "claim": "The experiments seem to be exhaustive.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.318 calls them 'preliminary experiments': one AUC table on six LIBSVM datasets (Table 1) and one running-time figure (Figure 1); the rest is in the appendix."
+        },
+        {
+          "reviewer": "Reviewer_PEqh",
+          "claim": "The method reduces the gradient complexity to 'a surprising O(1)', which significantly improves its practicability.",
+          "checked_against_paper": "correct",
+          "evidence": "l.54-56 states O(1) gradients per iteration. But SGDpair [25] also uses one pair per iteration, and l.338-339 reports the same CPU time for both. The gain holds only against buffer methods (OLP, OAM)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_7nrA"
+        ],
+        "evidence": "Reviewer_7nrA, 2021-08-20: 'Some of my concerns are addressed. I will increase the score to be 6'; the review was edited the same day. Reviewer_nSDq (2021-08-11): 'I decide to maintain my mark'. Reviewer_7Peg (2021-08-17): 'I maintain my rating as a clear accept (8)'; its edit of 2021-07-20 predates the rebuttal. Reviewer_PEqh did not reply or edit.",
+        "what_convinced_or_not": "Re-framing and promises, not new evidence. The authors conceded that the algorithm is [20] with s = 1 and FIFO. They argued that the analysis is the contribution: [20]'s uniform-convergence argument gives only O(1/sqrt(s)), and their decoupling handles s = 1 (Remark 4). They called the experiments 'preliminary' validation and promised AUC against sample size. 7nrA rose to 6 but still wants 'more experiments'. nSDq and 7Peg accepted promises to add the high-level idea, more applications and a limitations paragraph."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'All the reviewers agree upon the quality of the paper and support its acceptance. There is no argument to go against this consensus'. It names no weakness, although Reviewer_7nrA called the novelty 'limited' and the experiments 'weak'. All four final ratings are 6 or above, so the consensus claim is literally true.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal, mean 7.0 (6, 7, 7, 8).",
+        "Broad theory credited at face value: stability, generalization and optimization bounds for convex, nonconvex, smooth and nonsmooth losses, a private variant, and an answer to the open question of [20].",
+        "Limited algorithmic novelty and weak experiments (Reviewer_7nrA) excused once the authors framed the paper as theory; 7nrA rose to 6.",
+        "The AC relied on the consensus of the scores; all four reviewers chose confidence levels that say the math was not carefully checked."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        9,
+        5,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_4Fd5"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_3zKR",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "9 ('Top 15% of accepted NeurIPS papers, strong accept') at confidence 4 after 3 hours. The main review is 93 words of summary-level praise ('solid and quite strong') and names no weakness except a wish for more on applications. Two of its six line corrections are wrong (l.153, l.176). It did not reply after the rebuttal. The symmetric 5 from Reviewer_4Fd5 rests on checkable, confirmed points, so the 9 is the unsupported extreme."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_3zKR",
+          "evidence": "Says l.153 should state that the gradient is NOT unbiased, but l.153-155 describes the random-pair gradient of [25], which is unbiased, and the next sentence relies on that. Says 'excess generalization error' at l.176 should be 'optimization error', but l.173-176 deliberately equates the two for Algorithm 2. The 9 comes with no stated weakness and no discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_4Fd5",
+          "claim": "For nonsmooth losses, Algorithm 1 needs n^2 iterations to reach O(1/sqrt(n)), while one pass of Algorithm 2 over the same n samples reaches O(1/sqrt(n)) in n iterations.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (l.199): T of order n^2 for O(1/sqrt(n)); Remark 3 (l.205-207) restates the O(n^2) cost. Theorem 6(a) needs only Lipschitz and convex losses; Remark 6 (l.267-269) gives O(1/sqrt(t)); l.257-261 says the bound holds for Algorithm 2 as excess population risk. The authors did not dispute it and called it an open question shared with pointwise SGD."
+        },
+        {
+          "reviewer": "Reviewer_4Fd5",
+          "claim": "The convergence rate gets worse as the buffer size s grows (l.272).",
+          "checked_against_paper": "correct",
+          "evidence": "l.270-272 gives O(sqrt(s)/sqrt(t)). The authors replied: 'we believe the increasing dependence of the bound in s is an artifact of the proof'."
+        },
+        {
+          "reviewer": "Reviewer_4Fd5",
+          "claim": "The pairs (z_{i_t}, z_{i_{t-1}}) form a fast-mixing Markov chain, and some results follow from Markov-chain SGD (Sun, Sun and Yin 2018).",
+          "checked_against_paper": "correct",
+          "evidence": "Correct for the optimization error only. The authors' reply of 2021-08-18: applying Theorem 1 of that paper gives O(1/sqrt(T)) in empirical risk, 'This rate coincides with our Theorem 6'. The submission does not cite it. The camera-ready adds Remark 3 on the link but says that theorem yields only O(1/t^(1-q)), 1/2 < q < 1. The stability, generalization and privacy results do not follow."
+        },
+        {
+          "reviewer": "Reviewer_3zKR",
+          "claim": "Line 153 should say the gradient is NOT an unbiased estimator.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.153-155 concerns [25]'s random pair (i_t, j_t), which is independent of w_{t-1}, so the gradient is unbiased; the next sentence ('Therefore ... the same as the SGD for pointwise learning') depends on it. The camera-ready adopted the change and now contradicts its next sentence."
+        },
+        {
+          "reviewer": "Reviewer_3zKR",
+          "claim": "At line 176, 'excess generalization error' should read 'optimization error'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.175-176: 'the optimization error in this setting is exactly the excess generalization error'. The identity is deliberate and Remark 5 (l.227-230) repeats it. The camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_NJf5",
+          "claim": "ERM is never defined, and the population risk F is never defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.117 defines 'empirical risk minimization (ERM)', although l.28 uses the acronym first. l.131-132 defines F(w) = E_{Z,Z'}[f(w; Z, Z')]."
+        },
+        {
+          "reviewer": "Reviewer_NJf5",
+          "claim": "Assumption A4 uses an undefined w_S, presumably w_S^*.",
+          "checked_against_paper": "correct",
+          "evidence": "l.189 writes F_S(w_S) with w_S undefined; the authors replied 'w_S should be w_S^*'."
+        },
+        {
+          "reviewer": "Reviewer_NJf5",
+          "claim": "The algorithm is nothing really new, since it is a special case of previous algorithms, and the experiments are very limited.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 4 (l.211-212) calls Algorithm 1 a specific case of [20]. l.318 calls the experiments 'preliminary'; the main text has Table 1 and Figure 1 only."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B reviewer reports a change. Reviewer_4Fd5's only edit (2021-08-19) appended an 'After the rebuttal' paragraph that keeps the objection: 'whether this work is novel enough to be published'. The authors' same-day request ('we strongly encourage you to increase your score') got 'I see. Thank you for the clarification.' Reviewer_3zKR and Reviewer_NJf5 never edited; NJf5 wrote only 'I agree with the responses' (2021-08-25).",
+        "what_convinced_or_not": "The replies settled the facts but not the novelty doubt. The authors explained one-pass against multi-pass SGD and called the n against n^2 gap an open question also in pointwise learning. They conceded that Markov-chain SGD gives the rate of Theorem 6 and that the growth with s is a proof artifact. 4Fd5 accepted that the stability and generalization results 'do not follow directly', stayed 'a bit perplex' on n against n^2, and kept 5. NJf5's notation points were all accepted as fixes. 3zKR took no part."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'There was a very constructive discussion between the reviewers and the authors, leading to clarification about the various points of the analysis. Based on my own evaluation, I recommend to accept.' The note '(fix title of submission)' refers to the submitted title 'Gradient Decent', which no reviewer flagged, so the AC opened the paper. The meta-review gives no reason and does not answer Reviewer_4Fd5's standing novelty objection. The decision matches two of three reviewers and the mean of 7.0.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Mean 7.0 from a 9, a 7 and a 5: the unsupported 9 (Reviewer_3zKR) offset the principled 5 (Reviewer_4Fd5).",
+        "Reviewer_NJf5 (confidence 5) valued a surprising result: a very restrictive algorithm still generalizes despite a biased gradient.",
+        "Reviewer_4Fd5's novelty objection (Markov-chain SGD covers the coupling; one-pass Algorithm 2 needs n steps where Algorithm 1 needs n^2) was clarified, not withdrawn, and the AC did not weigh it.",
+        "The AC accepted on its own evaluation, citing a constructive discussion."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Whether and why the method beats random-pair SGD [25] (Reviewer_7nrA; Remark 2 answers in theory, Table 1 shows a tie)",
+    "AUC against the number of training examples (Reviewer_7nrA)",
+    "No limitations discussion; SPAUC competitive in supplementary Figure G.2 (Reviewer_7Peg)",
+    "Tables break the NeurIPS style guide (Reviewer_7Peg)",
+    "High-level decoupling idea wanted in the main body (Reviewer_nSDq; Remark 4 already gives it)"
+  ],
+  "issues_only_b": [
+    "One-pass Algorithm 2 reaches O(1/sqrt(n)) in n steps where multi-pass Algorithm 1 needs n^2 for nonsmooth losses (Reviewer_4Fd5; Theorem 1, Remark 6, l.257-261)",
+    "Correlated pairs form a fast-mixing Markov chain that Markov-chain SGD already handles; part of the optimization results follow (Reviewer_4Fd5; conceded)",
+    "The bound grows with buffer size s, O(sqrt(s)/sqrt(t)) at l.272 (Reviewer_4Fd5; conceded as a proof artifact)",
+    "Statistical cost of one pair against all n-1 pairs, and comparison with pointwise learning (Reviewer_4Fd5)",
+    "Examples where the PL condition holds for pairwise problems (Reviewer_4Fd5)",
+    "Notation and wording: w_S in A4, G in A1, ERM, F, line typos (Reviewer_NJf5, Reviewer_3zKR); title typo 'Gradient Decent' (AC)"
+  ],
+  "shared_issues": [
+    "The algorithm is a special case of [20] with a FIFO buffer of size 1 (A: Reviewer_7nrA; B: Reviewer_NJf5, Reviewer_4Fd5)",
+    "Experiments thin or preliminary (A: Reviewer_7nrA; B: Reviewer_NJf5, Reviewer_3zKR)",
+    "More on applications of pairwise learning (A: Reviewer_nSDq; B: Reviewer_3zKR)",
+    "Handling the biased, coupled gradient is the main technical contribution (A: Reviewer_PEqh, Reviewer_nSDq, Reviewer_7Peg; B: Reviewer_NJf5, Reviewer_3zKR)",
+    "Difference from random-pair SGD [25], which cannot run online (A: Reviewer_7nrA; B: Reviewer_NJf5)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster with the same mean rating (7.0), because they read the paper the same way. The algorithm is a special case of Kar et al. [20] with a FIFO buffer of size 1; Remark 4 says so. The contribution is a broad analysis of the resulting biased gradient: stability, generalization and optimization bounds for convex, nonconvex, smooth and nonsmooth losses, plus a differentially private variant. The experiments are preliminary: Table 1 ties SGDpair [25] within 0.001 AUC on all six datasets. No review checks a step of a proof. The committees differed in scrutiny, not in outcome. In A, three of four reviewers (two at confidence 2) offered little critique. The one critic, Reviewer_7nrA, rose to 6 after the authors re-framed the paper as theory. In B, an unsupported 9 and a principled 5 cancelled out. Reviewer_3zKR's 9 rests on a 93-word main review of praise, two wrong line corrections and no discussion. Reviewer_4Fd5 was the only reviewer in either committee to test the novelty of the theory. The paper's own results show that one-pass Algorithm 2 reaches O(1/√n) in n steps, where Algorithm 1 needs n² steps for nonsmooth losses. The authors conceded that the growth of the bound with s is a proof artifact and that Markov-chain SGD gives the rate of Theorem 6. B's AC accepted 'based on my own evaluation' and did not address this objection. So the agreement is the same facts weighted the same way. The novelty objection that only B surfaced did not change B's decision.",
+  "candidate_reasons": [
+    "Breadth of theory carried acceptance",
+    "Special-case algorithm excused by analysis",
+    "Champion and detractor cancelled out",
+    "Exuberant unengaged champion in B",
+    "Novelty objection ignored by AC",
+    "Weak experiments discounted as theory"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Remark 4 (l.211-224): Algorithm 1 is [20] with a FIFO buffer of size 1; the two decoupling ideas",
+    "paper_submitted.pdf Theorem 1 (l.196-199), Remark 3 (l.204-210), l.255-261 and Remark 6 (l.267-272)",
+    "paper_submitted.pdf Table 1 and l.332-340 (tie with SGDpair [25])",
+    "paper_submitted.pdf l.152-155 and l.173-176 (Reviewer_3zKR's two wrong corrections)",
+    "paper_submitted.pdf l.117, l.131-132 and l.188-189 (ERM, F, w_S)",
+    "paper_submitted.pdf title ('Gradient Decent')",
+    "Reviewer_7nrA final review and reply of 2021-08-20",
+    "Reviewer_4Fd5 final review (post-rebuttal paragraph) and comments of 2021-08-15 and 2021-08-19",
+    "Authors' reply to Reviewer_4Fd5 of 2021-08-18 (Markov-chain concession; s-dependence an artifact)",
+    "Reviewer_3zKR final review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Remark 2 (l.153 change) and new Remark 3 (Markov-chain SGD)"
+  ]
+}

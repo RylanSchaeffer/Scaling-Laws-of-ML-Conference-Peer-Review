@@ -1,0 +1,268 @@
+{
+  "pair_id": "n21-140",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        2,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_aPhY",
+        "Reviewer_xZYh"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_aPhY), 5 (Reviewer_HjX3), 6 (Reviewer_ZKdD) and 6 (Reviewer_xZYh). The spread is one point. The only 5 has confidence 2, and its author wrote 'I am fine with accepting this study if it is convincing enough to the other reviewers'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_xZYh",
+          "evidence": "338-word review posted 2021-08-01, two weeks after the other three. It lists no weakness and calls the paper 'well ablated', while the other three A reviewers each asked for basic ablations. No discussion post. The AC's first sentence paraphrases its summary."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ZKdD",
+          "claim": "Transformer MD-Sine combines the same constant frequencies for both axes, so the encoding depends only on x1 + x2 and the baseline is useless.",
+          "checked_against_paper": "correct",
+          "evidence": "l.231-233 give no formula. The authors' reply gives sin(h*x1 + v*x2) with h and v 'just the default Transformer sinusoidal frequencies', so h = v, and they promised an ablation with different frequencies per axis. Fig. 3(b): MD-Sine ends near 3.68 bpd, worse than plain Sine-2D (about 3.64) in Fig. 3(a). The camera-ready drops the MD-Sine ablation."
+        },
+        {
+          "reviewer": "Reviewer_ZKdD",
+          "claim": "Table 1, last column: the bold value is in the wrong row.",
+          "checked_against_paper": "correct",
+          "evidence": "SPICE bold is on Learnable-Fourier+MLP-2/2 (17.9), but Fixed-Fourier+MLP-2/2 has 18.4. The fixed variant also ties the learned 2/2 variant on BLEU-1 (46.1) and beats it on CIDEr (100.2 against 98.0), which weakens 'learnability is crucial' (l.243)."
+        },
+        {
+          "reviewer": "Reviewer_ZKdD",
+          "claim": "A baseline with a fixed (not learned) random W_r drawn from N(0, gamma^-2) is missing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.239-242 and Fig. 3(d): 'Fourier' is fixed Gaussian features, with and without MLP. ZKdD conceded on 2021-08-22: 'you are right, thanks for pointing'."
+        },
+        {
+          "reviewer": "Reviewer_ZKdD",
+          "claim": "The DETR experiments stop at 100k updates, before convergence.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 caption: 'for the initial 100k steps'; AP there is about 0.27. In the authors' 2021-08-26 reply, after 300 epochs the proposal leads Sine-2D by 0.1 AP (40.2 against 40.1) and MLP by 0.2 AP. The authors: 'The difference between methods is small'."
+        },
+        {
+          "reviewer": "Reviewer_HjX3",
+          "claim": "In Fig. 3 most of the gain comes from the Fourier features and the learnable weights give no consistent gain; for DETR only AP and AP75 are shown.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3(d): Fourier, Fourier+MLP, Learnable Fourier and Learnable-Fourier+MLP overlap until about 85k steps and end within about 0.05 bpd. l.257: 'report validation bbox AP and AP75'."
+        },
+        {
+          "reviewer": "Reviewer_aPhY",
+          "claim": "The identity between Eq. 2 and Eq. 3 is wrong: r_x . r_y of concatenated cos and sin vectors gives cos(a)cos(b) || sin(a)sin(b), not a sum.",
+          "checked_against_paper": "incorrect",
+          "evidence": "An inner product of concatenated vectors sums over both blocks: sum cos(a)cos(b) + sum sin(a)sin(b) = sum cos(a - b), as l.158-159 state. The authors explained this, and aPhY did not raise it again."
+        },
+        {
+          "reviewer": "Reviewer_aPhY",
+          "claim": "Line 187 takes the L2 distance within one pair (x, y) instead of between two positions.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.185-186 define x and y as two objects with coordinates [x1, x2, x3, x4] and [y1, y2, y3, y4]; the sum of (xi - yi)^2 is the distance between the two objects."
+        },
+        {
+          "reviewer": "Reviewer_aPhY",
+          "claim": "The checklist claims code and a limitations discussion, but the paper has neither.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 1(b) and 3(a) answer [Yes]. The paper has no limitations section and links only third-party codebases (footnotes 1 to 4). The authors conceded both."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_aPhY"
+        ],
+        "evidence": "Reviewer_aPhY, 2021-09-02: 'I will increase my score from 5 to 6'; the review was edited that day. Reviewer_HjX3, 2021-08-14: 'I would not change my score'; 2021-09-02: 'the improvement is still slight'; the review was not edited. Reviewer_ZKdD replied once (2021-08-22) and did not edit the review. Reviewer_xZYh's edit (2021-08-02) predates the rebuttal (2021-08-10).",
+        "what_convinced_or_not": "New experiments moved aPhY: MLP depth (3.62, 3.61 and 3.63 bpd for 1, 2 and 3 layers), Sine-4D+MLP (CIDEr 97.5 to 98.1, against 94.9 without MLP and 98.0 to 100.7 for the proposal) and DETR on held-out image sizes (39.5 AP against 38.9 for Sine-2D). aPhY still wrote that 'the same/nearby performance can be obtained with some other approaches'. HjX3 stayed at 5: the gains are 'still slight', and the held-out-size test may add a domain gap. No reviewer reacted to the converged DETR table (40.2 against 40.1 AP)."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three 6s and a 5 whose author was 'fine with accepting'. The meta-review grants that the improvement is 'somewhat marginal' and accepts because the approach 'could be useful to the community'. Its first sentence paraphrases Reviewer_xZYh's summary ('outperforms the previous methods on a range of vision tasks'), and 'positional encoding has rarely been thoroughly studied' is xZYh's phrase. 'Useful to the community' echoes Reviewer_aPhY's last comment.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No reviewer pressed for rejection: three 6s, and Reviewer_HjX3 (5, confidence 2) was 'fine with accepting'.",
+        "Rebuttal experiments moved Reviewer_aPhY from 5 to 6.",
+        "The AC judged the approach useful to the community despite 'somewhat marginal' gains."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        6,
+        9,
+        7,
+        8
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_gVFH",
+        "Reviewer_cSb4"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_9tzP",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "9 ('Top 15% of accepted NeurIPS papers') at confidence 5 after 3 hours, 2.6 points above the mean of the other five. 9tzP reviewed the paper at ICML as 'the grumpy reviewer' and now rewards the authors for fixing those objections: 'now you got me as a big supporter'. 9tzP calls the experiments 'very impressive'; the other five B reviewers question the size of the gains or ask for more experiments. Its one substantive inference, from the MD-Sine ablation, is wrong (see checkable claims). No discussion post."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_xpKV",
+          "evidence": "148 words. Says the method is verified on tasks 'including machine translation in NLP'; the paper has no such experiment. No discussion post."
+        },
+        {
+          "reviewer": "Reviewer_TqtX",
+          "evidence": "8 ('clear accept') after 1.5 hours while calling the experiments 'the biggest issue of this work'. Kept 8 on 2021-09-03 ('I retain my score') although the relative PE comparison and the converged DETR results came only as promises."
+        },
+        {
+          "reviewer": "Reviewer_cSb4",
+          "evidence": "Empty summary field and 2 hours. Claims that Eq. 2 splits into per-axis Fourier features, which Eq. 2 itself rules out. Raised to 6 with a six-word comment."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_9tzP",
+          "claim": "MD-Sine+MLP 'behaves so badly' that 'training the frequencies is crucial here'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "MD-Sine uses the default Transformer frequencies on both axes (authors' reply in Committee A), so it encodes only x1 + x2 and ends worse than plain Sine-2D (Fig. 3(a), 3(b)). The paper's own fixed Gaussian features with MLP 'perform nicely' (l.241-242), and Fixed-Fourier+MLP-2/2 ties or beats Learnable-Fourier+MLP-2/2 on BLEU-1, CIDEr and SPICE (Table 1). The camera-ready drops MD-Sine."
+        },
+        {
+          "reviewer": "Reviewer_xpKV",
+          "claim": "The method is verified on tasks 'including machine translation in NLP'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Machine translation appears only in the Figure 1 heatmap of a standard Transformer (l.84-85). The experiments are ImageNet-64 generation, COCO detection and widget captioning."
+        },
+        {
+          "reviewer": "Reviewer_xpKV",
+          "claim": "Figures 3 and 4 give no precise numbers, and runtime is not reported.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has curves only and no runtime. The rebuttal gave 1.22 against 1.86 steps/s (Embed-2D) on Reformer, and 3.58 against 3.66 bpd. That 0.08 bpd gap is several times the gap at 100k steps in Fig. 3(a) (about 3.60 against 3.62); in Committee A the authors gave 3.6205 bpd at 100k steps for Learnable-Fourier with one MLP layer."
+        },
+        {
+          "reviewer": "Reviewer_gVFH",
+          "claim": "In Fig. 4 an MLP alone already beats the baselines, and learnable Fourier features add little.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors' numbers at the end of Fig. 4: AP 27.5 (proposal), 27.0 (MLP), 26.5 (normalized Sine-2D, DETR's default). Fig. 4 shows the MLP and proposal curves close together."
+        },
+        {
+          "reviewer": "Reviewer_gVFH",
+          "claim": "Most of the improvement comes from the extra parameters that the MLP adds.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Not for Reformer or widget captioning: l.215-217 size the Reformer variant to roughly match Embed-2D's parameters, and l.291-292 give 5.07M against Embed-4D's 5.11M. For DETR the paper gives no parameter counts, and the default Sine-2D has none, so there the concern stays open."
+        },
+        {
+          "reviewer": "Reviewer_cSb4",
+          "claim": "Eq. 2 is equivalent to learning Fourier features for each axis separately and concatenating them.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 2 applies cos and sin to x W_r^T, and each row of W_r mixes all M coordinates. cos(a*x1 + b*x2) = cos(a*x1)cos(b*x2) - sin(a*x1)sin(b*x2) couples the axes; it is not a concatenation of per-axis features. The authors said so, and cSb4 rose to 6."
+        },
+        {
+          "reviewer": "Reviewer_TqtX",
+          "claim": "Object detection results cover only the first 100k steps; final performance is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 caption: 'for the initial 100k steps'. In B the authors only promised converged results; Committee A received them (40.2 against 40.1 AP)."
+        },
+        {
+          "reviewer": "Reviewer_SAzJ",
+          "claim": "Fig. 3 seems to show smoothed curves without error bars, and the broader-impact statement is dismissive.",
+          "checked_against_paper": "correct",
+          "evidence": "Faint raw traces sit behind the bold curves in all four panels of Fig. 3; checklist 3(c) answers [N/A] for error bars; l.341-342: the impacts 'are not applicable for this research'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_cSb4"
+        ],
+        "evidence": "Reviewer_cSb4, 2021-08-11: 'I increased my score to 6'; the review was edited that day. Reviewer_gVFH's review was edited 2021-08-29 with no comment, so the direction is unknown; the final rating is 5. Reviewer_TqtX, 2021-09-03: 'I retain my score'. Reviewer_9tzP, Reviewer_SAzJ and Reviewer_xpKV did not respond. After the rebuttal, reviewers posted 25 words in total.",
+        "what_convinced_or_not": "cSb4 moved after the ViT-B/16 ImageNet result (74.5% against 73.6% for Embed-1D, 90 epochs) and the correction on Eq. 2. gVFH got the same ViT number and the parameter counts and did not answer. TqtX kept 8 on argument and promises: relative PE 'will' be compared and DETR 'will' be trained to 300 epochs. B never saw the converged DETR results that A saw."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The whole meta-review: 'The majority of reviewers agreed that this paper presents an interesting idea related to a relevant application.' Five of six reviewers are at 6 or above. It mentions neither the 9 nor Reviewer_gVFH's concerns, and it does not argue for a tier above poster.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three positive reviews (Reviewer_9tzP 9, Reviewer_TqtX 8, Reviewer_SAzJ 7) on the idea's simplicity and novelty.",
+        "Five of six reviewers at 6 or above; the AC cites 'the majority'.",
+        "The ImageNet rebuttal result moved Reviewer_cSb4 to 6; the one detractor (Reviewer_gVFH, 5) did not reply."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Transformer MD-Sine baseline is degenerate: the same frequencies on both axes (Reviewer_ZKdD)",
+    "Unseen positions tested only on widget captioning, and 2685 of 2692 lie inside the training hull (Reviewer_ZKdD, Reviewer_aPhY, Reviewer_HjX3)",
+    "MLP capacity: deeper MLPs and Sine-4D+MLP controls (Reviewer_aPhY, Reviewer_ZKdD)",
+    "Table 1 SPICE bold on the wrong row; no-PE baseline; choice of gamma; KL loss (Reviewer_ZKdD)",
+    "Shift-invariance identity and line-187 notation (Reviewer_aPhY; both misreadings)",
+    "Checklist claims code and limitations that are absent (Reviewer_aPhY)",
+    "Full COCO metrics beyond AP and AP75 (Reviewer_HjX3)"
+  ],
+  "issues_only_b": [
+    "No image classification experiment (Reviewer_gVFH, Reviewer_cSb4, Reviewer_TqtX)",
+    "No comparison with relative PE (Reviewer_TqtX); missing related work: LeViT, CPVT (Reviewer_gVFH) and learnable sinusoidal PE of Wang et al. (Reviewer_cSb4)",
+    "Runtime and compute cost (Reviewer_xpKV)",
+    "Optimization problems of sine activations (Reviewer_cSb4)",
+    "Smoothed curves without error bars; dismissive broader-impact statement (Reviewer_SAzJ)",
+    "Eq. 2 said to split into per-axis features (Reviewer_cSb4; wrong)"
+  ],
+  "shared_issues": [
+    "Small gains, much of them available from an MLP alone (A: Reviewer_HjX3, Reviewer_aPhY, Reviewer_ZKdD; B: Reviewer_gVFH, Reviewer_xpKV)",
+    "DETR curves stop at 100k steps; final performance missing (A: Reviewer_ZKdD; B: Reviewer_TqtX)",
+    "No limitations section (A: Reviewer_aPhY; B: Reviewer_9tzP, Reviewer_TqtX)",
+    "Eq. 5 and Algorithm 1 notation do not connect (W_p, phi, initialization) (A: Reviewer_aPhY; B: Reviewer_SAzJ, Reviewer_gVFH, Reviewer_9tzP)",
+    "Show what the encoding learns (A: Reviewer_aPhY, Reviewer_xZYh; B: Reviewer_cSb4)",
+    "Simple, well-motivated idea (A: all four reviewers; B: Reviewer_9tzP, Reviewer_SAzJ, Reviewer_TqtX, Reviewer_xpKV)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason. The method is a simple, new multi-dimensional generalization of sinusoidal positional encoding, with consistent but small gains, and an MLP alone gets much of them. Each committee had a single 5 and nothing lower, and neither 5 pressed for rejection after the rebuttal (Reviewer_HjX3 was 'fine with accepting'; Reviewer_gVFH did not reply). The gap in mean rating (A 5.75, B 6.83) comes from reviewer draw, not from a different reading of the paper. A's four reviewers all sat at the threshold, and two of them (Reviewer_ZKdD, Reviewer_aPhY, 12 hours each) pressed on the ablations. The rebuttal then showed a DETR gain of 0.1 AP at convergence. B drew three short positive reviews. Reviewer_9tzP (9, confidence 5, 3 hours) had reviewed the paper at ICML and rewards the authors for fixing that review's objections. 9tzP's inference that 'training the frequencies is crucial' rests on the MD-Sine baseline. In A, the authors said that this baseline uses the default Transformer frequencies on both axes, so it encodes only x1 + x2; the camera-ready drops it. Reviewer_TqtX gave 8 in 1.5 hours while calling the experiments 'the biggest issue'. B's other reviewers raised A's concerns. Neither AC added a reading of its own: A's meta-review paraphrases Reviewer_xZYh and calls the gains 'somewhat marginal'; B's is one sentence that cites 'the majority'. The same facts, weighed with different enthusiasm, gave different score levels and the same tier.",
+  "candidate_reasons": [
+    "No detractor opposed acceptance",
+    "Marginal gains judged useful anyway",
+    "Reviewer draw set score level",
+    "Prior-venue reviewer turned champion",
+    "Thin enthusiastic reviews inflated ratings",
+    "Rebuttal experiments lifted borderline reviewer"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_9tzP final review (ICML disclosure; MD-Sine remarks)",
+    "Authors' reply to Reviewer_ZKdD on Transformer MD-Sine frequencies (Committee A)",
+    "paper_submitted.pdf Fig. 3(b), 3(d) and l.230-244",
+    "paper_submitted.pdf Table 1 (SPICE bold; Fixed-Fourier+MLP rows)",
+    "Authors' 2021-08-26 follow-up to Reviewer_ZKdD (converged DETR: 40.2 against 40.1 AP)",
+    "Reviewer_aPhY comment of 2021-09-02 (5 to 6)",
+    "Reviewer_HjX3 comments of 2021-08-14 and 2021-09-02",
+    "Reviewer_cSb4 comment of 2021-08-11 and the authors' ViT-B/16 reply",
+    "Committee A meta-review (paraphrases Reviewer_xZYh)",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready) Section 4.1: MD-Sine ablation removed"
+  ]
+}

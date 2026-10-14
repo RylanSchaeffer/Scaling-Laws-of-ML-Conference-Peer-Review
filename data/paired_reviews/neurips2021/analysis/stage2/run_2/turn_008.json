@@ -1,0 +1,127 @@
+{
+ "run": 2,
+ "turn": 8,
+ "pair_id": "n21-248",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "In A, Reviewer_K1Av's central objection said no robustness result is 'showed or discussed', but lines 87-89 state one, and Reviewer_xbrn's boundary counterexample falls outside the paper's continuous model; B had no reviewer making either error."
+  },
+  {
+   "id": "R02",
+   "applies": true,
+   "justification": "B's chair gave a spotlight over ratings 6, 8, 6, 7 where both confidence-4 reviewers gave 6 ('marginally above'), and the three-sentence meta-review names no reason for a spotlight over a poster."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "In B, Reviewer_et4L gave 7 on one paragraph of praise at confidence 3 without checking the math, and that 7 raised B's ratings toward the spotlight."
+  },
+  {
+   "id": "R04",
+   "applies": false,
+   "justification": "Both committees received the same rebuttal points, including the same (1+ε) sketch for slightly wrong predictions; no flaw was disclosed to one forum only."
+  },
+  {
+   "id": "R05",
+   "applies": false,
+   "justification": "No reviewer found a flaw in a result; the missing robustness analysis is a weakness both committees saw and weighted differently, which R08 covers."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "In B, Reviewer_YbwL raised to 6 after the authors cleared its additive-loss misreading, while no A reviewer edited or posted after the rebuttal."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only A's Reviewer_xbrn asked for a closed-form ratio and a prediction-aware baseline, both valid since Figure 2 compares only with prediction-free ZCL, which already reaches about 0.78-0.96; no B reviewer raised them."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees saw that the guarantee needs correct predictions and robustness comes only from the one-sentence γ-split; A's two confidence-4 reviewers gave 4 for it, while B's PbZr called robustness 'trivial' and B's AC made it a revision item."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "A's chair followed two reviewers' shared reasons and B's chair followed four ratings above threshold; neither adopted a single reviewer's position."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "No reviewer in either committee changed a score because of the other reviews."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors answered every reviewer; YbwL's misreading was the reviewer's and was cleared, and A's reviewers simply did not reply."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "In B, Reviewer_et4L's 7 rested on one paragraph of praise, and it did not reply to the authors' answer; the score counted unchallenged."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "A's chair rejected over ratings 7, 4, 4, so most final ratings were below threshold."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "A's chair called the formulation 'interesting and novel' but gave the two 4s' substantive reasons, not a mean-versus-threshold rule."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "A's 4s rested on robustness, framing and experiments, which are central to a learning-augmented algorithms paper, not peripheral points."
+  },
+  {
+   "id": "R16",
+   "applies": true,
+   "justification": "A's confidence-4 reviewers judged the paper as a learning-augmented algorithm held to the consistency-robustness standard, while B's reviewers judged it as an optimal online algorithm under interval predictions and valued the threshold-algorithm lower bound."
+  }
+ ],
+ "added": [],
+ "reasoning": "Both committees saw the same decisive facts: the guarantee holds only for correct predictions, and robustness comes from one sentence. A held the paper to the learning-augmented consistency-robustness standard and B took the interval predictions as the contribution (R16, R08). A's skeptics also leaned partly on wrong claims (R01) and raised valid points B missed (R07). B's spotlight rested on a thin confidence-3 7 (R03, R12), a rebuttal-driven rise (R06), and a chair who gave no reason for the tier (R02). The candidate causes in the notes (silent reviewers after the rebuttal, venue doubt scored differently, spotlight on marginal ratings) are covered by R06, R08 and R02, so no reason was added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16"
+ ]
+}

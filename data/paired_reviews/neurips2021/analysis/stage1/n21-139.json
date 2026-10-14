@@ -1,0 +1,216 @@
+{
+  "pair_id": "n21-139",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        5,
+        6
+      ],
+      "confidences": [
+        2,
+        3,
+        2,
+        3
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_dKjD, confidence 2), 6 (Reviewer_4qNe, confidence 3), 5 (Reviewer_Jbdo, confidence 2) and 6 (Reviewer_h1FC, confidence 3). Every rating is within one point of the mean 6.0. The only rating below the threshold, Jbdo's 5, has a principled basis (the gap follows from the model mismatch built into the assumptions), but it does not stand apart from the others."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_h1FC",
+          "evidence": "Wrote 'the paper does not have any empirical verification'. The submission says twice (l.57, l.216) that Section B gives 'an experimental verification of the gap', and checklist 3(a) names a Jupyter notebook for the Section B.3 simulation. Committee B's Reviewer_j1xW read these results ('the empirical results support the theories')."
+        },
+        {
+          "reviewer": "Reviewer_4qNe",
+          "evidence": "Asked whether the framework covers fine-tuning the representation and the predictor together, as MAML does. Eqs. (1) and (3) already optimize both jointly. Also called the separation 'limited to a linear case', but l.69-70 and l.130 point to a nonlinear hard case in Section F."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Jbdo",
+          "claim": "The tasks are generated from AdaptRep's own model class, so FrozenRep is misspecified by construction and the gap is not surprising.",
+          "checked_against_paper": "correct",
+          "evidence": "l.138-143: every task has x ~ p (same p for all tasks) and y | x ~ q(. | <w_t*, phi_theta_t*(x)>) with ||theta_t* - theta_0*|| <= delta_0, which is exactly the AdaptRep model. The authors agreed the gap 'is in a way, obvious' and recast the contribution as showing when the gap exists. Their 2021-08-30 example shows the hard case needs the task-specific residual to carry more signal than the shared representation."
+        },
+        {
+          "reviewer": "Reviewer_h1FC",
+          "claim": "The paper has no empirical verification.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.57 and l.216: 'We provide a formal construction and an experimental verification of the gap in Section B.' Checklist 3(a) names a Jupyter notebook for Section B.3. The appendix is not in the submitted PDF, so the experiments themselves were not read."
+        },
+        {
+          "reviewer": "Reviewer_h1FC",
+          "claim": "The novelty claim at l.43 ('no prior studies exist beyond fine-tuning a linear model or only the task-specific layers') should be limited to theoretical work.",
+          "checked_against_paper": "correct",
+          "evidence": "l.42-45 has no 'theoretical' qualifier, although the paragraph is about theoretical analyses. The camera-ready reads 'no prior theoretical studies exist'."
+        },
+        {
+          "reviewer": "Reviewer_h1FC",
+          "claim": "The approximate-linearity assumption of Section 4.2 is unrealistic when fine-tuning moves far from the initialization.",
+          "checked_against_paper": "correct",
+          "evidence": "Assumption 4.3 bounds the Hessian over the whole fine-tuning set C_T, and the epsilon_OPT term of Theorem 4.1 contains beta*R^2, so the guarantee is useful only for small moves. The reply to h1FC answered a different point (all parameters are updated). The reply to Reviewer_Jbdo conceded the results hold 'as long as the parameters do not move very far'."
+        },
+        {
+          "reviewer": "Reviewer_4qNe",
+          "claim": "The separation between AdaptRep and FrozenRep is limited to a linear case.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main-text separation (Theorem 3.2) is linear, but l.69-70 says 'we extend the linear hard case to a nonlinear setting in Section F', and l.130 repeats it. Section F is in the appendix, which is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_4qNe",
+          "claim": "Implied by a question: the framework may not cover fine-tuning the representation and the predictor together, as in MAML.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (1) minimizes over (theta_t, w_t) and Eq. (3) over (theta, w) jointly; Section 4 puts both in one parameter theta. The authors pointed this out."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_Jbdo replied on 2021-08-30: 'I am still struggling with intuition'. The authors answered the same day with a worked linear example. Reviewer_dKjD, Reviewer_4qNe and Reviewer_h1FC posted nothing after the rebuttal.",
+        "what_convinced_or_not": "The replies corrected three misreadings (joint fine-tuning, the Section B experiments, the Section F nonlinear hard case) and conceded Jbdo's main point. No reviewer acknowledged the corrections. Jbdo's follow-up shows the intuition problem remained, and the 5 stayed."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review paraphrases Reviewer_Jbdo's review: 'theoretical insight into when and why' (Jbdo: 'when and why meta-learning works'), the fixed-against-tuned representation summary, and the criticism that 'it was hard to get intuition for the assumptions'. Its one request, 'better examples and diagrams', is Jbdo's suggestion. The accept follows the consensus ('Reviewers all appreciated the addition of theoretical insight'). It gives no assessment of correctness or significance of its own.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Mean 6.0 (7, 6, 5, 6), with three of four at or above the threshold; both confidence-3 reviewers (Reviewer_4qNe, Reviewer_h1FC) gave 6.",
+        "All four reviewers valued the first statistical analysis of fine-tuning-based meta-learning and its separation from FrozenRep.",
+        "The main weakness, hard-to-grasp assumptions and intuition, was judged fixable with examples and diagrams in the camera-ready.",
+        "The one review below the threshold (Reviewer_Jbdo, 5, confidence 2) concerned presentation and the significance of a by-construction gap, not correctness."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_j1xW, confidence 3), 6 (Reviewer_NrMx, confidence 3) and 7 (Reviewer_L4rJ, confidence 2). The spread is one point. The 7 comes from the thinnest review (1 hour, three sentences), but without it the mean is still 6.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_L4rJ",
+          "evidence": "1 hour and 144 words in all, with a three-sentence main review. Calls the bound 'solid' while choosing a confidence level that says the math was not carefully checked. The post-rebuttal note keeps the 7 and repeats that 'the writing is not very clear'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_j1xW",
+          "claim": "At l.187 the first two terms of theta are O(1/beta) and the cross term O(1/beta^2), so a beta factor is missing from theta.",
+          "checked_against_paper": "correct",
+          "evidence": "l.186 writes theta = A_B0 w + Delta w_0 + Delta w, but L_beta in Eq. (5) multiplies by beta and C_beta bounds ||Delta||_F <= c1/beta and ||w|| <= c2/beta. The stated norms O(1) and O(1/beta) hold only with the beta factor; l.183 omits it too. The authors conceded ('Thank you for catching this error'), and the camera-ready reads theta = beta(A_B0 w + Delta w_0 + Delta w). A typo, not an error in the result."
+        },
+        {
+          "reviewer": "Reviewer_j1xW",
+          "claim": "The paper does not explain why A_B0 = [B0 B0] is used in Eq. (5) instead of B0.",
+          "checked_against_paper": "correct",
+          "evidence": "l.182 defines A_B0 = [B0 B0] and w_0 = [u, -u], and l.187 uses A_B0 w_0 = 0 without saying why. The authors explained it as the symmetrization trick from the neural tangent kernel literature; the camera-ready adds a footnote."
+        },
+        {
+          "reviewer": "Reviewer_j1xW",
+          "claim": "krs(ns,T) in Section 3.3 is not defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The term in r_T (l.192) is k times r_S(n_S, T): k is the subspace dimension and r_S is defined on the line above. Footnote 3 uses the same product. A misreading of juxtaposed notation, which supports the density complaint."
+        },
+        {
+          "reviewer": "Reviewer_NrMx",
+          "claim": "Assumption 4.1 bounds l(0, y) and so excludes linear regression with Gaussian x and noise.",
+          "checked_against_paper": "correct",
+          "evidence": "Assumption 4.1 (l.257): l(., y) is 1-Lipschitz and convex, and |l(0, y)| <= B; squared loss with Gaussian y meets neither condition. The paper treats the Gaussian linear case separately in Section 3, and Section 5 uses 1-norm-bounded inputs and O(1)-bounded noise. The authors called it an artifact of the Rademacher-complexity analysis."
+        },
+        {
+          "reviewer": "Reviewer_NrMx",
+          "claim": "The right-hand side of Theorem 5.1 should depend on delta, but it does not.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 5.1 (l.327-329) holds 'with probability at least 1 - delta', and its right-hand side has no delta and no footnote. The authors said a log(1/delta) factor was suppressed, but Theorem 4.1, which Section 5 specializes (l.298-299), carries 1/delta factors as printed. The camera-ready adds 'log factors have been suppressed for clarity'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_L4rJ wrote on 2021-08-26: 'I will keep my score'. Reviewer_j1xW and Reviewer_NrMx did not reply.",
+        "what_convinced_or_not": "The authors conceded the missing beta, explained the A_B0 symmetrization and the k times r_S term, and called NrMx's points an artifact of the analysis or suppressed factors. All three reviewers were already above the threshold, so nothing had to move."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Agrees with the reviewers' readability complaint ('I agree to some extent, but still I think the paper should be accepted') and adds a reason of its own: the analysis of the non-convex fine-tuning optimization 'enables an apples-to-apples comparison with the fixed-representation approach'. Places the work relative to Tripuraneni et al. and Du et al.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Mean 6.33 (6, 6, 7), with no reviewer below the threshold; both confidence-3 reviewers (Reviewer_j1xW, Reviewer_NrMx) gave 6.",
+        "Reviewers and AC valued the separation from FrozenRep, and the AC valued the optimization-aware analysis of non-convex fine-tuning.",
+        "The weaknesses found were readability and errata (missing beta in theta, missing delta in Theorem 5.1), which the authors conceded or explained and promised to fix."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The FrozenRep gap follows from the model mismatch built into the assumptions, so it is not surprising (Reviewer_Jbdo; the authors conceded it is 'in a way, obvious')",
+    "Whether the approximately shared representation holds for tasks where MAML works; request for toy experiments and diagrams (Reviewer_Jbdo)",
+    "No empirical verification and no guidance on when to prefer FrozenRep (Reviewer_h1FC; the paper points to simulations in appendix Section B)",
+    "Near-linear fine-tuning assumption of Section 4.2 unrealistic for large moves or dissimilar domains (Reviewer_h1FC; confirmed by Assumption 4.3 and the beta*R^2 term)",
+    "Novelty claim at l.43 not limited to theoretical work (Reviewer_h1FC; fixed in the camera-ready)",
+    "Advance of the general bound over Du et al., and whether the head and the representation are fine-tuned together (Reviewer_4qNe; the second is answered by Eqs. (1) and (3))"
+  ],
+  "issues_only_b": [
+    "Missing beta factor in theta at l.183-187 (Reviewer_j1xW; conceded and fixed in the camera-ready)",
+    "Unexplained symmetrized parameterization A_B0 = [B0 B0] in Eq. (5) (Reviewer_j1xW)",
+    "The k times r_S term read as an undefined symbol (Reviewer_j1xW; a misreading)",
+    "Bounded-loss Assumption 4.1 excludes Gaussian linear regression (Reviewer_NrMx)",
+    "Theorem 5.1 gives a 1 - delta guarantee with no delta on the right-hand side (Reviewer_NrMx)",
+    "PGD iteration count and distributional assumptions in the nonlinear setting (Reviewer_NrMx; partly answered by Theorem 4.1 and Section 5.1)"
+  ],
+  "shared_issues": [
+    "Dense notation and hard-to-follow presentation (A: Reviewer_4qNe, Reviewer_Jbdo, AC; B: Reviewer_j1xW, Reviewer_L4rJ, AC)",
+    "The first statistical analysis of fine-tuning-based meta-learning, with a separation from FrozenRep, is the main strength (all seven reviewers)",
+    "Restrictive assumptions, though different ones in each committee (A: Reviewer_Jbdo on the task model, Reviewer_h1FC on near-linear fine-tuning; B: Reviewer_NrMx on the bounded loss)",
+    "Proofs not checked: all seven reviewers chose a confidence level that says the math was not carefully checked"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reason. All seven reviewers valued the first statistical analysis of fine-tuning-based meta-learning and its provable separation from frozen-representation methods (FrozenRep). Both committees named one main weakness, dense notation and hard-to-grasp assumptions, and both judged it not fatal. The score profiles match: all four confidence-3 reviewers (Reviewer_4qNe, Reviewer_h1FC, Reviewer_j1xW, Reviewer_NrMx) gave exactly 6. Each committee's 7 came from a confidence-2 reviewer: Reviewer_dKjD says 'I cannot judge the soundness of the proofs', and Reviewer_L4rJ wrote three sentences in one hour. Without the 7s, A is 6, 5, 6 and B is 6, 6. The committees found different things. A raised conceptual doubts: Reviewer_Jbdo showed that the gap follows from the model mismatch built into the assumptions, and the authors conceded it is 'in a way, obvious'; Reviewer_h1FC questioned the near-linear fine-tuning assumption. B found errata that the submission confirms: a missing beta in theta (l.186) and a missing delta in Theorem 5.1. Neither committee treated its issues as disqualifying. No review was edited after posting, so no score moved after the rebuttal. The agreement is real but thin. Every reviewer chose a confidence level that says the math was not carefully checked, so both acceptances rest on the novelty of an unverified theory, not on checked proofs.",
+  "candidate_reasons": [
+    "Novel theory valued by all",
+    "Confident reviewers uniformly at six",
+    "Density judged non-fatal in both",
+    "Low-information sevens not decisive",
+    "Proofs unchecked in both committees",
+    "Rebuttal moved no scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A and B review tables (ratings, confidences, no edits after posting)",
+    "Reviewer_Jbdo review, authors' reply ('in a way, obvious') and 2021-08-30 follow-up",
+    "Reviewer_h1FC review against paper_submitted.pdf l.57, l.216 and checklist 3(a)",
+    "Reviewer_4qNe review against paper_submitted.pdf Eqs. (1), (3) and l.69-70, l.130",
+    "Reviewer_j1xW review against paper_submitted.pdf l.182-192 and the authors' reply",
+    "Reviewer_NrMx cons against paper_submitted.pdf Assumption 4.1, Theorems 4.1 and 5.1",
+    "Reviewer_dKjD review ('I cannot judge the soundness of the proofs')",
+    "Reviewer_L4rJ review (1 hour) and post-rebuttal note of 2021-08-26",
+    "Committee A meta-review (paraphrases Reviewer_Jbdo)",
+    "Committee B meta-review (apples-to-apples comparison)",
+    "paper.pdf (camera-ready): beta fixed in theta, 'theoretical' qualifier, Theorem 5.1 log-factor note"
+  ]
+}

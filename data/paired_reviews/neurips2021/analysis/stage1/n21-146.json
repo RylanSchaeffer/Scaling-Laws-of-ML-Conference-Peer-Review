@@ -1,0 +1,268 @@
+{
+  "pair_id": "n21-146",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ZG6Y"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_z5fN), 6 (Reviewer_aC2L), 6 (Reviewer_ZG6Y) and 6 (Reviewer_GfPN). The spread is one point, and no rating stands apart. The 7 is the least informed review: 2 hours and 'I am not quite familiar with Anderson mixing'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_z5fN",
+          "evidence": "2 hours, confidence 3 and 'I am not quite familiar with Anderson mixing', yet the highest rating in A (7) and 'Overall, the contribution is significant'. Two questions (Nesterov, the constant μ); no comment on the theorems' conditions or the experiments; no reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_aC2L",
+          "evidence": "Strengths are three one-line points ('Experiments are impressive'). Weaknesses, put in the limitations field, are the paper's length and unnamed 'replica-exchange' and 'underdamped Langevin' baselines. No point engages a theorem or a result. Reported 8 hours. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GfPN",
+          "claim": "The method's convergence rate is the same as SGD's; the paper shows no theoretical acceleration.",
+          "checked_against_paper": "correct",
+          "evidence": "l.197: 'SAM has the same complexity O(ε⁻²) as RSG [17] and SQN [60]'. The reply concedes that O(1/ε²) cannot be improved in general and claims acceleration only for special cases (quadratics, via GMRES)."
+        },
+        {
+          "reviewer": "Reviewer_ZG6Y",
+          "claim": "Unless λ_k in (15) is positive, a positive α_k may not exist.",
+          "checked_against_paper": "incorrect",
+          "evidence": "(15) is α_k λ_k ≤ 2β_k(1−μ) with μ ∈ (0,1) (l.133, l.137). If λ_k ≤ 0, every α_k ≥ 0 satisfies it; if λ_k > 0, a small α_k does. The authors gave this answer."
+        },
+        {
+          "reviewer": "Reviewer_ZG6Y",
+          "claim": "Theorems 1-5 resemble the SdLBFGS analysis of [60], and l.173 says too little about the technical difference.",
+          "checked_against_paper": "correct",
+          "evidence": "l.171-173 give one sentence: H_k depends on the current mini-batch, which violates AS.4 of [60]. The reply listed three differences, and the camera-ready adds a section that compares SAM with SQN [60]."
+        },
+        {
+          "reviewer": "Reviewer_ZG6Y",
+          "claim": "Figure 1 uses only a subset of the MNIST training set.",
+          "checked_against_paper": "correct",
+          "evidence": "l.235-236: 'randomly selecting 12k images from the total 60k images for training'."
+        },
+        {
+          "reviewer": "Reviewer_ZG6Y",
+          "claim": "RAM at l.237 may be a typo for SAM.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.116 defines RAM, AM with the Tikhonov regularization of (10); l.237 writes 'RAM (cf. (10))'."
+        },
+        {
+          "reviewer": "Reviewer_ZG6Y",
+          "claim": "SGDM is not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "SGDM first appears at l.237 without a definition. The camera-ready adds 'SGDM [43] (SGD with momentum)'."
+        },
+        {
+          "reviewer": "Reviewer_z5fN",
+          "claim": "The constant μ appears in all the rates and can only be verified numerically.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorems 1-4 bound β_k by μ/(4L(1+C⁻¹)), and (23) carries μ⁻². Condition (15), which enforces μ, is checked numerically at each step (l.138-142). Algorithm 1 presets μ = 10⁻⁸, so μ⁻² in (23) is 10¹⁶. The reply ('μ is preset') did not discuss its size."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [
+          "Reviewer_ZG6Y"
+        ],
+        "evidence": "The authors answered all four reviewers on 2021-08-10 and asked for follow-up on 2021-08-28. No A reviewer posted. Reviewer_ZG6Y edited its review on 2021-09-21, a week before the decision, with no post-rebuttal note; its final rating is 6, so a change cannot be seen. The other three never edited.",
+        "what_convinced_or_not": "Nothing shows that any A reviewer read the rebuttal. The replies were substantive: an AdaHessian comparison (AdaSAM higher in all seven CIFAR settings; AdaHessian 2.7x to 4x slower), three technical differences from SdLBFGS [60], and a correct answer on λ_k. Reviewer_GfPN got the same answer as B's Reviewer_wnT6: SAM matches SGD's optimal O(ε⁻²) and cannot beat it in general. The AC took ZG6Y's quasi-Newton point into its camera-ready requests."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 6 or 7, and the AC accepted, calling the paper 'on the borderline' and noting that 'the reviewers mostly found the paper to be interesting'. The AC calls presentation 'one of the primary criticisms', but only Reviewer_aC2L (length) and Reviewer_ZG6Y ('too many results') raise it, and Reviewer_z5fN calls the paper 'well written'. Of the three camera-ready requests, the quasi-Newton comparison comes from ZG6Y; the wall-time comparison comes from no A reviewer.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or above the threshold (7, 6, 6, 6); no reviewer argued for rejection",
+        "A convergent stochastic AM judged new and of potential practical use (AC; Reviewer_ZG6Y, Reviewer_GfPN)",
+        "Presentation, a quasi-Newton comparison and wall-time results left to the camera-ready (AC)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        4,
+        7,
+        7
+      ],
+      "confidences": [
+        5,
+        5,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_bi9T",
+        "Reviewer_v7Hn"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_wnT6",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "4 at confidence 5 against three 7s. The main reasons are specific, and the paper confirms them: SAM's O(ε⁻²) equals SGD's (l.197); Theorem 4 needs a batch of order √N̄ (l.204-205); Theorem 5 omits the T term (l.214, fixed in the camera-ready); Remark 2 concedes 2md extra memory and O(m²d) extra flops; Section 4 plots only against epochs. Two side claims are wrong ('Only training loss results are reported'; no small-batch results, though CIFAR uses 128). wnT6 answered the rebuttal with a specific counterpoint and kept 4. B's AC called the argument 'legitimate'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_wnT6",
+          "evidence": "2 hours at confidence 5 ('checked the math/other details carefully'). Wrote 'Only training loss results are reported', but Table 1 gives test accuracy, Figure 2 test loss, Figure 3 validation perplexity and Table 2 test perplexity. Asked for small-batch results, which the CIFAR runs (batch 128, l.262) and the Penn TreeBank runs (batch 20) give. The central objections are correct (see checkable claims)."
+        },
+        {
+          "reviewer": "Reviewer_v7Hn",
+          "evidence": "A 7 that rests on two sentences of praise ('I'm impressed with the experiments') and three questions. When the reply said that the CIFAR and Penn TreeBank batch sizes do not follow the theory, v7Hn did not respond. Reported 10 hours."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_wnT6",
+          "claim": "SAM has the same iteration complexity as nonconvex SGD, so it has no theoretical advantage.",
+          "checked_against_paper": "correct",
+          "evidence": "l.197 (same O(ε⁻²) as RSG). The authors' last reply concedes '=' for general nonconvex problems; B's AC calls the argument 'legitimate'."
+        },
+        {
+          "reviewer": "Reviewer_wnT6",
+          "claim": "Theorem 4 needs a large mini-batch; nonconvex SGD does not.",
+          "checked_against_paper": "correct",
+          "evidence": "l.204-205 set n = ⌈min{N̄, max{1, (σ/L)√(N̄/D̃)}}⌉, of order √N̄. The reply offered a proof with an N-dependent step size instead; wnT6 answered that large-batch SGD also needs no N in its step size."
+        },
+        {
+          "reviewer": "Reviewer_wnT6",
+          "claim": "Theorem 5's SFO count should be O(T + T^{2/3}/ε).",
+          "checked_against_paper": "correct",
+          "evidence": "l.214 states O(T^{2/3}/ε), which omits the full-gradient cost T. The authors conceded; the camera-ready states O(T + T^{2/3}/ε)."
+        },
+        {
+          "reviewer": "Reviewer_wnT6",
+          "claim": "SAM costs more time per iteration and more memory than SGD, and Section 4 reports only loss against epochs.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 2 (l.162-164): 2md extra memory and O(m²d)+O(m³) extra flops. Figures 1-3 plot against epochs, and Section 4 has no timing. The camera-ready adds Table 2 (memory, time per epoch, total time). Committee A's AC asked for the same."
+        },
+        {
+          "reviewer": "Reviewer_wnT6",
+          "claim": "Only training loss results are reported.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 reports final test accuracy, Figure 2 test loss on CIFAR-10, Figure 3 validation perplexity and Table 2 test perplexity (l.285-286)."
+        },
+        {
+          "reviewer": "Reviewer_wnT6",
+          "claim": "Section 3.2 gives no formal convergence result for AdaSAM and is vague.",
+          "checked_against_paper": "correct",
+          "evidence": "l.216-223 call the argument 'somewhat heuristic' and end with 'under some proper assumptions'. Convergence does follow, because δ_k ≥ c₂β_k⁻² meets the theorems' condition δ_k ≥ Cβ_k⁻² (l.216-217). The camera-ready says that Theorems 1-5 apply to AdaSAM."
+        },
+        {
+          "reviewer": "Reviewer_bi9T",
+          "claim": "Algorithm 1 sets α_k = β_k = 1, but Theorems 1-3 need β_k → 0.",
+          "checked_against_paper": "correct",
+          "evidence": "The inputs of Algorithm 1 read 'αk = 1, βk = 1', and (18) needs Σβ_k² < ∞. The authors called it a typo for α_0 = β_0 = 1; the camera-ready still reads 'αk = 1, βk = 1'."
+        },
+        {
+          "reviewer": "Reviewer_bi9T",
+          "claim": "As β_k shrinks, α_k must shrink too, so SAM mostly runs SGD steps.",
+          "checked_against_paper": "not_checked",
+          "evidence": "In the theorems α_k ≤ min{1, β_k^{1/2}} (l.184), so α_k → 0 there. The α_k profiles that the authors cite for practice (supplement Figures 11-12) are in neither PDF. The CIFAR runs start at β_0 = 1 (l.274), outside the theorems' β_k ≤ μ/(4L(1+C⁻¹))."
+        },
+        {
+          "reviewer": "Reviewer_bi9T",
+          "claim": "SAM stores two extra matrices, 2m times the model size, which matters for large models on GPUs.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 2: 'SAM needs another 2md space to store Xk and Rk'. The reply's 1.14x and 1.21x are total memory for ResNet20 and ResNet56 on CIFAR-10, where activations dominate. The reply gives no memory figure for a large model."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_bi9T"
+        ],
+        "evidence": "Reviewer_bi9T (2021-08-30): 'I raised my score to 7'; the review was edited that day. Reviewer_wnT6 (2021-08-30): 'I decide not to change my score' (4). Reviewer_TNM1 never replied or edited. Reviewer_v7Hn's edit (2021-07-17) is before the rebuttal.",
+        "what_convinced_or_not": "bi9T conceded that the theory 'does not show any better (worst-case) rate' and rose on practice: AM 'works nicely and consistently in practice', and few experimental studies test AM on neural networks. The reply cited α_k profiles in which Anderson steps dominate most of training, and memory of 1.14x and 1.21x of SGDM. bi9T still asked how the memory was measured, and those small CIFAR models do not answer the concern about large models. wnT6 was not moved: the proof without a large batch needs an N-dependent step size, and 'SGD with large minibatch also does not require the number of iterations N'. The authors' last table concedes '=' on general rates and '-' on memory and time per epoch; wnT6 did not reply to it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The AC accepted with the three 7s, credited the rebuttal for 'one reviewer raising their score', and called Reviewer_wnT6's no-theoretical-benefit argument 'legitimate', asking only for a discussion. The AC also judged that 'the practical aspects are not the strongest', against three reviewers who praised the experiments, and rested acceptance on its own view of novelty: 'in my opinion the results are of interest to the community'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three reviewers at 7, one of them after the rebuttal; one confident detractor at 4",
+        "AC judged the direction novel and the stochastic AM analysis of independent interest",
+        "No theoretical gain over SGD accepted as legitimate but not disqualifying (AC)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty of the proofs over SdLBFGS [60] and fairness of the SdLBFGS comparison (Reviewer_ZG6Y)",
+    "Relation to Nesterov and heavy-ball momentum (Reviewer_z5fN)",
+    "Missing baselines: AdaHessian (Reviewer_GfPN) and Langevin-dynamics methods (Reviewer_aC2L)",
+    "Paper too long, too many results, proofs hard to check (Reviewer_aC2L, Reviewer_ZG6Y, AC)",
+    "Sign of λ_k in (15), role of m, moving average and alternating iterations, MNIST subset, undefined SGDM (Reviewer_ZG6Y)"
+  ],
+  "issues_only_b": [
+    "Theorem 4 needs a batch of order √N̄; SGD does not (Reviewer_wnT6)",
+    "Theorem 5 omits the T term in the SFO count (Reviewer_wnT6; conceded and fixed in the camera-ready)",
+    "No formal convergence result for AdaSAM (Reviewer_wnT6)",
+    "GPU memory of 2m model copies for large models (Reviewer_bi9T, Reviewer_wnT6)",
+    "Under the theorems α_k must vanish, so SAM tends to SGD (Reviewer_bi9T)",
+    "Algorithm 1 sets α_k = β_k = 1 against β_k → 0; bounded second moment in Theorem 2 (Reviewer_bi9T)",
+    "Fixed-point assumption in Remark 1, a limitations section, longer training runs (Reviewer_TNM1)",
+    "Experiment batch sizes do not follow the theory; size of M_f (Reviewer_v7Hn)",
+    "Only training loss reported (Reviewer_wnT6; incorrect)"
+  ],
+  "shared_issues": [
+    "First convergence theory for a stochastic AM as the main contribution (A: Reviewer_ZG6Y, Reviewer_aC2L; B: Reviewer_TNM1, Reviewer_wnT6, AC)",
+    "Rate no better than SGD's O(ε⁻²) (A: Reviewer_GfPN; B: Reviewer_wnT6, Reviewer_bi9T, AC)",
+    "Extra cost and no wall-clock comparison in the main paper (A: AC; B: Reviewer_wnT6, Reviewer_bi9T)",
+    "Constants in the bounds (A: Reviewer_z5fN on μ; B: Reviewer_v7Hn on M_f)",
+    "Large-batch MNIST setting of Figure 1 (A: Reviewer_ZG6Y; B: Reviewer_wnT6)",
+    "Why SAM counts as a second-order or quasi-Newton method (A: Reviewer_ZG6Y, AC; B: Reviewer_TNM1)",
+    "Consistent empirical gains over SGD, Adam and others (A: Reviewer_aC2L, Reviewer_GfPN; B: Reviewer_TNM1, Reviewer_v7Hn, Reviewer_bi9T)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, with the same mean rating (6.25), for the same reasons. Each credited the first convergence theory for a stochastic Anderson mixing (AM) method and consistent test gains, small against SGD with momentum. No reviewer found a substantive error. Both committees saw the same weakness: the theory gives SGD's O(ε⁻²) complexity and no better (l.197), and each iteration costs extra memory and time (Remark 2). Both area chairs accepted anyway: B's AC called the rate point 'legitimate', and A's AC asked only for wall-time results. The committees differed in spread and activity, not in outcome. A was uniform and passive (7, 6, 6, 6): no reviewer answered the rebuttal, and its 7 came from a 2-hour review by a reviewer 'not quite familiar with Anderson mixing'. B was split and active (7, 4, 7, 7). Reviewer_wnT6 (4, confidence 5) made the strongest case against, and the paper confirms its core points. Reviewer_bi9T rose to 7 on practical evidence, and B's AC called wnT6's argument 'legitimate' and accepted on novelty. Neither committee checked the experiments' step size against the theorems. Theorems 1 to 4 need β_k ≤ μ/(4L(1+C⁻¹)), but the experiments keep Algorithm 1's default μ = 10⁻⁸ (l.230-231) and the CIFAR runs start at β_0 = 1 (l.274). The theorems cover those runs only if L(1+C⁻¹) ≤ 2.5×10⁻⁹, so the theory both committees credited does not describe the runs that produced the gains.",
+  "candidate_reasons": [
+    "Rate parity with SGD tolerated",
+    "No substantive error found",
+    "Novel stochastic AM convergence analysis",
+    "Lone principled detractor outvoted",
+    "Rebuttal practice evidence lifted supporter",
+    "Theory-practice gap went unnoticed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_wnT6 final review and reply of 2021-08-30",
+    "Reviewer_bi9T final review and reply of 2021-08-30",
+    "Reviewer_GfPN final review and the authors' reply (rate, AdaHessian)",
+    "Reviewer_ZG6Y final review (edited 2021-09-21) and the authors' reply",
+    "Authors' replies to Reviewer_wnT6 of 2021-08-10 and 2021-08-31",
+    "paper_submitted.pdf l.197 (same O(ε⁻²) as RSG and SQN)",
+    "paper_submitted.pdf Remark 2, l.162-168 (2md memory, O(m²d)+O(m³) flops)",
+    "paper_submitted.pdf Theorems 1, 3 and 4 (β_k ≤ μ/(4L(1+C⁻¹)), α_k ≤ min{1, β_k^{1/2}}) and Theorem 5, l.214",
+    "paper_submitted.pdf Algorithm 1 inputs (μ = 10⁻⁸, α_k = β_k = 1), l.230-231, l.262, l.274",
+    "paper_submitted.pdf Table 1, Figures 2 and 3, Table 2 (test metrics)",
+    "paper_submitted.pdf l.171-173 (difference from [60]) and l.216-223 (AdaSAM)",
+    "paper.pdf (camera-ready) Theorem 5 and Table 2 (memory and time)"
+  ]
+}

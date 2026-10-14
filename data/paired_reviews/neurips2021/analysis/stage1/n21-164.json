@@ -1,0 +1,262 @@
+{
+  "pair_id": "n21-164",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        5,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Kux9"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 7, 7. The 6 (Reviewer_HQch, confidence 5) is one point below the rest, comes from the most detailed review, and says 'I would like to see this manuscript accepted'. No reviewer stands apart."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_dj8Y",
+          "evidence": "A 110-word main review: three originality points and one line on correctness. It twice says VB-SDP-AE has 'the same regret' as the central model; the paper says 'almost matches' (l.6, l.86), and its additive term is a sqrt(log(1/δ))·log T factor worse (Corollary 3.4 against l.220). It calls the analysis 'easy to follow and correct', but its confidence label says 'Math/other details were not carefully checked'. Its only post-rebuttal comment is one line ('my assessment of the paper remains unchanged'). Its 7 is weak evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HQch",
+          "claim": "Line 220: the δ dependence is missing from the central (ε, δ) bound.",
+          "checked_against_paper": "correct",
+          "evidence": "l.219-220 give the Tossou and Dimitrakakis (ε, δ) bound as O(Σ log T/Δa + k/ε), with no δ; Table 1 shows the same. The authors told Reviewer_iPAH that the δ dependence 'does indeed exist, but is given implicitly'. The camera-ready Table 1 and Section 3.2 still show k/ε."
+        },
+        {
+          "reviewer": "Reviewer_iPAH",
+          "claim": "The central (ε, δ) row of Table 1 shows no explicit δ, and the shuffle bound carries a log T in the additive term that the central bound does not.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: central (ε, δ) O(Σ log T/Δa + k/ε); shuffle O(Σ log T/Δa + k·sqrt(log(1/δ))·log T/ε) (also Corollary 3.4, l.269-271). The authors: 'The gap we do have is reflected by the logT term.'"
+        },
+        {
+          "reviewer": "Reviewer_dj8Y",
+          "claim": "VB-SDP-AE has the same regret guarantees as the best-known algorithm in the central model.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollary 3.4's additive term is k·sqrt(log(1/δ))·log T/ε, against k/ε for Tossou and Dimitrakakis (l.220). The paper says 'almost matches' (abstract l.6, l.86) and lists shaving the log T as future work (l.283-284)."
+        },
+        {
+          "reviewer": "Reviewer_dj8Y",
+          "claim": "The analysis is easy to follow and correct.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The main text gives only proof sketches for Theorems 3.1 and 3.3 (l.200-211, l.255-265); the full proofs are in an appendix that is not in the submitted PDF. dj8Y's own confidence label says the math was not carefully checked."
+        },
+        {
+          "reviewer": "Reviewer_HQch",
+          "claim": "The model requires that no user returns over the horizon.",
+          "checked_against_paper": "correct",
+          "evidence": "l.109-110: each user 'can afford a single round of communication, and is never selected more than once'; footnote 3: each online user 'participates only in one shuffle and then disappears'. The authors answered with group privacy."
+        },
+        {
+          "reviewer": "Reviewer_HQch",
+          "claim": "The paper handles only Bernoulli rewards.",
+          "checked_against_paper": "correct",
+          "evidence": "Rewards are in {0, 1} (l.15-16, l.73, l.117). Footnote 5 asserts that the algorithms 'naturally extend' to [0, 1] rewards with another summation protocol, without proof."
+        },
+        {
+          "reviewer": "Reviewer_Kux9",
+          "claim": "The shuffle algorithms remove the multiplicative 1/ε² factor of the local-model bound.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: local Θ(Σ log T/(ε²Δa)); SDP-AE's privacy term is additive k·log(1/δ)/ε² (Corollary 3.2) and VB-SDP-AE's is additive k·sqrt(log(1/δ))·log T/ε (Corollary 3.4)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_Kux9"
+        ],
+        "evidence": "Reviewer_Kux9's review was edited on 2021-08-30, the day it wrote 'I will be increasing my score for the paper'; its final 7 implies an earlier 6 or lower. Reviewer_dj8Y ('my assessment of the paper remains unchanged') and Reviewer_HQch ('my review remains the same') replied on 2021-08-31 and did not edit. Reviewer_iPAH did not reply and did not edit. A's mean rose from at most 6.5 to 6.75.",
+        "what_convinced_or_not": "Kux9's only weakness was few new technical ideas. The authors replied that they define the model, that a naive port of Tossou and Dimitrakakis fails because the noise per shuffle batch cannot shrink, and that growing batches fix this. The submission already makes the naive-port argument at l.227-231; on that point the reply adds only that Tossou and Dimitrakakis reuse raw data. Kux9's comment cites an interesting problem, nice results and clear writing, not a resolved novelty concern. The replies to HQch (other summation protocols for sub-Gaussian rewards, group privacy for returning users, 'The main focus of our paper is theoretical') changed nothing. iPAH's δ and log T questions got direct answers and no response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "A short meta-review: 'The paper is well-written and the reviewers were positive.' Its one point of its own is that the rebuttal's argument on the naive conversion of Tossou and Dimitrakakis is 'useful' and should go into the paper. The submission already makes that argument at l.227-231; the camera-ready repeats it as footnote 15. The AC does not address the novelty concern that all four reviewers raised.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 6, 7, 7, 7 (mean 6.75), all above the threshold; the AC cites only that 'the reviewers were positive'.",
+        "First bandit algorithms in the shuffle model, with regret within a log T factor of the central model and without the local model's multiplicative 1/ε² (all four reviewers).",
+        "Clear writing and exposition (all four reviewers, AC).",
+        "Limited technical novelty, named by all four reviewers, was not held against the paper; Reviewer_Kux9 raised its score after the rebuttal."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        2,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_321T",
+        "Reviewer_gRZS"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 6. Reviewer_gRZS's text is the most negative ('lack of algorithmic novelty and lack of depth in the provided proofs'), but its rating matches the others."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qxTz",
+          "claim": "VB-SDP-AE's additive privacy regret has the same ε dependence as central DP but is logarithmically worse in T.",
+          "checked_against_paper": "correct",
+          "evidence": "Corollary 3.4 (l.269-271): k·sqrt(log(1/δ))·log T/ε, against k/ε at l.220 and in Table 1."
+        },
+        {
+          "reviewer": "Reviewer_qxTz",
+          "claim": "The paper has no lower bound for the shuffle model, so the gap may be an artefact of the algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1's shuffle row is O(·), not Θ(·); the conclusion leaves shaving the log T open (l.283-284). The authors: 'We do not have any lower bounds which are tighter than the centralized DP lower bounds'."
+        },
+        {
+          "reviewer": "Reviewer_qxTz",
+          "claim": "The distribution-independent bounds are not compared with existing minimax bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "l.79-83 state the distribution-independent bounds, but Table 1 and l.84-88 compare only distribution-dependent ones. The camera-ready adds footnote 6 on distribution-independent bounds."
+        },
+        {
+          "reviewer": "Reviewer_qxTz",
+          "claim": "Lines 189-190 call privacy trivial without explanation.",
+          "checked_against_paper": "correct",
+          "evidence": "l.189: 'The privacy is trivial, since each batch we use the (ε, δ)-SDP mechanism Msum.' l.249 repeats it for VB-SDP-AE."
+        },
+        {
+          "reviewer": "Reviewer_qxTz",
+          "claim": "Lines 63-64 only loosely mention an extension to continuous rewards.",
+          "checked_against_paper": "correct",
+          "evidence": "l.63-64 say only that 'Similar errors hold' for summing real values in [0, 1]; footnote 5 asserts that the algorithms 'naturally extend' to [0, 1] rewards. Neither gives a theorem."
+        },
+        {
+          "reviewer": "Reviewer_321T",
+          "claim": "The batch set B in the regret definition (above l.130) is not clearly defined and does not appear in the algorithms.",
+          "checked_against_paper": "correct",
+          "evidence": "l.130 defines B in one clause ('the random set of batches of users used by the algorithm during its run'); Algorithms 1 and 2 never name it. The equality 321T questioned is the standard pseudo-regret decomposition and holds, so this is a clarity point, not an error."
+        },
+        {
+          "reviewer": "Reviewer_321T",
+          "claim": "The caption of Table 1 defines 'LB', but the table has none.",
+          "checked_against_paper": "correct",
+          "evidence": "Caption: '(LB = Lower Bound)'; no LB entry appears. The authors called it a typo; the camera-ready caption drops it."
+        },
+        {
+          "reviewer": "Reviewer_321T",
+          "claim": "Footnote 6 claims the method also works for UCB but gives no bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 6: the methods 'should work similarly' on UCB; no theorem or bound follows."
+        },
+        {
+          "reviewer": "Reviewer_gRZS",
+          "claim": "The paper analyses nothing besides regret, for example not the number and length of the shuffled messages.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text has no communication analysis. l.101-103 describe the encoder in one sentence ('E outputs the user's reward bit together with a set of random bits'), and the full description of Msum is in Appendix C, which is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_gRZS",
+          "claim": "The private summation protocol is applied as a black box to arm elimination with very little change.",
+          "checked_against_paper": "correct",
+          "evidence": "l.156-159 treat Msum as any unbiased (ε, δ)-SDP summation with sub-Gaussian error; Algorithms 1 and 2 are batched arm elimination; l.191-192 call the analysis 'somewhat standard'. The growing batch size (Algorithm 2) is the one change; whether that is shallow is a judgement."
+        },
+        {
+          "reviewer": "Reviewer_3BED",
+          "claim": "Private binary summation in the shuffle model has Θ̃(1/ε) error.",
+          "checked_against_paper": "correct",
+          "evidence": "l.61-62: the optimal shuffle-model error is Θ̃(1/ε) [9]."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_321T"
+        ],
+        "evidence": "Reviewer_321T's update inside its review (edited 2021-08-31): 'I share a similar concern with other reviewers regarding the algorithmic novelty ... I decrease my score accordingly, but I still tend to recommend the acceptance.' Its final 6 implies an earlier 7 or higher. Reviewer_gRZS also edited on 2021-08-31 but states no change, so the record does not show what moved; its text argues against the paper while its rating is 6. The AC writes that the reviewers agreed 'after some discussion and a mixed verdict'. No B reviewer posted a reply to the authors.",
+        "what_convinced_or_not": "The authors sent gRZS the novelty paragraph that moved Reviewer_Kux9 in A, plus 'This is a theoretical paper' on experiments; gRZS's final text still calls the work 'a mix and match of known results'. The clarifications to 321T on batches and the regret definition worked ('Now I have a better understanding of the shuffle model'), but the other reviews' novelty concern lowered it. The reply to 3BED pointed to the failed simple approaches in Section 3.2. qxTz got promises to add discussions and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Overall the reviewers agree on the paper's contributions being (close to) but above the borderline for acceptance and that forms the rationale behind my recommendation.' The AC reports that the reviewers came to agree the growing-batch idea is 'non-trivial and somewhat novel'. It adds its own view that the contribution is in bandits and privacy 'merely' defines the setup, and asks for the practical privacy impact of growing batches. It overstates the result as 'the same results as global DP'; the additive term is a log T factor worse (Corollary 3.4 against l.220).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Ratings 6, 6, 6, 6: a unanimous marginal accept, which the AC names as its rationale.",
+        "First bandit algorithms in the shuffle model, with near-central regret; after discussion the reviewers judged the growing-batch idea 'non-trivial and somewhat novel' (AC).",
+        "Limited algorithmic novelty and depth (Reviewer_gRZS, Reviewer_3BED, Reviewer_321T) held every score at 6; Reviewer_321T lowered its score for it.",
+        "Gaps the paper confirms (no shuffle lower bound, no experiments, no communication analysis, binary rewards only) were treated as limitations, not reasons to reject."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The central (ε, δ) bound at l.220 and in Table 1 shows no δ (Reviewer_HQch, Reviewer_iPAH; confirmed; the authors concede the dependence is implicit; the camera-ready still omits it)",
+    "Returning users: the model selects each user at most once; the authors answered with group privacy (Reviewer_HQch)",
+    "Section 2.3's standard concentration bounds could move to the appendix; 'almost' should read 'nearly'; whether the combination at l.160 is a real 'challenge' (Reviewer_HQch)"
+  ],
+  "issues_only_b": [
+    "Problem-dependent factors 1/Δa rather than KL-based ones (Reviewer_qxTz; the authors agreed to discuss it)",
+    "No comparison of the distribution-independent bounds with existing minimax bounds (Reviewer_qxTz; confirmed; the camera-ready adds footnote 6)",
+    "A one-line privacy proof ('The privacy is trivial', l.189) and no running example for SDP (Reviewer_qxTz; confirmed)",
+    "Unclear batch set B in the regret definition and unclear role of batches in applications (Reviewer_321T; B is defined in one clause at l.130)",
+    "Table 1's caption defines 'LB' but the table has none (Reviewer_321T; confirmed; conceded as a typo)",
+    "Footnote 6 claims a UCB variant without bounds (Reviewer_321T; confirmed)",
+    "No analysis of communication cost, i.e. the number and length of shuffled messages (Reviewer_gRZS; confirmed)",
+    "Why the shuffle model matters for bandits; the contribution is in bandits and privacy only defines the setup (Reviewer_3BED, AC)"
+  ],
+  "shared_issues": [
+    "Limited technical novelty: arm elimination plus a known shuffle summation protocol, with growing batches as the one new idea (A: Reviewer_HQch, Reviewer_Kux9, Reviewer_dj8Y, Reviewer_iPAH; B: Reviewer_gRZS, Reviewer_3BED, Reviewer_321T, AC)",
+    "No experiments (A: Reviewer_HQch; B: Reviewer_qxTz, Reviewer_gRZS)",
+    "Binary rewards only; extension to real-valued or sub-Gaussian rewards asserted, not shown (A: Reviewer_HQch; B: Reviewer_qxTz)",
+    "Extra log T factor over the central model and no shuffle lower bound, so tightness is unknown (A: Reviewer_iPAH, as a question; B: Reviewer_qxTz, Reviewer_gRZS, as a weakness)",
+    "Practicality of exponentially growing batches (A: Reviewer_HQch; B: Reviewer_321T, AC)",
+    "Clear writing (all eight reviewers) and a new problem setting (most reviewers in both committees)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster, for the same reasons. All eight reviewers rated the paper 6 or 7, and they described one paper: a clearly written first study of bandits in the shuffle model whose best algorithm (VB-SDP-AE) comes within a log T factor of the central model and removes the local model's multiplicative 1/ε². It joins arm elimination with a known shuffle summation protocol (Cheu et al.), its one new idea is exponentially growing batches, and it has no experiments. Seven of eight reviewers called the techniques standard or the novelty limited. Only the level differed: A averaged 6.75, B 6.0. Three A reviewers (Reviewer_Kux9, Reviewer_dj8Y, Reviewer_iPAH) named the novelty concern and still gave 7; three B reviewers (Reviewer_gRZS, Reviewer_3BED, Reviewer_321T) made it their centre and gave 6. The discussion widened the gap. The authors sent the same novelty paragraph, on why a naive port of Tossou and Dimitrakakis fails, to Reviewer_Kux9 in A and Reviewer_gRZS in B. Kux9 raised its score to 7, although the submission already makes that argument at l.224-231; gRZS's final text still calls the work 'a mix and match of known results'. In B, Reviewer_321T lowered its score to 6 after reading the other reviews' novelty concerns. A's support includes a thin 7 from Reviewer_dj8Y that overstates the result as matching the central model. Both ACs followed their reviewers, and no reviewer found an error in the results. The committees weighted the same facts differently, and both weightings stayed above the accept line.",
+  "candidate_reasons": [
+    "Same novelty concern weighted differently",
+    "Rebuttal restating paper raised score",
+    "Peer novelty concern lowered score",
+    "Thin overclaiming review inflated mean",
+    "Both ACs followed reviewer consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_Kux9 review (edited 2021-08-30) and comment of 2021-08-30",
+    "Reviewer_321T review update after '=========' (edited 2021-08-31)",
+    "Reviewer_gRZS review and limitations section (edited 2021-08-31)",
+    "Reviewer_dj8Y review",
+    "Authors' identical novelty replies to Reviewer_Kux9 (A) and Reviewer_gRZS (B)",
+    "Authors' reply to Reviewer_iPAH on δ and log T",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1, l.219-220 and Corollary 3.4 (l.269-271)",
+    "paper_submitted.pdf Section 3.2, l.224-231 (simple approaches that fail)",
+    "paper_submitted.pdf l.130 (batch set B), l.189 ('The privacy is trivial'), l.191-192 ('somewhat standard' analysis)",
+    "paper.pdf (camera-ready) footnote 15 and Table 1"
+  ]
+}

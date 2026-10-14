@@ -1,0 +1,107 @@
+{
+  "run": 2,
+  "turn": 5,
+  "pair_id": "n21-295",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Wrong claims exist (1xyW's CUDA, iQAh's Table 2, hB4H's Eq. 5), but none lowered a score: 1xyW and iQAh gave 6 and hB4H gave 7."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight over 7/6/7 with no rating above 7, citing only 'unanimously' positive rates and an 'excellent' rebuttal, and named no strength."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "All B reviewers had confidence 4 and gave specific points; no praise-only review shaped either meta-review."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "Both forums got the same rebuttal content, including the Kinetics table; the mislabelled row is a copy error, not a disclosure to one side."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "No committee learned of a substantive flaw and ignored it; L4t3's 0.5-point ablation gap is a weighting matter, covered by R08."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In B, Reviewer_1j5f edited its review the day it wrote 'I vote for 6' after the non-local baseline answered its main concern (inferred rise); no A score moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised the small Something-Something margins and weak Kinetics baselines, which entered A's meta-review; only B raised the missing non-local baseline and parameter counts."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees found the writing unclear, the method incremental and Kinetics missing; B's reviewers called these addressed, and L4t3 rated 7 despite 'a bit incremental', while A's AC called them below the bar."
+    },
+    {
+      "id": "R09",
+      "applies": true,
+      "justification": "A's AC rejected against 6/7/6 by restating lone detractor rPEM's 2021-08-29 list nearly verbatim, down to 'kind of incremental', with no assessment citing the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "rPEM reread the paper after seeing the positive scores, and iQAh and KG6i echoed the writing point, but no score changed."
+    },
+    {
+      "id": "R11",
+      "applies": true,
+      "justification": "rPEM's 2021-08-29 comment invited persuasion and no author reply appears; rPEM stayed at 5 and its list became A's reasons for rejection."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "In A, Reviewer_1xyW spent 4 hours, listed two generic strengths and no weakness, asked about a non-existent CUDA implementation, and replied only 'I keep my original rating'; its 6 counted unchallenged."
+    }
+  ],
+  "added": [
+    {
+      "id": "R13",
+      "name": "Area chair rejected against a positive majority",
+      "definition": "One committee's area chair recommended a lower tier or rejection than most of its reviewers' final ratings supported, with no score moving to back the decision.",
+      "justification": "R02 covers an AC setting a higher tier than the scores support, not a lower one; R09 covers how an AC resolves a split by adopting one reviewer, not the override of a positive majority itself, which can occur without deferring to anyone."
+    }
+  ],
+  "reasoning": "The panels nearly agree (A 6/7/5/6, B 7/6/7) and raised the same weaknesses, so the split comes from the area chairs moving in opposite directions. B's AC gave a spotlight on unanimity alone (R02). A's AC rejected against a 3-to-1 positive panel (new R13) by adopting the lone detractor's late list (R09), after the authors left that detractor's comment unanswered (R11). The shared writing, incrementality and Kinetics concerns were weighted oppositely (R08), each side also raised issues the other did not (R07), 1j5f's score likely rose in B only (R06), and A had a thin, unengaged review (R12). Wrong reviewer claims existed but lowered no score, so R01 does not apply.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13"
+  ]
+}

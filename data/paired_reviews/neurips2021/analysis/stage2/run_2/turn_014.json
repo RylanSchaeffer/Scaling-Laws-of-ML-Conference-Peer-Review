@@ -1,0 +1,156 @@
+{
+  "run": 2,
+  "turn": 14,
+  "pair_id": "n21-197",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In B, Ms3t's 3 rested partly on a wrong gSCAN validity claim and a wrong claim that no other technique was compared, and CnYk's 4 on a wrong reading of the parser as supervised; no A reviewer made these errors."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's chair followed ratings of 6, 9, 6, 7 (mean 7.0) and its consensus statement is accurate; the spotlight is thinly argued but not set on the chair's own reading above the scores."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's wEz8 gave 9 ('top 15%') after two hours in a review that is mostly summary with minor criticisms; it is the only rating in either committee that supports a spotlight."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors made the same concessions (hand-built world model, missing citations, misworded claims) to both committees."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "The flaws A accepted are stated limitations and missing citations, weighed as minor (R08); stage 1 finds no substantive flaw in a result that A ignored."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "The rebuttal moved oMsG up to 6 in A, while no score moved in B, though Ms3t received the same framing and human-study explanation."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B raised the unreported inference cost (jmVT) and the unmeasured parser errors in CLUTRR (2tE8), both correct, and B's meta-review lists them among its concerns."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the hand-designed world model; A's Tn5q and Eow4 accepted it as a stated limitation of a proof of concept, while B's meta-review named it the main reason to reject."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither chair adopted one reviewer's position over split reviews; both followed unanimous ratings."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer in either committee is recorded as moving because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer in both committees; Ms3t's silence is the reviewer's, not a missed reply."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "wEz8's 9 at confidence 5 rested on summary and praise, wEz8 never replied to the rebuttal or joined the discussion, and the score counted unchallenged toward A's spotlight."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's chair rejected with all four ratings below threshold (5, 4, 3, 5)."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's chair stated no positive assessment of its own; 'close but just below the bar' follows unanimous below-threshold scores."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "B's low scores rest on the world model, novelty and misreadings, which are central claims, not peripheral variants the method does not use."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees evaluated the paper as a neuro-symbolic generation method; they differed in the bar for generality, not in the kind of contribution."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "oMsG, who moved in A, did not say the core was outside his expertise; the move rested on explanation, which R06 covers."
+    },
+    {
+      "id": "R18",
+      "applies": true,
+      "justification": "Both read the paper as a method; B required a general way to build the world model and tests beyond simple domains, while A, through Tn5q and Eow4, accepted a proof of concept for a narrow world model."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "No praise in either committee rests on a wrong factual claim; Tn5q's wrong budget of 20 is a question, not a basis for praise."
+    }
+  ],
+  "added": [
+    {
+      "id": "R20",
+      "name": "Reviewer kept score after main concern answered",
+      "definition": "A reviewer in one committee acknowledged that the rebuttal resolved the concern their score rested on, yet kept the same below-threshold score by citing new or secondary grounds, so the correction did not change the committee's ratings.",
+      "justification": "R01 covers the wrong claim itself and R15 a score held on a peripheral point the authors had answered; neither covers a reviewer who conceded that the main concern was answered and then kept the score on new grounds."
+    }
+  ],
+  "reasoning": "The core cause is R08 with R18: both committees saw the hand-designed world model, and A accepted it as a stated limit of a proof of concept while B required generality. A's spotlight rests on wEz8's thin, unengaged 9 (R03, R12). The rebuttal moved A's main critic but no B reviewer (R06). B's low scores rest partly on wrong claims (R01), and one B reviewer conceded his main concern was answered yet kept 4 on new grounds, which no existing reason names, so R20 is added. B also raised correct secondary issues A did not (R07).",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20"
+  ]
+}

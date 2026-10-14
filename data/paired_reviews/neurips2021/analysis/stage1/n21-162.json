@@ -1,0 +1,249 @@
+{
+  "pair_id": "n21-162",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_6URn",
+        "Reviewer_XqDo"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 6 lie within one point. Reviewer_XqDo's 6 is the lowest, but its review gives no reason for a lower score beyond a vague baseline request and the false-positive rate."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_XqDo",
+          "evidence": "Rating 6 at confidence 3 after 2.5 hours. The main review opens with the summary repeated word for word. The rest is three sentences of praise, one unspecific request to compare 'with other bug detection and repair models' (it names none until the discussion, where it borrows CodeBERT and GraphCodeBERT from Reviewer_3FwM), the false-positive rate, and line-level typos. It says the paper compares 'just with a baseline', although Table 3 compares with CuBERT. The review is thin, not wrong, and its 6 matches its content."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_6URn",
+          "claim": "The difference between the Random Selector and PyBugLab in Table 1 is quite small, and there are no confidence intervals from repeated runs, so the result may not be stable.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: on RandomBugs, PyBugLab beats the Random Selector by 0.2 (GNN) and 0.1 (GREAT) joint-accuracy points; on PyPIBugs by 2.5 (21.4 to 23.9) and 3.4 (20.3 to 23.7). Checklist 3(c): error bars '[No] Due to cost of running experiments often enough'. The authors promised extra runs; none appear in the record."
+        },
+        {
+          "reviewer": "Reviewer_6URn",
+          "claim": "Table 1 has no row that applies the semantics-preserving rewrites without the learned selector.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 applies SemPr only to PyBugLab (row 'PyBugLab +SemPr'). The authors replied: 'This is indeed an oversight in our paper.'"
+        },
+        {
+          "reviewer": "Reviewer_6URn",
+          "claim": "The 'semantics-preserving' rewrites do not preserve semantics in Python.",
+          "checked_against_paper": "correct",
+          "evidence": "l.183-184 concedes that comparison mirroring can change execution order, 'possibly altering program semantics'. Comment deletion removes docstrings, which Python exposes at run time. 6URn's example renames a global variable, while the paper renames only locals (l.178), but the point holds. The camera-ready renames them rewrites for data augmentation ('PyBugLab +Aug')."
+        },
+        {
+          "reviewer": "Reviewer_3FwM",
+          "claim": "Bug-inserting rewrites may not insert a bug, for example a variable swap between variables with the same value.",
+          "checked_against_paper": "correct",
+          "evidence": "l.316-318: the model 'lacks knowledge that two variables refer to the same object in memory' and proposes swaps between them. The authors called such cases 'relatively rare' training noise; the A meta-review lists it as a limitation."
+        },
+        {
+          "reviewer": "Reviewer_XqDo",
+          "claim": "The paper compares its model only with a baseline, not with other bug detection and repair models.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Besides the Supervised and Random Selector training baselines, Table 3 compares with CuBERT, an existing pretrained bug detector (l.282-302). It is correct that no other repair system, such as Hoppity, is run."
+        },
+        {
+          "reviewer": "Reviewer_3FwM",
+          "claim": "The introduction wrongly says that all related approaches use data that does not represent real bugs; Devign uses real vulnerabilities.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.21-24 says the cited approaches use 'datasets of very limited size or ones known not to be representative'. A small realistic dataset such as Devign fits the first branch; the authors replied in the same terms."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No reviewer reports a score change. Reviewer_3FwM never edited its review. Reviewer_XqDo's only edit (2021-07-16) is one day after posting and before the author responses (2021-08-10). Reviewer_6URn edited on 2021-08-30, the day of its reply; the reply states no score change and ends 'Thanks for your great work!'. 3FwM and XqDo replied on 2021-08-26 without mentioning scores.",
+        "what_convinced_or_not": "To Reviewer_6URn the authors said the Random Selector and PyBugLab detectors saw the same 60M samples (l.241-243), argued the PyPIBugs gap is larger, promised error bars and a selector-hardness experiment, conceded the missing augmentation ablation as 'an oversight', and defended the 'semantics preserving' name. 6URn answered that its concern was uncontrolled asynchrony, not step count, asked for the hardness and diversity numbers, and still called the name 'an indefensible term in an otherwise great paper'. The promised error bars and hardness results never reached A. Reviewer_3FwM restated that a CodeBERT comparison is 'easy'. Reviewer_XqDo accepted the answers and named CodeBERT, GraphCodeBERT and a survey as comparison candidates. No A reviewer had made acceptance conditional on the answers."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All three ratings are on the accept side (7, 7, 6), and the AC accepted. The meta-review collects points from each reviewer: aliasing (Reviewer_3FwM), the 'semantics preserving' misnomer and the ICLR 2021 obfuscation paper (Reviewer_6URn), missing baselines (Reviewer_3FwM, Reviewer_XqDo) and the false-positive rate (Reviewer_XqDo). It adds its own judgements: 'this is a strong paper', the evaluation is 'still fairly convincing', and the ICLR 2021 paper 'does not detract from the novelty'. It omits 6URn's main concern, that the learned selector's benefit over a random selector is not shown.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Novel idea: a bug selector co-trained with the bug detector to produce hard training bugs (all three reviewers, AC).",
+        "Real-world evidence: 19 previously unknown bugs in PyPI packages and the new manually curated PyPIBugs test set (Reviewer_6URn, Reviewer_XqDo, AC).",
+        "Ratings 7, 7, 6 with no detractor.",
+        "Missing external baselines and the high false-positive rate were judged limits, not flaws: 'the evaluation is still fairly convincing' (AC)."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        9,
+        5
+      ],
+      "confidences": [
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_e6hN",
+        "Reviewer_aZJ8"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_vPhi",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating outside 5 to 7 across both committees: 9 ('Top 15% of accepted NeurIPS papers') at confidence 5, which claims a careful check of details, after 1.5 hours. The summary of the architecture and results is accurate, and the review makes one useful request (a precision-matched CuBERT comparison). But it states the real-bug yield as 'a TPR of 0.19%' (the paper reports 19 of 1000 warnings real, 1.9% precision), names no weakness beyond minor nits, and rests the 9 on broad praise ('The results seem pretty significant'; the approach may extend to program synthesis). It never replied to the author response or to the authors' CuBERT update. The 9 did not lift B above a poster. Reviewer_aZJ8's 5 is the matching low score."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_vPhi",
+          "evidence": "A 9 at confidence 5 from 1.5 hours of review. It misstates the paper's headline real-world figure ('a TPR of 0.19%' against 19 of 1000 warnings, i.e. 1.9% precision, l.332), calls the paper's claims 'clearly supported by the evidence' although there are no error bars (checklist 3(c)), and took no part in the discussion. A light review is not evidence of top-15% quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_e6hN",
+          "claim": "The CuBERT comparison example (l.294) lists only locations l11 and l20, but CuBERT's wrong-operator task also covers in, not in, is, is not, and, or; the paper makes factually incorrect claims about CuBERT.",
+          "checked_against_paper": "correct",
+          "evidence": "l.293-295 names only l11 and l20, although Fig. 2 also has operator rewrites at l2 (not in), l14 (and) and l16 (is not). e6hN's 'l22' is a slip for l11. The authors called it 'entirely a bug in the writing' and listed the operator mask they used, which includes those operators; the camera-ready names l2, l11, l14, l16 and l20. Whether the experiment used that mask cannot be checked from the PDF; l.286-287 ('the binary operators supported by CuBERT') is consistent with it."
+        },
+        {
+          "reviewer": "Reviewer_e6hN",
+          "claim": "PyPIBugs has no NoBug category, so detection on real code is not measured.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 shows no NoBug entry for PyPIBugs, and PyPIBugs holds only buggy snippets (l.224-229). The authors added an AUPRC table on PyPIBugs plus the fixed versions; the camera-ready adds 'PyPIBugs-PostFix'."
+        },
+        {
+          "reviewer": "Reviewer_e6hN",
+          "claim": "l.306 puts the truncation in line 3 of Fig. 3a; it is in line 4.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3a: line 3 is the test 'if len(name) <= 22:'; line 4 is 'name = name[:22]'."
+        },
+        {
+          "reviewer": "Reviewer_vPhi",
+          "claim": "The system found 19 bugs in open-source projects 'with a TPR of 0.19%'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.332: 'only 19 of the 1000 reported warnings were found to be real-life bugs', a precision of 1.9%. The figure is ten times too small and is not a true-positive rate."
+        },
+        {
+          "reviewer": "Reviewer_vPhi",
+          "claim": "PyBugLab achieves better F1 than the special-purpose CuBERT models.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: F1 0.746 against 0.476 (WrongOp) and 0.787 against 0.478 (VarMisuse). The authors' rerun of CuBERT after consulting its authors (2021-08-13, B forum only) gives CuBERT F1 0.378 and 0.493, so the gap remains."
+        },
+        {
+          "reviewer": "Reviewer_aZJ8",
+          "claim": "Training the models takes more than one week.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 2: about 1.5 weeks for the GNN models and about 1 week for GREAT on a single P100 GPU."
+        },
+        {
+          "reviewer": "Reviewer_aZJ8",
+          "claim": "Important baselines (Hoppity, DeepDebug) are missing, and the CuBERT comparison covers only bug prediction.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither system is run. Hoppity appears only in related work, as a possible future rewrite model (l.362-365). DeepDebug is not cited; it appeared on arXiv (2104.07896) in April 2021, weeks before the deadline. l.284-285: CuBERT 'detects if a bug exists but does not localize it', so Table 3 compares detection only."
+        },
+        {
+          "reviewer": "Reviewer_aZJ8",
+          "claim": "Other works such as DeepBugs also generate training data automatically with similar rewrite rules, so more comparison and analysis are necessary.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1's Supervised and Random Selector rows train the same GNN and GREAT detectors on bugs inserted at random with the same rewrite rules (l.236-239), the strategy the authors attribute to DeepBugs [20] and others. That comparison is in the paper; only the DeepBugs model itself is not run."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_e6hN"
+        ],
+        "evidence": "Reviewer_e6hN's review ends 'Update after author response: changed score from 5 to 7' (edited 2021-08-26), and its comment that day says 'I'm increasing my score from 5 to 7.' Reviewer_aZJ8's final text (last edited 2021-09-10) adds an 'After seeing the authors' response' paragraph that keeps and extends its objections; it states no score change, and aZJ8 never replied in the thread. Reviewer_vPhi never edited or replied.",
+        "what_convinced_or_not": "e6hN's provisional reject rested on the CuBERT operator text; it accepted the authors' answer that this was a writing error backed by the listed operator mask ('I'm glad the CuBERT issue was merely a writing issue'), the new PyPIBugs-AfterFix AUPRC results ('help to strengthen the paper'), and the clarification of the data pools. aZJ8 was not convinced by the reply that the contribution is a training framework, not a model: its addendum calls the method 'a refinement strategy on auto-generated training data', cites DeepBugs, and says the design 'is not novel to me'. vPhi asked for a precision-matched CuBERT comparison, got a recall-matched one (2021-08-13), and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 7, 9, 5 (mean 7.0), two on the accept side; the AC accepted. The short meta-review reports that 'the reviewers generally liked the approach' and that 'the final feeling was that this was sufficiently demonstrated'. It echoes Reviewer_aZJ8's evaluation concern ('proper evaluation is a bit subtle') and sends aZJ8's points to the revision. It cites no paper detail of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers liked the adversarial selector-detector idea (AC: 'the reviewers generally liked the approach').",
+        "The rebuttal moved Reviewer_e6hN from 5 to 7 by explaining the CuBERT operator error as a writing error and adding a PyPIBugs evaluation with NoBug examples.",
+        "Reviewer_vPhi's 9 gave a strong, if lightly argued, champion.",
+        "Reviewer_aZJ8's missing-baselines and novelty objection was judged not to block publication ('sufficiently demonstrated'); the AC passed it to the revision."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The learned selector's gain over a random selector is small and unreplicated; asynchronous training makes the selector-detector interaction uncontrolled (Reviewer_6URn; Table 1 and checklist 3(c) confirm the gap and the lack of error bars)",
+    "No ablation of semantics-preserving rewrites without the learned selector (Reviewer_6URn; authors: 'an oversight')",
+    "No measure of how selector bugs get harder over training or how diverse they are (Reviewer_6URn; added in the camera-ready)",
+    "'Semantics-preserving' is a misnomer in Python (Reviewer_6URn, AC; confirmed, renamed in the camera-ready)",
+    "Bug-inserting rewrites may insert no bug (aliasing), and training code may already contain bugs (Reviewer_3FwM, AC; the paper concedes aliasing at l.316-318)",
+    "Effect of k = 5 bugs per sample (Reviewer_3FwM)",
+    "Hand-built score function per rewrite type does not scale; generative rewrites may (Reviewer_6URn)",
+    "Uncited ICLR 2021 paper on adversarial programs through obfuscation (Reviewer_6URn, AC)",
+    "Intro dismisses realistic datasets such as Devign (Reviewer_3FwM; the sentence covers them as 'very limited size')",
+    "False-positive rate not stated at l.33; vague 'previously unknown limitations' claim at l.382 (Reviewer_XqDo)"
+  ],
+  "issues_only_b": [
+    "CuBERT wrong-operator example at l.293-295 omits in, not in, is, is not, and, or (Reviewer_e6hN; confirmed, explained as a writing error, fixed in the camera-ready)",
+    "No NoBug examples in PyPIBugs, so detection on real code is not measured (Reviewer_e6hN; confirmed; authors added an AUPRC test with post-fix code)",
+    "Hoppity and DeepDebug baselines missing; no evaluation on other program-repair datasets (Reviewer_aZJ8)",
+    "Contribution is a data-refinement strategy close to DeepBugs-style generated data; technical design not novel (Reviewer_aZJ8)",
+    "Training is complicated and takes over a week (Reviewer_aZJ8; footnote 2 confirms)",
+    "Precision-matched CuBERT comparison (Reviewer_vPhi; the authors posted a recall-matched one and a corrected CuBERT run)",
+    "No operand-swapping rewrite (Reviewer_e6hN)",
+    "Licence compatibility of the released code and data (Reviewer_e6hN)",
+    "Heavy notation with few concrete examples (Reviewer_e6hN)",
+    "'Stupid simple bugs' framing should come earlier and be renamed (Reviewer_vPhi)"
+  ],
+  "shared_issues": [
+    "Very high false-positive rate on real code; not yet a practical tool (A: Reviewer_XqDo, AC; B: Reviewer_e6hN, Reviewer_vPhi)",
+    "No comparison with other bug-detection or pretrained models: CodeBERT and GraphCodeBERT in A (Reviewer_3FwM, Reviewer_XqDo); Hoppity, DeepDebug and DeepBugs in B (Reviewer_aZJ8). Both ACs judged it non-fatal",
+    "Asynchronous pool-based training is under-described (A: Reviewer_6URn, on experimental control; B: Reviewer_e6hN, on clarity of l.196-205)",
+    "The two-model idea resembles adversarial or GAN training (A: Reviewer_6URn; B: Reviewer_e6hN, Reviewer_vPhi, Reviewer_aZJ8). 6URn, e6hN and vPhi call it new for code; aZJ8 calls the design not novel",
+    "Real bugs found and the new PyPIBugs dataset are valuable (A: Reviewer_6URn, Reviewer_XqDo, AC; B: Reviewer_vPhi)",
+    "Typos, including 'seems to is' at l.274 (A: Reviewer_XqDo; B: Reviewer_e6hN)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. Every reviewer liked the idea of a learned selector that inserts hard bugs for a detector. Both valued the new PyPIBugs test set and the 19 new bugs found. Both treated the false-positive rate (19 of 1000 warnings real, l.332) as a limit, not a flaw. Both had reviewers who asked for other baselines, and both ACs judged that gap non-fatal. The means are close (A 6.67, B 7.0). The committees found different weaknesses; none moved a decision. In A, Reviewer_6URn showed correctly that the learned selector's gain over a random selector is small and unreplicated, but still rated 7; B never raised it. In B, Reviewer_e6hN found a real error in the CuBERT comparison text and held a 5 until the rebuttal. B's spread (5 to 9) is wider, but its extremes did not set the tier.",
+  "candidate_reasons": [
+    "Shared enthusiasm for selector-detector idea",
+    "Real bugs found outweighed false positives",
+    "Missing baselines judged non-fatal by both",
+    "Rebuttal cleared factual-error objection",
+    "Lone baseline detractor outvoted",
+    "Selector ablation weakness went unpenalised"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 1 (Random Selector against PyBugLab rows) and checklist 3(c) (no error bars)",
+    "paper_submitted.pdf l.286-295 (CuBERT wrong-operator example) against camera-ready 'l2, l11, l14, l16, and l20'",
+    "paper_submitted.pdf l.332 (19 of 1000 warnings real)",
+    "paper_submitted.pdf l.236-243 (Supervised and Random Selector training) and footnote 2 (training time)",
+    "paper_submitted.pdf l.183-184 (mirroring may alter semantics) and Table 2 (no NoBug row for PyPIBugs)",
+    "Reviewer_6URn review and comment of 2021-08-30",
+    "Reviewer_XqDo review (summary repeated in main review)",
+    "Reviewer_e6hN review update ('changed score from 5 to 7') and comment of 2021-08-26",
+    "Reviewer_vPhi review (1.5 hours, 'a TPR of 0.19%', no discussion)",
+    "Reviewer_aZJ8 post-response addendum (edited 2021-09-10)",
+    "Authors' CuBERT results update of 2021-08-13 (Committee B forum)",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

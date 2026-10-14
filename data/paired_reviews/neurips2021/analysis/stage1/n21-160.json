@@ -1,0 +1,144 @@
+{
+  "pair_id": "n21-160",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 6, 4],
+      "confidences": [2, 2, 1, 5],
+      "reviews_edited_after_posting": ["Reviewer_eTmV"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_eTmV",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only score below 6 (4), the only confidence above 2 (5), and the most time spent (9 h). Of its eight checkable points, seven hold against the paper, among them α_t = 1 in the experiments, simple regret in Figure 1, no wall-clock time, 5,000 against 750 evaluations and no UCB baseline. Only the Proposition 1 rigour complaint fails. The verdict, 'a highly polished, but incremental paper' with 'medium' theoretical impact, rests on the analysis being a combination of [3], [24] and [26]. The 2021-08-02 edit predates the rebuttal, and eTmV posted nothing in the discussion."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_sgAN", "evidence": "A 7 at confidence 2 on six sentences of generic praise: the proof 'seems solid', then 'I have not checked all the details'. It names no weakness and asks no question. It stayed out of the discussion, although the authors asked it to 'share your interest in the paper with the other reviewers'."},
+        {"reviewer": "Reviewer_52bF", "evidence": "Confidence 1 ('Your assessment is an educated guess'). Two substantive sentences (one real-world dataset is not enough; report per-evaluation cost) and two typos support a 6. No discussion."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_eTmV", "claim": "The experiments set α_t = 1, not the value Theorem 1 requires.", "checked_against_paper": "correct", "evidence": "Line 295: 'We also set the covariance scaling parameter αt = 1.' Theorem 1 (line 217) assumes α_t = 2ũ_t(1/t²), which grows with t. The AC adopted the point and asked for annealed-α_t results."},
+        {"reviewer": "Reviewer_eTmV", "claim": "The experiments report simple regret, not the cumulative regret that the theory bounds.", "checked_against_paper": "correct", "evidence": "Lines 304-305: 'We report simple regret of the current believed best solution (maximizer of the current model mean)'. The Figure 1 caption reads 'Simple regret'. The authors replied that they plot 'average cumulative regret' and would rename the metric. That reply contradicts their own definition of it. eTmV did not answer."},
+        {"reviewer": "Reviewer_eTmV", "claim": "No wall-clock runtime is reported.", "checked_against_paper": "correct", "evidence": "Checklist 3(d) is N/A: 'We have chosen to report our results in terms of number of calls to the objective function rather than wall-clock time'."},
+        {"reviewer": "Reviewer_eTmV", "claim": "S-GP-TS gets almost 5,000 evaluations and the baselines 750.", "checked_against_paper": "correct", "evidence": "Lines 296-297: t = 50 steps with B = 100 (5,000 observations) against t = 750 steps of sequential EI, AEI and GIBBON."},
+        {"reviewer": "Reviewer_eTmV", "claim": "Proposition 1 is analysed under α_t = 1 while Theorem 1 sets a larger α_t, which 'is not rigorous'.", "checked_against_paper": "incorrect", "evidence": "Section 5.1 (lines 187-188) draws the samples from the scaled covariance α_t² k̃_{t-1}. Assumptions 3 and 4 bound the unscaled σ̃_t and µ̃_t, and rule (4) scales only the zero-mean part (lines 172-175). Proposition 1 supplies those unscaled bounds, so α_t = 1 there is consistent, as the authors replied. The proofs are in the supplement, which is not in the record."},
+        {"reviewer": "Reviewer_eTmV", "claim": "The discretization grows as t^{2d}, so the sampling cost, linear in N_t, swamps the gain from the sparse model.", "checked_against_paper": "correct", "evidence": "Assumption 5 (line 214): N_t ≤ C(d, B) t^{2d}. The Table 1 costs are linear in N_T. The Discussion (lines 353-357) concedes that N_t 'remains a limiting computational factor'."},
+        {"reviewer": "Reviewer_eTmV", "claim": "The batch regret bound is essentially linear in B, as for B instances that share no information.", "checked_against_paper": "correct", "evidence": "Theorem 2 (line 256): O(B sqrt(γ_T γ_{TB} T log T)). B independent sequential runs give B γ_T sqrt(T log T), which is no larger. The authors' sqrt(B) argument restates the same bound per total sample."},
+        {"reviewer": "Reviewer_eTmV", "claim": "UCB-based methods, including the scalable [30], appear only in the conclusion, and there is no UCB baseline.", "checked_against_paper": "correct", "evidence": "The only comparison with [30] is in the Discussion (lines 358-362); line 88 mentions UCB in passing. The baselines are EI, AEI and GIBBON (lines 297-299)."},
+        {"reviewer": "Reviewer_Psad", "claim": "The theory uses Mercer expansions and maximisation over a discrete set; the experiments use random Fourier features and gradient-based maximisation.", "checked_against_paper": "correct", "evidence": "Lines 226-227 assume the Mercer decomposition; line 189 maximises over D_t. Lines 282-287 use M = 1000 random Fourier features and L-BFGS-B. The experiments also replace the k-DPP with greedy or k-means selection (lines 288-291) and fix m_t at 250 or 500 (line 294)."},
+        {"reviewer": "Reviewer_Psad", "claim": "τ in Eq. (2) is not defined.", "checked_against_paper": "correct", "evidence": "τ appears in Eq. (2), Theorem 1 and Proposition 1 with no definition. Line 104 says only 'assuming a Gaussian observation noise'."}
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "eTmV's only edit (2021-08-02) came eight days before the author responses (2021-08-10), and eTmV posted nothing afterwards. Psad (2021-08-26): 'My score remains unchanged.' sgAN and 52bF neither edited nor replied.",
+        "what_convinced_or_not": "Nothing moved a score. The authors' main replies to eTmV went unanswered: that Figure 1 shows 'average cumulative regret' (the paper defines simple regret), that α_t = 1 is a deliberate practical choice with precedent in Srinivas et al., and that a Calandriello et al. baseline was run but left out for 'poor practical performance'. The AC rejected the α_t defence: 'there's frankly just no good justification'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The AC accepts 'on the basis of the reviewer consensus that the theoretical contributions made in this paper are strong'. The three reviewers who praised the theory had confidence 2, 2 and 1, and their labels say the math was not carefully checked. The only confidence-5 reviewer, eTmV, called the paper 'incremental'. The AC adds its own novelty claim: 'the first paper I am aware of to (1) present a regret bound for Bayesian optimization with sparse GP models using any acquisition function at all'. The paper's own reference [30], Calandriello et al. (2019), 'Gaussian process optimization with adaptive sketching: scalable and no regret', contradicts it, and eTmV had cited [30]. The AC took up eTmV's α_t point and rejected the authors' Srinivas et al. analogy.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers scored 6 or 7 and called the regret analysis novel and useful.",
+        "The AC judged it the first regret bound for BO with sparse GPs, a claim the paper's own reference [30] contradicts.",
+        "The dissent of eTmV (4, confidence 5) became a camera-ready request: report results with an annealed α_t.",
+        "No reviewer found an error in the proofs that holds up, though none of the positive reviewers checked them."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 6, 7, 7],
+      "confidences": [4, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_MHRh", "Reviewer_Fhfj"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Scores span 5 to 7 at confidence 3 or 4. The lowest, Reviewer_AeT2 (5), is one point below the next and gives specific reasons: no comparison with Calandriello et al. or Bedi et al., and unclear conceptual novelty."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_MheU", "evidence": "A 7 at confidence 4 with generic praise and one question (the cost of choosing inducing points). It calls the experiments 'extensive numerical simulations showing the impressive performance', but there are two synthetic problems and one real task at unequal budgets. It says the method lets GP-TS 'scale to larger dimensional problems'; the paper says it 'still suffers from the curse of dimensionality' (line 357). No discussion."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_AeT2", "claim": "The experiments include no comparison with reference [30].", "checked_against_paper": "correct", "evidence": "Section 6.1 compares with EI, AEI and GIBBON; Section 6.2 with BNN-TS, greedy BNN and random search. The authors replied that they had run [30] on the synthetic problems and left it out because of 'its poor practical performance'."},
+        {"reviewer": "Reviewer_AeT2", "claim": "The theory draws inducing points from a k-DPP that is untethered from the optimisation problem.", "checked_against_paper": "correct", "evidence": "Lines 223-224: 'we assume, as in [26], that the inducing points are sampled according to a discrete k-DPP'. The experiments use greedy variance selection or k-means, the latter 'targeted' at optimal regions (lines 288-293)."},
+        {"reviewer": "Reviewer_MHRh", "claim": "There is no runtime plot.", "checked_against_paper": "correct", "evidence": "Checklist 3(d) reports evaluations rather than wall-clock time. Figure 1 plots regret against evaluations and BO iterations only."},
+        {"reviewer": "Reviewer_MHRh", "claim": "No experiment backs the inducing-feature analysis, and the molecular kernel is outside the theory.", "checked_against_paper": "correct", "evidence": "Section 6.1 uses inducing points with random Fourier features (lines 281-283). Section 6.2 uses a zeroth-order ArcCosine kernel with random features (lines 330-334); Section 5.3 covers only Matérn and SE kernels. The authors conceded both points."},
+        {"reviewer": "Reviewer_Fhfj", "claim": "S-GP-TS uses 5,000 observations (t = 50, B = 100) while the baselines run for 750 steps.", "checked_against_paper": "correct", "evidence": "Lines 296-297."},
+        {"reviewer": "Reviewer_Fhfj", "claim": "τ appears in Eq. (2) and in the constants of Theorem 1 and Proposition 1 without definition.", "checked_against_paper": "correct", "evidence": "τ is never defined in the text. Fhfj's follow-up question, whether only Gaussian noise is covered, is already answered at lines 111-113: Gaussian noise 'is merely for ease of modelling'."},
+        {"reviewer": "Reviewer_MheU", "claim": "The complexity omits the cost of choosing inducing points.", "checked_against_paper": "correct", "evidence": "Table 1 and line 263 give O(B(M + m_T)N_T T + B m_T² T²) with no selection term; line 224 concedes that k-DPP sampling 'might be costly in practice'. The authors agreed and added it."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Fhfj"],
+        "evidence": "Fhfj edited the review on 2021-08-31, adding '[Updated]' notes, and wrote that day: 'I thank the authors for their clear and informative rebuttal, and have updated my score accordingly.' The final score is 7; the earlier one is not exposed. MHRh (2021-08-27): 'I will maintain my initial score'; its only edit was on the posting day. AeT2 and MheU neither edited nor replied.",
+        "what_convinced_or_not": "Fhfj accepted the explanation that τ belongs to the surrogate model while the true noise is only sub-Gaussian, and the framing of Figure 1 as large-batch control. MHRh accepted the explanation of why the GP-TS proof fails under additive error but kept 6. The authors' critique of Bedi et al. and their promise to add Calandriello et al. results drew no reply from AeT2, who stayed at 5."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Five generic sentences: 'somewhat borderline', theory 'slightly derivative from earlier work, but that it was nontrivial and ultimately had merit', empirical results 'still somewhat limited'. This matches the reviews and the 6.25 mean. It names no reviewer and no specific issue.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers scored 6 or 7 at confidence 3 or 4 (mean 6.25).",
+        "The theory was judged derivative of [24] and [26] but non-trivial, and no reviewer reported an error.",
+        "The rebuttal clarified the noise model and the budget comparison and raised Fhfj to 7.",
+        "The limited experiments, loosely tied to the theory, were judged not disqualifying."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Experiments use α_t = 1 instead of Theorem 1's growing α_t (eTmV; the AC asked for annealed-α_t results)",
+    "Figure 1 reports simple regret while the theory bounds cumulative regret (eTmV)",
+    "A t^{2d} discretization dominates the sampling cost (eTmV)",
+    "The batch bound is linear in B, as for B separate runs (eTmV)",
+    "Theory maximises over a discrete set; experiments use L-BFGS-B (Psad)",
+    "Proposition 1 analysed at α_t = 1 (eTmV; not a real inconsistency)",
+    "Recent fast k-DPP samplers not considered (eTmV)"
+  ],
+  "issues_only_b": [
+    "No discussion of Bedi et al. (2020) and no quantitative regret-complexity contrast with it or Calandriello et al. (2020) (AeT2)",
+    "k-DPP inducing points are untethered from the objective (AeT2)",
+    "No inducing-feature experiment and no ablation of Proposition 1's approximation quality (MHRh)",
+    "How much the GP-TS bound worsens under additive standard-deviation error (MHRh)",
+    "The complexity omits the cost of choosing inducing points (MheU)"
+  ],
+  "shared_issues": [
+    "The theory combines [3], [24] and [26]; novelty is limited (eTmV in A; AeT2, Fhfj, MheU and the AC in B)",
+    "Experiments depart from the theory: random features instead of Mercer features, fixed m_t, a molecular kernel outside the theory (Psad, eTmV in A; MHRh in B)",
+    "No wall-clock or runtime comparison (eTmV, Psad, 52bF in A; MHRh, Fhfj in B)",
+    "S-GP-TS gets 5,000 evaluations and the baselines 750 (eTmV in A; Fhfj in B)",
+    "No UCB-based scalable baseline such as Calandriello et al. (eTmV in A; AeT2 in B)",
+    "τ undefined and the Gaussian against sub-Gaussian noise model unclear (Psad in A; Fhfj in B)",
+    "Thin empirical study with one real-world task (Psad, 52bF in A; the AC in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. In each, three of four reviewers scored 6 or 7, and no reviewer found an error that holds up. Both saw the same gaps and judged them fixable in the camera-ready: theory built from [3], [24] and [26]; experiments that drop the theory's conditions; no runtime; 5,000 S-GP-TS evaluations against 750 for the baselines; no UCB baseline. The support behind the two acceptances differed. In A, the three positive reviewers had confidence 2, 2 and 1, and none checked the proofs. The only reviewer above confidence 2, Reviewer_eTmV (4, confidence 5), called the paper incremental, and seven of its eight checkable points hold. A's AC accepted on a novelty claim, 'the first paper I am aware of to (1) present a regret bound for Bayesian optimization with sparse GP models using any acquisition function at all'. The paper's own reference [30], Calandriello et al. (2019), 'scalable and no regret', contradicts it. The AC turned eTmV's α_t objection into a camera-ready request. In B, all four reviewers had confidence 3 or 4, the rebuttal raised Reviewer_Fhfj to 7, and the AC called the paper 'somewhat borderline' and 'slightly derivative'. B's acceptance is the better supported. Nobody followed up eTmV's correct point that Figure 1 reports simple regret; the authors' reply that it shows 'average cumulative regret' contradicts lines 304-305.",
+  "candidate_reasons": [
+    "positive majority in both committees",
+    "theory nontrivial though derivative",
+    "experimental gaps deferred to camera-ready",
+    "low-confidence majority outweighed expert dissent",
+    "AC novelty claim contradicted by citations",
+    "rebuttal clarification raised one score"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_eTmV final review (edited 2021-08-02, before the rebuttal)",
+    "Authors' response to Reviewer_eTmV, experimental point 2 ('average cumulative regret')",
+    "Reviewer_Fhfj final review [Updated] notes and 2021-08-31 comment",
+    "Reviewer_AeT2 review and the authors' reply on Calandriello et al. and Bedi et al.",
+    "paper_submitted lines 294-306 and Figure 1 caption",
+    "paper_submitted Theorem 1 (line 217), Section 5.1 lines 187-188, Proposition 1 (lines 236-242)",
+    "paper_submitted reference [30] and lines 89, 358-362",
+    "paper_submitted Assumption 5 (lines 212-215) and Discussion lines 352-357",
+    "paper_submitted checklist 3(d)"
+  ]
+}

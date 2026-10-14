@@ -1,0 +1,265 @@
+{
+  "pair_id": "n21-183",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_hK95",
+        "Reviewer_g4tj",
+        "Reviewer_UdzD"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6, 6, 6, 7 sit within one point, at confidence 3 or 4. Reviewer_UdzD's 7 is the top score. It came from a raise after the rebuttal, and UdzD's concern about strong assumptions stayed open."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_hK95",
+          "claim": "Algorithm 2 needs every client in every round and keeps state on each client; it gives no model to new clients.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 line 2 reads 'On Clients i = 1 to n (in parallel)'. Each client carries x_i, c_i and w_i across rounds, and the output covers only i in [n]. Lines 21-22 motivate the work with 'numerous (in millions) edge devices'."
+        },
+        {
+          "reviewer": "Reviewer_hK95",
+          "claim": "The paper does not compare with FedAvg + fine-tuning.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 367-369 list FedAvg, local training, pFedMe, Per-FedAvg, Federated ML and QuPeL. The authors' new number, 96.72 ± 0.10 on FEMNIST, ties QuPeD (2 Bits) at 96.73 and is 0.59 below QuPeD (FP). The camera-ready main text does not report it."
+        },
+        {
+          "reviewer": "Reviewer_hK95",
+          "claim": "All methods use the same untuned learning rate.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 369-370: 'For all methods, if applicable, we set τ = 10 local iterations, initialize learning rate of 0.1'. Per-method tuning in the rebuttal raised Per-FedAvg on CIFAR-10 from 72.99 to 74.15 and 1-bit local training on FEMNIST from 91.68 to 93.00. QuPeD stayed on top, but by less."
+        },
+        {
+          "reviewer": "Reviewer_g4tj",
+          "claim": "Training stays full precision and costs more than plain personalization; compression helps only at inference.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 41-42 and 208-209 keep x full precision during training. Eq. (2) and Algorithm 2 lines 4-8 need losses at x_i and at Q̃c(x_i), plus two KD terms against a local copy w_i. The authors answered that the codebook adds 'negligible' memory, which leaves out the extra passes. g4tj kept the concern."
+        },
+        {
+          "reviewer": "Reviewer_g4tj",
+          "claim": "The experiments have no text data (Reviewer_JdrY asks for Stack Overflow on the same ground).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 uses FEMNIST and CIFAR-10; line 353 puts MNIST in Appendix E. AG News results came only in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_UdzD",
+          "claim": "Appendix A gives no Lipschitz or smoothness values for the soft quantizer that A.4 and A.5 need.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 167-168 and 231 promise the sigmoid quantizer and its Lipschitz parameters in Appendix A. The authors conceded they had 'commented that out by mistake' and gave the definition in the rebuttal. Reviewer_y15P in Committee B hit the same gap."
+        },
+        {
+          "reviewer": "Reviewer_UdzD",
+          "claim": "Theorem 2 needs implications or remarks after it.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Remark 4 (lines 318-329) follows Theorem 2 and states its main implication. Line 310 says the rate matches [6]. The authors pointed to Remark 4."
+        },
+        {
+          "reviewer": "Reviewer_UdzD",
+          "claim": "Theorem 2 gives a 1/√T rate although the gradients are full.",
+          "checked_against_paper": "correct",
+          "evidence": "The bound after line 314 is O((τ²κ̄ + ΔF)/√T + τ²κ̄(C1/T + C2/T^1.5) + κ̄) with η3 ∝ 1/√T, and Algorithm 2 uses full local gradients. The authors said a constant η3 gives 1/T with a larger error floor. Reviewer_TyAu in Committee B raised the same point."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_g4tj",
+          "Reviewer_hK95",
+          "Reviewer_UdzD"
+        ],
+        "evidence": "Reviewer_g4tj, 2021-08-12: 'I will raise my score to 6'; the review was edited the same day. Reviewer_hK95, 2021-08-21: 'I decided to increase my score to 6'; edited the same day. Reviewer_UdzD, 2021-08-24: 'I am increasing my score to 7'; edited the same day. Reviewer_JdrY, 2021-08-24: 'I decide to keep my positive score'; no edit.",
+        "what_convinced_or_not": "The authors answered with new runs: FEMNIST at 1/3 client sampling, AG News text results, FedAvg + fine-tuning, per-method tuned learning rates, and MNIST at 0.1 sampling. They sketched the proof change for partial participation and gave the missing soft-quantizer definition. hK95 raised after two rounds but still doubted that a stateful method works at cross-device scale; 50 clients at 0.1 is 'still far from' practice. g4tj raised although the training-overhead concern 'still remains'. UdzD raised with the assumptions concern open."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final ratings are 6 or 7. The meta-review stitches reviewer phrases together. Its summary copies Reviewer_UdzD's ('Theoretical converge of ... QuPed is provided, along with ... experimental validation'). Its praise of the coupled heterogeneity result comes from Reviewer_g4tj and Reviewer_JdrY. Its downside, 'a straightforward combination' of quantization and KD, echoes g4tj ('the proposed optimization objective (2) combines the two ideas') and JdrY ('natural (but not new)'). It omits hK95's cross-device doubt, g4tj's training cost and UdzD's assumptions. It does not mention the rebuttal.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous ratings of 6 or 7 after the rebuttal",
+        "First personalized FL formulation with per-client precision and architecture, with a convergence proof (all four reviewers)",
+        "Rebuttal experiments and the partial-participation proof sketch lifted three scores",
+        "Remark 4: data and resource heterogeneity couple in the rate (Reviewer_g4tj, Reviewer_JdrY, chair)",
+        "Limited novelty, a combination of quantization and KD, noted but not decisive"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        7,
+        5
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_TyAu"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings split 7, 7 against 5, 5, all at confidence 3. No single reviewer stands apart. The two 7s engaged with the rebuttal; the two 5s did not."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_y15P",
+          "evidence": "Confidence 3, 6 hours. The summary says heterogeneous quantization and KD 'are only conducted in inference time'; eq. (2) and Algorithm 2 lines 4-8 use KD in training. y15P admits 'I am not knowledgeable enough to evaluate the theoretical part'. y15P promised to 'change my rating accordingly' after the responses but never replied, even to the authors' follow-up of 2021-08-23. The presentation points on the prox step and the soft quantizer are correct."
+        },
+        {
+          "reviewer": "Reviewer_USRi",
+          "evidence": "A 7 at confidence 3. The main review is generic praise ('clear and clean', 'solid convergence guarantees') and one question on the KD loss, which lines 193-195 define. It calls the presentation clear, although the soft-quantizer section promised in Appendix A was missing. USRi did reply to the rebuttal and kept the 7."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TyAu",
+          "claim": "Eq. (6) gives f(x) and f(Q̃c(x)) equal weights.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 163, eq. (6): Fλ(x, c) := f(x) + f(Q̃c(x)) + λR(x, c). The authors said a further weight would add a sixth hyperparameter."
+        },
+        {
+          "reviewer": "Reviewer_TyAu",
+          "claim": "Theorem 2 keeps a constant error term κ̄, and τ = 1 recovers neither the O(1/T) rate of Theorem 1 nor a zero floor.",
+          "checked_against_paper": "correct",
+          "evidence": "In the bound after line 314, the +κ̄ term does not depend on τ, and the leading term is (τ²κ̄ + ΔF)/√T. Footnote 2 and line 310 justify the floor only by precedent in [6, 7]. The authors showed that Theorem 1 follows only with n = 1 (so κ̄ = 0) and a constant η3."
+        },
+        {
+          "reviewer": "Reviewer_TyAu",
+          "claim": "The work has no partial participation and no stochastic-gradient variant.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 line 2 uses all n clients, and lines 4-8 use full local gradients."
+        },
+        {
+          "reviewer": "Reviewer_y15P",
+          "claim": "The main text uses the prox step but does not define it.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithms 1 and 2 use prox with R; footnote 6 gives only a shorthand. Neither the operator nor its form for the ℓ1 distance R appears in the main text."
+        },
+        {
+          "reviewer": "Reviewer_y15P",
+          "claim": "The soft quantization function cannot be implemented from the main text.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 154-156 say only 'element-wise sigmoid or tanh functions'. Lines 168 and 231 defer to Appendix A, which the authors conceded was 'commented out in the submission by mistake'."
+        },
+        {
+          "reviewer": "Reviewer_y15P",
+          "claim": "Heterogeneous quantization and knowledge distillation are conducted only at inference time.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The KD terms are in the training objective, eq. (2), and drive Algorithm 2 lines 4, 6 and 8. The centers c_i are learned in training; only the final hard quantization (line 19) comes after it."
+        },
+        {
+          "reviewer": "Reviewer_USRi",
+          "claim": "Lines 193-195 do not say what the KD loss or the functions s_i^w and s_i are.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 193-195 define f_i^KD(x_i, w) := D_KL(s_i^w(w) ‖ s_i(x_i)), where s_i^w and s_i output the softmax probabilities of the global and personalized networks. The definition is terse; the averaging over data is implicit."
+        },
+        {
+          "reviewer": "Reviewer_n4oz",
+          "claim": "Algorithm 2 runs on all n clients each round, so the sampling setup of the baselines is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 line 2. The authors confirmed full participation for every method and added runs at 1/3 and 0.1 sampling."
+        },
+        {
+          "reviewer": "Reviewer_n4oz",
+          "claim": "Lines 355-356 cite FedAvg for the non-IID CIFAR-10 split, but FedAvg ran CIFAR-10 as IID.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 355 says 'similar to [22]' for the 4-class split; [22] used class splits only for MNIST. This is a loose citation, not a flaw, and the camera-ready keeps the sentence."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_TyAu"
+        ],
+        "evidence": "Reviewer_TyAu's review, edited 2021-08-18, ends 'The author almost handles all my concerns. I am willing to increase my score to 7'; the authors thanked TyAu on 2021-08-19. Reviewer_USRi, 2021-08-19: 'I still remain in my initial evaluation'. Reviewer_y15P and Reviewer_n4oz never replied or edited. The authors asked both to reevaluate on 2021-08-23.",
+        "what_convinced_or_not": "TyAu accepted that the κ̄ floor comes from guaranteeing personalized rather than global models, and that Theorem 1 follows with n = 1 and a constant η3. USRi accepted the KD definition. n4oz got the same partial-participation and AG News answers that moved Committee A. y15P got the soft-quantizer definition, the deployment argument and the 0.1 sampling run. Neither responded."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The ratings split 7, 7 against 5, 5. The chair wrote that the concerns 'were addressed in the authors' response', but the two 5s never confirmed it. 'The majority of the reviewers agreed that the paper provides an interesting contribution' overstates a 2-2 split. The chair added a point no reviewer raised: 'missing a lot of references, on the quantization side'. The camera-ready adds four quantization references (31 to 35 in all).",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Chair judged that the rebuttal resolved the concerns",
+        "Two 7s, one raised after the rebuttal (Reviewer_TyAu), against two 5s that did not engage",
+        "Novel combination of quantization, KD and personalization (Reviewer_TyAu, Reviewer_USRi)",
+        "Missing references treated as a camera-ready fix"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Cross-device realism: stateful clients, no model for new clients, sampling ratios far above practice (Reviewer_hK95)",
+    "No FedAvg + fine-tuning baseline, and one untuned learning rate for all methods (Reviewer_hK95)",
+    "Post-hoc pruning or quantization after personalization as a simpler baseline (Reviewer_g4tj)",
+    "Assumptions A.4, A.5 and A.7 too strong or unjustified (Reviewer_UdzD)",
+    "Limited novelty: a combination of known quantization and KD (Reviewer_g4tj, Reviewer_JdrY, chair)",
+    "How quantization and personalization interact (Reviewer_g4tj)"
+  ],
+  "issues_only_b": [
+    "Equal weights on f(x) and f(Q̃c(x)) in eq. (6) (Reviewer_TyAu)",
+    "Constant error floor κ̄ in Theorem 2, and no stochastic-gradient variant (Reviewer_TyAu)",
+    "Main text omits the prox operator, so the method is hard to implement (Reviewer_y15P)",
+    "Value of the convergence theory for practitioners (Reviewer_y15P)",
+    "KD loss definition too terse (Reviewer_USRi)",
+    "Loose FedAvg citation for the non-IID CIFAR-10 split (Reviewer_n4oz)",
+    "Missing related work on quantization (chair only)"
+  ],
+  "shared_issues": [
+    "Full client participation only, in the algorithm and the theory (A: Reviewer_hK95, Reviewer_g4tj; B: Reviewer_TyAu, Reviewer_n4oz)",
+    "No text or language experiments (A: Reviewer_g4tj, Reviewer_JdrY; B: Reviewer_n4oz)",
+    "Full-precision training on devices; compression helps only inference (A: Reviewer_g4tj; B: Reviewer_y15P, Reviewer_n4oz)",
+    "Soft-quantizer derivation promised in Appendix A but missing, conceded on both forums (A: Reviewer_UdzD; B: Reviewer_y15P)",
+    "Theorem 2 rate of 1/√T rather than 1/T (A: Reviewer_UdzD; B: Reviewer_TyAu)",
+    "Choice and effect of λ and λp (A: Reviewer_JdrY; B: Reviewer_n4oz)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons. Each saw a new formulation: personalized FL in which clients learn quantized models of different precision and architecture, joined by knowledge distillation, with a convergence proof. Each found the same gaps: full client participation only, no text experiments, full-precision training on devices, and a 1/√T rate. The main text promises a soft-quantizer derivation in Appendix A, but it is missing; the authors conceded this on both forums. Both forums got the same rebuttal: a sketched partial-participation proof, FEMNIST at 1/3 sampling, and AG News results. In A, three of four reviewers raised their scores: Reviewer_hK95 and Reviewer_g4tj to 6, Reviewer_UdzD to 7. Over two rounds, hK95 also got tuned baselines, a FedAvg + fine-tuning number and a 0.1 sampling run. In B, only Reviewer_TyAu raised (to 7). The two 5s, Reviewer_y15P and Reviewer_n4oz, never replied. B's chair declared the concerns addressed on its own reading. So A accepted on unanimous scores, and B on a 2-2 split that the chair broke. No rating exceeds 7, and A's chair called the formulation 'a straightforward combination'. Neither committee considered more than a poster. No reviewer examined how thin the margins are. On FEMNIST, FedAvg + fine-tuning (96.72) ties 2-bit QuPeD (96.73), and Per-FedAvg is 0.15 below full-precision QuPeD.",
+  "candidate_reasons": [
+    "Rebuttal experiments lift borderline scores",
+    "Silent detractors, chair breaks tie",
+    "Combination novelty enough for poster",
+    "Conceded appendix gap treated fixable",
+    "Thin empirical margins left unexamined",
+    "No reviewer argues higher tier"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_hK95 final review and discussion comments, 2021-08-13 and 2021-08-21",
+    "Authors' reply to Reviewer_hK95, 2021-08-19 (tuned-baseline table, MNIST at 0.1 sampling)",
+    "Reviewer_g4tj discussion comment, 2021-08-12",
+    "Reviewer_UdzD final review and discussion comment, 2021-08-24",
+    "Reviewer_TyAu final review (edited 2021-08-18)",
+    "Authors' follow-ups to Reviewer_y15P and Reviewer_n4oz, 2021-08-23 (no reply)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Algorithm 2 line 2, eq. (2), eq. (6), lines 167-168 and 231, lines 193-195, Theorem 2 (line 314), Remark 4 (lines 318-329), lines 369-370, Table 3",
+    "paper.pdf (camera-ready) Tables 2 and 3, Section 6, references"
+  ]
+}

@@ -94,5 +94,85 @@
     "created_by_pair": "n21-302",
     "created_turn": 4,
     "exemplar": "In B, Reviewer_D146 gave 5 after 2 hours on the assertion that 'learning entropy growth is not as exciting' and never replied to the authors' response."
+  },
+  {
+    "id": "R13",
+    "name": "Area chair rejected against a positive majority",
+    "definition": "One committee's area chair recommended a lower tier or rejection than most of its reviewers' final ratings supported, with no score moving to back the decision.",
+    "created_by_pair": "n21-295",
+    "created_turn": 5,
+    "exemplar": "A's AC rejected over final ratings 6, 7, 5, 6 with no score moved, ruling that 'the technical contributions and the writing quality do not meet the bar of NeurIPS'."
+  },
+  {
+    "id": "R14",
+    "name": "Area chair applied score threshold over own view",
+    "definition": "One committee's area chair stated a positive assessment of the paper but decided by whether the reviewers' average score cleared the acceptance threshold, so a borderline mean set the outcome instead of the chair's reading.",
+    "created_by_pair": "n21-262",
+    "created_turn": 6,
+    "exemplar": "Committee A's chair called the paper 'generally solid' with results 'reasonably strong' but rejected it as 'still slightly below' the bar because no score rose above a mean of 5.4."
+  },
+  {
+    "id": "R15",
+    "name": "Low score held on a peripheral point",
+    "definition": "A reviewer in one committee kept a below-threshold score on a point peripheral to the paper's contribution, such as a variant or detail the method does not use, after the authors had answered it, and that score counted in the decision.",
+    "created_by_pair": "n21-262",
+    "created_turn": 6,
+    "exemplar": "In A, Reviewer_Tk2H kept its 5 over the Gaussian-prior loss variant, which the method does not use, after the authors posted a three-model table and an alpha sweep, and that 5 was one of A's three sub-threshold ratings."
+  },
+  {
+    "id": "R16",
+    "name": "Committees judged different kinds of contribution",
+    "definition": "The two committees evaluated the paper as different kinds of contribution, for example an application or tool for a field against a methodological advance, and so asked different questions and applied different standards to the same results.",
+    "created_by_pair": "n21-255",
+    "created_turn": 7,
+    "exemplar": "A's reviewers read DBE as a tool for behavioural neuroscience and rewarded its 26-point gain over BehaveNet with 8, 7, 7, 7, while B's reviewers read it as a methods paper, found the full model trails DisAE+VAME (79.53 against 81.25 accuracy), and B's AC advised reframing it 'as a study of different representations'."
+  },
+  {
+    "id": "R17",
+    "name": "Rebuttal persuaded reviewers who could not check core",
+    "definition": "In one committee, reviewers who said the technical core was outside their expertise raised their scores on the rebuttal's clarifications and promised revisions, without new results or a check of the proofs, which lifted that committee's ratings.",
+    "created_by_pair": "n21-230",
+    "created_turn": 10,
+    "exemplar": "In A, Reviewer_cSRr ('unable to assess the soundness', confidence 2) and Reviewer_g3MG ('a bit beyond my expertise') raised to 7 after the authors restated the problem and listed planned changes, and those 7s carried the spotlight."
+  },
+  {
+    "id": "R18",
+    "name": "Committees held one paper type to different bars",
+    "definition": "Both committees read the paper as the same kind of contribution, but one required it to deliver something the other did not ask of that kind of paper, such as practical guidance from an analysis study, and judged it against that extra requirement.",
+    "created_by_pair": "n21-220",
+    "created_turn": 11,
+    "exemplar": "All four of B's reviewers faulted the ViT-against-CNN analysis for giving no practical guidance for architecture design, and B rejected, while no one in A asked for it and A's Reviewer_qxEj praised the work because it 'might inspire new architectures'."
+  },
+  {
+    "id": "R19",
+    "name": "Wrong factual claim inflated one reviewer's praise",
+    "definition": "A reviewer in one committee based praise or a higher score on a checkable factual claim about the paper's novelty or results that was wrong, such as crediting the authors with a method the paper itself attributes to prior work.",
+    "created_by_pair": "n21-210",
+    "created_turn": 13,
+    "exemplar": "In B, Reviewer_YH9r (1 hour, confidence 2) gave 7 and named 'a new algorithm', the forward algorithm, as the key contribution, but line 13 of the paper credits it to Vovk and to Azoury and Warmuth (2001)."
+  },
+  {
+    "id": "R20",
+    "name": "Reviewer kept score after main concern answered",
+    "definition": "A reviewer in one committee acknowledged that the rebuttal resolved the concern their score rested on, yet kept the same below-threshold score by citing new or secondary grounds, so the correction did not change the committee's ratings.",
+    "created_by_pair": "n21-197",
+    "created_turn": 14,
+    "exemplar": "In B, Reviewer_CnYk said the rebuttal's correction of the parser misreading 'answered my major concern', then kept 4 on new grounds, closed GPT-3 and novelty."
+  },
+  {
+    "id": "R21",
+    "name": "Promised revisions credited by one committee only",
+    "definition": "One committee judged the paper as submitted and refused to credit comparisons, experiments or fixes the authors only promised in the rebuttal, while the other committee accepted such promises or did not require them.",
+    "created_by_pair": "n21-185",
+    "created_turn": 15,
+    "exemplar": "A's chair rejected because the MMD and KCpA comparison and fair kernel experiments existed only as rebuttal promises, writing that the comparison 'should not happen in the authors' response'; B accepted with the same gaps."
+  },
+  {
+    "id": "R22",
+    "name": "Reviewer's stated stance diverged from score",
+    "definition": "A reviewer in one committee stated a changed position in a comment, such as now leaning to accept, but never edited the score, and the committee acted on the stated position rather than the rating.",
+    "created_by_pair": "n21-185",
+    "created_turn": 15,
+    "exemplar": "In B, the only detractor, Reviewer_hFCk, wrote 'I now lean to accept this paper' after the rebuttal but kept its 5, and B accepted with a spotlight as if no reviewer opposed."
   }
 ]

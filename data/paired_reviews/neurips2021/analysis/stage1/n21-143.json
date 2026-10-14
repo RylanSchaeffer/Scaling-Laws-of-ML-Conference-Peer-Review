@@ -1,0 +1,242 @@
+{
+  "pair_id": "n21-143",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_QxA8",
+        "Reviewer_bBvQ"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_QxA8, confidence 3), 7 (Reviewer_bzCs, confidence 3), 6 (Reviewer_bBvQ, confidence 4) and 6 (Reviewer_cu9f, confidence 4). The spread is one point. The two most confident and most detailed reviewers gave the two 6s; the thinnest review (bzCs) gave a 7."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bzCs",
+          "evidence": "Rating 7 at confidence 3 on a main review of two short paragraphs. It names no weakness and asks one question (how to set alpha, beta, gamma). It says the authors 'perfectly apply adaptive differential privacy' and 'solve the adaptive unlearning problem'. No reply after the rebuttal. The 7 adds little evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QxA8",
+          "claim": "The noise needed to defeat the attack in Figure 1 costs much accuracy, most of all on Fashion-MNIST (k=2 and k=6) and MNIST (k=6).",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1: MNIST k=6 falls from about 0.975 (no noise) to about 0.91 (noise 1.1, the first level whose interval reaches 0.5); Fashion-MNIST k=6 from 0.85 to 0.81; Fashion-MNIST k=2 from 0.82 to 0.76. The caption calls this 'only a modest degradation'. The authors' reply covered only the two k=6 cases, and the Committee A AC sided with the reviewer on MNIST."
+        },
+        {
+          "reviewer": "Reviewer_QxA8",
+          "claim": "Figure 1(f) has duplicate numbers on the y-axis.",
+          "checked_against_paper": "correct",
+          "evidence": "The y-axis tick labels of Figure 1(f) read 0.97, 0.96, 0.96, 0.95, 0.95, 0.94 (evenly spaced ticks rounded to two decimals)."
+        },
+        {
+          "reviewer": "Reviewer_cu9f",
+          "claim": "In the toy example, the deletions leave at most one copy of some points, so retraining accuracy is below the stated 2/3.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5.1, l.312-316: the adversary deletes 'exactly those training points that the ensemble correctly classifies'. Identical copies get identical predictions, so both copies go and every remaining point keeps two copies; full retraining again gives about 2/3. The authors replied the same. cu9f's separate point, that the example deletes a constant fraction of the data, is right; the authors answered with a Chernoff argument for O(1/sqrt(n)) deletions."
+        },
+        {
+          "reviewer": "Reviewer_cu9f",
+          "claim": "The proposed algorithm also fully retrains once a privacy threshold is reached.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.1, l.274-276: when the privacy budget is exhausted, the algorithm must 'fully retrain using A^distr'. Algorithm 4 is in the supplement, which the PDF does not include."
+        },
+        {
+          "reviewer": "Reviewer_cu9f",
+          "claim": "The experiments show that the provided algorithm degrades accuracy (0.5-0.6 on CIFAR-10, 0.9 on MNIST).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5.2 never runs the proposed private-aggregation algorithm. It trains SISA with DP-SGD noise in the white-box setting (Figure 1 caption, l.342-344). CIFAR-10 accuracy is 0.45 to 0.51 with no noise at all (plain SISA), so the low level belongs to SISA, not to the method."
+        },
+        {
+          "reviewer": "Reviewer_bBvQ",
+          "claim": "Non-adaptive SISA retrains at most about log n shards per deletion and so keeps perfect unlearning against adaptive updates; the paper only saves a log n factor.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5.1 and Theorem 5.1: there are SISA-framework algorithms that fail (alpha, beta, gamma)-unlearning for every alpha against an adaptive sequence; Section 5.2 shows the failure empirically. bBvQ conceded on 2021-09-01: 'thanks for clarifying my misunderstanding'."
+        },
+        {
+          "reviewer": "Reviewer_bBvQ",
+          "claim": "In Theorem 4.1, alpha is roughly O(eps^2 k), so a meaningful guarantee needs eps near 1/sqrt(k).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 4.1, l.242: alpha = O(eps^2 k + k sqrt(delta/eps)). The authors agreed and proposed k = 1/eps with eps <= alpha^2. Section 6 (l.356-358) concedes that the constants 'will not give useful parameters' in most realistic settings."
+        },
+        {
+          "reviewer": "Reviewer_bBvQ",
+          "claim": "The paper replaces SISA's disjoint partition with independent sampling and does not mention this crucial change.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The change is real: l.226-228, each point enters each shard independently with probability p. But it is flagged: l.215 '(with one crucial modification)' and l.222-224 'if the k shards are selected independently of one another'. The paper does not contrast it with SISA's disjoint shards."
+        },
+        {
+          "reviewer": "Reviewer_bBvQ",
+          "claim": "The experiments add gradient noise (DP-SGD), which protects data points, while the theorem needs privacy of the random bits; the paper itself says the noise is far weaker than the theorems need.",
+          "checked_against_paper": "correct",
+          "evidence": "l.342-344: noise added 'to guarantee finite levels of differential privacy (though much weaker privacy guarantees than would be needed to invoke our theorems)'. The authors replied that privacy of the data implies privacy of the random bits when each bit acts through a single point."
+        },
+        {
+          "reviewer": "Reviewer_bBvQ",
+          "claim": "Ullah et al. (2021), 'Machine unlearning via algorithmic stability', is missing from the related work.",
+          "checked_against_paper": "correct",
+          "evidence": "It is not in the submitted references (l.367-438). The authors conceded the omission and argued that the method does not cover adaptive sequences."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_QxA8",
+          "Reviewer_bBvQ"
+        ],
+        "evidence": "Reviewer_QxA8 edited the review on 2021-08-30: 'I have increased my score to 7'. Reviewer_bBvQ edited on 2021-09-01 and wrote that day: 'thanks for clarifying my misunderstanding. Based on this as well as other reviews, I will increase the score' (final 6). Reviewer_cu9f is unedited at 6 and wrote on 2021-09-01: 'I am not yet convinced'. Reviewer_bzCs did not reply.",
+        "what_convinced_or_not": "bBvQ moved because the authors corrected a wrong premise: adaptivity voids SISA's deletion guarantee, not only its runtime. bBvQ still asked for accuracy guarantees in a convex case and a worked noisy-SGD instance. QxA8 accepted the answers on examples, reach beyond SISA and costs. cu9f was not persuaded that composition beats group privacy, because the authors gave an argument and no comparison, and cu9f still objected to noise in the initial model. The authors' last reply to cu9f got no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final ratings are 6 or 7 (mean 6.5). The meta-review calls adaptivity 'an interesting new phenomenon' and accepts. It asks for the presentation fixes the reviewers requested. It adds a personal disagreement with the authors' reply to QxA8: a drop from 97% to 91% on MNIST k=6 is 'significant'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All reviewers and the AC found the problem new and important: adaptive deletion requests void SISA-style guarantees.",
+        "The reduction through differential privacy and max-information was judged sound and novel (QxA8, bzCs); bBvQ doubted its reach beyond SISA but did not hold it against acceptance.",
+        "The rebuttal corrected bBvQ's runtime-only reading and answered QxA8, which lifted both ratings.",
+        "Open concerns (no group-privacy baseline, no accuracy guarantee, accuracy cost of the noise) kept the two most confident reviewers at 6, so a poster and nothing higher."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_6QGG"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_jxp1, confidence 4), 7 (Reviewer_FL5i, confidence 3) and 6 (Reviewer_6QGG, confidence 3). The spread is one point. 6QGG started below the threshold (the AC called it 'a borderline reject') and finished at 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_jxp1",
+          "evidence": "2 hours. The criticism is generic: 'the model is not clearly described', 'the experimental results are not fully convincing', 'the baselines are weak'. It names no section, result or baseline. The limitations field restates the summary. No reply to the rebuttal. Its core point (the experiments do not show that the method works) is right but not argued."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_6QGG",
+          "claim": "Section 5.2 shows that the problem matters but does not show how the paper's method resolves it.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 runs SISA with DP-SGD noise in the white-box setting; the private-aggregation algorithm of Section 4.1 is never run. l.73-76 and l.342-344 say the noise is insufficient for the theorems to apply."
+        },
+        {
+          "reviewer": "Reviewer_6QGG",
+          "claim": "Line 112 uses Z* and Theta* without definition; line 181 uses m before defining it.",
+          "checked_against_paper": "correct",
+          "evidence": "l.111-113 use Z* and Theta* without defining them; l.181 introduces r ~ P^m with no word on m, which is set to k only at l.224. Minor."
+        },
+        {
+          "reviewer": "Reviewer_FL5i",
+          "claim": "Algorithm 3 retrains models from scratch.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 3 recomputes A^single(D_i^t) for every shard that holds the updated point. Section 4.1 (l.274-276) also fully retrains all shards when the privacy budget is spent."
+        },
+        {
+          "reviewer": "Reviewer_jxp1",
+          "claim": "The experiments do not show that the proposed method is effective.",
+          "checked_against_paper": "correct",
+          "evidence": "As for 6QGG: Figure 1 shows DP-SGD noise on SISA, not the proposed private aggregation. jxp1's request to compare with 'prior studies which do have deletion guarantees' is weaker: the related work (l.84-95) lists adaptive-robust methods only for convex or pretrained settings, as the authors replied."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_6QGG"
+        ],
+        "evidence": "Area_Chair_jA9P wrote to 6QGG on 2021-09-04: 'Do you still think it is a borderline reject?' 6QGG edited the review on 2021-09-06: 'The response resolves some of my questions, and I would like to raise my score to 6, as the problem studied in the paper is quite novel'. jxp1 and FL5i did not reply and their reviews are unedited.",
+        "what_convinced_or_not": "The authors agreed to move the SISA attack section earlier and argued that privacy of the data implies privacy of the random bits in common cases (minibatch selection, partitioned shards). 6QGG raised the rating on novelty, after the AC prompt, and named no concern as resolved. FL5i's questions (is DP necessary; how does unlearning differ from DP) got sound answers but no response."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Final ratings 6, 7, 6 (mean 6.33). The meta-review is three sentences: it restates the setting and the reduction and ends 'A good paper, overall.' It names no weakness. The AC's only other visible act is the 2021-09-04 prompt that preceded 6QGG's raise to 6.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers found the adaptive-deletion setting novel and a blind spot in prior work.",
+        "FL5i valued the new link between differential privacy and unlearning.",
+        "6QGG moved from borderline reject to 6 after the rebuttal and an AC prompt, citing novelty.",
+        "Doubts on practicality, experiments and clarity (6QGG, jxp1) kept two ratings at 6, so a poster."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No comparison with a group-privacy baseline (DP training, no action on deletions, full retraining every m deletions); the authors argued that square-root composition beats linear group privacy but showed no comparison (Reviewer_cu9f).",
+    "No accuracy guarantee for the SISA instantiation, even in a convex case (Reviewer_bBvQ).",
+    "Theorem 4.1 needs eps near 1/sqrt(k), which conflicts with accuracy (Reviewer_bBvQ).",
+    "The noise that defeats the attack costs up to about 6 accuracy points in Figure 1 (Reviewer_QxA8, Reviewer_cu9f, Committee A AC).",
+    "SISA's disjoint shards are replaced by independent sampling; with a partition, SISA's runtime stays constant under adaptivity (Reviewer_bBvQ).",
+    "Missing related work: Ullah et al. 2021 (Reviewer_bBvQ).",
+    "The toy example deletes a constant fraction of the data, plus a wrong claim about its retraining accuracy (Reviewer_cu9f).",
+    "Randomizing the initial model costs accuracy even when no deletion comes (Reviewer_cu9f).",
+    "How to choose alpha, beta and gamma (Reviewer_bzCs, Reviewer_QxA8).",
+    "Duplicate tick labels in Figure 1(f) (Reviewer_QxA8)."
+  ],
+  "issues_only_b": [
+    "Whether DP is necessary for adaptive guarantees, since Theorem 3.1 gives only a sufficient condition (Reviewer_FL5i, Reviewer_6QGG).",
+    "How (alpha, beta, gamma)-unlearning differs from DP, and why deletion guarantees are needed if the published outputs are DP (Reviewer_FL5i).",
+    "Undefined notation Z*, Theta* and m (Reviewer_6QGG).",
+    "Unspecified complaints that the model is unclear and the baselines are weak (Reviewer_jxp1)."
+  ],
+  "shared_issues": [
+    "The adaptive-deletion problem is new and important (all seven reviewers).",
+    "The paper opens too abstractly; the concrete attack of Section 5 should come first (Reviewer_QxA8; Reviewer_6QGG, Reviewer_jxp1). The authors promised this reordering in both forums.",
+    "The reach of the reduction beyond SISA, because it needs DP in the internal random bits (Reviewer_QxA8, Reviewer_bBvQ; Reviewer_6QGG).",
+    "The experiments test DP-SGD noise on SISA, not the proposed private-aggregation algorithm (Reviewer_bBvQ; Reviewer_6QGG, Reviewer_jxp1)."
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. All seven reviewers accepted the problem as new and real: deletion requests that depend on published models void SISA-style unlearning guarantees (Section 5.1, Theorem 5.1). Most also found the reduction through differential privacy and max-information a clean first fix. The same limits held every rating at 6 or 7. The theorem needs privacy of the internal random bits, and the paper shows this only for SISA-style private aggregation; the experiments run DP-SGD noise on SISA, not the proposed algorithm (l.342-344); and the paper itself says its constants 'will not give useful parameters' in most realistic settings (l.357-358), which no reviewer cited. Committee A scrutinised much harder (Reviewer_cu9f 10-14 hours, Reviewer_bBvQ 6 hours) and raised a group-privacy baseline, the absence of accuracy guarantees and the eps ~ 1/sqrt(k) regime. This changed nothing, because the rebuttal corrected two misreadings (bBvQ's runtime premise, cu9f's toy-example claim) and nobody judged the open points fatal. In each committee a reviewer below the threshold rose to 6 after the rebuttal (bBvQ in A; Reviewer_6QGG in B, after an AC prompt), and nobody went above 7. Both committees weighed the same facts the same way: a new problem with a mainly theoretical first fix earns a poster.",
+  "candidate_reasons": [
+    "novel problem valued by all",
+    "rebuttal corrected reviewer misreadings",
+    "practicality doubts capped ratings at 7",
+    "experiments never test proposed algorithm",
+    "AC prompt lifted borderline reviewer",
+    "deeper scrutiny left outcome unchanged"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_bBvQ review and 2021-09-01 comment (Committee A)",
+    "Reviewer_cu9f review and 2021-09-01 comment (Committee A)",
+    "Reviewer_QxA8 post-rebuttal section (Committee A)",
+    "Committee A meta-review (MNIST 97% to 91% remark)",
+    "Area_Chair_jA9P 2021-09-04 comment and Reviewer_6QGG after-rebuttal section (Committee B)",
+    "Committee B meta-review",
+    "paper Section 5.1, l.312-316, and Theorem 5.1",
+    "paper Section 5.2, l.342-349, and Figure 1",
+    "paper Section 6, l.356-358",
+    "paper Theorem 4.1, l.242"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+ "run": 2,
+ "turn": 7,
+ "pair_id": "n21-255",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": false,
+   "justification": "B's Reviewer_U58y wrongly claimed the context frame is chosen manually and that Section 4.2 names no dataset, but it accepted the authors' answers, and its final 5 rested on correct points (interpretability, DBE trailing DisAE+VAME)."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "A's chair gave a spotlight over ratings 8, 7, 7, 7, all at or above accept, so the tier did not exceed what the scores supported, although the meta-review gave no reason for it."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "In A, Reviewer_88jd gave the only 8 after one hour on praise without specifics, calling the model 'thoroughly tested on two head-fixed mouse datasets' when WFCI appears in the main text only in Table 1, and that 8 raised A's ratings."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "On B's forum only, the authors conceded 'we are perhaps overclaiming the interpretability of the model' and posted a single-view table that again put DisAE+VAME ahead of DBE; A never saw either."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "A's Reviewer_Yzq9 said the paper 'lacks ablation studies' and Reviewer_bsYQ found the generated videos 'relatively poor', yet both kept accept ratings on a promise of future work, and A's meta-review praised 'the ablations performed' and named no weakness."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "In B, Reviewer_U58y raised its score to 5 after the rebuttal, while no A reviewer is known to have changed a score."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only B raised that the full DBE trails its own DisAE+VAME on all three motif metrics, that interpretability is unsupported against post-hoc clustering, and that results rest on single runs; all are correct and A never weighed them."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees saw the missing ablations, the shaky generated videos, the debt to Yingzhen and Mandt [31] and limited generality; A treated them as minor or future work, B counted them toward rejection."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "B's chair took U58y's wording, but the decision followed all three reviewers (4 and 5 below threshold, and poVh agreed with the criticism in private), so no single reviewer resolved a split."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "No reviewer in either committee changed a score because of the other reviews."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors answered every reviewer in both committees; no score was held down by a misread or unanswered question."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "A's Reviewer_88jd wrote a one-hour, four-paragraph review resting on assertion, never replied to the rebuttal, and its 8 counted toward A's spotlight unchallenged."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "B's chair rejected when two of three final ratings were below threshold, so it followed the majority."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "Neither chair stated a positive view and then deferred to a borderline mean; B's chair judged the needed reframing 'too significant'."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "B's low scores rested on central points (the full model's added value, interpretability, one dataset), not on peripheral details."
+  }
+ ],
+ "added": [
+  {
+   "id": "R16",
+   "name": "Committees judged different kinds of contribution",
+   "definition": "The two committees evaluated the paper as different kinds of contribution, for example an application or tool for a field against a methodological advance, and so asked different questions and applied different standards to the same results.",
+   "justification": "R08 covers one weakness weighed differently; here the gap comes from a prior difference in what each committee asked of the paper: A rewarded the applied gains over BehaveNet, while B asked what the new stochastic model adds over its own deterministic part."
+  }
+ ],
+ "reasoning": "The two committees saw largely the same facts and weighed them differently. A read the paper as a neuroscience tool and called the shared weaknesses minor (R08, R05), helped by a thin one-hour 8 (R03, R12), and never saw that the full model trails its deterministic part (R07). B read it as a methods paper, received a concession on interpretability and a new table that A never saw (R04), and one B reviewer rose but stayed below threshold (R06). The difference in what each committee asked of the paper had no existing reason, so R16 was added. R02 and R09 were rejected because each chair's tier matched its reviewers' ratings.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16"
+ ]
+}

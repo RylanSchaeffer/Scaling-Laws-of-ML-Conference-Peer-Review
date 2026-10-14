@@ -1,0 +1,255 @@
+{
+  "pair_id": "n21-153",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        2,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5 (Reviewer_aJ5V, confidence 4), 6 (Reviewer_ywh5, confidence 2), 6 (Reviewer_EAV6, confidence 4) and 7 (Reviewer_XtJE, confidence 4). No rating is more than one point from the 6.0 mean. The 5 rests on specific, mostly correct points (MMD, embeddability, Euclidean baselines). The 7 comes with a substantive review that found the MMD/k-NN tension."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_aJ5V",
+          "evidence": "Asked the authors to 'consider adding an experimental comparison' with PAH [46]. PAH is a listed comparison method (l.231) and appears in Fig. 1 (right) and in the Fig. 2 legend; l.257-258 says the discrepancies of RT and PAH 'are very close'. The rest of the review is specific and mostly correct."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_aJ5V",
+          "claim": "With MMD as the measure, the OT-based methods consistently outperform HPA.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: the best OT method has lower MMD than HPA on all 8 rows; HOT-L is worse than HPA on 3 (BC, P2 BT, P2 AT). On the lung-cancer rows HPA's MMD (0.0122 to 0.0168) is 6 to 15 times that of the OT methods (0.0010 to 0.0029). l.297-298 concedes the point. The rebuttal calls HPA's MMD 'only slightly inferior', and the camera-ready 'slightly worse'."
+        },
+        {
+          "reviewer": "Reviewer_aJ5V",
+          "claim": "An experimental comparison with the concurrent PAH [46] should be added.",
+          "checked_against_paper": "incorrect",
+          "evidence": "PAH is compared on the simulations (l.231, Fig. 1 right, Fig. 2, l.257-258). It is absent only from the real data, because it needs one-to-one correspondence (l.231-232)."
+        },
+        {
+          "reviewer": "Reviewer_aJ5V",
+          "claim": "The paper gives no concrete evidence that the datasets embed better in hyperbolic than in Euclidean space.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper relies on citation [21] (l.262-264) and on the single-batch S-Baseline (l.290-292). It has no Euclidean embedding, distortion or Euclidean alignment result. The rebuttal called Euclidean PA results 'very poor' but gave no numbers."
+        },
+        {
+          "reviewer": "Reviewer_ywh5",
+          "claim": "Results depend on the initial embedding [38], and the paper does not discuss its effect.",
+          "checked_against_paper": "correct",
+          "evidence": "l.279-280 is the only mention of the embedding in the main text. l.295-296 says only that results are similar across dimensions."
+        },
+        {
+          "reviewer": "Reviewer_ywh5",
+          "claim": "The paper does not introduce classical PA.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 is background on hyperbolic geometry only; classical PA gets one sentence (l.31-33). The camera-ready puts classical PA in Appendix E, not in the main text that the AC asked to change."
+        },
+        {
+          "reviewer": "Reviewer_EAV6",
+          "claim": "μ0 at line 87 is not defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.70 defines the origin μ0 = [1, 0]^T in L^d. The authors pointed to it."
+        },
+        {
+          "reviewer": "Reviewer_EAV6",
+          "claim": "The proofs in Appendix A are successions of unjustified calculations.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Neither PDF contains the appendix. The authors accepted the criticism and promised a rewrite."
+        },
+        {
+          "reviewer": "Reviewer_XtJE",
+          "claim": "HPA has worse MMD than the other methods although it has better k-NN classification.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: HPA has the highest k-NN AUC of all alignment methods on all 6 rows. Table 2: the best OT method has lower MMD on all 8 rows."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Only Reviewer_XtJE replied (2021-09-02): 'thank you very much for your reply and the clarification about my main concern (better KNN performance but worse MMD)'. XtJE kept 7 and asked for a PA background. Reviewer_aJ5V had written 'I am open to raising my score if the authors could address these two concerns', but posted nothing after the rebuttal and stayed at 5. Reviewer_ywh5 and Reviewer_EAV6 did not reply.",
+        "what_convinced_or_not": "The density-matching argument (OT matches densities but scrambles the hidden labels; HPA matches two moments and rotates) satisfied XtJE. aJ5V got that argument, a pointer to the S-Baseline and unreported 'very poor' Euclidean PA results, and did not respond. The reply said Euclidean batch-correction methods (it cites Harmony and Seurat) need labels. That is doubtful for Harmony [23], which corrects with batch membership alone; nobody contested it. ywh5 and EAV6 got promises only: a PA background, rewritten proofs, new figures. A saw no new experiments; the ablation and isometric-rotation tables went only to B."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'This was a very borderline paper.' The AC repeats the reviewers' view ('technically sound and novel') and their clarity complaint (ywh5: 'not educational enough'; XtJE after discussion: add 'background on PA'). Acceptance is 'under the assumption that the authors make significant improvements to clarity'. The claims that reviewers 'greatly appreciated the enthusiastic interaction' and 'generally agreed to accept' have little public support: one reviewer replied and no rating changed, so aJ5V's 5 stands.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Mean 6.0 (5, 6, 6, 7): three of four at or above threshold, and reviewers called the method sound and novel (XtJE, EAV6, ywh5).",
+        "HPA's k-NN gains over OT on all six real-data rows outweighed its worse MMD once the authors explained it (XtJE).",
+        "The weaknesses were expository (no classical PA background, dense geometry, rough proofs), not errors.",
+        "The AC accepted a 'very borderline' paper on condition of clarity fixes; the one 5 (aJ5V) did not re-engage."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        2,
+        4,
+        3,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_2HGp",
+        "Reviewer_VwLT",
+        "Reviewer_rvxG"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_2HGp, confidence 2), 6 (Reviewer_Mb2Y, confidence 4), 6 (Reviewer_VwLT, confidence 3) and 6 (Reviewer_rvxG, confidence 5). The 7 rests on a review copied from the paper's own sentences, but it is one point above the rest and the decision does not depend on it: without it, B is 6, 6, 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_2HGp",
+          "evidence": "A 7 at confidence 2 with no weakness named. The summary copies l.17-20 verbatim. The main review strings together l.52-54 ('unsupervised label-free hierarchical data alignment', 'theoretical analysis and justification'), l.307-308 ('provides further insight and highlights properties that may be useful', 'stable under noise and distortions') and l.227-229 ('arguably do not have a distinct hierarchical structure', 'highly effective'). The only later comment is one line: 'It would be better if there are more experiments on real-world datasets.'"
+        },
+        {
+          "reviewer": "Reviewer_rvxG",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') after 3 hours, yet the review says the experiments cover 'only' a synthetic dataset and breast-cancer batch correction, and that the main comparison is with [18]. l.227 and l.267-278 describe three real tasks (BC, LC, CyTOF), and l.230-235 lists five comparison methods, including PAH [46] and HOT-F [49]. The mathematical points (Fréchet mean, generality) are valid."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_VwLT",
+          "claim": "The reasons at l.165-168 do not justify discarding a rotation of L^d about the mean, which is an isometry, preserves the mean and has a closed form.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 1 (Eq. 9) drops the first coordinate of a tangent vector. For v in the tangent space, ||v||_L^2 = ||P(v)||^2 - v(1)^2, so P is an isometry only when the mean is the origin; elsewhere the wrapped rotation is in general not an isometry of L^d. The authors replied 'We agree with the description'. Their isometric variant Iso(K) came close: HPA's k-NN AUC is higher on 4 of 6 rows."
+        },
+        {
+          "reviewer": "Reviewer_Mb2Y",
+          "claim": "The choice of the wrapped rotation is not validated experimentally, and ablation studies are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "l.170: 'In Section 4, we empirically demonstrate the advantage of the proposed rotation compared to the alternatives.' Tables 1 and 2 ablate only RT against the full HPA; no alternative rotation appears. The full ablation and the Iso(K) comparison came only in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_Mb2Y",
+          "claim": "Prop. 10 assumes that the data were generated by an inverse Procrustes map.",
+          "checked_against_paper": "correct",
+          "evidence": "l.201-206 assumes H(1) = eta(H(2)) with eta a composition of translation, scaling and rotation. The authors conceded that 'it is unlikely that such an assumption holds' for the datasets."
+        },
+        {
+          "reviewer": "Reviewer_Mb2Y",
+          "claim": "The paper does not discuss its limitations from an empirical perspective.",
+          "checked_against_paper": "correct",
+          "evidence": "There is no limitations section. Checklist 1(b) points to the analysis in Section 3."
+        },
+        {
+          "reviewer": "Reviewer_rvxG",
+          "claim": "The existence and uniqueness of the Fréchet mean are not addressed.",
+          "checked_against_paper": "correct",
+          "evidence": "l.79-83 define and compute the Fréchet mean with no existence or uniqueness statement; the authors conceded. Their added justification ('connected and compact Riemannian manifolds of non-positive curvatures, such as hyperbolic spaces') is misstated, since hyperbolic space is not compact. The result holds because hyperbolic space is a Hadamard manifold. rvxG did not notice."
+        },
+        {
+          "reviewer": "Reviewer_rvxG",
+          "claim": "The experiments are limited to a synthetic dataset and breast-cancer batch correction, and the main comparison is with [18].",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.227 and l.267-278: three real tasks (breast cancer, three lung-cancer cohorts, CyTOF), plus MNIST/USPS in Appendix C. l.230-235 lists PAH [46], RT, HOT-F [49] and HOT-L/HOT-ME [18]."
+        },
+        {
+          "reviewer": "Reviewer_rvxG",
+          "claim": "Obvious baselines are missing: alignment in the ambient space and a tangent-space (log-Euclidean) formulation.",
+          "checked_against_paper": "correct",
+          "evidence": "l.230-235 lists no Euclidean baseline. The rebuttal compared tangent-space Euclidean PA in prose only and called ambient-space PA results 'very poor' without numbers."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_rvxG",
+          "Reviewer_VwLT"
+        ],
+        "evidence": "Reviewer_rvxG (2021-08-29): 'I am happy to increase my score and vouch for acceptance given that the authors revise the paper accordingly'; the review was edited that day and now opens 'Post rebuttal and discussion, I want to recommend acceptance.' Reviewer_VwLT edited the review on 2021-08-30, the day of 'After rebuttal ... I recommend this paper for acceptance'; no score change is stated. Reviewer_2HGp's edit (2021-07-16) predates the rebuttal. Reviewer_Mb2Y did not edit or reply.",
+        "what_convinced_or_not": "VwLT was moved by the isometric-rotation comparison ('for including the additional rotation implementation'). The reply's case against that rotation is weak: Gram-Schmidt is not needed, because parallel transport to the origin (l.77-78) gives an isometric chart in closed form. rvxG was moved by explanation: the concession on the Fréchet mean, a list of which propositions are general, a prose comparison with tangent-space Euclidean PA, and a pointer to the new ablation ('I appreciate the authors clarified the comments'). Mb2Y got full ablation tables but never replied. 2HGp asked for more real data; the authors promised scRNA results ('more than ~10%') without numbers, and 2HGp did not reply. Mb2Y's request for visualizations of competing methods was declined because their colours were 'completely mismatched', the very evidence the paper's claim needs."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final ratings are 6 or 7. The meta-review restates the method ('align the means, scale the dispersions, and rotate') and says it 'rigorously compares with different baselines'. That contradicts rvxG ('the comparison is subpar') and Mb2Y ('A lot of ablation studies seem to be missing'). It names no weakness. Its one question, datasets of different dimensions, was raised by no reviewer.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at 6 or 7 after the rebuttal (mean 6.25); reviewers called the approach principled and the writing clear (Mb2Y, VwLT, rvxG).",
+        "New rebuttal evidence (full ablation, isometric-rotation comparison) and concessions moved rvxG and VwLT to recommend acceptance.",
+        "The critiques targeted design choices and missing baselines, which the authors conceded and promised to fix; nobody found an error in a key result.",
+        "The AC summarised the method, said it 'rigorously compares with different baselines' and weighed no weakness."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No background on classical PA; paper inaccessible to non-experts (Reviewer_ywh5, Reviewer_aJ5V, Reviewer_XtJE after discussion, AC)",
+    "Appendix A proofs hard to follow (Reviewer_EAV6)",
+    "Evidence that the data embed better in hyperbolic than Euclidean space; effect of the initial embedding [38] (Reviewer_aJ5V, Reviewer_ywh5)",
+    "Technical comparison with PAH [46] and related work on Riemannian PA (Reviewer_aJ5V, Reviewer_EAV6)",
+    "Notation, black-and-white legibility of figures, and the meaning of 'hierarchical structure' (Reviewer_EAV6)"
+  ],
+  "issues_only_b": [
+    "Wrapped rotation against alternatives: it is not an isometry, and a rotation about the mean is natural (Reviewer_VwLT; Reviewer_Mb2Y asks for a comparison of rotation strategies)",
+    "Existence and uniqueness of the Fréchet mean (Reviewer_rvxG)",
+    "Which results hold only in hyperbolic space and which on general manifolds (Reviewer_rvxG, Reviewer_Mb2Y)",
+    "Full ablation of the three components (Reviewer_Mb2Y)",
+    "Prop. 10's generative assumption, reference-set choice, empirical limitations, visualizations of competing methods (Reviewer_Mb2Y)",
+    "More real-world experiments (Reviewer_2HGp, Reviewer_rvxG)",
+    "Older Riemannian centre-of-mass citations (Reviewer_rvxG); datasets of different dimensions (AC)"
+  ],
+  "shared_issues": [
+    "Worse MMD than OT despite better k-NN, and why HPA beats OT (A: Reviewer_aJ5V, Reviewer_XtJE; B: Reviewer_Mb2Y, Reviewer_rvxG)",
+    "Missing Euclidean baselines (A: Reviewer_aJ5V, Euclidean batch-correction methods; B: Reviewer_rvxG, ambient-space and tangent-space PA)",
+    "The tangent-space rotation passage at l.163-168 (A: Reviewer_EAV6, as wording; B: Reviewer_VwLT, as a design flaw)",
+    "Limited experiments (A: Reviewer_XtJE, 'rather limited'; B: Reviewer_rvxG, Reviewer_2HGp)",
+    "Hierarchical structure of the data and the MNIST/USPS results (A: Reviewer_aJ5V, Reviewer_EAV6; B: Reviewer_2HGp)",
+    "Clarity of the exposition (A: Reviewer_ywh5, Reviewer_aJ5V, Reviewer_XtJE after discussion, and AC found it dense; B: Reviewer_Mb2Y, Reviewer_VwLT, Reviewer_rvxG called it clear)",
+    "Method sound and well motivated; no reviewer alleged an error (all eight reviewers)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reasons. Reviewers in both judged HPA a sound, novel extension of Procrustes analysis to the Lorentz model, and no reviewer alleged an error. Its k-NN AUC beats every OT baseline on all six real-data rows (Table 1), although the best OT method has lower MMD on all eight rows (Table 2). No rating fell below 5 or rose above 7, so neither committee had a detractor or a champion. The committees differed in what they probed, not in outcome. A (5, 6, 6, 7) dwelt on accessibility. Its rebuttal moved no one, and its AC accepted a 'very borderline' paper on condition of clarity fixes. B (7, 6, 6, 6) probed the method: the non-isometric wrapped rotation, the Fréchet mean, the missing ablation. The rebuttal's new tables and concessions lifted Reviewer_rvxG and, by the edit date, Reviewer_VwLT to 6. On clarity, the committees weighed the same text differently: three A reviewers (one after discussion) and A's AC found it dense, while three B reviewers called it clear. Neither committee obtained Euclidean batch-correction baselines. B's only 7 comes from Reviewer_2HGp, whose review copies the paper's own sentences.",
+  "candidate_reasons": [
+    "Shared weak-accept consensus on soundness",
+    "k-NN gains outweighed worse MMD",
+    "No detractor in either committee",
+    "Rebuttal experiments lifted borderline reviewers",
+    "Clarity concerns made acceptance conditional",
+    "Euclidean baselines never obtained"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 1 (k-NN AUC; HPA best on all six rows)",
+    "paper_submitted.pdf Table 2 (MMD; best OT method below HPA on all eight rows)",
+    "paper_submitted.pdf Definition 1, Eq. 9-12 and l.159-170 (wrapped rotation; promised rotation comparison)",
+    "paper_submitted.pdf l.79-83 (Fréchet mean; no existence or uniqueness statement)",
+    "paper_submitted.pdf l.227-235 and l.267-278 (three real tasks; comparison methods)",
+    "paper_submitted.pdf l.17-20, l.52-54, l.227-229, l.307-308 (sources of Reviewer_2HGp's text)",
+    "Reviewer_aJ5V final review (no reply after the rebuttal)",
+    "Reviewer_XtJE reply of 2021-09-02",
+    "Reviewer_VwLT final review, 'After rebuttal' (2021-08-30) and the authors' Iso(K) tables",
+    "Reviewer_rvxG final review and comments of 2021-08-23 and 2021-08-29",
+    "Authors' ablation tables in reply to Reviewer_Mb2Y",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

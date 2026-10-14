@@ -1,0 +1,135 @@
+{
+ "run": 2,
+ "turn": 10,
+ "pair_id": "n21-230",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": false,
+   "justification": "The decisive criticisms in B were correct (the choice of mechanism is unfalsifiable, which the authors conceded; ATE needs no counterfactuals); ybLo's and gci3's misreading of the goal as a maximal coupling sits in their summaries and did not carry the score, and A's g3MG error (Gumbel-softmax) did not lower its score."
+  },
+  {
+   "id": "R02",
+   "applies": true,
+   "justification": "A's chair gave a spotlight over ratings 7, 7, 7, 5 at confidences 3, 3, 2, 2 with no reviewer arguing for a highlight, wrote that the replies 'cleared up these concerns', and gave no reason for the tier."
+  },
+  {
+   "id": "R03",
+   "applies": false,
+   "justification": "A's 7s rested on clarifications and a novelty judgement, not on praise-only enthusiasm; Reviewer_cSRr's review is mostly questions, and the meta-review copies the authors' reply, not a reviewer's wording."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "On latent confounding the authors told A 'the same set of cases' as Oberst & Sontag but told B 'Markovian models', and conceded only to B that the mechanism choice 'cannot be falsified', so B judged a more explicit statement of the method's limits."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Every A reviewer found the problem statement unclear and 4cdP found the Gumbel-max generalisation unshown, yet A raised scores on a promised rewrite and the AC wrote that the replies 'cleared up these concerns', accepting the fix on trust."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "In A, Reviewer_g3MG and Reviewer_4cdP went from 6 to 7 and Reviewer_cSRr raised to 7 after the rebuttal; in B no reviewer replied or changed a score."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only B raised the unfalsifiability of choosing a mechanism by variance (ybLo), that ATE needs no counterfactuals (AC), the vacuous Corollary 2 bound and undefined notation (gci3); only A raised the unshown Gumbel-max generalisation and the undefined 'CRN'."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees found the paper hard to read and asked why a level-3 mechanism is chosen for a level-2 goal; A's cSRr accepted the ATE answer and A treated clarity as a revision item, while B's AC turned the same answer into grounds for rejection."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "B's AC adopted ybLo's stance but added its own reasoning on the ATE and monotonicity; A's AC followed the majority, not one reviewer."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "A's raises cite the authors' replies, and XBKm's edit in B says 'after reading the paper again' with no score change; no reviewer moved because of other reviews."
+  },
+  {
+   "id": "R11",
+   "applies": true,
+   "justification": "In B the rebuttal did not address gci3's Corollary 2 bound or the undefined z, and its reply to gci3 used the phrase 'favoring statistical properties', which the AC cited against the paper; gci3's 5 never moved."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "B's ybLo gave a 3 after 1.5 hours with a summary that misreads the goal and no reply to the rebuttal, and XBKm's 5 at confidence 2 rests on readability alone; both counted unchallenged in B's reject."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "All of B's reviewers were below threshold (3, 5, 5), so the reject followed the majority."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "Neither chair stated a positive view and then decided by a threshold; A gave a spotlight and B gave its own negative reading."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "A's eGhr held a 5 on minor clarity points, but the AC ignored it and it did not affect A's spotlight; B's low scores rest on the premise and readability, not peripheral points."
+  },
+  {
+   "id": "R16",
+   "applies": true,
+   "justification": "A judged the paper as a novel link between couplings and causal mechanisms, while B judged it as a causal-identification method and held it to that standard (falsifiable assumptions, monotonicity as the defensible alternative)."
+  }
+ ],
+ "added": [
+  {
+   "id": "R17",
+   "name": "Rebuttal persuaded reviewers who could not check core",
+   "definition": "In one committee, reviewers who said the technical core was outside their expertise raised their scores on the rebuttal's clarifications and promised revisions, without new results or a check of the proofs, which lifted that committee's ratings.",
+   "justification": "R06 records only that the rebuttal moved scores in one committee, and R03 concerns a high score resting on enthusiasm; neither names the mechanism here, where reviewers who disclaimed expertise on the technical core were moved by clarifications and promises they could not check."
+  }
+ ],
+ "reasoning": "The committees split on the premise: both heard the same ATE defence, A's low-confidence reviewers accepted it as a clarification and raised to 7, while B's ybLo and AC rejected it as an unfalsifiable assumption that ATE estimation does not need. Existing reasons cover the spotlight without support (R02), the one-sided score movement (R06), the one-sided and differently weighted issues (R07, R08), the thin B reviews (R12), the differing statements to each committee (R04), the trust in a promised rewrite (R05), the unanswered gci3 points (R11) and the different standards applied (R16). No existing reason covers reviewers outside their expertise being moved by clarifications, so R17 was added. R03 was rejected because A's 7s were not praise-only.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17"
+ ]
+}

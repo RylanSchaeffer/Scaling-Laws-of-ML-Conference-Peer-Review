@@ -1,0 +1,291 @@
+{
+  "pair_id": "n21-147",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        4,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_f9sZ"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_f9sZ",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Ratings 8 (Reviewer_YB43), 4 (Reviewer_f9sZ), 6 (Reviewer_hY1b) and 6 (Reviewer_Axy8). The AC names f9sZ as 'the exception'. f9sZ's 4 (confidence 5, 2 hours) rests on four specific claims that the paper contradicts: a main-text/supplement 'inconsistency' (l.191-193 name the GCN), no state-of-the-art implicit baseline (ConvONet is in Tables 1 and 3), a 'sequential' pipeline (end-to-end training, l.208-209) and a 'smoothness' L_def (a deformation-size penalty, l.224-225). The points that hold (no self-intersection guarantee, broken thin parts under perturbed inputs) are limitations the authors conceded and Reviewer_YB43 judged shared with existing methods. YB43's 8 is as far from the mean, but it rests on a detailed review and a substantive discussion post, so it is not exuberant."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_f9sZ",
+          "evidence": "2 hours at confidence 5. Four specific claims about the paper are wrong (see checkable_claims). After the rebuttal, f9sZ restated the objections in more general terms instead of answering the replies; Reviewer_YB43 wrote 'it is unclear to me what the concerns are'."
+        },
+        {
+          "reviewer": "Reviewer_Axy8",
+          "evidence": "1 hour. The main review opens by repeating the summary word for word, then raises two short concerns. It says 'I can't seem to find examples' of topological change, which the main text defers to the supplement. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_f9sZ",
+          "claim": "The main text and the supplement are inconsistent: the main text says alpha_i weights the smoothness of neighbouring vertices, the supplement says a graph neural network does it.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Both statements are in the main text and agree. l.157-158: alpha_i 'controls the generated surface via weighting the smoothness of neighbouring vertices'; l.192-193: 'use GCN to predict the updated position of each vertex v_i', and alpha_i for Loop Subdivision'."
+        },
+        {
+          "reviewer": "Reviewer_f9sZ",
+          "claim": "The paper does not compare against state-of-the-art implicit representations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "ConvONet, which l.241 calls SOTA on voxel upsampling, is the main baseline in Tables 1, 2 and 3. Fig. 8 also compares with MT and MC run on the ground-truth SDF. SIREN is absent, but it fits single shapes rather than generating shapes from inputs."
+        },
+        {
+          "reviewer": "Reviewer_f9sZ",
+          "claim": "The approach is sequential, so topology errors of the implicit stage cannot be fixed by the mesh stage.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.208-209: 'DMTet is end-to-end trainable. We supervise all modules to minimize the error defined on the final predicted mesh'. l.147-151 pass the surface-loss gradient through MT to the SDF, and l.179-181 let the refinement flip SDF signs. The claim holds only at inference, where Loop subdivision keeps the topology."
+        },
+        {
+          "reviewer": "Reviewer_f9sZ",
+          "claim": "Eq. 6 (L_def) is a smoothness loss.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.224-225 define L_def as the sum of ||Delta v_i||^2, an L2 penalty on the size of the vertex deformations, not a smoothness term."
+        },
+        {
+          "reviewer": "Reviewer_f9sZ",
+          "claim": "The method cannot guarantee output free of self-intersections.",
+          "checked_against_paper": "correct",
+          "evidence": "No term in Sec. 3.3 enforces it. The authors 'leave the guarantee of no self-intersection for future work' and later say only the optional surface subdivision can cause it."
+        },
+        {
+          "reviewer": "Reviewer_hY1b",
+          "claim": "Neural Subdivision, NDF, SAL and Analytic Marching are relevant and not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "None of the four is among the 54 references of the submission. The camera-ready cites all four."
+        },
+        {
+          "reviewer": "Reviewer_hY1b",
+          "claim": "Fig. 6 shows only eight out-of-distribution inputs, and their selection is unexplained.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 6 shows eight voxel inputs with no selection rule. The rebuttal says 20 shapes were downloaded and that results on non-mammals such as frog and crocodile are 'not perfect'."
+        },
+        {
+          "reviewer": "Reviewer_YB43",
+          "claim": "The method is evaluated on only one dataset.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Sec. 4.2 and Table 3 use all 13 ShapeNet categories for point-cloud reconstruction. Only the voxel task uses a single dataset."
+        },
+        {
+          "reviewer": "Reviewer_Axy8",
+          "claim": "No example clearly demonstrates the claimed topological changes.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text argues it at l.147-151 and defers 'a more detailed analysis' to the supplement. The authors pointed to supplement Fig. A and added a 2D video."
+        },
+        {
+          "reviewer": "Reviewer_Axy8",
+          "claim": "Much of the evaluation uses a dataset the authors collected.",
+          "checked_against_paper": "correct",
+          "evidence": "l.233: 1562 TurboSquid animal models collected by the authors. Checklist 4(c): the data are not released because they are proprietary."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_f9sZ's only edit is dated 2021-07-21, the posting day, before the rebuttal of 2021-08-10. No other A review was edited. f9sZ (2021-08-13): 'I still do not think this paper is ready for publication'; (2021-09-01): 'Ultimately, it is the call of area chairs.' Reviewer_YB43 (2021-08-22): 'I agree with the authors' response to the points raised in the main review.' Reviewer_hY1b and Reviewer_Axy8 posted nothing after the rebuttal.",
+        "what_convinced_or_not": "The rebuttal added a ShapeNet voxel-upsampling table (mean L1 Chamfer 2.04 against ConvONet's 2.28), a video of all 20 downloaded out-of-distribution shapes, a voxel-perturbation GIF and answers to YB43's clarification questions. It moved no score. f9sZ was not convinced and shifted to guarantees, 'underlying principles' and venue fit ('submitting it to a vision conference'). YB43, already at 8, sided with the authors against f9sZ."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'This paper received mostly positive reviews, with the exception of reviewer f9sZ.' The AC 'tends to agree that f9sZ's concerns are not sufficient to hold back publishing this work', citing 'feedback from the other reviewers' (in the record, only Reviewer_YB43's post of 2021-08-22) and 'the message to the area chair', which is not in the record. The meta-review engages no technical point; it asks the camera-ready to clarify contribution and novelty and to add the rebuttal experiments.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or above (mean 6.0), on clear gains over ConvONet, DECOR-GAN and DefTet in Tables 1-3 and the user study.",
+        "A's reviewers judged the combination of DefTet's grid, an SDF and MT novel enough (YB43 'The method is novel', hY1b 'sufficient novelty', Axy8 'itself interesting').",
+        "The lone detractor, Reviewer_f9sZ, rested on claims the paper contradicts; Reviewer_YB43 rebutted them and the AC set f9sZ aside.",
+        "Novelty concerns over DefTet kept Reviewer_hY1b and Reviewer_Axy8 at 6, so no one argued for more than a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        5,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ztsv",
+        "Reviewer_QWSU",
+        "Reviewer_MFHh"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_ztsv), 6 (Reviewer_mF8Y), 5 (Reviewer_QWSU) and 7 (Reviewer_MFHh), a spread of two points. QWSU's 5 at confidence 5 is the lowest, but QWSU raised it after the rebuttal, and its remaining objections are shared by ztsv and the AC. MFHh's 7 rests on a thin review but is only one point above the others."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_MFHh",
+          "evidence": "The 7 rests on three one-line strengths ('The demonstrated results look good'). The four questions are minor; the first (why the baseline numbers differ from [16]) is answered by the Table 3 caption, which says all methods share one encoder. No discussion post; the review was edited on 2021-09-02 with no stated change."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QWSU",
+          "claim": "The 'differentiable MT layer' is the traditional MT algorithm with no modification.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 3.1.3 (l.133-151) applies MT [13] with the standard linear interpolation along edges. The only new element is the observation that the formula is evaluated only on edges whose endpoint signs differ. The authors: 'we don't modify the formulation of MT'."
+        },
+        {
+          "reviewer": "Reviewer_QWSU",
+          "claim": "Calling MT differentiable is a fundamental flaw, because no gradient flows when the edge endpoints share a sign.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.147-151: the interpolation 'is only evaluated when sign(s(va)) != sign(s(vb))', so the singularity never occurs and gradients reach SDF values and vertex positions. QWSU (2021-08-27): 'now I agree that the MT operation is differentiable by itself in practice'."
+        },
+        {
+          "reviewer": "Reviewer_QWSU",
+          "claim": "Lines 218-220 admit that only vertices near the iso-surface receive gradients.",
+          "checked_against_paper": "correct",
+          "evidence": "l.218-220: 'only the vertices that are close to the iso-surface in the tetrahedral grid receive gradients, while the other vertices do not.'"
+        },
+        {
+          "reviewer": "Reviewer_QWSU",
+          "claim": "The paper has no ablation of the deformable tetrahedral grid.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 3 has 'DMTet wo (Def, Vol., Surf.)' (mean L1 Chamfer 0.91) against 'DMTet wo (Vol., Surf.)' (0.81), and l.344-354 discuss it. Deformation is the largest gain inside DMTet (the two subdivisions add 0.81 to 0.77), which partly supports QWSU's suspicion that the grid, an existing technique, drives much of the result."
+        },
+        {
+          "reviewer": "Reviewer_QWSU",
+          "claim": "The paper has no ablation without the L_SDF term.",
+          "checked_against_paper": "correct",
+          "evidence": "The ablations remove deformation and the two subdivisions (Table 3, l.286-296) and the adversarial loss (Tables 1-2), never L_SDF. The authors conceded and promised one. Fig. 8 gives indirect evidence: DMTet without deformation beats MT run on the ground-truth SDF at the same number of SDF queries (l.338-341), which a model trained only on L_SDF at best matches. No one in B used it."
+        },
+        {
+          "reviewer": "Reviewer_ztsv",
+          "claim": "Ablations of L_sdf and L_def are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "No ablation row or paragraph removes either term (Table 3, l.286-296, l.342-361)."
+        },
+        {
+          "reviewer": "Reviewer_ztsv",
+          "claim": "The paper does not compare with MeshSDF.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The main paper has no MeshSDF row; [38] appears only in the text (l.38, l.147). The authors say the comparison is in supplement Sec. A, which is not in the PDF."
+        },
+        {
+          "reviewer": "Reviewer_ztsv",
+          "claim": "Unlike DefTet, the paper evaluates only reconstruction from 3D inputs, with no image-based tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 4 covers coarse voxels (4.1) and point clouds (4.2) only. The authors added a multi-view rendering video in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_ztsv",
+          "claim": "References [6] and [37] cite arXiv although both were published at conferences.",
+          "checked_against_paper": "correct",
+          "evidence": "[6] BSP-Net and [37] Convolutional Occupancy Networks are listed as arXiv preprints."
+        },
+        {
+          "reviewer": "Reviewer_mF8Y",
+          "claim": "MT is compared with MC only outside the learned pipeline.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 8 and Fig. 9 compare MT and MC run on ground-truth SDFs; DMC in Table 3 is a different pipeline. The authors promised the learned comparison for the revision."
+        },
+        {
+          "reviewer": "Reviewer_mF8Y",
+          "claim": "The task is one-to-one super-resolution, not shape synthesis.",
+          "checked_against_paper": "correct",
+          "evidence": "The generator (Sec. 3.2.1) takes only the input x and no noise. Table 1's own caption reads 'Animal Super Resolution'. The authors: 'our model learns 1-1 mapping'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_QWSU",
+          "Reviewer_ztsv"
+        ],
+        "evidence": "QWSU (2021-08-28): 'I raise my score to marginally below the acceptance threshold'; the review was edited 2021-08-28. ztsv (2021-08-29) stood at 'a borderline recommendation (very slightly towards negative)'; (2021-09-01) 'I will increase my score and vote for accepting this paper'; the review was edited 2021-09-01 and ends at 6. Reviewer_MFHh's review was edited 2021-09-02 with no post, so any change there is unknown. The AC: 'The paper initially received mixed reviews. After the rebuttal, three reviewers were positive while one remained negative.'",
+        "what_convinced_or_not": "QWSU accepted that MT is differentiable in practice, an argument already at l.147-151, and rose for 'the good results and practical meaning of the technique'. QWSU was not convinced on novelty or about the missing L_SDF ablation. ztsv was convinced by own 2D toy experiments that the local minima come from the Chamfer loss, not from MT/MC. The authors gave no new L_SDF numbers, only a promise for the revision."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'After the rebuttal, three reviewers were positive while one remained negative.' The AC lists the shared concerns (limited technical contribution: QWSU, mF8Y, ztsv; missing L_sdf ablation: QWSU, ztsv; no MT-MC evaluation: mF8Y) and 'shares these concerns'. It accepts 'this borderline case' for the engineering effort, the good results and the potential impact, echoing QWSU's final post, and asks for the ablations and the MC comparison in the camera-ready.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "After the rebuttal, three of four reviewers were positive (6, 6, 7) and Reviewer_QWSU was at 5; mean 6.0.",
+        "The rebuttal disposed of the false non-differentiability objection (QWSU conceded) and the topology doubt (Reviewer_ztsv's toy experiments).",
+        "Good results and practical value outweighed limited novelty: MT is used unmodified on DefTet's grid.",
+        "The missing L_SDF ablation and learned MC comparison made the AC call the case borderline; they became camera-ready requests, not grounds for rejection."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No guarantee against self-intersection or sub-grid topology errors; subdivision cannot repair topology (Reviewer_f9sZ)",
+    "No SIREN or hybrid-representation baselines (Poursaeed et al. ECCV 2020, H3DNet), and fit for an ML venue (Reviewer_f9sZ)",
+    "Robustness to perturbed voxel inputs; broken thin parts (Reviewer_f9sZ)",
+    "Missing citations: Neural Subdivision, NDF, SAL, Analytic Marching (Reviewer_hY1b) and Iso-Points (Reviewer_YB43)",
+    "Selection of the eight out-of-distribution inputs in Fig. 6 (Reviewer_hY1b)"
+  ],
+  "issues_only_b": [
+    "MT used unmodified, so 'differentiable MT' overstates the contribution (Reviewer_QWSU, Reviewer_ztsv)",
+    "No ablation of L_SDF or L_def: does the surface loss through MT work without SDF supervision? (Reviewer_QWSU, Reviewer_ztsv, AC)",
+    "No MC in the same learned pipeline and no MT/MC run time (Reviewer_mF8Y, AC)",
+    "No MeshSDF comparison in the main paper (Reviewer_ztsv)",
+    "One-to-one super-resolution rather than synthesis (Reviewer_mF8Y)",
+    "Baseline numbers differ from the DefTet paper (Reviewer_MFHh); LSGAN choice and outdated arXiv citations (Reviewer_ztsv)"
+  ],
+  "shared_issues": [
+    "Incremental over DefTet; components taken from prior work (A: Reviewer_Axy8, Reviewer_hY1b, Reviewer_YB43, Reviewer_f9sZ; B: Reviewer_ztsv, Reviewer_QWSU, Reviewer_mF8Y; both ACs)",
+    "Whether gradients through MT can change topology, given gradients only near the surface (A: Reviewer_Axy8, Reviewer_YB43; B: Reviewer_QWSU, Reviewer_ztsv)",
+    "Narrow evaluation: one proprietary dataset for the voxel task (A: Reviewer_YB43, Reviewer_Axy8); no image, scene or human tasks (B: Reviewer_ztsv, Reviewer_mF8Y, Reviewer_MFHh)",
+    "Long training time on 4 V100s (A: Reviewer_YB43; B: Reviewer_ztsv)",
+    "Unclear f(v_i) output of the GCN in Eq. 1-2 (A: Reviewer_YB43; B: Reviewer_MFHh)",
+    "Clear gains over the baselines (all reviewers except Reviewer_f9sZ, who called them 'ok')"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster, with the same mean rating (6.0) and for the same reasons. The results are clear. DMTet has lower Chamfer distance than ConvONet, DECOR-GAN and DefTet (Tables 1 and 3) and wins 74% to 95% of user-study comparisons against baselines. The core idea is modest: standard Marching Tetrahedra on an SDF stored on DefTet's deformable grid, trained end-to-end. Both committees saw both facts. In both, the results carried the decision and the modest novelty kept it at poster. Each committee also had one confidence-5 detractor whose main technical objection the paper contradicts. In A, Reviewer_f9sZ (4) alleged a text-supplement inconsistency, no state-of-the-art implicit baseline, a 'sequential' pipeline and a 'smoothness' L_def. Lines 191-193, Tables 1 and 3, lines 208-209 and lines 224-225 refute each claim. Reviewer_YB43 (8) rebutted f9sZ, and the AC set f9sZ aside. In B, Reviewer_QWSU called MT non-differentiable, conceded after the rebuttal, and rose to 5. B kept two correct points from QWSU: MT is used unmodified, and no ablation removes L_SDF. B's AC called the case borderline and made the missing ablations camera-ready requests. So the committees weighed the same facts in a different tone, generous in A and sceptical in B, but the difference did not reach the tier. B's record misses two things in the paper. Table 3 already ablates the deformable grid. Fig. 8 shows DMTet without deformation beating MT on the ground-truth SDF at the same number of SDF queries, a ceiling for SDF-only regression, so the surface loss adds something beyond L_SDF.",
+  "candidate_reasons": [
+    "Strong results outweighed modest novelty",
+    "Detractor objections contradicted by paper",
+    "AC discounted lone detractor",
+    "Rebuttal refuted non-differentiability claim",
+    "Missing ablations deferred to camera-ready",
+    "Same facts, different novelty tone"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf l.147-151 (MT gradient argument)",
+    "paper_submitted.pdf l.157-158 and l.191-193 (alpha_i and the GCN)",
+    "paper_submitted.pdf l.208-209 and l.218-226 (end-to-end loss, L_SDF, L_def)",
+    "paper_submitted.pdf Tables 1 and 2 (animal results, user study)",
+    "paper_submitted.pdf Table 3 ('wo Def' rows) and Fig. 8 (oracle MT/MC, l.335-341)",
+    "paper_submitted.pdf Fig. 6 (eight out-of-distribution inputs)",
+    "Reviewer_f9sZ review and posts of 2021-08-13, 2021-08-23 and 2021-09-01",
+    "Reviewer_YB43 post of 2021-08-22",
+    "Authors' reply to Reviewer_hY1b (20 downloaded shapes)",
+    "Reviewer_QWSU posts of 2021-08-27 and 2021-08-28",
+    "Reviewer_ztsv posts of 2021-08-29 and 2021-09-01",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

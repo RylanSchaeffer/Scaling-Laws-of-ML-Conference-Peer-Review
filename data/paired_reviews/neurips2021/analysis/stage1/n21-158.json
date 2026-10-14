@@ -1,0 +1,146 @@
+{
+  "pair_id": "n21-158",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 5],
+      "confidences": [4, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_XAps", "Reviewer_qZwR", "Reviewer_rGKf"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Scores 5 to 7 around a mean of 6.0. Reviewer_rGKf (5, confidence 4) is lowest, but objects only to the episodic memory and writes 'I am not fighting for rejection'. Reviewer_XAps (7) is one point above the two 6s."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_vJkd", "claim": "Figure 8 shows a minor effect of the episodic memory on learning speed and an insignificant effect on final performance, on only 3 of 17 SMAC maps.", "checked_against_paper": "correct", "evidence": "Figure 8 has corridor, 2s3z and 3s5z only. EMC-wo-M rises later than EMC on all three and reaches the same final win rate; on corridor it ends level with or above EMC at 2.0M."},
+        {"reviewer": "Reviewer_vJkd", "claim": "MAVEN is missing from Figures 4, 5 and 6.", "checked_against_paper": "correct", "evidence": "The legends of Figure 4 (gridworld win rate), Figure 5 (predator-prey) and Figure 6 (maps best) have no MAVEN. MAVEN appears only in Figure 7."},
+        {"reviewer": "Reviewer_rGKf", "claim": "Appendix B shows that the greedy episodic memory leads to sub-optimal solutions in some benchmarks.", "checked_against_paper": "correct", "evidence": "The appendix is not in the files, but lines 362-364 concede it: the episodic memory 'may result in local optimal policies, which contributes to EMC's underperformance in several maps (see Appendix B.)'. The 17-map table the authors sent to vJkd agrees: at 2.0M, EMC is below EMC-wo-M on 2c_vs_64zg (62.5 vs 90.6), MMM2 (78.1 vs 85.9), 5m_vs_6m (46.9 vs 71.9) and 10m_vs_11m (75.0 vs 93.8)."},
+        {"reviewer": "Reviewer_rGKf", "claim": "Eqs. 4 and 5 condition the Q-function on the state s, but the paper elsewhere uses histories.", "checked_against_paper": "correct", "evidence": "Eqs. 4, 5 and 8 write Q_tot(s, a; θ); line 114 says 'we use Qtot(τ, a; θ) instead of Qtot(s, a; θ)'. Reviewer_XAps flagged the same point and the switch from Q_tot^all (Eq. 4) to Q_tot (Eqs. 5, 8). Cosmetic."},
+        {"reviewer": "Reviewer_rGKf", "claim": "References [18] and [19] refer to the same paper.", "checked_against_paper": "correct", "evidence": "Both are Oliehoek and Amato, 'A concise introduction to decentralized POMDPs', Springer 2016 (lines 416-419). Reviewer_DyLw in B found the same."},
+        {"reviewer": "Reviewer_qZwR", "claim": "The paper considers exploration only in a dense-reward setting, unlike EITI/EDTI.", "checked_against_paper": "incorrect", "evidence": "The didactic gridworld pays r = 10 only when both agents reach the goal at the same time (lines 258-260), a sparse reward. The point holds only for SMAC's shaped reward. The authors made this correction, and qZwR raised the score to 6."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_XAps", "Reviewer_qZwR"],
+        "evidence": "XAps edited 2021-08-30 and wrote the same day: 'the authors addressed well my concerns so I have decided to raise my score' (final 7, so at most 6 before). qZwR edited 2021-08-27: 'I raise my score to 6' (at most 5 before). rGKf edited 2021-09-10: 'I am still not completely satisfied with the theoretical motivation and will keep my score' (5); on 2021-09-12: 'I want the episodic memory part to be removed ... I am not fighting for rejection.' vJkd did not edit and did not reply. Before the rebuttal at most two of four scores were 6 or more; after it, three.",
+        "what_convinced_or_not": "XAps accepted the new EMC-Decentralized baseline on three super-hard maps and the answers on the max-return memory. qZwR accepted tables in which QPLEX-Global and EMC-wo-C fail on corridor, 3s5z_vs_3s6z and 6h_vs_8z, and the sparse-reward correction. rGKf was not convinced that the memory adds value. The 17-map memory table sent to vJkd shows EMC below EMC-wo-M at 2.0M on four maps, while the authors wrote 'EMC significantly outperforms EMC-wo-M'; no reviewer replied to it. The stochastic-gridworld tables (ξ = 0, 5, 10, 50) went to vJkd and rGKf; EMC wins up to ξ = 10 and every method fails at ξ = 50."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts with three of four scores at 6 or more. 'All of the reviewers appreciated that the proposed idea is insightful and well-motivated' overstates rGKf ('still not completely satisfied with the theoretical motivation') and vJkd (memory 'less well-motivated'). 'The reviewers are generally satisfied with this result' on stochasticity is the AC's inference: vJkd, who asked for it, never replied, and rGKf kept 5. The AC names the open memory concern and asks for the new result in the camera-ready.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or more after XAps and qZwR raised their scores on the new baselines.",
+        "Strong SMAC results on super-hard maps (corridor, 3s5z_vs_3s6z) and a curiosity bonus that no reviewer showed to be wrong.",
+        "The stochastic-gridworld result, which the AC treats as answering the memory concern.",
+        "The only score below 6 (rGKf) objected to the memory module alone and was 'not fighting for rejection'."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 5, 7],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_DyLw"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Scores 5 to 7 around a mean of 6.25, all at confidence 4. Reviewer_hMh6 (5) gives the only score below 6, on novelty and the ablation, and did not take part in the discussion."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_DEY8", "evidence": "The summary says the method is 'based on sharing local observations among agents'; EMC's bonus is the prediction error of individual Q-values (Eq. 3) and agents share no observations. The verdict 'simple, almost straightforward' names no prior method. The reviewer admits 'I don't have much experience with Starcraft problems' at confidence 4. The one specific request (a stochastic gridworld) was useful."},
+        {"reviewer": "Reviewer_hMh6", "evidence": "Partly. The claim that curiosity is not key rests on the two easy ablation maps and ignores corridor, where EMC-wo-C stays at 0 (Figure 8a; lines 348-349). The claim that Eq. 2 leaves x undefined is wrong (lines 184-186). The novelty argument misdescribes the cited work. The reviewer did not reply to the rebuttal."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_DyLw", "claim": "The didactic example and predator-prey lack MAVEN, and WQMIX is not run on the didactic example although line 276 says 'other methods failed'.", "checked_against_paper": "correct", "evidence": "Didactic baselines are VDN, IQL, QMIX, QPLEX, QPLEX-Global and QPLEX-Local (lines 264-269; Figure 4 legend). Figure 5 has CW-/OW-QMIX but no MAVEN, and line 302 says WQMIX is the only baseline that solves predator-prey. In the rebuttal, WQMIX solves the gridworld at p = 0 and fails at p = 0.5 and 2. The p = 0 table sent to B gives EMC-wo-C and QPLEX 100 at 0.5M; the same table sent to A gives both 0."},
+        {"reviewer": "Reviewer_DyLw", "claim": "Figure 6 is misleading: it counts maps where a median is highest, with no test of significance.", "checked_against_paper": "correct", "evidence": "Caption: maps where 'the algorithm's median test win rate is the highest by as least 1/32'. No spread enters the count. The authors' replies did not address this point."},
+        {"reviewer": "Reviewer_DyLw", "claim": "Line 353 misreads Figure 8: curiosity decides corridor, and the memory gives only a slight speed advantage.", "checked_against_paper": "correct", "evidence": "In Figure 8a EMC-wo-C stays at 0 while EMC-wo-M reaches EMC's final level by 2.0M. In Figures 8b-c EMC-wo-M is slower early and converges with EMC."},
+        {"reviewer": "Reviewer_d4Cx", "claim": "The memory description implies exact matching only.", "checked_against_paper": "correct", "evidence": "Eq. 6 updates H 'if H(φ(st)) ∈ M', and lines 230-235 describe a table lookup by projected key with no distance or k-NN. The distance threshold δ and nearest-neighbour match appear only in the authors' reply of 2021-08-20."},
+        {"reviewer": "Reviewer_d4Cx", "claim": "The WQMIX curves look worse than those in the WQMIX paper.", "checked_against_paper": "not_checked", "evidence": "The WQMIX paper is not in the files. The authors' reply table gives the same 'in our paper' values for 3s5z and 5m_vs_6m on different time axes (OW-QMIX 63.5, 71.8, 75.9; CW-QMIX 31.9, 51.7, 54.1, 61.2). d4Cx accepted it: 'I had missed some hyperparameter differences.'"},
+        {"reviewer": "Reviewer_hMh6", "claim": "In 2 of 3 ablation maps EMC-wo-C performs on par with EMC, so curiosity is not key.", "checked_against_paper": "correct", "evidence": "The reading is right for 2s3z and 3s5z (Figure 8b-c), and lines 346-348 say so. These are the easy maps; on corridor EMC-wo-C stays at 0. The inference does not follow."},
+        {"reviewer": "Reviewer_hMh6", "claim": "Episodic Curiosity through Reachability (ICLR 2019) already combines prediction-error reward shaping with episodic memory.", "checked_against_paper": "incorrect", "evidence": "That work uses an episodic memory of observations to compute a reachability novelty bonus, with no prediction error. EMC uses Q-value prediction error for the bonus (Eq. 3) and the memory for Monte-Carlo value targets (Eqs. 5-8). The authors' reply made this point."},
+        {"reviewer": "Reviewer_hMh6", "claim": "Terms in Eq. 2, such as x, are not defined.", "checked_against_paper": "incorrect", "evidence": "Lines 184-186 define x_i ⊕ x'_{-i} as general notation and x'_{-i} as the other agents' elements. The primed τ' and a' are the other agents' sampled histories and actions under the expectation."},
+        {"reviewer": "Reviewer_DEY8", "claim": "The method is 'based on sharing local observations among agents'.", "checked_against_paper": "incorrect", "evidence": "The intrinsic reward is the prediction error of individual Q-values (Eq. 3). The paper describes no observation sharing."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_DyLw"],
+        "evidence": "DyLw replied on 2021-08-14 and 2021-08-24 and edited the review on 2021-08-30: 'convinced that the the discussed effect is significant', with four conditions on the camera-ready. The pre-rebuttal text of the review says the reviewer 'may be swayed to increase the rating' and otherwise pointed to 'resubmission', which implies a score below 6; the final is 7. DEY8 (2021-08-19): 'I'll stick to my score of weak acceptance.' d4Cx asked follow-ups on 2021-08-18 and did not edit. hMh6 did not reply or edit.",
+        "what_convinced_or_not": "DyLw was convinced by ablations in which a TD-error bonus (EMC-w-TD), a centralized-critic bonus (EMC-Centralized) and an individual-error bonus (EMC-w-Ind) fail on corridor, 3s5z_vs_3s6z and 6h_vs_8z, and by a noisy-reward gridworld. DyLw still called the case against EMC-w-Ind 'thin', rejected the 'opposite objectives' argument, and proposed an RND reading; the suggested IQL baseline was not run. The stochastic gridworld satisfied DEY8. d4Cx's fragility points (the agent must reach the exploration frontier; the bonus vanishes at local optima) got an ε-greedy argument and no data."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences. 'The reviewers were satisfied with the authors responses (except one reviewer who did not respond)' sets aside hMh6 (5) and overstates DEY8 ('I still don't think the contribution of the paper is very strong'). 'The paper clearly written' conflicts with hMh6 ('organization and technical formulation are weak'), d4Cx (asks for language editing) and DEY8 (Section 4.2 writing 'significantly lower'). The request to explain 'how all the constituent parts fit together' echoes DyLw's conditions.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or more after DyLw moved to 7 on the new ablations.",
+        "Strong results across 17 SMAC maps, with clear wins on corridor and 3s5z_vs_3s6z.",
+        "The only score below 6 (hMh6, novelty) was not defended in discussion, and the AC set it aside.",
+        "The remaining concerns were judged to be presentation fixes: explain 'how all the constituent parts fit together'."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Remove the episodic memory as a greedy heuristic that adds no value (rGKf)",
+    "A decentralized Q^ext baseline to test the counterfactual term of Eq. 2 (XAps)",
+    "Why maximum returns from outdated policies do not break learning (XAps)",
+    "How hyper-parameters were chosen and at what cost (rGKf)",
+    "Extra parameters and updates of the curiosity module (XAps)",
+    "Why separate Q-networks for curiosity, and why the memory is global but the bonus local (rGKf)"
+  ],
+  "issues_only_b": [
+    "Why not use the TD error of Q_tot^ext as the bonus, and a true global-curiosity ablation (DyLw)",
+    "WQMIX missing from the didactic task; exploration confounded with non-monotonic values (DyLw)",
+    "Figure 6 counts medians with no test of significance (DyLw)",
+    "Limited novelty: a combination of existing modules (hMh6, DEY8)",
+    "Memory described as exact matching; WQMIX baselines weaker than published (d4Cx)",
+    "The bonus needs the agents to reach the frontier and vanishes at local optima (d4Cx)",
+    "Baseline implementations and reproducibility (hMh6)"
+  ],
+  "shared_issues": [
+    "The episodic memory is weakly motivated and loosely tied to the curiosity module (vJkd, rGKf in A; DyLw, hMh6 in B)",
+    "The episodic memory in stochastic environments (vJkd, rGKf in A; DEY8 in B); both got the same ξ = 0, 5, 10, 50 tables",
+    "MAVEN missing from the gridworld and predator-prey figures (vJkd in A; DyLw in B)",
+    "What is specific to MARL; the idea would apply to single-agent RL (XAps, vJkd in A; d4Cx, DyLw in B)",
+    "How the bonus produces 'coordinated' exploration (XAps, qZwR in A; DyLw in B)",
+    "Sparse-reward exploration (qZwR in A; d4Cx in B)",
+    "Scalability with the number of agents (qZwR in A; DEY8 in B)",
+    "Notation and typos: s versus τ, Q_tot^all, 'orediction', 'Inspires', duplicate references [18] and [19] (XAps, rGKf in A; DyLw, d4Cx, hMh6 in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. Each saw a curiosity bonus that no reviewer showed to be wrong, strong results on the super-hard SMAC maps, and doubts about the episodic memory. In each, the rebuttal's new ablations turned a split into a three-to-one majority: Reviewer_XAps (to 7) and Reviewer_qZwR (to 6) rose in A, and Reviewer_DyLw rose to 7 in B. In each, the only 5 did not push for rejection. Reviewer_rGKf wrote 'I am not fighting for rejection', and Reviewer_hMh6 did not reply. Means are 6.0 (A) and 6.25 (B), and both ACs followed them. B's discussion was deeper, mainly DyLw's challenge to the design of the bonus, but it ended at the same weighting. The memory, which both committees doubted, got the least scrutiny. Only A received the 17-map memory ablation. It shows EMC below EMC-wo-M at 2.0M on four maps, for example 46.9 against 71.9 on 5m_vs_6m, yet the authors wrote 'EMC significantly outperforms EMC-wo-M'. No one in A replied, and A's AC called the reviewers 'generally satisfied'. In B, d4Cx accepted a WQMIX table that repeats most of the same values for two different maps.",
+  "candidate_reasons": [
+    "same evidence weighted the same",
+    "rebuttal ablations raised pivotal scores",
+    "lone detractor did not fight",
+    "strong results on hard maps",
+    "memory doubts treated as minor",
+    "rebuttal tables accepted unchecked"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_XAps reply 2021-08-30",
+    "Reviewer_qZwR post-rebuttal paragraph (edited 2021-08-27)",
+    "Reviewer_rGKf UPDATE paragraph and reply 2021-09-12",
+    "Reviewer_DyLw post-rebuttal comment (edited 2021-08-30) and replies 2021-08-14, 2021-08-24",
+    "Authors' reply to Reviewer_vJkd, Table 5 (17-map memory ablation)",
+    "Authors' reply to Reviewer_d4Cx, Tables 1-2 (WQMIX)",
+    "Authors' replies with the p = 0 gridworld table (vJkd in A, DyLw in B)",
+    "paper_submitted Figure 8 and lines 346-354",
+    "paper_submitted lines 362-364",
+    "paper_submitted Eq. 6 and lines 230-235",
+    "paper_submitted lines 255-277 and Figures 4-6",
+    "paper_submitted lines 184-186",
+    "paper_submitted references [18] and [19] (lines 416-419)"
+  ]
+}

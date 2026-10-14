@@ -1,0 +1,139 @@
+{
+  "pair_id": "n21-192",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 8, 6],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_kbeB", "Reviewer_wGNF", "Reviewer_5sB5"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 8, all at confidence 4; no score is more than one point from the next. The top score, Reviewer_wGNF's 8, rests on three short pros and four cons that apply to any JFT-pretrained model, so its text does not explain why it is the highest."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_QFfS", "claim": "The paper calls 32 experts a 'sweet spot' but gives no discussion or results for other expert counts.", "checked_against_paper": "correct", "evidence": "Line 131: 'we found the total number of experts E = 32 to be the sweet spot in our setting'. The main text reports no other expert count. The authors pointed to ImageNet-21k ablations in Appendix E.6, which is not in the files."},
+        {"reviewer": "Reviewer_QFfS", "claim": "Appendix Table 8 gives the 15B model 94.24% on ImageNet instead of 90.24%, and appendix Table 3 has a broken citation [54].", "checked_against_paper": "not_checked", "evidence": "paper_submitted.pdf holds the main text and checklist only (12 pages); the appendix is not in the files. The authors conceded both typos. Main-text Table 2 gives 90.24%."},
+        {"reviewer": "Reviewer_kbeB", "claim": "Appendix Table 8: ViT-L/16 (323.1M parameters, 87.12%) beats V-MoE-B/16 Last-2 (393.3M, 85.39%), so V-MoE uses parameters inefficiently.", "checked_against_paper": "not_checked", "evidence": "The appendix is not in the files. The paper measures cost in FLOPs and TPU-days, not parameters (Table 2, lines 159-162), so the point is outside the paper's claims; the authors said so in their reply."},
+        {"reviewer": "Reviewer_kbeB", "claim": "Random routers are tested only at inference, not in training.", "checked_against_paper": "correct", "evidence": "Lines 267-268: 'we replace, after training, one router at a time with a uniformly random router'. The authors replied that a random router in training did worse than a dense model, but they did not add the result."},
+        {"reviewer": "Reviewer_wGNF", "claim": "Few-shot evaluation keeps the pre-trained body fixed and fits a new linear head, after pre-training on labels that cover the same classes.", "checked_against_paper": "correct", "evidence": "Line 118 ('linear few-shot learning on fixed representations') and lines 164-166 ('extract a fixed representation'). The authors' reply, 'the few-shot setup is not related to freezing the body', contradicts their own text."},
+        {"reviewer": "Reviewer_wGNF", "claim": "ImageNet validation images may leak into the 3B-image pre-training set, because de-duplication is unreliable at that scale.", "checked_against_paper": "correct", "evidence": "Partly correct. Line 142 states de-duplication of JFT-300M against all validation and test sets; footnote 1 adds that also removing ImageNet training images had a negligible effect. Section 3.6 (JFT-3B, lines 189-194) does not mention de-duplication. The claim that de-duplication is unreliable at 3B is an assertion without evidence."},
+        {"reviewer": "Reviewer_5sB5", "claim": "The code is proprietary.", "checked_against_paper": "correct", "evidence": "Checklist 3(a): '[No] The code and the data are proprietary.' The camera-ready later links released code."},
+        {"reviewer": "Reviewer_5sB5", "claim": "The performance is only comparable to current approaches.", "checked_against_paper": "correct", "evidence": "Table 2: V-MoE-15B 90.24% against MPL 90.20% and NFNet-F4+ 89.20%. MPL used 22.5k TPUv3-core-days against 16.8k for V-MoE-15B."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_kbeB"],
+        "evidence": "Reviewer_kbeB edited the review on 2021-09-01 and wrote the same day: 'By reading the author's response and comments raised by other reviewers, I change my score to weak acceptance.' The final score is 6, so the earlier one was lower. Reviewer_5sB5 edited on 2021-08-26: 'I stand by my rating of 6'. Reviewer_QFfS replied on 2021-08-25 'Rest all sounds good to me' and did not edit. Reviewer_wGNF's edit (2021-07-26) came before the author responses (2021-08-09), and wGNF did not reply.",
+        "what_convinced_or_not": "kbeB named no specific answer. The substantive replies were that a random router in training did worse than a dense model and that the paper targets FLOPs, not parameters. kbeB still asked for results on a public dataset. 5sB5 was not moved by the argument that a known model in a new domain is a contribution. QFfS was satisfied by the answers on training details."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three short paragraphs. The AC restates the shared reproducibility point (proprietary data; 'the code won't be release', which matches checklist 3(a)) and Reviewer_5sB5's view that MoE in vision is of interest to the community. Accept matches four scores of 6 or more. No sign of the AC's own reading.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers scored 6 or more after the rebuttal, and none found an error.",
+        "The first working sparse MoE for vision at this scale: a 15B model at 90.24% on ImageNet, level with MPL (90.20%) at less TPU time.",
+        "Limited novelty over GShard and Switch (QFfS, kbeB, 5sB5) was judged acceptable, because making MoE work in vision has value.",
+        "The AC named proprietary data and code as a limit on impact, not as a reason to reject."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 9, 7],
+      "confidences": [4, 3, 5, 5],
+      "reviews_edited_after_posting": ["Reviewer_fg9p"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Zhow",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "9 ('Top 15% of accepted NeurIPS papers', confidence 5) is two points above the next score. The praise is generic ('It is a submission of high-quality'; significance 'Strong as I can tell'), and the review itself says the work is 'not strongly original' and that deployment difficulty 'may block its higher interest'. The review is attentive, not careless: its two specific points (credit to GShard and Switch, saturation at H/14) are correct, and Zhow followed up on 2021-08-16. The 9 did not change the outcome; the AC accepted as a poster."
+      },
+      "inattentive_reviews": [
+        {"reviewer": "Reviewer_mFJK", "evidence": "Four short generic points ('It is not a new idea, but the work is technically sound'), no question, confidence 3 with math not checked, no reply in the discussion. The authors wrote that there were 'no specific misunderstandings to clarify or points to discuss'. The review claims 12 hours."},
+        {"reviewer": "Reviewer_fg9p", "evidence": "Asked what x means at line 81, although lines 63 and 84-85 define it. Read 'TOPk after the softmax' as computing all experts first, although line 81 applies the softmax to the router logits and lines 66-67 say unused experts are not computed. 4 hours. The below-threshold first score rested on these questions; the rebuttal pointed back to the text, and fg9p raised the score to 6."}
+      ],
+      "checkable_claims": [
+        {"reviewer": "Reviewer_fg9p", "claim": "x in g(x) = TOPk(softmax(Wx + noise)) at line 81 is not defined, and the notation is confusing.", "checked_against_paper": "incorrect", "evidence": "Line 63 defines x in R^D as the input to the layer; lines 84-85: 'x is a representation of an image token at some layer of the network'. Lines 207-209 define X as a batch of such rows."},
+        {"reviewer": "Reviewer_fg9p", "claim": "Applying TOPk after the softmax means all experts are computed first, so no compute is saved.", "checked_against_paper": "incorrect", "evidence": "The softmax acts on the router logits Wx (line 81), not on expert outputs; lines 66-67: 'unused experts need not be computed'. The phrase 'softmax over experts weights' at line 86 is loose, but the formula is clear."},
+        {"reviewer": "Reviewer_Zhow", "claim": "Lines 86-88 suggest that softmax-before-top-k routing is new, but GShard and Switch already use it.", "checked_against_paper": "correct", "evidence": "Lines 86-88 present the order as 'the difference between previous formulations [38]' and do not cite GShard [28] or Switch [18] there. The authors conceded; the camera-ready adds a citation to that sentence."},
+        {"reviewer": "Reviewer_Zhow", "claim": "Fig. 3 shows the gain stalling ('overfitting') at H/14.", "checked_against_paper": "correct", "evidence": "As saturation, not overfitting. Table 2: V-MoE-H/14 Every-2 88.08% equals ViT-H/14 88.08% on ImageNet fine-tuning; Last-5 gives 88.25%. Table 1 VTAB at H/14: 77.6 +/- 0.2 against 77.8 +/- 0.4. Line 181 still says V-MoE 'performs better than dense counterparts'."},
+        {"reviewer": "Reviewer_Zhow", "claim": "The number of experts is fixed at 32, with no results for other counts.", "checked_against_paper": "correct", "evidence": "Line 131 fixes E = 32 as the 'sweet spot'; the main text reports no other count. The authors told Zhow they 'cannot answer this question with concrete numbers', while in A they pointed Reviewer_QFfS to ImageNet-21k ablations in Appendix E.6."},
+        {"reviewer": "Reviewer_pW2k", "claim": "The model achieves state-of-the-art performance on ImageNet.", "checked_against_paper": "correct", "evidence": "Table 2: 90.24% against MPL 90.20%, a tie at the top in the submission."},
+        {"reviewer": "Reviewer_pW2k", "claim": "ImageNet validation images may leak into JFT-3B, because de-duplication is unreliable at that scale.", "checked_against_paper": "correct", "evidence": "Partly correct, as for Reviewer_wGNF in A: line 142 states de-duplication for JFT-300M only, and Section 3.6 on JFT-3B is silent. The unreliability claim has no evidence."}
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_fg9p"],
+        "evidence": "Reviewer_fg9p edited the review on 2021-08-30 and wrote the same day: 'my concerns are addressed. I'd like to update my score and recommend acceptance.' The final score is 6, so the earlier one was lower. Reviewer_Zhow asked follow-ups on 2021-08-16, received latency plots (external image links) and no expert-count numbers on 2021-08-20, and did not edit. Reviewer_mFJK and Reviewer_pW2k did not reply or edit.",
+        "what_convinced_or_not": "fg9p's questions were about notation and the routing order. The authors pointed to definitions already in the paper and gave a worked softmax example. Zhow got only anecdotes on the expert count and kept the 9."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences are copied word for word from Reviewer_pW2k ('The combination of MoE and spatial dynamic computation is interesting and smart. The experimental study of this paper is valuable to the community.'). 'All the reviewers agree that this submission made a significant contribution' overstates fg9p (6) and mFJK ('not a new idea'). The AC names limited originality and accepts. The ethics reviews and Zhow's 9 are not mentioned.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers scored 6 or more after the rebuttal, with the two confidence-5 reviewers at 9 and 7.",
+        "A state-of-the-art-level ImageNet result and Batch Prioritized Routing, which the AC called 'interesting and smart' in Reviewer_pW2k's words.",
+        "Limited originality, named by mFJK, Zhow, pW2k and the AC, was outweighed by the experimental study.",
+        "fg9p's presentation questions were answered in the rebuttal, and fg9p raised the score to 6.",
+        "Neither ethics reviewer recommended rejection."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Code not released (QFfS, 5sB5, AC)",
+    "Parameter efficiency against dense ViT, from appendix Table 8 (kbeB)",
+    "Random routing during training, and MoE for CNNs (kbeB)",
+    "What 'few-shot' means after JFT pre-training (wGNF)",
+    "Auxiliary loss, optimiser, schedule and epoch details for the 15B model (QFfS)"
+  ],
+  "issues_only_b": [
+    "Notation and presentation of the routing function and Figure 1 (fg9p)",
+    "Credit to GShard and Switch for softmax-before-top-k (Zhow)",
+    "Latency and accuracy at small batch sizes (Zhow)",
+    "Fine-tuning gains saturate at H/14 (Zhow)",
+    "Consent, provenance and bias in JFT, from two ethics reviewers (Ethics_Reviewer_17Tc, Ethics_Reviewer_1fGj)"
+  ],
+  "shared_issues": [
+    "Limited novelty over NLP sparse MoE (QFfS, kbeB, 5sB5 in A; mFJK, Zhow, pW2k and the AC in B)",
+    "Proprietary JFT data limits reproducibility (wGNF and the AC in A; pW2k and Ethics_Reviewer_17Tc in B)",
+    "Only 32 experts explored (QFfS in A; Zhow in B)",
+    "Cost and difficulty of training or deploying the model (wGNF, 5sB5 in A; Zhow in B)",
+    "ImageNet label errors and leakage into JFT-3B, in near-verbatim text (wGNF in A; pW2k in B)",
+    "Societal impact limited to energy (5sB5 in A; Ethics_Reviewer_1fGj in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. After the rebuttal every reviewer scored 6 or more (A: 7, 6, 8, 6; B: 6, 7, 9, 7), and no reviewer found an error. Both weighed the same trade-off. Against the paper: a direct port of NLP sparse MoE to ViT, proprietary data and code, and very large compute. For it: the first sparse vision model at this scale, 90.24% on ImageNet against 90.20% for MPL with less TPU time, and Batch Prioritized Routing. In each committee one reviewer raised a below-threshold score to 6 after the rebuttal (kbeB in A, fg9p in B). B's mean is higher (7.25 against 6.75) because B has a 9 and two 7s where A has an 8, a 7 and a 6; B's AC did not use Reviewer_Zhow's 9 to argue for more than a poster. The committees were not fully independent: Reviewer_wGNF (A) and Reviewer_pW2k (B) share two near-verbatim paragraphs on ImageNet label errors and leakage into JFT-3B (character similarity 0.95 and 0.97; B's text was posted first, on 2021-07-19). The main text has no dense model trained on JFT-3B with the same changes, so the 15B result does not isolate sparsity; no reviewer asked for one.",
+  "candidate_reasons": [
+    "all reviewers above threshold",
+    "novelty limit judged non-fatal",
+    "scale result outweighs reproducibility",
+    "rebuttal lifted one reviewer each",
+    "same reviewer text in both",
+    "generous 9 left tier unchanged"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review against Reviewer_pW2k main review (two copied sentences)",
+    "Reviewer_wGNF cons 2 and 4 against Reviewer_pW2k concerns 1 and 2",
+    "Reviewer_kbeB comment 'Final Decision', 2021-09-01",
+    "Reviewer_fg9p comment, 2021-08-30",
+    "Reviewer_Zhow review and follow-up, 2021-08-16; author answers, 2021-08-20",
+    "Author replies on expert count: to Reviewer_QFfS (A) and to Reviewer_Zhow (B)",
+    "paper_submitted Table 2 and Table 1",
+    "paper_submitted lines 63, 66-67, 81-88",
+    "paper_submitted line 131",
+    "paper_submitted lines 118, 142, 164-166, 189-194, 267-268",
+    "paper_submitted checklist 3(a)"
+  ]
+}

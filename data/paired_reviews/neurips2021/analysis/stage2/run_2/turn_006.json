@@ -1,0 +1,121 @@
+{
+ "run": 2,
+ "turn": 6,
+ "pair_id": "n21-262",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "In B, Reviewer_Z3Px's final comment held its 5 on a wrong comparison of 100-epoch transformers with 200-epoch ResNets (at equal budget CvT is close to ResNet-50); no A reviewer made that error, though it pushed against B's higher outcome."
+  },
+  {
+   "id": "R02",
+   "applies": true,
+   "justification": "B's chair gave a spotlight over 6, 6, 5, 6 with no reviewer above 6, wrote that the reviewers 'were in agreement' on novelty when Z3Px and K16j disputed it, and gave no reason for the spotlight."
+  },
+  {
+   "id": "R03",
+   "applies": false,
+   "justification": "No reviewer in either committee gave an enthusiasm-driven high score; the highest rating, A's jUVG 7 at confidence 5, is specific and self-critical."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "The learning-rate sweep, which lifted the Swin and T2T Infograph baselines and cut the gains to 0.60 and 1.34, and the five-seed rerun were posted only on A's forum, so B judged the gains without that information."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "B's K16j judged the optimization 'likely poor throughout' and Z3Px showed the gains are large only for weak baselines, yet B's meta-review called the concerns addressed and gave a spotlight without weighing this."
+  },
+  {
+   "id": "R06",
+   "applies": false,
+   "justification": "No score moved after the rebuttal in either committee."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only A raised single runs, test-set selection of the loss variant and m, and untuned default hyperparameters, all confirmed by the paper; B never weighed them."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees raised the same shared weaknesses (no ImageNet-1K, no CNN baseline, 100-epoch under-training, limited novelty); B called the rebuttal answers adequate, while in A they moved no one and the paper was rejected."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "A's chair followed the reviewers' mean score, not one reviewer, and B's chair wrote its own consensus reading."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "No reviewer changed a score in either committee."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors answered every A and B reviewer directly; the unmoved scores came from reviewers who did not reply or who held their positions, not from a misread question."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "B's Reviewer_G9ps gave a 6 after a thin review that misdescribed the setting as fine-tuning and answered the rebuttal with one line of thanks, and that 6 counted toward B's spotlight."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "A's chair rejected when three of five final ratings were below threshold (mean 5.4), so it followed, not opposed, the majority."
+  }
+ ],
+ "added": [
+  {
+   "id": "R14",
+   "name": "Area chair applied score threshold over own view",
+   "definition": "One committee's area chair stated a positive assessment of the paper but decided by whether the reviewers' average score cleared the acceptance threshold, so a borderline mean set the outcome instead of the chair's reading.",
+   "justification": "R09 covers deference to a single reviewer and R13 a chair overriding a positive majority; neither covers a chair who judged the paper solid yet let a sub-threshold mean decide."
+  },
+  {
+   "id": "R15",
+   "name": "Low score held on a peripheral point",
+   "definition": "A reviewer in one committee kept a below-threshold score on a point peripheral to the paper's contribution, such as a variant or detail the method does not use, after the authors had answered it, and that score counted in the decision.",
+   "justification": "R01 needs a wrong factual claim and R12 a thin, unengaged review; Tk2H's claim was correct and it engaged, but its 5 rested on a variant outside the method."
+  }
+ ],
+ "reasoning": "Both committees saw much the same paper and received the same core rebuttal experiments, and no score moved in either. The gap comes from A's reviewers probing the evidence harder (R07), extra disclosures in A's forum only (R04), the shared weaknesses being called adequate in B (R08, R05), a thin 6 in B (R12) and B's chair giving an unexplained spotlight on an overstated consensus (R02). R01 applies to Z3Px's wrong epoch comparison, though it worked against B's outcome. Two causes on A's side had no existing reason: a chair who found the paper solid but let a sub-threshold mean decide (R14), and a low score held on a variant the method does not use (R15).",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15"
+ ]
+}

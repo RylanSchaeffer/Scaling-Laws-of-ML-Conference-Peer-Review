@@ -1,0 +1,149 @@
+{
+  "run": 2,
+  "turn": 13,
+  "pair_id": "n21-210",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "WQsZ's wrong Lemma C.1 objection in B was retracted and WQsZ rose to 7, so no final criticism or score in either committee rested on a wrong claim; A's checkable claims held."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "B's chair gave a spotlight over 7, 7, 7, 8, which the ratings support; stage 1 says the chair followed the scores and its consensus statement is accurate."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "YH9r's praise-only 7 at confidence 2 after one hour, listing no weakness, was one of the four accept ratings behind B's 'consensus' spotlight."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors told A that their explanation of the extra d factor was wrong, but did not tell B, whose reviewers discussed the same bound gap."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "The authors conceded to B that OFUL and OFUL^f perform on par at moderate λ, and 4n5Q saw ridge and forward 'are not that different', yet B's scores did not move and the experiment was accepted as fixable."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "The rebuttal raised one score in each committee (FknY 4 to 5 in A, WQsZ 6 to 7 in B), so it did not move one committee only."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A showed that the classical forward bound with a high-probability bound on |y_t| beats Theorem 3.3 by a factor of d, and that Corollary 3.3.1 is not a stochastic lower bound; B listed these results as strengths."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the λ = 1/T experiment, the parity of ridge and forward, and the standard techniques; npqJ rated 5 on parity while 4n5Q rated 8, and A cited limited significance where B accepted."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither committee was split; both chairs followed unanimous score directions rather than one reviewer."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "jxuz echoed the others' call for a 'major revision' but kept its 6; no reviewer changed a score because of the other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": true,
+      "justification": "FknY's request of 2021-08-31 for a chain of inequalities on the stochastic lower bound got no reply, and FknY held at 5."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "YH9r's 7 rested on a three-sentence review, with no weakness listed and no engagement after the rebuttal, and counted unchallenged in B."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's chair rejected over 5, 6, 5, 5, a below-threshold majority, so it did not go against a positive majority."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's chair stated its own negative reasons (limited significance, the d^2 gap, the λ motivation), not a positive view overridden by a threshold."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's low scores rested on central claims (the bound's value over the classical bound, the lower bound), not on peripheral points."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a theoretical analysis of online regression algorithms and their regret bounds."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "B's score rise came from WQsZ, who checked the proofs and retracted its own sign error, not from reviewers unable to check the core."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "A did not impose an extra requirement on the paper type; it tested the stated claims against known results, which R07 and R08 cover."
+    }
+  ],
+  "added": [
+    {
+      "id": "R19",
+      "name": "Wrong factual claim inflated one reviewer's praise",
+      "definition": "A reviewer in one committee based praise or a higher score on a checkable factual claim about the paper's novelty or results that was wrong, such as crediting the authors with a method the paper itself attributes to prior work.",
+      "justification": "R01 covers only a wrong claim behind a criticism or lower score, and R03 and R12 cover thin or enthusiastic reviews without a wrong claim; no reason covers a reviewer's praise resting on a checkable error about the paper's novelty."
+    }
+  ],
+  "reasoning": "Stage 1 finds that A's reviewers tested the central claims against the classical forward bound and found them weaker than stated, while B's lighter reviews took the claims as stated. That is R07, with R08 for the shared facts (parity at moderate λ, standard techniques) that the committees weighted differently. The authors' concession on the extra d went to A only (R04), and B absorbed the parity concession without score change (R05). YH9r's thin, unengaged 7 at confidence 2 fits R03 and R12. FknY's unanswered follow-up fits R11. Both rebuttals moved one score each, so R06 does not apply, and both chairs followed their scores, so no chair reason applies. YH9r's 7 also rested on the wrong claim that the forward algorithm is new; R01 covers only wrong claims behind criticism, so I added R19 for its mirror image.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19"
+  ]
+}

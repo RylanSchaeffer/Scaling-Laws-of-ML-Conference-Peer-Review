@@ -1,0 +1,127 @@
+{
+ "run": 2,
+ "turn": 9,
+ "pair_id": "n21-245",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "In A, Reviewer_2mkY wrote that Glove is 'consistently performing better', which Fig. 3 contradicts on three of six graphs and in community detection, and that no complexity analysis is given, which lines 163-170 contradict; both supported its below-threshold 5, and B had no reviewer basing criticism on a wrong claim."
+  },
+  {
+   "id": "R02",
+   "applies": true,
+   "justification": "B's chair gave a spotlight over ratings 6, 6, 8, 7 where no reviewer argued for a highlight, and the meta-review calls the concerns 'mostly regarding the presentation', which understates the corrected train-test leak and the offset-only result."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "In B, Reviewer_yRQF gave a praise-only 8 at confidence 3 while saying it will 'rely on other reviewers to judge the originality', and that 8 is the only rating above 7 behind the spotlight."
+  },
+  {
+   "id": "R04",
+   "applies": false,
+   "justification": "The leak fix and the offset-only result came from B reviewer Reviewer_RJD5's questions, not from an author disclosure; both committees got long rebuttals with new baselines on the same day."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "B learned that the WoS case study leaked train into test, that the fix cost r2v-dcSBM the impact-factor lead, and that the degree offset alone reaches 96% of r2v's AUC, yet its scores rose and its AC read the concerns as presentation."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "In B, Reviewer_RJD5 raised from 4 to 6 and Reviewer_yRN6 rose to 7 after the rebuttal, while no A reviewer answered the rebuttal and A's mean stayed at 4.75."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only A raised the uncited degree-debiasing literature (APPR, Lasagne, Fairwalk, role2vec) against a submission with no related-work section; only B raised the NCE misstatements, the train-test leak and the offset-only baseline."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees saw that gains over Glove were not uniform and that baselines were thin; A counted this as 'lack of clear superiority', B accepted 'the best or nearly the best'."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "Neither chair adopted a single reviewer's position: A's meta-review restates the majority's themes, and B's leans on the score mean."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "The B raises cite the authors' edits and answers, not the other reviews; no A score moved."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors answered every reviewer in both committees; the failure in A was reviewers not answering the authors."
+  },
+  {
+   "id": "R12",
+   "applies": true,
+   "justification": "Reviewer_yRQF's 8 in B and Reviewer_2mkY's 5 in A rest on assertion, neither reviewer replied to the rebuttal, and both scores counted unchallenged."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "A rejected with three of four ratings below threshold (4, 5, 4, 6)."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "A's chair stated no positive view of the paper, and B's decision was above the threshold."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "A's low scores rest on missing prior work, thin baselines and inconsistent gains, which are central to the contribution, not peripheral."
+  },
+  {
+   "id": "R16",
+   "applies": true,
+   "justification": "A judged residual2vec as a performance method and rejected for 'lack of clear superiority', while B valued it as an insight that SGNS cancels degree bias and accepted the authors' answer that understanding, not accuracy, is the contribution."
+  }
+ ],
+ "added": [],
+ "reasoning": "The stage 1 verdict names three causes: the committees framed the paper against different literatures, only B engaged with the rebuttal, and a thin champion set B's tier. The first is R07 (A alone raised the uncited debiasing work) together with R16 (performance method against insight) and R08 (the same uneven gains weighted differently). The second is R06, with R12 for unengaged reviewers on both sides. The third is R02 and R03. B also discounted the substantive corrections (R05), and A's Reviewer_2mkY made two wrong checkable claims (R01). Every candidate reason from stage 1 maps onto an existing definition, so no reason is added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16"
+ ]
+}

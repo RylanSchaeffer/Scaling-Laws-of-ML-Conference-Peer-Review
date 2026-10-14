@@ -1,0 +1,220 @@
+{
+  "pair_id": "n21-230",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        5
+      ],
+      "confidences": [
+        3,
+        3,
+        2,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_g3MG",
+        "Reviewer_4cdP",
+        "Reviewer_cSRr"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_eGhr",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The lone 5 against three 7s. One hour, confidence 2, four short paragraphs: minor clarity points (Fig. 2 not cited, a typo), praise ('The quality of the theory is clear', 'I haven't seen any other papers like it') and a request to compare with Pearl's methods. Never replied or edited. The AC ignored it ('a majority of reviewers agreed')."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_eGhr",
+          "evidence": "1 hour, four short paragraphs, no engagement in discussion; the rating of 5 does not follow from the mostly positive text."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_4cdP",
+          "claim": "The paper says its family 'generalize[s] Gumbel-max' but never shows it.",
+          "checked_against_paper": "correct",
+          "evidence": "Submission lines 47-48 assert 'The families contain Gumbel-max'; Sec. 5 gives no parameter setting that recovers it. The authors supplied the settings in the rebuttal (Gadget 1: pi_xz(p) = p(x) if x = z else 0; Gadget 2: pi(x|z,p) = p(x)) and promised a derivation."
+        },
+        {
+          "reviewer": "Reviewer_4cdP",
+          "claim": "'CRN' in Figure 3 is never explained.",
+          "checked_against_paper": "correct",
+          "evidence": "'CRN' appears only in the Fig. 3 panel titles. Sec. 7.3 calls the setting 'joint sampling, where the noise is shared' (lines 335-336); 'common random numbers' appears only at lines 45 and 277."
+        },
+        {
+          "reviewer": "Reviewer_eGhr",
+          "claim": "Figure 2 is not linked back to the text; no discussion of how the approach differs from Pearl's methods.",
+          "checked_against_paper": "correct",
+          "evidence": "No in-text reference to Fig. 2. The inverse-CDF baseline (Table 1, Fig. 3) is the monotonicity coupling, but the submission never ties it to Pearl; the camera-ready adds that link (Pearl 1999; Lu et al. 2020)."
+        },
+        {
+          "reviewer": "Reviewer_g3MG",
+          "claim": "No well-defined causal problem in Secs. 1-3; it reads as a coupling-learning paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 3 ('Learning Implicit Couplings') states a pure coupling objective (Eqs. 5-6: a loss g, a distribution D over logit pairs); level-3 semantics appear only in prose. B's reviewers and AC raised the same point."
+        },
+        {
+          "reviewer": "Reviewer_g3MG",
+          "claim": "Line 57: what is special about Gumbel-max is a differentiable sample from a continuous relaxation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "That is Gumbel-softmax. The paper uses Gumbel-max for coupled samples under shared noise (Eq. 3), as the authors replied."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_g3MG",
+          "Reviewer_cSRr",
+          "Reviewer_4cdP"
+        ],
+        "evidence": "Reviewer_g3MG, 2021-08-18: 'I increase my score from 6 to 7'. Reviewer_cSRr, 2021-08-22: 'I increased my score to 7' (start not stated). Reviewer_4cdP, 2021-08-30: 'I increase my score from a 6 to a 7', after the 2021-08-27 answer on what 'generalized' means. Edit dates match these posts. Reviewer_eGhr never edited or replied.",
+        "what_convinced_or_not": "Clarifications and promises, not new results: a formal statement of the mechanism (f maps noise and logits to an outcome), the argument that the ATE is level 2 and its variance level 3, parameter settings that reduce the gadgets to Gumbel-max, a running example for cSRr, and a list of changes for the extra camera-ready page. None of the three re-examined proofs or experiments; g3MG ('a bit beyond my expertise') and cSRr ('unable to assess the soundness') had said the technical core was outside their expertise."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'the authors' replies and subsequent discussion cleared up these concerns and a majority of reviewers agreed that it is worth publishing'. Four of the meta-review's six sentences repeat the authors' reply to Reviewer_g3MG nearly word for word ('constructing a SCM that allows counterfactual (level 3) reasoning, when given access to all interventional (level 2) distributions'). Reviewer_eGhr's 5 goes unmentioned. Nothing justifies a spotlight: mean 6.5, top rating 7, confidences 3, 3, 2, 2.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three reviewers raised to 7 after the rebuttal clarified the level-2/level-3 framing and the sense of 'generalize'",
+        "Novel link between couplings and causal mechanisms ('interesting and novel': Reviewer_g3MG, Reviewer_4cdP)",
+        "Clarity problems judged fixable through the promised rewrite and extra page",
+        "Spotlight tier given without a stated reason"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        3,
+        5,
+        5
+      ],
+      "confidences": [
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_XBKm"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_ybLo",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "3 against two 5s. Choosing a mechanism by variance 'amounts to posing assumptions that cannot be falsified even by a hypothetical randomized experiment', and one should not 'make assumptions freely to suit a convenient purpose'. The authors conceded the choice 'cannot be falsified'; the AC adopted the stance. The review is thin: 1.5 hours, a summary that misreads the goal as a maximal coupling, no reply to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_XBKm",
+          "evidence": "Confidence 2; 'I do not quite get the details of the proposed method'. The only substantive point is a missing reference (Lu et al. 2020). The 2021-08-22 update adds only 'the writing needs much improvement'. The 5 rests on readability alone."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ybLo",
+          "claim": "Choosing the causal mechanism by minimum variance is an assumption that no randomized experiment can falsify.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission itself says level 3 cannot be determined even with randomized trials (lines 23-27). The authors conceded the point; the camera-ready calls g and D 'a-priori choices that select the intended level 3 mechanism', like monotonicity."
+        },
+        {
+          "reviewer": "Reviewer_ybLo",
+          "claim": "Summary: the paper constructs a coupling 'such that the coupling is maximal' (Reviewer_gci3's summary says the same).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 5 takes any loss g. The abstract and Secs. 7.2-7.3 minimise treatment-effect variance; only Sec. 7.1 targets maximality."
+        },
+        {
+          "reviewer": "Reviewer_gci3",
+          "claim": "Corollary 2's approximation is weak: at alpha = 0.6 the maximal coupling is bounded only by 1.6.",
+          "checked_against_paper": "correct",
+          "evidence": "Right in substance, wrong number. Corollary 2 (lines 146-147) bounds it by 2*alpha, so 1.2 at alpha = 0.6; the bound is vacuous for every alpha >= 0.5. It concerns Gumbel-max couplings, not learned ones. The rebuttal did not address it."
+        },
+        {
+          "reviewer": "Reviewer_gci3",
+          "claim": "Variable z at line 167 is undefined; 'sampling from the posterior' and the truncated Gumbel are unexplained.",
+          "checked_against_paper": "correct",
+          "evidence": "z first appears as an index of the auxiliary joint (line 167); line 168 calls it 'the auxiliary variable'. TruncGumbel (lines 190, 197) is never defined. The 'posterior' is over the exogenous Gumbel noise given x(obs) (line 183), standard abduction, not Bayesian learning as gci3 assumed."
+        },
+        {
+          "reviewer": "Reviewer_XBKm",
+          "claim": "Lu et al. (2020), which identifies counterfactuals under mild (monotonicity) conditions, is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Not cited in the submission. The camera-ready cites it and equates its assumption with the inverse-CDF coupling, a baseline already in Table 1 and Fig. 3."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "Average treatment effect estimation does not require inferring counterfactuals.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors call the ATE level 2 and equal under every mechanism. The 'CRN' panels of Fig. 3 show Gadget 2's variance gains with shared noise and no counterfactual inference. The camera-ready recasts the motive as 'minimizing the variance of a Monte Carlo estimate'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_ybLo and Reviewer_gci3 never edited or replied. Reviewer_XBKm's 2021-08-22 edit adds 'After reading the paper again, I think the writing needs much improvement' and states no score change. The authors posted one reply per reviewer (2021-08-07) and nothing after; no reviewer posted in the discussion.",
+        "what_convinced_or_not": "Nothing moved. The reply to ybLo argued that minimum variance is 'less prescriptive' than monotonicity or counterfactual stability and suits ATE estimation; the AC rejected both points. The reply to gci3 quoted XBKm's praise ('a smart way') and described the approach as 'favoring statistical properties', a phrase the AC cited as a reason for hesitation. It did not address the Corollary 2 bound or the undefined z."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All three reviewers were below threshold. The AC adds its own reasoning: 'The minimum variance assumption seems hard to reason about in practice'; 'the monotonicity assumption (Pearl, 2000) seems much easier to defend'; ATE estimation 'does not require inferring counterfactuals'. It cites the authors' replies to ybLo and gci3 and counts itself among those who 'found the paper hard to read'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Minimum variance is an unfalsifiable assumption chosen for convenience (Reviewer_ybLo, AC)",
+        "AC: ATE estimation needs no counterfactuals, and monotonicity is easier to defend",
+        "Paper hard to read (Reviewer_XBKm, Reviewer_gci3, AC)",
+        "No rating above 5 and no reviewer engagement after the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Generalisation of Gumbel-max asserted but not shown (Reviewer_4cdP, Reviewer_g3MG)",
+    "'CRN' undefined in Fig. 3; Fig. 2 never cited (Reviewer_4cdP, Reviewer_eGhr)",
+    "Whether coupling changes the meaning of the ATE (Reviewer_4cdP)",
+    "Compare errors of the estimates, not only variances (Reviewer_g3MG)"
+  ],
+  "issues_only_b": [
+    "Choosing a mechanism for convenience is an unfalsifiable assumption that methods should avoid (Reviewer_ybLo)",
+    "ATE estimation needs no counterfactuals; monotonicity is easier to defend (AC)",
+    "Corollary 2's bound is weak (Reviewer_gci3)",
+    "Undefined z, 'posterior' and truncated Gumbel in Sec. 5.1; why implicit rather than maximal couplings (Reviewer_gci3)",
+    "Missing Lu et al. 2020; how the distribution D is obtained (Reviewer_XBKm, Reviewer_ybLo)"
+  ],
+  "shared_issues": [
+    "Unclear problem statement; reads as a coupling paper more than a causal one (A: Reviewer_g3MG, Reviewer_4cdP, Reviewer_cSRr, Reviewer_eGhr; B: Reviewer_ybLo, Reviewer_gci3, Reviewer_XBKm, AC)",
+    "Logic of choosing a level-3 mechanism for a level-2 goal: A's Reviewer_cSRr asked and accepted the ATE answer; B's AC rejected the same answer",
+    "Too little background on Gumbel-max SCMs and Oberst & Sontag (A: Reviewer_4cdP; B: Reviewer_ybLo)",
+    "Latent confounding (A: Reviewer_cSRr; B: Reviewer_gci3); A was told 'the same set of cases' as Oberst & Sontag, B was told 'Markovian models', and the camera-ready states 'no latent confounders'",
+    "Relation to monotonicity-based identification (A: Reviewer_eGhr; B: Reviewer_XBKm, AC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees split on the paper's premise, not on an error. Both found it hard to read, and both received the same defence: the ATE is a level-2 quantity, equal under every mechanism, so one may pick the mechanism with the lowest variance. Committee A's reviewers took this as a clarification, and three raised their scores to 7. In B, Reviewer_ybLo (3) called the choice an unfalsifiable assumption made for convenience, and the AC turned the defence against the authors: ATE estimation needs no counterfactuals. No B reviewer replied to the rebuttal. A's support is thin: confidences 3, 3, 2, 2; two reviewers said the core was beyond their expertise; no rating above 7. A's meta-review repeats the authors' rebuttal nearly verbatim and gives no reason for a spotlight. The paper supports B. Fig. 3's 'CRN' panels show Gadget 2's variance gains with shared noise alone. In Table 1 the plain inverse CDF equals the LP optimum and beats Gadget 2 for every monotone reward (0.58 vs 2.12). The gadgets win only for the non-monotone reward, where an inverse CDF over outcomes sorted by reward would reach the optimum (0.09) and beat both gadgets; the paper's own lines 272-277 imply this, and a numerical check confirms it. Neither committee noticed. The camera-ready drops the submitted claim that Gadget 2 beats the inverse CDF.",
+  "candidate_reasons": [
+    "Principled objection to the premise",
+    "Same rebuttal, opposite readings",
+    "Low-expertise reviewers persuaded by clarifications",
+    "AC adds own conceptual objection",
+    "Spotlight without reviewer support",
+    "No reviewer engagement after rebuttal"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_ybLo main comment 2 (unfalsifiable assumptions)",
+    "Committee B meta-review",
+    "Authors' replies to Reviewer_cSRr (A) and Reviewer_ybLo (B): ATE is level 2",
+    "Reviewer_g3MG 2021-08-18 and Reviewer_4cdP 2021-08-30 posts (6 to 7)",
+    "Committee A meta-review vs authors' reply to Reviewer_g3MG",
+    "paper_submitted Table 1 and lines 314-316",
+    "paper_submitted lines 272-277 (Cambanis et al.)",
+    "paper_submitted Fig. 3 'CRN' panels",
+    "paper_submitted Corollary 2 (lines 146-147)",
+    "camera-ready Sec. 3 'Interpretation in terms of causal inference'"
+  ]
+}

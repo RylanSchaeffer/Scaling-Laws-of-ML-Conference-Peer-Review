@@ -1,0 +1,213 @@
+{
+  "pair_id": "n21-294",
+  "prompt_version": 1,
+  "kind": "spotlight",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_A5qv"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 8, 8, 8, all at confidence 4. The lowest, Reviewer_A5qv, raised to 7 after the rebuttal ('have therefore raised my score', edited 2021-08-11). No rating sits apart from the others."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_8XsW",
+          "evidence": "Rating 8 on a three-sentence main review: 'well-written, motivated, rigorous, and interesting', 'I read most of the proofs and everything seems clean to me', 'I do not have any important comments/concerns'. It reports 72 hours (the other three A reviews report 3 each) but names no lemma, step, typo or question, and it posts nothing in the discussion. The 8 is a vote, not evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_A5qv",
+          "claim": "A d^2 SQ lower bound, and probably a d^constant one, already follows from DKS17, so the conceptual gain is limited.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission (lines 168-170) credits an Ω(d^2) SQ bound to DKS19, not DKS17, for a minority of outliers with three matched moments. The authors replied that DKS19 needs an unknown covariance and only rules out error below sqrt(eps), so it says nothing about list-decoding with identity covariance. A's area chair accepted that prior bounds 'only yield a fixed polynomial in d'. A5qv raised to 7."
+        },
+        {
+          "reviewer": "Reviewer_9Tob",
+          "claim": "The SQ lower bound, and the implied low-degree bound, does not apply to the SoS algorithms of KKK19 and RY20.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission's abstract and lines 67-81 present the bound as matching 'previously developed algorithms', which are the SoS algorithms of KKK19 and RY20, and never say they are not SQ algorithms. The authors conceded ('the reviewer is correct') and added only that they 'believe' those algorithms can be simulated in SQ. The camera-ready rewrites Remark 1.6 to state the gap; its main text neither states nor proves the simulation claim."
+        },
+        {
+          "reviewer": "Reviewer_A5qv",
+          "claim": "d/α^3 samples suffice information-theoretically, against d^poly(1/α) for SQ algorithms.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1.4: O(d/α^3) samples, a list of O(1/α), error O((σ/α) sqrt(log(1/α))). The camera-ready adds that this estimator 'is implicit in [KKK19]'; no reviewer in either committee raised that."
+        },
+        {
+          "reviewer": "Reviewer_9Tob",
+          "claim": "An SQ algorithm needs an oracle of tolerance about d^(-1/sqrt(α)).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1.5(i): at least one query of tolerance at most d^(-Ω(1/sqrt(α)))/σ, otherwise 2^(d^Ω(1)) queries or a list of that size."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_A5qv"
+        ],
+        "evidence": "Reviewer_A5qv edited 2021-08-11, one day after the rebuttal: 'I am satisfied regarding the conceptual contribution here, and have therefore raised my score' (to 7; the earlier score is not recorded). The three 8s were never edited, and no A reviewer posted in the visible discussion. The meta-review says the SoS point 'was brought up in reviewer discussion', which is not in the record.",
+        "what_convinced_or_not": "Three arguments convinced A5qv: d^2 and d^poly(1/α) differ super-polynomially; the DKS19 bound needs an unknown covariance and does not transfer; and list-decodable mean estimation, spherical GMMs and MLR all have quasi-polynomial algorithms, so SQ hardness of list-decodable regression is a real separation. On 9Tob's SoS question the authors conceded and offered only a belief; the area chair called it 'somewhat non-trivial' and asked for a formal proof. The authors said they did not understand 9Tob's question on thresholding y, and 9Tob did not follow up."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review restates the result and the MLR separation, records that the rebuttal resolved A5qv's prior-work concern ('only yield a fixed polynomial in d'), and asks for a 'formal proof' of the SoS-to-SQ claim from 9Tob's question and the reviewer discussion. It recommends acceptance. The spotlight matches three 8s and Reviewer_9D9p's 'possibly as a spotlight'; the meta-review itself gives no spotlight rationale.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Four accept ratings (7, 8, 8, 8) at confidence 4, no dissent after the rebuttal",
+        "First lower bound for list-decodable linear regression, qualitatively matching the d^poly(1/α) upper bounds",
+        "SQ separation from mixtures of linear regressions, which have quasi-polynomial algorithms",
+        "Non-trivial LP-duality extension of the DKS17/DKS19 moment-matching framework",
+        "Reviewer_9D9p proposed a spotlight"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        8,
+        8
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_NeJG"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 8, 8 at confidence 3 to 4. No rating below 7 and no score change."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_LQDD",
+          "evidence": "Rating 8 after 2 hours. Its first sentence calls the SQ bound an 'information-theoretic lower bound'. The main review paraphrases the paper's own overview: 'does not possess the symmetry properties required for moment-matching' and 'necessitate a modification to the moment-matching problem' are the paper's words (submission lines 150-151, 186-187). It asks nothing and finds no issue. Post-rebuttal: 'I maintain my score'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_iqKa",
+          "claim": "The existing upper bounds are SoS algorithms that may not be SQ; the introduction should say that the current upper bounds are not SQ.",
+          "checked_against_paper": "correct",
+          "evidence": "The same gap that Reviewer_9Tob found in A. The submission's introduction (lines 67-81) does not say it. The authors sent the same text as in A, and the camera-ready adds the disclaimer to Remark 1.6."
+        },
+        {
+          "reviewer": "Reviewer_iqKa",
+          "claim": "Lines 119-125 say that the best MLR algorithm can be implemented in SQ, so the paper still gives a genuine separation.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 121: the DK20 algorithm for MLR is '(easily implementable in SQ)', with k^polylog(k) samples and time."
+        },
+        {
+          "reviewer": "Reviewer_iqKa",
+          "claim": "The choice of reference distribution is unexplained; lines 319-321 only assert that it is used in Theorem 2.5 and Lemma 2.6.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 317-321 set R(y) = N(0, 1/α) and say it 'will be used later on in the proofs'; lines 188-200 give only the qualitative reason. The rebuttal added α_y = sqrt(α) exp(-y^2(1-α)/2) and admitted the value came from 'trial and error'."
+        },
+        {
+          "reviewer": "Reviewer_twpW",
+          "claim": "The formal lower bound has no dependence of the list size on α.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1.5(iii) and Theorem 2.1(iii): list size 2^(Ω(d^c)), with no α. The authors replied that this is stronger than poly(1/α) once d is large."
+        },
+        {
+          "reviewer": "Reviewer_NeJG",
+          "claim": "Limitations are not addressed.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission's main text has no limitations discussion, although checklist item 1(b) answers [Yes]. The main scope limit, that the bound does not cover the SoS algorithms, appears only in the camera-ready Remark 1.6."
+        },
+        {
+          "reviewer": "Reviewer_twpW",
+          "claim": "Line 662 of Appendix B should read 'any u in R^d', not 'any u in F'.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Neither supplied PDF contains the appendix."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_NeJG's edit of 2021-09-10 adds only 'UPDATE: response read. Thank you for the response!'. Reviewer_twpW (2021-08-25): 'They address my questions'. Reviewer_iqKa (2021-08-29): 'continue to recommend acceptance'. Reviewer_LQDD (2021-09-10): 'I maintain my score'.",
+        "what_convinced_or_not": "Nothing was at stake: every question asked for clarification (the list aspect and list size, the reference variance, LP-duality prior work, non-Gaussian covariates, lemma numbering). iqKa's SoS concern got the same answer as 9Tob's in A, word for word. iqKa asked only for 'a few sentences in the final version' and called it 'a great paper'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'matches' in quotation marks, 'significant technical innovation over prior work', 'important and interesting'. This restates the reviews (twpW: technical work 'very substantial'; LQDD: 'non-trivial'; iqKa: novelty 'quite solid'). The quotation marks are the only trace of iqKa's SoS caveat. The meta-review gives no spotlight rationale.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four accept ratings (7, 7, 8, 8), no dissent and no score change",
+        "First lower bound for list-decodable linear regression, qualitatively matching the upper bounds",
+        "Significant technical innovation over DKS17/DKS19 (meta-review)",
+        "SoS-versus-SQ caveat treated as a framing point, not a flaw"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Conceptual gain over prior fixed-polynomial SQ bounds, and practical relevance of the α dependence (Reviewer_A5qv)",
+    "Why the separation from mixtures of linear regressions should surprise (Reviewer_A5qv)",
+    "Section 1.3 hard to follow before reading the later sections (Reviewer_A5qv)",
+    "Why a learner cannot threshold on y to get lower noise rates (Reviewer_9Tob); the authors did not understand the question",
+    "A formal proof that the KKK19/RY20 SoS algorithms can be simulated in SQ (Committee A meta-review)"
+  ],
+  "issues_only_b": [
+    "Where the 'list' enters the SQ proof, and the α-free list-size bound (Reviewer_twpW)",
+    "Unexplained choice of reference variance R(y) = N(0, 1/α) (Reviewer_iqKa)",
+    "Prior LP-duality moment-matching work such as Wu-Yang and Han-Jiao-Weissman (Reviewer_iqKa)",
+    "Extension to non-Gaussian covariates, and no limitations discussion (Reviewer_NeJG)",
+    "Lemma numbering between body and appendix, and a typo in Appendix B (Reviewer_iqKa, Reviewer_twpW)"
+  ],
+  "shared_issues": [
+    "The SQ bound does not formally cover the SoS algorithms whose performance it claims to match (Reviewer_9Tob; Reviewer_iqKa); the authors answered both with the same text",
+    "Heavy reliance on the DKS17/DKS19 framework, judged a non-trivial adaptation in both (Reviewer_A5qv, Reviewer_9Tob, Reviewer_9D9p; Reviewer_iqKa, Reviewer_twpW, Reviewer_LQDD)",
+    "Dense exposition (Reviewer_A5qv on Section 1.3; Reviewer_twpW: proofs 'a little terse')"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a spotlight, and the two records explain the agreement. All eight reviewers rated the paper 7 or 8 (A: 7, 8, 8, 8; B: 7, 7, 8, 8), and none found an error. Both slates read the contribution the same way: the first lower bound for list-decodable linear regression, qualitatively matching the d^poly(1/α) SoS upper bounds, built by a non-trivial LP-duality extension of the DKS17/DKS19 moment-matching framework, and separating the problem from mixtures of linear regressions. Each committee found the one substantive caveat on its own: the SQ bound does not formally cover the SoS algorithms whose performance it claims to match (Reviewer_9Tob in A, Reviewer_iqKa in B). The authors sent both the same text, conceding the point and stating a belief that those algorithms can be simulated in SQ, and both committees treated it as framing, not as a flaw. A's area chair asked for a formal proof; the camera-ready main text adds only a disclaimer (Remark 1.6). The only score change was Reviewer_A5qv's raise to 7 in A, after the authors explained why prior fixed-polynomial SQ bounds do not settle the question. Neither meta-review justifies spotlight over poster, so the tier rests on uniformly high scores, which include one thin 8 per committee (Reviewer_8XsW in A, Reviewer_LQDD in B). The substantive reviews alone are still all-accept (A: 7, 8, 8; B: 7, 7, 8).",
+  "candidate_reasons": [
+    "Unanimous accept scores in both",
+    "Same strengths read by both",
+    "Shared caveat answered identically",
+    "Clean theory, no error found",
+    "No spotlight rationale in meta-reviews",
+    "Thin eights in both slates"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_9Tob review (question 1) and the authors' reply",
+    "Reviewer_iqKa review, authors' reply item 2 (same text as to 9Tob), iqKa comment 2021-08-29",
+    "Reviewer_A5qv review and post-response paragraph (edited 2021-08-11); authors' reply to A5qv",
+    "Reviewer_9D9p review ('possibly as a spotlight')",
+    "Reviewer_8XsW review (three sentences, 72 hours)",
+    "Reviewer_LQDD review against submission lines 142-151 and 186-187",
+    "Committee A meta-review (formal-proof request)",
+    "Committee B meta-review",
+    "paper_submitted.pdf: abstract, lines 67-81, 119-125, 168-170, 317-321, Theorems 1.4, 1.5, 2.1 and 2.5, checklist item 1(b)",
+    "paper.pdf (camera-ready): Remark 1.6; note after Theorem 1.4 crediting KKK19",
+    "Neither PDF contains the appendix, so Appendix B claims are not checked"
+  ]
+}

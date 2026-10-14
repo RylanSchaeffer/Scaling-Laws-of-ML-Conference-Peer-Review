@@ -1,0 +1,254 @@
+{
+ "pair_id": "n21-262",
+ "prompt_version": 1,
+ "kind": "spotlight/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    7,
+    4,
+    5
+   ],
+   "confidences": [
+    4,
+    3,
+    5,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Tk2H",
+    "Reviewer_8uyZ",
+    "Reviewer_jUVG"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 6, 7, 4, 5 (Tk2H, 8uyZ, jUVG, ndSd, 44YH). The 4 and the 7 are each one point from the next rating. jUVG's 7 (confidence 5, three hours) carries its own doubt: 'conclusions drawn on a single experiment might not actually support experiment hypothesis'. ndSd's 4 rests on a judgment ('expected and hard to draw new knowledge from') plus a correct point: no other pretext task is compared."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_jUVG",
+     "claim": "The loss variant (Table 1b) was chosen from one run per variant, scored on the test set rather than a validation set.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5.1, lines 284-286: 'we show the top-1 classification accuracy on the test set'. No seeds appear anywhere in the paper. m was also chosen on CIFAR-100 test accuracy (Table 2a), and Table 3's Swin CIFAR-100 result (66.23) is the selected m=64 row. The rebuttal's five-seed IN-100 rerun gives gains of 0.47 to 1.29 with standard deviations of 0.12 or less, so the IN-100 gains are not noise."
+    },
+    {
+     "reviewer": "Reviewer_44YH",
+     "claim": "The default VT hyperparameters may not suit these datasets, as the extremely low Infograph accuracies suggest; no seeds are given and some gains are about 0.1.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 281: 'we use the VT-specific hyper-parameter configuration suggested by the authors of each VT'. Table 3, Infograph (345 classes): Swin-T 8.20, T2T 6.89. In the authors' learning-rate sweep, at 0.0005 Swin-T reaches 13.02 and T2T 13.59, and the gains fall from +1.96 and +2.62 to +0.60 and +1.34. Table 4 T2T gains on Painting, Quickdraw, Real and Sketch: +0.13, +0.11, +0.01, +0.11."
+    },
+    {
+     "reviewer": "Reviewer_8uyZ",
+     "claim": "100 epochs is far from convergence, and the gains may not hold after convergence.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2(b), IN-100: at 300 epochs the baselines gain 4.54 to 6.92 points (CvT 85.62 to 90.16, Swin 82.76 to 89.68, T2T 82.74 to 87.76), and the gains shrink from +0.36/+1.26/+1.16 to +0.12/+0.64/+0.4. Every other table uses 100 epochs."
+    },
+    {
+     "reviewer": "Reviewer_8uyZ",
+     "claim": "No ResNet or state-of-the-art results on these standard datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 3 and 4 list only CvT, Swin and T2T. Reviewer_K16j raised the same point in B."
+    },
+    {
+     "reviewer": "Reviewer_ndSd",
+     "claim": "No comparison with other self-supervised pretext tasks such as [15, 41, 42, 38], and no ImageNet-1K training.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 151-160 cite these works in related work only. Section 5 trains on IN-100 and smaller sets; the ImageNet-1K accuracies in lines 311-312 are quoted from the original papers."
+    },
+    {
+     "reviewer": "Reviewer_Tk2H",
+     "claim": "\u03b1 in Eq. 6 is undefined, and the Gaussian-prior variant (row E) is worse than the cross-entropy variant (row D).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 254 explains the log terms but not \u03b1. Table 1(b): E 83.24, D 83.86. Eq. 5 also lacks the closing parenthesis Tk2H mentions."
+    },
+    {
+     "reviewer": "Reviewer_Tk2H",
+     "claim": "The experiments do not show that the loss speeds up training; there are no training curves.",
+     "checked_against_paper": "correct",
+     "evidence": "The speed-up claim (lines 57, 87) rests on Table 2(b), where the gain is larger at 100 than at 300 epochs. The paper has no curves; the rebuttal gave CIFAR-100 accuracy every 10 epochs."
+    },
+    {
+     "reviewer": "Reviewer_44YH",
+     "claim": "None of the loss variants beats the plain L_drloc.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1(b): B (L_drloc) 84.02 is best; C 83.14, D 83.86, E 83.24, F 81.88."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after the rebuttal of 2021-08-10; the last edits are 2021-07-11 (Tk2H), 2021-07-12 (8uyZ) and 2021-07-16 (jUVG). ndSd, 2021-08-31: 'most of my main concerns remain, and I'd keep my recommendation unchanged'. Tk2H, 2021-09-02: 'I tend to keep my score'. jUVG, 8uyZ and 44YH did not reply.",
+    "what_convinced_or_not": "The authors added five-seed IN-100 runs, ImageNet-1K (+0.13 Swin, +0.15 T2T), ResNet-50 with and without the loss, 300-epoch Infograph, MLP-size and \u03bb tables, and an \u03b1 sweep. No A reviewer acknowledged any of them. ndSd still wanted a comparison with SSL pre-training plus fine-tuning; the authors called that unfair because their method uses labels. Tk2H held to the Gaussian-prior variant, which the method does not use, after a three-model table and an \u03b1 sweep. The learning-rate sweep for 44YH showed smaller gains under a better learning rate; 44YH did not reply."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'The authors provided answers which unfortunately did not satisfy the reviewers enough to increase their scores.' 'Not very far from meeting the bar for acceptance... still slightly below.' Mean 5.4, three of five below 6. The AC's own view was positive ('generally solid', results 'reasonably strong'), but it deferred to the scores. Its two requests, improved experiments and a better justification for the task, echo jUVG, 44YH and ndSd.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of five ratings below threshold (5, 4, 5; mean 5.4), none changed after the rebuttal",
+    "Doubts about the evidence that the paper confirms: single runs, test-set selection, default hyperparameters, 100 epochs (Reviewer_jUVG, Reviewer_44YH, Reviewer_8uyZ)",
+    "Gain judged an expected effect of extra supervision, with no comparison to other pretext tasks (Reviewer_ndSd)",
+    "Loss variants weak and unexplained (Reviewer_Tk2H, Reviewer_44YH)",
+    "AC deferred to the scores although it found the paper 'generally solid'"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [
+    6,
+    6,
+    5,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_cpF3",
+    "Reviewer_Z3Px"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 6, 5, 6 (cpF3, G9ps, Z3Px, K16j). Z3Px's 5 is one point below the rest. No reviewer rated above 6."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_G9ps",
+     "evidence": "Three hours. The summary says the loss is added 'to standard fine-tuning', but the main results train from scratch (Table 3). One substantive weakness (model size), then title and hyphenation notes. After the rebuttal, one line: 'Thank you very much for your detailed replies'. A 6 with no engagement."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_K16j",
+     "claim": "Two deltas in Table 4 are wrong, one very wrong and against the authors' interest.",
+     "checked_against_paper": "correct",
+     "evidence": "T2T ClipArt: 78.22 - 74.59 = 3.63, printed +0.37. T2T Flowers102: 98.08 - 97.98 = 0.10, printed +0.20. A third slip went unnoticed: Table 3 CvT Real, 77.05 - 76.33 = 0.72, printed +0.68, although the authors replied that 'all the other numbers in all the other tables are correct'."
+    },
+    {
+     "reviewer": "Reviewer_K16j",
+     "claim": "No comparison with traditional CNNs, no ImageNet experiments, and no training beyond 100 epochs.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 3 and 4 have no CNN. No model is trained on ImageNet-1K. Only Table 2(b) trains for 300 epochs."
+    },
+    {
+     "reviewer": "Reviewer_cpF3",
+     "claim": "Section 4.1 rules out a positional-embedding shortcut only by comparing accuracy gains across models.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 220-223: the gain is smaller on CvT, which has no positional embedding, 'confirming' that the task is not trivial on Swin. The gains also track how weak each baseline is, so the comparison is confounded. Reviewer_Z3Px raised the same doubt."
+    },
+    {
+     "reviewer": "Reviewer_cpF3",
+     "claim": "No ablation on \u03bb.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 214-215 fix \u03bb at 0.1 (T2T, CvT) and 0.5 (Swin) with no ablation. The rebuttal's \u03bb table, posted to both committees, gives CvT 68.03 and T2T 74.74 at \u03bb = 0.1, whereas Table 3 gives CvT 74.51 and T2T 68.03; no reviewer noticed."
+    },
+    {
+     "reviewer": "Reviewer_Z3Px",
+     "claim": "The gains are considerable only when the original model performs poorly.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: Swin's +45.33 on Quickdraw lifts 24.08 to 69.41, still below CvT's baseline 70.10. Table 4: 14 of the 20 true gains are below 0.5. CvT, the strongest model, still gains 1.01 to 3.89 on CIFAR-10, CIFAR-100, Flowers102 and SVHN, so the claim holds broadly, not strictly."
+    },
+    {
+     "reviewer": "Reviewer_Z3Px",
+     "claim": "Final comment: the best VT with the loss reaches 90.3 and 74.5 on CIFAR-10 and CIFAR-100, against 96.1 and 80.6 for the best CNN.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The VT figures are 100-epoch runs (Table 3); the CNN figures are the authors' 200-epoch ResNet-50 runs. At 100 epochs ResNet-50 scores 91.78 and 72.80. At 200 epochs CvT with the loss scores 95.45 and 81.77 against 96.10 and 80.61 (authors, 2021-09-03)."
+    },
+    {
+     "reviewer": "Reviewer_G9ps",
+     "claim": "The method is tested at a single model size.",
+     "checked_against_paper": "correct",
+     "evidence": "Limitations, lines 361-363: only models about the size of a ResNet-50."
+    },
+    {
+     "reviewer": "Reviewer_cpF3",
+     "claim": "The segmentation experiments do not use the loss during pre-training.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The supplement is not in the folder. The authors say the loss was used in pre-training (Supplementary, l. 7-17)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "cpF3 edited on 2021-08-29: 'The authors have addressed the concerns adequately... I will keep my original positive rating.' Z3Px's edit (2021-07-13) predates the rebuttal. K16j, 2021-08-13: 'somewhat positive but high uncertainty'; no edit and a final 6, although it had said it was 'very open to raise the mark'. G9ps, 2021-09-01: thanks only. Z3Px, 2021-09-03: 'I still believe that the proposed contribution is not enough for a NeurIPS paper'.",
+    "what_convinced_or_not": "B received the same core experiments as A (ImageNet-1K, ResNet-50, 300-epoch Infograph, \u03bb table) plus ViT-B/16 and timing. cpF3 and G9ps accepted them. K16j read ImageNet-1K as 'no gain but no degradation' and took the 300-epoch Infograph run, where the Swin and T2T baselines roughly double, as a sign that 'the optimization is likely poor throughout'. Z3Px stayed unconvinced on a 100- versus 200-epoch comparison, which the authors corrected the same day."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Three 6s and a 5 support a borderline accept, not a spotlight. The meta-review says 'The reviewers were in agreement that the proposed self-supervision method for vision transformers is novel and should be of general interest'. Z3Px called the contribution 'not enough for a NeurIPS paper'; K16j called the method 'not groundbreaking and of a somewhat narrow applicability'; cpF3 noted 'a lot of similarities with the Jigsaw puzzle paper'. The meta-review says the scale and CNN questions 'were addressed by the authors in the rebuttal' and gives no reason for a spotlight.",
+    "meta_review_leans_on": "unclear"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings at 6 (mean 5.75); only Reviewer_Z3Px below threshold",
+    "Simple, clearly written method with a gain in every table (Reviewer_cpF3, Reviewer_G9ps, Reviewer_K16j)",
+    "Rebuttal experiments on ImageNet-1K, ViT-B/16 and ResNet-50 taken as answering the scale and CNN questions (meta-review)",
+    "AC read the reviews as unanimous on novelty and interest; the spotlight itself is unexplained"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Single runs with no seeds; gains near 0.1 may be noise (Reviewer_jUVG, Reviewer_44YH)",
+  "Loss variant and m chosen on test-set accuracy (Reviewer_jUVG)",
+  "Default VT hyperparameters not tuned per dataset; Infograph baselines at 7 to 8 percent (Reviewer_44YH)",
+  "No experimental comparison with other self-supervised pretext tasks or SSL pre-training; the gain from extra supervision is expected (Reviewer_ndSd)",
+  "Loss variants weak and unexplained, the Gaussian prior in particular; \u03b1 undefined (Reviewer_Tk2H, Reviewer_44YH)",
+  "No training curves for the speed-up claim; L1 versus cross-entropy margin shown on one model only (Reviewer_Tk2H, Reviewer_8uyZ)",
+  "Closeness to ELECTRA, choice of DomainNet, relation to SAM, MLP size (Reviewer_44YH, Reviewer_Tk2H, Reviewer_8uyZ)"
+ ],
+ "issues_only_b": [
+  "Positional embedding could make the task trivial; Section 4.1's argument is indirect (Reviewer_cpF3, Reviewer_Z3Px)",
+  "Gains large only for weak baselines, small near the state of the art (Reviewer_Z3Px)",
+  "Wrong deltas in Table 4 (Reviewer_K16j)",
+  "Model size and larger pre-training data (Reviewer_G9ps)",
+  "Why second-generation VTs do not fix locality; high-resolution dense tasks (Reviewer_cpF3)",
+  "Two clusters of fine-tuning gains; comparison at equal FLOPs (Reviewer_K16j)"
+ ],
+ "shared_issues": [
+  "No ImageNet-1K or large-scale results (A: Reviewer_Tk2H, Reviewer_ndSd; B: Reviewer_cpF3, Reviewer_K16j, Reviewer_G9ps)",
+  "No ResNet or other CNN baseline (A: Reviewer_8uyZ; B: Reviewer_K16j, Reviewer_cpF3)",
+  "Baselines under-trained: 100 epochs far from convergence (A: Reviewer_8uyZ, Reviewer_44YH; B: Reviewer_K16j)",
+  "No \u03bb ablation; added hyperparameters (A: Reviewer_Tk2H, Reviewer_jUVG; B: Reviewer_cpF3, Reviewer_K16j)",
+  "Doubtful value of training from scratch on small data rather than fine-tuning (A: Reviewer_ndSd; B: Reviewer_K16j)",
+  "Closeness to Jigsaw and context-prediction tasks (A: Reviewer_ndSd wants experiments; B: Reviewer_cpF3 wants discussion)",
+  "Limited novelty or significance (A: Reviewer_8uyZ, Reviewer_44YH; B: Reviewer_K16j, Reviewer_Z3Px)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighted much the same facts differently, and B's spotlight has no basis in B's reviews. Both saw a simple, clearly written auxiliary loss with a gain in every table, large mainly where Swin or T2T train badly from scratch. Both asked for ImageNet-1K, a ResNet baseline, longer training and a \u03bb ablation, and both got the same core rebuttal experiments. No score moved in either committee. A started lower: three of five reviewers gave 4 or 5 (mean 5.4), against 6, 6, 5, 6 in B (mean 5.75). A's reviewers also probed the evidence harder, and the paper confirms their points. Every number is one run. The loss variant and m were chosen on test accuracy (Section 5.1, Table 2a). Default VT hyperparameters leave Swin and T2T at 8.20 and 6.89 on Infograph, and the authors' own learning-rate sweep lifted those baselines by 4.8 and 6.7 points and cut the gains to 0.60 and 1.34. These points shrink the gains but do not refute them: the five-seed IN-100 rerun shows gains of 0.47 to 1.29. One of A's three low scores (Reviewer_Tk2H) rests on a loss variant the method does not use. A's AC found the paper 'generally solid' but followed the sub-threshold majority. B's AC wrote that the reviewers agreed the method is novel and of general interest. Reviewer_Z3Px called the contribution 'not enough for a NeurIPS paper', and Reviewer_K16j, B's most confident reviewer, rated the rebuttal 'somewhat positive but high uncertainty'. Nothing in B's record supports a spotlight over a poster.",
+ "candidate_reasons": [
+  "Lower initial scores, none moved",
+  "Evidence reliability probed only in A",
+  "Under-tuned baselines inflate gains",
+  "AC promotes borderline paper unexplained",
+  "Meta-review overstates reviewer consensus",
+  "Detractor holds score on side issue"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_jUVG review (Cons) against paper Section 5.1, lines 284-286",
+  "Reviewer_44YH review and the authors' learning-rate table on Infograph",
+  "Reviewer_8uyZ review, point 1, against paper Table 2(b)",
+  "Reviewer_ndSd review and comment 2021-08-31",
+  "Reviewer_Tk2H comment 2021-09-02",
+  "Committee A meta-review",
+  "Reviewer_K16j review and comment 2021-08-13",
+  "Reviewer_Z3Px final comment 2021-09-03 and the authors' 200-epoch table",
+  "Reviewer_G9ps review",
+  "Committee B meta-review",
+  "paper Tables 2, 3 and 4"
+ ]
+}

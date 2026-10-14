@@ -1,0 +1,233 @@
+{
+ "pair_id": "n21-004",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [4, 5, 6, 7],
+   "confidences": [4, 4, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_KxNW", "Reviewer_HXzc", "Reviewer_dzPr"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4/5/6/7 (BKZJ, KxNW, HXzc, dzPr) spread evenly, two on each side of the threshold. No single score stands apart."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_KxNW",
+     "claim": "K=10 is used on Sketchy (gripper plus three objects) and APC (one object), more than on the synthetic sets. This can disadvantage the baselines; runs with K=5-7 and K=2-4 are needed.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors confirm: 'We intentionally used a larger value of K on Sketchy and APC'. The K values sit in Appendix E, which neither PDF contains. l.278-279: one foreground object per APC image. Table 2: K=9 on ShapeStacks. Table 4 scores all pixels, where one object segment plus one background segment is optimal (l.282-284). Figure 6: GENESIS and Slot Attention split the APC background into many segments; GENESIS-v2 uses one. No smaller-K run exists."
+    },
+    {
+     "reviewer": "Reviewer_KxNW",
+     "claim": "Slot Attention got no further tuning, while MONet-G and GENESIS share the GECO protocol tuned for GENESIS-v2.",
+     "checked_against_paper": "correct",
+     "evidence": "l.216-221: the other models follow the GECO protocol of GENESIS 'for comparability'; Slot Attention keeps its pure reconstruction objective. The authors do not deny it: 'it would be interesting to investigate how far the performance of the baselines can be pushed'."
+    },
+    {
+     "reviewer": "Reviewer_KxNW",
+     "claim": "No reconstruction metric (MSE or NLL) is reported.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1-5 of the submission give only ARI, MSC and FID. The camera-ready adds ELBO values (Table 3)."
+    },
+    {
+     "reviewer": "Reviewer_KxNW",
+     "claim": "The flexible number of slots relies on a naive stopping rule (attention mass below 20), applied only at inference after training with fixed K, and it fails on other datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "l.179-181 (fixed K during training); l.244-255 ('smaller than twenty pixels'; 'it did not perform well on ObjectsRoom'). Table 2: without the mask loss, flexible K lowers ARI-FG from 0.81 to 0.77 and MSC-FG from 0.68 to 0.63."
+    },
+    {
+     "reviewer": "Reviewer_KxNW",
+     "claim": "All experiments use continuous masks; the uniqueness argument for binary masks is never tested.",
+     "checked_against_paper": "correct",
+     "evidence": "l.157-164 present binary masks only as a possibility. The camera-ready says 'we restrict ourselves to soft cluster assignment'. KxNW later accepted that unordered, not unique, masks are the aim and dropped the point."
+    },
+    {
+     "reviewer": "Reviewer_BKZJ",
+     "claim": "The statement that ARI 'does not penalize the undersegmentation of objects' is wrong for ARI; at most it holds for ARI-FG.",
+     "checked_against_paper": "correct",
+     "evidence": "l.236-237 say 'ARI' while Table 1 reports ARI-FG. The authors conceded; the camera-ready says ARI-FG."
+    },
+    {
+     "reviewer": "Reviewer_BKZJ",
+     "claim": "MONet-G looks poorly trained on ObjectsRoom compared with the original MONet paper.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The submission retrains MONet with GECO 'to avoid conflating the results with the original settings' (l.219-221) and cites no original ObjectsRoom ARI-FG to compare against."
+    },
+    {
+     "reviewer": "Reviewer_HXzc",
+     "claim": "Table 1 bolding overstates GENESIS-v2 over GENESIS given the standard deviations.",
+     "checked_against_paper": "correct",
+     "evidence": "GENESIS-v2 is bold on all four metrics among the generative models, including MSC-FG 0.68±0.01 vs 0.67±0.02 (ShapeStacks) and 0.58±0.03 vs 0.53±0.07 (ObjectsRoom). The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_dzPr",
+     "claim": "Compared with GENESIS and Slot Attention, GENESIS-v2 achieves 'impressively better results both qualitatively and quantitatively'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "True against GENESIS on segmentation. Against Slot Attention it holds only on APC (ARI 0.55 vs 0.03). On the synthetic sets ARI-FG is higher by 0.05 but MSC-FG is lower (0.58 vs 0.64; 0.68 vs 0.70). On Sketchy the paper says Slot Attention reconstructs slightly better (l.269-271)."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "On all datasets except APC the model performs very similarly to Slot Attention, and the source of the APC gain is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 (above); l.268-270: on Sketchy both models 'disambiguate the individual foreground objects and the robot gripper fairly well'; Table 4 for APC. Checklist 3(c): the real-world results come from a single seed. No experiment separates the IC-SBP, the KL term and the slot count."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "The ablations are on synthetic data only, and almost none shows a significant change.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The ablations are in Appendix F, which neither PDF contains."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "KxNW (edited 2021-09-05): 'I still remain slightly in favor of a borderline reject (5)'. HXzc (edited 2021-08-30): 'I remain somewhat in favor of acceptance'. BKZJ (2021-09-01, review never edited): 'Sticking with my original rating'. dzPr (edited 2021-09-01) added a note that 'leans me toward acceptance'; it does not say whether the 7 changed.",
+    "what_convinced_or_not": "The authors gave arguments, not experiments. They declined smaller-K baselines, more baseline tuning, reconstruction error and other GECO targets: 'Changes in the benchmark results would therefore not significantly affect the core contributions of this work'. KxNW accepted only the binary-mask clarification and found 'no interest in addressing the other issues, even though some appear easy to fix'. BKZJ's follow-up on sigma, seed scores and dynamic stopping drew a reply that cited two 'misunderstandings'; BKZJ did not answer. HXzc judged the replies to KxNW and BKZJ 'well-enough addressed'. dzPr granted the tuning concerns 'probably merit' but trusted the results 'in my experience'."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "With a 2-2 split, the AC read 'the paper itself'. Con 1 adopts KxNW's slot-count and tuning point ('a crucial experiment'). Con 2 is the AC's own reading: the gain over Slot Attention is large only on APC, the ablations are on synthetic data, and the cause of the APC gain is unknown; the AC calls this 'crucial'. Con 3 follows KxNW, BKZJ and dzPr on the flexible-K claim. The AC also notes the authors' 'resistance' to the requests.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Baselines possibly disadvantaged: ten slots on single-object APC and on Sketchy, Slot Attention not retuned, smaller-K control refused (Reviewer_KxNW, AC con 1)",
+    "No analysis of what drives the gains; the one large margin over Slot Attention is on APC, from a single seed (AC con 2, 'crucial')",
+    "The flexible-number-of-objects motivation rests on a hand-set, inference-only stopping rule that fails on ObjectsRoom (Reviewer_KxNW, Reviewer_BKZJ, Reviewer_dzPr)",
+    "A 4/5/6/7 split, unchanged after a rebuttal that declined every requested experiment"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 6, 6, 7],
+   "confidences": [4, 4, 3, 4],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/6/6/7 (9w6y, jTRB, nSnK, mGsC). mGsC's 7 is one point above the rest and rests on a three-sentence overall judgment plus nine minor comments."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_9w6y",
+     "evidence": "States that the model 'shows superior performance on all of them' and that samples 'are of high quality'. Table 1 gives Slot Attention the higher MSC-FG on both synthetic sets, Table 5 gives GENESIS the better APC FID, and l.262-263 and l.290-293 concede that sample quality is weak. Its one substantive point, the merged background, is correct."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_9w6y",
+     "claim": "The model shows superior performance on all datasets.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Slot Attention's mean MSC-FG is higher on ObjectsRoom (0.64 vs 0.58) and ShapeStacks (0.70 vs 0.68). GENESIS has the better APC FID (183.2 vs 245.6, Table 5)."
+    },
+    {
+     "reviewer": "Reviewer_9w6y",
+     "claim": "Images sampled from the model are of high quality.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.262-263: ShapeStacks samples 'still show room for improvement'. l.290-291: the real-world FID scores are 'fairly large' (208.1 on Sketchy, 245.6 on APC)."
+    },
+    {
+     "reviewer": "Reviewer_9w6y",
+     "claim": "GENESIS-v2 merges background structures (floor, walls, sky; the APC shelf) into one segment while the baselines split them, and the paper does not discuss this inductive bias.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 6 shows one background segment for GENESIS-v2 and fragmented backgrounds for GENESIS and Slot Attention. The submission does not discuss it. The camera-ready adds 'GENESIS-V2 is the only model that segments the entire background as a single component' and the KL conjecture."
+    },
+    {
+     "reviewer": "Reviewer_nSnK",
+     "claim": "On the simulated datasets, segmentation is comparable to or slightly worse than Slot Attention.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: ARI-FG higher by 0.05 on both sets; MSC-FG lower by 0.06 (ObjectsRoom) and 0.02 (ShapeStacks)."
+    },
+    {
+     "reviewer": "Reviewer_nSnK",
+     "claim": "A flexible number of slots worked on one dataset only and needed the extra mask loss to match fixed K.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 covers ShapeStacks only; l.250-255 report failure on ObjectsRoom."
+    },
+    {
+     "reviewer": "Reviewer_jTRB",
+     "claim": "The auxiliary mask loss gives negative results on ObjectsRoom.",
+     "checked_against_paper": "correct",
+     "evidence": "l.253-255: the loss 'often caused models to get stuck in local minima where images are segmented into vertical stripes'."
+    },
+    {
+     "reviewer": "Reviewer_mGsC",
+     "claim": "The ARI statement at line 237 looks wrong.",
+     "checked_against_paper": "correct",
+     "evidence": "l.236-237 say 'ARI' where ARI-FG is meant; the authors conceded a wording error. mGsC's own version (ARI does not penalise over-segmentation) differs from what the authors meant."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited. jTRB (2021-08-13): 'I keep my original rating of 6'. nSnK (2021-08-19): 'I have left my score as is'. mGsC (2021-08-25): 'I'm keeping my score'. 9w6y (2021-08-26): 'I keep my original rating', plus a new question that the authors did not answer.",
+    "what_convinced_or_not": "B asked mostly for text: clearer exposition, a discussion of the background bias, citations, the relation of attention masks to final masks, and slot counts. The authors promised all of it. No B reviewer asked for an experiment that the authors then refused. 9w6y's closing question, why the KL term in the baselines does not produce the same effect, stayed open."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three bullets: an important problem, an approach that is 'reasonable and has some novelty', real-world data as 'a step forward', and 'The major concerns from the reviewers are addressed well enough by the rebuttal'. It names no concern. All four reviewers had only kept their scores, and 9w6y's last question was unanswered.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at or above the threshold (6/6/6/7), none changed",
+    "IC-SBP judged novel and the APC and Sketchy results judged a step toward real-world data (all reviewers, AC)",
+    "Concerns were clarity, the background bias and the value of flexible K, all treated as fixable in the text",
+    "No one questioned the baseline setup, so the APC margin was taken at face value"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Ten slots for every model on single-object APC and on Sketchy; request for a smaller-K baseline run (Reviewer_KxNW, AC)",
+  "Unequal tuning: Slot Attention used as is, GECO baselines on GENESIS-v2's protocol (Reviewer_KxNW, Reviewer_dzPr)",
+  "No reconstruction metric, no reconstruction-compression trade-off, a single GECO target (Reviewer_KxNW, Reviewer_BKZJ)",
+  "MONet-G possibly under-trained on ObjectsRoom (Reviewer_BKZJ)",
+  "Table 1 bolding ignores the standard deviations against GENESIS (Reviewer_HXzc)",
+  "Binary masks never tested; seed-score effect, learned sigma and latent quality not examined (Reviewer_KxNW, Reviewer_BKZJ)",
+  "Ablations on synthetic data only; no component analysis for the APC gain (AC)",
+  "Kernel scale initialised from K, against the flexibility claim (Reviewer_dzPr)"
+ ],
+ "issues_only_b": [
+  "Locality assumption: may fail on non-blob objects or complex backgrounds (Reviewer_jTRB)",
+  "Attention masks m differ from final masks pi; whether they converge (Reviewer_jTRB)",
+  "IC-SBP steps grow with the object count; no shown compute saving from flexible K; slot count not compared with the true object count (Reviewer_nSnK)",
+  "Likelihood choice, GECO target and the 320-image evaluation set (Reviewer_mGsC)"
+ ],
+ "shared_issues": [
+  "Flexible number of slots weakly shown: hand-set, inference-only stopping rule that works on ShapeStacks only and needs the mask loss (A: KxNW, BKZJ, dzPr; B: nSnK, jTRB)",
+  "Whole background merged into one segment, with the inductive bias unexplained (A: HXzc, dzPr; B: 9w6y, jTRB)",
+  "Source of the segmentation gains unexplained (A: AC on APC; B: 9w6y on the KL term)",
+  "ARI versus ARI-FG statement at line 237 (A: BKZJ; B: mGsC)",
+  "The name 'stick-breaking process' does not fit the formal definition (A: HXzc; B: jTRB)",
+  "Novelty as a combination of GENESIS, Slot Attention and instance colouring (A: BKZJ and HXzc call it small; B: 9w6y, nSnK and mGsC call it novel)",
+  "Scaling to scenes with many objects (A: dzPr; B: nSnK)",
+  "Method description hard to follow; move details into the main text (A: KxNW; B: jTRB, mGsC)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "A rejected because its two most thorough reviewers and its AC probed the evaluation, and the submission confirms their facts; B accepted because no B reviewer asked how the baselines were run. All models on APC used ten slots, though each APC image holds one object. Table 4 scores all pixels, so one object segment plus one background segment is optimal, and Figure 6 shows GENESIS and Slot Attention splitting the background. APC carries the only large gain over Slot Attention (ARI 0.55 vs 0.03, one seed); on the synthetic sets GENESIS-v2 leads by 0.05 ARI-FG and trails on MSC-FG. Reviewer_KxNW asked for a smaller-K control, the authors refused, and A's AC called it 'a crucial experiment'. The decisive issue thus appears only in A. On the shared facts (weak flexible-K evidence, merged background, novelty as a combination of known parts) A also weighted harder, and B treated them as text fixes. A's 4/5/6/7 split left the call to an AC who read the paper. B's unchanged 6/6/6/7 met an AC whose meta-review names no concern. The camera-ready drops 'outperforms the baseline methods by significant margins' for 'performs strongly in comparison to', which supports A's reading.",
+ "candidate_reasons": [
+  "Untested baseline slot-count confound",
+  "Single-dataset gain taken at face value",
+  "Authors refused requested control experiments",
+  "AC's own reading broke tie",
+  "Generic meta-review deferring to scores",
+  "Sceptical reviewers versus mild supporters"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_KxNW main review and post-rebuttal update",
+  "Authors' first reply to Reviewer_KxNW (slot count on Sketchy and APC; baseline tuning)",
+  "Committee A meta-review, cons 1 and 2",
+  "Committee B meta-review",
+  "Reviewer_9w6y review (performance and sample-quality claims)",
+  "paper_submitted.pdf Table 1 (bolding) and Table 2, l.244-255",
+  "paper_submitted.pdf Table 4, Figure 6, l.277-287; checklist 3(c)",
+  "paper.pdf abstract and introduction (softened claim), Table 3 (ELBO added)"
+ ]
+}

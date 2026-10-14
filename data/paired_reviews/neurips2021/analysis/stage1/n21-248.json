@@ -1,0 +1,221 @@
+{
+ "pair_id": "n21-248",
+ "prompt_version": 1,
+ "kind": "spotlight/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [7, 4, 4],
+   "confidences": [3, 4, 4],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_upZi",
+    "direction": "champion",
+    "basis": "principled",
+    "evidence": "Ratings 7/4/4 (upZi, xbrn, K1Av). upZi's 7 gives reasons: a near-optimal ratio whose loss is 'only additive, not multiplicative', and a weaker prediction model. Five hours and 13 line-level comments; it also asks where predictions come from and wants 'a revamp for clarity's sake'. Confidence 3, math not checked. upZi posted nothing after the rebuttal, so A had no active champion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_K1Av",
+     "evidence": "Partly. Its central objection says there is 'no robustness result showed or discussed', but lines 87-89 state the worst-case bound (1-γ)/(1+log(vmax/vmin)) from running ZCL on part of the capacity. It also inverts ZCL's ratio ('ln v_min/v_max') and writes (|V|-1) for the paper's (|V|+1). 2.5 hours; silent after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_K1Av",
+     "claim": "The paper shows or discusses no robustness result.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 87-89: running SENTINEL on a γ fraction of the capacity and ZCL on the rest gives a worst-case guarantee of (1-γ)/(1+log(vmax/vmin)) plus the improved bound under correct predictions. It is one sentence without proof, but it is there."
+    },
+    {
+     "reviewer": "Reviewer_K1Av",
+     "claim": "The algorithm can perform arbitrarily badly when the instance violates the prediction.",
+     "checked_against_paper": "correct",
+     "evidence": "For SENTINEL alone. Step 3 sets b(x)=0 below v*, and an item of value v is accepted only if A(x)<B(x) for all x ≥ v, so no item below v* is ever taken. An instance with only such items gives ALG = 0. The paper's only remedy is the γ-split of lines 87-89."
+    },
+    {
+     "reviewer": "Reviewer_xbrn",
+     "claim": "There is no robustness analysis and no consistency-robustness trade-off; the combination with ZCL is not elaborated.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 87-89 are the only treatment. The (1+ε) argument for slightly wrong predictions appears only in the rebuttal, as a sketch."
+    },
+    {
+     "reviewer": "Reviewer_xbrn",
+     "claim": "B(v_min)=0, so with ℓ_v=0, u_v=∞ and all items at v_min the algorithm accepts nothing; Eq. (1) may have no solution when ℓ ≡ 0.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The instance is outside the continuous model that the analysis uses (lines 137-144: a continuum of infinitesimal items; s, ℓ and u continuous). In that model M(v_min) has zero mass, so Eq. (1) holds at v* = v_min when ℓ ≡ 0, and b = τ > 0 where OPT(M(v)) rises. Lines 240-243 state that ℓ=0, u=∞ recovers ZCL's ratio. The discrete version (Appendix B) is in the supplement, which is not in the folder."
+    },
+    {
+     "reviewer": "Reviewer_xbrn",
+     "claim": "The ratio has no closed form, so its dependence on the parameters and its gain over ZCL are hard to judge.",
+     "checked_against_paper": "correct",
+     "evidence": "Step 4 (lines 184-189) finds α* by binary search. Figure 1 plots it for one prediction family only. The authors conceded that it 'does not admit a clean closed-form expression'."
+    },
+    {
+     "reviewer": "Reviewer_xbrn",
+     "claim": "The experiments compare only with prediction-free ZCL; a prediction-aware baseline is missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 6 and Figure 2 use ZCL as the only baseline, on synthetic random-order instances. There ZCL's empirical ratio is about 0.78-0.96, against about 0.90-1.00 for SENTINEL; the large gap is only between the theoretical ratios (about 0.18 for ZCL)."
+    },
+    {
+     "reviewer": "Reviewer_upZi",
+     "claim": "B_α(v) (line 185) and α* are not defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Step 3 defines B(v) with no α subscript; Step 4 uses B_α. The authors conceded and promised to clarify."
+    },
+    {
+     "reviewer": "Reviewer_upZi",
+     "claim": "Line 341: with ℓ_v = 100 in expectation, 10^6 items should arrive, not 10^4.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 6 uses ℓ_v as an item count: 50-150 items of size 10^-4 for each of 100 values gives 10^4 items. The model defines ℓ_v as a bound on total size, which explains the confusion."
+    },
+    {
+     "reviewer": "Reviewer_K1Av",
+     "claim": "The extensions are straightforward.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Section 4 is a half-page reduction to knapsack ('It is easy to verify', line 284). The two-stage algorithm with predictions, where the authors place the novelty, is only in the supplement (line 307), which is not in the folder."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after posting, and no A reviewer posted in the discussion. The three author replies of 2021-08-08 have no visible answer.",
+    "what_convinced_or_not": "Nothing visible moved A. The authors pointed to the γ-split (lines 86-89), gave upZi a (1+ε) sketch for slightly wrong predictions, said that xbrn's instance falls outside the continuous model, and defended the two-stage analysis. The meta-review repeats the pre-rebuttal objection that the paper 'does not explicitly address the case where the predictions are inaccurate'. That is accurate for the submission: the (1+ε) sketch exists only in the rebuttal."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review calls the formulation and algorithm 'interesting and novel', then gives the reasons of the two 4s: doubt that this is a 'learning-augmented algorithm' because inaccurate predictions are not addressed (K1Av, xbrn), and limited experiments that 'did not illustrate where the appropriate predictions would come from' (K1Av, xbrn, upZi). It does not cite xbrn's boundary case or engage with the rebuttal.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Two of three ratings at 4 with confidence 4 (mean 5.0); no rating changed after the rebuttal",
+    "Held to the consistency-robustness standard of learning-augmented algorithms: guarantees only for correct predictions, robustness only via a one-sentence γ-split (Reviewer_K1Av, Reviewer_xbrn)",
+    "Synthetic experiments with one prediction-free baseline and no source of predictions (Reviewer_xbrn, Reviewer_K1Av, Reviewer_upZi)",
+    "The only champion (Reviewer_upZi, 7, confidence 3) was silent after the rebuttal"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [6, 8, 6, 7],
+   "confidences": [4, 3, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_YbwL", "Reviewer_PbZr"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/8/6/7 (YbwL, PbZr, ZGPi, et4L), all above threshold. PbZr's 8 is 1.7 points above the mean of the others. The 7 and the 8 come at confidence 3 with 'Math/other details were not carefully checked'; the two confidence-4 reviewers gave 6."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_et4L",
+     "evidence": "Thin rather than wrong. Rating 7 on a one-paragraph main review whose only caveat is that 'the error from different confidence intervals could accumulate'. Confidence 3, math not checked, no reply after the authors' two-sentence answer. The summary is accurate, but the review is weak evidence for a spotlight."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_PbZr",
+     "claim": "Robustness here is trivial, so the paper's focus is consistency.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 87-89: split the capacity between SENTINEL and ZCL. This is the same fact that K1Av and xbrn in A counted against the paper."
+    },
+    {
+     "reviewer": "Reviewer_PbZr",
+     "claim": "If ℓ(v) = u(v) for all v, then α* = 1.",
+     "checked_against_paper": "correct",
+     "evidence": "With ℓ = u, M(v) is the same instance for every v, so the algorithm can match OPT. The authors confirmed it."
+    },
+    {
+     "reviewer": "Reviewer_PbZr",
+     "claim": "Line 170 should say 'largest', not 'smallest'.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 169 defines v* as the largest value that satisfies Eq. (1); line 170 calls it the smallest."
+    },
+    {
+     "reviewer": "Reviewer_YbwL",
+     "claim": "B_α(·) in Step 4 is not defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Step 3 defines B(v) with no α subscript. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_YbwL",
+     "claim": "The additive loss term max_i s_i depends on the number k of discretized values.",
+     "checked_against_paper": "incorrect",
+     "evidence": "i indexes arriving items (lines 38-39, 72). The paper reuses the index for V (line 59) and calls the loss 'due to the discretization' (line 80), which invited the misreading. The 2021-09-03 thread settled it."
+    },
+    {
+     "reviewer": "Reviewer_ZGPi",
+     "claim": "The problem statement does not say whether an item's size and profit are revealed before the accept or reject decision.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 41-42 say only that the algorithm decides when an item arrives. Revelation on arrival is the field's convention, and the acceptance rule (lines 182-183) implies it, but the paper does not state it."
+    },
+    {
+     "reviewer": "Reviewer_YbwL",
+     "claim": "The experiments are well designed and show the superiority of the proposed algorithm.",
+     "checked_against_paper": "correct",
+     "evidence": "Only in a narrow sense. Figure 2 shows SENTINEL above ZCL at every δ and every vmax/vmin, but on synthetic random-order instances against one prediction-free baseline, where ZCL already reaches about 0.78-0.96. B's reviewers did not question this design; A's did."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_YbwL"],
+    "evidence": "YbwL edited on 2021-09-03. Its text first says 'I will keep my initial score', then 'my concerns were resolved. I will increase my score to 6', so the pre-rebuttal score was below 6. PbZr edited on 2021-09-02: 'my initial opinion remains' (8 kept). ZGPi and et4L neither edited nor replied.",
+    "what_convinced_or_not": "The 2021-09-03 exchange settled that max_i s_i runs over arriving items, so the additive loss does not depend on k; YbwL had misread the overloaded index. The (1+ε) sketch answered PbZr's smoothness question. ZGPi's venue and motivation doubts got an answer (electric-vehicle charging, a data-driven knapsack paper) but no visible reaction."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Acceptance follows four ratings above threshold. The three-sentence meta-review ('technically strong and interesting') gives no reason for a spotlight over a poster with two 6s ('marginally above the acceptance threshold') at confidence 4. It omits ZGPi's venue and motivation doubt, and asks for YbwL's additive-loss and incorrect-prediction points in the final version.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings above threshold (6, 8, 6, 7; mean 6.75)",
+    "Results judged technically strong and non-trivial: SENTINEL is optimal for every prediction, and threshold algorithms provably cannot be (Section 3.2) (Reviewer_PbZr, Reviewer_YbwL, Reviewer_ZGPi)",
+    "Interval predictions taken as the contribution; robustness treated as trivial (Reviewer_PbZr) or as a revision item (Reviewer_YbwL)",
+    "The rebuttal cleared YbwL's additive-loss misreading; YbwL raised to 6"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Alleged boundary flaw: B(v_min)=0 and no solution of Eq. (1) when ℓ ≡ 0 (Reviewer_xbrn); it does not hold in the paper's continuous model",
+  "No closed-form ratio or analytic comparison with ZCL's Ω(1/ln(vmax/vmin)) (Reviewer_xbrn)",
+  "Prediction-free ZCL is an unfair baseline; the experiments only show that more information helps (Reviewer_xbrn, Reviewer_K1Av)",
+  "The extensions are straightforward (Reviewer_K1Av)",
+  "Stating the ratio relative to the best possible ratio is unusual (Reviewer_K1Av)"
+ ],
+ "issues_only_b": [
+  "Size of the additive loss for finite discretization k (Reviewer_YbwL); a misreading, cleared in discussion",
+  "α* = 1 when ℓ = u deserves a sentence (Reviewer_PbZr)",
+  "Arrival protocol unclear: when size and profit are revealed (Reviewer_ZGPi)",
+  "The analysis uses standard techniques such as continuous relaxation (Reviewer_ZGPi)",
+  "Errors could accumulate across several confidence intervals (Reviewer_et4L)"
+ ],
+ "shared_issues": [
+  "Guarantees assume correct predictions; robustness only by splitting the capacity with ZCL (A: Reviewer_xbrn, Reviewer_K1Av, Reviewer_upZi; B: Reviewer_YbwL, Reviewer_PbZr)",
+  "Fit with NeurIPS and with learning-augmented algorithms; no realistic source of predictions (A: Reviewer_K1Av, Reviewer_upZi; B: Reviewer_ZGPi)",
+  "Clarity: B_α undefined, overloaded index i, no algorithm box (A: Reviewer_upZi, Reviewer_xbrn; B: Reviewer_YbwL, Reviewer_ZGPi)",
+  "Behaviour under slightly wrong predictions (A: Reviewer_upZi; B: Reviewer_PbZr); both got the same (1+ε) sketch"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighted the same facts differently. SENTINEL's guarantee holds only when the interval predictions are correct, and robustness comes from one sentence: run ZCL on part of the capacity (lines 87-89). Both committees saw this. A's two confidence-4 reviewers held the paper to the consistency-robustness standard of learning-augmented algorithms, which its own introduction invokes (lines 18-23, 33-35). Reviewer_xbrn called the work 'incomplete as a learning-augmented algorithm'; Reviewer_K1Av called the framing 'misleading' and doubted the venue. Both gave 4, and the AC followed them. B's reviewers took interval predictions as the contribution and valued the proof that threshold algorithms cannot be optimal. Reviewer_PbZr called robustness 'trivial'; Reviewer_YbwL and B's AC made it a revision request. B's Reviewer_ZGPi shared K1Av's venue and motivation doubt but gave 6. No reviewer found an error in a result: xbrn's boundary counterexample falls outside the continuous model that the analysis uses. No A reviewer posted or edited after the rebuttal, so its (1+ε) sketch for slightly wrong predictions moved no one. B's spotlight is generous: the two confidence-4 reviewers gave 6, the 7 and the 8 came at confidence 3 without checking the math, and the three-sentence meta-review gives no reason for the tier. Reviewer draw set the direction, and AC calibration at both ends widened it to spotlight versus reject. The pooled mean of the seven ratings, 6.0, fits the final poster.",
+ "candidate_reasons": [
+  "Robustness gap weighted differently",
+  "Held to consistency-robustness standard",
+  "Venue doubt scored differently",
+  "Silent reviewers after rebuttal",
+  "Spotlight on marginal ratings"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_K1Av review, point 1",
+  "Reviewer_xbrn review, major comments 1 and 3",
+  "Committee A meta-review",
+  "Reviewer_PbZr review, summary ('robustness here is trivial')",
+  "Reviewer_YbwL review updates and the 2021-09-03 thread",
+  "Reviewer_ZGPi review (scope and motivation)",
+  "Committee B meta-review",
+  "paper_submitted lines 18-23, 33-35 and 87-89 (framing and γ-split)",
+  "paper_submitted lines 137-144, Eq. (1) and Step 3 (continuous model and budget)",
+  "paper_submitted Section 6 and Figure 2 (ZCL-only baseline)"
+ ]
+}

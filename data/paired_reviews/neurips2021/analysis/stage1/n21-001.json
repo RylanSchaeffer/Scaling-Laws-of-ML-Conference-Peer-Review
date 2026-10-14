@@ -1,0 +1,226 @@
+{
+  "pair_id": "n21-001",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 5, 4, 6],
+      "confidences": [4, 4, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_uAeA"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/5/4/6 all sit within one point of the 5.0 mean. The only vote above threshold, Reviewer_NNwT's 6 at confidence 5, is a short review of mostly presentation requests (expand Section 2.1.2, move Figure 6 and Table 3, add mAP to Figure 3) plus one valid point on memory energy."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_h7uh",
+          "claim": "Table 5 shows about 25% energy saved for 1-3 AP lost.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 5: FCOS 987.7 mJ vs Adder FCOS (B) 750.2 (-24%) and (B+N) 702.7 (-29%); AP drops range 0.8 to 3.4. Only the full-adder RetinaNet-MS-640 (B+N+H) reaches 2x, at -3.4 AP."
+        },
+        {
+          "reviewer": "Reviewer_h7uh",
+          "claim": "Apart from unfreezing BN, each tweak in Table 1 adds little, comparable to generic tuning.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: l1 gradients +0.2, KD backbone +0.6, cosine and larger learning rate +1.6 (33.2 to 34.8). Lines 206-207 report that last step as 0.6. After unfreezing BN, the largest gain is learning-rate tuning."
+        },
+        {
+          "reviewer": "Reviewer_ZgMW",
+          "claim": "In Table 4 the shortcuts matter more than the bottom-up path; R-PAFPN without shortcut is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: PAFPN 34.9, PAFPN w/ shortcut 36.1 (+1.2), R-PAFPN 36.5 (+0.4). No row isolates the reversed path. The rebuttal gives R-PAFPN w/o shortcut 35.4, +0.5 over PAFPN."
+        },
+        {
+          "reviewer": "Reviewer_ZgMW",
+          "claim": "With the longer schedule the gap between Adder FCOS and FCOS grows (Table 5).",
+          "checked_against_paper": "incorrect",
+          "evidence": "R-50 FCOS gaps shrink from 12 to 24 epochs: B+N -1.9 to -1.2, B -1.2 to -0.8. The larger -2.1/-2.4 gaps are the R-101 rows, a different backbone. Only Adder FoveaBox (B) grows, -1.8 to -2.1."
+        },
+        {
+          "reviewer": "Reviewer_uAeA",
+          "claim": "Only the adder backbone is pre-trained with distillation, an unfair setting.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.1.2 and Table 2: Adder KD R-50 76.8% vs Conv R-50 76.2% top-1. The effect is small: vanilla Adder R-50 gives 37.4 mAP vs 37.8 with KD."
+        },
+        {
+          "reviewer": "Reviewer_uAeA",
+          "claim": "No result for a convolutional detector with R-PAFPN.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 lists adder rows only. The rebuttal gives conv FCOS with R-PAFPN at 38.8, +0.4 over FPN."
+        },
+        {
+          "reviewer": "Reviewer_uAeA",
+          "claim": "The shortcuts 'obviously' increase the network's computation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Identity shortcuts add only element-wise additions on the neck feature maps: about 11M (authors' figure, consistent with 256-channel P3-P7 maps at 800x1333) against 316.5G additions for Adder FCOS (B+N) in Table 5."
+        },
+        {
+          "reviewer": "Reviewer_uAeA",
+          "claim": "No comparison with model pruning for the energy-accuracy trade-off.",
+          "checked_against_paper": "correct",
+          "evidence": "The introduction (lines 30-48) names pruning, quantization, lightweight design and distillation, but no experiment compares against them. The rebuttal adds one Joint-DetNAS pruning comparison taken from that paper."
+        },
+        {
+          "reviewer": "Reviewer_NNwT",
+          "claim": "The energy savings ignore memory reads and writes.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 5 energy is #Mul x 3.7 pJ + #Add x 0.9 pJ (FCOS: 214.7G x 4.6 pJ = 987.7 mJ), with no memory term. The authors reply that memory costs are the same for both networks, which shrinks the relative saving."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Responses posted 2021-08-10. No A reviewer replied, and the only edit (Reviewer_uAeA, 2021-07-17) predates the responses.",
+        "what_convinced_or_not": "No reviewer said. The responses added new numbers: R-PAFPN without shortcut (35.4, +0.5 over PAFPN), conv FCOS with R-PAFPN (38.8), the Joint-DetNAS pruning comparison, an INT8 table (35% energy cut for adder over conv FCOS), 11M additions for the shortcuts, and a SyncBN answer. The AC took these as resolving the concerns."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts over ratings 5/5/4/6, three below threshold. The two-sentence meta-review keeps the reviewers' shared praise ('well presented and thoroughly evaluated') and states that the concerns 'were addressed by the authors in the rebuttal', which no reviewer confirmed. It omits the limited-novelty objection that Reviewer_ZgMW and Reviewer_uAeA led their criticism with.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers found the paper clear and the experiments extensive",
+        "AC judged that the rebuttal resolved the improvement and clarity concerns",
+        "AC expects the results to interest the NeurIPS community"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [3, 5, 7],
+      "confidences": [4, 4, 5],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_cnqS",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The 3 is the lowest of seven ratings across both committees. Its main objection rests on a misreading: cnqS thought BN statistics stay unfrozen 'during inference', while lines 128-129 and the Figure 2 caption say fine-tuning. After the correction cnqS kept 3 on venue fit, which the AC called 'not valid'. The review took 1.5 hours. Without it B's mean is 6.0, not 5.0. The opposite pole, Reviewer_2TRF's 7, is principled: a long, specific review and a reply in discussion."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_cnqS",
+          "evidence": "A short main review (eight sentences, 1.5 hours) whose central objection (BN unfrozen at inference, so single-image inference fails) contradicts lines 128-129 and the Figure 2 caption. It also asks for 'at least an attempt at some analysis' of the instability, which Section 2.1.1 gives qualitatively."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_cnqS",
+          "claim": "BN statistics are unfrozen during inference, so single-image inference is doubtful.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 128-129 unfreeze BN 'when fine-tuning'; the Figure 2 caption says 'during training'. cnqS accepted the correction on 2021-08-17 but kept 3."
+        },
+        {
+          "reviewer": "Reviewer_cnqS",
+          "claim": "The power savings are not demonstrated in realistic settings.",
+          "checked_against_paper": "correct",
+          "evidence": "Energy is estimated from operation counts with per-operation costs from [7, 40] (Table 5 caption). There is no hardware measurement, latency or memory term."
+        },
+        {
+          "reviewer": "Reviewer_cnqS",
+          "claim": "The baselines are far from the COCO state of the art.",
+          "checked_against_paper": "correct",
+          "evidence": "The best conv baseline is FCOS R-101 at 41.0 (Table 5); Reviewer_2TRF cites about 57 on minival. The paper's claim is adder versus conv on the same detector, so this bears on impact, not on correctness."
+        },
+        {
+          "reviewer": "Reviewer_3Btm",
+          "claim": "The Table 1 tricks could also improve the CNN baselines, which do not use them.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 5's 12-epoch FCOS (38.4) equals the rebuttal's step-LR number; with cosine and larger LR, FCOS reaches 39.0, so the 12-epoch B+N gap is 2.5, not 1.9. Section 3.1 says all models use cosine decay; the rebuttal shows the conv FCOS baseline used step LR."
+        },
+        {
+          "reviewer": "Reviewer_3Btm",
+          "claim": "Figure 2's BN drift means the adder detector is less robust to domain shift.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 2 tracks BN statistics across fine-tuning epochs and measures no robustness; lines 123-126 tie the drift to shrinking adder weights. The rebuttal's Cityscapes test gives -2.2 for the adder detector against -1.9 on COCO."
+        },
+        {
+          "reviewer": "Reviewer_3Btm",
+          "claim": "The neck and detection head are still based on convolution (discussion, 2021-08-19).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 5 has adder necks (B+N) for FCOS, FoveaBox, FCOS-RT and RetinaNet-MS-640, and a full adder RetinaNet-MS-640 (B+N+H, 34.5 mAP, -3.4). Heads stay convolutional on most detectors (line 314). This was 3Btm's stated reason for staying below threshold."
+        },
+        {
+          "reviewer": "Reviewer_2TRF",
+          "claim": "Full adder networks including the prediction heads were left out of the paper.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 5's last row and lines 289-291 report Adder RetinaNet-MS-640 (B+N+H): 34.5 mAP at 217.4 vs 440.1 mJ."
+        },
+        {
+          "reviewer": "Reviewer_2TRF",
+          "claim": "No comparison with pruning, weight quantization or lightweight architectures.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 30-48 name these methods; no table or figure compares against them. This became the B AC's 'main concern'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B review was edited after posting. Reviewer_cnqS (2021-08-17): 'I maintain my score'. Reviewer_3Btm (2021-08-19): 'partially solves my concerns ... below my expectations'. Reviewer_2TRF (2021-08-25): 'I will keep my score'.",
+        "what_convinced_or_not": "The correction that BN is unfrozen only in training convinced cnqS on the fact, but cnqS moved to venue fit. 3Btm stayed unconvinced on domain shift and on the convolutional neck and head; the authors' 2021-08-20 reply pointing to Table 5 got no answer. The AC judged one Joint-DetNAS pruning comparison too thin. B never saw the INT8 table that A received."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The reject matches two of three ratings, but the AC rejects both detractors' reasons: cnqS's venue concern is 'not valid', and 3Btm's alleged triviality (3Btm never used the word) is answered with 'even the AlexNet paper talked about specific ways of tuning'. The AC's 'main concern' is the missing comparison with reduced precision, distillation and pruning, which Reviewer_2TRF listed as a limitation 'not a big concern' while recommending acceptance.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own main concern: no thorough comparison with reduced precision, distillation or pruning",
+        "Paper not placed in the context of energy-efficient computing; one Joint-DetNAS comparison judged insufficient",
+        "Two of three ratings below threshold (3, 5), though the AC rejected both detractors' reasons"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Each tweak's gain is small, comparable to generic tuning; the energy saving is 'underwhelming' at about 25% (Reviewer_h7uh)",
+    "Shortcuts, not the reversed path, give most of R-PAFPN's gain; no evidence that it relieves sparsity; no conv detector with R-PAFPN (Reviewer_ZgMW, Reviewer_uAeA)",
+    "The energy model omits memory traffic (Reviewer_NNwT, Reviewer_ZgMW)",
+    "Fixed-point arithmetic for the energy estimate (Reviewer_h7uh); SyncBN (Reviewer_ZgMW)",
+    "A gap that grows with longer training, which Table 5 contradicts for R-50 FCOS (Reviewer_ZgMW)"
+  ],
+  "issues_only_b": [
+    "Venue fit: better suited to CVPR/ICCV (Reviewer_cnqS; Reviewer_2TRF agrees but not as a reason to reject; the AC dismisses it)",
+    "Baselines far from the COCO state of the art (Reviewer_cnqS, Reviewer_2TRF)",
+    "BN drift read as weaker robustness to domain shift (Reviewer_3Btm)",
+    "BN unfreezing misread as inference-time (Reviewer_cnqS)",
+    "Neck and head read as convolutional and full-adder results missed, both contradicted by Table 5 (Reviewer_3Btm, Reviewer_2TRF)"
+  ],
+  "shared_issues": [
+    "No comparison with pruning, quantization or lightweight networks (A: Reviewer_uAeA; B: Reviewer_2TRF and the AC)",
+    "Energy is estimated, not measured; no speed or latency (A: Reviewer_ZgMW, Reviewer_h7uh; B: Reviewer_cnqS, Reviewer_3Btm, Reviewer_2TRF)",
+    "Limited novelty, a bag of ad hoc tricks (A: Reviewer_ZgMW, Reviewer_uAeA; B: Reviewer_cnqS, Reviewer_3Btm)",
+    "Baseline set-up favours the adder detectors (A: distillation for the adder backbone only, Reviewer_uAeA; B: learning-rate tricks for adder detectors only, Reviewer_3Btm)",
+    "Clear writing and extensive experiments (every reviewer except Reviewer_cnqS)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees averaged 5.0 and weighted the same facts differently. Reviewers on both sides saw a clear, thorough, but incremental empirical study, and each side noted the missing comparison with other efficiency methods. A's acceptance departs from its scores: three of four A reviewers rated below threshold. A's AC wrote two sentences: the paper is well presented and thoroughly evaluated, and the rebuttal addressed the concerns. No A reviewer replied or edited after the rebuttal, and the meta-review skips the novelty objection two A reviewers led with. B's rejection follows its scores (3, 5, 7) but not its detractors' reasons. B's AC dismissed Reviewer_cnqS's venue fit and Reviewer_3Btm's alleged triviality, then rejected on the missing comparison with reduced precision, distillation and pruning. B's champion, Reviewer_2TRF, had raised that point and called it 'not a big concern'. A heard the same point from Reviewer_uAeA and received more rebuttal evidence on it: the same pruning comparison plus an INT8 table. The concern is accurate. The paper names pruning, quantization and lightweight design, yet compares only adder and convolutional versions of the same detectors. Its energy is an operation count priced at 0.9 and 3.7 pJ, with no memory term. In the authors' own INT8 table, quantization alone cuts FCOS energy about 20-fold (987.6 to 49.4 mJ), against 1.4-fold for the adder backbone and neck.",
+  "candidate_reasons": [
+    "Equal borderline means, opposite AC calls",
+    "AC accepts over sub-threshold majority",
+    "Rebuttal deemed sufficient without reviewer confirmation",
+    "AC substitutes own decisive concern",
+    "Missing comparison to alternative efficiency methods",
+    "Unequal rebuttal evidence across committees",
+    "Detractor score rests on misreading"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_2TRF limitations section and 2021-08-25 comment",
+    "Reviewer_cnqS review and 2021-08-17 comment",
+    "Reviewer_3Btm comment 2021-08-19",
+    "Authors' response to Reviewer_h7uh (INT8 energy table)",
+    "Authors' responses to Reviewer_uAeA and Reviewer_2TRF (Joint-DetNAS pruning)",
+    "Authors' response to Reviewer_3Btm (step LR vs cosine LR table)",
+    "paper Table 5 and caption (energy from 0.9/3.7 pJ per operation)",
+    "paper Table 1 and lines 206-207",
+    "paper Table 4",
+    "paper lines 128-129 and Figure 2 caption",
+    "paper Introduction lines 30-48"
+  ]
+}

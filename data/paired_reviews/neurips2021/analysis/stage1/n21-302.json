@@ -1,0 +1,212 @@
+{
+  "pair_id": "n21-302",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 6, 8],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_hnow", "Reviewer_DqnY"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/8 sit within one point of the mean. Reviewer_PQY3's 8 rests on a five-hour review with specific points (missing dissipative-network references, n_update sensitivity, a citation-chronology error), but PQY3 never joined the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_hnow",
+          "claim": "The bracket reformulations in Sections 4.1-4.2 are identical to Öttinger [42]; the paper only parameterizes them.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 103-104: 'Our approach is motivated by the work in [42] which we summarize in Sections 4.1-4.3.' The additions are the learnable symmetrizations (3! antisymmetrization of a generic tensor for xi, Lambda as the skew part of a learnable matrix, D as a learnable matrix times its transpose) and the hidden-state training of Algorithm 2. hnow compared the two papers after the rebuttal and withdrew the concern."
+        },
+        {
+          "reviewer": "Reviewer_hnow",
+          "claim": "The gas-container experiment reports no error bar or standard deviation, unlike the oscillator.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 247-248: 'We depict the results from the best performing instances for each model out of five independent runs.' Fig. 2 shows no spread. The authors admitted training was 'either failing completely or training consistently' and promised error bars; the camera-ready still shows the best of five."
+        },
+        {
+          "reviewer": "Reviewer_hnow",
+          "claim": "The penalty weight of 1e-4 (lines 191, 233) may be too small to enforce the degeneracy conditions.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission states the weight with no rationale and describes no search. The rebuttal claimed a grid search; the camera-ready adds that 1e-2 and 1e-6 gave data misfit or physics violation."
+        },
+        {
+          "reviewer": "Reviewer_DqnY",
+          "claim": "D is rank 1, and network configurations differ across methods without explanation.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 194: d is 3x1 and D = dd^T (4x1 at line 237). Lines 187-194: NODE uses a 4x5 MLP, the penalty method 3x5 MLPs, GNODE a 1x10 MLP for E and a linear S. No hyperparameter search is described, though checklist 3(b) answers Yes to 'how they were chosen'."
+        },
+        {
+          "reviewer": "Reviewer_DqnY",
+          "claim": "The checklist claims code release, but no code was submitted.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(a): '[Yes] All code and datasets will be provided on a public github after review'."
+        },
+        {
+          "reviewer": "Reviewer_DqnY",
+          "claim": "Results report only H, not the error of the predicted trajectories.",
+          "checked_against_paper": "correct",
+          "evidence": "Figs. 1-2 plot H and dS/dt only. The paper has no table of errors; Table 1 only lists model components."
+        },
+        {
+          "reviewer": "Reviewer_PQY3",
+          "claim": "References [21] and [36] are the same paper, and 'followed by' on line 68 inverts the chronology of Lagrangian and Hamiltonian networks.",
+          "checked_against_paper": "correct",
+          "evidence": "[21] and [36] both cite Lutter et al., Deep Lagrangian Networks ([36] with the wrong year, 2018). Lines 67-68 place [36] after the Hamiltonian networks [4, 35]. Reviewer_AB4a in B caught the same duplicate."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_hnow", "Reviewer_DqnY"],
+        "evidence": "Reviewer_hnow (edited 2021-08-19) moved from a stated 'borderline' to 7: 'I increased my review score accordingly.' Reviewer_DqnY (edited 2021-08-20) raised to 6: 'I've updated my original score to reflect this.' Reviewer_PQY3 (8) never edited or replied. The authors answered every follow-up.",
+        "what_convinced_or_not": "hnow checked [42] and accepted that the learnable symmetrizations go beyond Öttinger; hnow also liked the Pareto-front reason for a small penalty weight. DqnY was moved by grid-search details, an anonymous code link and promised appendices, 'based on the assumption that the missing information will be added', and still found the comparisons 'a little weak'. No new experiment was shown."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows 7/6/8. The spotlight does not: mean 7.0, DqnY still at 6 with reservations, and no reviewer argued for a higher tier. The meta-review restates the consensus ('All reviewers agree that there is a novel methodological contribution') and concedes 'The numerical experiments are good, but can be further improved'. It gives no reason for a spotlight.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers on the accept side after rebuttal (7/6/8, mean 7.0)",
+        "Exact architectural enforcement of GENERIC degeneracy seen as novel beyond penalty methods",
+        "Clear writing praised by every reviewer",
+        "Thin experiments acknowledged but not treated as disqualifying"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [3, 6, 5, 5],
+      "confidences": [3, 4, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_DeZu", "Reviewer_AB4a"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_xSwS",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "3 against 5-7 (6 and 7 once AB4a's declared raise counts). Its factual points hold: two benchmarks, both with one-degree-of-freedom observables; only a NODE as an existing-ML baseline; no spread on the gas result. In A, DqnY and hnow saw the same facts and rated 6 and 7. The writing complaint is weak: lines 104-105 declare the Einstein convention, and all six other reviewers praised the clarity. Confidence 3. Unmoved after rebuttal: 'I have no criticisms of the proposed parameterization', but 'the paper should involve less arguing and more empirical evidence'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_D146",
+          "evidence": "Rating 5 after 2 hours, confidence 3. The significance paragraph rests on assertion ('learning entropy growth is not as exciting and valuable as learning energy conservation') and an unclear appeal to 'pioneering work by neural ODE and penalty-based method'. Never replied to the authors' long response."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_xSwS",
+          "claim": "Only two datasets plus a stochastic version of one, both low-dimensional.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 172 names two benchmarks; Sec. 5.4 reruns the oscillator with noise. The observed states are x_o = [q, p] in both; the full states have 3 and 4 dimensions. Reviewer_AB4a's '1 degree-of-freedom' is also correct."
+        },
+        {
+          "reviewer": "Reviewer_xSwS",
+          "claim": "The gas-container results have no mean and standard deviation over repeated runs.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 247-248: the best performing instance out of five runs per model. To the eye, the penalty run's H in Fig. 2(e) tracks the ground truth about as closely as GNODE's in Fig. 2(f); no number separates them."
+        },
+        {
+          "reviewer": "Reviewer_xSwS",
+          "claim": "Of existing ML models, only a Neural ODE is used as a baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists NODE, the penalty method of [41] and GNODE only. Reviewer_DqnY in A asked for augmented NODE [25] and a stabilised NODE [27]; Reviewer_DeZu in B asked for a latent NODE."
+        },
+        {
+          "reviewer": "Reviewer_xSwS",
+          "claim": "Section 4.1 uses x_alpha, x_beta, x_gamma, x_nu without defining them, and the brackets are defined twice.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 104-105: 'we adopt the Einstein summation convention'; the indices run over the components of x. The link between the L and M of Section 3 and the xi and zeta of Section 4 appears only implicitly in the Section 4.3 calculation, so the second point has a small basis."
+        },
+        {
+          "reviewer": "Reviewer_DeZu",
+          "claim": "In the equation below line 216, one dS1/dt should be dS2/dt.",
+          "checked_against_paper": "correct",
+          "evidence": "Both left-hand sides read dS1/dt; the camera-ready fixes it."
+        },
+        {
+          "reviewer": "Reviewer_DeZu",
+          "claim": "The setup of Section 5.4 is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "The heading says 'harmonic', the text 'nonlinear'; the training data are deterministic (line 264). The section also claims the standard deviations 'show good agreement' (lines 265-266), but the Fig. 3 caption gives GNODE (1.64e-6, 3.30e-6) against the analytic baseline (9.97e-6, 3.20e-5) for (q, p): 6 and 10 times smaller. Each panel has its own x-axis, so the histograms look alike. No reviewer in either committee caught this."
+        },
+        {
+          "reviewer": "Reviewer_D146",
+          "claim": "The selection of the non-observable state is arbitrary.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 196-197, 204 and 239 initialise s as t and call the initial condition arbitrary. The point carries little weight: entropic variables are not unique, as the authors replied."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": ["Reviewer_DeZu", "Reviewer_AB4a"],
+        "evidence": "Reviewer_DeZu (edited 2021-08-24) lowered 7 to 6, citing 'the weaknesses in the experiments section as other reviewers have noted', and offered to return to 7; the authors never replied. Reviewer_AB4a (edited 2021-08-17) lowered 6 to 5 ('My concerns were not addressed'), then wrote on 2021-08-25 'I increased my rating to 7'. The form still shows 5, but the AC's meta-review counts the 7. Reviewer_xSwS stayed at 3 ('not really satisfied'); Reviewer_D146 stayed at 5 and never replied.",
+        "what_convinced_or_not": "The authors misread AB4a's question on the degeneracy condition twice (first citing '950+ references', then a machine-precision derivation); three physically important high-dimensional GENERIC examples finally won AB4a. xSwS wanted more datasets and baselines, which a rebuttal could not supply, and dismissed the authors' case as 'precisely that: arguments'; the authors' writing reply addressed only Einstein notation. DeZu's drop came from reading the other reviews, not from the response."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Final positions split 3/6/7/5 once AB4a's 7 counts. The two-sentence meta-review notes the swings and that 'one reviewer is still strongly convinced about rejection, providing as main criticism insufficient empirical evidence'. It gives no own assessment and does not weigh the two accept-side reviewers.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "One firm detractor (xSwS, 3) unmoved: insufficient empirical evidence",
+        "Split final positions 3/6/7/5 (mean 5.25; 4.75 as recorded)",
+        "Thin-experiment concerns spread: DeZu cut 7 to 6 citing other reviewers",
+        "Terse meta-review with no own view defers to the detractor"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty against Öttinger's brackets [42] (hnow); settled in rebuttal",
+    "Tuning of the penalty baseline: one 1e-4 weight, no search described (hnow, DqnY)",
+    "Rank-1 D and unexplained network sizes across methods (DqnY)",
+    "Code claimed in the checklist but not submitted (DqnY)",
+    "Only H reported, no trajectory error; five runs with unexplained error bars (DqnY)",
+    "Sensitivity to the hidden-state update frequency n_update (PQY3)",
+    "Whether GNODE learns zero dissipation on a conservative system (DqnY, hnow)"
+  ],
+  "issues_only_b": [
+    "Writing aimed at physicists: index notation, two bracket definitions (xSwS)",
+    "Extrapolation and operator-regression baselines: EQL, NAU, Patel et al. (xSwS)",
+    "Scope of the degeneracy condition in genuinely high-dimensional systems (AB4a)",
+    "O(N^3) and O(N^4) parameter cost of the bracket tensors (DeZu)",
+    "Exactness only in continuous time, not under dopri5 (DeZu)",
+    "Unclear Section 5.4; deterministic data for a thermal system (DeZu)",
+    "Low significance of entropy growth; arbitrary hidden-state choice (D146)"
+  ],
+  "shared_issues": [
+    "Toy, low-dimensional benchmarks (DqnY; xSwS, AB4a, DeZu, D146)",
+    "Weak baselines: only NODE and a penalty variant (DqnY; xSwS, DeZu)",
+    "No spread for the gas-container result (hnow; xSwS)",
+    "Limited scalability (hnow, DqnY; DeZu, AB4a)",
+    "Missing related work and the duplicate reference [21]/[36] (hnow, PQY3; AB4a)",
+    "Undefined s versus S in the experiments (DqnY; DeZu)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same paper and named the same weakness; they weighted it differently. All seven reviewers endorsed the method, an exact and learnable parameterization of GENERIC brackets. Five found the experiments thin: two toy benchmarks with one-degree-of-freedom observables, and only a NODE and a penalty variant as baselines. In A, nobody treated that as disqualifying. Explanatory rebuttals raised hnow (borderline to 7) and DqnY (to 6), and the AC turned 7/6/8 into a spotlight with a generic meta-review that gives no reason for the higher tier. In B, xSwS rated 3 for exactly these weaknesses and did not move. DeZu cut 7 to 6 after reading the other reviews. The authors misread AB4a's question twice before AB4a declared 7, and D146 gave a thin 5 and never engaged. B's two-sentence meta-review rejected on the detractor's 'insufficient empirical evidence'. The paper supports the shared doubt: the gas result is the best of five runs with no spread, no table reports an error, and the Figure 3 standard deviations are 6 to 10 times below the analytic baseline although the text calls them 'good agreement'. Neither committee caught the last point. A's AC went past its reviewers to a spotlight; B's AC broke a split toward the detractor. The evidence supports B's doubts more than A's spotlight.",
+  "candidate_reasons": [
+    "same weaknesses weighted differently",
+    "single firm detractor sets outcome",
+    "rebuttal raised scores only in A",
+    "author replies misread reviewer questions",
+    "other reviews pulled scores down",
+    "spotlight upgrade without stated reason",
+    "terse meta-review defers to detractor"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_xSwS review and 2021-08-22 reply",
+    "Reviewer_AB4a comments of 2021-08-17 and 2021-08-25",
+    "Reviewer_DeZu 2021-08-24 rebuttal response",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_hnow 2021-08-19 reply; Reviewer_DqnY 2021-08-20 reply",
+    "paper_submitted.pdf lines 172 and 247-248 (two benchmarks; best of five runs)",
+    "paper_submitted.pdf Figure 3 caption and lines 262-267",
+    "paper_submitted.pdf Table 1 and lines 103-105",
+    "paper_submitted.pdf checklist 3(a)-(c)"
+  ]
+}

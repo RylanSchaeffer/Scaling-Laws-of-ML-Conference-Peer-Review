@@ -1,0 +1,236 @@
+{
+  "pair_id": "n21-295",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        7,
+        5,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_rPEM",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Only score below threshold ('I am the only one who give the negative score'). The main review lists only strengths ('the idea is interesting', SOTA on SS-V1&V2, 'experiments ... are sufficient'); the 5 rests on the limitations box (presentation, no Kinetics, missing TRN/TPN/MoViNet). After seeing the positive scores, rPEM reread the paper (2021-08-29) and added 'improvement is not that significant' and 'kind of incremental', which sit oddly with its own praise and name no prior work. Its specific points hold against the paper (overloaded terms, key/value slip at L173, +1.5/+0.9 SS margins, weak Kinetics baselines), so the basis is real; it is a matter of degree that three colleagues weighed as acceptable."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1xyW",
+          "evidence": "4 hours; two generic strengths and two questions, no weakness. Asks whether the method 'exploits CUDA implementation', which the paper never says (authors: plain PyTorch). Post-rebuttal, one line: 'I keep my original rating.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_rPEM",
+          "claim": "The terms 'content-to-content' and 'content-to-position' are not well explained.",
+          "checked_against_paper": "correct",
+          "evidence": "Each gets one clause in Sec. 3 (L114-117). The abstract uses 'content-to-content' before any definition (L7); later it means target-to-context (L170-171) and context-to-context (L186-187); L173-174 calls X^K 'the value'. KG6i conceded the terms are 'mainly self-explained by the terms in the equations'."
+        },
+        {
+          "reviewer": "Reviewer_rPEM",
+          "claim": "The improvement on Something-Something is not that significant.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3a, 16-frame single model: 54.0 vs CT-Net 52.5 on SS-V1 (+1.5); 66.0 vs TEA 65.1 and ViViT-L 65.4 on SS-V2 (+0.9, +0.6). Single runs, no error bars (checklist 3c). It is still the best number, which is KG6i's counter. Margins are larger on Diving-48 (84.2 vs 81.0) and FineGym (50.9/86.4 vs 46.5/81.2)."
+        },
+        {
+          "reviewer": "Reviewer_rPEM",
+          "claim": "The rebuttal's Kinetics results compare only weak baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked against the rebuttal: one 5x7x7 layer swapped into TSN-R50 for R(2+1)D, LSA, Involution and Intervolution, 63.8 to 66.3 top-1; the authors say the setting does 'not reach the state of the art'."
+        },
+        {
+          "reviewer": "Reviewer_rPEM",
+          "claim": "TRN, TPN and MoViNet are not covered.",
+          "checked_against_paper": "correct",
+          "evidence": "TPN and MoViNet are not cited. TRN [59] appears only as a FineGym baseline row in Table 3c, not in Related Work."
+        },
+        {
+          "reviewer": "Reviewer_iQAh",
+          "claim": "Table 2 compares only self-attention (LSA), not involution or lambda convolution.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Row 'LSA variant x^Q_n P^T' with context X^V_n (44.3 top-1) is the lambda-convolution form of Eq. 4, and L267 says its kernel equals involution's basic kernel. The 'LSA variant' label hides this; iQAh half-saw it ('some settings in the ablation study are similar')."
+        },
+        {
+          "reviewer": "Reviewer_KG6i",
+          "claim": "Softmax-free LSA is tested only with the content-to-position kernel.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 has x^Q_n P^T without softmax but not the full kernel without softmax; the rebuttal added it at 42.4 top-1."
+        },
+        {
+          "reviewer": "Reviewer_1xyW",
+          "claim": "The method seems to rely on a CUDA implementation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission never mentions CUDA; its efficiency comes from reordering the computation (Sec. 4.2, Table 1), and the authors say the code is plain PyTorch."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. rPEM (2021-08-29): 'I still can not raise my score'; 1xyW (2021-09-01): 'I keep my original rating'; iQAh (2021-09-02): 'I will keep my rating'; KG6i (2021-09-02): 'I will keep my initial rating'.",
+        "what_convinced_or_not": "The authors added Kinetics-400, CIFAR-10/100, ResNet3D-18, an involution row, softmax-free LSA and memory figures. iQAh said the new results 'better validate the effectiveness' but then took up rPEM's writing and novelty points. rPEM judged the Kinetics comparison 'not solid' and the writing unchanged, which no rebuttal table can fix. 1xyW was satisfied on memory and implementation. No author reply to rPEM's 2021-08-29 comment, which invited persuasion, appears in the record, and the AC did not post in the discussion."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Rejected against three positive ratings (6, 7, 6) and one 5; no score moved. The three listed weaknesses restate rPEM's 2021-08-29 comment, down to 'kind of incremental'. The Kinetics dismissal borrows KG6i's wording ('relies more on appearance rather than motion and long-range interactions'). The verdict that 'the technical contributions and the writing quality do not meet the bar of NeurIPS' is the AC's own and cites no part of the paper.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "AC judged the contribution incremental, adopting Reviewer_rPEM's 'kind of incremental'",
+        "AC judged the writing and presentation below the NeurIPS bar",
+        "With Kinetics set aside, novelty and writing alone carried the reject against a 3-to-1 positive panel"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_hB4H",
+        "Reviewer_1j5f"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/7, all confidence 4. Reviewer_1j5f's 6 is the low end and moved toward acceptance after the rebuttal. No rating above 7 supports a spotlight."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_1j5f",
+          "claim": "Table 2 lacks Non-local and Long-Term Feature Bank comparisons.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 compares only local transforms with M=5x7x7; NL-I3D appears only in Table 3a (44.4 on SS-V1, 32 frames, 168 G x2)."
+        },
+        {
+          "reviewer": "Reviewer_1j5f",
+          "claim": "The self-attention baseline may lack positional encoding, which could explain why softmax looks worse.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2's LSA kernel is σ(x^Q(X^K)^T + x^Q P^T), with P the relative-position matrix of Eq. 2 (L115-117)."
+        },
+        {
+          "reviewer": "Reviewer_1j5f",
+          "claim": "Table 3 omits parameter counts, so 'reasonable computational cost' (L290) cannot be judged.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3a reports FLOPs x clips only; the rebuttal gives about 22 M parameters per Intervolution-R50."
+        },
+        {
+          "reviewer": "Reviewer_hB4H",
+          "claim": "Eq. 5 contains unnecessary terms and could be a simple matrix multiplication.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Each target has its own local context X_n (M=5x7x7), and H in R^{MC x M} projects all M x C element-wise products, so Eq. 5 is not x^Q(X^K)^T. The authors' reply is right."
+        },
+        {
+          "reviewer": "Reviewer_hB4H",
+          "claim": "Section 5.3 does not name its dataset.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2's caption says SS-v1; only the Section 5.3 prose omits it."
+        },
+        {
+          "reviewer": "Reviewer_L4t3",
+          "claim": "κ^R with X^R alone gets close to the full model (cited as Table 4c).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4a: 46.5 vs 47.0 top-1, single runs; the table is 4a, not 4c. The authors answered with an untested conjecture that the gap grows on appearance-centric data."
+        },
+        {
+          "reviewer": "Reviewer_L4t3",
+          "claim": "Eq. 3 drops involution's nonlinearity and batch norm (W1 σ(W0 x_n)).",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 3 is κ^V_n = x_n P^T. The authors conceded and cited the involution paper's linear variant (its Table 6c)."
+        },
+        {
+          "reviewer": "Reviewer_L4t3",
+          "claim": "L173-174 call X^K the value, and L in L227 is undefined.",
+          "checked_against_paper": "correct",
+          "evidence": "L173: 'element-wise product with the value X^K_n'. L227 sets 'L=8' with no definition; Table 1 calls the number of queries H, which also names the projection matrix of Eq. 5."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_1j5f"
+        ],
+        "evidence": "Inferred: 1j5f edited its review on 2021-08-18, the day it posted 'Final score ... I am leaning towards acceptance ... I vote for 6'. Unlike hB4H and every A reviewer, it did not say it kept its score. The earlier value is not exposed. hB4H's only edit (2021-07-15) predates the 2021-08-10 rebuttal, and it wrote 'I'm keeping my original rating'. L4t3 never edited; it wrote 'I lean towards clear acceptance' but stayed at 7.",
+        "what_convinced_or_not": "The non-local block with relative position embeddings (43.2 vs 47.0) met 1j5f's 'main concern'; the per-class comparison with SlowFast and the softmax explanation answered the rest. hB4H accepted the Eq. 5 correction and the Kinetics table. L4t3 accepted the conjecture for the 0.5-point gap and the defence of the lambda-convolution description."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: the paper 'unanimously receives positive rates', the rebuttal is 'through and excellent', and the reviewers are satisfied. It names no strength of the paper and gives no reason for a spotlight over a poster with ratings 7/6/7 (mean 6.67). The AC did not post in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers positive (7, 6, 7), and each said the rebuttal addressed their concerns",
+        "AC called the rebuttal 'through and excellent'",
+        "No stated basis for a spotlight beyond unanimity"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Image-domain results to compare with image dynamic transforms (Reviewer_iQAh)",
+    "Memory footprint and a suspected CUDA implementation (Reviewer_1xyW)",
+    "Full-kernel LSA without softmax (Reviewer_KG6i)",
+    "Missing related work: TRN, TPN, MoViNet (Reviewer_rPEM)",
+    "Small Something-Something margins and weak Kinetics baselines in the rebuttal (Reviewer_rPEM)"
+  ],
+  "issues_only_b": [
+    "No non-local or long-term feature bank baseline (Reviewer_1j5f)",
+    "No parameter counts in Table 3 (Reviewer_1j5f)",
+    "No evidence of learned dynamics: kernel visualisations, per-class comparison with SlowFast (Reviewer_1j5f)",
+    "Section 3's account of involution and lambda convolution 'takes a few liberties' (Reviewer_L4t3)",
+    "Whether all four sub-transforms are needed; κ^R with X^R is within 0.5 points (Reviewer_L4t3)",
+    "Table 3 mixes pre-training regimes and has gaps; ImageNet rather than video pre-training (Reviewer_L4t3)",
+    "Notation slips: Eq. 5 form, M as both kernel and context size, key/value swap, undefined L, Fig. 2 placement (Reviewer_hB4H, Reviewer_L4t3)"
+  ],
+  "shared_issues": [
+    "Writing and notation hard to follow (A: Reviewer_rPEM, then Reviewer_KG6i and Reviewer_iQAh after the discussion; B: all three reviewers independently)",
+    "Incremental combination of existing transforms (A: Reviewer_rPEM, Reviewer_iQAh; B: Reviewer_L4t3)",
+    "No Kinetics or appearance-centric results; the same rebuttal table went to both forums (A: Reviewer_iQAh, Reviewer_rPEM; B: Reviewer_hB4H, Reviewer_L4t3)",
+    "Choice of the TSN-ResNet50 backbone (A: Reviewer_iQAh; B: Reviewer_L4t3)",
+    "Whether Table 2 isolates the effect of softmax (A: Reviewer_KG6i; B: Reviewer_1j5f)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The area chairs, not the reviewers, made this split. The panels nearly agree (A: 6, 7, 5, 6; B: 7, 6, 7) and raised the same weaknesses: unclear writing and notation, an incremental combination of existing transforms, and no Kinetics results, answered in both forums by the same rebuttal table. B's reviewers called these points addressed, including Reviewer_L4t3, who called the idea 'a bit incremental and convoluted' and still rated 7. In A, the lone detractor Reviewer_rPEM reread the paper after seeing the positive scores and posted a late list (writing, small Something-Something gains, weak Kinetics baselines, 'kind of incremental'). No score moved, but A's AC adopted that list nearly verbatim, set Kinetics aside, and rejected against a 3-to-1 positive panel. B's AC wrote three sentences on unanimous positive ratings and an 'excellent' rebuttal and gave a spotlight with no rating above 7. The paper supports the shared concerns: it calls itself 'an extension of these techniques', builds its relational context on self-correlation work that includes two papers by the same authors, and gains 1.5 and 0.9 points over the best ImageNet-pretrained rivals on SS-V1 and SS-V2 in single runs. Neither a reject nor a spotlight follows from the pooled reviews (mean 6.3); the final poster does.",
+  "candidate_reasons": [
+    "AC overrode positive reviewer majority",
+    "AC adopted lone detractor's framing",
+    "Writing clarity weighted as disqualifying",
+    "Spotlight from unanimity, not content",
+    "Same incrementality concern, opposite weighting",
+    "Detractor present in one panel only"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_rPEM comment 2021-08-29 ('Doubt of the novelty and contributions')",
+    "Reviewer_iQAh post-rebuttal 2021-09-02",
+    "Reviewer_KG6i response to rebuttal 2021-09-02",
+    "Committee B meta-review",
+    "Reviewer_1j5f 'Final score' 2021-08-18 and review edit date",
+    "Reviewer_L4t3 review (Cons) and response 2021-09-03",
+    "paper L67-68 and L83-86 (extension of prior transforms; self-correlation from [21, 22, 47])",
+    "paper L114-117, L170-175, L186-191 (uses of 'content-to-content')",
+    "paper Table 3a (SS-V1/V2 margins) and Table 4a (κ^R with X^R 46.5 vs 47.0)",
+    "Author rebuttal Table B to Reviewer_iQAh (A) vs Table A to Reviewer_1j5f (B): shared 32.0 G / 23.3 M / 43.2 row"
+  ]
+}

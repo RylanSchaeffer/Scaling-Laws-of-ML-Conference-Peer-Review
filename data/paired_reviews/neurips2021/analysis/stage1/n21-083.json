@@ -1,0 +1,220 @@
+{
+  "pair_id": "n21-083",
+  "prompt_version": 1,
+  "kind": "spotlight",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        9
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_H51k"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Fjfm",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 7. A 9 at confidence 5 ('checked the math/other details carefully') rests on generic praise ('The submission is technically sound', 'I think it is a good paper. I enjoyed reading it.') and one question about the classifier architecture. The review concedes 'Most of the ideas in this paper are not brand new', names no detail it checked, and does not answer the authors' reply. Its own words describe a 7, not 'Top 15% of accepted NeurIPS papers'. Without it A's mean is 7.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Fjfm",
+          "evidence": "About ten lines of praise and one question for a 9 at confidence 5 (8 hours claimed); no specific statement about the paper that shows the claimed careful check; no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_H51k",
+          "claim": "Nichol and Dhariwal [46] had already shown diffusion models beating BigGAN on ImageNet 64x64, so the paper adds few new insights.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Table 4, ImageNet 64x64: IDDPM [46] FID 2.92 against BigGAN-deep 4.06 (a BigGAN-deep the authors trained themselves). The new results are the higher resolutions and guidance, as H51k says."
+        },
+        {
+          "reviewer": "Reviewer_H51k",
+          "claim": "No methodological novelty: the architecture follows [46] and [8, 63]; classifier guidance follows [59].",
+          "checked_against_paper": "incorrect",
+          "evidence": "The provenance is right (l.112-113: BigGAN blocks 'following [63]'; l.146-152: guidance from [59] and [63]). But the gradient scale s > 1 (l.162-173) and guidance on an already class-conditional model (Table 3: FID 10.94 to 4.59 at 256x256) are not credited to earlier work. H51k accepted this on 2021-08-22 and raised the score."
+        },
+        {
+          "reviewer": "Reviewer_H51k",
+          "claim": "Typos at l.62 ('sqaured') and l.103 ('colvolutions'); l.14 promises 'infinite' high-quality images.",
+          "checked_against_paper": "correct",
+          "evidence": "All three are in the submitted text at the cited lines. The authors fixed them."
+        },
+        {
+          "reviewer": "Reviewer_Fjfm",
+          "claim": "The classifier uses the same architecture as the diffusion model.",
+          "checked_against_paper": "correct",
+          "evidence": "l.158-159: 'the downsampling trunk of the UNet model with an attention pool'."
+        },
+        {
+          "reviewer": "~Ernie_Chu1 (public comment on A's forum, 2023-07-22, after the decision; not a reviewer)",
+          "claim": "Algorithm 2 (classifier-guided DDIM) never uses the gradient scale s.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted p.5: s is listed as an input, but the update is eps_hat = eps_theta(x_t) - sqrt(1 - alpha_bar_t) * grad log p_phi(y|x_t), with no s. The camera-ready is unchanged. No reviewer in either committee noticed."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_H51k"
+        ],
+        "evidence": "Reviewer_H51k edited the review on 2021-08-22 and wrote that day: 'I therefore raise my score from a 6 to a 7.' Reviewer_rkcu (2021-08-18: 'the strong results and the insights on how to achieve them warrant acceptance') and Reviewer_NiCt (2021-08-29: 'I keep my rating unchanged') replied without change. Reviewer_Fjfm did not reply.",
+        "what_convinced_or_not": "The authors' argument that guiding an already class-conditional model and scaling the classifier gradients had not been done before, plus the promise to release the trained models. H51k: 'I agree that the effects of classifier guidance on sample quality and diversity have not been explored before.' The authors' statement to NiCt that high scales give 'strangely washed-out images (even though Inception Score keeps improving)' drew no follow-up."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences restating the consensus ('All reviewers agree'). 'non-trivial insights' is Reviewer_Fjfm's phrase; the sentence on sFID, precision-recall and ablations paraphrases Reviewer_rkcu. The novelty concern is noted and set aside for 'careful experiments and strong empirical results'. No reason is given for the spotlight beyond 'in an impressive fashion'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 7.5 (7, 7, 7, 9): state-of-the-art FID against BigGAN-deep and StyleGAN2, with ablations and extra metrics (sFID, precision-recall).",
+        "The novelty concern (H51k, rkcu, Fjfm) was answered: scaled guidance on conditional models is new; H51k rose from 6 to 7.",
+        "The only top-tier vote is Reviewer_Fjfm's thinly argued 9; without it the mean is 7.0.",
+        "The AC called the empirical advance 'impressive' and gave no other argument for the tier."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_NtJ2",
+        "Reviewer_i9rh"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 8, 9 form an even spread; no rating stands apart. The 9 (Reviewer_i9rh) comes with the most specific review in B, the 6 (Reviewer_yLx5) with the thinnest."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yLx5",
+          "evidence": "Three bullets of main review at confidence 3 ('Math/other details were not carefully checked'). Its one claim about where the gains come from ignores Tables 3 to 5, where guidance drives the ImageNet results. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_yLx5",
+          "claim": "A major part of the improvement comes from manual design of the network architecture (hence limited novelty).",
+          "checked_against_paper": "incorrect",
+          "evidence": "True only for LSUN and ImageNet 64x64 (l.196-197). For the ImageNet headline, unguided ADM loses to BigGAN-deep at 256x256 (10.94 vs 6.95) and 512x512 (23.24 vs 8.43); guidance brings these to 4.59 and 7.72 (Table 4). The authors said so in the rebuttal; yLx5 did not reply."
+        },
+        {
+          "reviewer": "Reviewer_NtJ2",
+          "claim": "The comparison with StyleGAN2 uses only 256x256 LSUN; no FFHQ.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: StyleGAN on LSUN bedrooms, StyleGAN2 on LSUN horses and cats, all 256x256; FFHQ appears nowhere."
+        },
+        {
+          "reviewer": "Reviewer_NtJ2",
+          "claim": "The introduction claims 'scalability' for diffusion models without defining it.",
+          "checked_against_paper": "correct",
+          "evidence": "l.32 ('easy scalability') and l.25-27 ('difficult to scale') give no definition. The rebuttal defined it as scaling model size."
+        },
+        {
+          "reviewer": "Reviewer_jJSL",
+          "claim": "The original U-Net reference (Ronneberger et al.) is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Not among references [1] to [75] of the submission; the camera-ready adds it as [58]."
+        },
+        {
+          "reviewer": "Reviewer_i9rh",
+          "claim": "The conclusion's claim (l.298-299) that guided models 'reduce the sampling time gap' with GANs is not justified or discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Only the 25-step ADM-G rows of Table 4, the abstract and a clause at l.200 support it; nothing quantifies the gap. At 128x128, 25-step ADM-G (5.98) is not better than 250-step ADM (5.91), so the authors' reply ('better samples with 25 DDIM steps than they do with hundreds of steps without guidance') holds only at 256 and 512. In the reply to yLx5 the authors put the remaining gap at roughly 300x per sample."
+        },
+        {
+          "reviewer": "Reviewer_i9rh",
+          "claim": "It is unclear how the conditional models are conditioned (paragraph at l.174).",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.125-127 and l.144 state that the class embedding enters through adaptive group normalization; the authors pointed i9rh to l.126."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_NtJ2 (edited 2021-08-22) appended a post-rebuttal note ending 'I recommend an acceptance' and names no score change. Reviewer_i9rh (edited 2021-08-28): 'I maintain my original evaluation'. Reviewer_yLx5 and Reviewer_jJSL did not respond.",
+        "what_convinced_or_not": "The answers on scalability, the 25-step speedup and AdaGN conditioning satisfied NtJ2 and i9rh. The novelty answer to yLx5, nearly word for word the one A's authors sent rkcu and the argument that moved H51k, got no reply, and yLx5 stayed at 6. The authors did not answer the title complaint; the AC noted this."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers unanimously agree that the paper should be accepted', then the BigGAN result, classifier guidance and the ablations. The AC adds the title ('I agree with two of the reviewers', i.e. jJSL and i9rh; 'the authors did not comment on their choice of title', which is correct) and its own point on a 'possible interaction between FID and classifier guidance'. Neither lowers the tier.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 7.5 (6, 7, 8, 9): state-of-the-art class-conditional ImageNet FID over BigGAN-deep.",
+        "Two argued high ratings: Reviewer_i9rh's 9 ('similar importance for diffusion models as StyleGAN or BigGAN papers have been for GANs') and Reviewer_jJSL's 8 ('possible contender for a highlight').",
+        "Reviewer_yLx5's novelty objection (6, confidence 3) was thin and not pursued after the rebuttal.",
+        "The AC treated the title and the FID-guidance interaction as revision requests, not reasons to lower the tier."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Memorization as a function of guidance scale, and the classifier's accuracy (Reviewer_NiCt)",
+    "Release of the FID code and the trained models (Reviewer_H51k)",
+    "Weak DDIM latent space for interpolation and editing (Reviewer_H51k)",
+    "Missing related work on class-conditional ImageNet: VQGAN, Instance Selection for GANs, hierarchical autoregressive models (Reviewer_H51k)",
+    "Compute and memory cost of each ablated change (Reviewer_rkcu); choice of classifier architecture (Reviewer_Fjfm)"
+  ],
+  "issues_only_b": [
+    "Title reads as a boast, and the unconditional gains come only from architecture (Reviewer_jJSL, Reviewer_i9rh, AC)",
+    "Measured latency against GANs and the unsupported claim that guidance narrows the sampling-time gap (Reviewer_yLx5, Reviewer_i9rh)",
+    "Possible interaction between the ImageNet classifier used for guidance and FID (AC only)",
+    "No FFHQ 1024x1024 comparison with StyleGAN2; transfer to SDE models; undefined 'scalability' (Reviewer_NtJ2)",
+    "Inverse problems; guidance needs a separately trained classifier (Reviewer_i9rh); data augmentation (Reviewer_yLx5); missing U-Net reference (Reviewer_jJSL)"
+  ],
+  "shared_issues": [
+    "Limited methodological novelty: architecture and guidance build on prior work (A: H51k, rkcu, NiCt, Fjfm; B: yLx5, jJSL)",
+    "State-of-the-art results, thorough ablations and clear writing (all eight reviewers)",
+    "Guidance needs class labels (A: H51k, as an addressed limitation; B: i9rh, as a weakness)",
+    "Sampling is slower than GANs (A: H51k, as an addressed limitation; B: pressed by yLx5 and i9rh)",
+    "Typos such as 'sqaured' (H51k, jJSL)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a spotlight for the same reasons and weighed the same facts the same way. Every reviewer accepted a checkable headline result: with classifier guidance the model beats BigGAN-deep on ImageNet FID at 128, 256 and 512 pixels (2.97, 4.59, 7.72 against 6.02, 6.95, 8.43; Table 4), and without guidance it beats StyleGAN and StyleGAN2 on three LSUN classes. Six of eight reviewers called the parts mostly prior work; both committees ranked that below the result. The authors gave both committees nearly the same reply (no earlier paper guided an already class-conditional model or scaled the classifier gradient), and Table 3 supports it (FID 10.94 to 4.59 at 256 pixels). Both means are 7.5, each committee has one 9, and neither meta-review argues for the tier; each restates the consensus. The support for the tier differs in quality. In A, three reviewers gave 7 and the only top-tier vote is Reviewer_Fjfm's thin 9 at confidence 5, whose own verdict is 'I think it is a good paper'. In B, the high end is argued: Reviewer_i9rh's 9 compares the paper to StyleGAN and BigGAN and comes with B's most specific review, and Reviewer_jJSL's 8 calls it a 'possible contender for a highlight'. B's AC added two reservations no A reviewer raised (the title, and a possible interaction between the ImageNet classifier and FID) and treated both as revision requests, not reasons to lower the tier.",
+  "candidate_reasons": [
+    "Decisive benchmark win over GANs",
+    "Novelty doubts outweighed by results",
+    "Identical mean ratings of 7.5",
+    "One nine in each committee",
+    "Meta-reviews restate score consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 4 (FID against BigGAN-deep and StyleGAN2)",
+    "paper_submitted.pdf Table 3 (guidance on a class-conditional model)",
+    "paper_submitted.pdf Algorithm 2, p.5",
+    "Reviewer_Fjfm final review",
+    "Reviewer_H51k final review and reply of 2021-08-22",
+    "Reviewer_i9rh final review",
+    "Reviewer_jJSL final review",
+    "Reviewer_yLx5 final review",
+    "Authors' novelty replies to Reviewer_rkcu and Reviewer_H51k (A) and Reviewer_yLx5 (B)",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

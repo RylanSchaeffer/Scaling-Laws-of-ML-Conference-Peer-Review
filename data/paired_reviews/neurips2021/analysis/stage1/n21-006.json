@@ -1,0 +1,201 @@
+{
+  "pair_id": "n21-006",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 4, 6, 7],
+      "confidences": [4, 4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_M3h9"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_rcKJ",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Only rating below threshold (4 vs 6, 6, 7). Its points are specific and correct: the method is 'incremental' over CoCLR (the judgment all of Committee B reached), cross guidance and hard-positive mining are not disentangled, and the L258 robustness claim is unsupported because Table 2 uses MV_CoViAR only at initialization. It never replied to the rebuttal or to the authors' 2021-08-23 reminder, so the AC set the 4 aside."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ZVsq",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') on a one-sentence summary, two strengths that restate the paper and three short weakness bullets; nothing explains why the paper is above threshold. Post-rebuttal note is boilerplate: 'I think it addressed my concerns, and I'm keeping my original rating'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_M3h9",
+          "claim": "The idea of using compressed videos in self-supervised learning is new.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper's own related work cites Wei et al. 2018 and IMRNet [Yu et al., 2021] as prior compressed-video self-supervised learning (L95-97); the paper claims only the first contrastive loss in that setting (L60-61)."
+        },
+        {
+          "reviewer": "Reviewer_Rmsi",
+          "claim": "The idea of using compressed videos for self-supervised learning is novel/original (originality 'medium-high').",
+          "checked_against_paper": "incorrect",
+          "evidence": "Same as above: IMRNet is cited as prior compressed-video SSL (L95-97). The review never mentions IMRNet; this claim carries the 7."
+        },
+        {
+          "reviewer": "Reviewer_rcKJ",
+          "claim": "L258's claim that MVCGC is robust to different encoding configurations is not shown; MV_CoViAR is used for initialization only.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 has one MV_CoViAR row, 'Init.' (63.4 / 39.2); no MVCGC run uses MV_CoViAR. The rebuttal pointed instead to Kinetics-400 transfer in Table 4."
+        },
+        {
+          "reviewer": "Reviewer_M3h9",
+          "claim": "L85-88 (RGB and motion vectors from different clips) contradicts the Fig. 3 caption (corresponding clips).",
+          "checked_against_paper": "correct",
+          "evidence": "L87-88: 'RGB frames of one clip and motion vectors of another clip from the same video'; Fig. 3: 'a raw RGB clip and its corresponding motion vector clip'. The rebuttal gave a third version ('another video, not from the same video'), which M3h9 accepted."
+        },
+        {
+          "reviewer": "Reviewer_M3h9",
+          "claim": "Table 4 bolds MVCGC although CVRL scores higher.",
+          "checked_against_paper": "correct",
+          "evidence": "Kinetics-400 RGB block: CVRL 89.2 / 92.2 / 57.3 / 66.7 vs bold MVCGC 75.4 / 88.3 / 49.7 / 61.4. Reviewer_UKWL in B made the same point."
+        },
+        {
+          "reviewer": "Reviewer_ZVsq",
+          "claim": "The overhead in Table 1 comes largely from pre-processing, so parallel re-encoding could close IMRNet's gap.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True for the optical-flow methods (12.7-13.2 s pre-processing vs 69-253 ms inference). For IMRNet, inference (227.2 vs 70.3 ms) is a larger part of the gap than re-encoding (0.128 vs 0.008 s), and the paper ties inference time to the backbone (L240; R3D-50 vs S3D)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_M3h9's only edit (2021-07-15) predates the 2021-08-09 responses; its 2021-08-25 note: 'I'm keeping my original rating'. Reviewer_Rmsi (2021-08-28): 'I keep my recommendation unchanged'. Reviewer_ZVsq (2021-09-01): 'keeping my original rating'. Reviewer_rcKJ never replied and never edited, despite the 2021-08-23 reminder.",
+        "what_convinced_or_not": "A got new evidence: a cross-guidance and hard-positive ablation for rcKJ (ensemble 67.0, +CG 71.3, +HPM 73.1 linear probe), a Kinetics-400 linear result for M3h9 (51.3), and the claim that CoCLR has 'no information exchange in the pretraining stage'. The three positive reviewers called their concerns addressed but were already above threshold. The detractor never responded, so the AC judged the rebuttal itself and found it convincing."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The ACs agree with the majority recommendation of acceptance expressed by the reviewers.' On rcKJ: 'failed to provide post-rebuttal comments, but the ACs found the points made by the authors convincing'. Lists the CoCLR differences and the Kinetics-400 linear result as rebuttal gains, and repeats Rmsi's request for a compression-setting ablation.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers above threshold (6, 6, 7; mean 5.75)",
+        "Efficiency gain with accuracy level with CoCLR judged enough for a poster despite limited novelty (Reviewer_M3h9)",
+        "Compressed-video self-supervised learning credited as a new idea (Reviewer_M3h9, Reviewer_Rmsi)",
+        "Lone detractor silent after the rebuttal; AC accepted the authors' CoCLR distinction and new ablation in its place"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 5, 5],
+      "confidences": [5, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_3btZ", "Reviewer_ZRPJ", "Reviewer_UKWL", "Reviewer_iwkT"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 4, 5, 5: all below threshold, a one-point spread, and every reviewer engaged after the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3btZ",
+          "claim": "MVCGC is only slightly better than CoCLR.",
+          "checked_against_paper": "correct",
+          "evidence": "Headline numbers: Table 1 87.4 vs 87.3; Table 4 two-view 90.8 vs 90.6 and 78.0 vs 77.8 (Kinetics-400); single runs, no error bars (checklist 3c). Larger gaps appear in UCF two-view linear probe (77.2 vs 72.1) and in the authors' CoCLR-with-MV rerun (73.1 vs 67.4, Table 3), which the rebuttal cited."
+        },
+        {
+          "reviewer": "Reviewer_3btZ",
+          "claim": "Saying CoCLR 'fails to learn the correspondence between two views' (P5L184) is unfair; CoCLR's cross-view hard-positive mining links the views.",
+          "checked_against_paper": "correct",
+          "evidence": "L183-185 makes the claim. CoCLR's co-training stage mines each view's positives from the other view, and MVCGC also initializes both encoders independently (L206-207), so 'no information exchange in the pre-learning stage' describes both methods. The real differences are the ones 3btZ lists: motion vectors, and one shared embedding space."
+        },
+        {
+          "reviewer": "Reviewer_ZRPJ",
+          "claim": "The model still needs decoded frames, so 'compressed videos' is misleading, and the decoding step is not described.",
+          "checked_against_paper": "correct",
+          "evidence": "L165-166 decode a full RGB stream of T frames; decoding is one sentence on pyav (L202-204). The saving over flow methods is skipping TV-L1, not avoiding decoding. Reviewer_3btZ made the same point."
+        },
+        {
+          "reviewer": "Reviewer_UKWL",
+          "claim": "L103 says residuals were 'proved to only supply a marginal performance gain' without evidence.",
+          "checked_against_paper": "correct",
+          "evidence": "No citation in that sentence; the rebuttal later pointed to CoViAR Tables 1-2."
+        },
+        {
+          "reviewer": "Reviewer_iwkT",
+          "claim": "Table 4 lists IMRNet's test views as RGB, but Fig. 2 says IMRNet discards the RGB stream.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: 'RGB+MV+Res'; Fig. 2(b) caption and L133: RGB frames 'discarded afterward'. The authors conceded: 'should be I+MV+Res'."
+        },
+        {
+          "reviewer": "Reviewer_iwkT",
+          "claim": "Downsampled optical flow should resemble motion vectors, yet Table 2 shows a large, unexplained gap.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: OF_Low 51.3 / 30.4 vs MV_CoViAR 63.4 / 39.2 and MV 65.0 / 39.9, while full OF scores 66.8 / 45.2. The paper offers no explanation; the rebuttal answered a different comparison (MV+RGB vs OF+RGB)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_3btZ edit 2021-08-21: 'this reviewer will keep the original rating'. Reviewer_UKWL comment 2021-08-17: 'I still find the novelty quite limited'; its 2021-08-25 edit adds only 'I have read the authors' rebuttals'. Reviewer_ZRPJ comment and edit 2021-08-27: 'My final recommendation is a rejection for this round'. Reviewer_iwkT edit 2021-09-07: 'the concerns are not well addressed'. No reviewer reports a change of number.",
+        "what_convinced_or_not": "Nothing moved B. The responses restated the contribution ('for the first time, we exploit how to solve self-supervised video representation learning in both storage-efficient as well as effective ways'), which ZRPJ called 'too blurry to count as a concrete contribution'. They added no experiment, did not run the two-RGB-model control iwkT asked for, and answered iwkT's OF_Low question with the MV+RGB vs OF+RGB argument, which iwkT called 'vague'. UKWL, 'open to upgrading', stayed at 5 because the novelty over IMRNet was unchanged."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings below threshold. The meta-review paraphrases the reviewers: limited novelty 'especially compared to CoCLR and IMRNet' (3btZ, UKWL), 'system-level design choices rather than a scientific challenge' (UKWL, iwkT), and whether replacing CoViAR-style processing 'with the pyav python library can be considered a novel technical contribution' (ZRPJ). It adds no reading of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers below threshold (4, 4, 5, 5; mean 4.5)",
+        "Limited novelty over CoCLR and IMRNet (Reviewer_3btZ, Reviewer_UKWL, Reviewer_ZRPJ)",
+        "Efficiency gain judged a system-level choice (pyav decoding, no re-encoding), not a scientific contribution (Reviewer_UKWL, Reviewer_iwkT, Reviewer_ZRPJ)",
+        "Rebuttal restated the contribution without new evidence; no reviewer moved"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Large gap to CVRL, Feichtenhofer et al. (CVPR 2021) missing, and no Kinetics-400 linear evaluation (Reviewer_M3h9); rebuttal gave 51.3",
+    "Cross guidance and hard-positive mining not disentangled (Reviewer_rcKJ); rebuttal added an ablation table",
+    "Robustness to encoding settings unsupported at L258 (Reviewer_rcKJ); no per-setting compression ablation (Reviewer_Rmsi, repeated by the AC)",
+    "Pair construction: L85-88 contradicts the Fig. 3 caption (Reviewer_M3h9)",
+    "No temporal pretext objective as in IMRNet (Reviewer_ZVsq); hard-positive similarity and chicken-and-egg questions (Reviewer_Rmsi); missing augmentation details and code (Reviewer_rcKJ)"
+  ],
+  "issues_only_b": [
+    "Efficiency gain judged a system-level choice (pyav decoding, no re-encoding), not a scientific contribution (Reviewer_UKWL, Reviewer_iwkT, Reviewer_ZRPJ, AC)",
+    "IMRNet named as the closest prior compressed-video SSL work in the novelty judgment (Reviewer_UKWL, AC)",
+    "Paper misstates CoCLR as having no cross-view information exchange (Reviewer_3btZ)",
+    "'Compressed video' framing misleading: RGB still needs full decoding, and decoding is barely described (Reviewer_ZRPJ, Reviewer_3btZ)",
+    "Uncited claim that residuals add only marginal gain, L103 (Reviewer_UKWL)",
+    "Unfair IMRNet comparison: different backbone, mislabelled test views (Reviewer_UKWL, Reviewer_iwkT)",
+    "Unexplained OF_Low vs motion-vector gap in Table 2, no two-RGB-model control against an ensemble effect, timing batch size not stated (Reviewer_iwkT)",
+    "Cheaper moderate-quality optical flow not considered (Reviewer_3btZ)"
+  ],
+  "shared_issues": [
+    "Limited novelty over CoCLR (A: Reviewer_M3h9, Reviewer_rcKJ, Reviewer_ZVsq; B: Reviewer_3btZ, Reviewer_UKWL, Reviewer_ZRPJ)",
+    "Small accuracy gain over CoCLR (A: Reviewer_ZVsq 'marginal improvement'; B: Reviewer_3btZ 'only slightly better', Reviewer_UKWL 'slight improvement')",
+    "Efficiency over optical-flow methods as the main strength (A: all four; B: Reviewer_ZRPJ, Reviewer_UKWL)",
+    "IMRNet's re-encoding overhead is avoidable (A: Reviewer_ZVsq, 'parallel re-encoding'; B: Reviewer_UKWL, Reviewer_iwkT); only B counted it against the paper",
+    "Motion vector vs optical flow results in Table 2 are puzzling (A: Reviewer_rcKJ, minor; B: Reviewer_iwkT, major); misleading bold MVCGC rows in Table 4 (A: Reviewer_M3h9; B: Reviewer_UKWL)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected a borderline paper on largely the same facts: a CoCLR-style contrastive method with cross-view hard positives, accuracy level with CoCLR (87.4 vs 87.3 in Table 1), and a large time and storage saving from codec motion vectors instead of TV-L1 optical flow. Both committees called the novelty limited. A's majority weighted efficiency and parity above that (Reviewer_M3h9: limited novelty, but 'a good poster paper'); B's four reviewers weighted novelty above it and called the efficiency gain an engineering choice (pyav decoding, no re-encoding). Two factors pushed A up. Its champions, Reviewer_M3h9 and Reviewer_Rmsi, credited compressed-video self-supervised learning as new, though the paper itself cites IMRNet as prior work on it (L95-97). And A's one detractor, Reviewer_rcKJ, whose view matched B's, never answered the rebuttal, so the AC accepted the authors' distinction from CoCLR, which B's Reviewer_3btZ correctly called unfair (L183-185). B's specific objections (uncited residual claim, mislabelled IMRNet views, an IMRNet efficiency gap that owes much to the backbone, an unexplained OF_Low result) are correct but none is fatal. In B the discussion consolidated the novelty objection and no score moved. The mean ratings (5.75 vs 4.5) fall on either side of the threshold.",
+  "candidate_reasons": [
+    "Same novelty concern, different threshold",
+    "Efficiency judged contribution versus engineering",
+    "Champions overlooked IMRNet prior work",
+    "Silent detractor set aside by AC",
+    "AC accepted inaccurate CoCLR distinction",
+    "Discussion consolidated novelty objection in B"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_M3h9 main review ('limited technical novelty ... a good poster paper')",
+    "Reviewer_Rmsi main review (originality 'novel/original', no mention of IMRNet)",
+    "Reviewer_rcKJ main review and absence of any post-rebuttal reply",
+    "Committee A meta-review",
+    "Reviewer_3btZ main review (CoCLR comparison, P5L184)",
+    "Reviewer_UKWL main review and 2021-08-17 comment",
+    "Reviewer_ZRPJ 2021-08-27 comment",
+    "Reviewer_iwkT post-rebuttal note",
+    "Committee B meta-review",
+    "paper L95-104 (IMRNet as prior compressed-video SSL; uncited residual claim)",
+    "paper L183-185 and L206-207 (CoCLR claim; independent initialization)",
+    "paper Table 1 (time and storage per method)",
+    "paper Table 2 (OF_Low 51.3 vs MV_CoViAR 63.4; MV_CoViAR only at Init.)",
+    "paper Table 4 (MVCGC vs CoCLR; IMRNet test views; CVRL vs bold MVCGC)"
+  ]
+}

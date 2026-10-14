@@ -1,0 +1,202 @@
+{
+  "pair_id": "n21-133",
+  "prompt_version": 1,
+  "kind": "spotlight",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [6, 6, 6, 7],
+      "confidences": [3, 2, 3, 2],
+      "reviews_edited_after_posting": ["Reviewer_7mdj", "Reviewer_Q5eH"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 6, 7 span one point. Reviewer_hyJf's 7 (confidence 2) is the only rating above 'marginally above the acceptance threshold', and no reviewer argued for an award."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Q5eH",
+          "evidence": "Three-sentence main review, 2.5 hours, confidence 2. Says the paper 'focuses on networks with infinity width'; the paper trains a finite width-m network and uses the infinite-width model only as a reference (submitted lines 55-79). Calls the paper 'well-written' in the review and the writing 'very difficult to follow' in the discussion."
+        },
+        {
+          "reviewer": "Reviewer_ab3Y",
+          "evidence": "Summarises the contribution as 'generalization bounds for random features models trained with gradient descent' plus re-proofs of known results; the paper trains the inner layer of a shallow ReLU network (lines 16-17), and its gradient-descent bound is the new part. The main review is two paragraphs of questions; no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Q5eH",
+          "claim": "The paper focuses on networks with infinite width.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Submitted lines 55-62 define a width-m network f(x; W) and train W by gradient descent; U∞ (lines 73-79) is a reference model that is never trained. The authors corrected this in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_ab3Y",
+          "claim": "The paper gives generalization bounds for random-features models trained with gradient descent.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 16-17: 'only the inner (input-facing) weights are trained'; the infinite-width random-feature model is a benchmark (lines 65-72). ab3Y's other point, that the calibration and classification links are known results reproved elementarily, matches Remark 1.1 item 4."
+        },
+        {
+          "reviewer": "Reviewer_Q5eH",
+          "claim": "Consistency is not defined until Remark 1.1.",
+          "checked_against_paper": "correct",
+          "evidence": "The word first appears in Remark 1.1 (line 102, page 4; Q5eH wrote 'page 1'). Page 1 (lines 22-25) only describes convergence to optimality, and the formal statement is Corollary 2.3 on page 8. The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_hyJf",
+          "claim": "The feature-learning limitation appears only in the open problems, not in the main body.",
+          "checked_against_paper": "correct",
+          "evidence": "The only mention is Section 4, lines 324-325: 'The analysis here early stops before the feature learning begins to occur.'"
+        },
+        {
+          "reviewer": "Reviewer_hyJf",
+          "claim": "Nakkiran and Bansal (arXiv 2009.08092) should be cited; typos l(r) for l(z) at line 41 and f for h in Lemma 2.1.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted reference list has no Nakkiran; the camera-ready cites it. The display after line 41 reads ℓ(r) := ln(1 + e^{-z}). Lines 216-217 bound |f(x) − g(x)| in a statement about g and h."
+        },
+        {
+          "reviewer": "Reviewer_7mdj",
+          "claim": "The paper has no experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3 is all N/A. The camera-ready adds a short MNIST estimate of R in Remark 1.1 item 3, as the rebuttal promised."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "Reviewer_7mdj edited on 2021-09-10 and added only 'UPDATE: response read. Thank you for the response!'. Reviewer_Q5eH edited on 2021-08-25, the day of a comment saying the response 'clarifies some of my concerns' while still asking for explicit limitations, a narrower title and an earlier definition of consistency. Neither states a score change. Reviewer_hyJf replied on 2021-09-02 without editing. Reviewer_ab3Y did not reply.",
+        "what_convinced_or_not": "The promised MNIST estimate of R, a figure of the training regimes and an earlier definition of consistency drew no objection. Q5eH stayed unconvinced on scope and writing. The authors' reply to ab3Y on why early stopping is needed did not mention the Theorem 1.1 error that they disclosed to Committee B the same day."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows four ratings of 6 or 7, but a spotlight sits above three 'marginally above threshold' ratings at confidence 2 to 3. The three-sentence meta-review says 'The reviewers and I are all in agreement that the results are strong and technically interesting'; only Reviewer_hyJf called the result strong. It calls the remaining points 'minor comments' and gives no reason for a spotlight.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Consistency of gradient descent on a shallow network for arbitrary noisy data, beyond prior separable-data analyses",
+        "Linearization and de-linearization technique judged neat (Reviewer_hyJf)",
+        "No rating below 6; all weaknesses treated as minor",
+        "Chair's own judgement that the results are strong; no stated reason for the spotlight"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 6, 8, 8, 6],
+      "confidences": [1, 4, 4, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_9b2J", "Reviewer_sDSa", "Reviewer_afNw"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings run from 6 to 8 with two at each end. The two 8s differ in basis: Reviewer_sDSa (confidence 4) is specific and balanced; Reviewer_PKyu (confidence 2) is praise only, from a reviewer 'not very familiar with the topic'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_PKyu",
+          "evidence": "Short, praise-only review at confidence 2: 'I am not very familiar with the topic and might have missed possible limitations / concerns'. Calls the discussion of limitations 'impeccable', yet the authors conceded to Reviewer_9b2J that their early-stopping discussion 'was inadequate' and disclosed an error in Theorem 1.1. Says SGD; the paper uses full-batch gradient descent (submitted line 60). No reply to the rebuttal. The meta-review copies this review's wording."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oWmh",
+          "claim": "Line 132 attributes early stopping to technical reasons in the proof of Theorem 1.1, but the paper never discusses early stopping for that theorem.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 131-132 promise a discussion 'in the analysis in Section 2'; Section 2 (lines 207-293) never mentions early stopping. This question, with Reviewer_9b2J's, led the authors to disclose the Theorem 1.1 error."
+        },
+        {
+          "reviewer": "Authors (general comment on Committee B's forum)",
+          "claim": "Theorem 1.1 as submitted omits a term: R must become roughly R + sqrt(t·R(U∞)) in τ1 and in the generalization error; the fix needs 'only a small amount of algebra'.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Theorem 1.1 (lines 89-95) has only R in τ1 and in the generalization term. The camera-ready restates it with an early-stopping radius R_gd and an effective radius B that contains sqrt(t·e^{τ0}·R(U∞)). Its consistency corollary takes width m = n^{40(1−ξ)/3} where the submission took m = n. The omission is real, and the fix changed the stated rates."
+        },
+        {
+          "reviewer": "Reviewer_9b2J",
+          "claim": "Theorem 1.1 selects the iterate with the lowest training risk among the first t, not a classically early-stopped model.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 61-62 and 90-91 define W≤t := arg min over i ≤ t of the empirical risk. Early stopping enters only through the fixed horizon t := 8/ε_gd."
+        },
+        {
+          "reviewer": "Reviewer_afNw",
+          "claim": "The negative result covers a nearly negligible part of the regime of the positive result, so the early-stopping case is not conclusive.",
+          "checked_against_paper": "correct",
+          "evidence": "Proposition 1.2 is univariate (lines 138, 142), and line 310 says it 'would still be a univariate result only'. The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_oWmh",
+          "claim": "Line 144 should define F_n over f: R → R, since the data are univariate.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted display defines F_n over f: R^d → R while x_i ∈ R."
+        },
+        {
+          "reviewer": "Reviewer_sDSa",
+          "claim": "Nakkiran and Bansal answer the paper's open question 'Do neural networks fail on noisy data if care is not taken with temperature and early stopping?'",
+          "checked_against_paper": "correct",
+          "evidence": "The question is verbatim in Section 4 (lines 314-315), and the submission does not cite Nakkiran and Bansal; the camera-ready does."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_sDSa"],
+        "evidence": "Reviewer_sDSa, 2021-08-14, edit the same day: 'Upon reflection, I have increased my score from 7 to 8.' Reviewer_9b2J edited on 2021-08-18 with an 'Updated feedback' comment that welcomes the MNIST estimate and the fix but states no score change. Reviewer_oWmh wrote 'I can raise the score' if points 2 and 3 were answered, then never replied and never edited (stays 6). Reviewer_afNw's edit (2021-08-03) predates the rebuttal. Reviewer_PKyu did not reply.",
+        "what_convinced_or_not": "sDSa raised 'upon reflection' after replies on k-NN rates, data simplicity and the Nakkiran citation, without naming a reason. The disclosed Theorem 1.1 error drew one reaction: Reviewer_9b2J wrote 'here I have to trust that the proofs in appendix will be fine for the final version' and again preferred a journal. oWmh, whose question prompted the disclosure, did not engage."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 7.0 with two 8s supports a spotlight. The two-sentence meta-review repeats Reviewer_PKyu almost word for word ('very well-written, clear'; 'main theorem a strong contribution'). It ignores the presentation complaints of Reviewer_oWmh and Reviewer_9b2J and the disclosed Theorem 1.1 error.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Main theorem judged new and strong: consistency of gradient descent on networks with noisy data (Reviewer_sDSa, Reviewer_oWmh, Reviewer_PKyu, Reviewer_afNw)",
+        "Technical novelty: multiplicative logistic-loss error and linearization over the whole sphere (Reviewer_oWmh)",
+        "Two 8s, one raised after the rebuttal",
+        "Writing judged clear by the two 8s, which the meta-review repeats"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Restriction to binary classification (Reviewer_7mdj)",
+    "Title and abstract say 'neural networks' for shallow ReLU networks; limitations not stated explicitly (Reviewer_Q5eH)",
+    "Consistency defined late (Reviewer_Q5eH)"
+  ],
+  "issues_only_b": [
+    "Author-admitted error in Theorem 1.1, a missing sqrt(t·R(U∞)) term, disclosed only on Committee B's forum",
+    "Analysis largely incremental over prior work (Reviewer_afNw); adaptivity to data simplicity already known (Reviewer_sDSa)",
+    "Consistency is a weak property; k-NN is consistent too (Reviewer_sDSa)",
+    "Proofs cannot be checked in review time, so a journal fits better (Reviewer_9b2J)",
+    "Missing comparison with prior near-initialization analyses and missing NTK citations (Reviewer_oWmh)",
+    "Selected iterate W≤t minimizes training risk, unlike practical early stopping (Reviewer_9b2J)"
+  ],
+  "shared_issues": [
+    "Role of early stopping unclear; the univariate Proposition 1.2 does not show necessity (A: ab3Y, hyJf; B: oWmh, afNw, 9b2J)",
+    "Dense presentation and a half-page Theorem 1.1 (A: ab3Y, Q5eH; B: oWmh, 9b2J)",
+    "No experiments; complexity R not estimable; bound possibly vacuous (A: 7mdj, ab3Y; B: afNw, 9b2J)",
+    "Lazy (NTK) regime without feature learning; unclear relevance to practice (A: hyJf, Q5eH, 7mdj; B: sDSa, PKyu)",
+    "Missing citation of Nakkiran and Bansal (A: hyJf; B: sDSa)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a spotlight, so there is no split to explain. The agreement comes from the two area chairs, not from matching reviewer evidence. Committee B's spotlight follows its scores: mean 7.0, with 8s from Reviewer_sDSa (confidence 4, raised from 7 after the rebuttal) and Reviewer_PKyu (confidence 2, praise only, 'not very familiar with the topic'), whose wording the meta-review copies. Committee A's spotlight sits above its scores: 6, 6, 6, 7, no confidence above 3, and no reviewer argued for an award. Its three-sentence meta-review claims all reviewers found the results 'strong', which only Reviewer_hyJf wrote. Both chairs judged one fact decisive: gradient descent on a shallow ReLU network is consistent and calibrated on arbitrary noisy distributions. Both committees heard the same weaknesses (lazy regime, half-page theorem, univariate early-stopping argument, no estimate of R) and treated them as minor. One asymmetry did not change the outcome. Only Committee B learned that Theorem 1.1 as submitted omitted a sqrt(t·R(U∞)) term. B accepted the fix on trust, and its meta-review does not mention it. The camera-ready confirms the change was material: it adds an early-stopping radius, and its consistency corollary needs width n^{40(1−ξ)/3} instead of n.",
+  "candidate_reasons": [
+    "Chair lifts borderline scores to spotlight",
+    "Meta-review copies low-confidence enthusiast",
+    "Admitted theorem error accepted on trust",
+    "Error disclosed to one committee only",
+    "Both chairs prize general consistency result",
+    "Shared weaknesses treated as minor"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_PKyu final review",
+    "Reviewer_sDSa discussion comment, 2021-08-14 (7 to 8)",
+    "Reviewer_oWmh final review (offer to raise; no reply)",
+    "Authors' general comment on Committee B's forum, 2021-08-10 (Theorem 1.1 oversight)",
+    "Reviewer_9b2J discussion comment, 2021-08-18",
+    "Authors' reply to Reviewer_ab3Y on Committee A's forum, 2021-08-10 (early stopping, no disclosure)",
+    "paper_submitted.pdf Theorem 1.1 (lines 89-95), Section 1.2 (lines 131-132), Section 2",
+    "paper.pdf (camera-ready) Theorem 1.1, Remark 1.1(c), Corollary 2.3"
+  ]
+}

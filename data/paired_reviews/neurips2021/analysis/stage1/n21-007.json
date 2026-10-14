@@ -1,0 +1,238 @@
+{
+ "pair_id": "n21-007",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [7, 6, 7, 3],
+   "confidences": [1, 4, 5, 5],
+   "reviews_edited_after_posting": ["Reviewer_NVLj"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_NVLj",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Ratings 7/6/7/3 (YhTZ, bDSX, oxRc, NVLj). NVLj's 3 sits 3.7 points below the mean of the other three. It is the only review in A that names prior work and specific defects, and every checkable point holds against the submission (see checkable_claims). NVLj engaged after the rebuttal, conceded the Pearson point and kept the rest. A 3 ('clear rejection') is severe for concerns about novelty and missing analyses rather than errors, but the reasons are principled."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_YhTZ",
+     "evidence": "Rating 7 at confidence 1 ('Your assessment is an educated guess'). The main review is three sentences of praise ('novel and effective', 'instructive') with no weakness; two questions sit under limitations. Never posted after the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_oxRc",
+     "evidence": "Rating 7 at confidence 5 ('checked the math/other details carefully'), yet the strengths are generic ('significant contribution to the field', 'experiments are well evaluated') and the only weaknesses are two questions on what Eq. 18 and the mixed-precision configuration mean. Does not mention the Fig. 1 / Eq. 6-7 mismatch or the undefined Delta_l at L180. Never posted after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_NVLj",
+     "claim": "Figure 1 shows pre-LayerNorm blocks but Eq. 6-7 use post-LayerNorm.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig. 1 draws Layer Norm before MSA and before MLP, with the residual path bypassing it. Eq. 6-7 read Z_l = LN(X_l + MSA(X_l)) and X_{l+1} = LN(Z_l + MLP(Z_l)). Conceded as a typo; the camera-ready rewrites Eq. 6-7 as pre-LN."
+    },
+    {
+     "reviewer": "Reviewer_NVLj",
+     "claim": "The alternating search [22] and bias correction [16] are prior methods and are not cited where the paper uses them.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.2 (L174-191) presents both without citation, and the introduction (L55-57) and conclusion (L305-307) list them as the paper's own steps. EasyQuant [22] is cited only in the introduction (L41) and the experiments; DFQ [16] only in the introduction, related work and L135. The camera-ready still cites neither at that point, despite the promise in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_NVLj",
+     "claim": "The mixed-precision algorithm is almost the same as HAWQ-v2 [9] except for the nuclear norm, and the nuclear norm is never compared with the Hessian criterion.",
+     "checked_against_paper": "correct",
+     "evidence": "L207-209: 'Inspired by the method in [9], we utilize a Pareto frontier approach ... based on the total second-order perturbation'. Table 3 only switches mixed precision on or off. The camera-ready adds the comparison (its Table 4): Hessian 77.01 vs nuclear norm 76.98 top-1, 754.6 s vs 53.1 s, so the gain is search cost, not accuracy."
+    },
+    {
+     "reviewer": "Reviewer_NVLj",
+     "claim": "Table 3 shows the ranking loss helps, but the gain is very limited.",
+     "checked_against_paper": "correct",
+     "evidence": "Adding the ranking loss raises ViT-B 8-bit ImageNet top-1 by 0.52, 0.68, 0.27 and 0.37 points across Table 3's four settings (76.61 to 76.98 with everything else on). Single runs; checklist 3(c) marks error bars N/A."
+    },
+    {
+     "reviewer": "Reviewer_NVLj",
+     "claim": "The observation that quantization changes the order of attention values (L166-167) has no evidence that this hurts accuracy.",
+     "checked_against_paper": "correct",
+     "evidence": "The only support is 'as shown in Fig 1': two small, unlabelled attention-map heat maps inside the method diagram. The submission measures no rank change before or after quantization."
+    },
+    {
+     "reviewer": "Reviewer_NVLj",
+     "claim": "The paper lacks hyper-parameter analysis for alpha, beta, gamma and theta.",
+     "checked_against_paper": "correct",
+     "evidence": "L234-235 fix alpha=0.5, beta=1.2, gamma=0.1, theta=0.2 with no sweep. The rebuttal's gamma and theta sweeps peak at 75.81% at those defaults, which is Table 3's accuracy without the ranking loss; Table 3 gives 76.49% with it. Nobody in A noticed."
+    },
+    {
+     "reviewer": "Reviewer_oxRc",
+     "claim": "The mixed-precision optimization and the meaning of Y in Eq. 18 are unclear (also asked by Reviewer_YhTZ).",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.3 never defines Y or its quantized version in Eq. 18, nor how candidate configurations are enumerated. The answer (output feature for MLP, attention map for MSA) appears only in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_NVLj edited on 2021-09-02, adding an 'Updated' section that ends 'still vote for rejection' (final 3). Reviewer_bDSX (2021-08-28): 'I will keep my score ... my concerns have been addressed' (6). Reviewer_YhTZ and Reviewer_oxRc did not edit or post.",
+    "what_convinced_or_not": "NVLj accepted the Pearson-vs-cosine explanation and its table. NVLj rejected the rest: the ranking gain in Table 3 is 'very limited' and its rationale unexplained (the authors answered with an external image link); 'nuclear norm is easier than Hessian' is no substitute for a comparison; mixed precision is 'almost the same as [9]'. bDSX was satisfied by clarifications of Eq. 12-13 and related work."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'three voted for acceptance and one voted for rejection ... The AC agrees with the major vote'. The AC calls NVLj's three concerns 'highly constructive' but sets the novelty one aside because 'all the other three reviewers, in fact, viewed the proposed approach as being novel'. YhTZ (confidence 1) and bDSX say so in one unargued line each; oxRc never uses the word. No positive reviewer addressed the prior work NVLj named (EasyQuant, DFQ, HAWQ-v2). The Hessian comparison is requested only 'if possible'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four reviewers rated accept (7, 6, 7); the AC followed the majority vote",
+    "The AC took the other reviewers' one-line novelty claims over Reviewer_NVLj's argued novelty critique",
+    "Positive reviewers credited consistent gains over CNN post-training quantization baselines (Tables 1-2) on a practical problem"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 6, 6, 4],
+   "confidences": [4, 5, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_3X6o"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5/6/6/4 (3X6o, gcUY, H7ei, Zj6U) span two points around a mean of 5.25. Reviewer_Zj6U's 4 is lowest but not isolated: Reviewer_3X6o's 5 is also below threshold, and Reviewer_H7ei's 6 comes with mostly critical text."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Zj6U",
+     "evidence": "2 hours. Calls the ranking loss 'not tested or justified', but Table 3 ablates it. Reads it as replacing the Pearson term on attention ('as opposed to standard correlation used for MLP'); Eq. 12 adds it to that term. Describes mixed precision as 'A PCA-based method ... to combine (1 & 2)'; it assigns bit-widths. Silent after the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_H7ei",
+     "evidence": "4 hours on a generic originality/quality/clarity/significance template. Faults 'Figure 2', which does not exist; the authors had to guess ('In Figure 1 (if I am not misunderstand)'). Rates 6 over text that is mostly criticism. Silent after the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_gcUY",
+     "evidence": "Confidence 5 on three one-line strengths ('novel and effective', 'well written and organized'), an optional Swin request and a typo. Received Swin-S/B results and did not reply."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Zj6U",
+     "claim": "The use of rank-based quantization for self-attention, as opposed to the correlation used for the MLP, is not tested or justified.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3 ablates the ranking loss on top of the Pearson term (+0.27 to +0.68 points); Eq. 12 combines the two rather than replacing one with the other. The 'not justified' half (weak evidence that order changes matter) holds; Reviewer_NVLj made it precisely in A."
+    },
+    {
+     "reviewer": "Reviewer_Zj6U",
+     "claim": "A large number of hyper-parameters are manually chosen, presumably to favour the authors' method, which may be unfair to the three compared methods.",
+     "checked_against_paper": "correct",
+     "evidence": "L234-237, which Zj6U quotes, set alpha, beta, gamma, theta, the iteration cap and the bit sets by hand and say nothing on how they were chosen, though checklist 3(b) answers Yes. The authors re-implemented the baselines (L218-219). That the values favour the method is speculation; the paper neither shows nor rules it out."
+    },
+    {
+     "reviewer": "Reviewer_Zj6U",
+     "claim": "The three compared methods (Percentile, EasyQuant, Bit-Split) may not be a comprehensive set.",
+     "checked_against_paper": "correct",
+     "evidence": "Only those three, and only on DeiT and DETR; the ViT rows of Table 1 compare against Percentile alone. AdaRound, OMSE, ACIQ, OCS and ZeroQ are cited in Section 2.3 but not compared."
+    },
+    {
+     "reviewer": "Reviewer_3X6o",
+     "claim": "Computational cost (e.g. BOPs) is missing from the experiments.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1-2 report model size only; L253-254 claim '44% computational costs' savings without a measurement. BOPs first appear in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_3X6o",
+     "claim": "Delta_l, alpha and beta at L180 are not defined.",
+     "checked_against_paper": "correct",
+     "evidence": "L180 writes the search range as [alpha*Delta_l, beta*Delta_l] without defining Delta_l, the symbol already used for the interval being searched. The authors conceded it should be S_l, the layer maximum; the camera-ready still prints Delta_l."
+    },
+    {
+     "reviewer": "Reviewer_3X6o",
+     "claim": "The effect of the number of calibration samples is not studied.",
+     "checked_against_paper": "correct",
+     "evidence": "L232-233 fix 100 (CIFAR) or 1000 (ImageNet, COCO) images with no sweep. The rebuttal shows strong sensitivity: 57.39% top-1 at 100 ImageNet samples, 75.81% at 1000."
+    },
+    {
+     "reviewer": "Reviewer_H7ei",
+     "claim": "Figure 2 has no clear explanation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The submission has a single figure, Figure 1."
+    },
+    {
+     "reviewer": "Reviewer_H7ei",
+     "claim": "The method is unclear, especially the strategy for obtaining different bit-widths.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.3 gives Eq. 18 and one sentence on sorting configurations; the tensors in Eq. 18 and the search over configurations are not defined. L201 introduces SVD as taking 'a rectangular matrix of gene expression data'."
+    },
+    {
+     "reviewer": "Reviewer_gcUY",
+     "claim": "Only relatively weak backbones (ViT, DeiT) are used.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1-2 cover ViT-B/L, DeiT-S/B and DETR. The rebuttal adds Swin-S and Swin-B at 8 bits: 82.31 and 83.02 against 83.0 and 83.3 full precision (Percentile: 79.56, 80.25)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No B reviewer posted after the 2021-08-10 responses. The one edit (Reviewer_3X6o, 2021-07-14) predates them, so all four final ratings are pre-rebuttal ratings.",
+    "what_convinced_or_not": "Unknown, because nobody replied. 3X6o had written 'If the authors can solve these issues, I would be happy to change my score'; the authors answered all six points, four with new tables (similarity metrics, search iterations, BOPs, calibration size). gcUY received Swin results; Zj6U received an account of how the baselines were tuned. The meta-review mentions none of it."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "A 2-2 split (6, 6 vs 5, 4) allows a reject. But the meta-review copies the critics' wording: 'The goal of the paper is significant in practical applications' and 'the method part is not ... clear' from H7ei, 'A large number of hyper-parameters are manually chosen' from Zj6U. 'Reviewers are concerned about the novelty' rests on Zj6U and H7ei's 'somewhat innovative'; gcUY called the method 'novel' and 3X6o did not question novelty. 'Baselines ... weak' merges gcUY's backbone point, which the Swin results answered, with Zj6U's point on compared methods. The rebuttal is not mentioned.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Split panel (6, 6, 5, 4; mean 5.25) with no champion and no reviewer response to the rebuttal",
+    "Novelty judged insufficient (Reviewer_Zj6U; Reviewer_H7ei 'somewhat innovative')",
+    "Method section unclear, especially the bit-width allocation (Reviewer_H7ei)",
+    "Many hand-set hyperparameters and weak comparisons with other methods (Reviewer_Zj6U, Reviewer_gcUY)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Fig. 1 draws pre-LayerNorm blocks but Eq. 6-7 are post-LayerNorm (Reviewer_NVLj; conceded)",
+  "Alternating search (EasyQuant [22]) and bias correction (DFQ [16]) presented without citation as the paper's own steps (Reviewer_NVLj)",
+  "Mixed precision reuses HAWQ-v2's Pareto-frontier procedure; nuclear norm never compared with the Hessian criterion (Reviewer_NVLj)",
+  "Ranking-loss gain in Table 3 is only 0.27-0.68 points (Reviewer_NVLj, post-rebuttal)",
+  "Practical value of mixed precision when hardware runs int8, and no lower-bit (2-4 bit) settings (Reviewer_NVLj)",
+  "Method untested on CNNs (Reviewer_YhTZ)"
+ ],
+ "issues_only_b": [
+  "No computational-cost metric such as BOPs (Reviewer_3X6o)",
+  "No study of calibration-set size or of the alternating search; undefined Delta_l, alpha, beta at L180 (Reviewer_3X6o)",
+  "Only ViT and DeiT backbones, no Swin Transformer (Reviewer_gcUY)",
+  "Hand-set hyperparameters may favour the method over re-implemented baselines; only three compared methods (Reviewer_Zj6U)",
+  "Spearman correlation instead of a hinge ranking loss; why quantization rather than pruning, distillation or projection (Reviewer_Zj6U)"
+ ],
+ "shared_issues": [
+  "Choice of Pearson correlation over cosine or Euclidean similarity (Reviewer_NVLj; Reviewer_3X6o)",
+  "Thin evidence that quantization-induced changes in attention order hurt accuracy, i.e. the ranking loss's motivation (Reviewer_NVLj; Reviewer_Zj6U, Reviewer_H7ei)",
+  "Hyperparameters set by hand without analysis (Reviewer_NVLj; Reviewer_Zj6U)",
+  "Unclear mixed-precision procedure and Eq. 18 (Reviewer_YhTZ, Reviewer_oxRc; Reviewer_H7ei)",
+  "Limited novelty over existing components (Reviewer_NVLj; Reviewer_Zj6U, Reviewer_H7ei)",
+  "Too little on transformer quantization in NLP and BERT (Reviewer_bDSX; Reviewer_H7ei)",
+  "No limitations discussion (Reviewer_NVLj; Reviewer_3X6o, Reviewer_H7ei)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees saw the same paper and mostly the same weaknesses; they split on the score draw and on how each area chair used it. A drew three positive but thin reviews: Reviewer_YhTZ's 7 is self-declared an 'educated guess' (confidence 1), Reviewer_oxRc's 7 lists only two clarification questions as weaknesses, and Reviewer_bDSX's 6 gives three one-line strengths. A's AC followed 'the major vote' and set their unargued novelty claims against Reviewer_NVLj's detailed 3, whose checkable points all hold against the submission: the Fig. 1 vs Eq. 6-7 LayerNorm mismatch, uncited reuse of EasyQuant's alternating search and DFQ's bias correction, a HAWQ-v2 procedure with the Hessian swapped for the nuclear norm and never compared, and ranking-loss gains of 0.27-0.68 points. B drew no champion (6, 6, 5, 4). Its most careful reviewer, Reviewer_3X6o, offered to reconsider and received full answers with new tables, but no B reviewer posted after the rebuttal, and B's AC built the reject from Reviewer_Zj6U's and Reviewer_H7ei's wording, presenting a novelty doubt pressed only by Zj6U as a shared concern. No reviewer on either side found an error in a result; the dispute is how much is new. The best-argued review in either record argued for rejection, so A's accept rests on its score draw rather than on stronger evidence.",
+ "candidate_reasons": [
+  "Thin positive reviews formed majority",
+  "AC followed the vote count",
+  "Principled lone detractor outvoted",
+  "Split panel without a champion",
+  "Reviewers silent after rebuttal",
+  "Same weaknesses weighted differently"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Reviewer_NVLj final review, 'Updated' section (edited 2021-09-02)",
+  "Reviewer_YhTZ review (confidence 1)",
+  "Committee B meta-review",
+  "Reviewer_Zj6U review",
+  "Reviewer_H7ei review",
+  "Reviewer_3X6o review and the authors' response to it",
+  "paper_submitted Figure 1 and Eq. 6-7",
+  "paper_submitted Section 3.2 L174-191 and Section 3.3 L207-209",
+  "paper_submitted Table 3",
+  "camera-ready Table 4 (Hessian comparison)"
+ ]
+}

@@ -1,0 +1,253 @@
+{
+  "pair_id": "n21-245",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        4,
+        5,
+        4,
+        6
+      ],
+      "confidences": [
+        5,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_HWNH",
+        "Reviewer_MjL3"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4/5/4/6 (HWNH, 2mkY, q94Z, MjL3). Reviewer_MjL3's 6 is the only score above threshold, one point above 2mkY's 5. It rests on generic praise ('The experimental setup looks very good') with no weakness or question. Its post-rebuttal edit adds only 'I acknowledge that I have read the authors' response and the other reviews.' The AC set it aside without comment."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_MjL3",
+          "evidence": "Claims 10 hours, but the main review is one paragraph of praise ('well-written, well-structured', 'The experimental setup looks very good', 'Figure 4 is also very compact'). No weakness, no question, and nothing on the missing related work that three colleagues found. The authors' reply to it is two lines. Its only later act is an acknowledgment line."
+        },
+        {
+          "reviewer": "Reviewer_2mkY",
+          "evidence": "4 hours, confidence 3. Lists 'there hasn't been much work on debiasing graph embeddings' as a strength and 'novelty of the paper is somewhat limited' as a weakness, with no reason. 'Glove is consistently performing better' is wrong for three of six graphs and for every community-detection setting in Fig. 3. 'No overall complexity analysis' overlooks lines 163-170. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HWNH",
+          "claim": "The submission ignores approximate personalized PageRank (Andersen, Chung and Lang 2006), which penalises high-degree nodes, and Lasagne, which uses it against the same degree bias in node2vec and DeepWalk.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no related-work section. Its 45 references include none of these and no other degree-debiasing method; the camera-ready adds them as refs [8]-[16]. The stronger claim, that this work 'solved' the problem, is a judgment: APPR regularises a diffusion, while residual2vec changes the SGNS noise model and accepts any null graph. Five of the review's eight references share one author (Fountoulakis)."
+        },
+        {
+          "reviewer": "Reviewer_HWNH",
+          "claim": "On AstroPh, DeepWalk exceeds 0.8 AUC-ROC while node2vec stays below 0.8, unlike published results.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3D (p.7): DeepWalk 0.86-0.95, node2vec 0.65-0.81 (above 0.8 only at K = 128). The authors attribute it to scoring links by dot product instead of an edge-embedding classifier. It is a setup difference, not an error."
+        },
+        {
+          "reviewer": "Reviewer_HWNH",
+          "claim": "There are no multi-label node classification experiments as in node2vec.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 has link prediction, the LFR community benchmark and a WoS kNN case study only. The authors declined to add it ('tight schedule of NeurIPS review rounds')."
+        },
+        {
+          "reviewer": "Reviewer_q94Z",
+          "claim": "residual2vec performs worse than Glove on 3/6 link-prediction datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3A-F: Glove (w/ offset) is above r2v-config (w/ offset) on Airport (about 0.98-0.99 vs 0.96-0.98) and AstroPh at every K, and on HepTh for K up to 32. r2v-config leads on Wikipedia vote, Protein-Protein (about 0.91 vs 0.82) and DBLP. The authors' 'four out of six' holds only if HepTh is read at K = 128."
+        },
+        {
+          "reviewer": "Reviewer_q94Z",
+          "claim": "Fairwalk, role2vec, DEMO-Net and degree-bias GCN work are neither cited nor compared.",
+          "checked_against_paper": "correct",
+          "evidence": "None is in the submitted references. In the rebuttal the authors added Fairwalk (83% and 95% of r2v's AUC) and GAT (69% and 98%). They declined role2vec and DEMO-Net as methods that add structure rather than remove it."
+        },
+        {
+          "reviewer": "Reviewer_2mkY",
+          "claim": "In Figure 3, Glove is consistently performing better.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Glove trails r2v-config on Wikipedia vote, Protein-Protein and DBLP at every K. In community detection (Fig. 3G-H) r2v-config is at or above every method at each mixing value. 'I do not see consistency in the improvement' is fair; 'consistently performing better' is not."
+        },
+        {
+          "reviewer": "Reviewer_2mkY",
+          "claim": "No overall complexity analysis is provided.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 3.3 (lines 163-170) gives O(MNB̂ + TB̂^3) time and O(B̂^2 + N) space for the block approximation. Only the cost of the truncation and the SVD is missing; the authors added the randomized SVD and its complexity."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "The authors replied to all four reviewers on 2021-08-11. No A reviewer posted after that. Reviewer_HWNH's edit (2021-07-07) predates the rebuttal. Reviewer_MjL3's edit (2021-08-29) adds 'I acknowledge that I have read the authors' response and the other reviews' and states no score change. Reviewer_2mkY and Reviewer_q94Z never edited.",
+        "what_convinced_or_not": "Nothing visible. The authors added Fairwalk and GAT, related-work text with HWNH's and q94Z's references, and complexity text. They declined multi-label classification, GNN-debiasing baselines, role2vec, DEMO-Net and an ablation. They asked q94Z to 'reconsider the usage of the SOTA performance as the primary judgment criterion'. No reviewer answered, and the meta-review restates the pre-rebuttal concerns."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: reject 'based on issues with the novelty, the experimental setup (lacking comparison) and the experimental results (lack of clear superiority over comparison)', and 'the reviewer discussion converged on rejection'. These are the themes of HWNH, q94Z and 2mkY. It does not mention the baselines added in the rebuttal or MjL3's 6. No discussion is visible on the forum.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four ratings below threshold (4, 5, 4; mean 4.75). The only accept-side score, MjL3's 6, rests on generic praise.",
+        "Positioning: no related-work section and no citation of prior degree-debiasing methods (APPR, Lasagne, Fairwalk, role2vec, MONET), raised by HWNH, q94Z and 2mkY.",
+        "Gains read as inconsistent: Glove matches or beats r2v-config on three of six link-prediction graphs (q94Z, 2mkY).",
+        "No reviewer engaged with the rebuttal, so the added Fairwalk and GAT baselines and the related-work text had no visible effect."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        6,
+        6,
+        8,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_RJD5",
+        "Reviewer_yRN6"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_yRQF",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 7 and the main support for a spotlight. Before the rebuttal it stood at least two points above every other B score (RJD5 was at 4, yRN6 below 7, eKFw at 6). The review is five sentences of praise ('The writing is super clear and the experiments are very insightful') at confidence 3. It has no weakness or question, no reply after the rebuttal, and a disclaimer: 'I haven't follow the node embedding literatures closely, so I will rely on other reviewers to judge the originality.' Its claim that r2v 'works empirically the best' does not hold against Glove in Fig. 3."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yRQF",
+          "evidence": "5 hours, confidence 3. A summary and five sentences of praise; no weakness, no question, no reply to the rebuttal. It leaves originality to the other reviewers ('I will rely on other reviewers to judge the originality') and still rates 8. Not evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_RJD5",
+          "claim": "Section 2.2 calls NCE 'the unbiased variant of negative sampling', but NCE precedes negative sampling and is only asymptotically unbiased.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted lines 70-75: 'let us consider the unbiased variant of negative sampling, Noise Contrastive Estimation' and 'NCE is unbiased estimator of Pm'. Line 83 calls SGNS word2vec 'an unbiased estimator'. The authors rewrote Section 2.2 with 'asymptotically unbiased' and called negative sampling a simplification of NCE."
+        },
+        {
+          "reviewer": "Reviewer_RJD5",
+          "claim": "The kNN prediction of journal impact factor and subject must keep the same journal (in another year) out of a test node's neighbours.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 255-258 describe 5-fold cross-validation over (journal, year) nodes with no grouping by journal. The authors conceded and split by journal. The submitted Fig. 4E shows r2v-dcSBM peaks near R2 0.58 and micro-F1 0.89; after the fix the rebuttal reports 0.277 and 0.622, and node2vec took the impact-factor lead (0.284). The camera-ready (p.10) replaces 'r2v-dcSBM best captures' with 'No single method best predicts both'."
+        },
+        {
+          "reviewer": "Reviewer_RJD5",
+          "claim": "The offset ln d_i + ln d_j, a monotone transform of preferential attachment, may predict links well on its own.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 3: without the offset, r2v-config drops to about 0.75 on Wikipedia vote and 0.64-0.68 on Protein-Protein, against about 0.96 and 0.91 with it. The authors' offset-only baseline reached 96% of r2v's AUC on average, behind Glove (98%). Much of r2v's link-prediction edge is degree information."
+        },
+        {
+          "reviewer": "Reviewer_RJD5",
+          "claim": "The dcSBM with B = 1 preserves degrees only in expectation, so it is not the (exact) configuration model, and Table 1's baseline needs that stated.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 112-115 say B = 1 'is reduced to the configuration model that preserves the degree of each node'. The authors renamed the models the soft configuration model and the Erdős-Rényi model for multigraphs, with self-loops and multi-edges, and RJD5 accepted."
+        },
+        {
+          "reviewer": "Reviewer_RJD5",
+          "claim": "Figure 3A-F contains a series that is not in the legend.",
+          "checked_against_paper": "correct",
+          "evidence": "The legend under Fig. 3A-F (p.7) is cut off after 'Glove (w/ offset)'; the 'Glove (w/o offset)' entry is unreadable. The authors fixed it."
+        },
+        {
+          "reviewer": "Reviewer_yRN6",
+          "claim": "NetMF is cited in Table 1 but not used as a baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists NetMF (γ = 1) [21]; the baselines at lines 174-177 omit it. The rebuttal added it at 54% and 98% of r2v's AUC; it ran out of memory on WoS."
+        },
+        {
+          "reviewer": "Reviewer_yRQF",
+          "claim": "residual2vec works empirically the best against competing baselines.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 3: Glove (w/ offset) is above r2v-config on Airport and AstroPh at every K and on HepTh for K up to 32. The paper itself claims only 'the best or nearly the best' (line 203)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_RJD5",
+          "Reviewer_yRN6"
+        ],
+        "evidence": "Reviewer_RJD5 wrote on 2021-08-24 that most concerns were addressed and asked for more edits ('If the concerns below are also adequately addressed, I will increase my score'). After the authors' second reply it wrote on 2021-08-30 'increasing it from 4 to 6' (review edited 2021-08-30). Reviewer_yRN6 wrote on 2021-08-31 'I have increased my score (7: Good paper, accept)' (review edited 2021-08-31; earlier score not stated). Reviewer_eKFw and Reviewer_yRQF did not edit or reply.",
+        "what_convinced_or_not": "RJD5 was convinced because the authors made nearly every correction it asked for: Section 2.2 rewritten, abstract wording fixed, soft configuration model and multigraph Erdős-Rényi naming, self-loop and multi-edge assumptions stated, the offset-only baseline added, the journal-level split fixed, and the Fig. 3 legend and zoom panels fixed. Two corrections weakened results (the offset alone at 96%; node2vec best on impact factor), and that did not count against the paper. yRN6 credited the offset explanation, the B̂ = 1000 justification and the NetMF baseline, while still wanting 'a more diverse set of baseline models'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows four ratings at or above 6 (mean 6.75). The spotlight does not: the only rating above 7 is yRQF's 8, which leaves originality to others, and no reviewer argued for a highlight. The meta-review says the concerns were 'mostly regarding the presentation of the work' and 'mostly clarified during the rebuttal'. That understates RJD5's leak fix and the offset result. Its closing phrase 'with less dependency on node degrees' repeats eKFw's review.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All final ratings at or above 6 (6, 6, 8, 7; mean 6.75), after two rebuttal-driven raises (RJD5 4 to 6, yRN6 to 7).",
+        "Reviewers valued the insight that SGNS cancels degree bias and the general null-model framework; the AC calls it an 'insightful analogy'.",
+        "The authors answered every B point and conceded RJD5's corrections; the AC read what remained as presentation.",
+        "The spotlight tier rests on yRQF's 8, a short review by a self-declared non-expert in the literature; the meta-review gives no reason for the tier."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Prior degree-penalised diffusion (approximate personalized PageRank) and Lasagne, which applies it to node embeddings (Reviewer_HWNH)",
+    "Missing debiasing and fairness baselines and citations: Fairwalk, role2vec, DEMO-Net, degree-bias GCN work, MONET, debiased GNNs (Reviewer_q94Z, Reviewer_2mkY)",
+    "No multi-label node classification (Reviewer_HWNH)",
+    "GAT missing as a baseline (Reviewer_q94Z)",
+    "Unclear motivation: why debiasing should help downstream tasks (Reviewer_q94Z)",
+    "Cost of the truncation and SVD; an ablation over null models (Reviewer_2mkY)",
+    "node2vec's low AUC on AstroPh against published results (Reviewer_HWNH)"
+  ],
+  "issues_only_b": [
+    "Misstatements in Section 2.2: NCE as 'the unbiased variant of negative sampling', unbiased instead of asymptotically unbiased, SGNS named for the softmax model (Reviewer_RJD5)",
+    "Train-test leak in the WoS kNN case study; the fix cost r2v-dcSBM the impact-factor lead (Reviewer_RJD5)",
+    "The degree offset as a standalone link predictor; it reached 96% of r2v's AUC (Reviewer_RJD5)",
+    "Configuration and Erdős-Rényi models preserve only expected quantities; self-loop and multi-edge assumptions (Reviewer_RJD5)",
+    "NetMF missing though listed in Table 1 (Reviewer_yRN6)",
+    "Fitting a dcSBM alone for community detection; WoS data not public; how GCN was trained (Reviewer_eKFw)",
+    "Undefined notation (δ, p_0 vs P_0), the choice of B̂ = 1000 and the role of γ (Reviewer_eKFw, Reviewer_yRN6)"
+  ],
+  "shared_issues": [
+    "Results hard to read and gains not uniform: Glove better on some graphs (Reviewer_2mkY, Reviewer_q94Z in A); overlapping series and a cut-off legend in Fig. 3 (Reviewer_RJD5 in B). A counted it against the paper; B accepted 'the best or nearly the best'.",
+    "The Fig. 4B-C projection does not clearly show better class separation (Reviewer_2mkY in A; Reviewer_RJD5 in B).",
+    "Baselines too few or not recent (Reviewer_q94Z, Reviewer_2mkY, Reviewer_HWNH in A; Reviewer_yRN6 in B).",
+    "How the null graph and the dcSBM are used is unclear (Reviewer_q94Z in A; Reviewer_eKFw in B).",
+    "What is new relative to prior work: 'novelty of the paper is somewhat limited' (Reviewer_2mkY in A); Eqs. 4-6 come from [9] and the difference from Mikolov et al.'s negative sampling must be stated (Reviewer_RJD5 in B)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same modest results differently, and only B's reviewers engaged with the rebuttal. The submitted Fig. 3 supports both readings. r2v-config leads on three of six link-prediction graphs and, by small margins, in community detection. Glove with its bias term matches or beats it on Airport, AstroPh and most of HepTh. A's reviewers (Reviewer_q94Z, Reviewer_2mkY) called this a lack of clear superiority; B's (Reviewer_RJD5, Reviewer_yRQF) called it as good or better. A also judged the paper against degree-debiasing work that the submission ignored: it had no related-work section and cited none of the methods that Reviewer_HWNH and Reviewer_q94Z named. B never raised that literature and valued the insight that SGNS cancels degree bias. Both committees got long replies with new baselines on 2021-08-11. No A reviewer answered, and A's two-sentence meta-review restates the pre-rebuttal concerns. In B, Reviewer_RJD5 went from 4 to 6 after two rounds and Reviewer_yRN6 rose to 7. On the record, B's mean went from at most 6.0 to 6.75 while A's stayed at 4.75. B found more concrete faults than A: misstatements about NCE, and a train-test leak in the WoS case study whose fix cost r2v-dcSBM its impact-factor lead. RJD5 also got the authors to show that the degree offset alone reaches 96% of r2v's link-prediction AUC. B credited the fixes, not the weaker results, and its AC called the concerns 'mostly regarding the presentation'. B's spotlight rests on one 8 from Reviewer_yRQF, who left originality to the others. Neither committee found a fatal flaw. The split comes from framing against different literatures, from rebuttal engagement on one side only, and from a thin champion behind the tier.",
+  "candidate_reasons": [
+    "Uncited prior debiasing literature",
+    "Modest gains read differently",
+    "Rebuttal unanswered in rejecting committee",
+    "Score raises for conceded corrections",
+    "Spotlight anchored by non-expert 8",
+    "AC understates substantive corrections"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_HWNH main review, comments 1-2 and references [1]-[8]",
+    "Reviewer_q94Z main review, point 4",
+    "Reviewer_2mkY weaknesses 1, 3 and 5",
+    "Reviewer_MjL3 main review",
+    "Committee A meta-review",
+    "Reviewer_RJD5 review (Quality section; 'Line 70-71' comment) and its replies of 2021-08-24 and 2021-08-30",
+    "Authors' reply to Reviewer_RJD5 (offset-only baseline at 96%; journal-level split, 0.284 vs 0.277)",
+    "Reviewer_yRQF main review",
+    "Reviewer_yRN6 comment of 2021-08-31",
+    "Committee B meta-review",
+    "paper_submitted.pdf Fig. 3 and lines 203-224 (p.7)",
+    "paper_submitted.pdf Fig. 4E and lines 255-260 (pp.8-9)",
+    "paper_submitted.pdf lines 39-47 and references (pp.10-12): no related-work section",
+    "paper_submitted.pdf lines 70-83 (Section 2.2)",
+    "camera-ready a/paper.pdf p.10 ('No single method best predicts both')"
+  ]
+}

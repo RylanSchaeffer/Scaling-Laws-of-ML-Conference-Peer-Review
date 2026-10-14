@@ -1,0 +1,263 @@
+{
+  "pair_id": "n21-255",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        8,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_d5ns"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8, 7, 7, 7: no reviewer stands apart. The lone 8 (Reviewer_88jd) is one point above the rest. It is the only rating above 'Good paper, accept' in either committee, and it came from a one-hour review with no reply to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_88jd",
+          "evidence": "1 hour for the committee's highest rating (8, confidence 4). Four short paragraphs. It says the method is 'sufficiently tested and rigorously compared to relevant baselines' and 'thoroughly tested on two head-fixed mouse datasets'. In the main text WFCI appears only in Table 1, and the review itself notes no comparison to DRNet, DDPAE or Yingzhen and Mandt. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_88jd",
+          "claim": "The model was 'thoroughly tested on two head-fixed mouse datasets'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Submitted paper: WFCI appears in the main text only in Table 1 (session classification). Trajectory decoding (line 260), motif segmentation (lines 275-278, Table 2) and generation (Figure 8) use Hand-reach only. WFCI ethograms are in the appendix (lines 254-255)."
+        },
+        {
+          "reviewer": "Reviewer_Yzq9",
+          "claim": "The paper 'lacks ablation studies' for its design choices: the pose-embedding dimension and the Gaussian mixture against a single Gaussian.",
+          "checked_against_paper": "correct",
+          "evidence": "No experiment varies the pose dimension or the prior. Table 2 varies only k and the temporal model. The authors replied that they will explore these ablations 'in the future'."
+        },
+        {
+          "reviewer": "Reviewer_d5ns",
+          "claim": "Figure 1 is not referred to in the manuscript.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted text never cites Figure 1; only its caption names it. Reviewer_U58y in B made the same point."
+        },
+        {
+          "reviewer": "Reviewer_d5ns",
+          "claim": "VAME (line 50) and ARHMM (line 99) are not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "VAME is used at line 50 and introduced at line 92. ARHMM is never expanded."
+        },
+        {
+          "reviewer": "Reviewer_d5ns",
+          "claim": "Summary: the model keeps 'the pose component static based on a key frame' and extracts 'temporal context components'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 117-124: the context embedding comes from a single frame, and the pose embeddings come from all frames. The summary swaps pose and context."
+        },
+        {
+          "reviewer": "Reviewer_d5ns",
+          "claim": "In the released code, self.first_frame is never updated, so the context always comes from the first frame.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The code is not in the dataset. The authors replied 'You are right about the code' and said the method samples a random frame from a selected period."
+        },
+        {
+          "reviewer": "Reviewer_bsYQ",
+          "claim": "The supplementary videos show 'relatively poor performance of the DBE algorithm in generating a behavior'.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The videos are not in the dataset. Reviewer_c1eX in B saw the same ('very shaky'), and the authors there attributed the shake to resampling the continuous noise g."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "The rebuttal added no experiment. It promised a related-work paragraph, a Table 2 caption, a note on head-fixed animals, notation fixes and a code fix. Reviewer_Yzq9 replied on 2021-08-30: 'I still recommend for acceptance'. Reviewer_d5ns edited its review on 2021-08-31 with no discussion post, so any change is unknown; its final rating is 7. Reviewer_88jd and Reviewer_bsYQ did not edit or reply.",
+        "what_convinced_or_not": "Little needed settling: three reviewers never edited, so they were at accept before the rebuttal. The authors deferred Yzq9's ablations to future work, and Yzq9 accepted that. No reviewer pressed on the shaky generated videos, the missing comparison to general video models, or the fact that the full model trails DisAE+VAME."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows four accept ratings. The meta-review is generic: 'very well described, evaluated, and analysed'. It says 'the ablations performed serve to highlight the advantages of the main components'. But Reviewer_Yzq9 said the paper 'lacks ablation studies', and in Table 2 the stochastic component adds nothing over DisAE+VAME. The meta-review names no weakness and gives no reason for a spotlight beyond 'a very good piece of work'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four accept ratings (8, 7, 7, 7); every reviewer at or above 'Good paper, accept'.",
+        "Reviewers judged the applied contribution: multi-session behaviour embeddings for neuroscience that beat BehaveNet by 26 and DLC+VAME by 22 accuracy points (Table 2), in a clearly written paper.",
+        "Weaknesses they raised (missing ablations, poor generated videos, no comparison to general video models, a code bug, clarity faults) were treated as minor and answered with promises.",
+        "The AC endorsed the consensus and chose a spotlight without a stated reason; the only 8 came from a one-hour review."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        4,
+        6,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_U58y"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 6, 5 spread evenly around the threshold. Reviewer_poVh's 6 is the only rating above it, and the meta-review says poVh agreed with the criticism in the private discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_U58y",
+          "claim": "The best motif-segmentation results come from models without the variational component (DisAE).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: DisAE+VAME (k=30) 81.25 / 67.31 / 67.33 (accuracy / NMI / ARI) against DBE (k=30) 79.53 / 64.85 / 66.94. Lines 293-295: DisAE+VAME 'achieves the best accuracy, NMI and ARI'."
+        },
+        {
+          "reviewer": "Reviewer_poVh",
+          "claim": "The largest performance gains come from the DisAE, not from the stochastic dynamic modelling component.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: BehaveNet (k=30) 53.09 to DisAE+ARHMM (k=30) 71.49 accuracy; DLC+VAME 57.17 to DisAE+VAME 81.25. DBE (79.53) adds no gain over DisAE+VAME."
+        },
+        {
+          "reviewer": "Reviewer_c1eX",
+          "claim": "WFCI is used for only one sub-experiment (Table 1); most experiments use the authors' Hand-reach dataset.",
+          "checked_against_paper": "correct",
+          "evidence": "In the main text WFCI appears only in Table 1. Sections 4.2-4.4 use Hand-reach (line 260, lines 275-278, Figure 8). The authors pointed to qualitative WFCI segmentation in an appendix figure."
+        },
+        {
+          "reviewer": "Reviewer_c1eX",
+          "claim": "The authors did not do multiple runs (Checklist 3c).",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(c) answers [No]. Tables 1 and 2 give single numbers with no error bars."
+        },
+        {
+          "reviewer": "Reviewer_c1eX",
+          "claim": "The model builds on [31] (Yingzhen and Mandt) but is not compared to it.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 70-72 and 133-134 say the disentanglement and its pose bottleneck follow [31]. Neither Table 1 nor Table 2 has a [31] row."
+        },
+        {
+          "reviewer": "Reviewer_c1eX",
+          "claim": "The experiments do not demonstrate the claimed interpretability (line 55, 'more interpretable').",
+          "checked_against_paper": "correct",
+          "evidence": "The paper claims better interpretability at lines 14, 55, 303 and 316. The only support is that DBE can decode videos (lines 302-303). No experiment measures interpretability. The authors conceded: 'we are perhaps overclaiming the interpretability of the model'."
+        },
+        {
+          "reviewer": "Reviewer_U58y",
+          "claim": "Equations 1-3 assign c_t more than once.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 2 defines c_t ~ cat(pi(z_t)) and also c_t = mu_{c_t} + sigma_{c_t} * g_t. The authors called it a typo and gave corrected equations."
+        },
+        {
+          "reviewer": "Reviewer_U58y",
+          "claim": "Session classification from the context embeddings is not reported, so disentanglement is not shown from both sides.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 reports pose embeddings only. The authors added context results in the rebuttal (88.59% and 96.19%); the camera-ready Table 1 includes them."
+        },
+        {
+          "reviewer": "Reviewer_U58y",
+          "claim": "The context frame must be selected manually, which makes the method hard to scale.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 223: context frames are sampled at a fixed time, one second before the cue. The rule needs a known trial structure but no manual choice. U58y accepted the authors' explanation."
+        },
+        {
+          "reviewer": "Reviewer_U58y",
+          "claim": "The paper does not say which dataset Section 4.2 uses.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 260 says 'in the hand-reach dataset'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_U58y"
+        ],
+        "evidence": "Reviewer_U58y edited its review on 2021-08-17 and wrote the same day: 'I am much more on the borderline rating, but I am still leaning towards rejection'. The authors thanked U58y 'for raising the score'; its final rating is 5. Reviewer_c1eX (2021-08-17): 'I will keep my current rating' (4). Reviewer_poVh posted nothing public; the meta-review says poVh agreed with the criticism in the private discussion while still supporting the paper (6).",
+        "what_convinced_or_not": "The authors ran a [31] baseline on the side view, single-view and view-fusion ablations, and context-embedding session classification, and they conceded overclaiming interpretability. This settled U58y's points on multi-view input, context information and context-frame selection. It did not settle the central doubt: U58y does not 'see how this is more interpretable than a post-hoc K-means', and c1eX still doubts generality and interpretability. The new single-view table again puts DisAE+VAME (73.93 / 64.16 / 54.27) ahead of DBE (72.84 / 56.86 / 51.06). At k=15, DisAE+ARHMM (51.90 accuracy) also trails BehaveNet (52.39) and [31]+ARHMM (54.26); no reviewer remarked on this."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two of three reviewers are below the threshold, and the third agreed with the criticism in private. The meta-review takes U58y's points almost word for word: interpretability against post-hoc clustering, the limited benefit of the full DBE, and the advice to 'reformulate the work as a study of different representations of animal embeddings in videos'. It judges the needed changes 'too significant'. It names poVh where it means U58y ('Reviewers poVh and c1eX consider that the work is not yet ready').",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "The full DBE adds no gain over its deterministic part: DisAE+VAME beats it in Table 2 and again in the rebuttal's single-view table.",
+        "The interpretability argument that justifies the stochastic dynamic model is unsupported against post-hoc clustering; the authors conceded the overclaim.",
+        "Novelty is limited relative to Yingzhen and Mandt [31]: the DisAE, which drives most of the gain, follows its paradigm (lines 71-72).",
+        "Generality is unproven: nearly all results use the authors' unreleased Hand-reach dataset, with single runs.",
+        "The AC judged the reframing that the reviewers asked for too large for a camera-ready."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Context frame fixed to the first frame in the released code (Reviewer_d5ns); the authors confirmed the bug",
+    "Time-varying nuisance such as the moving pellet disk, and behaviour leaking into the context embedding (Reviewer_bsYQ)",
+    "Undefined acronyms and notation (VAME, ARHMM, z^p), section layout, and hyperparameters kept in the appendix (Reviewer_d5ns)",
+    "Extension to freely moving animals and to large datasets such as CalMS21 (Reviewer_88jd, Reviewer_d5ns)",
+    "Spread of R^2 across sessions in Figure 5, and motif transitions in Figure 8 (Reviewer_d5ns)"
+  ],
+  "issues_only_b": [
+    "The full DBE trails its deterministic part, DisAE+VAME, on all three motif metrics (Reviewer_U58y, Reviewer_poVh)",
+    "Interpretability claim not shown against post-hoc clustering (Reviewer_c1eX, Reviewer_U58y); the authors conceded the overclaim",
+    "Most results rest on one dataset; WFCI is used only in Table 1 (Reviewer_c1eX)",
+    "No repeated runs or error bars (Reviewer_c1eX)",
+    "No [31] baseline (Reviewer_c1eX, Reviewer_poVh); related work missing S3VAE and MoCoGAN (Reviewer_c1eX) and unsupervised keypoint discovery and TCN (Reviewer_U58y)",
+    "Baseline hyperparameters possibly untuned: ARHMM lags and stickiness, VAME (Reviewer_poVh)",
+    "Session differences possibly trivial (lighting, coat colour), and the normalisation used for BehaveNet (Reviewer_poVh)",
+    "Context-embedding session accuracy and a trajectory-decoding baseline missing (Reviewer_U58y)",
+    "Multi-view fusion not ablated, and the context-frame selection rule (Reviewer_U58y)",
+    "Equation 2 assigns c_t twice (Reviewer_U58y)",
+    "Neural-activity motivation never used (Reviewer_c1eX, Reviewer_U58y)",
+    "Model names too general given [31] (Reviewer_c1eX)"
+  ],
+  "shared_issues": [
+    "Relation to Yingzhen and Mandt [31]: a related-work question for Reviewer_88jd in A; a novelty limit and a missing baseline for all three B reviewers",
+    "Missing ablations: pose dimension and mixture prior (Reviewer_Yzq9 in A); multi-view, variational component and context vector (Reviewer_U58y in B). A accepted 'future work'; B counted it against the paper",
+    "Poor or shaky generated videos in the supplement (Reviewer_bsYQ in A; Reviewer_c1eX and Reviewer_U58y in B)",
+    "Figure 1 never cited in the text and silent on multi-view input (Reviewer_d5ns in A; Reviewer_U58y in B)",
+    "Hand-reach dataset not released (Reviewer_d5ns in A; Reviewer_U58y in B; Checklist 3a)",
+    "Generality beyond the tested head-fixed setting (Reviewer_88jd and Reviewer_d5ns in A, as a limitation; Reviewer_c1eX in B, as a reason to reject)",
+    "Clusters still need manual labelling (Reviewer_bsYQ in A, as a limitation; Reviewer_c1eX in B, against the interpretability claim)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The split comes from what each committee asked of the paper, not from different facts. Committee A's four reviewers read it as a tool for behavioural neuroscience. DBE beats BehaveNet by 26 and DLC+VAME by 22 accuracy points (Table 2), and they rated it 8, 7, 7, 7. Committee B's three reviewers read it as a methods paper and asked what the new model adds. The submission confirms their answers. The full stochastic model trails its own deterministic part: DisAE+VAME scores 81.25 / 67.31 / 67.33 (accuracy / NMI / ARI) against DBE's 79.53 / 64.85 / 66.94, and lines 293-295 say so. The disentanglement follows Yingzhen and Mandt [31] (lines 71-72), and the paper has no [31] baseline. The paper claims better interpretability at lines 14, 55, 303 and 316, but no experiment tests it, and the authors conceded the overclaim in B's discussion. Most results come from one unreleased dataset, each from a single run. A's reviewers saw several of the same facts (missing ablations, shaky generated videos, no comparison to general video models) and called them minor. None mentioned that DBE trails DisAE+VAME. B's rebuttal added a [31] baseline and ablations and lifted Reviewer_U58y to 5. But its new single-view table again put DisAE+VAME ahead of DBE, so the central objection held. B's AC rejected on that point and on interpretability, in U58y's words. A's AC gave a spotlight with no stated reason and credited 'ablations' that its own Reviewer_Yzq9 said were missing; A's only 8 came from a one-hour review. B's objections are correct, but they target the added stochastic model and the framing. The disentanglement gains that A rewarded are real. The two committees weighed the same facts differently.",
+  "candidate_reasons": [
+    "full model trails its ablation",
+    "interpretability claim unsupported",
+    "limited novelty over prior method",
+    "application versus methods framing",
+    "accepting committee missed weak component",
+    "spotlight without stated reason"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 2 and lines 293-295 (DisAE+VAME best; DBE 'very similar')",
+    "paper_submitted.pdf lines 14, 55, 303, 316 (interpretability claims)",
+    "paper_submitted.pdf lines 70-72 and 133-134 (bottleneck from [31]); Tables 1-2 (no [31] row)",
+    "paper_submitted.pdf Table 1 (only main-text use of WFCI); Checklist 3(a) and 3(c)",
+    "paper_submitted.pdf Eq. 2 (c_t assigned twice); no in-text reference to Figure 1",
+    "Reviewer_U58y main review (Experiments/Results) and post-rebuttal comment of 2021-08-17",
+    "Reviewer_poVh main review, major point 1a",
+    "Reviewer_c1eX main review points 1, 3, 4, 7 and post-rebuttal comment",
+    "Authors' 'Further Clarification' to Reviewer_c1eX (concedes the interpretability overclaim)",
+    "Authors' B general response, single-view table",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_88jd review (rating 8, 1 hour)",
+    "Reviewer_Yzq9 review ('lacks ablation studies') and reply of 2021-08-30",
+    "camera-ready a/paper.pdf Table 2 and Section 5 (DBE+VAME still ahead of VDBE; 'more interpretable' kept)"
+  ]
+}

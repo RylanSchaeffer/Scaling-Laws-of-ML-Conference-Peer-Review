@@ -64,28 +64,28 @@ what the committees agreed on and any score-level divergence, as a control. Outp
 `analysis/stage1/<pair_id>.json` (structured fields) and `<pair_id>.md` (the notes), plus
 `analysis/stage1/prompt.md`.
 
-**Stage 2: the spreadsheet of reasons, grown one pair at a time.** One spreadsheet is the whole
-state. Rows are the pairs processed so far; columns are reasons, each with a name, a one-sentence
-definition and the pair that created it; cells are 0, 1 or blank, and every 1 carries a one-line
-justification. At turn n the model reads pair n's stage 1 notes and the current columns, and
-returns, for every existing column, 1 or 0 with a justification, and any new columns it needs,
-defined, ticked for this row. The row is appended and the columns added. Every turn is saved,
-`analysis/stage2/run_<k>/turn_<n>.json`: columns before, the row, columns after, the model's
-reasoning. Order: the 47 award-discrepancy pairs first (oral/poster, spotlight/poster,
+**Stage 2: the set of reasons, grown one pair at a time.** The model never handles a table. The
+state is a set of reasons, each with an id, a name, a one-sentence definition and the pair that
+first showed it. At turn n the model reads pair n's stage 1 notes and the current set, and
+answers in structured form: which reasons in the set apply to this pair, one line each on why,
+and any new reason this pair needs, with a name and a definition. The new reasons join the set.
+Every turn is saved, `analysis/stage2/run_<k>/turn_<n>.json`: the set before, the pair, the
+answer, the set after. Order: the 47 award-discrepancy pairs first (oral/poster, spotlight/poster,
 spotlight/reject), then the accept/reject splits, then the agreed pairs.
 
-Two rules complete the matrix. *Back-fill:* a column created at turn n leaves rows 1 to n-1
-blank; after the pass, each such column is judged for every earlier row in logged calls, so no
-cell is an unjudged blank; back-fill creates no columns. *Merge:* one logged turn at the end in
-which the model names columns that are one reason under two names; a merge ORs the ticks and
-keeps both definitions in the log; nothing is deleted.
+Two rules complete the record. *Back-fill:* a reason created at turn n has not been judged for
+pairs 1 to n-1; after the pass, each such reason is put to every earlier pair in the same form,
+the definition and the pair's notes, yes or no with a line of justification; back-fill creates
+no reasons. *Merge:* one logged turn at the end in which the model names entries of the set that
+are one reason under two names; the merge is applied to the logs, both definitions kept.
 
-Outputs: `analysis/stage2/ticks.csv` (rows pairs, columns reasons, 0/1), `analysis/stage2/columns.json`
+The matrix is derived afterwards by a script from the saved answers: `analysis/stage2/ticks.csv`
+(rows pairs, columns reasons, 1 where a turn or a back-fill said yes), `analysis/stage2/reasons.json`
 (names, definitions, creating pair, merge history), `analysis/stage2/justifications.jsonl` (one
-line per 1), and `analysis/summary.csv`: for each reason, how many pairs it applies to, overall
+line per yes), and `analysis/summary.csv`: for each reason, how many pairs it applies to, overall
 and by kind of discrepancy (oral/poster, spotlight/poster, spotlight/reject, poster/reject,
 agreed). The pass is repeated twice in other orders as a stability check: how many of run 1's
-columns reappear, and how similar the matrices are.
+reasons reappear, and how similar the matrices are.
 
 **Audit trail.** `analysis/manifest.json` lists every input file with its SHA-256, every prompt
 version, every model call's id, and the order of pairs in each run. Anyone can re-run any stage

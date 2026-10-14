@@ -1,0 +1,223 @@
+{
+ "pair_id": "n21-216",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    3,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_3BRp",
+    "Reviewer_yCJc",
+    "Reviewer_YBcz"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 7, 6, 6 (3BRp, q7wC, yCJc, YBcz). No rating is more than one point from the rest. The two 6s were raised from reject-side scores after the rebuttal."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_YBcz",
+     "claim": "Laplacian regularization for individual fairness already appears in Lahoti et al. 2019 [1] and Kang et al. 2020 (InFoRM) [2]; the content before Section 3.2.2 is 'almost identical' to InFoRM's 'debiasing the mining result'.",
+     "checked_against_paper": "correct",
+     "evidence": "Eqs. (3.1)-(3.5) are Laplacian-regularized least squares with the closed form (I + λL)^-1 ŷ. Section 3.1 (lines 150-154) cites only semi-supervised learning work, and neither [1] nor [2] is in the references. The authors did not dispute the formulation: they conceded that dropping dissimilar pairs 'is equivalent to zeroing out entries in the adjacency matrix' and called the methods 'superficially similar'. The camera-ready adds '[30], [31] also use graph Laplacian regularizers to enforce individual fairness.' The InFoRM text itself is not in the pair files."
+    },
+    {
+     "reviewer": "Reviewer_YBcz",
+     "claim": "The paper gives no running time for debiasing BERT, which Section 3.2.2 needs.",
+     "checked_against_paper": "correct",
+     "evidence": "The main text times only the small sentiment task: IF-constraints 5 minutes, GLIF under a second (lines 271-273). Tables 1-2 give no time. The authors pointed to Supplement Section 2.4 and Table 1, which is not in the submitted PDF."
+    },
+    {
+     "reviewer": "Reviewer_3BRp",
+     "claim": "The inductive extension needs the predictor to keep every past instance.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.2.3 (lines 175-178) fixes the outputs of the other test points and takes one coordinate step (3.7) for the new point, which needs its edges to all stored points. The authors conceded O(n) prediction time and the memory cost."
+    },
+    {
+     "reviewer": "Reviewer_q7wC",
+     "claim": "In (3.8) the last term should use ỹ_j, not y_j; τ is overloaded between (2.2) and Section 3.2.4.",
+     "checked_against_paper": "correct",
+     "evidence": "(3.8) reads KL(P_y || P_{y_j}). τ is the graph threshold in (2.2) and the penultimate-layer output τ_i at lines 187-188. The authors conceded both."
+    },
+    {
+     "reviewer": "Reviewer_yCJc",
+     "claim": "In Definition 4.1, y is a second input, not a label.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 4.1 takes the lim sup over y with d_X(X, y) ↓ 0. Reviewer_3BRp made the same point. The authors conceded."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_yCJc",
+     "Reviewer_YBcz"
+    ],
+    "evidence": "Author responses posted 2021-08-10. yCJc edited on 2021-08-27: 'the authors resolved my concern. In light of this, I update my evaluation from 5 to 6.' YBcz replied three times (2021-08-18, 08-22, 08-23), then wrote 'Given our discussion, I will raise my score a bit' and edited on 2021-08-23. Its unchanged text still says 'not ready for a publication', so its earlier score was below 6. 3BRp edited on 2021-08-25 to keep its 7. q7wC asked a follow-up on Theorem 3.1 and stayed at 7.",
+    "what_convinced_or_not": "yCJc accepted the explanation that local IF drops Lipschitz constraints only between dissimilar inputs and so keeps accuracy (Figure 2). YBcz accepted that Theorem 4.6 adds insight and that the goals differ from [1, 2]. It was not fully convinced on the method: the authors conceded that dropping dissimilar pairs equals zeroing adjacency entries, and YBcz still asked for more on [1, 2] and on the inductive setting. The authors also wrote that without this zeroing 'Laplacian regularization does not enforce local IF', but Theorem 4.6 is proved with τ = ∞, that is, with no entries zeroed."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'All four reviewers ultimately recommended acceptance.' The AC names novelty as the main concern, 'partially (but not completely) addressed in the author response', and asks for care with citations to YBcz's prior work. The meta-review gives no reading of Definition 4.1 or Theorem 4.6.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four final ratings at 6 or 7 after the rebuttal",
+    "Local IF accepted as a well-motivated relaxation that keeps accuracy (q7wC; 3BRp; yCJc after the rebuttal)",
+    "Overlap with Lahoti et al. and InFoRM judged not fatal after YBcz's three-round discussion",
+    "Theorem 4.6 and the BERT debiasing results (Tables 1-2) read as the contribution"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    7,
+    5,
+    6,
+    4
+   ],
+   "confidences": [
+    3,
+    3,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_bTqy"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 5, 6, 4 (63Qx, bTqy, 9cRG, LaWU), all at confidence 3, spread evenly around a mean of 5.5. Two are on the accept side and two on the reject side. None stands apart."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_9cRG",
+     "evidence": "Two hours. The main-review field reads 'See above.' It calls the difference from the baseline in Tables 1-2 'trivial' in prediction consistency, but consistency rises from 0.942 to 0.986-0.988 on Bios and from 0.614 to 0.835-0.844 on Toxicity. It expects test accuracy to change if bias is removed, which misreads the goal (lines 330-331). It gave 6 anyway and never replied."
+    },
+    {
+     "reviewer": "Reviewer_LaWU",
+     "evidence": "Its novelty point is correct, but several secondary points misread the paper. The inductive update (3.7) is an exact closed-form coordinate minimization, so there is no 'step length'. The sensitive attributes in Example 4.2 belong to the cited fair metric of [27], not to the method (lines 84-91 accept any W, including annotator feedback). The KL variant takes the model's softmax outputs (lines 187-190), so no distribution is 'explicitly assigned'. It never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_bTqy",
+     "claim": "Local IF is a significant relaxation of IF.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 4.1 asks only that the expected local Lipschitz ratio be finite; it has no constant L. Example 4.2 (lines 205-207) shows that any h with E||Σ^-1/2 ∇h(X)|| < ∞ satisfies it. Assumption 4.4 bounds the first derivative of every hypothesis on a compact domain (Assumption 4.3), so every f in the class already meets it. The camera-ready adds '≤ L < ∞' and an (ε, L) form, eq. (4.2)."
+    },
+    {
+     "reviewer": "Reviewer_bTqy",
+     "claim": "Theorem 4.6 is not surprising, because eq. (3.2) already writes the regularizer as a similarity-weighted sum of squared output differences.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 133-136 give this same intuition. Lines 226-228 say the assumptions follow the graph-Laplacian convergence analysis of Hein et al. [16, 1]. The theorem's limits are the (density-weighted) mean squared gradient in the fair metric. The authors agreed that the connection is 'intuitive'."
+    },
+    {
+     "reviewer": "Reviewer_bTqy",
+     "claim": "Section 5.1 compares local and global IF only in a limited way; global IF with a truncated metric (d' = ∞ beyond τ) is a missing baseline.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5.1 uses one small task (663 sentiment words and 94 names; line 268) and compares GLIF only with IF-constraints on all n(n-1)/2 pairs (line 285). There is no truncated-constraint baseline, so the experiment cannot separate the gain from dropping far pairs from the gain of Laplacian smoothing. The authors declined it as computationally inefficient, but IF-constraints takes 5 minutes on this task (lines 271-272)."
+    },
+    {
+     "reviewer": "Reviewer_9cRG",
+     "claim": "The difference between the method and the baseline in Tables 1-2 is trivial in test accuracy and prediction consistency.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Tables 1-2: prediction consistency goes from 0.942 to 0.986/0.988 (Bios) and from 0.614 to 0.835/0.844 (Toxicity). Only test accuracy is nearly unchanged (0.846 to 0.830/0.834; 0.809 to 0.803), which is the stated goal."
+    },
+    {
+     "reviewer": "Reviewer_LaWU",
+     "claim": "The paper omits prior work that already uses graph Laplacians for IF (Lahoti et al.; Kang et al.).",
+     "checked_against_paper": "correct",
+     "evidence": "Neither paper is in the submitted references; Section 3.1 cites only semi-supervised learning work. Reviewer_63Qx asked the same question. The camera-ready cites both."
+    },
+    {
+     "reviewer": "Reviewer_LaWU",
+     "claim": "In the inductive setting a single coordinate-descent step may be far from optimal, and its step length is hard to set.",
+     "checked_against_paper": "incorrect",
+     "evidence": "(3.7) gives the exact minimizer in f_i with the other outputs fixed (lines 169, 176-178); there is no step length. The step is not the joint optimum, and the paper does not claim it is."
+    },
+    {
+     "reviewer": "Reviewer_LaWU",
+     "claim": "h denotes both a function and a bandwidth.",
+     "checked_against_paper": "correct",
+     "evidence": "h is the model in Section 2 and eq. (2.1), and the bandwidth (θ = 1/(2h^2)) in Section 4. The authors conceded."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses posted 2021-08-09. No reviewer posted in the discussion. bTqy edited on 2021-08-30 to fix its d' definition and to 'maintain my score' (5). 63Qx, 9cRG and LaWU never edited or replied.",
+    "what_convinced_or_not": "bTqy stayed 'not entirely convinced by the proposed fairness definition, which seems to be a significant relaxation of IF'. The rebuttal defended local IF with Theorem 4.6 and the accuracy gains in Figure 2, the same case that moved yCJc in A. It declined the truncated-metric baseline as computationally inefficient and added no experiment. LaWU got the same novelty answer as YBcz's first round and did not respond."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings split 7 and 6 against 5 and 4 (mean 5.5). The meta-review gives one reason, 'a lack of motivation or justification of why such local relaxation of individual fairness is a meaningful criterion', which restates bTqy's update. Its 'proposed since it is satisfied by the Laplacian method' matches lines 202-204, which introduce the definition as what solving (3.1) achieves. It does not mention novelty, LaWU's main point, or the two accept-side reviews.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Local IF judged an unmotivated relaxation, defined to fit what the Laplacian delivers (bTqy; AC)",
+    "Theorem 4.6 judged unsurprising given eq. (3.2) (bTqy)",
+    "Split ratings (mean 5.5) whose two accept-side reviews were thin and silent after the rebuttal",
+    "LaWU's 4 for uncited prior work (Lahoti et al.; InFoRM) and few baselines"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Memory and prediction cost of the inductive extension (3BRp, YBcz)",
+  "No BERT running time in the main text (YBcz)",
+  "Notation errors in (3.8), Definition 4.1 and the overloaded τ (q7wC, 3BRp, yCJc)",
+  "Theorem 3.1 cites no prior result; Bregman generalization (q7wC)",
+  "Uninformative figure and table captions (3BRp)"
+ ],
+ "issues_only_b": [
+  "Local IF as an unjustified relaxation fitted to the method, made a reason to reject (bTqy; AC)",
+  "Theorem 4.6 unsurprising given eq. (3.2) (bTqy)",
+  "Missing global-IF baseline with a truncated metric; Section 5.1 too limited (bTqy)",
+  "Few baselines (LaWU); effect of θ and τ and relation to DIF [36] (63Qx)",
+  "Gains over the baseline in Tables 1-2 called trivial (9cRG; a misreading)"
+ ],
+ "shared_issues": [
+  "Overlap with uncited Laplacian-based IF work, Lahoti et al. and Kang et al. (YBcz in A; LaWU and 63Qx in B)",
+  "What 'local' IF means and why it beats global IF (yCJc in A, resolved by the rebuttal; bTqy in B, not resolved)",
+  "Weakness of the inductive extension (3BRp and YBcz in A; LaWU in B)",
+  "Overloaded notation (y in Definition 4.1 in A; h in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "A accepted and B rejected because the committees weighted the same facts differently and only A's reviewers engaged after the rebuttal. Both saw that local IF relaxes individual fairness and that Laplacian smoothing for IF has uncited precedents (Lahoti et al.; InFoRM). In A, q7wC called the relaxation 'well motivated'. After discussion, yCJc rose from 5 to 6 and YBcz from a reject-side score to 6, so all four ratings reached 6 or 7 and the AC followed them. In B, no reviewer posted in the discussion. bTqy, the only reviewer to update, held at 5 because local IF 'seems to be a significant relaxation of IF'. The AC rejected for that reason alone, over a 7, 6, 5, 4 split whose accept-side reviews were thin (63Qx spent 1.5 hours; 9cRG misread Tables 1-2). The submission supports B's concern: Definition 4.1 had no Lipschitz constant, every hypothesis under Assumption 4.4 already satisfies it, and the camera-ready added '≤ L' and an (ε, L) form. No A reviewer probed the definition.",
+ "candidate_reasons": [
+  "Relaxed fairness definition judged unmotivated",
+  "Rebuttal discussion lifted borderline scores",
+  "No reviewer engagement after rebuttal",
+  "AC adopts lone holdout's concern",
+  "Thin accept-side reviews carried little weight"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Reviewer_bTqy final review (update of 2021-08-30)",
+  "Reviewer_yCJc post-rebuttal note (5 to 6)",
+  "Reviewer_YBcz discussion thread, 2021-08-18 to 2021-08-23",
+  "Committee A meta-review",
+  "paper Section 4: Definition 4.1, Example 4.2, Assumption 4.4, Theorem 4.6 (τ = ∞)",
+  "paper Section 5.1 (lines 268-288) and Tables 1-2",
+  "camera-ready Definition 4.1, eqs. (4.1)-(4.2), and Section 3.1"
+ ]
+}

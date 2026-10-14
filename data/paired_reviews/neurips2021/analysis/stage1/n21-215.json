@@ -1,0 +1,222 @@
+{
+ "pair_id": "n21-215",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    3,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_JP6Y"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_DzXv",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "A 3 ('Clear rejection') against 5, 5 and 6, at confidence 4 after 4 hours. Each reason is specific, and the submission confirms the ones it can check: Algorithm 1 differs from Beta-Bernoulli TS only in the if/else doubling rule (lines 6-12); Theorem 4.6 (line 226) states O(N log T) batches for the O(√(NT ln T)) bound; no theorem gives regret for a given batch budget. The other three reviewers share its novelty concern at milder scores. The AC adopted both of its main points."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_DzXv",
+     "claim": "B-TS differs from vanilla Beta-Bernoulli TS only in the doubling schedule (the if/else loop).",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 lines 3-5 are plain TS. Lines 6-12 end a batch when the pulled arm's count reaches 2^{l_a}, and only then update the posteriors. Lines 199-202 say the Beta update is the TS update, frozen within a batch."
+    },
+    {
+     "reviewer": "Reviewer_DzXv",
+     "claim": "Theorem 4.6 needs O(N log T) batches for the Õ(√NT) rate, while O(log log T) batches suffice for that rate (Gao et al. 2019).",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4.6 (line 226) and Theorem 5.1 (line 271) state O(N log T) batches. The paper discusses only the problem-dependent lower bound (Remark 4.5), never the minimax batch count. The rebuttal said the reviewer 'misunderstood' Gao et al., but it answered with the problem-dependent bound of Theorem 4.3, not the minimax one."
+    },
+    {
+     "reviewer": "Reviewer_DzXv",
+     "claim": "The paper bounds regret only for its own batch count, not for every batch budget as batched-UCB work does.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorems 4.1, 4.6, 4.7, 5.1 and 6.1 each state the single count O(N log T). No result trades regret against a given number of batches. The authors called this 'an interesting future direction'."
+    },
+    {
+     "reviewer": "Reviewer_DzXv",
+     "claim": "Much of the B-TS analysis in Appendix A is a straightforward corollary of Agrawal and Goyal 2017.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The appendix is in the supplement, not in the submitted PDF. Lines 97-99 say the work 'builds on' Agrawal and Goyal. The rebuttal says the authors 'intentionally kept the skeleton of the proofs'."
+    },
+    {
+     "reviewer": "Reviewer_2bFv",
+     "claim": "The problem-dependent result needs an extra factor N in the number of batches.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4.1 (line 204) gives at most O(N log T) batches. Remark 4.2 says the count grows linearly in N in experiments. Remark 4.5 (lines 220-223) compares 'O(log T)' with the Ω(log T/log log T) lower bound and drops the N. The abstract also says 'O(log T) batch queries'."
+    },
+    {
+     "reviewer": "Reviewer_9U7C",
+     "claim": "Remark 4.5 uses the Ω(log T/log log T) bound of Gao et al. for asymptotic optimality, but that bound concerns the finite-time problem-dependent regret.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 4.5 says the bound is necessary 'to achieve the problem-dependent asymptotic optimal regret'. The authors did not dispute the distinction. They called the two cited 2021 papers concurrent and promised to cite them."
+    },
+    {
+     "reviewer": "Committee A AC",
+     "claim": "O(N log T) batches is too many compared with the O(log T) or O(log T/log log T) of batched UCB or successive elimination.",
+     "checked_against_paper": "correct",
+     "evidence": "The related work (lines 92-93) says Esfandiari et al. [2021a] showed for batch UCB 'an asymptotically optimal regret bound with O(log T) number of batches'. Theorem 4.1 gives O(N log T) for B-TS. The paper's case for B-TS over batched UCB is empirical (lines 105-106)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses posted 2021-08-08. Only Reviewer_JP6Y edited, on 2021-09-10. It added: 'I think the contribution is weak, but okay to publish. I will keep the current rating but not strongly oppose to acceptance.' 2bFv, DzXv and 9U7C never edited. No reviewer posted in the discussion.",
+    "what_convinced_or_not": "The rebuttal argued that the factor N is unavoidable for TS (an experiment in the supplement), that B-TS is only O(log log T) from the lower bound 'in terms of T', and that reusing proof skeletons is a virtue. The AC rejected the N argument in plain words: the authors were 'attempting to minimize the importance of N but only focus on T'. JP6Y softened its text but not its score."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5, 5, 3, 6 (mean 4.75). Every reviewer named limited novelty. The top score, 9U7C's 6, called it 'the main weakness'. The meta-review's two reasons restate the batch-count point of 2bFv and DzXv and the doubling-plus-Agrawal-Goyal point of DzXv. It adds its own proof sketch ('if we terminate a round when the number of pulls on a particular arm doubles ... mimic the proof of Agrawal&Goyal 2017') and answers the rebuttal on N directly.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "B-TS needs O(N log T) batches, more than the O(log T) or O(log T/log log T) of batched UCB or successive elimination; the rebuttal's focus on T did not persuade the AC (2bFv, DzXv, AC)",
+    "Limited novelty: TS plus a standard doubling rule, analysed by adapting Agrawal and Goyal 2017 (DzXv, 9U7C, JP6Y, AC)",
+    "No champion: the top score was a 6 whose text calls novelty the main weakness; mean 4.75"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    8,
+    4,
+    6,
+    7
+   ],
+   "confidences": [
+    4,
+    5,
+    4,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_E33d"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_E33d",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only score below 6 (4 against 8, 6 and 7), at confidence 5 after 2 hours. Its claim is specific and holds: Zhang et al. (2020) keep each state-action pair's statistics fixed until its count reaches the next (1+1/H)^k stage, which for S = 1, H = 1 is the per-arm doubling rule of Algorithm 1 (lines 6-12, 199-202). It argued twice in the discussion and corrected the authors' description of Zhang et al. Its confidence label says it checked the math carefully, but it admitted that it had not checked the appendix. At the other end, Reviewer_tYDL gave 8."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Qcd6",
+     "evidence": "A 7 at confidence 2: 'I am not very familiar with this research area'. Its significance section repeats the three bullets of its summary word for word. Its only request is more discussion of B-TS-C. It never posted in the discussion. It raised B's mean but added almost no information."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_E33d",
+     "claim": "Algorithm 1's batching rule is the stage-based update of Zhang et al. (2020) with S = 1 and H = 1: the sampling rule stays fixed until some arm's count reaches (1+1/H)^k = 2^k.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 keeps every posterior fixed until some arm's count reaches 2^{l_a} (lines 6-12, 199-202). The one difference is that B-TS samples a new arm from the frozen posteriors at each step, where a greedy UCB rule repeats one arm. The authors conceded that Zhang et al. 'can make the switch based on the number of visits'. They then credited E33d with proposing to 'keep the same action for the entire duration of the batch', which E33d had not proposed."
+    },
+    {
+     "reviewer": "Reviewer_tYDL",
+     "claim": "The experiments compare B-TS only with a fixed-size static batch scheme; a fixed exponentially growing schedule is missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 314-316: Static-TS, Static-TS-2 and Static-TS-4 'use equal sized batches'. So the conclusion that the dynamic batch design is crucial (lines 327-328, 339-340) is tested only against equal-size batches. The authors promised to 'try to add this baseline'."
+    },
+    {
+     "reviewer": "Reviewer_tYDL",
+     "claim": "The Appendix A.2 proof is correct apart from errors in the equation after Eq. 6, in Eq. 7 and in Lemma A.11 (an inequality that should be an equality, a misplaced index, a wrong summation range).",
+     "checked_against_paper": "not_checked",
+     "evidence": "The appendix is not in the submitted PDF. The authors accepted each correction ('You are right'), which shows that tYDL read the proof."
+    },
+    {
+     "reviewer": "Reviewer_2HGA",
+     "claim": "Δ_a in Theorem 5.1 is not defined earlier in the paper.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 136 defines Δ_a = μ* − μ_a, and Theorem 4.3 (line 214) defines it again. The authors said so."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "The algorithms achieve the optimal Õ(√T) regret using only Õ(log T) batches.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 4.1 and every later theorem state O(N log T) batches; Õ does not hide N. The AC repeated the abstract's 'O(log T) batch queries' (line 7). It never weighed the factor N that Committee A's AC made its first reason."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "Zhang et al. does not cover contextual bandits, and the paper accommodates an adversarial setting.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 6 treats linear contextual bandits whose contexts are 'chosen by an adversary' (lines 152-153), which a tabular MDP result does not cover. The rewards stay stochastic. The point does not touch E33d's critique of the multi-armed algorithm of Section 4."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses posted 2021-08-07. E33d edited its review on 2021-08-02, before the responses. It then wrote 'I will keep my score' (2021-08-17) and 'My main concerns are still not changed' (2021-08-18). tYDL, 2HGA and Qcd6 never edited and never posted.",
+    "what_convinced_or_not": "The first reply to E33d described Zhang et al. as a model that switches on observed rewards. E33d showed that its policy changes only at stage ends. The authors then conceded this and argued that TS with one action per batch has high regret, a design E33d had not proposed. E33d did not move. tYDL's proof corrections were accepted. Its requests for a fixed-schedule baseline and a batch-size histogram got only promises."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 8, 4, 6, 7 (mean 6.25), three at or above 6. The meta-review praises clarity, 'optimal rates' and 'thorough and convincing' experiments. It sets aside E33d's Zhang et al. point with the paraphrased discussion points of 'another reviewer', which are not in the public record: contextual bandits, adversarial contexts, and the merit of TS analyses. It concedes the doubling trick (2HGA) and doubtful practicality, and recommends 'Weak Accept'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "A confident champion (tYDL, 8) who checked the main proof and found only typos",
+    "Clear writing and regret rates that match fully sequential TS, with experiments read as convincing (tYDL, 2HGA, AC)",
+    "The AC judged that Zhang et al. (2020) does not subsume the work, on another reviewer's discussion points",
+    "The doubling-trick novelty concern accepted as non-fatal: 'the combination and application of these techniques is compelling' (AC, after 2HGA)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "The factor N in the O(N log T) batch count, against O(log T) for batched elimination and the Ω(log T/log log T) lower bound; Remark 4.5 and the abstract drop it (2bFv, DzXv, AC). In B, tYDL stated the factor without objection and the AC dropped it.",
+  "O(log log T) batches suffice for the minimax rate (Gao et al. 2019), far below O(N log T) (DzXv, 2bFv)",
+  "No regret bound for a given batch budget (DzXv)",
+  "Remark 4.5 applies a finite-time lower bound to asymptotic optimality; concurrent work needs fewer batches (9U7C)",
+  "Results for static batches and the gap between log T and log T/log log T (JP6Y)"
+ ],
+ "issues_only_b": [
+  "The stage-based update of Zhang et al. (2020) already gives the same batching rule for bandits (E33d)",
+  "Missing fixed exponential-schedule baseline and batch-size histograms (tYDL)",
+  "Index, sign and range errors in the Appendix A.2 proof (tYDL)",
+  "'Parallelizing' in the title overstates sequential batching (2HGA)",
+  "Too little discussion of B-TS-C (Qcd6)"
+ ],
+ "shared_issues": [
+  "Limited novelty: TS plus a doubling trick, with proofs that follow Agrawal and Goyal (A: DzXv, 9U7C, JP6Y, AC; B: 2HGA, E33d, AC)",
+  "No better rates than batched UCB-style algorithms (A: JP6Y, 2bFv, DzXv; B: E33d, AC)",
+  "Weak practical motivation for batch sizes that the algorithm chooses; both got the same A/B-testing answer (A: JP6Y; B: 2HGA, AC)",
+  "The paper is clearly written (most reviewers in both)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees read the paper the same way. It is clear. Its algorithm is Thompson Sampling plus a per-arm doubling rule that ends each batch (Algorithm 1). Its proofs adapt Agrawal and Goyal. Both committees called the novelty incremental. Committee A had no champion: its ratings were 5, 5, 3 and 6. Its reviewers 2bFv and DzXv and its AC also pressed a point that the paper confirms. B-TS needs O(N log T) batches (Theorem 4.1), but the paper's own related work credits batched elimination with O(log T) (lines 92-93). Remark 4.5 and the abstract drop the N. Committee B's mean of 6.25 rests on two scores. Reviewer_tYDL's 8 rests on a real proof check. Reviewer_Qcd6's 7, at confidence 2, only restates the paper. B's AC wrote 'Õ(log T) batches' and never weighed N. It set aside the lone detractor, Reviewer_E33d, with points about contextual bandits and the merit of TS. E33d's claim, that the stage-based update of Zhang et al. gives the same batching rule, is correct, and those points do not answer it. The split is reviewer draw plus the same novelty facts weighted differently. The factor N is the one substantive issue that only A pressed.",
+ "candidate_reasons": [
+  "confident champion only in B",
+  "low-confidence accept lifted B's mean",
+  "N factor pressed only in A",
+  "novelty weighed differently at borderline",
+  "AC discounted correct lone detractor",
+  "headline O(log T) hides N"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_2bFv main review",
+  "Reviewer_DzXv main review and the author response of 2021-08-08",
+  "Committee A meta-review",
+  "Reviewer_tYDL review and the author response of 2021-08-07",
+  "Reviewer_E33d review and the discussion of 2021-08-17 and 2021-08-18",
+  "Reviewer_Qcd6 review",
+  "Committee B meta-review",
+  "paper_submitted Algorithm 1, Theorem 4.1 and Remarks 4.2 and 4.5 (lines 204-223)",
+  "paper_submitted lines 92-93 (batched UCB with O(log T) batches)",
+  "paper_submitted lines 314-316 (static baselines use equal-size batches)"
+ ]
+}

@@ -1,0 +1,244 @@
+{
+ "pair_id": "n21-224",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    7,
+    8,
+    7
+   ],
+   "confidences": [
+    4,
+    2,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_gKMX",
+    "Reviewer_9qhL"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 8 and 7 lie within one point, and all three reviewers engaged in the discussion. The departure in A is the area chair, who rejected against three accept ratings."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_gKMX",
+     "evidence": "Confidence 2. The summary says the paper inverts representations of 'convolutional classifiers'; the paper uses an MLP with L = 8 layers (line 129) and says it 'only explored feedforward classifiers' (line 344). The rest of the review is specific and it engaged after the rebuttal, so the slip is local. No A reviewer raised the MLP-only scope, B's main objection."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "Equation 4 does not require the decoded images g(h_l) to produce the label y, so the decodings need not show the features the classifier uses.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 4 is cross-entropy on x plus the mean reconstruction loss of x from every h_l; no term involves f(g(h_l)). Only Eq. 5 (ReDecNN) adds one. The Section 4 evidence, Figure 3, comes from 'DecNNs' (lines 127-129), i.e. Eq. 4 alone."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "Section 4 claims the decodings show 'what features a neural network is attending to in making a prediction', and L116 expects 'useless' information to be dropped.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 138-140 say this and add that decodable activations 'take a step towards printing activations for debugging'. Lines 116-118 expect 'useless' information to be dropped, though the per-layer reconstruction term rewards keeping it."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "The assertion analogy of Section 6 implies guarantees the evidence does not support.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 264-269 cast Eq. 8 as an 'assertion statement'. Lines 275-276: 'A high performing classifier trained in this manner must have solved the prediction task without abusing the protected attribute(s).' The evidence is one attribute pair, attractiveness against pale skin (Table 6), measured only as group gaps."
+    },
+    {
+     "reviewer": "Reviewer_3B1Z",
+     "claim": "Line 275: the model could fool the pretrained attribute classifier m instead of ceasing to use the attribute.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission tests only m's output and group gaps (Table 6). The rebuttal added a linear probe on frozen features: pale-skin F1 0.01 with Eq. 8 against 0.32 for a standard network."
+    },
+    {
+     "reviewer": "Reviewer_3B1Z",
+     "claim": "Line 122 suggests DecNN adds no compute, but training and inference cost rise substantially.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 121-123 say other probing methods 'require a nontrivial amount of additional computation' and DecNN probing is 'more straightforward'. The training cost appears only as a limitation (lines 345-347), with no numbers."
+    },
+    {
+     "reviewer": "Reviewer_3B1Z",
+     "claim": "Sampling from g(h) does not approximate sampling from S(h), because training never sees another input that maps to h.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 94-96 say 'we can sample x ~ g(h) ... to sample from S(h)', but g is trained only to reconstruct the x that produced h. The authors conceded for continuous h."
+    },
+    {
+     "reviewer": "Reviewer_gKMX",
+     "claim": "The paper inverts the latent representations of convolutional classifiers.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 129: 'fθ is an MLP with L = 8 layers'. Line 344: 'we only explored feedforward classifiers in our experiments'."
+    },
+    {
+     "reviewer": "Reviewer_gKMX",
+     "claim": "Table 1 has no caption.",
+     "checked_against_paper": "correct",
+     "evidence": "Page 5: Table 1 has only the sub-captions (a) and (b); no 'Table 1:' caption."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_9qhL",
+     "Reviewer_gKMX"
+    ],
+    "evidence": "Reviewer_9qhL, 2021-08-13: 'Updated figure 1 looks good to me. Raising my score to 7.' Its review was edited the same day. Reviewer_gKMX edited its review on 2021-08-28, the day it wrote 'Although I started out positive with your work, I'm even more so now. Excellent work!'; a rise to 8 is inferred from the date, not stated. Reviewer_3B1Z did not edit; it called the new probe experiment 'thoughtful' and the results 'promising'.",
+    "what_convinced_or_not": "9qhL was convinced by a new Figure 1. gKMX cited the ablation of Eq. 7 against direct regularization and the switch from attractiveness to a beard task protected on baldness, and called the new figures 'very helpful'. 3B1Z liked the linear-probe test. The authors promised to rewrite the introduction to rely less on the software analogy, shrink Section 4 and drop the fairness framing. The reviewers took these promises as enough. The AC took their size as a reason for a fresh review."
+   },
+   "ac": {
+    "followed_reviews": "no",
+    "evidence": "Ratings 7, 8 and 7 (mean 7.33), all accept. The AC granted 'an important and novel contribution' and noted 'the high scores given to the paper by all the reviewers', then rejected: 'The issues with his paper are too big to accept it without further review.' The reviewers supplied the overselling and the line-275 point. The handbag argument against Eq. 4 and the hyperparameter-balance argument for Eq. 8 appear in no review.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "'Extreme over-claiming': the software-debugging narrative outruns what the experiments show (AC; echoed by gKMX 'oversell' and 9qhL 'strained')",
+    "Section 4 probing claims unsupported, because Eq. 4 does not tie decodings to the features the classifier uses (AC's own argument)",
+    "Section 6 'assertion' framing implies guarantees that one CelebA attribute pair cannot support (AC; 3B1Z on line 275)",
+    "The promised rewrite is a major revision that should go to 'a fresh panel'"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    5,
+    4,
+    7,
+    8
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Two camps, 4 and 5 against 7 and 8; no single outlier. The 8 from Reviewer_7fvR is the thinnest review (2 hours, no reply to the rebuttal); see inattentive_reviews."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_7fvR",
+     "evidence": "An 8 at confidence 4 after 2 hours. 'I thoroughly enjoyed the paper and definitely recommend it for acceptance', then three questions. It noticed that the 'data augmentation' of line 162 does not show in Table 1a but did not weigh it, and it never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_csH8",
+     "claim": "The base model is an 8-layer MLP, so the evidence does not cover CNNs or RNNs.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 129 (MLP, L = 8); line 344 ('we only explored feedforward classifiers'). Reviewer_v4fL's 'only fully connected nets' on MNIST, FashionMNIST and CelebA is also correct; Section 7 adds two small speech sets with the same MLP."
+    },
+    {
+     "reviewer": "Reviewer_csH8",
+     "claim": "The paper does not compare with recent OOD detection and calibration methods [20], [22], [23], [24].",
+     "checked_against_paper": "correct",
+     "evidence": "Baselines are Standard, Dropout, MC-Dropout, BayesNN and Ensemble (Tables 1-4). Line 214 and lines 319-321 scope out task-specific methods. [22], the max-softmax baseline, needs no extra training or computation, so the rebuttal's 'w/o additional compute' argument does not exclude it."
+    },
+    {
+     "reviewer": "Reviewer_csH8",
+     "claim": "With a ResNet-18, OOD and calibration performance drop notably, in some cases below most baselines (Table 5).",
+     "checked_against_paper": "correct",
+     "evidence": "MNIST OOD (Fashion) 0.812 to 0.650. CelebA ECE 1.927 to 3.002, worse than Standard 2.75, Dropout 2.51, MC-Dropout 2.99 and BayesNN 2.41 (Table 4)."
+    },
+    {
+     "reviewer": "Reviewer_csH8",
+     "claim": "Table 5 indicates that the framework may not fit models with better classification accuracy.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 5 varies the pretrained teacher m in Eq. 7 (lines 253-255); the main network stays the 8-layer MLP. It says nothing about larger main networks, as the authors replied."
+    },
+    {
+     "reviewer": "Reviewer_csH8",
+     "claim": "Applying the new term of Eq. 8 to a standard network would give similar fairness results.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The Eq. 8 term scores m(g(h)); without the decoder it becomes m(x), which does not depend on the network's parameters. A fair-representation baseline such as [56] is missing, but that is a different method."
+    },
+    {
+     "reviewer": "Reviewer_v4fL",
+     "claim": "In Table 2, MC-Dropout beats ReDecNN except on CelebA.",
+     "checked_against_paper": "correct",
+     "evidence": "Every MNIST and FashionMNIST row favours MC-Dropout (e.g. MNIST OOD CelebA 0.943 against 0.893); CelebA favours ReDecNN (OOD MNIST 0.647 against 0.548). Lines 221-223 concede 'just under MC-Dropout' and point to MC-Dropout's lower accuracy (Table 1a)."
+    },
+    {
+     "reviewer": "Reviewer_7fvR",
+     "claim": "ReDecNN performs like DecNN, so the 'data augmentation' of line 162 is not really happening.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1a: DecNN 97.8 / 88.8 / 90.8, ReDecNN 97.5 / 88.1 / 90.8. Recursion brings no accuracy gain. The authors called it future work."
+    },
+    {
+     "reviewer": "Reviewer_f5Sy",
+     "claim": "The decoded activations retain only the task-specific information.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. 4 rewards reconstructing the whole input from every layer. In Figure 3b (bald task) the decodings keep face, skin tone, pose and background through h8. The paper claims only that irrelevant features 'vary' (line 164)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after posting. Reviewer_v4fL, 2021-08-26: 'I have decided to stand by my original score.' Reviewer_csH8, 2021-08-27: 'I still lean towards rejection at this point.' Reviewer_f5Sy replied only on compositionality. Reviewer_7fvR never replied.",
+    "what_convinced_or_not": "The authors' general comment with runtimes and CNN results is cited in the forum but is absent from the record. v4fL found the CNN results too small and read the cost table as confirming its concern: the gains do not 'justify the huge increase in computational complexity'. csH8 judged the design not 'practically useful in its current state'. f5Sy accepted the narrower definition of composition."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings 5, 4, 7 and 8 (mean 6.0); the two reject-side reviewers kept their scores. The meta-review sides with the 7 and the 8 ('enough interesting novel ideas and applications') and records that scalability 'still remains a challenge'. Its 'The reviewers found the idea ... quite interesting and novel' skips v4fL's 'seems old and used extensively in autoencoders'. It does not mention the software analogy, which v4fL and f5Sy called unnecessary and far-fetched. It names no reviewer and shows no independent reading of the paper.",
+    "meta_review_leans_on": "unclear"
+   },
+   "main_reasons_for_decision": [
+    "Novel idea, a decoder of activations trained with the classifier, with several applications that 'could potentially open up many interesting future directions' (AC; f5Sy, 7fvR)",
+    "Scalability and compute cost treated as a remaining challenge, not a reason to reject (AC, against csH8 and v4fL)",
+    "CNN results from the rebuttal seen as 'helpful' (AC)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Decodings need not show what the classifier uses, because Eq. 4 rewards keeping task-irrelevant detail (A's AC)",
+  "Eq. 8 could fool the pretrained attribute classifier instead of removing the attribute (3B1Z)",
+  "Ethics of the CelebA attractiveness task (3B1Z, two ethics reviewers); the AC called it 'such a bad example'",
+  "Sampling from g(h) is not sampling from S(h) (3B1Z)",
+  "No ablation against direct regularization without the decoder; OOD and calibration as by-products of uncertainty (gKMX)"
+ ],
+ "issues_only_b": [
+  "Only an 8-layer MLP on small datasets; doubt that it scales to CNNs, ResNets or ImageNet (csH8, v4fL, AC)",
+  "No comparison with standard OOD and calibration methods [20, 22-24] (csH8)",
+  "MC-Dropout beats ReDecNN on MNIST and FashionMNIST in Table 2 (v4fL)",
+  "A ResNet-18 teacher lowers OOD and calibration in Table 5 (csH8, v4fL)",
+  "Recursion brings no accuracy gain over DecNN; quality of the decodings unclear (7fvR, csH8)"
+ ],
+ "shared_issues": [
+  "Software-programming analogy strained or unnecessary (A: gKMX, 9qhL, AC; B: v4fL, f5Sy)",
+  "Training and inference cost not quantified (A: 3B1Z, gKMX; B: v4fL, csH8, AC)",
+  "Composition is narrower than software composition (A: gKMX, 9qhL; B: f5Sy)",
+  "Difference from autoencoders (A: gKMX; B: v4fL)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The usual pattern is inverted: A's reviewers gave 7, 8 and 7 and A rejected; B's reviewers gave 5, 4, 7 and 8 and B accepted. The area chairs made the difference, in opposite directions. A's AC made over-claiming the decisive flaw, from an own reading of the method, and the paper confirms the premise: Equation 4 has no term that ties a decoding g(h_l) to the label, the Figure 3 probes come from DecNNs trained with it, yet lines 138-140 offer the decodings as a step towards seeing 'what features a neural network is attending to', and lines 275-276 say a classifier trained with Eq. 8 'must have' ignored the protected attribute. A's reviewers had flagged the overselling too (gKMX 'a bit of an oversell', 9qhL 'strained'), but as a rewrite; the AC judged the promised rewrite too large to accept without a fresh review. B's AC broke a 2-2 split toward novelty. B's two negative reviewers objected to scale and cost (an 8-layer MLP on small datasets), not to the claims, and kept their scores; nobody in B weighed the over-claiming, and B's champions took the paper's interpretations at face value (f5Sy) or wrote a thin 2-hour review (7fvR). The facts overlapped; the two ACs weighed them differently. The program chairs ruled A's concern not fatal and wrote A's AC's edits into the conditional acceptance.",
+ "candidate_reasons": [
+  "AC overrode unanimous accept ratings",
+  "AC broke split toward novelty",
+  "over-claiming fatal in one committee",
+  "promised rewrite judged to need re-review",
+  "scale concerns raised in one committee",
+  "thin champion review left unchallenged"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review (original part)",
+  "Committee B meta-review (original part)",
+  "Program chairs' conditional-acceptance note (top of both meta-reviews)",
+  "Reviewer_9qhL comment 2021-08-13 ('Raising my score to 7')",
+  "Reviewer_gKMX review ('a bit of an oversell') and comment 2021-08-28",
+  "Reviewer_v4fL comment 2021-08-26; Reviewer_csH8 comment 2021-08-27",
+  "paper Eq. 4 and lines 127-140 (Section 4)",
+  "paper lines 264-276 (Section 6)",
+  "paper line 129, line 344, Tables 1a, 2 and 5"
+ ]
+}

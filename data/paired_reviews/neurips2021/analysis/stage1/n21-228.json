@@ -1,0 +1,266 @@
+{
+ "pair_id": "n21-228",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 3, 6],
+   "confidences": [4, 5, 3],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_ZnuS",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "A 3 at confidence 5 ('very familiar with the related work and checked the math/other details carefully') after 10 hours, against 5 and 6. It is the longest and most specific review in either committee, and most of its checkable points hold: CF-GNNExplainer is called an adversarial attack (lines 109-113) and is left out of graph classification (lines 326-328); the abstract claims alignment with human intuition with no user study (lines 13-15); Definition 1 rests on undefined 'significantly' and 'slight changes' (lines 126-131); lines 101-102 say PGExplainer optimises each graph independently while lines 367-368 say its network 'implicitly considers all the graphs used for training'; Figure 2a shows PGExplainer level with RCExplainer on Mutagenicity. Two points are overstated: minimality is not 'totally absent' (L1 term, lines 288-290), and the baselines do handle graph classification. It engaged after the rebuttal (2021-08-18) and kept 3."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_uoze",
+     "evidence": "One hour, confidence 3, math not carefully checked. A 6 on stock praise ('The proposed method is neat and the paper is easy to follow', 'the experimental results justified the proposed method') and three short questions (user study, SCSC complexity, faithfulness metric). It never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "The 'minimality' component of counterfactual explanations is totally absent.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Definition 1 asks for 'a small subset of edges' (line 128), and Eq. 8 includes R_sparse = ||M||_1 'such that only a small number of edges in G are selected' (lines 288-290). The narrower point, that no search finds the smallest prediction-changing edit and fidelity is compared at fixed sparsity levels, holds."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "PGExplainer does not optimise individual inputs, contrary to the paper's argument that existing methods are not robust because they do.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 42-45 and 101-102 group PGExplainer [21] with methods whose explanation 'of every single input graph prediction is independently optimized'. Lines 85-88 say PGExplainer trains one network, and lines 367-368 say that network 'implicitly considers all the graphs used for training'. The camera-ready keeps the claim."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "The paper wrongly treats CF-GNNExplainer as an adversarial attack method.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 109-113: 'The adversarial attacking methods [...] and the most recent CF-GNNExplainer [20] use adversarial examples as explanations'. The authors conceded, and the camera-ready drops the label."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "The only counterfactual baseline, CF-GNNExplainer, appears only in the appendix; the graph-classification baselines are not counterfactual methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 326-328 keep CF-GNNExplainer to node classification (Appendix F). Figures 1-2 compare GNNExplainer, PGExplainer, PGM-Explainer and SubgraphX, all factual explainers. The camera-ready adds CF-GNNExplainer to Figures 1-2 and Table 1."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "The baselines are methods for node classifiers, not graph classifiers.",
+     "checked_against_paper": "incorrect",
+     "evidence": "GNNExplainer, PGExplainer, PGM-Explainer and SubgraphX all report graph-classification results in their own papers, and the submission runs them on three graph-classification datasets (Figures 1-2). The rebuttal said the same."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "The claim that the explanations align with human intuition (lines 7-8, 14-15) has no experimental support.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 6-8 and 13-15 make the claim. There is no user study; checklist item 5 says 'we did not conduct research with human subjects'. The camera-ready abstract replaces it with 'counterfactual'."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "Definition 1 (lines 126-131) is not a proper definition: 'slight' and 'stable' are not quantified.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 128-131 use 'changes the prediction ... significantly' and 'stable with respect to slight changes' with no measure. The camera-ready rewrites Definition 1."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "Robustness is weakly supported: on Mutagenicity PGExplainer is close to the proposed method.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 2a: PGExplainer, RCExp-NoLDB and RCExplainer overlap at every noise level (about 0.78 at 30%). Lines 370-371 concede 'comparable performance'. The gain is clear on BA-2motifs and smaller on NCI1."
+    },
+    {
+     "reviewer": "Reviewer_ZnuS",
+     "claim": "References [1], [15] and [46] have no year.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 401-402, 434-435 and 500-501 end with the venue and no year. This shows a close reading."
+    },
+    {
+     "reviewer": "Reviewer_SgPD",
+     "claim": "The paper gives no clear definition of noise, for example what 30% noise means.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 350-352 say only 'adding random noise to the node features and randomly adding or deleting some edges', and lines 359-360 say the percentage is 'the proportion of nodes and edges that are modified'. The definition in the rebuttal (feature flips on x% of nodes, x% of edges replaced) is not in the paper. The camera-ready keeps the same sentences."
+    },
+    {
+     "reviewer": "Reviewer_SgPD",
+     "claim": "The paper defines a counterfactual as deleting X ('if X had not occurred'), not as changing X to a reference.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 28-29 use 'If X had not occurred, Y would not have occurred', and explanations are edge deletions (lines 30-32). Whether this is a flaw is a matter of definition; CF-GNNExplainer also deletes edges."
+    },
+    {
+     "reviewer": "Reviewer_SgPD",
+     "claim": "No ablation shows the effect of the counterfactual term L_opp.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Line 266 defers the effect of lambda to Appendix G, which is not in either PDF. The authors say Figure 8 there covers BA-2motifs only and posted the other datasets on Google Drive."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after posting (posted 2021-07-16 and 2021-07-17). Author responses came on 2021-08-10. ZnuS replied on 2021-08-18, 'I am still not convinced by some of your replies', on minimality, the link between LDBs and GNNs, the PGExplainer distinction, L_same versus L_opp, and robustness: 'the most severe problem with this paper is the relatively handwavy discussion around the concept of robustness'. The authors answered on 2021-08-21; ZnuS did not reply again. SgPD and uoze never posted.",
+    "what_convinced_or_not": "Nothing moved a score. The rebuttal pointed to the L1 sparsity term for minimality, cited Ghorbani et al. (AAAI 2019) for the notion of robustness, gave the noise procedure, conceded that LDBs apply to any piecewise-linear network and that explanations depend on the sampled LDBs, withdrew the 'adversarial attack' label, and linked new CF-GNNExplainer graph-classification results and lambda ablations on Google Drive. ZnuS found the robustness and minimality answers insufficient. SgPD and uoze gave no reaction."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Mean 4.67, two of three ratings below threshold. The three-sentence meta-review says only that 'reviewers raised several concerns about the method, the experiments, and the writing'. It names no concern, does not mention the rebuttal, and does not weigh uoze's 6.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "A confident, detailed detractor (ZnuS, 3 at confidence 5) whose concerns on robustness, baselines and framing survived the rebuttal",
+    "Robustness and noise poorly defined, and the robustness metric questioned (SgPD, ZnuS)",
+    "Counterfactual baseline missing from graph classification and related work misdescribed (ZnuS)",
+    "The only score above threshold came from a one-hour review at confidence 3 (uoze)",
+    "Mean 4.67; the AC followed the scores with a generic note"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 7, 6, 5],
+   "confidences": [2, 3, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_BMo4", "Reviewer_gQ2w", "Reviewer_Vbh5"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 6, 5; no rating is more than one point from the mean of 6.0. The 7 (1Uri) is the highest and the thinnest of the positive reviews."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_1Uri",
+     "evidence": "A 7 at confidence 3 whose label says math was not carefully checked. The originality paragraph paraphrases the abstract ('explicitly models the common decision logic of GNNs on similar input graphs'). It calls the paper 'technically sound' and 'well validated' with no technical point. Its weaknesses are presentation items and one question on graph-generating models, which the authors first answered off-topic; it kept 7."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_gQ2w",
+     "claim": "CF-GNNExplainer is left out of graph classification because 'the source code of CF-GNNExplainer is not available'.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 326-328 say exactly this. The camera-ready adds CF-GNNExplainer to the graph-classification results."
+    },
+    {
+     "reviewer": "Reviewer_Vbh5",
+     "claim": "The CF-GNNExplainer code had been public on GitHub for three months.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Not a claim about the paper. The authors did not dispute it ('the code of CF-GNNExplainer has become recently available')."
+    },
+    {
+     "reviewer": "Reviewer_gQ2w",
+     "claim": "Definition 1 is unclear because of vague terms such as 'significantly' and 'slight changes'.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 128-131. The camera-ready rewrites Definition 1."
+    },
+    {
+     "reviewer": "Reviewer_gQ2w",
+     "claim": "The paper does not show how the method aligns explanations with human intuition.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 6-8 and 13-15 assert it; there is no user study (checklist item 5). The authors agreed to remove the claim, and the camera-ready abstract does."
+    },
+    {
+     "reviewer": "Reviewer_BMo4",
+     "claim": "NP-hard steps are replaced by greedy or continuous approximations with no guarantee on the solution.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 206-208 reduce Eq. 4 to an NP-hard SCSC problem solved greedily [36]; lines 251-263 replace the discrete subgraphs by continuous proxy graphs. No bound on explanation quality is given."
+    },
+    {
+     "reviewer": "Reviewer_BMo4",
+     "claim": "Leveraging common decision boundaries is not specific to GNNs and applies to other networks.",
+     "checked_against_paper": "correct",
+     "evidence": "The LDBs come from the fully connected head phi_fc over graph embeddings (lines 145-158), following [4], an interpretation method for general piecewise-linear networks. The authors conceded this to ZnuS in Committee A."
+    },
+    {
+     "reviewer": "Reviewer_Vbh5",
+     "claim": "Random noise may change the GNN's prediction during the robustness test, which would change the explanation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 351-352 keep only perturbations 'such that the prediction on G' is consistent with the prediction on G'."
+    },
+    {
+     "reviewer": "Reviewer_Vbh5",
+     "claim": "It is unclear how the random noise is added.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 350-352 and 359-360 give one vague sentence; see SgPD in Committee A."
+    },
+    {
+     "reviewer": "Reviewer_1Uri",
+     "claim": "The sentence at line 143 is not grammatical.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 143-144 are a fragment that starts 'Because the features generated by the last convolution layer'. ZnuS flagged the same sentence."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "unknown",
+    "by_whom": ["Reviewer_gQ2w", "Reviewer_Vbh5"],
+    "evidence": "Author responses came on 2021-08-10. gQ2w edited its review on 2021-08-24, the day it wrote 'Most of my concerns are addressed except Q4'; its text still says the CF-GNNExplainer excuse 'makes me decrease the rating', so the 6 was most likely restored or raised at that edit. Vbh5 wrote 'Most of my concerns are well addressed except Q2' on 2021-08-24, received new experiments on 2021-08-28, and edited on 2021-08-31; its final 5 does not show whether it moved. BMo4's edit (2021-07-28) predates the rebuttal, and on 2021-08-22 it still could not judge originality. 1Uri never edited and said most concerns were addressed.",
+    "what_convinced_or_not": "The authors extended CF-GNNExplainer to graph classification and reported it worse on fidelity, robustness and speed; gave training times on par with PGExplainer; agreed to drop the human-intuition claim; and added experiments with prediction-changing random and adversarial (RL-S2V) noise. These satisfied gQ2w and most of Vbh5. BMo4's originality doubt and 1Uri's graph-model question got promises, not evidence."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Mean 6.0, three of four ratings at or above 6. The two-sentence meta-review says the reviewers 'agree' the method is 'valid, useful' and 'well evaluated and explained'. That overstates the panel: Vbh5 ended at 5, BMo4 (confidence 2) asked the AC to 'certify' originality, and BMo4, gQ2w and Vbh5 all criticised the writing. The meta-review does not answer BMo4's request.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Mean 6.0 from four reviewers, none strongly negative",
+    "The two critics (gQ2w, Vbh5) said most concerns were addressed after new CF-GNNExplainer and adversarial-noise experiments",
+    "The authors agreed to drop the unsupported human-intuition claim",
+    "Positive scores rested partly on low-confidence or shallow reviews (BMo4 at confidence 2, 1Uri)",
+    "The AC summarised a consensus the reviews do not fully show"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "PGExplainer described as optimising each graph independently, contradicted by the paper's own lines 367-368 (ZnuS)",
+  "CF-GNNExplainer labelled an adversarial attack, and its similar mask-plus-sparsity formulation not acknowledged (ZnuS)",
+  "No explicit minimality; fidelity compared at fixed sparsity, not at the smallest prediction-changing edit (ZnuS)",
+  "Graph-classification baselines are not counterfactual methods (ZnuS)",
+  "Explanations depend on the sampled LDBs (ZnuS)",
+  "Method restricted to piecewise-linear activations (ZnuS)",
+  "No robustness gain over PGExplainer on Mutagenicity (ZnuS; noted by SgPD)",
+  "Edge deletion may shift the input distribution (SgPD)",
+  "Robustness metric questionable when 30% of a molecule's edges change (SgPD)",
+  "No ablation of the counterfactual term L_opp (SgPD)"
+ ],
+ "issues_only_b": [
+  "Robustness when the perturbation does change the prediction, and adversarial rather than random noise (Vbh5)",
+  "No guarantees for the greedy and continuous approximations (BMo4)",
+  "Design of the explanation network not justified (gQ2w)",
+  "Effect of the graph-generating model on performance (1Uri)",
+  "CF-GNNExplainer code was already public, so the stated reason for omitting it was false (Vbh5)",
+  "Cannot handle weighted edges (1Uri)"
+ ],
+ "shared_issues": [
+  "Robustness and noise poorly defined; Definition 1 uses undefined 'significantly' and 'slight changes' (SgPD, ZnuS in A; gQ2w, Vbh5 in B)",
+  "CF-GNNExplainer missing from the graph-classification experiments (ZnuS in A; gQ2w, Vbh5 in B)",
+  "Alignment with human intuition claimed without a user study (uoze, ZnuS in A; gQ2w in B)",
+  "Decision-region machinery not specific to GNNs or poorly motivated (ZnuS in A; BMo4, Vbh5 in B)",
+  "Notion of counterfactual questioned (SgPD in A; gQ2w in B)",
+  "Training cost and complexity of decision-region extraction (uoze in A; Vbh5 in B)",
+  "Unclear writing, including the broken sentence at lines 143-144 (ZnuS in A; BMo4, 1Uri, gQ2w, Vbh5 in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same weaknesses; Committee A drew a confident expert who weighted them heavily, and Committee B did not. The shared weaknesses are a vague definition of robustness and noise (Definition 1, lines 350-352), no CF-GNNExplainer baseline for graph classification on the stated ground that its code was unavailable (lines 326-328), an unsupported 'human intuition' claim in the abstract, and decision-boundary machinery that is not specific to GNNs. In A, Reviewer_ZnuS (3, confidence 5, 10 hours) also showed that the paper calls CF-GNNExplainer an adversarial attack (lines 109-113), says PGExplainer optimises each graph independently while its own lines 367-368 say the opposite, and gains no robustness over PGExplainer on Mutagenicity (Figure 2a). ZnuS overstated the missing minimality, since Eq. 8 has an L1 sparsity term. It stayed unconvinced after the rebuttal; Reviewer_SgPD (5) and Reviewer_uoze (6, one hour) never replied. The mean was 4.67, and the AC rejected with a note that names no concern. In B, four reviewers at confidence 2 to 4 gave 6, 7, 6, 5. The two critics, Reviewer_gQ2w and Reviewer_Vbh5, said most concerns were addressed after the authors extended CF-GNNExplainer to graph classification, added adversarial-noise experiments and agreed to drop the human-intuition claim. The AC accepted with a note that overstates the consensus and skips Reviewer_BMo4's request to check originality. None of the issues is fatal, and the camera-ready fixed several. The split is reviewer expertise and persistence on the same facts, not a different paper.",
+ "candidate_reasons": [
+  "Expert detractor unconvinced by rebuttal",
+  "Low-confidence panel accepted rebuttal",
+  "Same weaknesses weighted differently",
+  "Generic meta-reviews followed mean score",
+  "AC skipped reviewer's originality request"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_ZnuS review and comment of 2021-08-18, Committee A",
+  "Author responses to Reviewer_ZnuS (2021-08-10, 2021-08-21), Committee A",
+  "Reviewer_SgPD and Reviewer_uoze reviews, Committee A",
+  "Committee A meta-review",
+  "Reviewer_gQ2w review (edited 2021-08-24) and comment of 2021-08-24, Committee B",
+  "Reviewer_Vbh5 review (edited 2021-08-31), comment of 2021-08-24 and author reply of 2021-08-28, Committee B",
+  "Reviewer_BMo4 comment of 2021-08-22, Committee B",
+  "Committee B meta-review",
+  "paper_submitted.pdf lines 42-45 and 101-102 versus 367-368 (PGExplainer)",
+  "paper_submitted.pdf lines 109-113 and 326-328 (CF-GNNExplainer)",
+  "paper_submitted.pdf abstract lines 6-8 and 13-15, and Definition 1 (lines 126-131)",
+  "paper_submitted.pdf Figure 2a and lines 350-352, 359-360, 369-371 (robustness and noise)",
+  "paper_submitted.pdf Eq. 8 and lines 288-292 (sparsity terms)",
+  "paper.pdf (camera-ready): abstract, Definition 1, related work and Section 5 (CF-GNNExplainer added, adversarial label removed)"
+ ]
+}

@@ -1,0 +1,253 @@
+{
+ "pair_id": "n21-218",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    5,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    2,
+    2
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Crdz"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings span 5 to 7 around a mean of 6.0. Reviewer_PG9W's 7 is one point above the two 6s and rests on a short review of minor points. Reviewer_ngA2's 5 is one point below. No rating departs enough to be an outlier."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Crdz",
+     "evidence": "1.5 hours at confidence 4. The main review says the algorithms contain 'time-varying communication topologies and federated learning'; Section 2 (lines 124-126) models a fixed, connected, undirected graph. Its concerns are generic: the similarity assumption is 'too strong', add decentralized experiments, add a conclusion. It raised its rating with one line: 'Thanks for the author response. I decided to raise my rating.'"
+    },
+    {
+     "reviewer": "Reviewer_6jmq",
+     "evidence": "Confidence 2. The main review repeats the summary word for word and then gives two one-line cons: 'It is unclear to me what the significance of the paper's improvement is' and a request for a proof sketch. Posted 2021-08-01, two weeks after the other reviews. It never replied to the authors."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_PG9W",
+     "claim": "There is no method compared in the experiment; compare with methods for general strongly-convex-strongly-concave SPPs.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Figures 1-3 and lines 270-282 compare Algorithm 1 with the extragradient method, which is a method for general strongly-convex-strongly-concave SPPs. The authors said so in their reply."
+    },
+    {
+     "reviewer": "Reviewer_PG9W",
+     "claim": "The beta on line 94 should be delta.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 94 states SONATA's complexity with β/μ where δ is meant. The authors replied 'Fixed!'."
+    },
+    {
+     "reviewer": "Reviewer_ngA2",
+     "claim": "The lower bounds of Theorems 1-2 depend only on ||y*||, which is not defined; if y* = 0 they say nothing, and they do not reflect the initial distance in x.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorems 1-2 (lines 192-206) bound ||z^K - z*||^2 by ||y*||^2 and do not state y* ≠ 0. The authors replied that y* ≠ 0 for the hard instance and gave a relation between ||x*|| and ||y*||. The camera-ready adds 'x* ≠ 0, y* ≠ 0' to the theorems."
+    },
+    {
+     "reviewer": "Reviewer_ngA2",
+     "claim": "Line 17 assumes compact X and Y, but the lower bounds use an unbounded domain.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 17 and Assumption 1(i) require a compact Z. Theorems 1-2 take 'Z = R^{2d}' while 'satisfying Assumption 1'. The authors conceded: 'you are right! In main part we do not need compactness'."
+    },
+    {
+     "reviewer": "Reviewer_Crdz",
+     "claim": "The proposed algorithms contain time-varying communication topologies and federated learning.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 2 (lines 124-126) models the network as a fixed, connected, undirected graph. No time-varying topology appears. Federated learning is named only as an application of master/workers systems (line 29)."
+    },
+    {
+     "reviewer": "Reviewer_Crdz",
+     "claim": "There are no experiments for the decentralized setting.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5 runs only master/workers networks. Lines 261-262 refer to the supplement for meshed networks, and the authors' reply says they added decentralized experiments after the reviews."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Crdz"
+    ],
+    "evidence": "Author replies posted 2021-08-10. Crdz edited its review on 2021-08-22 and appended 'Thanks for the author response. I decided to raise my rating.' Its final 6 implies a pre-rebuttal rating of 5 or lower, so the pre-rebuttal mean was at most 5.75. ngA2 asked on 2021-08-11 why the bound does not depend on ||z0 - z*||; the authors answered the same day; ngA2 neither replied nor edited. PG9W and 6jmq never edited or posted.",
+    "what_convinced_or_not": "The general reply listed the literature on similarity-based methods (DANE, DiSCO, Arjevani-Shamir, GIANT, Hendrikx et al.), promised new baselines and decentralized experiments, and added a conclusion. This answered Crdz's two concerns (the similarity assumption, no decentralized experiments); Crdz gave no detail. ngA2's lower-bound point got a fix (express ||y*|| through ||z0 - z*||) but no recorded reaction, and its 5 stood."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 7, 6, 5, 6 (mean 6.0). The meta-review says 'the majority of reviewers liked the paper' and 'I also went over the paper', and restates the abstract's contribution. It names no weakness. It does not mention ngA2's lower-bound and compactness points, the missing intuition for Algorithm 1 (PG9W, ngA2), or the thin experiments.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings at or above 6, with PG9W's 7 (AC: 'the majority of reviewers liked the paper')",
+    "First lower bounds and matching algorithms for distributed SPPs under data similarity (PG9W, 6jmq; AC)",
+    "Weaknesses raised were minor or answered in the rebuttal; Crdz raised its rating"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    6,
+    5,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_TSma",
+    "Reviewer_HYkt",
+    "Reviewer_VL91"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings span 5 to 6. Reviewer_HYkt's 5 is the only rating below the threshold, one point below three 6s. The AC adopted HYkt's normalization concern, but HYkt's rating is not an outlier."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_HYkt",
+     "evidence": "Two of its five points misread the paper. It asked whether F_1 and f_1 in Algorithm 1 are typos, but line 222 says 'the master node owns function f1' and eq. (1) defines F_m. It doubted the lower bound by comparing it with a minimization bound, a distinction that the paper's related work draws (lines 74-87). It did engage in the discussion and accepted the answer on the lower bound."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Committee B AC (meta-review con 1)",
+     "claim": "With no constraint and f_1 = 0, step (iii) of Algorithm 1 provides no benefit beyond step (i); a single gradient step would do.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Algorithm 1 (p. 7): with f_1 = 0, step (ii) returns u^k = v^k = z^k - γF(z^k), and step (iii) gives z^{k+1} = z^k - γF(u^k). That is Korpelevich's extragradient method. Dropping step (iii) leaves gradient descent-ascent, which can diverge on bilinear problems. The authors' general reply in both forums said that line 3(iii) is what makes the method extragradient; the camera-ready adds the same explanation."
+    },
+    {
+     "reviewer": "Reviewer_HYkt",
+     "claim": "The δ/μ lower bound conflicts with Arjevani and Shamir's √(δ/μ) bound, which an algorithm attains on quadratics, so it may be wrong.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Arjevani and Shamir [2] bound minimization problems. The paper itself notes that L/μ is optimal for strongly-convex-strongly-concave SPPs (lines 74-76) and that minimization needs only √(L/μ) or √(δ/μ) (lines 84-87). A larger lower bound for the wider SPP class is no contradiction. HYkt accepted the answer ('1. Thanks.')."
+    },
+    {
+     "reviewer": "Reviewer_HYkt",
+     "claim": "Theorems 1-2 assume 1-smooth (and 1-Lipschitz) functions; the constants should stay explicit, or the theorems may tell the wrong story.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorems 1-2 (lines 192-204) take 1-smooth f_m with μ ∈ [0,1) and δ ∈ (0,1); 'Lipschitz' appears only in the supplement, which was not available. The normalization is real but harmless: scaling f by L multiplies L, μ and δ by L, leaves the saddle point and the oracle spans unchanged, and so leaves the δ/μ bound unchanged, as the authors' reply of 2021-08-21 says. The camera-ready states Theorems 1-2 'for any L, μ, δ > 0' with the same δ/μ bound."
+    },
+    {
+     "reviewer": "Reviewer_HYkt",
+     "claim": "F_1 and f_1 in Algorithm 1 may be typos.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 222: 'We assumed w.l.o.g. that the master node owns function f1.' Eq. (1) defines F_m."
+    },
+    {
+     "reviewer": "Reviewer_VL91",
+     "claim": "The text says networks with 10 and 15 workers, but the figures show 10 and 20.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 261 says '10 and 15 workers'; the captions of Figures 1 and 2 say 10 and 20 workers. The authors called it a typo."
+    },
+    {
+     "reviewer": "Reviewer_VL91",
+     "claim": "The meshed-network experiments said to be in the supplement are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 261-262 refer to the supplement for meshed networks; Section 5 has none. The authors replied 'We added', which concedes the gap. The submitted supplement was not available."
+    },
+    {
+     "reviewer": "Reviewer_VL91",
+     "claim": "'Sliding' in the legend of Figure 1 is undefined.",
+     "checked_against_paper": "correct",
+     "evidence": "The fourth panels of Figures 1 and 2 are titled 'sliding with different noise'; the text never defines 'sliding'. The authors: 'Sliding = Algorithm 1'."
+    },
+    {
+     "reviewer": "Reviewer_TSma",
+     "claim": "The decentralized complexity depends on log^2(1/ε), and there are no decentralized experiments.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4 (line 250) gives Õ(1/√ρ · (1 + δ/μ) log^2(1/ε)); lines 251-256 concede room for improvement. Section 5 has only master/workers runs."
+    },
+    {
+     "reviewer": "Reviewer_J36K",
+     "claim": "The parameter η in Algorithm 3 depends on λ2(W), which is global network information.",
+     "checked_against_paper": "correct",
+     "evidence": "The initialization of Algorithm 3 (p. 8) sets η from λ2(W). The authors conceded that λ2 must be computed once, e.g. by restoring the topology at one node."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_HYkt",
+     "Reviewer_VL91",
+     "Reviewer_TSma"
+    ],
+    "evidence": "Author replies posted 2021-08-10. HYkt wrote on 2021-08-21 'Some concerns addressed. I raise the score to 5' and edited on 2021-08-31. VL91 wrote on 2021-08-23 'I raise my rating to 6' and edited on 2021-09-01. TSma wrote on 2021-09-01 'I'm raising my score to 6' and edited that day. J36K wrote on 2021-08-30 'My concerns have been addressed' and kept 6 without editing. The pre-rebuttal mean was therefore at most 5.0; the final mean is 5.75.",
+    "what_convinced_or_not": "New application examples (Wasserstein barycenter, Lagrangian reformulation), promised baselines (Local GDA, decentralized extragradient methods), graph-topology experiments, and the clarification that the extragradient baseline is distributed convinced VL91 and TSma. HYkt accepted the answer on Arjevani-Shamir but rejected the normalization reply ('I don't think so. Those are parameters you want to compare with the literature.') and the reply on stochastic methods. The authors' rescaling argument of 2021-08-21 got no answer."
+   },
+   "ac": {
+    "followed_reviews": "no",
+    "evidence": "Post-rebuttal ratings 6, 6, 5, 6; three reviewers raised their scores and J36K said its concerns were addressed. The AC rejected because 'there are still a few places, that require some substantial revision'. Con 1 (step (iii) adds nothing when f_1 = 0) is the AC's own argument and is wrong. Cons 2-3 adopt HYkt's normalization point and add a worry about function-value Lipschitz constants; the AC concedes 'The authors provided answers to it' but says 'this requires the current proof to be changed'. The rescaling reply resolves it, and the camera-ready only restates the theorems. The minor con (algorithm not designed for similarity) repeats TSma's point 4.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Design of Algorithm 1 judged unmotivated, with the AC's own (incorrect) argument that step (iii) is redundant when f_1 = 0 (TSma and HYkt had asked for intuition)",
+    "Lower bounds stated with normalized constants; the AC wanted explicit smoothness and Lipschitz constants and judged that the fix changes the proof (HYkt; AC)",
+    "Algorithm said not to be designed for similarity; similarity enters only through the analysis and the subproblem accuracy (TSma; AC, minor)",
+    "AC's judgment that the paper needs 'substantial revision', against three post-rebuttal ratings of 6"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Lower bounds depend only on ||y*|| and not on the initial distance (ngA2)",
+  "Compactness in Assumption 1 conflicts with the unbounded domain of the lower bounds (ngA2)",
+  "Technical novelty over prior lower bounds for SPPs and for distributed minimization (ngA2)",
+  "Algorithm 2 relies on multi-consensus gossip, so its proof framework matches the centralized one (PG9W)",
+  "Convex-concave results relegated to the appendix; no conclusion section (PG9W, Crdz)"
+ ],
+ "issues_only_b": [
+  "Lower bounds stated with normalized constants (1-smooth, μ and δ below 1) (HYkt; AC)",
+  "Suspected conflict with Arjevani and Shamir's √(δ/μ) bound (HYkt; withdrawn)",
+  "Full gradients and accurate subproblem solves at every step are impractical at scale (HYkt)",
+  "Accelerated gossip needs λ2(W), global network information (J36K)",
+  "log^2(1/ε) dependence of the decentralized rate (TSma)",
+  "Algorithm not designed for similarity; similarity enters only in the analysis (TSma; AC)",
+  "Text-figure mismatches: 10 and 15 versus 10 and 20 workers, undefined 'sliding' (VL91)"
+ ],
+ "shared_issues": [
+  "Missing intuition for Algorithm 1 and no proof sketch in the main text (PG9W, ngA2, 6jmq in A; TSma, HYkt and the AC in B)",
+  "Weak motivation for the δ-similarity assumption and its significance (Crdz, 6jmq in A; VL91, TSma in B)",
+  "Thin experiments: no decentralized run, few baselines (PG9W, Crdz in A; VL91, J36K, TSma in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The two panels were nearly the same, and the split comes from Committee B's area chair. A rated 7, 6, 5, 6 (mean 6.0). B rated 6, 6, 5, 6 (mean 5.75) after three B reviewers raised their scores, and the fourth said its concerns were addressed. B's AC rejected against that panel, and its lead con is wrong. It says that with no constraint and f_1 = 0, step (iii) of Algorithm 1 adds nothing to step (i). In that case step (ii) returns u = z − γF(z) and step (iii) gives z⁺ = z − γF(u), which is the extragradient method; without step (iii) the method is gradient descent-ascent, which can diverge on bilinear problems. The authors had told both committees that step (iii) is the extragradient step. The AC's other cons repeat Reviewer_HYkt's point that Theorems 1-2 are stated for 1-smooth functions with μ, δ < 1. Rescaling f by L leaves δ/μ and the bound unchanged; the authors said so, and the camera-ready simply restates the theorems for any L. The AC treated this normalization remark as a proof change that needs 'substantial revision'. HYkt's other doubt, that the δ/μ bound conflicts with Arjevani and Shamir's √(δ/μ), confuses saddle-point and minimization bounds, and HYkt accepted the answer. A's AC followed a thinner panel (Crdz at 1.5 hours, 6jmq repeating its summary, two reviews at confidence 2) and named no weakness. Both committees saw the same main weakness, the missing intuition for Algorithm 1: A's PG9W asked for it and still gave 7, while B's AC made it decisive. The discrepancy is one AC's override of a borderline-positive panel, on reasons that do not hold up.",
+ "candidate_reasons": [
+  "AC overrode positive post-rebuttal panel",
+  "AC counterexample technically wrong",
+  "Normalization remark treated as gap",
+  "Missing algorithm intuition weighted differently",
+  "Accepting AC simply followed scores",
+  "Near-identical borderline score profiles"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review, cons 1-3",
+  "paper_submitted.pdf Algorithm 1, steps 3(i)-(iii) (p. 7)",
+  "Authors' general reply, point 6 (step (iii) as the extragradient step), both forums",
+  "Reviewer_HYkt review point 2, comment of 2021-08-21, and the authors' rescaling reply of 2021-08-21, Committee B",
+  "paper_submitted.pdf Theorems 1-2 (lines 192-206); paper.pdf (camera-ready) Theorems 1-2 restated for any L, μ, δ > 0",
+  "paper_submitted.pdf lines 74-87 (linear SPP rates versus square-root minimization rates)",
+  "Reviewer_TSma, Reviewer_VL91 and Reviewer_HYkt score-raising comments, Committee B",
+  "Committee A meta-review",
+  "Reviewer_Crdz review (1.5 hours; 'time-varying communication topologies') and edit of 2021-08-22, Committee A",
+  "Reviewer_ngA2 review, Committee A; paper_submitted.pdf line 17 and Assumption 1(i)",
+  "paper_submitted.pdf Section 5 and Figures 1-3 (extragradient baseline; 10 and 15 versus 10 and 20 workers)"
+ ]
+}

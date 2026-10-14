@@ -1,0 +1,235 @@
+{
+ "pair_id": "n21-227",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    8,
+    5,
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    2,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_uYq5",
+    "Reviewer_WAr3",
+    "Reviewer_Rqsq"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_uYq5",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below 7 (5 against 8, 7, 7, 7), at confidence 4. Its one specific point is right: Theorem 3, the only positive rate, assumes P_X supported on M hypothesized points (lines 212-213), so 'the given algorithm (Theorem 3) only applies to the discrete case'. Its other points are generic for a theory paper: no experiments, an 'average' literature review, assumptions not labelled, a misleading title. It raised its rating to 5 on 2021-08-26 'having read the other reviews', not because of the rebuttal, which it rejected on effective support size and experiments. The AC's note still calls the committee a 'consensus'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_dAue",
+     "evidence": "Two hours, confidence 3, math 'not carefully checked'. The summary is accurate, but the main review is one paragraph of praise with one suggestion (compare with other confidence-interval methods). It names no weakness and never posted in the discussion. Its 7 is weak evidence of quality."
+    },
+    {
+     "reviewer": "Reviewer_WAr3",
+     "evidence": "Confidence 2 (lowered on 2021-08-30), math 'not carefully checked'. Generic praise ('The three theorems themselves are novel and interesting'); it says that 'given the time constraint' it cannot 'confidently say everything is correct'. It says the authors 'adequately addressed the limitations', which tn9d and uYq5 found missing. Its one discussion post argues against uYq5's call for experiments."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Rqsq",
+     "claim": "For small intervals the procedure needs the support and the regression function to be known, up to a small error in mu that appears in the bound.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3 (lines 212-216) assumes P_X supported on the hypothesized {x(1), ..., x(M)} with masses <= eta/M and |mu_P(X) - mu(X)| <= err_mu almost surely; the bound is c(err_mu + M^(1/4)/n^(1/2)). How to obtain mu and the support appears only in a parenthetical on sample splitting (lines 199-201)."
+    },
+    {
+     "reviewer": "Reviewer_Rqsq",
+     "claim": "A per-atom sample-mean interval with Hoeffding or Bernstein 'should be optimally adaptive' and 'essentially optimal among distribution-free valid ones'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Wrong in the per-distribution sense in which Theorem 1 (lines 103-105) is stated. For near-uniform P_X with n < M < n^2, Rqsq's own bound is P(p(x) < 1/n), near 1, while Theorem 3 gives c(err_mu + M^(1/4)/n^(1/2)), which vanishes when mu is good. It is right only in the uniform sense: over all P with M > n no mu is good, so constant width is unavoidable. Rqsq's update of 2021-08-10 concedes both readings."
+    },
+    {
+     "reviewer": "Reviewer_tn9d",
+     "claim": "Line 183 says the support size needed to capture gamma of the probability; it should be 1-gamma.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 183 reads 'to capture gamma of the probability under P_X', while the display in Step 1 uses (1-gamma)n. Rqsq found the same slip; the authors agreed."
+    },
+    {
+     "reviewer": "Reviewer_uYq5",
+     "claim": "The algorithm's guarantee (Theorem 3) applies only to the discrete case, so the title overstates the reach to continuous distributions.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3 assumes P_X supported on M points (lines 212-213). For nonatomic P_X, M_gamma = infinity (line 99) and Theorem 1 gives only a constant lower bound (lines 130-136). The authors' reply that the results are 'universal' holds for validity (Theorem 2) and the lower bound, not for the rate."
+    },
+    {
+     "reviewer": "Reviewer_tn9d",
+     "claim": "Proposition 1 is called 'standard' but no reference is given.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 246: 'The proof is simple, and follows a standard argument'; neither Section 2.3 nor Appendix A.1 cites a source. In B, UaZ8 asked for the same qualification to be removed."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Rqsq",
+     "Reviewer_uYq5"
+    ],
+    "evidence": "Author responses posted 2021-08-10. Rqsq edited its review the same day and wrote 'I am therefore now in favor of acceptance, and will increase my score accordingly'; its review had called the paper 'a somewhat borderline case'. Final 7. uYq5 edited on 2021-08-26 and wrote 'Hence, I have raised my rating'; final 5. WAr3 edited on 2021-08-30 to lower its confidence and kept 7. tn9d kept 8 ('satisfied with these answers'). dAue never posted.",
+    "what_convinced_or_not": "Rqsq accepted the 'wrapper' framing (inference decoupled from estimation, as in conformal prediction) and the authors' point that its per-atom alternative gives trivial width when n < M < n^2. It still asked for caveats and a sample-splitting explanation, and judged the estimation analysis 'perhaps best left out of this version'. uYq5 rejected the authors' answers on effective support size and experiments and raised its rating because of the other reviews."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 8, 5, 7, 7, 7 (mean 6.8). The two-sentence meta-review cites a 'consensus' that 'the nice theoretical contributions of this paper are sufficient' and passes on 'concerns about the importance of these results in applications' (tn9d, uYq5) as revision advice. It does not mention Rqsq's oracle-input concern or the almost-sure err_mu assumption. The AC posted nothing in the discussion.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Theory judged novel and sufficient: four of five reviewers at 7 or 8 after the rebuttal (AC 'consensus')",
+    "Rqsq's oracle-input objection withdrawn after the 'wrapper' framing; estimation analysis left to future work",
+    "Lack of experiments and unclear practical relevance treated as revision items (tn9d, uYq5, AC)"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    7,
+    4,
+    8
+   ],
+   "confidences": [
+    2,
+    3,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_teiB",
+    "Reviewer_UaZ8"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_UaZ8",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The lowest rating in either committee (4) at confidence 5 ('checked the math/other details carefully'), seven hours. B's panel split 4 and 5 against 7 and 8, and UaZ8 is the detractor the AC followed. It read the main-paper proofs, and its specific points hold: the proof of Theorem 1 does not cover M_gamma = infinity (lines 267-273), Theorems 1 and 3 state Y in R against Definition 1's [0,1] (lines 38, 104, 212), Theorem 3 holds only with known support and a bound on err_mu, and sample splitting is a parenthetical (lines 199-201). Its later claim that the bounds do not match overreached (see checkable claims)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_idBd",
+     "evidence": "Confidence 2, two hours. Its summary says the method gives 'a confidence interval of Y_{n+1}'; Definition 1 (lines 37-38) targets mu_P(X_{n+1}). On 2021-08-20 it wrote 'there was my misunderstanding' about two of its three questions. Its 5 rests on the lack of experiments and on difficulty following the algorithm."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_UaZ8",
+     "claim": "The proof of Theorem 1 (lines 268-273) is not valid as written when M_gamma = infinity, which line 99 allows.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 267 defines X1 by the threshold 1/M_gamma, and lines 271-273 partition the rest into sets of mass <= 1/M_gamma; with M_gamma = infinity that partition is impossible when the rest has positive mass. The gap is minor: running the argument with any finite M' and letting M' grow gives the constant bound, as the authors said."
+    },
+    {
+     "reviewer": "Reviewer_UaZ8",
+     "claim": "Definition 1 restricts Y to [0,1], but the paper elsewhere takes distributions on R^d x R.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 1 (line 38) uses R^d x [0,1]; Theorem 1 (line 104) and Theorem 3 (line 212) say 'distribution P on R^d x R'. The authors called it a typo."
+    },
+    {
+     "reviewer": "Reviewer_UaZ8",
+     "claim": "Theorem 3, the main upper bound, holds only in a highly restricted setting, and no end-to-end analysis covers how the support and mu are guessed.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3 (lines 209-216) needs P_X supported on the hypothesized points with masses <= eta/M and an almost-sure bound on err_mu; sample splitting appears only at lines 199-201. Its companion remark that 'previous results also apply' there holds only for M much smaller than n, not for n < M < n^2."
+    },
+    {
+     "reviewer": "Area_Chair_oaoM",
+     "claim": "The err_mu assumption in Theorem 3 requires a given precision almost surely over P_X.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 214: '|mu_P(X) - mu(X)| <= err_mu almost surely over X ~ P_X'. The authors conceded it 'is of course too strong'; the camera-ready replaced it with E(mu_P(X) - mu(X))^2 <= err_mu^2."
+    },
+    {
+     "reviewer": "Reviewer_UaZ8",
+     "claim": "The upper bound (Theorems 2 and 3) does not match the lower bound (Theorem 1); 'we should assume de facto that they do not match'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Against the paper's stated claim it is wrong: with err_mu <= M^(1/4)/n^(1/2) and P_X near-uniform on the hypothesized support, Theorem 3 gives O(M^(1/4)/n^(1/2)), Theorem 1's rate in M and n; lines 222-224 claim only this, 'if we have a good hypothesis mu'. The match ignores sigma_P and needs an oracle mu, so it holds per distribution, not uniformly over a class with M > n."
+    },
+    {
+     "reviewer": "Reviewer_idBd",
+     "claim": "The method gives a confidence interval for the response Y_{n+1}.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Definition 1 (lines 37-38) requires coverage of the conditional mean mu_P(X_{n+1}); lines 62-66 contrast this with predictive intervals for Y_{n+1}."
+    },
+    {
+     "reviewer": "Reviewer_6nGY",
+     "claim": "Line 298 may contain an error where a 'not in' event becomes an 'in' event.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The chain at line 298 bounds P(A and X_{n+1} not in X1) below by P(A) - P(X_{n+1} in X1), a valid step that subtracts the complement; the authors' answer is right."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses posted 2021-08-10. UaZ8's only edit (2021-07-29) and teiB's (2021-07-13, the day it posted) came before them; idBd and 6nGY never edited. teiB wrote on 2021-08-25 that it was 'hesitant between keeping my original score (7) and taking a step back to 6', and its final rating is 7. 6nGY wrote 'I'm leaving my score as it is' on 2021-09-10. idBd admitted 'my misunderstanding' on 2021-08-20 and kept 5.",
+    "what_convinced_or_not": "The 'wrapper' framing and the authors' account of how the bounds match in M and n did not satisfy UaZ8, who wanted comparisons with Barber 2020 and Gupta et al. 2020 and an end-to-end bound on err_mu. UaZ8's challenge made teiB find the link between the bounds 'loose'. The AC's question drew the concession that the almost-sure err_mu assumption 'is of course too strong' and a promised L2 version, which the AC would not accept unseen. 6nGY agreed with the authors but did not argue the point."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings 5, 7, 4, 8 (mean 6.0), two on each side of the threshold. Meta-review point 1, the missing end-to-end analysis with sample splitting, restates UaZ8's request for 'an end-to-end upper bound analysis (including the guessing part)'. Point 2 comes from the AC's own question of 2021-08-19, which drew the authors' admission about the almost-sure assumption; the AC refused because 'there is no current mechanism to see a revised version'. It set aside the 'significant enthusiasm among some reviewers' (6nGY, teiB).",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Theorem 3 needs a hypothesized support and mean function, with no end-to-end analysis of obtaining them by sample splitting (UaZ8; AC point 1)",
+    "The almost-sure err_mu assumption is too strong; the authors conceded it, and the promised L2 rewrite could not be seen before the decision (AC point 2)",
+    "UaZ8's challenge that the bounds do not match made teiB waver and left the panel split 4 and 5 against 7 and 8"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Title misleading: suggests a continuous or classification setting (tn9d, uYq5)",
+  "A simple per-atom sample-mean interval offered as the natural alternative; suggestion to drop Section 3 (Rqsq)",
+  "Line 183 says gamma for 1-gamma; ordering of the hypothesized support (tn9d, Rqsq)",
+  "Literature review 'average'; assumptions not named or collected (uYq5)"
+ ],
+ "issues_only_b": [
+  "Almost-sure err_mu assumption in Theorem 3 is strong and unsupported by a reference (UaZ8, AC)",
+  "Whether the upper and lower bounds match in M, n and sigma_P (UaZ8, teiB)",
+  "No comparison with Barber 2020 Corollary 1 or Gupta et al. 2020 Theorem 4 (UaZ8, teiB)",
+  "Proof of Theorem 1 not valid as written for M_gamma = infinity (UaZ8)",
+  "Y in R versus Y in [0,1] inconsistency (UaZ8)",
+  "Behaviour of the method when the support is unknown or partly nonatomic (UaZ8)"
+ ],
+ "shared_issues": [
+  "Upper bound needs oracle inputs (hypothesized support and mu); estimation not analysed; sample splitting only a parenthetical (Rqsq in A; UaZ8 and AC in B)",
+  "No experiments; practical relevance unclear (tn9d, uYq5 in A; idBd, 6nGY in B)",
+  "Role of the dimension d and intuition for inference when most test points are unseen (tn9d in A; teiB in B)",
+  "Estimated support size can be infinite when P_X is not discrete enough (tn9d in A; idBd in B)",
+  "Proposition 1's proof called 'standard' without support (tn9d in A; UaZ8 in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees found the same central limitation and weighted it differently. Theorem 3 reaches Theorem 1's M^(1/4)/n^(1/2) rate only when the analyst already holds the support of X and a mean function mu with a small error bound err_mu that holds almost surely (lines 212-216); how to get these from data appears only in a parenthetical (lines 199-201). The bounds therefore match per distribution, not uniformly: when M > n no mu is good for every distribution. In A, Reviewer_Rqsq (10 hours) saw exactly this, but the authors' 'wrapper' framing, and their correct point that Rqsq's per-atom alternative gives trivial width when n < M < n^2, moved it from 'a somewhat borderline case' to 7; it judged the estimation analysis 'perhaps best left out of this version'. Reviewer_uYq5 rose to 5 after reading the other reviews, two of A's 7s are thin (dAue, WAr3), and A's AC wrote a two-sentence 'consensus' note without engaging. In B, Reviewer_UaZ8 (rating 4, confidence 5) read the proofs and pressed the same gap; its points on the infinite-M_gamma proof gap, the Y in R typo and the restricted Theorem 3 hold, though its claim that the bounds do not match overreached and still made Reviewer_teiB waver. B's AC asked for a reference for err_mu, drew the concession that the almost-sure assumption 'is of course too strong', and rejected because the promised L2 rewrite could not be seen. Reviewer_idBd's 5 at confidence 2 rests partly on misreading the target as Y_{n+1}. The split is reviewer draw plus AC tolerance for a conceded, fixable gap: A accepted on a promise of caveats, B would not. The camera-ready made the L2 change and added a data-splitting paragraph.",
+ "candidate_reasons": [
+  "Oracle-input upper bound weighted differently",
+  "Per-distribution versus uniform matching framing",
+  "AC refused acceptance on promised fix",
+  "High-confidence expert detractor drawn",
+  "Consensus meta-review without engagement",
+  "Thin positive reviews padded consensus"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_Rqsq review and 2021-08-10 update, Committee A",
+  "Reviewer_uYq5 post-rebuttal comments (edited 2021-08-26), Committee A",
+  "Reviewer_dAue and Reviewer_WAr3 reviews, Committee A",
+  "Committee A meta-review",
+  "Reviewer_UaZ8 review and 2021-08-23 comments, Committee B",
+  "Area_Chair_oaoM follow-up and authors' 'Reference' reply, 2021-08-19, Committee B",
+  "Reviewer_teiB comment of 2021-08-25, Committee B",
+  "Reviewer_idBd summary and 2021-08-20 comment, Committee B",
+  "Committee B meta-review",
+  "paper_submitted.pdf Theorem 3 (lines 206-216) and sample-splitting remark (lines 199-201)",
+  "paper_submitted.pdf Theorem 1 (lines 103-105), proof (lines 267-273) and Discussion (lines 222-227)",
+  "paper.pdf (camera-ready) Theorem 3 with an L2 error bound and the data-splitting paragraph"
+ ]
+}

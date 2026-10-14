@@ -1,0 +1,253 @@
+{
+ "pair_id": "n21-213",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    6,
+    5,
+    7
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_s8dC",
+    "Reviewer_5yfA"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 6, 5, 7 (mean 6.0). No rating is more than one point from the mean. DyXC's 7 rests on specific, checkable comments, and 5yfA's 5 rests on a gap that the paper confirms."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_5yfA",
+     "claim": "The paper compares only with methods that use sensitive attributes, although attribute-free methods exist (group DRO, ARL, JTT, reweighting).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 225-231: the baselines are Vanilla, Adversarial [30] and EOR [31]. Line 263 says EOR needs attribute labels; lines 352-354 say the same of adversarial training. None of the attribute-free methods that 5yfA lists is cited."
+    },
+    {
+     "reviewer": "Reviewer_5yfA",
+     "claim": "Eq. (1) may contain a typo: it writes the prediction y-hat_i as the average of the representations.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. (1) (line 137) reads L_MSE = {c(z1/2 + z2/2) - (p1/2 + p2/2)}^2, so the head c is applied to the averaged representation; line 138 defines c. The rebuttal said the same."
+    },
+    {
+     "reviewer": "Reviewer_5yfA",
+     "claim": "The method has several hyperparameters to tune per dataset (L242-245) and looks sensitive to them.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 242-245 set q, γ and T separately for Adult, MEPS and CelebA, and α traces each curve. The paper has no sensitivity study for q, γ or T. The authors later conceded that RNF is 'relatively sensitive to q and γ'."
+    },
+    {
+     "reviewer": "Reviewer_Ehds",
+     "claim": "The experiments use simple datasets (Adult, MEPS) and only one image dataset (CelebA).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 and lines 213-223: Adult, MEPS and CelebA, each a binary task with a binary attribute."
+    },
+    {
+     "reviewer": "Reviewer_s8dC",
+     "claim": "The insights of Section 2.1 rest on 500 samples of the Adult dataset.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 88-90: the kernel-PCA analysis of Figure 1 uses 500 Adult training samples. The only other analysis of the head (Section 3.3) is also on Adult."
+    },
+    {
+     "reviewer": "Reviewer_s8dC",
+     "claim": "'Teacher' and 'student' are used for different models at different stages.",
+     "checked_against_paper": "incorrect",
+     "evidence": "'Teacher' always means the cross-entropy model f_T (lines 46, 122, 135, 161), and 'student' always means the debiased f_S (lines 160-161, 202). s8dC's own summary calls the bias-amplified model f_B a 'teacher'."
+    },
+    {
+     "reviewer": "Reviewer_DyXC",
+     "claim": "Theorem 1's bound can be loose, because nothing guarantees that ε_L or ε_p is small.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (2) bounds the group gap by ε_p(λ_z ε_c + ε_L) (lines 144-150). ε_p bounds |p1 - p2| over all same-label pairs from different groups, and the paper's premise is that the biased teacher treats these groups differently. The rebuttal's 'ε_p is also not a large value' is asserted, not shown."
+    },
+    {
+     "reviewer": "Reviewer_DyXC",
+     "claim": "Related work misses Kang et al. (decoupling representation and classifier) and Nam et al. (GCE loss to debias a classifier).",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is among the 43 references. Lines 169-171 credit the GCE bias-amplified model only to Zhang and Sabuncu [25], although Nam et al. (NeurIPS 2020) already trained a GCE-amplified biased model to debias a classifier."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_5yfA",
+     "Reviewer_s8dC"
+    ],
+    "evidence": "Author responses posted 2021-08-11. On 2021-08-17 5yfA was 'not fully convinced' because the new experiments are 'only promised to be added upon acceptance'. After the JTT and CivilComments tables (2021-08-19), it wrote on 2021-08-26 'I increase my score to 5', so it began at 4 or lower; its review was edited again on 2021-09-11, in the reviewer-AC phase. s8dC edited its review on 2021-08-26, the day it wrote that the rebuttal 'does clarify my major concerns'. Its text has no update, so a rise to 6 is likely but not stated. DyXC wrote on 2021-08-14 that it would 'maintain my score of 7'. Ehds never replied and never edited.",
+    "what_convinced_or_not": "5yfA credited the new tables only in part. The JTT comparison is a single MEPS operating point (DP 0.964 vs 0.945, ΔEO -0.099 vs -0.105), and 5yfA would not credit experiments that were not in the paper. s8dC had asked for a synthetic test of every component; it got a four-point hand-built example and a pointer to Section 3.3, yet called its concerns clarified. DyXC accepted that ε_L and ε_p are small for a well-trained model, which the authors asserted without evidence."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings 6, 6, 5, 7 (mean 6.0), three at or above 6, and both critics moved up after the rebuttal. The AC rejected anyway. Its reasons map to the reviews: attribute-free baselines and related work (5yfA, DyXC), more datasets (Ehds, 5yfA), and a multi-attribute demonstration (5yfA, Ehds), which it judged 'not a must have'. It treats the rebuttal's new experiments as 'partly answered' material for 'the next revision'. Its 'unclarity about the neutralization scheme that uses an average' and its wish for clarification 'beyond the toy setting' echo s8dC, who wrote in public that the rebuttal 'does clarify my major concerns'. That point rests on the private discussion or on the AC's own reading.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "No baseline that works without attribute labels, few and simple datasets, and gaps in related work (5yfA, Ehds, DyXC; AC)",
+    "The JTT and CivilComments results existed only in the rebuttal; the AC wanted them in a revised paper (5yfA; AC)",
+    "Averaging neutralization and proxy annotations judged insufficiently justified (s8dC, DyXC, Ehds; AC)",
+    "Multi-attribute extension only sketched; a discussion of it judged necessary (5yfA, Ehds; AC)",
+    "Borderline ratings read as 'still split' (AC)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Ho2y",
+    "Reviewer_FmVc",
+    "Reviewer_Pdht",
+    "Reviewer_Aa1C"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 7, 7 (mean 6.75). Ho2y's 6 is one point below the rest. The 7 that carries no information is Aa1C's (see inattentive_reviews), but it does not stand apart from the other ratings."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Aa1C",
+     "evidence": "The summary is the abstract with light edits and keeps 'our RNF framework'. The main review is four generic sentences ('adequate references', 'adequate set of experiments') with no weakness and no question. Its only edit (2021-08-05) is before the author responses, and it never posted. A 7 at confidence 3 on this basis is not evidence of quality."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Pdht",
+     "claim": "Figure 3 averages only three runs, the curves are close, and EOR may beat RNF on equalized odds, so 'RNF outperforms baselines' is not shown.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 241-242 average three seeds, and checklist item 3(c) answers [No] for error bars. In the ΔEO row of Figure 3, EOR's curve lies above RNF's on Adult and MEPS and at the fairer end on CelebA. Lines 261-262 concede that EOR is 'comparable' to RNF_GT, which lines 255-256 put 10% above RNF. Lines 252-253 still say RNF 'outperforms baseline methods'."
+    },
+    {
+     "reviewer": "Reviewer_Pdht",
+     "claim": "Table 4 (RNF with a debiased encoder) reports a single point of the fairness-accuracy curve.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 336-337: 'report a single point in the fairness-accuracy curve', with α fixed at 0.2."
+    },
+    {
+     "reviewer": "Reviewer_Pdht",
+     "claim": "The splitting threshold in lines 186-202 comes out of nowhere; the paper does not say how the fairness-accuracy trade-off sets it.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 193-197 say only that γ 'is determined by the fairness-accuracy trade-off on the validation set', and lines 242-243 give its values. That trade-off needs sensitive attributes on the validation set, which qualifies the claim of no attribute access 'during training' (line 50). No reviewer in either committee said so."
+    },
+    {
+     "reviewer": "Reviewer_Ho2y",
+     "claim": "Hardt et al. [27] and Fair Mixup [40] are cited but not compared.",
+     "checked_against_paper": "correct",
+     "evidence": "[27] serves only the equalized-odds metric (line 207); the baselines are Vanilla, Adversarial and EOR (lines 225-228). Lines 370-376 call [40] 'the most similar work' and claim 'comparable or better performance to such techniques' with no experiment against it. Lines 359-360 misdescribe [40] as a contrastive sentence-representation method."
+    },
+    {
+     "reviewer": "Reviewer_Ho2y",
+     "claim": "The paper never checks that the proxy annotations match the true sensitive attributes.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission tests the proxies only through downstream fairness (Table 2, MEPS: RNF-GCE vs RNF-CE vs RNF-Random). The rebuttal's alignment is modest: F-measure 0.60 on Adult and 0.65 on MEPS."
+    },
+    {
+     "reviewer": "Reviewer_FmVc",
+     "claim": "Existing methods require sensitive-attribute annotations, and RNF removes this constraint.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paper itself says only that 'most' methods need them (lines 35-37). Attribute-free methods predate the submission, for example ARL (Lahoti et al., NeurIPS 2020) and LfF (Nam et al., NeurIPS 2020), which A's 5yfA and DyXC named. The paper cites none of them."
+    },
+    {
+     "reviewer": "Reviewer_Aa1C",
+     "claim": "The paper has adequate references.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The 43 references omit Nam et al. (NeurIPS 2020), whose GCE-trained biased model Section 2.3 also uses, and every attribute-free fairness method that A's reviewers named."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Pdht"
+    ],
+    "evidence": "Before any author response, Pdht wrote on 2021-08-07 that the robustness of the evaluation was 'the primary reason for my recommendation to reject'. Its review, edited 2021-08-16 (the day of the authors' follow-up), now reads 'Based on these commitments, I have revised my recommendation to 7'. Ho2y edited on 2021-08-21 and added 'The author response addresses my main concerns above'; it does not say whether its rating changed. FmVc edited on 2021-08-28 and kept 7. Aa1C's edit on 2021-08-05 is before the author responses (2021-08-10), and it never posted.",
+    "what_convinced_or_not": "Pdht was moved by a five-seed table for RNF alone at one Adult point (std 0.004 accuracy, 0.006 DP), by the statement that Tables 2-4 use α = 0.2, and by promises to rephrase 'outperforms', average ten runs and add error bars. Ho2y was satisfied by the proxy precision and recall (F 0.60 Adult, 0.65 MEPS) and by a DP-regularized baseline at one Adult point; the Hardt and Fair Mixup comparisons it asked for never came. FmVc accepted AUC as a combined metric."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 7, 7, 7 (mean 6.75). The meta-review summarizes the method and says the reviewers found it 'creative, soundly evaluated and well written'. It names no weakness, none of the promised changes (rephrased 'outperforms' claim, ten runs, renaming, limitations moved to the main text) and none of Ho2y's missing baselines. 'Soundly evaluated' passes over Pdht's pre-rebuttal objection and Figure 3.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Simple, creative idea: debias only the classification head, with proxy labels instead of attribute labels (Ho2y, FmVc, Pdht; AC)",
+    "Ratings 6, 7, 7, 7 after Pdht moved from reject to 7 on the rebuttal's commitments",
+    "Evaluation and baseline concerns treated as answered by small rebuttal tables and promises (Pdht, Ho2y)",
+    "AC read the reviews as 'creative, soundly evaluated and well written' and named no weakness"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No baseline that works without attribute labels: group DRO, ARL, JTT, reweighting (5yfA)",
+  "Harder, multi-class or multi-label datasets: COCO, imSitu, CIFAR-10S, CivilComments (Ehds, 5yfA)",
+  "Missing related work: Kang et al. (decoupling), Nam et al. (GCE debiasing), Bahng et al., Bower et al. (DyXC, 5yfA)",
+  "Theorem 1: meaning of 'well-trained' and looseness of the bound (s8dC, DyXC)",
+  "Why averaging representations neutralizes them; a synthetic test of each component (s8dC)",
+  "Hyperparameter sensitivity, pairing by different label and same attribute, and fine-tuning the encoder (5yfA, DyXC)"
+ ],
+ "issues_only_b": [
+  "Three-seed averages without error bars, and the 'outperforms baselines' claim not supported by Figure 3 (Pdht)",
+  "Missing post-processing (Hardt), Fair Mixup and Zafar demographic-parity baselines (Ho2y)",
+  "Random pairing for neutralization is ad hoc; pair by distance instead (Ho2y)",
+  "Misleading name 'representation neutralization'; 'spurious correlation' and binary-gender framing (Pdht)",
+  "A single metric for the fairness-accuracy trade-off (FmVc)"
+ ],
+ "shared_issues": [
+  "Proxy annotations rest on an unverified over-confidence assumption (Ehds, DyXC, s8dC in A; Ho2y, Pdht in B)",
+  "Extension to multiple or non-binary sensitive attributes only sketched (5yfA, Ehds in A; Ho2y in B)",
+  "Overlap with Fair Mixup (5yfA in A; Ho2y in B)",
+  "Limitations only in the appendix (s8dC in A; Ho2y in B)",
+  "How γ and q are tuned (5yfA in A; Pdht in B)",
+  "Unclear presentation of the scheme and of the 'classification head' (s8dC in A; Pdht in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same borderline paper and nearly the same weaknesses: three binary datasets averaged over three seeds without error bars, debiasing baselines that all need attribute labels, a weakly justified proxy-annotation step, and only a sketch of the multi-attribute case. The authors answered both with near-identical text, small new tables and promises to revise. A ended at 6, 6, 5, 7. Its most critical reviewer, 5yfA, rose only to 5 because the new JTT and CivilComments results were 'only promised', and A's AC rejected on the same ground, adding an unclarity about the averaging scheme that no reviewer upheld in public. B ended at 6, 7, 7, 7. Its most critical reviewer, Pdht, rose from reject to 7 'based on these commitments'. Ho2y accepted a substitute DP baseline for the Hardt and Fair Mixup comparisons it had asked for. Aa1C gave 7 with an abstract-copied summary and no weakness. B's AC called the paper 'soundly evaluated' and named no weakness. The paper confirms the critics in both committees: no attribute-free baseline (lines 225-231), three-seed averages (lines 241-242), EOR above RNF on equalized odds in Figure 3, and no citation of Nam et al. (2020), whose GCE-trained biased model Section 2.3 also uses. The split is the weight each committee gave to rebuttal promises at the borderline. A's panel also surfaced the attribute-free literature, which B's did not.",
+ "candidate_reasons": [
+  "Promised revisions weighed differently",
+  "AC overrode accept-leaning 6.0 mean",
+  "Abstract-copied 7 lifted accept panel",
+  "Attribute-free baselines raised only in A",
+  "Accepting AC echoed scores, no weakness",
+  "Critic flipped to accept on commitments"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Reviewer_5yfA review and comments of 2021-08-17 and 2021-08-26, Committee A",
+  "Authors' reply 'Experiments with additional baselines and datasets' (2021-08-19), Committee A",
+  "Reviewer_s8dC review (edited 2021-08-26) and comment of 2021-08-26, Committee A",
+  "Reviewer_DyXC review and comment of 2021-08-14, Committee A",
+  "Reviewer_Pdht review (edited 2021-08-16) and comments of 2021-08-07 and 2021-08-14, Committee B",
+  "Reviewer_Ho2y review (edited 2021-08-21) and authors' reply of 2021-08-10, Committee B",
+  "Reviewer_Aa1C review, Committee B",
+  "Committee B meta-review",
+  "paper_submitted.pdf Figure 3 and lines 241-242, 252-263",
+  "paper_submitted.pdf lines 225-231 (baselines) and 352-354",
+  "paper_submitted.pdf lines 359-360 and 370-376, reference [40]",
+  "paper_submitted.pdf Eq. (1) (line 137) and Theorem 1 (lines 144-150)",
+  "paper_submitted.pdf lines 193-197 and 242-245 (γ chosen on validation fairness)",
+  "paper_submitted.pdf checklist item 3(c)"
+ ]
+}

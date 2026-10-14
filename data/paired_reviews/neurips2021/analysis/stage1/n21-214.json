@@ -1,0 +1,198 @@
+{
+ "pair_id": "n21-214",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [4, 4, 8, 7],
+   "confidences": [4, 4, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_vT5V", "Reviewer_jJXH"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings split two and two: 4, 4 (vT5V, EDPH) against 8, 7 (L9GC, jJXH). No single rating stands apart. L9GC's 8 rests on general praise ('very clearly written', 'extremely thorough and high quality'). In the discussion L9GC agreed with the detractors but did not change the score."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_EDPH",
+     "claim": "Area 1 already separates direction and color along orthogonal axes (Fig 4), so one more area should suffice; the need for three areas is empirical and unexplained.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 173-176: the direction axis overlaps color and context by only 0.14 and 0.09; line 184 calls it 'nearly orthogonal'. Fig 3e: the last area of a 2-area network decodes color near 1.0, a 3-area network at about 0.52. Line 147 and the Fig 3e caption state the result and give no reason."
+    },
+    {
+     "reviewer": "Reviewer_EDPH",
+     "claim": "The experimentally testable hypotheses announced in the abstract are not developed.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 13-15 promise them. The Discussion (lines 254-274) says only that the results 'propose hypotheses for computations that occur upstream of PMd' (line 259) and names no experiment. The authors wrote prediction text only in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_jJXH",
+     "claim": "The paper does not say what Area 2 computes, so it is unclear why three areas are needed.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.2 analyses Area 1, Section 3.3 the inter-area weights, Section 3.4 Area 3. Area 2 appears only in summary numbers (Fig 2f, 2h; lines 121-135) and in Fig 5b."
+    },
+    {
+     "reviewer": "Reviewer_vT5V",
+     "claim": "A color-free Area 3 is expected a priori, because color and context enter only Area 1.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Fig 3a: 3-area networks without Dale's law decode color in Area 3 at about 0.8 (1% feedforward) to about 1.0 (10-100%). Fig 3e: the last area of a 2-area network with Dale's law decodes color near 1.0. A color-free last area is not automatic. vT5V admitted that details 'were not clear from the main text to me'."
+    },
+    {
+     "reviewer": "Reviewer_vT5V",
+     "claim": "The biological plausibility of 3-area versus 1-area models is judged on one property only, whether color and context can be read out.",
+     "checked_against_paper": "correct",
+     "evidence": "The 1-area comparison (lines 99-101, Appendix Fig 8) and every architecture sweep (Fig 3a-f) use color and direction decodability only. The CCA, PSTH and choice-probability comparisons (Fig 2e, 2i, 2j) compare areas inside the 3-area network, not alternative models. All comparisons use one recorded area, PMd."
+    },
+    {
+     "reviewer": "Reviewer_vT5V",
+     "claim": "The main text gives no formal details of the methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 99 and 111-112 send all training details to Appendix 5.4. The main text has no equations and does not name the training algorithm or the optimizer."
+    },
+    {
+     "reviewer": "Reviewer_L9GC",
+     "claim": "Discussion comment of 2021-08-30: the abstract's 'incorporating multiple areas and Dale's Law is critical' claims too much, because Dale's law is likely not the only way to get PMd-like responses.",
+     "checked_against_paper": "correct",
+     "evidence": "Abstract lines 7-9 say 'critical'. Fig 3a shows that removing Dale's law breaks the result in this architecture, but the paper tests no other constraint, so 'critical' holds only inside the sweep. The authors' reply to EDPH calls Dale's law 'a sufficient constraint' and says other constraints might lead to 'similar solutions'."
+    },
+    {
+     "reviewer": "Reviewer_L9GC",
+     "claim": "The Fig 5 legend says the color axis aligns with the null space, but random alignment is not null-space alignment.",
+     "checked_against_paper": "correct",
+     "evidence": "Fig 5 caption: 'the color axis is more aligned with the nullspace'. Lines 206-207: 'the color axis was similarly aligned to a random vector'. The text itself shows the filtering is passive, not an active null-space mechanism."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "unknown",
+    "by_whom": ["Reviewer_jJXH"],
+    "evidence": "Author replies posted 2021-08-10. jJXH edited its review on 2021-08-30, the day it wrote 'I would love to see further analysis ... to better understand why these architectural features are necessary'. The score change, if any, is not visible. vT5V's edit (2021-07-16) came before the rebuttal. On 2021-08-31 vT5V said the new analyses 'make at least a somewhat more convincing case for the importance of 3 areas and Dale's law' and kept 4. EDPH replied only 'Thank you very much for a detailed reply' and kept 4. L9GC kept 8 but agreed the paper needs the mechanism and should reduce its claims. L9GC said all reviewers had discussed privately 'over the last couple weeks'.",
+    "what_convinced_or_not": "The authors answered the three-area question with new 2-area analyses over eight seeds (potent projection about 0.15 against 0.6; a more complex readout) and the Dale's-law question with a new analysis of unconstrained networks. All of it was text only and post hoc. It describes how the 2-area network differs, not why it fails. The authors also conceded that Dale's law is 'a sufficient constraint', which confirmed the overclaim. No detractor moved, and the champion moved toward the detractors in words."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Ratings 4, 4, 8, 7 (mean 5.75), split two and two. The AC rejected after 'extensive internal discussions in which all reviewers participated'. Its reasons, unclear causes and 'why a three-area (and not, e.g. a two-area) network', restate EDPH. Its sufficient-versus-necessary point restates L9GC's comment of 2021-08-30 and the authors' concession. It does not use vT5V's venue-fit objection. It credits the selectivity result to 'the Mante et al paper', but the PMd data come from Chandrasekaran et al. 2017 (lines 67-68); Mante et al. is cited only as prior RNN work. The slip does not change the substance.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "No explanation of why three areas, not two, are needed (EDPH, jJXH; AC)",
+    "Dale's law and multiple areas shown sufficient, not necessary, against the abstract's 'critical' (L9GC comment; authors' concession; AC)",
+    "Analysis judged descriptive; the promised mechanism and testable hypotheses not delivered (EDPH)",
+    "Two confident 4s, and the 8 conceded the detractors' points in the discussion",
+    "One 4 rests mainly on weak ML relevance and venue fit (vT5V); the AC did not cite it"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 6, 7],
+   "confidences": [4, 3, 3],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 6, 7, all positive and within one point. Time spent 2.5, 2 and 3 hours; two of three at confidence 3."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_SBJB",
+     "claim": "The paper only briefly states that fewer than three areas fail (line 147, Fig 3e) and gives no mechanism for why three are needed.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 147 and the Fig 3e caption ('At least 3 areas were required') are the only treatment. Area 1 already has a nearly orthogonal direction axis (lines 173-176, 184). SBJB still rated 6."
+    },
+    {
+     "reviewer": "Reviewer_eHSi",
+     "claim": "The abstract promises testable hypotheses, but no concrete experimental tests are laid out.",
+     "checked_against_paper": "correct",
+     "evidence": "The Discussion (lines 254-274) names no experiment or perturbation. The authors wrote prediction text (muscimol in PMd, communication-subspace tests) only in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_LjFK",
+     "claim": "A proper discussion of related work is missing.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission has no related-work section. It does not cite Michaels et al. 2020 (PNAS, a modular goal-driven network compared with recorded areas), which the authors named in their reply to SBJB; the reference list has only Michaels et al. 2016 (ref 53). Kang and Druckmann 2020 and Perich and Rajan 2020 are also absent."
+    },
+    {
+     "reviewer": "Reviewer_SBJB",
+     "claim": "Figure 1 refers to a Methods section that does not exist; line 184 cites a non-existent Fig 4e; DV is never defined.",
+     "checked_against_paper": "correct",
+     "evidence": "'see Methods' appears in the Fig 1 caption and at lines 75, 198 and 201; the main text has no Methods section. Fig 4 has panels a-d only. 'DV' first appears at line 227 with no definition. L9GC in A found the same Fig 4e and Methods errors."
+    },
+    {
+     "reviewer": "Reviewer_LjFK",
+     "claim": "The main text does not state which training algorithm was used.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither BPTT nor Adam is named in the main text; Adam appears only in the reference list (ref 48). Lines 99 and 111-112 defer all training details to Appendix 5.4."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited. Author replies posted 2021-08-10. LjFK (2021-08-11): 'I am happy with the authors replies and respective modifications to the article.' eHSi (2021-08-27): 'I am satisfied with the proposed additions to the manuscript.' SBJB did not reply. No discussion among reviewers is on record.",
+    "what_convinced_or_not": "Promises to add related work, a mapping of areas to brain regions, a BPTT caveat and prediction text satisfied LjFK and eHSi, who stayed at 7 and 6. SBJB got the same post-hoc 2-area answer that A's reviewers got and did not respond."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 6, 7 (mean 6.33). The three-sentence meta-review restates the abstract: the constraints are 'shown to be critical'. It names no weakness. 'All reviewers agreed on the significance and the novelty of the work' is too strong: SBJB wrote 'it is not very clear whether similar work has been done before', LjFK found related work missing, and eHSi said the results 'build on current applications of RNNs'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All three ratings above the threshold (6, 6, 7)",
+    "Biological constraints accepted as shown to matter, with no challenge (LjFK, eHSi; AC)",
+    "Systematic, clearly written analysis of a multi-area neuroscience question (SBJB, eHSi)",
+    "Weaknesses (three-area mechanism, predictions, related work) treated as revisions that the rebuttal promised"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Why Dale's law is needed; an unconstrained network could do the same projection (EDPH)",
+  "The abstract's 'critical' claim is supported only as sufficiency (L9GC comment; AC)",
+  "Weak ML relevance and venue fit; low ML novelty (vT5V; L9GC)",
+  "Task-trained rather than data-constrained RNNs; one toy task limits generality (vT5V)",
+  "'Mechanistic' title not delivered; analysis descriptive (EDPH)",
+  "Color axis called null-space aligned though it aligns like a random vector (L9GC)"
+ ],
+ "issues_only_b": [
+  "Related work missing, including prior multi-area RNN models (LjFK, SBJB)",
+  "BPTT is not biologically plausible (LjFK)",
+  "Mapping of Areas 1 and 2 to brain regions; effect of more areas (LjFK, SBJB)",
+  "Figure clarity: Fig 1 panels, Fig 3 axis labels, Fig 4a layout (LjFK, eHSi, SBJB)",
+  "Early stopping before near-perfect performance (SBJB)"
+ ],
+ "shared_issues": [
+  "Why three areas and not two; role of Area 2 (EDPH, jJXH in A; SBJB in B)",
+  "Testable hypotheses promised but not developed (EDPH, jJXH in A; eHSi in B)",
+  "Method details left to the appendix; broken 'Methods' and Fig 4e references (vT5V, L9GC in A; SBJB, LjFK in B)",
+  "Comparison with data limited to one area, PMd (vT5V in A; eHSi in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same gap and weighed it differently. The paper shows that its PMd-like last area needs at least three areas and Dale's law, but it does not explain why. The paper confirms the gap: Area 1 already has a direction axis nearly orthogonal to color (overlap 0.14, lines 173-176), yet the last area of a 2-area network keeps color (Fig 3e), and the main text gives no reason. In A, Reviewer_EDPH made this the basis of a 4 at confidence 4, and Reviewer_vT5V added a second 4, mainly for venue fit. After a long private discussion, the top scorer, Reviewer_L9GC (8), agreed that the paper lacks the mechanism and that the abstract's 'Dale's Law is critical' claims too much. The authors themselves called Dale's law 'a sufficient constraint'. A's AC rejected at a mean of 5.75 for these reasons. In B, Reviewer_SBJB named the same three-area gap but gave 6, and nobody questioned Dale's law. Two reviewers at confidence 3 gave 6 and 7 and approved the rebuttal in one line. B's AC wrote three sentences that repeat the abstract's 'critical' claim. Neither committee found an error. A asked for a causal account that the paper lacks; B accepted the empirical result as enough.",
+ "candidate_reasons": [
+  "Three-area gap weighted differently",
+  "Two confident detractors drawn",
+  "Private discussion turned the champion",
+  "Dale's-law overclaim caught only once",
+  "Accepting AC restated the abstract",
+  "Venue-fit objection from one reviewer"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_EDPH review, Committee A",
+  "Reviewer_L9GC comment of 2021-08-30, Committee A",
+  "Reviewer_vT5V review and comment of 2021-08-31, Committee A",
+  "Authors' reply to Reviewer_EDPH (Dale's law 'a sufficient constraint'), Committee A",
+  "Committee A meta-review",
+  "Reviewer_SBJB review (Main suggestions), Committee B",
+  "Reviewer_LjFK and Reviewer_eHSi replies of 2021-08-11 and 2021-08-27, Committee B",
+  "Committee B meta-review",
+  "paper_submitted.pdf abstract, lines 7-9 and 13-15",
+  "paper_submitted.pdf Section 3.2, lines 173-176 and 183-184",
+  "paper_submitted.pdf Figure 3a and 3e, and line 147",
+  "paper_submitted.pdf Discussion, lines 254-274"
+ ]
+}

@@ -1,0 +1,246 @@
+{
+ "run": 1,
+ "turn": 32,
+ "pair_id": "n21-096",
+ "kind": "spotlight/reject",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": true,
+   "justification": "A's chair made novelty the main reason from TD-VAE and POMCP, which no reviewer raised; B's chair set the spotlight on its own view that the paper is 'pretty cool' and an exemplar."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "B's chair wants more work in the area, but no recommendation rests on a forecast of impact beyond the paper's setting."
+  },
+  {
+   "id": "R03",
+   "applies": true,
+   "justification": "After the rebuttal B's DgEc rose to 7 and B's chair saw consensus shift to 7; in A kENU kept 4 and EBwR fell from 6 to 5."
+  },
+  {
+   "id": "R04",
+   "applies": true,
+   "justification": "A's Wt3P gave a 4 at confidence 3 after 3.5 h, named no flaw and never replied; this thin 4 helped hold A's mean below the bar."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "Only A probed baseline strength, asked for a neural controller over the same options and questioned the program-synthesis framing; all counted toward A's reject."
+  },
+  {
+   "id": "R06",
+   "applies": true,
+   "justification": "Both saw privileged full-map training, a user-supplied abstraction, small static grids and a promising core idea; A's critics held the limits against the paper, B's three reviewers rated 7."
+  },
+  {
+   "id": "R07",
+   "applies": false,
+   "justification": "No score moved because of other reviewers' assessments; DgEc's raise has no stated reason and no comment."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "B's DgEc rated 7 while its text still says the work is not 'enough to warranty an acceptance to this venue'."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "A's confidence-3 reviewers did not say they could not judge the paper; they gave reasons or questions, not abstentions."
+  },
+  {
+   "id": "R10",
+   "applies": false,
+   "justification": "A's chair did not follow the outlying champion aK3Q, and B's chair set its outlier 456H aside rather than following it."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "A's critics stated concrete reservations they weighted against the paper; that is different weighting (R06), not the same verdict placed at different scores."
+  },
+  {
+   "id": "R12",
+   "applies": false,
+   "justification": "B had a dissenting 4, and its chair did not argue from unanimity."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "DgEc's raise cites no rebuttal material, and the new runs (explore-then-plan, non-deterministic test) were the authors' own experiments, later in the camera-ready."
+  },
+  {
+   "id": "R14",
+   "applies": true,
+   "justification": "B's meta-review omits the privileged-training concern of DgEc and 456H and states the opposite, that the method does not depend on privileged information."
+  },
+  {
+   "id": "R15",
+   "applies": true,
+   "justification": "A's 1PbL backed its 4 with the wrong claim that the paper compares 'only to ablations' (Table 1 has four baselines); B's 456H misread the map and the oracle but was set aside."
+  },
+  {
+   "id": "R16",
+   "applies": false,
+   "justification": "The authors conceded no unfavourable result; their concessions were citations and a related-work overclaim."
+  },
+  {
+   "id": "R17",
+   "applies": true,
+   "justification": "A's area chair raised TD-VAE and POMCP only in the meta-review, after the discussion, so the authors could not answer the objection that became A's main reason."
+  },
+  {
+   "id": "R18",
+   "applies": false,
+   "justification": "The two committees' scores differ (A 7, 4, 4, 4, 5; B 7, 4, 7, 7), so the split is not a tier cut-off on near-identical scores."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "A's chair followed the careful critics kENU and EBwR and its own reading, not a less-informed majority over the expert aK3Q."
+  },
+  {
+   "id": "R20",
+   "applies": true,
+   "justification": "B's requests (explore-then-plan baseline, non-deterministic test) were closed with new runs; A's core concerns (privileged training, clarity needing 're-review', planning framing) could not be fixed in a response."
+  },
+  {
+   "id": "R21",
+   "applies": false,
+   "justification": "Neither outlier moved its committee across a tier: A's 7 did not lift A, and B's chair discounted the 4; the remaining scores also differ."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "B's silent outlier 456H was set aside by its chair, so its unrevised score did not stand in the recommendation."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "B's chair set aside the detractor and still went to a spotlight; the higher tier was not lost."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "No audience or venue-fit objection was raised."
+  },
+  {
+   "id": "R25",
+   "applies": false,
+   "justification": "Neither meta-review misreports the reviewers' final positions; B's error about privileged information concerns the paper and is covered by R14."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "Most reviewers in both committees replied to the rebuttal; only Wt3P in A and 456H and DgEc in B did not."
+  },
+  {
+   "id": "R27",
+   "applies": false,
+   "justification": "No B reviewer said they could not verify the results; all four rated at confidence 4."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "Neither committee split evenly; A had one 7 against four ratings below 6."
+  },
+  {
+   "id": "R29",
+   "applies": false,
+   "justification": "The authors gave each committee different new runs for different questions, but nothing conflicting or withheld."
+  },
+  {
+   "id": "R30",
+   "applies": true,
+   "justification": "A's chair judged novelty against TD-VAE and POMCP, which address the generative model the paper credits to world models, not its synthesis over hallucinated worlds."
+  },
+  {
+   "id": "R31",
+   "applies": true,
+   "justification": "No B reviewer rated above 7 or argued for a higher tier, and the meta-review ends 'I recommend acceptance' with no argument for a spotlight."
+  },
+  {
+   "id": "R32",
+   "applies": true,
+   "justification": "A's kENU and EBwR read the paper as task planning, objected to its program-synthesis framing and missing TAMP grounding, and kENU kept 4 partly for that; B accepted the framing."
+  },
+  {
+   "id": "R33",
+   "applies": false,
+   "justification": "A's champion aK3Q engaged closely (ran the code), and no reviewer in either committee rated well above the accept level."
+  }
+ ],
+ "added": [],
+ "reasoning": "Both committees saw the same facts: privileged full-map training, a user-supplied abstraction, small static grids and a promising idea. They weighted them differently (R06). A drew a thin 4 (R04), a 4 resting on a misreading (R15) and planning-field critics who contested the framing (R32, R05). A's chair then made novelty the main reason from two papers no reviewer had raised, after the authors could no longer reply (R01, R17, R30). In B, DgEc's rating rose to 7 against its own text (R08), and the chair went to a spotlight on enthusiasm with no tier argument (R01, R31). It also stated the opposite of the privileged-training concern (R14). Each stage 1 candidate reason maps to an existing reason, so no reason was added.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33"
+ ]
+}

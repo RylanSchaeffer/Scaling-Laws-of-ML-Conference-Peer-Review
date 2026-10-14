@@ -1,0 +1,276 @@
+{
+  "pair_id": "n21-296",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        5,
+        5,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_C1HE"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_C1HE",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Ratings 8/5/5/6 (C1HE, U1Z1, gsQi, ii33). The 8 is two points above the next rating and the only one above 6 among the seven across both committees; without it A's mean is 5.33, not 6.0. The review is long and specific (19 numbered points), its reading of Figure 2d is correct, and it was updated after the rebuttal. Its basis is a stated value judgment: the method is 'so elegant' that 'even if the performance is not always competitive, it should definitely be accepted'. It promised a higher score for added baselines 'irrespective of the outcome', did not check the math ('I didn't go through the mathematical derivation in detail'), and declared 'all my concerns have been addressed' although AER [3], Freytag et al. [a] and the GP-regression baseline it asked for never appeared."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_U1Z1",
+          "evidence": "Says 'In the pool-based scenario, only one dataset is used'; Figure 3 has three (WDBC, Ionosphere, Vehicle). Calls the Section 3.3 assumption that the gradients of mu_*, sigma_** and sigma_s* are known 'unrealistic', but lines 209-210 note that they follow in closed form from the kernel gradient, as the rebuttal spells out. Confidence 3, 3 hours, no reply to the rebuttal, no edit."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_C1HE",
+          "claim": "Figure 2d shows NR-SMOCU-RO doing worse than NR-MOCU-RO, contrary to the text's explanation (line 289) that MOCU suffers at higher flip rates; only NR-SMOCU-SGD does better.",
+          "checked_against_paper": "correct",
+          "evidence": "In Figure 2d (flip rate 0.2) the NR-SMOCU-RO curve lies above NR-MOCU-RO at every iteration and tracks BALD; NR-SMOCU-SGD is lowest. Lines 289-292 attribute a growing NR-MOCU/NR-SMOCU gap to MOCU ignoring long-term effects. The rebuttal concedes that MOCU 'could' outperform SMOCU on this problem."
+        },
+        {
+          "reviewer": "Reviewer_C1HE",
+          "claim": "The closest baselines, AER [3] and the approximate-retraining EER of [6], are missing from the experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 67-74 present [6] and [3] as the efficient EER alternatives; Figures 2-3 compare only random, MES, BALD and the proposed methods. The rebuttal added ADF-MOCU (the authors' implementation of [6], with importance sampling) and OR-MOCU/OR-SMOCU on one checkerboard setting; AER never appeared."
+        },
+        {
+          "reviewer": "Reviewer_C1HE",
+          "claim": "There is no section discussing the work's weaknesses.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper ends with Conclusions (lines 311-322), which list only strengths. The one limitation (probit likelihood, high dimension) is in checklist item 1(b)."
+        },
+        {
+          "reviewer": "Reviewer_C1HE",
+          "claim": "Table 1's running times for naive, IS and IS+JDI are of the same order of magnitude.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: 1.364 to 2.704 s for all three methods at n = 10, 50, 100; the largest saving of IS+JDI is 18% at n = 100 (2.209 vs 2.704 s)."
+        },
+        {
+          "reviewer": "Reviewer_U1Z1",
+          "claim": "At n = 10, IS+JDI takes more time than the naive method.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: 1.950 s vs 1.390 s, 40% slower. The rebuttal's isolated timing agrees (JDI 0.568 s vs retraining 0.125 s at n = 10; 0.591 vs 0.675 at n = 100), which puts the crossover near n = 100."
+        },
+        {
+          "reviewer": "Reviewer_U1Z1",
+          "claim": "Only one dataset is used in the pool-based scenario.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 4.3 and Figure 3 use three UCI datasets: WDBC, Ionosphere and Vehicle."
+        },
+        {
+          "reviewer": "Reviewer_U1Z1",
+          "claim": "Besides random, only two methods are compared in the pool-based scenario.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3: random, MES, BALD, NR-MOCU-RO and NR-SMOCU-RO."
+        },
+        {
+          "reviewer": "Reviewer_U1Z1",
+          "claim": "Section 3.3's assumption that the gradients of mu_*, sigma_** and sigma_s* are known under EP is unrealistic.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 209-210: the gradients of the GP mean and covariance have closed forms through the kernel gradient. With the EP site parameters fixed, they need only the gradient of k(x_*, X); the rebuttal writes this out."
+        },
+        {
+          "reviewer": "Reviewer_gsQi",
+          "claim": "The only efficiency experiment is a 1-D toy example, and the advantage is not big.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.1 uses the instance space X = [-4, 4] (line 243), and no other experiment reports running time. Table 1's largest saving is 18%."
+        },
+        {
+          "reviewer": "Reviewer_ii33",
+          "claim": "MES is the only existing acquisition function compared in Sections 4.2 and 4.3.",
+          "checked_against_paper": "incorrect",
+          "evidence": "BALD is also compared (line 233; Figures 2-3). The authors pointed this out in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_ii33",
+          "claim": "Query synthesis is tested only up to two dimensions.",
+          "checked_against_paper": "correct",
+          "evidence": "The only query-synthesis benchmark is the 2-D checkerboard 4 x 4 (Figure 2a)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_C1HE"
+        ],
+        "evidence": "C1HE's review was edited 2021-09-02 and opens 'After author response: all my concerns have been addressed, and in view of the new experimental results, I have further increased my score'; the starting score is not visible (the review had promised '8 or 9' if the issues were resolved). Reviewer_gsQi, 2021-08-30: 'still not quite convinced to increase my score'. Reviewer_ii33, 2021-09-02: 'I will leave my score unchanged'. Reviewer_U1Z1 never replied and did not edit.",
+        "what_convinced_or_not": "C1HE: the timing table to n = 1000 (retraining 846 s vs JDI 0.643 s) and the 2021-08-29 checkerboard comparison with OR-MOCU, OR-SMOCU and ADF-MOCU at flip rate 0.2 only. gsQi found the efficiency results 'more convincing' but still wanted 'convincing and thorough' experiments; the authors' challenge to 'incremental' got no answer. ii33 read the new table as better accuracy for the proposed methods, but MES and BALD 'are quite good in terms of sample efficiency', and kept 6 on the paper's 'usefulness and prospects'."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepts at mean 6.0 with two of four ratings below threshold. The four-sentence meta-review says the reviewers 'generally liked the novel ideas' and that concerns 'were mitigated by the rebuttal and a good discussion between the reviewers'. Only C1HE said its concerns were resolved; U1Z1 called the novelty 'not enough' and gsQi 'somewhat incremental', and gsQi stayed unconvinced. No reviewer-to-reviewer exchange is public. The meta-review names no specific contribution or concern.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Reviewer_C1HE's 8 after the rebuttal, on the elegance of avoiding GPC retraining and the first gradient-based EER query synthesis",
+        "AC's reading that the rebuttal's timing table and new baselines mitigated the concerns",
+        "Mean rating 6.0, above threshold only because of the single 8"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_anoP",
+        "Reviewer_6XPv"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Three 5s at confidence 4 (anoP, zuL2, 6XPv). The bases differ: Reviewer_anoP and Reviewer_6XPv object to novelty; Reviewer_zuL2 is otherwise positive ('a significant advancement') and holds 5 on the missing EER/MOCU/SMOCU baseline and runtimes, which the paper confirms."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_6XPv",
+          "evidence": "Offers as unanalysed results that the paper explains: 'What does the random optimization in NR-MOCU-RO mean?' (defined at lines 139-142), why IS and IS+JDI have lower error than naive (lines 261-263), why MES is close on Vehicle (lines 306-310). Its correct points (Table 1's small gain, only MES and BALD as baselines, no sparse-GP discussion, y/ys notation) are either shared with other reviewers or minor. It never answered the rebuttal; its 2021-09-02 edit adds no visible text."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_anoP",
+          "claim": "There is no theoretical evaluation of the estimation accuracy of p(y|x_s, x_*, y_*).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.1 gives only empirical relative errors on a 1-D set-up (mean 1.3e-5 to 1.8e-5, maximum 2.4e-3); no bound is stated. Under the current EP posterior, Eq. (9) is exact up to 1-D quadrature; what remains is the EP approximation itself."
+        },
+        {
+          "reviewer": "Reviewer_zuL2",
+          "claim": "No EER baseline is compared in either the synthetic or the real-world experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Figures 2-3 compare random, MES, BALD and the proposed methods only; naive MOCU/SMOCU appears only in the Table 1 timing test. Since JDI matches retraining to about 1e-5 (Section 4.1), Figure 3's pool-based gains are those of MOCU/SMOCU [16, 17]. The camera-ready (after the decision) states that OR-MOCU gives 'almost the same' acquisition values there and that ADF-MOCU performs 'similar' to NR-MOCU-RO."
+        },
+        {
+          "reviewer": "Reviewer_zuL2",
+          "claim": "Running times of the compared methods are not reported in the active learning experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Sections 4.2-4.3 report error curves only; running times appear only in Table 1."
+        },
+        {
+          "reviewer": "Reviewer_zuL2",
+          "claim": "BALD seems to perform as well as the proposed methods and is not discussed in Section 4.2.",
+          "checked_against_paper": "correct",
+          "evidence": "In Figure 2b BALD overlaps all three proposed methods after about 25 iterations; in Figure 2d it tracks NR-SMOCU-RO. Lines 287-294 discuss only MES and MOCU vs SMOCU. (In Figure 3, BALD is the weakest method.)"
+        },
+        {
+          "reviewer": "Reviewer_zuL2",
+          "claim": "Only 2 labelled points are used to estimate the hyperparameters (line 300).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 299: 'two samples from each class', four points in total."
+        },
+        {
+          "reviewer": "Reviewer_6XPv",
+          "claim": "The O(n^3) motivation ignores sparse GP methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 65 states O(n^3) for EP training; the paper neither cites nor discusses sparse or stochastic GP approximations."
+        },
+        {
+          "reviewer": "Reviewer_6XPv",
+          "claim": "y and ys are confused in Eq. (5) and elsewhere.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (5) writes the max over ys of p(y|xs), and p(ys|xs, x, y) for x_*, y_*; Eq. (6) and lines 244-248 repeat the slip."
+        },
+        {
+          "reviewer": "Reviewer_6XPv",
+          "claim": "Table 1's efficiency improvement is not significant.",
+          "checked_against_paper": "correct",
+          "evidence": "IS+JDI vs naive: 1.950 vs 1.390 s at n = 10, 2.188 vs 2.496 s at n = 50, 2.209 vs 2.704 s at n = 100."
+        },
+        {
+          "reviewer": "Reviewer_6XPv",
+          "claim": "The results are not analysed: why IS beats naive in error, what random optimization means, why MES is close on Vehicle.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 261-263, 139-142 and 306-310 answer each. Figure 3c in fact shows MES ending below both proposed methods on Vehicle, which the text understates as 'closely'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_zuL2, 2021-08-31: 'I will maintain my score at a 5'. Reviewer_anoP's edit of 2021-08-31 adds 'I still think the contribution of this paper is not enough to clear the bar of NeurIPS'. Reviewer_6XPv posted nothing; on 2021-09-01 the authors noted they had no feedback from it. Its review was edited 2021-09-02 with no visible change in text, so a change to its rating cannot be excluded.",
+        "what_convinced_or_not": "zuL2 had chased the promised results on 2021-08-28, thanked the authors for them, but wanted the baselines 'on the full set of datasets'; one checkerboard setting was not enough, and the extension had 'skipped a research step' of benchmarking the original methods on GPC. anoP conceded 'some novelty' but not enough. 6XPv's view after the rebuttal is unknown."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects on three 5s. The meta-review's two concerns, 'an improvement of a very new active learning method in a specific setting (GPC)' with unclear impact and 'lack of comprehensive comparison with ... original EER/MOCU/SMOCU methods', paraphrase Reviewer_zuL2's 2021-08-31 comment ('an extension of a relatively new method that has been untested for GPC previously'). It credits the checkerboard results as partial.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Incremental improvement of a very new method (MOCU/SMOCU) in a narrow setting, with unclear impact",
+        "No comprehensive comparison with the original EER/MOCU/SMOCU methods; the rebuttal covered one checkerboard setting",
+        "All three ratings below threshold, none moved by the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Figure 2d contradicts the text: NR-SMOCU-RO trails NR-MOCU-RO at flip rate 0.2 (Reviewer_C1HE; confirmed)",
+    "Further baselines: GP regression and Freytag et al. [a] (Reviewer_C1HE); EI/UCB (Reviewer_ii33)",
+    "Choice of the SMOCU parameter k (Reviewer_C1HE, Reviewer_ii33)",
+    "Ablation of the number of samples, random vs importance sampling (Reviewer_gsQi)",
+    "Only one pool-based dataset (Reviewer_U1Z1; wrong, Figure 3 has three)"
+  ],
+  "issues_only_b": [
+    "Sparse and stochastic GP approximations not discussed against the O(n^3) motivation (Reviewer_6XPv)",
+    "Hyperparameters fixed after the first estimate instead of re-learned (Reviewer_6XPv)",
+    "No comparison with deep generative query synthesis (Reviewer_6XPv)",
+    "Reproducibility details: choice of p(x), train/test splits, bit-flip definition (Reviewer_zuL2)",
+    "The original EER/MOCU/SMOCU were never benchmarked on GPC, a 'skipped research step' (Reviewer_zuL2, AC)",
+    "Missing citation of Terayama et al. 2019 on phase diagrams (Reviewer_anoP)"
+  ],
+  "shared_issues": [
+    "Incremental contribution over MOCU/SMOCU (A: Reviewer_U1Z1, Reviewer_gsQi; B: Reviewer_anoP, Reviewer_6XPv, AC)",
+    "Only MES and BALD as baselines; no EER/MOCU/SMOCU or other EER approximation (A: Reviewer_C1HE, Reviewer_U1Z1, Reviewer_ii33; B: Reviewer_zuL2, Reviewer_6XPv, AC)",
+    "Weak efficiency evidence: small Table 1 gains, no running times for compared methods (A: Reviewer_C1HE, Reviewer_U1Z1, Reviewer_gsQi; B: Reviewer_zuL2, Reviewer_6XPv)",
+    "Scaling to larger n and higher dimension (A: Reviewer_C1HE, Reviewer_ii33; B: Reviewer_zuL2)",
+    "MES and BALD nearly as sample-efficient (A: Reviewer_ii33 after the rebuttal; B: Reviewer_zuL2 on Figure 2)",
+    "Unclear notation in Section 3 and in the gradient argument of Section 3.3 (A: Reviewer_C1HE, Reviewer_U1Z1; B: Reviewer_zuL2, Reviewer_6XPv)",
+    "No limitations discussion (A: Reviewer_C1HE; B: Reviewer_6XPv)",
+    "Accuracy of the joint-distribution estimate (A: Reviewer_C1HE, effect on rankings; B: Reviewer_anoP, no theory)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same facts and weighted them differently. No reviewer found an error in the derivations. Both sides raised the same three objections: the work is an incremental extension of MOCU and SMOCU, the authors' own 2021 methods; Figures 2 and 3 compare only random, MES and BALD, with no EER/MOCU/SMOCU baseline; and the efficiency evidence is one 1-D set-up (Table 1), where IS+JDI is 40% slower than naive at n=10 and 18% faster at n=100. Both committees then got the same new evidence: timing to n=1000 (retraining 846 s against JDI 0.643 s) and one checkerboard run, at flip rate 0.2 only, with OR-MOCU, OR-SMOCU and ADF-MOCU. Reviewer_C1HE (A) and Reviewer_zuL2 (B) had asked for these baselines and runtimes. C1HE had promised a higher score 'irrespective of the outcome'; it called all concerns addressed and gave 8, although AER [3] and the GP-regression baseline it asked for never came. zuL2 found one setting insufficient ('a more thorough analysis is needed on the full set of datasets') and kept 5. A's 6.0 mean rests on that 8; without it A averages 5.33, close to B's 5.0. A's AC wrote that the concerns were 'mitigated by the rebuttal', but only C1HE said so; Reviewer_gsQi stayed 'not quite convinced'. B's AC followed three 5s and paraphrased zuL2. zuL2's objection is the better-founded one: in the pool-based runs JDI matches retraining to about 1e-5 (Section 4.1), so Figure 3's gains over MES and BALD belong to the MOCU and SMOCU criteria themselves, and the paper's own contribution there is untested for speed. The camera-ready, posted after the decisions, concedes that OR-MOCU gives 'almost the same' acquisition values in the pool setting and that ADF-MOCU performs 'similar' to NR-MOCU-RO.",
+  "candidate_reasons": [
+    "Single champion in one committee",
+    "Same rebuttal, opposite reviewer verdicts",
+    "Champion pre-committed regardless of results",
+    "AC overstates post-rebuttal consensus",
+    "Missing baseline of accelerated method",
+    "AC adopts one critic's framing"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_C1HE final review (edited 2021-09-02)",
+    "Reviewer_zuL2 review and comments of 2021-08-28 and 2021-08-31",
+    "Authors' post 'Additional performance and running time comparison' (2021-08-29, both forums)",
+    "Authors' timing table to n = 1000 (responses of 2021-08-10)",
+    "Reviewer_gsQi comment 2021-08-30; Reviewer_ii33 comment 2021-09-02",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper Table 1 and Section 4.1 (X = [-4, 4], line 243)",
+    "paper Figure 2b-d and lines 287-294",
+    "paper Figure 3 and lines 303-310",
+    "paper lines 139-142, 209-212 and 261-263",
+    "camera-ready Section 4.3 (OR-MOCU 'almost the same', ADF-MOCU 'similar')"
+  ]
+}

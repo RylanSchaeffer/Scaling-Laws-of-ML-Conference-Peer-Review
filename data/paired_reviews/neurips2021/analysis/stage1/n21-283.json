@@ -1,0 +1,293 @@
+{
+ "pair_id": "n21-283",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_J64c",
+    "Reviewer_o4bz"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6 to 7, all at confidence 4; mean 6.5. The two 7s come from the two most detailed reviews. Reviewer_J64c read the proofs (7 hours) and listed eleven unclear points, but twice says 'I am not an expert on partitioning techniques' where it credits the partition as novel. Reviewer_jHTA's 7 comes with 'not particularly original as it primarily combines ideas from [8] and [19]'."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_iZMk",
+     "claim": "The partition is geometric, so the cells need not be balanced, which can erode the speedup.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 307-308: ParK's local subsets usually do not have uniform cardinality. In Table 1, ParK's TRAIN time is about 2.3 times ParK-Uni's on all four datasets (TAXI 41 vs 18 min, HIGGS 481 vs 208 s, AIRLINE 75 vs 32 s, AIRLINE-CLS 55 vs 24 s)."
+    },
+    {
+     "reviewer": "Reviewer_iZMk",
+     "claim": "Theorem 1 sets m_q and t_q from unknown quantities (N_∞,q and f*).",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 (line 231) conditions m_q on N_∞,q(λq) and t_q on σ² and ‖P_q f*‖_H. The experiments do not use these conditions. They copy FALKON's hyper-parameters and set m_q = mρ_q (lines 290-294)."
+    },
+    {
+     "reviewer": "Reviewer_iZMk",
+     "claim": "The algorithm that builds the partition comes from [8].",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 119-121: 'This strategy has been originally proposed by [8]' (greedy MAP inference for determinantal point processes)."
+    },
+    {
+     "reviewer": "Reviewer_jHTA",
+     "claim": "The runtimes do not match [19]: TAXI 120 s here against 3628 s there, AIRLINE-CLS 391 s against 186 s.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1 gives TAXI time in minutes ('TIME (MIN.)'), so 120 is 7200 s. The AIRLINE-CLS gap fits the single GPU of line 290 against the two GPUs of [19], as the authors replied."
+    },
+    {
+     "reviewer": "Reviewer_o4bz",
+     "claim": "The paper does not give the input dimension of the datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 282 and 295-296 give only n. The camera-ready adds d = 9, 28, 8 and 8."
+    },
+    {
+     "reviewer": "Reviewer_J64c",
+     "claim": "Assigning a point to its centroid costs O(Q), not O(1) (line 98).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 98 calls the assignment an O(1) operation, while lines 161-162 give O(Qn) for all n assignments, that is O(Q) per point. The authors replied that O(1) meant one distance."
+    },
+    {
+     "reviewer": "Reviewer_o4bz",
+     "claim": "Theorem 1 is no substantial extension of FALKON's analysis; the new theory is Propositions 2 and 3.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The proofs are in a supplement that is not in the submitted PDF. The authors conceded that the local analysis is 'similar to the one of FALKON with minor modifications'."
+    },
+    {
+     "reviewer": "Committee A AC (meta-review)",
+     "claim": "The solver is shown to achieve the minimax optimal global KRR rate in fixed design.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 252-255 get the O(1/√n) rate only when cos θ = 0, an orthogonal model as in [21]. Lines 318-324 concede that no result links the greedy partition to θ. For the Gaussian kernel used, K(x,x') > 0 for every pair, so cos θ > 0 always, and near-identical points on the two sides of a shared cell boundary put cos θ near 1."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_o4bz"
+    ],
+    "evidence": "Reviewer_o4bz (2021-08-22): 'I think this is a borderline paper but will be aligning my score with other reviewers, recommending an accept'. The review was edited the same day and ends at 6, so it was below 6 before. Reviewer_jHTA (2021-08-17) kept 7: 'I find my current rating (7) to be appropriate'. Reviewer_iZMk (2021-08-22) kept 6. Reviewer_J64c's edit (2021-07-12) predates the 2021-08-10 responses, and J64c posted nothing after them.",
+    "what_convinced_or_not": "The authors answered every point. They added divide-and-conquer-with-FALKON numbers, a kernel k-means++ seeding comparison and a dimension check (to o4bz), and they wrote out the missing proof steps for J64c. o4bz thanked them for the 'additional experiments' but still called the paper borderline, so its move to accept was conformity with the panel rather than conviction. jHTA was 'satisfied'. iZMk kept 6 and asked one more notation question."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four ratings were 6 or 7, and the AC accepted. The AC posted nothing in the discussion. The two-paragraph meta-review restates the abstract and the method, names no weakness and no reviewer, and calls the solver one 'with optimal statistical performance', which the paper shows only for an orthogonal partition.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Feature-space partitioning credited as the new idea (Reviewer_J64c, Reviewer_iZMk, AC), although J64c disclaims expertise in partitioning and Reviewer_jHTA calls the method 'not particularly original'",
+    "Theory judged sound and insightful: J64c checked the proofs, and the AC reads the conditional minimax rate as unconditional",
+    "ParK matches FALKON's accuracy at lower cost on four large datasets (all reviewers, AC)",
+    "A point-by-point rebuttal with new experiments: no score fell, and Reviewer_o4bz aligned up to the panel",
+    "Uniform ratings of 6 and 7 at confidence 4"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    5,
+    7
+   ],
+   "confidences": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_gQRE",
+    "Reviewer_STtd"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_QUZt",
+    "direction": "champion",
+    "basis": "principled",
+    "evidence": "The only 7 against three 5s. Its stated basis is true: Table 1 shows TAXI (10^9 points) at 311.9 RMSE in 63 min against FALKON's 311.7 in 120 min. But it does not discuss the theory or the novelty, lists 'Lack of comparison with other partitioning algorithms' as a limitation itself, and posted nothing after the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_J1kM",
+     "evidence": "Two-sentence main review ('just a wrapper of some existing techniques and lacks novelty'; 'Large-scale KRR is also few applied in practice') and a one-sentence limitations field ('not very interesting'), yet 48 hours claimed. It asked no question, then wrote that the replies 'partially answer my questions' and kept 5 without saying what was missing."
+    },
+    {
+     "reviewer": "Reviewer_STtd",
+     "evidence": "Three-sentence main review in 3 hours; the critique sits in the limitations field. One of its three questions asks what the index set in Algorithm 1 is for, though line 87 defines it. No comment after the rebuttal; the 2021-08-27 edit carries no visible note."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_gQRE",
+     "claim": "The bound N_∞,q(λq) ≤ λq^-1 λmax(Tq) at line 208 is wrong.",
+     "checked_against_paper": "correct",
+     "evidence": "The printed bound fails in general: with n_q orthonormal feature vectors and λq = 1/n_q, N_∞,q = n_q/2 while the bound gives 1. The authors conceded 'λ_max should be κ²', and the camera-ready prints λq^-1 sup_x K(x,x). gQRE's guess of λmin is not the fix, but the error is real. The authors say nothing else uses the bound."
+    },
+    {
+     "reviewer": "Reviewer_gQRE",
+     "claim": "Centroid selection by Eq. 6 costs about O(nQ^4), not the O(Q² n log n) of line 161.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. 6 is the greedy rule of [8], whose incremental Cholesky update selects Q of n points in O(Q²n), as the authors' rank-1 reply says. The submitted paper never says so; the camera-ready adds the sentence."
+    },
+    {
+     "reviewer": "Reviewer_gQRE",
+     "claim": "Taking H = H_n turns Assumption 1 into f* ∈ H_n, which is too strong.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 197 takes H = H_n 'without loss of generality'. In fixed design the risk (14) uses f* only at the x_i. By the reproducing property, the projection of f* onto H_n takes the same values there, as the authors replied."
+    },
+    {
+     "reviewer": "Reviewer_gQRE",
+     "claim": "The paper does not say which kernel the experiments use.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5 names no kernel and defers the hyper-parameters to [19] (lines 291-292). The authors replied that it is the Gaussian kernel."
+    },
+    {
+     "reviewer": "Reviewer_gQRE",
+     "claim": "Random centres (ParK-Uni) lose little accuracy against the greedy centres (ParK).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: AIRLINE-CLS 31.6±0.3 % vs 31.5±0.2 %, AIRLINE 0.767±0.009 vs 0.759±0.005, TAXI 315.2 vs 311.9 RMSE, HIGGS 0.192 vs 0.182 (1−AUC), at about 40 % of ParK's total time. The authors' reply that ParK-Uni 'is never able to match the accuracy of FALKON' fails on AIRLINE-CLS (FALKON 31.5±0.2 %)."
+    },
+    {
+     "reviewer": "Reviewer_STtd",
+     "claim": "There is no comparison between space partitioning and data splitting.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 has only ParK, ParK-Uni and FALKON. Lines 166-185 discuss divide-and-conquer in prose only. The divide-and-conquer rows came in the rebuttal and in the camera-ready's Table 2."
+    },
+    {
+     "reviewer": "Reviewer_STtd",
+     "claim": "It is unclear why or how the feature-space partition promotes orthogonality.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 119-121 motivate the greedy rule by volume maximisation, and lines 318-324 concede that 'an actual guarantee is missing'."
+    },
+    {
+     "reviewer": "Reviewer_QUZt",
+     "claim": "The speedups differ across datasets and are far from 1/32.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 total time, ParK against FALKON: TAXI 63 vs 120 min (0.53), HIGGS 508 vs 715 s (0.71), AIRLINE 81 vs 334 s (0.24), AIRLINE-CLS 66 vs 391 s (0.17)."
+    },
+    {
+     "reviewer": "Reviewer_QUZt",
+     "claim": "The sources of the datasets are not given.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 295-297 say only 'the same pre-processing and same random train/test split used in [19]'."
+    },
+    {
+     "reviewer": "Reviewer_J1kM",
+     "claim": "The algorithm only combines existing techniques.",
+     "checked_against_paper": "correct",
+     "evidence": "The local solver is FALKON [25] unchanged (lines 138-139, 157), and the centre rule is from [8] (lines 119-120). The remaining new step, the feature-space Voronoi rule, gives input-space Voronoi cells for the Gaussian kernel used (see the Committee B AC row). The principal-angle analysis is new, and J1kM does not weigh it."
+    },
+    {
+     "reviewer": "Committee B AC (meta-review)",
+     "claim": "The feature-space partition may differ little from a kernelised partition with a clever greedy initialisation.",
+     "checked_against_paper": "correct",
+     "evidence": "For the Gaussian kernel (the authors' reply to Reviewer_gQRE), ‖φ(x)−φ(c)‖² = 2 − 2K(x,c) grows with ‖x−c‖. So the Voronoi rule of lines 88-91 assigns each point to its nearest centre in input space, and every ParK cell is an input-space Voronoi cell. This contradicts lines 93-95 ('very different from a Voronoi partition of the input space'). What remains specific to the feature space is the kernel-based choice of centres, from [8], and the analysis."
+    },
+    {
+     "reviewer": "Committee B AC (meta-review)",
+     "claim": "The paper does not show which component makes the method work.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1 isolates the two parts that are new to the pipeline. FALKON alone (the same local solver without a partition) shows that the partition cuts time at equal accuracy. ParK-Uni (random centres) shows that the greedy centre rule adds little accuracy. Nyström and preconditioned conjugate gradient are FALKON's own [25]."
+    },
+    {
+     "reviewer": "Committee B AC (meta-review)",
+     "claim": "The paper does not discuss whether random features could replace Nyström in the pipeline.",
+     "checked_against_paper": "correct",
+     "evidence": "Random features [22] appear only in the survey of the introduction (line 21)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_gQRE"
+    ],
+    "evidence": "Reviewer_gQRE's update (edited 2021-08-23): 'I only change my evaluation from 4 to 5'. Reviewer_J1kM (2021-08-28): 'I keep my score unchanged'. Reviewer_STtd edited on 2021-08-27 with no visible note, so any change is unknown. Reviewer_QUZt never edited or commented.",
+    "what_convinced_or_not": "The proof sketch settled gQRE's Q2 ('in particular for clarifying Q2'), but gQRE still found 'the experimental evaluation of the method is lacking in its current form' and wanted the promised results in the paper. No B reviewer commented on the divide-and-conquer-with-FALKON numbers posted to STtd and QUZt. J1kM gave no reason beyond 'has not met the standard of NeurIPS'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings were 5, and the AC rejected. The AC posted nothing in the discussion. The meta-review frames three requests of its own: the novelty of each component ('how new is the feature space partitioning?'), credit assignment, and whether random features fit. Only the first echoes a reviewer (J1kM's 'wrapper'). The credit-assignment request loosely echoes Reviewer_gQRE's ParK-Uni point and Reviewer_STtd's 'the advantages are not clearly shown'. It grants 'If the technical parts are okay'.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Three ratings of 5: experiments judged insufficient (Reviewer_gQRE, Reviewer_STtd) and novelty judged lacking (Reviewer_J1kM)",
+    "AC: unclear novelty of each component, no credit assignment, no word on random features; 'a lack of perspective on the work'",
+    "Random centres nearly match the greedy partition, so the partition's own value looks small (Reviewer_gQRE)",
+    "A false bound at line 208 (Reviewer_gQRE), conceded as a typo; gQRE started at 4",
+    "The rebuttal moved only gQRE, from 4 to 5, and the only 7 (Reviewer_QUZt) did not take part in the discussion"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Cells need not be balanced, which can erode the speedup (Reviewer_iZMk)",
+  "m_q and t_q in Theorem 1 depend on unknown quantities (Reviewer_iZMk)",
+  "Theorem 1 adds little to FALKON's analysis; the new theory is Propositions 2 and 3 (Reviewer_J64c, Reviewer_o4bz)",
+  "Fixed design only; a random-design analysis is wanted (Reviewer_jHTA, Reviewer_J64c)",
+  "Dependence on the input dimension, which the paper does not report (Reviewer_o4bz)",
+  "A cheaper centre rule such as kernel k-means++ seeding (Reviewer_o4bz)",
+  "Notation and missing steps in the appendix proofs (Reviewer_J64c)",
+  "'Statistical-computational trade-off' overstated without lower bounds; no table comparing rates and costs (Reviewer_jHTA)",
+  "Runtimes inconsistent with [19] (Reviewer_jHTA; a misread of the units)"
+ ],
+ "issues_only_b": [
+  "False bound at line 208 (Reviewer_gQRE)",
+  "Assumption f* ∈ H_n through H = H_n (Reviewer_gQRE; harmless in fixed design)",
+  "Kernel not named and no other kernel tried (Reviewer_gQRE)",
+  "Random centres (ParK-Uni) nearly match ParK (Reviewer_gQRE)",
+  "Only Q = 32 tested; behaviour for large Q; report the principal angle (Reviewer_gQRE)",
+  "Reproducibility: dataset sources and the steps that run on the GPU; speedups not 1/32 (Reviewer_QUZt)",
+  "Novelty of each component, credit assignment, random features in the pipeline (Committee B AC)",
+  "Large-scale KRR has little practical use (Reviewer_J1kM)"
+ ],
+ "shared_issues": [
+  "Only the feature-space partition is new; the rest combines FALKON, Nyström and the greedy rule of [8] (A: Reviewer_J64c, Reviewer_jHTA, Reviewer_iZMk; B: Reviewer_gQRE, Reviewer_J1kM, AC)",
+  "No guarantee that the greedy centre rule gives near-orthogonal cells (A: Reviewer_J64c, Reviewer_iZMk, Reviewer_o4bz, Reviewer_jHTA; B: Reviewer_STtd)",
+  "Thin experiments: FALKON is the only external baseline, with no data-splitting or other partitioning baseline (A: Reviewer_iZMk; B: Reviewer_gQRE, Reviewer_STtd, Reviewer_QUZt)",
+  "Behaviour at cell boundaries and the discontinuity of the stitched estimator (A: Reviewer_J64c, Reviewer_iZMk; B: Reviewer_STtd)",
+  "Cost of the greedy centre selection and its q×q inverse (A: Reviewer_o4bz; B: Reviewer_gQRE)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A accepted and Committee B rejected on mostly the same facts. Both pools credited the feature-space partition as the one new idea, saw the rest as FALKON plus the greedy rule of [8], and found the experiments thin. A's four reviewers rated this 6 to 7 at confidence 4. Reviewer_o4bz still called the paper 'borderline' after the rebuttal and moved to accept by 'aligning my score with other reviewers'. A's AC wrote a summary with no weakness and read the minimax rate as unconditional, but the paper gets that rate only when cos θ = 0. B's pool rated the paper 5, 5, 5, 7. Its most specific reviewer, Reviewer_gQRE, found a false bound at line 208 and saw that random centres nearly match ParK. Both points hold, and gQRE rose only from 4 to 5. Reviewer_J1kM's 5 rests on two sentences. B's AC rejected on its own framing: novelty of each component, credit assignment and random features. On novelty the paper supports B more than A. For the Gaussian kernel used, ‖φ(x)−φ(c)‖² = 2 − 2K(x,c) grows with ‖x−c‖, so every ParK cell is an input-space Voronoi cell. The only feature-space step is the centre rule, which Table 1 shows adds little accuracy at about 2.5 times ParK-Uni's time. Also, K > 0 for every pair and adjacent cells hold near-identical points, so cos θ is near 1 on these data, and Propositions 2 and 3 give no useful control. No reviewer in either committee raised either point. The split comes from reviewer calibration and from how each AC treated the novelty question, not from different facts.",
+ "candidate_reasons": [
+  "same facts, different calibration",
+  "AC frames own novelty doubts",
+  "reviewer aligns score with panel",
+  "AC restates paper claims uncritically",
+  "conditional theory read as unconditional",
+  "thin reviews on reject side"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_o4bz discussion 2021-08-22 ('aligning my score with other reviewers')",
+  "Committee A meta-review",
+  "Reviewer_J64c review ('I am not an expert on partitioning techniques')",
+  "Reviewer_gQRE review (Q1 to Q4) and update after the rebuttal",
+  "Authors' reply to Reviewer_gQRE (line 208 typo, Gaussian kernel, rank-1 updates)",
+  "Reviewer_J1kM review and 2021-08-28 comment",
+  "Committee B meta-review",
+  "paper_submitted lines 88-95 (Voronoi rule by RKHS distance; claim that feature-space cells differ from input-space cells)",
+  "paper_submitted line 208 (bound with λmax(Tq)); the camera-ready uses sup K(x,x)",
+  "paper_submitted Table 1 (ParK, ParK-Uni, FALKON)",
+  "paper_submitted Propositions 2 and 3 and lines 252-255 (minimax rate only when cos θ = 0)",
+  "paper_submitted lines 318-324 (no guarantee for the centre rule)"
+ ]
+}

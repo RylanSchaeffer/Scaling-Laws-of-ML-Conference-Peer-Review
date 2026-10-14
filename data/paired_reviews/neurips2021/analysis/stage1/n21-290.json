@@ -1,0 +1,224 @@
+{
+ "pair_id": "n21-290",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    6,
+    7,
+    7
+   ],
+   "confidences": [
+    3,
+    3,
+    2,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Ae4v",
+    "Reviewer_3PA6",
+    "Reviewer_FQ8n"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6 to 7 around a mean of 6.5; no rating stands apart. The two 7s carry the least support: Reviewer_nv8j's 79-word main review and Reviewer_FQ8n at confidence 2 ('I am not familiar with the SMC literature'). Before the rebuttal the spread was wider (Ae4v at 5, 3PA6 at 5 or lower)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_nv8j",
+     "evidence": "A 7 on a 79-word main review written in 2-3 hours. It names no section, table, number or weakness. It calls the paper 'very well written and easy to follow', which Ae4v, 3PA6, all three B reviewers and A's own meta-review contradict, and ends 'one of the better papers I have reviewed this season--a clear accept'. It posted nothing after the rebuttal. It is no evidence of quality."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Ae4v",
+     "claim": "The deep generative model experiment has no quantitative results and no baselines; the RWS comparison is in a 'Figure 9' that is not in the paper.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.3 of paper_submitted.pdf shows only Figure 7 (samples and lambda bars for one test mini-batch per dataset). Line 299 cites 'Figure 9', but the 12-page submission ends at Figure 7. Lines 287-288 also say 'no nested construction is required' in this experiment. The camera-ready moves a qualitative RWS panel into Figure 7."
+    },
+    {
+     "reviewer": "Reviewer_Ae4v",
+     "claim": "The multimodal sampling problem is quite toy and the gains over AVO are not striking.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 2 and 5 show 2-D targets. Table 1 at K=8: log Z-hat 2.05 (AVO) vs 2.08 (NVIR*), with log Z about 2.08. ESS doubles (46 vs 97), but NVIR on the linear path also reaches 97, so the ESS gain comes from resampling, not from the learned path; NVI without resampling has ESS 41."
+    },
+    {
+     "reviewer": "Reviewer_Ae4v",
+     "claim": "Lines 101-103 list SMC twice as a special case.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 101-103 list SMC [Doucet et al., 2001] and SMC samplers [Chopin, 2002], two different classes, and lines 103-108 explain the difference. A minor nit with no effect on the rating."
+    },
+    {
+     "reviewer": "Reviewer_FQ8n",
+     "claim": "The submission's claims are well supported by the experimental results.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The conclusion (lines 305-307) says NVI outperforms baselines for multimodal densities, state-space models and deep generative models. Only Table 1 supports this. Figure 6 shows parity with the hand-coded GMM heuristic (log Z-hat -433 vs -437, ESS 938 vs 939; line 268 says 'similar'), and Section 4.3 has no quantitative comparison."
+    },
+    {
+     "reviewer": "Reviewer_FQ8n",
+     "claim": "Experiment 3 contains a favorable qualitative comparison with the same model trained with RWS.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The submission only cites this comparison as Figure 9 (line 299), which is not in the main PDF. The supplement is not in the record."
+    },
+    {
+     "reviewer": "Reviewer_3PA6",
+     "claim": "The derivations of the gradient estimates are correct.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The derivations are in Appendix D, which is not part of paper_submitted.pdf."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Ae4v",
+     "Reviewer_3PA6"
+    ],
+    "evidence": "Ae4v edited on 2021-08-31: 'I'm convinced that the technical contribution of the paper is solid, and in light of this am raising my score by a point' (5 to 6). 3PA6 edited on 2021-08-30: 'They managed to clarify most of my concerns, especially about the KL objective. Hence, I raise my score' (final 6, so 5 or lower before). FQ8n's edit (2021-07-17) predates the responses, and nv8j never edited. Neither FQ8n nor nv8j posted in the discussion.",
+    "what_convinced_or_not": "Explanations, not new results. The authors said Eq. 6 is the objective, that a KL step equals an ELBO or EUBO at the last level, why the reverse kernel is needed, that a surrogate objective makes autodiff work, and that NVIR doubles AVO's ESS (46 to 97). They promised a contributions paragraph, an algorithm box, NIS background and a limitations discussion. Ae4v did not change its view of the experiments; the raise rests on technical soundness."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'The reviewers consider the work represents a solid and novel technical contribution and is above the acceptance bar for NeurIPS.' The rest lists presentation fixes from FQ8n, Ae4v and 3PA6 (contributions list, algorithm box, NIS background, limitations, ELBO relation, forward-KL instability). It does not mention Ae4v's point that the experiments are 'not particularly compelling' or that Section 4.3 has no quantitative results.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four final ratings at 6 or 7 (mean 6.5) after Ae4v and 3PA6 each raised one point",
+    "Method judged novel and technically solid; Ae4v's 'technical contribution of the paper is solid' reappears in the meta-review",
+    "Presentation problems judged fixable in the camera-ready; the thin evaluation was not treated as decisive"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    6
+   ],
+   "confidences": [
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_4J52",
+    "Reviewer_UVCx"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5 to 6 around a mean of 5.33. Before the discussion Reviewer_UVCx was the lone champion (at least 7, since it 'lowered my score to a 6'). After reading the other reviews UVCx moved to 6, which closed the gap."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_PZ8J",
+     "claim": "The mixture-of-Gaussians task is a 2-D toy problem, and the second experiment also uses synthetic data.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 2 and 5 show 2-D targets (8 modes on a ring). Lines 262-263: 'We train on 10000 simulated HMM instances', with M = 4 states."
+    },
+    {
+     "reviewer": "Reviewer_PZ8J",
+     "claim": "The paper does not compare against AIS with HMC or other MCMC kernels.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 compares SVI, SVI-flow, AVO, AVO-flow and NVI variants; Figure 4 adds variational SMC. No AIS or MCMC-kernel baseline appears. The authors promised one; the camera-ready Table 1 has the same rows."
+    },
+    {
+     "reviewer": "Reviewer_PZ8J",
+     "claim": "The gradient estimators are biased, and the bias is not analysed.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 61-66 state that the self-normalized estimator is biased and that gradient estimates 'will initially be strongly biased'. No experiment measures the bias."
+    },
+    {
+     "reviewer": "Reviewer_4J52",
+     "claim": "The baselines are idiosyncratic and do not represent the state of the art.",
+     "checked_against_paper": "correct",
+     "evidence": "Footnote 2: 'AVO-flow is not technically a baseline'. The flow baseline (SVI-flow, planar flows) is reported only at K=2. Arbel et al. [2021] is cited as concurrent work but not compared. The authors replied that they chose AVO for 'technical similarity'."
+    },
+    {
+     "reviewer": "Reviewer_UVCx",
+     "claim": "Table 1 reports very similar results for several methods (AVO-flow vs NVI*-flow) without confidence intervals, and the bolding is inconsistent.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: log Z-hat 2.05/2.08/2.07/2.08 (AVO-flow) vs 2.05/2.08/2.08/2.08 (NVI*-flow); ESS 70 vs 70 at K=8. NVI*-flow's 2.08 at K=4 is bold and AVO-flow's equal 2.08 is not. Neither Table 1 nor Figure 6 has error bars."
+    },
+    {
+     "reviewer": "Reviewer_4J52",
+     "claim": "The authors discuss the limitations of their approach only briefly.",
+     "checked_against_paper": "correct",
+     "evidence": "There is no limitations section. Only the forward-KL instability (lines 124-130) and the untested large-K regime (lines 184-185) appear, yet checklist item 1(b) answers [Yes]."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": [
+     "Reviewer_UVCx"
+    ],
+    "evidence": "UVCx edited on 2021-08-30: 'Having read the other reviewer's comments, I agree with them that the paper could benefit from a significantly more focused presentation and more systematic experiments. I have therefore lowered my score to a 6.' 4J52 on 2021-08-12: 'Not convinced, some work needs to be done'; on 2021-08-18 it doubted 'such a revision is possible in the context of this submission'. PZ8J on 2021-08-18: 'As things are, I'm inclined to keeping my score.' 4J52's edit (2021-06-29) predates the responses.",
+    "what_convinced_or_not": "The requests needed new work: AIS or HMC baselines, higher-dimensional real tasks, a bias study, a focused framing and structured-VI baselines. The authors could only promise them (AIS baseline, non-synthetic dataset, bias experiment, ASVI). 4J52 conceded that the structured-VI papers are 'orthogonal' but kept the focus objection. The authors' last reply (2021-08-30) said they 'emphatically disagree that our experiments lack appropriate baselines' and drew no answer. UVCx moved down on the other reviewers' arguments, not on new evidence about the paper."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'The reviewers found the method interesting and novel but felt that the presentation was too unfocused, and the evaluation, while broad, insufficiently systematic to be convincing.' The fixes it asks for (a realistic dataset for Section 4.1, baselines framed as ablations, how NVI applies in each setting) are PZ8J's points; 'unfocused' and 'systematic' are 4J52's words. It describes NVI as minimizing 'the (local) reverse KL-divergence', although experiments 2 and 3 use the forward KL.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Evaluation judged not systematic: a 2-D annealing target, a synthetic 4-state HMM and a qualitative MNIST study",
+    "Baselines are ablations or close relatives; no AIS, HMC or state-of-the-art comparison",
+    "Presentation judged too generic and unfocused (4J52 and PZ8J, then UVCx)",
+    "No final rating above 6 after UVCx lowered its score (mean 5.33)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No background on nested importance sampling; background spent on standard VI (Reviewer_Ae4v)",
+  "Implementation with autodiff unclear; asks for an algorithm box (Reviewer_Ae4v, Reviewer_3PA6)",
+  "Role of the reverse kernel and meaning of the pairwise objective (Reviewer_3PA6)",
+  "Section 4.3 has no quantitative results or baselines; RWS comparison only in a missing Figure 9 (Reviewer_Ae4v)",
+  "No speed comparisons; doubts about scaling to HMMs with thousands of states (Reviewer_FQ8n)"
+ ],
+ "issues_only_b": [
+  "No AIS or SMC baseline with HMC or other MCMC kernels (Reviewer_PZ8J)",
+  "Bias of the self-normalized gradient estimators not analysed, especially in high dimensions (Reviewer_PZ8J)",
+  "No higher-dimensional or real-data inference tasks, e.g. inference gym models (Reviewer_PZ8J)",
+  "Baselines idiosyncratic and not state of the art; structured-VI literature and baselines missing (Reviewer_4J52)",
+  "State-space experiment out of scope; paper should focus on learning AIS paths (Reviewer_4J52)",
+  "No confidence intervals in Table 1 and Figure 6; inconsistent bolding (Reviewer_UVCx)"
+ ],
+ "shared_issues": [
+  "Presentation too abstract and general; needs a concrete instantiation (Ae4v, FQ8n, 3PA6; 4J52, PZ8J)",
+  "Small, toy-scale experiments (Ae4v, FQ8n; PZ8J, 4J52)",
+  "Small margins over AVO in Table 1 (Ae4v; UVCx)",
+  "Whether the objective is a bound, and its relation to the ELBO (Ae4v; PZ8J)",
+  "Why full optimization fails in Section 4.2 (Ae4v; UVCx)",
+  "Limitations discussed only briefly (Ae4v; 4J52, PZ8J)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same paper: a novel, technically sound method with an abstract presentation and a thin evaluation (a 2-D annealing target, a synthetic 4-state HMM and a qualitative MNIST study). Before the rebuttal they stood close: A at 5, 5 or lower, 7 and 7; B at 5, 5 and at least 7. Two things split them. First, the kind of objection. A's critics (Reviewer_Ae4v, Reviewer_3PA6) asked mostly clarity questions, which the rebuttal answered with explanations, and each raised one point to 6. B's critics (Reviewer_PZ8J, Reviewer_4J52) asked for new work (AIS or HMC baselines, higher-dimensional real tasks, a bias study, a focused framing), which a rebuttal can only promise, and both held at 5. Second, the direction of peer influence. B's only champion, Reviewer_UVCx, read the other reviews and lowered to 6. A's two 7s came from a 79-word review (Reviewer_nv8j) and a confidence-2 review (Reviewer_FQ8n), and neither reviewer joined the discussion. Each AC followed its committee; A's meta-review omits the experimental critique. The submission supports B's empirical points: the conclusion claims NVI outperforms baselines in all three settings, but Figure 6 shows parity with the hand-coded GMM heuristic and Section 4.3 has no quantitative comparison. Ae4v saw the same weakness and still accepted on technical merit. The split is the same facts weighted differently, made larger by reviewer draw.",
+ "candidate_reasons": [
+  "Same thin evaluation, different weight",
+  "Clarity doubts resolved by rebuttal",
+  "New-experiment requests unanswerable in rebuttal",
+  "Champion lowered after reading peers",
+  "Thin uncritical champion review",
+  "Meta-review omits experimental weakness"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_Ae4v final review (update paragraph)",
+  "Reviewer_3PA6 final review (closing note)",
+  "Reviewer_nv8j review",
+  "Reviewer_UVCx final review (EDIT paragraph)",
+  "Reviewer_PZ8J review and 2021-08-18 comment",
+  "Reviewer_4J52 comments of 2021-08-12 and 2021-08-18",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf Table 1, Figure 6, Section 4.3 lines 287-299, conclusion lines 305-307"
+ ]
+}

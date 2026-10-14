@@ -1,0 +1,246 @@
+{
+  "run": 1,
+  "turn": 31,
+  "pair_id": "n21-091",
+  "kind": "spotlight/reject",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "A's area chair followed the 8, 7, 7 majority for acceptance and B's followed its reviewers; A's unargued tier is covered by R31, not by a reading of the chair's own."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither committee rested its recommendation on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The promised PnP/RED comparisons raised A's detractor nVFq to 5; B's GwuL rejected the same promise and kept 4, and no B score rose."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's spotlight leans on YnSg's 7 at confidence 5 after 2 hours, a pasted summary and 'I don't know' on significance; B's decisive critic GwuL read the paper closely."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B asked whether the SVD construction beats prior samplers ([13, 21]) on the same NCSNv2 prior, flagged the unbounded approximation, and credited the images to NCSNv2; all fed B's reject."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both saw strong samples, a hard Section 3 and no baseline; A's chair let the figures 'speak for themselves', B made the missing baseline the main reason to reject."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "B's d1T5, kSnH and VyNV, none of whom had raised baselines, each dropped two points after reading GwuL's review, turning 7, 7, 6, 4 into 5, 5, 4, 4."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each final rating fits its review's verdict; nVFq's 5 matches 'would understand if this paper is accepted'."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "YnSg admitted it could not judge improvement but gave a clear 7, not a borderline score; that case is R27."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's chair drew on GwuL and VyNV after all four reviewers had converged below threshold, so it did not set other reviewers aside."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments diverged after discussion; the score gap is not a calibration difference on similar text."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A had a dissenting 5, so no unanimity argument was made."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "nVFq raised its score on promised PnP/RED comparisons that were never checked; the camera-ready adds only one sentence on a RED comparison in the supplement."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's meta-review omits the missing baselines that nVFq, y4bh and YnSg raised; B's meta-review makes them the first major problem."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "The wrong claims (YnSg's pixel-domain reading, d1T5's instability, GwuL's 'not a denoiser', VyNV's 'MMSE estimator') were peripheral; both decisions rested on the correct no-baseline fact."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "A's authors conceded framing and citation faults, not an unfavourable fact about results; the missing baseline was already in the reviews."
+    },
+    {
+      "id": "R17",
+      "applies": true,
+      "justification": "GwuL's same-prior sampler test came on 2021-09-07, a month after the 2021-08-09 responses, and the three B drops (09-06 to 09-14) followed with no author reply; A's objections were all answered."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The final scores differ (5, 8, 7, 7 against 5, 5, 4, 4), so the split is not a cut-off difference on near-identical reviews."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's chair did weigh nVFq, its most specific reviewer, by citing the weak innovation over [19], and nVFq itself accepted acceptance."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "A's main concerns (framing, citations, comparisons) were answered by promised fixes; B judged the baseline gap a demonstration failure that 'should have been included in the main submission', so no response could close it."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "No single outlier crossed a tier boundary: A's detractor did not stop the spotlight, and B's final scores have no outlier."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Both outlying reviewers, nVFq and GwuL, replied to the authors' responses."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "A's chair did not discard nVFq as unreliable and did award a higher tier."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No reviewer raised audience breadth or venue fit."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "B's meta-review copies VyNV's misreading of the method, not a misreport of positions or of what the rebuttal answered; A's omission is R14."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "In A, two of four reviewers (y4bh, YnSg) never replied, not most; in B all three moved reviewers engaged and revised."
+    },
+    {
+      "id": "R27",
+      "applies": true,
+      "justification": "YnSg rated 7 while writing 'I am unable to judge whether the proposed method is an improvement', and A's chair counted it in the accepting majority."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "Neither committee had an even split; A was 3 to 1, B converged on reject."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "Both committees received the same promise of PnP/RED comparisons; the responses did not differ in substance."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "nVFq's novelty point over [19] was disputed, not wrong, and no reviewer's novelty verdict rested on a misread prior work."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's meta-review concedes a weak step over [19] and overcomplicated derivations and gives no case for a spotlight at 5, 8, 7, 7."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "No reviewer objected from a neighbouring field's premises."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "B's most positive reviewers engaged and revised down after discussion, so the definition's light, disengaged top reviewer is absent."
+    }
+  ],
+  "added": [],
+  "reasoning": "The split opened in discussion: both committees saw strong samples, a hard derivation and no baseline. A's detractor accepted promised comparisons and A's chair gave an unargued spotlight on the figures, omitting the baselines, with a thin high-confidence 7 in the majority; B's detractor rejected the same promise, raised a same-prior test after the response period, and the other three reviewers followed. Existing reasons R03, R04, R05, R06, R07, R13, R14, R17, R20, R27 and R31 cover every mechanism in the stage 1 candidates, including the crediting of image quality to NCSNv2 (R05), so no reason was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33"
+  ]
+}

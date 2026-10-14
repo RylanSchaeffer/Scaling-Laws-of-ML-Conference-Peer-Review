@@ -1,0 +1,222 @@
+{
+  "pair_id": "n21-309",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 4, 4, 5],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_XQrZ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 4, 4, 5 at confidence 4 to 5 (Reviewer_XQrZ, Reviewer_7Nfr, Reviewer_bwjY, Reviewer_EKdk). The panel is uniform. All four praise the clarity or the results, and all four rate below threshold for limited methodological novelty."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bwjY",
+          "evidence": "Calls it 'the main limitation' that in spike data 'we usually do not know which are the missing samples', which confuses unsampled points with zero counts. Submission lines 33-35 say each neuron is sampled at 'staggered, known times', lines 180-182 impose the masks by design, and the Figure 2 caption separates 'Masked data' from 'observed zeroes'. The rebuttal corrected this; bwjY never replied and kept 4."
+        },
+        {
+          "reviewer": "Reviewer_7Nfr",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') after 2 hours; the main review is three sentences. It calls coordinated dropout, masked language modelling and DeepInterpolation 'competitive works' missing from the experiments, but lines 116-118 say those methods split fully observed data, and line 164 shows coordinated dropout is part of every AutoLFADS model. It says there are 'no other imputation or interpolation type of methods', but line 232 interpolates the frame-rate baselines to 100 Hz."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XQrZ",
+          "claim": "The technique is apparent and is probably already used by others who handle missing data.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 114-119 call SBTT 'a similar strategy' to coordinated dropout and masked language modelling: zero-fill missing inputs and sum the loss over observed points only. After acceptance, a public comment on B's forum pointed to Hurwitz et al. (NeurIPS 2019), which used the same trick for missing electrodes without time. The authors agreed, and camera-ready Section 3.1 says prior work 'has adopted a similar strategy to handle missing data'. Only the temporal setting is new."
+        },
+        {
+          "reviewer": "Reviewer_7Nfr",
+          "claim": "Coordinated dropout, masked language modelling and DeepInterpolation are competing missing-data methods, and none is in the experiments.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 116-118: these methods 'split fully-observed data into two portions'; they do not handle missing data. Line 164: every model is trained with coordinated dropout as part of AutoLFADS."
+        },
+        {
+          "reviewer": "Reviewer_7Nfr",
+          "claim": "SBTT is not compared with a simple imputation or interpolation approach.",
+          "checked_against_paper": "correct",
+          "evidence": "No experiment imputes the missing inputs and trains a standard model. In Section 4.1 the only baseline is GPFA on fully observed data (lines 189-191). The calcium experiments do interpolate the frame-rate outputs of A-ZIG-FR and smoothing to 100 Hz (line 232), so the claim holds for inputs, not for outputs."
+        },
+        {
+          "reviewer": "Reviewer_bwjY",
+          "claim": "The core of SBTT is a mask on the reconstruction error, which is not novel in machine learning (GAIN).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 118-119 describe SBTT as zero-filling missing inputs and 'aggregating only losses for observed data points'. GAIN imputes with a GAN and models no dynamics, as the rebuttal says, so it is a loose precedent. The masked loss itself is not new; the camera-ready cites Hurwitz et al. 2019 for it."
+        },
+        {
+          "reviewer": "Reviewer_bwjY",
+          "claim": "In real spike data the missing samples are unknown, so the mask cannot be obtained; a zero cannot be told apart from a missing spike.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 33-35: neurons are sampled 'at staggered, known times'. Lines 180-182: masks are imposed by design. Figure 2 caption: 'Masked data are shown in white, observed zeroes are shown in light purple.' Missing means unsampled, not zero."
+        },
+        {
+          "reviewer": "Reviewer_bwjY",
+          "claim": "The spike-decoding experiment compares only with GPFA.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 189-191: GPFA (40 latent dimensions, 20 ms bins) on the fully observed data is the only external baseline in Section 4.1. The rebuttal added NDT with selective backpropagation, which falls to R2 0.28 at 80% dropped samples against 0.80 for AutoLFADS with SBTT."
+        },
+        {
+          "reviewer": "Reviewer_EKdk",
+          "claim": "The number of LFADS latent factors is not given, so the comparison with 40-factor GPFA cannot be judged.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 190 gives 40 dimensions for GPFA only. The authors called it 'an omission' and said both models used 40."
+        },
+        {
+          "reviewer": "Reviewer_EKdk",
+          "claim": "LFADS runs at a finer time resolution than GPFA in Section 4.1.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 179: spikes binned at 10 ms for LFADS; line 190: GPFA at 20 ms. The rebuttal said 20 ms is the best GPFA bin on this dataset and that AutoLFADS decodes equally well at both (R2 0.84 and 0.83)."
+        },
+        {
+          "reviewer": "Reviewer_EKdk",
+          "claim": "The 100 Hz sampling rate of the simulated Lorenz neurons is unrealistically high.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 221 says firing rates were simulated at 100 Hz; line 224 gives the simulated imaging rate as 33 Hz with three sub-frame phases. The reviewer read the simulation rate as the sampling rate."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A reviewer posted after the authors' responses of 2021-08-10. Reviewer_XQrZ's only edit, 2021-07-16, predates them; the other three reviews were never edited. The meta-review: reviewers 'decided to not change their opinion' and said so 'in internal discussions'.",
+        "what_convinced_or_not": "Nothing moved. The rebuttal added an NDT comparison, explained that the mask is known by design, defended GPFA and the 20 ms bins, and explained the 100 Hz rate. It also conceded that SBTT is 'not a complex algorithmic innovation', which confirmed the main objection. Reviewer_EKdk had written that it was 'very open to increasing my score' but did not."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review gives the reviewers' two reasons, a thin methodological contribution and missing comparisons 'e.g. with interpolation methods', and adds: 'Your AC does not necessarily agree with all of these criticisms, but does have to respect the consensus of the reviewers.' The interpolation point is half right: no input-imputation baseline exists, but the calcium baselines are interpolated to 100 Hz (line 232).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings below threshold (5, 4, 4, 5); the AC deferred to the unanimous panel despite partial disagreement.",
+        "SBTT judged too small a change to AutoLFADS for NeurIPS: a masked loss plus zero-filled inputs (all four reviewers).",
+        "Comparisons judged insufficient: no imputation or interpolation baseline (Reviewer_7Nfr; meta-review), GPFA a 'straw man' (Reviewer_EKdk), no Kalman filter (Reviewer_bwjY).",
+        "The rebuttal's NDT experiment and clarifications drew no reply from any reviewer."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 8, 6],
+      "confidences": [3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_SHsa"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 8, 6 lie within two points (Reviewer_ZS9v, Reviewer_b2vn, Reviewer_SHsa). Reviewer_b2vn's 8 (7 hours) is the most enthusiastic and gives reasons: a new problem framing, thorough experiments on simulated and real data, clear writing. Reviewer_ZS9v's 7 does not match its text (see inattentive_reviews). Without ZS9v the mean is still 7.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ZS9v",
+          "evidence": "2 hours, confidence 3, four numbered requests. It rates 7 ('Good paper, accept') but writes that 'the authors should improve some parts of the draft before further consideration' and lists missing state-of-the-art comparisons, the kind of gap Committee A treated as grounds for rejection. It asks about 'the two equations in lines 137 and 128'; line 128 is prose. It never replied after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_SHsa",
+          "claim": "The method has two elements: the generative loss is zeroed where data are missing, and missing inputs are zero-filled before the encoder.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 118-119 and Figure 1c ('Zero-filled input data')."
+        },
+        {
+          "reviewer": "Reviewer_SHsa",
+          "claim": "The paper gives no justification for filling missing inputs with zeros.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 119 states the zero-fill without a reason. The authors agreed the choice is 'arbitrary' and argued that the learned input layer absorbs any constant."
+        },
+        {
+          "reviewer": "Reviewer_SHsa",
+          "claim": "The text refers to 'KL penalties described above', but only one is described.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 148-149 describe the KL penalty on the initial condition. Lines 153-154 draw u(t) 'similar to z' but state no penalty for it. Line 161 says 'the KL penalties described above'. The authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_ZS9v",
+          "claim": "The experiments include no other state-of-the-art method such as transformers or neural ODEs.",
+          "checked_against_paper": "correct",
+          "evidence": "Neural ODEs [41] and transformers [42] are cited in related work (lines 102-103) but not run. The only comparisons are AutoLFADS variants, GPFA and Gaussian smoothing. The rebuttal added NDT with selective backpropagation; the camera-ready puts it in Figure 2b."
+        },
+        {
+          "reviewer": "Reviewer_b2vn",
+          "claim": "The paper gives no citation or definition for its pseudo-R2.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 197-198 name pR2 next to the GLM references [50, 51] but give no definition. Committee A's Reviewer_bwjY asked the same."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "The authors' summary of 2021-08-10 lists the scores as 6, 8, 7, the same as the final ratings. Reviewer_SHsa's edit of 2021-08-25 appends a post-rebuttal note: 'I am therefore reluctant to increase my score'. Reviewer_b2vn on 2021-08-26: 'I am keeping my initial score.' Reviewer_ZS9v never replied.",
+        "what_convinced_or_not": "SHsa said the response 'consolidates my impressions' but held at 6 because 'there is no substantial technical insight required to replace missing data with zeros'. The authors had conceded that the zero-fill is 'arbitrary' and that the work is 'not a substantial algorithmic innovation'. b2vn liked the new NDT analysis but was already at 8. ZS9v got the transformer comparison it asked for and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers and I agree', then its own reading: a novel use of the 2p laser scan pattern to recover fine-timescale dynamics; technically 'straightforward'; zero-filling 'works well enough' though amortized inference with missing data 'isn't solved'; 'thorough analyses, impressive experimental results, and clarity of the text'. It does not address SHsa's view that the technical contribution alone would merit rejection.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All ratings above threshold (7, 8, 6); none moved after the rebuttal.",
+        "Experiments judged thorough and convincing on simulated and real electrophysiology and calcium data (Reviewer_b2vn 'very thorough and high quality'; Reviewer_SHsa 'impressive and convincing: the method just works').",
+        "Problem framing valued: bandwidth limits and 2p sub-frame timing cast as missing data (Reviewer_b2vn 'a novel idea'; AC).",
+        "Limited technical novelty acknowledged but outweighed (Reviewer_SHsa: would 'normally lead to a clear reject' yet scored 6; AC: 'straightforward').",
+        "Expected practical uptake, especially for calcium imaging (Reviewer_b2vn, Reviewer_SHsa)."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Input imputation or interpolation baselines and other missing-data methods: GAIN, Gunnarsson 2021, Comas-Massague 2020 (Reviewer_7Nfr, Reviewer_bwjY); the A meta-review names interpolation.",
+    "GPFA called a 'straw man': Poisson-GPFA, matched bin sizes (10 against 20 ms), the LFADS factor count and compute cost requested (Reviewer_EKdk).",
+    "Kalman-filter decoding under dropped samples (Reviewer_bwjY), and the claim that the mask is unknowable in real spike data (Reviewer_bwjY, a misreading).",
+    "Calcium baselines given no sub-frame phase input (Reviewer_bwjY); resemblance to LFADS stitching (Reviewer_EKdk).",
+    "Coherence frequencies in Figure 4d and figure polish (Reviewer_XQrZ); the 100 Hz simulation rate (Reviewer_EKdk, a misreading)."
+  ],
+  "issues_only_b": [
+    "Zero-filling the encoder input is arbitrary; mean fill or variational treatment of missing inputs suggested (Reviewer_SHsa).",
+    "GPFA's Bayesian handling of missing data deserves credit, and GPFA itself should be tested with missing data (Reviewer_SHsa).",
+    "SBTT should be shown on other architectures such as transformers, deep sets and neural ODEs, with recovered samples (Reviewer_ZS9v).",
+    "How SBTT plugs into the SVAE, the single described KL penalty, and the confusing first paragraph of Section 2 (Reviewer_ZS9v, Reviewer_SHsa).",
+    "Doubtful uptake for Neuropixels, tool usability and acronym naming (Reviewer_b2vn)."
+  ],
+  "shared_issues": [
+    "SBTT is technically simple: a masked loss plus zero-fill on AutoLFADS (A: all four reviewers; B: Reviewer_SHsa and the AC).",
+    "The paper is clear, the problem is important and the results are good (A: Reviewer_XQrZ, Reviewer_7Nfr, Reviewer_EKdk; B: all three reviewers).",
+    "Few external baselines: GPFA on full data is the only one in Section 4.1 (A: Reviewer_7Nfr, Reviewer_bwjY, Reviewer_EKdk; B: Reviewer_ZS9v).",
+    "Definition and citation of pseudo-R2 (A: Reviewer_bwjY; B: Reviewer_b2vn)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same facts differently. Both saw that SBTT is a small change to AutoLFADS: zero-fill the missing inputs and drop their loss terms (submission lines 118-119). Both saw a clear paper, strong results on three datasets and few external baselines. Committee A's four reviewers made the simplicity decisive (5, 4, 4, 5) and asked for imputation, Poisson-GPFA and Kalman-filter baselines. Two of them misread specific points: Reviewer_bwjY thought the mask is unknowable in real data, and Reviewer_7Nfr counted coordinated dropout as a missing competitor although every model uses it. None of the four replied to a rebuttal that added an NDT comparison. A's AC wrote that it did not fully agree but would not overrule a unanimous panel. In Committee B, Reviewer_SHsa held A's view of the novelty ('would normally lead to a clear reject in my mind') yet scored 6 for the experiments and the framing. Reviewer_b2vn (8, 7 hours) championed the problem framing, and Reviewer_ZS9v gave a 7 that its own revise-style text does not support. B's AC read the 2p sub-frame timing result as the contribution. A's central objection was sound: the camera-ready cites a 2019 paper that used the same masking trick without time. But B saw the simplicity as clearly as A did, so no fatal flaw separates the committees. The split is a different bar for technical novelty against application value, with a champion only in B and an AC in A who deferred to the scores.",
+  "candidate_reasons": [
+    "Novelty bar versus application value",
+    "Champion present only in B",
+    "AC deferred to unanimous scores",
+    "Baseline demands decisive in A",
+    "Rejecting reviewers ignored the rebuttal",
+    "Thin accept review in B"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_XQrZ final review (Committee A)",
+    "Reviewer_7Nfr final review, limitations field (Committee A)",
+    "Reviewer_bwjY final review, points 1, 2, 3 and 5 (Committee A)",
+    "Reviewer_EKdk final review (Committee A)",
+    "Authors' responses of 2021-08-10 in Committee A, including the NDT+SB table",
+    "Reviewer_SHsa review and post-rebuttal update, edited 2021-08-25 (Committee B)",
+    "Reviewer_b2vn review and comment of 2021-08-26 (Committee B)",
+    "Reviewer_ZS9v review (Committee B)",
+    "Public comment by Cole Hurwitz of 2022-01-05 and the authors' reply of 2022-01-14 (Committee B forum)",
+    "paper_submitted lines 33-35, 180-182 and Figure 2 caption (known sampling times; masked data distinct from observed zeroes)",
+    "paper_submitted lines 114-119 and 164 (SBTT as zero-fill plus masked loss; coordinated dropout inside AutoLFADS)",
+    "paper_submitted lines 179 and 189-191 (10 ms against 20 ms bins; GPFA the only baseline in Section 4.1)",
+    "paper_submitted lines 221-232 (100 Hz simulation, 33 Hz imaging; phase discarded and outputs interpolated for the baselines)",
+    "paper_submitted lines 148-161 (one KL penalty described; 'Possion' typo)",
+    "paper.pdf (camera-ready) Section 3.1 (prior use of the strategy, reference 47) and Section 4.1 (NDT with selective backpropagation)"
+  ]
+}

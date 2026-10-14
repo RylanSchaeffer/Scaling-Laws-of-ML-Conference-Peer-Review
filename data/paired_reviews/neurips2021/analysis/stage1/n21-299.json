@@ -1,0 +1,205 @@
+{
+  "pair_id": "n21-299",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 5],
+      "confidences": [3, 4, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 4, 5 (mean 4.33), all below the threshold. After the rebuttal, all three reviewers separately recommended another conference cycle."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_M2vD",
+          "claim": "The paper only studies a single neuroscience task, so it is unclear whether the results generalize.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has the two-neuron toy task (Section 3) and the Ready-Set-Go task (Section 4), nothing else. Discussion lines 219-221: 'we focused on two tasks. Clearly, to establish the concept of the space of solutions similar analyses must be done across multiple tasks.'"
+        },
+        {
+          "reviewer": "Reviewer_PRAa",
+          "claim": "Sections 4.4-4.5 do not say whether the six topologies of Figure 3 cover all networks, or why they are canonical rather than six examples that emerged in testing.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 144-156 say only that 'this analysis yields six possible topologies'. No procedure, class counts or coverage are given. The authors replied that the classes were 'semi-manually defined' and are 'not ... an exhaustive list'."
+        },
+        {
+          "reviewer": "Reviewer_PRAa",
+          "claim": "In the two-neuron case, the link from the initial eigenvalues to the solution type is argued by inspecting Figure 1, not by proof or a large set of examples.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 (lines 69-84) rests on Figure 1D, a trace-determinant plot of a few dozen gradient-descent runs, with no count, rate or derivation. 'A couple examples' understates the number plotted. The degeneracy analysis (A = W^n) appeared only in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_PRAa",
+          "claim": "Line 53 wrongly treats reference 8 as a study of representations; reference 8 is about dynamical mechanisms and identifies four of them.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Reference [8] is Mehrer et al., 'Individual differences among deep neural network models', a study of internal representations in vision networks; lines 51-54 describe it that way. The reviewer's description fits reference [9] (Ghazizadeh and Ching, slow manifolds in recurrent networks for working memory). The authors did not dispute the point."
+        },
+        {
+          "reviewer": "Reviewer_VAVV",
+          "claim": "Figure 2D-G has no axis labels or colour legend, and the panels are not labelled as the networks A-D named in the text.",
+          "checked_against_paper": "correct",
+          "evidence": "Page 4: panels D-G show output and PCA plots with no axes, ticks or legend. Lines 128-134 call them networks A-D."
+        },
+        {
+          "reviewer": "Reviewer_VAVV",
+          "claim": "The unbounded activity of Figure 3E is unexplained; saturating units cannot diverge unless ReLU is used.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 148-150: 'Some LSTM networks (panel E) continue moving in the same direction without bound, due to the unbounded nature of the activation of their units [14].' The Figure 3 caption omits this, but the text answers the question."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_VAVV (2021-08-25, 'maintaining my score'): 'it doesn't seem ready for publication in its current form. (I wish that we could review re-submissions with the edits you suggest.)' Reviewer_M2vD (2021-08-28): 'it is difficult for me to imagine what a revised paper would look like'. Reviewer_PRAa (2021-08-28): 'at this time I can't justify changing the score of what's been submitted.'",
+        "what_convinced_or_not": "All three accepted that the promised changes were improvements (PRAa: the new method is 'very different (and good!)'; M2vD: the new analysis 'sounds promising'). None would score revisions that existed only as forum text: two new tasks, an automatic topology algorithm and task-agnostic features. M2vD and PRAa replied after the 2021-08-26 delayed-discrimination post, so they saw the same late result that moved Reviewer_teJ3 in Committee B."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers appreciated the ideas behind this work but agreed that it needs another conference cycle's worth of work ... the changes are too substantial to be vetted for this year's conference.' This restates the unanimous post-rebuttal position, in Reviewer_VAVV's words ('another conference cycle'). The AC adds no reading of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Submission premature: one neuroscience task, hand-derived topology classes, two-neuron result argued from a figure (Reviewer_M2vD, Reviewer_PRAa)",
+        "Sections 3-4 and the figures hard to follow (Reviewer_VAVV, Reviewer_PRAa)",
+        "Rebuttal changes (new tasks, automatic topology algorithm, late delayed-discrimination result) too large to vet without a new review (all three reviewers; AC: 'too substantial to be vetted')"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 5],
+      "confidences": [4, 3, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_Q7WG", "Reviewer_teJ3", "Reviewer_H1DK"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5 to 6 (mean 5.75). Reviewer_H1DK's 5 is the only rating below the threshold, one point from the others. H1DK is also the most confident reviewer (5), and its reason matches Committee A's: 'the amount of work required to get the manuscript into shape'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Q7WG",
+          "evidence": "Two hours. Quality and clarity get one generic line each: 'technically sound, and claims are appropriately backed' and 'clearly written, and provides enough information for an expert reader to understand all the steps to reproduce the results'. The paper does not say how networks were assigned to the six topologies, and Figures 2D-G and 5 have no axis labels; the other three B reviewers report clarity problems. The score rise names no specific change ('the authors made an effort to address all the reviews'), and Q7WG posted nothing in the discussion. It did catch the network A-D labelling error."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Q7WG",
+          "claim": "The paper is clearly written and gives an expert enough information to reproduce all the steps.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 4.4 (lines 144-156) gives no procedure for assigning networks to the six topologies; the authors later called it 'semi-manual'. Network sizes appear only in the supplement. Figures 2D-G and 5 have no axis labels, and Figure 3 has no symbol key."
+        },
+        {
+          "reviewer": "Reviewer_Q7WG",
+          "claim": "The manuscript is one page shorter than the limit.",
+          "checked_against_paper": "correct",
+          "evidence": "The text ends on page 8. Page 9 holds Figure 6 and the start of the references, so about two-thirds of a page of the nine-page limit is unused."
+        },
+        {
+          "reviewer": "Reviewer_vfv5",
+          "claim": "Figure 3's symbols (circles and squares, open and filled, coloured and white) are not explained, and Figure 5 has no axis labels.",
+          "checked_against_paper": "correct",
+          "evidence": "The Figure 3 caption lists only which panels emit Go without Set, reach limit cycles, merge or diverge; open circles are never defined, and the squares are explained only by an 'FP' label. Figure 5 shows tick values with no axis titles; the caption names only the regression target."
+        },
+        {
+          "reviewer": "Reviewer_vfv5",
+          "claim": "'Some networks emit a go pulse' makes no sense, since every trained network emits one.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 147 describes behaviour after the training interval with no Set pulse: 'After this time, some networks emit a Go pulse (panels A,C,F)'. The passage is opaque, but the objection misreads it; the authors clarified."
+        },
+        {
+          "reviewer": "Reviewer_teJ3",
+          "claim": "Lines 128-135 call the networks A-D while the panels are D-G, and line 152 cites Figure 2A where 2D is meant.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 128-134 name networks A-D; Figure 2 labels them D-G. Line 152 says 'panel C represents the class of networks shown in Figure 2A', and Figure 2A is the task schematic. Reviewer_Q7WG and Reviewer_vfv5 flagged the same A-D mismatch."
+        },
+        {
+          "reviewer": "Reviewer_teJ3",
+          "claim": "The Figure 1 caption says the two-neuron network is trained in PC space.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1E caption: 'trajectories of gradient descent along a slice of parameter space given by first two principal components ... Parameters are initialised randomly and flattened onto PC 1 and 2 before training.' The authors replied that training used all parameters, so the caption, not the reviewer, is at fault."
+        },
+        {
+          "reviewer": "Reviewer_H1DK",
+          "claim": "The topology classes of Figure 3 are hand-designed, and the figures systematically lack axis labels and colour legends.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.4 gives no algorithm; the authors' summary of changes says 'The manual topology classification method was replaced by an automatic algorithm'. Figures 2D-G, 5 and 6A have no axis labels, and Figure 6A has no colour legend."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Q7WG", "Reviewer_teJ3", "Reviewer_H1DK"],
+        "evidence": "Reviewer_Q7WG edited on 2021-09-02: 'I increased my score to better reflect the quality and significance of the work.' Reviewer_teJ3 edited on 2021-08-27, the day it wrote 'I am willing to upgrade my score to an accept'; its review still says the flaws 'resulted in my recommendation of rejection'. Reviewer_H1DK edited on 2021-08-11 after writing 'I will change my overall score to a 5'; 'reassure me in some respects' and 'remains just below the bar' imply a rise from 4 or lower. Reviewer_vfv5 (2021-08-31) kept 6.",
+        "what_convinced_or_not": "The same rebuttal Committee A received. H1DK: the 'transition to algorithmic feature identification ... significantly strengthens the approach'. teJ3: 'the significant additional work done in adding new tasks (including and especially the delayed discrimination task), automating the definition of classes'. None of this was in a revised PDF. vfv5 kept 6 although it could not 'fully assess the new automated topology classification', and H1DK stayed at 5 'given the amount of work required to get the manuscript into shape'. Both voiced Committee A's concern without acting on it. H1DK doubted the promised sentiment-analysis task, which the camera-ready dropped."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The decision matches three post-rebuttal 6s, but the AC says 'the scores themselves seem to be borderline' and accepts because 'the topic is very timely and the results appear to be highly relevant to the use of ML in Neuroscience'. It credits 'a second analysis ... that remove a potential confound of timing', which exists only as the authors' one-paragraph forum post of 2021-08-26, and accepts 'with the addition of the extra analysis'. Its claim that 'The reviewers all agree that the work was well presented' does not hold: Reviewer_vfv5 'found the paper difficult to understand' and Reviewer_H1DK wrote 'The quality of the figures is poor'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Post-rebuttal ratings 6, 6, 6, 5 after three reviewers raised their scores on promised revisions (Reviewer_Q7WG, Reviewer_teJ3, Reviewer_H1DK)",
+        "The late delayed-discrimination result, read by the AC as removing 'a potential confound of timing' (Reviewer_teJ3, Reviewer_H1DK, AC)",
+        "AC's view that the topic is 'very timely' and relevant to ML in neuroscience despite 'borderline' scores"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Six topologies not shown to be canonical or exhaustive; the paper 'makes bigger claims than it warrants' (Reviewer_PRAa)",
+    "Eigenvalues of a 2x2 connectivity matrix too basic a tool to count as novel (Reviewer_PRAa)",
+    "Fixed-point analysis (Sussillo and Barak 2013) needed to show how networks other than network D solve the task (Reviewer_VAVV)",
+    "Title too broad for a paper about one task (Reviewer_VAVV)",
+    "Dependence on initialisation may itself depend on the training method (Reviewer_M2vD)",
+    "Unreviewed revisions cannot be credited, applied as a committee rule (all three reviewers and the AC)"
+  ],
+  "issues_only_b": [
+    "No link to biological data or to across-animal variability in working-memory experiments (Reviewer_teJ3, Reviewer_H1DK)",
+    "Apply the analysis to a machine-learning task to say something about optimisation (Reviewer_Q7WG)",
+    "Figure 1 caption implies training in PC space (Reviewer_teJ3)",
+    "Cryptic abstract and unclear take-home message (Reviewer_vfv5, Reviewer_teJ3, Reviewer_H1DK)",
+    "Whether the neural features can be estimated from limited recordings (Reviewer_H1DK)",
+    "Limitations discussed unsatisfactorily (Reviewer_H1DK); in A, Reviewer_PRAa praised the same section as 'honest and extensive'"
+  ],
+  "shared_issues": [
+    "Scope limited to one neuroscience task, generality unclear (A: Reviewer_M2vD, Reviewer_VAVV; B: Reviewer_vfv5, Reviewer_teJ3, Reviewer_H1DK)",
+    "Topology classes made by hand, with no definition in the text (A: Reviewer_PRAa, Reviewer_VAVV, Reviewer_M2vD; B: Reviewer_teJ3, Reviewer_H1DK, Reviewer_vfv5)",
+    "Figures without axis labels or legends; networks A-D against panels D-G (A: Reviewer_VAVV; B: all four reviewers)",
+    "Two-neuron example rests on simulation, not analysis (A: Reviewer_PRAa; B: Reviewer_H1DK)",
+    "Underspecification and dependence on initialisation are not surprising (A: Reviewer_M2vD; B: Reviewer_Q7WG, Reviewer_vfv5)",
+    "Related work thin or defensive (A: Reviewer_PRAa; B: Reviewer_H1DK)",
+    "The promised automatic classification cannot be judged from forum text (A: all three reviewers and the AC; B: Reviewer_vfv5, and Reviewer_H1DK's 'amount of work required')"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B accepted and Committee A rejected on the same facts and the same rebuttal. Both forums received the same summary of changes, word for word, and the same one-paragraph delayed-discrimination result on 2021-08-26. Both committees found the same faults, and the submitted PDF confirms them: one neuroscience task (Ready-Set-Go), six topology classes with no stated procedure (the authors' own summary calls the method 'manual'), and figures without axis labels. Before the rebuttal both panels leaned to rejection: in B, Reviewer_teJ3 records a first 'recommendation of rejection', and Reviewer_Q7WG and Reviewer_H1DK also moved up afterwards. The split came from one question: do revisions that exist only as forum text count? Committee A's reviewers called the changes good and refused to score them (Reviewer_PRAa: 'I can't justify changing the score of what's been submitted'), and its AC rejected because 'the changes are too substantial to be vetted'. In Committee B, three reviewers raised their scores after the same rebuttal, and the AC accepted 'with the addition of the extra analysis' because the topic is 'very timely', while conceding 'borderline' scores. B's case is the weaker. Its most confident reviewer (H1DK, confidence 5) stayed below the bar for A's reason, and Reviewer_vfv5 said it could not assess the new classification. One of its 6s comes from a two-hour review whose praise of clarity and reproducibility the paper does not support. Its meta-review's claim that all reviewers found the work 'well presented' is false. The camera-ready rests on a graph-reduction method and two tasks that no reviewer saw written up, and it drops the sentiment-analysis task the rebuttal promised.",
+  "candidate_reasons": [
+    "Crediting unreviewed rebuttal revisions",
+    "Late results moved one panel",
+    "AC accepts on topic timeliness",
+    "Meta-review misstates presentation consensus",
+    "Thin review raised its score"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_PRAa comment 2021-08-28 ('Good additions but doesn't change the situation')",
+    "Reviewer_M2vD comment 2021-08-28 ('promising analysis but premature')",
+    "Reviewer_VAVV comment 2021-08-25 ('maintaining my score')",
+    "Reviewer_teJ3 comment 2021-08-27 and review update",
+    "Reviewer_H1DK comments 2021-08-11 and 2021-08-26",
+    "Reviewer_vfv5 comment 2021-08-31",
+    "Reviewer_Q7WG review, 'After rebuttal' section",
+    "Authors' forum post 2021-08-26 'Results from another task analyzed' (identical in both forums)",
+    "paper_submitted.pdf Section 4.4 (lines 144-156) and Discussion lines 219-221",
+    "paper_submitted.pdf Figures 2, 3 and 5; lines 128-134, 147-152",
+    "paper_submitted.pdf lines 51-54 and reference [8]",
+    "paper.pdf (camera-ready) abstract and Section 5.3: three tasks and reduced-dynamics graphs, no sentiment task"
+  ]
+}

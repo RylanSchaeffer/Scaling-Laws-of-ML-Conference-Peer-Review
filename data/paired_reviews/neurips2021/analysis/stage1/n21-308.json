@@ -1,0 +1,258 @@
+{
+  "pair_id": "n21-308",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 7, 4],
+      "confidences": [4, 3, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_aevy", "Reviewer_767p", "Reviewer_jQiC"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_767p",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "The 7 is the only A rating above threshold; the others are 5, 5 and 4. The review is short (four comments, 4 hours) but accurate: the 'Exponential' typo (line 7) and the absence of FPCA from the introduction both check out. 767p engaged twice after the rebuttal and kept 7. It never weighed the baseline or dataset concerns, and it took the efficiency claim ('arguably more flexible and computationally efficient') on trust, although the submission reports no runtimes."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_SZaC",
+          "evidence": "Point (4) says there is 'only one weak baseline' and asks for a comparison with [27]. Section 5 (lines 228-234) and Tables 1-2 already compare with two baselines, DF [15] and DMHP [27]. Point (2) says the paper 'never explains' estimating equation (7); lines 152-156 motivate it by moment matching. SZaC did not reply to the correction and kept 5. Its Hawkes and notation points are substantive."
+        },
+        {
+          "reviewer": "Reviewer_jQiC",
+          "evidence": "Reads 'multi-level' as event types (citing lines 42-44 and Section 3.1), but equation (1) defines account (X_i), day (Y_j) and residual levels, with event types as marks. Says the model assumes no temporal dependence, but lines 94-96 model it through the latent GP covariance; only self-excitation is absent. Confidence 3, details 'not carefully checked'. Its baseline and dataset points, which decided the outcome, are accurate."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_SZaC",
+          "claim": "There is only one weak baseline; the paper should compare with [27], the Hawkes-process clustering method.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 228-234 name two baselines, DF [15] and DMHP [27]. Both appear in Table 1 (synthetic purity) and Table 2 (Twitter consistency)."
+        },
+        {
+          "reviewer": "Reviewer_SZaC",
+          "claim": "The paper never explains how estimating equation (7) is derived or how it relates to likelihood (3).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 152-156 derive (7) by moment matching: Campbell's theorem gives E[A|w] and E[B|w] for small h. The link to likelihood (3) and any error analysis are indeed absent; the authors confirmed (3) is used only in the E-step sampling."
+        },
+        {
+          "reviewer": "Reviewer_SZaC",
+          "claim": "Notation is messy and undefined, for example Gamma^r_{x,c} in (5) and Gamma^{r,r'}_{x,c} in (6).",
+          "checked_against_paper": "correct",
+          "evidence": "Gamma^{r,r'}_{x,c}(s,t) is defined at lines 93-94, so that example is wrong. But the single-index Gamma^r_{x,c} is never defined, lines 219-220 use undefined B and G, Algorithm 1 and line 196 write c_i^r for b_i^r, and equation (9) indexes X_c^(g) by q."
+        },
+        {
+          "reviewer": "Reviewer_aevy",
+          "claim": "The GPU and array-programming speed-up is claimed without numerical results.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 33-34 and 221-223 claim the speed-up. Section 5 reports only clustering purity and consistency, with no runtime. The camera-ready adds a runtime table (GPU-ES 30.09 s vs CPU-ES 275.87 s at n = 500)."
+        },
+        {
+          "reviewer": "Reviewer_aevy",
+          "claim": "The claim that iterative M-steps make EM much slower than ES is not verified.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 58-60 and 194-197 assert it; the submission has no EM timing. The rebuttal gave CPU-ES 275.87 s vs CPU-EM 568.36 s for 20 iterations at n = 500."
+        },
+        {
+          "reviewer": "Reviewer_aevy",
+          "claim": "G on page 7 is undefined, and the reduction of sampling complexity to O(nCQR^2) is unexplained.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 220 gives O(nR^2(mI + CQR + CGI)) with G (and B in line 219) undefined. Lines 224-225 claim O(nCQR^2). The authors conceded that G should be R and that the O(nCQR^2) statement 'is incorrect'."
+        },
+        {
+          "reviewer": "Reviewer_jQiC",
+          "claim": "The baselines [15] and [27] date from 2013 and 2017; newer event-sequence clustering methods exist and should be compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Reference [15] is 2013 and [27] is a 2017 arXiv preprint. The paper's own reference [25], Wu et al. (TKDE 2020, a policy mixture model for event-sequence clustering), is cited at line 54 but not compared. jQiC's later list starts with that same paper."
+        },
+        {
+          "reviewer": "Reviewer_jQiC",
+          "claim": "According to lines 42-44 and Section 3.1, 'multi-level' refers only to event types.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Equation (1) and lines 79-81 define account-level X_i, day-level Y_j and residual Z_ij effects. Event types are the marks r."
+        },
+        {
+          "reviewer": "Reviewer_jQiC",
+          "claim": "The framework assumes no temporal dependence between events.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 94-96: Gamma^{r,r'}_{x,c}(s,t) 'describes the temporal dependence patterns within and across event types' through the latent Gaussian process. What the model lacks is event-to-event triggering, the narrower point jQiC illustrates with Twitter."
+        },
+        {
+          "reviewer": "Reviewer_aevy",
+          "claim": "Only one real dataset is used, so generality is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 uses only the Twitter data (n = 500 accounts, m = 30 days). The camera-ready adds credit-card and Chicago-taxi datasets (Table 3)."
+        },
+        {
+          "reviewer": "Reviewer_767p",
+          "claim": "The abstract misspells 'Expectation' as 'Exponential', and FPCA is missing from the introduction.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract line 7 reads 'Exponential-Solution (ES) algorithm'. The introduction (lines 11-37) does not mention FPCA."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Responses posted 2021-08-10. Reviewer_767p edited 2021-08-25: 'I will keep my rating'. Reviewer_aevy edited 2021-09-01: the comments 'have not convinced me to change my assessment'. Reviewer_jQiC edited 2021-09-02: 'I keep my score'. Reviewer_SZaC never replied or edited. On 2021-09-01 the authors posted that no reviewer had responded.",
+        "what_convinced_or_not": "The rebuttal previewed credit-card and NYC-taxi analyses, a runtime table, Elashoff and Ryan's local-convergence theory and an iteration count. 767p was satisfied. aevy wanted the comparisons in the paper itself: 'a variety of similar datasets are not used in the paper is highly problematic'. jQiC wanted newer baselines; the rebuttal offered none and asked for pointers. jQiC gave three on 2021-09-02, and the record holds no author reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four ratings are below threshold. The five-sentence meta-review repeats the detractors' two points: no 'more recent baselines' (Reviewer_jQiC, Reviewer_SZaC) and 'a single real data example' (Reviewer_aevy, Reviewer_jQiC). It says there are 'plenty of these baselines that the authors simply did not even mention'; the first of jQiC's three, Wu et al. (TKDE 2020), is the paper's reference [25]. It does not mention the two datasets previewed in the rebuttal or Reviewer_767p's 7.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No comparison with event-sequence clustering methods newer than 2017",
+        "Only one real dataset (Twitter), so generality is not shown",
+        "Three of four reviewers below threshold and unmoved by the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 6],
+      "confidences": [1, 4, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_qLjo", "Reviewer_3ktE"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 6 sit within one point. The only 7, Reviewer_J9LW's, comes at confidence 2 from a reviewer who disclaims expertise."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_3ktE",
+          "evidence": "The main review is two sentences (2 hours). It says the paper's main contribution is 'introducing the ES algorithm', but line 132 attributes ES to reference [6] (Elashoff and Ryan, 2004). Its substantive questions sit in the limitations field. It raised its score to 6 after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_J9LW",
+          "evidence": "A 7 at confidence 2 in a four-sentence main review: 'I do not claim expertise in this field'. It names the weak data example as the drawback and does not engage after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qLjo",
+          "claim": "The ES algorithm has no theoretical guarantee, and local optima are not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 states no convergence result. Algorithm 1 initialises randomly, and nothing addresses local optima or restarts."
+        },
+        {
+          "reviewer": "Reviewer_qLjo",
+          "claim": "Tables 1 and 2 report single numbers without confidence intervals.",
+          "checked_against_paper": "correct",
+          "evidence": "Both tables give means only. Checklist item 3(c) answers [No] for error bars."
+        },
+        {
+          "reviewer": "Reviewer_qLjo",
+          "claim": "Line 7 says 'Exponential-Solution' instead of 'Expectation-Solution'.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract line 7."
+        },
+        {
+          "reviewer": "Reviewer_3ktE",
+          "claim": "The main contribution of the paper is introducing the ES algorithm.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 132: 'The ES algorithm [6] is a general iterative approach'. The stated contributions (lines 35-37) are the MM-MPP model and an ES algorithm for it."
+        },
+        {
+          "reviewer": "Reviewer_3ktE",
+          "claim": "The bandwidth is chosen adaptively by maximum likelihood at each iteration.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 190-193: a grid of candidate h is pre-computed and the likelihood-maximising one is chosen in each iteration."
+        },
+        {
+          "reviewer": "Reviewer_J9LW",
+          "claim": "The Twitter analysis only recovers obvious facts, such as grouping universities by tier.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 287-291: cluster 1 holds top universities (MIT, Harvard, Stanford), and cluster 2 holds middle-ranked ones."
+        },
+        {
+          "reviewer": "Reviewer_DpLt",
+          "claim": "No code was provided.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 3(a): code 'will be made publicly available upon request of revision or acceptance'. The camera-ready gives a GitHub link."
+        },
+        {
+          "reviewer": "Reviewer_DpLt",
+          "claim": "Line 40's 'most existing work rely on strong parametric assumptions' is misleading; latent-GP intensity and GP-Hawkes work is not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 40 holds the sentence. The submission cites a few latent-GP intensity models (LGCP [13], [26], Lasko [11], level-set Cox [8]) but no GP-kernel Hawkes work. The camera-ready adds Zhang et al.'s non-parametric Bayesian Hawkes processes."
+        },
+        {
+          "reviewer": "Reviewer_DpLt",
+          "claim": "The paper has just one significant real-world evaluation, and the base model comes mainly from [26].",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.2 uses only Twitter. Line 78: 'Following [26], we assume a multi-level model'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_qLjo", "Reviewer_3ktE"],
+        "evidence": "Reviewer_qLjo, 2021-08-19: 'raise my score from 5 to 6 albeit my low confidence'; review edited the same day. Reviewer_3ktE, 2021-08-22: 'The responses have address most of my concern. I will raise my score to 6'; review edited the same day. Reviewer_J9LW and Reviewer_DpLt did not reply or edit.",
+        "what_convinced_or_not": "qLjo raised after the first response, which cited Elashoff and Ryan's local-convergence theory and an iteration count. The 100-start initialisation study (92.7% near the truth at m = 1) came a day after the raise. 3ktE received a purity table for day-segmented versus concatenated sequences (0.947 vs 0.743 at m = 20), the credit-card and taxi previews, and an answer on bandwidth pre-computation. These questions could be answered in text, unlike A's request for new baselines."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 6 or 7, and the AC accepted. The meta-review restates the paper's framing, echoes Reviewer_qLjo's missing guarantee ('it may be challenging to develop a performance guarantee'), hedges ('the contribution is maybe'), and credits the rebuttal on computational efficiency. It does not mention baselines or the single-dataset limitation that Reviewer_J9LW and Reviewer_DpLt raised.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous ratings above threshold after two post-rebuttal raises from 5 to 6",
+        "Relevant problem and a structure-aware model shown on real data",
+        "Rebuttal answered the convergence, initialisation, segmentation and runtime questions",
+        "Single dataset and missing literature treated as minor"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No comparison with event-sequence clustering methods newer than 2017 (Reviewer_jQiC, Committee A AC)",
+    "GPU and ES-versus-EM speed claims untested in the submission (Reviewer_aevy)",
+    "Complexity section error: undefined G and a wrong O(nCQR^2) claim, conceded by the authors (Reviewer_aevy)",
+    "Dismissal of Hawkes processes not justified; merged-day Hawkes alternative (Reviewer_SZaC, Reviewer_767p)",
+    "Justification of estimating equation (7), its link to the likelihood, and messy notation (Reviewer_SZaC)",
+    "Validation by clustering stability alone; no in-cluster variance (Reviewer_aevy)",
+    "No self-exciting dependence between events (Reviewer_jQiC)"
+  ],
+  "issues_only_b": [
+    "Sensitivity to random initialisation and local optima (Reviewer_qLjo)",
+    "No error bars or intervals in Tables 1-2 (Reviewer_qLjo)",
+    "Cost of adaptive bandwidth selection (Reviewer_3ktE)",
+    "Applicability of the multi-level LGCP assumption (Reviewer_3ktE)",
+    "No code; reproducibility (Reviewer_DpLt)",
+    "Missing latent-GP intensity and GP-Hawkes literature; line 40 overclaims (Reviewer_DpLt)",
+    "Twitter clusters only recover university tiers (Reviewer_J9LW)"
+  ],
+  "shared_issues": [
+    "Only one real dataset (Reviewer_aevy, Reviewer_jQiC, Committee A AC; Reviewer_J9LW, Reviewer_DpLt)",
+    "No convergence guarantee for ES (Reviewer_767p, Reviewer_jQiC; Reviewer_qLjo, Committee B AC)",
+    "Rationale for splitting sequences by day into a multi-level structure (Reviewer_jQiC; Reviewer_3ktE, Reviewer_DpLt)",
+    "'Exponential-Solution' typo in the abstract (Reviewer_767p; Reviewer_qLjo)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw a borderline paper and weighted the same two facts differently: the submission compares only with DF (2013) and DMHP (2017), and it uses one real dataset. Before the rebuttal the committees were close (A 5, 5, 7, 4; B 5, at most 5, 7, 6). The same rebuttal split them. It moved Reviewer_qLjo (confidence 1) and Reviewer_3ktE in B from 5 to 6, because their questions on convergence, initialisation, day segmentation and bandwidth could be answered in text. It moved nobody in A, where Reviewer_aevy and Reviewer_jQiC wanted new baselines and datasets in the paper itself. A's area chair rejected on exactly those two points. The baseline point is accurate: the paper's own reference [25] is a 2020 event-sequence clustering method that it cites but does not compare, although the AC's 'did not even mention' overstates the case. B's reviewers saw the single dataset as a minor flaw and never raised baseline recency. Their reviews were thin (2 to 3 hours each, mean confidence 2.5 against A's 3.5, two self-declared non-experts), and B's AC followed the unanimous 6 and 7 ratings with a hedged meta-review. Two A detractors misread the paper (Reviewer_SZaC on the baselines, Reviewer_jQiC on the levels), but the reasons A's AC used are accurate.",
+  "candidate_reasons": [
+    "Rebuttal moved only one committee",
+    "Newer baselines demanded only in A",
+    "Single dataset: decisive versus minor",
+    "Thin low-confidence reviews in B",
+    "Text-answerable versus experiment-requiring concerns",
+    "Late reviewer baseline list shaped meta-review"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_jQiC discussion comment, 2021-09-02",
+    "Reviewer_aevy final review (Update)",
+    "Reviewer_SZaC main review, point (4)",
+    "Reviewer_qLjo comment 'After rebuttal', 2021-08-19",
+    "Reviewer_3ktE comment, 2021-08-22",
+    "Committee B meta-review",
+    "paper_submitted.pdf Section 5, lines 228-234, Tables 1-2",
+    "paper_submitted.pdf line 54 and reference [25]",
+    "paper_submitted.pdf lines 219-225 (complexity)",
+    "paper.pdf (camera-ready) Tables 2-3: runtime and two added datasets, same two baselines"
+  ]
+}

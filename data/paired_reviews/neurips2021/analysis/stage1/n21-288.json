@@ -1,0 +1,274 @@
+{
+ "pair_id": "n21-288",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Huyz",
+    "Reviewer_4Wbd"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 6, 6 around a mean of 6.25. Reviewer_sbMG's 7 is one point above three 6s. No reviewer argues against acceptance."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_we6s",
+     "evidence": "Its limitations field says 'it is not fair to say it uses less communication because the hessian is communicated'. Algorithm 3 averages only the iterates, and footnote 1 says each step needs one stochastic Hessian-vector product and one stochastic gradient. The rest is generic ('The proof is detailed and well-written', 'the assumptions in this paper is too strong') and names no theorem or assumption. After the correction it wrote 'this is a nice paper : )' and kept the 6."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_we6s",
+     "claim": "It is not fair to say the method uses less communication, because the Hessian is communicated.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Algorithm 3 (p. 6) runs SGD on each machine and returns the average of the iterates. Footnote 1: the gradient of the quadratic 'can be estimated using one stochastic Hessian-vector product for F and one stochastic gradient for F'. Algorithm 1 does pass d(5r0)·∇²F(x_t) as an argument, which invites the misreading; the authors called this presentation 'somewhat confusing'."
+    },
+    {
+     "reviewer": "Reviewer_sbMG",
+     "claim": "All nodes draw stochastic gradients for the same function, so data heterogeneity is not allowed.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 1(c) uses one distribution D, and Algorithm 3 line 2 gives every machine the same Q and oracle. The word 'homogeneous' does not appear in the submission; the camera-ready adds it to the abstract and Section 2."
+    },
+    {
+     "reviewer": "Reviewer_sbMG",
+     "claim": "The guarantee can beat the first-order lower bound in some regimes.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 217-222: with H = B = σ = α = 1, M → ∞, R = 4 log K, 'our upper bound can be less than the lower bound' when ρ is small. The camera-ready weakens this to 'matches the lower bound ..., albeit using a stronger oracle'."
+    },
+    {
+     "reviewer": "Reviewer_sbMG",
+     "claim": "The simulations show that FedSN outperforms reasonable baselines (Local and Minibatch SGD).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 4 and Figures 1-2 run only FedSN-Lite (Algorithm 4), which drops the binary search and adds Newton-decrement scaling and Polyak momentum (lines 238-246). FedSN-Lite is best or tied in nearly every panel, but the analysed FedSN is never run."
+    },
+    {
+     "reviewer": "Reviewer_Huyz",
+     "claim": "The improvement is quite tied to the parameter regime.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 112-117 compare with FedAc only for H = B = σ = ρ = O(1), large M and R = Õ(Bα), where FedSN wins when Q ≳ αK^{-1/2}. Lines 219-222 need M → ∞ and small ρ."
+    },
+    {
+     "reviewer": "Reviewer_4Wbd",
+     "claim": "'Sub-optimality' on the y-axis of Figure 1 is not defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1's axis reads 'Best Sub-optimality' but shows negative values; Figure 2's reads 'Best Log(Sub-optimality)'. The caption says only 'best relative sub-optimality w.r.t. the optimal minimizer'. The authors point to Appendix E.2."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_4Wbd"
+    ],
+    "evidence": "Reviewer_4Wbd edited on 2021-08-25, the day it wrote 'I raise my score by one point' (5 to 6). Reviewer_Huyz edited on 2021-08-28; its review now ends with a post-response note, 'I'd like to keep the positive score'. Reviewer_sbMG (2021-08-18) thanked the authors and asked a minor follow-up. Reviewer_we6s (2021-09-13) wrote 'this is a nice paper : )' without editing.",
+    "what_convinced_or_not": "4Wbd moved on the reply that FedSN is a stochastic, one-pass variant of distributed Newton sketch, unlike batch GIANT. Huyz accepted the natural-scaling example (H = D², σ = D, Q = D³, α = D, ρ = D²). we6s accepted that only iterates, not Hessians, are communicated. No A reviewer had raised a point the rebuttal needed to rescue."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three sentences: the paper 'backs up all claims with clear theoretical arguments and numerical experiments' and 'The reviewers have also reached a consensus'. Ratings 6, 7, 6, 6 support the consensus. The first claim is too broad: the experiments run FedSN-Lite (Algorithm 4), which has no guarantee, and FedSN itself is never run. The meta-review names no weakness.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Four ratings at or above threshold (6, 7, 6, 6) and no detractor; the AC cites the 'consensus'",
+    "A natural idea (one-shot local SGD for each Newton subproblem) with a clear chain of theorems (Reviewer_sbMG) and favourable experiments",
+    "Regime-bound gains and strong assumptions noted in general terms (Reviewer_Huyz, Reviewer_we6s) and judged acceptable for a theory paper",
+    "The rebuttal settled the Newton-sketch question (Reviewer_4Wbd, 5 to 6) and we6s's misreading about Hessian communication"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    3,
+    6,
+    4,
+    3
+   ],
+   "confidences": [
+    3,
+    5,
+    2,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_uQaQ",
+    "Reviewer_N6s7"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_uQaQ",
+    "direction": "champion",
+    "basis": "inattentive",
+    "evidence": "The only rating above threshold (6) against 3, 4 and 3. It reports 2 hours yet claims confidence 5 ('checked the math/other details carefully'). Points 2 and 3 repeat the same Hessian-vector paragraph word for word. The text lists only weaknesses: notation 'confusing and wrong', the algorithm 'just a combination' of known parts, the analysis 'very straight-forward'. No reply after the rebuttal. The decision does not hinge on it: without it B's mean is 3.33."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_uQaQ",
+     "evidence": "2 hours at confidence 5, one paragraph pasted twice (points 2 and 3), and a 6 that its own text does not support. It engages with no theorem or proof, and posted nothing after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_yNcz",
+     "claim": "The regime where FedSN hits the lower bound needs H, B, σ, α equal to 1, infinitely many machines, large K and ρ < 1/log K.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 219-222 use exactly H = B = σ = α = 1, M → ∞, R = 4 log K, K large. Eq. (5) gives about ρ/(√K log K) and eq. (6) about 1/(√K log² K), so ρ must be below about 1/log K; line 222 says 'our result does require that ρ be fairly small'. The authors did not answer, as yNcz noted."
+    },
+    {
+     "reviewer": "Reviewer_yNcz",
+     "claim": "Q, C, λ̄, r*(λ) and ε(λ) in Theorem 2, and the steps of Algorithm 2, are not explained.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 2 (pp. 5-6) uses Q_λ, r*(λ), λ_{4r0} and λ̄ without definition and leaves N and C as an 'appropriate choice'. Algorithm 2 uses r̄, never defined, and lists 'Inputs: A, b' although its signature also takes r0. The text gives no step-by-step account of Algorithm 2; the full statement is in Appendix B."
+    },
+    {
+     "reviewer": "Reviewer_yNcz",
+     "claim": "The checklist says limitations are described, but they are not.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist item 1(b) answers [Yes]. The main text has only Section 5, 'Future work' (lines 258-265). The authors pointed to lines 210-230 and 263-265 and promised to add limitations."
+    },
+    {
+     "reviewer": "Reviewer_yNcz",
+     "claim": "The homogeneous setup is never stated, and lines 102-104 suggest a heterogeneous one.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither 'homogeneous' nor 'heterogeneous' appears in the submission; the setting is only implied by the single distribution D in Assumption 1(c). Lines 102-104 describe another approach, not the paper's setting, so that half of the claim is weaker. The camera-ready names the homogeneous setting."
+    },
+    {
+     "reviewer": "Reviewer_yNcz",
+     "claim": "FedSN is not compared in the plots.",
+     "checked_against_paper": "correct",
+     "evidence": "Figures 1-2 show FedSN-Lite (Algorithm 4) only. It drops the binary search of Algorithm 2 and adds Newton-decrement scaling and Polyak momentum (lines 238-246). No experiment runs the analysed algorithm."
+    },
+    {
+     "reviewer": "Reviewer_yNcz",
+     "claim": "The methods differ at round 5, so they may not start from the same point.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Each point is the best result of a separately tuned run at fixed T. yNcz conceded: 'Indeed, I misinterpreted the plots.'"
+    },
+    {
+     "reviewer": "Reviewer_y5UR",
+     "claim": "With all other parameters fixed and R → ∞, the upper bound does not converge, unlike first-order methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4 (p. 7) contains σB/√(MK), with no R; Table 1 gives σB/√(MKR) for Local SGD and FedAc. The authors agreed ('our upper bound does not converge to zero'), and the camera-ready Theorem 1 keeps the term."
+    },
+    {
+     "reviewer": "Reviewer_y5UR",
+     "claim": "This is inconsistent with Figures 1 and 2, where the method converges as R grows.",
+     "checked_against_paper": "incorrect",
+     "evidence": "An upper bound that does not vanish cannot contradict faster observed convergence, and the figures run FedSN-Lite, not FedSN. The bound is loose there: at fixed KR its σB/√(MK) term grows like √R, while the FedSN-Lite curves fall."
+    },
+    {
+     "reviewer": "Reviewer_y5UR",
+     "claim": "With extra Hessian-vector information the method should dominate first-order methods, but it does not.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 and lines 112-117 and 224-228 claim wins only in some regimes. The authors called non-domination 'the main limitation of our work'. The camera-ready adds that for R ≳ √K/(DB) 'FedAc provides better guarantees than FedSN'."
+    },
+    {
+     "reviewer": "Reviewer_uQaQ",
+     "claim": "T in Algorithm 3 and Theorem 3 should be K, and it clashes with the number of Newton steps.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 loops t = 0..T-1 over Newton steps; Algorithm 3 loops t = 1..T over local SGD steps; Theorem 4 is stated in K and R."
+    },
+    {
+     "reviewer": "Reviewer_uQaQ",
+     "claim": "The paper gives no explicit form for the stochastic Hessian-vector product.",
+     "checked_against_paper": "correct",
+     "evidence": "The main text only cites Allen-Zhu (2018) for its cost (lines 133-134) and says in footnote 1 that one product per step suffices. The authors cite Appendix E.3, which is not in the submitted PDF, and gave the GLM formula in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_N6s7",
+     "claim": "In Theorem 7, T is defined using N and N using T.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Appendix D is not in the submitted PDF. The authors conceded: 'This was certainly an issue in our original draft.'"
+    },
+    {
+     "reviewer": "Reviewer_N6s7",
+     "claim": "R and K appear in no algorithm, and the outer T does not appear in Theorem 4's bound.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithms 1-4 use T, N, C, λ̄ and r0. Theorem 4's bound is in M, K and R; T is fixed only by 'an appropriate choice of the parameters'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_uQaQ's edit is on its posting day (2021-07-16), before the 2021-08-10 responses, and it posted nothing later. Reviewer_N6s7 edited on 2021-08-22; its review now opens with a post-response paragraph ending 'my recommendation does not change'. Reviewer_yNcz (2021-08-19): 'I remain in my initial evaluation'. Reviewer_y5UR (2021-08-29): 'I decide to remain in my initial evaluation'.",
+    "what_convinced_or_not": "The authors told three reviewers, in near-identical words, that the writing was confusing and would be fixed 'systematically' in a 'renewed version' (new algorithm presentation, natural scaling, data-access discussion). yNcz read this as 'confirming the writing issues'. The authors conceded y5UR's R-dependence and did not answer yNcz's regime point. y5UR found the natural scaling 'improves the readability and interpretability greatly' but judged the method 'only good when the communication is limited'. No reviewer would accept on a promised rewrite."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Names three concerns, all from Reviewer_y5UR's review. 'the unusual dependence on parameters in the rate' is correct (the σB/√(MK) term). 'the poor performance of the algorithm compared to first-order methods with access to more information' garbles y5UR's point, since FedSN is the method with more information; as an empirical claim it is false, because FedSN-Lite is best or tied in nearly every panel of Figures 1-2. 'inconsistency between theory and experiments' overstates a loose upper bound. 'not in publishable form' echoes yNcz's 'not publishable in its current form'. Ratings 3, 6, 4, 3 (mean 4.0).",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Weak contribution: gains over first-order methods only for few rounds, large M and small ρ, and a bound that does not improve with R (Reviewer_y5UR, Reviewer_yNcz; AC 'unusual dependence on parameters in the rate')",
+    "Writing and notation judged unpublishable: T reused, undefined symbols in Theorem 2, circular parameters in Theorem 7 (Reviewer_yNcz, Reviewer_N6s7, Reviewer_uQaQ)",
+    "The authors conceded the writing problems and the R-dependence and promised a rewrite; no reviewer moved",
+    "Mean 4.0 with three of four ratings below threshold; the AC followed Reviewer_y5UR's points"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Relation to distributed Newton sketch, GIANT and averaged sketched solutions (Reviewer_4Wbd)",
+  "Runtime and memory, not only communication rounds, in the experiments (Reviewer_4Wbd)",
+  "Figure 1 y-axis 'sub-optimality' undefined (Reviewer_4Wbd)",
+  "Prior use of SGD for the inner quadratic: Carmon et al. 2020, Corollary 18 (Reviewer_Huyz)",
+  "Constrained versus regularized Newton subproblems (Marteau-Ferey et al. 2019) and slack from ρ in the lower-bound comparison (Reviewer_sbMG)",
+  "Claim that the Hessian is communicated, a misreading (Reviewer_we6s)"
+ ],
+ "issues_only_b": [
+  "The statistical term σB/√(MK) does not shrink with R, so the bound does not converge as R grows (Reviewer_y5UR; AC)",
+  "Beating the first-order lower bound needs H = B = σ = α = 1, M → ∞ and ρ below about 1/log K (Reviewer_yNcz)",
+  "Notation: T used for both loops, undefined symbols in Theorem 2 and Algorithm 2, circular T and N in Theorem 7, R and K absent from the algorithms (Reviewer_uQaQ, Reviewer_N6s7, Reviewer_yNcz)",
+  "No limitations section although checklist item 1(b) says Yes (Reviewer_yNcz)",
+  "Experiments run only FedSN-Lite, never the analysed FedSN (Reviewer_yNcz)",
+  "General writing quality (Reviewer_yNcz, Reviewer_N6s7)",
+  "Quasi-self-concordance versus standard and scaled self-concordance (DISCO) (Reviewer_N6s7)",
+  "No comparison with second-order methods (Reviewer_y5UR)"
+ ],
+ "shared_issues": [
+  "Homogeneous data only, never stated as such (A: Reviewer_sbMG; B: Reviewer_yNcz)",
+  "Gains hold only in some parameter regimes under strong assumptions (A: Reviewer_Huyz, Reviewer_we6s; B: Reviewer_yNcz, Reviewer_y5UR)",
+  "Incremental combination of standard parts (A: Reviewer_Huyz; B: Reviewer_uQaQ)",
+  "How the stochastic Hessian-vector oracle is computed and what it costs (A: Reviewer_we6s, Reviewer_sbMG; B: Reviewer_uQaQ, Reviewer_N6s7)",
+  "No lower bound for the Hessian-vector oracle; comparison only with the first-order lower bound (A: Reviewer_Huyz, Reviewer_sbMG; B: Reviewer_y5UR)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B rejected because two of its reviewers checked the theory and found specific limits that Committee A's reviewers never examined. Reviewer_y5UR showed that the main bound does not improve with more rounds: Theorem 4 and Table 1 carry σB/√(MK), where Local SGD and FedAc have σB/√(MKR), and the authors conceded it. Reviewer_yNcz showed that the headline claim, beating the first-order lower bound, needs H = B = σ = α = 1, M → ∞ and ρ below about 1/log K; lines 219-222 use exactly that example, and the authors did not answer. The camera-ready later weakens 'less than the lower bound' to 'matches the lower bound ..., albeit using a stronger oracle' and concedes that FedAc is better for large R. B also found real notation defects and a checklist 'Yes' for a limitations section that does not exist. Committee A's reviewers (three at confidence 3, 2.5 to 5 hours) noted regime-bound gains and strong assumptions only in general terms and judged them normal for theory; none noted the R-dependence or that the experiments run FedSN-Lite rather than the analysed FedSN, and Reviewer_we6s misread the method as communicating Hessians. A's meta-review leans on consensus. B's case has weak parts too: its AC's 'poor performance' is false for Figures 1-2, 'inconsistency between theory and experiments' overstates a loose upper bound, yNcz's examples of bad prose are grammatical, and the one 6 (Reviewer_uQaQ) is a thin review. Both committees saw the same regime-bound, assumption-heavy result; the split comes from how closely each read the theory and how much weight each gave a narrow-regime gain.",
+ "candidate_reasons": [
+  "Depth of theory scrutiny differed",
+  "Narrow-regime gain weighted differently",
+  "Bound's weak R-dependence caught once",
+  "Notation defects judged unpublishable",
+  "Concessions plus promised rewrite rejected",
+  "Thin positive reviews, consensus meta-review"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_y5UR review, point 2, and post-rebuttal comment (2021-08-29)",
+  "Reviewer_yNcz review ('main result' paragraph) and post-rebuttal comment (2021-08-19)",
+  "Submitted paper Theorem 4 (p. 7) and Table 1 (p. 2): the σB/√(MK) term",
+  "Submitted paper lines 217-230: lower-bound example with M → ∞ and small ρ",
+  "Submitted paper Theorem 2 and Algorithms 1-3 (pp. 5-6)",
+  "Submitted paper Section 4, Algorithm 4 and Figures 1-2",
+  "Submitted paper checklist item 1(b) and Section 5 'Future work'",
+  "Reviewer_we6s limitations field and the authors' reply (2021-08-10)",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Camera-ready Section 4: 'matches the lower bound ..., albeit using a stronger oracle'; FedAc better for R ≳ √K/(DB)"
+ ]
+}

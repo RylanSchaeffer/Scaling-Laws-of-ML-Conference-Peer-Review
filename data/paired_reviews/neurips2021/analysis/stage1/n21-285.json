@@ -1,0 +1,280 @@
+{
+ "pair_id": "n21-285",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    6,
+    7,
+    4
+   ],
+   "confidences": [
+    3,
+    4,
+    5,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_2UcV",
+    "Reviewer_m9sr"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_m9sr",
+    "direction": "detractor",
+    "basis": "unclear",
+    "evidence": "The only rating below 6: 4 at confidence 5, against 7, 6 and 7. The review calls the contribution 'incremental' but argues nothing against the combinators or the translation scheme. It judges Lale as an AutoML engine and lists omissions: AutoGluon and OBOE baselines, computation times, D3M references. The baseline omission is real, but the paper claims a programming model, not better AutoML, and the AC called it secondary. The 2021-08-31 edit shows no new text, and no reply to the rebuttal is visible."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_m9sr",
+     "evidence": "Short review at confidence 5. It places the user study in 'the supplementary material', though Section 5 (RQ1) and Table 1 report it. It lists 'computation times' as missing, though lines 303-305 give the 1-hour budget and the 6-minute trial timeout. It points to a D3M web page without naming one missing reference."
+    },
+    {
+     "reviewer": "Reviewer_sNtW",
+     "evidence": "Rating 7 at confidence 5 and 8 hours, but the technical assessment is one line: 'the architecture and the design appears to be sound'. It asks that the small sample be 'mentioned somewhere'; line 347 already states '18 participants (9 per version)'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_6TXR",
+     "claim": "Lale gets slightly worse accuracy than auto-sklearn on most datasets and much better accuracy on shuttle.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2: Lale-Auto trails auto-sklearn on 10 of 14 datasets, ties on 1 and wins on 3. Shuttle (+14.5%) alone turns the mean relative difference from -0.3% to +0.7%. Lines 306-307 blame 'an auto-sklearn issue'."
+    },
+    {
+     "reviewer": "Reviewer_6TXR",
+     "claim": "GridSearchCV and HalvingGridSearchCV time out.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 reports 'Timed out' for both."
+    },
+    {
+     "reviewer": "Reviewer_6TXR",
+     "claim": "Lale is used in industry.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 43-44 ('active use ... in a major industrial product') and lines 369-370."
+    },
+    {
+     "reviewer": "Reviewer_6TXR",
+     "claim": "The translation steps (normalize, combine, flatten, discretize) are standard.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 237-238: after combining, 'the encoding is conceptually similar to that of Hyperopt'. The authors conceded that each step 'reflect[s] known ideas' and claimed novelty only in the combination."
+    },
+    {
+     "reviewer": "Reviewer_2UcV",
+     "claim": "The usability evaluation compares Lale only with scikit-learn.",
+     "checked_against_paper": "correct",
+     "evidence": "RQ1 (lines 254-256) compares Lale with sklearn only. RQ2 adds auto-sklearn for accuracy, not for the gradual workflow."
+    },
+    {
+     "reviewer": "Reviewer_sNtW",
+     "claim": "All subjects come from one company, and several experienced sklearn users misread the pipeline.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 268-269 ('same large technology company'). Lines 272-274: 4 of 9 sklearn participants misread the branching structure in T1."
+    },
+    {
+     "reviewer": "Reviewer_sNtW",
+     "claim": "The small number of subjects should be mentioned as a limitation somewhere.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 347 already states it: 'only 18 participants (9 per version)'. The one-company sample is not listed as a limitation."
+    },
+    {
+     "reviewer": "Reviewer_m9sr",
+     "claim": "The paper has no comparison with non-pipeline AutoML systems such as AutoGluon or OBOE.",
+     "checked_against_paper": "correct",
+     "evidence": "AutoGluon appears in one related-work sentence (lines 341-342) on total versus gradual automation. OBOE is not cited. The only accuracy baseline is auto-sklearn. The rebuttal called lines 341-342 'a comparison to AutoGluon'."
+    },
+    {
+     "reviewer": "Reviewer_m9sr",
+     "claim": "Computation times are missing.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 303-305 give a 1-hour budget per search, a 6-minute trial timeout and a 32-core machine. Under a fixed budget, overhead shows up in accuracy. No translation overhead is timed."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_2UcV"
+    ],
+    "evidence": "Reviewer_2UcV edited on 2021-09-01: 'After reading the other reviews and discussions, I raised my score to a weak accept'. Reviewer_m9sr edited on 2021-08-31 with no visible new text and ended at 4. Reviewer_6TXR and Reviewer_sNtW never edited. No reviewer reply to the 2021-08-10 responses is visible.",
+    "what_convinced_or_not": "The internal discussion, not the rebuttal, moved 2UcV: 'the paper does not need to show superior performance to other AutoML tools'. 2UcV still wanted the 'gradual' benefit quantified. The rebuttal's worked example of gradual use drew no visible reply. Its claim to m9sr of 'a comparison to AutoGluon in Lines 341-342' overstates one related-work sentence, and m9sr stayed at 4. The answer to 6TXR (Lale 0.3% behind auto-sklearn without shuttle, 'not statistically significant') went unchallenged."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings at 6 or 7, mean 6.0. The meta-review lists the shared strengths and credits the user study ('while small, also boosted confidence'). It takes 6TXR's novelty point and m9sr's baseline point ('less importantly in my opinion'), then accepts 'after calibrating across my pile'. No AC comment is visible in the discussion.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "A useful, easy-to-use tool that could raise AutoML uptake (all reviewers, AC)",
+    "Clear writing (Reviewer_6TXR, Reviewer_sNtW, AC)",
+    "The small user study read as support for the tool's utility (AC)",
+    "Known components and missing non-pipeline baselines judged outweighed; parity with auto-sklearn judged enough (AC, Reviewer_2UcV)",
+    "Three of four ratings at 6 or 7 after Reviewer_2UcV's raise"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    5,
+    8,
+    3
+   ],
+   "confidences": [
+    5,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_H7JW",
+    "Reviewer_G6BM"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_G6BM",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "8 at confidence 3, against 4, 5 and 3. The review is praise plus two minor questions (dataset schemas, a typo). It predicts 'a huge positive impact on the NeurIPS community' without evidence. Two of its novelty claims conflict with the paper (lines 69-70, 330-333). G6BM did engage: the update defends the three combinators as a scientific contribution, then allows that the engineering-as-contribution premise 'could be wrong' and points to 'the next version of the paper'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_D3TC",
+     "evidence": "Two hours, three one-line weaknesses, and 'Clear rejection' while listing 'significant engineering effort and mature tool' as a strength. The doubt about 'diverse model architectures' ignores the four search spaces of Table 2. No edit or visible reply after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_cjD3",
+     "claim": "The user study has only 9 participants and may be biased toward Lale.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 347: 18 participants, 9 per version. Lines 347-350 admit possible researcher bias: the tasks were designed 'to showcase and validate aspects of the Lale programming model'."
+    },
+    {
+     "reviewer": "Reviewer_cjD3",
+     "claim": "Auto-sklearn outperforms Lale-Auto in Table 2.",
+     "checked_against_paper": "correct",
+     "evidence": "Lale-Auto trails on 10 of 14 datasets. The authors' reply, 'If you look at all datasets, then Lale outperforms auto-sklearn', holds only for the mean, and only because of shuttle (+14.5%)."
+    },
+    {
+     "reviewer": "Reviewer_cjD3",
+     "claim": "Figure 6 is a standard optimization loop whose only new step is encoding the search space.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 6 is a usual trial loop plus 'encode search space' and 'decode search point'. Lines 191-194 present it only to show where the translation fits."
+    },
+    {
+     "reviewer": "Reviewer_cjD3 (internal discussion, quoted in the meta-review)",
+     "claim": "The new operators cannot express substantially more than existing AutoML formats; otherwise specialized optimizers would be needed.",
+     "checked_against_paper": "correct",
+     "evidence": "Each pass is 'semantics-preserving' (lines 221-222) and ends in an existing optimizer's format. The combined form 'is conceptually similar to that of Hyperopt' (lines 237-238). The gain is concise, modular syntax, not new search spaces. The authors' reply to H7JW claims more expressiveness only for the syntax."
+    },
+    {
+     "reviewer": "Reviewer_H7JW",
+     "claim": "The user study states no null hypothesis and reports no significance test.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 272-294 and Table 1 give percentages, medians and means only. In the rebuttal, Mann-Whitney tests rejected only the T4 lines-of-code null (p = 0.0039), not T1 or T4 correctness or total time. The authors then bootstrapped 9 users per arm to 100 observations, which adds no evidence. Fisher's exact test on T1 (8/9 against 5/9) gives p of about 0.29."
+    },
+    {
+     "reviewer": "Reviewer_H7JW",
+     "claim": "RQ2 and RQ3 report an end-to-end performance gain without saying where it comes from.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paper claims no gain. RQ2 and RQ3 test only that the translation works, with performance 'in the same ballpark as auto-sklearn' (lines 306-307, 311-312). Lale-Auto trails auto-sklearn on 10 of 14 datasets."
+    },
+    {
+     "reviewer": "Reviewer_D3TC",
+     "claim": "The datasets are small.",
+     "checked_against_paper": "correct",
+     "evidence": "The paper gives no sizes (lines 296-297: 14 OpenML tasks). Per OpenML, 12 of the 14 have a few hundred to about 5,400 rows; jungle-chess and shuttle have about 45,000 and 58,000."
+    },
+    {
+     "reviewer": "Reviewer_D3TC",
+     "claim": "It is unclear whether the framework supports diverse model architectures.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 2 runs four distinct search spaces: AutoPipeline, TPOT- and AlphaD3M-style grammars unfolded to depth 3, and a higher-order AdaBoost pipeline. Table 3 adds a choice between XGBoost and LightGBM. No neural model appears."
+    },
+    {
+     "reviewer": "Reviewer_G6BM",
+     "claim": "The or combinator is particularly novel.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 69-70: choice 'can be encoded in sklearn's GridSearchCV, as well as in other optimizers such as Hyperopt'. Only the infix combinator form is new."
+    },
+    {
+     "reviewer": "Reviewer_G6BM",
+     "claim": "Gradual AutoML has not been possible in existing AutoML systems.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 330-333: hyperopt-sklearn and auto-sklearn 'support some gradual automation' through lower-level APIs. The paper claims a more convenient interface, not a first."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_G6BM edited on 2021-09-04: 'I am still fond of the paper and will keep the same score'. Reviewer_H7JW edited on 2021-08-28 with thanks and three follow-up suggestions, and states no score change. Reviewer_cjD3 and Reviewer_D3TC never edited.",
+    "what_convinced_or_not": "The authors answered the scope objection with the call-for-papers category 'Infrastructure (e.g., datasets, competitions, implementations, libraries)'. cjD3 and D3TC did not move, and cjD3 argued in discussion that Lale's adoption (225 GitHub stars, 52 forks) is too small. To H7JW the authors reported that only the lines-of-code null is rejected (p = 0.0039) and offered a bootstrap to 100 observations. H7JW still asked for more participants and for an account of why the design works. G6BM argued in discussion that the three combinators are a scientific contribution, moved no one, and advised fixing the concerns in 'the next version'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings below 6, mean 5.0: 'not enough support from reviewers'. The meta-review quotes cjD3 under all three reasons, and the impact reason rests on cjD3 alone ('225 stars on github'). It records G6BM's dissent and G6BM's advice to fix the concerns in 'the next version'. It adds no reading of the paper of its own.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "No clear scientific contribution beyond a convenient library (Reviewer_cjD3, Reviewer_D3TC, Reviewer_H7JW, AC)",
+    "Limited empirical validation: 9 users per arm, possible bias, no significance tests (Reviewer_cjD3, Reviewer_H7JW, AC)",
+    "Software impact too small for NeurIPS, judged by GitHub stars (Reviewer_cjD3 in discussion, AC)",
+    "Three of four ratings below threshold; the lone 8 allowed that its premise could be wrong (Reviewer_G6BM)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No accuracy baselines outside pipeline AutoML, such as AutoGluon or OBOE (Reviewer_m9sr, AC)",
+  "Computation times not reported, and D3M human-in-the-loop work not cited (Reviewer_m9sr)",
+  "Why experienced sklearn users misread the sample pipeline, and how 'experienced' is defined (Reviewer_sNtW)",
+  "The value of 'gradual' automation is not quantified, and usability is compared only with sklearn (Reviewer_2UcV)",
+  "Grid-search backends time out, and Table 2 has no aggregate or clear conclusions (Reviewer_6TXR)"
+ ],
+ "issues_only_b": [
+  "No scientific contribution separate from engineering, and no path for future research (Reviewer_cjD3, Reviewer_D3TC, Reviewer_H7JW, AC)",
+  "Practical impact too small: 225 GitHub stars and 52 forks; JMLR MLOSS suggested (Reviewer_cjD3 in discussion, AC)",
+  "Experts work directly with optimizer interfaces, and the operators add no expressiveness over existing formats (Reviewer_cjD3)",
+  "No null hypotheses or significance tests in the user study, and no account of why the combinators help the optimizer (Reviewer_H7JW)",
+  "Small datasets, unclear support for diverse architectures, and no neural architecture search (Reviewer_D3TC, Reviewer_H7JW)"
+ ],
+ "shared_issues": [
+  "Individual pieces are known ideas (A: Reviewer_6TXR, Reviewer_m9sr, AC; B: Reviewer_D3TC, Reviewer_cjD3 on Figure 6)",
+  "Small user study (A: Reviewer_sNtW, AC; B: Reviewer_cjD3, Reviewer_H7JW, AC)",
+  "User study possibly biased toward Lale (A: Reviewer_sNtW, one company; B: Reviewer_cjD3)",
+  "Lale-Auto trails auto-sklearn in Table 2 (A: Reviewer_6TXR, AC; B: Reviewer_cjD3)",
+  "Presentation leans toward software engineering over machine learning (A: Reviewer_sNtW; B: Reviewer_D3TC, Reviewer_cjD3)",
+  "Unclear what the 'gradual' framing or the formalization adds (A: Reviewer_2UcV; B: Reviewer_H7JW)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A accepted and Committee B rejected on the same facts. Both committees found the paper clear and the problem important. Both found the individual pieces known, the user study small (9 users per arm, all from one company) and Lale-Auto slightly behind auto-sklearn. No reviewer found an error. The split is over whether a well-built library is a NeurIPS contribution, and the reviewer draw decided it. Novelty judgments ran opposite to the scores. Reviewer_6TXR (A) rated originality 2/5 and gave 7, because 'success stories' are research contributions. Reviewer_cjD3 (B) called the translation scheme the first such work in AutoML and gave 4, judging it engineering rather than science. In A, Reviewer_2UcV rose to 6 after the discussion, agreeing that Lale 'does not need to show superior performance'. In B, no reviewer reports a score change. Each committee had one weak outlier. A's lone 4 (Reviewer_m9sr) is a short review that judges Lale as an AutoML engine and asks for AutoGluon and OBOE baselines; the AC called this secondary. B's lone 8 (Reviewer_G6BM) calls the or combinator 'particularly novel' and gradual AutoML impossible in existing systems, which the paper itself contradicts (lines 69-70, 330-333). G6BM then allowed that the engineering-as-contribution premise 'could be wrong'. Both area chairs followed their majorities. B's AC quoted cjD3 under every reason, including a GitHub-stars test of impact that A never applied; A read Lale's industrial use as success. B also held better evidence on the user study. In B's forum the authors reported that only the lines-of-code difference is significant (p = 0.0039) and proposed bootstrapping 9 users to 100. A never saw this, and its AC cited the user study as a reason for confidence. The paper supports B on empirical rigor: the correctness and time gains are not significant, and Lale-Auto trails auto-sklearn on 10 of 14 datasets. The scope question is taste, and the call for papers lists libraries under 'Infrastructure', which favors A.",
+ "candidate_reasons": [
+  "library-as-contribution valued differently",
+  "science-versus-engineering bar applied",
+  "novelty judgments decoupled from scores",
+  "GitHub popularity used as impact",
+  "lone exuberant champion persuaded nobody",
+  "user-study significance probed only in B"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_6TXR review (Originality 2/5; 'success stories')",
+  "Reviewer_2UcV 'Update after author response' (2021-09-01)",
+  "Reviewer_sNtW review; paper_submitted line 347",
+  "Reviewer_m9sr review and author response of 2021-08-10",
+  "Committee A meta-review",
+  "Reviewer_cjD3 review (Novelty; Significance; Table 2 question)",
+  "Committee B meta-review (cjD3 discussion quotes: expressiveness, GitHub stars, JMLR MLOSS)",
+  "Reviewer_G6BM updates after author response and after internal discussion (2021-09-04)",
+  "Author response to Reviewer_H7JW (Mann-Whitney p = 0.0039; bootstrap to 100)",
+  "Reviewer_D3TC review",
+  "paper_submitted Section 5 RQ1 and Table 1 (user study)",
+  "paper_submitted Table 2 (Lale-Auto against auto-sklearn) and lines 306-307",
+  "paper_submitted lines 69-70 and 330-333 (choice and gradual automation in prior tools)",
+  "paper_submitted lines 221-222 and 237-238 (semantics-preserving translation; Hyperopt-like combined form)",
+  "paper_submitted lines 341-342 (AutoGluon) and lines 43-44, 369-370 (industrial use)"
+ ]
+}

@@ -1,0 +1,193 @@
+{
+  "pair_id": "n21-280",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 6, 5],
+      "confidences": [3, 2, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_j61r"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5 to 7 around a mean of 6.25; no rating stands apart. The weakest-supported rating is Reviewer_HxTZ's 7: confidence 2, 2 hours, 'I am not an expert in this area, and cannot easily catch fundamental issues or closely related existing work', and a conditional case ('If everything is correct and novel'). Reviewer_j61r's score was higher before the discussion and ended at 7."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AdYT",
+          "claim": "The speed-ups are evaluated only on very small instances (n = 25) and only against Frank-Wolfe variants.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 336: the OMD experiment uses the permutahedron with n = 25. Fig. 4 middle and right plot only the four OMD-AFW variants; OFW and OMD-PAV appear only in one sentence (lines 350-353). Fig. 4-left (title 'n = 100') measures tight-set recovery, not runtime."
+        },
+        {
+          "reviewer": "Reviewer_AdYT",
+          "claim": "The cardinality-based result is an extension of prior work for the permutahedron.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 72-73: 'We first show that the results of [35] extend to all cardinality-based submodular polytopes'; line 174 calls Theorem 2 a 'generalization of Lim and Wright's result'."
+        },
+        {
+          "reviewer": "Reviewer_j61r",
+          "claim": "The O(T^{3/4}) regret quoted for online Frank-Wolfe is outdated; reference [8] improves it to O(T^{2/3}).",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract and line 33 cite [23, 8] for O(T^{3/4}). The authors' own reply to Reviewer_urFe (Committee B) says the OFW of [8] 'provably achieves a regret of O(T^{2/3})'. The camera-ready states O(T^{2/3})."
+        },
+        {
+          "reviewer": "Reviewer_fArf",
+          "claim": "The main text does not say which submodular polytope the first simulation uses.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 328-334 describe 500 Gaussian point clouds but name no polytope or distance; the Fig. 4-left title gives only 'n = 100, noise 1/50'. The authors replied it was the permutahedron with Euclidean distance."
+        },
+        {
+          "reviewer": "Reviewer_HxTZ",
+          "claim": "The proof of Lemma 5 does not make sense.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The proof is in the appendix, which is not in the submitted PDF. The authors conceded a variable error ('This proof should have y instead of z')."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_j61r"],
+        "evidence": "Reviewer_j61r edited the review on 2021-09-12: 'After the discussion, I agreed with other reviewers that the experiments are not convincing enough and the contribution is limited. Therefore, I decreased my score to 7, though the technical contribution seems great and I think the paper can be accepted.' Reviewer_HxTZ (2021-08-19): 'I have read the authors' response and am satisfied with it. I will keep my score.' Reviewer_fArf (2021-08-18) asked only what the 'confidence intervals' are. Reviewer_AdYT posted nothing and did not edit.",
+        "what_convinced_or_not": "The rebuttal promised n = 50 and n = 100 runs 'very similar to those for n = 25', more experimental description and public code; it showed no new numbers. It moved nobody up. The reviewer discussion moved the champion down onto the weaknesses Committee B stressed (unconvincing experiments, limited contribution); the other three ratings stayed as posted."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The majority of reviewers thought that the contributions ... are interesting and novel beyond the acceptance bar.' Three of four ratings are 6 or 7. The meta-review credits 'a new Frank-Wolfe method with a novel convergence rate', but Theorem 6 is the away-step Frank-Wolfe linear rate with the pyramidal width of the face found so far, and the authors call it 'same as vanilla away-step Frank-Wolfe in the worst-case'. It does not mention the weak experiments or limited contribution that Reviewer_j61r says the panel agreed on.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four ratings at 6 or 7 (mean 6.25); the AC accepted on 'the majority of reviewers'",
+        "New idea: reuse tight sets and active sets from earlier projections, with correctness proofs (Reviewer_j61r, Reviewer_HxTZ, Reviewer_fArf)",
+        "AC credited 'a novel convergence rate' and potential to 'arouse further research'",
+        "Weak experiments and limited contribution conceded in discussion (Reviewer_j61r) but not treated as disqualifying"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 4, 5, 6],
+      "confidences": [5, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_2XnM", "Reviewer_EP3B"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4 to 6 around a mean of 5.25. Reviewer_LoQq's 4 sits one point below Reviewer_urFe's 5; without it the mean is 5.67. LoQq's 4 rests partly on checkable points that hold (OFW missing from Fig. 4, (P1) and (P2) never stated mathematically) and partly on taste (thin motivation). No B reviewer rated above 6."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_2XnM",
+          "claim": "Reusing active sets has no effect in Fig. 4 (OMD-ASAFW vs OMD-UAFW).",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 middle and right: the OMD-ASAFW (red) and OMD-UAFW (green) curves overlap near 10^3 in both loss settings; only OMD-TSAFW and OMD-A2FW drop, by roughly 1.5 to 2 orders. In Fig. 4-middle OMD-A2FW sits slightly above OMD-TSAFW."
+        },
+        {
+          "reviewer": "Reviewer_2XnM",
+          "claim": "In Fig. 6-right some tools make running time worse (OMD-A2FW vs OMD-ASAFW).",
+          "checked_against_paper": "not_checked",
+          "evidence": "Fig. 6 is in the appendix, which is not in the submitted PDF. The authors did not dispute it: 'the time to check whether a tool is useful in an iteration can sometimes reduce the benefit ... this is what leads to differences between A2FW and ASAFW'."
+        },
+        {
+          "reviewer": "Reviewer_2XnM",
+          "claim": "OMD with A2FW is never compared with simply using online Frank-Wolfe; regret and runtime should be plotted for all methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4 shows only OMD-AFW variants. Lines 350-353 state that OMD-PAV and OFW run '6 to 7 orders of magnitudes' faster than OMD-UAFW, about four to five orders faster than the best toolkit variant, and that OFW has '8-25 times the regret of OMD'. No figure shows regret. Reviewer_LoQq made the same point ('not reported in Fig. 4')."
+        },
+        {
+          "reviewer": "Reviewer_2XnM",
+          "claim": "Theorem 2 is a special case of Proposition 8.1 in Bach's monograph [19].",
+          "checked_against_paper": "not_checked",
+          "evidence": "Bach's monograph is outside the paper. The authors agreed: 'Theorem 2 is indeed a special case of Proposition 8.1 in [Bach, 2013]', adding that Lemmas 4 and 5 are needed to reach isotonic optimization."
+        },
+        {
+          "reviewer": "Reviewer_urFe",
+          "claim": "Linear convergence of A2FW holds only for strongly convex and smooth mirror maps, which excludes KL projections.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 6 (lines 317-319) assumes h is mu-strongly convex and L-smooth on B(f). KL is not smooth on 0/1 base polytopes (k-sets, spanning trees), though it is on the permutahedron. Theorem 3 (INFER1, line 204) and ROUND (Lemma 3) are for Euclidean projections. The authors conceded: 'To get linear convergence, we had to assume smoothness and strong convexity.'"
+        },
+        {
+          "reviewer": "Reviewer_urFe",
+          "claim": "The tools are heuristics that do not yield an improved time complexity.",
+          "checked_against_paper": "correct",
+          "evidence": "No result improves the worst-case complexity: Theorem 6 is the away-step Frank-Wolfe linear rate with a restricted pyramidal width. 'Heuristics' overstates, since each tool has a correctness proof (Theorems 3-5, Lemmas 1-3). The authors: 'Having a theoretical result on improved time complexities is open in the worst-case'."
+        },
+        {
+          "reviewer": "Reviewer_LoQq",
+          "claim": "The main class of problems is never stated mathematically.",
+          "checked_against_paper": "correct",
+          "evidence": "(P1) and (P2) are introduced in prose only (lines 43-49) and then referenced throughout. Reviewer_fArf in Committee A made the same point; the authors promised display equations."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_2XnM edited after the 2021-08-10 responses (2021-09-20), adding: 'by comparison with MNP I did not mean for a single projection, but a comparison of OMD with the proposed variant of AFW used for projection vs OMD with MNP used for projection.' The note states no score change. Reviewer_EP3B's edit is dated its posting day (2021-07-16), before the rebuttal. Reviewer_LoQq and Reviewer_urFe neither edited nor replied.",
+        "what_convinced_or_not": "The rebuttal answered with promises: larger-n results described only in words, and MNP and FPL comparisons it 'will add'. It answered a single-projection MNP question that 2XnM had not asked. Its numbers conflict with each other and with the paper: OFW '3 to 5 orders of magnitude' faster than OMD-A2FW (to 2XnM) but '3-5 times faster' (to urFe); a regret gap of '3-10 times' against '8-25 times' on line 353. The AC: 'Unless the authors address this issue, the paper may not be accepted in the current format.'"
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split two at 6, one 5 and one 4 (mean 5.25), but every B reviewer criticised the experiments. The meta-review makes that decisive: 'As reviewers indicated, there is a mismatch between the theory and practice. The experiments are quite small and miss important baselines. So, it is not clear whether the proposed method is really useful.' The 'mismatch' is Reviewer_urFe's point and the 'important baselines' are Reviewer_2XnM's (OFW, MNP), Reviewer_urFe's (FPL) and Reviewer_LoQq's (OFW). It says nothing of the two 6s' praise for the toolkit.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Theory gives no worst-case gain and the linear rate needs smooth, strongly convex maps: the AC's 'mismatch between the theory and practice' (Reviewer_urFe)",
+        "Small synthetic experiments, permutahedron at n = 25 (Reviewer_2XnM, Reviewer_LoQq, Reviewer_EP3B)",
+        "Missing baselines: OFW absent from the runtime plots, no MNP or FPL comparison (Reviewer_2XnM, Reviewer_LoQq, Reviewer_urFe)",
+        "The rebuttal promised experiments instead of showing them; the AC asked for them before acceptance"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "OFW regret quoted as O(T^{3/4}); reference [8] gives O(T^{2/3}) (Reviewer_j61r)",
+    "Lemma 5 proof error (Reviewer_HxTZ)",
+    "Pyramidal-width bounds for other submodular polytopes; local strong convexity in the INFER2 threshold (Reviewer_j61r)",
+    "Meaning of the shaded regions in Fig. 4 and no public code (Reviewer_fArf)",
+    "A worked example with f(S) = |S| to make the results intuitive (Reviewer_HxTZ)"
+  ],
+  "issues_only_b": [
+    "Named missing baselines: OMD with MNP (Reviewer_2XnM), Follow-the-Perturbed-Leader (Reviewer_urFe), OFW in the runtime and regret plots (Reviewer_2XnM, Reviewer_LoQq)",
+    "REUSE has no effect in Fig. 4, and A2FW is slower than ASAFW in Fig. 6-right (Reviewer_2XnM)",
+    "Linear rate requires smooth, strongly convex maps and so excludes KL projections (Reviewer_urFe)",
+    "Theorem 2 is a special case of Bach's Proposition 8.1 (Reviewer_2XnM)",
+    "Thin motivation and applications; no guarantee for OMD combined with A2FW (Reviewer_LoQq)",
+    "No real-world experiments (Reviewer_EP3B)"
+  ],
+  "shared_issues": [
+    "Small, synthetic experiments, n = 25 (A: Reviewer_AdYT, and Reviewer_j61r after discussion; B: Reviewer_2XnM, Reviewer_LoQq, Reviewer_EP3B)",
+    "Comparisons limited to away-step Frank-Wolfe variants (A: Reviewer_AdYT; B: Reviewer_2XnM, Reviewer_LoQq, Reviewer_urFe)",
+    "No improvement in worst-case runtime or complexity (A: Reviewer_fArf; B: Reviewer_urFe)",
+    "Cardinality-based result is incremental over Lim and Wright or Bach (A: Reviewer_AdYT; B: Reviewer_2XnM)",
+    "Experimental setup underspecified, including the first experiment's polytope (A: Reviewer_fArf; B: Reviewer_2XnM, Reviewer_LoQq)",
+    "(P1) and (P2) never stated mathematically (A: Reviewer_fArf; B: Reviewer_LoQq)",
+    "Strict-convexity footnote states plain convexity (A: Reviewer_fArf; B: Reviewer_2XnM)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same paper and the same weaknesses, and weighted them differently. Reviewers in both called the idea new (reuse tight sets and active sets from earlier projections); reviewers in both noted no worst-case speed-up (Reviewer_fArf in A, Reviewer_urFe in B), an incremental cardinality-based result, and small synthetic experiments. The submission confirms B's specific critiques: the runtime experiment is one permutahedron at n = 25 (line 336); in Fig. 4 REUSE has no effect; OFW and OMD-PAV are missing from the plots although lines 350-351 put them 6 to 7 orders of magnitude ahead of OMD-UAFW, four to five orders ahead of the best toolkit variant; and Theorem 6 gives only the away-step Frank-Wolfe rate, for smooth strongly convex maps. Committee A's own discussion reached the same weaknesses: Reviewer_j61r lowered to 7 because 'the experiments are not convincing enough and the contribution is limited'. A accepted because three of four ratings stayed at 6 or 7; its two 7s carry the lowest confidences in either committee (3, and 2 from Reviewer_HxTZ, a self-declared non-expert), and its AC counted 'the majority of reviewers' and credited 'a novel convergence rate' that the authors call the 'same as vanilla away-step Frank-Wolfe in the worst-case'. B's panel was more confident (5, 4, 4, 4); its most expert reviewer, Reviewer_2XnM (confidence 5, 6-7 hours, checked the proofs), gave only a 6 while documenting the experimental gaps, and its AC made those gaps decisive. B's negative points are specific and the paper confirms them; A's positive case is general. The split comes from reviewer draw and AC weighting, not from a factual disagreement.",
+  "candidate_reasons": [
+    "AC head count versus substance",
+    "low-confidence reviewers supplied accept scores",
+    "weak experiments weighted differently",
+    "concrete missing baselines named once",
+    "rebuttal promises not counted",
+    "meta-review overstated theoretical novelty"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_j61r final review, 'After rebuttal' note",
+    "Reviewer_HxTZ review (confidence 2, non-expert disclaimer)",
+    "Reviewer_fArf review (worst-case runtime sentence)",
+    "Committee A meta-review",
+    "Authors' response to Reviewer_HxTZ, point 1 (A2FW rate same as away-step Frank-Wolfe in the worst case)",
+    "Reviewer_2XnM final review and 'After Rebuttal' note",
+    "Reviewer_urFe review",
+    "Authors' responses to Reviewer_2XnM (point 4) and Reviewer_urFe (point 3): conflicting OFW speed and regret figures",
+    "Committee B meta-review",
+    "paper_submitted.pdf Figure 4 and Section 5.1, lines 335-354",
+    "paper_submitted.pdf Theorem 6, lines 317-324"
+  ]
+}

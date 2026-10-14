@@ -1,0 +1,210 @@
+{
+ "pair_id": "n21-003",
+ "prompt_version": 1,
+ "kind": "spotlight/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 6, 5, 5],
+   "confidences": [5, 4, 3, 4],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5/6/5/5 (x3ez, nMFp, h7Rc, q7JA). Reviewer_nMFp's 6 is the only score above threshold, one point from the rest. Its main review is four one-line strengths, and nMFp never posted after the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_h7Rc",
+     "evidence": "Calls YouTube-VIS 'mainly for video object segmentation (VOS) problems'. Section 4.1 describes a task to classify, segment and track instances of 40 categories. Confidence 3; no reply after the authors corrected this."
+    },
+    {
+     "reviewer": "Reviewer_nMFp",
+     "evidence": "Rating 6 on a main review of four one-line strengths and no weaknesses. Its three questions (BDD100K test set, rivals' speeds, prototype count) sit under limitations. Silent after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_x3ez",
+     "claim": "Almost all GMM clustering details are missing: how often it runs, its cost, how N is chosen and how results vary with N.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission ablated only the instance-level count (Table 6). The frame-level count (64), its 8-128 ablation and the EM cost (3 ms per frame) first appear in the rebuttal. The camera-ready adds them (Tables 8 and 9)."
+    },
+    {
+     "reviewer": "Reviewer_x3ez",
+     "claim": "Against non-local attention the method saves memory (9631 to 1419 MB at length 8) and gains 0.5-0.6 AP, but it is not faster; Table 5 compares FLOPs, not runtime.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 5 gives AP 33.7/33.9/34.2 vs 33.2/33.3/33.6 at lengths 2/4/8 and reports only FLOPs and memory as cost. The authors' own timing: 63.2 vs 61.8 ms per frame, so PCAN is slightly slower."
+    },
+    {
+     "reviewer": "Reviewer_h7Rc",
+     "claim": "YouTube-VIS is mainly a VOS dataset, so the paper gives no evidence that the method suits multi-object tracking.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 4.1: 2,883 videos, 131k instances in 40 categories, and the task is to classify, segment and track them. Ref. [46] is the video instance segmentation benchmark. The valid half of the point, no KITTI-MOTS or MOTSChallenge results, was also raised in B by Reviewer_TiXB."
+    },
+    {
+     "reviewer": "Reviewer_q7JA",
+     "claim": "The paper does not cite self-supervised memory trackers such as MAST.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither MAST nor the contrastive random walk (raised by Reviewer_x3ez) is in the reference list, even in the camera-ready, although the authors promised to add both."
+    },
+    {
+     "reviewer": "Reviewer_q7JA",
+     "claim": "Results are on validation sets, so hyperparameters may be tuned on the reporting split.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.3 runs all ablations on the YouTube-VIS validation set, the split of Table 1. The rebuttal's BDD100K test result (31.8 vs 26.0 mMOTSA over QDTrack-mots, no retuning) answers this."
+    },
+    {
+     "reviewer": "Reviewer_q7JA",
+     "claim": "The paper does not describe the loss.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1 defers to QDTrack-mots and the supplement. The association cross-entropy loss is stated only in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_nMFp",
+     "claim": "Table 1 does not report the compared methods' running speeds.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 has no speed column; Section 4.1 gives only PCAN's 15.0 FPS. The rebuttal shows PCAN (92.7 GFLOPs) slower and heavier than STMask (28 FPS, 58.9 GFLOPs) and SG-Net (23 FPS, 69.6 GFLOPs)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after posting. Only Reviewer_x3ez replied (2021-08-29): 'Most of my concerns are addressed', then called the 0.5-0.6 AP gain over non-local attention 'trivial' unless PCAN wins at a fixed memory budget. The authors answered: 35.4 AP at length 32 in 5.8 GB vs 33.6 AP for non-local attention at length 8 in 9.6 GB. x3ez did not reply and stayed at 5. Reviewer_nMFp, Reviewer_h7Rc and Reviewer_q7JA posted nothing.",
+    "what_convinced_or_not": "A got the same core rebuttal as B plus BDD100K test results, runtime against non-local attention and the EM cost. x3ez had promised to consider raising if the concerns were addressed, then said most were; no score moved. The AC reports that reviewers saw 'low novelty and insight' and an insufficient answer on self-supervised work. No public comment says either, so these came from non-public discussion."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Opens with 'three below threshold and one above threshold' and ends 'In the end, all reviewers were negative. The AC agrees'. Reviewer_nMFp's 6 was never edited, so that sentence does not match the record. The concern list omits that the rebuttal supplied BDD100K test and KITTI-MOTS results.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings below threshold (mean 5.25), none changed after the rebuttal",
+    "Read as an application paper that combines existing techniques without insight (Reviewer_h7Rc, AC)",
+    "Efficiency shown only in memory and attention FLOPs: no runtime gain over non-local attention, slower than one-stage rivals (Reviewer_x3ez, Reviewer_q7JA)",
+    "Missing related work on self-supervised memory trackers and missing method details (Reviewer_q7JA, Reviewer_x3ez)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [7, 6, 7, 7],
+   "confidences": [4, 4, 4, 4],
+   "reviews_edited_after_posting": ["Reviewer_NPPQ", "Reviewer_HvVc", "Reviewer_TiXB"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7/6/7/7 (NPPQ, 9ARZ, HvVc, TiXB). Reviewer_TiXB is the most enthusiastic ('I am very excited about the prospects') but rates 7 like NPPQ and HvVc."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_NPPQ",
+     "evidence": "'I am not an expert in MOTS', yet confidence 4 after 1.5-3 hours. Asks whether any experiment shows the accuracy lost by clustering; Table 5 already does. Could not find prior work, though Section 2 cites EM-based prototype attention [19]. Raised 6 to 7 with a one-line comment."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_NPPQ",
+     "claim": "Grouping pixels into clusters as the unit of attention is new: 'I couldn't find a work that has done this before'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 2 cites EM-based prototype attention for single-image segmentation [19], whose first author is this paper's second author, and clustered attention [38]. The new step is applying it to a space-time memory and to per-instance foreground/background prototypes."
+    },
+    {
+     "reviewer": "Reviewer_NPPQ",
+     "claim": "The quoted VisTR numbers do not match the published ones (e.g. 40.1 AP).",
+     "checked_against_paper": "correct",
+     "evidence": "The submission quoted 34.4 AP from arXiv v1 (authors' reply). Camera-ready Table 1 uses the CVPR value, 35.6, which leaves PCAN's ResNet-50 lead at 0.5 AP (36.1). VisTR is offline; PCAN is online."
+    },
+    {
+     "reviewer": "Reviewer_9ARZ",
+     "claim": "Eq. 4 sums over N, the number of prototypes, not over the features being clustered.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors conceded a typo. Camera-ready Eq. 4 sums over H×W. Harmless."
+    },
+    {
+     "reviewer": "Reviewer_HvVc",
+     "claim": "PCAN's 15 fps is much slower than the 28 fps of a compared one-stage method.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1 gives 15.0 FPS. In A's rebuttal, STMask runs at 28 FPS and SG-Net at 23. B's reply gives SG-Net's 23 FPS and leaves STMask out of its table."
+    },
+    {
+     "reviewer": "Reviewer_HvVc",
+     "claim": "The effect of the number of clusters N is not validated.",
+     "checked_against_paper": "correct",
+     "evidence": "Same gap as Reviewer_x3ez found in A. Only the instance-level count is ablated (Table 6); the frame-level ablation came in the rebuttal and is camera-ready Table 8."
+    },
+    {
+     "reviewer": "Reviewer_TiXB",
+     "claim": "Performance has not saturated at memory length 32, and prototypes do not hurt accuracy against full attention.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: AP 34.6 at length 16, 35.4 at 32. Table 5: prototypes beat non-local attention by 0.5-0.6 AP at lengths 2-8."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_NPPQ", "Reviewer_HvVc"],
+    "evidence": "Reviewer_NPPQ (edited 2021-08-23): 'I moved my score from 6 -> 7'. Reviewer_HvVc (edited 2021-08-25): 'All my concerns are well addressed, so I changed my score to accept paper' (final 7, so at most 6 before). Reviewer_TiXB kept 7 and Reviewer_9ARZ kept 6; both said their concerns were addressed.",
+    "what_convinced_or_not": "The same core material as in A: frame-prototype ablation (8-128), module table (32.5 to 36.1 AP), KITTI-MOTS against TrackR-CNN, prototype and TSM details, plus the VisTR explanation. HvVc had called the paper 'badly written' with 'many crucial details missing' and raised on promised revisions. TiXB still wanted KITTI-MOTS in the paper. B never saw the runtime comparison with non-local attention."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "'All four reviewers recommend acceptance ... 7, 7, 6, 7'. Praises a 'very strong' cost-accuracy trade-off and 'convincing' ablations, and cites TiXB on the prototype ablation. Acceptance follows the reviews; the spotlight does not, since no reviewer rated above 7 and no reason is given. The trade-off is strong for memory, not speed.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at or above threshold (mean 6.75) after two reviewers raised to 7",
+    "A simple prototype idea that cuts attention memory 6.8x at length 8 (Table 5), read as novel (Reviewer_NPPQ, Reviewer_TiXB)",
+    "Best online results on YouTube-VIS and BDD100K, with informative ablations",
+    "Rebuttal supplied the prototype-count ablation, KITTI-MOTS results and method details"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No runtime gain over non-local attention and only 0.5-0.6 AP better (Reviewer_x3ez)",
+  "Self-supervised memory trackers MAST and contrastive random walk not cited (Reviewer_x3ez, Reviewer_q7JA)",
+  "Hyperparameters chosen on the validation split used for results; no test-set results (Reviewer_q7JA, Reviewer_nMFp)",
+  "Pure application paper; doubt that a method shown on YouTube-VIS suits MOT (Reviewer_h7Rc)",
+  "Loss, track initiation and termination, and occlusion handling not described (Reviewer_q7JA, Reviewer_h7Rc)",
+  "Simpler alternatives: one concatenated reference set; instance-level memory alone (Reviewer_x3ez)"
+ ],
+ "issues_only_b": [
+  "VisTR numbers differ from the published paper (Reviewer_NPPQ)",
+  "Equation errors and unexplained distance choices in Eqs. 4, 5 and 7 (Reviewer_9ARZ)",
+  "Figures 1-3 inconsistent and TSM unexplained (Reviewer_HvVc); the authors admitted an error in Fig. 3",
+  "Whether prototypes that average features stay discriminative (Reviewer_9ARZ)",
+  "No VOS results (DAVIS, YouTube-VOS); memory grows without bound (Reviewer_TiXB, Reviewer_NPPQ)"
+ ],
+ "shared_issues": [
+  "Frame-level prototype count unstated and not ablated (A: Reviewer_x3ez, Reviewer_nMFp; B: Reviewer_HvVc, Reviewer_TiXB)",
+  "No results on the standard KITTI-MOTS benchmark (A: Reviewer_h7Rc; B: Reviewer_TiXB)",
+  "Slower than one-stage rivals, whose speeds the paper omits (A: Reviewer_nMFp, Reviewer_q7JA; B: Reviewer_HvVc)",
+  "Missing method and training details; presentation needs work (A: Reviewer_q7JA, Reviewer_x3ez; B: Reviewer_HvVc, Reviewer_9ARZ, Reviewer_TiXB)",
+  "Limited novelty, a natural extension of cross-attention (A: Reviewer_h7Rc; B: Reviewer_9ARZ)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighted the same facts differently, and only B's reviewers raised their scores after a near-identical rebuttal. Both saw the same strengths: 6.8x less attention memory than non-local attention (Table 5) and the best online results on YouTube-VIS and BDD100K. Both raised the same gaps: no frame-prototype count, missing details, no KITTI-MOTS results, slower than one-stage rivals, modest novelty. In B, NPPQ (6 to 7) and HvVc (to 7) raised, and TiXB saw 'a big step'. In A, only x3ez replied; x3ez wrote that most concerns were addressed and stayed at 5. The other three A reviewers were silent. A's AC counted three scores below threshold and wrote 'all reviewers were negative', which nMFp's unedited 6 contradicts. One A detractor (h7Rc) partly rests on calling YouTube-VIS a VOS dataset, which Section 4.1 refutes. B's novelty praise partly rests on NPPQ not finding prior work that Section 2 cites ([19]). A's sharpest point is correct, and B never saw it: PCAN is not faster than non-local attention (63.2 vs 61.8 ms per frame) and gains 0.5-0.6 AP. No reviewer found an error in a result. A's reject rests on framing and silence; B's spotlight has no rating above 7 behind it.",
+ "candidate_reasons": [
+  "Rebuttal engagement differs between committees",
+  "Novelty read as new versus incremental",
+  "Detractor misreads benchmark task",
+  "AC misstates final reviewer positions",
+  "Efficiency judged on memory versus speed",
+  "Spotlight without any rating above 7"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_x3ez comment 2021-08-29 and the authors' reply",
+  "Authors' response to Reviewer_x3ez, Q5 (63.2 vs 61.8 ms per frame)",
+  "Committee A meta-review ('all reviewers were negative')",
+  "Reviewer_h7Rc review, point 3, against paper Section 4.1",
+  "Reviewer_NPPQ review ('couldn't find a work') and comment 2021-08-23",
+  "Reviewer_HvVc comment 2021-08-25",
+  "Reviewer_TiXB post-rebuttal justification",
+  "Committee B meta-review",
+  "paper Table 5 (AP, FLOPs, memory vs non-local attention)",
+  "paper Section 2 (refs [19], [38])"
+ ]
+}

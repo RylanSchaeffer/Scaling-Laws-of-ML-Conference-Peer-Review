@@ -1,0 +1,215 @@
+{
+  "pair_id": "n21-219",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 6, 7],
+      "confidences": [4, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_vTqw"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 7. Reviewer_KmGd's 6 is one point below the others, at confidence 2 with a three-line review. No reviewer rated above 7, so A had no champion."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_KmGd",
+          "evidence": "2 hours, confidence 2 ('Math/other details were not carefully checked'). Two strengths and one weakness ('too many results'), no technical point, no reply to the rebuttal. Its 6 is weak evidence either way."
+        },
+        {
+          "reviewer": "Reviewer_Dzyq",
+          "evidence": "Hours not tracked, confidence 3 with math not checked. An accurate summary, then three generic paragraphs (significance, novelty, clarity) with no specific claim or question. No reply to the rebuttal. Its 7 is weak evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vTqw",
+          "claim": "The first term of the Theorem 10 bound decreases with the dimension d.",
+          "checked_against_paper": "correct",
+          "evidence": "The OpenReview abstract (paper.json) gives Õ(1/(n^{3/10} d^{1/10}) + (d/n^2)^{1/5}). The authors conceded and derived a refined bound with no d in the denominator. The camera-ready abstract and Theorem 11 (p.8) use it: Õ(1/n^{1/3} + d^{1/5}/(nε)^{2/5})."
+        },
+        {
+          "reviewer": "Reviewer_vTqw",
+          "claim": "Table 1 gives no comparison with prior work.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1 (p.2) still lists only the paper's own bounds. The [ZCH+20] comparison is in prose on p.3. In the rebuttal the authors said [ZCH+20] has better sample complexity."
+        },
+        {
+          "reviewer": "Reviewer_vTqw",
+          "claim": "Because the Theorem 10 rate does not depend on p, the ℓp setting brings no visible advantage.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The bound depends on p only through κ = min{1/(p−1), log d}. The gain lies in D, L0 and L1, which are measured in the ℓp norm. The authors explained this, and vTqw accepted it."
+        },
+        {
+          "reviewer": "Reviewer_vTqw",
+          "claim": "Theorem 5 does not state convexity; DP-SCO is never defined; typos 'to due to' and 'normed spaced'.",
+          "checked_against_paper": "correct",
+          "evidence": "All remain in the camera-ready. Definition 2 and Theorem 5 (p.5) do not require ℓ to be convex; only the Section 3 title does. DP-SCO is used from p.2 without definition. The typos are on p.5 and p.8."
+        },
+        {
+          "reviewer": "Reviewer_vTqw",
+          "claim": "Proof gaps: τ undefined in the proof of Lemma 4, a skipped step in the first inequality on page 16, and an unexplained removal of the subscript V at line 548.",
+          "checked_against_paper": "not_checked",
+          "evidence": "a/paper.pdf is the camera-ready main text without the appendix. The authors' answers (bisection converges geometrically; the gradient lies in the span of the features, where VV^T is the identity) are standard. vTqw accepted them."
+        },
+        {
+          "reviewer": "Reviewer_vTqw",
+          "claim": "The moments accountant could improve the advanced-composition bounds by a log T factor.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Authors: Section 5 already uses it implicitly through [AFKT21]. The other algorithms use parallel composition or advanced composition of pure-DP steps, where it does not help. vTqw accepted this."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_vTqw"],
+        "evidence": "vTqw's review says it 'would increase my scores if the authors can address my queries'. On 2021-08-31 vTqw replied 'My concerns are well addressed and I would increase my score'. The review was edited that day, and the final rating is 7, so the earlier rating was at most 6. KmGd and Dzyq did not reply or edit.",
+        "what_convinced_or_not": "The refined Theorem 10 bound without d in the denominator. An explicit comparison with [ZCH+20]: better sample complexity there, better oracle complexity here, with a newly improved oracle bound. Short answers on the moments accountant, the bisection step and the V subscript. The two thin reviewers got only promises to shorten Section 3 and add intuition."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows three accept-side ratings. But no reviewer rated above 7 or argued for a higher tier. The meta-review summarizes the GLL results, says the paper 'pushes forward the research' in an important area, and ends 'I recommend this paper be accepted'. It gives no reason for a spotlight. It mentions no weakness, although KmGd and Dzyq both flagged readability.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three accept-side ratings (7, 6, 7; mean 6.67), with no detractor and no challenge to novelty or significance.",
+        "The only technical reviewer, vTqw, had every query answered, including a refined Theorem 10 bound, and raised the score to 7.",
+        "The AC's own view that the paper advances an important area, centred on the GLL results. The record gives no reason for spotlight over poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 4, 8, 6],
+      "confidences": [2, 4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_TpjV"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_c6Mx",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6: a 4 at confidence 4, against 7, 8 and 6. The claims are specific, and two hold. The ℓ2 GLL result is 1-D smoothing plus [FKT20] (authors: 'we agree this is based on a simple idea'). The ℓ2 non-convex rate is below [ZCH+20] (paper p.3: 'slightly worse'). The weakly convex argument is wrong. The review does not weigh the non-Euclidean results that MuL7 found new even without privacy. No reply or edit after the rebuttal, so the 4 stands. Without it, B's mean is 7.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Brcd",
+          "evidence": "7 at confidence 2 ('Math/other details were not carefully checked'), 4 hours. One paragraph of praise with no technical point, and a closing remark that a conference may not be 'the best venue'. No reply to the rebuttal. Its 7 is weak evidence of quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_c6Mx",
+          "claim": "The ℓ2 GLL result is a direct corollary of previous work: smoothing a GLL is a 1-D problem, so existing algorithms already run in nearly linear time.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready p.3: 'Our two contributions for GLL follow the same simple idea'. Sec. 3.2 (p.5) runs the Phased-SGD of [FKT20] with a bisection oracle for the 1-D Moreau envelope. Authors: 'we agree this is based on a simple idea. This is not the core of our results.' They claim more novelty for the ℓ1 GLL result, which uses the noisy Frank-Wolfe of [TTZ15]."
+        },
+        {
+          "reviewer": "Reviewer_TpjV",
+          "claim": "In the ℓ2 setting the non-convex utility guarantee is worse than [ZCH+20] (also Reviewer_c6Mx, item 2.3).",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready p.3: 'slightly worse than the state of the art, O((d/n^2)^{1/4}) [ZCH+20]'. [ZCH+20] is unconstrained and runs in superlinear time. The authors conceded ('slightly worse')."
+        },
+        {
+          "reviewer": "Reviewer_c6Mx",
+          "claim": "The weakly convex bounds are worse than the smooth ones, which suggests they are not optimal.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The n^{-1/4} term equals the best non-private rate for weakly convex non-smooth problems [DG19, DD19] (paper p.3). The smooth/non-smooth gap exists without privacy, so the convex analogy does not transfer. Optimality of the privacy term is open."
+        },
+        {
+          "reviewer": "Reviewer_TpjV",
+          "claim": "The private Frank-Wolfe algorithm needs a very large batch at each iteration.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 8 (p.7) sets b = n/log^2(n) for the first step of each round; later steps use b/(t+1). The authors agreed and pointed to linear oracle complexity."
+        },
+        {
+          "reviewer": "Reviewer_MuL7",
+          "claim": "Theorem 16 needs a projection oracle that the section does not mention.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'The projection assumption is implicit'. Camera-ready Remark 17 (p.10) now says ASC 'requires performing Bregman projections'."
+        },
+        {
+          "reviewer": "Reviewer_MuL7",
+          "claim": "The smooth non-convex part assumes a polyhedral constraint even in the ℓ2 setting.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Only Sec. 4.1 (ℓ1) needs a polytope. Sec. 4.2 (p.7) uses a linear optimization oracle over W. Table 1 assumes the unit ℓp ball only for a clean bound, as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_MuL7",
+          "claim": "The paper gives only upper bounds, and their tightness is unclear (also Reviewer_c6Mx, item 2.2, on the ℓ1 conjecture).",
+          "checked_against_paper": "correct",
+          "evidence": "No lower bound is proved. Camera-ready p.3: 'We suspect that our rates for the ℓ1-setting are essentially tight', based on a non-private ℓ2 oracle lower bound [ACD+19]. The authors called this evidence 'only indirect'."
+        },
+        {
+          "reviewer": "Reviewer_TpjV",
+          "claim": "There are no experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper is purely theoretical. The authors said experiments are out of scope."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "No reviewer replied in public. TpjV edited on 2021-08-31, but its text does not refer to the rebuttal, and the earlier rating is not exposed. c6Mx, MuL7 and Brcd did not edit. The meta-review mentions 'a lot of discussion among reviewers', which is not in the public record.",
+        "what_convinced_or_not": "The authors conceded c6Mx's two strongest points: GLL smoothing is 'a simple idea', and the ℓ2 rate is 'slightly worse' than [ZCH+20]. They disputed the rest, sometimes sharply ('To the best of our knowledge, our claims are factual'). Their correction of the weakly convex comparison is right. c6Mx's 4 stands, so the rebuttal did not move the detractor."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Poster matches a split panel (4 to 8, mean 6.25) whose two confidence-4 reviewers gave 4 and 6. The one substantive request, to 'better integrate their diverse-seeming results into one story', repeats c6Mx's 'basically a list of different results', MuL7's coherence point and Brcd's 'hard to parse'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "A split panel (7, 4, 8, 6; mean 6.25): the two confidence-4 reviewers gave 4 and 6.",
+        "c6Mx's incrementality case, partly confirmed by the paper: the ℓ2 GLL result is simple smoothing plus [FKT20], and the ℓ2 non-convex rate is below [ZCH+20].",
+        "A fragmented set of results without one story, the AC's only stated concern.",
+        "MuL7's substantive 8 (new non-Euclidean results; a lower-bound insight from the GLL result) and Brcd's thin 7 kept the paper in."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The first term of the Theorem 10 bound decreases with d (Reviewer_vTqw); the camera-ready uses a refined bound.",
+    "Whether the moments accountant improves on advanced composition (Reviewer_vTqw).",
+    "Appendix proof gaps: τ in Lemma 4, the first inequality on page 16, the V subscript at line 548 (Reviewer_vTqw).",
+    "No visible advantage of the ℓp geometry when the rates look independent of p (Reviewer_vTqw).",
+    "Theorem 5 omits convexity, DP-SCO is undefined, and the PSGD of [FKT20] is not restated (Reviewer_vTqw)."
+  ],
+  "issues_only_b": [
+    "The ℓ2 GLL result is a near-corollary of 1-D smoothing plus [FKT20] (Reviewer_c6Mx).",
+    "The private Frank-Wolfe is a direct adaptation of variance-reduced stochastic Frank-Wolfe, and the technical challenge is unclear (Reviewer_TpjV, Reviewer_c6Mx).",
+    "No privacy amplification by subsampling, so the rates may be improvable (Reviewer_c6Mx).",
+    "Very large minibatches and no experiments (Reviewer_TpjV).",
+    "No lower bounds, so the tightness of the rates is unknown (Reviewer_MuL7, Reviewer_c6Mx).",
+    "Implicit projection oracle in Theorem 16, and constraint choices that block comparison with unconstrained work (Reviewer_MuL7).",
+    "Overuse of 'first' claims, ε missing from the abstract's rates, GLL versus GLM naming (Reviewer_c6Mx).",
+    "A conference with a small page limit may not be the right venue (Reviewer_Brcd)."
+  ],
+  "shared_issues": [
+    "Too many loosely connected results, hard to read, little intuition (A: Reviewer_KmGd, Reviewer_Dzyq; B: Reviewer_c6Mx, Reviewer_MuL7, Reviewer_Brcd and the AC).",
+    "Comparison with prior work, especially [ZCH+20], whose ℓ2 non-convex rate is better (A: Reviewer_vTqw asked, and the authors volunteered the fact; B: Reviewer_TpjV and Reviewer_c6Mx called it a weakness, Reviewer_MuL7 asked for an unconstrained comparison)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A's spotlight is the anomaly; B's poster follows its record. A rated the paper 7, 6 and 7 (mean 6.67). No A reviewer rated above 7 or argued for a higher tier. Two of A's three reviews are thin: Reviewer_KmGd spent 2 hours at confidence 2, and Reviewer_Dzyq made no specific point. A's only technical reviewer, Reviewer_vTqw, asked for clarifications, got them, and raised the score to 7. A's meta-review says the paper 'pushes forward the research' and recommends that it 'be accepted'. It gives no reason for a spotlight, so the tier rests on the AC's own view. B rated the paper 7, 4, 8 and 6 (mean 6.25). B's supporters were not cooler than A's reviewers: without Reviewer_c6Mx, B's mean is 7.0. The difference is that B drew confident critics of novelty and A drew none. Reviewer_c6Mx (4, confidence 4) argued incrementality, and the paper confirms two of its points. The ℓ2 GLL result is 1-D Moreau smoothing plugged into [FKT20]; the paper calls this 'the same simple idea', and the authors conceded. The ℓ2 non-convex rate is 'slightly worse' than [ZCH+20]. Reviewer_TpjV (6, confidence 4) added large batches and doubts about the private Frank-Wolfe's novelty. B's AC made fragmentation ('diverse-seeming results') its only message. A's reviewers flagged the same readability problem, and A's AC ignored it. Both committees saw the same paper: many new rates in separate settings, built from known tools. A weighted the breadth. B weighted the simplicity of the parts and the missing common story.",
+  "candidate_reasons": [
+    "AC tier above review scores",
+    "confident novelty detractor only in B",
+    "simple technique: advance or corollary",
+    "fragmentation penalised by B's AC",
+    "thin supporting reviews in A"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee A rating table (7, 6, 7) and Committee B rating table (7, 4, 8, 6)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_vTqw review and 2021-08-31 reply",
+    "Reviewer_KmGd review",
+    "Reviewer_c6Mx review, item 1, and the authors' reply ('we agree this is based on a simple idea')",
+    "Reviewer_TpjV review, item 4, and the authors' reply ('slightly worse')",
+    "Reviewer_MuL7 review, items 3, 5 and 6",
+    "paper.json abstract: the submitted ℓ2 rate with d^{1/10} in the denominator",
+    "paper (camera-ready a/paper.pdf) p.3: 'Our two contributions for GLL follow the same simple idea' and the [ZCH+20] comparison",
+    "paper (camera-ready) Sec. 3.2, p.5: Phased-SGD of [FKT20] with the 1-D smoothing oracle",
+    "paper (camera-ready) Theorem 11, p.8, and Remark 17, p.10"
+  ]
+}

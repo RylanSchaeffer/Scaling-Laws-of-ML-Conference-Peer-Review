@@ -1,0 +1,246 @@
+{
+ "pair_id": "n21-281",
+ "prompt_version": 1,
+ "kind": "spotlight/poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Spotlight)",
+   "ratings_final": [
+    7,
+    6,
+    7
+   ],
+   "confidences": [
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_uhXk"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7/6/7 (mean 6.67); no reviewer departs from the others and none rates above 7."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_7tWD",
+     "evidence": "Rating 7 after 2 hours at confidence 3. Names no weakness ('I don't see any flaws'; the experiments 'could potentially support their claims'). Its suggestions are other tasks, CUDA/PyTorch versions and a phrasing change. No post-rebuttal engagement. The 7 is not evidence of quality."
+    },
+    {
+     "reviewer": "Reviewer_t8ZX",
+     "evidence": "2 hours. States that GDWS shows 'inferior performance under attack' compared with ADMM; Table 3 shows GDWS more robust than every ADMM model. Asks for the FPS of MobileNetV2, which the supplementary table already gave."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_t8ZX",
+     "claim": "Compared with ADMM [42], GDWS shows inferior performance under attack.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Camera-ready Table 3 (same number as in the submission, per the rebuttal): GDWS A_rob 46.28 vs 43.80/42.93/41.07 for ADMM VGG-16 at p = 25/50/75%, and 46.15 vs 42.67/42.23/43.23 for ResNet-18. ADMM wins only on FPS, at p = 75% for VGG-16."
+    },
+    {
+     "reviewer": "Reviewer_t8ZX",
+     "claim": "Applying GDWS to any ResNet slightly lowers robust accuracy under PGD.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: A_rob falls 0.11 (ResNet-50), 0.10 (WRN-28-4) and 0.57 (ResNet-18) points, and rises 0.64 for VGG-16. The drops are small."
+    },
+    {
+     "reviewer": "Reviewer_t8ZX",
+     "claim": "The RobNet variant chosen for the comparison is not performing well.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Camera-ready Table 1 (submission Table 2): the public pre-trained RobNet scores 82.72 A_nat / 52.23 A_rob, above WRN-28-4 (51.80) and 0.8 below ResNet-50 (53.05). Its weak number is FPS (5), not robustness. The authors say it is RobNet-free, the best variant in [7]."
+    },
+    {
+     "reviewer": "Reviewer_t8ZX",
+     "claim": "Table 7 of [7] shows MobileNetV2 more robust than ResNet-18 and ResNet-50, against the paper's reason for not using MobileNetV2.",
+     "checked_against_paper": "not_checked",
+     "evidence": "[7] is outside the record. Authors: MobileNetV2's <0.5-point robustness edge costs 2-3 points of natural accuracy. Camera-ready Table 2: the authors' own MobileNetV2 reaches 48.55 A_rob at 70 FPS vs 50.98 at 104 FPS for ResNet-18+GDWS."
+    },
+    {
+     "reviewer": "Reviewer_uhXk",
+     "claim": "GDWS uses more depthwise kernels than DWS and so costs more computation; its gains come from the error optimisation and from replacing standard convolutions, not from the GDWS form.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 3: cost H'W'G(K^2+M) with G = sum of g_c >= C; DWS is g_c = 1. The authors agreed and claimed no FPS advantage over DWS. Camera-ready Table 2: a DWS ResNet-18 trained from scratch runs at 120 FPS vs 104 for ResNet-18+GDWS, with 2.46 points lower A_rob."
+    },
+    {
+     "reviewer": "Reviewer_uhXk",
+     "claim": "Robustness is a by-product: the method minimises approximation error and does not target adversarial perturbations.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithms 1-3 minimise the weighted weight error of Eq. 5 with weights from Eq. 8; there is no adversarial term. Authors: 'You are correct ... GDWS on its own cannot increase the robustness of the baseline model'."
+    },
+    {
+     "reviewer": "Reviewer_uhXk",
+     "claim": "The paper does not introduce limitations of the proposed method.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 5 states two limitations: low compression compared with pruning, and no application to networks that already use DWS. B's Reviewer_PpQM quoted both from the submitted version."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "unknown",
+    "by_whom": [],
+    "evidence": "The authors replied to all three reviewers on 2021-08-10. No reviewer posted in the discussion. Reviewer_uhXk edited on 2021-08-30 without a note; the text still says 'The paper does not introduce limitations', which the authors had rebutted, so any rating change is unknown. Reviewer_7tWD and Reviewer_t8ZX never edited.",
+    "what_convinced_or_not": "Unknown. The authors corrected t8ZX's ADMM claim with Table 3 numbers, pointed t8ZX and uhXk to the supplementary MobileNet/DWS table, added a fine-tuning table, and conceded that GDWS only preserves robustness. No reviewer answered."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Acceptance follows the 7/6/7 slate. The spotlight has no stated basis: the meta-review has three sentences, says 'The reviewers all agree that the proposed method is clever' (no reviewer used the word) and calls robustness 'a nice bonus benefit' that was 'not a major focus of the reviewers', although t8ZX called the robustness claim 'weak' and uhXk 'a by-product'. It cites no weakness.",
+    "meta_review_leans_on": "unclear"
+   },
+   "main_reasons_for_decision": [
+    "Three accept-side ratings (7/6/7, mean 6.67) and no detractor",
+    "All reviewers credit large FPS gains without retraining ('the computation gain is impressive', Reviewer_t8ZX)",
+    "AC summary asserts consensus ('clever', 'significant'), recasts the contested robustness claim as a bonus, and gives no argument for the spotlight tier"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    3,
+    6,
+    6,
+    7
+   ],
+   "confidences": [
+    5,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_c4Yo"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_PpQM",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "Rating 3 at confidence 5 against 6/6/7. Both specific objections misread the method: GDWS 'does not involve any nonlinear activation functions in the hidden layers', and vectorization 'breaks the structures of images'. The paper keeps every nonlinearity (Algorithm 3 swaps each convolution in place) and calls the reshaping operators 'computation-free'. Reply to the rebuttal: 'My rating is kept.' The AC and, per the AC, another reviewer judged the review nonsensical; the AC ignored it."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_PpQM",
+     "evidence": "Claims to have 'checked the math/other details carefully' (confidence 5) yet misreads what GDWS replaces and treats notational vectorization as a computation. Did not engage with the authors' point-by-point correction."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_PpQM",
+     "claim": "GDWS has no nonlinear activations in the hidden layers, so the role of depth cannot be seen.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Algorithm 3 replaces each convolution of a pre-trained CNN with a GDW+PW pair; all the network's nonlinearities stay. Only the GDW-PW pair is linear, because together it approximates one linear convolution."
+    },
+    {
+     "reviewer": "Reviewer_PpQM",
+     "claim": "Vectorization breaks the structure of images and hidden layers, so convolution plays no role in GDWS.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 3: the unrolling and reshaping operators 'are only for notational convenience and are computation-free'. GDWS is itself a depthwise and a pointwise convolution (Fig. 2)."
+    },
+    {
+     "reviewer": "Reviewer_PpQM",
+     "claim": "The experiments show no significant improvement in efficiency or robustness.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1: FPS rises 28 to 104 (ResNet-18), 36 to 129 (VGG-16), 17 to 65 (WRN-28-4) with A_rob within 0.7 points. Robustness is preserved, not improved, as the paper itself says. Only the ImageNet gain is small (Table 5: 15 to 19 FPS)."
+    },
+    {
+     "reviewer": "Reviewer_n5ng",
+     "claim": "For VGG-16, ADMM at p = 75% beats GDWS on FPS; GDWS may lose its lead if pushed to higher FPS.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: 174 vs 119 FPS. The authors' rebuttal sweep: GDWS reaches 135 FPS only at beta = 2.5, with A_rob 36.06, below ADMM's 41.07 at 174 FPS. Authors: ADMM 'benefits from training in the high FPS (> 130) regime'."
+    },
+    {
+     "reviewer": "Reviewer_n5ng",
+     "claim": "Applying GDWS to highly compressed (HYDRA) networks increases parameter size.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4: VGG-16 p = 90% 5.9 to 31.5 MB, p = 95% 3.0 to 18.3 MB; WRN-28-4 p = 95% 1.1 to 7.2 MB. Table 5 (ImageNet): 5.1 to 12.6 MB."
+    },
+    {
+     "reviewer": "Reviewer_c4Yo",
+     "claim": "Unstructured pruning is run densely, removing only all-zero filters, so 95% sparsity shows no FPS gain; the comparison is unfair to sparse execution.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.2: 'channels are discarded only if all filter weights are zero'. Table 4: HYDRA at p = 90% and 95% runs at baseline FPS (36 for VGG-16, 17 for WRN-28-4). The comparison holds only for dense off-the-shelf execution; c4Yo stayed unconvinced for CPUs."
+    },
+    {
+     "reviewer": "Reviewer_c4Yo",
+     "claim": "Throughput, the main selling point, is evaluated on only one hardware platform and implementation.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1: every FPS figure comes from an NVIDIA Jetson Xavier with native PyTorch. The rebuttal argued hardware independence from input buffering, with no new measurement."
+    },
+    {
+     "reviewer": "Reviewer_Sfha",
+     "claim": "Only PGD attacks are evaluated.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1: PGD-100 (CIFAR-10, SVHN) and PGD-50 (ImageNet); Section 4.3 uses PGD for each norm of the union. The rebuttal added FGSM, BIM and DeepFool on VGG-16; GDWS stayed within 1.6 points of the baseline."
+    },
+    {
+     "reviewer": "Reviewer_Sfha",
+     "claim": "In the RobNet table, RobNet underperforms the ResNet baseline, unlike in the RobNet paper.",
+     "checked_against_paper": "correct",
+     "evidence": "Camera-ready Table 1: RobNet 82.72/52.23 vs ResNet-50 84.21/53.05. The authors trained their own baselines with early stopping [28], which makes them stronger; the comparison that matters is FPS (5 vs 16-17)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_PpQM (2021-08-26): 'I read the response and would like to keep my rating.' Reviewer_c4Yo (2021-08-30): 'Most of my concerns have been addressed ... remain with my score in favor of acceptance'; its only edit (2021-07-15) predates the response. Reviewer_n5ng and Reviewer_Sfha never edited or posted.",
+    "what_convinced_or_not": "c4Yo accepted the fine-tuning table, the per-layer g_c table and the explanation of low natural accuracy under adversarial training, but still doubted that sparse kernels give no CPU speedup at about 90% sparsity, and asked the authors to state that robustness comes only from approximation quality. PpQM gave no reason. The authors' ADMM sweep conceded n5ng's high-FPS point."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Reads and discards PpQM's review ('safe to ignore'), with another reviewer's confirmation; counts 'the scores are 6, 6, and 7'; names c4Yo's review (a 6) 'most informative'; 'I will recommend acceptance in this instance'. No tier argument.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "PpQM's 3 discarded as a misreading; the effective slate is 6/6/7 (mean 6.33)",
+    "The AC relied on Reviewer_c4Yo, a 6 ('marginally above the acceptance threshold') whose sparse-baseline doubt survived the rebuttal",
+    "Reviewers' 6s rest on specific, correct limitations: ADMM wins above 130 FPS, size growth on pruned models, one hardware platform",
+    "Meta-review spent defending acceptance against the outlier; tier never discussed"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "MobileNet and DWS-from-scratch baselines (Reviewer_t8ZX, Reviewer_uhXk); answered by a supplementary table, now camera-ready Table 2, which shows a trade-off: +1.9 to 4.0 points A_rob, but slower than three lightweight networks and 2.4 to 5.3 times larger",
+  "GDWS-vs-DWS fairness: gains come from optimisation and replacing standard convolutions, not the GDWS form (Reviewer_uhXk)",
+  "GDWS said to be less robust than ADMM (Reviewer_t8ZX); Table 3 contradicts this",
+  "Missing dynamic pruning and dynamic network literature (Reviewer_t8ZX)",
+  "Other throughput-bound tasks and software-environment details (Reviewer_7tWD)"
+ ],
+ "issues_only_b": [
+  "ADMM reaches FPS GDWS cannot: 174 vs 119 FPS for VGG-16; GDWS at 135 FPS falls to 36.06 A_rob (Reviewer_n5ng)",
+  "GDWS multiplies model size on HYDRA-pruned networks (Reviewer_n5ng; Table 4)",
+  "FPS measured on one platform; unstructured-pruning baseline run dense (Reviewer_c4Yo)",
+  "PGD-only evaluation (Reviewer_Sfha)",
+  "Per-layer g_c and accuracy versus approximation error (Reviewer_c4Yo)",
+  "Misreadings of nonlinearity and vectorization (Reviewer_PpQM)"
+ ],
+ "shared_issues": [
+  "Robustness is inherited from the base model, not improved by GDWS (A: Reviewer_t8ZX, Reviewer_uhXk; B: Reviewer_c4Yo); the authors conceded in both",
+  "Training GDWS from scratch or fine-tuning after it (A: Reviewer_t8ZX; B: Reviewer_c4Yo); the same fine-tuning table went to both",
+  "Fairness of the RobNet comparison (A: Reviewer_t8ZX; B: Reviewer_Sfha)",
+  "Large FPS gains with no retraining as the main strength (every positive reviewer)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees accepted; they split only on spotlight versus poster, on nearly equal support. A rated 7/6/7 (mean 6.67). B rated 3/6/6/7, and its AC rightly discarded Reviewer_PpQM's 3, which misreads the method, leaving 6/6/7 (mean 6.33). No reviewer on either side rated above 7 or argued for a higher tier. Both committees saw the same core facts: large CIFAR-10 throughput gains without retraining, and robustness inherited from the base model, not improved. A's spotlight has no stated basis: its three-sentence meta-review calls the method 'clever', a word no reviewer used, and calls robustness 'a nice bonus benefit', although Reviewer_t8ZX called the robustness claim 'weak' and Reviewer_uhXk 'a by-product'. B's AC spent the meta-review defending acceptance against the outlier and accepted 'in this instance', with no word on tier. B's reviewers also found correct limitations A missed: ADMM reaches 174 FPS while GDWS falls to 36.06% robust accuracy by 135 FPS (Reviewer_n5ng), GDWS multiplies the size of pruned models (Table 4), FPS comes from one Jetson board with the HYDRA baseline run dense (Reviewer_c4Yo), and all attacks are PGD (Reviewer_Sfha). A's Reviewer_t8ZX claimed GDWS is less robust than ADMM; Table 3 shows the reverse. The committees weighted the same facts differently, and the record supports B's poster more than A's spotlight. Neither committee noticed that the ImageNet gain is small (ResNet-50: 15 to 19 FPS, -2.2 points top-1, Table 5). paper_submitted.pdf is missing; claims were checked against paper.pdf, the camera-ready.",
+ "candidate_reasons": [
+  "AC upgrades tier without argument",
+  "Meta-review misstates reviewer concerns",
+  "Outlier detractor puts AC on defence",
+  "Specific limitations surfaced by one committee",
+  "Near-equal scores, different tier calibration",
+  "Thin positive review counted fully"
+ ],
+ "confidence": "medium",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_PpQM review and 2021-08-26 reply",
+  "Reviewer_c4Yo review and 2021-08-30 response",
+  "Reviewer_n5ng limitations and the authors' ADMM sweep (beta = 2.5: 36.06 A_rob at 135 FPS)",
+  "Reviewer_t8ZX review (ADMM claim) vs paper Table 3",
+  "Reviewer_uhXk Cons 2 and Reviewer_t8ZX 'robustness claim ... is weak'",
+  "paper.pdf (camera-ready; paper_submitted.pdf missing): Tables 1-5, Section 3 notation, Algorithms 1-3, Section 4.1, Section 5"
+ ]
+}

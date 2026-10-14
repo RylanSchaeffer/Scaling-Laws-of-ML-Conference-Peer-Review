@@ -1,0 +1,211 @@
+{
+  "pair_id": "n21-178",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 7, 9, 8],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_vwkm", "Reviewer_oZUe"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_BBLZ",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The only rating above 8 among the eight final ratings in both committees. Without it, A's ratings are 7, 7, 8, the same as B's without Reviewer_wwer. The review is careful: 5 h, typos at lines 66, 68 and 89, and a note that the training of the behaviour policy is described only in the appendix. But the 9 ('Top 15%') rests on the strengths that the other A reviewers scored 7 or 8: simplicity, sound experiments, clear writing, the gridworld example. It calls the claims 'modest and well validated', yet Reviewer_T3oZ in the same committee found the superiority claim too strong, and the authors conceded it. It does not address the prior one-step work (Goo and Niekum; Gulcehre et al.) that the paper discusses in its related work. BBLZ posted nothing in the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_T3oZ",
+          "claim": "The claim that one-step methods outperform iterative methods in general is too strong.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1: against the per-dataset best of Fu et al., Rev. KL Reg wins on 7 of 16 datasets, Exp. Weight on 6 of 16 and Easy BCQ on 10 of 16. Section 5 still says 'all of the one-step algorithms usually outperform'. Two Adroit wins are between near-zero scores (relocate 0.3 vs -0.1, hammer 2.8 vs 2.1). The authors conceded: 'sometimes better and sometimes worse'."
+        },
+        {
+          "reviewer": "Reviewer_T3oZ",
+          "claim": "The one-step networks (two 1024-unit layers, truncated-normal policy) differ from the D4RL baselines (256 units, tanh-normal), so the architecture may explain the gains.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The architecture is in Appendix C, which the PDF does not contain. The authors accepted the premise. Their re-run on the three medium datasets with the D4RL-style architecture gave similar scores, and Table 2 compares one-step, multi-step and iterative variants in one code base. T3oZ did not reply."
+        },
+        {
+          "reviewer": "Reviewer_vwkm",
+          "claim": "The results use only 3 seeds and report standard deviations, not standard errors.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded and posted 10-seed standard-error results for the medium datasets. Camera-ready Tables 1 and 2 use 10 seeds and standard errors; Figures 2, 3 and 6 still show min and max over 3 seeds."
+        },
+        {
+          "reviewer": "Reviewer_vwkm",
+          "claim": "One-step policy improvement was already studied and found to work well (Gulcehre et al. 2021; Nadjahi et al. 2019), and the paper does not say so.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded that they cited the wrong Gulcehre et al. paper and did not know Nadjahi et al. The camera-ready Section 3 discusses both in its 'One-step algorithms' paragraph."
+        },
+        {
+          "reviewer": "Reviewer_BBLZ",
+          "claim": "The claims are modest and well validated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 says that 'all of the one-step algorithms usually outperform' the best iterative results; Table 1 supports this only for Easy BCQ. The authors told Reviewer_T3oZ that they did not mean to claim general superiority."
+        },
+        {
+          "reviewer": "Reviewer_oZUe",
+          "claim": "Figure 6 uses HalfCheetah only, the least informative D4RL environment.",
+          "checked_against_paper": "correct",
+          "evidence": "The Figure 6 caption covers only mixtures of halfcheetah-random and halfcheetah-medium, also in the camera-ready."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_vwkm", "Reviewer_oZUe"],
+        "evidence": "Reviewer_vwkm posted 'All issues solved' on 2021-08-17; the review, edited 2021-09-04, says 'increased the score to 7'. Its original text said 'As it stands, it is unsuitable for publication', so it started below the acceptance threshold. Reviewer_oZUe edited 2021-08-22: 'raised my score from 7 to 8'. Reviewer_T3oZ and Reviewer_BBLZ never posted and never edited.",
+        "what_convinced_or_not": "Reviewer_vwkm was convinced by 10-seed standard-error results on the medium datasets and the promise to cite Gulcehre et al. and Nadjahi et al. Reviewer_oZUe cited the new experiments for the other reviewers, not the answers to its own points; it still wanted Figure 6 on another environment. Reviewer_T3oZ received an architecture re-run and a concession on the abstract, but did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Reviewers are positive, and a consensus is reached for acceptance (spotlight) through rebuttal + internal discussions.' The AC adds praise for the simple method, the clear message and the 'concise and thorough writing and experimentation'. The internal discussion is not visible.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four accept-level ratings after rebuttal (7, 7, 9, 8; mean 7.75), two of them raised",
+        "A champion at 9 ('Top 15%') from Reviewer_BBLZ",
+        "The rebuttal fixed the concrete objections: 10 seeds with standard errors, an architecture re-run, the missing prior-work citations",
+        "The AC reports an explicit spotlight consensus and values a simple method with a clear message for D4RL work"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [3, 7, 7, 8],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_yZ2w", "Reviewer_fkPB"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_wwer",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only reject among the eight final ratings in both committees. Without it, B's ratings are 7, 7, 8, the same as A's without Reviewer_BBLZ. The review (3 h) names no specific error behind 'not technically sound'. It describes the method as 'one-step updates of the critic' and 'one step gradients'; Sections 4.1 and 4.2 train Q^β to convergence, and single gradient steps define the iterative baseline. It asks for a comparison with TD3+BC (arXiv 2106.06860), a June 2021 posting after the submission deadline. It calls the paper 'very hard to follow'; Reviewer_Uz96 in B and three A reviewers praised the writing. Its fair points are limited novelty and little theory. Reviewer_yZ2w argued novelty with specific papers, and the paper concedes the missing theory in Section 8. Reviewer_wwer did not answer the rebuttal and did not edit the review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_wwer",
+          "evidence": "Misdescribes the one-step method as 'one step gradients'; asks for a baseline posted after the deadline; gives 'not technically sound' and 'very hard to follow' without one example; no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_wwer",
+          "claim": "The paper resolves error propagation 'through one-step updates of the critic'; the contribution is 'one step gradients'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 4.1 and Section 4.2: the one-step algorithm trains the evaluation step to convergence and then one improvement step to convergence; 'for the iterative algorithm each iteration takes a single stochastic gradient step'."
+        },
+        {
+          "reviewer": "Reviewer_wwer",
+          "claim": "The paper should compare with TD3+BC (arXiv 2106.06860).",
+          "checked_against_paper": "incorrect",
+          "evidence": "The arXiv number dates TD3+BC to June 2021, after the NeurIPS 2021 deadline in May. The authors said so; Reviewer_wwer did not answer."
+        },
+        {
+          "reviewer": "Reviewer_wwer",
+          "claim": "There is little to no theoretical analysis in the paper.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper is empirical. Section 6.3 gives an informal error decomposition, the checklist marks theoretical results N/A, and Section 8 names the missing theory as the main limitation. The step to 'not technically sound' has no support in the review."
+        },
+        {
+          "reviewer": "Reviewer_yZ2w",
+          "claim": "One-step beats the iterative D4RL results in around half of the tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1: Rev. KL Reg 7 of 16, Exp. Weight 6 of 16, Easy BCQ 10 of 16 against Fu et al.'s per-dataset best."
+        },
+        {
+          "reviewer": "Reviewer_yZ2w",
+          "claim": "The method is a simplified version of Gulcehre et al. and Goo and Niekum that does not work as well.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The YOEO numbers are not in the paper. The authors' table shows one-step ahead on 7 of 9 D4RL datasets. Reviewer_yZ2w accepted it, writing 'I didn't double-check the GN scores', and raised the score. The camera-ready says only that it gets 'better performance on the D4RL tasks'."
+        },
+        {
+          "reviewer": "Reviewer_yZ2w",
+          "claim": "The citation for Gulcehre et al. is the wrong paper.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded a LaTeX citation error; the camera-ready cites arXiv 2103.09575 (Regularized behavior value estimation)."
+        },
+        {
+          "reviewer": "Reviewer_Uz96",
+          "claim": "The paper has no discussion of broader societal impact; the checklist says N/A.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors apologised for the omission. The camera-ready adds a 'Broader impact' paragraph with the rebuttal's text, and checklist item 1(c) now reads Yes."
+        },
+        {
+          "reviewer": "Reviewer_fkPB",
+          "claim": "Table 1 reports only the best of Fu et al.'s algorithms, with no per-algorithm results or confidence intervals.",
+          "checked_against_paper": "correct",
+          "evidence": "The first column of Table 1 is a per-dataset maximum without error bars. The authors kept it, citing space."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_yZ2w", "Reviewer_fkPB"],
+        "evidence": "Reviewer_yZ2w on 2021-08-10, after the authors' YOEO table: 'I will update my score'. The review was edited that day, and the authors thanked yZ2w 'for raising your score'. The review text still says 'I cast a weak vote to reject the paper due to perceived lack of novelty', so it started below the acceptance threshold. Reviewer_fkPB edited 2021-08-25: 'decided it would be fair to raise the score to 7', citing the yZ2w exchange. Reviewer_wwer and Reviewer_Uz96 never posted and never edited.",
+        "what_convinced_or_not": "A table comparing one-step reverse KL with Goo and Niekum's YOEO on nine D4RL datasets (one-step better on seven) moved Reviewer_yZ2w, who did not check the YOEO numbers. Reviewer_fkPB moved on the same exchange. The authors told Reviewer_wwer that TD3+BC appeared after the deadline and that other reviewers found the paper clear. Reviewer_wwer did not answer, and the 3 stood."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'surprising empirical results for a simple, yet overlooked, approach for off-policy continuous RL'. The meta-review names no reviewer, no weakness and no discussion, calls offline RL 'off-policy', and gives no reason for the tier. 'Simple, yet overlooked' echoes Reviewer_fkPB's 'previously overlooked simpler benchmark method'. A poster matches three accept ratings and one unanswered reject (mean 6.25).",
+        "meta_review_leans_on": "unclear"
+      },
+      "main_reasons_for_decision": [
+        "Three accept-level ratings after rebuttal (7, 7, 8), two of them raised after the YOEO comparison",
+        "An unretracted clear reject (Reviewer_wwer, 3) holds the mean at 6.25",
+        "Novelty against Goo and Niekum and Gulcehre et al. dominated B's reviews; Reviewer_yZ2w's final text still argues a weak reject",
+        "A two-sentence meta-review with no case for a tier above poster"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Only 3 seeds, with standard deviations instead of standard errors (Reviewer_vwkm)",
+    "Architecture and policy parameterisation differ from the D4RL baselines (Reviewer_T3oZ)",
+    "Nadjahi et al. 2019 as uncited prior one-step work (Reviewer_vwkm)",
+    "Data from several behaviour policies makes the 'on-policy' Q estimate conceptually unclear (Reviewer_oZUe)",
+    "Figure 6 uses HalfCheetah only (Reviewer_oZUe)",
+    "No second domain such as RL Unplugged (Reviewer_BBLZ)",
+    "Training of the behaviour policy described only in the appendix (Reviewer_BBLZ)",
+    "Appendix B argues KL for TV instead of citing Pinsker's inequality (Reviewer_T3oZ)"
+  ],
+  "issues_only_b": [
+    "Goo and Niekum's YOEO as overlapping prior work, and whether it performs better (Reviewer_yZ2w, Reviewer_Uz96)",
+    "Little theory; the analysis is mostly empirical (Reviewer_wwer, Reviewer_fkPB)",
+    "No comparison with TD3+BC, which appeared after the deadline (Reviewer_wwer)",
+    "Paper hard to follow (Reviewer_wwer)",
+    "Loose use of 'iterative algorithm'; which algorithm Section 6 uses (Reviewer_yZ2w)",
+    "No broader-impact statement (Reviewer_Uz96)",
+    "Fu et al. column is a per-dataset maximum without per-algorithm results or error bars (Reviewer_fkPB)",
+    "OAMPI framing, missing MPI citation, and the stop-gradient wording of the Q objective (Reviewer_yZ2w, Reviewer_Uz96)"
+  ],
+  "shared_issues": [
+    "Under-credited prior one-step work, including a wrong Gulcehre et al. citation (A: Reviewer_vwkm; B: Reviewer_yZ2w, Reviewer_Uz96)",
+    "Superiority of one-step over iterative methods overstated (A: Reviewer_T3oZ; B: Reviewer_yZ2w)",
+    "The explanations (distribution shift, error exploitation) are partly known (A: Reviewer_T3oZ; B: Reviewer_wwer, Reviewer_yZ2w)",
+    "Strengths seen by both: a simple, strong baseline and a clear analysis of why iterative methods fail"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Each committee had one outlier, in opposite directions, and that alone separates spotlight from poster. Without A's champion (Reviewer_BBLZ, 9) and B's detractor (Reviewer_wwer, 3), both panels end at 7, 7, 8 after rebuttal. Both cores praised the same simple, strong baseline and raised the same weakness: under-credited prior one-step work. In each committee, a reject-side reviewer rose to 7 once the authors answered it (Reviewer_vwkm in A, Reviewer_yZ2w in B). BBLZ's 9 is careful on detail but exuberant. It rates 'Top 15%' on strengths the other A reviewers scored 7 or 8, and it ignores prior work. It calls the claims 'modest', but Table 1 and the authors' concession to Reviewer_T3oZ show an overstated superiority claim. wwer's 3 is inattentive. It misdescribes the method as 'one step gradients', asks for a baseline posted after the deadline, and names no specific error. wwer never answered the rebuttal. A's AC reports an explicit spotlight consensus. B's AC wrote two sentences that name no reviewer and make no case for a higher tier. The committees weighted the same facts differently, through their outliers and ACs, not through different evidence.",
+  "candidate_reasons": [
+    "Opposite outliers, identical core panels",
+    "Silent inattentive detractor kept 3",
+    "Exuberant champion overlooked prior work",
+    "AC built explicit spotlight consensus",
+    "Terse meta-review, no tier case",
+    "Novelty doubts more visible in B"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Rating tables of both committees (A 7, 7, 9, 8; B 3, 7, 7, 8)",
+    "Reviewer_BBLZ final review ('the claims are modest and well validated')",
+    "Reviewer_wwer final review and the authors' 'response to reviewer wwer'",
+    "Reviewer_T3oZ review and the authors' reply ('sometimes better and sometimes worse')",
+    "Reviewer_vwkm update paragraph and 'All issues solved' (2021-08-17)",
+    "Reviewer_yZ2w review ('weak vote to reject'), the authors' YOEO table and 'Thanks for the answers' (2021-08-10)",
+    "Reviewer_fkPB 'Still recommending acceptance' (2021-08-25)",
+    "Committee A meta-review; Committee B meta-review",
+    "paper Sections 4.1-4.2, Section 5 with Tables 1 and 2, Section 8, checklist item 2",
+    "a/paper.pdf is the camera-ready (NeurIPS 2021 footer, author names, created 2021-10-25), not the submission as reviewed"
+  ]
+}

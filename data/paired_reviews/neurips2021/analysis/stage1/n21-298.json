@@ -1,0 +1,189 @@
+{
+  "pair_id": "n21-298",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 6],
+      "confidences": [3, 4, 3, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 6; a spread of one point. The 7 comes from Reviewer_UuHj, who 'did not carefully verify any of the arguments'. The three 6s share one theme: technically strong, narrow payoff."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_UuHj",
+          "evidence": "Rating 7 at confidence 3 after 3 hours; 'I did not carefully verify any of the arguments.' Praise is generic, and the originality judgment rests on 'I am not aware of other works which make use of Forster transformations', although the paper builds on several. A's highest score is its weakest-supported one."
+        },
+        {
+          "reviewer": "Reviewer_rK8U",
+          "evidence": "Rating 6 at confidence 3 after 3 hours. Two-sentence summary. The one reservation, 'a lot of work to achieve a relatively minor improvement', comes with no argument, and rK8U never replied to the rebuttal. The technical paragraph is accurate, so the review is thin rather than careless."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_3GRx",
+          "claim": "The paper points to Theorem 3.4 for a detailed statement of Theorem 1.4, but Theorem 3.4 is the learning result.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.1 says 'see Theorem 3.4 for a more detailed statement' before Theorem 1.4. Theorem 3.4 is the 'Main Learning Result'. The wrong pointer survives in the camera-ready PDF on file."
+        },
+        {
+          "reviewer": "Reviewer_3GRx",
+          "claim": "The radial-position definition reads as if E[xx^T] = I/d must hold for every point, and sigma denotes a number of standard deviations.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.1: 'for every point x in the support of our distribution it holds that ||x||_2 = 1 and that E[xx^T] = (1/d) I_d', and 'at distance at least sigma standard deviations from it'."
+        },
+        {
+          "reviewer": "Reviewer_AuTG",
+          "claim": "Typos in the proof of Proposition 2.3: x^(i_d) should be x^(i_k), and 'contradiction' appears twice.",
+          "checked_against_paper": "correct",
+          "evidence": "Both survive in the camera-ready: 'x(i1), ..., x(id), where 1 = i1 < ... < ik' and 'the desired contradiction contradiction'."
+        },
+        {
+          "reviewer": "Reviewer_AuTG",
+          "claim": "The new step in Theorem 1.4 is Proposition 2.3, an algorithmic form of the [HKLM20] argument; Proposition 2.2 may be replaceable by Hardt-Moitra.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded that 'Proposition 2.2 is not a major contribution' and that the [AKS20] algorithm 'could have been used in place of' it, modulo technicalities; they called Proposition 2.3 new. The paper says only that prior algorithms 'none appear to apply in quite the generality that we require'."
+        },
+        {
+          "reviewer": "Reviewer_UuHj",
+          "claim": "The use of Forster transforms is new ('I am not aware of other works which make use of Forster transformations').",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper builds on prior uses: [For02] (communication complexity), [HKLM20] (active learning), [HM13] (subspace recovery) and [AKS20]. Reviewer_AuTG lists such uses in the same committee."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_AuTG (2021-08-29): 'will leave my score unchanged'. Reviewer_UuHj (2021-08-31): 'I will be leaving my evaluation unchanged.' Reviewer_3GRx and Reviewer_rK8U did not reply.",
+        "what_convinced_or_not": "The joint response argued fit: a 'classical problem', a prior paper that won the NeurIPS 2019 best paper award, a 'qualitative' gain, and uses in subspace recovery and preconditioning. The paper shows no application beyond Massart halfspaces, and nobody moved. The reply to Reviewer_3GRx addressed only fit and ignored the five writing points; the camera-ready still has the wrong Theorem 3.4 pointer. Reviewer_AuTG accepted the [HM13]/[AKS20] clarification and praised the conceptual step, then agreed, after reading the other reviews, that 'the result is somewhat niche'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review calls the work 'very strong technically' and the problem 'one of the classical problems in ML'. It names one downside: 'technically rather complex and likely to be fully appreciated by a handful of experts'. That restates Reviewer_3GRx ('exciting to the experts in the area, but I have a hard time imaging a broader audience'), which Reviewer_AuTG echoed. A poster matches the 6.25 mean.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Consensus weak accept (7, 6, 6, 6): three reviewers stopped at 6 for significance and scope, not correctness.",
+        "Audience and venue: Reviewer_3GRx rated it 'probably among the top theory papers' but proposed STOC/FOCS/COLT; Reviewer_AuTG later called it 'somewhat niche'.",
+        "Size of the gain: Reviewer_rK8U saw 'a lot of work to achieve a relatively minor improvement' in 'a very specific noise model'.",
+        "Novelty: Reviewer_AuTG read Theorem 1.4 as 'primarily synthesizing existing ideas (in a clever way)'.",
+        "The AC adopted the 'handful of experts' framing and chose a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 6, 8, 8],
+      "confidences": [4, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Nd9v", "Reviewer_px8j", "Reviewer_91N9"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 8, 8. The lowest, Reviewer_px8j, raised the score after the rebuttal and kept only a presentation complaint. The two 8s are half the committee, not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_91N9",
+          "evidence": "Rating 8 at confidence 4 after 3 hours. The summary paraphrases the abstract and the Section 3 overview, and splits the abstract's main sentence so that it calls this 'the first polynomial-time algorithm' for the problem, which [DGT19] already was. The assessment is three sentences of praise ('clear, original as well as significant') with no weakness and no question. The 2021-08-28 edit adds only 'I did not have any questions for the authors.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_px8j",
+          "claim": "Theorem 2.1 as cited is meaningless: the transformation A does not appear in its conclusion.",
+          "checked_against_paper": "correct",
+          "evidence": "The conclusion reads 'Sigma_V = (1/dim(V)) I'. The authors confirmed that Sigma_V should be Sigma_A. The slip survives in the camera-ready (page 6)."
+        },
+        {
+          "reviewer": "Reviewer_px8j",
+          "claim": "The assumption of integer coordinates stays hidden until page 4.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1.2 (page 2) says only that b bounds 'the bit complexity of the examples'. Integer points (Z^d) first appear in Theorem 1.4 on page 4. The authors replied that the notion is standard."
+        },
+        {
+          "reviewer": "Reviewer_px8j",
+          "claim": "Homogeneity of the halfspace is assumed 'without loss of generality' with no explanation.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.1 gives only '(since we are working in the distribution-independent setting)'. The standard reduction, appending a constant coordinate, exists, so this is a gap in presentation, not an error."
+        },
+        {
+          "reviewer": "Reviewer_px8j",
+          "claim": "Theorem 3.3, attributed to [DGT19], cannot be found there.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready calls it 'implicit in the work of [DGT19]'. The authors pointed to Algorithm 2 and the proof of Theorem 2.9 of [DGT19]."
+        },
+        {
+          "reviewer": "Reviewer_Nd9v",
+          "claim": "The paper argues that Theorem 1.4 is more general than [AKS20] but does not say why.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.1 says only that [HM13, AKS20] 'none appear to apply in quite the generality that we require'. Reviewer_48Ey asked the same. The rebuttal explained that [AKS20] gives no guarantee when no Forster transform exists."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_px8j"],
+        "evidence": "Reviewer_px8j edited the review on 2021-08-11 ('POST REBUTTAL ... I will raise my score accordingly') and wrote 'I will raise my score' in the discussion; the final 6 implies 5 or lower before. Reviewer_91N9's 2021-08-28 edit adds 'I have read the author response' and states no change. Reviewer_Nd9v's edit (2021-07-03) predates the rebuttal. Reviewer_Nd9v and Reviewer_48Ey said the response answered them and kept their scores; 48Ey's 8 was never edited.",
+        "what_convinced_or_not": "Concrete answers: the authors confirmed the Theorem 2.1 typo, gave the homogenisation reduction, located Theorem 3.3 in [DGT19], and explained that Proposition 2.3 covers the case [AKS20] does not. In reply, px8j proposed mapping (x, y) to ((x, y), y), which would put the label into the features; the authors' ((x, -1), y) is the right reduction. The raise rests on satisfaction more than on understanding."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review tracks Reviewer_48Ey: the [DGT19] 'breakthrough', the LP barrier on runtime, the hope for a sample size free of b, an idea 'simple but elegant', and possible 'new applications'. It adds 'a foundational advance', a phrase no reviewer used, and gives no other argument for a spotlight. Its technical account is loose: it blames the sample dependence on 'an LP solving step' and on 'the coefficients of the underlying halfspace'. The paper (Section 1.1) traces it to the outlier-removal step of [BFKV96, DV04] and to the bit complexity of the examples.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two 8s at confidence 4: Reviewer_48Ey's reasoned case ('improvement on the long-standing problem', 'very clearly written') and Reviewer_91N9's unargued one.",
+        "The rebuttal closed every concrete question; Reviewer_px8j rose to 6 and no score fell.",
+        "No reviewer raised audience breadth or venue fit.",
+        "The AC framed the paper as 'a foundational advance' with an elegant idea and possible new applications."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Narrow audience and venue fit: better for STOC/FOCS/COLT (Reviewer_3GRx); 'somewhat niche' (Reviewer_AuTG); 'a handful of experts' (AC)",
+    "Gain too small for the effort, in 'a very specific noise model' (Reviewer_rK8U)",
+    "Notation: sigma for standard deviations, the radial-position definition, the wrong Theorem 3.4 pointer, no unwound decomposition theorem (Reviewer_3GRx); typos in Section 2 (Reviewer_AuTG)",
+    "Comparison of the sample complexity with lower bounds and prior bounds (Reviewer_UuHj)"
+  ],
+  "issues_only_b": [
+    "Integer-coordinate assumption and 'bit complexity' not stated until page 4 (Reviewer_px8j)",
+    "Unexplained homogeneity assumption (Reviewer_px8j)",
+    "Theorem 2.1's conclusion omits A, a typo the authors confirmed; f reused for halfspaces and for f_A (Reviewer_px8j)",
+    "Source of Theorem 3.3 in [DGT19] (Reviewer_px8j)",
+    "Why the runtime still depends on bit complexity (Reviewer_Nd9v); lines 208-221 of intuition add complexity (Reviewer_48Ey)"
+  ],
+  "shared_issues": [
+    "Novelty against [HKLM20], [HM13] and [AKS20]: a synthesis whose new step is Proposition 2.3 (A: Reviewer_AuTG; B: Reviewer_48Ey, Reviewer_Nd9v). Both forums got the same concession that Proposition 2.2 is replaceable.",
+    "Unclear technical writing (A: Reviewer_3GRx, Reviewer_AuTG; B: Reviewer_px8j, and Reviewer_Nd9v: 'Section 2 is hard to follow')",
+    "Other applications of Forster decomposition (A: Reviewer_rK8U; B: Reviewer_Nd9v). The paper shows none; both rebuttals assert subspace recovery and preconditioning."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees accepted the paper and agreed on the facts. The paper makes the [HKLM20] existence result algorithmic (the new step is Proposition 2.3). With it, the [DGT19] learner for Massart halfspaces needs a sample size free of bit complexity. The committees split on how much this matters to a NeurIPS audience. Reviewer_AuTG (A) and Reviewer_48Ey (B) both called the main theorem a synthesis of existing results; AuTG gave 6 and 48Ey gave 8. In A, three of four reviewers stopped at 6 for significance, not correctness: Reviewer_3GRx proposed a theory venue, Reviewer_rK8U called the gain minor, and AuTG later called it 'somewhat niche'. A's AC called the work 'very strong technically' but chose a poster because 'a handful of experts' would appreciate it. In B, no reviewer raised breadth. The rebuttal closed every concrete question and lifted Reviewer_px8j to 6, and the AC followed 48Ey's framing to 'a foundational advance'. A drew reviewers who judged the payoff narrow; B drew none. Discounting thin reviews (UuHj and rK8U in A, 91N9 in B) keeps the gap: A's substantive reviews gave 6 and 6, B's gave 8, 7 and 6. The paper does not settle the breadth question: it shows no application beyond Massart halfspaces, and the rebuttals only assert others.",
+  "candidate_reasons": [
+    "niche-audience objection in one committee",
+    "theory-venue fit penalty",
+    "same synthesis weighted differently",
+    "qualitative gain judged minor",
+    "unargued 8 lifts the mean",
+    "AC adopts one reviewer's framing"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_3GRx final review (Cons 1)",
+    "Reviewer_rK8U final review",
+    "Reviewer_AuTG final review and comment 2021-08-29",
+    "Committee A meta-review",
+    "Reviewer_48Ey final review",
+    "Reviewer_91N9 final review",
+    "Reviewer_px8j final review (POST REBUTTAL) and comment 2021-08-11",
+    "Committee B meta-review",
+    "paper Section 1.1 (source of the b-dependence; 'none appear to apply in quite the generality'; Theorem 3.4 pointer)",
+    "paper Section 2 (Theorem 2.1 conclusion; proof of Proposition 2.3)"
+  ]
+}

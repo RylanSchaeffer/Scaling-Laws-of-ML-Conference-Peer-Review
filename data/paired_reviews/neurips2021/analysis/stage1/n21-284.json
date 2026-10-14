@@ -1,0 +1,243 @@
+{
+  "pair_id": "n21-284",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        6,
+        7,
+        7,
+        8
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_imZu"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings span 6 to 8 in one-point steps. The top score, Reviewer_imZu's 8, rests on a 3.5-hour review whose only statement on quality is 'The paper's theoretical results are sound', with no specifics; it missed the misstated condition in Proposition 1 that committee B found. It is thin support for the high end, not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_C7hP",
+          "evidence": "3 hours, confidence 3 with 'Math/other details were not carefully checked'. It calls SMI 'a new estimator of the mutual information (MI)' and rates originality high on that basis, but the paper proposes SMI as a separate measure of dependence. Its requests (baselines, an RMSE definition, more dependence types) are reasonable; its only discussion post is 'Thank you for addressing all the points that I have raised'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_9G8T",
+          "claim": "In the Section 3.2 example, Y should equal X1, not X2.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded ('Y should be X_1 and Z should be X_2'). The camera-ready (p.7) sets Y = X1. Committee B's Reviewer_CzLh and Reviewer_GPCD found the same typo."
+        },
+        {
+          "reviewer": "Reviewer_9G8T",
+          "claim": "The independence-testing experiment only measures statistical power, because every simulated Y depends on X.",
+          "checked_against_paper": "incorrect",
+          "evidence": "An AUC ROC needs negative cases. The authors describe independent (X, Y) pairs with the same marginals as the negatives, and camera-ready footnote 4 (p.8) adds this detail. The submission did not describe the negatives, so the misreading is understandable."
+        },
+        {
+          "reviewer": "Reviewer_dcfo",
+          "claim": "SMI is a lower bound on MI and cannot be larger than the log sample size (McAllester and Stratos).",
+          "checked_against_paper": "incorrect",
+          "evidence": "SMI <= MI is right (Proposition 1, item 2, p.4). The log-n limit of McAllester and Stratos applies to distribution-free high-confidence lower-bound estimators of MI. It does not cap the value of SMI, and the paper's main estimator (Section 3.1) is not such an estimator."
+        },
+        {
+          "reviewer": "Reviewer_dcfo",
+          "claim": "SMI gives better sample efficiency mainly when high-dimensional data have low-dimensional structure.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors denied it in the rebuttal ('there is no intrinsic low-dimensionality assumption in the paper'), but camera-ready Section 4.2 (p.9) says the results 'suggest that SMI performs best in structured (specifically, low rank) settings' and that with independent coordinates 'it offers little gain over classic MI'."
+        },
+        {
+          "reviewer": "Reviewer_C7hP",
+          "claim": "SMI is a new estimator of MI.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The abstract proposes SMI 'as a surrogate measure of dependence'. The authors replied that 'SMI is *not* proposed as an estimate of MI', and the camera-ready adds Remark 4 (p.4): 'SMI thus should not be treated as a proxy of MI'. The paper's own phrase 'a surrogate notion of MI' (Section 3, p.3) invites the misreading."
+        },
+        {
+          "reviewer": "Reviewer_dcfo",
+          "claim": "The experiments use only one MI estimator; MINE and the neural variational bounds are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2: 'Both the SMI and MI were computed using the Kozachenko-Leonenko estimator'. Reviewer_9G8T (MINE) and Reviewer_C7hP (refs [14-18]) asked for the same. The authors promised kNN, EDGE and MINE results; the camera-ready points to Supplement C for MI estimation results."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "Only Reviewer_imZu edited its review (2021-08-15). The edit adds an 'After author response' paragraph that does not mention the score. Reviewer_C7hP replied on 2021-08-25 ('Thank you for addressing all the points that I have raised') and did not edit. Reviewer_dcfo and Reviewer_9G8T neither edited nor replied.",
+        "what_convinced_or_not": "The rebuttal recast SMI as a dependence measure in its own right, not an MI proxy. That satisfied imZu ('it clarifies the contribution') and became the AC's opening sentence. Promised additions (kNN, EDGE and MINE comparisons, pseudocode, more relationships) satisfied C7hP. dcfo's doubt about significance got a denial that the camera-ready later contradicts, and dcfo did not reply. imZu asked whether SMI can approach zero while MI stays bounded away from zero; the authors answered with the exact-zero case and an example where MI is infinite and SMI finite. Letting a grow in that example drives SMI to zero, so the question is answered in substance, though the authors did not say so."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Five short sentences. SMI is 'a new scalable measure for statistical independence that does not attempt to approximate standard mutual information' (the rebuttal's framing); it 'has the potential to become a very useful tool ... and may thus have broad impact'; 'All reviewers unanimously recommend acceptance. I agree; it is nice work.' No criticism is weighed. The spotlight is an upgrade over the usual outcome: of the 44 copies in copies.csv with a mean of exactly 7.0, 32 got a poster and 11 a spotlight. The only stated reason is potential impact.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous acceptance: 6, 7, 7, 8 (mean 7.0).",
+        "Reviewers praised a simple idea with thorough theory; Reviewer_C7hP and Reviewer_imZu predicted wide use.",
+        "Criticism covered narrow experiments, practical significance (Reviewer_dcfo) and presentation; no reviewer challenged a stated result or the DPI argument.",
+        "The AC adopted the rebuttal's framing of SMI as a new dependence measure and chose spotlight, at a mean that usually yields a poster, on its potential broad impact."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        4,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_GPCD"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_eiQW",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "4 against 7, 6 and 7, after 23 hours. Its decisive grounds are correct: no comparison with other MI estimators (NWJ, InfoNCE, TUBA, CLUB) and only proof-of-concept experiments, which the paper itself calls 'proof-of-concept'. Its supporting points are weaker: it treats the DV estimator as the main computation, asks for results across dimensions that Figures 1 and 2 already give, and calls standard terms ('figure of merit', 'nullifies') confusing, while the other three B reviewers called the paper well written. It did not respond to the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GPCD",
+          "claim": "Proposition 1, Property 5 (tensorization) needs mutual, not pairwise, independence.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: ''pairwise' is a typo that will be corrected to 'mutual''. The camera-ready (p.4) reads 'mutually independent'."
+        },
+        {
+          "reviewer": "Reviewer_GPCD",
+          "claim": "Corollary 2's constant depends on both input dimensions and is unspecified, so the curse of dimensionality may come back.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Corollary 2 (p.6): 'a constant C that depends only on dx, dy, p, s, and L'. Remark 6 (p.6-7) concedes 'The ambient dimension still enters the bound via the constant C' and only says its effect 'is expected to be much milder'. Section 3.1 (p.5) still says 'without suffering from the curse of dimensionality'."
+        },
+        {
+          "reviewer": "Reviewer_CzLh",
+          "claim": "The bounds may hide a dependence on dimension, for example in the Monte Carlo error.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded that the per-slice MI bound M 'may very well depend on d' and that Theorem 1 stated its assumption on I(X;Y) while the proof used the per-slice supremum. The camera-ready class F_{dx,dy}(M) (p.5) bounds the per-slice MI."
+        },
+        {
+          "reviewer": "Reviewer_GPCD",
+          "claim": "The paper presents the violation of the DPI as a useful property, which is misleading: processing makes information more accessible, it does not create it.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission said SMI 'can be created from computation' (quoted by Reviewer_eiQW). The authors conceded that 'some of the current wording might be confusing'. The camera-ready still says SMI is 'more compatible with modern machine learning practice than classic MI' because processing can increase it (Section 1, p.1)."
+        },
+        {
+          "reviewer": "Reviewer_CzLh",
+          "claim": "The use of two independent slicing directions, unlike usual slicing, is not justified.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agreed and added Remark 2 (p.3) with four reasons, including that SMI = 0 iff independence fails with a single direction. Reviewer_6PJ4 asked the same question."
+        },
+        {
+          "reviewer": "Reviewer_CzLh",
+          "claim": "In Proposition 3, g should be defined on S^{dx-1} x S^{dy-1} x R x R.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Proposition 3 (p.5) defines g on S^{dx-1} x S^{dy-1} x R^2, as CzLh proposed."
+        },
+        {
+          "reviewer": "Reviewer_eiQW",
+          "claim": "No comparison with existing MI estimators (NWJ, InfoNCE, TUBA, CLUB, KNN); the real-data experiments are only a proof of concept on MNIST.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2 computes SMI and MI only with the Kozachenko-Leonenko estimator. Section 4.3 (p.9) says it will 'only provide two proof-of-concept experiments', and the summary (p.10) calls a large-scale exploration 'beyond the scope of this paper'."
+        },
+        {
+          "reviewer": "Reviewer_eiQW",
+          "claim": "SMI is actually computed with the standard DV estimator, and Section 4.2 compares SMI with Kozachenko-Leonenko instead of DV.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main estimator (Section 3.1, the one with guarantees) averages a scalar Kozachenko-Leonenko estimate over random slices; Section 4.2 uses it for both SMI and MI. The DV form (S-MINE) appears only in Section 4.3."
+        },
+        {
+          "reviewer": "Reviewer_eiQW",
+          "claim": "The paper needs results that vary the dimension.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 1 uses d = 3 and d = 10, and Figure 2 plots AUC ROC against n 'for several dimensions d'. A request for much larger d (Reviewer_CzLh) would be fair."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "Reviewer_CzLh (2021-08-31): 'I am keeping my initial score'. Reviewer_6PJ4 (2021-08-31): 'I maintain my score'. Reviewer_GPCD edited on 2021-08-27 to add 'overall I think this paper is a useful contribution'; whether its 7 changed is not recorded. Reviewer_eiQW neither edited nor replied.",
+        "what_convinced_or_not": "The concessions (mutual independence; dimension enters through C and M; DPI wording to be fixed) satisfied CzLh and GPCD as clarifications. CzLh was 'satisfied' but kept 6. The authors declined eiQW's request for downstream benchmarks as beyond 'this 9 page paper', which is 'primarily a theoretical work', and dismissed some points ('We do not understand what the reviewer means here'); eiQW stayed silent at 4. After reading the other reviews, CzLh and 6PJ4 both asked for a better case for why violating the DPI is not a defect."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review calls the reviews 'overwhelmingly positive' although Reviewer_eiQW gave 4, and does not mention eiQW's experimental critique. It shares the reviewers' view of originality, adds its own enthusiasm ('interesting and exciting'), and sets one condition: 'Provided the authors will resolve the confusion about the DPI'. Poster is the norm for the 6.0 mean: none of the 89 copies in copies.csv with a mean of exactly 6.0 got a spotlight.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Mean 6.0 (4, 7, 6, 7), pulled down by Reviewer_eiQW's 4 for thin experiments without MI-estimator baselines.",
+        "A closer reading of the theory found a misstated condition in Proposition 1 and dimension dependence hidden in the constants (Reviewer_GPCD, Reviewer_CzLh); the authors conceded both, and CzLh kept 6.",
+        "Reviewer_GPCD and Reviewer_eiQW judged the DPI argument confusing, Reviewer_CzLh and Reviewer_6PJ4 agreed after the rebuttal, and the AC made fixing it the condition of acceptance.",
+        "Acceptance itself was not in doubt: three reviewers and the AC found the idea original and significant."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Whether max-sliced SMI is preferable to the average, and when to use each (Reviewer_9G8T; Reviewer_imZu after the rebuttal)",
+    "Value of SMI when MI is large, given the log-n limit on MI lower bounds (Reviewer_dcfo)",
+    "SMI's advantage may need low-dimensional structure (Reviewer_dcfo)",
+    "Whether SMI can approach zero while MI stays positive (Reviewer_imZu)",
+    "Independence test read as a power study (Reviewer_9G8T)",
+    "More dependence types for Section 4.2 and an RMSE definition for Figure 1 (Reviewer_C7hP)",
+    "Matrix and vector notation and a typo in Section 4.2(a) (Reviewer_9G8T)"
+  ],
+  "issues_only_b": [
+    "Proposition 1, Property 5 stated with pairwise instead of mutual independence (Reviewer_GPCD)",
+    "Dimension dependence hidden in the constants C and M despite the 'no curse of dimensionality' claim (Reviewer_GPCD, Reviewer_CzLh)",
+    "Violation of the DPI presented as an advantage (Reviewer_GPCD, Reviewer_eiQW; then Reviewer_CzLh, Reviewer_6PJ4 and the AC)",
+    "Two independent slicing directions not justified (Reviewer_CzLh, Reviewer_6PJ4)",
+    "No discussion of sliced divergences, e.g. Nadjahi et al. (Reviewer_CzLh)",
+    "Originality: standard DV estimation, some theory a trivial extension of MI (Reviewer_eiQW)",
+    "Writing quality and figure formatting (Reviewer_eiQW)",
+    "Dispersion over Monte Carlo trials and joint variation of n and m (Reviewer_6PJ4, Reviewer_GPCD)"
+  ],
+  "shared_issues": [
+    "No comparison with other MI estimators such as MINE, KSG or the neural bounds (Reviewer_dcfo, Reviewer_9G8T, Reviewer_C7hP in A; Reviewer_eiQW and, for Figure 1, Reviewer_CzLh in B)",
+    "Only proof-of-concept feature extraction, no downstream benchmarks such as DIM, BYOL or SimCLR (Reviewer_dcfo in A, 'probably out of scope'; Reviewer_eiQW in B, a reason to reject)",
+    "Typo in the Section 3.2 example: Y should be X1 (Reviewer_9G8T in A; Reviewer_CzLh and Reviewer_GPCD in B)",
+    "Computational cost and pseudocode not given (Reviewer_C7hP in A; Reviewer_6PJ4 and Reviewer_eiQW in B)",
+    "SMI read as an MI estimator or approximation (Reviewer_C7hP in A; Reviewer_GPCD in B); the rebuttal rejected that reading in both",
+    "No limitations discussion (Reviewer_dcfo, Reviewer_9G8T, Reviewer_C7hP in A; Reviewer_CzLh in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The split has two parts. A's spotlight was the AC's choice, not the scores': of the 44 copies in this dataset with a mean of exactly 7.0, 32 got a poster and 11 a spotlight, and A's five-sentence meta-review gives one reason, the measure's 'potential ... broad impact'. B's poster was close to forced: none of the 89 copies with a mean of exactly 6.0 got a spotlight. B's mean was a point lower for two reasons. First, Reviewer_eiQW (4, 23 h) judged the experiments inadequate: no comparison with other MI estimators and only proof-of-concept MNIST feature extraction. A saw the same gap (Reviewer_dcfo, Reviewer_9G8T and Reviewer_C7hP all asked for other MI estimators, and dcfo called downstream benchmarks 'probably out of scope') and still gave 6 to 7, so this part is the same facts weighted differently; eiQW's case also rests partly on misreads, and eiQW never answered the rebuttal. Second, B read the theory more closely. Reviewer_GPCD found that the tensorization property needed mutual, not pairwise, independence; GPCD and Reviewer_CzLh showed that the 'no curse of dimensionality' claim hides dimension dependence in the constants C and M; GPCD and eiQW called the argument that violating the DPI is an advantage misleading, two more B reviewers agreed after the rebuttal, and B's AC made rephrasing it the condition of acceptance. The authors conceded all three. None is fatal, and no A reviewer raised them: A's champion Reviewer_imZu (8, 3.5 h) called the theory 'sound' without specifics, and Reviewer_C7hP misread SMI as an MI estimator.",
+  "candidate_reasons": [
+    "AC upgrade at borderline mean",
+    "lone detractor on thin experiments",
+    "experimental gap weighted differently",
+    "closer theory reading in B",
+    "DPI framing contested only in B",
+    "thin champion review in A"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A rating table (6, 7, 7, 8) and Committee B rating table (4, 7, 6, 7)",
+    "copies.csv: own decisions of copies with mean 7.0 (32 poster, 11 spotlight, 1 oral) and 6.0 (69 poster, 20 reject)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_eiQW review (Quality; Limitations and societal impact)",
+    "Reviewer_dcfo review, Weaknesses ('probably out of scope')",
+    "Reviewer_GPCD review (Property 5; Corollary 2; DPI) and its 2021-08-27 update",
+    "Authors' replies to Reviewer_GPCD (items 1-3) and Reviewer_CzLh (item 3)",
+    "Reviewer_CzLh and Reviewer_6PJ4 comments of 2021-08-31",
+    "Reviewer_imZu review, 'After author response' paragraph, and the authors' reply to it (item 2)",
+    "paper (camera-ready a/paper.pdf): Proposition 1 item 5 (p.4), Corollary 2 and Remark 6 (p.6-7), Section 4.2 closing paragraph (p.9), Section 4.3 (p.9)"
+  ]
+}

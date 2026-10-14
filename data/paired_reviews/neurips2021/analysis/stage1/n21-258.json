@@ -1,0 +1,182 @@
+{
+  "pair_id": "n21-258",
+  "prompt_version": 1,
+  "kind": "spotlight/poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 7, 7],
+      "confidences": [3, 2, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_Gdae", "Reviewer_Pvqb"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four final ratings are 7. Reviewer_Pvqb was at 6 before the rebuttal ('I am increasing my score from 6 to 7'). Its main doubt came from a misreading of Algorithm 1, which the rebuttal cleared, so no outlier remains."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_uqhv",
+          "evidence": "3-4 hours. A four-point list of praise ('Well-written and organized', 'establishes some fundamental results', 'new model bSQ') plus two notation fixes (D^b undefined, 'Lemmas' to 'theorems'). No question to the authors and no reply to the rebuttal. The summary is accurate, but the 7 shows no sign of a check."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Pvqb",
+          "claim": "Algorithm 1 (SAMPLE-EXTRACT) should run all queries in its loop on the same mini-batch; with an independently sampled batch per round 'I don't think the algorithm makes sense'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With a fresh batch S ~ D^b each round, the prefix s is extended by 1 with probability w1/w. Given w >= 2 matching samples, which are iid from D conditioned on s, this draws the next bit from the correct conditional distribution; w = 1 returns the unique match. So the fresh-batch procedure returns an exact sample from D. Camera-ready Algorithm 1 (p.9) keeps fresh batches ('repeat loop with the longer prefix s (with new samples)'). The authors gave this explanation, and Pvqb accepted it and moved from 6 to 7."
+        },
+        {
+          "reviewer": "Reviewer_Pvqb",
+          "claim": "The paper uses 'PAC' improperly, to mean any learner that takes a training set and outputs a predictor.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper concedes it in a footnote (camera-ready footnote 9, p.4: 'technically improper ... for notational convenience and historical reasons'). A naming issue, not a flaw."
+        },
+        {
+          "reviewer": "Reviewer_Pvqb",
+          "claim": "Inputs are assumed to be a few bits, not continuous, and the paper should say so more clearly.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 (p.3): 'For concreteness, we always take Y = {0,1} and X = {0,1}^n.' The authors agreed and argued that n counts the bits of any digitally represented input."
+        },
+        {
+          "reviewer": "Reviewer_Gdae",
+          "claim": "In Theorem 1 the number of SGD steps T' depends on neither TIME nor rho; only the network size does.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1a (p.5): T' = O(mn/delta), while p' = poly(n, m, r, TIME, 1/rho, b, 1/delta). The authors confirmed and explained that the forward pass does the simulated computation."
+        },
+        {
+          "reviewer": "Reviewer_Gdae",
+          "claim": "The paper should discuss Malach, Yehudai, Shalev-Shwartz and Shamir, 'The Connection Between Approximation, Depth Separation and Learnability in Neural Networks'.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper is absent from the camera-ready's 22 references (pp.11-12), and the authors' reply to Gdae answers points 1-3 and m1-m3 but not this one. Minor: it does not bear on the results."
+        },
+        {
+          "reviewer": "Reviewer_Sk3C",
+          "claim": "The paper has no practical significance, as the authors admit; the architectures and initializations are unrealistic.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (p.10): the simulation 'requires a very carefully constructed network, with an extremely particular initialization, which doesn't look anything like deep learning in current practice'. Sk3C counted this as inherent to the question, not as a reason to reject."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Pvqb"],
+        "evidence": "Reviewer_Pvqb edited on 2021-08-13: 'My main questions has been answered by the authors in the rebuttal and I am increasing my score from 6 to 7.' Reviewer_Gdae edited on 2021-08-28: 'I've read the author response and heartily recommend acceptance' (final 7; no change stated). Reviewer_Sk3C and Reviewer_uqhv did not edit or reply.",
+        "what_convinced_or_not": "Pvqb was convinced by the explanation that Algorithm 1 draws a fresh mini-batch per round and asks its n+1 queries on each batch in parallel, not adaptively; by the promise to discuss bit-valued inputs; by the footnote that concedes the PAC tag; and by a list of technical differences from Abbe and Sandon (sample extraction, bSGD-bSQ equivalence, a concentration-based lower bound). Gdae's pointer to related work got no answer, and Gdae did not press it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'This presents interesting results regarding the power of mini-batch SGD. All reviewers and the AC like the paper and the AC recommend acceptance.' Poster matches four 7s. The meta-review says nothing about the tier and cites none of the reviewers' caveats.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four 7s at confidence 2-3: a unanimous 'good paper, accept', with no reviewer arguing for a highlight.",
+        "The AC endorsed the consensus ('interesting results regarding the power of mini-batch SGD') and gave no view on the tier.",
+        "The record carries caveats that B's does not: Pvqb's pre-rebuttal 6 and Algorithm 1 doubt, and Sk3C's 'no practical significance' at confidence 2. All were settled or accepted as inherent, and the meta-review cites none of them."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [7, 7, 7],
+      "confidences": [3, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_Gr4i"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All three ratings are 7, and no edit or discussion shows any other earlier score."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Gr4i",
+          "evidence": "2 hours. 'I was not familiar with the key related works of this paper prior to reading it, and thus it is difficult for me to comment objectively on the novelty and/or technical merit.' It calls rho 'the error due to clipping', which misreads the precision model. Its 7 rests on readability."
+        },
+        {
+          "reviewer": "Reviewer_1153",
+          "evidence": "3 hours. Generic praise under Significance, Originality and Clarity headings ('The results are significant and interesting', 'the literature review is thorough'). No question to the authors, limitations field '-', no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Gr4i",
+          "claim": "The precision level rho is 'the error due to clipping'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 2 (p.4): rho is a rounding precision (g_t in rho*Z^p and within 3rho/4 of the clipped mini-batch gradient). The paper says its constructions keep every gradient entry within [-1, 1], 'and hence clipping plays no role'. A minor misreading, but it shows how lightly the 2-hour review engaged."
+        },
+        {
+          "reviewer": "Reviewer_wyJF",
+          "claim": "The paper extends non-trivially the batch-size-1 results of Abbe and Sandon.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1a (p.5) simulates PAC for any b with b*rho < 1/8, through the new SAMPLE-EXTRACT procedure (Algorithm 1, p.9). Theorem 1c gives the matching SQ limit when b*rho^2 is large."
+        },
+        {
+          "reviewer": "Reviewer_1153",
+          "claim": "The authors gave an (almost) full characterization in terms of batch size and precision.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (p.10) states the remaining gap: batch sizes between 1/rho and log(n)/rho^2."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_Gr4i edited on 2021-08-12: 'Having read through the other reviews as well as the authors' response, my overall opinion remains unchanged.' Reviewer_wyJF and Reviewer_1153 did not edit or reply. The authors posted one general reply, which answered only wyJF's questions on momentum and variance reduction and on the ERM sentence.",
+        "what_convinced_or_not": "Nothing needed settling. No B reviewer had a doubt that the rebuttal had to resolve."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Acceptance follows three 7s. The spotlight goes beyond them: no reviewer rated above 7, and the meta-review's own words ('well written, clear, and has novel results', 'a solid work worthy of acceptance') argue for acceptance, not for a highlight. It summarises the contribution only as 'SGD can simulate learning with statistical queries' and omits the PAC results that the reviewers saw as the advance.",
+        "meta_review_leans_on": "unclear"
+      },
+      "main_reasons_for_decision": [
+        "Three 7s at confidence 2-3, with no criticism beyond minor remarks.",
+        "The AC praised clarity and novelty ('well written, clear, and has novel results') and judged the real-world limitations acceptable.",
+        "The spotlight itself has no stated reason. It is the AC's (or SAC's) tier call on a unanimous 7."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Whether Algorithm 1 is valid with a fresh mini-batch per round, and whether queries on one batch are adaptive (Reviewer_Pvqb); a misreading, settled in the rebuttal",
+    "Improper use of 'PAC' for any sample-based learner (Reviewer_Pvqb)",
+    "Inputs restricted to bits, X = {0,1}^n, not continuous values (Reviewer_Pvqb)",
+    "Unclear technical difference from Abbe and Sandon (2020) (Reviewer_Pvqb)",
+    "Squared loss with binary labels, and whether other losses work (Reviewer_Gdae)",
+    "How the precision rho relates to the SQ tolerance tau and to the batch size (Reviewer_Gdae)",
+    "Uncited related work by Malach, Yehudai, Shalev-Shwartz and Shamir (Reviewer_Gdae); never answered, still uncited in the camera-ready",
+    "D^b and the sampling of S_t not defined (Reviewer_uqhv)"
+  ],
+  "issues_only_b": [
+    "Title broader than the contributions (Reviewer_wyJF)",
+    "Extension to SGD with momentum or variance reduction (Reviewer_wyJF)",
+    "Lines 38-39 call differentiable learning 'different and distinct' from ERM (Reviewer_wyJF)",
+    "PAC and SQ used in Section 1 before Section 2 defines them (Reviewer_wyJF)"
+  ],
+  "shared_issues": [
+    "Constructions far from practical deep learning: 'no practical significance' and unrealistic architectures and initializations (Reviewer_Sk3C and Reviewer_Pvqb in A); bounded data that abstracts away real gradient noise (Reviewer_Gr4i in B) and 'limitations to applications to the real world' (B meta-review). Both committees accepted it as inherent to the question.",
+    "The contribution is the extension of Abbe and Sandon's batch-size-1 result to mini-batches; both committees judged it novel (Reviewer_Gdae and Reviewer_uqhv in A; Reviewer_wyJF, Reviewer_1153 and Reviewer_Gr4i in B), and only Reviewer_Pvqb in A asked how the techniques differ"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The spotlight/poster split is an AC tier call on identical reviews, not a difference in substance. All seven reviewers, four in A and three in B, rated the paper 7 ('Good paper, accept') at confidence 2 or 3. None argued for a highlight, none found an error, and none checked the proofs; every confidence label reads 'Math/other details were not carefully checked'. Both committees saw a clearly written theory paper that extends Abbe and Sandon's batch-size-1 universality result to mini-batch SGD, with constructions that look nothing like practical deep learning. Neither meta-review gives a reason for its tier. A's AC wrote 'All reviewers and the AC like the paper' and chose poster. B's AC wrote 'a solid work worthy of acceptance', which argues for acceptance rather than a highlight, and chose spotlight. The records differ in scrutiny, not in verdict. A had four reviewers and about 20 hours of reviewing; B had three reviewers and 9 hours. Every substantive question came from A: Reviewer_Pvqb's pre-rebuttal 6 and its doubt about Algorithm 1 (a misreading), Reviewer_Sk3C's 'no practical significance', and Reviewer_Gdae's uncited related work. The rebuttal settled these, and A's meta-review cites none of them. B's spotlight rests on three short reviews, one by a reviewer (Reviewer_Gr4i, 2 hours) who did not know the related work and misdescribed the precision parameter. The same facts drew the same scores; the two ACs mapped a unanimous 7 to different tiers.",
+  "candidate_reasons": [
+    "AC discretion over identical 7s",
+    "meta-reviews silent on tier",
+    "no reviewer argued for highlight",
+    "thin reviews on spotlight side",
+    "settled doubts only in A"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A rating table (7, 7, 7, 7) and Committee B rating table (7, 7, 7)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_Pvqb final review (Algorithm 1 point; 'increasing my score from 6 to 7') and the authors' answer to Reviewer_Pvqb",
+    "Reviewer_Gdae final review (reference [1']) and the authors' reply, which skips it",
+    "Reviewer_Sk3C main review ('no *practical* significance')",
+    "Reviewer_Gr4i main review ('I was not familiar with the key related works') and summary ('the error due to clipping')",
+    "paper (camera-ready a/paper.pdf) p.4, 'Precision, Rounding and Clipping'",
+    "paper (camera-ready a/paper.pdf) p.5, Theorem 1a",
+    "paper (camera-ready a/paper.pdf) p.9, Algorithm 1 SAMPLE-EXTRACT",
+    "paper (camera-ready a/paper.pdf) p.10, Section 5; pp.11-12, references"
+  ]
+}

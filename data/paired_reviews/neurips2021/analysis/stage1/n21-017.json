@@ -1,0 +1,250 @@
+{
+  "pair_id": "n21-017",
+  "prompt_version": 1,
+  "kind": "spotlight/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        4,
+        3,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_x5V9",
+        "Reviewer_jeQC",
+        "Reviewer_nsKx"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "A 2-2 split at equal confidence (3): Reviewer_x5V9 4 and Reviewer_jeQC 3 against Reviewer_4GXj 7 and Reviewer_nsKx 6. No single reviewer departs from the rest. The 7 is the least supported score: generic praise, no weakness listed, no reply after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_4GXj",
+          "evidence": "Rating 7 with generic praise ('very well written and motivated', 'do not make many strong assumptions'), two questions and no weakness; never edited or replied after the rebuttal. Its praise of the writing is the opposite of what Reviewer_jeQC and Reviewer_x5V9 in A and Reviewer_4TKP and Reviewer_DACB in B found."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_jeQC",
+          "claim": "Theorem 4 needs a step size that shrinks with the target accuracy (stated as O(sqrt(eps))), whereas Arora et al. (2019) allow a step size independent of eps, so the result seems much weaker.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready eq. (19) (submission eq. (23)): eta in Omega~(||W_n:1,0||^5 eps~ / (n^(17/2) poly(.)^n)), so the step size shrinks linearly in eps~, not as sqrt(eps), and eq. (20) then needs about 1/eps~ iterations; [5] uses an eps-independent step size and log(1/eps) iterations. The authors did not dispute this. They answered that [5] needs initialization near the global minimum, while Theorem 4 holds almost surely from random near-zero initialization; jeQC never replied on this point. 'Much weaker' ignores that trade."
+        },
+        {
+          "reviewer": "Reviewer_jeQC",
+          "claim": "The convergence results of Arora et al. and Zou et al. are 'not given nor discussed', and Theorem 4 is 'not at all compared' to them.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True only of the main text. The authors replied that Appendix A discusses both papers; jeQC did not contest this. The camera-ready related-work section (Section 7, the former Appendix A) compares Theorem 4 with [5] (iterations polynomial vs exponential in depth; [5] needs initialization close to the global minimum) and cites Zou et al. as [65] among results that need data-dependent network size."
+        },
+        {
+          "reviewer": "Reviewer_jeQC",
+          "claim": "Lines 226-227 say the lower bound on lambda_min 'starts off slightly negative, and becomes non-negative', but the bound is always strictly negative.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agreed ('the lower bound converges to zero from below'). The camera-ready (p. 6) now says the bound 'approaches non-negativity (if and) as the trajectory converges'."
+        },
+        {
+          "reviewer": "Reviewer_x5V9",
+          "claim": "The main paper does not say why Proposition 5 (and so Theorem 4) holds; the sketch is only in the appendix and does not state the novelty over [4].",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded the sketch is in the appendix and offered only to 'consider' expanding it. In the camera-ready the same result (Proposition 3) still has one sentence of context ('Relying on a known characterization ... (cf. [4])') and 'Proof. See Subappendix J.8.'"
+        },
+        {
+          "reviewer": "Reviewer_x5V9",
+          "claim": "Appendix A only asserts that discrete proofs are 'often far more technical and brittle'; other proof strategies are not compared with the trajectory-comparison route.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Section 7 keeps the same phrase and gives no comparison of proof strategies. Reviewer_nsKx agreed after the rebuttal that the paper does not show the framework is not less efficient."
+        },
+        {
+          "reviewer": "Reviewer_x5V9",
+          "claim": "Orvieto and Lucchi, 'Shadowing Properties of Optimization Algorithms' (NeurIPS 2019), is relevant and not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors agreed to add it; the camera-ready cites it as [43]."
+        },
+        {
+          "reviewer": "Reviewer_nsKx",
+          "claim": "The convergence rate of Theorem 4 is exponential in depth n and so not optimal.",
+          "checked_against_paper": "correct",
+          "evidence": "Remark 2 confirms the exponential dependence on depth. 'Not optimal' is unproven: the paper cites [51] (Shamir 2019), which shows exponential dependence is unavoidable in a one-dimensional deep linear setting."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_x5V9 (edited 2021-08-23): 'I maintain my score'. Reviewer_jeQC (comment 2021-08-24): 'I stand by my original review'; the authors' 2021-08-25 reply still cites '3: Clear rejection' and got no answer. Reviewer_nsKx's update (edited 2021-08-25) states no change; final 6. Reviewer_4GXj never edited or replied. The mean stayed at 5.0.",
+        "what_convinced_or_not": "The authors promised to move constants and lemmas to the appendix, bring in the related work and conclusion, consider expanding the Proposition 5 sketch, and fix the lambda_min sentence. They also argued that Theorem 4 beats [5] on initialization and Zou et al. on network size. Reviewer_x5V9 judged that the core concern (positioning, and no proof idea for the main result) was not answered, that the promises carry 'little guarantee', and that 'these tools are already known'. Reviewer_jeQC held that the needed changes are 'too consequent' and never answered the point on prior results. Reviewer_nsKx accepted a non-optimal rate for a tool demonstration but agreed with x5V9 on presentation."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings split 2-2 (4, 3 vs 7, 6), mean 5.0. The meta-review takes Reviewer_x5V9's (i)/(ii) positioning critique by name and Reviewer_jeQC's Lemma 3 point, says that after discussion 'we all agree that the presentation and position of the paper is the main weak point', and adds the linear-only limitation and a personal remark that the step size must be bounded above. It does not address the two accept-side scores.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Presentation too dense: technical lemmas and constants in the main text, related work and conclusion in the appendix (Reviewer_jeQC, AC)",
+        "Unclear positioning between a generic GF-to-GD tool and a deep-linear GD guarantee, with no proof idea for the main gradient-flow result in the main text (Reviewer_x5V9, AC)",
+        "Promised rewrite judged too large to accept unseen (Reviewer_x5V9, Reviewer_jeQC)",
+        "Guarantee limited to deep linear networks and to small step sizes (AC)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Spotlight)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        7,
+        8
+      ],
+      "confidences": [
+        3,
+        4,
+        1,
+        2,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_kYKg",
+        "Reviewer_r4iB",
+        "Reviewer_DACB",
+        "Reviewer_4TKP"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/6/7/7/8 lie within one point of the mean 7.0. The only score above 7 is Reviewer_4TKP's 8, raised from 6 on promised changes; it comes with the most detailed review on either side. The most confident reviewer, Reviewer_r4iB (confidence 4), gave the lowest score."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_hENG",
+          "evidence": "Rating 7 at confidence 1 after 2 hours: 'I am not a theorist, and have not looked at the proofs'; the judgement is 'based on the theorem statements only'. Never edited or replied after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_r4iB",
+          "claim": "Theorem 4 is natural and trivial: bound the GF trajectory, hence the Hessian, and classical Euler truncation-error analysis gives the same result with no essential difference.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With a uniform Hessian bound the admissible step size decays exponentially in the time horizon (Section 3, Corollary 1, non-convex case), and the GF convergence time grows as 1/||W_n:1,0|| (eq. 17). So the classical route gives a step size exponentially small in 1/||W_n:1,0||. Theorem 4 avoids this because the integral of -lambda_min along the trajectory stays logarithmic for a small neighbourhood radius (eq. 18), giving a bound polynomial in ||W_n:1,0|| and eps~ for fixed depth (eq. 19). r4iB accepted the authors' correction ('This response clarifies the settings') and raised the score."
+        },
+        {
+          "reviewer": "Reviewer_r4iB",
+          "claim": "The learning rate in Theorem 4 must be super small, depending exponentially on the depth.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (19) has n^(17/2) e^(7n+6) and a factor exponential in n in the denominator. The authors told Reviewer_4TKP the bound 'goes below 1e-20'; for n = 3 and ||W_n:1,0|| <= 0.2 it is at most about 2e-21. Camera-ready Section 6 says eta0 = 0.001 is 'many orders of magnitude greater' than the bound."
+        },
+        {
+          "reviewer": "Reviewer_kYKg",
+          "claim": "The upper bound on the distance between the continuous and discrete trajectories is not novel.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 'is simply a restatement of Theorem 10.6 in [27]' (Hairer et al.); Theorem 3 applies it with delta fixed at beta*gamma*eta (p. 3). Committee A's Reviewer_x5V9 said the same."
+        },
+        {
+          "reviewer": "Reviewer_kYKg",
+          "claim": "First convergence proof of a deep (three or more layer) neural network of fixed size.",
+          "checked_against_paper": "incorrect",
+          "evidence": "As stated it is too broad: the paper's own Section 7 lists earlier GD guarantees for fixed-size deep linear networks ([9], [61], [66], [5], [16], [28]). The paper claims 'first' only with the qualifier 'almost surely under random (data-independent) near-zero initialization' (contribution (iii))."
+        },
+        {
+          "reviewer": "Reviewer_4TKP",
+          "claim": "The experiments do not use the theoretical step-size bound; they start from a 'standard choice' eta0 = 0.001.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 and the Figure 1 caption use eta0 = 0.001 and eta0/r for r in {2, 5, 10, 20}. The authors promised experiments on the tightness of the bound; the camera-ready main text still reports only these runs."
+        },
+        {
+          "reviewer": "Reviewer_4TKP",
+          "claim": "Non-linear homogeneous activations are excluded from the results of the Fundamental Theorem (L240-242).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 needs a continuously differentiable vector field; Section 4.1.2 says that with non-linear activation the loss 'is no longer differentiable' and excludes points of non-differentiability. The authors told Committee A's Reviewer_4GXj that Theorem 3 'does not apply' where GD and GF lie in different linear regions."
+        },
+        {
+          "reviewer": "Reviewer_kYKg",
+          "claim": "Unresolved question marks on line 314.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The camera-ready has no line numbers. The authors conceded a broken link on line 314."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_4TKP",
+          "Reviewer_kYKg",
+          "Reviewer_r4iB",
+          "Reviewer_DACB"
+        ],
+        "evidence": "Reviewer_4TKP (comment and edit 2021-08-10): 'raised my score from 6 to 8'. Reviewer_kYKg (comment and edit 2021-08-16): 'I will raise my score from 6 to 7'. Reviewer_r4iB (comment and edit 2021-08-30): 'I've changed the score', final 6, earlier value not visible. Reviewer_DACB (edit 2021-09-01): 'I raise my score', final 7, earlier value not visible. Reviewer_hENG never edited. Before the rebuttal B's mean was at most 6.0.",
+        "what_convinced_or_not": "Reviewer_4TKP: the promise to drop the non-linear analysis from the main body, bring in related work and conclusion, and add tightness experiments ('The proposed changes completely address my concerns'). Reviewer_DACB: the same restructuring promise plus answers on the novelty of Proposition 5, though confidence stayed low. Reviewer_r4iB: the correction that classical Euler analysis gives an exponentially small step size even at fixed depth. Reviewer_kYKg: the authors' view that the work can extend to modified flows for large step sizes, a future direction."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All final ratings 6 to 8, mean 7.0. Three sentences: 'an important theoretical contribution', 'All the reviewers agree that the manuscript is a strong contribution to the field', comments 'addressed by the authors in detail'. This overstates Reviewer_r4iB's 6 ('the results are not surprising, and the analysis techniques used are also not new') and the 7s at confidence 1 (Reviewer_hENG) and 2 (Reviewer_DACB, 'Unable to evaluate correctness of the main claims'). No reason is given for a spotlight over a poster.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "First almost-sure GD convergence guarantee from random near-zero initialization for fixed-size deep linear networks (Reviewer_kYKg, Reviewer_4TKP, AC)",
+        "A rigorous bridge from GF analyses to GD, which the community needs (Reviewer_4TKP, AC)",
+        "Promised restructuring (non-linear part out, related work and conclusion in, tightness experiments) accepted as fixing clarity and scope (Reviewer_4TKP, Reviewer_DACB)",
+        "Rebuttal corrected Reviewer_r4iB's triviality objection; four of five scores rose, to a mean of 7.0"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Theorem 4 is weaker than Arora et al. (2019): its step size shrinks with the target accuracy, so it needs about 1/eps iterations against log(1/eps); offset by random near-zero initialization, which [5] does not allow (Reviewer_jeQC)",
+    "Positioning: generic GF-to-GD tool versus deep-linear GD guarantee; no evidence that trajectory comparison is not less efficient than direct discrete proofs (Reviewer_x5V9; Reviewer_nsKx agreed)",
+    "Misleading sentence that the lambda_min lower bound 'becomes non-negative' (Reviewer_jeQC); the authors conceded and fixed it",
+    "Proposition 2 ignores the gradient-norm time scale (Reviewer_x5V9)",
+    "Missing citation of Orvieto and Lucchi (2019) (Reviewer_x5V9)"
+  ],
+  "issues_only_b": [
+    "Claim that Theorem 4 follows trivially from classical Euler truncation-error analysis (Reviewer_r4iB); wrong, and dropped after the rebuttal",
+    "Experiments do not test the theoretical step-size bound or its tightness (Reviewer_4TKP); higher-order ODE solvers as a reference (Reviewer_hENG)",
+    "Scope too large for a conference paper; a journal suggested (Reviewer_4TKP, Reviewer_DACB)",
+    "Relation to Belkin et al. on non-convexity near minima, and why depth three counts as deep (Reviewer_DACB)",
+    "Broken reference on line 314 (Reviewer_kYKg)"
+  ],
+  "shared_issues": [
+    "Dense main text; related work and conclusion only in the appendix (A: Reviewer_jeQC, AC; B: Reviewer_4TKP, Reviewer_hENG, Reviewer_DACB)",
+    "GD guarantee only for linear networks; non-linear results incomplete (A: Reviewer_4GXj, Reviewer_nsKx, AC; B: Reviewer_kYKg, Reviewer_4TKP)",
+    "Tiny step size and iteration count exponential in depth (A: Reviewer_4GXj, Reviewer_nsKx, AC; B: Reviewer_r4iB, Reviewer_4TKP)",
+    "The GD-GF distance bound is classical numerical analysis (A: Reviewer_x5V9; B: Reviewer_kYKg, Reviewer_r4iB)",
+    "Little intuition in the main text for the gradient-flow convergence result, Proposition 5 (A: Reviewer_x5V9; B: Reviewer_DACB)",
+    "Practical relevance: real training uses large step sizes that gradient flow does not capture (A: AC remark; B: Reviewer_kYKg, Reviewer_r4iB)",
+    "'Convex' wording misleading (A: Reviewer_x5V9 on the Section 4 title; B: Reviewer_kYKg on 'more convex')"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently. Both saw a narrow but new result, an almost-sure GD convergence guarantee from random near-zero initialization for fixed-size deep linear networks, obtained from a GF analysis through a classical numerical-analysis theorem. Both raised the same weaknesses: a dense main text with related work and conclusion in the appendix, a guarantee only for linear networks, and a step size exponentially small in depth. Neither found a technical error. Before the rebuttal the gap was small: A's mean stayed at 5.0, and B's was at most 6.0. The authors answered both committees with promises to restructure. A's detractors did not credit them unseen (Reviewer_x5V9: 'little guarantee that the weaknesses will be fixed'; Reviewer_jeQC: the changes are 'too consequent'), and A's AC settled a 2-2 split with x5V9's positioning critique. In B four of five reviewers raised: Reviewer_4TKP went from 6 to 8 because 'the proposed changes completely address my concerns', and the rebuttal corrected Reviewer_r4iB's wrong claim that Theorem 4 follows trivially from classical Euler analysis. B's spotlight rests on one careful champion (4TKP) and two 7s at confidence 1 and 2 from reviewers who did not check the proofs, under a three-sentence meta-review with no reason for the tier. A's critique was the more technically grounded: only A noted that Theorem 4's step size shrinks with the target accuracy, unlike Arora et al. (2019), a cost the paper trades for not needing initialization near the optimum.",
+  "candidate_reasons": [
+    "Same flaws, different presentation tolerance",
+    "Promised rewrite trusted versus discounted",
+    "Low-confidence sevens fill B's mean",
+    "Wrong triviality objection dispelled in B",
+    "AC adopts detractor's positioning critique",
+    "Spotlight tier without stated rationale"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review (cites Reviewer x5V9's (i)/(ii) positioning)",
+    "Reviewer_x5V9 'UPDATE AFTER REBUTTAL'",
+    "Reviewer_jeQC comment 2021-08-24 and authors' reply 2021-08-25",
+    "Reviewer_nsKx UPDATE (agrees with x5V9 on presentation)",
+    "Reviewer_4TKP comment 2021-08-10 (6 to 8)",
+    "Reviewer_r4iB main review point 1, authors' reply 2021-08-09, r4iB comment 2021-08-30",
+    "Reviewer_DACB post-rebuttal paragraph and Reviewer_hENG disclaimer",
+    "Committee B meta-review",
+    "paper (camera-ready a/paper.pdf) p. 4 Corollary 1; p. 8 eqs. (17)-(20) and Proposition 3 'See Subappendix J.8'",
+    "paper (camera-ready a/paper.pdf) p. 6 'approaches non-negativity' sentence",
+    "paper (camera-ready a/paper.pdf) Section 6 (eta0 = 0.001) and Section 7 (comparison with [5])"
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "pair_id": "n21-070",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 5, 5],
+      "confidences": [4, 3, 5, 5],
+      "reviews_edited_after_posting": ["Reviewer_UpWV"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 5 ('marginally below the acceptance threshold'), with confidences 4, 3, 5, 5. The texts differ more than the scores: Reviewer_b3Fh's review is mostly praise, and Reviewer_1bxc's says the work is 'technically sound and the claims are well supported'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1bxc",
+          "evidence": "An eight-sentence main review with no specific weakness. It calls the work original, 'technically sound' and 'well-written and well organized', then rates 5 on 'the novelty is limited' and 'a work in progress' with no reason given. The limitations field only says the supplement covers them. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_b3Fh",
+          "claim": "n_x and n_y only make sense when the ground-truth point set is uniform, which L45 calls 'balance'.",
+          "checked_against_paper": "correct",
+          "evidence": "L45-46: 'we assume the ground truth distribution is uniform and use balance to denote a perfect matching in this paper.' The authors conceded that 'a more proper phrase could be density-aware'. The camera-ready renames the metric Density-aware Chamfer Distance."
+        },
+        {
+          "reviewer": "Reviewer_UpWV",
+          "claim": "The paper does not say which network (PCN, PCN++, TopNet, MSN or VRC) the method builds on, so one cannot judge whether the balanced design improves performance.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Sec. 4 never names the base, which the authors conceded. But Sec. 5.3 (L287-288) says the filter reduces CD 'from the state-of-the-art VRC [16] approach', and the base row of Table 3 (CD 6.09, EMD 5.27, BCD 0.462) is VRC's average row in Table 2. Table 3 is the ablation the reviewer asked for."
+        },
+        {
+          "reviewer": "Reviewer_UpWV",
+          "claim": "BCD is limited to evaluation and 'can not be used for training as CD and EMD'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission trains every network with CD (L241) and never tries BCD as a loss, so the reading was reasonable. But the rebuttal trained PCN with BCD: BCD 0.518 against 0.553 (CD loss) and 0.537 (CD+EMD loss); EMD 4.94 against 6.80 and 3.97; CD 11.21 against 9.78 and 10.70. BCD works as a loss; its gain over CD+EMD is small, as the authors said. The camera-ready adds a loss section (Sec. 5.4) that no committee saw."
+        },
+        {
+          "reviewer": "Reviewer_UpWV",
+          "claim": "The method's improvement mainly comes from better sampling than FPS, an incremental contribution.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: up-sampling alone moves BCD from 0.462 to 0.425 and EMD from 5.27 to 3.78, while CD worsens to 6.91. The query-frequency filter alone lowers CD to 5.94 but leaves BCD at 0.464; added to up-sampling it changes BCD by 0.001. The gains are sampling gains; the query-frequency module mainly helps CD."
+        },
+        {
+          "reviewer": "Reviewer_ziDa",
+          "claim": "The claim that the new metric is more robust is not substantiated.",
+          "checked_against_paper": "correct",
+          "evidence": "'Robust' appears in the abstract (L6, L12, L23) and at L65, with no robustness experiment. The authors replied that they meant consistency across samples and would change the wording. The camera-ready abstract drops the word."
+        },
+        {
+          "reviewer": "Committee A area chair",
+          "claim": "The paper says EMD requires point sets of equal size, which is not true of EMD as a Wasserstein distance.",
+          "checked_against_paper": "correct",
+          "evidence": "L36-37 and L112-113 say EMD is 'only applicable when |S1| = |S2|'. This holds only for the bijection form the paper writes as Eq. 2; the Wasserstein distance between sets of different size is well defined. The chair called it 'a (very) minor side note', and it is not among the stated reasons."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_UpWV's edit (2021-08-04) predates the author responses (2021-08-10); the 2021-09-10 comment says 'keep the original rating'. Reviewer_ziDa, 2021-09-03: 'I'll keep my ratings since there is no new information, and the co-reviewers have shared similar concerns.' Reviewer_1bxc and Reviewer_b3Fh: no reply, no edit.",
+        "what_convinced_or_not": "The rebuttal confirmed two concerns instead of answering them. The authors told ziDa 'We will try it on more tasks', and told b3Fh that 'density-aware' fits better than 'balanced'. The training-loss table answered the 'cannot train with BCD' objection, but the authors called its gain over CD+EMD 'marginal'. UpWV did not mention the table and restated that the change is 'trivial'. The authors never cited the supplement's user study in this forum."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The reviewers all agreed that this submission should be rejected' matches four 5s. The stated reasons repeat the reviews: limited novelty and significance (Reviewer_1bxc, Reviewer_UpWV), evaluation not comprehensive (Reviewer_ziDa, Reviewer_UpWV), and 'does not provide a significant improvement when used as a training objective', taken from the rebuttal table. The submission never claims BCD as a training objective. The chair's own EMD point is labelled 'very minor'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four ratings of 5, none moved after the rebuttal",
+        "Limited novelty: a small modification of CD (Reviewer_1bxc, Reviewer_UpWV)",
+        "Evaluation confined to point cloud completion (Reviewer_ziDa, Reviewer_UpWV)",
+        "No significant gain when BCD is used as a training loss, read from the authors' own rebuttal table"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 5],
+      "confidences": [3, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_p1L4"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 5 span one point. Reviewer_p1L4's 6 is a post-rebuttal raise from an unexposed lower rating; the original review says 'I do not think this paper is ready for publication at the moment'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_p1L4",
+          "evidence": "The posted review carried the summary of another paper, which p1L4 found only after the rebuttal period. It said the authors 'did not discuss the limitations', though checklist item 1(b) points to the supplement, and asked for a human study that the supplement contains. p1L4 retracted both. The rest of the review is specific and substantive."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_p1L4",
+          "claim": "Without a human visual assessment, the claims that BCD is more faithful to visual quality are not justified.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The main text claims BCD is 'more faithful to visual quality' (L73-74, L265) and never mentions a user study. The supplement's Sec. C has one, which p1L4 confirmed after the rebuttal ('supplementary indeed reports such a user study'). The supplement is not in the supplied PDF; the camera-ready adds pointers to the study."
+        },
+        {
+          "reviewer": "Reviewer_p1L4",
+          "claim": "The authors did not discuss the limitations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Checklist 1(b): 'Did you describe the limitations of your work? [Yes] See supplementary material.' p1L4 later wrote 'my bad'."
+        },
+        {
+          "reviewer": "Reviewer_p1L4",
+          "claim": "The sliced Wasserstein distance of Nguyen et al. appears only in the related work and is left out of the metric comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "L100-102 describe [14] in Related Works; Table 1 and Sec. 5.2 compare only CD, EMD and BCD. The authors excused it as an unpublished arXiv pre-print, and p1L4 accepted that."
+        },
+        {
+          "reviewer": "Reviewer_9BXU",
+          "claim": "n_x and n_y may depend on a sphere whose radius is a hyper-parameter, which would need an ablation.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L142: n_y = |S1y|, the number of points in S1 whose nearest neighbour is y. There is no radius. The rebuttal said so; 9BXU did not reply."
+        },
+        {
+          "reviewer": "Reviewer_gwGK",
+          "claim": "The proposed measure cannot be used as a loss function because it is not differentiable.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The claim restates the supplement's own limitation (n_x and n_y are counts), so the reading was reasonable. The rebuttal table given to both committees trains PCN with BCD (BCD 0.518 against 0.553 with CD loss). The counts carry no gradient, but the exponential term does."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_p1L4"],
+        "evidence": "p1L4 edited the review on 2021-09-02, the day of the comment 'my main doubts were addressed well in the rebuttal, and I am ready to raise my ratings' (final 6; the earlier value is not exposed). Reviewer_gwGK and Reviewer_9BXU: no reply, no edit.",
+        "what_convinced_or_not": "p1L4 was moved by the pointer to the supplement's user study, by the answer that Nguyen et al. is a pre-print ('I cannot really ask for this comparison'), by a promise to rewrite Sec. 5.1 ('I will trust you on this'), and by gwGK's view, which p1L4 cites. p1L4's wish for evaluation 'across different datasets and tasks' stayed open. The authors defended the scope to 9BXU: registration needs a density-insensitive measure, so BCD is the wrong tool there. 9BXU did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two of three ratings are above the threshold. The three-sentence meta-review repeats the positive reading ('a timely introduction of a new measure') and turns the scope concern of Reviewer_p1L4 and Reviewer_9BXU into advice: 'The authors are encouraged to evaluate the measure on other tasks.' It does not mention the 5, the training-loss question, or the rebuttal.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Reviewers saw a timely, well-motivated fix for real defects of CD and EMD (Reviewer_gwGK, Reviewer_p1L4, Reviewer_9BXU)",
+        "Reviewer_p1L4 raised to 6 after the rebuttal pointed to the supplement's user study",
+        "Two of three ratings above the threshold",
+        "Scope beyond point cloud completion treated as future work, not as a reason to reject"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Uniform ground-truth assumption behind 'balanced' (Reviewer_b3Fh); the authors conceded and later renamed the metric",
+    "Limited novelty: CD normalised by query frequency is 'trivial' (Reviewer_1bxc, Reviewer_UpWV)",
+    "The method's gains reduce to better sampling; contribution of each component unclear (Reviewer_UpWV)",
+    "Base network of the method not stated (Reviewer_UpWV)",
+    "Unsupported 'robust' claim; the product of CD and EMD as a simpler alternative (Reviewer_ziDa)",
+    "Paper says EMD needs equal point counts (Committee A area chair)"
+  ],
+  "issues_only_b": [
+    "No human perceptual study in the main text (Reviewer_p1L4); the supplement has one",
+    "No comparison to the sliced Wasserstein distance of Nguyen et al. (Reviewer_p1L4)",
+    "No other completion datasets, such as SemanticKITTI (Reviewer_p1L4)",
+    "Sensitivity to the temperature α and the definition of n_x, n_y (Reviewer_9BXU)",
+    "Whether BCD captures global density as EMD does (Reviewer_9BXU)",
+    "Discriminator tied to two-stage pipelines; 24% more inference time (Reviewer_9BXU)",
+    "Form of g(x) in Eq. 5 and use of the probability in Eq. 7 (Reviewer_gwGK)"
+  ],
+  "shared_issues": [
+    "Evaluation only on point cloud completion; other tasks needed (A: Reviewer_ziDa, Reviewer_UpWV, area chair; B: Reviewer_p1L4, Reviewer_9BXU, area chair)",
+    "BCD not used or shown as a training loss (A: Reviewer_UpWV, Reviewer_b3Fh, Reviewer_ziDa; B: Reviewer_gwGK)",
+    "Metric and completion network evaluated together, which blurs the paper's focus (A: Reviewer_UpWV; B: Reviewer_p1L4)",
+    "Wording and grammar (A: Reviewer_ziDa; B: Reviewer_p1L4, Reviewer_gwGK)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees named the same gaps: BCD is tested only on point cloud completion, is not shown as a training loss, and is evaluated together with the authors' own network. They weighted those gaps differently. Committee A's four reviewers all gave 5, none moved after the rebuttal, and its chair rejected. In B, Reviewer_gwGK (6, confidence 5) called the loss gap the 'main drawback' and still leaned to accept. In A, Reviewer_UpWV (5, confidence 5) made the same gap the reason to reject. The rebuttals also differed. In B the authors cited a user study in the supplement, which the main text never mentions, and argued that registration is the wrong test for a density-aware metric. Reviewer_p1L4 then raised to 6, which gave B two ratings above the threshold. In A the authors never cited the study. They conceded the scope point ('We will try it on more tasks') and offered a training-loss table whose gains they called 'marginal'. A's chair cited that table against the paper, though the submission never claims BCD as a loss. This is a borderline paper (mean 5.0 against 5.7) that two panels judged on the same facts with different weights.",
+  "candidate_reasons": [
+    "same gaps weighted differently",
+    "post-rebuttal raise by one reviewer",
+    "rebuttal conceded scope in one forum",
+    "supplement user study surfaced only in B",
+    "chair penalised optional rebuttal experiment",
+    "co-reviewer views anchored each panel"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_p1L4 edited review and comment of 2021-09-02",
+    "Reviewer_ziDa comment of 2021-09-03",
+    "Reviewer_UpWV review and comment of 2021-09-10",
+    "Reviewer_gwGK review",
+    "Authors' training-loss table (both forums, 2021-08-10)",
+    "Authors' replies on other tasks: to Reviewer_ziDa (A), to Reviewer_9BXU and Reviewer_p1L4 (B)",
+    "Submission L45-46 (uniform ground truth)",
+    "Submission Sec. 5.3, Table 3, and the VRC row of Table 2",
+    "Submission L142 (definition of n_y)",
+    "Submission L36-37 and L112-113 (EMD and equal point counts)",
+    "Submission checklist item 1(b)"
+  ]
+}

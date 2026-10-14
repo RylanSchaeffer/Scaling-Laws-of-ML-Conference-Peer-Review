@@ -1,0 +1,248 @@
+{
+  "pair_id": "n21-072",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        6,
+        5,
+        5
+      ],
+      "confidences": [
+        3,
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_zPDw",
+        "Reviewer_aZxX"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_zPDw",
+        "direction": "champion",
+        "basis": "inattentive",
+        "evidence": "A mild outlier: the only rating above the threshold, one point above three 5s. Two hours and five sentences at confidence 5 ('checked the math/other details carefully'). It names no weakness beyond 'as far as results based on a single card game can be considered significant', calls the setup details sufficient although the submission gives no recruitment source, and never posted in discussion. The meta-review does not draw on it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zPDw",
+          "evidence": "Two hours, five sentences, confidence 5. Generic praise ('The English is perfect', 'the statistical analysis is elaborate') with no specific comment on the design, the sample or the statistics. Its edit of 2021-08-17 came with no comment."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_aZxX",
+          "claim": "The paper does not say where participants were recruited.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 (lines 159-167) gives the count, consent, IRB, pay and video-conference format but no recruitment source. Section 5.3 says only 'we made an effort to recruit subjects with a diverse level of experience'. The rebuttal disclosed word-of-mouth referrals. The camera-ready main text still omits the method."
+        },
+        {
+          "reviewer": "Reviewer_aZxX",
+          "claim": "Claims about how humans play Hanabi (lines 250-253) have no source.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 250-253 ('Pre-game convention-setting and post-game reviews are common practices for human Hanabi players') carry no citation. The authors said the source was conversations with expert players and remarks by subjects."
+        },
+        {
+          "reviewer": "Reviewer_aZxX",
+          "claim": "The conclusion says participants cited understanding, trust, comfort and performance as reasons, which the data do not show.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 306-308: 'citing their bilateral understanding, trust, comfort, and perceived performance as reasons'. The authors said the sentence came from 'grouping the Likert questions with significant inter-agent differences' under constructs. The camera-ready keeps it."
+        },
+        {
+          "reviewer": "Reviewer_aZxX",
+          "claim": "p = 0.061 is called near-significant while p = 0.0867 is called not significant.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 203-204 ('a near-significant effect of game number ... p = 0.061') and line 211 ('not significant for OP games (p = 0.0867'). The camera-ready keeps 'near-significant'."
+        },
+        {
+          "reviewer": "Reviewer_aZxX",
+          "claim": "The mixed models should include an agent-by-block interaction, which seems to be missing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 182 specifies 'second-order mixed-effects models' over agent, experience, block and game number; lines 219-220 mention block and game 'main effects or their interactions'; Table 3 reports agent:experience terms. The wording is terse, but the pairwise interactions are in the model."
+        },
+        {
+          "reviewer": "Reviewer_aZxX",
+          "claim": "Table 1 bolds two cross-play values 0.5 apart but not a self-play value within 0.3 of the best rule-based one.",
+          "checked_against_paper": "correct",
+          "evidence": "Rule-based cross-play 13.8 and 13.3 are both bold; FireFlower's 22.7 self-play is not bold beside SmartBot's bold 23.0. The authors called the 13.3 bolding a mistake."
+        },
+        {
+          "reviewer": "Reviewer_mR2Y",
+          "claim": "Figure 1 shows a score-experience correlation for OP games too, although the text calls it not significant.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 209-213: r = 0.188 (p = 0.087) for OP against r = 0.247 for SB. The two correlations do not differ (Fisher z about 0.4, p about 0.7 with 87 games each; my computation). The paper still reads them as 'experience only correlates with score for SB, not with OP' and builds on it in the Discussion (lines 271-272). The authors' reply repeated the reading."
+        },
+        {
+          "reviewer": "Reviewer_Tigt",
+          "claim": "The comparison uses just one rule-based and one learned agent.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 (lines 146-149): the OP+SAD+AUX agent and SmartBot only."
+        },
+        {
+          "reviewer": "Reviewer_zPDw",
+          "claim": "Enough details are provided about setup and analysis.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission gives no recruitment source, no order split for the counterbalancing (line 154), no source for the Likert items (the camera-ready adds Hoffman et al.), and no account of how the quoted remarks on lines 240-244 were collected."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "Reviewer_aZxX's only edit is dated 2021-07-20, its posting day, before the author responses of 2021-08-10. Its comment of 2021-09-01 says it continues 'to harbor concerns about generalizability', and its rating stays 5. Reviewer_mR2Y and Reviewer_Tigt never edited or replied. Reviewer_zPDw edited on 2021-08-17, a week after the one-line 'Thank you for your kind review!', and posted nothing, so a change to its 6 cannot be ruled out.",
+        "what_convinced_or_not": "aZxX accepted the clarifications ('they have already improved my understanding'). The disclosure of word-of-mouth recruitment and live video-call sessions gave it new objections: convenience or snowball sampling, and experimenter demand. The authors' reply of 2021-09-08 cited the same sampling in Eger et al. and Liang et al. and admitted that experimenters 'were aware of the general hypotheses being tested'; no reviewer answered. To Tigt the authors offered to narrow the claims to one pair of agents and cited an unreported pilot in which learning agents from [24] 'performed much worse than OP'. Tigt did not reply. The AC found the protocol answer 'reassuring' but not the scope answer. The camera-ready does not narrow the claims: the abstract keeps 'humans have a clear preference' and the conclusion 'largely fail to convince humans'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three 5s and a thin 6 (mean 5.25). The meta-review groups the concerns into scope, protocol and missing qualitative analysis. It calls the response on protocol 'reassuring', although aZxX, who raised it, still held its concerns on 2021-09-01. It rejects on scope: 'one learning agent and one bot in one environment ... ultimately limits the interest of the current work to the community'. It asks for a behaviourally cloned agent, a second environment such as Overcooked, or more qualitative analysis.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Scope of one learned agent, one rule-based agent and one game judged to limit interest (AC, Reviewer_Tigt, Reviewer_aZxX)",
+        "Three of four reviewers at 5 after the rebuttal; no one argued for acceptance in discussion",
+        "Behavioural-methods doubts: word-of-mouth sample of 29, experimenter-present video sessions, single Likert items, overgeneralised claims (Reviewer_aZxX)",
+        "No qualitative analysis to explain the preference (Reviewer_mR2Y, AC)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_WHgS"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 7, all at or above the threshold. The one sceptic, Reviewer_WHgS, rose to 6 after the rebuttal; its text still calls the results 'perhaps too preliminary for publication'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_PtgZ",
+          "evidence": "1.5 hours. It rates 7 at confidence 4 but says of the survey design and analysis, the whole method of the paper, 'I do not know much about these topics, and might be missing something'. It engages with scope and the free responses, so it is light rather than careless. Its 7 is evidence of interest in the topic, not of sound methods."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_WHgS",
+          "claim": "Each participant got a $10 gift card and the highest scorer an extra $50.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 161-162."
+        },
+        {
+          "reviewer": "Reviewer_WHgS",
+          "claim": "No participant scored 15 with SB, and OP scores peak at 24.",
+          "checked_against_paper": "correct",
+          "evidence": "In Figure 1 the SB histogram bin that holds 15 is empty. The tallest OP bar is the top bin (about 23 to 24, density 0.14, roughly 14 of 87 games)."
+        },
+        {
+          "reviewer": "Reviewer_WHgS",
+          "claim": "The paper gives no demographic data and does not say how many participants played each agent first.",
+          "checked_against_paper": "correct",
+          "evidence": "Only self-rated experience is reported (novice n = 10, expert n = 19, lines 227-228). Line 154 says only that the order was 'counterbalanced'. The rebuttal gave 15 SB-first and 14 OP-first."
+        },
+        {
+          "reviewer": "Reviewer_8ptp",
+          "claim": "The Figure 1 note that no player reached a perfect score with OP overlooks that more players reached near-perfect scores with OP.",
+          "checked_against_paper": "correct",
+          "evidence": "OP's top bin (about 23 to 24) holds roughly 14 games; SB's top bin (24 to 25) about 6. The authors agreed to reframe or remove the note."
+        },
+        {
+          "reviewer": "Reviewer_tDFg",
+          "claim": "One RL policy stands for all learning-based agents, and the study tests few-shot coordination that OP was not trained for.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 uses only OP+SAD+AUX. The paper itself calls human play 'more akin to few-shot coordination' (lines 252-253). The rebuttal answered that the setting is zero-shot from the agent's side."
+        },
+        {
+          "reviewer": "Reviewer_PtgZ",
+          "claim": "Both bots score about 14 or 15 on average with humans.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 1: OP 14.39 +/- 6.97, SB 14.07 +/- 6.57."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_WHgS"
+        ],
+        "evidence": "WHgS replied on 2021-08-26: 'Thank you for your detailed response and for clarifying about the statistical tests of the study. I will adjust my score accordingly.' The review was edited the same day and ends at 6. Its text still says the results are 'perhaps too preliminary for publication', so the earlier rating was at most 5. Reviewer_8ptp, Reviewer_tDFg and Reviewer_PtgZ never edited or replied.",
+        "what_convinced_or_not": "A power analysis (13 participants suffice to detect a 2-point Likert difference with SD 2), the 15/14 order split, and the three players who scored 24 with OP yet rated SB at the extreme of the preference scale. WHgS asked for these, plus demographics and effect sizes, in the final version. The same power analysis conceded that, counting participants, only a 5-point score difference was detectable; WHgS did not press this. The answers on scope (no human-trained Hanabi agent exists; a pilot with other learning agents) drew no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 7, 6, 6, 7 (mean 6.5). The meta-review says reviewers were 'unanimous' that the area is important and the results 'insightful'. It names the choice of the learning agent, the number and representativeness of participants, and ecological validity as clarifications, and accepts on the authors' 'comprehensive response'. It does not weigh whether one agent per class is enough.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers at 6 or 7; topic called important and understudied",
+        "Narrow scope, 29 participants and representativeness treated as revisions (AC, Reviewer_8ptp 'modest weaknesses')",
+        "The one sceptic, Reviewer_WHgS, raised to 6 after a power analysis",
+        "AC trusted the 'comprehensive response' to deliver the revisions"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Convenience or snowball sampling limits claims about 'humans' (Reviewer_aZxX, after the rebuttal)",
+    "Experimenter demand: live video-call sessions run by experimenters who knew the hypotheses (Reviewer_aZxX; AC's 'single-blind setup')",
+    "Single Likert items instead of multi-item scales, factor analysis or IRT; 'near-significant' p = 0.061 (Reviewer_aZxX)",
+    "Uncited claims about human play (lines 250-253) and a conclusion that says participants 'cited' reasons (Reviewer_aZxX)",
+    "Unclear background definitions and Table 1 bolding (Reviewer_aZxX)",
+    "Unclear intended contribution and takeaway (Reviewer_Tigt)",
+    "Score-experience correlation also present for OP (Reviewer_mR2Y)"
+  ],
+  "issues_only_b": [
+    "Statistical power of 29 participants; lumpy score distribution (Reviewer_WHgS)",
+    "Order and learning effects of the within-subjects design; order split not reported (Reviewer_WHgS)",
+    "A $50 prize for the top scorer may distort play (Reviewer_WHgS)",
+    "No demographic data; no reproducible measure of Hanabi experience (Reviewer_WHgS)",
+    "Misleading Figure 1 note on perfect scores (Reviewer_8ptp)",
+    "Result unsurprising, since SmartBot encodes human knowledge and OP was not built for human conventions; no evidence that subjective metrics belong in RL training (Reviewer_tDFg)"
+  ],
+  "shared_issues": [
+    "One rule-based and one learned agent only (A: Reviewer_Tigt, Reviewer_aZxX, AC; B: Reviewer_tDFg, Reviewer_PtgZ, AC)",
+    "One game; generalisation to Overcooked and other domains (A: Reviewer_aZxX, Reviewer_zPDw, AC; B: Reviewer_PtgZ, Reviewer_8ptp)",
+    "Recruitment and representativeness of the 29 participants (A: Reviewer_aZxX, AC; B: Reviewer_8ptp, Reviewer_WHgS, AC)",
+    "No qualitative analysis of the free responses (A: Reviewer_mR2Y, AC; B: Reviewer_PtgZ)",
+    "Agents trained with human data might be perceived better (A: Reviewer_Tigt, AC; B: Reviewer_PtgZ, Reviewer_tDFg)",
+    "Full statistical results, including non-significant ones, belong in the supplement (A: Reviewer_aZxX; B: Reviewer_8ptp, Reviewer_WHgS)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently. Both saw a clear first study of how humans rate a rule-based and a learned Hanabi teammate, with narrow evidence: one agent of each kind, one game, 29 participants recruited by word of mouth. No reviewer found an error that overturns the main result, a strong preference for SmartBot at equal mean scores (14.07 against 14.39). A's reviewers rated the study just below the bar (5, 6, 5, 5), and A's AC ruled that 'one learning agent and one bot in one environment' limits the paper's interest. B's reviewers rated it just above (7, 6, 6, 7), and B's AC listed the same narrowness as a revision. Matched reviewers show the split: Reviewer_Tigt (A, 5) and Reviewer_tDFg (B, 6) made one agent per class their main objection, and Reviewer_mR2Y (A, 5) and Reviewer_PtgZ (B, 7) both asked for qualitative analysis. A also had the most demanding behavioural-methods review, Reviewer_aZxX, and most of its points check out against the paper: no recruitment source, uncited claims about human play, a conclusion that says participants 'cited' reasons. The rebuttal's disclosure of word-of-mouth recruitment and live video-call sessions only added to aZxX's objections. In B the rebuttal's power analysis moved the one sceptic, Reviewer_WHgS, to 6, although its text still calls the results 'perhaps too preliminary'. Neither AC departed from its reviewers. The discrepancy lies in where each panel placed a borderline, narrow study relative to the bar.",
+  "candidate_reasons": [
+    "Narrow scope: fatal versus revisable",
+    "Same limitations, different reviewer thresholds",
+    "Behavioural-methods scrutiny only in A",
+    "Rebuttal lifted B's lone sceptic",
+    "Rebuttal disclosure created new objections",
+    "Topic enthusiasm without methods expertise"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_Tigt review (limitations) against Reviewer_tDFg review (cons)",
+    "Reviewer_mR2Y review against Reviewer_PtgZ review (qualitative responses)",
+    "Reviewer_aZxX review, comment of 2021-09-01 and author reply of 2021-09-08",
+    "Reviewer_WHgS review and comment of 2021-08-26; author response with the power analysis",
+    "paper_submitted Section 3.1, lines 159-167 (no recruitment source)",
+    "paper_submitted lines 209-213 and Figure 1",
+    "paper_submitted lines 250-253 and 306-311",
+    "paper (camera-ready) abstract, Section 5.3 and Conclusion"
+  ]
+}

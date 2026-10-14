@@ -1,0 +1,236 @@
+{
+  "pair_id": "n21-073",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 5, 6, 6 (Reviewer_BQ9v, Reviewer_mTu3, Reviewer_KTCw, Reviewer_1PPk) span one point. Reviewer_mTu3's 5 is the only score below the threshold and the only substantive review, but it is not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_KTCw",
+          "evidence": "1 hour, confidence 3. The main review is four praise bullets ('joyful to read', 'technically sound'); the limitations are generic (complexity analysis, link to Bayesian uncertainty quantification). It names no result, metric or baseline."
+        },
+        {
+          "reviewer": "Reviewer_1PPk",
+          "evidence": "Confidence 4 on a four-sentence main review with no specific point: 'quite original', 'achieves its objectives', 'This is not the best paper I reviewed'. No weakness, no question."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_mTu3",
+          "claim": "In theory GLIM and MMFE should not differ on the metrics that test the martingale property, yet GLIM is orders of magnitude better than MMFE.",
+          "checked_against_paper": "correct",
+          "evidence": "L311-313 claim wins 'by a few orders of magnitudes' on mean calibration and volatility MSE. MMFE estimates a covariance of increments (L101-102), so it is a martingale before any bounding. The authors' reply says they truncated MMFE paths to [0,1], which breaks the property; neither the submission nor the camera-ready main text mentions the truncation. GLIM meets both metrics by construction (Prop. 1 with Y_T in {0,1}, L166-170; for any such martingale E[Q_T] = y0(1-y0)), so these wins test bounded martingality, not fit."
+        },
+        {
+          "reviewer": "Reviewer_mTu3",
+          "claim": "All metrics rest on only 100 sampled paths per test path.",
+          "checked_against_paper": "correct",
+          "evidence": "L274: 'all metrics are calculated using 100 simulated samples per probability path'. The Fig. 3 caption attributes GLIM's nonzero calibration MSE to this finite sample."
+        },
+        {
+          "reviewer": "Reviewer_mTu3",
+          "claim": "The LR baseline is not a martingale, although a martingale linear model is easy to write.",
+          "checked_against_paper": "correct",
+          "evidence": "L250-251 define LR as separate regressions per time step; L298-301 show its paths skew away from y0. The reply says an unbounded linear martingale would face MMFE's truncation problem; no such variant was tested."
+        },
+        {
+          "reviewer": "Reviewer_KTCw",
+          "claim": "No computational complexity analysis.",
+          "checked_against_paper": "correct",
+          "evidence": "None in the main text; checklist 3(d) (L490-493) says 'We do not benchmark on time or resource consumption'."
+        },
+        {
+          "reviewer": "Reviewer_BQ9v",
+          "claim": "Few details on the Bayesian HMC inference.",
+          "checked_against_paper": "correct",
+          "evidence": "L210-212 give only 'a weakly informative prior', HMC and Stan. The supplied PDFs contain no appendix."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited. The authors replied only to Reviewer_mTu3 (2021-08-10). mTu3 posted nothing afterwards and stayed at 5, although the review said it would 'reserve judgement' until it heard from the other reviewers and the authors. No reviewer comment appears on the forum.",
+        "what_convinced_or_not": "Nothing visible. The reply explained the MMFE gap by truncation of MMFE paths to [0,1] (not disclosed in the paper), credited GLIM's covariate-dependent variance for the coverage gap, and defended martingality as 'internal consistency'. No reviewer answered."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Acceptance matches three 6s (mean 5.75). The meta-review cites 'scores of 5, 6, 6, 6' and says 'There were no major critiques raised', although mTu3's 5 said the paper 'does not do a good job of defending' its motivation and mTu3's questions were never discussed. The chair adds its own doubt ('unsure about the eventual scope of application') and accepts on freshness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three 6s and one 5 (mean 5.75), read by the chair as 'no major critiques'",
+        "All four reviewers found the problem new and the model elegant, correct and clearly written",
+        "No discussion, so Reviewer_mTu3's questions on the motivation and the MMFE gap were never pressed",
+        "Chair's own view that the ideas are 'fresh, interesting, and well executed' despite unclear scope"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_oVRK",
+        "Reviewer_tNwH"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_DdpC",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "DdpC's 7 is two points above three 5s (Reviewer_oVRK, Reviewer_tNwH, Reviewer_j4Fr). It rests on novelty and 'strong empirical results', yet the review finds the experiments 'harder to follow', asks how the model is fitted, and misreads posterior sampling. DdpC posted nothing in the discussion and never edited. Before the discussion the low score was j4Fr's 5; oVRK and tNwH moved down to it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_j4Fr",
+          "claim": "The paper reports no accuracy measure such as MSE or Brier score (also Reviewer_tNwH and the meta-review).",
+          "checked_against_paper": "correct",
+          "evidence": "L259-273 define the only three metrics: mean calibration MSE, expected volatility MSE and interval coverage error. None scores accuracy or sharpness, and GLIM meets the first two by construction. L253-255 and footnote 3 reject distribution-level scores because only one path is realized. But L85-91 note that every sensible model has mean path y0, so point MSE cannot separate martingale models; a proper score of the path distribution could."
+        },
+        {
+          "reviewer": "Reviewer_oVRK",
+          "claim": "No comparison with baselines post-processed by the Foster & Stine method (also Reviewer_j4Fr and the meta-review).",
+          "checked_against_paper": "correct",
+          "evidence": "The baselines are MMFE, LR and MQLSTM (L248-252); none is made martingale by post-processing, and the camera-ready is unchanged. Foster & Stine (arXiv 2105.06834, cited) introduce 'a martingale filter that improves volatility while guaranteeing smaller mean squared error' and apply their method to basketball win probabilities, one of this paper's two datasets."
+        },
+        {
+          "reviewer": "Reviewer_j4Fr",
+          "claim": "The paper wrongly says Foster & Stine focus on diagnostics rather than predictive frameworks.",
+          "checked_against_paper": "correct",
+          "evidence": "L108-111: Foster & Stine 'usually focus on developing diagnostic metrics instead of building predictive frameworks'. Their abstract proposes post-processing that fixes calibration and volatility 'without revisiting the original forecasting model'. The camera-ready keeps the sentence."
+        },
+        {
+          "reviewer": "Reviewer_j4Fr",
+          "claim": "MQLSTM is not a Bayesian model.",
+          "checked_against_paper": "correct",
+          "evidence": "L251-252 call MQLSTM 'a Bayesian multi-horizon quantile LSTM model'. The authors first said they used dropout for a posterior, then wrote that this described 'a Bayesian LSTM baseline that we used in an earlier version'. The camera-ready keeps the label."
+        },
+        {
+          "reviewer": "Reviewer_j4Fr",
+          "claim": "Satisfying the martingale property does not guarantee calibration (comment 2021-08-11).",
+          "checked_against_paper": "correct",
+          "evidence": "L303-304 say GLIM paths are 'calibrated (as is theoretically guaranteed)'. Prop. 1 guarantees only that the mean path equals y0. The authors conceded that external calibration depends on y0 and pointed to Fig. 8a, which is in the appendix and not in the supplied PDF."
+        },
+        {
+          "reviewer": "Reviewer_tNwH",
+          "claim": "The paper does not justify its choice of variance functions G_beta (also Reviewer_oVRK on sensitivity).",
+          "checked_against_paper": "correct",
+          "evidence": "L291-292 and L325-326 name a regularized linear and a regularized quadratic G_beta and defer details to Appendix D; the main text has no justification or sensitivity analysis. oVRK credits the Appendix D elicitation, which the supplied PDF does not contain."
+        },
+        {
+          "reviewer": "Reviewer_DdpC",
+          "claim": "The 'weakly informative' prior is never specified.",
+          "checked_against_paper": "correct",
+          "evidence": "L210-211 mention it without a form; the supplied PDFs contain no appendix."
+        },
+        {
+          "reviewer": "Reviewer_DdpC",
+          "claim": "Inference draws a single value from the posterior; the posterior mean or the MLE would be more sensible.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L216-219: each sampled path draws its own parameter value from the posterior, which is standard posterior predictive sampling. A posterior mean or MLE would drop parameter uncertainty."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_oVRK",
+          "Reviewer_tNwH"
+        ],
+        "evidence": "oVRK edited 2021-08-30: 'After going through the responses and subsequent discussion, I unfortunately must lower my score' (final 5). tNwH edited 2021-08-31: 'decreasing my rating of the paper from a clear accept to a weak reject' (final 5). j4Fr replied 2021-08-11 ('I think I cant agree') and kept 5. DdpC kept 7, unedited, with no comment.",
+        "what_convinced_or_not": "The authors answered only j4Fr. They agreed MSE is 'an important measure' but reported none, and described their contribution as 'a principled way of constructing forecasts that satisfy the martingale property', which fit j4Fr's accuracy framing. Their first reply misdescribed MQLSTM as using dropout for a posterior; they retracted it a day later. The updates of oVRK and tNwH restate j4Fr's Foster & Stine argument; tNwH also cites the authors' failure to engage with any other reviewer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejection matches three final 5s (mean 5.5). The meta-review's 'martingality in and of itself is not really an end goal' echoes tNwH's update, and its Foster & Stine post-processing baseline and MSE request echo oVRK's update and j4Fr. It claims 'a consensus', but Reviewer_DdpC's 7 is unedited and DdpC posted nothing.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Reviewer_j4Fr's argument that martingality matters only as a route to accuracy, so the paper must report accuracy",
+        "No comparison with a baseline made martingale by Foster & Stine post-processing",
+        "Two initially positive reviewers (oVRK, tNwH) lowered their scores to 5 after the discussion",
+        "Authors engaged only with j4Fr; tNwH counted this against the paper"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "GLIM's orders-of-magnitude edge over MMFE on metrics both should meet, and only 100 sampled paths (Reviewer_mTu3); the reply revealed an undisclosed truncation of MMFE paths",
+    "LR baseline could easily be made a martingale (Reviewer_mTu3)",
+    "Missing related work on bounded-support time series and transformed Brownian motion (Reviewer_mTu3)",
+    "No computational complexity analysis; unclear novelty of the four-step procedure (Reviewer_KTCw)",
+    "Eq. 1 should state that Y_t is a conditional expectation (Reviewer_BQ9v)"
+  ],
+  "issues_only_b": [
+    "No accuracy measure such as MSE or Brier score (Reviewer_j4Fr, Reviewer_tNwH, Committee B chair)",
+    "No baseline made martingale by Foster & Stine post-processing (Reviewer_oVRK, Reviewer_j4Fr, Committee B chair)",
+    "Foster & Stine misdescribed as diagnostics only; martingality does not imply calibration (Reviewer_j4Fr)",
+    "Weak and mislabelled deep baseline: MQLSTM called Bayesian, MQTransformer cited but not compared (Reviewer_j4Fr)",
+    "Ad hoc additive model form and variance function G_beta, sensitivity not reported (Reviewer_oVRK, Reviewer_tNwH)",
+    "Experiments hard to follow; fitting procedure and posterior sampling unclear (Reviewer_DdpC)",
+    "Authors answered only one of four reviewers (Reviewer_tNwH)"
+  ],
+  "shared_issues": [
+    "Why the martingale property should be the goal is under-argued (Reviewer_mTu3 in A; Reviewer_j4Fr, Reviewer_tNwH and the chair in B)",
+    "Strength and fairness of the baselines (Reviewer_mTu3 on MMFE and LR; Reviewer_j4Fr on MQLSTM)",
+    "Thin detail on the Bayesian inference and its prior (Reviewer_BQ9v; Reviewer_DdpC)",
+    "Novel problem, elegant and correct model, clear writing (praised by all eight reviewers)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B rejected because one reviewer's argument turned two positive reviewers negative in the discussion; Committee A held no discussion and accepted on three thin 6s. B began more positive than A: Reviewer_tNwH fell from 'a clear accept' to 5 and Reviewer_oVRK lowered its score to 5, so B's starting mean was at least 6.25, against A's final 5.75. Reviewer_j4Fr argued from Foster & Stine that martingality matters only as a route to accuracy, so the paper should report MSE and beat a baseline made martingale by post-processing; B's chair made this 'the core concern'. The paper confirms the factual part. Its three metrics are mean calibration, expected volatility and interval coverage (L259-273); GLIM meets the first two by construction; no accuracy score and no post-processed baseline appear; and on interval coverage, the only open test, GLIM's edge over MMFE is at most 0.06 except at weather day 6, with MMFE ahead in some cells (Table 1). But B's literal remedy misfits the task: every sensible model has mean path y0 (L85-91), so point MSE cannot separate martingale models, while a proper score of the path distribution could. Committee A saw the same weakness through Reviewer_mTu3, who said the paper 'does not do a good job of defending' the need for a martingale model and queried GLIM's implausible edge over MMFE, but mTu3 stayed silent at 5 after the rebuttal and A's chair called the critiques not major. Both committees saw the same strengths and the same thin case for martingality; B's discussion made it fatal, and A never discussed it.",
+  "candidate_reasons": [
+    "Discussion flipped initially positive reviewers",
+    "One reviewer's framing adopted by chair",
+    "No reviewer discussion in accepting committee",
+    "Evaluation lacked accuracy or proper scores",
+    "Authors answered only one reviewer",
+    "Chair accepted on thin scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_j4Fr review and comment 2021-08-11",
+    "Reviewer_oVRK update (edited 2021-08-30)",
+    "Reviewer_tNwH EDIT (edited 2021-08-31)",
+    "Authors' replies to Reviewer_j4Fr, 2021-08-10 and 2021-08-12 (MQLSTM retraction)",
+    "Committee B meta-review",
+    "Reviewer_mTu3 review and authors' reply 2021-08-10 (MMFE truncation)",
+    "Committee A meta-review",
+    "paper_submitted.pdf L85-91 (mean path y0; point estimates not the goal)",
+    "paper_submitted.pdf L253-274 (three metrics, 100 samples)",
+    "paper_submitted.pdf L108-111 (Foster & Stine described as diagnostics)",
+    "paper_submitted.pdf L251-252 (MQLSTM called Bayesian)",
+    "paper_submitted.pdf L311-313 and Table 1 (claimed wins; coverage versus MMFE)",
+    "Foster & Stine, arXiv 2105.06834 abstract (martingale filter, smaller MSE)",
+    "Camera-ready: metrics and baselines unchanged",
+    "Supplied PDFs have no appendix; appendix claims not checked"
+  ]
+}

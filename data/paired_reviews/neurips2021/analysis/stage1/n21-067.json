@@ -1,0 +1,232 @@
+{
+  "pair_id": "n21-067",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        3,
+        6,
+        6,
+        7
+      ],
+      "confidences": [
+        5,
+        2,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_dkVj"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_iiTd",
+        "direction": "detractor",
+        "basis": "unclear",
+        "evidence": "The 3 is the only rating below 6 among eight reviews (A: 3, 6, 6, 7; B: four 7s). Confidence 5 ('checked the math/other details carefully') after 1.5 hours. The core objection (weakness 1) is a contested stance: attributions should show how the model uses features off the manifold. The paper argues the other side with citations (L123-135). The checkable claims are trivial or wrong: the P(S) typo is real but minor; the axioms hold for any value function; 'special case of [11]' misreads a global measure; 'mainly based on human intuition' ignores Figs. 4-5. iiTd never answered the two-part rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_xvf9",
+          "evidence": "The highest rating in A (7) rests on four generic lines of praise ('The approach is novel', 'well written') and names no weakness in the main review. The two requests sit in the limitations field. TreeSHAP is model-specific and outside the paper's model-agnostic scope. The main body already discusses computational cost (L150-157). 3 hours; no post after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_iiTd",
+          "claim": "The coalition weight P(S) at L49 is wrong; it should be |S|!(m-|S|-1)!/m!.",
+          "checked_against_paper": "correct",
+          "evidence": "Submission L49-50 prints |S|!(m-|S|)!/m!; the camera-ready prints |S|!(m-|S|-1)!/m!. It is a typo: L50-51 state the equal-probability-per-size property, which only the correct weight gives."
+        },
+        {
+          "reviewer": "Reviewer_iiTd",
+          "claim": "There is no proof, in the paper or the supplement, that the Shapley axioms hold for Neighbourhood SHAP (L117).",
+          "checked_against_paper": "not_checked",
+          "evidence": "L117 only points to Supplement B, which is not in the supplied PDF. The Shapley value of any value function satisfies the axioms, so the gap is presentational, not a threat to correctness. The authors said this and expanded the appendix."
+        },
+        {
+          "reviewer": "Reviewer_iiTd",
+          "claim": "Neighbourhood SHAP is a special case of [11], which uses conditional distributions, so the contribution is incremental.",
+          "checked_against_paper": "incorrect",
+          "evidence": "[11] is Covert, Lundberg and Lee (2020), a global importance measure (L343-344). Neighbourhood SHAP is local, and it weights references by distance to the removed features' own values at x (L96-98). A conditional distribution given x_S does not do this."
+        },
+        {
+          "reviewer": "Reviewer_iiTd",
+          "claim": "The methods are evaluated mainly by human intuition; evaluation metrics should be applied.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 4a (OOD-classifier AUC, 10 runs, 95% CIs), Fig. 4b (attribution to race under the COMPAS attack) and Fig. 5 (local MSE, 400 runs) are quantitative; only Figs. 6-7 are visual. The deeper point holds: Fig. 5 weights errors with the same kind of exponential kernel the method fits (L235-238), and L309 concedes that explanations are 'difficult to evaluate'."
+        },
+        {
+          "reviewer": "Reviewer_dkVj",
+          "claim": "Proposition 1 calls the Nadaraya-Watson estimator unbiased, but self-normalised importance sampling is only asymptotically unbiased.",
+          "checked_against_paper": "correct",
+          "evidence": "L114-116: 'is an unbiased self-normalised importance sampling estimator'. L172 makes the same claim for Smoothed SHAP. The authors conceded ('this mistake in the paper'); the camera-ready says 'consistent' in both places."
+        },
+        {
+          "reviewer": "Reviewer_6nZp",
+          "claim": "The Theorem 2 proof (Supplement G) confuses delta with delta squared, drops the square and sigma squared in the denominator, and omits the normalisation.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Supplement G is not in the supplied PDF. The authors conceded: 'The proof has been modified accordingly, and the Lipschitz constant has been updated.' The theorem statement (L168-171) is the same in the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_xvf9",
+          "claim": "The computational burden of the method must be justified in the main body.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L150-157 discuss cost in the main body: no extra model evaluations when the bandwidth changes, with a complexity analysis in Supplement C."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after the 2021-08-10 rebuttal. dkVj's only edit (2021-07-17) is before it. dkVj replied on 2021-08-31 ('the clarifications were helpful and are very much appreciated') and stayed at 6. iiTd, 6nZp and xvf9 posted nothing after the rebuttal.",
+        "what_convinced_or_not": "The authors conceded the Proposition 1 error, the P(S) typo and the Theorem 2 proof errors. They added IMDB, TreeSHAP and a preliminary ROAR table. dkVj was satisfied on consistency and asked only for a reference (Owen 2013, added). iiTd never answered the replies: not a special case of [11], the axioms hold for any value function, and five metrics were already in the submission. The meta-review engages none of these answers."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Three reviewers recommended acceptance (6, 6, 7) and none changed after the rebuttal, yet the chair rejected. Of the four stated concerns, the off-manifold caveat and the evaluation question echo Reviewer_iiTd. Distances in high dimension and the fit of the Shapley axioms appear in no A review. 'We had active discussion' refers to a discussion that is not in the record. The meta-review asks for a caveat 'in the final version of this work', wording that fits an acceptance.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Chair's doubts about the remedy: behaviour at remote test points and Euclidean distance in high dimension",
+        "No accepted way to show that these explanations beat others",
+        "Unclear why the Shapley axioms suit local explanation",
+        "Borderline mean 5.5, with a confidence-5 reject from Reviewer_iiTd and no reviewer arguing for acceptance after the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_FFcC",
+        "Reviewer_RMYP"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four rated 7. Reviewer_iHps's open doubt about bundling Smoothed SHAP with Neighbourhood SHAP did not change the score."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_iHps",
+          "claim": "The technical part is sound; the theoretical part is sound.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Proposition 1 (L114-116) and L172 call self-normalised estimators unbiased, which is false for finite samples; the camera-ready says 'consistent'. The authors conceded the Theorem 2 proof errors to Committee A. iHps's confidence label says the math was 'not carefully checked'."
+        },
+        {
+          "reviewer": "Reviewer_iHps",
+          "claim": "The MNIST comparison sets gradient-based DeepSHAP against model-agnostic LIME, with no gradient baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 7 compares LIME with DeepSHAP and its neighbourhood, smoothed, global and anti-neighbourhood variants (L280-298); it has no Integrated Gradients or SmoothGrad. The rebuttal added Integrated Gradients."
+        },
+        {
+          "reviewer": "Reviewer_74h4",
+          "claim": "The authors did not address societal impact.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has only checklist item 1(c) (L435-438), which says the negative impact is limited. The camera-ready adds a 'Limitations and Societal Impact' paragraph."
+        },
+        {
+          "reviewer": "Reviewer_74h4",
+          "claim": "The MNIST example is mostly anecdotal.",
+          "checked_against_paper": "correct",
+          "evidence": "The main-text MNIST evidence is Fig. 7 (visual) and a change in log-odds that the paper calls '(non-significantly) higher' (L288-290)."
+        },
+        {
+          "reviewer": "Reviewer_FFcC",
+          "claim": "Neighbourhood DeepSHAP can compare an 8 with similar strokes of other digits (2, 6, 9).",
+          "checked_against_paper": "incorrect",
+          "evidence": "L283: the background set holds 100 images labelled 3 or 8 only. FFcC then turned the point into a concern about scaling to more classes."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [
+          "Reviewer_FFcC",
+          "Reviewer_RMYP"
+        ],
+        "evidence": "FFcC (edited 2021-08-25) and RMYP (edited 2021-08-30) edited after the 2021-08-10 rebuttal. RMYP added an update: 'My questions have been addressed well'. Earlier ratings are not exposed, so a rise to 7 cannot be confirmed. Reviewer_74h4 wrote that four fixes 'would make me consider to slightly improve their score (8 or 9)'. The rebuttal claimed all four, but 74h4 neither replied nor edited and stayed at 7. iHps stayed at 7 after an open follow-up (2021-08-11).",
+        "what_convinced_or_not": "The rebuttal added Integrated Gradients comparisons, a preliminary ROAR table (Boston only, no error bars), LIME local-MSE plots, a societal-impact paragraph and a promised full-reference MNIST analysis. It promised a new title, which the camera-ready does not have. FFcC accepted the metric answer ('not the scope of the work, so that's fine') but asked how the MNIST setup scales to more classes. iHps was not convinced that Smoothed SHAP belongs in the paper; the authors' reply (2021-08-16) got no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three-sentence meta-review: 'All reviewers recommend accepting this paper, appreciating the well-motivated method, the extensive complete original work, and the valuable the theoretical insights.' It names no issue, not even iHps's open question on Smoothed SHAP.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four 7s and no dissent",
+        "Well-motivated method and extensive experiments; theory credited as valuable",
+        "Rebuttal added Integrated Gradients and a ROAR deletion metric, which settled the evaluation requests"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Proposition 1 falsely calls a self-normalised estimator unbiased (Reviewer_dkVj; conceded)",
+    "Algebra errors in the Theorem 2 proof; Lipschitz constant changed (Reviewer_6nZp; conceded)",
+    "Wrong coalition weight P(S) at L49 (Reviewer_iiTd; typo)",
+    "No proof that the Shapley axioms hold (Reviewer_iiTd)",
+    "Novelty: claimed special case of Covert et al. [11] (Reviewer_iiTd)",
+    "Local baselines hide how the model uses features off the manifold (Reviewer_iiTd)",
+    "Size of the Lipschitz constant and reliability of smoothed attributions (Reviewer_dkVj, Reviewer_iiTd)",
+    "No TreeSHAP comparison; computational cost (Reviewer_xvf9)",
+    "Chair: behaviour at remote test points",
+    "Chair: Euclidean distance in high dimension with irrelevant or differently scaled features",
+    "Chair: whether the Shapley axioms suit local explanation"
+  ],
+  "issues_only_b": [
+    "Why Smoothed SHAP belongs with Neighbourhood SHAP, and which to trust when they disagree (Reviewer_iHps, Reviewer_RMYP)",
+    "No gradient baselines such as Integrated Gradients or SmoothGrad (Reviewer_iHps, Reviewer_74h4, Reviewer_RMYP)",
+    "Title too broad for a SHAP-only paper (Reviewer_74h4)",
+    "No societal-impact statement (Reviewer_74h4)",
+    "A black-box setting still needs reference data (Reviewer_FFcC)",
+    "MNIST background restricted to 3s and 8s; scaling to more classes (Reviewer_FFcC)",
+    "Definition of the local-fidelity metric and no LIME comparison on it (Reviewer_RMYP)",
+    "Unintended bias from reference distributions (Reviewer_RMYP)"
+  ],
+  "shared_issues": [
+    "Evaluation rests mostly on plausibility; quantitative or deletion metrics wanted (A: Reviewer_iiTd, chair; B: Reviewer_74h4, Reviewer_FFcC, Reviewer_RMYP)",
+    "Simple data sets; MNIST results anecdotal (A: Reviewer_6nZp; B: Reviewer_74h4, Reviewer_FFcC)",
+    "Behaviour off the data manifold (A: Reviewer_iiTd, chair; B: Reviewer_FFcC on the OOD-detector assumption, Reviewer_RMYP on Smoothed SHAP)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw largely the same facts and weighed them differently. Committee B's four reviewers all gave 7 after a rebuttal that added Integrated Gradients and a one-dataset ROAR table, and B's chair restated the scores. Committee A's ratings were 3, 6, 6, 7 (mean 5.5), and no rating moved after the rebuttal. A's chair rejected against the three accept-side ratings, on four questions: behaviour at remote test points, Euclidean distance in high dimension, how to show that one explanation beats another, and whether the Shapley axioms suit the task. The paper itself concedes the first two (L143-146, L242-244, L312-315); the last two apply to any attribution paper. The evaluation doubt has support: Fig. 5, the main fidelity test, weights errors with the same kind of exponential kernel that the method fits. B's reviewers saw the same gap and called it settled. A's reviewers also found real errors that B missed: Proposition 1 calls a self-normalised estimator unbiased (L114-116), and the Theorem 2 proof had algebra errors. The authors conceded both, and A's chair cited neither. A's lone 3, from Reviewer_iiTd at confidence 5 after 1.5 hours, rests on a contested stance and on checkable claims that are trivial or wrong, and iiTd never answered the rebuttal. The split is chair discretion on a borderline paper, not a fatal flaw that one committee caught.",
+  "candidate_reasons": [
+    "chair overrode accept-leaning majority",
+    "explanation-evaluation doubt treated as fatal",
+    "confident detractor with weak claims",
+    "no champion engaged after rebuttal",
+    "meta-review ignores rebuttal answers",
+    "score-following chair on unanimous 7s"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_iiTd review and the two-part author reply (2021-08-10)",
+    "Reviewer_dkVj question (b) and the author concession",
+    "Reviewer_6nZp point 4 and the author concession",
+    "Reviewer_RMYP update (edited 2021-08-30)",
+    "Reviewer_74h4 review ('8 or 9'), never edited",
+    "Reviewer_iHps follow-up on Smoothed SHAP (2021-08-11)",
+    "paper_submitted L49-51 (P(S))",
+    "paper_submitted L114-116 and L172 ('unbiased')",
+    "paper_submitted L143-146, L242-244, L312-315 (sparse regions, distances in high dimension)",
+    "paper_submitted L235-238 and Fig. 5 (kernel-weighted local MSE)",
+    "paper_submitted L283 (MNIST background of 3s and 8s)",
+    "paper_submitted L150-157 (computational cost)"
+  ]
+}

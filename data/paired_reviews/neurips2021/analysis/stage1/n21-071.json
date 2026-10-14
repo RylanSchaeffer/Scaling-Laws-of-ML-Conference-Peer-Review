@@ -125,7 +125,7 @@
      "reviewer": "Reviewer_iTr9",
      "claim": "Calibration in Fig. 6 (right) is under-confident and gets worse as the number of grid points grows.",
      "checked_against_paper": "correct",
-     "evidence": "For nu = 3 the chi-squared statistic falls from about 1 to about 2e-3 as N grows. Lines 245-246: uncertainties 'tend to be under-confident'."
+     "evidence": "For nu = 3 the chi-squared statistic falls from about 0.2 (N up to 7) to about 2e-3 (N of 30 to 90); for nu = 4 and 5 it also falls at the largest grids. Lines 245-246: uncertainties 'tend to be under-confident'."
     },
     {
      "reviewer": "Reviewer_9rs3",
@@ -197,7 +197,7 @@
   "Incremental step from filtering-based IVP solvers (odbV; iTr9 'initially seems like a minor extension', AC B 'builds on earlier work')"
  ],
  "same_facts_weighted_differently": true,
- "verdict": "Committee B recommended more because it had reviewers who knew the field, not because it saw a better paper. Both committees saw a careful, practically complete extension of filtering-based IVP solvers to BVPs, with dense notation and thin positioning against GOODE [12] and Chkrebtii et al. Committee A's AC could not recruit experts. Its three reviewers (confidence 3, 2, 2) gave identical 4s for generic reasons, and none engaged with the rebuttal. A's only claim of a technical error is wrong: Reviewer_odbV said Eq. (2) is not an integrated Wiener process, but it is the standard SDE form of [6]. A's AC doubted its reviewers' grasp of the paper but still followed their scores, and added that the paper does not suit an ML audience. B had an expert champion, Reviewer_iTr9 (8, confidence 4), who valued the initialisation, mesh refinement and calibration that odbV called 'boilerplate'. B's two low-confidence reviewers rose to 6 after the linear-versus-cubic argument against GOODE. The same argument, in the paper and in the rebuttal, did not move Reviewer_JUUq in A. B was the more critical committee on substance: it found the 100-fold runtime gap to SciPy and the missing probabilistic baselines, and judged them fixable. B's AC judged the topic of interest to NeurIPS.",
+ "verdict": "Committee B recommended more because it had an expert champion and an AC who knew the field, not because it saw a better paper. Both committees saw a careful, practically complete extension of filtering-based IVP solvers to BVPs, with dense notation and thin positioning against GOODE [12] and Chkrebtii et al. Committee A's AC could not recruit experts. Its three reviewers (confidence 3, 2, 2) gave identical 4s for generic reasons, and none engaged with the rebuttal. A's only claim of a technical error is wrong: Reviewer_odbV said Eq. (2) is not an integrated Wiener process, but it is the standard SDE form of [6]. A's AC doubted its reviewers' grasp of the paper but still followed their scores, and added that the paper does not suit an ML audience. Its champion, Reviewer_iTr9 (8, confidence 4), valued the initialisation, mesh refinement and calibration that odbV called 'boilerplate'. B's two low-confidence reviewers rose to 6 after the linear-versus-cubic argument against GOODE. The same argument, in the paper and in the rebuttal, did not move Reviewer_JUUq in A. B was the more critical committee on substance: it found the 100-fold runtime gap to SciPy and the missing probabilistic baselines, and judged them fixable. B's AC judged the topic of interest to NeurIPS.",
  "candidate_reasons": [
   "AC could not recruit experts",
   "AC deferred to doubted scores",

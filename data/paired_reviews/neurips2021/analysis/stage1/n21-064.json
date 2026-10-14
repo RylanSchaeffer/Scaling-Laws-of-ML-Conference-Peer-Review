@@ -1,0 +1,210 @@
+{
+  "pair_id": "n21-064",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 4, 4],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_9tKz", "Reviewer_rkNh"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 5, 4, 4, all at confidence 4; nobody argues for acceptance. The two 4s differ in support. Reviewer_rkNh names specific prior work (Deeply-Supervised Nets) and a generality concern. Reviewer_6tca's 'not particularly novel nor exciting' names no prior work, and the same review answers 'Yes, the contribution of this work is discussed' on relation to prior work."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_rkNh",
+          "evidence": "Asks the authors to 'analyze and provide empirical studies' of distillation to students that differ from the one used to train SFTN; Table 7 and Section 4.5 (L242-250) of the submission are that study, and rkNh does not mention them. Calls the 0.58-point gap between the SFTN teachers for WRN40-2/WRN16-2 (78.20) and WRN40-2/WRN40-1 (77.62) 'much better', and takes resnet32x4 for a ResNeXt."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_9tKz",
+          "claim": "SFTN gains 1-2 points on CIFAR-100 but only about 0.5 on ImageNet, and the ImageNet test uses one pair of similar capacity (ResNet50 to ResNet34).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 is the only ImageNet result: one ResNet50/ResNet34 pair, top-1 gains +0.38 to +0.59, no error bars. CIFAR-100 gains in Tables 1-2 run from +0.31 to +3.67. In Table 3 vanilla KD (73.55) is below the student trained without KD (73.79), so the ImageNet baseline is weak; no reviewer in either committee noticed this."
+        },
+        {
+          "reviewer": "Reviewer_Bfa6",
+          "claim": "SFTN teachers are often more accurate than standard teachers, so the student gains may come from a stronger teacher rather than a friendlier one.",
+          "checked_against_paper": "correct",
+          "evidence": "The SFTN teacher is more accurate in 7 of 8 pairs in Tables 1-2 (e.g. ResNet50: 82.52 vs 78.70). But the paper has counter-evidence that Bfa6 does not engage: for resnet32x4/resnet8x2 the SFTN teacher is weaker (77.89 vs 79.25) and all twelve students still gain +0.96 to +2.36, and L187-191 make this argument."
+        },
+        {
+          "reviewer": "Reviewer_Bfa6",
+          "claim": "There is no baseline that replaces the student branches with an independent student trained jointly with the teacher.",
+          "checked_against_paper": "correct",
+          "evidence": "The two-stage variant is absent. Section 4.3 and Table 4 compare only one-stage online methods, DML and KDCL, which SFTN beats in all six pairs. Bfa6's novelty argument against online KD does not mention Table 4."
+        },
+        {
+          "reviewer": "Reviewer_Bfa6",
+          "claim": "The computational overhead of training an SFTN teacher is not reported (also Reviewer_9tKz: 'necessary to discuss the training time cost').",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.6 (L251-257) calls the added cost 'our drawback' and offers fine-tuning from a pretrained teacher (60 instead of 240 epochs), but gives no training times. The authors' answer in Committee B supplied them (an SFTN teacher takes 1.5 to 1.9 times the standard teacher's time); Committee A never saw it."
+        },
+        {
+          "reviewer": "Reviewer_rkNh",
+          "claim": "SFTN may work only for the student it was trained with, and the paper needs an empirical study of mismatched students.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 7 and Section 4.5 are that study: students distilled from SFTN teachers trained with smaller, equal or larger branches of other architectures. The worry is partly real. For WRN40-2/WRN16-2, smaller branches give lower KD accuracy than the standard teacher (74.67 and 74.73 vs 75.46), and L244-246 limit the benefit to branches of the same architecture or similar capacity."
+        },
+        {
+          "reviewer": "Reviewer_rkNh",
+          "claim": "resnet32x4 and resnet8x4 denote ResNeXt configurations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper uses the CRD (RepDistiller) setup (L177-178, footnote 1), where 'x4' marks a ResNet with four times the channels. The submission never defines the names, so the request for a definition is fair."
+        },
+        {
+          "reviewer": "Reviewer_6tca",
+          "claim": "Table 9 measures teacher-student similarity on the test set, and no ImageNet similarity is reported.",
+          "checked_against_paper": "correct",
+          "evidence": "L266-267: Table 9 uses the CIFAR-100 test set and one pair (resnet32x4/ShuffleV2). No ImageNet similarity appears. Whether the training set is the right set is a judgement, not an error."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Committee A's forum holds no author response and no reviewer comment; its only post is a 2022 spam comment. The two edits (Reviewer_9tKz 2021-07-21, Reviewer_rkNh 2021-07-22) predate the author responses, which Committee B received on 2021-08-12.",
+        "what_convinced_or_not": "Nothing was offered. Reviewer_9tKz wrote 'I am pleased to improve the final rating if the authors can address all my concerns', and no answer came. The answers the authors gave Committee B (training times, Table 7 on mismatched students, similarity and top-1 agreement tables, the argument that online KD fails for heterogeneous pairs) cover most of A's concerns."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are below 6. The meta-review lists 'novelty, efficiency, and additional components' for the experiments and concludes 'None of these individually seemed like deal-breakers, but collectively put the paper somewhat below the threshold.' It names no reviewer and no specific flaw, and does not note that no rebuttal took place.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous below-threshold ratings (5, 5, 4, 4) with no rebuttal and no discussion",
+        "Novelty judged incremental against online KD and deeply-supervised nets (Bfa6, rkNh, 6tca)",
+        "Cost of retraining a teacher for each student, with no training times reported (9tKz, Bfa6, 6tca)",
+        "Experiments judged incomplete: one small-gain ImageNet pair, missing baselines and analyses (9tKz, Bfa6, 6tca)",
+        "Teacher tied to a student architecture known in advance (rkNh)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 5, 6],
+      "confidences": [3, 4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_sdwv", "Reviewer_6fou", "Reviewer_o6Fn"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 5, 6 span two points. The top rating, Reviewer_6fou's 7, comes from the most detailed review in either committee and was earned in the rebuttal: the original text says 'I cannot recommend acceptance'. The lowest, Reviewer_o6Fn's 5, carries the highest confidence (5) and the longest review time (7 hours)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_sdwv",
+          "evidence": "Confidence 3 and 'less familiar with supervised distillation'. Asks for 'statistical distance of features between T-S, comparing with the T-S without the SFTN', which Table 9 already reports (KL divergence and CKA for standard and SFTN teachers). Asks whether online distillation would do the same, which Table 4 tests. Promised to 'adjust my ratings accordingly' after the responses but never posted again; the 6 dates from 2021-07-12."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_6fou",
+          "claim": "Read literally, Eq. (1) and (4) temper the teacher logits inside the cross-entropy loss, which would compromise the temperature ablation; the KD baseline temperature is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (1) defines q_T = softmax(F_T / tau) and Eq. (4) sets L_T = CrossEntropy(q_T, y); L230-231 say tau 'controls the softness of q_T and q_R'. The main text never states the KD temperature. The authors conceded 'our mistakes in the presentation' (tau applies only to Eq. 5; KD uses 4). The camera-ready adds a separate temperature for Eq. (5) and sets tau = 1 for both cross-entropy losses."
+        },
+        {
+          "reviewer": "Reviewer_6fou",
+          "claim": "Error bars are missing although the checklist answers Yes.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-2 report means of '3 independent runs' with no spread; Tables 3-9 give single numbers. Checklist 3(c) answers '[Yes] We will report them in supplemental file.' The appendix is not in the supplied PDFs, so the 'line 32 of the appendix' detail is not checked. The authors promised error bars; the camera-ready main text still has none."
+        },
+        {
+          "reviewer": "Reviewer_o6Fn",
+          "claim": "Section 4.5 (line 245) limits the method to students with the same architecture or the same capacity as the student branch.",
+          "checked_against_paper": "correct",
+          "evidence": "L244-246 say the benefit is preserved 'as long as the student branch and the student model are of the same architecture or have similar capacity'. Table 7 shows smaller branches lose the benefit for WRN40-2/WRN16-2 (averages 74.91 and 75.12 vs 75.73 standard). The authors replied that the text was 'too conservative'."
+        },
+        {
+          "reviewer": "Reviewer_o6Fn",
+          "claim": "The ImageNet improvements in Table 3 are minor.",
+          "checked_against_paper": "correct",
+          "evidence": "Top-1 gains +0.38 to +0.59 and top-5 gains +0.11 to +0.40, on one pair with no error bars. The authors answered with a relative framing: KD's gain over no KD rises from 0.74 to 1.23 points, 'about 67% increase'."
+        },
+        {
+          "reviewer": "Reviewer_sdwv",
+          "claim": "The paper needs a measure of feature distance between teacher and student with and without SFTN.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 4.7 and Table 9 report KL divergence and CKA between teacher and student for standard and SFTN teachers across seven KD methods (average KL 0.84 to 0.39, CKA 0.89 to 0.96). The authors pointed sdwv to Table 9."
+        },
+        {
+          "reviewer": "Reviewer_2smh",
+          "claim": "The overhead of student branches grows as O(n log n) in the number of branches, against O(n) for standard KD.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No derivation is given. In Section 3.1 and Figure 2(a), branch i runs student blocks i+1 to N, so N-1 branches add at most N-1 partial student passes, a linear cost. N is 3 or 4 in the experiments, and the training times in the authors' answer put an SFTN teacher at 1.5 to 1.9 times the standard teacher's time."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_6fou", "Reviewer_o6Fn"],
+        "evidence": "Reviewer_6fou's review keeps 'in its current state I have enough doubt about the results that I cannot recommend acceptance' and adds 'UPDATE 09/02/2021 Due to a very strong response from the authors, I am increasing my score to 7'; edited 2021-09-02; comment the same day: 'I have increased my score to a 7. Nice work!' Reviewer_o6Fn, 2021-09-02: 'Based on all these, I have updated my rating' (final 5, edited 2021-09-02; the earlier value is not exposed, and the comment's tone implies a rise). Reviewer_2smh, 2021-08-17: keeps 6. Reviewer_sdwv: no reply; last edit 2021-07-12, before the responses.",
+        "what_convinced_or_not": "6fou was moved by the temperature clarification (KD baseline at temperature 4), new KL, CKA and top-1 agreement tables over four pairs and six methods, an entropy table, and a CIFAR-100-C experiment run on request. The robustness result is weak: SFTN's average margin over KD falls from +1.08 at intensity 1 to +0.18 at intensity 5, and SFTN is below KD in 6 of 20 cells; 6fou had said in advance not to hold that against the method. Error bars and the Inception citation were only promised. o6Fn received Table 7 and the relative ImageNet framing and stayed below threshold."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Acceptance matches the post-rebuttal mean of 6.0, with three of four ratings at 6 or 7. The meta-review paraphrases Reviewer_6fou: 'an auxiliary loss that balances independent teacher and student training and joint training' echoes 6fou's 'compromise between full collaborative learning ... and completely disjointed conventional knowledge distillation', and 'agreement between student and teacher are often very poor' refers to work 6fou cited (Stanton et al., 2021). It credits the authors' 'heroic effort' in the responses. It does not address Reviewer_o6Fn's remaining 5 at confidence 5, or the training cost that three B reviewers raised.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Post-rebuttal mean of 6.0, with Reviewer_6fou raised to 7",
+        "Consistent gains across 12 KD methods and 8 CIFAR-100 pairs, judged convincing (sdwv, 2smh, o6Fn)",
+        "Rebuttal supplied training times, similarity and agreement tables, an entropy analysis and CIFAR-100-C results",
+        "Chair framed the work as addressing an open question on teacher-student agreement and credited the rebuttal effort"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty as a main reason to reject: overlap with online KD (Reviewer_Bfa6), deeply-supervised nets (Reviewer_rkNh), 'not particularly novel nor exciting' (Reviewer_6tca)",
+    "ImageNet pairs with a large capacity gap or heterogeneous architectures, e.g. ResNet101 to ResNet18 or VGG-16 (Reviewer_9tKz)",
+    "A two-stage baseline with an independent jointly trained student, and a stronger teacher trained with the same compute (Reviewer_Bfa6)",
+    "Similarity measured only on the CIFAR-100 test set; need for the branch cross-entropy term and for multiple branches; whether students use hard labels (Reviewer_6tca)",
+    "Undefined resnet32x4 naming and unexplained teacher-accuracy differences between pairs (Reviewer_rkNh)"
+  ],
+  "issues_only_b": [
+    "Temperature in Eq. (1) and (4) and the unstated KD baseline temperature (Reviewer_6fou)",
+    "Missing error bars despite the checklist's Yes, and unnormalized loss weights confounding the ablation (Reviewer_6fou)",
+    "Sensitivity to dataset shift, answered with a CIFAR-100-C experiment (Reviewer_6fou)",
+    "Scope beyond supervised vision: BERT compression and module replacing (Reviewer_2smh); NAS and self-supervised distillation (Reviewer_sdwv)",
+    "Missing B_S^1 block in Figure 2(a) (Reviewer_o6Fn)"
+  ],
+  "shared_issues": [
+    "Training cost of the student branches and of retraining a teacher for each student (A: Reviewer_9tKz, Reviewer_Bfa6, Reviewer_6tca; B: Reviewer_sdwv, Reviewer_2smh, Reviewer_o6Fn)",
+    "Teacher tied to a student architecture known in advance (A: Reviewer_rkNh, Reviewer_9tKz; B: Reviewer_sdwv, Reviewer_o6Fn)",
+    "Hand design of student branches and block modularization (A: Reviewer_Bfa6, Reviewer_6tca; B: Reviewer_2smh, Reviewer_o6Fn)",
+    "Small ImageNet gains on a single pair (A: Reviewer_9tKz; B: Reviewer_o6Fn)",
+    "No account of why SFTN works or whether its teacher is simply stronger (A: Reviewer_Bfa6, Reviewer_6tca; B: Reviewer_sdwv, Reviewer_6fou)",
+    "Overlap with auxiliary-branch and online-distillation work: deeply-supervised nets (A: Reviewer_rkNh) and Inception auxiliary heads (B: Reviewer_6fou); online KD (A: Reviewer_Bfa6; B: Reviewer_sdwv). A scored it as lack of novelty, B as a citation to add"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B accepted and Committee A rejected mainly because only B received a rebuttal. Both committees found the same weaknesses: a teacher retrained for each known student, unreported training cost, small ImageNet gains on one pair, hand-designed branches, and overlap with auxiliary-branch and online-distillation work. Committee A's forum has no author response and no discussion, so its 5, 5, 4, 4 stood, and its chair added up individually minor concerns into a reject. In B the authors answered every reviewer with training times, similarity and top-1 agreement tables, an entropy analysis and a requested CIFAR-100-C experiment. Reviewer_6fou, the most specific reviewer in either committee, moved from 'cannot recommend acceptance' to 7; Reviewer_o6Fn moved up to 5; B's chair credited the 'heroic effort'. B also started warmer, with two 6s, but both are thin: Reviewer_sdwv (confidence 3) asked for the similarity analysis that Table 9 already reports and never returned, and Reviewer_2smh judged the paper partly against its ICML version. The committees weighted the same facts differently. A's Reviewer_rkNh counted the overlap with deeply-supervised nets as lack of novelty; B's Reviewer_6fou noted the same idea in Inception's auxiliary heads as a citation to add. Several of A's objections are partly answered in the submission itself (Table 7 on mismatched students, Table 4 on online KD, Section 4.6 on cost), and A's reviewers did not engage those parts.",
+  "candidate_reasons": [
+    "Rebuttal posted to one committee only",
+    "Rebuttal experiments converted key reviewer",
+    "Unanswered minor concerns summed to reject",
+    "Novelty overlap weighted differently",
+    "Thin low-confidence positive reviews",
+    "Chair credited rebuttal effort"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "a/discussion.jsonl: no author response or reviewer comment in Committee A (one 2022 spam post)",
+    "Committee A meta-review",
+    "Reviewer_9tKz review: offer to raise the rating if concerns were addressed",
+    "Committee B author responses, 2021-08-12, and CIFAR-100-C results, 2021-08-24",
+    "Reviewer_6fou review update of 2021-09-02 and comment 'increased my score'",
+    "Reviewer_o6Fn comment 'After rebuttal', 2021-09-02",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 7 and Section 4.5, L242-250 (mismatched students)",
+    "paper_submitted.pdf Table 4 and Section 4.3 (DML, KDCL)",
+    "paper_submitted.pdf Section 4.6, L251-257 (training cost)",
+    "paper_submitted.pdf Eq. (1) and (4), L230-231 (temperature); checklist 3(c) (error bars)",
+    "paper_submitted.pdf Table 3 (ImageNet) and Table 9, L266-267 (similarity on the test set)",
+    "paper.pdf camera-ready: separate temperature in Eq. (5) and a training-time table; no error bars or Inception citation in the main text"
+  ]
+}

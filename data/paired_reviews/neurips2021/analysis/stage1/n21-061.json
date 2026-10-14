@@ -1,0 +1,225 @@
+{
+  "pair_id": "n21-061",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        8,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_mQTb",
+        "Reviewer_6HSH"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_krQv",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "krQv gave the only rating above 7 (8, confidence 5, 4 hours), one point above BMhR's 7 and two above the two 6s. The review is specific, and its line-level points check out against the submission (the L164-166 sentence, the 'multri-grid' typo at L179, no argument for why low-resolution training transfers). It frames the method as fixing a limitation 'simply accepted in hundreds (?) of TAL papers'. The chair adopted this framing. 6HSH raised its score 'after reading the rebuttal and the other reviews'. krQv posted nothing after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_BMhR",
+          "evidence": "Rating 7 at confidence 2, 2 hours. Three short paragraphs of praise ('simple yet effective'), with no weakness, no question and no number from the paper. Limitations answered 'Yes.' No reply after the rebuttal. It adds a vote, not evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_krQv",
+          "claim": "The paper does not explain why training at lower spatial or temporal resolution gives features that work at full resolution.",
+          "checked_against_paper": "correct",
+          "evidence": "Sec. 3.2 (L151-185) justifies each configuration by memory saving only. L183 says full resolution is never used in encoder training. The rebuttal conceded the point and promised to add the argument of [51]."
+        },
+        {
+          "reviewer": "Reviewer_krQv",
+          "claim": "The sentence at line 164 is confusing, and line 179 has a typo in 'multi-grid'.",
+          "checked_against_paper": "correct",
+          "evidence": "L164-166 end with 'finally outputting less predictions in case the candidates per time location remains the same'. L179 reads 'multri-grid'; the camera-ready keeps the typo."
+        },
+        {
+          "reviewer": "Reviewer_krQv",
+          "claim": "The approach may not scale to large encoders or long videos; most experiments use ResNet18.",
+          "checked_against_paper": "correct",
+          "evidence": "All LoFi results outside Table 6 use 18-layer encoders. For ResNet34/50 the authors 'reduce the batch size accordingly' because of GPU memory (L301-303). The rebuttal's own table puts TSM-R50 at 29 GB per video and TSM-R101 out of memory on a 32 GB GPU."
+        },
+        {
+          "reviewer": "Reviewer_6HSH",
+          "claim": "The gain may come from more learnable parameters or from access to target-domain data, so the comparison is unfair.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 3 gives 12M parameters for both the G-TAD baseline* and G-TAD+LoFi. ACP+ also fine-tunes the encoder on the target dataset (L241-243), and LoFi beats it by 0.65 AmAP on ActivityNet and 1.31 on HACS (Table 1). A narrower point holds: ACP+ and LoFi differ in loss, background content and resolution at once, so Table 1 does not isolate the task discrepancy."
+        },
+        {
+          "reviewer": "Reviewer_6HSH",
+          "claim": "C-LoFi is too similar to multigrid training [51].",
+          "checked_against_paper": "correct",
+          "evidence": "L171-183 take the short and long cycles from [51] and list two practical differences: constant per-video memory and no full-resolution phase."
+        },
+        {
+          "reviewer": "Reviewer_mQTb",
+          "claim": "The paper does not report training time.",
+          "checked_against_paper": "correct",
+          "evidence": "L75-76 claim a 'superior efficiency/accuracy trade-off', but the submission reports only parameter counts (Table 3) and the 128 GB budget (L218-219)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_mQTb",
+          "Reviewer_6HSH"
+        ],
+        "evidence": "Both reviews were edited on 2021-08-16. mQTb: 'The rebuttal well addressed some of my concerns. I would raise the rating to 6'. 6HSH: 'After reading the rebuttal and the other reviews, I am updating my score to 6'. The earlier ratings are not exposed; both texts imply they were below 6. krQv and BMhR did not reply or edit. No reviewer posted a comment.",
+        "what_convinced_or_not": "The rebuttal answered the experimental questions: time and memory per backbone, a BSN+LoFi result (+0.54 AUC), and statements that LoFi adds no parameters and that all baselines use the same target data. It did not give the full-fidelity comparison 6HSH asked for ('we had trouble training a full fidelity model'). Its claim that LoFi is '5 times faster to converge' than ACP is misleading: LoFi starts from the ACP model (L139-142), so its 15 hours add to ACP's 74.9. The novelty objections stay in both edited texts; mQTb still says the originality is 'below the threshold'. The ratings rose anyway."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four final ratings are 6 or above (mean 6.75). The key sentence, 'challenging a standard assumption about the difficulties in end-to-end training', restates krQv's 'a limitation ... simply accepted in hundreds (?) of TAL papers'. The chair concedes the idea is 'based on related efforts in training image and other video models', the critics' point. The meta-review does not discuss the size of the gains or the missing full-fidelity comparison.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four final ratings at 6 or above (mean 6.75)",
+        "Champion Reviewer_krQv (8, confidence 5) framed the method as overturning an accepted TAL assumption; the chair adopted this",
+        "Both novelty critics raised their ratings to 6 after the rebuttal",
+        "Simplicity and consistent gains across encoders and datasets read as strengths"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 5, all at confidence 4. No rating is more than one point from the others, and none is above 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_kXbC",
+          "evidence": "A six-sentence main review whose only criticism is novelty: the idea 'seems trivial'. No experimental point and no question. It says the method decreases features 'in the feature maps'; the paper lowers the input resolution (L143-145, Eqs. 2-4). The reply of 2021-08-25 repeats 'trival and lacks innovation' and engages none of the authors' arguments."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_g6Bi",
+          "claim": "The method is evaluated with only one TAL head, G-TAD.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Partly true: every main-paper experiment uses G-TAD (Sec. 3.3, Tables 1-7). But L187-189 point to a BMN [31] result in supplementary Table A, which g6Bi did not mention. The supplement is not in the supplied PDF. The rebuttal added BSN (+0.54 AUC, a proposal metric)."
+        },
+        {
+          "reviewer": "Reviewer_g6Bi",
+          "claim": "The gain over ACP+ is less than 1%.",
+          "checked_against_paper": "correct",
+          "evidence": "True on ActivityNet: 34.49 against 33.84 AmAP (+0.65, Table 1). Not on HACS: 24.62 against 23.31 (+1.31). The rebuttal's comparison with recent heads is accurate: G-TAD beat BMN by 0.24 and BC-GNN beat G-TAD by 0.17 (Table 3)."
+        },
+        {
+          "reviewer": "Reviewer_g6Bi",
+          "claim": "The time and memory cost of the training pipelines are not reported.",
+          "checked_against_paper": "correct",
+          "evidence": "L75-76 claim a 'superior efficiency/accuracy trade-off', but the submission gives only parameter counts (Table 3) and the 128 GB budget (L218-219)."
+        },
+        {
+          "reviewer": "Reviewer_tLdR",
+          "claim": "LoFi is compared with prior methods using a smaller backbone (ResNet18 against ResNet50) and no optical flow.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: G-TAD+LoFi is R18 and RGB-only; BSN, BMN, BC-GNN and G-TAD use R50 and optical flow. The gap handicaps LoFi. LoFi beats the best prior method, BC-GNN (34.26), by 0.23 AmAP but trails it at tIoU 0.95 (8.16 against 9.37). Table 6 already gives LoFi with R50 (34.96)."
+        },
+        {
+          "reviewer": "Reviewer_tLdR",
+          "claim": "There is no full-fidelity end-to-end result to show the upper bound.",
+          "checked_against_paper": "correct",
+          "evidence": "The encoder is never trained end-to-end at full resolution (L148-149, L183). The authors told both committees that they could not train such a model."
+        },
+        {
+          "reviewer": "Reviewer_kXbC",
+          "claim": "The method only decreases the spatial or temporal features in the feature maps.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper lowers the resolution of the input video (L143-145, L158-159, Eqs. 2-4); smaller feature maps follow (L160). The error does not affect kXbC's novelty verdict."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited. kXbC, 2021-08-25: 'I still insist that the Rating would be 5'. g6Bi, 2021-08-28: the response 'indeed addressed parts of my concerns', but 'more baseline methods shold be evaluated'; keeps 5. tLdR did not reply.",
+        "what_convinced_or_not": "B received the same substance as A: the same novelty argument (end-to-end training was thought infeasible for TAL), the BSN+LoFi result, time and memory figures, and for tLdR a ResNet50 table with and without optical flow (LoFi 34.96 RGB-only). g6Bi wanted more TAL heads than BMN (supplement) and BSN (rebuttal). kXbC answered none of the arguments. tLdR, the only supporter, did not acknowledge the new table."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two of three ratings are 5 (mean 5.33). The two stated reasons map one to one to reviewers: (i) 'more thorough experimental evaluation with more baselines' is g6Bi's; (ii) 'better justification about the significance' is kXbC's. 'The review consensus has slightly converged to the reject opinion' overstates the record: no rating changed; the two 5s restated their positions and tLdR stayed silent. tLdR's case for acceptance is not addressed.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Two of three ratings at 5, both restated after the rebuttal",
+        "Novelty judged trivial: a resolution cut plus a multigrid schedule (Reviewer_kXbC)",
+        "Experiments judged thin: one TAL head in the main paper and +0.65 AmAP over ACP+ on ActivityNet (Reviewer_g6Bi)",
+        "The only supporter (Reviewer_tLdR, 6) silent after the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No argument for why low-resolution training transfers to full resolution (Reviewer_krQv)",
+    "Scalability to large encoders and long videos; memory of deeper backbones (Reviewer_krQv, Reviewer_mQTb)",
+    "Gain may come from target data, trained weights or augmentation rather than the task loss (Reviewer_6HSH)",
+    "More LoFi configurations and more GPUs (Reviewer_mQTb)",
+    "Extension to other long-video tasks (Reviewer_6HSH; Reviewer_BMhR as a strength)"
+  ],
+  "issues_only_b": [
+    "Only one TAL head in the main experiments; BMN, BSN, P-GCN, AFSD requested (Reviewer_g6Bi)",
+    "Gain over ACP+ under one AmAP point on ActivityNet, while ACP+ is simpler (Reviewer_g6Bi)",
+    "Unequal backbone and modality against prior methods (Reviewer_tLdR)"
+  ],
+  "shared_issues": [
+    "Limited novelty: a simple resolution cut or engineering fix (Reviewer_mQTb, Reviewer_6HSH; Reviewer_kXbC)",
+    "Cycle schedule taken from multigrid training [51] (Reviewer_6HSH, Reviewer_krQv; Reviewer_kXbC)",
+    "No full-fidelity end-to-end comparison (Reviewer_6HSH; Reviewer_tLdR)",
+    "Training time and memory not reported (Reviewer_mQTb, Reviewer_6HSH; Reviewer_g6Bi)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees split on reviewer draw and on how each committee's critics received a rebuttal of the same substance, not on a fact that only one committee could see. Both committees saw the same weakness: the method is a simple cut in input resolution with a cycle schedule from multigrid training [51] (A: Reviewer_mQTb, Reviewer_6HSH; B: Reviewer_kXbC). Committee A drew a high-confidence champion, Reviewer_krQv (8, confidence 5), whose specific and accurate review recast that simplicity as the fix for a limitation 'simply accepted in hundreds (?) of TAL papers'. A's chair adopted this framing. A's second supporter, Reviewer_BMhR (7, confidence 2), wrote a thin review with no weakness. After the rebuttal both A critics raised their ratings to 6 (edits 2021-08-16), although their texts still call the novelty limited and 6HSH never got the full-fidelity comparison it asked for. In Committee B the only supporter, Reviewer_tLdR, rated 6 with the same 'taken as granted' argument as krQv and did not take part after the rebuttal. Reviewer_kXbC repeated 'trivial' without engaging the authors. Reviewer_g6Bi kept 5 after receiving the same BSN result and time tables that A saw. g6Bi's points mostly hold: the main paper tests only G-TAD (a BMN result is in the supplement, L187-189), the gain over ACP+ is 0.65 AmAP on ActivityNet (1.31 on HACS), and the submission reports no training time or per-video memory despite claiming a better efficiency trade-off. But A's reviewers read the same tables. B's chair wrote that consensus had 'converged to the reject opinion', though no rating moved. Both chairs followed their majorities (mean 6.75 against 5.33). The difference lies in who reviewed and how they weighted the same simple idea and sub-point gains.",
+  "candidate_reasons": [
+    "High-confidence champion in one committee",
+    "Rebuttal moved critics in one committee",
+    "Simplicity read as insight versus triviality",
+    "Sub-point gains weighted differently",
+    "Lone supporter silent after rebuttal",
+    "Chair adopted champion's framing"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_krQv review",
+    "Committee A meta-review",
+    "Reviewer_mQTb and Reviewer_6HSH review updates (edited 2021-08-16)",
+    "Authors' response to Reviewer_6HSH (training-time table)",
+    "Reviewer_kXbC comment 2021-08-25",
+    "Reviewer_g6Bi review and comment 2021-08-28",
+    "Reviewer_tLdR review (no reply after the rebuttal)",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1 (ACP+ against LoFi)",
+    "paper_submitted.pdf L187-189 (BMN in supplementary Table A)",
+    "paper_submitted.pdf Table 3 (backbone, modality, margins)",
+    "paper_submitted.pdf L75-76 and L218-219 (efficiency claim without time or memory figures)",
+    "paper_submitted.pdf L139-142 (LoFi starts from the ACP model)",
+    "paper_submitted.pdf L171-183 (debt to multigrid [51])",
+    "Supplementary material not supplied; Table A not checked"
+  ]
+}

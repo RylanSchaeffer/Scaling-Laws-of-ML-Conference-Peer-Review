@@ -1,0 +1,208 @@
+{
+  "pair_id": "n21-063",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [2, 5, 2, 3],
+      "reviews_edited_after_posting": ["Reviewer_fiWX", "Reviewer_cHVh", "Reviewer_NuYj", "Reviewer_vEGk"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 6. The only expert, Reviewer_cHVh (confidence 5, 10 hours), gives the same 6 as two reviewers at confidence 2 (Reviewer_fiWX, a self-declared non-expert, and Reviewer_NuYj, 3 hours)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_vEGk",
+          "evidence": "Asks for a formal definition of the filtration F, which Eq. (7) at line 180 gives in the main text. Praises the use of martingales and Azuma-Hoeffding as a 'wise idea', although these are standard concentration tools for stochastic approximation."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_cHVh",
+          "claim": "The bound is worse than vanilla Q-learning's by a factor of (1−γ)^-2 and needs a smaller step size.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 (lines 303-307) uses a step size of order (1−γ)^6 ε^2 and gives time of order 1/(μmin ε^2 (1−γ)^7). Li et al. (2020) give (1−γ)^4 ε^2 and (1−γ)^-5 for Q-learning. Lines 341-343 concede that the rate does not match vanilla Q-learning."
+        },
+        {
+          "reviewer": "Reviewer_cHVh",
+          "claim": "Proposition 1, H_t and μ_t are used in the main text but appear only in the appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 246 places Proposition 1 in Appendix C. Around Eq. (6) (lines 177-179) the text gives only properties of H_t and μ_t, not their definitions."
+        },
+        {
+          "reviewer": "Reviewer_cHVh",
+          "claim": "The paper gives little insight into double Q-learning beyond the step-size result, in particular on overestimation.",
+          "checked_against_paper": "correct",
+          "evidence": "No theorem concerns overestimation bias. Lines 343-344 state that the analysis does not separate deterministic from random rewards, which lines 145-148 name as the source of overestimation."
+        },
+        {
+          "reviewer": "Reviewer_NuYj",
+          "claim": "The gain over Xiong et al. (2020) is O((ln 1/(1−γ))^7) for synchronous and at least O(L^5) for asynchronous double Q-learning.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 226-227 and 321-322. Once Xiong et al.'s bound is tuned for γ (ω = 6/7), both bounds scale as (1−γ)^-7, so the γ gain is only polylogarithmic. The abstract still claims an order-of-magnitude gain in 1−γ, and the A meta-review credits 'better scaling' in γ."
+        },
+        {
+          "reviewer": "Reviewer_vEGk",
+          "claim": "The filtration F and the term H are not formally defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (7) at line 180 defines F_t for both samplings in the main text. Only H_t is left to Appendix A, as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_fiWX",
+          "claim": "Line 341 says the analysis does not reach the rate of vanilla Q-learning.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 341-343 say so."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Author responses came on 2021-08-10. Reviewer_fiWX (2021-07-27), Reviewer_cHVh (2021-08-02) and Reviewer_vEGk (posted and edited 2021-08-02) edited before the responses. Reviewer_cHVh wrote on 2021-08-31 that its 'rating remains the same'. Reviewer_NuYj's 2021-08-31 edit adds that the authors 'addressed all my concerns and I will keep my score'.",
+        "what_convinced_or_not": "Reviewer_NuYj accepted the promised experiments and the tightness argument against the Azar et al. (2013) lower bound, but kept 6. Reviewer_cHVh was 'not super convinced' by the overestimation argument and asked why the bound is worse than Q-learning's; the authors replied 'We fully agree' and deferred both points to future work. Reviewer_fiWX had offered to raise its score if the overestimation question was answered, but it never replied. The AC called the overestimation reply 'not very convincing'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four ratings of 6. The meta-review lists the concerns of Reviewer_cHVh and Reviewer_fiWX (techniques not very novel, prior bounds loose, no insight into overestimation). It then accepts because 'on balance most reviewers lean towards acceptance'. It does not mention the missing experiments that Reviewer_cHVh and Reviewer_NuYj requested.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers rated 6; none argued for rejection",
+        "AC judged improved convergence bounds for double Q-learning a clear contribution despite modest technical novelty and no insight into overestimation"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 7, 6],
+      "confidences": [5, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Z175"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 5, 7, 6 spread evenly around the 5.5 mean; no reviewer stands apart. Both below-threshold reviewers (Reviewer_YcUb, Reviewer_Z175) claim confidence 5 ('checked the math') after 2 hours each. The only 7, Reviewer_k2nn, is a two-paragraph review with no weakness."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_k2nn",
+          "evidence": "A 7 at confidence 4 from two short paragraphs that restate the result and praise it. It names no weakness, asks no question and did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_Z175",
+          "evidence": "Claims confidence 5 after 2 hours. The Originality paragraph stops mid-sentence ('while this paper focuses on the'). Question 4 asks about 'the SA in (9)', but Eq. (9) is an inequality in the proof of Corollary 1. It did catch the i.i.d. misstatement in Section 3.1."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_YcUb",
+          "claim": "There are no experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission is theory only; checklist item 3 (experiments) is marked N/A. The camera-ready later added Section 3.3 with two small simulations."
+        },
+        {
+          "reviewer": "Reviewer_YcUb",
+          "claim": "The results cover tabular settings only.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 assumes finite state and action spaces. Lines 111-112 and 350-354 leave function approximation to future work."
+        },
+        {
+          "reviewer": "Reviewer_YcUb",
+          "claim": "Constant step sizes are known to speed up stochastic approximation at the cost of a looser limit, so the result is not surprising.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 37-39 motivate the work with known constant-step gains for Q-learning (Beck and Srikant 2012; Li et al. 2020). Theorem 1 keeps a non-vanishing O(√α) error term (lines 204-205)."
+        },
+        {
+          "reviewer": "Reviewer_Z175",
+          "claim": "The noise ε_t is called i.i.d. although asynchronous sampling is Markovian.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.1 (lines 159-171) builds the recursion for both versions and calls ε_t i.i.d. just above Eq. (5). Line 138 says asynchronous samples come from one trajectory. The authors called it a typo; the camera-ready keeps the sentence and adds one on Markovian noise in the asynchronous case."
+        },
+        {
+          "reviewer": "Reviewer_Z175",
+          "claim": "The SA in (9) needs conditions for a unique fixed point.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (9) (line 214) is an inequality in the proof of Corollary 1, not an SA, as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_Z175",
+          "claim": "The paper omits two-timescale SA work and the coupled Q-learning of Carvalho et al. (2020).",
+          "checked_against_paper": "correct",
+          "evidence": "Neither appears in the references (lines 355-441). The camera-ready adds Carvalho et al. (2020). The omission does not affect any result."
+        },
+        {
+          "reviewer": "Reviewer_p1oe",
+          "claim": "The bound is worse than vanilla Q-learning's in its dependence on γ.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 341-343 concede it: (1−γ)^-7 here against (1−γ)^-5 in Li et al. (2020)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Z175"],
+        "evidence": "Reviewer_Z175 edited on 2021-08-29: it 'updated the score' and then wrote 'But I am still not convinced'. The 'But' marks the change as a step toward the authors, so the score rose to the final 5; OpenReview does not show the earlier value. Reviewer_p1oe kept 6 on 2021-09-10. Reviewer_YcUb and Reviewer_k2nn did not edit or reply.",
+        "what_convinced_or_not": "Reviewer_Z175 stayed unconvinced by the 'typo' explanation for the i.i.d. noise and by the claimed advance over Xiong et al. (2020). Reviewer_p1oe still leaned to accept. The AC wrote that the rebuttal 'did help clarify some of the raised issues' but wanted the experiments the authors said they had run to appear in the paper."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split two above and two below threshold (mean 5.5). The AC takes the missing-experiments objection of Reviewer_YcUb and Reviewer_Z175 and rejects. It also cites 'lack of clarity', which no B reviewer raised: Z175 called the paper 'mostly clear, well-written', k2nn 'very well written', p1oe 'fairly well written'. Most of the meta-review states the AC's own questions ('I'd personally love to understand better whether the practical convergence rates match the current theory').",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Split panel (4, 5, 7, 6; mean 5.5) with both below-threshold reviewers at confidence 5",
+        "AC required numerical experiments; the authors described them in the rebuttal but did not show them",
+        "Closeness to Xiong et al. (2020), no new algorithm and tabular-only scope (Reviewer_YcUb, Reviewer_Z175)",
+        "AC also cited a lack of clarity that no B reviewer raised"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No insight into overestimation, the purpose of double Q-learning (Reviewer_fiWX, Reviewer_cHVh; Committee A meta-review)",
+    "No lower bound or tightness argument for the upper bound (Reviewer_cHVh, Reviewer_NuYj); B's AC asked a related question, but no B reviewer did",
+    "Main text not self-contained: Proposition 1, H_t and μ_t only in the appendix; asynchronous proof idea unclear (Reviewer_cHVh, Reviewer_vEGk)",
+    "Role of exploration in the asynchronous setting (Reviewer_fiWX)"
+  ],
+  "issues_only_b": [
+    "Tabular-only scope counted as a weakness (Reviewer_YcUb, Reviewer_Z175); in A, Reviewer_vEGk raised function approximation only as future work",
+    "No new algorithmic idea (Reviewer_YcUb)",
+    "Noise called i.i.d. in a section that also covers Markovian sampling (Reviewer_Z175; correct, but a misstatement, not a flaw in a theorem)",
+    "Missing related work on two-timescale SA and the coupled Q-learning of Carvalho et al. (2020) (Reviewer_Z175; correct)",
+    "Uniqueness of the fixed point of 'the SA in (9)' (Reviewer_Z175; a misreading, Eq. (9) is an inequality)",
+    "Lack of clarity (Committee B meta-review only; B reviewers called the paper clear)"
+  ],
+  "shared_issues": [
+    "No numerical experiments (A: Reviewer_cHVh, Reviewer_NuYj; B: Reviewer_YcUb, Reviewer_Z175, Committee B meta-review)",
+    "Limited novelty: gain expected from constant-step results for Q-learning, analysis close to prior work (A: Reviewer_cHVh, Committee A meta-review; B: Reviewer_YcUb, Reviewer_Z175)",
+    "Rate worse than vanilla Q-learning's by (1−γ)^-2, conceded in lines 341-343 (A: Reviewer_cHVh, Reviewer_fiWX; B: Reviewer_p1oe)",
+    "Unclear practical implications (A: Reviewer_fiWX, Reviewer_NuYj, Reviewer_vEGk; B: Reviewer_Z175)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently. Both saw a sound but incremental theory paper with the same weaknesses: the gain was expected from constant-step results for Q-learning, the paper has no experiments, and its (1−γ)^-7 rate is worse than vanilla Q-learning's by (1−γ)^-2. No reviewer on either side found an error in a theorem. Committee A turned these facts into four ratings of 6. Its one expert, Reviewer_cHVh (confidence 5, 10 hours), wrote the sharpest critique and still rated 6; two of the other three reviewers rated at confidence 2. A's AC accepted on the balance of scores and did not mention experiments. Committee B drew a split panel (4, 5, 7, 6). Its two detractors claimed confidence 5 after 2 hours each and gave generic objections: no new algorithm, tabular only, no experiments, too close to Xiong et al. (2020). Its 7 (Reviewer_k2nn) names no weakness. B's AC made the missing experiments decisive, partly as a personal wish, and added a 'lack of clarity' that no B reviewer raised. The authors promised the same experiments to both committees; the promise satisfied A's Reviewer_NuYj but not B's AC. The one correct B-only catch, the i.i.d. noise misstatement in Section 3.1, is a slip that B's AC did not cite. The split comes from the reviewer draw and from how each AC weighed the absence of experiments in a theory paper.",
+  "candidate_reasons": [
+    "same weaknesses, different score translation",
+    "AC demanded experiments for theory paper",
+    "uniform borderline scores versus split panel",
+    "low-effort high-confidence detractors",
+    "AC cited unraised clarity concern",
+    "rebuttal promise accepted unevenly"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_cHVh review and 2021-08-31 comment",
+    "Reviewer_NuYj review, 2021-08-31 edit",
+    "Reviewer_YcUb review",
+    "Reviewer_Z175 review, 2021-08-29 edit",
+    "Reviewer_k2nn review",
+    "paper_submitted.pdf lines 159-171 (noise called i.i.d. for both samplings)",
+    "paper_submitted.pdf line 214, Eq. (9)",
+    "paper_submitted.pdf Theorem 2 (lines 303-307) and lines 341-343",
+    "paper_submitted.pdf lines 222-227 (γ gain over Xiong et al. 2020)",
+    "paper_submitted.pdf checklist item 3 (no experiments)"
+  ]
+}

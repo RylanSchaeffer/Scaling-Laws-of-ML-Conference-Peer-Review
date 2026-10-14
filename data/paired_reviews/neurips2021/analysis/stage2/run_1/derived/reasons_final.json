@@ -52,7 +52,28 @@
   "n21-133",
   "n21-294"
  ],
- "merges": [],
+ "merges": [
+  {
+   "keep": "R31",
+   "absorb": "R18",
+   "why": "Both name an area chair's tier assignment that the reviews and meta-review do not argue for, so the split reflects where the chair put the tier, not the reviews; R18 is the case where the other committee's scores were near-identical, which is an instance of R31's unexplained tier, not a different mechanism."
+  },
+  {
+   "keep": "R14",
+   "absorb": "R25",
+   "why": "Both name a meta-review whose account of its own committee's record was wrong (weaknesses dropped or reversed, reviewers' final positions or answered concerns misreported) with the recommendation resting on that inaccurate account."
+  },
+  {
+   "keep": "R26",
+   "absorb": "R22",
+   "why": "Both name reviewers who never replied to the authors' response or joined the discussion, so scores whose basis the response had answered stood unrevised; R22 restricts this to one outlying reviewer, which changes who did it, not the mechanism."
+  },
+  {
+   "keep": "R27",
+   "absorb": "R19",
+   "why": "Both name an area chair who counted every score at equal weight regardless of the reviewer's expertise, so less-informed reviewers' scores set the recommendation; R19 states it from the side of the expert passed over, R27 from the side of the non-experts counted in full."
+  }
+ ],
  "reasons": [
   {
    "id": "R06",
@@ -91,8 +112,10 @@
    "created_by_pair": "n21-034",
    "created_turn": 9,
    "exemplar": "B's meta-review restated the abstract, named no weakness, and said the authors 'illustrated how to further boost adversarial robustness', where B's Reviewer_aQh1 wrote 'The robustness improvement is limited' and Reviewer_HkhD 'moderate improvement'.",
-   "absorbed": [],
-   "n_pairs": 30
+   "absorbed": [
+    "R25"
+   ],
+   "n_pairs": 33
   },
   {
    "id": "R31",
@@ -101,7 +124,9 @@
    "created_by_pair": "n21-053",
    "created_turn": 28,
    "exemplar": "B gave a spotlight on ratings 7, 8, 6, 5 under a meta-review that shared the detractor's overclaiming concern and concluded only that the work 'may be enough for justifying publication', with no word on the tier.",
-   "absorbed": [],
+   "absorbed": [
+    "R18"
+   ],
    "n_pairs": 30
   },
   {
@@ -145,6 +170,18 @@
    "n_pairs": 19
   },
   {
+   "id": "R27",
+   "name": "Non-expert reviewers' accept scores counted in full",
+   "definition": "Reviewers on one committee who said they could not verify the main results (proofs unread, area unfamiliar) still gave clear accept scores, and the area chair counted them at full weight, which lifted that committee's mean and tier above what its checked assessments supported.",
+   "created_by_pair": "n21-017",
+   "created_turn": 24,
+   "exemplar": "In B, Reviewer_hENG (7, confidence 1: 'not a theorist, and have not looked at the proofs') and Reviewer_DACB (7, confidence 2: 'cannot intuitively understand or vouch for the new results') were two of five scores under a meta-review that said all reviewers saw a strong contribution.",
+   "absorbed": [
+    "R19"
+   ],
+   "n_pairs": 19
+  },
+  {
    "id": "R16",
    "name": "Damaging rebuttal admission did not lower scores",
    "definition": "The authors' response to one committee conceded an unfavourable fact about the paper's results, such as a stronger baseline beating the method, and that committee's reviewers and area chair did not lower their scores or recommendation, or raised them, so that committee ended higher than its information supported.",
@@ -153,16 +190,6 @@
    "exemplar": "Only A heard the authors concede that a tuned Transformer beats the model by 3 to 4 BLEU on MT (the camera-ready calls its MT results 'largely negative'), yet Reviewer_fSHR then raised to 7 and A's area chair called the results 'strong' and gave a spotlight.",
    "absorbed": [],
    "n_pairs": 18
-  },
-  {
-   "id": "R27",
-   "name": "Non-expert reviewers' accept scores counted in full",
-   "definition": "Reviewers on one committee who said they could not verify the main results (proofs unread, area unfamiliar) still gave clear accept scores, and the area chair counted them at full weight, which lifted that committee's mean and tier above what its checked assessments supported.",
-   "created_by_pair": "n21-017",
-   "created_turn": 24,
-   "exemplar": "In B, Reviewer_hENG (7, confidence 1: 'not a theorist, and have not looked at the proofs') and Reviewer_DACB (7, confidence 2: 'cannot intuitively understand or vouch for the new results') were two of five scores under a meta-review that said all reviewers saw a strong contribution.",
-   "absorbed": [],
-   "n_pairs": 17
   },
   {
    "id": "R36",
@@ -175,16 +202,6 @@
    "n_pairs": 15
   },
   {
-   "id": "R25",
-   "name": "Meta-review misstated the reviewers' positions or rebuttal",
-   "definition": "One committee's meta-review misreported the record it summarised, such as the reviewers' final positions or which concerns the authors' response had already answered, and that committee's recommendation rested on the inaccurate account.",
-   "created_by_pair": "n21-003",
-   "created_turn": 23,
-   "exemplar": "A's area chair wrote 'In the end, all reviewers were negative' although Reviewer_nMFp's 6 was never edited, and listed the missing BDD100K test results as a concern although the rebuttal supplied them (31.8 vs 26.0 mMOTSA).",
-   "absorbed": [],
-   "n_pairs": 14
-  },
-  {
    "id": "R13",
    "name": "Scores rose on unverified rebuttal evidence",
    "definition": "One committee's reviewers raised their scores on rebuttal material that was not checked under the paper's own protocol, such as results copied from other papers or promised revisions, which lifted that committee's scores further than the evidence the other committee saw.",
@@ -192,6 +209,18 @@
    "created_turn": 8,
    "exemplar": "A's Reviewer_z1y4 and Reviewer_h4G7 raised to 7 on Mahalanobis and DUQ comparisons that the authors copied from Meinke and Hein's Table 2 and the DUQ paper, not rerun, and against DUQ RGPR only ties on AUROC (92.6 vs 92.7).",
    "absorbed": [],
+   "n_pairs": 12
+  },
+  {
+   "id": "R26",
+   "name": "One committee's reviewers left the rebuttal unanswered",
+   "definition": "Most of one committee's reviewers never replied to the authors' response or joined the public discussion, so scores set before a response that answered their points stood unrevised, while the other committee's reviewers engaged with the response and revised.",
+   "created_by_pair": "n21-003",
+   "created_turn": 23,
+   "exemplar": "Three of A's four reviewers posted nothing after a rebuttal that supplied BDD100K test results, the prototype-count ablation and a runtime comparison, and Reviewer_x3ez wrote 'Most of my concerns are addressed' yet stayed at 5; in B, Reviewer_NPPQ and Reviewer_HvVc raised to 7.",
+   "absorbed": [
+    "R22"
+   ],
    "n_pairs": 12
   },
   {
@@ -241,16 +270,6 @@
    "created_by_pair": "n21-178",
    "created_turn": 17,
    "exemplar": "Without A's champion Reviewer_BBLZ (9) and B's detractor Reviewer_wwer (3), both committees end at 7, 7, 8, so the two outliers alone turn means of 7.75 and 6.25 into spotlight and poster.",
-   "absorbed": [],
-   "n_pairs": 9
-  },
-  {
-   "id": "R26",
-   "name": "One committee's reviewers left the rebuttal unanswered",
-   "definition": "Most of one committee's reviewers never replied to the authors' response or joined the public discussion, so scores set before a response that answered their points stood unrevised, while the other committee's reviewers engaged with the response and revised.",
-   "created_by_pair": "n21-003",
-   "created_turn": 23,
-   "exemplar": "Three of A's four reviewers posted nothing after a rebuttal that supplied BDD100K test results, the prototype-count ablation and a runtime comparison, and Reviewer_x3ez wrote 'Most of my concerns are addressed' yet stayed at 5; in B, Reviewer_NPPQ and Reviewer_HvVc raised to 7.",
    "absorbed": [],
    "n_pairs": 9
   },
@@ -335,16 +354,6 @@
    "n_pairs": 4
   },
   {
-   "id": "R22",
-   "name": "Outlying reviewer ignored the rebuttal and discussion",
-   "definition": "A reviewer whose score stood apart from their committee never replied to the authors' response or joined the discussion, so a score whose basis the response had answered stood unrevised in that committee's recommendation.",
-   "created_by_pair": "n21-178",
-   "created_turn": 17,
-   "exemplar": "B's Reviewer_wwer never answered the authors' reply that TD3+BC appeared after the deadline and that other reviewers found the paper clear, and the 3 stood while B's other two raised scores rose to 7.",
-   "absorbed": [],
-   "n_pairs": 4
-  },
-  {
    "id": "R35",
    "name": "Area chair relied on off-record reviewer input",
    "definition": "One committee's area chair based the recommendation on an assessment that is not in the committee's record, such as an emergency reviewer's or a consultant's verdict, and used it to settle a split that the visible reviews left open.",
@@ -353,26 +362,6 @@
    "exemplar": "A's visible reviews were 8, 5, 5 with the most engaged detractor 'not opposed to acceptance', and its chair rejected 'Based on this input and the discussions' after an emergency reviewer, whose review is not on the forum, 'shared the same concerns'.",
    "absorbed": [],
    "n_pairs": 4
-  },
-  {
-   "id": "R18",
-   "name": "Area chairs used different tier cut-offs",
-   "definition": "The two committees' area chairs turned near-identical reviewer scores and arguments into different tiers, each citing only the scores or general reviewer support, so the split reflects where each area chair placed the tier threshold, not a difference in the reviews or an area chair's own reading of the paper.",
-   "created_by_pair": "n21-136",
-   "created_turn": 14,
-   "exemplar": "Both committees gave one 8, two 7s and one 6 (mean 7.0); B's area chair recommended a spotlight on 'sufficient positive feedback and support' with no reason for the tier, while A's two-sentence meta-review on the same profile recommended a poster.",
-   "absorbed": [],
-   "n_pairs": 3
-  },
-  {
-   "id": "R19",
-   "name": "Area chair passed over the expert reviewer's verdict",
-   "definition": "One committee's best-informed reviewer (highest confidence, most specific review) reached a verdict that the area chair neither cited nor weighed, following instead the mean of less-informed reviewers' scores, so the recommendation reflected the less-informed majority.",
-   "created_by_pair": "n21-156",
-   "created_turn": 15,
-   "exemplar": "A's only confidence-4 reviewer, Reviewer_x8VX (5 h), rated 8 and called the qualitative evaluation 'great', but A's two-sentence meta-review never mentions that review and follows the 6.5 mean of three low-confidence 6s to a poster.",
-   "absorbed": [],
-   "n_pairs": 3
   },
   {
    "id": "R37",

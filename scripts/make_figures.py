@@ -588,18 +588,19 @@ def fig_scales():
         ax.plot(d.N, d.p2_top10, color=c, ls=ls, lw=1.6 * P.S, label=label)
     P.n_axis(ax)
     ax.set_yscale("log")
-    ax.set_ylim(0.004, 0.4)
+    ax.set_ylim(0.002, 0.6)
     ax.yaxis.set_major_locator(FixedLocator([0.01, 0.1]))
     ax.yaxis.set_minor_locator(NullLocator())
     P.pct_axis(ax)
     ax.set_ylabel("Probability")
     ax.set_title("Top 10 again", loc="left")
-    ax.legend(loc="lower left", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
     hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
           plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main form, pessimistic to optimistic level, 2026 size")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
+    lines, labels = ax.get_legend_handles_labels()  # the four forms of (d), in a second legend row under the first
+    fig.legend(handles=lines, labels=["(d) " + labels[0]] + labels[1:], loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, handlelength=1.6)
     for i, a in enumerate(axes):
         P.panel_label(a, "abcd"[i])
     P.save(fig, os.path.join(FIG, "fig6_scales"))

@@ -1,0 +1,268 @@
+{
+  "pair_id": "n21-169",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        8,
+        7,
+        4
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_jnwG"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_WWma",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "WWma's 8 ('Top 50% of accepted NeurIPS papers, clear accept') is the highest rating in either committee; all four B reviewers gave 5. The review summarises the method and says the results 'suggest that GDW significantly outperforms existing methods'. The submission does not support this: Table 3 has GLC ahead of GDW by 2.04 (CIFAR10) and 10.67 points (CIFAR100) at 40% flip noise, and Table 4 margins over the best baseline are 0.11 to 1.04 points. WWma's only questions concern notation (the undefined l in Eq. 4, how g_i is computed). It posted nothing after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_NjUA",
+          "evidence": "A 7 at confidence 3 after 2 hours. The review restates the paper's claims ('the authors claimed' three times) and concludes 'I believe this paper has some contributions'. It names no weakness beyond a question on label correction and the Clothing1M gap to the state of the art. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AiLN",
+          "claim": "From Tables 3 and 4, GDW does not beat the competitors by a large margin.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: GLC beats GDW at 40% flip noise (89.74 vs 87.70 on CIFAR10; 63.11 vs 52.44 on CIFAR100); at CIFAR100 20% flip GDW leads INSW by 0.09. Table 4: GDW leads the best baseline by 0.46, 1.04, 0.29 and 0.11 points, inside GDW's own standard deviation in three of four settings. On CIFAR100 imbalance GDW is 0.53 and 0.15 points above the plain BaseModel."
+        },
+        {
+          "reviewer": "Reviewer_jnwG",
+          "claim": "The method has negligible improvements in most experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Of the 12 noisy or imbalanced CIFAR settings in Tables 2-4, GDW leads clearly in three (CIFAR10 uniform 40% and 60%, +1.62 and +2.56; CIFAR10 flip 20%, +0.83). It loses in two (40% flip, to GLC). In the other seven it leads by no more than about one of its own standard deviations (e.g. CIFAR100 uniform 40%: 59.82 +/- 1.62 vs Co-teach 59.58). Clothing1M (Table 5): +0.59 over L2RW from a single run."
+        },
+        {
+          "reviewer": "Reviewer_jnwG",
+          "claim": "Post-rebuttal: manipulating gradients at the class level is similar to manipulating the loss or output.",
+          "checked_against_paper": "correct",
+          "evidence": "Under the zero-mean constraint, Eq. 6 makes the manipulated logit gradient omega_t (p' - y), with p'_j = omega_j p_j / sum_k omega_k p_k (line 138). That equals the gradient of omega_t * CE(softmax(l + log omega), y) with omega held fixed: an instance-weighted cross-entropy on logits shifted by log omega (verified numerically). The A meta-review's 'I do not think any modification of the loss function could achieve the same results as a gradient-based method' is wrong for this update."
+        },
+        {
+          "reviewer": "Reviewer_AiLN",
+          "claim": "Most long-tail competitors [22-24] are only on arXiv.",
+          "checked_against_paper": "incorrect",
+          "evidence": "[22] L2RW (ICML 2018), [23] MW-Net (NeurIPS 2019) and [24] Hu et al. (NeurIPS 2019) are peer-reviewed. The submission's reference list cites all three as arXiv preprints, which invites the misreading; the authors corrected it."
+        },
+        {
+          "reviewer": "Reviewer_AiLN",
+          "claim": "No large-scale dataset such as ImageNet; CIFAR alone is not enough.",
+          "checked_against_paper": "correct",
+          "evidence": "Sections 4.1-4.3 use CIFAR10, CIFAR100 and Clothing1M only. The authors later posted Places-LT (GDW 19.17% vs MWNet 18.08%, one run, 10 epochs); neither the reviewers nor the AC mentioned it."
+        },
+        {
+          "reviewer": "Reviewer_WWma",
+          "claim": "In Eq. 4, the l in the summation is undefined.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 sums over j != l, and l is not defined anywhere; the authors confirmed a typo for t."
+        },
+        {
+          "reviewer": "Reviewer_WWma",
+          "claim": "GDW significantly outperforms existing methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No significance test is reported. GLC beats GDW by 2.04 and 10.67 points at 40% flip noise (Table 3), and most other margins are within GDW's standard deviation (Tables 2-4)."
+        },
+        {
+          "reviewer": "Reviewer_NjUA",
+          "claim": "The Clothing1M results can hardly beat many state-of-the-art methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 5's best is 69.39% from one run (checklist 3c), with an ImageNet-pretrained ResNet-18 trained 5 epochs (lines 285-288). The table's MWNet (68.46%) is rerun in this reduced setting; the MW-Net paper reports 73.72% on Clothing1M with ResNet-50."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_jnwG",
+          "Reviewer_AiLN"
+        ],
+        "evidence": "Author responses 2021-08-09. Reviewer_jnwG edited its review on 2021-08-22, the day it wrote 'So, I improve the rating to 5'. Reviewer_AiLN wrote on 2021-08-22 'I improve the rating to 5', but its review shows no edit and stays at 4; the authors' reminder of 2021-09-17 got no reply, and the AC notes the change 'has not propagated'. Reviewer_WWma and Reviewer_NjUA posted nothing after the rebuttal.",
+        "what_convinced_or_not": "The mixed noise-plus-imbalance table (GDW vs MWNet only, no standard deviations) eased jnwG's performance concern, but jnwG held that class-level gradient manipulation 'is similar to manipulating the loss or output'. The authors' longer reply on interpretability, generality and effectiveness (2021-08-24) got no answer. AiLN valued the extra experiments but still wanted comparisons with other method families (RIDE, OLTR) and large-scale results. The later Places-LT result (+1.09 over MWNet, one run) drew no response."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The AC notes the 8/7/5/4 split and that 'the reasons to reject ... have been far more detailed than the reasons to accept', then sides with the accept reviewers on 'my own reading'. It resolves novelty with the Figure 1 illustration and the view that no loss modification 'could achieve the same results as a gradient-based method', which Eq. 6 contradicts; its next paragraph calls the method 'a change in the loss function'. It accepts that 'Improvements are indeed small' because the method adds no cost and 'seems to always improve as label noise increases'; that holds against MWNet, not against GLC at 40% flip noise. It notes that a reject-side reviewer wrote the loss-modification paper that reviewer cited. The missing ImageNet results remain its 'main concern'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Mean rating 6.0 (6.25 with AiLN's unentered 5), carried by two accept reviews (8 and 7)",
+        "AC's own reading that class-level gradient weighting differs from instance weighting and from loss modification (Figure 1)",
+        "Small gains judged acceptable: no extra compute, no harm at 0% noise, consistent gains over MWNet as noise grows ('enough for adoption')",
+        "Missing ImageNet-scale results left open as a concern, not a reason to reject"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Khcd",
+        "Reviewer_B8Dp"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four reviewers rated 5. There is no champion and no detractor."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_iJG7",
+          "evidence": "A 5 whose text praises every criterion: 'extensive experiments', 'organized well', 'advances state-of-the-art methods'. The only negatives are no theory and a 'somewhat marginal' technical step over MW-Net [23]. 'Advances state-of-the-art' ignores the flip-noise losses in Table 3. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Khcd",
+          "claim": "GDW clearly beats the baselines only under uniform noise with large ratios; under flip noise it is hard to say GDW is better.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: GDW wins CIFAR10 20% flip by 0.83, ties INSW on CIFAR100 20% (65.41 +/- 0.75 vs 65.32 +/- 0.27), and loses to GLC at 40% (87.70 vs 89.74; 52.44 vs 63.11). Table 2 gains are clear only on CIFAR10."
+        },
+        {
+          "reviewer": "Reviewer_tepP",
+          "claim": "Given the standard deviations, GDW is not significantly better than existing methods under class imbalance.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: margins over the best baseline are 0.46 (std 0.55), 1.04 (std 1.03), 0.29 (std 0.52) and 0.11 (std 1.58). The paper's headline '+8.6% over MWNet' at CIFAR10 mu=0.01 compares with an MWNet (62.70) that is 7.07 points below the plain BaseModel (69.77)."
+        },
+        {
+          "reviewer": "Reviewer_tepP",
+          "claim": "The paper claims to handle coexisting label noise and class imbalance (lines 1, 6, 24-25), but the experiments treat the two separately (also Reviewer_B8Dp, Reviewer_Khcd).",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract line 6: 'simultaneously mitigate label noise and class imbalance'. Tables 2-4 vary noise or imbalance alone; Clothing1M is run as a label-noise benchmark (lines 286-287). The first joint experiment appears in the rebuttal, against MWNet only and without error bars."
+        },
+        {
+          "reviewer": "Reviewer_tepP",
+          "claim": "Eq. 3 holds only when j = t.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With p'_j = omega_j p_j / sum_k omega_k p_k, the right side of Eq. 3 reduces to omega_j p_j - omega_t y_j and the left side to omega_j p_j - omega_j y_j. They are equal for every j because y is one-hot (y_j = 0 for j != t), as the authors answered on 2021-08-17 (verified numerically). tepP did not reply to that answer."
+        },
+        {
+          "reviewer": "Reviewer_tepP",
+          "claim": "The zero-mean-constraint ablation is reported only as 'got poor results'.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 248-256 give no numbers and say 'we omit those results'. The authors said in the rebuttal that accuracy falls to chance without the constraint."
+        },
+        {
+          "reviewer": "Reviewer_B8Dp",
+          "claim": "The imbalance factor is defined inconsistently.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 258-259 define mu in (0, 1) as 'the number of instances in the largest class divided by that of the smallest', which is at least 1. The authors conceded a typo."
+        },
+        {
+          "reviewer": "Reviewer_B8Dp",
+          "claim": "The 'three kinds of information' (line 42) are never defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 40-41 name them: 'not cat', 'dog', and 'not bird'; Figure 1 shows them."
+        },
+        {
+          "reviewer": "Reviewer_B8Dp",
+          "claim": "Decoupling Representation and Classifier (ICLR 2020) is not cited or used as a baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "It is absent from the 47 references and from Table 4. Menon et al. (ICML 2015), which the B meta-review adds, is also absent."
+        },
+        {
+          "reviewer": "Reviewer_Khcd",
+          "claim": "In Figure 3 some noisy instances get target weights larger than clean instances do.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3 has a small noisy bar near 0.9, above the main clean mass near 0.8, while most noisy weights sit below 0.3. Khcd's post-rebuttal 'cannot well differentiate correct and mislabeled data' overstates the figure."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_B8Dp"
+        ],
+        "evidence": "Author responses 2021-08-09. Reviewer_B8Dp edited on 2021-08-14, the day it wrote 'I'd upgrade the rating to 5'. Reviewer_Khcd edited on 2021-08-18 to add a post-rebuttal note: concerns 'addressed properly', but 'I still tend to reject'; no rating change is stated. Reviewer_tepP wrote on 2021-08-18 that the rebuttal 'did not change my overall rating'. Reviewer_iJG7 never replied.",
+        "what_convinced_or_not": "Clarifications worked: tepP understood the target notation and found the new class-by-class weight table 'more convincing than Figure 6'; B8Dp found the rebuttal 'much clearer than the paper'. What did not: the joint setting appeared only in the rebuttal, as an MWNet-only table without error bars; the authors called combination baselines 'not our duty' and wrote that if GDW beat them 'the soundness of the comparison itself would be suspected', which B8Dp quoted back; tepP judged the needed changes a 'major revision rather than minor one'. The flip-noise weakness got only the GLC explanation already in the paper."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review calls the idea 'very interesting, reasonable, novel, and well-written', then lists three concerns. Point (1) copies Khcd's post-rebuttal text almost verbatim: 'either add more experiments under the claimed setting (more than the experiments they presented in the rebuttal) or change the position of the paper writing'. Point (2) repeats Khcd's flip-noise point and adds instance-dependent noise. Point (3) repeats B8Dp's 'thoughtful baselines' and adds Menon et al. (ICML 2015). With four 5s, the AC had no champion to weigh.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "The claimed joint noise-and-imbalance setting is not tested in the submission; the rebuttal's MWNet-only table was judged insufficient",
+        "Weak results under flip noise (GLC ahead at 40%)",
+        "No combination baselines (a class-imbalance method plus a noisy-label method; Menon et al. 2015)",
+        "Unanimous 5s from reviewers who judged the needed changes a major revision"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No ImageNet-scale experiment (Reviewer_AiLN; the AC's 'main concern')",
+    "No comparison with long-tail methods of other families such as RIDE and OLTR (Reviewer_AiLN)",
+    "Prior class-wise weighting (Dong et al., AAAI 2019) weakens the 'first' claim (Reviewer_AiLN)",
+    "Similarity to soft-label and label-correction methods (Reviewer_jnwG, Reviewer_NjUA)",
+    "Clothing1M accuracy below the published state of the art (Reviewer_NjUA)",
+    "How a weight predictor learned on clean, balanced data transfers to noisy, imbalanced data (Reviewer_jnwG)"
+  ],
+  "issues_only_b": [
+    "The claimed simultaneous noise-and-imbalance setting is never tested in the paper (Reviewer_tepP, Reviewer_B8Dp, Reviewer_Khcd post-rebuttal, AC)",
+    "Weak flip-noise results; no instance-dependent noise (Reviewer_Khcd, AC)",
+    "No combination baselines such as decoupling plus a noisy-label method; Menon et al. 2015 not discussed (Reviewer_B8Dp, AC)",
+    "Unclear 'target' notation, Eq. 3 and 'loss structure' wording; Figures 5-6 incomplete (Reviewer_tepP, Reviewer_B8Dp)",
+    "No numbers for the zero-mean ablation (Reviewer_tepP)",
+    "Incremental over MW-Net; no theory (Reviewer_iJG7, Reviewer_B8Dp)",
+    "Some noisy instances get large target weights in Figure 3 (Reviewer_Khcd)",
+    "Meta-set overfitting and fairness to Co-teaching, which needs no meta set (Reviewer_Khcd)",
+    "Inverted imbalance-factor definition; Clothing1M ethics flag, cleared by the ethics reviewer (Reviewer_B8Dp)"
+  ],
+  "shared_issues": [
+    "Small or marginal gains (A: Reviewer_jnwG, Reviewer_AiLN; B: Reviewer_Khcd, Reviewer_tepP)",
+    "Gradient reweighting versus loss reweighting (A: Reviewer_jnwG, Reviewer_AiLN; B: Reviewer_B8Dp); both ACs accepted the idea as novel",
+    "Missing baselines from other method families (A: Reviewer_AiLN, RIDE and OLTR; B: Reviewer_B8Dp, decoupling)",
+    "No limitations or societal-impact discussion (A: Reviewer_WWma; B: Reviewer_Khcd, Reviewer_tepP, Reviewer_B8Dp)",
+    "Undefined notation in Eq. 4 and Eq. 11 (A: Reviewer_WWma; B: Reviewer_tepP)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw a novel idea with small gains; they split on the reviewer draw and on how the AC weighed small gains. A drew two thin accept reviews, Reviewer_WWma (8) and Reviewer_NjUA (7), that named no real weakness and never engaged after the rebuttal. With two detailed critics at 5 and 4 (Reviewer_AiLN's stated raise to 5 never entered), the mean was 6.0. A's AC conceded that the reject reasons were 'far more detailed' and accepted on its own reading: small gains, no extra cost, consistent gains over MWNet. B drew three engaged reviewers and one thin one, and all four ended at 5. Their main points hold against the submission. The abstract claims to 'simultaneously mitigate' noise and imbalance, but no experiment combines them. GLC beats GDW by 2.04 and 10.67 points under 40% flip noise. Table 4 margins over the best baseline are 0.11 to 1.04 points, within about one of GDW's own standard deviations. B's AC copied these points from Reviewer_Khcd and Reviewer_B8Dp and rejected. A's AC rested its novelty case partly on the claim that no loss change could match a gradient method; the paper's own Eq. 6 shows that the update is the gradient of a weighted cross-entropy on logits shifted by log omega, as Reviewer_jnwG said. B's reject is the better-supported reading of this submission; A's accept rests on two thin reviews and an AC argument that the paper contradicts.",
+  "candidate_reasons": [
+    "thin champion reviews lifted mean",
+    "AC overrode more detailed critiques",
+    "untested joint-setting claim penalised",
+    "flip-noise losses to GLC",
+    "unanimous borderline-reject panel",
+    "defensive rebuttal on baselines"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_WWma review",
+    "Reviewer_NjUA review",
+    "Reviewer_jnwG reply of 2021-08-22",
+    "Reviewer_AiLN reply of 2021-08-22 and authors' reminder of 2021-09-17",
+    "Committee A meta-review",
+    "Reviewer_Khcd review, POST REBUTTAL section",
+    "Reviewer_tepP replies of 2021-08-13, 2021-08-17 and 2021-08-18",
+    "Authors' reply to Reviewer_B8Dp of 2021-08-09 ('not our duty') and B8Dp post-rebuttal of 2021-08-14",
+    "Committee B meta-review",
+    "paper_submitted Tables 2-4 (Table 3: GLC 89.74 and 63.11 vs GDW 87.70 and 52.44 at 40% flip)",
+    "paper_submitted abstract lines 1-6 and Sections 4.1-4.3 (no joint experiment)",
+    "paper_submitted Eqs. 3, 4 and 6, lines 136-147",
+    "paper_submitted lines 40-41, 248-256 and 258-259",
+    "paper_submitted references [22]-[24]"
+  ]
+}

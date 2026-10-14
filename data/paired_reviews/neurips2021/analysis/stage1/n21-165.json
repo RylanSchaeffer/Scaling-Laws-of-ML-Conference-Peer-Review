@@ -1,0 +1,273 @@
+{
+  "pair_id": "n21-165",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_GtkW",
+        "Reviewer_phLM"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_1x2r",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "The only accept-level rating (7, confidence 5) against 5/5/6, and the longest review: a correct step-by-step account of the method, line-level questions, and the judgement that the ablation shows the meta-learning 'really does help prevent forgetting'. A few of its points are wrong (see checkable claims). Its own limitations field asked 'What would break the KB? ... what if tasks are more distinct', the question the AC used to reject. It neither replied to the rebuttal nor edited, so the 7 had no voice in the discussion."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_phLM",
+          "evidence": "A 6 built from four generic paragraphs (originality, quality, clarity, significance) that name no weakness and ask no question. It says 'relevant literature has been cited appropriately' while GtkW and AG6A asked for missing baselines. Its one result claim, 'outperforms the SOTA CL methods ... by over 10%', drops the abstract's MiniImageNet qualifier and is wrong for CIFAR-100. Its post-rebuttal note is generic: the authors 'addressed ... most reviewers' concerns'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_GtkW",
+          "claim": "GPM results are missing on CIFAR-100.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 shows '-' for GPM on CIFAR-100; lines 200-201 say there are 'no public results'. The authors ran it in the rebuttal (76.67 +/- 3.1, within error of MARK-Task's 78.31) and the camera-ready adds it."
+        },
+        {
+          "reviewer": "Reviewer_GtkW",
+          "claim": "Few baselines; HyperNetworks (ICLR 2020) is not compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 has four baselines (HAT, A-GEM, ACL, GPM), GPM on MiniImageNet only. HyperNetworks [39] appears only in Related Work (line 288)."
+        },
+        {
+          "reviewer": "Reviewer_AG6A",
+          "claim": "Nothing in the KB update guards against forgetting, so the method may work only when tasks share a distribution; it is not tested on a dissimilar sequence such as HAT's 8 datasets.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 81-83: the shared domain 'is key to take advantage of common patterns among the tasks'. Lines 196-198: the only benchmarks are 20-split CIFAR-100 and 20-split MiniImageNet. The authors promised a dissimilar-task test on 2021-09-01; the camera-ready (Section 4.2.1) calls task similarity 'beyond the scope of this study'."
+        },
+        {
+          "reviewer": "Reviewer_AG6A",
+          "claim": "No comparison with CTN (ICLR 2021).",
+          "checked_against_paper": "correct",
+          "evidence": "CTN is absent from Table 1 and the references. The rebuttal offered SupSup and Experience Replay instead."
+        },
+        {
+          "reviewer": "Reviewer_1x2r",
+          "claim": "The update at line 182 is essentially that of [24], which should be cited.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 175 already says the procedure 'consists of an adaptation of the training process presented in [24]' (Nichol et al., Reptile). Line 182 cites [25] for the nested loops."
+        },
+        {
+          "reviewer": "Reviewer_1x2r",
+          "claim": "If the mask maps features to all KB activations, it has very many parameters.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 117-119: each mask is a set of scalars, 'one for each channel in the convolutional blocks of the KB'."
+        },
+        {
+          "reviewer": "Reviewer_1x2r",
+          "claim": "The task ID does not seem to be used by the method.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 121-123 and 129: the task ID selects the classification head (and the task's F^t and M^t)."
+        },
+        {
+          "reviewer": "Reviewer_1x2r",
+          "claim": "The paper has no discussion of limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no limitations section, although checklist item 1(b) answers 'Yes'. The camera-ready adds Section 5."
+        },
+        {
+          "reviewer": "Reviewer_1x2r",
+          "claim": "In Figure 3 the baseline sits at almost 100% on task 1 while the KB blocks do not.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3(a) and (b): the baseline starts at 1.0, the blocks between about 0.3 and 0.9. The authors explained that the curves compare different model pairs."
+        },
+        {
+          "reviewer": "Reviewer_phLM",
+          "claim": "The method outperforms SOTA methods in average accuracy by over 10%.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: on CIFAR-100, MARK-Task beats ACL by 0.23 points (78.31 vs 78.08 +/- 1.3). On MiniImageNet the gain is 7.4 points (69.43 vs 62.07), 12% relative. The abstract limits the claim to MiniImageNet."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_GtkW"
+        ],
+        "evidence": "GtkW edited on 2021-08-26, the day it wrote 'I'd like to raise my rating to 5' (from 4). phLM replied on 2021-08-25 'keep my rating 6' and edited on 2021-08-31 to add that note. AG6A replied on 2021-08-28 'keep my rating 5' and did not edit. 1x2r neither replied nor edited.",
+        "what_convinced_or_not": "GtkW accepted the answers (GPM on CIFAR-100, training time of 10 vs 28.5 minutes, SupSup and replay baselines) but stayed below threshold because 'the novelty ... is not great enough'; it named no prior method that combines the two parts. AG6A was not convinced: the authors ran SupSup and replay instead of CTN and gave only an argument on task similarity. Their 2021-09-01 promise to add dissimilar-task experiments to the final version was not kept. The weighting ablation and the per-channel mask answer addressed 1x2r, who did not respond."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The meta-review rejects a 5/5/6/7 split and says 'It definitely is a borderline paper'. It praises the components and finds the results 'quite surprising', then rests the reject on the task-similarity assumption that AG6A restated in discussion and 1x2r raised in its limitations field: the paper gives no understanding of 'how similar things needs to be for this to work'. It asks for ablations on when the method breaks and on how representations change. The AC says it skimmed the paper. It does not mention novelty or baselines.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "The method depends on tasks sharing a domain (Section 2), and the paper has no experiment or ablation on when that assumption breaks",
+        "Reviewer_AG6A restated this assumption as its reason to stay at 5 after the rebuttal; the AC adopted it",
+        "Two of four reviewers stayed below threshold (GtkW on novelty, AG6A on the assumption and the missing CTN and dissimilar-task tests)",
+        "The accept side was weak: phLM's 6 names no weakness, and 1x2r's 7 asked the same question and did not join the discussion",
+        "The AC chose revise-and-resubmit for a paper it called borderline but interesting"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        5,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_fktr"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/5/6/5, a 2-2 split within one point. No reviewer departs from the others."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_fktr",
+          "claim": "Baseline numbers are taken from other papers under different training protocols, with no account of hyperparameter selection.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text never says where baseline numbers come from or how they were tuned. Lines 231-232 concede that 'competing methods use complex AlexNet-based architectures' while MARK uses 'our simple convolutional model'. The rebuttal confirms that HAT and ACL, and A-GEM on MiniImageNet, come from the ACL paper, and GPM on MiniImageNet from the GPM paper. The appendix is not in the submitted PDF."
+        },
+        {
+          "reviewer": "Reviewer_fktr",
+          "claim": "A-GEM runs in a single-epoch setting, so it is not comparable (also Reviewer_FTM8).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The submission gives no A-GEM protocol. The rebuttal says A-GEM was rerun for 100 epochs on CIFAR-100 (Avalanche) and taken from ACL's multi-epoch variant on MiniImageNet."
+        },
+        {
+          "reviewer": "Reviewer_fktr",
+          "claim": "SupSup is neither cited nor compared.",
+          "checked_against_paper": "correct",
+          "evidence": "SupSup is absent from the references and Table 1. The camera-ready adds it (77.58 on CIFAR-100, 0.7 points below MARK-Task)."
+        },
+        {
+          "reviewer": "Reviewer_ZFES",
+          "claim": "The claim at line 293 that meta-learning has not been used to update a KB ignores OML [43] and ANML [44].",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 290-294 cite [43, 44] only for 'sequence learning' and then claim novelty. The authors conceded that OML is 'also incrementally updating a KB'; the camera-ready drops the sentence."
+        },
+        {
+          "reviewer": "Reviewer_ZFES",
+          "claim": "Algorithm 2 never initialises S_F and omits the temporary classifiers C^k.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 copies S_F into KB^k before S_F is assigned and trains only KB^k, while lines 179-181 say C^k is trained too. The authors called it a typo."
+        },
+        {
+          "reviewer": "Reviewer_ZFES",
+          "claim": "Figure 3's axis says 'Percentage' but runs from 0 to 1; HAT's name and 'BTW' are wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3 axes run 0.0-1.0 under 'Percentage'. Line 199 says 'Hard Attention Tasks' against ref [7]'s 'hard attention to the task'; 'BTW' appears at lines 217 and 230."
+        },
+        {
+          "reviewer": "Reviewer_ZFES",
+          "claim": "Parameters grow with every task because the task-specific feature extractors are not small (also Reviewer_KoD1).",
+          "checked_against_paper": "correct",
+          "evidence": "MARK-Task trains a new F^t per task (line 205), but lines 233-235 list only 'a small mask-generating function and classifier' as per-task storage. The camera-ready Limitations concede that parameters scale 'linearly with the amount of tasks'."
+        },
+        {
+          "reviewer": "Reviewer_FTM8",
+          "claim": "No ablation with an untrained (random) KB, so it is unclear whether the KB is needed.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2.3 ablates only Baseline, Baseline + ML and Baseline + Mask. The authors ran it in the rebuttal (37.86% on CIFAR-100); the camera-ready main text does not report it."
+        },
+        {
+          "reviewer": "Reviewer_KoD1",
+          "claim": "The masks, not the meta-learned KB, drive accuracy; the meta-learning acts as a regulariser against forgetting.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 5 and lines 263-267: Baseline + ML has low accuracy and little forgetting; Baseline + Mask has high accuracy and high forgetting. Lines 302-304 say the same. The authors agreed."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_fktr"
+        ],
+        "evidence": "fktr edited on 2021-08-10, the day of its reply: 'I have increased my overall score by 1 point given these clarifications' (4 to 5). ZFES, FTM8 and KoD1 posted nothing after the rebuttal and did not edit.",
+        "what_convinced_or_not": "fktr credited the hyperparameter list and the new SupSup and replay baselines but kept 5: 'I still believe the empirical section is not as strong as it could be', because methods use different architectures and SupSup's sparsity was tuned before the architecture swap. The random-KB ablation (37.86%), the gamma-weighting ablation and the OML/ANML concession drew no reviewer response."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The scores split 2-2 (6/5/6/5) and the AC broke the tie toward accept. The meta-review paraphrases Reviewer_ZFES: meta-learning cuts forgetting and masks raise accuracy, the design choices need motivation, and it is unclear 'why the method works'. It adds fktr's request to compare 'all methods on the same setup'. It treats both as improvements, not reasons to reject. It says the rebuttal convinced 'some reviewers to update their scores'; only fktr changed, and it stayed below threshold. It does not mention the task-similarity doubt of FTM8 and KoD1.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two 6s (ZFES, FTM8) for a new combination of meta-learning and masks with strong results on two standard benchmarks",
+        "The AC read the ablation as showing that the parts work 'synergistically'",
+        "The AC treated the open questions (design motivation, why the method works, baselines on different setups) as improvements, not reasons to reject",
+        "The rebuttal added SupSup, replay and GPM baselines and a hyperparameter list; fktr rose from 4 to 5",
+        "The task-similarity doubt of FTM8 and KoD1 was not pressed after the rebuttal, and the AC did not address it"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No experiment on dissimilar task sequences, such as HAT's 8 datasets (AG6A); the AC's demand to find where the method breaks",
+    "Missing CTN, HyperNetworks and AAAI-2021 baselines, and GPM on CIFAR-100 (AG6A, GtkW)",
+    "Novelty too low for a positive score (GtkW)",
+    "Training-time cost of the meta-learning step (GtkW)",
+    "Mismatch between an updated KB and old masks (AG6A)",
+    "ReLU outputs are not true masks; meaning of 'weight updates' and the task-1 baseline in Figure 3 (1x2r)",
+    "Replay during the KB update (GtkW, 1x2r)"
+  ],
+  "issues_only_b": [
+    "Baseline numbers copied from other papers with different architectures and protocols; no parity in hyperparameter search (fktr, FTM8, B's AC)",
+    "Missing SupSup, Progressive Networks and replay baselines (fktr)",
+    "Whether the KB is needed at all: random-KB, end-to-end task-specific and random-initialisation ablations (FTM8, KoD1, ZFES)",
+    "Parameters grow linearly with tasks because F, M and C are task-specific (ZFES, KoD1)",
+    "Masks, not the meta-learned KB, drive accuracy (KoD1)",
+    "Departures from standard meta-learning, Algorithm 2 errors, and OML/ANML undercutting the novelty claim at line 293 (ZFES)",
+    "No multi-task upper bound (KoD1); unclear test-time task ID and online setting (FTM8)"
+  ],
+  "shared_issues": [
+    "Why meta-learning on current-task mini-tasks prevents forgetting, and its dependence on tasks from one domain (A: GtkW, AG6A, 1x2r, AC; B: ZFES, FTM8, KoD1)",
+    "The gamma_k weighting of Eq. 3 favours easy mini-tasks (1x2r; ZFES)",
+    "Too few baselines (GtkW, AG6A; fktr)",
+    "No limitations discussion (1x2r; ZFES)",
+    "Overlap with earlier meta-learning and masking methods for continual learning (GtkW; ZFES, KoD1, fktr)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw nearly the same scores and the same doubts; their area chairs weighed them differently. A scored higher (5/5/6/7, mean 5.75) than B (6/5/6/5, mean 5.5), yet A rejected. Both committees asked why meta-learning on mini-tasks drawn only from the current task stops forgetting, and both suspected the method needs tasks from one domain. The paper confirms the dependence: Section 2 calls the shared domain 'key', and both benchmarks are splits of one dataset. In A, Reviewer_AG6A restated this as its reason to hold at 5, and the AC made it decisive, asking for experiments on when the method breaks; the camera-ready still calls that question 'beyond the scope of this study'. A's accept side was weak: Reviewer_phLM's 6 names no weakness, and Reviewer_1x2r's 7 asked the same 'What would break the KB?' question and then fell silent. In B, Reviewer_FTM8 and Reviewer_KoD1 raised the same doubt but never answered the rebuttal, and the AC did not mention it. B's AC paraphrased Reviewer_ZFES and treated the open questions as improvements, not reasons to reject. B also found a concrete weakness that A missed: the baseline numbers come from other papers with different architectures, which lines 231-232 concede. B accepted anyway. On a borderline paper, AC discretion on the same facts decided both outcomes.",
+  "candidate_reasons": [
+    "AC discretion on borderline split",
+    "Untested core assumption judged decisive",
+    "Concern pressed versus dropped after rebuttal",
+    "Mismatched baseline protocols tolerated",
+    "Thin positive review in rejecting committee",
+    "Meta-review echoes one reviewer"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_AG6A discussion post, 2021-08-28",
+    "Reviewer_1x2r limitations field",
+    "Reviewer_phLM final review",
+    "Committee B meta-review",
+    "Reviewer_ZFES main review",
+    "Reviewer_fktr review and reply, 2021-08-10",
+    "Reviewer_FTM8 and Reviewer_KoD1 main reviews (meta-learning on the current task only)",
+    "paper_submitted Section 2, lines 76-84",
+    "paper_submitted Section 4, lines 196-201 and 229-236, Table 1",
+    "paper_submitted Section 4.2.3 and Figure 5",
+    "camera-ready Section 4.2.1 ('beyond the scope of this study') and Section 5 Limitations"
+  ]
+}

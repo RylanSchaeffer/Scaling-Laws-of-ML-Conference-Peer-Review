@@ -1,0 +1,222 @@
+{
+ "pair_id": "n21-175",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 7, 5],
+   "confidences": [4, 5, 3],
+   "reviews_edited_after_posting": ["Reviewer_e6Cm", "Reviewer_u5gv", "Reviewer_7Fb1"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_u5gv",
+    "direction": "champion",
+    "basis": "principled",
+    "evidence": "The only rating above 5: 7 at confidence 5 after four hours. It is the most detailed review in either committee, and its checks hold against the paper: single-task RES beats prior work, MAttNet [56] and NMTree [29] do both tasks, and Yang et al. (ECCV 2020) is not cited. It replied on 2021-08-24 and 2021-09-01 and raised 6 to 7 on 2021-09-02 for the new ablations and the comparison with Yang et al. It agreed that the method 'builds upon several ideas expressed in prior work' but did 'not strongly share the novelty concerns'. The AC did not follow it."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_7Fb1",
+     "claim": "All pretrained models are pretrained for only 6 epochs, which makes the conclusion not reliable.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 244: 'we only train the model on pretraining dataset for 6 epoches'. Lines 245-246 add that longer schedules give better performance, so the short schedule understates the gain. It does not inflate it. The rebuttal reported +0.4 on RefCOCO val at 10 epochs, and 7Fb1 raised its score."
+    },
+    {
+     "reviewer": "Reviewer_7Fb1",
+     "claim": "Multitask learning for REC and RES is not new; MCN (Luo et al., CVPR 2020) already does it.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 89-98 describe MCN [36] as joint REC and RES. Line 60 calls it 'the only other method capable of this'. Table 1 marks MCN as multi-task."
+    },
+    {
+     "reviewer": "Reviewer_u5gv",
+     "claim": "[29] and [56] also perform both REC and RES, and the paper should say so.",
+     "checked_against_paper": "correct",
+     "evidence": "NMTree [29] and MAttNet [56] have results in both Table 1 (REC) and Table 2 (RES). So the statements at line 60 and lines 271-272 that MCN is the only other such method are false. The camera-ready keeps them."
+    },
+    {
+     "reviewer": "Reviewer_u5gv",
+     "claim": "The single-task RES model already achieves 58.39 (Table 4 left), above the best prior work (54.21).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 (left), RefCOCO+ val, RES loss only: 58.39. Table 2, LTS [22], RefCOCO+ val: 54.21. Most of the RES gain does not come from multitask training."
+    },
+    {
+     "reviewer": "Reviewer_u5gv",
+     "claim": "Joint training helps RES more than REC, where the gain is about 1%.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 (left), RefCOCO+ val: REC 70.02 to 71.13 (+1.11); RES 58.39 to 61.08 (+2.69)."
+    },
+    {
+     "reviewer": "Reviewer_u5gv",
+     "claim": "Without the context encoder the model is comparable to prior work, and the caption-based methods [1, 9] cited at line 282 are missing from Table 3.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 (right): 73.68 without the context encoder. Table 3: DDPN 73.30, ReSC-Large 69.28. Neither [1] nor [9] is in Table 3. The authors agreed."
+    },
+    {
+     "reviewer": "Reviewer_u5gv",
+     "claim": "The paper does not cite Yang, Li and Yu (ECCV 2020), a one-stage method that also uses caption context.",
+     "checked_against_paper": "correct",
+     "evidence": "It is not among the 58 references of the submission. The camera-ready cites it as [50]."
+    },
+    {
+     "reviewer": "Reviewer_u5gv",
+     "claim": "The self-attention graph in the decoder is not ablated.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 182-186 describe an 'attention graph convolution layer' between phrase queries. Table 4 (right) removes only the whole query decoder (49.38)."
+    },
+    {
+     "reviewer": "Reviewer_e6Cm",
+     "claim": "Lines 325-326 say 'Query encoders', but the Table 4 (right) row is 'w/o Query Decoder'.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 325: 'Query encoders are also quite important'. The table row reads '-w/o Query Decoder 49.38'. The camera-ready keeps the slip."
+    },
+    {
+     "reviewer": "Reviewer_e6Cm",
+     "claim": "The one-to-one match between phrase and object makes Hungarian matching unnecessary, so removing it is not a contribution.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 49-51 themselves attribute the Hungarian-free loss to the 'Implicit 1-to-1 correspondence between input referring phrases and resulting outputs'. zbBR and Ljjc in B said the same."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_u5gv", "Reviewer_7Fb1"],
+    "evidence": "u5gv edited on 2021-09-02: 'I still recommend acceptance and raise my score to 7', so from 6. 7Fb1 edited on 2021-09-01: 'The authors' response resolved my concern on training so I raised the score'; it is now 5, so it was 4 or lower. e6Cm edited on 2021-09-01 and ended 'Therefore, I lean towards rejection'. It states no score change, so its direction is unknown. e6Cm and 7Fb1 never posted in the discussion.",
+    "what_convinced_or_not": "u5gv was moved by the loss ablation, the context ablations (77.61 without lingual context against 78.13), the DETR-with-Hungarian baseline (66.86) and the comparison with Yang et al. (78.13 against 69.53; the authors admitted the backbones differ). 7Fb1 accepted the pretraining argument (4.6M region-text pairs; +0.4 at 10 epochs) but kept its novelty objection. e6Cm got the explicit-constraint (CEM) ablation it asked for (-0.6 to -0.8 mIoU) and the loss ablation. Its update does not address the CEM result, follows 7Fb1 on novelty, and calls the losses 'performance tricks'. The authors answered novelty only by restating the design differences from DETR and MCN."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5, 7, 5 (mean 5.67). The decision follows the two 5s. 'Not entirely novel ... especially compared to models like DETR and its variants' paraphrases e6Cm's update ('lacks some novelty comparing with other variants of DETR'). 'Individually explored before ... even though their combination leads to reasonable performance gains' paraphrases 7Fb1 ('a combination of different tricks that were proposed before though it achieves the SOTA performance'). 'The reviewers agreed' includes u5gv, who rated 7 and did 'not strongly share the novelty concerns'. The request for a conceptual and empirical comparison with existing methods is u5gv's, given as revision advice. The AC calls the gains 'reasonable'; e6Cm had called them 'huge'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Limited novelty: a DETR adaptation plus MCN-style multitask training, 'a combination of different tricks' (7Fb1, e6Cm; restated by the AC)",
+    "Two of three ratings at 5 after the rebuttal; the 7 from the most thorough reviewer did not carry",
+    "Hungarian-free training and the focal and Dice losses judged natural or borrowed, not contributions (e6Cm)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 6, 6, 6],
+   "confidences": [5, 3, 3, 3],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "All four ratings are 6, and no review was edited."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_GFR8",
+     "evidence": "Two hours, one paragraph of praise, no weakness, 'Appear to be.' for limitations, and no reply in the discussion. It calls the work of 'great quality' and says it 'pushes the boundary of visual grounding', yet rates 6. It calls the ablations of 'each component' informative, but the paper has no loss or graph-layer ablation, and other B reviewers asked for them."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_zbBR",
+     "claim": "The performance without multitasking should be provided as an ablation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 4 (left) already reports REC-only (70.02) and RES-only (58.39) rows on RefCOCO+ val, discussed at lines 310-319. The authors pointed to it, and zbBR accepted. zbBR stated confidence 5."
+    },
+    {
+     "reviewer": "Reviewer_zbBR",
+     "claim": "The framework is similar to DETR, and MCN [36] already studied multitasking.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 41 says the model is 'inspired by the recent DETR [2]'. Line 195 follows [2] for the segmentation head. Lines 89-98 and line 60 credit MCN [36] with joint REC and RES."
+    },
+    {
+     "reviewer": "Reviewer_aAnS",
+     "claim": "As the paper notes, the model cannot ground one phrase to multiple boxes.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 337-339 give the one-region-per-expression assumption as the paper's limitation."
+    },
+    {
+     "reviewer": "Reviewer_Ljjc",
+     "claim": "Lines 141-142 say 'query generator', and it is unclear whether this is the query encoder.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 142 says 'query generator'; the Figure 1 caption says 'query encoder'. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_Ljjc",
+     "claim": "The combination of losses in Eqs. 3 and 4 is not ablated.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 4 has no loss ablation. The rebuttal added one: without Dice loss RES drops about 6 mIoU, and without L1 loss REC falls to 16-19%."
+    },
+    {
+     "reviewer": "Reviewer_Ljjc",
+     "claim": "The authors did not discuss the social impact of their work.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist item 1(c) answers [No], and the paper has no such discussion."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited. Ljjc (2021-08-25): 'I maintain my original rating.' zbBR (2021-08-26): 'I would remain my initial positive rating and lean towards acceptance.' aAnS (2021-08-26) stated no change. GFR8 did not reply.",
+    "what_convinced_or_not": "The loss ablation answered Ljjc. The pointer to Table 4 and the MDETR comparison answered zbBR. zbBR still called the two changes to DETR 'straightforward adjustments' but acknowledged 'the contribution of applying DETR to REC/RES'. aAnS asked only that the paper discuss the difference from MDETR, and it would 'not hold it against the paper that the absolute numbers are lower than MDETR'. Every B reviewer was already above the threshold, and no score moved."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 6, 6, 6. The meta-review repeats the reviewers' praise ('simple and effective' from GFR8, 'cleverly' from aAnS's 'clever') and calls the support unanimous. It says the reviewers found the experiments sufficient, but zbBR, Ljjc and aAnS asked for more ablations or analysis. It says the rebuttal 'further strengthens their confidence', but no rating or confidence changed. It does not mention zbBR's novelty point or aAnS's one-box limitation.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Simple, effective DETR adaptation with state-of-the-art REC and RES results on several benchmarks (all four reviewers)",
+    "Limited novelty acknowledged but not decisive: 'a new strong baseline' (zbBR); text queries as anchors 'quite novel' (aAnS)",
+    "Four ratings of 6, unchanged after a rebuttal that answered the loss, multitask and MDETR questions"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Flickr30k setup uses the full caption, unlike prior one-stage work; caption-based baselines [1, 9] missing from Table 3 (u5gv)",
+  "No citation of or comparison with Yang, Li and Yu, ECCV 2020 (u5gv)",
+  "False claim that MCN is the only other joint REC/RES method; MAttNet [56] and NMTree [29] do both (u5gv)",
+  "Pretraining for only 6 epochs (7Fb1)",
+  "No test of MCN's explicit consistency constraint inside the model (e6Cm)",
+  "Focal and Dice losses called performance tricks, not task design (e6Cm)",
+  "Small REC gain from joint training; confusing Figure 1 and 'query' terminology (u5gv)"
+ ],
+ "issues_only_b": [
+  "Comparison with MDETR and other decoder designs (zbBR, aAnS)",
+  "One phrase cannot ground to multiple boxes (aAnS)",
+  "Phrase spans must be given; no automatic parsing (aAnS)",
+  "No analysis of text queries used as anchors (aAnS)",
+  "Bias toward common words or gender in grounding (Ljjc)"
+ ],
+ "shared_issues": [
+  "Limited novelty: DETR adapted to grounding, multitask REC/RES already in MCN [36] (7Fb1, e6Cm, u5gv in A; zbBR in B)",
+  "Hungarian-free training follows from one-to-one phrase queries (e6Cm in A; zbBR, Ljjc in B)",
+  "Source of the performance gains not analysed (u5gv, e6Cm in A; zbBR in B)",
+  "No ablation of the loss terms (e6Cm in A; Ljjc in B)",
+  "Attention-graph decoder layer unclear and not ablated (u5gv in A; Ljjc in B)",
+  "Inconsistent component names (e6Cm, u5gv in A; Ljjc in B)",
+  "No societal-impact discussion (u5gv in A; Ljjc in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same facts and weighted them differently. The paper adapts DETR to grounding with phrase queries and trains REC and RES jointly, as MCN [36] did. It beats prior work by large margins, and nobody in either committee found a technical error. In A, Reviewer_7Fb1 and Reviewer_e6Cm called it a combination of known parts and kept 5 after the rebuttal. e6Cm's final reason is adopted from 7Fb1, and it did not address the ablation that answered its own request. In B, Reviewer_zbBR made the same objection ('framework similar to DETR, multitasking studied by MCN [36]') but kept 6 and called the model 'a new strong baseline'. All four B reviewers gave 6. A's most thorough and most confident reviewer, Reviewer_u5gv, raised to 7. A's AC still followed the two 5s and presented limited novelty as the reviewers' shared view. B's support is uniform but thin: three of four B reviewers stated confidence 3, Reviewer_GFR8's 6 rests on one paragraph of praise, and no B score moved. The split is a different novelty bar for a strong empirical paper. In a three-reviewer panel, two borderline rejects decided A.",
+ "candidate_reasons": [
+  "Novelty bar for strong empirical results",
+  "Same DETR-plus-MCN facts weighted oppositely",
+  "Reviewer adopted peer's novelty verdict",
+  "AC sided with majority over expert",
+  "Thin unanimous borderline accepts"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_e6Cm review update (edited 2021-09-01), Committee A",
+  "Reviewer_7Fb1 post-rebuttal paragraph (edited 2021-09-01), Committee A",
+  "Reviewer_u5gv review update (edited 2021-09-02) and comments of 2021-08-24 and 2021-09-01, Committee A",
+  "Committee A meta-review",
+  "Reviewer_zbBR weakness 3 and post-rebuttal comment (2021-08-26), Committee B",
+  "Reviewer_aAnS response (2021-08-26), Committee B",
+  "Reviewer_GFR8 review, Committee B",
+  "Committee B meta-review",
+  "paper_submitted.pdf lines 59-60 and 271-272 against Tables 1-2 (MAttNet [56], NMTree [29])",
+  "paper_submitted.pdf Table 4 (multitask and component ablations) and Table 2 (LTS [22] at 54.21)",
+  "paper_submitted.pdf lines 41-51 and 182-203 (DETR basis, Hungarian-free loss, attention-graph layer, borrowed losses)",
+  "paper_submitted.pdf lines 243-246 (6-epoch pretraining)",
+  "paper.pdf reference [50] and Table 6 (Yang et al. cited; MDETR comparison)"
+ ]
+}

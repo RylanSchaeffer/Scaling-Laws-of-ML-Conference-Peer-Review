@@ -1,0 +1,286 @@
+{
+ "pair_id": "n21-170",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    6,
+    6,
+    7
+   ],
+   "confidences": [
+    5,
+    4,
+    4,
+    4,
+    3,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Dp1A",
+    "Reviewer_tqQw",
+    "Reviewer_8HjK",
+    "Reviewer_Y8xB",
+    "Reviewer_LM6b",
+    "Reviewer_9LNj"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 7, 6, 6, 6, 7 span one point, and every reviewer ended at or above the acceptance threshold."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Dp1A",
+     "claim": "The malware attacks are not in the problem space, contrary to the paper's claim, because EMBER holds only features (Reviewer_9LNj asked the same).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 207-213 say the attacks are crafted on PE files, the binaries were obtained from VirusTotal by SHA-256, and the attacks 'add various bytes to a file'. The manipulation details are in Appendix A.6, which is not in the submitted PDF. The rebuttal mostly restated this, and Dp1A (6 to 7) and 9LNj (5 to 7) then raised their scores."
+    },
+    {
+     "reviewer": "Reviewer_8HjK",
+     "claim": "Two of the three evaluation attacks (credit risk, spam) are not problem-space attacks.",
+     "checked_against_paper": "correct",
+     "evidence": "LowProFool perturbs the tabular features (lines 240-243). The spam attack minimises a LASSO maliciousness score under an l2 constraint on the features (lines 262-266). The Figure 1 caption still calls all three 'problem-space attacks', and the camera-ready keeps that caption."
+    },
+    {
+     "reviewer": "Reviewer_8HjK",
+     "claim": "Figure 1 differences are small except in 1a, where the one highly effective variant (the mask) is essentially Tong et al.'s conserved features.",
+     "checked_against_paper": "correct",
+     "evidence": "In Figures 1a and 1b the data-driven non-uniform variants beat uniform AT by at most about 3 points, and by under 1 point at the largest budgets. Only NU-δ-Mask gains up to about 7 points. Lines 212-218 build that mask from the feature groups that the test attacks were observed to change ('best case expert knowledge'). The authors conceded the similarity, and the camera-ready cites Tong et al. for it."
+    },
+    {
+     "reviewer": "Reviewer_8HjK",
+     "claim": "Figure 1 has no confidence intervals, so the 'Yes' to checklist item 3(c) is misleading.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1 has no error bars. Checklist 3(c) (lines 536-538) answers Yes and points to standard errors in Tables 1, A.2, A.3 and A.4; the appendix tables are not in the submitted PDF."
+    },
+    {
+     "reviewer": "Reviewer_8HjK",
+     "claim": "Discrete features are artificially treated as continuous in the credit-risk and spam use cases.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 236 ('we treat discrete features as continuous'), line 243, and line 258 ('We treat all features as continuous values')."
+    },
+    {
+     "reviewer": "Reviewer_tqQw",
+     "claim": "Uniform and non-uniform PGD are compared at equal ||δ|| only on average, not per sample.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 219-220: ε is chosen so that the 'average distortion budgets ... are approximately equal'. The authors' MDtarget-Combo run, which also caps ||δ|| per sample, shrinks the gain: at training ||δ||=0.3 against uniform PGD ε=0.5, defense success falls from 61.75 to 47.88 percent, against 30.5 for uniform AT."
+    },
+    {
+     "reviewer": "Reviewer_LM6b",
+     "claim": "In the submitted code the adversarial examples are created while training the classifier, not on the trained model.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The claim concerns the supplementary code, which is not available here. The authors replied that generating examples during training is adversarial training itself, and LM6b did not pursue it."
+    },
+    {
+     "reviewer": "Reviewer_Y8xB",
+     "claim": "Standard training already has high defense success rates on malware and credit risk in the appendix.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Tables A.1-A.4 are in the supplementary material, not in the submitted or camera-ready PDF."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_Dp1A",
+     "Reviewer_9LNj",
+     "Reviewer_tqQw",
+     "Reviewer_LM6b",
+     "Reviewer_8HjK"
+    ],
+    "evidence": "Dp1A (edited 2021-08-11): 'I will raise my score from 6 to 7'. 9LNj (2021-08-09, edited the same day): 'I changed my score from 5 to 7'. tqQw (edited 2021-08-19): 'have adjusted my score appropriately'. LM6b (2021-08-25, edited the same day): 'I'll rise my score to 6'. 8HjK (edited 2021-09-06): first raised after rereading Section 4 but stayed below accept, then 'now recommending that the paper is accepted' after the PDF table of 2021-09-06. Y8xB (edited 2021-08-26): 'My questions have been addressed'; no score change is stated. All six reviewers posted in the discussion, 16 reviewer comments in all.",
+    "what_convinced_or_not": "Dp1A and 9LNj were convinced by the statement that the malware examples are real modified PE files, which lines 209-213 already contained. tqQw accepted the average-budget explanation and the uniform-PGD and Combo tables. Y8xB accepted the error bars and the FGSM, Carlini-Wagner, JSMA and DeepFool results. 8HjK was convinced by one PDF-malware table (EvadeML defense success 92.9 versus 87.4 percent for uniform AT), with no error bars and no comparison to the conserved-features defense he had named; the authors said it 'does not reach the performance reported in Fig.4 in [1]'. LM6b gave no reason."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review reuses Reviewer_tqQw's sentences ('The need to consider attacks adjusted to specific features is intuitive and makes sense'; 'The results showing how the attacks end up looking more like benign samples is compelling') and Reviewer_Dp1A's strengths list, then says 'the added new experiments convinced the reviewers to accept the paper'. It does not mention the incremental-novelty or effect-size concerns of 8HjK, LM6b and Y8xB.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All six reviewers ended at 6 or 7 (mean 6.5) after a long discussion.",
+    "Reviewers valued realistic feature constraints, non-image security domains and a malware evaluation on modified binaries.",
+    "Clarifications and new experiments during the discussion (uniform PGD, Combo, FGSM/CW/JSMA/DeepFool, SHIFT, PDF malware with EvadeML) answered each reviewer's main concern."
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    5,
+    5,
+    5
+   ],
+   "confidences": [
+    3,
+    3,
+    5,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_z45J",
+    "Reviewer_kjQY"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 6, 5, 5, 5. Reviewer_QUCv's 6 is the only rating above the threshold, and after the rebuttal QUCv wrote 'I am less excited about the paper now'. No champion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_kjQY",
+     "evidence": "Confidence 5 ('checked the math/other details carefully'), yet the summary says the authors 'proposed non-uniform adversarial perturbation generation algorithms to attack the classifiers', the review calls the defense 'the proposed attack' four times, and it reads the certification Tables 1 and 2 as attack results ('the proposed attack is easy to defend')."
+    },
+    {
+     "reviewer": "Reviewer_txFx",
+     "evidence": "2 hours; four short points (marginal gain, weak technical contribution, a problem-space AT baseline, simple certification); never replied to the rebuttal or to any new result. The marginal-gain point is correct for Figures 1a and 1b."
+    },
+    {
+     "reviewer": "Reviewer_cq1G",
+     "evidence": "Rating 5, but the strengths call the idea novel and effective and the weaknesses are three questions. One asks why defense success rises with the training budget, which is standard adversarial-training behaviour. One reply in the discussion, 17 days after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_txFx",
+     "claim": "In Figures 1(a) and 1(b) the approach improves on uniform AT by only several percent.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1a: the data-driven variants are about 0.1 to 2.7 points above uniform; only the mask variant reaches about 7. Figure 1b: about 0 to 2.6 points. Figure 1 has no error bars."
+    },
+    {
+     "reviewer": "Reviewer_kjQY",
+     "claim": "In Figure 1b the gap between uniform and non-uniform variants is 1-2%, and significance is not shown.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1b gaps are about 0 to 2.6 points with no error bars. The credit-risk test uses 155 adversarial examples (line 242), so one point is under two examples."
+    },
+    {
+     "reviewer": "Reviewer_kjQY",
+     "claim": "The paper proposes an attack, and Tables 1 and 2 show that it is easier to defend than the uniform attack.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 64-75 list a defense (AT with non-uniform perturbations) and certification methods as the contributions. Tables 1 and 2 report certification margins and certified fractions of adversarially trained models, not attack success."
+    },
+    {
+     "reviewer": "Reviewer_z45J",
+     "claim": "The paper conflates feature dependencies with correlations; Ω cannot encode constraints such as 'feature 1 equals twice feature 2'.",
+     "checked_against_paper": "correct",
+     "evidence": "The introduction promises 'semantically meaningful feature dependencies' (lines 37-40, 63-64), but Ω is a covariance factor (lines 129-138) or a diagonal weight matrix (lines 153-165). The authors conceded that the method preserves dependencies only 'up to 2nd moment'."
+    },
+    {
+     "reviewer": "Reviewer_z45J",
+     "claim": "Definition 2.1 and Theorem 2.1 treat a Gaussian density as P(X = x).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 144-145: 'an AE is γ-consistent if P(X = x | y) ≥ γ, where P is a conditional Gaussian distribution'."
+    },
+    {
+     "reviewer": "Reviewer_z45J",
+     "claim": "The malware attacks used in testing are norm-bounded (discussion, 2021-08-30 and 2021-08-31).",
+     "checked_against_paper": "incorrect",
+     "evidence": "The test attacks add bytes to real PE files (lines 207-213); the ε that lines 219-220 equalise is the adversarial-training budget. z45J then revised the score."
+    },
+    {
+     "reviewer": "Reviewer_QUCv",
+     "claim": "The paper presents Pearson and Shapley weights as expert knowledge of immutable features, which disconnects the motivation from the method.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 188-189: 'To model the expert knowledge with diagonal Ω, we use Pearson's correlation coefficient, Shapley values, and masking to allow perturbation only in mutable features.' Only the mask encodes immutability; the authors promised to rephrase."
+    },
+    {
+     "reviewer": "Reviewer_QUCv",
+     "claim": "Liu et al. [25] is closely related but is not compared in Section 4.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 84-91 call [25] 'a closely related work'; Section 4 compares only uniform and non-uniform versions of [9] and [41]. The rebuttal comparison gave a geometric-mean ε of 0.0601 (uniform) versus 0.0617 (NU-δ-MDt)."
+    },
+    {
+     "reviewer": "Reviewer_cq1G",
+     "claim": "Non-uniform defenses may have been tested only against non-uniform perturbations, and uniform defenses only against uniform ones.",
+     "checked_against_paper": "incorrect",
+     "evidence": "All defenses face the same external attacks: the problem-space malware attacks (lines 221-222), LowProFool (lines 245-246) and the interpretation-based spam attack (lines 270-271)."
+    },
+    {
+     "reviewer": "Reviewer_txFx",
+     "claim": "The certification is a simple generalization of existing studies.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1 'can be viewed as an extension of [9]' (lines 296-297); Section 4.2 adapts 'Theorem 2 from [41]' (line 362). Reviewer_8HjK in A first said the same, then wrote that he had 'undervalued its significance'."
+    },
+    {
+     "reviewer": "Reviewer_QUCv",
+     "claim": "In Table A.1 the adversarially trained models do worse than standard training on the C2 padding attack.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Table A.1 is in the supplementary material, not in the submitted or camera-ready PDF. The authors did not dispute it and attributed it to model selection on average defense success."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_kjQY",
+     "Reviewer_z45J"
+    ],
+    "evidence": "kjQY (2021-08-25, review edited 2021-08-26): 'I am improving my rating by 1 point', ending at 5. z45J wrote 'my rating remains unchanged' (2021-08-30), then, after the authors explained that the malware test attacks are not norm-bounded, 'I will reconsider my score'; the review edited 2021-08-31 says 'Score revised following discussion period' and ends at 5, so the revision was most likely up from 4. QUCv (not edited) kept 6 but wrote 'I am less excited about the paper now'. cq1G and txFx did not edit. The first reviewer reply came 16 days after the rebuttal; B had 7 reviewer comments from four reviewers.",
+    "what_convinced_or_not": "The same uniform-PGD and FGSM/Carlini-Wagner/JSMA/DeepFool tables that the authors posted in A moved kjQY by one point and left cq1G unmoved ('when ε is relatively small, the improvement is marginal'). The same Liu et al. [25] comparison that A's LM6b received before raising to 6 made QUCv less positive. Novelty and correlation versus dependency are judgments that a rebuttal cannot change, and no B reviewer named an experiment that would change its score."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three sentences: 'the reviewers raised several concerns on the novelty, the marginal improvement over baselines, and some experimental settings.' It names no reviewer or setting, and it does not mention the new experiments, the two revised scores or QUCv's 6. Four of five final ratings are 5.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Four of five reviewers at 5 (mean 5.2) and no champion.",
+    "Limited novelty: a small change to PGD adversarial training and to two certification methods.",
+    "Marginal gains over uniform adversarial training in Figure 1 and in the [25] certification comparison.",
+    "Remaining experimental concerns: one architecture per task, unclear normalisation, no significance tests."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether the malware adversarial examples are built from real PE files (Dp1A, 9LNj).",
+  "Credit-risk and spam attacks are feature-space, and the one malware attack only adds content; asks for stronger problem-space attacks such as EvadeML on PDF malware (8HjK).",
+  "Missing realizable-attack and malware prior work; the mask variant matches Tong et al.'s conserved features (8HjK, tqQw, LM6b).",
+  "Budgets matched only on average, not per sample (tqQw); discrete features treated as continuous (8HjK).",
+  "Clean-accuracy cost of AT (Dp1A), adaptive attacks and spoofed certificates (LM6b), a whitening baseline (9LNj), a feature-weighted Madry baseline (Y8xB)."
+ ],
+ "issues_only_b": [
+  "Correlation is not dependency; second-moment Gaussian assumption; the method can amount to a change of basis (z45J).",
+  "The immutable-feature motivation does not match the data-driven choices of Ω (QUCv).",
+  "Errors and redundancy in Theorem 2.1 and an incomplete proof of Theorem 4.2 (z45J).",
+  "One network architecture, unclear normalisation, missing PGD parameters (kjQY); training cost of non-uniform AT (QUCv, cq1G).",
+  "AT models do worse than standard training on the C2 padding attack (QUCv); problem-space adversarial examples as an AT baseline (txFx)."
+ ],
+ "shared_issues": [
+  "Incremental novelty and technical contribution (A: 8HjK, LM6b; B: z45J, txFx).",
+  "Small Figure 1 gains without significance tests (A: 8HjK, Y8xB; B: kjQY, txFx, cq1G).",
+  "Certification as a routine extension of Wong and Kolter and of Cohen et al. (A: 8HjK, later withdrawn; B: txFx).",
+  "Comparison with Liu et al. 2019 [25] (A: LM6b; B: QUCv).",
+  "Fair comparison and testing against uniform attacks (A: tqQw, 9LNj; B: cq1G).",
+  "Role of domain knowledge in choosing Ω (A: Y8xB, 8HjK; B: QUCv)."
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same facts differently. Both judged the method a small change to PGD adversarial training and to two certification methods, and both judged the Figure 1 gains small. The figure confirms it: in malware and credit risk the data-driven variants beat uniform training by at most about 3 points, without error bars, and the one large malware gain uses a mask built from the features that the test attacks change (lines 212-218). Committee A, a security-heavy panel of six, valued the evaluation on modified malware binaries. Its main doubts were factual and the rebuttal settled them (the binaries were real, as lines 209-213 already said; budgets were matched on average). Reviewer_8HjK also named one deciding experiment, PDF malware against EvadeML, and the authors ran it (92.9 versus 87.4 percent). All six ended at 6 or 7, and the AC followed. Committee B weighed novelty and effect size, which a rebuttal cannot change. The same uniform-PGD, FGSM/CW/JSMA/DeepFool and Liu et al. [25] results posted in A left B's reviewers at 5 and made Reviewer_QUCv 'less excited', and the AC's three-sentence meta-review follows the scores. B also had three weak reviews: Reviewer_kjQY read the defense as an attack at confidence 5, and Reviewer_txFx and Reviewer_cq1G barely engaged. On the malware and credit results, B's reading of the effect size is the better supported one; A's accept rests on clarifications and on experiments run during the discussion.",
+ "candidate_reasons": [
+  "security-specialist versus generalist panel",
+  "clarifiable versus judgment-based concerns",
+  "same rebuttal evidence weighted differently",
+  "targeted experiment converted key reviewer",
+  "thin reviews in rejecting panel"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_8HjK final review and discussion 2021-09-01 to 2021-09-06 (PDF malware request and EvadeML table)",
+  "Reviewer_Dp1A and Reviewer_9LNj post-rebuttal edits (6 to 7, 5 to 7)",
+  "Reviewer_tqQw exchange of 2021-08-10 to 2021-08-12 and the MDtarget-Combo table",
+  "Reviewer_QUCv comment of 2021-08-26 on the [25] comparison",
+  "Reviewer_kjQY review ('the proposed attack')",
+  "Committee A meta-review (sentences from Reviewer_tqQw and Reviewer_Dp1A)",
+  "Committee B meta-review",
+  "paper_submitted.pdf Figure 1 (page 5); lines 188-189, 207-220, 236-243, 262-266"
+ ]
+}

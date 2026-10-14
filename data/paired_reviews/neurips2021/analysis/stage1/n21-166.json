@@ -1,0 +1,238 @@
+{
+ "pair_id": "n21-166",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    5,
+    5,
+    4
+   ],
+   "confidences": [
+    3,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_NZK6",
+    "Reviewer_ViC9",
+    "Reviewer_s9t9"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6/5/5/4 sit within one point of the 5.0 mean. The only rating above threshold, Reviewer_NZK6's 6, dates from before the rebuttal, and NZK6 never posted in the discussion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_LW3y",
+     "evidence": "A 3-hour review with '-' for limitations. It said the bound 'depends entirely on finding the optimal trajectory' and that Section 4 decomposes the reward into per-step rewards. On 2021-08-11 it conceded 'a policy, not a trajectory' and 'Section 3.2 (not 4, apologies)'. Its core concern, the strength of Assumption 3.4, is valid, and it pursued it through two rounds of discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_ViC9",
+     "claim": "The two parts of Assumption 3.4 contradict each other.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted lines 185-187 require phi_h(s,a) orthogonal to phi_h'(s',a') for h != h', and, for every unit v and every h, a policy with E[v^T phi_h(s_h,a_h)] >= omega. The second part forces each step's features to span R^d; two orthogonal subspaces cannot both be R^d, so for H >= 2 no feature map satisfies the assumption. The authors called it a 'typo'; the camera-ready sums the condition over h. Read literally, the corrected version still fails for the nonnegative tabular indicator features that the rebuttal cited (any v with only negative entries gives a negative sum). No reviewer noticed this."
+    },
+    {
+     "reviewer": "Reviewer_ViC9",
+     "claim": "The orthogonality requirement forces d >= SA(H-1), so there is no dimensionality reduction over the direct parameterisation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The orthogonality in Assumption 3.4 is only between different steps (h != h'), so one dimension per step (d >= H) satisfies it, as the authors replied. The request for a natural non-tabular feature map was never answered."
+    },
+    {
+     "reviewer": "Reviewer_ViC9",
+     "claim": "With sum-decomposable features the logistic link is monotone, so maximising the linear score gives an efficient sqrt(N) algorithm via a variant of Efroni et al.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The value is E_tau[mu(w^T phi(tau))] with the expectation outside mu (submitted line 107). Under stochastic transitions its maximiser differs from that of E_tau[w^T phi(tau)]; line 111 notes the optimal policy may be non-Markovian. The authors said so briefly; ViC9 did not reply but kept 5 on other grounds."
+    },
+    {
+     "reviewer": "Reviewer_s9t9",
+     "claim": "Bounded w* and phi (Assumption 2.2) mean the trajectory label can never be deterministic.",
+     "checked_against_paper": "correct",
+     "evidence": "|w*^T phi(tau)| <= B, so P(y=1|tau) lies in [mu(-B), mu(B)]. Near-deterministic labels need a large B, and kappa, which enters both regret bounds, grows like exp(B) (line 122). The authors conceded this. It was s9t9's stated reason to stay at 5."
+    },
+    {
+     "reviewer": "Reviewer_NZK6",
+     "claim": "The tractable algorithm's computation grows polynomially with N, and the abstract's 'computationally efficient' is misleading because efficiency needs extra assumptions.",
+     "checked_against_paper": "correct",
+     "evidence": "Proposition 3.7 gives poly(|S|,|A|,H,d,B,||w_t||,1/epsilon,log(N/delta)) time, and lines 235-237 set epsilon = N^(-1/3). Abstract line 10 claims a 'statistically and computationally efficient algorithm'; efficiency holds only under Assumptions 3.3-3.4 and at N^(2/3) regret. No explicit complexity bound appears; the rebuttal promised only 'small polynomials'."
+    },
+    {
+     "reviewer": "Reviewer_LW3y",
+     "claim": "The experiment does not run the proposed algorithms; it only shows REINFORCE works (also Reviewer_NZK6, Reviewer_ViC9, Reviewer_s9t9).",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 trains a neural policy with REINFORCE on a 10x15 grid; Algorithms 1-3 are never run. The camera-ready moves the experiment to the appendix."
+    },
+    {
+     "reviewer": "Reviewer_LW3y",
+     "claim": "The tractable route rests on a per-step surrogate reward (r^v_h), which only the extra assumptions, especially 3.4, make available.",
+     "checked_against_paper": "correct",
+     "evidence": "As a surrogate, yes: Eq. 13 defines r^v_h(s,a) = v^T phi_h(s,a), a per-step reward used by EULER in Algorithm 2. The authors' reply 'This is wrong. We cannot stress enough that there is never a per step reward in our setting' ignored this; LW3y then pointed to r^v_h explicitly. LW3y's first wording ('Section 4', 'optimal trajectory') was wrong and conceded."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses 2021-08-10, follow-ups 2021-08-23. Reviewer_NZK6's last edit (2021-07-18) predates the rebuttal, and NZK6 never posted again. Reviewer_ViC9 edited on 2021-08-29 to add 'I decided to leave my score unchanged'. Reviewer_s9t9 edited on 2021-08-28 with a post-discussion note: 'I remain inclined towards rejection'. Reviewer_LW3y replied on 2021-08-11 and 2021-08-12 and never edited its 4.",
+    "what_convinced_or_not": "Nothing moved a score. The authors conceded a 'typo' in Assumption 3.4 and restated it as a sum over steps, said d >= H suffices, sketched an adaptive stopping rule for unknown omega, and argued that the logistic map keeps the problem non-Markovian. ViC9 still found 'the assumptions and the resulting bounds a bit too weak'. s9t9 judged the 0/1 non-deterministic label 'motivated by the analysis' rather than the problem. The LW3y exchange turned combative and ended with the authors admitting they 'aren't sure of the direct practical implications of the additional assumptions'. The complexity of Algorithm 2 was never stated."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Mean 5.0, three of four below threshold, no post-rebuttal movement. The meta-review lists unnatural assumptions (kappa, decomposability), a formulation 'unmotivated (beyond being required in the analysis)' with 'the nature of the reward' unexplained, an intractable Algorithm 1, unclear complexity and a 'quite bad' N-dependence for Algorithm 2, and an unrelated experiment. These items mirror ViC9's and s9t9's post-rebuttal notes. It concludes that a revision 'would require another round of review'. Listing kappa as unnatural is weak: it is the standard logistic-bandit constant, as the authors said.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Tractability assumptions (3.3-3.4) judged unnatural and unjustified; the submitted Assumption 3.4 was self-contradictory, and the authors could not name practical cases where it holds",
+    "Stochastic 0/1 logistic label seen as chosen for the analysis, not the problem (Reviewer_s9t9, echoed by the AC)",
+    "Algorithm 1 intractable; Algorithm 2's complexity unstated and its regret only N^(2/3)",
+    "Experiment runs REINFORCE, not the paper's algorithms",
+    "No score moved after the rebuttal, and the AC judged the needed changes too large for a camera-ready"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    5,
+    6,
+    7,
+    4
+   ],
+   "confidences": [
+    4,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_NR8J"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_jHzB",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "jHzB's 7 (confidence 3, 3 hours) is the only accept-level rating in the eight reviews across both committees. Its own cons list three objections: success could be folded into the state, the logistic noise does not fit the motivation, and Section 3.1 is impractical while Section 3.2 'is the same as the setting considered by Efroni et al.'. That last claim is wrong, and if right it would erase the tractable result's novelty. jHzB never replied to the rebuttal. The AC counted it as one of 'the two other reviewers' who found the extensions worthwhile, which made the 2-2 split the AC broke toward accept."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_NUdX",
+     "evidence": "A 4 at confidence 4 resting on three generic bullets: related work 'can be strengthened', presentation needs improvement, technical novelty should be highlighted. It names no missing reference, no specific assumption and no specific result. Its one technical point, whether 'treating each episode as a timestep' gives a similar bound, is vague. Its reply of 2021-08-23 restates that the novelty is unexplained."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_jHzB",
+     "claim": "With sum-decomposable features, the setting of Section 3.2 is the same as that of Efroni et al.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Efroni et al. observe a noisy sum of Markovian per-step rewards (submitted lines 48-53). Here the label is Bernoulli(mu(sum_h w^T phi_h)) and the value takes the expectation outside mu (line 107), so under stochastic transitions the optimal policy can be history-dependent. The camera-ready adds a sentence saying so after Assumption 3.3."
+    },
+    {
+     "reviewer": "Reviewer_RHC6",
+     "claim": "Sum-decomposability constrains the rewards back to being Markovian, and explorability mostly demands d >= HSA, so the case is no more general than Efroni et al.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The Markovian claim fails for the reason above. On dimension: as submitted, Assumption 3.4 cannot hold for any d when H >= 2; after the authors' correction, one dimension per step (d >= H) can satisfy it. The authors gave B the d >= H answer without saying the submitted assumption was wrong."
+    },
+    {
+     "reviewer": "Reviewer_RHC6",
+     "claim": "The tractable algorithm's T^(2/3) rate is not optimal and is worse than the rate in Efroni et al.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3.6 gives N^(2/3) regret, against sqrt(N) for Algorithm 1 and for Efroni et al. The authors argued the settings are not comparable."
+    },
+    {
+     "reviewer": "Reviewer_NR8J",
+     "claim": "In the tabular case a policy maximising logistic(w^T phi(tau)) also maximises w^T phi(tau), so the logistic map does not change the optimal policy.",
+     "checked_against_paper": "incorrect",
+     "evidence": "True only for deterministic dynamics. With stochastic transitions the objective is E[mu(w^T phi(tau))], whose maximiser differs from that of E[w^T phi(tau)]. The authors said so on 2021-08-25; NR8J accepted it and raised to 6."
+    },
+    {
+     "reviewer": "Reviewer_NR8J",
+     "claim": "The experiment tests REINFORCE, not the proposed algorithm.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 runs only REINFORCE with a neural policy on a grid world."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_NR8J"
+    ],
+    "evidence": "NR8J's update (edited 2021-09-02): 'I decided to raise my score from 5 to 6', after its follow-up of 2021-08-25 and its reply of 2021-09-02 ('All of my questions are addressed well'). Reviewer_RHC6 wrote on 2021-09-01 that the replies made it 'feel more positive' but never edited its 5. Reviewer_NUdX replied on 2021-08-23: 'I will keep my score unchanged'. Reviewer_jHzB never replied.",
+    "what_convinced_or_not": "NR8J was convinced by the correct argument that, under stochastic transitions, the logistic map changes the optimal policy, plus the adaptive-stopping sketch for unknown omega. RHC6 was partly convinced on novelty over Efroni et al. but still asked for motivated assumptions, a proof sketch that shows the technical novelty, and a non-Markovian example. NUdX was not convinced: 'Providing a proof sketch is different from highlighting the technical novelty'. B was never told that Assumption 3.4 as submitted was wrong."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Mean 5.5 with a 2-2 split. The meta-review notes that two reviewers find the contribution incremental and two find it worthwhile, and that all reviewers found the technical contribution over Efroni et al. and the assumptions insufficiently explained. It then recommends accept 'after having a brief look at it myself' and defers those fixes to the final version. It does not weigh that the 7 comes from a reviewer who never engaged and whose own cons contradict it.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "A 2-2 split created by Reviewer_jHzB's unengaged 7 and Reviewer_NR8J's post-rebuttal rise to 6",
+    "Rebuttal correctly showed that the logistic map makes the problem non-Markovian under stochastic transitions, separating it from Efroni et al. (converted NR8J, softened RHC6)",
+    "AC broke the tie toward accept after a brief look and treated the unexplained assumptions and unclear novelty as camera-ready fixes",
+    "New once-per-episode setting with the first regret bound judged worthwhile by two reviewers"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Assumption 3.4 as submitted is self-contradictory (Reviewer_ViC9); the authors conceded a 'typo' only in A",
+  "The bounded logistic label can never be deterministic, and near-deterministic labels inflate kappa (Reviewer_s9t9)",
+  "Computational complexity of Algorithm 2 hidden in O-notation and growing with N (Reviewer_ViC9, Reviewer_NZK6)",
+  "The abstract's 'computationally efficient' claim needs Assumptions 3.3-3.4 (Reviewer_NZK6)",
+  "Why the logistic link rather than a general GLM, and whether kappa is new (Reviewer_NZK6, Reviewer_ViC9)",
+  "Missing citations: Abbasi-Yadkori et al. for Lemma C.1 (Reviewer_NZK6) and Papini et al. 2019 (Reviewer_s9t9)",
+  "Step-dependent transitions and an unknown initial distribution (Reviewer_s9t9)"
+ ],
+ "issues_only_b": [
+  "Contribution an incremental adaptation of logistic bandits plus UCBVI (Reviewer_RHC6, Reviewer_NUdX)",
+  "Proof sketch does not show the technical novelty (Reviewer_RHC6, Reviewer_NUdX)",
+  "Success could be folded into the state, keeping the reward Markov (Reviewer_jHzB)",
+  "L2 rather than entropy regularisation in Eq. 3 (Reviewer_RHC6)",
+  "Whether an existing algorithm that treats each episode as one time step gives a similar bound (Reviewer_NUdX)"
+ ],
+ "shared_issues": [
+  "Assumption 3.4 restrictive and said to force a near-tabular dimension (A: Reviewer_ViC9, d >= SA(H-1); B: Reviewer_RHC6, d >= HSA); both dimension claims are wrong",
+  "Algorithm 1 computationally intractable (A: all four reviewers; B: Reviewer_RHC6, Reviewer_jHzB)",
+  "N^(2/3) regret of the tractable algorithm (A: Reviewer_ViC9 and the AC; B: Reviewer_RHC6)",
+  "omega must be known (A: Reviewer_NZK6, Reviewer_ViC9; B: Reviewer_RHC6, Reviewer_NR8J); both got the same adaptive-stopping sketch",
+  "Experiment runs REINFORCE, not the proposed algorithms (A: all four reviewers; B: Reviewer_NR8J)",
+  "Practical motivation of the stochastic logistic trajectory label (A: Reviewer_NZK6, Reviewer_s9t9; B: Reviewer_jHzB); both got the robot-dance example",
+  "Whether sum-decomposable features reduce the problem to Markovian rewards and Efroni et al. (A: Reviewer_ViC9; B: Reviewer_RHC6, Reviewer_jHzB, Reviewer_NR8J)",
+  "Why not use the tabular (direct) parameterisation (A: Reviewer_ViC9; B: Reviewer_NR8J)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees saw the same objections and weighted them differently. Reviewers in both found the tractability assumptions (3.3-3.4) strong and unmotivated, Algorithm 1 intractable, the tractable rate only N^(2/3), and the REINFORCE experiment beside the point. In A (6/5/5/4) no score moved after the rebuttal: Reviewer_ViC9 still found 'the assumptions and the resulting bounds a bit too weak', Reviewer_s9t9 judged the stochastic 0/1 label 'motivated by the analysis', and the authors admitted to Reviewer_LW3y that they 'aren't sure of the direct practical implications' of the assumptions. A's AC listed these concerns and said a revision 'would require another round of review'. B split 2-2 (5/6/7/4) for two reasons. Reviewer_jHzB gave the only accept-level score in the eight reviews, a 7 that its own cons contradict (it calls Section 3.2 'the same as the setting considered by Efroni et al.', which is wrong), and never joined the discussion. Reviewer_NR8J rose from 5 to 6 after the authors correctly showed that, under stochastic transitions, the logistic map changes the optimal policy. B's AC broke the tie toward accept 'after having a brief look' and moved to the camera-ready the same deficits (unexplained assumptions, unclear novelty over Efroni et al.) that A's AC found disqualifying. A also had sharper scrutiny: ViC9 showed that Assumption 3.4 as submitted contradicts itself, which the authors conceded as a 'typo'. The paper confirms it; for H >= 2 no feature map satisfies the submitted version. B never learned of it, and the authors' d >= H answer to B holds only for the corrected version.",
+ "candidate_reasons": [
+  "unengaged champion created split",
+  "AC tie-break after brief look",
+  "rebuttal clarification converted one reviewer",
+  "camera-ready fix versus re-review",
+  "assumption error caught by one committee",
+  "strong assumptions weighted differently"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_ViC9 review and final note (Committee A)",
+  "Authors' reply to Reviewer_ViC9, 2021-08-10 (Assumption 3.4 'typo')",
+  "Reviewer_s9t9 review, Post Discussion note",
+  "Reviewer_LW3y replies of 2021-08-11 and 2021-08-12; authors' replies of 2021-08-12 and 2021-08-23",
+  "Committee A meta-review",
+  "Reviewer_jHzB review (Committee B)",
+  "Reviewer_NR8J follow-up of 2021-08-25, authors' clarification, NR8J update and reply of 2021-09-02",
+  "Reviewer_RHC6 review and reply of 2021-09-01",
+  "Reviewer_NUdX review and reply of 2021-08-23",
+  "Committee B meta-review",
+  "paper_submitted Assumption 3.4, lines 185-187",
+  "paper_submitted lines 107, 111, 122 and Eq. 13",
+  "paper_submitted Proposition 3.7, lines 235-237, and abstract line 10",
+  "paper_submitted Section 4 (REINFORCE experiment)",
+  "paper.pdf (camera-ready) Assumption 3.4 and the sentence after Assumption 3.3"
+ ]
+}

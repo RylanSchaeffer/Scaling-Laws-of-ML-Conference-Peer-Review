@@ -1,0 +1,198 @@
+{
+  "pair_id": "n21-173",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 5, 5],
+      "confidences": [3, 3, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_wBw2",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "The only 7 against two 5s, at confidence 3. It rests on the TD half alone: 'I briefly checked the proofs of the TD part', and for Q-learning 'I can't comment on this'. It names concrete strengths (equivalence classes, removal of the assumption that e is outside the feature span, Lemma 1) and asks about three appendix proof steps. It never replied to the rebuttal, and the AC did not cite it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Vg8w",
+          "claim": "The Q-learning algorithm needs samples starting from every state-action pair, so a simulator is required.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 (after line 249) loops over all (s, a) in S x A and draws a J-step rollout from each; lines 247-248 call it synchronous Q-learning. The authors conceded the point."
+        },
+        {
+          "reviewer": "Reviewer_Vg8w",
+          "claim": "Because of synchronous sampling, the Q-learning result measures only computational efficiency, not sample efficiency.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 2 counts samples drawn from the generative model (J|S||A| per iteration). Line 282 compares it with the sample complexity of discounted synchronous Q-learning [17, 43], the standard generative-model setting."
+        },
+        {
+          "reviewer": "Reviewer_Vg8w",
+          "claim": "The two parts use completely different parametrizations, proof techniques and sampling schemes.",
+          "checked_against_paper": "correct",
+          "evidence": "TD(λ) uses linear features, one Markovian trajectory and a quadratic Lyapunov function on the subspace E (lines 150-152, 198). Q-learning is tabular, synchronous, and uses the Moreau-envelope Lyapunov function of [17] with an infimal convolution (lines 65-69, 270-276). The only shared idea is to work on equivalence classes."
+        },
+        {
+          "reviewer": "Reviewer_2V8c",
+          "claim": "The paper calls Assumption 3 not restrictive because of the aperiodicity transformation, without explaining why.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 268-269 give one sentence and no argument. The same sentence states J ≤ |S|, which 2V8c also asked about. The rebuttal supplied the argument through Puterman Theorem 8.5.2, and the camera-ready expands it."
+        },
+        {
+          "reviewer": "Reviewer_2V8c",
+          "claim": "Apart from handling non-uniqueness, the Q-learning analysis adds little technique to Chen et al. [17].",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 65-69: the new Lyapunov function applies an infimal convolution with an indicator function to the generalized Moreau envelope of [17]. That step is the non-uniqueness handling."
+        },
+        {
+          "reviewer": "Reviewer_2V8c",
+          "claim": "The TD(λ) analysis centres on positive definiteness of Φ^T D(I−P)Φ and is otherwise routine.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemma 2 (lines 204-206) is that property on the subspace, and lines 183-184 say the key ideas are 'inspired by [14]' (Srikant and Ying). The new element is the subspace E and Lemma 1."
+        },
+        {
+          "reviewer": "Reviewer_wBw2",
+          "claim": "Appendix steps at lines 453, 508 and 510 need justification.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in paper_submitted.pdf (12 pages) or paper.pdf (13 pages). The authors answered with Lemma 2.3 of Chen et al. 2019 and a two-way derivation for line 453."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting, and no A reviewer replied to the three author responses of 2021-08-11. The final ratings 7, 5, 5 are the initial ratings.",
+        "what_convinced_or_not": "Nobody engaged, so the record shows no reaction. The rebuttal answered Assumption 3 with Puterman Theorem 8.5.2 and the aperiodicity transformation, conceded the synchronous limitation with a sketch of an asynchronous scheme, explained the novelty over [17], and gave wBw2 the missing proof steps. It did not answer Vg8w's point that the Q-learning half does not belong with the TD half. That point became the AC's first reason."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The decision matches the two 5s. 'Reviewers believe there is a clear disconnection of the two parts' is Vg8w's point alone; 2V8c only noted 'two separate results'. The concern about 'the assumptions and technical contribution of the second part' matches 2V8c and Vg8w before the rebuttal, and the meta-review does not mention the rebuttal. 'The first part alone may not be sufficient for NeurIPS' is the AC's own judgement. No reviewer wrote it, and wBw2 gave 7 on the TD half.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "The TD and Q-learning halves are judged disconnected (Vg8w, adopted by the AC)",
+        "The Q-learning half is judged weak: synchronous generative-model sampling, thin justification of Assumption 3, little technique beyond [17] (Vg8w, 2V8c)",
+        "The AC's own view that the TD half alone is not enough for NeurIPS",
+        "Mean 5.67 with two 5s, unchanged because no reviewer engaged with the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 6, 6],
+      "confidences": [4, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_qoyS", "Reviewer_ZKyN"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7, 6, 6, 6 lie within one point. Before the rebuttal they were 6, 5, 6, 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bLoK",
+          "evidence": "Two hours. The summary and the main strength restate the abstract, including 'both constant and diminishing step sizes', which the submitted Q-learning result does not have. The requests (comparison with Zhang et al. 2021, tightness, experiments) are generic. After the rebuttal it wrote only that it would keep 6."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qoyS",
+          "claim": "Theorem 2 depends on 1/(1−γ) to the fifth power, worse than the fourth power for discounted Q-learning in Li et al. 2021.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 simplifies to O(|S||A|J^3/((1−γ)^5 ε^2)), and line 282 calls this similar to discounted Q-learning. The authors argued that γ here is a span-contraction factor, not a horizon."
+        },
+        {
+          "reviewer": "Reviewer_qoyS",
+          "claim": "The Q-learning analysis covers only a decaying step size, unlike TD(λ).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 2 uses only η_t = 4/((1−γ)(t+K)), and line 58 says 'under diminishing step-sizes', although the abstract (lines 4-7) claims both step sizes for both algorithms. The camera-ready adds a constant step-size bound."
+        },
+        {
+          "reviewer": "Reviewer_ZKyN",
+          "claim": "The Q-learning algorithm needs a generative model to simulate J steps from an arbitrary (s, a).",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 loops over all (s, a) and samples a J-step rollout from each. The authors conceded it."
+        },
+        {
+          "reviewer": "Reviewer_ZKyN",
+          "claim": "The TD proof technique and results are similar to Bhandari et al. 2018.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 183-184 say the key ideas are inspired by [14] (Srikant and Ying), a drift template from the same line of work, and the rates match the discounted results. The new elements are the subspace E and Lemma 1 and, as the authors noted, no projection onto a ball."
+        },
+        {
+          "reviewer": "Reviewer_1neJ",
+          "claim": "Line 81 should read LSPE(λ), not LSTD(λ).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 79-81 discuss the LSPE(λ) result of Yu and Bertsekas and then switch to LSTD(λ). The authors agreed, and the camera-ready fixes it."
+        },
+        {
+          "reviewer": "Reviewer_bLoK",
+          "claim": "The paper gives finite-sample guarantees with both constant and diminishing step sizes for both algorithms.",
+          "checked_against_paper": "incorrect",
+          "evidence": "True for TD(λ) (Theorem 1 parts a and b) but not for Q-learning: Theorem 2 has only a decaying step size (line 58). bLoK repeated the abstract."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_qoyS", "Reviewer_ZKyN"],
+        "evidence": "qoyS edited its review on 2021-08-17 and wrote 'I will raise my score from 6 to 7'. ZKyN edited on 2021-08-24 and wrote 'I would raise my score from 5 to 6'. bLoK replied on 2021-08-27 that it would keep 6. 1neJ neither edited nor replied.",
+        "what_convinced_or_not": "qoyS accepted that 1/(1−γ) here is a span-contraction factor, not an effective horizon, and credited the paper as the first to handle non-unique limit points. The authors also promised a constant step-size Q-learning bound and experiments; the camera-ready has both. ZKyN gave no reason beyond 'addressed all my concerns'. It had received the same synchronous-setting paragraph that A's Vg8w received, word for word, plus the argument that the TD analysis, unlike Bhandari et al., needs no projection and allows non-unique fixed points."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: after the response and discussion 'the paper gathers enough support from the reviewers'. It names no strength or weakness. Final ratings 7, 6, 6, 6, mean 6.25.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "First finite-sample bounds for average-reward TD(λ) and Q-learning, with non-unique fixed points handled (all four reviewers)",
+        "The rebuttal raised qoyS from 6 to 7 and ZKyN from 5 to 6, so every final rating is 6 or more",
+        "Q-learning limits (generative model, Assumption 3, (1−γ)^-5 rate) accepted as the scope of a first result"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The TD and Q-learning halves are disconnected; Q-learning is 'not very relevant (to be put in the same paper)' (Vg8w; the AC's first reason)",
+    "Technique of the Q-learning analysis beyond Chen et al. [17] is unclear (2V8c)",
+    "Appendix proof steps at lines 453, 508 and 510 need justification; describe [17] for readers (wBw2)",
+    "Synchronous result said to measure computational, not sample, efficiency (Vg8w)",
+    "Relation between J and |S| (2V8c)"
+  ],
+  "issues_only_b": [
+    "Practical relevance of the average-reward setting; the cited applications are about 20 years old (qoyS)",
+    "1/(1−γ)^5 dependence, worse than 1/(1−γ)^4 in Li et al. 2021 (qoyS)",
+    "No constant step-size result for Q-learning (qoyS)",
+    "Control with linear function approximation and robustness to misspecification (1neJ)",
+    "Comparison with Zhang et al. 2021, tightness of the bounds, and no experiments (bLoK)",
+    "Extension to average-reward actor-critic analyses that assume a unique TD limit (ZKyN)"
+  ],
+  "shared_issues": [
+    "Q-learning needs a generative model and synchronous sampling from every (s, a) (Vg8w in A; ZKyN in B)",
+    "Assumption 3 needs more justification (2V8c, Vg8w in A; qoyS in B)",
+    "The TD analysis follows existing finite-time templates (2V8c in A; ZKyN in B)",
+    "Strength: the non-unique TD fixed point is handled without the usual assumption (wBw2, 2V8c, Vg8w in A; all four in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts differently, and only B's reviewers engaged with the rebuttal. Before the rebuttal the panels were level: A rated 7, 5, 5 (mean 5.67) and B 6, 5, 6, 6 (mean 5.75), from qoyS's and ZKyN's statements that they raised 6 to 7 and 5 to 6. Both panels credited the handling of non-unique TD fixed points. Both faulted the Q-learning half for synchronous sampling from a generative model and a one-sentence case for Assumption 3. These criticisms are correct (Algorithm 2; lines 268-269), but they are scope limits, not errors. The authors sent nearly the same rebuttal to both; the synchronous-setting paragraph to Vg8w (A) and to ZKyN (B) is word for word the same. In B, two reviewers replied and raised their scores, and the AC accepted on 'enough support'. In A, no reviewer replied or edited. A's AC rejected on Vg8w's point that the two halves are disconnected, which the rebuttal never answered, and added its own view that the TD half alone is not enough for NeurIPS. Two of A's three reviewers declined to judge the Q-learning half, so A's negative view of it rests on Vg8w alone.",
+  "candidate_reasons": [
+    "Rebuttal engagement differed between committees",
+    "Two-part paper judged disconnected",
+    "AC added own sufficiency bar",
+    "Scope limits accepted for first result",
+    "Q-learning half judged by one reviewer"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Reviewer_Vg8w review, last paragraph (Committee A)",
+    "Reviewer_wBw2 and Reviewer_2V8c reviews: neither judges the Q-learning half",
+    "Authors' responses to Reviewer_Vg8w (A) and Reviewer_ZKyN (B), 2021-08-11: identical synchronous-setting paragraph",
+    "Reviewer_qoyS comment of 2021-08-17 (6 to 7) and Reviewer_ZKyN comment of 2021-08-24 (5 to 6), Committee B",
+    "Committee B meta-review",
+    "paper_submitted.pdf Algorithm 2 and lines 247-248 (synchronous sampling)",
+    "paper_submitted.pdf lines 268-269 (Assumption 3)",
+    "paper_submitted.pdf Theorem 2 and lines 57-58 (decaying step size only; (1−γ)^-5 rate)",
+    "paper_submitted.pdf lines 65-69 and 183-184 (methods built on [17] and [14])"
+  ]
+}

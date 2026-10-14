@@ -1,0 +1,218 @@
+{
+  "pair_id": "n21-167",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 6, 6],
+      "confidences": [3, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_6RBj", "Reviewer_u8GD", "Reviewer_6XLT"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7/7/6/6 span one point. The two 7s are the least grounded: Reviewer_6RBj says it is 'not comfortable enough with the theory here to spot non-obvious mistakes', and Reviewer_u8GD raises only two clarity points. The 6s come from the two reviewers who spent 10-11 hours (Reviewer_eRAu, Reviewer_6XLT)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_u8GD",
+          "evidence": "A 7 at confidence 3 after 4 hours. The review raises the optimizer in Theorem 1, an empirical check of the variance-mean ratio, and a notation nit. It says nothing about the one-action restriction, the supervised setting or the tie to model-based RL, which every other reviewer in both committees discussed. Its post-rebuttal note is 'Thanks for the clarifications.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_6XLT",
+          "claim": "The paper says its results for the explicit parameterization are not novel (line 189).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 189-190: 'this result isn't novel and follows from standard results of convex optimization [3], but is stated here to facilitate comparisons'. The authors replied that only the implicit-parameterization results are contributions."
+        },
+        {
+          "reviewer": "Reviewer_6XLT",
+          "claim": "The Conclusion asserts that the results may generalize to full MDPs without evidence.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 345-350 give only an informal argument: the Bellman-optimality subderivatives depend on the chain induced by the optimal policy. The submission has no proof or experiment for the MDP case; the 4-action runs appeared only in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_u8GD",
+          "claim": "Theorem 1 does not say which optimizer produces the implicit sequence.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 131-135 say the explicit weights come from gradient descent but the implicit ones are 'obtained by optimizing L(g_implicit(w,F))', linked only by 'similarly'. The theorem statement (lines 141-142) names no optimizer. The authors promised to state (S)GD."
+        },
+        {
+          "reviewer": "Reviewer_eRAu",
+          "claim": "Both parameterizations reach the same optimum when X has full rank, so the gaps in the experiments must come from stopping SGD early.",
+          "checked_against_paper": "correct",
+          "evidence": "The global-convergence results (Corollaries 1-2) imply the same limiting weights. The authors confirmed 'we run each method for a fixed number of updates'. The main text (lines 274-281) gives no update count, and Figure 2 reports only the 'final residual'."
+        },
+        {
+          "reviewer": "Reviewer_eRAu",
+          "claim": "Typos in the appendix proofs: U for A in (48)-(49), an extra phi in (87), a reused index in (106), and r_max not squared in the proof of Corollary 4.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The proofs are in the supplement, which is not part of the 11-page submitted PDF. The authors conceded every item."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_6XLT"],
+        "evidence": "Reviewer_6XLT edited 2021-09-02 and wrote 'I have updated my score on the basis of this response'; the final 6 means it rose from 5 or below. Reviewer_6RBj (edit 2021-08-30) added 'inclined to keep my current score'. Reviewer_u8GD (edit 2021-08-29) added only 'Thanks for the clarifications'. Reviewer_eRAu wrote on 2021-09-01 'I'm inclined to maintain my score' and never edited.",
+        "what_convinced_or_not": "6XLT accepted a point-by-point reply: Markov-reward-chain gradients match MDP gradients under the optimal policy, a 4-action sanity check gave qualitatively similar results, VIN-style methods differ from classical model-based RL, and all implicit-parameterization results are new. 6XLT still asked for a discussion of the simplifying assumptions and of which model-based variant the paper means."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three-sentence meta-review: 'after the author response, all of the reviewers agree that the theoretical results while limited in some ways are interesting and significant enough for acceptance.' It adds 6XLT's request for a balanced discussion of the full-MDP case. It shows no reading of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers ended above threshold (7/7/6/6) after the rebuttal",
+        "Global convergence despite non-convexity and the preconditioning view judged novel and interesting as a first theoretical step",
+        "One internal action and the supervised setting accepted as fair simplifications for theory (6RBj, eRAu)",
+        "The rebuttal's 4-action sanity check and novelty statement moved 6XLT to 6",
+        "Clear writing (6RBj, u8GD, eRAu)"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 6, 4, 3, 3],
+      "confidences": [3, 2, 2, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_LFGm", "Reviewer_AqM3"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 3/3/4/5/5/6 spread evenly with no isolated value. The lone 6 (Reviewer_AqM3) is at confidence 2 and admits 'no prior experience in working with gradient descent dynamics'. The two 3s (Reviewer_kLUp, Reviewer_EkYa) carry the committee's highest confidence, 4."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_EkYa",
+          "evidence": "Spent 20 hours but misread the setup. It doubts that g reaches every weight vector, but line 140 gives theta_hat = A^{-1} w with w free. It says data sampling is not discussed and asks whether the data change over time, but line 127 fixes a dataset D and lines 265-271 describe offline rollouts. It says the Markov reward chain has no formal definition, but lines 80-82 define it as an MDP with a singleton action."
+        },
+        {
+          "reviewer": "Reviewer_AqM3",
+          "evidence": "The committee's only above-threshold rating rests on proofs it says it has 'not checked ... carefully' and on generic praise ('the derivation is smooth and has good logic flow'). Confidence 2; the post-rebuttal note is 'my review keeps the same'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LFGm",
+          "claim": "Corollary 3 is wrong: sum r_i^2 should not cancel with ||sum r_i phi(x_i)||^2, so both parameterizations should have the same variance-mean ratio.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With one-hot features and one datapoint per state, ||sum_i r_i e_i||^2 = sum_i r_i^2, and Theorem 5's explicit ratio reduces to n(k-1)/(k(n-1)) + (n-k)n/(k(n-1)) = n/k. LFGm withdrew the claim on 2021-08-15. Corollary 3 (lines 241-244) does not state the one-datapoint-per-state condition, and the experiments contain duplicate states (line 271)."
+        },
+        {
+          "reviewer": "Reviewer_LFGm",
+          "claim": "Theorem 4's speed-up compares the convergence of the residual's 1-component with the convergence of the whole loss in Theorems 2-3.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 217-220 compare O(1/(1-eta)^2) for the 1-component with O(1/n) for the loss; lines 259-261 call the implicit case 'roughly n times faster'. No explicit-parameterization rate along the 1 direction is derived. The authors conceded that little can be said when the residual has no 1-component."
+        },
+        {
+          "reviewer": "Reviewer_g4M6",
+          "claim": "theta_hat = (I - eta sigma(F))^{-1} w has a closed form, so implicit differentiation is unnecessary (also LFGm, issue 6).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 140 writes theta_hat = A^{-1} w explicitly, yet lines 98-99 claim the implicit form avoids 'needing to consider the algorithm used to compute theta_hat'."
+        },
+        {
+          "reviewer": "Reviewer_CGbD",
+          "claim": "The abstract states global convergence without a condition that the convergence results need.",
+          "checked_against_paper": "correct",
+          "evidence": "Corollary 1 (line 154) and Corollary 2 (line 176) carry the condition 'If O(alpha^2) <= alpha^2 C for some C >= 0'; abstract lines 9-11 state the result without it. CGbD accepted the authors' reply that the term vanishes at stationary points. The camera-ready restates Corollary 1 for gradient flow and drops the SGD convergence corollary."
+        },
+        {
+          "reviewer": "Reviewer_kLUp",
+          "claim": "The method has no policy improvement or model-based value-iteration step; it is a reparameterized model-free method.",
+          "checked_against_paper": "correct",
+          "evidence": "Singleton internal action (line 95); policy evaluation by regression on a fixed dataset (lines 56, 127-128). The authors conceded: 'Both our formulation and value iteration networks should be thought of as model-free methods.'"
+        },
+        {
+          "reviewer": "Reviewer_kLUp",
+          "claim": "With no reward offset, the two parameterizations perform about equally well.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2 at offset 0: chain about 4.9 vs 4.1 with overlapping bands; four rooms about 3 vs 2; mountain car about 390 vs 315 with overlapping bands. A clear gap appears only as the offset grows, and mainly in four rooms."
+        },
+        {
+          "reviewer": "Reviewer_EkYa",
+          "claim": "The image of g may not cover the weight space, so the proof of Corollary 1 is doubtful.",
+          "checked_against_paper": "incorrect",
+          "evidence": "theta_hat = A^{-1} w (line 140) with w unconstrained reaches every vector for any fixed F, because A = I - eta sigma(F) is invertible for eta < 1."
+        },
+        {
+          "reviewer": "Reviewer_EkYa",
+          "claim": "The paper does not say how datapoints are collected or whether they change over time.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 127 fixes a dataset D of n points; lines 265-271 describe offline rollouts of a fixed epsilon-greedy policy with Monte Carlo return targets."
+        },
+        {
+          "reviewer": "Reviewer_g4M6",
+          "claim": "The paper does not consider the computational cost of the implicit gradient.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission never discusses per-step cost. The authors replied that cost is irrelevant to an analysis of gradient dynamics."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_LFGm"],
+        "evidence": "Reviewer_LFGm edited 2021-08-15: 'After rebuttal, authors clarified my doubts about corollary 3 and I increased my rating to 5.' Reviewer_AqM3 edited 2021-09-02 but wrote 'my review keeps the same'. Reviewer_CGbD (2021-08-12), Reviewer_g4M6 (2021-08-16), Reviewer_kLUp and Reviewer_EkYa (2021-08-19) replied and kept their scores; none of them edited.",
+        "what_convinced_or_not": "Technical clarifications landed: the Corollary 3 cancellation (LFGm) and the O(alpha^2) term vanishing at stationary points (CGbD). The framing defence did not. The authors conceded to kLUp and EkYa that the formulation is 'model-free'; EkYa and CGbD then cited kLUp's objection. The 4-action sanity check moved no one. g4M6 rejected the reply on implicit differentiation and asked why this parameterization matters at all. LFGm held that a bias term makes the 1 direction of little relevance."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects with mean 4.33 and four of six reviewers below threshold. Rests on 'all six reviewers have struggled to find a clear and strong connection' to 'a theoretical account of the performance of end-to-end model-based methods' (the paper's lines 43-44, which CGbD quoted) and on the 'lack of substantial (practical) results'. 'All six' overstates AqM3, who wrote that the paper gives 'some novel insight on the principle of end-to-end model-based RL methods'. The advice to seek 'a more specialist audience' echoes kLUp.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Weak link between the analysed setting and the end-to-end model-based methods the paper claims to explain (kLUp, EkYa, CGbD, AC)",
+        "Authors conceded the formulation is model-free, with no policy improvement",
+        "Simplified setting (one action, fixed-data regression, optimization only) limits significance (LFGm, CGbD, EkYa)",
+        "Speed-up rests on the constant residual direction, and without a reward offset the parameterizations perform alike (LFGm, kLUp)",
+        "No substantial practical results; value judged to be for a specialist audience (AC, kLUp)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Optimizer not stated in Theorem 1 (u8GD)",
+    "Which results are novel; the explicit-parameterization results are standard (6XLT)",
+    "Both parameterizations share one optimum, so the experiments reflect a fixed update budget (eRAu)",
+    "No guidance on choosing the internal discount eta (eRAu)",
+    "Empirical check of the variance-mean ratio (u8GD); the authors' new runs showed only a weak effect"
+  ],
+  "issues_only_b": [
+    "Closed form theta_hat = A^{-1} w makes implicit differentiation unnecessary; no reason to study this over-parameterization over others (g4M6, LFGm)",
+    "Theorem 4 rates the residual's 1-component but is compared with whole-loss rates; a bias term, TD or baselines already handle a uniform offset (LFGm, kLUp)",
+    "Without a reward offset the two parameterizations perform alike (kLUp)",
+    "Abstract states global convergence without the corollaries' O(alpha^2) condition (CGbD)",
+    "The analysed method is model-free with no policy improvement, which the authors conceded (kLUp, EkYa)",
+    "No learning curves despite convergence-rate claims (LFGm)",
+    "Computational cost of the implicit gradient ignored (g4M6)"
+  ],
+  "shared_issues": [
+    "Restriction to a Markov reward chain (one action) and doubt that results extend to MDPs (6XLT, 6RBj; CGbD, EkYa, LFGm)",
+    "Supervised regression on a fixed dataset instead of TD or control (6XLT, 6RBj; LFGm, EkYa)",
+    "Unclear relation to VIN and to model-based RL as usually understood (6XLT; kLUp, EkYa, CGbD)",
+    "Results cover optimization, not generalization or sample efficiency (eRAu; LFGm)",
+    "Experiments only in toy domains (6RBj; AqM3, kLUp)",
+    "Typos in the appendix proofs, both citing (106) (eRAu; LFGm)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same facts differently, and no reviewer found a fatal error. Both saw the same limits: one internal action, regression on a fixed dataset, linear features, and a loose tie to the end-to-end model-based methods the title names. Committee A treated these as fair simplifications for a first theoretical step. Its sceptic, Reviewer_6XLT, raised the same framing gap as B, treated it as a clarity fix after the rebuttal, and rose to 6. A's two 7s are thin, because neither reviewer checked the maths. Committee B held that the paper does not deliver the 'theoretical account of the performance of end-to-end model-based methods' that lines 43-44 promise. In B's rebuttal the authors conceded that their formulation and VIN 'should be thought of as model-free methods'. Reviewer_kLUp and Reviewer_EkYa, B's two confidence-4 reviewers, kept their 3s, and EkYa and Reviewer_CGbD cited kLUp. B also raised correct points that A never saw: the implicit weights have a closed form, the speed-up rests on the constant residual direction, and without a reward offset the parameterizations perform alike. Both ACs followed their reviewers.",
+  "candidate_reasons": [
+    "model-based framing, model-free analysis",
+    "simplifications accepted versus held disqualifying",
+    "rebuttal conceded model-free nature",
+    "unverified champions in accepting committee",
+    "speed-up only along constant direction",
+    "specialist-audience significance judgment"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_6XLT review and 2021-09-02 score update",
+    "Authors' rebuttal to Reviewer_kLUp ('should be thought of as model-free methods')",
+    "Reviewer_kLUp and Reviewer_EkYa responses of 2021-08-19",
+    "Reviewer_LFGm 2021-08-15 reply",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted lines 43-44, 140, 154, 217-220",
+    "paper_submitted Figure 2"
+  ]
+}

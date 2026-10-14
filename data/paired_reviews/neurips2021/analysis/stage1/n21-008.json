@@ -1,0 +1,233 @@
+{
+  "pair_id": "n21-008",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 4, 7],
+      "confidences": [4, 4, 3, 3, 1],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_ZyWj",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Ratings 6/6/7/4/7 (X7Th, oCU2, q18r, ZyWj, JS3e). ZyWj's 4 is the only reject vote, 2.5 points below the mean of the other four. The reasons are stated: no proof that the monotonicity constraint can be dropped, no theory for why the centralised gradient helps, limited novelty ('QMIX with actors/MADDPG with a mixer'), only three MAMuJoCo tasks. The first rests on a misconception: FACMAC never acts greedily on its critic, so QMIX's consistency condition does not apply, as the authors replied. The request for a reason why the centralised gradient helps is fair (see Reviewer_oCU2's claim below). ZyWj also called the combination 'valuable from the experimental results' and did not reply to the rebuttal. A mild outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_JS3e",
+          "evidence": "Rating 7 at confidence 1: 'The reviewer is not an expert in this area.' The case for acceptance is one sentence: 'FACMAC shows advantages in various tested benchmark problems against the compared algorithms.' No weakness, no question, no post after the rebuttal. Weak evidence despite the 8 hours reported."
+        },
+        {
+          "reviewer": "Reviewer_q18r",
+          "evidence": "Rating 7 from a short review whose only judgement of the results is the phrase 'validates the advantages claimed in previous sections'. It does not notice that COMIX matches FACMAC on all three MAMuJoCo tasks (Figure 5, line 287). Two generic questions; no reply to the rebuttal. Thin rather than wrong."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_X7Th",
+          "claim": "DOP reaches only about 20% on MMM2 in this paper, against about 50% in the DOP paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 6 (MMM2): DOP's median ends near 20%. The DOP paper's value is not in the record. The authors cite SC2.4.10 against an unspecified version, and median of 5 seeds against mean of 12 seeds. X7Th did not reply."
+        },
+        {
+          "reviewer": "Reviewer_oCU2",
+          "claim": "The particle-environment experiments use at most nine agents, far fewer than graph-based critics handle.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4 stops at 9 agents and 3 prey. The larger agent counts are on SMAC (27m_vs_30m, bane_vs_bane), as the authors replied. There is no comparison with graph-based critics."
+        },
+        {
+          "reviewer": "Reviewer_oCU2",
+          "claim": "The paper gives no intuitive or theoretical reason why per-agent gradients that hold the other agents' actions fixed lead to suboptimal policies.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper's reason is Figure 2(b): the per-agent gradient at the origin is 0 for each agent, but the joint gradient there is non-zero. For a differentiable critic the joint gradient is the stack of the per-agent partials, so both are zero. With separate parameters, Eq. 7 is Eq. 6 evaluated at the other agents' current actions instead of buffer actions (lines 173-183); line 187 says the two coincide for a linear mixer. The gain in Figure 2(a) can come only from that sampling change. oCU2 accepted the Figure 2(b) answer."
+        },
+        {
+          "reviewer": "Reviewer_ZyWj",
+          "claim": "Dropping QMIX's monotonicity constraint needs a theoretical proof to keep the policies consistent.",
+          "checked_against_paper": "incorrect",
+          "evidence": "QMIX needs monotonicity because agents act greedily on their utilities (lines 104-106, 113). FACMAC's actors are trained by Eq. 7 and never take an argmax over the critic, so no consistency condition applies. The paper claims none."
+        },
+        {
+          "reviewer": "Reviewer_ZyWj",
+          "claim": "Only three MAMuJoCo scenarios are tested.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 5: 2-Agent Humanoid, 2-Agent HumanoidStandup, ManyAgent Swimmer [10x2]. Figure 7 adds Swimmer [2x2] as an ablation. The authors promised HalfCheetah and Walker results."
+        },
+        {
+          "reviewer": "Reviewer_X7Th",
+          "claim": "Different critic factorisations win on different tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4(c): FACMAC-vdn (about 290) beats FACMAC (about 150) with 9 agents. Figure 5: FACMAC beats FACMAC-vdn on Humanoid and Swimmer. The paper says so (lines 280-283)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Only Reviewer_oCU2 replied (2021-08-31): 'The response addressed my concern.' oCU2 kept 6. X7Th, q18r, ZyWj and JS3e did not reply.",
+        "what_convinced_or_not": "oCU2 accepted the Figure 2(b) explanation of the centralised gradient and the SMAC agent counts as evidence of scale. The authors' correct answer to ZyWj on monotonicity drew no response; ZyWj stayed at 4. X7Th did not respond to the DOP explanation."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review sums up the majority: 'Reviewers appreciate the algorithm's empirical performances' and 'the empirical results are strong'. It records ZyWj's theory concern as a 'remaining comment' that does not block ('theoretical proof is not a must'). It repeats the abstract's 'demonstrated superior performances' without noting that COMIX ties FACMAC on MAMuJoCo. It also says policy gradients 'didn't work well' on MAMuJoCo before this paper, a benchmark the paper introduces.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Strong empirical results on particle, MAMuJoCo and SMAC tasks, notable for a policy-gradient method on SMAC",
+        "New MAMuJoCo benchmark seen as a useful contribution",
+        "Four of five ratings at 6 or 7; lack of theory judged not required"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 1, 7],
+      "confidences": [4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_Byep", "Reviewer_wmCS"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_wmCS",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Ratings 7/1/7 (Byep, wmCS, Ve1n). wmCS gave 1 ('Trivial or wrong') at confidence 5. High effort (25 hours, 10 of them running the code), but careless reading of the paper: he took the legend's seed counts for citations, blamed the authors for DOP's 'first actor-critic' claim, asked for super-hard maps that Figure 6 already has, said Eq. 7 needs shared parameters (lines 185-186 say it does not), and called line 187 a self-contradiction. Two points hold: COMIX matches or beats FACMAC on every MAMuJoCo task, and the centralised gradient is not a search over a new space. Nothing he showed makes the paper trivial or wrong. The code report is unquantified (see checkable_claims)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_wmCS",
+          "evidence": "Not low effort but careless reading: at least five claims are contradicted by the submission (legend seed counts read as references [5] and [7]; the line 75 claim is DOP's; super-hard maps MMM2 and 27m_vs_30m are in Figure 6; Eq. 7 does not need shared parameters; line 187 states a special case). He also cited a general-sum games paper for convergence problems in a common-reward setting."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "The legends of Figures 4(c) and 5(c) cite [5] and [7], references unrelated to COMIX, COVDN and IDDPG.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The bracketed numbers are seed counts. Figure 4's caption says 'The mean across 5 seeds'; Figure 5's says 7 seeds. The legends do not define the brackets, which Reviewer_Byep also flagged."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "Line 75 claims FACMAC is the first actor-critic method to beat value-based methods on SMAC, which IPPO and MAPPO contradict.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 73-75 attribute the claim to DOP: 'which recently claimed to be the first multi-agent actor-critic method'. IPPO and MAPPO are, however, not cited."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "Results on super-hard SMAC maps are needed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 6 includes MMM2 and 27m_vs_30m, labelled 'super hard' in the caption and at lines 307-308."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "Eq. 7 optimises the joint action only when all agents share policy parameters.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 185-186: 'it is not a requirement of our method for all agents to share parameters'. The chain rule gives Eq. 7 for separate parameters."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "MADDPG's centralised critic already guides a search over the joint space; with separate parameters Eq. 7 falls back to per-agent optimisation.",
+          "checked_against_paper": "correct",
+          "evidence": "With separate parameters, the block of Eq. 7 for agent a is Eq. 6 evaluated at the other agents' current actions rather than buffer actions; line 187 implies the same. Figure 2(b) shows zero per-agent gradients and a non-zero joint gradient at the same point, which no differentiable critic can give. The real change is the on-policy sampling of lines 181-183."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "In Figure 7 the centralised gradient makes almost no difference.",
+          "checked_against_paper": "incorrect",
+          "evidence": "FACMAC beats FACMAC (without CPG) on MMM2 (about 75% against 60% at 2M steps) and on ManyAgent Swimmer [10x2] (about 400 against 270). There is no difference on Swimmer [2x2] or for FACMAC on 2c_vs_64zg. The claim is overstated."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "On MAMuJoCo there is no evidence that FACMAC outperforms the other baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "True for the strongest baseline. COMIX matches FACMAC on 2-Agent Humanoid and HumanoidStandup and beats it on ManyAgent Swimmer (Figure 5). Line 287: FACMAC 'performs similarly to COMIX'. FACMAC does beat MADDPG and IDDPG."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "Several of the chosen SMAC maps do not discriminate between methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 6: on 2s3z, MMM and bane_vs_bane several methods end near 100%. FACMAC leads all baselines only on MMM2 and 27m_vs_30m; QMIX ends higher on 2c_vs_64zg."
+        },
+        {
+          "reviewer": "Reviewer_wmCS",
+          "claim": "The code has three bugs and does not reproduce the reported results, not even the MADDPG baseline.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The code is not in the record. The authors replied that bugs 1-2 need batch_size_run>1 and bug 3 needs max_seq_length=1, and that the provided configs use neither. wmCS's own remark on 'multi-threaded sampling' suggests he ran the parallel setting. He gave no map, numbers or command for the failed replication and did not answer the authors' request for one."
+        },
+        {
+          "reviewer": "Reviewer_Byep",
+          "claim": "VDAC (Su et al., AAAI 2021) already factors the critic in an actor-critic and is neither discussed nor compared.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission does not cite VDAC. The authors listed four differences and reported VDAC-mix results; the camera-ready adds VDAC-mix as a baseline."
+        },
+        {
+          "reviewer": "Reviewer_Ve1n",
+          "claim": "The bane_vs_bane convergence claim (lines 292-295) is not specific to FACMAC, since MADDPG and DOP also converge fast.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 6 (bane_vs_bane): MADDPG and DOP reach 100% as fast as FACMAC."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The authors did not provide configs to rerun their experiments exactly.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplementary code is not in the record. The authors said the config files in src/config/algs/ were the ones used; the checklist says code and instructions are included. Byep asked for 'specific commands and configuration files', so the gap may be per-experiment commands rather than configs."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": ["Reviewer_Byep", "Reviewer_wmCS"],
+        "evidence": "Byep edited on 2021-09-01: 'I am increasing the overall score'; final 7. wmCS wrote on 2021-08-11 that he would 'remain my score of strong rejection'. His review, edited on 2021-09-15, adds 'Scores are adjusted post-rebuttal', and the final rating is 1 ('Trivial or wrong'), one step below 'Strong rejection', so it was probably lowered. Reviewer_Ve1n did not edit or post.",
+        "what_convinced_or_not": "Byep was convinced by the four-point comparison with VDAC and the promised VDAC-mix results. Byep's note, written after wmCS's code report, says he looked at the code and asks only for commands and configs. wmCS accepted nothing; the authors' reply that the bugs lie in unused settings got no answer."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Final ratings 7, 1, 7, with both accepts at confidence 4. The meta-review rejects on 'significant doubts about reproducibility' from a reviewer discussion that is not in the public record. It takes wmCS's frame almost word for word ('essentially combines two well-known baselines in MARL domain', a 'report of experiments'). It does not mention the two 7s or the authors' reply on the bugs. The program chairs accepted the paper anyway.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Doubts about reproducibility after Reviewer_wmCS ran the code and reported bugs and a failed replication",
+        "Paper judged a combination of MADDPG and QMIX, so its value rests on its experiments",
+        "No configs to rerun the experiments exactly (AC's statement, disputed by the authors)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "DOP baseline on MMM2 far below the DOP paper's own result (Reviewer_X7Th)",
+    "Scale not compared with graph-based critics; particle tasks stop at nine agents (Reviewer_oCU2)",
+    "Only three MAMuJoCo tasks (Reviewer_ZyWj)",
+    "Whether FACMAC extends beyond cooperative tasks (Reviewer_q18r)"
+  ],
+  "issues_only_b": [
+    "Reproducibility of the code: bugs, failed replication, missing run configs (Reviewer_wmCS, Reviewer_Byep, AC)",
+    "Missing comparison with VDAC, a prior factored actor-critic (Reviewer_Byep)",
+    "FACMAC does not beat COMIX on MAMuJoCo; several SMAC maps saturate; map choice and IPPO/MAPPO not addressed (Reviewer_wmCS)",
+    "bane_vs_bane gain credited to FACMAC though MADDPG and DOP match it (Reviewer_Ve1n)",
+    "Deterministic policies described as sampled; legend brackets undefined (Reviewer_Byep)"
+  ],
+  "shared_issues": [
+    "Limited novelty: a combination of MADDPG and QMIX (A: Reviewer_ZyWj, AC; B: Reviewer_wmCS, Reviewer_Byep, AC)",
+    "Weak justification for the centralised gradient and for dropping monotonicity (A: Reviewer_oCU2, Reviewer_ZyWj; B: Reviewer_wmCS, Reviewer_Byep)",
+    "Baselines below published results (A: Reviewer_X7Th on DOP; B: Reviewer_wmCS on MAPPO and IPPO)",
+    "No centralised or single-agent policy-gradient baseline (A: Reviewer_X7Th; B: Reviewer_wmCS)",
+    "Unclear when each critic factorisation helps (A: Reviewer_X7Th, Reviewer_q18r; B: Reviewer_Byep)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee B rejected because of one reviewer and an AC who adopted his frame. Reviewer_wmCS ran the supplementary code, reported three bugs and said he could not replicate even the MADDPG baseline. B's AC made reproducibility the deciding issue. Committee A had no such reviewer and never examined the code. On the other facts the two ACs agreed. A's AC called the idea 'rather natural' but the results 'strong'. B's AC called the paper a combination of 'two well-known baselines', so a report of experiments that must be reproducible. The code report is weak evidence on the record. The authors answered that the bugs need batch_size_run>1 or max_seq_length=1, settings their configs never use. wmCS gave no numbers or commands and did not reply. His 1 also rests on several misreadings that the paper refutes. B's two other reviewers wrote stronger reviews than A's champions and ended at 7. Byep set his 7 after the code report. The AC overrode both. With three reviewers, one extreme score weighed more than A's lone 4 among five. wmCS made two valid points that A missed, but B's AC used neither. The program chairs accepted the paper, so they did not see a fatal flaw.",
+  "candidate_reasons": [
+    "Lone detractor's unverified code report",
+    "AC adopted detractor's reproducibility frame",
+    "Incremental novelty raised evidence bar",
+    "Three-reviewer panel amplified extreme score",
+    "Accepting committee never examined code"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Reviewer_wmCS comment of 2021-08-11 and authors' reply of 2021-08-13",
+    "Reviewer_Byep final review, post-rebuttal paragraph",
+    "Committee A meta-review",
+    "paper Figure 5 and line 287",
+    "paper Figure 2(b), Eq. 6-7 and lines 170-189",
+    "paper Figure 6 and lines 73-75",
+    "paper Figure 7"
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "pair_id": "n21-199",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        7,
+        6,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_AFYC"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/7/6/6 span two points. The lone 5 (Reviewer_AFYC, raised from 4) says it is 'fine to see it accepted too'. The 7 (Reviewer_VFZT) lists drawbacks that it says 'have little effect on the paper's score'. No reviewer departs from the rest."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AFYC",
+          "claim": "Theorem 5.1 lacks the important dependence on K because it considers K=2.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 268 takes the supremum over P(2) while line 267 says 'for any positive even integer K'. This is a typo; the authors changed it to P(K) after Reviewer_VFZT flagged it. The bound is K-free by design: for γ≥2 it matches the interactive rate 1/(α²n) of Corollary 4.2, and lines 271-272 say the minimax rate there 'is independent of the alphabet size K'. Theorem 5.2 carries the K-dependence for γ<2."
+        },
+        {
+          "reviewer": "Reviewer_AFYC",
+          "claim": "Theorem 5.2 is far from the upper bounds in its dependence on K.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 105-106 concede lower bounds that are 'nearly optimal by a factor K^γ for γ ∈ (0,2)'. The rebuttal conjectures the lower bounds are loose by K^γ. The camera-ready keeps the gap."
+        },
+        {
+          "reviewer": "Reviewer_AFYC",
+          "claim": "Post-rebuttal: the authors closed the gap for γ∈(1,2) when √(nα²) ≲ K; a gap remains only when √(nα²) ≫ K.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The rebuttal claims optimality only for γ>2, and for γ∈(0,1) when nα² ≲ K. Its new γ∈(1,2) lower-bound term (α²n)^(2(1−γ)) lies a factor (α²n)^(γ−1) below the K-free upper rate (α²n)^(−(γ−1)). That upper rate is the operative one exactly when K ≳ √(α²n). Camera-ready Section 2.6 concedes the gap 'between the left-terms 1/(α²n)^{2(γ−1)} and 1/(α²n)^{γ−1}'."
+        },
+        {
+          "reviewer": "Reviewer_AFYC",
+          "claim": "The paper restricts itself to plug-in estimators and has no best-polynomial-approximation estimator.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 61-64 say polynomial approximation gains a log factor in the non-private case. Sections 3-4 use only the plug-in, the thresholded plug-in and a two-step plug-in. The rebuttal defers the method to future work."
+        },
+        {
+          "reviewer": "Reviewer_AFYC",
+          "claim": "The lower-bound proofs are standard and follow directly from the tools of [8] and [4].",
+          "checked_against_paper": "not_checked",
+          "evidence": "The proofs are in the supplement, which the 11-page submitted PDF does not contain (checklist 2(b): 'Most of them in the Supplemental material')."
+        },
+        {
+          "reviewer": "Reviewer_VFZT",
+          "claim": "Theorem 5.1 states P(2) where the proof uses P(K).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 268 has the supremum over P(2) under 'for any positive even integer K' (line 267). The authors corrected it; camera-ready Theorem 2.6 uses P_K."
+        },
+        {
+          "reviewer": "Reviewer_VFZT",
+          "claim": "Optimality of the interactive mechanism for γ∈(0,2) is proven only when K ≍ n(e^{2α}−e^{−2α})².",
+          "checked_against_paper": "incorrect",
+          "evidence": "The interactive estimator exists only for γ>1 (line 237). For γ∈(1,2) at K ≍ α²n, Theorem 5.2 gives (α²n)^(2(1−γ)) against the interactive rate (α²n)^(1−γ), so they do not match. The match at K ≳ α²n holds for γ∈(0,1) and the thresholded non-interactive estimator."
+        },
+        {
+          "reviewer": "Reviewer_j1d8",
+          "claim": "Interaction is only the sequential kind (bottom of page 3), and it is unclear whether the lower bounds are specific to it.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 118 defines Q_i(·|x_i, Z_1,…,Z_{i−1}), which is sequential interaction. Theorems 5.1-5.2 take the infimum over 'all α-locally differentially private mechanisms Q' and do not name the class. The camera-ready adds that it does not consider fully interactive mechanisms 'neither in the upper, nor in the lower bounds'."
+        },
+        {
+          "reviewer": "Reviewer_j1d8",
+          "claim": "The paper claims its results extend to entropies without a precise statement.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 107-108: 'These procedures can be easily extended to ... the entropy and the Rényi entropy'. Lines 293-295: 'all results could be transferred to the estimation of the Shannon entropy'. No theorem supports either."
+        },
+        {
+          "reviewer": "Reviewer_j1d8",
+          "claim": "The abstract calls the parametric rate 'faster' without saying faster than what.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 15: 'attains the faster parametric rates (nα²)^−1/2 when γ ≥ 2'. The camera-ready abstract drops 'faster'."
+        },
+        {
+          "reviewer": "Reviewer_bSYV",
+          "claim": "For γ∈(0,1) the upper bound is min(K^{2(1−γ)}, K²/(α²n)^γ) and the lower bound min(K^{2(1−γ)}, K^{2−γ}/(α²n)^γ), a gap of K^γ.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 (thresholded row, γ∈(0,1)) and Theorem 5.2, eq. (13), give these rates."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_AFYC"
+        ],
+        "evidence": "AFYC's review was edited on 2021-08-25 with a post-rebuttal section: 'I'm willing to increase my score from 4 to 5'. VFZT, bSYV and j1d8 neither edited nor posted. The AC refers to a committee discussion that is not public.",
+        "what_convinced_or_not": "AFYC credited two points: truncation is needed to remove the K-dependence for γ>1, and the gap is closed for γ∈(1,2) when √(nα²) ≲ K. The second is a misreading (see checkable claims). AFYC still found truncation 'very natural', wanted the asymptotic gap closed and leaned to reject. The AC says the 'new results and an explanation of the paper's algorithmic ideas' convinced the reviewers of the novelty, but notes 'a lack of opportunity to verify the new results'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review accepts a 5/7/6/6 panel whose only sub-threshold reviewer is 'fine to see it accepted too'. It summarises the concerns (novelty, placement in the DP and estimation literature) and credits the rebuttal. It adds the AC's own expertise: it demands a clear statement of the LDP interaction model for each bound, and it corrects the authors' rebuttal claim that full interaction turns local DP into central DP, citing a known separation. The camera-ready does both.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or 7 judged the problem interesting and the results solid despite the gap",
+        "The lone 5 (Reviewer_AFYC) rose from 4 after the rebuttal and was 'fine to see it accepted too'",
+        "The AC credited the rebuttal's new results and the truncation argument as answering the novelty concern",
+        "The bound gap and presentation were treated as camera-ready fixes, with a demand to state the interaction model"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        5,
+        7,
+        6
+      ],
+      "confidences": [
+        5,
+        4,
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_V6UM"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/5/5/7/6. Reviewer_zEEc's 7 is the only accept-level score, one point above Reviewer_zYFp's 6. It is accurate but brief, says 'appropriate references are provided' although INSPECTRE is missing, and zEEc did not engage after the rebuttal. No single reviewer drives the outcome."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_H2n9",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') yet 'the proof is hard to following'. The summary says the interactive algorithm is 'much more better than the optimal minimax private rate in the non-interactive one'; the paper claims a log-factor gain and calls the non-interactive minimax rate open (lines 100-101, 288-291). Its reasons to reject, placed in the limitations field, are venue fit, local-before-central, no experiments and motivation; none engages the results. It did not reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_H2n9",
+          "claim": "No ICML or NeurIPS paper estimates non-linear functionals of discrete distributions, so the topic belongs at information-theory or statistics venues.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The submission cites functional-estimation work only from information-theory and statistics venues, but the inference is wrong. Reviewer_V6UM and Reviewer_zYFp, in the same committee, cite INSPECTRE (ICML 2018) and Hao and Orlitsky (NeurIPS 2019) on private and non-private functional estimation. The paper's own [2], on LDP testing of discrete distributions, is a NeurIPS 2020 paper."
+        },
+        {
+          "reviewer": "Reviewer_H2n9",
+          "claim": "The interactive algorithm is much better than the optimal non-interactive minimax rate.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 100-101: the improvement 'is at the level of the log factors'. Lines 288-291: whether a gap between non-interactive and interactive minimax rates exists is 'an open question'."
+        },
+        {
+          "reviewer": "Reviewer_H2n9",
+          "claim": "There is no experimental study (also Reviewer_V6UM).",
+          "checked_against_paper": "correct",
+          "evidence": "The paper is purely theoretical; checklist item 3 answers N/A."
+        },
+        {
+          "reviewer": "Reviewer_ztVm",
+          "claim": "The lower bounds are off the upper bounds by a polynomial factor.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 105-106: the lower bounds are optimal for γ≥2 and off 'by a factor K^γ for γ ∈ (0,2)'."
+        },
+        {
+          "reviewer": "Reviewer_V6UM",
+          "claim": "INSPECTRE, two Hao and Orlitsky (2019) papers and Obremski and Skorski (2017) are not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "None appears among the 20 references (lines 313-356). The camera-ready adds INSPECTRE only."
+        },
+        {
+          "reviewer": "Reviewer_V6UM",
+          "claim": "The paper gives no entropy result but says the technique extends to it, and the title oversells results that are only about power sums.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 107-108 and 293-295 claim the extension without a theorem. The submitted title promises 'nonlinear functionals'; every theorem concerns F_γ."
+        },
+        {
+          "reviewer": "Reviewer_V6UM",
+          "claim": "Line 83 claims 'for the first time'; typos at lines 68 and 99.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 83: 'We study here for the first time the estimation of nonlinear and nonquadratic power-sum functionals'. Line 68 has 'multimnomial', line 99 'mimick'."
+        },
+        {
+          "reviewer": "Reviewer_zEEc",
+          "claim": "Upper and lower bounds match for γ≥2 and may differ by polynomial factors for γ<1.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 271-272 (optimal for γ≥2) and 105-106 (factor K^γ). The gap also covers γ∈(1,2), which zEEc does not mention."
+        },
+        {
+          "reviewer": "Reviewer_zEEc",
+          "claim": "Section 5 gives no intuition for the lower bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 265-281 state Theorems 5.1-5.2 and send the proofs to the appendix without a sketch."
+        },
+        {
+          "reviewer": "Reviewer_zYFp",
+          "claim": "No best-polynomial estimator is tried, and the rate is not tight in K when γ is small.",
+          "checked_against_paper": "correct",
+          "evidence": "No section uses polynomial approximation (lines 61-64 name it only for the non-private case). Lines 105-106 concede the K^γ gap for γ<2."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after the rebuttal; V6UM's edit is dated 2021-07-28, its posting day. Reviewer_ztVm replied on 2021-09-01: 'My score on the paper remains unchanged.' H2n9, V6UM, zEEc and zYFp did not reply.",
+        "what_convinced_or_not": "The rebuttal repeated A's core text: motivation through entropies and uniformity testing, a promised summary theorem, a sharper thresholded bound, and an improved Theorem 5.2 for γ∈(1,2). It did not close the K^γ gap and offered 'only maybe a brief' numerical study. ztVm gave no reason for holding. No other reviewer engaged, and the AC did not mention the rebuttal."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "A three-sentence meta-review: the paper 'addresses a fundamental question', but 'reviewers raise concerns regarding the writing of the paper and the gap between upper and lower bounds'. It follows the 5/5/5 majority. It does not weigh H2n9's venue argument or the rebuttal's promised fixes, and it adds no reading of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of five reviewers at 5: H2n9 on venue fit and no experiments, ztVm on unclosed bounds and limited contribution, V6UM on missing references, medium novelty and no experiments",
+        "The K^γ gap between upper and lower bounds left the minimax picture incomplete",
+        "The presentation of many rates was judged unclear",
+        "No reviewer moved after the rebuttal, and the AC did not weigh its promised revisions"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Which LDP interaction model (sequential or full) the lower bounds cover; the authors' wrong claim that full interaction reduces to central DP (j1d8, AC)",
+    "Theorem 5.1 stated over P(2) instead of P(K) (VFZT, AFYC)",
+    "Lower-bound proofs are routine uses of [8] and [4] (AFYC)",
+    "Plug-in bound not shown tight for γ≥1 with small K; non-interactive optimality unproven (VFZT)",
+    "Table 1 should list lower bounds; 'faster rates' unclear; why the two-step estimator removes the log factor (bSYV, j1d8)"
+  ],
+  "issues_only_b": [
+    "Topic too narrow for NeurIPS; better at an information-theory or statistics venue (H2n9)",
+    "No numerical experiments (H2n9, V6UM)",
+    "Why study local DP before central DP (H2n9)",
+    "Title promises more than power sums (V6UM)",
+    "Missing Rényi-entropy and profile-maximum-likelihood references; uncited summary at lines 54-60 (V6UM)",
+    "No proof intuition for the Section 5 lower bounds (zEEc)"
+  ],
+  "shared_issues": [
+    "Gap of up to K^γ between upper and lower bounds for γ<2 (A: AFYC, VFZT, bSYV, j1d8; B: ztVm, V6UM, zEEc, zYFp, AC)",
+    "Standard tools only (Laplace mechanism, plug-in, thresholding); limited novelty (A: AFYC, bSYV; B: ztVm, V6UM, zYFp)",
+    "No best-polynomial-approximation estimator, so log factors remain (A: AFYC; B: zYFp)",
+    "Weak motivation for power sums (A: bSYV, j1d8; B: H2n9)",
+    "Many rates, hard to digest; main results not foregrounded (A: AFYC, bSYV, j1d8; B: ztVm, AC)",
+    "Unsupported entropy-extension claims and loose conjectures (A: j1d8; B: V6UM, zEEc)",
+    "Missing central-DP functional-estimation work, notably INSPECTRE (A: j1d8; B: V6UM, zYFp)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees saw the same weaknesses and scored them on opposite sides of the threshold. Both found a gap of up to K^γ between upper and lower bounds for γ<2, which the submission concedes (lines 105-106). Both called the tools standard (Laplace noise, plug-in, thresholding, no polynomial approximation), and both asked for motivation, clearer rates, the central-DP paper INSPECTRE and support for the entropy claims. Before the rebuttal the means were close (A 5.75 with Reviewer_AFYC's original 4, B 5.6), but three of A's four reviewers gave 6 or 7 while three of B's five gave 5. The rebuttal, largely the same text in both forums, moved only A: AFYC rose from 4 to 5 and A's AC credited the 'new results'. AFYC misread them as closing the gap for γ∈(1,2) when √(nα²) ≲ K; there the new lower bound still lies a factor (α²n)^(γ−1) below the upper bound, as the camera-ready concedes. In B only Reviewer_ztVm replied, in one line with no reason, and the AC rejected in three sentences on writing and the bound gap; A's AC treated the writing as a camera-ready fix and did not hold the gap against the paper. B's reject side includes Reviewer_H2n9's confidence-5 review, which rests on a venue-fit claim that B's own reviewers refute by citing ICML and NeurIPS work on the problem. Neither committee found a fact the other missed; reviewer calibration and rebuttal engagement decided the split.",
+  "candidate_reasons": [
+    "Same weaknesses, opposite threshold calibration",
+    "Rebuttal engagement in one committee only",
+    "Rebuttal result misread as closing gap",
+    "Venue-fit objection contradicted by literature",
+    "Terse meta-review following majority score",
+    "Unverified rebuttal promises credited differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_AFYC final review, post-rebuttal section (edited 2021-08-25)",
+    "Committee A meta-review",
+    "Reviewer_j1d8 main review (Modeling bullet)",
+    "Reviewer_VFZT minor comment on Theorem 5.1",
+    "Author rebuttal items (iii) and (iv), identical in both forums",
+    "Committee B meta-review",
+    "Reviewer_H2n9 summary and limitations field",
+    "Reviewer_V6UM and Reviewer_zYFp missing-reference lists",
+    "Reviewer_ztVm reply, 2021-09-01",
+    "paper_submitted lines 100-108, Theorems 5.1-5.2 (lines 265-281), Table 1, lines 288-295",
+    "camera-ready Section 1.2 (fully interactive mechanisms excluded) and Section 2.6 (Theorem 2.7 and the K^γ-gap paragraph)"
+  ]
+}

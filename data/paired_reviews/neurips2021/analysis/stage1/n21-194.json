@@ -1,0 +1,251 @@
+{
+ "pair_id": "n21-194",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [8, 6, 6, 8],
+   "confidences": [4, 4, 5, 4],
+   "reviews_edited_after_posting": ["Reviewer_gusa", "Reviewer_oyaX", "Reviewer_bsmb"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Final ratings split 8, 8, 6, 6, so no single reviewer stands apart. The two 8s differ in quality. Reviewer_gusa reached 8 after three rounds of discussion on the permuter's equivariance. Reviewer_2ehV gave 8 in a short review of generic praise and never posted in the discussion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_2ehV",
+     "evidence": "Four bullets of generic praise ('important to the graph representation learning community', 'written clearly') and two requests. It asks how the off-diagonal decoder messages are initialised. Lines 165-168 answer this: z goes into each entry, plus [PE(i)||PE(j)]. It did not reply to the rebuttal or to the new ogb-molhiv result."
+    },
+    {
+     "reviewer": "Reviewer_bsmb",
+     "evidence": "The original review (confidence 5, two hours) read the decoder as using the encoder's messages m_ij. It said 'I do not carefully check the experiments'. Lines 165-168 and 181-183 initialise the decoder from z and position embeddings only. Its next two objections also fail against the paper: lines 187-190 (node-count MLP) and Figure 2 (Regular family). It conceded each point and then engaged in good faith over six posts."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_bsmb",
+     "claim": "The decoder generates edges from the encoder's non-invariant messages m_ij, so z is not the real graph embedding.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 165-168 and 181-183: the decoder's message matrix M_dec^(0) is z plus permuted position embeddings. Only m_0,0 passes from encoder to decoder. Eq. 13 reuses the symbol m_ij without a superscript, which invited the misreading. bsmb accepted the correction on 2021-08-05."
+    },
+    {
+     "reviewer": "Reviewer_bsmb",
+     "claim": "The output graph must have as many nodes as the input, so node-count distributions are missed.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 187-190: an MLP predicts the number of nodes from z and sets the decoder mask at inference. bsmb: 'this is a point that makes me change my mind'."
+    },
+    {
+     "reviewer": "Reviewer_bsmb",
+     "claim": "For random regular graphs, no results like Figure 2 can be generated.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The Figure 2 t-SNE includes the Regular (R) family. bsmb: 'I missed checking the regular graphs experiments in Figure 2. Sorry!'"
+    },
+    {
+     "reviewer": "Reviewer_bsmb",
+     "claim": "Yang et al. (NeurIPS 2019) already decode graphs from a single graph-level vector, which undercuts the 'first' claim.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 241-242 claim 'the first approach for non-contrastive permutation-invariant graph-level representation learning, that can also be used for graph generative modeling'. The submission does not cite Yang et al. The authors withdrew the claim. The camera-ready cites Yang et al. [46] and narrows the claim to 'non-contrastive and non-adversarial'."
+    },
+    {
+     "reviewer": "Reviewer_gusa",
+     "claim": "The permuter's learning depends on the input node order, so the model does not solve the marginalisation problem of [35].",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 203-207: the permuter is a node-wise linear layer on equivariant encoder outputs, so P permutes with the input order. gusa accepted this on 2021-08-31 and raised its score from 6 to 8."
+    },
+    {
+     "reviewer": "Reviewer_gusa",
+     "claim": "Line 61 writes q_phi(G|z) where q_phi(z|G) is meant.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 61 reads 'q_phi(G|z) ~ p_theta(G|z)'. The authors confirmed the typo."
+    },
+    {
+     "reviewer": "Reviewer_oyaX",
+     "claim": "Eq. 5 applies P to an unordered G and takes an expectation over g_psi(P|G), although P is a deterministic function of G.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 5 drops the ordering subscripts and writes g_psi(P|G) as a distribution. Lines 160-164 compute P deterministically by a soft-sort of node scores. The authors agreed to rewrite the equation."
+    },
+    {
+     "reviewer": "Reviewer_2ehV",
+     "claim": "Experiments on graph property prediction are lacking.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 has one synthetic 29-class task. Table 3 has four MoleculeNet tasks with ECFP as the only baseline. The authors added an ogb-molhiv result (0.793) in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_gusa", "Reviewer_bsmb"],
+    "evidence": "gusa edited its review on 2021-08-31, the day it posted 'I have raised my score'. The review says 'I have raised my score by 2', so 6 to 8. bsmb edited on 2021-08-16, the day it wrote 'I would increase my score to 6 to support the acceptance'. Its review had said 'I lean to reject'. oyaX's edit (2021-07-14) is before the rebuttal. 2ehV never edited or replied.",
+    "what_convinced_or_not": "gusa accepted the equivariance argument: neither the decoder's canonical order nor the learned weights depend on the input order ('essentially solving the marginalization ... problem raised in [35]'). bsmb accepted corrections of its three misreadings, the interpolation demo and the GAE classification result ('happy with the experiment results'). bsmb stayed at borderline because approximate Hungarian matching such as Sinkhorn is standard and the Weisfeiler-Lehman question stayed open. oyaX found the interpolation new but kept 6."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four final ratings are 6 or more. The meta-review says 'most of the concerns have been properly addressed' and 'we all agree that the paper can be accepted'. It names permutation invariance as the contribution. It does not mention the withdrawn 'first' claim or bsmb's remaining doubts.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Learned equivariant permuter judged novel and sound; training does not depend on input node order (gusa, oyaX, 2ehV)",
+    "Rebuttal corrected bsmb's misreadings and added GAE, ogb-molhiv and interpolation results; two scores rose",
+    "All four ratings 6 or more after discussion, and the AC followed that consensus"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [6, 4, 5, 6],
+   "confidences": [2, 5, 2, 4],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_394F",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "The only rating below 5, at confidence 5. Its central technical objection, that P could become the identity, ignores the z-only decoder input and the equivariant permuter (lines 165-168, 203-207). The AC set the review aside for this reason. It misquotes the 'first' claim of lines 241-242 and cites a graph-edit-distance algorithm and two set models against it. Two points are correct: Table 3 has no GNN baseline, and Eq. 5 leaves the status of P unclear. Its worry that permuter and decoder training interfere has some support: the authors told d88Y that with too much KL weight 'information is passed through the permutation matrix'. It never replied."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_394F",
+     "evidence": "It quotes the paper as claiming 'the first to consider permutation invariance in graph-level representation'. Lines 241-242 claim much less. The equivariant design at lines 191-207 excludes its identity-P worry. It did not reply to the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_d88Y",
+     "evidence": "Confidence 2, four questions, and no stated weakness or argument for its 6. Its third question restates lines 196-201 and asks about 'training stability'; the authors could not parse it. It did not reply."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_394F",
+     "claim": "The learned P could degenerate to the identity, which makes no difference for permutation invariance.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The decoder sees only z (lines 165-168), and the permuter is equivariant (lines 203-207). So an identity P cannot fit arbitrary input orderings. The B AC agreed that 394F misunderstood 'why the permutation matrix P will not become the identity'."
+    },
+    {
+     "reviewer": "Reviewer_394F",
+     "claim": "The authors' claim 'This is the first to consider permutation invariance in graph-level representation' is not true, given [1-3].",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 241-242 claim only the first non-contrastive invariant method that also supports generation. [1] is a graph-edit-distance algorithm; [2] and [3] model sets. The narrower claim did fail, but in A, to Yang et al. 2019."
+    },
+    {
+     "reviewer": "Reviewer_394F",
+     "claim": "The molecular property prediction experiment has no comparison with GNN-based models.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 compares PIGAE only with ECFP fingerprints. The camera-ready still has no GNN baseline there."
+    },
+    {
+     "reviewer": "Reviewer_394F",
+     "claim": "It is not clear what distribution of P the objective uses.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 5 writes g_psi(P|G) as a distribution, but P is a deterministic soft-sort (lines 160-164). oyaX made the same point in A."
+    },
+    {
+     "reviewer": "Reviewer_1wGW",
+     "claim": "mu and sigma are linear functions of m_0,0, a scalar, so all latent means lie on one line.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 132 defines M in R^(n x n x d_m), so m_0,0 is a vector. Line 159 maps it to mu in R^(d_z) by a linear layer."
+    },
+    {
+     "reviewer": "Reviewer_1wGW",
+     "claim": "Generation is evaluated only by perturbing the latent of an existing graph; there are no samples from the prior.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 320-322: 'encode a query molecule into its latent representation and randomly sample around this point by adding a small noise'. No figure decodes prior samples. The authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_1wGW",
+     "claim": "Proposition 1 is trivial.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 101-102 state that a doubly stochastic P is a permutation matrix if and only if its row and column entropies are zero. The authors agreed and offered to move it."
+    },
+    {
+     "reviewer": "Reviewer_V8HM",
+     "claim": "The classification task does not compare against GAE or Graphite.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 lists only InfoGraph and the shortest-path and WL kernels. The rebuttal added GAE (0.65 against 0.83). The camera-ready Table 2 has GAE but still no Graphite."
+    },
+    {
+     "reviewer": "Reviewer_V8HM",
+     "claim": "NLL is not a fair comparison between models of different complexity; DIC, AIC or BIC would be needed.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 258: Table 1 reports metrics on a fixed held-out test set of 25000 graphs per family. Held-out likelihood needs no complexity penalty."
+    },
+    {
+     "reviewer": "Reviewer_V8HM",
+     "claim": "The method costs O(n^3) in the number of nodes.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 145-146: attention on incoming messages only reduces O(n^4) to O(n^3). The conclusion names graph size as the main limit."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No B review was edited after posting. No B reviewer posted in the discussion. The authors replied to all four reviewers on 2021-08-09.",
+    "what_convinced_or_not": "Nothing is on record. The replies corrected 1wGW's scalar reading, answered 394F's identity worry, added the GAE classification result for V8HM and conceded the trivial Proposition 1 and the missing prior samples. No reviewer acknowledged them. Only the AC used them: it accepted the identity answer and called the GAE result 'encouraging, but not comprehensive'."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The AC set aside 394F's 4 as a misunderstanding, which leaves 6, 5, 6. It then rejected on 'my main concern': the experiments do not show 'whether/when the proposed method will outperform similar methods like GAE and Graphite'. This echoes V8HM (confidence 2). The meta-review does not mention Table 1, where held-out NLL is 20.5 to 27.2 for PIGAE and 183 to 236 for GAE and Graphite. The gap it names exists only in the downstream tasks (Tables 2 and 3). It also ignores 1wGW's 'particularly impressive' reconstruction results.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC's own concern that downstream comparisons with GAE and Graphite are not comprehensive, after V8HM",
+    "Mean 5.25 from two confidence-2 reviews, one discounted 4 and one 6; no reviewer engaged and no score moved",
+    "High cost and complexity (V8HM) and thin evaluation of generation (1wGW)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Prior single-vector graph generation by Yang et al., NeurIPS 2019 (bsmb)",
+  "Sequential-decoder VAEs and Li et al.'s marginalisation over node orders [35]; whether training depends on input order (gusa)",
+  "Expressive power (1-WL, 2-WL, 2-FWL) and topological-distance features needed for regular graphs (bsmb)",
+  "Approximate Hungarian matching such as Sinkhorn makes a learned permuter less new (bsmb)",
+  "Decoder input and output size: reuse of the symbol M for encoder and decoder, node-count distribution (bsmb, both misread)",
+  "OGB benchmarks for graph property prediction (2ehV)",
+  "Related work: Duan and Lee, Liu et al., Niu et al., Set Transformer, DiffPool (oyaX)"
+ ],
+ "issues_only_b": [
+  "P degenerating to the identity; coupled training without ground truth for P (394F)",
+  "No GNN baselines for molecular property prediction (394F)",
+  "Graph-edit-distance and set-model related work (394F)",
+  "No samples from the prior; generation tested only near encoded molecules (1wGW)",
+  "Proposition 1 trivial; m_0,0 read as a scalar (1wGW, the second a misreading)",
+  "Running times, convergence, NLL against AIC/BIC, ERGM baselines (V8HM)",
+  "Posterior collapse and self-loops (d88Y); normalizing-flow related work (1wGW)"
+ ],
+ "shared_issues": [
+  "Overstated 'first' claim (gusa, bsmb in A; 394F in B)",
+  "Eq. 5 notation and the status of P (oyaX in A; 394F in B)",
+  "Thin downstream baselines; pooled GAE node embeddings as the missing comparison (2ehV, oyaX, gusa in A; V8HM, 394F in B)",
+  "Graph-isomorphism argument unclear (gusa in A; 1wGW in B)",
+  "O(n^3) cost limits graph size (oyaX in A; V8HM, d88Y in B)",
+  "Role of the permuter at generation time (gusa in A; 1wGW in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A accepted and B rejected mainly because A's reviewers engaged with the rebuttal and B's did not. Both saw the same contribution: a learned, permutation-equivariant permuter that lets a VAE train a node-order-invariant graph vector. Both raised the same weak points: an overstated 'first' claim, loose notation in Eq. 5, thin downstream baselines and O(n^3) cost. In A, Reviewer_bsmb (confidence 5) leaned to reject on three readings that the paper contradicts (lines 165-168, lines 187-190, Figure 2). It conceded each and rose to 6. Reviewer_gusa rose from 6 to 8 after three rounds on why training does not depend on input node order. In B, no reviewer posted after the rebuttal and no review changed. So Reviewer_1wGW's 'scalar' misreading and Reviewer_394F's identity-P worry stayed in the scores. B's AC set aside 394F's 4, which left 6, 5 and 6. It then rejected on its own concern that the experiments do not show 'whether/when' the method beats GAE and Graphite. Table 1 already shows held-out NLL seven to eleven times lower than both; the gap is real only in the downstream tasks. The same new GAE classification result (0.65 against 0.83) satisfied bsmb in A and was 'not comprehensive' for B's AC. Reviewer_2ehV's 8 in A adds little: a short generic review with no discussion.",
+ "candidate_reasons": [
+  "Rebuttal engagement in one committee only",
+  "Corrected misreadings raised detractor's score",
+  "Silent reviewers left misreadings unanswered",
+  "AC rejected on own baseline concern",
+  "Low-confidence reviews in rejecting committee",
+  "Thin generic champion review"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_bsmb review and posts of 2021-08-05, 2021-08-16 (score to 6) and 2021-08-25, Committee A",
+  "Reviewer_gusa post-rebuttal paragraph (edited 2021-08-31) and posts of 2021-08-26, 2021-08-29 and 2021-08-31, Committee A",
+  "Reviewer_2ehV review, Committee A",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_394F review and author reply of 2021-08-09, Committee B",
+  "Reviewer_V8HM review and author reply with the GAE result, Committee B",
+  "Reviewer_1wGW review and author reply, Committee B",
+  "Author reply to Reviewer_d88Y on posterior collapse, Committee B",
+  "paper_submitted.pdf Table 1 (PIGAE NLL 20.5-27.2; GAE, GAE* and Graphite 183-236) and line 258 (held-out test set)",
+  "paper_submitted.pdf Table 2 (InfoGraph, SP, WL only) and Table 3 (ECFP only)",
+  "paper_submitted.pdf lines 132 and 159 (m_0,0 is a vector)",
+  "paper_submitted.pdf lines 165-168, 181-190 and 203-207 (decoder input from z, node-count MLP, equivariant permuter)",
+  "paper_submitted.pdf Figure 2 (Regular family), Eq. 5, line 61 and lines 241-242 ('first approach' claim)",
+  "paper.pdf related work on Yang et al. [46], Table 2 with GAE, and the narrowed claim in the conclusion"
+ ]
+}

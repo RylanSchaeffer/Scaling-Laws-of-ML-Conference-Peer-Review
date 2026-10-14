@@ -1,0 +1,273 @@
+{
+ "pair_id": "n21-205",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    4,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_J3PT",
+    "Reviewer_kc15"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_kc15",
+    "direction": "champion",
+    "basis": "unclear",
+    "evidence": "The only rating above threshold (6, confidence 3) against two 4s at confidence 4. The positive case is two one-line pros, 'Mathematical formulation' and 'SOTA results on ImageNet', with the SOTA claim taken at face value. The review itself names a missing baseline (DeepShift). kc15 replied after the rebuttal and kept 6 because activation memory also matters. The AC's meta-review does not draw on this review."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_KcPD",
+     "evidence": "The review is specific, but two claims miss text in the submission. The pre-training step is stated at lines 59-61 and in the first line of Algorithm 1, and the limitation is discussed at lines 275-283. KcPD wrote 'I am willing to adjust my ratings if the authors or the other reviewers are able to shed some light', then never replied to the rebuttal or edited the review, so the 4 stood by default. Time spent: 1.5 hours."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_J3PT",
+     "claim": "Section 3.1 gives no reason why the Lagrange multiplier is a learned variable that the objective is differentiated against; usually it is a tuned regularisation weight.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 101-151 derive the stationarity conditions of the Lagrangian (Eq. 2) and the BDMM updates (Eqs. 5-6, citing Platt and Barr). In the Lagrange multiplier method the multiplier is a variable by definition. The intuition has a basis that nobody stated: every partial constraint function in Eq. 8 is non-negative, so the ascent step on lambda only increases it, and lambda acts as a per-weight penalty weight that grows on a schedule. Theorem 3.1 and Eq. 3 state a joint minimisation over x and lambda, which contradicts the gradient ascent on lambda at lines 185 and 228."
+    },
+    {
+     "reviewer": "Reviewer_J3PT",
+     "claim": "Sinusoidal quantization regularisation (WaveQ, arXiv 2003.00146) is prior work that the paper should compare with.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission does not cite WaveQ. The camera-ready adds it to related work only ([32]), with no row in Table 1."
+    },
+    {
+     "reviewer": "Reviewer_J3PT",
+     "claim": "There are several typos and LaTeX errors, such as broken cross-references.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 180 reads 'This effect will be discussed in Section ??'. Typos include 'kinects' (line 54), 'Lagrnagian' (119), 'performace' (204), 'accruacies' (238) and 'ReNet-50' (252). Committee B's Reviewer_ECoB flagged the same line 180."
+    },
+    {
+     "reviewer": "Reviewer_KcPD",
+     "claim": "Only at lines 225 and 235 does it become clear that CBP is applied after full-precision backprop training.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The contribution bullet at lines 59-61 says the networks were 'pre-trained using backpropagation with full-precision weights', and Algorithm 1 begins with 'Pre-training using conventional backprop'. The abstract does not say it; the camera-ready abstract adds 'As a post-training method'."
+    },
+    {
+     "reviewer": "Reviewer_KcPD",
+     "claim": "The paper does not say how many epochs of CBP training were needed.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 gives learning rates, batch sizes and p_max but no epoch count. The rebuttal gives 101 to 201 CBP epochs per model, on top of pre-training."
+    },
+    {
+     "reviewer": "Reviewer_KcPD",
+     "claim": "The accuracy numbers match but do not significantly exceed the state of the art.",
+     "checked_against_paper": "correct",
+     "evidence": "Against the best listed baseline in each cell, CBP's top-1 margins are +1.0, -1.7, +1.6 and +0.9 points on AlexNet and +0.1, +0.9, +1.9 and +0.1 on ResNet-18. LQ-Nets beats CBP on AlexNet ternary (60.5% against 58.8%, Table 1), although CBP's row is bold and the abstract says 'For all cases' (lines 12-13). The ResNet-50 margins (+1.9 to +5.7) are only against ADMM, BWN and TWN. The camera-ready adds Quantization Networks (QN, CVPR 2019), which beats the submitted CBP top-1 in 5 of 8 ResNet cells (ResNet-18 ternary 69.1 against 68.9, one-bit shift 69.9 against 69.4, two-bit shift 70.4 against 69.4; ResNet-50 ternary 75.2 against 75.0, two-bit shift 76.2 against 75.9). The camera-ready abstract says 'For most cases'."
+    },
+    {
+     "reviewer": "Reviewer_KcPD",
+     "claim": "The authors have not discussed the limitations of their work.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 275-283 state that CBP needs pre-training, does not reach the reported accuracy from scratch, and 'may not be the best choice' when training efficiency matters. Societal impact is indeed absent (checklist item 1c: N/A)."
+    },
+    {
+     "reviewer": "Reviewer_kc15",
+     "claim": "The paper uses shift weights but does not compare with shift networks such as DeepShift.",
+     "checked_against_paper": "correct",
+     "evidence": "DeepShift is not cited in the submission. The camera-ready adds it to related work ([27]) but not to Table 1."
+    },
+    {
+     "reviewer": "Reviewer_kc15",
+     "claim": "Activation quantization is not considered.",
+     "checked_against_paper": "correct",
+     "evidence": "Only weights are quantized (lines 212-224); activations stay at full precision. The authors conceded that CBP does not readily extend to activations."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_J3PT edited the review on 2021-08-23 to add 'I am keeping my original score'. Reviewer_kc15's edit on 2021-07-16 precedes the rebuttal, and the 2021-08-31 reply keeps 6. Reviewer_KcPD never edited the review or replied.",
+    "what_convinced_or_not": "The authors answered cost with a FLOPs estimate (about 2% more per iteration than backprop for ResNet, 25% for AlexNet) and listed 101 to 201 CBP epochs per model after full pre-training. That answers the per-iteration cost, not the total cost of two training phases that KcPD raised. J3PT still wanted 'the assessment of the overhead' and better exposition. kc15 accepted the weight-memory argument but kept 6 because activations dominate on-device memory traffic. KcPD had offered to reconsider but never responded."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Rejected with ratings 4, 4, 6. The cost and practical-benefit reasons come from J3PT and KcPD. The doubt about 'whether or not the baseline methods compared to represent the SOTA' goes further than any A reviewer, who only named missing related methods; the camera-ready QN row supports it. The judgement that the writing is 'pretty rough in places' is 'based on my own quick scan' and contradicts KcPD's 'very well-written paper'.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "No demonstrated practical advantage: accuracy only matches the state of the art (Reviewer_KcPD)",
+    "Cost of the two-phase procedure not properly assessed, before or after the rebuttal (Reviewer_J3PT, Reviewer_KcPD)",
+    "Doubt that the listed baselines represent the state of the art (AC)",
+    "Rough writing, typos and a broken cross-reference (AC's own scan, Reviewer_J3PT)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    2,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_BfHB"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_nXqG",
+    "direction": "champion",
+    "basis": "inattentive",
+    "evidence": "The only 7, at confidence 2, against three 6s. The main review is five generic sentences with no weakness. It says experiments use 'a variety of datasets', but the paper uses ImageNet only, and its own questions then ask for other datasets. No reply to the rebuttal. The decision does not hinge on it: without this review B's mean is 6.0."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_nXqG",
+     "evidence": "Rating 7 with a short, generic review that names no weakness and no result. It states 'Experiments are conducted on a variety of datasets', which is false (ImageNet only, lines 204-205). It never engages with the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_BfHB",
+     "claim": "The approach is evaluated on only two models.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 204-205 and Tables 1-3 cover three models: AlexNet, ResNet-18 and ResNet-50. The request for compact models (MobileNetV2, EfficientNet) was not met; the authors added GoogLeNet."
+    },
+    {
+     "reviewer": "Reviewer_BfHB",
+     "claim": "The paper does not compare with least-squares binary quantization (Pouransari et al., 2020).",
+     "checked_against_paper": "correct",
+     "evidence": "Not cited in the submission. The camera-ready adds LS at 66.1% top-1 for ResNet-18 binary, below CBP's 66.6%."
+    },
+    {
+     "reviewer": "Reviewer_BfHB",
+     "claim": "The limitations of CBP are not discussed.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 275-283 discuss the pre-training requirement and the training-efficiency trade-off. Reviewer_WFRz in the same committee noted that the paper 'properly included the expected limitation'."
+    },
+    {
+     "reviewer": "Reviewer_BfHB",
+     "claim": "The overhead relative to previous approaches is not discussed.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission gives no cost figures, epoch counts or wall-clock times. The rebuttal's FLOPs estimate and epoch counts were new."
+    },
+    {
+     "reviewer": "Reviewer_BfHB",
+     "claim": "The paper is technically correct and its claims are well supported by theoretical analysis.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 3.1 and Eq. 3 state that minimising the Lagrangian jointly over x and lambda is equivalent to the constrained problem. The Lagrangian is linear in lambda, so it has no joint minimum unless cs = 0. The algorithm instead does gradient ascent on lambda (lines 185 and 228), the standard BDMM min-max. The method is sound; the stated theorem is not. Reviewer_WFRz's 'theoretically grounded' has the same gap."
+    },
+    {
+     "reviewer": "Reviewer_nXqG",
+     "claim": "Experiments are conducted on a variety of datasets.",
+     "checked_against_paper": "incorrect",
+     "evidence": "ImageNet is the only dataset (lines 204-205)."
+    },
+    {
+     "reviewer": "Reviewer_WFRz",
+     "claim": "DSQ (Gong et al., 2019) and Quantization Networks (Yang et al., 2019) are missing from the comparison table.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is cited in the submission. The camera-ready adds both. QN beats the submitted CBP top-1 in 5 of 8 ResNet cells (ResNet-18 ternary, one-bit shift and two-bit shift; ResNet-50 ternary and two-bit shift), and the abstract changes 'For all cases' to 'For most cases'. Nobody in B asked what QN would do to the SOTA claim."
+    },
+    {
+     "reviewer": "Reviewer_WFRz",
+     "claim": "The paper states the retraining overhead as its limitation.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 275-278: 'When efficiency in training is of the most important concern, CBP may not be the best choice.'"
+    },
+    {
+     "reviewer": "Reviewer_ECoB",
+     "claim": "Line 180 has a missing reference.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 180 reads 'discussed in Section ??'."
+    },
+    {
+     "reviewer": "Reviewer_ECoB",
+     "claim": "The learning kinetics with BDMM is listed as a major contribution but is mentioned only once in the main text.",
+     "checked_against_paper": "correct",
+     "evidence": "The contribution bullet is at lines 53-55. The main text only points to the appendix (line 151 to Appendix A.1, line 274 to Appendix A.2)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_BfHB"
+    ],
+    "evidence": "Reviewer_BfHB edited the review on 2021-08-26 and wrote 'I raised my score from 5 to 6'. No other B reviewer edited a review or replied.",
+    "what_convinced_or_not": "BfHB cited 'the additional results in terms of GoogleNet and overhead complexity', but still asked why CBP beats other methods. The GoogLeNet table (binary 64.0% against ADMM 60.3%) was posted only in B's forum. The authors also told Reviewer_ECoB that CBP ran 151 epochs on ResNet-18 after pre-training, against 8 to 120 for INQ, TWN and LQ-Nets; nobody in B followed up. The AC called the complexity answer adequate."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Accepted with ratings 6, 7, 6, 6. The meta-review repeats the reviewers' praise ('interesting, well-presented, and applicable') and says the complexity question was 'addressed adequately' in the response. It does not mention the missing baselines that BfHB and WFRz raised, or the epoch counts in the rebuttal. 'Applicable' rests on ImageNet classification only.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Method judged novel, simple and theoretically grounded by all four reviewers",
+    "Results judged state of the art on ImageNet, taken at face value",
+    "Complexity concern judged resolved by the rebuttal's per-iteration FLOPs estimate (AC)",
+    "New GoogLeNet results lifted Reviewer_BfHB from 5 to 6"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether CBP has any practical advantage over existing quantizers, given that accuracy only matches the state of the art (Reviewer_KcPD)",
+  "Why the multiplier is learned and not a fixed penalty weight (Reviewer_J3PT); with non-negative constraint functions it only grows",
+  "Whether the listed baselines represent the state of the art (A's AC)",
+  "Writing quality counted against the paper (A's AC, Reviewer_J3PT after the rebuttal)",
+  "Comparison with sinusoidal regularisation, WaveQ (Reviewer_J3PT), and shift networks, DeepShift (Reviewer_kc15)"
+ ],
+ "issues_only_b": [
+  "Too few architectures (Reviewer_BfHB); the resulting GoogLeNet table never reached A",
+  "No explanation of why CBP beats other methods (Reviewer_BfHB)",
+  "Epochs relative to other methods (Reviewer_ECoB): 151 CBP epochs on ResNet-18 after pre-training against 8 to 120 for INQ, TWN and LQ-Nets",
+  "Cost and sensitivity of hyperparameter selection, separate optimisers for weights and multipliers, and non-differentiable points (Reviewer_ECoB)",
+  "How pre-trained weights reach different quantization levels (Reviewer_WFRz); other domains and recurrent networks (Reviewer_nXqG)",
+  "Comparison with LS, DSQ and Quantization Networks (Reviewer_BfHB, Reviewer_WFRz)"
+ ],
+ "shared_issues": [
+  "Extra cost of the two-phase procedure (A: J3PT, KcPD; B: BfHB, ECoB, WFRz)",
+  "CBP works only as a post-training method (A: KcPD on cold start; B: WFRz, ECoB on low-precision training)",
+  "Missing baselines, with different methods named in each committee",
+  "Typos and the broken reference at line 180 (A: J3PT; B: ECoB)",
+  "Limitations and societal impact said to be missing, wrongly for limitations (A: KcPD; B: BfHB)",
+  "Activations not quantized (A: kc15; B: WFRz)",
+  "Method judged novel, simple and elegant (KcPD and J3PT in A; all four reviewers in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees weighed the same facts differently, and the reviewer draw set the weights. Both saw a simple, novel method, accuracy at or slightly above the listed baselines, a costly two-phase procedure, missing baselines and typos. Committee A drew two confident detractors: Reviewer_KcPD found no 'tangible benefit' over existing quantizers, and Reviewer_J3PT wanted a real assessment of the overhead. Committee B drew four reviewers at 6 or 7 who treated the same gaps as fixable. The paper supports A's central doubt. The submitted abstract says CBP beats the state of the art 'For all cases', but its own Table 1 puts LQ-Nets ahead on AlexNet ternary (60.5% against 58.8%), and two of four ResNet-18 margins are 0.1 points. Quantization Networks, which B's Reviewer_WFRz asked for, beats the submitted CBP top-1 in 5 of 8 ResNet cells of the camera-ready table, whose abstract now says 'For most cases'. Both forums got the same cost answer: about 2% more FLOPs per iteration than backprop for ResNet, with 101 to 201 CBP epochs after full pre-training. That answer does not address KcPD's total-cost point. B's AC called it adequate; J3PT did not accept it, and KcPD, who had offered to reconsider, never replied. No fatal flaw separates the committees.",
+ "candidate_reasons": [
+  "same facts weighted differently",
+  "practical advantage demanded only in A",
+  "confident detractors drawn in A",
+  "per-iteration cost answer accepted in B",
+  "SOTA claim unchecked in B",
+  "detractor silent after offering reconsideration"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_KcPD review (points 1-3, 'hard-pressed to find a tangible benefit')",
+  "Reviewer_J3PT review and post-rebuttal note",
+  "Reviewer_kc15 review and 2021-08-31 reply",
+  "Committee A meta-review",
+  "Authors' FLOPs estimate and epoch counts (same text in both forums)",
+  "Authors' reply to Reviewer_ECoB, point 5-2 (epochs of other methods)",
+  "Reviewer_BfHB review and 2021-08-26 reply; authors' GoogLeNet table (B only)",
+  "Reviewer_nXqG review",
+  "Reviewer_WFRz review (DSQ and Quantization Networks)",
+  "Committee B meta-review",
+  "paper_submitted abstract lines 12-13 and Tables 1-3",
+  "paper_submitted lines 59-61, 180 and 275-283",
+  "paper_submitted Theorem 3.1, Eqs. 3 and 8, lines 185 and 228",
+  "camera-ready Table 1 (QN, DSQ and LS rows) and abstract ('For most cases')"
+ ]
+}

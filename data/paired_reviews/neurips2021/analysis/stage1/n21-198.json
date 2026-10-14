@@ -1,0 +1,262 @@
+{
+ "pair_id": "n21-198",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    7,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_nHDN"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 7, 7 sit within one point. The lowest, Reviewer_nHDN's 6, was raised after the rebuttal. The weakest accept vote is Reviewer_Vncf's 7: one hour, confidence 3, and a text that calls the approach 'in my view rather primitive'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Vncf",
+     "evidence": "One hour, confidence 3, two short paragraphs. It says global invariance is achieved 'simply by training on objects in all different rotations'. The paper's first setting trains on unrotated images (lines 236-237) and gets global invariance from equivariant layers that end in a 1x1 map (lines 52-54, 200-201); B-CNN reaches about 89% on rotated MNIST test images against 53% for G-CNN (Figure 3a). The 7 contradicts its own 'rather primitive'. No reply to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_9Dgi",
+     "claim": "The method is the first to bring Bessel functions to machine learning and the first with rigorous invariance over all continuous angles; its guarantees are 'unlike any other preceding work'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The paper makes the claim (lines 6-8, 31-33, 293-295), but Harmonic Networks (Worrall et al., 2017) and E(2)-CNNs (Weiler and Cesa, 2019) already give continuous rotation equivariance, and neither is in references [1]-[22]. Fourier-Bessel steerable PCA (Zhao and Singer) and DimeNet's spherical Bessel basis (ICLR 2020) predate it. The camera-ready drops the claim and lists Harmonic Networks, E(2)-CNNs and LieConv as earlier continuous-rotation methods."
+    },
+    {
+     "reviewer": "Reviewer_9Dgi",
+     "claim": "Comprehensive experiments compare with the state of the art techniques, and the related work is comprehensive.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The only equivariant baseline is a 2016 G-CNN with C4 (line 196). No continuous-rotation model is compared or cited (references [1]-[22]); lines 76-77 put the cited steerable CNNs among methods with guarantees 'for a finite set of rotation angles'."
+    },
+    {
+     "reviewer": "Reviewer_9Dgi",
+     "claim": "Data augmentation helps B-CNN a lot, and G-CNN with augmentation beats B-CNN without it in several scenarios.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3: augmentation lifts B-CNN from about 89% to 98% on MNIST and from about 81% to 92% on Outex; G-CNN with augmentation (about 98.5% on MNIST) beats B-CNN without it."
+    },
+    {
+     "reviewer": "Reviewer_iKDt",
+     "claim": "The G-CNN baseline uses only 4 rotation angles, a coarse discretization; compare with 8 or 16.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 196: the symmetry group C4 is used for every dataset. iKDt wrote 'C5', a typo."
+    },
+    {
+     "reviewer": "Reviewer_iKDt",
+     "claim": "Fourier-Bessel rotation-invariant representations from signal processing (e.g. fast steerable PCA) are not acknowledged.",
+     "checked_against_paper": "correct",
+     "evidence": "None appears in references [1]-[22]. The camera-ready adds them as [21]-[24]."
+    },
+    {
+     "reviewer": "Reviewer_Vncf",
+     "claim": "Only local invariance is designed in; global invariance comes simply from training on all rotations.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 52-54 and 200-201: equivariant layers ending in a 1x1 map give global invariance. Without rotation in training (lines 236-237), B-CNN gets about 89% on rotated MNIST against 53% for G-CNN and 43% for CNN (Figure 3a)."
+    },
+    {
+     "reviewer": "Reviewer_nHDN",
+     "claim": "Apart from MNIST without augmentation, the results are not convincing.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3: G-CNN is ahead on MNIST with augmentation (about 98.5% vs 98%) and on Outex without (about 84% vs 81%), and the MRI curves overlap within 99% intervals. The one other clear B-CNN lead, Outex with augmentation (about 92% vs 86%), is against a G-CNN still rising at epoch 200."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_nHDN"
+    ],
+    "evidence": "Reviewer_nHDN edited the review on 2021-09-01 and added: 'Following the author rebuttal and discussion with reviewer I have updated my score and I am now leaning for acceptance of this paper.' The final rating is 6; the earlier one is not exposed, but the wording puts it below 6. Reviewer_iKDt (2021-09-02): 'I keep my score (7, accept)', with 'minor concerns over effects of interpolation, statements about low-pass images, imperfect invariance and related guarantees'. Reviewer_9Dgi and Reviewer_Vncf did not reply or edit. The reviewer discussion that nHDN cites is not on the public forum.",
+    "what_convinced_or_not": "The rebuttal's new low-data run (Outex with 75% of the training images removed; B-CNN about 15 points above G-CNN, stated only in text) answered nHDN's doubt about significance. The AC took up the same point ('especially in the low data regime'). The run still compares only with the C4 G-CNN."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The accept matches ratings 6, 7, 7, 7. The meta-review says all reviewers 'thought the paper ought to be accepted', stresses the low-data regime, a result that appears only in the rebuttal, and says 'Reviewers also found the experimental results compelling', which nHDN's final text ('not convincing') contradicts. It does not mention iKDt's C4 or prior-work points.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at or above 6 after Reviewer_nHDN raised to 6 post-rebuttal",
+    "Bessel-based invariance judged novel and elegant; the claim to be first for all continuous angles went unchallenged",
+    "The rebuttal's low-data Outex result (about 15 points over G-CNN) taken as the method's practical advantage",
+    "The C4 baseline and missing prior work seen as minor (Reviewer_iKDt) or not seen at all"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    8,
+    4,
+    5
+   ],
+   "confidences": [
+    5,
+    5,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_dNyU"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_gUNY",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "An 8 against 4, 4, 5. The main review is five sentences (68 words) of praise, such as 'very convincing results'; the summary adds that the networks 'perform extremely well'. Figure 3 shows a clear B-CNN lead in only two of six panels. It claims confidence 5 and a careful math check, yet asks for 'theoretical justification', though Sections 4.3-4.5 derive the invariance. It raises none of the novelty or baseline problems. Its only discussion entry is 'Thanks for your response.'"
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_gUNY",
+     "evidence": "A 68-word main review at confidence 5 ('checked the math/other details carefully'). It asks for theoretical justification, though Section 4 derives the invariance. It misses the priority claim and the C4-only baseline that all three co-reviewers found. Its only reply to the rebuttal is 'Thanks for your response.'"
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_oaoL",
+     "claim": "The claim to be the first model equivariant to continuous rotations (lines 6-8, 31-32) is incorrect; Harmonic Networks, E(2)-CNNs, LieConv, Zernet and Harmonic Surface Networks exist.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 6-8 and 31-33 make the claim. None of the five models is in references [1]-[22]. The camera-ready removes the claim and adds Harmonic Networks, E(2)-CNNs and LieConv as continuous-rotation methods."
+    },
+    {
+     "reviewer": "Reviewer_oaoL",
+     "claim": "Line 184 wrongly says MNIST-rot has digits rotated by multiples of 2pi/8.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 184 says MNIST-rot 'contains rotations of only 8 different angles' and uses this to skip it. MNIST-rot [20] (Larochelle et al., 2007) draws angles uniformly in [0, 2pi]. The sentence is gone from the camera-ready."
+    },
+    {
+     "reviewer": "Reviewer_oaoL",
+     "claim": "Neither B-CNNs nor G-CNNs clearly outperform each other in all settings.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3: G-CNN ahead on MNIST with augmentation and on Outex without; B-CNN ahead on MNIST without augmentation and on Outex with; brain MRI curves overlap."
+    },
+    {
+     "reviewer": "Reviewer_oaoL",
+     "claim": "Only the angular circular-harmonic part gives equivariance; the Bessel radial part is arbitrary.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 11: a rotation changes each coefficient only by the factor e^{-i nu alpha}; the radial index j plays no part. The authors agreed: 'the Bessel functions could be replaced by other (trainable) radial functions'."
+    },
+    {
+     "reviewer": "Reviewer_nxbX",
+     "claim": "No comparison with Harmonic Networks or Weiler and Cesa's E(2)-CNNs; the only baselines are a CNN and a 90-degree G-CNN.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5.2, line 196; neither method is in references [1]-[22]. The camera-ready cites both but adds no experiment with them."
+    },
+    {
+     "reviewer": "Reviewer_nxbX",
+     "claim": "The networks are small (5-7 layers) without residual connections or batch normalization.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5.2: CNNs and G-CNNs have 5-7 convolution layers and B-CNNs 3-5; no residual connections or batch normalization are mentioned."
+    },
+    {
+     "reviewer": "Reviewer_nxbX",
+     "claim": "Some baselines in Figure 3 seem not to have converged.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3b: with augmentation, G-CNN climbs from about 80% at epoch 100 to about 86% at 200 and is still rising; the CNN still rises in both Outex panels and on MNIST with augmentation at the last epoch."
+    },
+    {
+     "reviewer": "Reviewer_nxbX",
+     "claim": "The implementation needs nu_max+1 conv2d calls per layer.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 170-171: 'a layer in B-CNN performs nu_max + 1 convolutions instead of one only'."
+    },
+    {
+     "reviewer": "Reviewer_dNyU",
+     "claim": "The paper claims to be the first ML work to introduce Bessel functions, but Fourier-Bessel steerable bases were used before for rotation-invariant recognition.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 293-295 make the claim. The four papers dNyU lists are not cited; the camera-ready adds them as [21]-[24]."
+    },
+    {
+     "reviewer": "Reviewer_dNyU",
+     "claim": "B-CNN has fewer layers and a large nu_max, while G-CNN uses only n_R = 4 rotations.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5.2: B-CNN has 5, 3 and 4 layers against G-CNN's 7, 5 and 5 (MNIST, Outex, MRI); nu_max ranges from 7 to 15 against the C4 group."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_dNyU's only edit is dated 2021-07-16, the posting day, before the rebuttal. Reviewer_nxbX (2021-08-16): 'my main concerns still stand ... I will thus keep my rating as is'. Reviewer_oaoL (2021-08-17): 'I will stick to my initial rating'. Reviewer_dNyU (2021-08-17): 'I prefer not to change my score' and 'could be largely improved by a major revision'. Reviewer_gUNY (2021-08-17): 'Thanks for your response.'",
+    "what_convinced_or_not": "B got the same low-data Outex result as A, but it compares only with the same C4 G-CNN, so it did not answer the request for Harmonic Network, E(2)-CNN or high-order C_N baselines. The authors conceded that the Bessel radial part is replaceable, promised only to 'discuss' the Fourier-Bessel papers, and answered the C_N question with a prediction ('We expect that ...') instead of data."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The reject matches three of four ratings (4, 4, 5). The meta-review's 'distinct lack of comparisons (and theoretical advantages) over the state-of-the-art in rotation invariant neural networks' restates the post-rebuttal comments of Reviewer_oaoL and Reviewer_nxbX, which Reviewer_dNyU endorsed. Reviewer_gUNY's 8 is not mentioned.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "No comparison with continuous rotation-equivariant CNNs (Harmonic Networks, E(2)-CNNs); only a C4 G-CNN and a plain CNN",
+    "Novelty overclaimed: earlier continuous-rotation CNNs and Fourier-Bessel steerable methods exist",
+    "No shown advantage of the Bessel radial basis over circular harmonics with other radial profiles; extra cost of nu_max+1 convolutions",
+    "Three high-confidence detractors kept their scores after the rebuttal; Reviewer_gUNY's thin 8 carried no weight"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "How to keep orientation information when the task needs it (Reviewer_nHDN)",
+  "Truncating the Bessel expansion assumes low-pass images (Reviewer_iKDt)",
+  "The invariant power spectrum discards local shape configuration; possible adversarial weakness (Reviewer_Vncf)"
+ ],
+ "issues_only_b": [
+  "False claim to be the first CNN invariant to all continuous angles; Harmonic Networks, E(2)-CNNs, LieConv and Zernet omitted (Reviewer_oaoL, Reviewer_nxbX)",
+  "No experimental comparison with continuous rotation-equivariant CNNs (Reviewer_oaoL, Reviewer_nxbX, Reviewer_dNyU, the AC)",
+  "The Bessel radial basis is not what gives equivariance; no ablation against circular harmonics with other radial profiles (Reviewer_oaoL, Reviewer_nxbX, Reviewer_dNyU)",
+  "MNIST-rot misdescribed, so the standard benchmark and published numbers are missing (Reviewer_oaoL, Reviewer_nxbX)",
+  "Baselines possibly undertrained; no residual connections or batch normalization (Reviewer_nxbX)",
+  "Uneven set-up: large nu_max and fewer layers for B-CNN against four G-CNN rotations (Reviewer_dNyU)"
+ ],
+ "shared_issues": [
+  "G-CNN baseline limited to four rotations (A: Reviewer_iKDt; B: Reviewer_oaoL, Reviewer_nxbX, Reviewer_dNyU)",
+  "Uncited Fourier-Bessel steerable work from signal processing (A: Reviewer_iKDt; B: Reviewer_dNyU)",
+  "Invariance is inexact once Bessel filters are sampled on a grid (A: Reviewer_iKDt, Reviewer_9Dgi; B: Reviewer_nxbX, Reviewer_dNyU)",
+  "Cost of nu_max+1 convolutions per layer (A: Reviewer_iKDt, Reviewer_9Dgi; B: Reviewer_nxbX, Reviewer_gUNY)",
+  "Small, simple datasets and small networks (A: Reviewer_nHDN, Reviewer_9Dgi; B: Reviewer_oaoL, Reviewer_nxbX)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "The committees did not mainly weigh the same facts differently; B saw the decisive facts, and A never saw them. Three B reviewers at confidence 4 or 5 (Reviewer_oaoL, Reviewer_nxbX, Reviewer_dNyU) know the equivariant-CNN and steerable-basis literature, and they showed that the paper's novelty claims are false. The submission says no earlier CNN gives 'a rigorous invariance to the continuous set of all possible rotation angles' (lines 6-8, 31-33, 293-295), but Harmonic Networks (2017) and E(2)-CNNs (2019) already do this and the paper cites neither. Its only equivariant baseline is a G-CNN with four rotations (line 196), and the authors agreed with oaoL that the Bessel radial part 'could be replaced by other (trainable) radial functions'. B's three detractors kept their scores after a rebuttal that again compared only with the four-rotation G-CNN, and B's AC rejected on the missing state-of-the-art comparisons, giving no weight to Reviewer_gUNY's thin 8. No A reviewer named Harmonic Networks or E(2)-CNNs. Reviewer_9Dgi repeated the false priority claim as a strength, Reviewer_Vncf (one hour, confidence 3) misread how global invariance arises and still gave 7, and Reviewer_iKDt saw the coarse C4 baseline and missing Fourier-Bessel work but rated them minor. Reviewer_nHDN, who found the results 'not convincing', rose to 6 after the rebuttal's low-data Outex result, and A's AC leaned on that rebuttal-only result and on uniform scores. The camera-ready drops the priority claim and cites both methods as prior work, yet still compares only against the C4 G-CNN. B's rejection is the better-supported decision.",
+ "candidate_reasons": [
+  "Reviewer expertise in closest prior work",
+  "False priority claim accepted unchecked",
+  "Missing state-of-the-art equivariant baselines",
+  "Weak C4 baseline weighted differently",
+  "Rebuttal-only low-data result persuaded A",
+  "Thin champion review discounted by AC"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_oaoL review (Originality, Quality) and 2021-08-17 comment",
+  "Reviewer_nxbX review and 2021-08-16 comment",
+  "Reviewer_dNyU review and 2021-08-17 comment",
+  "Reviewer_gUNY review and 2021-08-17 comment",
+  "Reviewer_9Dgi review (Originality, Quality, Significance)",
+  "Reviewer_Vncf review",
+  "Reviewer_iKDt review and 2021-09-02 comment",
+  "Reviewer_nHDN review and 2021-09-01 post-discussion update",
+  "Authors' response to Reviewer_oaoL (Bessel radial part replaceable)",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf abstract lines 6-8, Introduction lines 31-33, Conclusion lines 293-295",
+  "paper_submitted.pdf references [1]-[22] (no Worrall et al. 2017, no Weiler and Cesa 2019)",
+  "paper_submitted.pdf Section 5.2 lines 193-233 (C4 G-CNN, layer counts, nu_max)",
+  "paper_submitted.pdf line 184 (MNIST-rot)",
+  "paper_submitted.pdf Figure 3",
+  "paper_submitted.pdf lines 170-171 (nu_max+1 convolutions)",
+  "paper.pdf camera-ready Sections 1 and 3 (priority claim removed; Harmonic Networks, E(2)-CNNs, LieConv, Fourier-Bessel PCA cited; no new baselines)"
+ ]
+}

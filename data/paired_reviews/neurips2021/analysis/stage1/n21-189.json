@@ -1,0 +1,274 @@
+{
+  "pair_id": "n21-189",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 3, 4],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 4, 3, 4, all at confidence 4. Reviewer_Jqx8's 3 is one point below the rest and rests on the same missing-DynamicFusion objection. All four answered the rebuttal and kept their scores."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_SY53",
+          "claim": "With ground-truth depth and masks as input, the reconstructions still fail to reproduce the input view (Fig. 5: motorbike, truck, airplane, man on the floor, helicopter).",
+          "checked_against_paper": "correct",
+          "evidence": "In Fig. 5 the predicted motorbike, truck and airplane are coarse or incomplete, although the paper presents them as successes; the man on the floor and the helicopter are the paper's own failure cases (lines 358-361). The authors conceded that nothing makes the output match the input depth; adding that constraint raised IoU from 32.5 to 35.1."
+        },
+        {
+          "reviewer": "Reviewer_Jqx8",
+          "claim": "The paper neglects DynamicFusion and the RGB-D non-rigid fusion line of work.",
+          "checked_against_paper": "correct",
+          "evidence": "References [1]-[53] contain no RGB-D non-rigid fusion method, while lines 3-5 call the setting 'more realistic yet more challenging' than prior work. The camera-ready adds a 'Fusion-based 4D reconstruction' paragraph (DynamicFusion, VolumeDeform, KillingFusion, SurfelWarp)."
+        },
+        {
+          "reviewer": "Reviewer_SY53",
+          "claim": "The paper does not discuss any non-deep-learning method at all.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 77-78 cite classical NR-SfM (Bregler et al. 2000 [3], Zhu et al. 2014 [51]) and line 82 cites variational RGB-D scene flow [16], one sentence each. The narrower point, that no fusion method is discussed, is correct."
+        },
+        {
+          "reviewer": "Reviewer_SY53",
+          "claim": "Line 347 reports the oracle with the ground-truth flow-field, which should give near-perfect results.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 347-349 say 72.6 IoU was obtained 'when using the ground-truth flow-field', but lines 341-342 say the predicted flow was applied to ground-truth meshes. The rebuttal confirmed the second reading, so the text is wrong. Reviewer_tafs in B flagged the same contradiction."
+        },
+        {
+          "reviewer": "Reviewer_SY53",
+          "claim": "The paper does not discuss its limitations.",
+          "checked_against_paper": "correct",
+          "evidence": "There is no limitations section. Checklist 1(b) points to Sections 4.4-4.5, which show three failure cases (lines 358-361) and the oracle gap but never discuss the ground-truth inputs or the supervision."
+        },
+        {
+          "reviewer": "Reviewer_Jqx8",
+          "claim": "The title 'from Monocular Videos' is misleading for a method that needs RGB-D input.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted title 'Class-agnostic 4D Reconstruction from Monocular Videos'; abstract line 2 says 'unconstrained monocular videos'; lines 96-97 require RGB-D frames, instance masks and camera matrices. The camera-ready title drops 'Monocular'."
+        },
+        {
+          "reviewer": "Reviewer_Jqx8",
+          "claim": "All experiments are on synthetic data.",
+          "checked_against_paper": "correct",
+          "evidence": "Only SAIL-VOS 3D, extracted from GTA-V (lines 282-286)."
+        },
+        {
+          "reviewer": "Reviewer_Jqx8",
+          "claim": "Line 79 overclaims that the method 'doesn't rely on any templates or priors', although it learns a prior from data.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 79 makes the claim; the shape prior is learned from SAIL-VOS 3D meshes. The rebuttal narrowed 'priors' to 2D keypoints."
+        },
+        {
+          "reviewer": "Reviewer_Jqx8",
+          "claim": "Flow inference is independent of shape inference, not a joint solution.",
+          "checked_against_paper": "correct",
+          "evidence": "Eqs. 3-5: the velocity field sees only the static feature z_p, never the shape; shape depends on flow, not the reverse. Training is joint (Eq. 6, line 228), which is all the rebuttal addressed."
+        },
+        {
+          "reviewer": "Reviewer_nToe",
+          "claim": "Baseline inputs are not stated; PIFuHD uses no depth at inference while FREDO does.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2 (lines 291-298) never states the baselines' inputs. The rebuttal confirms PIFuHD and OFlow got RGB only at test time, while FREDO got ground-truth depth. Under the camera-ready's revised protocol, with retrained baselines, the SAIL-VOS 3D margin over OFlow is 5.9 mIoU, against 12.3 in the submission."
+        },
+        {
+          "reviewer": "Reviewer_nToe",
+          "claim": "Training needs ground-truth 3D correspondences (scene flow).",
+          "checked_against_paper": "correct",
+          "evidence": "L_temp (Eq. 8, lines 253-255) uses ground-truth vertex correspondences."
+        },
+        {
+          "reviewer": "Reviewer_7c6w",
+          "claim": "Results cover 5 categories and never test unseen ones, so 'class-agnostic' is unsupported.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 285-286 list person, car, truck, motorcycle and airplane; no class is held out. The camera-ready adds a zero-shot test on dog, gorilla and puma."
+        },
+        {
+          "reviewer": "Reviewer_7c6w",
+          "claim": "Results for non-human categories are of low quality (helicopter, truck).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 IoU: person 50.5, truck 23.5, airplane 20.4. The Fig. 5 vehicles are coarse."
+        },
+        {
+          "reviewer": "Reviewer_Jqx8",
+          "claim": "Neural Deformation Graphs uses the SMPL human model, so it says nothing about class-agnostic methods (discussion, 2021-08-23).",
+          "checked_against_paper": "not_checked",
+          "evidence": "A claim about another paper, not this one. The authors replied that NDG uses no SMPL model and needs four calibrated depth cameras; Jqx8 did not answer."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. All four replied and kept their scores: Reviewer_7c6w on 2021-08-19 ('persist in the current rating'), Reviewer_Jqx8 on 2021-08-23 ('lean to maintain my current rating'), Reviewer_nToe on 2021-09-01 ('Maintaining original rating after rebuttal'), Reviewer_SY53 on 2021-09-02 ('would vote for rejection').",
+        "what_convinced_or_not": "7c6w accepted that DynamicFusion has no public code but dismissed the 3DPW results as humans only: 'If the paper had show results on generic objects (not just humans) in real videos ... I would have been been more supportive.' Jqx8 named SurfelWarp and KillingFusion as runnable; the authors posted qualitative SurfelWarp results on 2021-08-31, 09-01 and 09-03. No A reviewer and not the AC mentioned them, although nToe and SY53 replied after the first posting. SY53 rejected the depth-consistency fix (+2.6 IoU) as a patch, not the sanity check it meant, and called the solution 'half-baked'. nToe adopted the others' DynamicFusion concern and kept its quality and novelty objections."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review cites 'four negative reviews from expert reviewers' and names the shared concern: no discussion or comparison with methods 'along the line of DynamicFusion'. It accepts that DynamicFusion has no released code, but says the many follow-ups make 'a thorough comparison' crucial. It does not mention the SurfelWarp results posted in the discussion, nor quality, supervision or novelty.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "No discussion or comparison with DynamicFusion and its follow-ups (all four reviewers and the AC); the submission cites none of them",
+        "Low reconstruction quality despite ground-truth depth and masks, worst on non-human classes (SY53, Jqx8, 7c6w, nToe)",
+        "Ground-truth inputs at test time and 3D supervision in training, with synthetic-only evidence; the rebuttal's 3DPW test covers humans only (nToe, SY53, 7c6w)",
+        "Novelty judged a combination of OFlow and PIFu (nToe, 7c6w)",
+        "Unanimous 3-4 ratings at confidence 4, kept after the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 8, 7, 6],
+      "confidences": [4, 4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_FhQ8", "Reviewer_tafs", "Reviewer_Lqt3"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 8, 7, 6. Reviewer_Gayd's 8 is one point above two 7s; without it the mean is 6.67, still an accept. Its review is uncritical (see inattentive_reviews)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Gayd",
+          "evidence": "An 8 ('Fantastic work!') that says 'I was satisfied with the discussion of related work', although the submission cites no RGB-D non-rigid fusion method. It never mentions the ground-truth depth, masks and cameras at test time, or that the baselines got RGB only, and it calls the results 'strong'. It did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_Lqt3",
+          "evidence": "Three hours, confidence 3, 'Math/other details were not carefully checked', two vague concerns. Its post-rebuttal update says 'the experiments with only a synthetic dataset are limited', ignoring the 3DPW real-data results in the general response. It raised 5 to 6 anyway and never posted in the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_FhQ8",
+          "claim": "DynamicFusion and Neural Deformation Graphs, class-agnostic RGB-D methods with a canonical space, are not discussed or compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither appears in references [1]-[53]."
+        },
+        {
+          "reviewer": "Reviewer_FhQ8",
+          "claim": "The PIFuHD comparison is unfair (RGB against RGB-D), and it is unclear how OFlow was adapted.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2 is silent on baseline inputs; the rebuttal confirms both baselines got RGB only at test time."
+        },
+        {
+          "reviewer": "Reviewer_FhQ8",
+          "claim": "Line 35: per-frame segmentation is not enough; masks must be tracked across frames.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 34-36 present off-the-shelf segmentation as sufficient, but the method needs masks m_ij that follow object j through all frames (lines 106-107)."
+        },
+        {
+          "reviewer": "Reviewer_tafs",
+          "claim": "The oracle paragraph (lines 338-350) contradicts itself about which of mesh and flow is ground truth.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 341-342 apply the predicted flow to ground-truth meshes; lines 347-349 report the result 'when using the ground-truth flow-field'."
+        },
+        {
+          "reviewer": "Reviewer_tafs",
+          "claim": "Z_far is set at a fixed distance from Z_near, whatever the object's size.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 130-132; the distance is not given in the main text."
+        },
+        {
+          "reviewer": "Reviewer_tafs",
+          "claim": "All experiments use ground-truth inputs on one synthetic dataset.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 96-97 and 282-286."
+        },
+        {
+          "reviewer": "Reviewer_Gayd",
+          "claim": "The discussion of related work is satisfactory.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No RGB-D non-rigid fusion method is cited. Four reviewers across both committees flagged this, and the camera-ready adds a paragraph on it."
+        },
+        {
+          "reviewer": "Reviewer_Gayd",
+          "claim": "The authors include failure cases.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 5 bottom right and lines 358-361."
+        },
+        {
+          "reviewer": "Reviewer_tafs",
+          "claim": "FREDO beats the baselines by a large margin, though they were designed for slightly different tasks.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: 32.5 against 20.2 mean IoU for OFlow. Only FREDO received ground-truth depth. Under the camera-ready's revised protocol, with retrained baselines, the margin is 5.9 mIoU, and ONet beats REDO on DeformingThings4D++."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_FhQ8", "Reviewer_Lqt3"],
+        "evidence": "FhQ8 posted 'raising my rating to 7' on 2021-08-31 and edited its review that day. Lqt3 edited on 2021-09-13: 'I update my final score from 5 to 6'. Reviewer_tafs edited on 2021-09-10 to say 'I'm keeping my original score' (7). Reviewer_Gayd neither replied nor edited.",
+        "what_convinced_or_not": "FhQ8 had asked for qualitative real-data results and a comparison with a fusion method. The 3DPW visualisations and the SurfelWarp comparison convinced it: 'The comparison with SurfelWarp clearly shows that the data-driven FREDO is able to track larger deformation.' It stayed surprised that video depth estimation worked on moving people. Lqt3 found the scene-flow answer fair but still called the synthetic-only evaluation limited. tafs got answers on window size, positional encoding, run time and the oracle, and kept 7."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review counts three initially positive reviewers and one borderline negative, and says the positive ones 'became more positive' with real-world results; only FhQ8 rose among them. It says the negative reviewer 'did not interact', but Lqt3 raised 5 to 6 on 2021-09-13. It never mentions the missing fusion literature, the ground-truth inputs or the baselines' inputs, and calls the paper 'a positive step' on 'the very difficult problem'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "A hard, little-explored task; the paper is a credible first step (Gayd, tafs, AC)",
+        "Large margins over learned baselines in Table 1 (tafs, Gayd)",
+        "Rebuttal results on real 3DPW videos and the SurfelWarp comparison (FhQ8, AC)",
+        "Clear writing and a sound design (Gayd, tafs, Lqt3)",
+        "All four final ratings at 6 or above"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Output does not reproduce the observed input view despite ground-truth depth; the method may be 'partially broken' (SY53)",
+    "Low absolute quality on non-human classes, which undercuts 'class-agnostic' (SY53, Jqx8, 7c6w)",
+    "No test on unseen categories (7c6w)",
+    "Misleading 'Monocular' title and overclaims at lines 3 and 79 (Jqx8, SY53)",
+    "No comparison with dynamic NeRF methods such as Nerfies and NSFF (7c6w)",
+    "Classical registration and fusion (ICP with a deformation grid, TSDF fusion) not tried in place of the learned flow and aggregation (SY53)",
+    "Flow inference decoupled from shape; missing NR-SfM reference Dai et al. 2012 (Jqx8)"
+  ],
+  "issues_only_b": [
+    "Fixed Z_far offset whatever the object size (tafs)",
+    "Effect of window size N and positional encoding; inference time (tafs)",
+    "How much occlusion the method handles; results by occlusion level (FhQ8)",
+    "Why image features are needed when depth is given (FhQ8)",
+    "Per-frame segmentation versus masks tracked across frames (FhQ8)",
+    "Overlap with multi-frame scene-flow estimation; no comparison with shape-prior NR-SfM methods (Lqt3)",
+    "Dependence on the choice of canonical frame (Lqt3)"
+  ],
+  "shared_issues": [
+    "No discussion or comparison with DynamicFusion-style RGB-D fusion (A: SY53, Jqx8, 7c6w, nToe after the rebuttal, AC; B: FhQ8 only)",
+    "Ground-truth depth, masks and cameras at test time; ground-truth meshes and correspondences in training (A: nToe, SY53, 7c6w; B: tafs, FhQ8)",
+    "Evaluation on one synthetic dataset only (A: Jqx8, SY53, 7c6w; B: tafs, Lqt3, FhQ8)",
+    "Baselines given RGB only while FREDO gets depth, and the setup not stated (A: nToe, 7c6w; B: FhQ8)",
+    "Novelty as a combination of OFlow and pixel-aligned features (A: nToe, 7c6w; B: Gayd in passing, Lqt3)",
+    "Self-contradictory oracle experiment at lines 338-350 (A: SY53; B: tafs)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees found the same weaknesses, and the submission confirms each one. FREDO needs ground-truth depth, masks and cameras at test time and ground-truth 3D correspondences in training. It is tested on one synthetic dataset, its baselines got RGB only, and it cites no RGB-D non-rigid fusion work. The split comes from who reviewed and how they weighed these facts. Three A reviewers raised DynamicFusion unprompted, all four sat at confidence 4, and they judged absolute quality; their checkable claims hold (the 'Monocular' title, coarse vehicles in Fig. 5, no unseen-category test). B judged the method against learned baselines and valued a first step on a hard task. Reviewer_Gayd's 8 calls the related work satisfactory and never engaged again; two B reviewers worked at confidence 3. Both forums received nearly the same rebuttal: 3DPW results on humans and a qualitative SurfelWarp comparison. It moved Reviewer_FhQ8, the one B reviewer who had raised the fusion gap, to 7. It moved nobody in A: Reviewer_7c6w dismissed 3DPW as humans only, and no A reviewer or the AC mentioned SurfelWarp. Each AC followed its reviewers. A's objections were accurate for the paper as submitted, though its decisive one was about positioning: in the camera-ready SurfelWarp scores 1.03 mIoU. The camera-ready adds what A asked for, and under its revised protocol the margin over OFlow is 5.9 mIoU, not 12.3.",
+  "candidate_reasons": [
+    "Reviewer pools from different subfields",
+    "Missing classical baseline judged decisive",
+    "Absolute versus relative result quality",
+    "Same rebuttal persuades one committee",
+    "Uncritical champion who never engaged",
+    "Margins inflated by handicapped baselines"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_SY53 review (Quality, Significance) and reply, 2021-09-02",
+    "Reviewer_7c6w reply, 2021-08-19",
+    "Reviewer_Jqx8 review and reply, 2021-08-23",
+    "Reviewer_Gayd review",
+    "Reviewer_FhQ8 reply 'raising my rating to 7', 2021-08-31",
+    "Reviewer_Lqt3 post-rebuttal update",
+    "Authors' SurfelWarp replies: A forum 2021-08-31, 2021-09-01, 2021-09-03; B forum 2021-08-31",
+    "Authors' reply to Reviewer_nToe, '[Weakness 3] Clarification about baselines'",
+    "paper_submitted title, abstract lines 1-5, references [1]-[53]",
+    "paper_submitted Section 4.2 lines 282-298, Table 1, Fig. 5, lines 338-361",
+    "camera-ready 'Fusion-based 4D reconstruction' paragraph, Table 1 and Table 2 (zero-shot)"
+  ]
+}

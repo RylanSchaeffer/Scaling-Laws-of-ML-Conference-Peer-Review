@@ -1,0 +1,264 @@
+{
+ "pair_id": "n21-191",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    3,
+    2,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_SgBk",
+    "Reviewer_ZZ5A",
+    "Reviewer_oRgH"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 6, 6 (SgBk, ZZ5A, oRgH, Soeq). ZZ5A's 7 is one point above the rest. It rests on a substantive review that asked for a marginal-only baseline, and on the rebuttal experiment that supplied one."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Soeq",
+     "evidence": "0.8 hours at confidence 4. The review is a list of short notation remarks and questions. It says the four Atari games are 'just too few and hard to interpret' and doubts that they 'can support the claim', yet it rates 6. It never replied to the rebuttal and was never edited."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_oRgH",
+     "claim": "MD3QN does not outperform MMDQN on Gopher, MsPacman and Pong (MMDQN appendix, Fig. 8).",
+     "checked_against_paper": "correct",
+     "evidence": "The submission compares only with HRA (lines 286-287, Figure 3), so the gap is not visible in it. The authors conceded: 'the reason why we cannot outperform MMDQN'. The camera-ready adds MMDQN to Figure 3 and says MD3QN 'does not outperform MMDQN' on several games."
+    },
+    {
+     "reviewer": "Reviewer_oRgH",
+     "claim": "Figure 3 shows one trajectory per algorithm with no uncertainty; it is unclear whether there are multiple runs.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3 shows single HRA and MD3QN curves with no shading. The checklist (lines 394-396) puts multi-seed results in the appendix. The camera-ready shows three seeds."
+    },
+    {
+     "reviewer": "Reviewer_oRgH",
+     "claim": "Algorithm 1 takes the argmax over the sum of all reward dimensions, as RD2 does (eq. 7-8), so RD2 is the fairer baseline than HRA.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 16 and Algorithm 1, line 1 select a' by the expected total return, as eq. 8 (RD2) does. HRA's eq. 6 takes a per-source argmax. Figure 3 compares only with HRA."
+    },
+    {
+     "reviewer": "Reviewer_ZZ5A",
+     "claim": "The joint distribution is never used directly in action selection.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 16 and Algorithm 1, line 1 use only the expected total return. So the Atari scores cannot show a benefit of joint modelling over marginals."
+    },
+    {
+     "reviewer": "Reviewer_SgBk",
+     "claim": "The Atari reward sources are positively correlated or independent, so actions involve no reward trade-offs.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 304-306: Gopher has 'positive-correlated' sources and Pong 'independent' sources."
+    },
+    {
+     "reviewer": "Reviewer_SgBk",
+     "claim": "Lines 109-114 and the paragraph at line 160 read as if a result will show why proof and loss metrics may differ, and the paragraph treats the KL divergence as a metric.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 160-169 give only the C51 example and an exact-minimisation argument; no result follows. Line 162 speaks of 'the metric for training loss', and line 165 names KL, which is not a metric."
+    },
+    {
+     "reviewer": "Reviewer_Soeq",
+     "claim": "The four Atari games were selected without explanation.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 291-300 list Gopher, MsPacman, UpNDown and Pong and how their rewards split. They give no selection criterion. The criteria first appear in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_oRgH",
+     "Reviewer_ZZ5A",
+     "Reviewer_SgBk"
+    ],
+    "evidence": "oRgH on 2021-08-22: 'I thereby raise my score to 6'; review edited the same day. ZZ5A on 2021-08-24: 'I am willing to raise my score'; edited the same day; final 7. SgBk on 2021-08-30: 'I will raise my score'; edited the same day; final 6. Soeq never replied and never edited. If each raise was one point, A moved from a mean of 5.5 to 6.25.",
+    "what_convinced_or_not": "The constraint-maze experiment, in which acting on the joint distribution beats two marginal-only MMDQN baselines, convinced ZZ5A ('a tangible benefit beyond just the marginals') and SgBk ('an additional experiment highlighting the importance of learning the joint distribution'). oRgH accepted the six-game multi-seed results and the RD2 comparison. SgBk stayed concerned that the Atari results add little, because the authors concede MMDQN does better, and asked for the MMDQN baseline in the revision."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'All reviewers were in favor of acceptance, and from reading the paper myself I find it to be a solid contribution and potentially impactful.' The AC seconds ZZ5A on successor features. It adds Freirich et al. (Bellman GAN), which no A reviewer named, and asks for more Atari games. Both are camera-ready requests, not conditions.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "All four reviewers at 6 or 7 after the rebuttal; three raised their scores",
+    "The constraint-maze experiment showed that acting on the joint distribution beats marginal-only baselines (ZZ5A, SgBk)",
+    "The AC judged the work solid and potentially impactful and left the overlap with Freirich et al. and the narrow Atari coverage to the camera-ready"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    3,
+    5
+   ],
+   "confidences": [
+    5,
+    2,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_TpSB",
+    "Reviewer_fJbd"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_X5DH",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below 5: 3 ('clear rejection') at confidence 4. Its central point is checkable and right. The paper claims three times to correct a misunderstanding (lines 53-56, 110-114, 160-161); the first claim cites nothing, and the paper's own C51 example (lines 163-166) shows that prior work already used different metrics for proof and loss. The authors conceded, and the camera-ready deletes every such sentence. But the review calls Theorem 2 an unbiasedness result (it is a contraction, eq. 17) and calls 'exclusive' undefined (lines 270-271 define it). X5DH never replied to a two-part rebuttal that conceded its main point. A 3 for a removable overclaim and a small experimental section is severe. Without it, B's mean is still 5.33."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_A2nn",
+     "evidence": "Posted on 2021-08-01, about two weeks after the others. Its 'first noticeable issue', that Algorithm 1 computes the loss and not its gradient, is wrong: line 6 returns the gradient. It asks for MARL mixing baselines (QR-MIX, MMD-MIX), although the method receives vector rewards and factorises nothing. It never replied to the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_fJbd",
+     "evidence": "Three hours at confidence 2. Generic praise ('The paper is well-written'); it calls the proof 'sound' while stating that math was not carefully checked. Its only post is a cut to 6 'after the discussion with other reviewers', with no reason of its own."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_X5DH",
+     "claim": "The paper claims several times to correct a misunderstanding; the first claim has no citation, the two formulations differ, Bellemare et al. (2017) and Nguyen et al. (2020) make no such claim, and the works the paper cites already use different metrics for proof and loss.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 53-56, no citation: 'other metrics than the Wasserstein metric'. Lines 110-112 and 160-161, citing both papers: 'the same metric for proving convergence and as training loss'. Lines 163-166 give C51, which proves contraction with the Cramer distance and trains with KL. The authors conceded 'it's not that appropriate to use this expression'. The camera-ready removes all such sentences."
+    },
+    {
+     "reviewer": "Reviewer_TpSB",
+     "claim": "The statement at lines 112-114 that a loss other than the proof metric can be used is not true for approximate algorithms; analysis and projection metrics are already known to differ (Dabney et al., 2018b).",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 166-168 argue only from exact minimisation 'with infinite sampled transitions and expressive value networks'. The rebuttal restates this ('holds when the number of samples goes to infinity'). No result covers the approximate algorithm."
+    },
+    {
+     "reviewer": "Reviewer_TpSB",
+     "claim": "Unbiased MMD^2 gradients need multiple independent samples from T mu(s,a), which one transition cannot give, so 'the temporal difference loss MMD^2 can be optimized without bias by transition samples' is misleading.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 197-200 drop the target-target term because it has no gradient in theta_{i+1}. The cross term is linear in the target distribution, so particles from one sampled transition give an unbiased gradient, as for the Cramer distance. The wording at lines 193-197 ('independent samples ... from T mu') is loose, and the authors explained it correctly in the rebuttal. The camera-ready keeps the claim and adds a lemma. TpSB still named 'the unbiasedness claims for MMD estimation' as one of three reasons for another review."
+    },
+    {
+     "reviewer": "Reviewer_TpSB",
+     "claim": "Some hyperparameters, such as the number of particles, and the sweep procedure and Atari game selection are not given.",
+     "checked_against_paper": "correct",
+     "evidence": "The main text gives 200 samples only in the Figure 2 caption (maze). It gives no sweep procedure and no selection criterion. The authors conceded and supplied 200 particles and a learning rate of 5e-5."
+    },
+    {
+     "reviewer": "Reviewer_A2nn",
+     "claim": "Algorithm 1 is said to compute the gradient of the MMD loss, but it actually computes an estimate of the loss itself.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Algorithm 1 is titled 'Gradient estimation of MMD^2 loss by transition samples', and line 6 returns the gradient of MMD^2 with respect to theta, by automatic differentiation. The notation complaint is right: a' is both the argmax variable and the result in line 1, and Z_{1:M} names samples at s' (line 1) and at s (line 2)."
+    },
+    {
+     "reviewer": "Reviewer_A2nn",
+     "claim": "Freirich et al. (Bellman GAN) and Singh, Lee and Chen (sample-based distributional policy gradient) are not cited.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is in the reference list (lines 316-375). Committee A's AC raised Freirich et al. independently. The camera-ready cites it."
+    },
+    {
+     "reviewer": "Reviewer_X5DH",
+     "claim": "Theorem 2 is the unbiasedness of the joint distribution estimator.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 2 (line 151, eq. 17) states that the expected total return under the joint optimality operator contracts in the sup norm. It says nothing about an estimator."
+    },
+    {
+     "reviewer": "Reviewer_X5DH",
+     "claim": "'Exclusive' is used without definition in Section 5.1; is Figure 2(a) meant to show negative correlation?",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 270-271 define it: 'Once the agent obtains a reward from one side, it cannot obtain the reward from the other side.' Lines 274-276 say this maze has negative correlation."
+    },
+    {
+     "reviewer": "Reviewer_X5DH",
+     "claim": "Figure 2 gives no quantitative measure and no comparison with prior methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 2 shows only scatter plots of MD3QN samples against ground-truth samples. The rebuttal added MMD-over-training curves."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": [
+     "Reviewer_fJbd"
+    ],
+    "evidence": "fJbd on 2021-09-15: 'After the discussion with other reviewers. I think the paper needs to do a big revision to make the confusing part clear. So I downgrade the score to 6'; edited the same day, so it was 7 or higher. TpSB edited on 2021-09-02 to add a post-discussion paragraph and ended at 5. Its original text ('I would therefore like to see this paper accepted') fits a 5 or a 6, so its direction is unknown. X5DH and A2nn never replied and never edited.",
+    "what_convinced_or_not": "TpSB accepted the idea ('I like the fundamental idea of the paper') but judged the changes 'substantial enough that further review may be beneficial', naming the unbiasedness claims, the 'common misunderstanding' remarks and experimental details. The authors had conceded the misunderstanding wording to both X5DH and TpSB, and their unbiasedness answer was correct. The constraint-maze experiment, posted to X5DH, drew no reply. fJbd's cut gives no reason beyond the panel discussion."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5, 6, 3, 5 (mean 4.75). 'The revisions required for the paper to be accepted are significant and therefore another round of reviews will be needed' restates TpSB's 'further review may be beneficial' and fJbd's 'big revision'. 'The supposedly common misunderstandings of the community' is X5DH's and TpSB's point. 'Confusion regarding the notation' covers A2nn's Algorithm 1 complaint, although A's reviewers raised as many notation issues. The AC does not weigh whether each concern was right.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Unsupported 'common misunderstanding' claims and notation confusion (X5DH, TpSB, A2nn)",
+    "Concerns about the experiments: four unexplained Atari games, a qualitative Figure 2, missing details (X5DH, TpSB)",
+    "Promised revisions judged too large to accept without another review round (TpSB, fJbd, AC)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "MD3QN does not beat MMDQN on Gopher, MsPacman and Pong, and MMDQN is missing as a baseline (oRgH, SgBk; conceded by the authors)",
+  "RD2, not HRA, matches MD3QN's action-selection rule (oRgH)",
+  "No marginal-only distributional baseline; the joint distribution is unused in action selection (ZZ5A, SgBk)",
+  "Single-run Atari curves without error bars (oRgH)",
+  "Scaling to many reward sources, and the network architecture left unclear (ZZ5A)"
+ ],
+ "issues_only_b": [
+  "Unbiasedness of MMD^2 gradients from single transitions (TpSB; the concern is wrong)",
+  "Algorithm 1 said to return the loss, not its gradient (A2nn; wrong), and its notation overload",
+  "MARL mixing baselines QR-MIX and MMD-MIX (A2nn)",
+  "Missing references DRDRL, NeurIPS 2019 (TpSB), and Singh, Lee and Chen (A2nn)",
+  "Missing particle count and sweep details; metric of Proposition 1 not stated (TpSB)",
+  "Figure 2 not quantitative and without baselines; theorems not tied to reward correlation; artificial maze (X5DH)"
+ ],
+ "shared_issues": [
+  "The 'common misunderstanding' paragraph on proof versus loss metrics: unclear in A (SgBk, oRgH, Soeq), unsupported in B (TpSB, X5DH)",
+  "Only four Atari games, selection unexplained (Soeq and the AC in A; X5DH, TpSB in B)",
+  "Notation inconsistencies (Soeq, ZZ5A, oRgH in A; A2nn, fJbd, TpSB in B)",
+  "Limited novelty of extending MMD training and C51 theory to many dimensions (ZZ5A, Soeq, SgBk in A; X5DH in B)",
+  "Choice of kernel bandwidths (SgBk in A; fJbd, TpSB in B)",
+  "Overlap with Freirich et al., Bellman GAN (the AC in A; A2nn in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same facts and weighted them differently. No reviewer found a real error in the theory or the algorithm. Both saw an overclaimed 'common misunderstanding' paragraph, four Atari games compared with HRA only, and loose notation. Both got the same core rebuttal: a constraint-maze experiment in which acting on the joint distribution beats marginal-only baselines, six games with multiple seeds, and promised rewrites. In A, three of four reviewers replied and raised their scores, citing the new experiment, and the AC accepted with camera-ready requests. In B, Reviewer_X5DH (3) and Reviewer_A2nn (5) never replied. Reviewer_TpSB (5, confidence 5) liked the idea but judged the changes large enough to need another review, and Reviewer_fJbd cut its score to 6 after the panel discussion. B's AC adopted that re-review standard. So the split is a different bar for how much change a camera-ready may carry. A also knew the worst empirical fact, which B never saw: MD3QN does not beat MMDQN on Atari, and the authors conceded it. Part of B's case is wrong. TpSB's claim that one transition cannot give unbiased MMD^2 gradients fails, because the target-only term has no gradient and the cross term is linear in the target. A2nn's claim that Algorithm 1 returns the loss ignores line 6. X5DH's main point is right, and the camera-ready deletes the misunderstanding claim, but X5DH also misreads Theorem 2 and the 'exclusive' maze.",
+ "candidate_reasons": [
+  "Re-review bar for promised revisions",
+  "Rebuttal engagement differed between panels",
+  "Overclaim read as clarity versus credibility",
+  "Incorrect technical concern fed rejection",
+  "Panel discussion pulled supporter down",
+  "Harsh non-engaging outlier detractor"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Reviewer_TpSB post-discussion paragraph (edited 2021-09-02), Committee B",
+  "Reviewer_fJbd post-rebuttal comment (2021-09-15), Committee B",
+  "Reviewer_X5DH review, 'corrects the misunderstanding' and Theorem 2 passages, Committee B",
+  "Reviewer_A2nn review, Algorithm 1 paragraph, Committee B",
+  "Authors' responses to Reviewer_TpSB (unbiasedness) and Reviewer_X5DH (misunderstanding conceded), Committee B",
+  "Reviewer_oRgH review and the authors' reply on MMDQN, Committee A",
+  "Reviewer_ZZ5A (2021-08-24) and Reviewer_SgBk (2021-08-30) post-rebuttal comments, Committee A",
+  "Committee A meta-review",
+  "paper_submitted.pdf lines 53-56, 110-114 and 160-169 (misunderstanding claim)",
+  "paper_submitted.pdf lines 188-201 and Algorithm 1, line 6 (unbiased gradient estimate)",
+  "paper_submitted.pdf Theorem 2 (line 151, eq. 17) and lines 270-276 (exclusive maze)",
+  "paper_submitted.pdf lines 285-306 and Figure 3 (HRA only, single curves)",
+  "paper.pdf Section 5.2 and Figure 3 (MMDQN added; 'does not outperform MMDQN'); no misunderstanding sentence remains"
+ ]
+}

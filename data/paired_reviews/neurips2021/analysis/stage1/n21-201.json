@@ -1,0 +1,215 @@
+{
+ "pair_id": "n21-201",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 6, 9],
+   "confidences": [4, 3, 3],
+   "reviews_edited_after_posting": ["Reviewer_Ahfq"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_M6vn",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "A 9 ('Top 15% of accepted NeurIPS papers') against two 6s, at confidence 3, whose label says 'Math/other details were not carefully checked'; the review still says 'the proofs seems to be correct'. The main review is four stock paragraphs of praise (originality, quality, clarity, significance) and names no weakness. It calls the paper 'very clearly written', while Ahfq and 3rGU found the presentation confusing. Its summary places the initialization ball around 'the ground truth'; Theorem 1 places it around the saddle point (X*, y*) (line 235). Its only suggestion is to interpret the radius. It claims 8 hours and never posted in the discussion."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_M6vn",
+     "evidence": "Stock praise on the four review axes, no weakness, a 9 at confidence 3, and no reply to the authors' answer. See the outlier entry."
+    },
+    {
+     "reviewer": "Reviewer_3rGU",
+     "evidence": "Two hours, confidence 3. The main review is a list of wording fixes. It calls the work 'incremental novelty and improvement' with no reason. It asks whether X must be symmetric, though the spectrahedron is defined inside the symmetric matrices (lines 26-27). It reads the three assumptions as joint requirements, though Theorem 1 needs only Assumption 3 (Remark 1, lines 222-225). It never replied."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Ahfq",
+     "claim": "Assumption 3 is equivalent to Assumption 1, so Assumption 3 is not needed.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 79-83 and Remark 1 (lines 222-225): Assumption 1 implies Assumption 3 only under Assumption 2; the converse always holds. Theorem 1 is stated in terms of Assumption 3. The rebuttal said the same."
+    },
+    {
+     "reviewer": "Reviewer_Ahfq",
+     "claim": "No baseline is compared, and no running time is reported.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5 and Tables 1-3 report only Algorithm 1: initialization error, recovery error, dual gap and eigengap. There is no baseline, timing or convergence curve."
+    },
+    {
+     "reviewer": "Reviewer_Ahfq",
+     "claim": "Lines 271-272 say it does not matter in practice whether the conditions of Theorem 1 hold.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 271-274: 'from a practical point of view, it does not matter whether the conditions of Theorem 1 hold', because the certificate of Section 4.1 checks each truncated projection."
+    },
+    {
+     "reviewer": "Reviewer_Ahfq",
+     "claim": "The method assumes that the rank of the optimal solution is known.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 accepts any SVD rank r at least the multiplicity r-tilde (lines 231-235), so the theory needs only an upper bound. But every experiment sets r = rank(M0), the known ground-truth rank (line 302)."
+    },
+    {
+     "reviewer": "Reviewer_M6vn",
+     "claim": "The paper is very clearly written.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Strict complementarity and GSC are used at lines 49 and 57 before Definition 1 (line 129). Typos include 'spectrahderon' (line 35), 'the the' (line 66), 'yeas' (line 101) and 'complementary' (line 57). Ahfq, 3rGU, u8Jo and xRc5 found the assumptions hard to follow."
+    },
+    {
+     "reviewer": "Reviewer_M6vn",
+     "claim": "The proofs seem to be correct.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The proofs are in Appendices A-E, which are not in the submitted PDF. M6vn's own confidence label says the math was not carefully checked."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_Ahfq"],
+    "evidence": "Author responses posted 2021-08-09. Ahfq edited its review on 2021-08-17 and posted no comment. Its unchanged text still concludes 'the work is not ready for NeurIPS 2021 in the current version' beside a 6 ('Marginally above the acceptance threshold'), so the 6 was most likely set at that edit, up from a reject-side score. The direction is inferred, not stated. 3rGU and M6vn never edited. No reviewer posted in the discussion.",
+    "what_convinced_or_not": "The response to Ahfq answered its reading of the assumptions (Assumptions 1 and 2 imply Assumption 3; Assumption 3 implies Assumption 1), explained the certificate behind lines 271-272, and argued that the O(1/t) rate and the cost of low-rank SVDs are textbook facts that need no experiment. It added no experiment. The response to 3rGU disputed 'incremental' and got no reply. The response to M6vn tied the radius to the eigengap and the SVD rank."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 6, 6, 9 (mean 7.0), all at or above the threshold. The meta-review names no weakness. 'Fills an important hole in the literature' restates M6vn's 'addresses a clear gap in the literature'. 'The authors use empirical observations to justify the reasonability of these assumptions' repeats the paper and the rebuttal. It does not mention Ahfq's 'not ready for NeurIPS 2021', the missing baselines and timing, or 3rGU's 'incremental novelty'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Extends the low-rank-SVD guarantees of [16, 17] to nonsmooth problems, read as filling 'an important hole in the literature' (M6vn; AC)",
+    "All three ratings at or above 6, with M6vn's 9; no reviewer argued in the discussion",
+    "GSC and warm-start assumptions accepted as empirically reasonable (rebuttal; AC)"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 6, 5, 5],
+   "confidences": [2, 5, 3, 4],
+   "reviews_edited_after_posting": ["Reviewer_xRc5"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 6, 5, 5; no rating is more than one point from the rest. The single 6 (zvmw) is a list of three questions."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_MxNL",
+     "evidence": "1.5 hours. A one-sentence summary, one strength and two weaknesses. It says there is 'no discussion' of how restrictive GSC is, but lines 154-167 motivate it and every table reports the eigengap as evidence (lines 90-91). It never replied."
+    },
+    {
+     "reviewer": "Reviewer_u8Jo",
+     "evidence": "Confidence 2. Three short points and 'Yes' for limitations. It says 'there exist more efficient algorithms (converges faster than O(1/t))' for the applications but names none. It never replied."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_xRc5",
+     "claim": "The main result only applies to g(X) = h(X) + max_y y^T(A(X) - b) (Assumption 2), so the setting is fairly restrictive.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Remark 1 (lines 222-225): 'Assumption 2 is not necessary for proving our convergence results for Problem (4), which are directly stated in terms of Assumption 3.' Theorem 1 (line 231) takes a saddle point of any smooth convex-concave f. Assumption 2 is needed only to derive Assumption 3 from Assumption 1. The rebuttal said so; the AC still wrote 'the setting to be quite restrictive'."
+    },
+    {
+     "reviewer": "Reviewer_xRc5",
+     "claim": "The proof techniques seem incremental in view of [16] and [17].",
+     "checked_against_paper": "correct",
+     "evidence": "The paper says the proofs of Lemmas 3 and 4 follow 'immediately' or are 'straightforward' from [16] and [17] (lines 146-148, 160-162), Lemma 2 follows [38] (lines 127-128), and the O(1/t) rate is 'well known' (lines 246-247). The new step is keeping both iterate sequences in the ball (lines 259-261); its proof (Appendix D) is not in the submitted PDF. [16, 17] are by an author of this paper, Dan Garber."
+    },
+    {
+     "reviewer": "Reviewer_xRc5",
+     "claim": "The experiments do not show the convergence rate or compare computational cost with projected subgradient descent.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1-3 give final errors, dual gap and eigengap only. The authors told zvmw on 2021-09-01: 'We did not check the convergence rates at all'."
+    },
+    {
+     "reviewer": "Reviewer_xRc5",
+     "claim": "The paper does not show how to find a good initial point, and GSC cannot be verified a priori.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 3 (lines 263-267) concedes a warm start for the pair (X, y) and relies on experiments. The certificate of Section 4.1 (lines 268-279) checks each projection as it runs, so an a priori check of GSC is not needed for correctness, but nothing guarantees that the certificate holds."
+    },
+    {
+     "reviewer": "Reviewer_zvmw",
+     "claim": "The authors mention no limitation of the work.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Remark 3 (lines 263-267) calls the warm start for (X, y) 'a downside'. Lines 269-270 say Theorem 1 applies only in a neighborhood of an optimal solution."
+    },
+    {
+     "reviewer": "Reviewer_MxNL",
+     "claim": "There is no discussion of how restrictive the GSC condition is.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 154-167 motivate strict complementarity by robustness (Lemma 4). Lines 90-91 and 309-312 present the measured eigengap (Tables 1-3) as evidence of plausibility. The submission does not cite the genericity result that the rebuttal gave (Ding et al., Lemma 8), so the discussion is thin but present."
+    },
+    {
+     "reviewer": "Reviewer_u8Jo",
+     "claim": "Algorithms faster than O(1/t) exist for the applications in the experiments.",
+     "checked_against_paper": "not_checked",
+     "evidence": "No algorithm or reference is named. Lines 28-44 argue that the alternatives need full SVDs or high-rank storage on each iteration. u8Jo stated confidence 2 and never replied."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Author responses posted 2021-08-09. xRc5 edited on 2021-08-31 and added: 'my main concern is that the proposed algorithm does not have strong guarantees of success. Therefore I choose to keep my original score.' u8Jo, zvmw and MxNL never edited. zvmw asked on 2021-08-31 whether faster convergence was seen; the authors replied on 2021-09-01: 'We did not check the convergence rates at all'. The authors' reply of 2021-09-05 to xRc5's update got no answer. u8Jo and MxNL never posted.",
+    "what_convinced_or_not": "The rebuttal told xRc5 that Theorem 1 does not need Assumption 2 and that the certificate replaces an a priori GSC check. xRc5 did not contest either point; it moved its objection to the lack of a global guarantee, which the authors conceded ('we do not have a theoretical result on how to provide provably efficient initialization'). The authors' position that the convergence rate and SVD cost are textbook facts that need no experiment moved no one on record. zvmw called its rate question curiosity, not a condition."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Ratings 5, 6, 5, 5 (mean 5.25). Each reason in the meta-review maps to the reviews: 'the setting to be quite restrictive' (xRc5 con 1, u8Jo, MxNL), 'the exposition of the assumptions to be unclear' (u8Jo, MxNL, xRc5 minor 1), 'overlap with prior work' from 'one reviewer who reviewed the proof in detail' (xRc5 con 2, whose public text says only that the techniques 'seem incremental'), and weak experiments (u8Jo, MxNL, xRc5 con 4). It does not mention the rebuttal's correction that Theorem 1 does not need Assumption 2.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Setting judged restrictive: a local warm-start guarantee and the structural Assumption 2 (xRc5, u8Jo, MxNL; AC)",
+    "Proof technique overlaps with [16, 17] (xRc5; AC)",
+    "Experiments show no baseline, timing or convergence rate (u8Jo, MxNL, xRc5; AC)",
+    "Assumptions poorly explained (u8Jo, MxNL, xRc5; AC)",
+    "Three of four ratings at 5; the single 6 was a list of questions"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "The paper's own statement that the conditions of Theorem 1 do not matter in practice (lines 271-272) (Ahfq)",
+  "SVD rank set to the known ground-truth rank in every experiment (Ahfq)",
+  "Wording and notation: title, 'RHS', 'multiplicity', symmetry of X (3rGU)"
+ ],
+ "issues_only_b": [
+  "No rule for initializing the dual variable y (zvmw)",
+  "Why extragradient rather than a single-step primal-dual method (zvmw)",
+  "Faster-than-O(1/t) algorithms said to exist for the applications (u8Jo)",
+  "No limitations stated (zvmw)",
+  "No guarantee of success outside the warm-start ball, held as the reason to reject (xRc5, after the rebuttal)",
+  "Role of Lemmas 3 and 4 in Section 2 unclear (xRc5)"
+ ],
+ "shared_issues": [
+  "No baseline, timing or convergence-rate evidence in the experiments (Ahfq in A; u8Jo, MxNL, xRc5, zvmw in B)",
+  "GSC assumption insufficiently justified or explained (Ahfq, 3rGU in A; u8Jo, MxNL, xRc5 in B)",
+  "Warm-start requirement and how to meet it (M6vn in A; u8Jo, zvmw, xRc5 in B)",
+  "Incremental over [16, 17] (3rGU in A; xRc5 in B)",
+  "Misreading of which assumptions Theorem 1 needs (Ahfq, 3rGU in A; xRc5 in B)",
+  "Unclear exposition of the assumptions and terms (Ahfq, 3rGU in A; u8Jo, xRc5 in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same paper and named nearly the same weaknesses; they scored them differently. The paper extends the low-rank-SVD results of [16, 17] to nonsmooth problems through a saddle-point reformulation. Its guarantee is local, and its experiments show that rank-r SVDs reproduce the full-SVD iterates but give no baseline, timing or convergence curve. In A, Reviewer_Ahfq and Reviewer_3rGU raised these points and gave 6; Ahfq's text still says 'not ready for NeurIPS 2021', and its post-rebuttal edit most likely set the 6. Reviewer_M6vn gave 9 with stock praise, no weakness, confidence 3 and no discussion, and A's AC echoed it in a meta-review that names no weakness. In B, three reviewers gave 5 for the same points. The most detailed, Reviewer_xRc5, misread the scope of Theorem 1 (Remark 1 says it does not need Assumption 2), but its other points hold, including the paper's own statement that Lemmas 3 and 4 follow from [16, 17]. It kept 5 because nothing guarantees a warm start. B's AC followed the 5s and repeated 'quite restrictive'. The split is calibration at the borderline, 6 against 5 for the same criticisms, plus one uncritical champion in A.",
+ "candidate_reasons": [
+  "Uncritical champion lifted thin panel",
+  "Same criticisms scored 6 versus 5",
+  "Review text contradicts its rating",
+  "AC echoed champion, named no weakness",
+  "Misread theorem scope fed restrictiveness",
+  "Local-only guarantee weighted differently"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_M6vn review, Committee A",
+  "Reviewer_Ahfq review (edited 2021-08-17) and author reply of 2021-08-09, Committee A",
+  "Reviewer_3rGU review, Committee A",
+  "Committee A meta-review",
+  "Reviewer_xRc5 review and post-rebuttal update (edited 2021-08-31), Committee B",
+  "Reviewer_zvmw comment of 2021-08-31 and author reply of 2021-09-01, Committee B",
+  "Committee B meta-review",
+  "paper_submitted.pdf Remark 1 (lines 222-225) and Theorem 1 (lines 231-239)",
+  "paper_submitted.pdf lines 79-83 (relation of Assumptions 1, 2 and 3)",
+  "paper_submitted.pdf lines 127-128, 146-148, 160-162 and 246-247 (proofs follow [38], [16], [17]; rate well known)",
+  "paper_submitted.pdf Section 5, Tables 1-3 and line 302",
+  "paper_submitted.pdf Remark 3 (lines 263-267) and Section 4.1 (lines 268-279)"
+ ]
+}

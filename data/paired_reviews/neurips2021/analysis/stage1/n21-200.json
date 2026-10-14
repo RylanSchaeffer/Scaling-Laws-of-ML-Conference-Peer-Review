@@ -1,0 +1,230 @@
+{
+ "pair_id": "n21-200",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6,
+    5
+   ],
+   "confidences": [
+    4,
+    5,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5 to 7 in a narrow band (Reviewer_1Prj 6, Reviewer_inuZ 7, Reviewer_R6D1 6, Reviewer_nZT8 5). The lone 5 is one point below the 6s and is principled, so no reviewer stands apart."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_inuZ",
+     "evidence": "Not careless (it caught the Table 1 caption), but uncritical of the evaluation despite confidence 5 and 'checked the math/other details carefully'. It calls AFD 'a new defense with SOTA performance' without questioning Figure 2, where AFD keeps about 44% accuracy at L-inf eps 0.125 on CIFAR-10. It never replied after the rebuttal's AutoAttack numbers put AFD below TRADES on three of four datasets; its 7 stood."
+    },
+    {
+     "reviewer": "Reviewer_1Prj",
+     "evidence": "Short review that itself warns 'we should be cautious about the results' and asks for AutoAttack. The requested test came back with AFD below TRADES on CIFAR-10, CIFAR-100 and Tiny-ImageNet; Reviewer_1Prj never replied and the 6 stood."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_inuZ",
+     "claim": "The Table 1 caption promises mean and std over runs, but only means are reported.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Table 1 caption: 'Numbers reported with mu +- sigma denote mean and std values over three independent runs'; no entry carries a std. Checklist 3(c) admits the experiments 'were not repeated'."
+    },
+    {
+     "reviewer": "Reviewer_inuZ",
+     "claim": "AFD adds a new defense with SOTA performance.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Holds only under the paper's own attacks. Under AutoAttack (rebuttal AUCs; camera-ready Table 1 AA-inf column) AFD-WGAN trails TRADES on CIFAR-10 (37.33% against 43.48%), CIFAR-100 (18.00 against 21.10) and Tiny-ImageNet (9.45 against 12.57)."
+    },
+    {
+     "reviewer": "Reviewer_nZT8",
+     "claim": "On Tiny-ImageNet AFD is not as good as TRADES.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Table 1, PGD-inf (WB): AFD-WGAN 11.49 against TRADES 13.26 and AT 12.62. AFD is higher on clean accuracy (47.70 against 37.70) and C&W (5.90 against 4.11)."
+    },
+    {
+     "reviewer": "Reviewer_nZT8",
+     "claim": "AFD-DCGAN performs poorly on CIFAR-10.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Table 1, CIFAR-10 PGD-inf (WB): AFD-DCGAN 44.35 against TRADES 53.3 and AFD-WGAN 59.38."
+    },
+    {
+     "reviewer": "Reviewer_nZT8",
+     "claim": "Given the AutoAttack results, the contribution claim at lines 62-63 ('often significantly outperforms most previous defense methods') is inaccurate.",
+     "checked_against_paper": "correct",
+     "evidence": "The quote is at submitted lines 61-63. The rebuttal's AutoAttack AUCs put AFD at or below TRADES on CIFAR-10 (0.24 against 0.25), CIFAR-100 (0.13 against 0.15) and Tiny-ImageNet (0.15 against 0.16)."
+    },
+    {
+     "reviewer": "Reviewer_R6D1",
+     "claim": "All evaluation uses one network architecture.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1, lines 201-207: ResNet18 for the feature extractor and classifier on all datasets."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after posting. Reviewer_nZT8 replied on 2021-08-28 and 2021-08-31 and stayed at 5: 'this method does not show significant advantages in terms of both effectiveness (robustness) and efficiency (computational cost) compared with the previous method (TRADE)'. Reviewer_1Prj, Reviewer_inuZ and Reviewer_R6D1 posted nothing after the rebuttal.",
+    "what_convinced_or_not": "The AutoAttack AUCs (AFD 0.24 against TRADES 0.25 on CIFAR-10) and a training time 4% above TRADES did not convince Reviewer_nZT8, who held that the strongest attack is the number that matters. The authors answered that robustness should be judged across many attacks. The three positive reviewers never reacted, so their scores rest on the pre-rebuttal paper."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Meta-review: 'This paper is very much on the border' and 'After inspecting the paper by myself, I lean toward acceptance mainly because the paper manages to propose a technically sound and well explained defense mechanism from a novel point of view.' It calls the cost and the 'marginal improvements over AT and TRADES when evaluated by strong attacks' valid concerns but not decisive. That wording is generous: under AutoAttack AFD trailed TRADES on three of four datasets.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Novel domain-adaptation view of robustness, judged technically sound and clearly written",
+    "Three of four reviewers above threshold (mean 6.0)",
+    "Training cost and weak AutoAttack results judged matters for the camera-ready, not grounds to reject"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    4,
+    3,
+    6
+   ],
+   "confidences": [
+    4,
+    3,
+    5,
+    5
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_xEbL",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Lowest score (3, confidence 5) in an evenly spread panel, and the review the AC named. Its reason is specific and the submitted Figure 2 confirms it: on CIFAR-10 AFD keeps about 44% accuracy at L-inf eps 0.125 (32/255), while AT and TRADES fall to about 5%."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_h6S6",
+     "evidence": "Weakly grounded (rating 4, confidence 3). It leans on the ICLR 2021 reviews ('I agree with those reviewers in some aspects') and asks for the 'real motivation'. Its natural-accuracy objection fails against Table 1, where AFD's clean accuracy matches or beats AT and TRADES on most datasets. It gave no source for its TRADES claim when the authors asked."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_xEbL",
+     "claim": "In Figure 2, AFD keeps around 50% robustness against PGD at eps-inf 0.125 (about 32/255) on CIFAR-10, a hint of gradient obfuscation.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Figure 2, linfpgd panel: AFD about 59% at 0.031, 53% at 0.0625 and 44% at 0.125; AT and TRADES about 5% at 0.125. The MIM, FGSM and L2-PGD panels plateau the same way. The inference holds: AFD leads TRADES on CIFAR-10 PGD-inf AUC (0.56 against 0.32, Table 2) but not on the rebuttal's AutoAttack AUC (0.24 against 0.25); the camera-ready Table 1 shows 59.38% under PGD and 37.33% under AutoAttack."
+    },
+    {
+     "reviewer": "Reviewer_xEbL",
+     "claim": "On MNIST (Figure A1) AFD keeps high robustness at eps-inf 0.5, where any image can be turned into uniform grey.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The appendix is in neither PDF. The authors did not dispute the observation: they agreed an attacker with enough resources should succeed at 0.5, blamed the limited iterations and step size of their attacks, and reported that AutoAttack drives AFD to 0% near eps 0.4."
+    },
+    {
+     "reviewer": "Reviewer_xEbL",
+     "claim": "The black-box evaluation in Table 1 uses transfer attacks only, not stronger score-based attacks.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Table 1 caption: BB examples 'were produced by running the attack on the NT ResNet18 model'."
+    },
+    {
+     "reviewer": "Reviewer_WEvD",
+     "claim": "The paper claims generalization to unseen attacks but does not evaluate against AutoAttack.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1 lists eight attacks, none of them AutoAttack. The paper cites Croce and Hein [11] only for the adaptive PGD used in training (lines 218-219)."
+    },
+    {
+     "reviewer": "Reviewer_SkVe",
+     "claim": "Table 2 shows AFD ahead even on the PGD attack used in training, which undercuts the claim that its advantage is generalization to unseen attacks.",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted Table 2, CIFAR-10 PGD-inf AUC: AFD-WGAN 0.56 against AT 0.28 and TRADES 0.32; Table 1 PGD-inf: 59.38 against 53.3 and 40.07."
+    },
+    {
+     "reviewer": "Reviewer_SkVe",
+     "claim": "The GAN discriminator may take part in test-time prediction and explain the gains.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 4.1: the feature extractor and classifier form the ResNet18 used by all methods; the discriminator is used only in training. The authors clarified and Reviewer_SkVe accepted."
+    },
+    {
+     "reviewer": "Reviewer_h6S6",
+     "claim": "A significant drop in natural accuracy is a drawback of AFD.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Submitted Table 1 clean accuracy: AFD-WGAN 85.95 against AT 85.92 and TRADES 81.94 on CIFAR-10, and 47.70 against 43.80 and 37.70 on Tiny-ImageNet. The drop from natural training is common to all defenses."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after posting. Reviewer_SkVe (2021-08-12): the rebuttal 'solve all my questions and concerns', but 'I will keep my score unchanged but will not object to a decision of rejection'. Reviewer_h6S6 (2021-08-16): 'I would like to keep my score unchanged'. Reviewer_xEbL (2021-08-30): the obfuscation checks 'are only guidelines', the curves 'do not seem to converge to 0%', and MNIST robustness at eps 0.5 'can't be non-trivial'. Reviewer_WEvD did not reply.",
+    "what_convinced_or_not": "Reviewer_SkVe accepted the clarifications on test-time cost and the bound, but the ResNet18-only scope kept him lukewarm. Reviewer_xEbL rejected the authors' checklist defence (monotone decrease, iterative beats single-step, black-box weaker than white-box); the authors then conceded that their attacks had limited iterations at large eps. Reviewer_h6S6 was not convinced on motivation or on the accuracy-robustness trade-off."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Meta-review: 'I share the concerns echoed by the reviewers on the \"too good\" results' and 'as highlighted e.g. by Reviewer xEbL, the presented results simply don't add up in most cases'. Mean rating 4.5 with three of four below threshold; the only 6 would not object to rejection. 'In most cases' overstates Reviewer_xEbL's point, which concerned robustness at large eps.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Implausibly high robustness at large eps points to weak attacks or gradient obfuscation (Reviewer_xEbL, adopted by the AC)",
+    "No convincing strong-attack evaluation; AutoAttack shows no gain over TRADES outside MNIST",
+    "No champion: the only 6 would not object to rejection",
+    "Doubts about the motivation and the upper-bound argument against adversarial training"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "AFD-DCGAN underperforms on CIFAR-10 without explanation (Reviewer_nZT8)",
+  "No ImageNet-scale experiment; single-step attacks suggested to make it feasible (Reviewer_1Prj, Reviewer_nZT8)",
+  "Table 1 promises std over three runs but reports single runs (Reviewer_inuZ)",
+  "No direct evidence that the learned features are robust; the feature/classifier split is unjustified (Reviewer_R6D1)",
+  "Domain discriminator accuracy and comparison with adversarial-example detectors (Reviewer_inuZ)"
+ ],
+ "issues_only_b": [
+  "Implausible robustness at large eps (CIFAR-10 at 32/255, MNIST at 0.5) as a sign of weak attacks or gradient obfuscation (Reviewer_xEbL)",
+  "Adaptive attacks that use the discriminator (Reviewer_WEvD)",
+  "Precedent of feature scattering, a similar defense whose robustness AutoAttack showed to be overestimated (Reviewer_WEvD)",
+  "Black-box tests are transfer attacks only, not score-based attacks (Reviewer_xEbL)",
+  "Motivation questioned against the prior ICLR 2021 version; no better natural accuracy than adversarial training (Reviewer_h6S6)",
+  "Gains on the seen PGD attack undercut the unseen-attack generalization claim (Reviewer_SkVe)"
+ ],
+ "shared_issues": [
+  "No AutoAttack evaluation; the rebuttal's AutoAttack AUCs put AFD at or below TRADES except on MNIST (A: Reviewer_1Prj, Reviewer_nZT8; B: Reviewer_WEvD, Reviewer_xEbL, Reviewer_SkVe)",
+  "Training cost of the extra discriminator updates (A: Reviewer_1Prj, Reviewer_R6D1, Reviewer_nZT8; B: Reviewer_WEvD, Reviewer_SkVe)",
+  "Only ResNet18; no larger architectures (A: Reviewer_R6D1; B: Reviewer_SkVe)",
+  "The upper-bound argument for superiority over adversarial training is overstated or unclear (A: Reviewer_inuZ; B: Reviewer_h6S6, Reviewer_SkVe)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Committee B rejected because one expert reviewer found a specific, checkable flaw in the evaluation, and its area chair (AC) adopted it. Reviewer_xEbL (3, confidence 5) noted that in Figure 2 AFD keeps around 50% accuracy on CIFAR-10 against L-inf PGD at eps 0.125 (32/255). The submitted paper confirms it: about 44%, while AT and TRADES fall to about 5%. Curves this flat mean the attacks were too weak against AFD, possibly through gradient obfuscation. B had no champion: its only 6 (Reviewer_SkVe) said he would not object to rejection. No reviewer in A spotted the flat curves; Reviewer_1Prj only urged caution and asked for AutoAttack. Reviewer_inuZ (7, confidence 5) called the results SOTA, and the three positive reviewers never replied to the rebuttal. Both committees received the same AutoAttack results, which put AFD at or below TRADES on three of four datasets. In A only Reviewer_nZT8 (5) drew the conclusion; the AC accepted on novelty and called the result 'marginal improvements'. The evidence favours B. On CIFAR-10, AFD leads TRADES on PGD-inf AUC (0.56 against 0.32, Table 2) but not on AutoAttack AUC (0.24 against 0.25). The camera-ready Table 1 shows AFD-WGAN falling from 59.38% under PGD to 37.33% under AutoAttack, below TRADES at 43.48%. The split comes from evaluation expertise present only in B's panel, and from A's AC ranking a new framing above a headline result that failed a strong attack.",
+ "candidate_reasons": [
+  "Expert flagged implausible large-eps robustness",
+  "Champion accepted SOTA claims uncritically",
+  "AC weighted novelty over AutoAttack",
+  "Positive reviewers silent after rebuttal",
+  "Lukewarm champion conceded rejection"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_xEbL review and post-rebuttal comment (2021-08-30), Committee B",
+  "Author reply to Reviewer_xEbL (2021-08-31), Committee B: limited attack iterations; AutoAttack 0% near eps 0.4 on MNIST",
+  "Committee B meta-review",
+  "Reviewer_SkVe response to the rebuttal (2021-08-12), Committee B",
+  "Reviewer_h6S6 review and comment (2021-08-16), Committee B",
+  "Reviewer_nZT8 post-rebuttal comments (2021-08-28, 2021-08-31), Committee A",
+  "Reviewer_inuZ review, Committee A",
+  "Committee A meta-review",
+  "Author AutoAttack AUCs in the rebuttals of 2021-08-10, both committees",
+  "paper_submitted.pdf Figure 2 (linfpgd panel at eps 0.125) and Table 2 (CIFAR-10 PGD-inf AUC)",
+  "paper_submitted.pdf Table 1 caption and checklist 3(c) (no std, single runs)",
+  "paper_submitted.pdf lines 61-63 (contribution claim) and 218-219 (Croce and Hein [11] used only for training)",
+  "paper.pdf (camera-ready) Table 1 AA-inf column: CIFAR-10 AFD-WGAN 37.33 against TRADES 43.48 and its own PGD 59.38"
+ ]
+}

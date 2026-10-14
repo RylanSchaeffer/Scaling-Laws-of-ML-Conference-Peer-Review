@@ -1,0 +1,236 @@
+{
+ "pair_id": "n21-271",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    6
+   ],
+   "confidences": [
+    3,
+    2,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_U7yb"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7 and 6 lie within one point. The only 7 (Reviewer_U7yb) has confidence 2 and a two-point review. The most confident reviewer (Reviewer_jfEb, confidence 4) gave 6 and wrote that the contributions are 'not groundbreaking'."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_jfEb",
+     "claim": "Theorem 7 and Corollary 8 depend on the booster using the weak learner only as a black box; otherwise the upper bounds of [9] would avoid the k^2 dependence. This should be pointed out.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 5.1 l.292-296 assumes B 'does not know the hypothesis class H' and may output only plurality votes of hypotheses returned by W. L.256-261 concede that any ERM learner for H learns with a log k dependence. The abstract and the introduction (l.92-101) mention only 'typical limits on the number of weak-learner calls'. The authors agreed to stress the assumption."
+    },
+    {
+     "reviewer": "Reviewer_U7yb",
+     "claim": "The text after Theorem 6 is confusing: if any ERM learner learns a γ-realizable distribution with O(log k) samples, the paper should say what restrictions force the weak learner to need O(k^2).",
+     "checked_against_paper": "correct",
+     "evidence": "L.256-261 make the ERM point and end 'the task of multiclass learning, either directly or via boosting, has a logarithmic dependence on k'. They do not name the restriction. It appears only in Section 5.1 (l.292-296). The authors' reply pointed to the finder-chooser overview, not to a text change."
+    },
+    {
+     "reviewer": "Reviewer_U7yb",
+     "claim": "Much of the text says k > 2, but some sections require k >> 2.",
+     "checked_against_paper": "correct",
+     "evidence": "L.80 ('k is assumed to be large'), l.318-321, l.325, l.338 and l.370 ('k ≫ 2') assume large k, while l.136 says k ≥ 2. The theorems themselves need only k > 2/γ (Theorem 7; l.319 says Corollary 8 needs k > 1/γ), as the authors replied. So the wording is inconsistent, but no result needs more."
+    },
+    {
+     "reviewer": "Reviewer_U7yb",
+     "claim": "Algorithm 1 is not contrasted with the algorithms of reference [13], especially AdaBoost.MM.",
+     "checked_against_paper": "correct",
+     "evidence": "L.189-192 compare Algorithm 1 only with AdaBoost.MR [17]. AdaBoost.MM is not named. Reviewer_jfEb asked the same question."
+    },
+    {
+     "reviewer": "Reviewer_jfEb",
+     "claim": "Daniely et al. (2015) are cited only for their upper bounds.",
+     "checked_against_paper": "correct",
+     "evidence": "[9] appears only at l.228, for the agnostic upper bound (7)."
+    },
+    {
+     "reviewer": "Reviewer_13Ym",
+     "claim": "The abstract should also mention the boosting resources under study.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The abstract's second paragraph (l.11-22) names the booster's samples, the weak learner's samples and accuracy parameter, and the number of oracle calls. The authors said so."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Only Reviewer_U7yb edited its review (2021-08-27). The edit adds 'thank you for the responses, I think some of the clarifications for the other reviewers and I should be included in the final text'; it states no score change. Reviewer_13Ym asked two follow-up questions on 2021-08-26 (why the lower bound covers gradient boosting; how to test the theory), got answers on 2021-08-28, and did not edit. Reviewer_jfEb did not reply.",
+    "what_convinced_or_not": "The replies were clarifications. The lower bound holds for any booster with black-box access, so also for gradient boosting. Daniely et al.'s lower bounds do not depend on k. Experiments are out of scope. Reviewers took these as camera-ready material. No score was at stake, because all three were already at 6 or 7."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The meta-review restates the abstract's three results nearly word for word and calls them 'a nice set of interesting and even surprising set of results'. It names no reviewer and no weakness. All three ratings were 6 or 7.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All three ratings at 6 or 7 (mean 6.33); no reviewer found an error.",
+    "The O(log k) booster against poly(k) weak-learner gap, with a lower bound for any booster, was judged interesting; the AC called it 'surprising'.",
+    "The concerns were about exposition (black-box assumption, text after Theorem 6, comparison with AdaBoost.MM) and practical relevance, and all were left to the camera-ready.",
+    "No champion: the only 7 has confidence 2, and the confidence-4 reviewer called the work 'not groundbreaking', so the tier stopped at poster."
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    5,
+    7,
+    7
+   ],
+   "confidences": [
+    2,
+    4,
+    2,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_6X9w",
+    "Reviewer_66dG"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_6X9w",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "The only rating below threshold (5, confidence 4), against three 7s. Its time-spent answer is 'what's the point of this question?'. Its 'main gripe' is that the theory may be 'custom tailored for Algorithm 1' and that 'only Algorithm 1 is studied in the theoretical discussions'. Section 5.1 (l.282-296) defines a general booster, and Theorem 7 holds 'For any boosting algorithm B'. It also faulted 'plurality-vote instead of majority vote', but for k > 2 labels the argmax vote of Eq. (1) is a plurality vote. After the rebuttal (2021-08-29) it conceded 'a better understanding of the paper as a whole' and kept 5 on organisation alone, because Sections 3 and 4 centre Algorithm 1. That point has support (l.70-71 call Algorithm 1 the 'first contribution'), but it is a presentation complaint."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_66dG",
+     "evidence": "A 7 on a two-sentence main review that admits 'am not an expert in this field' and says only 'I believe this is a solid work'. It makes no specific comment. After the rebuttal (2021-08-29) it kept the score 'while decreasing the confidence', to 2."
+    },
+    {
+     "reviewer": "Reviewer_6X9w",
+     "evidence": "Misread the scope of the main result: it said only Algorithm 1 is studied, but Theorem 7 covers any booster (see outlier). It objected to the correct term 'plurality vote'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_6X9w",
+     "claim": "Only Algorithm 1 is studied in the theoretical discussions; the theoretical results may be custom tailored for Algorithm 1, which would severely limit their impact.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 5.1 (l.282-296) defines a general boosting algorithm B. Theorem 7 and Corollary 8 hold 'For any boosting algorithm B'. Only the upper bounds (Theorems 3 and 6) concern Algorithm 1, and l.256-261 extend Theorem 6 to any ERM learner. L.86-87 name the lower-bound question 'the central question of study'."
+    },
+    {
+     "reviewer": "Reviewer_6X9w",
+     "claim": "Using 'plurality-vote instead of majority vote (the most commonly used term)' is confusing.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Eq. (1) takes the argmax over k labels, which is a plurality vote. With k > 2 a majority need not exist. The authors gave a 30/30/40 example."
+    },
+    {
+     "reviewer": "Reviewer_6X9w",
+     "claim": "Section 1 repeats the sentence on the booster's and weak learner's sample needs several times, and lines 178, 179 and 249 contain typos.",
+     "checked_against_paper": "correct",
+     "evidence": "The gap is stated at l.75-77, l.82-85, l.92-96 and l.105-108; l.82-85 and l.105-108 are nearly identical. L.179 reads 'we show the that', and l.248 reads 'the large large margin'."
+    },
+    {
+     "reviewer": "Reviewer_6X9w",
+     "claim": "There is no discussion of how other weak-learning conditions or multiclass boosting algorithms are represented in the setting or how they compare.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Partly wrong. Section 1 (l.29-39), Section 1.2 (l.110-132) and Section 2.1 (l.148-170) discuss the 1-1/k, 1/2 and [13] conditions, and l.57-59 cite [16] showing that such conditions imply the plurality-vote assumption. A comparison of algorithms is missing: l.189-192 name only AdaBoost.MR."
+    },
+    {
+     "reviewer": "Reviewer_DyJ5",
+     "claim": "Theorem 3's m_w = m_w(γ/k, δ/T) is inconsistent with the proof, which assumes ε = γ/(2k).",
+     "checked_against_paper": "correct",
+     "evidence": "Lemma 2 gives an edge of at least γ - εw·k, which is 0 at εw = γ/k. L.233 and Remark 5 require εw < γ/k. The bound T ≥ 8(log m + log k)/γ² matches an edge of γ/2, that is εw = γ/(2k). This is a factor-2 slip in the statement; the result stands. Theorem 3 in the forum version (paper.pdf) still reads γ/k."
+    },
+    {
+     "reviewer": "Reviewer_DyJ5",
+     "claim": "The proof of Theorem 7 assumes δB ≤ 1/2, so the statement at line 640 does not lead to Theorem 7 unless δB = 1/2.",
+     "checked_against_paper": "not_checked",
+     "evidence": "The proof is in the supplement, which the PDF does not contain. Main text l.288 already fixes δB = 1/2, the repair the reviewer proposes, so the stated theorem is not affected."
+    },
+    {
+     "reviewer": "Reviewer_DyJ5",
+     "claim": "The term 'σ-gain' is used at l.179 but never clearly introduced.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (3) defines σh and l.150 says 'a particular gain function'. The name 'σ-gain' first appears at l.179."
+    },
+    {
+     "reviewer": "Reviewer_i7mp",
+     "claim": "The trade-off requires at least one of the number of oracle calls T and the weak learner's sample size to be of order √k.",
+     "checked_against_paper": "correct",
+     "evidence": "L.101 and Corollary 8, item 2. The authors confirmed that one suffices, 'not both'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_6X9w edited its review on 2021-08-29 to add 'after rebuttal : ... I still think that the paper needs to be polished', and replied 'I'll have to stand by my initial evaluation of the paper'. Reviewer_66dG edited the same day and replied 'I keep the score while decreasing the confidence'. Reviewer_i7mp and Reviewer_DyJ5 did not edit or reply. The authors' second appeal to 6X9w (2021-08-31) got no answer.",
+    "what_convinced_or_not": "The authors told 6X9w that the lower bound holds for any booster and that Algorithm 1 is 'the smaller component'. 6X9w accepted this on substance but held that the paper's structure creates the ambiguity. DyJ5's corrections got a one-line promise to fix them. i7mp's trade-off question got a direct answer from Corollary 8. 66dG lowered its confidence because it is not an expert."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Two sentences: the work is 'an original contribution to the theoretical study of multiclass boosting, and meets NeurIPS quality standard'. It asks the authors to 'take into account reviewer's 6X9w comments and clarify the scope of the contribution', so it treated the lone 5 as a presentation fix. It does not weigh reviewer expertise or mention DyJ5's proof corrections.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three 7s against one 5 (mean 6.5).",
+    "The only detailed, proof-checking review (Reviewer_DyJ5, 13 hours, confidence 4) supported acceptance, and its corrections were local.",
+    "The other two 7s come from self-declared non-experts with confidence 2 (Reviewer_i7mp, Reviewer_66dG).",
+    "The 5 (Reviewer_6X9w) rested first on a misreading of scope and then on organisation; the AC turned it into a camera-ready request.",
+    "No champion above 7, so the tier stopped at poster."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "The lower bound needs black-box access to the weak learner, and the paper should say so early (Reviewer_jfEb; confirmed, stated only at l.292-296)",
+  "If any ERM learner needs only log k samples, what forces the weak learner's k^2 (Reviewer_U7yb; confirmed, l.256-261 do not say)",
+  "Ambiguity between k > 2 and k ≫ 2 (Reviewer_U7yb; the wording is mixed, the theorems need only k > 2/γ)",
+  "Relevance of Daniely et al.'s lower bounds (Reviewer_jfEb)",
+  "Applicability to gradient boosting, robustness to label noise, and guidance for designing weak learners (Reviewer_13Ym, Reviewer_jfEb)"
+ ],
+ "issues_only_b": [
+  "Whether the theory is tailored to Algorithm 1 and how Section 5 relates to it (Reviewer_6X9w; wrong on scope, fair on structure)",
+  "Overloaded and repetitive text, typos, and terminology such as 'plurality vote' and 'base class' (Reviewer_6X9w; repetition and typos confirmed, 'plurality vote' is correct)",
+  "Proof-level slips: Theorem 3 uses γ/k where the proof needs γ/(2k), the δB step in Theorem 7's proof, an equality that should be an inequality in eq. 35 (Reviewer_DyJ5; the Theorem 3 slip confirmed)",
+  "'σ-gain' never formally named, and many typos in the supplement (Reviewer_DyJ5)",
+  "Whether both T and the weak learner's sample size must exceed √k (Reviewer_i7mp; Corollary 8 says one suffices)"
+ ],
+ "shared_issues": [
+  "No experiments; both committees accepted the purely theoretical scope (A: Reviewer_13Ym; B: Reviewer_i7mp, and Reviewer_DyJ5 said it does not hurt)",
+  "No comparison with other multiclass boosting algorithms, especially Mukherjee and Schapire's (A: Reviewer_U7yb, Reviewer_jfEb; B: Reviewer_6X9w)",
+  "Unclear link between Algorithm 1's upper bounds and the general lower bound (A: Reviewer_U7yb, Reviewer_jfEb; B: Reviewer_6X9w)",
+  "Practical significance hard to judge (A: Reviewer_U7yb 'hard to place in the literature', Reviewer_13Ym; B: Reviewer_i7mp 'can not evaluate the impact')"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster for the same reasons. Each read the paper as a sound theory contribution. The booster needs O(log k) samples. A weak learner used as a black box needs poly(k) samples, or excess error below an inverse polynomial in k, and this lower bound holds for any booster. No reviewer found an error that threatens a main result. Reviewer_DyJ5 (B, 13 hours, confidence 4) checked the proofs and found only local slips. The clearest is in Theorem 3: it sets εw = γ/k, where Lemma 2 guarantees zero edge; the proof uses γ/(2k). Both committees criticised exposition, practical relevance and the lack of experiments, and both ACs left these to the camera-ready. The committees differ in shape, not outcome. A's ratings are flat (6, 7, 6). Its most confident reviewer, Reviewer_jfEb, called the work 'not groundbreaking', and its only 7 has confidence 2. B's mean is higher (7, 5, 7, 7), but two of its 7s come from self-declared non-experts with confidence 2 (Reviewer_i7mp, Reviewer_66dG), and Reviewer_66dG wrote two sentences. B's 5 (Reviewer_6X9w) rested on a misreading: it said only Algorithm 1 is studied, but Theorem 7 holds 'For any boosting algorithm B'. After the rebuttal it kept 5 on organisation alone, and B's AC turned that into a camera-ready request. Neither committee had an expert champion, so both stopped at poster. The clarity complaints in both committees trace to one gap. The paper does not say early that the poly(k) cost comes from black-box access to the weak learner (l.256-261 against l.292-296). Reviewer_jfEb and Reviewer_U7yb in A and Reviewer_6X9w in B each hit it.",
+ "candidate_reasons": [
+  "No error found in results",
+  "Clarity complaints deferred to camera-ready",
+  "Lone detractor misread main contribution",
+  "Low-confidence non-expert sevens",
+  "No expert champion, poster ceiling",
+  "Pure theory without experiments accepted"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "paper_submitted.pdf Section 5.1 l.282-296 (general booster, black-box access) and Theorem 7 ('For any boosting algorithm B')",
+  "paper_submitted.pdf Lemma 2 (l.181-185), Theorem 3 (l.193-196), l.233 and Remark 5 (εw < γ/k)",
+  "paper_submitted.pdf l.256-261 (any ERM learner needs only log k samples)",
+  "paper_submitted.pdf l.70-71 (Algorithm 1 as 'first contribution') and l.86-87 ('the central question of study')",
+  "paper_submitted.pdf l.75-108 (the gap stated four times), l.179 and l.248 (typos), abstract l.11-22",
+  "Reviewer_jfEb review, main comment 2",
+  "Reviewer_U7yb review (text after Theorem 6; k > 2 against k ≫ 2)",
+  "Reviewer_6X9w review and reply of 2021-08-29",
+  "Reviewer_DyJ5 review, 'Important corrections'",
+  "Reviewer_66dG review and reply of 2021-08-29",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper.pdf (forum version): Theorem 3 still reads m_w(γ/k, δ/T); no added scope text"
+ ]
+}

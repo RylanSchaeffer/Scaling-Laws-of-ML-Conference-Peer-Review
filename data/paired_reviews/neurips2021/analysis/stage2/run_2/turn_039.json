@@ -1,0 +1,274 @@
+{
+  "run": 2,
+  "turn": 39,
+  "pair_id": "n21-104",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In B, Reviewer_sHgm argued the QCFG should score 100% on MT because its test set is template-generated; only the 8 daxy sentences are, so part of that criticism holding the score at 6 rested on a wrong claim. A had no comparable error."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's AC gave a spotlight to ratings of 7, 7, 7, 9 (mean 7.5); the tier is within what the scores support, not above them."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's Reviewer_e5Ff gave a 9 in 2 h on general praise ('I enjoyed reading it a lot'), asked nothing, and the meta-review paraphrased that review."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Only A's forum heard the authors concede that a tuned Transformer beats the model by 3 to 4 BLEU on MT; B never saw that admission."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "A learned of the Transformer deficit and the tiny MT data, yet Reviewer_fSHR raised to 7 and the AC called the results 'strong' without mentioning it."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "Rebuttals raised scores in both committees: Reviewer_fSHR in A, Reviewer_9RED and Reviewer_sHgm in B."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A raised the missing Transformer baseline and tiny MT data; only B raised the pipelined baseline, NQG positioning and per-dataset tuning of nonterminals and constraints."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both saw small scale and the expensive O(S^3 T^3) program; A's AC chose to 'downplay' scale as consistent with sample efficiency, while B kept scalability among the concerns behind a poster."
+    },
+    {
+      "id": "R09",
+      "applies": true,
+      "justification": "On the tier, A's panel split between three 7s and one 9; the AC's meta-review follows Reviewer_e5Ff's structure and wording and adopts its framing without an independent assessment."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer in either committee cites the other reviews as the reason for a score change."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered B's questions, including real-world constraints; Reviewer_3r7i's open dev-versus-test follow-up left its 8 unchanged, so nothing was held down."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "Reviewer_e5Ff's thin 9 never engaged with the rebuttal and counted unchallenged in A; in B, Reviewer_LKem's confidence-2 7 also counted."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "Neither AC went below its reviewers' ratings; both accepted unanimously."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "B's AC followed the 6.75 mean to a poster, but no acceptance threshold was at stake and the AC stated no higher assessment of its own."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "No below-threshold score remained in either committee after the rebuttal."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees judged the paper as a methodological advance in compositional seq2seq modelling."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "The low-confidence reviewer (Reviewer_LKem) did not move; the reviewers who raised scores engaged the technical content and new results."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both committees applied the same expectations to a method paper; the difference in weighting scale is R08, not a different bar for the paper type."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "Reviewer_e5Ff's 9 rests on the wrong claim that the model beats seq2seq substantially on MT and shows better sample efficiency; Reviewer_fSHR wrongly said all experiments improve significantly over prior work."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "Reviewer_9RED and Reviewer_sHgm raised their scores after the rebuttal; no reviewer kept a below-threshold score after its concern was answered."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee turned on crediting or refusing promised revisions."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Every stated change of position matches an edited score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No extra reviewer was called in by either AC."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Clarity was not a point of divergence between the committees."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Reviewer_fSHR stated 'I will raise my rating to 7'; the raise was announced, not silent against the text."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "No AC set aside a silent low rating."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "A's champion gave a 9 on an unchecked reading, and B's detailed champion Reviewer_3r7i gave an 8; the mechanism of a detailed champion present in one committee only does not fit."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted reading only part of the paper."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the grammar-based premise from another theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "A's meta-review states a case for the higher tier (novel parameterization, 'strong results', important direction)."
+    },
+    {
+      "id": "R31",
+      "applies": false,
+      "justification": "Both committees checked baselines against the literature: A against Transformer MT, B against NQG and pipelined parsing."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "A's AC omitted the Transformer admission, but in the direction of a higher tier; B's meta-review does not misstate its reviewers' positions."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "Neither committee objected to the breadth of the paper's audience."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "Neither committee had a misreading low-scoring detractor that kept the AC defending acceptance."
+    },
+    {
+      "id": "R35",
+      "applies": true,
+      "justification": "Only B asked for a pipelined baseline; the authors posted it there (SCAN jump 60.4 vs 96.8, length 38.3 vs 95.7) and it helped move Reviewer_9RED from 5 to 6, while A never saw it."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "B had two confidence-4 reviewers, one at 8 and one at 6; its expert review was not outweighed by low-confidence ratings."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "No objection in either committee arrived after the author response period."
+    }
+  ],
+  "added": [],
+  "reasoning": "Both committees accepted unanimously and differ by one tier through reviewer draw and AC framing. In A, Reviewer_e5Ff's thin, enthusiastic 9 rested on wrong claims about MT gains and sample efficiency (R03, R12, R19), and the AC adopted its framing (R09) while ignoring the Transformer deficit the authors disclosed only to A (R04, R05). The committees raised different issues (R07) and weighted the shared scale concern differently (R08). In B, a partly wrong MT criticism (R01) and the pipelined results shown only there (R35) shaped scores that settled at two 6s. Every mechanism in the pair is covered by an existing reason, so none was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ]
+}

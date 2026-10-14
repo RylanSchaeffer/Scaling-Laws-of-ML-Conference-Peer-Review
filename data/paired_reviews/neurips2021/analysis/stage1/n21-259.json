@@ -1,0 +1,212 @@
+{
+  "pair_id": "n21-259",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 6, 5, 7],
+      "confidences": [3, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_45Px"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 5 and 7 lie within two points, and no reviewer stands apart. The committee split 2-2 around the threshold: Reviewer_45Px and Reviewer_MH2M at 5, Reviewer_Wq9E at 6, Reviewer_JDyB at 7."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Wq9E",
+          "evidence": "A 6 that rests on one sentence of assessment: 'The overall idea looks to be quite interesting, and the experimental results show the effectiveness of the proposal.' The rest are clarification questions (grounding, DSL primitives, function words, Figure 4). It did not reply to the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_MH2M",
+          "evidence": "Partly. Two hours. Its main weakness says the parser is given to G2L2 but not to MAC, NS-VQA and NS-CL, but NS-VQA trains its parser on ground-truth programs (Table 1, Prog? Y/Y). It praises the navigation results as 'quite successful compared to baselines' and then calls performance 'not so convincing compared to baselines except for generalization in the visual reasoning domain'. It did not reply to the rebuttal or to the curriculum ablation run for it."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_45Px",
+          "claim": "Per Table 1, G2L2 is about as good as NS-VQA and NS-CL on the standard split and considerably better only on the last two columns (count, depth).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: standard 100%, G2L2 98.25 against NS-CL 98.91 and NS-VQA 98.57; count 96.76 against at most 81.81 (NS-VQA); depth 98.49 against at most 81.60 (NS-CL). G2L2 is bold in only these two of six columns."
+        },
+        {
+          "reviewer": "Reviewer_45Px",
+          "claim": "The definition of 'hop number' (L252-256) is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded it was 'explained too briefly'. Their reply to 45Px gives 'the sphere left of the cube' hop number 2, but the camera-ready (Section 3.1) gives 'red objects right of the cube' hop number 1, so the reply is off by one from the paper."
+        },
+        {
+          "reviewer": "Reviewer_45Px",
+          "claim": "Many methods appear to have solved SCAN already.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked against the literature, not the paper. NeSS (Chen et al.) and LANE (Liu et al.), both NeurIPS 2020, report 100% on all SCAN splits, length included. Neither appears in Table 2 or Section 4 of the camera-ready, so 'the only one that solved all these generalization tasks' holds only against the listed seq2seq and data-augmentation baselines."
+        },
+        {
+          "reviewer": "Reviewer_MH2M",
+          "claim": "The parser is given to G2L2 but not to the baselines MAC, NS-VQA and NS-CL, which weakens the comparison.",
+          "checked_against_paper": "incorrect",
+          "evidence": "G2L2 is given three combinatory rules and a candidate lexicon enumerated from the DSL, and learns which entry each word takes (Section 2.1). NS-VQA and TbD-Net train their parsers on ground-truth programs (Table 1, Prog? Y/Y; Section 3.1 Baselines); NS-CL uses the same DSL plus the concept vocabulary. The valid kernel, that the built-in grammar drives the depth gains, is the paper's own thesis."
+        },
+        {
+          "reviewer": "Reviewer_JDyB",
+          "claim": "The vocabulary is limited and pruned to remove lexical ambiguity, leaving only syntactic ambiguity.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.1: 'we assume no lexical ambiguity, i.e., each word type has only one lexical entry'. Section 3.1: the CLEVR subset excludes coreference and 'words with multiple meanings in different contexts'."
+        },
+        {
+          "reviewer": "Reviewer_JDyB",
+          "claim": "In some settings G2L2 trails other baselines on CLEVR.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: a baseline leads in 4 of 6 columns (standard 10% and 100%, purple, right of), by at most 1.21 points (right of: NS-VQA 99.80 against 98.59). The camera-ready text still says 'G2L2 outperforms all baselines on all three generalization splits', which its own table contradicts for purple and right of."
+        },
+        {
+          "reviewer": "Reviewer_JDyB",
+          "claim": "The marginalized (expected) quantities appear in neither the loss nor the decoding objective; the method is a hybrid of enumeration and expectation.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2.4 writes the loss as an expected loss over all derivations, L = sum_k p(derivation_k) * l(E(derivation_k, I), A). The authors' reply says the loss is computed on the expected execution result. The two differ for any nonlinear loss, and the camera-ready does not reconcile them."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_45Px's review was edited, on 2021-07-01, the day it was posted and six weeks before the 2021-08-10 rebuttal. Reviewer_JDyB replied only 'Thanks for responding to my review!' (2021-08-25). Reviewer_45Px, Reviewer_Wq9E and Reviewer_MH2M never posted in the discussion.",
+        "what_convinced_or_not": "No reviewer said the rebuttal changed its view. The authors answered MH2M with a curriculum ablation (curriculum trains about 1.5x faster and lifts 10%-data accuracy from 95.68 to 98.11) and promised 45Px a tutorial on lexicalism. The AC, not the reviewers, credited the reply on the pre-specified grammar."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The reviews split 2-2 (5, 5 against 6, 7), and the AC wrote 'half in favor of acceptance, half weakly against'. It broke the tie on 'a novel and well-motivated approach' and 'strong improvements in generalization to unseen question types'. It accepted the authors' answer to MH2M's pre-specified-grammar point and turned 45Px's lexicalism and readability points into revision requests ('I strongly agree that final revisions should include...'). Its 'Several reviewers praised the paper's clarity' overstates the record: only JDyB did, and 45Px called the paper 'hard to read'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "A novel CCG lexicon of neuro-symbolic programs with an expected-execution parser (CKY-E2), which the AC expected to influence work beyond this application.",
+        "Large gains on the hard CLEVR splits (count 96.76, depth 98.49, against at most 81.81), matching the paper's motivation.",
+        "The AC judged MH2M's objection to the pre-specified grammar answered by the rebuttal.",
+        "45Px's points on lexicalism and readability became revision requests; neither 5 named a fatal flaw."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 3, 7],
+      "confidences": [3, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_sQTY"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_kovo",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "A 3 ('Clear rejection', confidence 4, two hours) against 6, 7 and 7. The review has three short paragraphs, all on how the results are presented. One concrete claim is false: 'No societal impact were analyzed', yet Section 5 has a broader-impact paragraph that Reviewer_mHT4 and A's Reviewer_JDyB both refer to. It calls Table 2's perfect scores 'not commented', but the authors point to the 'Failure cases' paragraph (l.292-303), which explains the restarts. kovo answered neither the rebuttal nor the 2021-08-25 reminder. Its main point, that the results do not show what syntax adds, matches A's Reviewer_45Px, who gave 5 for it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_kovo",
+          "evidence": "Two hours. It says societal impact is not analyzed, which is false (Section 5). It misses that the 'Failure cases' paragraph explains Table 2's perfect scores. It did not reply to the rebuttal or the reminder."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_kovo",
+          "claim": "No societal impact was analyzed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 has a 'Broader impact' paragraph on biases in language and grounding, and the checklist points to it. Reviewer_mHT4 ('beyond what is mentioned in the paper') and A's Reviewer_JDyB ('sufficiently addressed') read it in the submission."
+        },
+        {
+          "reviewer": "Reviewer_kovo",
+          "claim": "Table 2 shows G2L2 perfect on SCAN without comment, which clashes with the 'Failure cases' paragraph.",
+          "checked_against_paper": "correct",
+          "evidence": "Partly. Table 2 gives 1.00±0.00 on every split, 'averaged across 10 valid runs'. Section 3.2 says runs restart until training accuracy reaches 100%; 74 of 100 runs do, and the others average 0.94. The authors say the submission's 'Failure cases' paragraph described the restarts, but they first gave the 74% figure in the rebuttal ('We will include detailed statistics'). The SCAN results text still does not cite Table 2."
+        },
+        {
+          "reviewer": "Reviewer_kovo",
+          "claim": "G2L2 outperforms other models only in some specific cases.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: G2L2 is best in 2 of 6 CLEVR columns (count, depth). Table 2: its clear SCAN margin is on length (1.00 against at most 0.18); SwitchOut reaches 0.98 on jump and 0.97 on around right."
+        },
+        {
+          "reviewer": "Reviewer_sQTY",
+          "claim": "It is unclear whether the CKY modifications are novel relative to latent-tree work such as Maillard and Clark (2018).",
+          "checked_against_paper": "correct",
+          "evidence": "The authors replied 'we will include them in the references', so the submission lacked the comparison. The camera-ready adds a 'Neural latent trees' paragraph (Section 4) in the rebuttal's words. It cites no semiring-parsing work, and sQTY's later question, whether CKY-E2 is a vector-valued sum-product CKY, stays unanswered in the paper."
+        },
+        {
+          "reviewer": "Reviewer_wcV1",
+          "claim": "Expected execution relies on linearity, which quantifiers and other complex operators may violate.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready 'Correctness' paragraph (Section 2.3) says the computation is exact only if operations commute with expectation, and that quantifiers do not; the wording matches the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_mHT4",
+          "claim": "A Transformer baseline is missing from the SCAN experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors promised to add it, and camera-ready Table 2 includes it: 0.02±0.01 on length, 0.00 on jump."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_sQTY"],
+        "evidence": "Reviewer_sQTY wrote on 2021-08-23 'I will improve my score to 6 weak accept', and its review was edited that day; the earlier score is not shown. Reviewer_mHT4 (2021-09-01): 'I can confirm my previous rating' (7). Reviewer_kovo and Reviewer_wcV1 did not post after the rebuttal, and no other review was edited.",
+        "what_convinced_or_not": "sQTY credited the clarifications (G2L2 does not handle unseen words; how the NS-CL executor works) and the other reviews: 'The work is more clear to me after the author response and reading the other reviews.' Two more rounds did not settle its doubts that CKY-E2 differs from sum-product CKY or extends to natural language, but it called these 'nit-picking' and kept 6. mHT4 got the Transformer baseline and split statistics it asked for. kovo's 3 stood without a reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review counts votes ('Three of the reviewers lean towards acceptance') and dismisses the 3: 'Reviewer kovo raises two reasonable concerns about the presentation of the results, but I think that the authors have addressed these adequately in their response.' It does not mention sQTY's open questions on CKY-E2 or wcV1's linearity point. Its own view adds only 'an innovated new approach'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers above threshold (6, 7, 7) after sQTY raised its score on the rebuttal.",
+        "A novel lexicon-learning approach trained efficiently by expected execution, with promising compositional generalization on SCAN and CLEVR.",
+        "The AC treated kovo's 3 as a presentation concern that the rebuttal answered.",
+        "The rebuttal supplied the Transformer baseline, split statistics and complexity bound that mHT4 asked for."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The built-in CCG grammar as a prior that makes the baseline comparison unfair (Reviewer_MH2M; incorrect for NS-VQA, which trains on ground-truth programs)",
+    "Unknown effect of the curriculum (Reviewer_MH2M); the authors' ablation shows faster training and a gain with 10% of the data",
+    "Tutorial background on lexicalism; gains possibly an artefact of author-made splits (Reviewer_45Px)",
+    "SCAN already solved by other methods (Reviewer_45Px; correct, and Table 2 omits them)",
+    "The loss in Section 2.4 does not match the expected execution the algorithm computes (Reviewer_JDyB)",
+    "Handling of function words, lexicon initialization and Figure 4 not explained (Reviewer_Wq9E)"
+  ],
+  "issues_only_b": [
+    "Novelty of CKY-E2 against latent-tree CKY and sum-product CKY (Reviewer_sQTY)",
+    "Linearity of expected execution and quantifiers; synchronous-grammar framing; one embedding per word (Reviewer_wcV1)",
+    "Perfect SCAN scores beside a 'Failure cases' paragraph, which led to disclosure that 74 of 100 runs reach 100% training accuracy (Reviewer_kovo)",
+    "Missing Transformer baseline, split statistics and CKY-E2 complexity (Reviewer_mHT4)",
+    "Missing societal-impact analysis (Reviewer_kovo; incorrect)"
+  ],
+  "shared_issues": [
+    "Closed vocabulary and hand-set DSL with no sense or type ambiguity; unclear path to free-form language (JDyB, Wq9E in A; sQTY, wcV1 in B)",
+    "Gains confined to the hard splits (count, depth, length), parity elsewhere (45Px, JDyB in A; wcV1, kovo in B)",
+    "The results section does not show what syntax or lexicalism adds (45Px in A; kovo in B); both general author responses concede it needs revision",
+    "CKY-E2 and expected execution hard to follow (JDyB in A; wcV1, sQTY in B)",
+    "Visual-semantic embedding and executor details missing (Wq9E in A; sQTY in B)",
+    "Readability judged both ways: hard to read (45Px in A; sQTY in B) and clear (JDyB in A; mHT4 in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended Accept (Poster) with the same mean rating (5.75), because both area chairs weighed the same facts the same way. Reviewers in both committees valued the approach: a learned CCG lexicon of neuro-symbolic programs with expected-execution parsing. The results hold on the hard generalization splits: CLEVR count 96.76 and depth 98.49 against at most 81.81, and SCAN length 1.00 against at most 0.18. Both committees saw the same weaknesses: a dense results section that does not show what lexicalism adds, a closed DSL without lexical ambiguity, and an unclear CKY-E2 section. No reviewer found an error that undermines a result, so both ACs made the weaknesses revision items. The routes differed. A split 2-2 (5, 5 against 6, 7) and no score moved, so its AC broke the tie on its own reading of novelty and generalization. In B, sQTY rose to 6 after the rebuttal; the AC counted three accept votes and set aside kovo's 3, a two-hour presentation complaint that contains a false claim. Neither AC weighed two points that single reviewers raised: 45Px's remark that other methods already solve SCAN (correct; Table 2 omits them), and the restarts behind SCAN's 1.00±0.00 that kovo's question exposed (74 of 100 runs reach 100% training accuracy).",
+  "candidate_reasons": [
+    "same facts, same weighting",
+    "novelty outweighs presentation weaknesses",
+    "hard-split generalization gains persuade",
+    "AC breaks tie on own reading",
+    "AC discounts thin harsh outlier",
+    "rebuttal lifts borderline reviewer"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_kovo review and author response (B)",
+    "Reviewer_sQTY comments of 2021-08-23 and 2021-08-25 (B)",
+    "Reviewer_MH2M review and author response (A)",
+    "Reviewer_45Px review (A)",
+    "Reviewer_JDyB review (A)",
+    "paper Table 1 and Section 3.1 Results",
+    "paper Table 2 and Section 3.2 'Cases study'",
+    "paper Section 2.4 loss",
+    "paper Section 5 Broader impact"
+  ]
+}

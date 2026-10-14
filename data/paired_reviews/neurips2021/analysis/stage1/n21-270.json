@@ -1,0 +1,292 @@
+{
+  "pair_id": "n21-270",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Myoo",
+        "Reviewer_E79q",
+        "Reviewer_e75G"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_Myoo), 7 (Reviewer_E79q), 6 (Reviewer_e75G) and 7 (Reviewer_3WeK). The spread is one point. Myoo and e75G began at 5 or lower and rose to 6 after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_e75G",
+          "evidence": "Called the Figure 5 values 'classification error' above 85%, but the axis reads 'Verified Err.' (training verified error). Judged the TinyImageNet results 'too weak to be practically useful' and ignored the Table 2 caption, which gives the literature best as 84.14% verified error. Short review (3 hours); its one substantive point, the notation E(|W_i|), was valid."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Myoo",
+          "claim": "Adding BN 'will destroy the foundation of interval bound propagation framework'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.181-183: BN shift and scale are 'computed from unperturbed data', so BN is an element-wise affine map and the interval bounds of Eq. (3) still hold. The authors said so and cited prior IBP work with BN."
+        },
+        {
+          "reviewer": "Reviewer_Myoo",
+          "claim": "The Sec. 3.2.1 derivation (difference gain, IBP initialization) does not hold in a network with BN.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) to (6) cover affine and ReLU layers only, while l.226-227 add BN after every layer of every model. The camera-ready Sec. 3.3.2 concedes: 'our previous analysis on IBP initialization considers a network without BN ... This is a limitation'."
+        },
+        {
+          "reviewer": "Reviewer_Myoo",
+          "claim": "BN may shorten training by speeding optimization rather than by balancing ReLU states.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2: BN alone raises active ReLUs from about 6% to about 7%, against about 15% for the full method. Yet Table 4 (160 epochs) shows full BN alone cuts verified error from 69.43% to 67.01%. The authors' new ablation found that both centring and scaling help."
+        },
+        {
+          "reviewer": "Reviewer_Myoo",
+          "claim": "Under the same short schedule the improvement is minor (Tables 1 and 2).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, CIFAR-10 CNN-7: 65.58±0.32 against Vanilla IBP with full BN 67.01±0.29 at 160 epochs, and 68.81 against 69.88 at 70 epochs. Table 2 (single runs): 0.4 to 0.5 points on CNN-7 and Wide-ResNet, 1.3 to 1.4 on ResNeXt."
+        },
+        {
+          "reviewer": "Reviewer_E79q",
+          "claim": "A grid search over five λ values would cost about 47,000 s on CIFAR-10 (Table 3), so λ sensitivity matters for the speedup claim.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: 'Ours' total 9,512.3 s; five runs give 47,562 s. The main text gives no λ sensitivity (l.216-218). The rebuttal sweep gave 65.42% to 66.91% verified error over λ from 0.1 to 2.0, so a poor λ removes most of the 1.4-point gain over Vanilla IBP with BN."
+        },
+        {
+          "reviewer": "Reviewer_E79q",
+          "claim": "Sec. 3.3.2 explains BN by internal covariate shift, an outdated view.",
+          "checked_against_paper": "correct",
+          "evidence": "l.174-175: BN 'is originally designed to accelerate the convergence of standard training by reducing internal covariate shift'. The camera-ready cites Santurkar et al. instead."
+        },
+        {
+          "reviewer": "Reviewer_E79q",
+          "claim": "The initialization is derived for feedforward layers and may not suit ResNets.",
+          "checked_against_paper": "correct",
+          "evidence": "l.145-148 claim the analysis applies to ResNets by letting a layer take 'any former layer' as input, without the residual sum. The camera-ready adds a ResNet calibration (Appendix A.3)."
+        },
+        {
+          "reviewer": "Reviewer_e75G",
+          "claim": "E(|W_i|) is used as a scalar (l.171) although |W_i| in Eq. (4) is not a scalar.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (4) uses the matrix |W_i|; l.171 uses the scalar E(|W_i|) = sqrt(2/pi) sigma_i. The submission never defines E of a matrix or vector; the camera-ready adds the definition."
+        },
+        {
+          "reviewer": "Reviewer_e75G",
+          "claim": "Figure 5 shows classification error above 85%, so the TinyImageNet results are too weak to support the conclusion.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 5 plots training verified error (axis 'Verified Err.'). Table 2 standard errors of the proposed method are 74.3% to 80.2%, and the caption gives the literature best as 72.18% standard and 84.14% verified error at 800 epochs."
+        },
+        {
+          "reviewer": "Reviewer_3WeK",
+          "claim": "Sec. 3 suggests larger gains from IBP initialization than Sec. 4 reports; Table 4 lacks no-BN rows with the initialization.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4: adding the initialization to Vanilla IBP with full BN moves verified error from 67.01% to 67.63% (160 epochs) and from 69.88% to 69.60% (70 epochs); l.288-289 concede it 'may not necessarily bring improvement'. All no-BN rows lack the initialization. The authors' new no-BN rows: 69.40% with the initialization, 69.91% with the initialization and regularizers, against 69.43%."
+        },
+        {
+          "reviewer": "Reviewer_3WeK",
+          "claim": "Societal impact is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 1(c): '[N/A] We believe there is no negative societal impact.'"
+        },
+        {
+          "reviewer": "Reviewer_3WeK",
+          "claim": "The brackets do not match in the equation after line 616 (Appendix D.2).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is in neither paper_submitted.pdf nor paper.pdf."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_Myoo",
+          "Reviewer_e75G"
+        ],
+        "evidence": "Myoo's review edit (2021-08-27): 'I appreciate the addition ablation study on BN, so I raise my score to 6.' e75G's review edit (2021-08-28): 'Most of my concerns have been clarified. So I decided to raise my score to 6.' Both started at 5 or lower. E79q's only edit is dated the posting day (2021-07-15), before the rebuttal. E79q and 3WeK did not reply.",
+        "what_convinced_or_not": "New experiments moved Myoo: a BN ablation split into centring and scaling (69.91% with neither, 68.07% and 67.78% with one, 65.58% with both). Myoo stayed 'still not satisfied' with the theory of IBP through BN. Clarification moved e75G: Figure 5 shows verified error, the literature best is 84.14%, and a derivation of E(Delta_i) = n_i E(|W_i|) E(delta_{i-1}). e75G then raised the mini-batch variance of the estimate, which got no answer. The λ sweep, the ResNet argument and the CROWN-IBP results went to E79q and 3WeK, who were already at 7."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'useful contributions', the issues identified, and 'The improvement is shown to be substantial in their experiments.' It names no weakness, although Myoo called the improvement 'kind of minor' and stayed unsatisfied with the BN theory. All four final ratings are 6 or 7.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four final ratings at 6 or 7 (mean 6.5); Reviewer_E79q and Reviewer_3WeK found the fixes natural and well motivated.",
+        "Literature-level verified error in 160 instead of 2,000 to 3,200 epochs (CIFAR-10: 65.58% mean, 65.03% best, against 66.62% for Xu et al.).",
+        "Rebuttal ablations and clarifications lifted Reviewer_Myoo and Reviewer_e75G to 6.",
+        "The AC restated the positive case and named no weakness."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_3ihN"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_NvoX), 5 (Reviewer_3ihN) and 6 (Reviewer_gGDq). 3ihN began at 3 or lower ('raise my score to 4', then 'raise to 5') and was a detractor before the rebuttal, but ended one point below the others."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_NvoX",
+          "claim": "Figure 2 shows only a marginal effect of BN on active neurons compared with the full method.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2: active ReLUs about 6% without BN, about 7% with BN, about 15% for 'Ours'. This undercuts l.180-181, that full BN 'can significantly mitigate the imbalance ReLU issue'."
+        },
+        {
+          "reviewer": "Reviewer_NvoX",
+          "claim": "Table 4 lacks a row with all other components but without full BN.",
+          "checked_against_paper": "correct",
+          "evidence": "Every row of Table 4 without full BN also lacks the initialization and regularizers. The authors' new row: 69.91% verified error, worse than Vanilla IBP without BN (69.43%)."
+        },
+        {
+          "reviewer": "Reviewer_NvoX",
+          "claim": "Table 2 reports no standard deviations, and model names differ from Table 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 gives single numbers ('Wide-Resnet', 'ResNext'); Table 1 says 'Wide-ResNet', 'ResNeXt'. The authors said Table 2 is from single runs. Its gains over Vanilla IBP with BN are 0.4 to 1.4 points."
+        },
+        {
+          "reviewer": "Reviewer_gGDq",
+          "claim": "'Significantly outperform literature SOTA' (l.250) overclaims; the gains over CROWN-IBP results are about 1 to 2 points.",
+          "checked_against_paper": "correct",
+          "evidence": "l.249-251 cite best runs: MNIST 10.82% against 12.06% (Zhang et al.), CIFAR-10 65.03% against 66.94% (Zhang et al.) and 66.62% (Xu et al.). The means (11.03%, 65.58%) are closer. The camera-ready says 'notable improvement'."
+        },
+        {
+          "reviewer": "Reviewer_gGDq",
+          "claim": "The ablation shows that every component is needed.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 (160 epochs): without the initialization, L_tightness or L_relu the full method gives 66.34%, 66.46% or 66.74%, against 65.58%. Alone, the initialization does not help (67.01% to 67.63%)."
+        },
+        {
+          "reviewer": "Reviewer_3ihN",
+          "claim": "The assumptions on W_i are unclear: l.130 gives only zero mean and variance, not the symmetry the Appendix D derivation needs.",
+          "checked_against_paper": "correct",
+          "evidence": "l.129-130 state zero mean and variance sigma_i^2 only. The camera-ready adds 'the distribution is symmetric about 0'."
+        },
+        {
+          "reviewer": "Reviewer_3ihN",
+          "claim": "delta_i and Delta_i are vectors, so log E(Delta_i) in Figure 1 is undefined.",
+          "checked_against_paper": "correct",
+          "evidence": "The text never defines E of a vector. The Figure 1 caption does say it plots 'the mean of each layer's Delta_i'. The camera-ready adds a definition."
+        },
+        {
+          "reviewer": "Reviewer_3ihN",
+          "claim": "p(-c|W_i) = p(c|W_i) in Eq. (11), Appendix D, cannot hold because ReLU bounds are not symmetric.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is in neither PDF. The authors replied that the equation conditions on |W_i| and uses a symmetric weight distribution; 3ihN accepted this and noted the symmetry was unstated."
+        },
+        {
+          "reviewer": "Reviewer_3ihN",
+          "claim": "The paper compares only IBP-related methods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 lists COLT (Balunovic and Vechev, 72.5%) and the l-inf-dist net (64.90%), and l.89-90 explain why randomized smoothing is excluded. The reruns under the same schedule are IBP and CROWN-IBP only."
+        },
+        {
+          "reviewer": "Reviewer_3ihN",
+          "claim": "In Figure 5, further training would make all methods reach similar performance.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The full method stays below Vanilla IBP by about 1.4 points at epoch 20 and about 2 points at epoch 67. Only the 'IBP Initialization only' curve loses its early lead of about 5 points; by about epoch 60 it is within 1 point of Vanilla IBP."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_3ihN"
+        ],
+        "evidence": "3ihN (2021-09-02): 'Thanks for clarification and I'd like to raise my score to 4.' 3ihN (2021-09-07): 'The result looks good, and I'd like to raise to 5.' The review was edited on 2021-09-07. NvoX (2021-09-10): 'My rating remains the same.' gGDq did not reply or edit.",
+        "what_convinced_or_not": "Clarification moved 3ihN: the meaning of E(delta_i), the symmetric weight distribution and an account of BN took 3ihN to 4. The 160-epoch TinyImageNet plot, sent again by a second link, took 3ihN to 5. The randomized-smoothing comparison was an argument from published numbers. The Kaiming answer came on 2021-09-08, after 3ihN's last edit. NvoX got the no-BN ablation and kept 6. gGDq got Xiao et al., COLT and CROWN-IBP results and a promise to rephrase l.250, and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'These pros and cons make this paper a borderline paper but the AC balances them'. The pros and cons are Reviewer_gGDq's: the speedup, and '4 tricks (each of which helps)' that are 'not sufficiently justified theoretically' (gGDq: 'combining 4 different improvements is somewhat unprincipled'; 'all of the losses are indeed necessary'). The tie-break is the AC's own view: 'having principled approaches in this area is in the AC's opinion difficult'. Two of three ratings are above the line.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two 6s and a 5 (mean 5.67); every reviewer valued the speedup ('could somewhat democratize certified training', Reviewer_gGDq).",
+        "A four-part combination without theory (Reviewer_gGDq) and a thin BN analysis (Reviewer_NvoX) kept ratings at the line.",
+        "Clarifications and a longer-training plot lifted Reviewer_3ihN from 3 or lower to 5.",
+        "The AC judged the paper borderline and broke the tie for the empirical gains."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Cost of tuning λ against the speedup claim (Reviewer_E79q)",
+    "The initialization analysis does not cover BN in every layer (Reviewer_Myoo); conceded in the camera-ready",
+    "Initialization gives smaller gains than Sec. 3 suggests (Reviewer_3WeK)",
+    "Initialization for residual networks and an outdated covariate-shift account of BN (Reviewer_E79q)",
+    "Absolute TinyImageNet error too high to be useful (Reviewer_e75G, on a misread of verified error)",
+    "Mini-batch variance of the estimate of E(Delta_i) (Reviewer_e75G)",
+    "Related work by Lee et al. 2021 and Jovanovic et al. 2021 (Reviewer_3WeK)",
+    "Societal impact (Reviewer_E79q, Reviewer_3WeK)"
+  ],
+  "issues_only_b": [
+    "Overclaim 'significantly outperform literature SOTA' at l.250, from best runs with 1 to 2 point margins (Reviewer_gGDq)",
+    "Comparison with randomized smoothing (Reviewer_3ihN) and with the Xiao et al. and COLT regularizers (Reviewer_gGDq)",
+    "Unstated symmetry assumption on W_i and the Appendix D derivation of Eq. (11) (Reviewer_3ihN)",
+    "Whether baselines catch up with longer training in Figure 5 (Reviewer_3ihN)",
+    "Kaiming normal initialization as a baseline (Reviewer_3ihN)",
+    "No standard deviations in Table 2 and inconsistent model names (Reviewer_NvoX)"
+  ],
+  "shared_issues": [
+    "Large cut in training epochs as the main strength (all seven reviewers)",
+    "Whether BN helps through ReLU balance or through optimization (A: Reviewer_Myoo, Reviewer_E79q; B: Reviewer_NvoX, Reviewer_3ihN)",
+    "Undefined E(.) of a vector or matrix (A: Reviewer_e75G; B: Reviewer_3ihN)",
+    "Ablation with the other components but without BN (A: Reviewer_3WeK; B: Reviewer_NvoX)",
+    "Transfer to CROWN-IBP (A: Reviewer_3WeK; B: Reviewer_gGDq)",
+    "Incremental combination of components with thin theory (A: Reviewer_Myoo; B: Reviewer_gGDq, Reviewer_NvoX, AC)",
+    "Modest margins (A: Reviewer_Myoo, against same-schedule baselines; B: Reviewer_gGDq, against literature)",
+    "Typos (A: Reviewer_E79q, Reviewer_e75G; B: Reviewer_gGDq, Reviewer_3ihN)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster, for the same reason. The paper reaches literature-level verified error in 160 epochs instead of 2,000 to 3,200: on CIFAR-10 it gets 65.58% (best run 65.03%) against 66.62% for Xu et al. at 2,000 epochs. Every reviewer valued this speedup. No reviewer ended as a champion or a detractor: A gave 6, 7, 6, 7 (mean 6.5) and B gave 6, 5, 6 (mean 5.67). In both committees new ablations and notation fixes lifted reviewers: Reviewer_Myoo and Reviewer_e75G in A to 6, and Reviewer_3ihN in B from 3 or lower to 5. B was cooler. It had no 7, its most confident reviewer (Reviewer_gGDq, confidence 5) called the four-part combination 'somewhat unprincipled', and its AC called the paper borderline and broke the tie for the empirical gains. A's two 7s (Reviewer_E79q, Reviewer_3WeK) found the same fixes natural, and A's AC named no weakness. So the committees weighted the same facts a little differently, and both stayed above the line. Both under-weighted one fact in the paper's own tables. IBP initialization, the one derived component, does not help alone (Table 4: 67.01% to 67.63%), and its derivation ignores the BN that every evaluated model has, as the camera-ready concedes. At 160 epochs, full BN alone already brings Vanilla IBP to 67.01%. The paper claims that BN finding too, so the result that earned the poster stands.",
+  "candidate_reasons": [
+    "Large epoch reduction valued by all",
+    "Rebuttal ablations lifted borderline reviewers",
+    "Bag-of-tricks critique tempered enthusiasm",
+    "AC tie-break favouring empirical gains",
+    "No champion or detractor remained",
+    "Initialization theory weakness under-weighted"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 4 (initialization alone: 67.01% to 67.63% at 160 epochs; no BN 69.43%)",
+    "paper_submitted.pdf Table 1 (CIFAR-10 160 epochs: Ours 65.58±0.32, Vanilla IBP with BN 67.01±0.29; Xu et al. 66.62 at 2,000 epochs)",
+    "paper_submitted.pdf Table 2 (TinyImageNet single runs; literature best 84.14% in caption)",
+    "paper_submitted.pdf Figure 2 (BN alone: about 6% to 7% active ReLUs) and Figure 5 (axis 'Verified Err.')",
+    "paper_submitted.pdf l.129-130 (no symmetry assumption), l.174-175 (covariate shift), l.181-183 (BN statistics from clean data), l.249-251 ('significantly outperform')",
+    "paper.pdf (camera-ready) Sec. 3.3.2: 'our previous analysis on IBP initialization considers a network without BN'",
+    "Reviewer_Myoo final review and post-rebuttal edit",
+    "Reviewer_e75G review update and authors' reply on verified error",
+    "Reviewer_3ihN comments of 2021-09-02 and 2021-09-07",
+    "Reviewer_gGDq final review",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

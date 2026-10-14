@@ -1,0 +1,229 @@
+{
+ "pair_id": "n21-278",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 6, 5, 7],
+   "confidences": [4, 4, 4, 5],
+   "reviews_edited_after_posting": ["Reviewer_rrox", "Reviewer_wmXs"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_9zdA",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "The only rating below threshold (5) against 6, 6 and 7. It took 2 hours and has a 190-word main review. The text praises the paper: 'new state-of-the-art', and on CVRP20 it 'beats LKH'. Its one reason against is that CPE helps less for 'more general routing problems'. It asks for 'an ablation study', but Section 5.2 reports three. It did not answer the rebuttal or the authors' follow-up of 2021-09-01. The AC set it aside: 'this reviewer did not react to the author's reply or the other reviewer's arguments'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_9zdA",
+     "evidence": "It asks for an ablation study that Section 5.2 (l.315-340) already reports. It calls it a strength that 'node embedding and positional embedding can be mixed', but the thesis of the paper is to keep them separate (l.139-143). The score of 5 does not follow from the text, which lists strengths and minor questions. It did not take part in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_9zdA",
+     "claim": "The paper would be better with an ablation study.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 5.2 'Ablation studies' (l.315-340) tests all three components: dual versus single aspect (Table 2), PE versus CPE (Table 3, Figure 5), and PPO with and without curriculum learning (Figure 6)."
+    },
+    {
+     "reviewer": "Reviewer_9zdA",
+     "claim": "On CVRP20 the method beats LKH.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: DACT with 6 augments has a gap of -0.08% on CVRP20. l.304-305 say the same."
+    },
+    {
+     "reviewer": "Reviewer_9zdA",
+     "claim": "In Figure 2 the decoder output shows P_11 where P_1N belongs.",
+     "checked_against_paper": "correct",
+     "evidence": "The top-right cell of the output matrix in Figure 2 reads P_11."
+    },
+    {
+     "reviewer": "Reviewer_rrox",
+     "claim": "The best gaps are 0.09% (TSP100) and 0.19% (CVRP100), and the paper omits the concurrent DPDP paper (Kool et al., 2021), which reports better gaps.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 and l.301, l.305 give 0.09% and 0.19%. The reference list has no DPDP. The camera-ready adds DPDP to Table 1. DPDP's own numbers were not checked here."
+    },
+    {
+     "reviewer": "Reviewer_rrox",
+     "claim": "The authors have not included limitations.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.345-346 name one limitation, and l.309-314 concede that POMO is faster. Both are brief. None of rrox's three points (quadratic attention, speed, new problem variants) is discussed."
+    },
+    {
+     "reviewer": "Reviewer_wmXs",
+     "claim": "CPE makes the input dimension much larger, which may limit scalability.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.155-156: each PFE is a 64-dimensional vector, the same size as each NFE (l.154). The authors gave this answer, and wmXs thanked them for it."
+    },
+    {
+     "reviewer": "Reviewer_wmXs",
+     "claim": "DACT takes longer than POMO for almost the same performance.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1, N=100: POMO with 8 augments gets 0.15% (TSP) and 0.32% (CVRP) in 1 and 2 minutes. The best DACT runs get 0.09% and 0.19% in 2.5 and 4.5 hours. l.309-310 concede the point."
+    },
+    {
+     "reviewer": "Reviewer_YbAL",
+     "claim": "L2I, the strongest learned method on CVRP, is not among the baselines.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 has no L2I row. l.97-98 say that L2I outperforms LKH3 but is limited to CVRP and slow."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_rrox"],
+    "evidence": "Reviewer_rrox, 2021-08-24: 'Update review: 5 -> 6'. Its review was edited the same day. Reviewer_wmXs replied on 2021-08-24 with thanks for 'the detailed explanation of the scalability of CPE' and kept 6. Its only edit (2021-07-11) predates the rebuttal. Reviewer_9zdA and Reviewer_YbAL did not reply.",
+    "what_convinced_or_not": "Reviewer_rrox named the promised definitions of 'aspect' and 'mixed correlations' as its main reason. It also valued the principle of respecting cyclic symmetry and called the contribution 'conceptual'. It still judged the results 'competitive; although, not SOTA'. After that, the authors added POMO generalization numbers: 10.6% (TSPLIB) and 6.1% (CVRPLIB) against 2.1% and 3.4% for DACT. Reviewer_wmXs accepted the correction on the size of CPE but did not change its score."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four final ratings are 6 or 7 (mean 6.0). The AC calls the paper 'close to the borderline'. It accepts because 'the generalization results are quite interesting', since 'scaling is a major obstacle'. It discounts the lone sub-threshold reviewer for not reacting to the reply. It notes that the method 'stays close to the established framework of e.g. [10]'. No A reviewer named generalization as the main strength; the general response of the authors did.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "The AC judged the generalization across problem sizes 'convincingly better than that of competitor methods' and important for the field.",
+    "Three of four reviewers ended at 6 or 7 after Reviewer_rrox rose from 5 to 6; they found the method novel and the ablations solid.",
+    "The lone 5 (Reviewer_9zdA) was thin and silent, and the AC set it aside.",
+    "The method is incremental over Wu et al. [10] and slower than POMO, so the AC placed it at the borderline, not above."
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [5, 4, 7, 7],
+   "confidences": [4, 4, 3, 3],
+   "reviews_edited_after_posting": ["Reviewer_VmAG"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "A 2-2 split, not one outlier: 5 and 4 at confidence 4 against 7 and 7 at confidence 3. The lowest score, the 4 of Reviewer_pCD7, comes from the weakest review. The 5 of Reviewer_25wv makes a similar case on sound grounds."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_pCD7",
+     "evidence": "One hour. It describes CPE as 'cyclic Gray codes instead of sinusoidal positional embeddings', but Eq. (1) builds CPE from sinusoids; the Gray code only motivates it (l.158-167, Figure 3). It blames DAC-Att for the slow run times, but Table 1 shows DACT (T=5k) faster than the single-aspect Wu et al. (T=5k) at every size. The cause is the number of improvement steps (l.309-314). It did not reply to the rebuttal or to the follow-up of the authors on 2021-09-01."
+    },
+    {
+     "reviewer": "Reviewer_VmAG",
+     "evidence": "A 7 at confidence 3 that cites no equation, table or result. Before the rebuttal it wrote: 'It's difficult to evaluate if the work presented here advances the state of the art'. After the rebuttal it saw 'significant advance in the state of the art' and 'good potential for scalability', although no experiment goes beyond 200 nodes. It posted on 2021-07-30, two weeks after the other three reviewers."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_pCD7",
+     "claim": "CPE uses cyclic Gray codes instead of sinusoidal positional embeddings.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.155-158 and Eq. (1): CPE is a real-valued 64-dimensional vector built from sinusoids and 'designed based on' Gray codes. Figure 3 uses the Gray code only as an illustration."
+    },
+    {
+     "reviewer": "Reviewer_pCD7",
+     "claim": "Under the same time budget DACT loses to other baselines; its smallest gaps cost much longer run times.",
+     "checked_against_paper": "correct",
+     "evidence": "True against POMO at every size, and against Concorde and LKH on TSP. TSP100: POMO with 8 augments gets 0.15% in 1 minute; DACT (T=1k) gets 1.62% in 4 minutes. Concorde is optimal in 1 hour; DACT with 4 augments needs 2.5 hours for 0.09%. Against AM, GCN-BS, MDAM-BS and Wu et al., DACT is equal or better at similar time, so 'many' overstates it."
+    },
+    {
+     "reviewer": "Reviewer_pCD7",
+     "claim": "DAC-Att greatly increases computational cost, which explains the poor run times of DACT.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1: DACT (T=5k) is faster than the single-aspect Wu et al. (T=5k) at every size, e.g. 18 minutes against 2 hours on TSP100, though on different hardware. In the rebuttal's like-for-like test, the single-aspect SA-T is only about 20 minutes faster than the 2.5 hours of DACT on TSP100, and DACT has fewer parameters (0.29M against 0.37M). The gap to POMO comes from thousands of improvement steps (l.309-314)."
+    },
+    {
+     "reviewer": "Reviewer_pCD7",
+     "claim": "All experiments use small instances of 20, 50 and 100 nodes.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1 to 3 use at most 100 nodes. The authors point to Appendix F, with benchmark instances up to 200 nodes; the 12-page submitted PDF has no appendix."
+    },
+    {
+     "reviewer": "Reviewer_25wv",
+     "claim": "DACT beats the improvement models, but POMO remains a simple and strong baseline for neural VRP solvers.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: POMO with 8 augments is within 0.06 (TSP100) and 0.13 (CVRP100) points of the best DACT gap, at less than 1/100 of the time. The claims of beating POMO at l.293-299 compare gaps, not equal run times."
+    },
+    {
+     "reviewer": "Reviewer_25wv",
+     "claim": "The separate node and positional embeddings resemble United Positional Encoding.",
+     "checked_against_paper": "correct",
+     "evidence": "l.64-66 cite TUPE [16] for separating the two kinds of information when attention scores are computed."
+    },
+    {
+     "reviewer": "Reviewer_25wv",
+     "claim": "The time notation at l.288 is the wrong way round.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.287-288 put 10,000 instances on several GPUs in (.) and 512 instances on one GPU in {.}. The (.) times in Table 1 are the larger ones, as they should be."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review was edited after the rebuttal of 2021-08-10. The edit of Reviewer_VmAG (2021-08-01) predates it. Reviewer_25wv, 2021-08-16: the clarifications 'do not change significantly my opinion'. Reviewer_vqcX, 2021-08-26: 'I will slightly lower my scores'; the review shows no edit, and the rating is still 7. Reviewer_VmAG, 2021-08-26: 'my concerns have been met' (already 7). Reviewer_pCD7 did not reply, also not to the follow-up of the authors on 2021-09-01.",
+    "what_convinced_or_not": "Reviewer_VmAG accepted the generality argument and the promise of code. Reviewer_25wv rejected the claim that CPE helps beyond cyclic problems: under time windows, '[1, 2, 3, 4] and [2, 3, 4, 1] represent different orders of delivery'. It wanted that claim tested, and it wanted much larger instances. Reviewer_vqcX found the generalization and speed-gap results 'definitely valuable' but the novelty limited and the wider applicability 'unsupported'. The authors gave POMO generalization numbers (10.6% and 6.1% against 2.1% and 3.4%) on 2021-08-17 and 2021-08-27. No score changed after them."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The reviews split 2-2 (mean 5.75), and the AC accepted. The meta-review lists four generic points that echo the reviews: 'no fundamental flaws', 'clear', 'experiments are well conducted', 'the rebuttal addresses the main concerns'. The last point does not hold for Reviewer_25wv, who said the replies did not change its opinion, or for Reviewer_pCD7, who never replied. The AC calls significance 'borderline' but 'sufficient to inspire new works'. It names no reviewer and no result.",
+    "meta_review_leans_on": "unclear"
+   },
+   "main_reasons_for_decision": [
+    "No reviewer found a technical error; even the detractors wrote 'technically correct' (Reviewer_25wv) and 'no obvious flaw' (Reviewer_pCD7).",
+    "Two 7s (Reviewer_vqcX, Reviewer_VmAG) said that most concerns were addressed; both are at confidence 3 and thin.",
+    "The AC judged significance borderline but enough to 'inspire new works in the same direction'.",
+    "The case against (incremental, untested beyond TSP and CVRP, small instances, slower than POMO) is about significance, and Reviewer_pCD7 never defended its 4."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Missing concurrent DPDP paper with better TSP100 and CVRP100 gaps (Reviewer_rrox; not cited in the submission, added in the camera-ready)",
+  "Undefined terms and readability: 'aspect', 'mixed correlations', 'correlation noise' (Reviewer_rrox); the promised fixes moved rrox from 5 to 6",
+  "L2I missing from the baselines (Reviewer_YbAL; Reviewer_wmXs says DACT cannot beat it)",
+  "CVRP mechanics: depot handling, number of routes, feasibility of 2-opt moves, reward bookkeeping (Reviewer_YbAL, Reviewer_wmXs)",
+  "CPE enlarging the input (Reviewer_wmXs; a misreading, l.156)",
+  "Ablation over the improvement operator (Reviewer_YbAL)",
+  "No societal-impact discussion (Reviewer_rrox)"
+ ],
+ "issues_only_b": [
+  "Resemblance to United Positional Encoding (Reviewer_25wv; the paper cites it at l.64-66)",
+  "Time windows break the cyclic equivalence, so benefit beyond TSP and CVRP is unproven (Reviewer_25wv, 2021-08-17)",
+  "Learnable positional embeddings as a simpler alternative to CPE (Reviewer_pCD7; not tested in the paper)",
+  "Performance-versus-time curves against POMO (Reviewer_25wv, Reviewer_vqcX)",
+  "Space balance: the pseudocode and the 2-opt description belong in the main text (Reviewer_25wv)",
+  "Code release, PPO details and two missing references (Reviewer_VmAG)",
+  "Random initial solutions and more than three encoder layers (Reviewer_vqcX)"
+ ],
+ "shared_issues": [
+  "Much slower than POMO for similar gaps (A: wmXs; B: 25wv, pCD7, vqcX); Table 1 confirms it and l.309-310 concede it",
+  "Incremental over Wu et al. [10] (A: 9zdA, AC; B: 25wv, vqcX)",
+  "Unclear benefit of CPE beyond TSP and CVRP, e.g. with time windows (A: 9zdA, wmXs; B: 25wv, pCD7, VmAG); both forums got the same general response",
+  "Scalability to larger instances (A: rrox, wmXs; B: 25wv, pCD7, vqcX)",
+  "Model size and run time against [10] (A: YbAL, 9zdA; B: vqcX, pCD7); both got the same answer of 0.29M against 0.37M parameters",
+  "Figure 2 typos (A: 9zdA, YbAL; B: 25wv, vqcX)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster, and they read the paper the same way. Each saw a sound but incremental extension of Wu et al. [10]. Reviewers in both noted that POMO comes close to the best DACT gaps in minutes, where DACT needs hours (Table 1). Both ACs called the paper borderline. A's AC accepted it for one result: cyclic positional encoding (CPE) generalizes across problem sizes. B's AC gave no specific reason, but B's two supporters credited CPE, and Reviewer_vqcX named its generalization. The result holds. A TSP50 model tested on TSP100 gets a 2.98% gap with CPE and 7.93% with standard PE (Table 3). The rebuttal's '16.37% vs 3.87%' pairs Wu et al. with OR-Tools instead, and no reviewer noticed. No reviewer in either committee found a technical error. The committees differed in the reviewers they drew, not in how they weighed the facts. A ended at 6, 6, 5, 7 after Reviewer_rrox rose from 5 to 6. Its one sub-threshold review (Reviewer_9zdA, 2 hours) asked for an ablation study that Section 5.2 already reports. It never replied, and the AC set it aside. B split 5, 4, 7, 7. Reviewer_25wv's principled case held through two exchanges: the work is incremental, POMO is the stronger practical baseline, and benefit beyond cyclic problems is unproven. Reviewer_pCD7 (1 hour) misdescribed CPE as Gray codes and never replied. B's 7s are thin. Reviewer_VmAG cites no result. Reviewer_vqcX wrote 'I will slightly lower my scores' but left its 7 in place. B's meta-review says that the rebuttal 'addresses the main concerns', but Reviewer_25wv's reply says otherwise. So B's accept rests on weaker support than A's, but both committees reached the same borderline judgment.",
+ "candidate_reasons": [
+  "Shared generalization result justified acceptance",
+  "No technical error found",
+  "Lone silent detractor set aside",
+  "Thin confidence-3 champions carried B",
+  "Principled incrementality objection outweighed",
+  "Promised score cut never entered"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_rrox discussion, 2021-08-24 ('Update review: 5 -> 6')",
+  "Reviewer_9zdA review (ablation request) against paper_submitted.pdf Section 5.2, Tables 2 and 3, Figure 6",
+  "Reviewer_pCD7 review against paper_submitted.pdf l.155-168 and Eq. (1)",
+  "Reviewer_25wv discussion, 2021-08-16 and 2021-08-17 ('Cyclic property')",
+  "Reviewer_vqcX discussion, 2021-08-26, against b/reviews.jsonl (edited_after_posting false, rating 7)",
+  "Reviewer_VmAG review and discussion, 2021-08-26",
+  "paper_submitted.pdf Table 1 (POMO with 8 augments against DACT at N=100) and l.309-314",
+  "paper_submitted.pdf Table 3 (DACT-PE 7.93% against DACT-CPE 2.98% on TSP100)",
+  "Authors' general responses (A 2021-08-09, B 2021-08-10): '16.37% ... 3.87%' misquotes Table 3",
+  "paper_submitted.pdf Figure 2 (decoder output P_11; PFE output g_n)",
+  "paper.pdf (camera-ready): DPDP added to Table 1; TSPLIB and CVRPLIB table with POMO; 0.29M parameters"
+ ]
+}

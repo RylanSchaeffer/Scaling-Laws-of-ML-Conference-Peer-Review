@@ -1,0 +1,262 @@
+{
+  "pair_id": "n21-265",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_JnKT",
+        "Reviewer_8aHm",
+        "Reviewer_Nehp"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_D5iZ), 7 (Reviewer_JnKT), 7 (Reviewer_8aHm) and 6 (Reviewer_Nehp). The spread is one point and no rating stands apart. Reviewer_8aHm's 7 carries confidence 2."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Nehp",
+          "evidence": "The main review repeats the summary word for word, then gives generic strengths and three requests. It asks to delete l.338, which is a results sentence, and calls the references at l.24 and l.78 'not correct' without saying why (probably the in-text citation style that B's Reviewer_UfX4 also notes). The authors asked what was meant; Nehp did not explain and kept 6, noting only that 'all reviewers think positively about this paper'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_D5iZ",
+          "claim": "Lines 334-336 say the schedule dominates both baselines on FCMNF 'in all metrics', but the time-to-best-incumbent row contradicts this.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2, FCMNF: time to best incumbent 2973.66 (DEFAULT) against 3782.45 (SCHEDULE). SCIP_TUNED also beats SCHEDULE on incumbents found (0.25 against 0.23) and incumbent success rate (0.03 against 0.02). The authors conceded; the camera-ready says 'almost all metrics'."
+        },
+        {
+          "reviewer": "Reviewer_D5iZ",
+          "claim": "In Table 2 the schedule makes fewer heuristic calls than the baselines.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Total heuristic calls: GISP 140.03 against 138.57 (DEFAULT) and 137.38 (SCIP_TUNED); FCMNF 23.58 against 15.08 and 18.83. Only total heuristic time is lower. The misreading did not affect the rating."
+        },
+        {
+          "reviewer": "Reviewer_JnKT",
+          "claim": "Point 1 at l.161 (MIPs are harder than decision problems) is not true without qualification.",
+          "checked_against_paper": "correct",
+          "evidence": "l.161-162: 'Solving a MIP is generally much more challenging than solving a decision problem.' The authors defended it in the rebuttal; the camera-ready softens it to 'much different from'."
+        },
+        {
+          "reviewer": "Reviewer_JnKT",
+          "claim": "The description of how a node gets an index that is meaningful across instances (l.73) is vague.",
+          "checked_against_paper": "correct",
+          "evidence": "l.73-74 only assumes 'a unique index that identifies the node even across B&B trees obtained for different MIP instances'. B's Reviewer_QJyG misread the same sentence as a learned feature. The camera-ready keeps the sentence unchanged."
+        },
+        {
+          "reviewer": "Reviewer_JnKT",
+          "claim": "Default SCIP is a strawman baseline; a primal-emphasis setting would be fairer.",
+          "checked_against_paper": "correct",
+          "evidence": "No emphasis baseline is reported, and the 49% headline is against default SCIP. On DIMACS GISP, SCIP_TUNED (one parameter, footnote 1) already cuts the primal integral by 41% (934.48 to 555.75); the schedule (470.73) is 15% below it. The authors' statement that emphasis settings did worse than default appears only in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_JnKT",
+          "claim": "The paper should compare the primal-dual integral to account for SCIP's dual effort.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 already reports 'Gap' and 'Primal-dual Integral'. SCHEDULE is best on both problems (430882 against 450149 on GISP; 102856 against 107894 on FCMNF), by 4 to 5%. Table 1 reports the primal integral only. The authors pointed to Table 2, and JnKT raised the score."
+        },
+        {
+          "reviewer": "Reviewer_8aHm",
+          "claim": "SCIP_TUNED is close or better on time to best incumbent, and on FCMNF default SCIP is best.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: GISP 2642.46 (SCIP_TUNED) against 2803.38 (SCHEDULE); FCMNF 2973.66 (DEFAULT) against 3782.45. The authors' explanation, better final incumbents, matches Table 2 (2404.63 against 2385.73, maximisation; 1221969 against 1227125, minimisation)."
+        },
+        {
+          "reviewer": "Reviewer_Nehp",
+          "claim": "The paper claims the method is not tied to one solver but tests only one.",
+          "checked_against_paper": "correct",
+          "evidence": "l.95-96: 'our approach is generic and is likely to apply to other MIP solvers'. All experiments use SCIP 7.0 (l.268). The authors replied that data collection needs the solver's source code."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_JnKT",
+          "Reviewer_8aHm"
+        ],
+        "evidence": "Reviewer_8aHm (2021-08-18): 'I am increasing my score to support the paper'; the review was edited that day and ends at 7. Reviewer_JnKT (2021-08-31): 'will increase my score correspondingly'; edited that day, final 7. Reviewer_Nehp's edit (2021-07-30) predates the author responses (2021-08-10); on 2021-08-20 Nehp maintains the score. Reviewer_D5iZ (2021-09-08) keeps 7 and did not edit.",
+        "what_convinced_or_not": "JnKT accepted the answers on computations: Table 2 already has the gap and the primal-dual integral, the schedules change only heuristic settings, and (rebuttal only, no data) SCIP's emphasis settings did worse than default. JnKT kept four presentation objections: the node-index description, the l.161 claim, the at-most-once restriction as a SCIP-specific modelling choice, and whether dual effort is unchanged under a time limit. 8aHm moved on clarifications (why GISP and FCMNF, the primal integral as the ML4CO competition metric, better final incumbents behind the slower time to best incumbent) and 'the information from the other responses'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'There was consensus about this paper and the reviewers carefully consider the authors' feedback.' The meta-review misdescribes the paper. It speaks of 'branching heuristics' (the paper schedules primal heuristics), calls the schedule 'problem/instance dependent' (it is one schedule per problem class, l.355-356), and credits gains on the 'primal gap' (the metric is the primal integral). It names no weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal (7, 7, 7, 6), mean 6.75.",
+        "A clear formulation, scalable data collection and consistent primal-integral gains over default SCIP (49% on DIMACS GISP, 9% on FCMNF).",
+        "Rebuttal clarifications lifted Reviewer_JnKT and Reviewer_8aHm to 7; JnKT's framing objections stayed presentation issues.",
+        "The AC cited consensus; no reviewer argued for more than a poster."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        4
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_QJyG",
+        "Reviewer_Ad3G"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_zjih",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "zjih gave 4 at confidence 4 after 16 hours, against 7, 6 and 7, with a 13-point review. The main reason is a judgment: the greedy is 'very simple' and 'a variation of Streeter's approach', so 'I don't see significant contributions'. The checkable reasons mostly hold. Table 1 shows greedy and SMAC within one standard deviation in every cell, and Reviewer_UfX4 agreed the gain over SMAC is not large. The authors conceded that shadow-mode data differ from real runs. Several smaller points misread the paper: c and A are defined at l.205, l.248 ties one measure to two things, and instance generation is in Appendix D (l.265-266). zjih did not respond to the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_UfX4",
+          "claim": "The statement 'The loop is terminated if a heuristic finds a new incumbent solution' is wrong for SCIP 7.0.1, which interrupts the loop only when a solution cuts off the current node.",
+          "checked_against_paper": "correct",
+          "evidence": "l.100 states it and l.222-223 repeats it. The cost model T(S,N) (l.131-133) charges a node only up to the first heuristic that finds any feasible solution. The authors conceded ('spotting this error'). The camera-ready adds 'that cuts off the current node' to the description but keeps the cost model."
+        },
+        {
+          "reviewer": "Reviewer_UfX4",
+          "claim": "Section 5 is too vague about the specially crafted solver and the shadow mode.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (l.211-235) says only that heuristics run 'in a sandbox environment' and that incumbents are 'not communicated back'. The details came in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_QJyG",
+          "claim": "The node index is the feature that the schedule uses to generalize across nodes.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The method learns one fixed schedule per problem class with no node or instance features (l.355-356). The misreading follows from l.73-74. QJyG: 'I had indeed misunderstood what the approach actually learns', and rose to 6."
+        },
+        {
+          "reviewer": "Reviewer_Ad3G",
+          "claim": "The method shows a significant improvement over SMAC.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: mean relative primal integral 0.80 (DIVING) against 0.81 (SMAC). No cell differs by more than 0.13, while standard deviations are 0.19 to 0.42. The paper says only that SMAC 'performs worse on average' (l.317)."
+        },
+        {
+          "reviewer": "Reviewer_zjih",
+          "claim": "Greedy schedules beat SMAC on average primal integral in only 11 of 25 cases in Table 1.",
+          "checked_against_paper": "correct",
+          "evidence": "11 of 25 holds for DIVING+LNS against SMAC (13 losses, 1 tie). The like-for-like diving-only rows give 14 wins, 9 losses and 2 ties. In every cell the gap is within one standard deviation. The authors did not dispute the count; they reframed the comparison as training cost."
+        },
+        {
+          "reviewer": "Reviewer_zjih",
+          "claim": "Shadow-mode data do not reflect real solver runs.",
+          "checked_against_paper": "correct",
+          "evidence": "l.229-233: in shadow mode, new incumbents and primal bounds 'are not communicated back'. The authors: the behaviour is 'slightly different from \"real\" runs of the solver'."
+        },
+        {
+          "reviewer": "Reviewer_zjih",
+          "claim": "'Enough machines' (l.312) is unexplained and can bias the evaluation.",
+          "checked_against_paper": "correct",
+          "evidence": "l.308-310 gives SMAC the same 100-hour budget as data collection, so quality is compared at equal compute. The 'four hours' assumes one machine per training instance. The rebuttal's 'SMAC took 100 hours ... our framework only needed 4 hours' compares wall-clock times, and Reviewer_UfX4 accepted it as 'SMAC requires a lot more time to train'."
+        },
+        {
+          "reviewer": "Reviewer_zjih",
+          "claim": "The paper does not explain how the random instances were generated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.265-266 points to Appendix D for instance generation, and Reviewer_UfX4 cites appendix lines 564-567. The appendix is not in the PDF here."
+        },
+        {
+          "reviewer": "Reviewer_zjih",
+          "claim": "c and A in the formulation at l.204-205 are not defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.205 defines A_j and c_j(h, τ) directly below the formula; l.206 defines A_0 and c_0."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_QJyG"
+        ],
+        "evidence": "Reviewer_QJyG (2021-08-20): 'I had indeed misunderstood what the approach actually learns ... I have raised my score accordingly'; edited that day, final 6. Reviewer_Ad3G's edit (2021-09-10) adds 'my overall (positive) opinion is unchanged'. Reviewer_UfX4 (2021-08-15) still finds the paper 'good enough for acceptance' and did not edit. Reviewer_zjih neither replied nor edited. UfX4's comment of 2021-08-15 credits QJyG with the SMAC-margin concern, which QJyG's final text does not contain.",
+        "what_convinced_or_not": "QJyG moved once told that the node index is only an identifier and that one schedule is learned per class, plus a rebuttal-only claim that random schedules did much worse. UfX4 accepted the concession on loop termination and the reported failed attempts to reward incumbents, and asked for an ablation and a discussion of which heuristics suit the method. On SMAC, the authors argued training cost (100 against 4 hours), which is wall-clock with about 25 machines, not compute. zjih's other points got answers or promises, but zjih never responded."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'Three of the reviewers felt this is a good paper ... One reviewer was negative ... I feel this interest in the work outweighs the concerns.' It names none of Reviewer_zjih's concerns and none of the conceded errors. The AC posted nothing in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or 7 after the rebuttal (7, 6, 7, 4), mean 6.0.",
+        "Reviewer_UfX4, the most detailed positive review, valued a simple method that matches SMAC and a sound MIP methodology (tuned baseline, seeds, cross-validation).",
+        "The rebuttal corrected Reviewer_QJyG's misreading of the node index and lifted QJyG to 6.",
+        "Reviewer_zjih's 4 (limited novelty, small SMAC margin, reproducibility) went undefended in discussion, and the AC outvoted it by headcount."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Default SCIP as a strawman, no primal-emphasis baseline, and framing as in-solver heuristics versus a primal-only metaheuristic (Reviewer_JnKT)",
+    "Unqualified claim at l.161 that MIPs are harder than decision problems (Reviewer_JnKT)",
+    "Table 2: slower time to best incumbent, and the FCMNF text's 'dominates ... in all metrics' (Reviewer_D5iZ, Reviewer_8aHm)",
+    "Effect on overall solve time not shown (Reviewer_D5iZ, Reviewer_Nehp)",
+    "Only SCIP tested; portability to CPLEX, Gurobi or other solvers (Reviewer_D5iZ, Reviewer_Nehp)",
+    "No same-version comparison with Khalil et al. 2017 (Reviewer_D5iZ)",
+    "Uncommon benchmark problems (Reviewer_8aHm) and uniform weighting of nodes (Reviewer_JnKT)"
+  ],
+  "issues_only_b": [
+    "Wrong statement that the heuristic loop stops at any new incumbent, on which the cost model rests (Reviewer_UfX4)",
+    "Reward counts any feasible solution, not its quality; missing ablations (Reviewer_UfX4)",
+    "Underspecified Section 5, and shadow-mode data that differ from real runs (Reviewer_UfX4, Reviewer_zjih)",
+    "Small margin over SMAC, and no SMAC column in Table 2 (Reviewer_zjih, Reviewer_UfX4)",
+    "Limited novelty: a simple variant of Streeter's greedy, 'data-driven' without instance features (Reviewer_zjih)",
+    "No approximation guarantee for the greedy and no bias analysis of data collection (Reviewer_Ad3G)",
+    "No random-schedule baseline, and the learned schedules are not shown (Reviewer_QJyG)",
+    "Reproducibility details and missing references (Reviewer_zjih)"
+  ],
+  "shared_issues": [
+    "Opaque node-index definition at l.73-74 (A: Reviewer_JnKT asks for clarification; B: Reviewer_QJyG misreads it as a feature)",
+    "One schedule per problem class, retrained for each class (A: Reviewer_8aHm; B: Reviewer_QJyG, Reviewer_zjih)",
+    "At-most-once restriction on each heuristic (A: Reviewer_JnKT calls it a SCIP-specific modelling choice; B: Reviewer_zjih calls it a simplification of Streeter)",
+    "Clear writing and a well-motivated problem (praised by most reviewers in both committees)",
+    "Typos and in-text citation style (A: Reviewer_D5iZ, Reviewer_JnKT, Reviewer_Nehp; B: Reviewer_UfX4, Reviewer_zjih)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reasons. The paper learns one schedule of primal heuristics per problem class with a simple greedy rule and one data-collection run per instance. It cuts the primal integral against default SCIP on two problem classes (49% on DIMACS GISP, 9% on FCMNF). The most substantive reviews (Reviewer_D5iZ and Reviewer_JnKT in A, Reviewer_UfX4 in B) judged it sound, and no rating exceeds 7. The rebuttal lifted borderline scores in both committees: Reviewer_JnKT and Reviewer_8aHm in A, and Reviewer_QJyG in B, whose objection rested on a misreading of the node index. B's lower mean (6.0 against 6.75) comes from one reviewer; without Reviewer_zjih, B averages 6.67. zjih (4) read the same simple Streeter-style greedy that A's reviewers praised as too little contribution. zjih is right that the gain over SMAC is small: no Table 1 cell differs by more than one standard deviation. But the paper's main claim is against default SCIP, and it holds. zjih did not answer the rebuttal, and B's AC outvoted zjih by headcount without naming a concern. Each committee caught one real error that the other missed. B's Reviewer_UfX4 showed that SCIP stops the heuristic loop only when a solution cuts off the node, not at any new solution as l.100 and the cost model assume. A's Reviewer_D5iZ showed that the FCMNF text claims dominance 'in all metrics' that Table 2 contradicts. Neither error was weighed against acceptance. No reviewer noted that on DIMACS GISP a one-parameter tune of SCIP already cuts the primal integral by 41%, so the schedule beats the tuned baseline by 15%, not 49%.",
+  "candidate_reasons": [
+    "Consistent gains over default solver",
+    "Simple method endorsed by detailed reviewers",
+    "Lone detractor outvoted by headcount",
+    "Near tie with SMAC tolerated",
+    "Rebuttal clarifications lifted borderline scores",
+    "Headline gain measured against untuned baseline"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 1 (greedy against SMAC: DIVING wins 14 of 25 cells, DIVING+LNS 11 of 25; all gaps within one std)",
+    "paper_submitted.pdf Table 2 (DIMACS GISP primal integral 934.48 DEFAULT, 555.75 SCIP_TUNED, 470.73 SCHEDULE; FCMNF time to best incumbent; primal-dual integral row)",
+    "paper_submitted.pdf l.99-102, l.131-133 and l.222-223 (loop termination and cost model); camera-ready adds 'that cuts off the current node'",
+    "paper_submitted.pdf l.73-74 (node index), l.161-162 (MIP against decision problems), l.334-336 (FCMNF dominance claim)",
+    "paper_submitted.pdf l.308-314 (SMAC budget and 'enough machines')",
+    "Reviewer_zjih final review (points 1, 3, 7, 11, 13)",
+    "Reviewer_UfX4 review point 1 and comment of 2021-08-15",
+    "Reviewer_QJyG comment of 2021-08-20",
+    "Reviewer_JnKT review and comment of 2021-08-31; Reviewer_8aHm comment of 2021-08-18",
+    "Committee A meta-review ('branching heuristics', 'problem/instance dependent')",
+    "Committee B meta-review"
+  ]
+}

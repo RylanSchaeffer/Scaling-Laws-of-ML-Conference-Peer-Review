@@ -1,0 +1,261 @@
+{
+ "run": 2,
+ "turn": 35,
+ "pair_id": "n21-172",
+ "kind": "spotlight/poster",
+ "prompt_version": 2,
+ "reasons_before": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34"
+ ],
+ "judgements": [
+  {
+   "id": "R01",
+   "applies": false,
+   "justification": "No criticism rests on a wrong claim; the one wrong claim (B's rRrp, 'SOTA-exceeding') favours the paper."
+  },
+  {
+   "id": "R02",
+   "applies": false,
+   "justification": "A's AC gave a spotlight on a 7.0 mean with an 8; the tier follows the scores, and B's AC followed its 6.67 mean."
+  },
+  {
+   "id": "R03",
+   "applies": false,
+   "justification": "A's champion sKB5 rated 8 at confidence 4 on a detailed review with informed questions; no high score rests on enthusiasm alone."
+  },
+  {
+   "id": "R04",
+   "applies": false,
+   "justification": "The authors revealed no flaw on one forum only; the capacity and comparison gaps were raised by A's reviewers, and the binding concession answered B's reviewers."
+  },
+  {
+   "id": "R05",
+   "applies": true,
+   "justification": "A learned that no comparison with TPR, NSCL or Logic Tensor Networks exists and that the novelty claim ignores Plate's gradient-based HRR work, yet LW6b raised anyway and the meta-review says all reviewers became 'much more confident'."
+  },
+  {
+   "id": "R06",
+   "applies": false,
+   "justification": "Scores rose after the rebuttal in both committees (sKB5, m8WY, LW6b in A; uoCQ in B)."
+  },
+  {
+   "id": "R07",
+   "applies": true,
+   "justification": "Only B said XML binds labels to two fixed roles and never tests compositional binding; only A raised capacity, neuro-symbolic comparisons and Plate's prior work."
+  },
+  {
+   "id": "R08",
+   "applies": true,
+   "justification": "Both committees saw a simple projection step shown on one XML task without state-of-the-art results; A weighted the enabling step, B's AC called the application results not compelling."
+  },
+  {
+   "id": "R09",
+   "applies": false,
+   "justification": "Neither committee's reviews were split; A's AC paraphrased rafZ's significance case, but the panel already agreed."
+  },
+  {
+   "id": "R10",
+   "applies": true,
+   "justification": "A's m8WY raised to 7 citing 'discussion of significance with reviewers rafZ and sKB5', and LW6b raised citing 'the enthusiasm of the other reviewers'."
+  },
+  {
+   "id": "R11",
+   "applies": false,
+   "justification": "The authors left rafZ's Plate point unanswered, but rafZ was positive and no score was held down by it."
+  },
+  {
+   "id": "R12",
+   "applies": false,
+   "justification": "LW6b's original review was two sentences but LW6b later joined the discussion; B's silent M8pZ wrote a specific review."
+  },
+  {
+   "id": "R13",
+   "applies": false,
+   "justification": "Neither AC went below its reviewers' ratings."
+  },
+  {
+   "id": "R14",
+   "applies": false,
+   "justification": "B's AC judged the application results not compelling on its own reading, not by a score threshold."
+  },
+  {
+   "id": "R15",
+   "applies": false,
+   "justification": "No below-threshold score held in either committee; the lowest final rating is 6."
+  },
+  {
+   "id": "R16",
+   "applies": false,
+   "justification": "Both committees judged the paper as a method that makes HRRs trainable, shown on XML."
+  },
+  {
+   "id": "R17",
+   "applies": false,
+   "justification": "m8WY, who did not know HRRs, raised on the other reviewers' views, not on rebuttal clarifications; the champion's raise rested on a new results table."
+  },
+  {
+   "id": "R18",
+   "applies": true,
+   "justification": "Both read the paper as a method contribution, but B required the demonstration to exercise compositional binding, which A did not ask of the paper."
+  },
+  {
+   "id": "R19",
+   "applies": false,
+   "justification": "rRrp's wrong 'SOTA-exceeding' praise did not lift its rating above 6, and no other praise rests on a wrong claim."
+  },
+  {
+   "id": "R20",
+   "applies": false,
+   "justification": "No reviewer kept a below-threshold score after its main concern was answered."
+  },
+  {
+   "id": "R21",
+   "applies": true,
+   "justification": "B's rRrp stayed at 6, 'hindered a bit by not being able to see an actual revision', while A's LW6b raised although no comparative evaluation was added."
+  },
+  {
+   "id": "R22",
+   "applies": false,
+   "justification": "Every stated change of position was matched by a score edit."
+  },
+  {
+   "id": "R23",
+   "applies": false,
+   "justification": "No extra reviewer appears in either committee."
+  },
+  {
+   "id": "R24",
+   "applies": false,
+   "justification": "Reviewers in both committees found the HRR background hard for non-experts; it did not separate the committees."
+  },
+  {
+   "id": "R25",
+   "applies": false,
+   "justification": "LW6b's raise came with a stated reason (the other reviewers' enthusiasm); no raise was silent."
+  },
+  {
+   "id": "R26",
+   "applies": false,
+   "justification": "Neither AC set aside a low rating from a silent reviewer."
+  },
+  {
+   "id": "R27",
+   "applies": true,
+   "justification": "A's sKB5 rated 8 on a six-hour reading, posted follow-ups and wrote 'I want to see this paper accepted'; no B rating exceeded 7."
+  },
+  {
+   "id": "R28",
+   "applies": false,
+   "justification": "No reviewer admitted reading only part of the paper."
+  },
+  {
+   "id": "R29",
+   "applies": false,
+   "justification": "No reviewer contested the HRR premise from another theoretical tradition."
+  },
+  {
+   "id": "R30",
+   "applies": false,
+   "justification": "A's meta-review gives a case for the spotlight: likely to spark future work and of broad interest."
+  },
+  {
+   "id": "R31",
+   "applies": false,
+   "justification": "Neither committee checked the XML baselines against published results more than the other; the difference was in what HRRs should demonstrate."
+  },
+  {
+   "id": "R32",
+   "applies": false,
+   "justification": "A's 'all reviewers much more confident' overstates the record, but in the direction of a higher decision, not the lower one this reason names."
+  },
+  {
+   "id": "R33",
+   "applies": false,
+   "justification": "No reviewer in either committee called the paper of narrow interest; A's AC called it of broad interest."
+  },
+  {
+   "id": "R34",
+   "applies": false,
+   "justification": "No low-scoring reviewer misread the paper; the lowest ratings are 6."
+  }
+ ],
+ "added": [
+  {
+   "id": "R35",
+   "name": "New results shown to one committee only",
+   "definition": "In answer to a question only one committee asked, the authors posted new experiments or analyses on that committee's forum that raised its scores, while the other committee never saw those results and received only promised text.",
+   "justification": "R04 covers a flaw disclosed on one forum, R06 a rebuttal that moves only one committee, and R07 issues weighed by one committee; none names favourable new evidence that one committee saw and the other did not, here the capacity table that lifted A's champion to 8."
+  }
+ ],
+ "reasoning": "Both committees saw the same contribution and the same thin XML demonstration. A's spotlight came from discussion: a champion lifted to 8 by a new capacity table only A saw, and two reviewers who raised by deferring to the others, despite unanswered comparison and prior-work gaps. B's reviewers required the demonstration to test compositional binding and one would not credit promised revisions. R06 does not apply because both committees raised scores. I added R35 because the new favourable results shown to A alone are a distinct mechanism.",
+ "reasons_after": [
+  "R01",
+  "R02",
+  "R03",
+  "R04",
+  "R05",
+  "R06",
+  "R07",
+  "R08",
+  "R09",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25",
+  "R26",
+  "R27",
+  "R28",
+  "R29",
+  "R30",
+  "R31",
+  "R32",
+  "R33",
+  "R34",
+  "R35"
+ ]
+}

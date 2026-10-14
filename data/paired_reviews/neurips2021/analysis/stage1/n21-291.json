@@ -1,0 +1,257 @@
+{
+  "pair_id": "n21-291",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_q1b7",
+        "Reviewer_1KsL",
+        "Reviewer_8BJz"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_q1b7",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6 (5, confidence 4), raised after the discussion from a lower score. The objection is presentation only: 'I believe the formal results are good, but the paper needs a thorough rewriting'. The submission confirms the core: qc(G) is defined informally (l.97-99), 'nested union' is undefined (l.43), and the main text has no proof sketches or concept figures. Parts overreach: the introduction does name active learning on graphs (l.13-16), the k log ℓ hypergrid count is wrong, h(G) is label-independent, and the MLG 2020 'plagiarism' hint concerns the authors' own non-archival workshop paper."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_q1b7",
+          "claim": "Proposition 2 is identical to the main result of an MLG 2020 workshop paper, and Theorem 11 also comes from it; if the authors differ, this is plagiarism.",
+          "checked_against_paper": "correct",
+          "evidence": "The anonymised submission cannot show this. The camera-ready (paper.pdf) cites Thiessen and Gärtner, 'Active learning on graphs with geodesically convex classes', KDD MLG workshop 2020, for shortest path covers just before Proposition 1 (the former Proposition 2). The overlap is real for that result; the source of Theorem 11 is not stated. The authors are the same and MLG is non-archival, so the plagiarism branch is void. Area_Chair_MAHz told the reviewers to disregard points 3 and 6."
+        },
+        {
+          "reviewer": "Reviewer_q1b7",
+          "claim": "Query complexity, the main object of study, is not defined formally.",
+          "checked_against_paper": "correct",
+          "evidence": "l.97-99 define qc(G) only as 'the least number of queries required to identify any halfspace separable labelling in the worst-case', with no quantification over algorithms and labellings. The authors gave a min-max definition in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_q1b7",
+          "claim": "Section 1 gives no indication of the topic (active learning on graphs) and opens abruptly with abstract convexity spaces and hull sets.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.13-16 open with 'active learning geodesically convex halfspaces on graphs', the cost of labels and what active learning does. Abstract convexity enters in the fourth sentence and hull sets only in the second paragraph. What holds: the learning problem is first set up in Section 3 (l.91-99), and related work is in Section 4."
+        },
+        {
+          "reviewer": "Reviewer_q1b7",
+          "claim": "Terms are used without definition, for example 'nested union'.",
+          "checked_against_paper": "correct",
+          "evidence": "l.43: 'C is closed under nested union', with no definition (the review cites it as L23). The camera-ready replaces it with 'closed under unions of sets totally ordered by inclusion'."
+        },
+        {
+          "reviewer": "Reviewer_q1b7",
+          "claim": "On a k-dimensional hypergrid, 1 + log(kℓ) queries do not suffice; about k log ℓ, one binary search per dimension, are needed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "A geodesic halfspace of a hypergrid is an axis cut, so one cut edge and its rays a/b and b/a fix every label (l.119-121; author reply). One binary search on a corner-to-corner shortest path of at most kℓ vertices suffices. The k log ℓ count is the Euclidean intuition."
+        },
+        {
+          "reviewer": "Reviewer_q1b7",
+          "claim": "h(G) in Corollary 7 may be at least the sum of the shortest path covers of the two classes.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.59 and l.78-79 define h(G) as the minimum hull set size of the unlabelled graph, so it cannot depend on the classes. The endpoints of a shortest path cover form a hull set, so h(G) ≤ 2|S*| (author reply)."
+        },
+        {
+          "reviewer": "Reviewer_8BJz",
+          "claim": "The main body has no figure that illustrates extreme vertices, A/B, rays or the Radon number.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has two figures: Figure 1 (NN-graphs of two moons and Iris, and one separation that holds in the graph but not in R²) and Figure 2 (experiment curves)."
+        },
+        {
+          "reviewer": "Reviewer_1KsL",
+          "claim": "Figure 2 shows no confidence bands over the random choice of start vertex.",
+          "checked_against_paper": "correct",
+          "evidence": "True of the main text. Checklist 3(c) says error bars are 'Only in the supplemental material, due to space limitations', and the authors said the supplement shows 10 runs. 1KsL had not read the supplement."
+        },
+        {
+          "reviewer": "Reviewer_SPWf",
+          "claim": "Theorem 11 runs in O(|V|^4), and the lower bounds do not exactly match the upper bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 11 (l.175-176) states O(|V|^4). l.355-357 concede that under S4 the gap between r(G) and tw(G) remains."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_q1b7"
+        ],
+        "evidence": "Reviewer_q1b7 (edited 2021-09-09): 'POST-DISCUSSION EDIT: ... I am raising my score to 5'. Reviewer_8BJz (edited 2021-09-16) added 'AFTER REBUTTAL: I recommend acceptance on the condition that you also add the main content of the last two authors' answers'; any change to the 7 is not stated. Reviewer_1KsL edited on 2021-08-28 with no stated change and posted nothing. Reviewer_SPWf did not edit or reply.",
+        "what_convinced_or_not": "q1b7 moved on the technical answers (a formal qc(G), h(G) ≤ 2|S*|, the hypergrid argument) and on the AC's ruling about MLG. q1b7 stayed below threshold because the rewrite was only promised: 'I trust the authors to fix all presentation issues'. After a reviewer-AC discussion, 8BJz asked whether Theorem 6 is reachable in polynomial time (P1-P3). The authors conceded that this needs a computable minimum hull set (APX-hard in general; polynomial for bounded treewidth and other listed classes) and listed real-world low-treewidth graphs. 8BJz made acceptance conditional on adding these answers."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The majority of reviewers argue that this paper should be accepted.' The revisions it lists (rewrite Sections 1 and 2, figures, examples, graph classes with polynomial-time guarantees, effect of approximations) restate the requests of Reviewer_q1b7 and Reviewer_8BJz and the authors' promises. Area_Chair_MAHz also posted on 2021-08-13 to set aside q1b7's MLG points, because MLG is non-archival.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6-7 after the rebuttal; the meta-review cites the majority.",
+        "A novel problem and bounds that no reviewer disputed; the detractor wrote 'the formal results are good'.",
+        "Presentation and polynomial-time concerns judged fixable and made conditions for the camera-ready.",
+        "The MLG 2020 overlap set aside by the AC because MLG is non-archival."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_KdHb",
+        "Reviewer_G7Y8",
+        "Reviewer_sgyY",
+        "Reviewer_mSJZ"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_KdHb), 6 (Reviewer_G7Y8), 7 (Reviewer_sgyY), 7 (Reviewer_mSJZ). The spread is one point. The 6 comes from the thinnest review, not from a principled dissent."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_G7Y8",
+          "evidence": "A 92-word review of four questions that names no result. 'The technical novelty also appears vague' gives no reason. It asks whether the results recover the best known Euclidean halfspace results, but l.222-227 say the bounds do not transfer between the settings. G7Y8 rose to 6 after a list of applications."
+        },
+        {
+          "reviewer": "Reviewer_sgyY",
+          "evidence": "2 hours; 'I did not check the proofs'; no reply to the rebuttal. Its one question asks how separable the real-world communities are 'in terms of S1 - S4', but S1-S4 are properties of the graph, not of a labelling (l.85-86). The 7 is weak evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_KdHb",
+          "claim": "The bounds are exactly tight on trees, K2,3-minor-free graphs, partial cubes and weakly median graphs.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 lists these four families with Θ bounds."
+        },
+        {
+          "reviewer": "Reviewer_KdHb",
+          "claim": "For S4 graphs the only gap between the upper and lower bounds is between the Radon number and the treewidth.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 10 gives max(log d(G), h(G), r(G)-1) for S4 graphs; Corollary 7 gives h(G) + log d(G) + 2tw(G); l.355-357 state the same gap."
+        },
+        {
+          "reviewer": "Reviewer_KdHb",
+          "claim": "Convex communities in real-world graphs do not obviously give halfspace-separable learning problems.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 counts communities that are convex; it does not test whether their complements are convex. The authors conceded: 'this does not necessarily lead to halfspace separable classes'."
+        },
+        {
+          "reviewer": "Reviewer_G7Y8",
+          "claim": "Since the paper claims generality, its results should recover the best known results for learning Euclidean halfspaces.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The abstract (l.2-3) calls geodesic convexity 'a natural generalisation of Euclidean convexity', which invites the reading. But l.222-227 say that graphs and R^m cannot in general be embedded in each other with hulls preserved, so the bounds do not transfer."
+        },
+        {
+          "reviewer": "Reviewer_G7Y8",
+          "claim": "The results apply only to noise-free learning.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 assumes exactly halfspace-separable labels. Relaxation through weakly convex sets is future work (l.370-374). The authors agreed."
+        },
+        {
+          "reviewer": "Reviewer_sgyY",
+          "claim": "The separability of the real-world communities can be described by the axioms S1-S4.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.85-86 define S1-S4 on the graph's convexity space, independent of any labelling. The authors said so."
+        },
+        {
+          "reviewer": "Reviewer_mSJZ",
+          "claim": "The proofs in the supplement up to Theorem 10 are correct.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplement is not among the files. This is the only proof check reported in either committee."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_G7Y8",
+          "Reviewer_mSJZ"
+        ],
+        "evidence": "Reviewer_G7Y8 (2021-08-25): 'I have raised the rating'; the review was edited that day, final 6. Reviewer_mSJZ: 'I raised my score to 7 after reading the author(s)' explanations on the novelty'; edited 2021-08-29. Reviewer_KdHb (edited 2021-08-21): 'my review remains unchanged'. Reviewer_sgyY's edit is dated 2021-07-16, the posting day, before the rebuttal; sgyY did not reply.",
+        "what_convinced_or_not": "Argument and citations, not new results. G7Y8 asked for a real-world case where graph-based active learning beats Euclidean active learning; the authors cited fault detection in microwave link networks (Regol et al. 2020), protein function prediction and Ma et al. (2013). mSJZ accepted the novelty list (separation axioms to structure lower bounds, the Radon number, treewidth in a query bound, the W* analysis) and kept the view that the noiseless assumption is strong."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'an original work which proposes and explores a natural and elegant abstraction of convexity. The reviewers unanimously agreed to accept this paper.' Final ratings 7, 6, 7, 7 support 'unanimously', but the unanimity came only after two scores rose. The AC posted nothing in the forum and names no weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers at 6-7 after the rebuttal (mean 6.75); the AC cites unanimity.",
+        "An original, natural problem: 'a natural and elegant abstraction of convexity' (AC).",
+        "Reviewer_mSJZ checked the proofs up to Theorem 10 and found them correct.",
+        "The rebuttal answered the doubts on applications (Reviewer_G7Y8) and novelty (Reviewer_mSJZ)."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Overlap of Proposition 2 and Theorem 11 with an MLG 2020 workshop paper (Reviewer_q1b7; set aside by the AC as non-archival)",
+    "Informal definition of query complexity and undefined terms such as 'nested union' (Reviewer_q1b7)",
+    "No concept figures; Sections 1 and 4 should be restructured (Reviewer_8BJz)",
+    "Polynomial-time attainability of Theorem 6 and the cost of heuristic hull sets (Reviewer_8BJz P1-P3, AC)",
+    "No confidence bands in Figure 2 and one noise level for two moons (Reviewer_1KsL)"
+  ],
+  "issues_only_b": [
+    "Significance of geodesic convexity and real-world cases where graph-based active learning helps (Reviewer_G7Y8)",
+    "Whether the results recover the best Euclidean halfspace results (Reviewer_G7Y8)",
+    "Technical novelty: elementary techniques that apply known metric graph theory (Reviewer_mSJZ, Reviewer_KdHb, Reviewer_G7Y8)",
+    "Convex communities in Table 2 do not imply halfspace-separable labels (Reviewer_KdHb)",
+    "Fit to the NeurIPS community (Reviewer_sgyY)"
+  ],
+  "shared_issues": [
+    "Noise-free, exactly halfspace-separable labels are a strong assumption (A: Reviewer_8BJz; B: Reviewer_sgyY, Reviewer_G7Y8, Reviewer_mSJZ)",
+    "High runtime: O(|V|^3) hulls, O(|V|^4) for Theorem 11 (A: Reviewer_1KsL, Reviewer_8BJz, Reviewer_SPWf; B: Reviewer_KdHb, as a description only)",
+    "Proofs and intuition absent from the main text (A: Reviewer_q1b7; B: Reviewer_KdHb)",
+    "Motivation weak or in the wrong place (A: Reviewer_8BJz; B: Reviewer_KdHb, Reviewer_G7Y8)",
+    "Gap between the upper bound and the S4 lower bound (A: Reviewer_SPWf; B: Reviewer_KdHb, as a description only)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster, and the agreement is robust. No reviewer in either committee found a technical error, and no rating is above 7, so neither committee had a case for a higher tier. The committees differed in how strictly they judged the writing, not in outcome. In A, the only sub-threshold rating (Reviewer_q1b7, raised to 5) attacked the presentation alone: 'I believe the formal results are good, but the paper needs a thorough rewriting'. The submission confirms the core of this: query complexity is defined informally (l.97-99), 'nested union' is undefined (l.43), and no figure shows rays, extreme vertices or the Radon number. The overreaches in that review carried no weight. The introduction does name active learning on graphs (l.13-16), the suggested k log ℓ count for hypergrids is wrong, and the MLG 2020 overlap is the authors' own non-archival workshop paper, which the AC set aside. A's AC made the rewrite and Reviewer_8BJz's polynomial-time answers conditions for the camera-ready. In B, Reviewer_KdHb and Reviewer_sgyY called the paper well written. B's doubts were about significance and novelty, and the rebuttal lifted Reviewer_G7Y8 to 6 and Reviewer_mSJZ to 7. So A weighed the same dense presentation more heavily. This explains its lower mean (6.25 against 6.75), but the difference did not reach the decision. B's record is thinner (1,361 review words against 2,320, a 92-word review, a two-sentence meta-review), but B's two careful reviewers, Reviewer_KdHb and Reviewer_mSJZ (who checked the proofs), also gave 7.",
+  "candidate_reasons": [
+    "No reviewer argued beyond poster",
+    "Detractor faulted presentation, not results",
+    "Rebuttal lifted sub-threshold scores",
+    "Presentation fixes made acceptance conditions",
+    "Readability judged differently, same outcome",
+    "AC set aside workshop-overlap objection"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_q1b7 final review (post-discussion edit; detailed comments 1-6; L121 query)",
+    "Area_Chair_MAHz comment of 2021-08-13 on MLG",
+    "Reviewer_8BJz comments of 2021-08-23 and 2021-08-27 and the authors' replies of 2021-08-27 and 2021-08-31",
+    "Committee A meta-review",
+    "Reviewer_G7Y8 review and comments of 2021-08-11 and 2021-08-25",
+    "Reviewer_mSJZ review and comment of 2021-08-29",
+    "Committee B meta-review",
+    "paper_submitted.pdf l.13-16, l.43, l.78-79, l.97-99, l.119-121",
+    "paper_submitted.pdf Corollary 7, Theorem 10, Table 1, l.355-357",
+    "paper_submitted.pdf l.222-227 and checklist 3(c)",
+    "paper.pdf (camera-ready) citation of Thiessen and Gärtner 2020 (KDD MLG workshop) before Proposition 1"
+  ]
+}

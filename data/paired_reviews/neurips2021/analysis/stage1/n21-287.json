@@ -1,0 +1,257 @@
+{
+  "pair_id": "n21-287",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        5,
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_kQ2k), 6 (Reviewer_agp1), 6 (Reviewer_tQEn), 6 (Reviewer_CT76). The spread is one point. kQ2k's 7 at confidence 5 rests on having reviewed an earlier version ('I happen to review this paper again'); its text says 'I don't check the proof carefully', which contradicts the confidence-5 descriptor."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CT76",
+          "evidence": "2 hours, confidence 2, a four-sentence main review (63 words): the method addresses 'the vital running time problem', experiments 'verify the speed up', and the writing is 'unfriendly to some readers'. Its one specific question sits in the limitations field. No reply to the authors."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_tQEn",
+          "claim": "Eq. (12) should have the inequality flipped or 1 - delta on the right-hand side.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Eq. (12) reads Pr[|<Psi_rf(y), Psi_rf(z)> - Theta_ntk(y,z)| > eps * Theta_ntk(y,z)] >= delta, a lower bound on the failure probability; Theorem 1 (l.171) has <= delta. The camera-ready reads Pr[... <= eps * Theta_ntk] >= 1 - delta. B's Reviewer_M4ry and Reviewer_98MV found the same typo."
+        },
+        {
+          "reviewer": "Reviewer_tQEn",
+          "claim": "The spectral approximation bound holds only in a simplified setting (L = 1).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 3 (l.218-223) is for the 'two-layered ReLU NTK' and runs Algorithm 2 'with L = 1'; l.224-226 leave deeper networks to future work. The abstract states 'a spectral approximation guarantee for the NTK matrix' with no depth restriction."
+        },
+        {
+          "reviewer": "Reviewer_tQEn",
+          "claim": "The CNTK sketch beats the exact dynamic program of [5] in pixels but is worse in L and adds epsilon, so exact computation can win for fixed image size and large depth.",
+          "checked_against_paper": "correct",
+          "evidence": "Exact CNTK costs Omega(d^4 * L) per pair (l.232-233); Theorem 4 costs O(L^11/eps^6.7 * d1*d2 * log^3(...)) per image (l.254). The authors conceded the per-pair comparison and argued from linear scaling in n and in pixels."
+        },
+        {
+          "reviewer": "Reviewer_agp1",
+          "claim": "The experiments test only downstream classification and regression; no experiment measures kernel approximation error against baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 reports test accuracy (Fig. 2, Table 1) and test MSE (Table 2) only. The authors promised a kernel-approximation experiment; the camera-ready main text has none."
+        },
+        {
+          "reviewer": "Reviewer_kQ2k",
+          "claim": "The MSE metric in the experiments should be replaced by the relative kernel error ||K - K~|| / ||K||.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2's MSE is the test-set regression error (l.293-294), not a kernel-approximation metric, as the authors replied. The request amounts to the separate kernel-error experiment that agp1 also asked for."
+        },
+        {
+          "reviewer": "Reviewer_kQ2k",
+          "claim": "References [36] and [37] carry the wrong years (NeurIPS 2007 and 2017).",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted refs: Rahimi and Recht 'NeurIPS, 2009' (l.395-396); Rudi and Rosasco 'NeurIPS, 2016' (l.397-398). The camera-ready has 2007 and 2017."
+        },
+        {
+          "reviewer": "Reviewer_kQ2k",
+          "claim": "Random-feature spectral analyses need a continuous feature map, which excludes the zero-order arc-cosine (step) features.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The proofs are in the appendix, which the submitted PDF does not contain. The authors replied that the bound uses Lee et al. 2020, Theorem 3.3, which needs only a finite leverage-score integral; kQ2k did not contest this."
+        },
+        {
+          "reviewer": "Reviewer_CT76",
+          "claim": "The paper seldom introduces the original NTK before its algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 defines only the ReLU-NTK function (Definition 1, Eq. 5). The main text never points to Appendix A, which the authors name as the NTK primer; the camera-ready main text still does not."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Reviewer_tQEn (2021-08-26): the reply 'does not do so in a manner that appreciably changes my perspective ... I will keep my score as is'. Reviewer_kQ2k (2021-08-31): 'I won't change my review score'. Reviewer_agp1 and Reviewer_CT76 did not reply.",
+        "what_convinced_or_not": "The authors answered with promises (kernel-error experiment, NTK-regime remark, notation, references) and an argument that the sketch scales linearly in n and in pixels. tQEn found the reasons for equal sketch sizes and the scaling in L still limited, and kept its novelty doubt. kQ2k judged the rest minor. agp1's motivation doubt got an argument (active learning, architecture search) and no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Meta-review: 'they all recommended accepting the paper'. It names two minor points, tQEn's NTK-regime remark and CT76's complaint about complexity notation. It asks the authors to use 'the updated reviews', but no A review was edited. It does not weigh tQEn's novelty or depth-one points or agp1's missing experiment.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings 6 or 7 (7, 6, 6, 6); no reviewer below the threshold",
+        "New error bounds and large speedups judged interesting (Reviewer_agp1, Reviewer_kQ2k, Reviewer_CT76)",
+        "Concerns minor and answered with promised edits: notation, NTK-regime remark, kernel-error experiment, references",
+        "Lukewarm support kept it at poster: three 'marginally above' ratings, novelty doubted (Reviewer_tQEn), motivation doubted (Reviewer_agp1)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        1,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Mq45"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_Mq45), 7 (Reviewer_M4ry), 7 (Reviewer_98MV), 6 (Reviewer_Rtas), 7 (Reviewer_hkr8). The spread is one point. Mq45 began below 6 and rose to 6 after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Rtas",
+          "evidence": "Confidence 1: 'Although I did not go through all the equations of the paper, the success in the sketching idea in the traditional kernel learning makes me believe it can transfer to the NTK setting.' Its one question (Fastfood) concerns Hadamard-based speedups that the paper already uses through TensorSRHT (l.119-122). In discussion: 'I think we all agree that this is a good paper'. The 6 is a guess, as its confidence says."
+        },
+        {
+          "reviewer": "Reviewer_hkr8",
+          "evidence": "Reports 15 hours, the most of any reviewer, but the main review is about 150 words of praise and one question on risk bounds. It calls the second algorithm 'the random Fourier feature method'; Eq. (11) uses Step and ReLU arc-cosine features, and RFF is only a baseline in Table 2. The 7 at confidence 4 is a vote, not evidence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_M4ry",
+          "claim": "The exact CNTK and CNN results are for depth 3; at depth 4 Arora et al. report 75.93% and 80.94%, well above the sketch.",
+          "checked_against_paper": "correct",
+          "evidence": "l.282 fixes L = 3, and Table 1 copies exact CNTK 70.47% and CNN 63.81% from [5]; the sketch's best is 72.06% at 16,384 features. The authors did not dispute the depth-4 figures; they replied that runtime grows as L^11 and promised depth-4 results. The camera-ready Table 1 is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_98MV",
+          "claim": "The Fig. 2 experiment uses a depth-one network, but Theorems 1 and 2 assume L >= 2.",
+          "checked_against_paper": "correct",
+          "evidence": "l.268: 'We use the ReLU network with depth L = 1' (MNIST, Fig. 2a); Theorems 1 and 2 state L >= 2 (l.168, l.187). The authors said L = 1 has an additive-error bound and won cross-validation. Fig. 2b (CIFAR-10) uses L = 3."
+        },
+        {
+          "reviewer": "Reviewer_98MV",
+          "claim": "In Eq. (12) of Theorem 2, >= should be <=.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Eq. (12) reads Pr[|<Psi_rf(y), Psi_rf(z)> - Theta_ntk(y,z)| > eps * Theta_ntk(y,z)] >= delta, a lower bound on the failure probability; Theorem 1 (l.171) has <= delta. The camera-ready reads Pr[... <= eps * Theta_ntk] >= 1 - delta. Reviewer_M4ry found the same typo, as did A's Reviewer_tQEn."
+        },
+        {
+          "reviewer": "Reviewer_98MV",
+          "claim": "Theorem 1 uses nnz without a definition.",
+          "checked_against_paper": "correct",
+          "evidence": "nnz(x) appears at l.86, l.130 and l.172 with no definition; the camera-ready adds one."
+        },
+        {
+          "reviewer": "Reviewer_98MV",
+          "claim": "There is no random-feature counterpart for the CNTK.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 gives only CNTKSketch. The authors said a random-feature CNTK is possible but slower."
+        },
+        {
+          "reviewer": "Reviewer_M4ry",
+          "claim": "In Table 2, NTKRF is much faster than NTKSketch on the last two datasets and slower on the first two.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: NTKSketch 36 s against NTKRF 95 s (MillionSongs) and 27.5 against 35.7 (WorkLoads); NTKRF 2.12 against 18.8 (CT) and 4.3 against 14.91 (Protein). The authors attributed it to polynomial degree 2 against 4."
+        },
+        {
+          "reviewer": "Reviewer_hkr8",
+          "claim": "The second algorithm approximates the arc-cosine kernels by the random Fourier feature method.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (11) builds Phi_0 and Phi_1 from Step and ReLU of Gaussian projections (Cho and Saul [12]). Random Fourier features are only a baseline in Table 2."
+        },
+        {
+          "reviewer": "Reviewer_Mq45",
+          "claim": "The work covers only the ReLU (arc-cosine) kernel and only fully connected and convolutional networks.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 1 and Eq. (11) are ReLU-specific; the limitations paragraph (l.306-307) excludes transformers. The authors argued that the method extends to other activations, with no experiment."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_Mq45"
+        ],
+        "evidence": "Mq45 edited its review on 2021-08-12, the day of its follow-up: 'Thus, I raise my score to 6', so it began below 6. Reviewer_98MV (2021-08-30): 'My score for this work remains unchanged'. Reviewer_Rtas (2021-08-30): 'I won't change my score'. Reviewer_hkr8 (2021-08-29): 'I am happy to accept the paper'. Reviewer_M4ry did not reply. No other review was edited.",
+        "what_convinced_or_not": "Mq45 accepted the argument that the method extends to other activations and could serve architecture search and transformers ('it has a large potential to be more practical'); no new result backed it. 98MV got the additive-error answer for L = 1, wrote that the reply 'answers some concerns', and kept 7. M4ry got the L^11 runtime explanation and a promise of depth-4 results; the camera-ready main text adds none."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'a substantially more practical method for using neural tangent kernels in practice, along with theoretical guarantees', a request for the clarity fixes, and a neural-tangents suggestion taken from Mq45's follow-up. It does not mention M4ry's depth-3 point or 98MV's L = 1 point.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All five final ratings 6 or 7 (6, 7, 7, 6, 7), three of them 7",
+        "Large practical speedup with guarantees (Reviewer_98MV, Reviewer_M4ry, Reviewer_Rtas, AC)",
+        "Rebuttal arguments raised Mq45 to 6 and answered the L = 1 and depth questions without new results",
+        "No rating above 7, so no case beyond poster"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Spectral guarantee (Theorem 3) covers only depth-one networks (Reviewer_tQEn)",
+    "CNTK sketch cost grows as L^11 and adds epsilon; the exact dynamic program can win at fixed image size and large depth (Reviewer_tQEn)",
+    "No experiment on kernel approximation error against baselines (Reviewer_agp1, Reviewer_kQ2k)",
+    "No guidance for sketch sizes and polynomial degree (Reviewer_tQEn)",
+    "Tightness of Theorem 1, continuity of step-function features, missing Li et al. 2019 citation (Reviewer_kQ2k)"
+  ],
+  "issues_only_b": [
+    "CIFAR-10 comparison only at depth 3; at depth 4 exact CNTK (75.93%) beats the sketch (Reviewer_M4ry)",
+    "MNIST experiment uses L = 1, outside Theorems 1 and 2 (L >= 2) (Reviewer_98MV)",
+    "When to prefer NTKSketch or NTKRF, and the Table 2 runtime pattern (Reviewer_98MV, Reviewer_M4ry)",
+    "No random-feature CNTK; ReLU-only and FC/CNN-only scope (Reviewer_98MV, Reviewer_Mq45)",
+    "Bounds cover kernel error, not prediction risk; relation to Fastfood (Reviewer_hkr8, Reviewer_Rtas)"
+  ],
+  "shared_issues": [
+    "Reversed inequality in Theorem 2, Eq. (12) (A: Reviewer_tQEn; B: Reviewer_M4ry, Reviewer_98MV)",
+    "NTK, CNTK and notation not defined in the main text (A: Reviewer_CT76, Reviewer_tQEn; B: Reviewer_M4ry, Reviewer_98MV)",
+    "(C)NTK trails trained networks, so practical value is limited (A: Reviewer_agp1, Reviewer_tQEn; B: Reviewer_Mq45, Reviewer_M4ry)",
+    "Method assembles known sketches with arc-cosine expansions: A's Reviewer_tQEn counts it against novelty; B's Reviewer_hkr8 calls it an important contribution"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. The paper approximates the arc-cosine kernels inside the ReLU NTK by Taylor polynomials or random features, then uses PolySketch to keep the feature dimension polynomial in depth. It proves error bounds and reports a 150x speedup over exact CNTK on CIFAR-10. All nine final ratings are 6 or 7. No reviewer found an error beyond typos. Both committees raised the same minor issues: the reversed inequality in Eq. (12), thin definitions in the main text, and the limited value of (C)NTK, which trails trained networks. The rebuttal gave arguments and promises, not new results. It moved one score: Reviewer_Mq45 in B rose to 6 from below 6. B's mean (6.6) is above A's (6.25) because the committees had different reviewers, not different facts. One fact pulled in opposite directions: A's Reviewer_tQEn put the main insight in PolySketch [1], and B's Reviewer_hkr8 called the same combination an important contribution. That moved single scores, not a decision. Each committee saw half of one caveat on the headline result, and neither AC weighed it. A's Reviewer_tQEn noted that the sketch's cost grows faster in depth than exact CNTK (L^11 against L in Theorem 4). B's Reviewer_M4ry noted that the CIFAR-10 comparison stops at depth 3, the shallowest depth in Arora et al.; at depth 4 exact CNTK reaches 75.93%, above the sketch's 72.06%. The authors' reply to M4ry links the two: the L^11 cost is why the paper stops at depth 3. A's Reviewer_tQEn also noted that the spectral guarantee covers only depth-one (L = 1) networks, which the abstract does not say. These caveats narrow the claims; they do not threaten acceptance.",
+  "candidate_reasons": [
+    "Uniform 6-7 scores in both",
+    "No champion or detractor",
+    "Solid but incremental algorithmic combination",
+    "Only minor, fixable concerns raised",
+    "Rebuttal promises absorbed requests",
+    "Depth-limited headline claims left unweighed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_tQEn final review and comment of 2021-08-26",
+    "Reviewer_kQ2k final review and comment of 2021-08-31",
+    "Reviewer_agp1 final review",
+    "Reviewer_M4ry final review and the authors' reply on depth L > 3",
+    "Reviewer_98MV final review and the authors' reply on L = 1",
+    "Reviewer_Mq45 follow-up of 2021-08-12 ('I raise my score to 6')",
+    "Reviewer_Rtas final review and comment of 2021-08-30",
+    "Reviewer_hkr8 final review",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Theorem 2, Eq. (12)",
+    "paper_submitted.pdf Theorem 3 and l.224-226 (L = 1 only)",
+    "paper_submitted.pdf l.268 (L = 1), l.282 and Table 1 (L = 3)",
+    "paper_submitted.pdf Theorem 4 and l.232-233 (L^11 cost against exact DP)",
+    "paper.pdf (camera-ready) Eq. (12) and Table 1"
+  ]
+}

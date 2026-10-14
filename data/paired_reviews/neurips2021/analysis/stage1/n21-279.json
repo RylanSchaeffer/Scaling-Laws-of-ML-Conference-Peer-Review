@@ -1,0 +1,209 @@
+{
+  "pair_id": "n21-279",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 9],
+      "confidences": [4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_Z8Zo", "Reviewer_3Rdw", "Reviewer_Zkxa"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Zkxa",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "A 9 ('Top 15% of accepted NeurIPS papers, strong accept') against two 6s, from a two-hour review. It praises 'a really creative synthesis' that could 'positively impact millions of students', suggests safe-RL and intrinsic-motivation papers, asks three minor questions and lists 17 typos by line. So it read the text, but it does not assess the experiments, the baselines or the clarity of Sections 3-5, which both other A reviewers found hard to judge. It says the limitations are adequately addressed; Z8Zo says they are not. Its post-response note is one line: 'I will keep my original score.' The meta-review does not cite it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Z8Zo",
+          "claim": "The related work section is inadequate and short; software testing with RL and RL verification are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 1.1 (l.66-78) is one paragraph on education feedback. References [1]-[25] include no software-testing or fuzzing work and nothing on RL for testing or verification; Hoare (1969) [21] appears only for Hoare triples. A's AC made the same point. The camera-ready added a paragraph on RL for software testing."
+        },
+        {
+          "reviewer": "Reviewer_Z8Zo",
+          "claim": "l.264 speaks of 'three toy environments'.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.1 has two: Car-Easy (5.1.1) and Car-Hard (5.1.2). The authors called it a typo."
+        },
+        {
+          "reviewer": "Reviewer_Z8Zo",
+          "claim": "The text never refers to Algorithm 1.",
+          "checked_against_paper": "correct",
+          "evidence": "'Algorithm 1' appears only as the caption of the block on p.6. Section 4 describes its steps without citing it. Figure 1 is also never cited."
+        },
+        {
+          "reviewer": "Reviewer_Z8Zo",
+          "claim": "The claim at l.249-250 that one iteration of collaborative training is enough is not shown empirically.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 (Car-Hard) reports CT Iteration 2. It adds nothing for HoareLSTM (accuracy 100 to 99.8) or Contrastive HoareLSTM (98.9 to 99.0). Bounce runs no collaborative training (l.331-333), so the claim is untested there."
+        },
+        {
+          "reviewer": "Reviewer_3Rdw",
+          "claim": "The notation d(M, M̃) is never introduced.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 1 defines D(M, M̃); l.137 writes d(M, M̃). The authors called it a typo."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Z8Zo"],
+        "evidence": "Z8Zo's review, edited 2021-08-19, adds 'POST-REBUTTAL ... The suggested alterations make me raise my score to the positive side', so it rose from 5 or lower to 6. 3Rdw (edited 2021-08-24) and Zkxa (edited 2021-08-11) say they keep their original scores. No reviewer posted in the discussion.",
+        "what_convinced_or_not": "Z8Zo accepted promises, not new results: a written appendix next to the notebooks, a figure of the final model, a fuller Bounce description, a worked example and wider related work. The reply also gave MDP sizes and network details. 3Rdw stayed at 6 because 'its limitations can be better addressed, as already pointed out by Reviewer Z8Zo'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review says 'All reviewers liked the idea, but two reviewers gave borderline reviews, with clarity being a major concern'. It accepts 'after calibrating across a range of papers ... based on the idea proposed and the problem being solved'. It adds a UI software-testing reference that no reviewer gave. The AC did not post in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers liked framing the grading of interactive programs as MDP classification",
+        "Potential practical impact on coding education (AC, Reviewer_Zkxa)",
+        "Rebuttal promises on clarity lifted Reviewer_Z8Zo to 6",
+        "Clarity problems kept two reviewers at 6, so the AC saw a borderline paper and accepted after calibration"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 8],
+      "confidences": [3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_JNms", "Reviewer_CvhS"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7 and 8 lie within two points. Reviewer_TaJm's 8 comes from a two-hour, unedited review, but it raises a substantive doubt and TaJm took part in the discussion."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_JNms",
+          "claim": "l.288-289 say all models, baselines included, predict bug states accurately with the single-direction agent; Table 1 does not show this for the GMM.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: with the single-direction agent the GMM has accuracy 25.3 ± 12.5 and recall 23.8 ± 15.7. The authors conceded that they meant 'precisely'."
+        },
+        {
+          "reviewer": "Reviewer_JNms",
+          "claim": "Table 2 averages three runs and gives no confidence intervals, unlike Table 1 (Reviewer_CvhS made the same point).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2 caption: 'We also average over three runs'; the table has no ± values. Table 1 reports 95% intervals."
+        },
+        {
+          "reviewer": "Reviewer_JNms",
+          "claim": "Table 3 headings give total submissions, but only 250 correct and 250 incorrect programs per set are evaluated, and real submissions are imbalanced.",
+          "checked_against_paper": "correct",
+          "evidence": "Headings read '607K submissions, 3032 unique' and '103K submissions, 70579 unique'. The caption and l.324-325 state the 250/250 sample. l.321-322 give 419 correct and 2,613 incorrect unique body programs."
+        },
+        {
+          "reviewer": "Reviewer_JNms",
+          "claim": "The Code-as-text baseline is never described.",
+          "checked_against_paper": "correct",
+          "evidence": "Code-as-text appears only in Table 3. l.50-51 cite [11] for text-based grading but the paper never says how the baseline works."
+        },
+        {
+          "reviewer": "Reviewer_JNms",
+          "claim": "The dataset release is a listed contribution, but the checklist calls the data proprietary; the checklist section numbers under 4(d)-(e) are wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "l.65: 'We will release a dataset of over 700k submissions'. Checklist 4(b): 'The data is currently proprietary, though we do have a plan to open-source it.' 4(d)-(e) cite 'Section 6.3 Data source'; that paragraph is in Section 5.2."
+        },
+        {
+          "reviewer": "Reviewer_TaJm",
+          "claim": "It is unclear whether the results need the collaborative DQN training or only better exploration (Reviewer_JNms noted that collaborative training is not used for Code.org).",
+          "checked_against_paper": "correct",
+          "evidence": "l.331-333: the Code.org result uses trajectories from a pre-trained play-to-win agent. In Car-Hard (Table 2), the two proposed classifiers reach 98.9% and 98.5% accuracy with the random agent before collaborative training, which mainly raises their recall (93.0 to 100, 90.1 to 97.5). No non-RL exploration baseline is run. The authors told JNms that on Code.org 'the results were not substantially improved by using iterative collaboration'; they did not answer TaJm."
+        },
+        {
+          "reviewer": "Reviewer_CvhS",
+          "claim": "The claim at l.73-74 that the state of the art works only up to about 10 lines of code and does not generalize is not substantiated.",
+          "checked_against_paper": "correct",
+          "evidence": "l.73-74 cite [10] and give no evidence for 'does not easily generalize'. The paper gives no length statistics for Bounce programs, and the authors conceded that Bounce programs are short."
+        },
+        {
+          "reviewer": "Reviewer_CvhS",
+          "claim": "p(D(M, M̃) > ν) at l.136 is ill-defined because D is not a random variable.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 1 defines D as a deterministic sum over states. l.136 puts it inside a probability and names no source of randomness."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_CvhS"],
+        "evidence": "CvhS's review, edited 2021-08-27, says 'I have changed my rating'. Its original text said 'I do not recommend acceptance', so it rose from 5 or lower to 6. In the discussion (2021-08-27) it wrote 'Those cleared most of my confusions ... I now tend to concur with the other reviewers.' JNms (edited 2021-08-26) thanks the authors and names no score change. TaJm never edited.",
+        "what_convinced_or_not": "CvhS was moved by the clarifications (the game is the program's output; states are positions and velocities), by the other reviews, and by TaJm's comment (2021-08-18) that a replay of the bug state beats no feedback. JNms valued the new tables on class imbalance (Table 4) and on the number of bug examples (Table 5), and the 'sticky paddle' account of the car bug. It still asked the paper to say how the method does and does not handle creativity. Nobody remarked that Table 5 shows the method labelling every program buggy with three bug examples, or that on the natural class mix it beats 'always buggy' by only 4.2 (body) and 1.6 (tail) points. The authors also disclosed that a fixed simulator bug 'improved all of our results'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review says 'Overall, the reviewers have a positive assessment of the paper' and that the responses 'helped in answering most of their questions'. The AC raised the dataset release in the discussion (2021-09-13). It got a written commitment (2021-09-14) and a Code.org email (2021-09-18), and made release by camera-ready an explicit expectation.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Important problem and novel approach, by all three reviewers and the AC",
+        "Clarifications and new analyses (class imbalance, number of bug examples) satisfied Reviewer_JNms and moved Reviewer_CvhS to 6",
+        "Reviewer_TaJm's defence of bug-state feedback in the discussion",
+        "Written commitment and a Code.org email to release the dataset",
+        "Clarity and generalization doubts kept it at poster"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Process-oriented exposition; the final model should be stated directly (Reviewer_Z8Zo)",
+    "Why the MDP is deterministic while the distances suggest continuous states (Reviewer_Z8Zo)",
+    "Missing bisimulation and model-minimization work by Givan and Boutilier (Reviewer_Z8Zo)",
+    "'Three toy environments' at l.264, where there are two; Algorithm 1 never cited (Reviewer_Z8Zo; both correct)",
+    "Undefined d(M, M̃) at l.137 (Reviewer_3Rdw; correct)",
+    "Safe-RL and intrinsic-motivation links; bug-type classification and clustering (Reviewer_Zkxa)"
+  ],
+  "issues_only_b": [
+    "Class imbalance: the balanced 250/250 test hides performance on the natural mix (Reviewer_JNms); the rebuttal shows a gain over 'always buggy' of 4.2 (body) and 1.6 (tail) points",
+    "Sensitivity to the number and range of teacher bug examples (Reviewer_JNms); with three examples the method labels every program buggy",
+    "Creative variation, formative feedback, and high- versus low-stakes use (Reviewer_JNms)",
+    "l.288-289 overstate the GMM baseline; Table 2 has three runs and no intervals (Reviewer_JNms, Reviewer_CvhS; both correct)",
+    "Whether collaborative DQN training matters, since Code.org uses none, and no non-RL exploration baseline (Reviewer_TaJm, Reviewer_JNms)",
+    "Shared state-space assumption (Reviewer_TaJm)",
+    "Evidence from one assignment only; unsupported 'ten lines of code' claim about prior work (Reviewer_CvhS)",
+    "Educational value of finding the bug state (Reviewer_CvhS; Reviewer_TaJm answered it in the discussion)",
+    "Ill-defined probability p(D > ν) at l.136 (Reviewer_CvhS; correct)",
+    "Dataset release only a plan; consent through the terms of service and IRB status (Reviewer_JNms, AC)"
+  ],
+  "shared_issues": [
+    "Unclear writing, notation and many typos (A: Z8Zo, 3Rdw, Zkxa, AC; B: JNms, CvhS, AC)",
+    "How δ is defined and tuned (A: Z8Zo, 3Rdw; B: JNms, CvhS)",
+    "Thin related work, including testing and exploration literature (A: Z8Zo, AC; B: TaJm, JNms)",
+    "Domains, MDP construction and network details missing from the main text (A: Z8Zo; B: CvhS, JNms)",
+    "Code-as-text baseline undescribed (A: 3Rdw; B: JNms)",
+    "Need for a worked example and an analysis of misclassified programs (A: Z8Zo, 3Rdw; B: CvhS, JNms)",
+    "Limitations discussed too thinly (A: Z8Zo, 3Rdw; B: JNms, TaJm)",
+    "Why an autoregressive LSTM (A: Z8Zo; B: CvhS)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. All six reviewers liked the idea: grade an interactive student program by classifying the MDP that it defines. Both committees found the writing unclear and the evaluation hard to judge, and no reviewer found an error that breaks a result. In each committee, one reviewer was below the threshold before the rebuttal and rose to 6 (A: Reviewer_Z8Zo, on promises of a written appendix and a worked example; B: Reviewer_CvhS, on clarifications and the other reviews). In each, a two-hour review gave the top rating (A: Reviewer_Zkxa, 9; B: Reviewer_TaJm, 8). Both top ratings rest on the problem and the framing, not on the results. Zkxa's 9 assesses no experiment and ends with a one-line note. Both means are 7.0, but A's call was closer: its median is 6, and its AC called two reviews borderline and accepted after calibration. B tested the evaluation harder. Reviewer_JNms found that l.288-289 overstate the GMM baseline (25.3% accuracy in Table 1), and asked about class imbalance and the number of bug examples. Reviewer_TaJm asked whether collaborative training matters; the Code.org result uses none (l.331-333). B's AC secured a written commitment to release the dataset. The new tables that B got weaken the paper, but no reviewer said so. With three teacher bug examples, the method labels every program buggy. With all ten, on the natural class mix, it beats 'always buggy' by only 4.2 points (body) and 1.6 points (tail), and over 40% of the programs that it calls correct are buggy. A never saw these tables.",
+  "candidate_reasons": [
+    "Novel framing outweighed unclear writing",
+    "Rebuttal lifted one sub-threshold reviewer",
+    "Brief two-hour reviews gave top scores",
+    "Clarity problems capped it at poster",
+    "Dataset release secured in discussion",
+    "Weak natural-mix results went unnoticed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Section 1.1 (l.66-78) and references [1]-[25]",
+    "paper_submitted.pdf l.63-65 (contributions) and checklist 4(b), 4(d)-(e)",
+    "paper_submitted.pdf Table 1 and l.288-289 (GMM accuracy 25.3 ± 12.5)",
+    "paper_submitted.pdf Table 2 and l.249-253 (collaborative-training iterations; three runs, no intervals)",
+    "paper_submitted.pdf Table 3 and l.317-335 (balanced 250/250 test; play-to-win agent only)",
+    "paper_submitted.pdf l.136-137 (p(D > ν); d(M, M̃)) and l.264 ('three toy environments')",
+    "Reviewer_Z8Zo review and POST-REBUTTAL note (edited 2021-08-19)",
+    "Reviewer_Zkxa review and one-line update (edited 2021-08-11)",
+    "Authors' reply to Reviewer_JNms with Tables 4 and 5 (2021-08-11)",
+    "Reviewer_TaJm review and discussion comment (2021-08-18)",
+    "Reviewer_CvhS post-rebuttal note and discussion comment (2021-08-27)",
+    "Area_Chair_x8rJ dataset question (2021-09-13) and the authors' replies (2021-09-14, 2021-09-18)",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

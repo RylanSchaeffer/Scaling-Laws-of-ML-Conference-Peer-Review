@@ -1,0 +1,206 @@
+{
+ "pair_id": "n21-282",
+ "prompt_version": 1,
+ "kind": "reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [7, 6, 4],
+   "confidences": [5, 3, 4],
+   "reviews_edited_after_posting": ["Reviewer_ZYMd"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_pz6h",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below threshold (4, confidence 4), against 7 and 6. It took 8 hours, the most time in A. Its reasons are specific, and the paper confirms them. Figure 1 (right) shows weak guarantees: with a uniform prior of α = 10, ε is near 5 at δ = 10^-8; with α = 2, ε is near 16 at δ = 10^-6. The authors' own example concedes ε ≈ 2.5 at δ = 0.01 for α = 10. The Section 4.1 bound (Theorem 3, Eq. 10) depends only on α' − α and p, as pz6h says. Theorem 4 measures error in ℓ∞, and the authors conceded that ℓ1 'should be more appropriate'. pz6h did not reply or edit. The AC cited the critique ('a work in progress') but did not make it the reason to reject."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_9me5",
+     "evidence": "A 6 at confidence 3. The main review restates Theorems 1 to 4 and adds only 'The paper is well written'. It names no weakness. It admits 'I didn't actively follow the research of the area in DP for many years' and defers to 'other experienced reviewers'. Limitations: 'NA'. It got no author response and did not post again. The meta-review names only ZYMd and pz6h."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_pz6h",
+     "claim": "The (ε, δ) guarantees in Figure 1 (right) are weak: ε and δ stay large for the plotted priors.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 1 (right), uniform priors α = 2, 5, 10. α = 10 reaches δ = 10^-8 only near ε = 5. α = 2 needs ε near 16 for δ = 10^-6 and above 20 for δ = 10^-10. The authors' reply reads 'δ=0.01 and ε≈2.5' for α = 10 and offers ε just above 4 at δ = 10^-8 as the remedy."
+    },
+    {
+     "reviewer": "Reviewer_pz6h",
+     "claim": "The Section 4.1 sample complexity is only a function of the prior parameters α and α', so its restatement through privacy parameters adds little.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 3, Eq. 10: E_X[D_KL(P_X||Q_X)] <= (1/(N+1)) Σ_i (α'_i − α_i)^2 / p_i. Eqs. 11-12 then approximate α'_m − α_m through ρ and ρ'. The authors replied that the restatement shows how N grows with a target ρ'."
+    },
+    {
+     "reviewer": "Reviewer_pz6h",
+     "claim": "Histogram error is measured in ℓ∞; ℓ1 (total variation) is more natural for distributions.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 4 (Eq. 13) bounds ||Y − p||∞, and Figure 2 plots ℓ∞. The authors conceded that ℓ1 'should be more appropriate'. The overview (l.60-61) even promises mean-squared error for Section 4.2."
+    },
+    {
+     "reviewer": "Reviewer_ZYMd",
+     "claim": "The paper omits that DNZMR17 already gives (0, δ)-DP for the Beta posterior, which should extend to the Dirichlet.",
+     "checked_against_paper": "correct",
+     "evidence": "l.70-73 cite DNZMR17 only for the Lipschitz-with-high-probability result and call it hard to apply to the Dirichlet. The Beta result is absent. The authors conceded: 'an important result that we should have mentioned'. DNZMR17 itself was not checked."
+    },
+    {
+     "reviewer": "Reviewer_ZYMd",
+     "claim": "In l.208-216, γ and δ are defined through each other, which is confusing.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 2 (l.214-215) defines γ_M as 'the solution to the equation' log(1/δ) = (1/2) γ^2 Δ_2^2 ψ'(α_m − γ) / Δ_∞^2, with γ in place of γ_M. The authors agreed to rewrite it."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_9me5 and Reviewer_pz6h never edited their reviews. Reviewer_ZYMd edited on 2021-09-16 and added 'The response addressed my comments'; it states no score change. No reviewer posted in the discussion. The AC's 'scores of 4, 6, 7' match the final ratings.",
+    "what_convinced_or_not": "ZYMd's minor points (the DNZMR17 citation, the MKAGV08 critique, the Theorem 2 notation) got direct answers and a promised rewrite, and ZYMd accepted them. pz6h's interpretability concern got a worked example, but the example confirms weak guarantees (ε ≈ 2.5 at δ = 0.01 for α = 10). pz6h did not reply. 9me5 got no response. The meta-review does not mention the rebuttal."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Two of three ratings are above threshold, but the AC rejected. The AC took ZYMd's view that the results 'seem correct and publishable' and ZYMd's 'somewhat narrow' caveat, but not ZYMd's accept. It summarized pz6h's critique but did not make it the reason. It ignored 9me5. The stated reason: 'the significance relatively low given the narrow scope of the problem' and 'the extremely high bar for acceptance to this year's NeurIPS conference'.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Narrow scope, so low significance: one mechanism and simple applications (Reviewer_ZYMd's caveat, adopted by the AC).",
+    "The 'extremely high bar' for NeurIPS 2021, at a borderline mean of 5.67.",
+    "Thin effective support: the 6 (Reviewer_9me5) carries no assessment, so one confident 7 (Reviewer_ZYMd) faced one confident 4 (Reviewer_pz6h).",
+    "Reviewer_pz6h's interpretability critique and weak (ε, δ) values, noted but not decisive."
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [7, 3, 7, 6],
+   "confidences": [4, 4, 1, 4],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_QwTp",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "The only rating below 6 (3, confidence 4, 3 hours), against 7, 7 and 6. The reasons are specific and line-level but mostly editorial: 'bounded by B', 'sample statistics', 'one-time sampling', 'affect'. Some hold: the authors accepted several rewordings, Figure 2 calls an error 'accuracy', and the only baseline is the Gaussian mechanism. Two do not: l.180-186 and l.274-277 discuss limitations, and Section 1.2 contrasts each prior result. The summary is one line, and the review never assesses Theorems 1 to 4. It says the issues 'individually can probably be easily solved', so 'clear rejection' is out of proportion. After the rebuttal QwTp kept 3 and asked for a problem statement and 'safe language'. The AC called these 'editorial concerns that should be addressable'. The basis is principled in direction, not in size."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_ghaZ",
+     "evidence": "A 7 at confidence 1 ('Your assessment is an educated guess'). The main review is generic praise ('well-organized and easy to follow') and names no weakness. It says 'I was not able to thoroughly verify all the derivations'. It took no part in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Qa5w",
+     "claim": "The proof of Theorem 1 uses an α' separate from α; probably a typo.",
+     "checked_against_paper": "correct",
+     "evidence": "l.170 defines u' := x' + α' with a primed α, but Theorem 1 has a single prior α. The authors confirmed the typo."
+    },
+    {
+     "reviewer": "Reviewer_Qa5w",
+     "claim": "Figure 2 plots an error but labels it 'accuracy' (Reviewer_QwTp makes the same point).",
+     "checked_against_paper": "correct",
+     "evidence": "The caption reads 'The ℓ∞-accuracy, as a function of N', and l.279-281 say the Dirichlet 'accuracy ... is smaller', meaning better. The authors conceded it should be 'ℓ∞-error'."
+    },
+    {
+     "reviewer": "Reviewer_QwTp",
+     "claim": "The paper does not discuss limitations and is silent about dense histograms and large N.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.274-275: 'the Gaussian mechanism requires less sample than the Dirichlet mechanism' outside the sparse case. l.180-186 discuss the looseness of the sample-independent bound and a workaround. Checklist item 1(b) (l.407-410) points to both. Only a future-work discussion is missing."
+    },
+    {
+     "reviewer": "Reviewer_QwTp",
+     "claim": "The experiments use a single Gaussian baseline.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 2 compares only the Dirichlet and Gaussian mechanisms. The GWHHT21 Dirichlet mechanism and Laplace noise, both discussed in Section 1.2, are not compared."
+    },
+    {
+     "reviewer": "Reviewer_QwTp",
+     "claim": "'One-time sampling' is never defined.",
+     "checked_against_paper": "correct",
+     "evidence": "There is no formal definition. The meaning is recoverable: the abstract says 'releasing a single sample', and l.143-144 write the single draw Y ~ Dirichlet(x + α). The authors promised a definition."
+    },
+    {
+     "reviewer": "Reviewer_QwTp",
+     "claim": "The paper does not define its problem or say which values are sensitive.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.34-36 pose the question. Definition 2.1 and Theorem 1 use datasets 'differing on a single entry', the standard DP neighbour relation, with x the statistics of the dataset (l.142-143). Only a separate problem-statement paragraph is missing, which is what QwTp asked for after the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_g7yk",
+     "claim": "The paper gives updated calculations for a well-known idea.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 1.2 lists earlier privacy analyses of Dirichlet or Beta posterior sampling (MKAGV08, GSC17, DNZMR17, GWHHT21). The stated gain is simpler closed-form guarantees (l.100-102), not a new mechanism. The rebuttal concedes that the second-order Taylor technique 'is not novel'."
+    },
+    {
+     "reviewer": "Committee B AC",
+     "claim": "Utility is measured by expected KL divergence in one ordering, with no justification.",
+     "checked_against_paper": "correct",
+     "evidence": "l.226-227 state the choice without a reason, and Theorem 3 bounds E_X[D_KL(P_X||Q_X)]. The authors' reply to Qa5w gives the closed form (Appendix B, Eq. 20) as the reason."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No review in B was edited after posting. Reviewer_Qa5w (2021-08-31): 'I'm happy to keep my score as is.' Reviewer_QwTp (2021-08-25) saw 'several meaningful improvements / reformulations' but wrote that 'important recommendations remain'; the 3 stands. Reviewer_ghaZ and Reviewer_g7yk did not post.",
+    "what_convinced_or_not": "The authors promised rewordings for QwTp, an RDP restatement for g7yk, and a label and typo fix for Qa5w. None of these touched the decisive issue, significance. The reply to g7yk claimed uses in Gibbs and Thompson sampling but gave no new result, and g7yk did not answer. QwTp wanted a formal problem statement; the authors declined it for the page limit and offered one sentence after Definition 2.1."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Three of four ratings are 6 or higher, but the AC rejected. Its reasons follow Reviewer_g7yk: 'not much conceptual innovation', and the paper 'should be published' but is not 'exciting enough'. These echo g7yk's updated-calculations remark and its advice to submit to a journal. It treated QwTp's 3 as 'editorial concerns that should be addressable'. It added its own point: the KL ordering lacks a justification. Its 'clean problem formulation' and 'consensus' overstate the record, because QwTp's main complaint was the problem formulation.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Low conceptual novelty: sampling once from an updated posterior is a known idea, and the contribution is the analysis (Reviewer_g7yk, AC).",
+    "Sound and worth publishing, but not 'exciting enough' for NeurIPS; Reviewer_g7yk advised a journal.",
+    "Thin effective support: Reviewer_ghaZ's 7 is at confidence 1, Reviewer_g7yk's 6 doubts the bar, and Reviewer_Qa5w's 7 sees limited use cases.",
+    "Editorial imprecision (Reviewer_QwTp), judged fixable, and an unjustified KL utility measure (AC)."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Weak (ε, δ) guarantees at the plotted priors, and how large the prior must be (Reviewer_pz6h; Figure 1 right confirms)",
+  "Uncited (0, δ)-DP result of DNZMR17 for the Beta posterior; the method resembles prior trimming (Reviewer_ZYMd; authors conceded)",
+  "ℓ∞ rather than ℓ1 error for normalized histograms (Reviewer_pz6h; authors conceded)",
+  "Imprecise critique of MKAGV08 and confusing γ and δ notation in Theorem 2 (Reviewer_ZYMd)",
+  "More complex applications wanted (Reviewer_ZYMd)"
+ ],
+ "issues_only_b": [
+  "Low conceptual novelty, updated calculations for a known idea (Reviewer_g7yk, AC); A's Reviewer_ZYMd instead called the problem open for years",
+  "Imprecise wording and no explicit problem statement for non-expert readers (Reviewer_QwTp)",
+  "A single Gaussian baseline (Reviewer_QwTp; correct)",
+  "No limitations discussed (Reviewer_QwTp; incorrect, see l.180-186 and l.274-277)",
+  "'Accuracy' for an error in Figure 2, and a stray α' in the proof of Theorem 1 (Reviewer_Qa5w, Reviewer_QwTp; both correct)",
+  "Expected KL in one ordering as the utility measure, without justification (AC)"
+ ],
+ "shared_issues": [
+  "Narrow applicability and limited significance (A: Reviewer_ZYMd, AC; B: Reviewer_Qa5w, Reviewer_g7yk, AC)",
+  "Results correct and publishable, but below the NeurIPS bar (both ACs; Reviewer_ZYMd and Reviewer_g7yk say it should be published)",
+  "Main result hard to read in its tCDP form (A: Reviewer_pz6h; B: Reviewer_g7yk asks for an RDP statement with the sensitivities set to 1)",
+  "Unclear purpose of Section 4.1 (A: Reviewer_pz6h; B: Reviewer_Qa5w asks how it differs from Section 4.2)",
+  "Choice of utility metric (A: ℓ∞ in Section 4.2, Reviewer_pz6h; B: the KL ordering in Section 4.1, AC)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees rejected the paper for the same reason. Each judged the analysis correct and publishable, but too narrow or too incremental for NeurIPS. Raw scores leaned positive in both: A gave 7, 6, 4 (mean 5.67), and B gave 7, 3, 7, 6 (mean 5.75). The real support was thinner. A's 6 (Reviewer_9me5) restates the theorems and admits the reviewer has not followed DP research for years. B's second 7 (Reviewer_ghaZ) is generic praise at confidence 1. Both ACs turned a caveat from their most expert positive reviewer into the reason to reject. In A, Reviewer_ZYMd (7, confidence 5) wrote that 'the contribution is somewhat narrow'. In B, Reviewer_g7yk (6) called the work updated calculations for a well-known idea and doubted that it meets the NeurIPS bar. Neither AC rested the decision on its detractor. A's Reviewer_pz6h (4) made the strongest technical point, and the paper confirms it: Figure 1 shows weak guarantees even with a prior of α = 10 per cell. B's Reviewer_QwTp (3) raised mostly editorial points, two of them wrong, and B's AC called them fixable. No score moved after the rebuttal in either committee. Both committees weighed the same facts the same way. With means near 5.7, either AC could have accepted; both applied the same significance bar.",
+ "candidate_reasons": [
+  "Correct but narrow, low significance",
+  "Incremental analysis of known mechanism",
+  "Expert supporter's caveat becomes decisive",
+  "AC overrides positive borderline mean",
+  "Low-information positive reviews discounted",
+  "Detractor concerns judged non-fatal"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_ZYMd final review (edited 2021-09-16)",
+  "Reviewer_g7yk review (significance paragraph) and the authors' reply",
+  "Reviewer_pz6h review and the authors' reply (2021-08-09)",
+  "Reviewer_QwTp review and follow-up (2021-08-25)",
+  "Reviewer_9me5 review; Reviewer_ghaZ review (confidence 1)",
+  "paper_submitted.pdf Figure 1 (right) and l.217",
+  "paper_submitted.pdf Theorem 3 (Eq. 10) and l.226-227; Theorem 4 (Eq. 13); Figure 2 caption and l.279-281",
+  "paper_submitted.pdf l.70-73 (DNZMR17), l.170 (stray α'), l.180-186 and l.274-277 (limitations), Section 1.2, checklist l.407-410"
+ ]
+}

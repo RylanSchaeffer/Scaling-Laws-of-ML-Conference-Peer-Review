@@ -1,0 +1,248 @@
+{
+  "pair_id": "n21-289",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_S2q4",
+        "Reviewer_pm5N",
+        "Reviewer_L92o"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7 (Reviewer_S2q4), 6 (Reviewer_pm5N), 7 (Reviewer_KDY4) and 7 (Reviewer_L92o); the spread is one point. Reviewer_pm5N was the one sceptic before the rebuttal ('too thin', 'unacceptable given OOD is the main focus') and then 'raised my score' to 6."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_L92o",
+          "evidence": "3 hours, confidence 2, a mostly descriptive review. Its only question, whether periodic activations make training harder, is answered in the submission's conclusion (l.300-302: optimisation and inference 'more challenging'). Its limitations field says 'Not discussed', but l.300-305 discuss them. It calls the paper 'technically sound' at a confidence level whose label says the math was not checked."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_KDY4",
+          "claim": "The CIFAR-10 OOD experiment gives no quantitative metric such as AUROC or AUPR and no comparison to other OOD methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 6 and l.272-283 show entropy and marginal-variance histograms only, and no AUROC or AUPR appears in the main text. The authors gave AUROC against SVHN in the rebuttal. The camera-ready puts AUROC and AUPR in App. Table 8, not in the main text as promised to Reviewer_pm5N."
+        },
+        {
+          "reviewer": "Reviewer_pm5N",
+          "claim": "Fig. 6 shows a single model in the main paper; the comparison with the other models is only in the supplement.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 6 caption: 'a globally stationary Matérn-3/2 model'; l.283 points to App. D.5 for the model comparison. The camera-ready Fig. 6 adds ReLU and locally stationary rows."
+        },
+        {
+          "reviewer": "Reviewer_pm5N",
+          "claim": "On rotated MNIST (Fig. 5) the locally and globally stationary models perform equally, although the paper's main claim is that global stationarity helps with OOD data.",
+          "checked_against_paper": "correct",
+          "evidence": "l.267-269: 'only local and global stationary models do not result in over-confident uncertainty estimates'. The authors conceded that 'the locally and globally stationary models seem to perform equally well'."
+        },
+        {
+          "reviewer": "Reviewer_pm5N",
+          "claim": "In Table 1 the NLPD gain over locally stationary models is small, and different activations suit different data sets.",
+          "checked_against_paper": "correct",
+          "evidence": "AIRFOIL: loc RBF 0.10±0.15 against glob RBF (sin) 0.14±0.17. ELEVATORS: glob RBF (prelu) 0.74±0.73 against loc RBF 0.41±0.04. Yet l.262 says global models give better estimates 'in all cases'."
+        },
+        {
+          "reviewer": "Reviewer_S2q4",
+          "claim": "The periodic activations are used only in the last hidden layer, and Fig. 4 verifies the theory numerically.",
+          "checked_against_paper": "correct",
+          "evidence": "l.240-241: models differ only in 'the activation function and the respective priors of the last hidden layer'. Fig. 4 compares MC estimates with the exact kernels for all four periodic activations."
+        },
+        {
+          "reviewer": "Reviewer_L92o",
+          "claim": "The paper does not discuss its limitations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.300-305: optimisation and inference are harder with periodic activations, bias uncertainty is poorly estimated under KFAC Laplace and SWAG, and many hidden units are needed. Reviewer_S2q4 cites this passage."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_pm5N"
+        ],
+        "evidence": "Author responses are dated 2021-08-09. Reviewer_pm5N edited the review on 2021-08-31 and added 'I have read the author feedback and am quite satisfied with it and thus raised my score' (final 6). Reviewer_S2q4's edit (2021-07-12) and Reviewer_L92o's (2021-07-16, the posting day) predate the rebuttal. Reviewer_KDY4 never edited or replied. Reviewer_S2q4 replied only 'Thank you for the MAP experiment', although the authors had shown no MAP results, only promised them.",
+        "what_convinced_or_not": "AUROC numbers for CIFAR-10 against SVHN (ReLU 96.1; locally and globally stationary models 98.1 to 98.8) and promises to add AUROC, AUPR and a local-against-global OOD comparison satisfied Reviewer_pm5N. These numbers show no gain of global over local stationarity (RBF 98.8 against 98.7; Matérn-3/2 98.1 against 98.3), which was pm5N's own objection; nobody in A remarked on it. The authors' explanation that local and global models tie on rotated MNIST because both revert to the mean went unchallenged."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Four sentences: 'All reviewers agreed that the contribution is interesting and novel ... I agree with their assessment.' Acceptance is conditional on 'the promised results in the camera-ready version'. It claims 'many of the reviewers raised their scores after the author rebuttal', but only Reviewer_pm5N's review was edited after the rebuttal. It weighs no weakness.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept, mean 6.75 (7, 6, 7, 7): every reviewer found the link between periodic activations and stationary GP priors novel and the paper clear.",
+        "No A reviewer checked the theory (all at confidence 3 or lower; Reviewer_KDY4: 'I did not review the derivations'), so scrutiny went to the experiments.",
+        "The main weakness, qualitative OOD evaluation without baselines (Reviewer_pm5N, Reviewer_KDY4), was answered with AUROC numbers and camera-ready promises; pm5N rose to 6.",
+        "The AC deferred to the consensus, conditional on the promised results."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_C4fJ",
+        "Reviewer_6Fuy"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7 (Reviewer_8dcJ), 7 (Reviewer_qVhs), 6 (Reviewer_C4fJ) and 7 (Reviewer_6Fuy); the spread is one point. Reviewer_C4fJ was a clear detractor before the rebuttal: the unrevised review text still ends 'I don't recommend acceptance of it', and on 2021-08-26 C4fJ was 'not comfortable to raise the score to acceptance'. C4fJ moved to 6 after the authors' promises, so no rating stands apart at the end."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_6Fuy",
+          "evidence": "2 hours. States 'The author do not use the proven parallel between Student-t distribution and Matern covariance in their experiments', but Fig. 1 labels a 'Matérn-3/2 (t-distribution prior)' model, and Table 1 and Fig. 6 report globally stationary Matérn-3/2 models. Did not reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_C4fJ",
+          "claim": "For the triangle wave and periodic ReLU, the derivation keeps only the first Fourier harmonic (App. Eq. 40), so the claimed correspondence between weight prior and spectral density is not exact.",
+          "checked_against_paper": "correct",
+          "evidence": "The appendix is in neither PDF. The submitted main text claims 'a direct correspondence' for the triangle wave (l.207-209) and the periodic ReLU (l.214-218). The authors conceded ('omitting terms with k > 0 can be problematic'), and the camera-ready says the correspondence 'is approximate' for these two activations. My own calculation: both waves have only odd harmonics with amplitudes falling as 1/k², so the dropped harmonics carry about 1.4% of the prior variance (1 − 96/π⁴). 'Clearly WRONG' is right about exactness but overstates the size; Fig. 4 shows close agreement."
+        },
+        {
+          "reviewer": "Reviewer_C4fJ",
+          "claim": "Limitations of the work are not brought up in the paper.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.300-305 discuss harder optimisation and inference, poorly estimated bias uncertainty and the need for many hidden units; checklist 1(b) answers Yes. Reviewer_qVhs and A's Reviewer_S2q4 both cite this passage."
+        },
+        {
+          "reviewer": "Reviewer_C4fJ",
+          "claim": "Applying periodic activation functions to OOD problems is not original; see 'Stationary Activations for Uncertainty Calibration in Deep Learning'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "That paper is the submission's [31]. l.41-44 and l.63-64 describe it as deriving locally stationary Matérn activations with a Gaussian envelope, not periodic ones, and the authors said the same. The OOD framing is shared with [31]; the periodic, globally stationary construction is not."
+        },
+        {
+          "reviewer": "Reviewer_C4fJ",
+          "claim": "The paper neither discusses nor cites 'Deep Neural Networks as Gaussian Processes' and 'Gaussian Process Behaviour in Wide Deep Neural Networks'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Half right. Matthews et al. 2018 is cited as [7] at l.106 ('generalizes to deep models [7]'). Lee et al. 2018 is absent; the camera-ready adds it as [26]."
+        },
+        {
+          "reviewer": "Reviewer_8dcJ",
+          "claim": "The paper does not mention neural tangent kernel models.",
+          "checked_against_paper": "correct",
+          "evidence": "No NTK work is among references [1] to [57] of the submission. The camera-ready adds Jacot et al. as [21] and an NTK sentence in the related work."
+        },
+        {
+          "reviewer": "Reviewer_8dcJ",
+          "claim": "The proofs in App. A.3 and A.4 put a truncated series inside the kernel (Eqs. 32, 35, 45) without a limit and dominated-convergence argument.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is in neither PDF. The authors conceded and promised to revise the derivations with the limit of the series."
+        },
+        {
+          "reviewer": "Reviewer_qVhs",
+          "claim": "The NLPD 'improvements' in Table 1 lie within the CV error margins.",
+          "checked_against_paper": "correct",
+          "evidence": "BOSTON: glob Mat-3/2 (prelu) 0.38±0.22 against ReLU 0.51±0.32. CONCRETE: 0.72±0.18 against 0.78±0.16. No paired test is reported. On ELEVATORS ReLU (0.38±0.03) ties glob RBF (sin) and beats glob RBF (prelu) (0.74±0.73), yet l.262 claims better estimates 'in all cases'."
+        },
+        {
+          "reviewer": "Reviewer_qVhs",
+          "claim": "Fig. 6 has no locally stationary comparison; it is relegated to the supplement.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 6 shows only the globally stationary Matérn-3/2 model; l.283 points to Fig. 10 in App. D.5."
+        },
+        {
+          "reviewer": "Reviewer_6Fuy",
+          "claim": "The experiments do not use the Student-t/Matérn correspondence.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Fig. 1 shows a 'Matérn-3/2 (t-distribution prior)' model; Table 1 has glob Mat-3/2 (sin) and (prelu) rows; Fig. 6 uses a globally stationary Matérn-3/2 model."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_C4fJ"
+        ],
+        "evidence": "Author responses are dated 2021-08-09. On 2021-08-26 Reviewer_C4fJ wrote 'I am not comfortable to raise the score to acceptance unless the authors can (or promise to) resolve' two questions: an error bound for the dropped frequencies and width-dependent error control under heavy-tailed priors. On 2021-08-27 the authors replied that they 'will aim to quantify these effects in App. A.3 and A.4' and add a finite-width study. C4fJ answered the same day 'Thanks! I update the score accordingly', and the review was edited that day (final 6). Reviewer_6Fuy's edit (2021-07-19) predates the rebuttal. Reviewer_8dcJ and Reviewer_qVhs never edited or replied.",
+        "what_convinced_or_not": "Promises, not results. C4fJ accepted a promise to 'aim to quantify' the truncation error and to discuss finite-width effects. The first reply's mixture-density reformulation shows that the kernel stays exactly stationary, but with a scale-mixture spectral density; this concedes that the one-to-one weight-prior link is approximate for the piecewise-linear activations. C4fJ never withdrew 'the formula itself is not significant', and the review text still recommends rejection."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Summarises the result and notes that stationarity from periodic activations 'may not be mathematically surprising'. Says the approximation concern was resolved by '1) providing alternative perspective 2) adding error estimates induced by approximation'; the second was only promised in the discussion. 'In the end, all reviewers agree that the paper should be accepted.'",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal, mean 6.75 (7, 7, 6, 7): three reviewers praised the clarity and the weight-prior to spectral-density link (Reviewer_8dcJ: 'addresses an important gap'; Reviewer_qVhs: 'ticked all the boxes').",
+        "Two confidence-4 reviewers (Reviewer_8dcJ, Reviewer_C4fJ) read the appendix and found real but repairable gaps: a truncated Fourier series and missing limit arguments. The authors conceded both.",
+        "Reviewer_C4fJ moved from below acceptance to 6 on the authors' promise to quantify the truncation and finite-width errors.",
+        "The AC treated the approximation issue as resolved and followed the consensus."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No quantitative OOD metric (AUROC, AUPR) on CIFAR-10 and no comparison to other OOD methods (Reviewer_KDY4, Reviewer_pm5N)",
+    "Locally and globally stationary models equal on rotated MNIST, against the paper's main claim (Reviewer_pm5N)",
+    "Choice of the four UCI regression sets, and why locally stationary finite-width BNNs miss their GPs in Fig. 1 (Reviewer_pm5N)",
+    "Benefit of periodic activations without Bayesian inference, MAP against posterior (Reviewer_S2q4)",
+    "Training difficulty with periodic activations and unclear model architectures (Reviewer_L92o, Reviewer_KDY4)"
+  ],
+  "issues_only_b": [
+    "Triangle-wave and periodic-ReLU correspondence rests on a truncated Fourier series; error not quantified (Reviewer_C4fJ)",
+    "Proof rigour in App. A.3 and A.4: missing limit and dominated-convergence argument (Reviewer_8dcJ)",
+    "Finite-width error of the periodic models, worse under heavy-tailed priors (Reviewer_8dcJ, Reviewer_C4fJ)",
+    "Missing NTK and infinite-width literature (Reviewer_8dcJ, Reviewer_C4fJ)",
+    "Originality against Meronen et al. 2020 and whether the result is mathematically surprising (Reviewer_C4fJ, AC)",
+    "Student-t/Matérn link allegedly unused in experiments (Reviewer_6Fuy; contradicted by Fig. 1, Table 1, Fig. 6)"
+  ],
+  "shared_issues": [
+    "Table 1 NLPD gains are small against the spread (A: Reviewer_pm5N; B: Reviewer_qVhs)",
+    "Fig. 6 shows only the globally stationary model in the main text (A: Reviewer_pm5N; B: Reviewer_qVhs)",
+    "Novel and clearly presented link between the weight prior and the spectral density (all four A reviewers; B: Reviewer_8dcJ, Reviewer_qVhs, Reviewer_6Fuy)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster with the same mean rating, 6.75. All eight final ratings are 6 or 7, so there is no discrepancy to explain. Neither committee had a champion, and each had one sceptic who moved to 6 on promises for the camera-ready. The committees probed different halves of the paper. In A no reviewer checked the math; Reviewer_pm5N and Reviewer_KDY4 found the OOD evidence qualitative, and the authors answered with AUROC numbers and promises. In B two confidence-4 reviewers read the appendix. Reviewer_C4fJ correctly showed that the triangle-wave and periodic-ReLU results keep only the first Fourier harmonic, and the authors conceded and promised an error analysis. Both flaws were real and repairable. The sinusoidal result is exact, and the dropped harmonics carry about 1.4% of the prior variance (my calculation). Both ACs followed the consensus, and both overstated what the rebuttal delivered: A's AC reports that 'many' reviewers raised scores where one did, and B's AC counts promised error estimates as added. Nobody in A remarked that the rebuttal's AUROC numbers show no advantage of global over local stationarity, the paper's distinctive empirical claim.",
+  "candidate_reasons": [
+    "Uniform moderate ratings, no champion",
+    "Lone sceptics moved by promises",
+    "Committees scrutinised different paper halves",
+    "Real but repairable flaws",
+    "ACs deferred to reviewer consensus"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_pm5N final review (update line) and the authors' reply to pm5N",
+    "Authors' reply to Reviewer_KDY4 (AUROC numbers for CIFAR-10 against SVHN)",
+    "Reviewer_C4fJ review and comments of 2021-08-26 and 2021-08-27",
+    "Authors' reply to Reviewer_C4fJ (mixture-density reformulation)",
+    "Reviewer_8dcJ review, points 2 and 3 (NTK; App. A.3 and A.4 rigour)",
+    "Committee A meta-review ('many of the reviewers raised their scores')",
+    "Committee B meta-review ('adding error estimates induced by approximation')",
+    "paper_submitted.pdf l.207-218 ('direct correspondence' for triangle wave and periodic ReLU)",
+    "paper_submitted.pdf Table 1 and l.262",
+    "paper_submitted.pdf l.267-269 (rotated MNIST) and l.272-283 (Fig. 6)",
+    "paper_submitted.pdf l.300-305 (limitations), l.106 ([7]), l.41-44 and l.63-64 ([31]), Fig. 1 labels",
+    "paper.pdf (camera-ready) Sec. 3.3 and Sec. 5 ('approximate for the triangle and periodic ReLU activations')"
+  ]
+}

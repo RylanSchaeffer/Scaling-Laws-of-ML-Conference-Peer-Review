@@ -1,0 +1,250 @@
+{
+  "pair_id": "n21-097",
+  "prompt_version": 1,
+  "kind": "reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 6, 4],
+      "confidences": [3, 5, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_EJfv"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5 (Reviewer_EJfv), 5 (Reviewer_PXDn), 6 (Reviewer_nn6T) and 4 (Reviewer_wb66). The spread is two points around a mean of 5.0, and no rating stands apart. The only 6 is weak evidence: it comes from the shortest review, which misreads the training method (see inattentive_reviews)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nn6T",
+          "evidence": "2 hours, 294 words. It lists as a key contribution that the assignment problem 'is solved by deep reinforcement learning'. The paper trains on relaxed losses 'without inaccessible ground truth' (l.174-175) and names RL only as DBM's method (l.68-69). Its summary says WeaveNet beats 'the state-of-the-art algorithmic method' with no N = 30 or N = 100 caveat. It did not reply to the authors' correction and did not edit the review."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_EJfv",
+          "claim": "The experiments cover only N = M.",
+          "checked_against_paper": "correct",
+          "evidence": "l.205: 'we always assume M = N hereafter'. The authors replied that an N x M instance can be padded with dummy agents, but they ran no N ≠ M test."
+        },
+        {
+          "reviewer": "Reviewer_EJfv",
+          "claim": "WeaveNet consistently underperforms on the UD distribution.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-2: in all four UD settings WeaveNet is worse than both GS and PowerBalance (SEq 71.31 against 71.09 at N = 20 and 170.35 against 163.90 at N = 30; Bal 140.84 against 140.55 and 313.59 against 312.12). UD is the only distribution where WeaveNet loses at N = 20."
+        },
+        {
+          "reviewer": "Reviewer_PXDn",
+          "claim": "The method does not scale to N = 100, even with the Hungarian algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 4 (UU, N = 100): WN-80f/b+Hungarian gives pSEq 257.99 and pBal 1145.36 against PowerBalance's 49.41 and 909.73, with 89.4% and 80.8% stably matched. l.315-316: 'the proposed method does not work at N = 100'. Reviewer_EJfv and Reviewer_nn6T say the same."
+        },
+        {
+          "reviewer": "Reviewer_PXDn",
+          "claim": "No explanation is given about the variable-size inputs.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.125-126 and l.131-132 list variable-size input as a design goal. l.144-148 say the set encoder 'can embed variable-size input in a permutation invariant manner'. Models trained at N = 10 are tested at N = 3 to 9 (l.241-242)."
+        },
+        {
+          "reviewer": "Reviewer_nn6T",
+          "claim": "The assignment problem is solved by deep reinforcement learning.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.172-175: the model is optimised 'without inaccessible ground truth' by relaxing the discrete losses into continuous ones. The authors corrected this in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_wb66",
+          "claim": "Subtracting the ideal value in Figs. 5-7 overstates the gains; at 9x9 in Fig. 7 the gain is small against the ideal Bal of 18.706.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 5 gives an ideal Bal of 18.706 at N = 9. In Fig. 7 the six curves lie about 0.17 to 0.87 above it, a spread under 4%. The point is weaker for Fig. 6: on an ideal SEq of 4.694, DBM-18f lies about 1.2 above it against about 0.25 for WN-18f."
+        },
+        {
+          "reviewer": "Reviewer_wb66",
+          "claim": "In many experiments the improvement over PowerBalance is non-existent or very small.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-2: at N = 30 WeaveNet beats PowerBalance in 3 of 10 settings (SEq UU and DD, Bal DD). At N = 20 it wins 8 of 10, but the Bal margins are at most 1.39 (1.9%). The SEq margins at N = 20 are larger (UU 12.23 against 16.28, DD 6.37 against 8.93)."
+        },
+        {
+          "reviewer": "Reviewer_wb66",
+          "claim": "The dataset used in Section 5.1 is not specified.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.1 (l.231-262) names none of UU, DD, GG, UD or Lib. The rebuttal pointed to l.208-223, which define all five distributions but not which one Figs. 5-7 use."
+        },
+        {
+          "reviewer": "Reviewer_wb66",
+          "claim": "'validation' at l.217-218 is a typo for 'train'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.217-220: 1,000 test and 1,000 validation samples per setting; training samples are generated at each iteration (200k iterations, batch size 8)."
+        },
+        {
+          "reviewer": "Reviewer_wb66",
+          "claim": "The main results report no error bars or random restarts.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-4 and Figs. 5-7 have no error bars. Checklist 3(c) (l.403-406) points only to A.4 and adds 'we observed a stable trend in the results'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Only Reviewer_EJfv's review was edited, on 2021-07-17, before the 2021-08-10 rebuttal. On 2021-09-01 EJfv wrote: 'I will keep my score the same at a weak reject.' Reviewer_PXDn posted a follow-up on 2021-08-28 and did not edit. Reviewer_nn6T and Reviewer_wb66 did not reply or edit.",
+        "what_convinced_or_not": "EJfv accepted the clarifications on the fairness objectives, but not the significance: N = 100 and results 'not very strong against hand-crafted algorithms'. PXDn asked for insight into the landscape of continuous matching relaxations and cited Gold and Rangarajan. The authors replied that training on the expected loss sidesteps instance-wise landscapes, and PXDn did not answer. The reply to wb66 conceded that WeaveNet 'runs 100 times slower than the hand-crafted algorithms'. It defended the figures as showing trends and answered the error-bar point with 'not obtainable by cherry-picking'. wb66 did not answer. The correction of nn6T's RL misreading drew no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 5.0, and three of four ratings are below the threshold. The two-sentence meta-review names 'the scalability to larger graphs' (EJfv, PXDn, nn6T) and 'misleading figures' (wb66), and says the response did not resolve them. It adds no reading of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Consensus below the threshold: mean 5.0 (5, 5, 6, 4), and no reviewer argued for acceptance after the rebuttal.",
+        "Failure at N = 100 (Table 4: pSEq 257.99 against PowerBalance's 49.41), which the paper concedes (l.315-316), and small or no gains over PowerBalance at N = 30.",
+        "Figs. 6-7 plot the gap to the ideal with no error bars, which Reviewer_wb66 and the AC read as misleading.",
+        "The only 6 (Reviewer_nn6T) rested on reading the method as deep RL and was never defended."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 4, 6],
+      "confidences": [3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_t5vd"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_cFCG",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below the threshold (4), against two 6s. The points that decided B hold against the paper: the pBal spread in Fig. 7 is about 3% of the ideal, there are no restarts or error bars, and the DBM baseline is an undeclared re-implementation. Its point on distribution shift also holds (Table 3). Some side claims are misreadings (see checkable_claims). Reviewer_t5vd adopted its critique in internal discussion, and the meta-review's reasons follow it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_t5vd",
+          "claim": "Row- or column-wise argmax of a symmetric doubly stochastic matrix need not give a one-to-one matching, so l.187-188 is wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "The counterexample [[0.3, 0.4, 0.3], [0.4, 0.6, 0.0], [0.3, 0.0, 0.7]] is symmetric with unit row and column sums, and rows 1 and 2 both take column 2. The authors conceded ('This was the manuscript's flaw') and said that Lm does not enforce symmetry, so l.190-191 is wrong too."
+        },
+        {
+          "reviewer": "Reviewer_t5vd",
+          "claim": "Because the relative differences in Figs. 6-7 are very small, the paper's statement that 'DBM performs ... obviously worse than SSWN and WN' is not supported.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.250 describes Fig. 5, where DBM-6's stable-matching rate at N = 9 is about 0.40 against 0.75 (SSWN-6) and 0.85 (WN-6). In Fig. 6 at N = 9, DBM-18f lies about 1.2 above an ideal SEq of 4.694 against about 0.25 for WN-18f, a 20% difference in cost. Only Fig. 7 (pBal) shows a small spread. The missing error bars, the other half of t5vd's point, are real."
+        },
+        {
+          "reviewer": "Reviewer_cFCG",
+          "claim": "Figs. 6-7 show differences from the ideal, which makes the results look better; the relative difference between all models for pBal is around 3%.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 7 at N = 9: all six curves lie about 0.17 to 0.87 above an ideal of 18.706 (footnote 5), a spread of about 3.7%. The absolute values appear only in the footnote."
+        },
+        {
+          "reviewer": "Reviewer_cFCG",
+          "claim": "The relation to DBM is not properly described, and running DBM conflicts with the statement that its details and code are unavailable.",
+          "checked_against_paper": "correct",
+          "evidence": "l.69-70: DBM's 'implementation details are not completely explained' and its code is not public. l.237 says only 'DBM is the model in Gibbons et al. (2019)', and l.237-238 that SSWN 'is equivalent to a DBM adopting the set-encoder'. The paper never says that the baseline is a re-implementation; the authors confirmed that it is."
+        },
+        {
+          "reviewer": "Reviewer_cFCG",
+          "claim": "WeaveNet is sensitive to a shift in the input statistics, as the generalisation experiment shows.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: the DD-trained model is stably matched on 2.8% (UU) and 0.1% (GG) of the test instances. The rebuttal's 'Table 3 shows the robustness rather than sensitiveness' ignores this row; l.287-296 itself notes the contrast."
+        },
+        {
+          "reviewer": "Reviewer_cFCG",
+          "claim": "The assignment problem is not explained earlier than on page 3, and the motivation gives not a single example.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.19-25 on page 1 define the assignment problem. l.19 and l.34-36 name multiple object tracking with occlusions and joint matching in multi-person pose estimation."
+        },
+        {
+          "reviewer": "Reviewer_cFCG",
+          "claim": "There is no validation set, assuming that the '1,000 test and 1,000 validation samples' mean train and test.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.217-220: the validation samples are as stated; training samples are generated at each iteration. Reviewer_wb66 in Committee A misread the same lines."
+        },
+        {
+          "reviewer": "Reviewer_cFCG",
+          "claim": "WeaveNet is also trained in a supervised manner (against l.68-69).",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.174-175: the model is trained 'without inaccessible ground truth' on relaxed losses."
+        },
+        {
+          "reviewer": "Reviewer_a437",
+          "claim": "WeaveNet guarantees neither a one-to-one nor a stable matching.",
+          "checked_against_paper": "correct",
+          "evidence": "l.224-230 define pseudo costs because outputs may violate the constraints. l.299-301: at N = 100, 13.4% and 19.8% of outputs were not one-to-one before the Hungarian step."
+        },
+        {
+          "reviewer": "Reviewer_a437",
+          "claim": "PowerBalance handles instances with N up to 4000.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The claim is about Tziavelis et al. (2019), not the submission, which runs PowerBalance only up to N = 100."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_t5vd"],
+        "evidence": "Reviewer_t5vd's review was edited on 2021-09-01 ('I have decreased the score from 7 to 6'). Its comment that day says that 'after some internal discussion, there are a few concerns that Reviewer cFCG raises that I agree with'. Reviewer_a437 on 2021-09-02: 'I would like to keep my rating at 6'. Reviewer_cFCG did not reply or edit.",
+        "what_convinced_or_not": "The rebuttal satisfied t5vd on its own points, including the conceded l.187 error. Two things moved t5vd down. The first was cFCG's critique in internal discussion: small relative differences in Section 5.1 and no error bars. The second was the rebuttal's own admission that WeaveNet 'runs 100 times slower than the hand-crafted algorithms'. The authors answered only 'we will fix the raised concerns'. a437's questions on guarantees and scale got proposals (RL post-processing, ensembles) and a flexibility argument, but no results. a437 did not raise its score as it had offered. The reply to cFCG disputed every point, including the correct ones (error bars, Table 3)."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Two of three ratings are 6, but the AC rejected. Its reasons, 'The existing art should be better represented (e.g. comparison to DBM) and experiments better explained', are cFCG's points as t5vd restated them ('Section 5.1 needs substantial revision'). The meta-review does not mention the l.187 error or the N = 100 failure.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Reviewer_cFCG's critique (unclear relation to DBM, gap-to-ideal plots, no error bars, no solver runtimes) was adopted by Reviewer_t5vd after internal discussion: 7 to 6, 'Section 5.1 needs substantial revision'.",
+        "The AC judged the revisions too large ('too much to be done') and rejected despite two 6s (mean 5.33).",
+        "A weak practical case: no stability or one-to-one guarantee, results competitive only up to N = 30 against heuristics that scale further, and inference 100 times slower (Reviewer_a437, Reviewer_t5vd).",
+        "Both 6s were hedged: t5vd 'cannot ignore the above concerns', and a437 kept 6 without the raise it had offered."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Fairness metrics and experiments for N ≠ M; the paper assumes M = N (Reviewer_EJfv)",
+    "No insight into why the architecture works or how depth relates to difficulty; plateaus of continuous matching relaxations (Reviewer_PXDn)",
+    "Two-layer GIN baseline and the order of tuning the loss weights (Reviewer_wb66)",
+    "Section 5.1 does not name its dataset (Reviewer_wb66; the paper confirms it)",
+    "Differentiability not used in an end-to-end pipeline (Reviewer_wb66)",
+    "Restricted to two input matrices (Reviewer_nn6T)"
+  ],
+  "issues_only_b": [
+    "False claim at l.187-191 that argmax of a symmetric doubly stochastic output gives a one-to-one matching (Reviewer_t5vd; the authors conceded)",
+    "No guarantee of a stable one-to-one output, and the paper says so only late (Reviewer_t5vd, Reviewer_a437)",
+    "Weak motivation and structure; whether a differentiable solver is needed at all (Reviewer_cFCG)",
+    "Collapse of the DD-trained model under distribution shift, Table 3 (Reviewer_cFCG; the paper confirms it)",
+    "Misuse of 'end-to-end' (Reviewer_cFCG)",
+    "Combining WeaveNet with algorithmic solvers or test-time optimisation (Reviewer_a437, Reviewer_t5vd)"
+  ],
+  "shared_issues": [
+    "Failure at N = 100 and doubts about scale (A: Reviewer_EJfv, Reviewer_PXDn, Reviewer_nn6T, AC; B: Reviewer_a437, Reviewer_t5vd)",
+    "Figs. 6-7 plot the gap to the ideal, read as overstating the gains, and no error bars (A: Reviewer_wb66, AC; B: Reviewer_cFCG, Reviewer_t5vd, AC)",
+    "Small or no gains over PowerBalance (A: Reviewer_wb66, Reviewer_EJfv; B: Reviewer_a437, Reviewer_cFCG)",
+    "No runtime comparison with the solvers; both rebuttals admit 100 times slower inference (A: Reviewer_wb66, Reviewer_EJfv; B: Reviewer_t5vd, Reviewer_cFCG)",
+    "DBM baseline re-implemented from incomplete details; relation to DBM unclear (A: Reviewer_wb66; B: Reviewer_cFCG, Reviewer_t5vd, AC)",
+    "Novel but incremental combination of DBM, DeepSets and PointNet ideas (A: Reviewer_wb66, Reviewer_PXDn; B: Reviewer_a437, Reviewer_t5vd, Reviewer_cFCG)",
+    "Misreading of l.217-218 as lacking a separate training or validation set (A: Reviewer_wb66; B: Reviewer_cFCG)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees rejected, for overlapping reasons. The paper's own tables set the ceiling. WeaveNet clearly beats the learning baselines at N ≤ 9. Against PowerBalance it wins 8 of 10 settings at N = 20, but only 3 of 10 at N = 30. It fails at N = 100 (pSEq 258 against 49), as l.315-316 concedes. No final rating in either committee is above 6. A (5, 5, 6, 4) rejected by consensus; its only 6 came from a two-hour review that took the method for deep RL. B's reviewers were warmer (6, 4, 6). B's two 6s valued the gain over learning baselines; A weighed PowerBalance and scale. B's lone detractor, Reviewer_cFCG, decided B's outcome. Its critique (gap-to-ideal plots, no error bars, an unclear relation to DBM) moved Reviewer_t5vd from 7 to 6 in internal discussion. B's AC then rejected despite two 6s. Both ACs leaned on the figure critique, which is only half right. On pBal the plotted spread at N = 9 is under 4% of the ideal. On pSEq, DBM-18f's excess cost (about 1.2) is five times WN-18f's (about 0.25), on an ideal of 4.7. Only B found a real technical error: argmax of a symmetric doubly stochastic output need not give a one-to-one matching (l.187-191). The authors conceded it, but no AC mentioned it.",
+  "candidate_reasons": [
+    "Method fails at larger instances",
+    "Marginal gains over hand-crafted solver",
+    "Gap-to-ideal plots judged misleading",
+    "Detractor critique adopted in discussion",
+    "Unclear relation to DBM baseline",
+    "Only above-threshold review misread method"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 4, l.298-304 and l.315-316 (N = 100 failure)",
+    "paper_submitted.pdf Tables 1-2 (WeaveNet against PowerBalance at N = 20 and 30)",
+    "paper_submitted.pdf Figs. 5-7 and footnote 5 (gap to the ideal; ideal values)",
+    "paper_submitted.pdf l.187-191 (one-to-one claim) and l.250, l.258 (claims against DBM)",
+    "paper_submitted.pdf l.69-70 and l.237-238 (DBM baseline)",
+    "paper_submitted.pdf Table 3 (DD-trained model under shift)",
+    "Reviewer_wb66 review and the authors' reply (100 times slower inference)",
+    "Reviewer_EJfv comment of 2021-09-01",
+    "Reviewer_nn6T review and the authors' correction",
+    "Reviewer_cFCG review",
+    "Reviewer_t5vd review edit and comment of 2021-09-01",
+    "Reviewer_a437 review and comment of 2021-09-02",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

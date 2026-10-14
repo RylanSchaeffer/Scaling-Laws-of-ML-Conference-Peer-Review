@@ -1,0 +1,219 @@
+{
+  "pair_id": "n21-297",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [4, 6, 6, 7],
+      "confidences": [3, 3, 2, 4],
+      "reviews_edited_after_posting": ["Reviewer_nVk8"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_nVk8",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6 (4 against 6, 6, 7). The single reason is novelty over [1], the authors' own SsNAL solver for the scalar elastic net (Boschi et al., 2020): 'strikingly similar to [1]', 'this paper seems trivial'. The paper bears out the dependence: its convergence analysis 'follows directly' from Boschi et al. (2020) (l.180-181), and the stated advance is the group form of π*, the prox and Q (l.55-57, l.92-95, l.152-156). nVk8 admits 'I am not an expert in optimization', calls the paper technically sound and clearly written, replied twice in the discussion and rose to 4 while keeping the doubt. Whether the extension is 'trivial' is a judgement on significance, not an error claim."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ZQkA",
+          "evidence": "The only 7 in A and the shortest review (265 words; main review 62 words; the concerns sit in the limitations box; posted 2021-08-02, after the other three). It calls 'Using semi-smooth Newton method to solve the dual variable in the subproblem' 'quite novel', but l.52-55 credit that method to Tomioka and Sugiyama (2009), Li et al. (2018) and Boschi et al. (2020), and l.198 takes the FPC-score response from Fan and Reimherr (2016). It does not mention Boschi et al. (2020). No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nVk8",
+          "claim": "The paper is 'strikingly similar' to [1] (Boschi et al., 2020, SsNAL for the scalar elastic net) and extends it from a univariate to a multivariate response.",
+          "checked_against_paper": "correct",
+          "evidence": "l.52-57 and l.92-95 present the work as the group (matrix) generalisation of Boschi et al. (2020). l.180-181: 'The convergence analysis here follows directly from that in Tomioka et al. (2011) and Boschi et al. (2020)'. l.302-303: the INSIGHT analysis selects 'the same SNP selected by Boschi et al. (2020)'. Whether the generalisation is 'trivial' is a judgement; the authors are right that the group penalty couples the k coordinates of each row."
+        },
+        {
+          "reviewer": "Reviewer_FbcU",
+          "claim": "The definition of X̂_J in Section 3.1 is inconsistent, because J indexes the p features while X̂ has pk columns.",
+          "checked_against_paper": "correct",
+          "evidence": "l.160-162 define J as a set of feature indices j with ||T_j||_2 ≥ σλ1 and call X̂_J ∈ R^{nk×rk} 'the sub-matrix of X̂ restricted to the columns in J'. The authors conceded and gave X̂_J = X_J ⊗ I_k."
+        },
+        {
+          "reviewer": "Reviewer_ZQkA",
+          "claim": "Table 1 reports only the speed-up, with no comparison of solution accuracy.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 reports CPU time, iterations and r only. l.280-282 state, without numbers, that 'all three solvers converged to the same solution in all settings'. The rebuttal repeated this."
+        },
+        {
+          "reviewer": "Reviewer_ZQkA",
+          "claim": "There is no theorem or proof of the convergence rate of the whole algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "l.179-183 assert a super-linear rate for both loops and say the analysis 'follows directly' from Tomioka et al. (2011) and Boschi et al. (2020); no theorem is stated. The authors conceded and promised a sentence."
+        },
+        {
+          "reviewer": "Reviewer_ZQkA",
+          "claim": "Using the semi-smooth Newton method on the dual subproblem is a 'quite novel' contribution.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.52-55: the methodology was 'first introduced by Tomioka and Sugiyama (2009)' and used for the Lasso (Li et al., 2018), the constrained Lasso (Deng and So, 2019) and the elastic net (Boschi et al., 2020). The paper claims only its extension to groups."
+        },
+        {
+          "reviewer": "Reviewer_2b9Y",
+          "claim": "The GWAS finds a single SNP with c_λ near its maximum and n = 210, so the analysis is underpowered.",
+          "checked_against_paper": "correct",
+          "evidence": "l.293-294: n = 210 children. l.301-302: 'Both criteria identify just one (cλ = 0.99) dominant SNP'. The authors agreed and said the GWAS is there to show speed and applicability."
+        },
+        {
+          "reviewer": "Reviewer_2b9Y",
+          "claim": "fgen solves the problem 'an order of magnitude faster' than sklearn and glmnet.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Right for sklearn at n = 5000 (up to 50x), wrong for glmnet. Across the 54 cells of Table 1 the largest glmnet/fgen ratio is 8.0 (n = 5000, p = 10^5, k = 10, cλ = 0.8). Outside the two r = 486 cells, the gain over glmnet is under 3x in 28 of 52 cells, and fgen is slower than glmnet in three of them (n = 500, r = 21, 73, 20: 0.9 against 0.5 s, 1.1 against 0.5 s, 1.5 against 0.6 s). l.272-273 put the solution-path gain over glmnet at 'approximately 2 times'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_nVk8"],
+        "evidence": "Reviewer_nVk8, 2021-09-02: 'I think the paper deserves a higher score; however, I still have my concern about whether this contribution is novel enough to be published on a top conference like neurips. I will change my score accordingly.' The review was edited the same day and ends at 4, so it rose from at most 3. No other A review was edited, and no other A reviewer replied.",
+        "what_convinced_or_not": "The second reply (2021-08-30) convinced nVk8 that the extension has real content: the group penalty forces a joint minimisation, π*, the prox, the gradient and the Hessian must be redefined, and the separable π* lets the order-3 Hessian be written as a block-diagonal matrix. It did not convince nVk8 that this is enough for NeurIPS. FbcU, 2b9Y and ZQkA got clarifications and promises of added text and did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The meta-review counts votes ('Three reviewers indicated acceptance, only one reviewer had concerns about the novelty with respect to reference [1]') and sets the dissent aside because '[1] is basically an unpublished pre-print of this paper' and the rebuttal showed 'some important extensions'. The first premise is wrong: the submission cites [1] (Boschi et al., 2020, arXiv:2006.03970) as separate, earlier work on the scalar elastic net (l.55, l.92-93, l.180-181, reference list). The meta-review mentions no other issue.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four ratings at 6 or 7 (mean 5.75); every reviewer valued the CPU-time gains over glmnet and sklearn",
+        "The lone 4 (Reviewer_nVk8) concerned only novelty over the authors' own preprint, and nVk8 still called the paper sound and clear",
+        "The AC discounted that concern, partly on the mistaken premise that [1] is a preprint of this paper, and accepted the rebuttal's 'important extensions'"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7],
+      "confidences": [4, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_AsoJ", "Reviewer_kboM", "Reviewer_zxwr"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6 (Reviewer_AsoJ), 6 (Reviewer_kboM) and 7 (Reviewer_zxwr). The spread is one point. The 7 comes from the shortest review in B (2 hours)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_zxwr",
+          "evidence": "A 7 from a 2-hour review whose first concern is that the work 'may be not novel enough for NeurIPS' as an extension of Boschi et al. (2020) that 'is usually quite straightforward'. The third question was unclear even to the authors ('We are not sure how to interpret this comment'). The post-rebuttal note is one sentence: 'I appreciate and agree with the clarification about the novelty of the paper.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AsoJ",
+          "claim": "The objective separates into one problem per column of B, so there is no joint minimisation and 'the algorithm is not a new algorithm'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (1) and l.44-45: the penalty λ1 Σ_i ||B_i||_2 runs over the rows B_i ∈ R^k, which couples the k columns. AsoJ conceded after the rebuttal: 'As the authors correctly claim, the optimization problem cannot be separated.'"
+        },
+        {
+          "reviewer": "Reviewer_AsoJ",
+          "claim": "π*(Z) in Proposition 1 is not differentiable (for k = 1 and at Z_i = 0 or on the axes for any k).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (2): π*(Z) = (2λ2)^-1 Σ_i ([||Z_i||_2 − λ1]_+)^2, a sum of squared positive parts. It is zero near Z_i = 0 and continuously differentiable where ||Z_i||_2 = λ1. AsoJ conceded: 'the authors are right, this function is differentiable.'"
+        },
+        {
+          "reviewer": "Reviewer_AsoJ",
+          "claim": "The two minimisations in Eq. (10) are each done with one Newton step, so convergence to the optimum is not guaranteed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Algorithm 1 runs the semi-smooth Newton loop 'while not converged', with a line search and the KKT-residual stopping rule of Eq. (16) (l.177-178). The wording at l.143-144 ('V by minimizing ψ through one Newton step') invites the misreading; it describes one iteration."
+        },
+        {
+          "reviewer": "Reviewer_AsoJ",
+          "claim": "Table 1 shows only computation times; residuals are needed to show that the methods perform equally well.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 has no accuracy, residual or objective values. l.280-282 assert, without numbers, that all three solvers reached the same solution. AsoJ's final note still says 'it was not clear that to me that the methods were producing the same results'."
+        },
+        {
+          "reviewer": "Reviewer_kboM",
+          "claim": "Eq. (D) has the wrong sign: the objective should be negated, or min changed to max.",
+          "checked_against_paper": "correct",
+          "evidence": "p.3, Eq. (D): 'min over V,Z of −(h*(V) + π*(Z)) | X^T V + Z = 0', which is unbounded below; the augmented Lagrangian in Eq. (5) uses +h*(V) + π*(Z). The authors never answered this item."
+        },
+        {
+          "reviewer": "Reviewer_kboM",
+          "claim": "Notation errors: h*(V) sums (Y^T)_i V_i over i = 1..k; ∇ψ is n×k in Eq. (12) but a vector of length nk in Eq. (14); ∂²ψ is nk×nk in Eq. (12) but 'a tensor of order 3' at l.154; Eq. (16) sums from 'i−1'.",
+          "checked_against_paper": "correct",
+          "evidence": "All four are in the submitted PDF (l.113, Eqs. (12) and (14), l.154, Eq. (16)). Eq. (16) also has an undefined upper limit m. The authors called the list 'unreadable likely due to a latex typo'; kboM's review was edited on 2021-08-22, and the list was never answered."
+        },
+        {
+          "reviewer": "Reviewer_kboM",
+          "claim": "The paper does not compare Algorithm 1 with ADMM.",
+          "checked_against_paper": "correct",
+          "evidence": "No ADMM run appears. l.61-64 argue only indirectly that glmnet and sklearn outperform ADMM 'by at least one order of magnitude'. kboM's conjecture that ADMM would be faster is unsupported; the rebuttal answered with a complexity argument and two literature results, not an experiment."
+        },
+        {
+          "reviewer": "Reviewer_zxwr",
+          "claim": "No accuracy comparison with other function-on-scalar feature-selection methods is given.",
+          "checked_against_paper": "correct",
+          "evidence": "l.237-239 say only that those methods have a computational burden 'more than two order of magnitudes larger' and 'could not complete instances with p > 10^4'. The authors conceded."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": [],
+        "evidence": "All three B reviews were edited after the author replies of 2021-08-10: Reviewer_kboM on 2021-08-22 (apparently to repair the LaTeX of the error list that the authors called unreadable), Reviewer_AsoJ on 2021-09-01 (adds a REBUTTAL paragraph) and Reviewer_zxwr on 2021-09-02 (adds 'After Rebuttal'). None states a score change. AsoJ's original text ('as presented, the algorithm is not a new algorithm'; π* 'is not differentiable'; no guaranteed convergence) reads like a reject, so the final 6 probably reflects a rise, but the record does not show it.",
+        "what_convinced_or_not": "AsoJ accepted the explicit k = 1 derivation of π* and its gradient and the argument that the group penalty prevents separation, then recast the contribution as 'an efficient implementation' and stayed unsure that the solvers give the same results. zxwr accepted the same novelty argument that A's Reviewer_nVk8 found only partly convincing. kboM did not respond to the ADMM complexity argument, and nobody answered kboM's repaired error list."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The first two sentences restate Reviewer_kboM's summary almost word for word ('combines the augmented Lagrangian method with semi-smooth Newton method to achieve super-linear convergence'). Then: 'Several reviewers had problems understanding part of the paper. The presentation of the paper should be improved in the final version of the paper.' No mention of novelty, ADMM, accuracy or the notation errors.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three ratings at 6 or 7 (mean 6.33) after the rebuttal",
+        "Reviewer_AsoJ withdrew the two central objections, which were mathematically wrong, and kept only the point that Table 1 does not show equal solutions",
+        "Reviewer_zxwr accepted the novelty rebuttal; Reviewer_kboM's ADMM and notation points were not treated as blocking",
+        "The AC judged the remaining problems to be presentation, fixable in the camera-ready"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "GWAS statistics: penalised regression and identifiability, low signal-to-noise, one SNP at cλ = 0.99, n = 210 underpowered; suggests polygenic risk scores (Reviewer_2b9Y)",
+    "Relation to sparse multitask learning (Lounici et al., 2009) and whether fgen helps when k = 1 (Reviewer_FbcU)",
+    "No convergence theorem for the whole algorithm; l.179-183 cite prior work only (Reviewer_ZQkA)"
+  ],
+  "issues_only_b": [
+    "Separability of the objective and differentiability of π* (Reviewer_AsoJ; both wrong, withdrawn)",
+    "Inner Newton solve read as a single step, so no convergence guarantee (Reviewer_AsoJ; wrong)",
+    "Sign error in Eq. (D) and notation errors at l.113 and in Eqs. (12), (14), (16) (Reviewer_kboM; correct, never answered)",
+    "No ADMM baseline (Reviewer_kboM)",
+    "Choice of k and of the variance threshold in FPCA (Reviewer_AsoJ)",
+    "Fairness of the timing set-up: what the competitors receive as input, glmnet's R overhead (Reviewer_AsoJ)",
+    "No accuracy comparison with other function-on-scalar methods; why curves rather than the five raw measurements (Reviewer_zxwr)",
+    "Undefined terms: l1 and l2 notation, k, λ1, λ2, L_σ(V | Z, B), Clarke sub-differential, de-biasing (Reviewer_AsoJ)"
+  ],
+  "shared_issues": [
+    "Novelty over the authors' scalar SsNAL elastic-net preprint, Boschi et al. 2020 (A: Reviewer_nVk8; B: Reviewer_zxwr, and Reviewer_AsoJ's 'for matrices not just vectors'); the same rebuttal text in both",
+    "Table 1 reports CPU time only, no accuracy or residuals (A: Reviewer_ZQkA; B: Reviewer_AsoJ, Reviewer_zxwr)",
+    "The function-on-scalar extension via FPCA is a thin, natural add-on (A: Reviewer_nVk8; B: Reviewer_AsoJ, Reviewer_zxwr)",
+    "The GWAS application is lean, and gene-trait findings carry societal risks (A: Reviewer_2b9Y; B: Reviewer_AsoJ)",
+    "Schedule of the augmented-Lagrangian parameter σ (A: Reviewer_ZQkA; B: Reviewer_AsoJ)",
+    "Notation and definition gaps (A: Reviewer_FbcU on X̂_J; B: Reviewer_kboM, Reviewer_AsoJ)",
+    "CPU-time gains over glmnet and sklearn are the main value (all seven reviewers)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster for the same reasons. fgen extends the authors' own SsNAL elastic-net solver (Boschi et al., 2020, an arXiv preprint the submission cites) from a scalar to a k-dimensional response, and Table 1 shows it faster than glmnet and sklearn in most cells. In each committee one reviewer called the extension too small for NeurIPS (A: Reviewer_nVk8; B: Reviewer_zxwr). Both got the same rebuttal: the group penalty couples each row, so π*, the prox and the block-diagonal Hessian must be derived again. zxwr accepted it; nVk8 rose only to 4, and A's AC set nVk8 aside on the mistaken premise that [1] is 'a pre-print of this paper'. B's harshest review (Reviewer_AsoJ) rested on two mathematical errors, a separable objective and a non-differentiable π*, which AsoJ withdrew. The seven ratings are 4, 6, 6, 6, 6, 7, 7, and each 7 is the shortest review in its committee, so both accepts rest on lukewarm 6s. The committees weighed the same facts the same way. Neither checked the speed claims that both relied on. Table 1 contradicts l.266-267: fgen is also slower than glmnet in three sparse n = 500 cells. Outside the r = 486 cells, its gain over glmnet is under 3x in 28 of 52 cells, against 'at least 3 times' at l.64-65, and never above 8x; l.272-273 put the solution-path gain over glmnet at about 2x.",
+  "candidate_reasons": [
+    "Lukewarm majorities in both committees",
+    "Same novelty rebuttal accepted twice",
+    "Wrong objections withdrawn after rebuttal",
+    "AC discounted lone detractor",
+    "Thin reviews behind both 7s",
+    "Speed claims accepted without checking"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_nVk8 final review and comments of 2021-08-29 and 2021-09-02",
+    "Committee A meta-review ('[1] is basically an unpublished pre-print of this paper')",
+    "Reviewer_ZQkA final review (novelty bullets)",
+    "Reviewer_AsoJ final review (REBUTTAL paragraph) and the authors' two replies of 2021-08-10",
+    "Reviewer_kboM review, item 2, and the authors' reply ('unreadable')",
+    "Reviewer_zxwr final review ('After Rebuttal')",
+    "Committee B meta-review",
+    "paper_submitted.pdf l.52-57, l.92-95, l.179-183 (dependence on Boschi et al. 2020)",
+    "paper_submitted.pdf Eq. (1), Eq. (2), Eq. (D) on p.3, Algorithm 1, Eqs. (12)-(16), l.154",
+    "paper_submitted.pdf Table 1, l.64-66, l.258-282"
+  ]
+}

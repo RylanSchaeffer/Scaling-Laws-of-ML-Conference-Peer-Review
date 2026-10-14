@@ -1,0 +1,246 @@
+{
+  "pair_id": "n21-292",
+  "prompt_version": 1,
+  "kind": "reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        3,
+        5,
+        4,
+        4
+      ],
+      "confidences": [
+        4,
+        4,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_iZc8"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 3 (XENJ), 5 (iZc8), 4 (nhhz) and 4 (n8QC), at confidence 3 to 4. All four are below the threshold and within two points of each other. The highest, iZc8, moved down after the discussion."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_n8QC",
+          "evidence": "A 148-word main review for a reported 5 hours. It reads the method as running 'only M steps', but lines 118-120 and Algorithm 1 continue the chain across iterations (XENJ and B's UbDq read it the same way, so the paper's one-sentence description shares the blame). It says the paper 'does not contain' a limitations part, but Section 7 (lines 322-324) names one and Section 8 is a broader impact statement. It never replied to the rebuttal and kept 4."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XENJ",
+          "claim": "The TF proposal of Section 4.3 is not evaluated in the real-data experiments (Sections 6.2 and 6.3).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 276: 'We evaluate only on the MHSAEM-U algorithm'. Section 6.3 keeps the same algorithms (line 305). The authors conceded and said TF 'loses its efficiency for high K'."
+        },
+        {
+          "reviewer": "Reviewer_XENJ",
+          "claim": "The real-data runs use M = 1, which 'means just choosing a single component at random'; burn-in is not discussed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "M = 1 is right (line 280). The inference is wrong: lines 118-120 and Algorithm 1 ('set z̄i as the last element of zi,t−1') continue the chain across iterations, so each step is an MH move from the previous state. Burn-in gets one sentence (lines 120-121), which cites a textbook [52]."
+        },
+        {
+          "reviewer": "Reviewer_XENJ",
+          "claim": "Table 2 reports no standard deviations, although its results average five repetitions.",
+          "checked_against_paper": "correct",
+          "evidence": "The Table 2 caption says 'averaged over five repetitions', and the table shows no spread. Checklist item 3(c) answers [No] for error bars."
+        },
+        {
+          "reviewer": "Reviewer_iZc8",
+          "claim": "Line 120 rests the burn-in argument on [52], not on the SAEM convergence results [31, 32].",
+          "checked_against_paper": "correct",
+          "evidence": "[52] is Robert and Casella, Monte Carlo Statistical Methods. [31] and [32] appear only in Related work (lines 175 and 181)."
+        },
+        {
+          "reviewer": "Reviewer_iZc8",
+          "claim": "Runs are timed to the iteration that reaches 95% of the run's eventual maximum likelihood, which is known only after the run ends.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 221-225 and the Figure 1 caption define t95 from max L(θt); Section 6.2 reuses it (line 266). The authors agreed it is 'an idealized (oracle-like) stopping rule'."
+        },
+        {
+          "reviewer": "Reviewer_iZc8",
+          "claim": "The broader impact statement lies beyond the nine-page limit.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 8 starts at line 326, on page 10."
+        },
+        {
+          "reviewer": "Reviewer_nhhz",
+          "claim": "Section 6.1 (line 227) uses gradient-based optimization although the GMM has a closed-form M-step.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 226-228: the exponential family 'allows us to find a closed-form, recursive, solution of (6)'. The authors pointed to the same lines."
+        },
+        {
+          "reviewer": "Reviewer_n8QC",
+          "claim": "The algorithm runs only M MH steps, so the samples cannot come from the right distribution.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 118-120 continue the chain across iterations. The deeper worry, a chain that chases a target moving with θ, stands: nhhz and iZc8 pressed it, and the authors conceded that they 'did not validated these conditions'."
+        },
+        {
+          "reviewer": "Reviewer_n8QC",
+          "claim": "The paper does not contain a limitations or societal impact part.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 7 (lines 322-324) states that the uniform proposal limits the speed of convergence. Section 8 is a broader impact statement."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_iZc8"
+        ],
+        "evidence": "iZc8 edited its review on 2021-09-01: 'I've actually changed my score to a weak reject' (now 5). The first version called its score 'borderline' and was 'open to increasing it', so it was 6 before (inferred). XENJ, nhhz and n8QC never edited. XENJ and n8QC never replied. nhhz (2021-08-19) accepted the clarifications, proposed a gradient-bias experiment and called the practical impact on these datasets 'poor'; it kept 4.",
+        "what_convinced_or_not": "The rebuttal showed that the chain persists across iterations. That moved the question to whether a chain on a moving target tracks the posterior. The authors cited Thm 1 of [31] and Andrieu et al. 2005, then conceded 'We did not validated these conditions' for the models of Sections 6.2-6.3. Their account of burn-in also shifted: 'in the burn-in, we set γt sufficiently small' (to nhhz, 2021-08-10), but the GMM runs use γt = 1 for the first 50 iterations (line 235). They defended the 95% timing point as 'oracle-like'. The bias plot of 2021-08-27 covers only a 2-D, 10-component GMM. iZc8 called the experiment 'a great step in the right direction' but judged the needed revisions 'too substantial to accept without seeing them'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are below the threshold. The meta-review cites concerns about 'clarity and correctness of the technical material on Monte Carlo approximations' and says 'very-major revisions are needed ... such changes require a full review'. This restates iZc8's update ('the revisions are too substantial to accept without seeing them'). It names no experiment.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "The persistent-chain E-step is barely explained in the paper; iZc8: 'it looks like all four reviewers were confused by this point'",
+        "No justification beyond the exponential family: the authors 'did not validated' the conditions of the theorems they cited",
+        "The needed revisions (explanation, references [31, 32], targeted E-step experiments) were too large to accept without a new review (iZc8, meta-review)",
+        "Monte Carlo in the E-step is not new (XENJ; iZc8, citing Levine and Casella 2001)",
+        "Experimental gaps: oracle 95% timing point, no error bars in Table 2, TF proposal unused on real data"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        7,
+        3
+      ],
+      "confidences": [
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_4qCw"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_UbDq",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "UbDq's 3 sits three and four points below 4qCw's 6 and weQ2's 7. The review is thin (one hour, a 67-word main review), but both of its points hold. The paper's own Section 5 (lines 174-181) says MCMC-SAEM [31] already samples M < K components from a proposal, and it cites minibatch versions [27, 32]; the stated delta is only the non-exponential extension (line 184). After the rebuttal UbDq wrote 'Using a persistent chain does not mean the chain will mix', and the authors conceded 'Indeed, we do not have any guarantees'. One overstatement: Section 5 does name MC-SAEM and MCMC-SAEM. The AC sided with UbDq."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_weQ2",
+          "evidence": "The 7, the highest rating in either committee, calls the paper 'technically sound' and 'solid and well-founded'. It never asks whether one MH step per iteration gives a valid E-step, the question that UbDq, B's AC and every A reviewer raised. Its summary repeats the paper's own 'single mixture component per iteration' (line 315). Its one request, a mini-batch EM baseline with the Einsum-networks citation, is fair. It never replied after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_4qCw",
+          "claim": "The experiments show 'the impressive 100x average speed-up'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 2 speed-ups: SPTN mean 14×, median 3.9×; real NVP mean 9×, median 3.7×. Only magic-telescope reaches 102×, and 3 of 36 runs are slower than SGD. The figure echoes the paper's own contribution bullet, 'approximately 100× speed-up' (line 51)."
+        },
+        {
+          "reviewer": "Reviewer_4qCw",
+          "claim": "SPTNs are not defined or cited (Section 6.2).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 49-50 introduce sum-product-transform networks (SPTNs), and [47] is cited at lines 203 and 278."
+        },
+        {
+          "reviewer": "Reviewer_4qCw",
+          "claim": "SPNs get no formal definition or introduction, unlike GMMs.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.2 (lines 257-262) describes SPNs informally in a few sentences; there is no definition."
+        },
+        {
+          "reviewer": "Reviewer_4qCw",
+          "claim": "The paper has no new theorem or proof.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist items 2(a) and 2(b) answer [N/A]."
+        },
+        {
+          "reviewer": "Reviewer_weQ2",
+          "claim": "Related work misses Peharz et al. 2020, Einsum networks, for mini-batch EM in SPNs.",
+          "checked_against_paper": "correct",
+          "evidence": "The references cite Peharz et al. 2020 only for random SPNs [45]."
+        },
+        {
+          "reviewer": "Reviewer_UbDq",
+          "claim": "Using MCMC for the E-step of EM is not new; a large literature exists.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper's Section 5 (lines 174-181) credits MCMC-SAEM [31] with M < K proposal samples and cites minibatch versions [27, 32]. Line 184 places the contribution in dropping the exponential-family assumption."
+        },
+        {
+          "reviewer": "Reviewer_UbDq",
+          "claim": "The term Monte Carlo EM never appears; from L101 the method reads as a completely new contribution.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5 names MC-SAEM [12] and MCMC-SAEM [31], Section 4.2 cites the MCEM convergence paper [19] (line 129), and [27] is also an MCEM paper. What holds: lines 95-96 call the application of Monte Carlo sampling to generic mixture models 'the key contribution of this paper' with no MCEM citation there, and classic MCEM work such as Levine and Casella 2001 is absent."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review changed after the rebuttal. 4qCw's edit is dated 2021-07-14, its posting day. Only UbDq replied (2021-08-27), and it kept 3. 4qCw and weQ2 never replied.",
+        "what_convinced_or_not": "The authors argued that MCMC here serves a tractable but costly E-step, and that the chain persists across iterations. UbDq answered that the paper never sets itself against Monte Carlo EM, that the abstract claims the EM-MH combination, and that a persistent chain need not mix while the posterior moves. The authors conceded 'Indeed, we do not have any guarantees' and offered new wording and a bias plot for a 2-D, 10-component GMM. The two positive reviewers did not engage, so their scores carry no post-rebuttal judgement."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The AC rejected although two of three ratings are above the threshold (mean 5.33). It took the reviews' content, not their scores: UbDq's point that 'the existing literature on Monte Carlo EM was not sufficiently discussed', and 4qCw's doubts about significance ('no new theory is presented'; experiments 'not totally convincing that the speedups given are significant'). It added its own technical reading: Thm 1 of [31] needs assumption SAEM3', uniform ergodicity with constants bounded over all chains, which no reviewer raised. It does not mention weQ2's 7.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "The Monte Carlo EM literature is not discussed, and the algorithm is 'a relatively simple variant of existing works' (UbDq, meta-review)",
+        "No new theory; the convergence argument from Thm 1 of [31] rests on an unverified assumption (SAEM3'), and the authors admitted 'we do not have any guarantees'",
+        "With no theory, significance rests on experiments that did not show that the speed-ups matter (4qCw, meta-review)"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Oracle timing point: time to 95% of a run's eventual maximum likelihood (Reviewer_iZc8)",
+    "No standard deviations in Table 2 (Reviewer_XENJ, Reviewer_iZc8)",
+    "TF proposal unused on real data (Reviewer_XENJ, Reviewer_iZc8)",
+    "Large, unexplained SGD versus MHSAEM test-likelihood gaps in Table 2 (Reviewer_XENJ)",
+    "Stale chains for points rarely drawn into a minibatch (Reviewer_nhhz)",
+    "No VI or Gibbs baseline; softmax non-identifiability; broader impact beyond the page limit (Reviewer_nhhz, Reviewer_iZc8)"
+  ],
+  "issues_only_b": [
+    "The abstract presents the EM-MH combination as the paper's own proposal (Reviewer_UbDq)",
+    "Missing mini-batch EM baseline and Einsum-networks citation (Reviewer_weQ2)",
+    "No formal SPN introduction; loose complexity discussion and an unclear 'poor mixing' claim in Sections 4.2-4.3 (Reviewer_4qCw)",
+    "Undefined MH and SPTN acronyms (Reviewer_4qCw); both are defined in the paper (MH in the Table 1 caption and at line 113, SPTNs at lines 49-50)"
+  ],
+  "shared_issues": [
+    "MCMC in the E-step is known, and the Monte Carlo EM literature is missing (Reviewer_XENJ, Reviewer_iZc8 in A; Reviewer_UbDq and the AC in B); iZc8 and UbDq both cite Levine and Casella 2001",
+    "No guarantee that a chain on a target moving with θ gives a valid E-step (Reviewer_n8QC, Reviewer_nhhz, Reviewer_iZc8 in A; Reviewer_UbDq in B); the authors conceded unverified conditions to both committees",
+    "Whether the conditions of Thm 1 of [31] hold (Reviewer_iZc8 in A; B's AC, naming SAEM3')",
+    "No new theory (Reviewer_XENJ in A; Reviewer_4qCw, Reviewer_UbDq and the AC in B)",
+    "Why large K matters in practice, and what the gains mean (Reviewer_nhhz in A; Reviewer_4qCw in B)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees rejected the paper for the same reason. The method puts a known tool, MCMC sampling inside stochastic-approximation EM, into a new setting, and only experiments support the new setting. The paper's own related work confirms the first half: MCMC-SAEM [31] already samples M < K components from a proposal, minibatch versions exist [27, 32] (lines 174-181), and the stated contribution is dropping the exponential-family assumption (line 184). For that extension, both rebuttals cited Thm 1 of [31] and then conceded: 'We did not validated these conditions' (A) and 'Indeed, we do not have any guarantees' (B). The experiments also leave that theorem's setting: the deep-model runs use ADAM (lines 280-283), and the GMM runs fix the step at 0.05 (line 235), which breaks the Robbins-Monro conditions of lines 133-134. Committee A reached rejection with four low ratings (3, 5, 4, 4) and the deeper record: Reviewer_iZc8 and Reviewer_nhhz pressed the moving-target chain over three rounds, and iZc8 dropped from borderline (6, inferred) to 5 because the needed revisions were too large to accept unseen. Committee B's ratings were higher (6, 7, 3), but not on different facts. Reviewer_weQ2's 7 is uncritical and silent after the rebuttal. Reviewer_4qCw's 6 doubts the significance in its own text and praises an 'impressive 100x average speed-up' that Table 2 does not show (means 14× and 9×, medians near 4×). Reviewer_UbDq's thin 3 was right on both of its points and was the only B reviewer to engage after the rebuttal. B's AC weighed the text over the scores, adopted the doubts of UbDq and 4qCw, and added its own reading of the assumptions of [31]. Both ACs weighed the same facts the same way.",
+  "candidate_reasons": [
+    "Known MCMC-EM idea, narrow extension",
+    "No guarantees beyond exponential family",
+    "Authors conceded unverified convergence conditions",
+    "B AC weighed text over scores",
+    "B champions thin and silent",
+    "Persistent chain under-explained in paper"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_iZc8 final review ('Update after discussion', edited 2021-09-01) and comment of 2021-08-11",
+    "Authors' reply to Reviewer_iZc8, 2021-08-18 ('We did not validated these conditions')",
+    "Reviewer_nhhz comments of 2021-08-10 and 2021-08-19; authors' bias plot, 2021-08-27",
+    "Reviewer_UbDq 'Response after rebuttal', 2021-08-27; authors' reply, 2021-08-31 ('Indeed, we do not have any guarantees')",
+    "Reviewer_4qCw review against paper Table 2",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf: lines 51, 94-96, 118-121, 133-134, 174-185, 221-225, 235, 276-283, Table 2, Section 8 on page 10",
+    "The PDF has no supplementary material, so the authors' references to Section 9 and Figure 7 are not checked"
+  ]
+}

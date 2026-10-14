@@ -1,0 +1,281 @@
+{
+  "run": 2,
+  "turn": 42,
+  "pair_id": "n21-034",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "B's Reviewer_aQh1 wrongly said the observations rest on CIFAR-10 alone, but that remark lowered no score and B got the higher tier; A's criticisms all check out."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight on 6/7/6 with no reviewer above 7 or asking for a highlight, on its own reading ('a hot research topic', 'will interest many readers')."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "Each committee had one 7 resting on generic or copied praise (A's 92hs, B's HkhD), so this mechanism does not separate the committees."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors admitted the pre-training requirement to A, but the weakness is visible in Algorithm 2 and B's HkhD raised retraining from scratch too; no flaw was disclosed to one side only."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B's reviewers called the gains 'limited' and 'moderate', yet B's meta-review names no weakness and says the authors showed how to 'further boost adversarial robustness'."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "All three A reviewers raised their scores by one point after the rebuttal; no B reviewer replied or moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A's Reviewer_7cFv raised the confound that clean accuracy rises as much as robust accuracy and the hidden pre-training cost, both confirmed by the paper."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees saw the small gains and the linearization gap; A's AC kept them as reservations for a poster, B's AC dropped them for a spotlight."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's AC echoed 7cFv's reservations but also gave its own praise, and the reviews were not split; the poster fits the 5/7/6 mean."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Score changes in A cite the rebuttal's new results, not other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered every reviewer, including 7cFv's follow-up; no reply was misread or missing."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's Reviewer_HkhD gave the committee's top 7 after two hours with generic praise and no reply to the rebuttal; Reviewer_aQh1 was thin and silent too, and both scores counted."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "No AC went below its reviewers' scores; A's poster fits 5/7/6."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's meta-review states reservations of its own, not a positive view overridden by a threshold."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "A's lowest score (5) is above the reject line after the rebuttal and rests on central points, not peripheral ones."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as an empirical observation plus a robustness method."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's reviewers raised scores on new TRADES, FAT and figure results, not on promises alone, and did not disclaim expertise in the core."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both committees applied the same kind of standard; the difference is scrutiny and AC weighting, not an extra requirement."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "A's 92hs praise copies the paper's claims but makes no checkable wrong claim; B's praise is generic, not wrong."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "Every A reviewer who said concerns were addressed raised the score."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Neither committee refused or required promised revisions; the authors posted results to both."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "A's reviewers said they would raise scores and did; no stance diverged from a rating."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No late extra reviewer is recorded in either committee."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "A found the writing hard and B's psEt found it easy, but the notes link this to no difference in reviewer expertise."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Each A raise was stated in a comment with a reason."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Neither AC set aside a silent low rating."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee rated above 7 or argued for the paper on a detailed reading."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted reading only part of the paper."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No committee contested the paper's premise from another theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "B's meta-review gives a thin but stated case for the tier (topical interest, 'will interest many readers'); R02 covers the AC's own upgrade."
+    },
+    {
+      "id": "R31",
+      "applies": false,
+      "justification": "The notes show no difference in knowledge of the baseline literature; B's aQh1 raised ClusTR and both asked for TRADES."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "B's meta-review misstates its reviewers' view of the gains, but in the direction of a higher decision; R32 names misstatement toward a lower decision."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "No committee raised a narrow-audience objection."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "A's low scorer 7cFv read the paper correctly; its objections are confirmed."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "B's ClusTR and wrong-hierarchy results moved no score, and the TRADES results reached both committees; the gap is about engagement, not information."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "A's confidence-5 reviewer gave the lowest score, and B's AC did not follow the mean; the mechanism is reversed."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "Reviewer_cKPT's late change raised a score and added no new objection."
+    },
+    {
+      "id": "R38",
+      "applies": false,
+      "justification": "B's 6/7/6 against A's 5/7/6 is a one-point gap; the verbal assessments do not show markedly different scales."
+    }
+  ],
+  "added": [],
+  "reasoning": "The ratings were near equal, so the area chairs made the difference. B's AC lifted the paper to a spotlight on its own reading of topical interest, with no reviewer support (R02), and dropped the weaknesses its reviewers named (R05). B's reviews were thin and silent after the rebuttal (R12), while A's rebuttal moved all three scores (R06). A's detailed detractor raised confirmed problems that B never saw (R07), and the shared concerns were weighted differently by the two chairs (R08). The stage 1 candidates (AC upgrade, omitted weaknesses, topic popularity, thin reviews, detailed detractor, reservations carried forward) all fit existing reasons on a plain reading, so none is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ]
+}

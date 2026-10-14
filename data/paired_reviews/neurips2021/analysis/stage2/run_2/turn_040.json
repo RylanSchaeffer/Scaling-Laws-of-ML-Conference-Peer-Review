@@ -1,0 +1,282 @@
+{
+  "run": 2,
+  "turn": 40,
+  "pair_id": "n21-092",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "In B, Reviewer_b2gP criticised the compositional result as quadratic-only and Reviewer_wdT9 claimed two loops were necessary; both claims were wrong (h is general; T = 1 is allowed), and A had no reviewer criticising on a wrong claim."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's AC gave a spotlight on ratings 8, 8, 8, 7 (mean 7.75); the tier does not exceed what the scores support."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "In A, Reviewer_PMym (two-sentence review) and Reviewer_vxWe (no weakness named) gave 8s at confidence 3 with math not checked; these scores lifted A's mean to 7.75, on which the spotlight rests."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors' concessions (log factor, 'complements' Lin et al., eq. (48) typo) answered B's reviewers' own findings; nothing was disclosed unprompted to one forum only."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "B weighed the flaws it found in its 6s and 7; A never learned of them. No committee knew a flaw and ignored it."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In B, Reviewer_b2gP raised its score after the rebuttal corrected its compositional misreading; no score in A is recorded as moving, so the rebuttal narrowed the gap in one committee only."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B raised the impossible min-max assumption, the hidden log factor, the κ^4 inner loop against STABLE and the eq. (48) constant error; A saw none of these and scored higher."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No substantive weakness was identified by both committees and weighted differently; the shared experiments request was minor in both, and the novelty doubt was raised in A only."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Both ACs followed their panels' mean ratings; neither adopted a single reviewer's position to break a split."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No reviewer changed score because of other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The rebuttal answered r5Xc's κ point in ε only, but there is no evidence this held r5Xc's score down; r5Xc never engaged."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's Reviewer_PMym (only post a one-line thanks) and Reviewer_vxWe (no discussion post) entered 8s resting on assertion; B's Reviewer_r5Xc ('Please refer to the summary') also never replied."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "Both committees accepted, in line with all-positive ratings."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC decided by a borderline mean against a stated own view; both simply followed clearly positive means."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "No reviewer held a below-threshold score."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a theoretical optimization analysis and asked the same kind of questions."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No low-expertise reviewer raised a score on the rebuttal in either committee; b2gP (confidence 4) moved on a corrected misreading."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both committees applied the same bar to a theory paper; B's lower scores come from issues it found, not from an extra requirement."
+    },
+    {
+      "id": "R19",
+      "applies": true,
+      "justification": "In A, Reviewer_PMym praised an improvement from O(ε^-2.5) to O(ε^-2) over previous work, overstated since stocBiO and STABLE already reach O(ε^-2), and rated 8; A's AC also called the analysis 'tight', which the paper never claims."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No reviewer kept a below-threshold score after its concern was answered."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Both committees credited the promised conclusion, κ comparison and fixes; neither refused promised revisions."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "No reviewer's stated stance diverged from its score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No off-record extra reviewer."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Neither committee penalised clarity; both found the writing clear."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "No silent score rise against a negative review text."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Neither AC set aside a silent reviewer."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "A's 8s include Reviewer_WgWk's specific praise, but no reviewer in A argued for the paper in discussion; the gap rests on several less-checked 8s, not on one invested advocate."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted reading only part of the paper while claiming high confidence."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the premise from a different theoretical school."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "A's three-sentence meta-review cites only reviewer 'consensus' that the paper is a 'worthwhile contribution' and gives no reason for the spotlight tier."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "B's reviewers checked the claimed gains against STABLE, Lin et al. and SCGD/NASA and found them narrower; A's reviewers took the 'improves or matches' comparisons at face value, though A's TdaR did trace the algorithm to Ghadimi and Wang."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "Neither meta-review misstated reviewers' final positions; both reported all-positive evaluations correctly."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "No committee raised a breadth or venue-fit concern."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No misreading detractor kept either AC from weighing a higher tier; B's misreadings were corrected and its AC did not argue against a low score."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "The same 100 Book-to-Market experiment answered both committees."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "B had two confidence-4 reviewers (tqUa at 7, b2gP at 6), so no single expert was outweighed; in A, the confidence-4 reviewers scored 8 and 7, not above the others."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "Reviewer_wdT9's repeated min-max point on 2021-08-18 changed no score and had already been raised in time; no late objection entered a decision unrebutted."
+    }
+  ],
+  "added": [
+    {
+      "id": "R38",
+      "name": "Committees scored similar assessments on different scales",
+      "definition": "Reviewers in one committee gave markedly higher ratings than the other committee's reviewers for verbal assessments that were no more favourable, so part of the rating gap reflects scoring leniency rather than a different judgement of the paper.",
+      "justification": "R03 and R12 cover thin, low-confidence reviews and R07 covers issues only B found, but none names the reversed calibration: A voiced more doubt about novelty than B and still scored higher, a gap no issue set or review depth explains."
+    }
+  ],
+  "reasoning": "Both committees accepted the same result and both ACs followed their means (7.75 against 6.25). A's spotlight rests on thin, low-confidence 8s (R03, R12), one of which overstated the rate gain (R19), and a meta-review that gives no case for the tier (R30). B's longer reviews checked the special cases against the baselines (R31) and found limits A never saw (R07); two B criticisms were misreadings (R01), and one rebuttal-driven rise narrowed the gap (R06). A also voiced more novelty doubt than B yet scored higher, a calibration gap no existing reason names, so R38 was added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ]
+}

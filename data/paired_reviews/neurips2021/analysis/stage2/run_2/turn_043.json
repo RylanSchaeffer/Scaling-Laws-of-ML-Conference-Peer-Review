@@ -1,0 +1,281 @@
+{
+  "run": 2,
+  "turn": 43,
+  "pair_id": "n21-028",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Each committee had one wrong claim (A: FpoL's 'never justified', aGgD's 'without captions'; B: YyKC on Meinke and Hein), and none lowered a score or drove the tier gap."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "A's AC made four 7s a spotlight although no reviewer rated above 7 or argued for a highlight, and two doubted significance or adoption; the meta-review cites only consensus."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "A's Reviewer_aGgD gave 7 at confidence 1 after 'a cursory glance', praising Fig. 6, and that score counted toward the unanimous slate behind the spotlight."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "The authors admitted the CIFAR-10-C loader bug that color-inverted the Fig. 6 data only on B's forum; A judged the buggy figure without knowing it."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "B learned of the loader bug, yet its meta-review omits it and calls the paper 'practically sound', and oTxs and YyKC raised on the rerun."
+    },
+    {
+      "id": "R06",
+      "applies": false,
+      "justification": "The rebuttal raised scores in both committees (three in A, two in B), so it did not move one committee only."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only B's reviewers found the CIFAR-10-C bug, the weak Deep Ensemble baseline, and the ablation showing a quadratic kernel nearly matches DSCS."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both committees noted last-layer Laplace as the only main-text base BNN; A's reviewer still raised to 7, while B's AC named it a remaining concern at poster."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither panel was split; B's AC summarised the open points of two reviewers rather than adopting one reviewer to settle a split."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No score moved because of other reviewers' reviews; every raise followed the authors' replies."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "No reviewer's score was held down by a misread or unanswered question; the authors answered each follow-up."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's aGgD posted a confidence-1, 1.5-hour review and replied only 'I keep my score', and that 7 counted unchallenged in A's unanimity."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "Neither AC went below its reviewers' ratings; both accepted."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither AC decided by an average-score threshold against its own view."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "No reviewer held a below-threshold score."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees judged the paper as the same methodological contribution with theory and experiments."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's raises followed added baselines and promised error terms, but no raising reviewer said the technical core was outside their expertise."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "Both committees asked the same kind of questions of the paper; neither imposed an extra requirement for its type."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "aGgD's praise of Fig. 6 described the figure accurately; the error lay in the authors' data, not in a wrong claim by the reviewer."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "B's 4z2v kept 6 because the motivation concern stayed open, not after conceding it was resolved, and 6 is not below threshold."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "A credited promised error analysis, but B did not refuse promised items; both committees accepted the paper on its rebuttal material."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Every reviewer who stated a changed position also edited the score."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No extra reviewer was called in by either AC."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "Clarity verdicts did not split by reviewer field."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Every raise came with a stated reason."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "Neither AC set aside a silent low rating."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "B's 8 was the only rating above 7, but B got the lower tier; both committees advocated acceptance, so no missing champion explains the gap."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted partial reading at high confidence; aGgD's cursory reading came with confidence 1."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "4z2v disputed the infinite-ReLU framing and kernel motivation within the same tradition, not from a different theoretical school."
+    },
+    {
+      "id": "R30",
+      "applies": true,
+      "justification": "A's two-sentence meta-review argues only that the paper is good and well-supported, and gives no reason for a spotlight."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "B's YyKC checked Fig. 6 against Ovadia et al.'s published Deep Ensemble results and exposed the bug, while A's reviewers took Fig. 6 and Table 1 at face value."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "B's meta-review omits the bug, but in the paper's favour, not toward the chair's lower decision."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "A's doubts about significance and adoption did not cap A's tier, and B raised no narrow-audience objection."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "No low-scoring misreading detractor sat in either committee."
+    },
+    {
+      "id": "R35",
+      "applies": true,
+      "justification": "A saw Mahalanobis and DUQ comparisons that raised two scores, and B saw the CIFAR-10-C rerun and arc-cosine ablation; neither committee saw the other's new results."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "A's highest-confidence review rated 7 like the others, and B's 8 came at confidence 4 alongside another 4; expertise was not outvoted."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "No objection came after the response period closed."
+    },
+    {
+      "id": "R38",
+      "applies": false,
+      "justification": "A's 7s and B's 6 to 8 differ little in mean, and the verbal assessments track the ratings."
+    }
+  ],
+  "added": [],
+  "reasoning": "Both committees accepted, so the split is the tier. A's AC turned four 7s into a spotlight with a meta-review that gives no case for it (R02, R30). One of those 7s was a cursory, confidence-1 review that never engaged (R03, R12). B reviewed more deeply: its reviewers checked results against published baselines (R31) and drew out a data-loader bug the authors disclosed only to B (R04, R07), plus an ablation that weakened the kernel motivation. Each committee saw new results the other did not (R35), and B's AC weighed the last-layer-Laplace limitation that A shrugged off (R08) while omitting the bug (R05). The stage 1 candidates (AC upgrade, deeper review finding a bug, unresolved motivation, raises on copied baselines, generic meta-review, cursory review) all fit existing reasons on a plain reading, so none is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ]
+}

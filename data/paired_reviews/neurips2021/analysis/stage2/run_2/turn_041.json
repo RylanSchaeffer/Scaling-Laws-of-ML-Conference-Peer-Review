@@ -1,0 +1,281 @@
+{
+  "run": 2,
+  "turn": 41,
+  "pair_id": "n21-057",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Every checkable claim behind A's criticisms (undefined fairness, mis-cited and missing related work, uncited known tools) is correct; no criticism rests on a wrong claim."
+    },
+    {
+      "id": "R02",
+      "applies": true,
+      "justification": "B's AC gave a spotlight although no B reviewer rated above 7; the tier rests on the AC's own 'very strong contribution' and 'broader community' judgement."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "B's Reviewer_8ugy gave a 7 at confidence 3 on generic praise ('very novel', 'very interesting and practical'), and that score is part of the 'uniformly positive' ratings the B AC cited."
+    },
+    {
+      "id": "R04",
+      "applies": false,
+      "justification": "The authors' concessions in A (fairness out of scope, Lemma 3.1, importance weighting) answered points A's reviewers had raised; nothing was volunteered to one forum only."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "A weighed its flaws as 'major presentation concerns'; B never learned of them, and the points B called minor are covered by weighting differences, not an ignored flaw."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "In A the rebuttal raised Reviewer_oRvo (5 to 6) and Reviewer_i7rY to 7; no B score moved."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "Only A's reviewers raised the undefined fairness link, the loose Lagrangian extension and the incomplete, mis-cited related work; all are correct and none appear in B."
+    },
+    {
+      "id": "R08",
+      "applies": true,
+      "justification": "Both saw that Lemma 3.1 and the importance weighting are standard: B's Reviewer_dTZk listed them as pros while A's Reviewer_i7rY counted them against the paper; B's AC called the shared lower-bound and impact-model issues minor."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Neither AC adopted a single reviewer's position; A summarised all reviewers and B used its own reading."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No score change is attributed to reading other reviews."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The authors answered Reviewer_8ugy's computation question with the choice of epsilon, but that reviewer's score stayed at 7; no score was held down."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "B's Reviewer_8ugy posted a thin, late 7 with no reply to the rebuttal, and it counted unchallenged in B's 'uniformly positive' reviews."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "A's poster matches its 6, 6, 7, 7 ratings; no AC went below its reviewers."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's AC voiced presentation concerns, not a positive view overruled by a score threshold."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "No below-threshold score was held on a peripheral point."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Both committees read the paper as a theoretical bandit contribution."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "A's raised reviewers gave no sign that the technical core was outside their expertise."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "A's extra demands concern positioning faults it found, which is R07, not a different bar for the same kind of paper."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "B's reviewers praised standard components as pros, but the notes record no checkable wrong claim of novelty or results."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "No reviewer kept a below-threshold score after its main concern was answered."
+    },
+    {
+      "id": "R21",
+      "applies": false,
+      "justification": "Both committees accepted promised camera-ready fixes; neither refused credit for promises."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "Reviewer_oRvo and Reviewer_i7rY edited their scores to match their stated changes."
+    },
+    {
+      "id": "R23",
+      "applies": false,
+      "justification": "No off-record extra reviewer."
+    },
+    {
+      "id": "R24",
+      "applies": false,
+      "justification": "No clarity verdict split by reviewer expertise; B praised clarity and A's concerns were positioning, not exposition."
+    },
+    {
+      "id": "R25",
+      "applies": false,
+      "justification": "Both A raises came with stated reasons."
+    },
+    {
+      "id": "R26",
+      "applies": false,
+      "justification": "No AC set aside a silent detractor."
+    },
+    {
+      "id": "R27",
+      "applies": false,
+      "justification": "No reviewer in either committee rated above 7."
+    },
+    {
+      "id": "R28",
+      "applies": false,
+      "justification": "No reviewer admitted a partial reading."
+    },
+    {
+      "id": "R29",
+      "applies": false,
+      "justification": "No reviewer contested the premise from another theoretical tradition."
+    },
+    {
+      "id": "R30",
+      "applies": false,
+      "justification": "B's meta-review stated a case for the higher tier ('very strong contribution', broad interest)."
+    },
+    {
+      "id": "R31",
+      "applies": true,
+      "justification": "A's reviewers knew the related bandit literature and found missing, mis-grouped and uncited prior work, while B's reviewers took the paper's novelty at face value and read the known components as strengths."
+    },
+    {
+      "id": "R32",
+      "applies": false,
+      "justification": "B's 'uniformly positive' matches its ratings; A's summary matches its reviews."
+    },
+    {
+      "id": "R33",
+      "applies": false,
+      "justification": "No committee capped the tier on breadth; B called it of broad interest."
+    },
+    {
+      "id": "R34",
+      "applies": false,
+      "justification": "A had no misreading low-scoring detractor."
+    },
+    {
+      "id": "R35",
+      "applies": false,
+      "justification": "No new experiments were posted to either forum."
+    },
+    {
+      "id": "R36",
+      "applies": false,
+      "justification": "No high-confidence expert review was outweighed by low-confidence ones."
+    },
+    {
+      "id": "R37",
+      "applies": false,
+      "justification": "Reviewer_oRvo's Appendix B objection was raised in time and the authors answered it."
+    },
+    {
+      "id": "R38",
+      "applies": false,
+      "justification": "A's lower ratings match more critical verbal assessments, not a stricter scale."
+    }
+  ],
+  "added": [],
+  "reasoning": "B's spotlight came from its AC's own reading on near-equal, accept-level ratings (R02), with a thin low-confidence 7 counted in the 'uniformly positive' reviews (R03, R12). A's reviewers, who knew the prior literature (R31), found correct positioning faults B never raised (R07) and counted standard components against the paper that B counted as pros (R08); A's rebuttal moved two scores up while B's moved none (R06). The stage 1 candidates (AC enthusiasm, A-only fairness and related-work faults, known components read as strengths, AC setting tier on near-equal scores) are all covered by existing reasons, so none is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "R36",
+    "R37",
+    "R38"
+  ]
+}

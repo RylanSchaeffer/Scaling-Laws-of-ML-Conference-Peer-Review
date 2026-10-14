@@ -103,7 +103,7 @@ def main(run: str) -> None:
         idx = [i for i, r in enumerate(rows) if r["kind"] in ks]
         share = M[idx].mean(axis=0) * 100 if idx else np.zeros(n_reasons)
         ax2.barh(np.arange(n_reasons) + (gi - (len(groups) - 1) / 2) * h, share, height=h * 0.92, color=P.CAT[gi], label=f"{g} ($n={len(idx)}$)")
-    ax2.set_yticks(range(n_reasons)); ax2.set_yticklabels([tex(cap(names[c])) for c in cols]); ax2.invert_yaxis()
+    ax2.set_yticks(range(n_reasons)); ax2.set_yticklabels([tex(cap(names[c])) for c in cols]); ax2.set_ylim(n_reasons - 0.5, -0.5)
     ax2.set_xlabel(r"Pairs where the reason applies (\%)"); ax2.set_xlim(0, 100)
     ax2.legend(loc="lower right")
     P.save(fig2, f"{ROOT}/figures/stage2_reasons_by_kind_run{run}")

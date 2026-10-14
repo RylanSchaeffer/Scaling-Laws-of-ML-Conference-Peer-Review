@@ -1,0 +1,272 @@
+{
+  "pair_id": "n21-082",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "confidences": [
+        5,
+        4,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_wEE7",
+        "Reviewer_6Xbb"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four final ratings are 7. Reviewer_Vmom (7 h) and Reviewer_6Xbb (8 h) wrote long, specific reviews. Reviewer_tgUE (3 h, confidence 3) put every weakness in the limitations field but named concrete gaps (contrastive SSL, 3D-specific attacks, non-AT defenses). No reviewer argued for more than accept."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Vmom",
+          "claim": "In Table 2, 'Adversarial x' often has lower RA than plain 'x'; is this an implementation error?",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2, ModelNet40: PointNet rotation eta=6 48.0 vs adversarial 42.1; DGCNN jigsaw k=3 67.4 vs 65.8. Both rows use adversarial fine-tuning; 'Adversarial' marks adversarial pre-training only (l.138-140). The observation is right; no error follows from it."
+        },
+        {
+          "reviewer": "Reviewer_Vmom",
+          "claim": "ST baselines in Tables 4-6 keep RA well above 0, unlike Table 1.",
+          "checked_against_paper": "correct",
+          "evidence": "ST RA 48.5-60.9 under PD (Table 4) and 38.0-57.6 under PA (Table 5); R-mIoU 32.5-42.0 (Table 6); Table 1 ST RA 0.0-3.2 under PS. The paper itself calls PD and PA 'much weaker adversaries' (l.315-316). It reflects weak threats, not a bug."
+        },
+        {
+          "reviewer": "Reviewer_Vmom",
+          "claim": "The attribution of DGCNN's robustness to EdgeConv (l.230) is not tested experimentally.",
+          "checked_against_paper": "correct",
+          "evidence": "No ablation isolates EdgeConv. The modified PCT also uses EdgeConv in place of FPS (l.204), yet its AT RA trails DGCNN (49.1 vs 62.0, Table 1). The rebuttal answered by argument only ('Therefore, we can conclude'), and Vmom accepted it."
+        },
+        {
+          "reviewer": "Reviewer_6Xbb",
+          "claim": "The SSL term L_t in Eq. 5 is not adversarially trained, so AJT is not true adversarial joint training.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 5 maximizes only L_f(x + sigma); L_t uses clean x^t. The rebuttal added AJT with an adversarial SSL loss: RA drops slightly (for example PCT ModelNet40 44.1 vs 44.3 at eta=6)."
+        },
+        {
+          "reviewer": "Reviewer_6Xbb",
+          "claim": "'F = M o H' (l.87) is wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "l.86-87 defines F as backbone M followed by head H, so the composition is H o M. The authors conceded; the camera-ready reads F = H o M."
+        },
+        {
+          "reviewer": "Reviewer_wEE7",
+          "claim": "No C&W or generative (LG-GAN) attacks are evaluated.",
+          "checked_against_paper": "correct",
+          "evidence": "l.266-269 lists AutoAttack, MIM and PGD with cross-entropy and margin loss, plus noise and transfer attacks. The rebuttal added C&W and LG-GAN tables, and wEE7 rose to 7."
+        },
+        {
+          "reviewer": "Reviewer_tgUE",
+          "claim": "The paper uses only PGD-style attacks, not attacks designed for point clouds.",
+          "checked_against_paper": "correct",
+          "evidence": "Every attack algorithm is PGD, AutoAttack or MIM (l.91, l.266-267). The threat types themselves (shift, drop, add) come from 3D attack work ([12], [32]), as the authors replied."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_wEE7",
+          "Reviewer_6Xbb"
+        ],
+        "evidence": "Reviewer_6Xbb, 2021-08-26: 'I would like to raise my rating from 6 to 7'; review edited that day. Reviewer_wEE7, 2021-08-13: 'I decide to raise my score based on the rebuttal'; the edit came on 2021-09-10, after an author reminder on 2021-08-27 that the score had not changed. Reviewer_tgUE (2021-08-15, 'Keeping the original score') and Reviewer_Vmom (2021-08-31, 'I will keep my rating') stayed at 7; their reviews were not edited.",
+        "what_convinced_or_not": "New experiments, not argument. wEE7 cited 'experimental comparisons with some missing references' (C&W and LG-GAN tables) but kept 'The novelty is still limited to me somehow'. 6Xbb cited the PointContrast results, the cross-architecture ensembles and the adversarial-SSL AJT tables, but still found the name 'Adversarial Joint Training' 'debatable/misleading'. Vmom accepted clarifications on Table 2 notation and PA/PD strength, and an argument-only answer on EdgeConv."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Two sentences: 'four reviews, all of them pretty thorough, recommend accepting this paper. I see nothing that would cause me to want to contradict this unanimous decision.' No content of its own and no AC comment in the discussion.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Four 7s after the rebuttal; Reviewer_Vmom and Reviewer_tgUE were at 7 from the start.",
+        "Broad empirical coverage (3 backbones, 4 datasets, 3 threats, 3 SSL tasks, part segmentation) in a new area, with 'insight' paragraphs reviewers valued.",
+        "The rebuttal supplied each requested experiment (C&W, LG-GAN, PointContrast, adversarial-SSL AJT, autoencoder AJT, ensembles); two reviewers rose to 7.",
+        "Limited novelty was treated as a caveat, not a reason to reject (Reviewer_wEE7, Reviewer_tgUE).",
+        "The AC deferred to unanimity."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        5,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_Dx1d",
+        "Reviewer_ygsD",
+        "Reviewer_euZV"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/6/7/6 sit within one point of the 6.0 mean. Reviewer_CMgR's 5 is the only vote below the threshold. It rests partly on misreadings (PA as random points; a 'missing' reference cited as [25]) and partly on a point the paper concedes (PA and PD are weak, l.315-316). CMgR did not engage after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CMgR",
+          "evidence": "Describes PA as 'just adding random points near the surface', but Eq. 3 and l.99-101 say the added points are PGD-optimized. Lists Chen et al. (CVPR 2020) as missing; it is cited as [25] (l.38, l.382-383). Compares adversarial salient-point dropping with random sampling (SampleNet). Never replied to the rebuttal, and the 5 was never edited. Its points on weak PA/PD and the modified PCT are right."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ygsD",
+          "claim": "The PGD attack uses a single epsilon of 0.005, too small for the attack to work.",
+          "checked_against_paper": "incorrect",
+          "evidence": "epsilon = 0.05 (l.169); 0.005 is the test step size alpha (l.173). It is true that the main results use one epsilon. The rebuttal added epsilon 0.02/0.04/0.06 with standard deviations; the gains hold."
+        },
+        {
+          "reviewer": "Reviewer_ygsD",
+          "claim": "The uncertainty in the results is not quantified.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 3 shows five-seed error bars for the selected best models against the AT baseline (l.264-265); they are small and reproduce the Table 2 values. Tables 2-6 themselves show single numbers."
+        },
+        {
+          "reviewer": "Reviewer_ygsD",
+          "claim": "Some gains over the AT baseline are as small as about 1%, and their significance is unclear.",
+          "checked_against_paper": "correct",
+          "evidence": "Best gains: +1.1 RA (PointNet, ModelNet10), +1.8 (PointNet, ScanObjectNN), +2.2 (PCT, ModelNet40) in Table 2; +0.4 to +0.8 mIoU in segmentation (Table 6, l.334), with no error bars."
+        },
+        {
+          "reviewer": "Reviewer_ygsD",
+          "claim": "AdvPC [73] already found that DGCNN is more robust than other architectures.",
+          "checked_against_paper": "not_checked",
+          "evidence": "External paper. The authors replied that AdvPC uses gray-box transfer attacks on standard models, not adversarial training."
+        },
+        {
+          "reviewer": "Reviewer_CMgR",
+          "claim": "PA seems to add random points near the surface, so the attack looks weak.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 3 and l.99-101: PA samples 100 points from the cloud and then optimizes them with PGD inside epsilon. The 'weak' part holds: ST models keep 38.0-57.6% RA under PA (Table 5), and l.315-316 calls PD and PA 'much weaker adversaries'."
+        },
+        {
+          "reviewer": "Reviewer_CMgR",
+          "claim": "PD drops only 10% of the points, too weak for classification.",
+          "checked_against_paper": "correct",
+          "evidence": "N = 100 of 1024 points (l.163, l.175). ST models keep 48.5-60.9% RA under PD (Table 4), and the AT DGCNN has RA 77.1 above its CA 76.2. The SampleNet analogy (random sampling) does not fit saliency-based dropping, but the conclusion holds."
+        },
+        {
+          "reviewer": "Reviewer_CMgR",
+          "claim": "Missing reference: Chen et al., 'Adversarial robustness: From self-supervised pre-training to fine-tuning', CVPR 2020.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Cited as [25] in the introduction (l.38), in related work (l.382-383) and at l.305."
+        },
+        {
+          "reviewer": "Reviewer_Dx1d",
+          "claim": "In Table 2, AT plus jigsaw SSL performs similarly to or worse than jigsaw SSL alone.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Every Table 2 row uses adversarial fine-tuning (l.139-140); 'Adversarial' marks adversarial pre-training. The terse labels invite the misreading; Reviewer_Vmom in A had the same question."
+        },
+        {
+          "reviewer": "Reviewer_euZV",
+          "claim": "CA and RA are not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "CA is defined only at l.218, after Tables 1 and 2 use it; RA is never defined. The camera-ready adds 'robust accuracy (RA)'. Reviewer_Dx1d, Reviewer_wEE7 and Reviewer_Vmom made the same point."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_ygsD",
+          "Reviewer_Dx1d",
+          "Reviewer_euZV"
+        ],
+        "evidence": "Reviewer_ygsD, 2021-08-12: 'I will increase my score to 7'; review edited that day. Reviewer_Dx1d added 'Update after rebuttal ... I slightly raise my score to 6'; edited 2021-09-10. Reviewer_euZV, 2021-09-03: 'I would like to raise my score to 6'; edited that day. Reviewer_CMgR posted nothing after the rebuttal, and the review was never edited. So before the rebuttal no B rating was above 6, and three of four were below 6.",
+        "what_convinced_or_not": "The correction of ygsD's epsilon misreading, PGD results at epsilon 0.02/0.04/0.06 and a C&W table moved ygsD; the novelty and 'Showing 400 numbers in a single table' concerns remained. Dx1d moved on the new results but said the PointContrast adaptation resembles rotation and that the 'technical' contribution is limited; the authors' strict PointContrast run (2021-08-30) got no reply. Dx1d did not question a jigsaw-augmentation baseline at chance level (CA 2.4% on 40 classes). euZV moved after an epsilon 0.06 table, distribution statistics and autoencoder-AJT results. CMgR's objections on PA, PD, PCT and novelty got replies, but CMgR did not respond."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four final ratings are 6 or above. The AC names the novelty concern ('the paper might be thin on novelty') and outweighs it in its own words: 'solid experimental work on an interesting and relevant question' that 'will be of interest to the community'. It does not mention CMgR's 5 or the PA/PD and epsilon disputes. No AC comment in the discussion.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "After the rebuttal, three of four reviewers were at or above 6 (7, 6, 6); the only 5 did not engage.",
+        "The rebuttal corrected ygsD's epsilon misreading and added an epsilon sweep, C&W, PointContrast and augmentation results; two reviewers crossed the threshold and one rose to 7.",
+        "The AC judged a solid experimental study on a relevant question to outweigh thin novelty.",
+        "Novelty and threat-model doubts kept two reviewers at 'marginally above' and one below."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The SSL loss in 'adversarial joint training' is clean, so AJT is not true adversarial joint training (Reviewer_6Xbb; Eq. 5 confirms)",
+    "Cross-architecture ensembles (Reviewer_6Xbb) and gradient effects of the max ensemble and dual batch norm (Reviewer_Vmom)",
+    "Non-AT defense baselines such as feature denoising and Defense-GAN (Reviewer_tgUE)",
+    "Generative attacks such as LG-GAN, and autoencoder missing from AJT (Reviewer_wEE7)",
+    "Undefined projection and saliency() and the wrong order in F = M o H (Reviewer_6Xbb)",
+    "Theoretical analysis of why SSL pre-training helps (Reviewer_6Xbb)"
+  ],
+  "issues_only_b": [
+    "One PGD epsilon, misread as 0.005 (Reviewer_ygsD)",
+    "Significance of small gains without variance (Reviewer_ygsD)",
+    "DGCNN robustness already reported in AdvPC [73]; ensembles not novel after Tramer et al. (Reviewer_ygsD)",
+    "Table 2's roughly 300 numbers need plots (Reviewer_ygsD)",
+    "Choice of a modified PCT over other point transformers (Reviewer_CMgR)",
+    "Salient dropped points cluster at the chair bottom (Reviewer_CMgR)",
+    "Rotation and jigsaw augmentation baselines; point-level contrastive and detail-preserving autoencoder tasks to test the local-feature claim (Reviewer_Dx1d)",
+    "Removing T-Net and FPS is an application trade-off (Reviewer_Dx1d)",
+    "Conflict with SSL for point-cloud domain adaptation (Achituve et al.); outliers; SO(3) evaluation (Reviewer_euZV)",
+    "Missing citation of Chen et al. CVPR 2020 (Reviewer_CMgR; incorrect, cited as [25])"
+  ],
+  "shared_issues": [
+    "Limited technical novelty: an evaluation study that applies 2D SSL plus AT to 3D (A: Reviewer_wEE7, Reviewer_tgUE; B: Reviewer_CMgR, Reviewer_Dx1d, Reviewer_ygsD, B's AC)",
+    "Comprehensive experiments across backbones, datasets, threats and tasks (all eight reviewers)",
+    "No contrastive SSL (A: Reviewer_6Xbb, Reviewer_tgUE; B: Reviewer_Dx1d)",
+    "Attack coverage beyond PGD at one setting: C&W, 3D-specific attacks or other epsilon values (A: Reviewer_wEE7, Reviewer_tgUE; B: Reviewer_ygsD)",
+    "PA and PD are weak, and 'easier to detect' is unsupported (A: Reviewer_Vmom; B: Reviewer_CMgR, Reviewer_euZV)",
+    "The local-feature explanation lacks an ablation or theory (A: Reviewer_Vmom on EdgeConv, Reviewer_6Xbb; B: Reviewer_Dx1d, Reviewer_CMgR)",
+    "Table 2 notation for adversarial against standard pre-training (A: Reviewer_Vmom; B: Reviewer_Dx1d)",
+    "AJT underperforms APF, and why (A: Reviewer_6Xbb; B: Reviewer_euZV, Reviewer_ygsD)",
+    "Architecture descriptions too short (A: Reviewer_6Xbb; B: Reviewer_CMgR on PCT)",
+    "Undefined CA and RA, many abbreviations, typos and 'k = 14, 5' (A: Reviewer_wEE7, Reviewer_Vmom; B: Reviewer_Dx1d, Reviewer_euZV, Reviewer_CMgR)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason: a broad, careful 3D robustness study with no new method. It covers three backbones, four datasets, three threats and three SSL tasks. It applies the 2D methods of Hendrycks et al. [24] and Chen et al. [25] to point clouds. The committees differed in score (mean 7.0 against 6.0), not in decision, because their reviewers weighed the same novelty gap differently. In A, Reviewer_Vmom and Reviewer_tgUE gave 7 from the start and never changed it. Reviewer_wEE7 and Reviewer_tgUE called the novelty limited and still gave 7. In B, no rating was above 6 before the rebuttal, and three of four were below the threshold. Reviewer_CMgR, Reviewer_Dx1d and Reviewer_ygsD named weak technical novelty as a main weakness. Misreadings added to B's harsher start. Reviewer_ygsD read the PGD budget as 0.005; the paper uses 0.05 (l.169), and 0.005 is the test step size (l.173). Reviewer_CMgR took the PGD-optimized PA points (Eq. 3) for random ones, and listed as missing a paper that is cited as [25]. The rebuttal turned B. An epsilon sweep, C&W, PointContrast and augmentation results lifted ygsD to 7, and Dx1d and Reviewer_euZV to 6. CMgR stayed at 5 and did not reply. B's AC set 'thin on novelty' against a 'solid experimental study' and accepted on its own reading. A's AC deferred to four 7s. Nothing in either record argued for more than a poster. Gains over the AT baseline range from +1.1 to +14.2 RA, and from +0.4 to +0.8 mIoU in segmentation. No ablation isolates the local-feature explanation that the paper offers for DGCNN and jigsaw.",
+  "candidate_reasons": [
+    "Novelty gap weighted differently",
+    "Rebuttal rescued sub-threshold reviewers",
+    "Reviewer misreadings lowered starting scores",
+    "Silent sub-threshold reviewer outvoted",
+    "Broad first study outweighed novelty",
+    "No champion above poster"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_wEE7 final review and comment of 2021-08-13",
+    "Reviewer_tgUE final review (limitations field) and comment of 2021-08-15",
+    "Reviewer_6Xbb comment of 2021-08-26 (6 to 7)",
+    "Reviewer_Vmom final review and comment of 2021-08-31",
+    "Reviewer_ygsD final review and comment of 2021-08-12",
+    "Reviewer_Dx1d final review ('Update after rebuttal') and comment of 2021-08-15",
+    "Reviewer_euZV comment of 2021-09-03",
+    "Reviewer_CMgR final review (no reply to the rebuttal)",
+    "Authors' reply to Reviewer_Dx1d (jigsaw-augmentation table, CA 2.4%)",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf l.169 and l.173 (epsilon 0.05; step size 0.005)",
+    "paper_submitted.pdf Eq. 3 and l.99-101 (PA is PGD-optimized)",
+    "paper_submitted.pdf Eq. 5 (clean SSL term in AJT)",
+    "paper_submitted.pdf l.38, l.382-383 and reference [25]",
+    "paper_submitted.pdf Tables 1, 2, 4, 5, 6 and l.315-316, l.334",
+    "paper_submitted.pdf Figure 3 and l.264-265 (five-seed error bars for selected models only)",
+    "paper.pdf (camera-ready) Section 2.1 (F = H o M) and Section 3.2.1 (RA defined)"
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "pair_id": "n21-085",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        7,
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_vUV5",
+        "Reviewer_tHc2",
+        "Reviewer_NXMZ",
+        "Reviewer_Lp96"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 8 (Reviewer_vUV5), 7 (Reviewer_chmj), 6 (Reviewer_tHc2), 7 (Reviewer_NXMZ) and 6 (Reviewer_Lp96). The spread is two points and no rating stands apart. vUV5's 8 is the top score, but it rests on a review that restates the paper's own framing ('principled re-formulation', 'coordinate descent-like heuristic') and a one-line reply after the rebuttal ('I will keep my score')."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vUV5",
+          "claim": "The combination of WeakNAS with Semi-NAS, claimed at l.294-295 to be in Table 2, is nowhere in the paper.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The bottom row of Table 2, labelled only 'Semi-NAS' under 'Sampling methods' (94.26, regret 0.06, rank 1.6), is that result. The label gives no 'WeakNAS +', so the miss comes from the paper's labelling. The authors promised to make it more visible."
+        },
+        {
+          "reviewer": "Reviewer_NXMZ",
+          "claim": "Table 2 shows that WeakNAS performs nearly the same as Local Search, a very simple baseline.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The numbers match (94.25 against 94.24, regret 0.07 against 0.08). But Table 2 ablates WeakNAS's own sampling step, and l.246-248 present local search as a sampling method inside WeakNAS. Standalone local search in the rebuttal reached 94.15 (rank 7.8). The paper's labels invite the misreading."
+        },
+        {
+          "reviewer": "Reviewer_NXMZ",
+          "claim": "In open-domain search only 1,000 random new architectures are scored per iteration and the top 100 evaluated (footnote, p. 3); the paper does not describe the 10K evaluation pool.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 1 says exactly this. The rebuttal of 2021-08-21 describes a different procedure: a fixed, uniformly sampled 10K pool, with 100 architectures drawn at random from the top 1,000 predictions. The submission never mentions the pool; the camera-ready adds it."
+        },
+        {
+          "reviewer": "Reviewer_NXMZ",
+          "claim": "Predictor training cost grows as O(k^2) over k iterations, and the paper gives no wall-clock comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 and l.118-120 refit the predictor on the growing set S^{k+1} each iteration. Figures 1, 4, 5 and Tables 1-4 use query counts; only Table 5 lists GPU days. The authors conceded the O(k^2) point on 2021-08-21 and added per-architecture predictor times."
+        },
+        {
+          "reviewer": "Reviewer_Lp96",
+          "claim": "Line 117 accumulates all sampled architectures into the training set, which sits uneasily with the 'weak predictor' picture.",
+          "checked_against_paper": "correct",
+          "evidence": "l.117: 'The newly sampled architectures together with S^k become S^{k+1}.' The authors confirmed it and called the accumulation a 'momentum' that avoids collapse."
+        },
+        {
+          "reviewer": "Reviewer_chmj",
+          "claim": "ImageNet implementation and retraining details are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text says only 'we follow the training strategies used in LaNAS' (l.222-223); the checklist points to a supplement that is not in the record. The rebuttal then listed a timm recipe (RandAug, EMA, 300 epochs, 236 px) and promised to add it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_tHc2",
+          "Reviewer_NXMZ",
+          "Reviewer_Lp96"
+        ],
+        "evidence": "Reviewer_Lp96 on 2021-08-15: 'I decided to raise my rating to 6' (edited the same day). Reviewer_tHc2 on 2021-08-17: 'I will update my comments and raise the score' (edited 2021-08-25). Reviewer_NXMZ on 2021-08-27: 'I will raise my score to 7' (edited the same day). Reviewer_vUV5's edit (2021-07-13) predates the rebuttal; vUV5 and Reviewer_chmj kept their scores. Earlier scores are not in the record.",
+        "what_convinced_or_not": "New tables and links: standalone Local Search and Semi-NAS, a same-GCN comparison with BONAS (94.28 against 94.25), predictor run times, numbers for tHc2's cited papers, a CATE combination, anonymised code, and a t-SNE plot of the search. NXMZ's last doubt, that the plot showed no link between position and rank, was settled by re-running t-SNE at perplexity 20 instead of 50 and drawing good points on top. tHc2 retreated after a sharp reply ('your assumption appears to be impractical and wrong') that tHc2 read as an accusation of conflict of interest; tHc2 apologised and rewrote the review. tHc2 still doubted that adding so much in rebuttal was 'fair enough to other paper'. Lp96 kept the con 'Paper could be misleading for making relationship of this work and BO'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "The AC recommends acceptance 'since the proposed idea is interesting and seems to work well in practice, and all reviewers are unanimously positive toward it'. The AC adds four concerns of its own: no formal definition of weak and strong predictors, no visualization of the search, no failure-case analysis, and no analysis of how many iterations are needed. It calls the paper 'too informal' and 'half-baked at its current state'. During the discussion the AC asked the authors to answer NXMZ on the t-SNE structure (2021-08-25).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous accept after the rebuttal (8, 7, 6, 7, 6; mean 6.8).",
+        "Strong sample-efficiency results on NAS-Bench-101/201 and state-of-the-art ImageNet numbers in the NASNet and MobileNet spaces.",
+        "Rebuttal tables, code and a search visualization moved Reviewer_tHc2, Reviewer_NXMZ and Reviewer_Lp96 up.",
+        "The AC deferred to unanimity although it judged the paper 'half-baked' and listed four required analyses."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7,
+        6,
+        4
+      ],
+      "confidences": [
+        3,
+        4,
+        5,
+        3,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_eYgg",
+        "Reviewer_nK9v"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_93Rt",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Emergency reviewer recruited by the AC; posted 2021-09-01 at 4 with confidence 5, against 6 to 7 from the other four. The case is specific: the framework is a simplified BO, the sampling rule is close to BRP-NAS, and Table 1's 'number of predictors' is just the iteration count (the authors confirmed). 93Rt asked for concrete ablations, which the authors ran. Two side claims were wrong (BONAS weight sharing, conceded; a Table 3/4 contradiction). The score was never edited, although the AC reports that 93Rt found the new results valuable 'if those improvements hold up'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_onF1",
+          "evidence": "Confidence 5, but the review is sweeping praise ('a crucial step to rescue the NAS community') that repeats three summary sentences as 'positives'. It describes the paper as 'a timely analysis of the current NAS's ineffectiveness' and 'a timely metric for evaluating NAS's effectiveness'; the paper is a search method and offers neither. Its only weakness is one sentence of the introduction. Later onF1 wrote 'I tend to fight for acceptance', although it did engage on the NAS-BOWL comparison."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nK9v",
+          "claim": "In Table 2, sampling with TopN=100 is only 0.01 better than with TopN=10.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: 94.25 against 94.24 (regret 0.07 against 0.08, rank 1.7 against 1.9)."
+        },
+        {
+          "reviewer": "Reviewer_nK9v",
+          "claim": "In Table 3 the method is about 0.1 better than LaNAS and BONAS, within the SD of 0.14 at 200 queries.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3 at 200 queries: WeakNAS 94.18 (SD 0.14), BONAS 94.09, LaNAS 93.90. The point holds for BONAS (+0.09); against LaNAS the gap is 0.28. At 1,000 queries the BONAS gap is 0.03, which Reviewer_YANc also called very small."
+        },
+        {
+          "reviewer": "Reviewer_YANc",
+          "claim": "Tables 1 to 5 give averages over 25 runs without standard deviations.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Tables 1, 2 and 3 each have an 'SD(%)' column. Table 4 has none, and the ImageNet Tables 5-6 are single runs (checklist 3c)."
+        },
+        {
+          "reviewer": "Reviewer_YANc",
+          "claim": "The \\setminus in Eq. (3) is wrong and should be \\subseteq.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 3 ranks s in X \\ S^k, the architectures not yet sampled, as l.113-114 state ('excluding all the samples already in S^k'). The set difference is intended."
+        },
+        {
+          "reviewer": "Reviewer_93Rt",
+          "claim": "Table 3 contradicts Table 4: WeakNAS needs 195 queries on average to find the optimum, yet is not optimal after 2,000 queries.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 4 counts samples until the optimum is first queried; Table 3 reports the final predictor's top pick (l.128), which can be worse. The tables do not conflict, but the paper never states the difference; the authors explained it on 2021-09-02."
+        },
+        {
+          "reviewer": "Reviewer_93Rt",
+          "claim": "The 'number of predictors' in Table 1 is simply the number of search iterations, not an ensemble.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 and l.226-228 add one predictor per 10-sample iteration (1 to 191 predictors for 100 to 2,000 queries), and only the final predictor picks the architecture (l.128). The authors confirmed it. The 'combine a set of weak learners' framing (l.129-130) does not describe the method."
+        },
+        {
+          "reviewer": "Reviewer_93Rt",
+          "claim": "BONAS evaluates architectures by weight sharing, so the comparison favours WeakNAS.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The authors pointed to BONAS Sec. 4.2 (ground-truth NAS-Bench accuracies), and 93Rt conceded on 2021-09-04: 'Apologies for my misunderstanding on BO-NAS'."
+        },
+        {
+          "reviewer": "Reviewer_93Rt",
+          "claim": "WeakNAS results are almost the same as BRP-NAS in Table 2 of Appendix C.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplement is not in the record; footnote 2 defers the BRP-NAS comparison to it. The authors' later plot against BRP-NAS is behind an anonymous link."
+        },
+        {
+          "reviewer": "Reviewer_onF1",
+          "claim": "The introduction wrongly says that NAS methods, gradient-based ones included, train and evaluate a large number of architectures.",
+          "checked_against_paper": "correct",
+          "evidence": "l.29-33 list gradient-based approaches [1, 16] and then say 'they often train and evaluate a large number of architectures'. The authors agreed to fix it."
+        },
+        {
+          "reviewer": "Reviewer_eYgg",
+          "claim": "The paper does not say up front what a strong or a weak predictor is.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission never defines the terms; l.104-105 give only an informal contrast. The authors' rebuttal defined 'weak' by the sampling scheme, not by the model. Committee A's AC raised the same gap; the camera-ready adds a definition."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_nK9v",
+          "Reviewer_eYgg"
+        ],
+        "evidence": "Reviewer_nK9v's final review: 'I raised my score from 4 to 5' after the first reply, then 'from 5 to 6' (edited 2021-09-10). Reviewer_eYgg on 2021-08-14: 'With the inclusion of the Q7 results ... I'm happy to raise my score' (edited the same day; final 6). Reviewer_YANc and Reviewer_onF1 kept their scores. Reviewer_93Rt (posted 2021-09-01) never edited the 4.",
+        "what_convinced_or_not": "nK9v moved on an ablation of biased against uniform sampling and a MobileNet ablation of the N/M ratio, but kept reproducibility as the main concern. eYgg moved on a comparison with zero-cost proxies. 93Rt held that the only difference from BRP-NAS, a greedier sampling rule, is 'very incremental' unless it is significantly better, and asked for a BO variant of WeakNAS. The authors then posted plots (anonymous links) that beat BRP-NAS and a deep-ensemble EI variant, with run-time tables. The AC and 93Rt were 'very surprised'; the AC made acceptance conditional on a full code release. The authors pressed nK9v twice to raise the score ('your opinion ... is high-stake')."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The AC recruited 93Rt because 'the paper had borderline scores, and the internal reviewer discussion was not moving further'. The meta-review gives the AC's own view, 'Novelty is therefore low', which matches 93Rt rather than the four regular reviewers. The AC accepts because 'the authors provided strong results' against the requested baselines, and only 'If the code is made available for fully reproducing the work'. The outcome matches the majority; the reasoning follows the AC's own reading and 93Rt's requested experiments.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Strong results against baselines requested in the discussion: BRP-NAS, a deep-ensemble EI variant of WeakNAS, NAS-BOWLr.",
+        "The AC judged novelty low (a simplified BO, very similar to BRP-NAS) but found the performance surprising and worth sharing.",
+        "Acceptance conditional on a full release of code, pipelines, baselines and final architectures.",
+        "Regular reviewers at 6 to 7 after the rebuttal; the emergency reviewer stayed at 4."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Predictor training cost grows quadratically with iterations; no wall-clock comparison (Reviewer_NXMZ)",
+    "Open-domain search scores only 1,000 random candidates per iteration in a 10^18 space; the 10K evaluation pool is not in the paper (Reviewer_NXMZ)",
+    "WeakNAS appears no better than local search in Table 2 (Reviewer_NXMZ)",
+    "Semi-NAS combination result hard to find (Reviewer_vUV5)",
+    "ImageNet retraining recipe and search cost missing (Reviewer_chmj)",
+    "Missing predictor and encoding literature, e.g. arch2vec and CATE (Reviewer_tHc2)",
+    "Accumulating samples sits uneasily with the weak-predictor picture of Figure 2 (Reviewer_Lp96)",
+    "No analysis of how many iterations are needed (AC)"
+  ],
+  "issues_only_b": [
+    "No comparison to zero-cost proxies (Reviewer_eYgg)",
+    "No ablation of biased against uniform sampling (Reviewer_nK9v)",
+    "Gains over BONAS within one SD; new hyperparameters M and N (Reviewer_nK9v, Reviewer_YANc)",
+    "Sampling close to BRP-NAS; needs a BO variant with EI and a BRP-NAS plot (Reviewer_93Rt)",
+    "Open-domain gains may come from the pre-trained supernet; no NAS-Bench-301 (Reviewer_93Rt)",
+    "Apparent conflict between Tables 3 and 4 (Reviewer_93Rt)",
+    "Inaccurate introduction claim about gradient-based and one-shot NAS (Reviewer_onF1)",
+    "Comparison with NAS-BOWL (AC, as reported by Reviewer_onF1; Reviewer_93Rt)",
+    "Code release as a condition of acceptance (AC)"
+  ],
+  "shared_issues": [
+    "Novelty over BO-based and iterative predictor NAS (A: Reviewer_tHc2, Reviewer_Lp96; B: Reviewer_93Rt, AC)",
+    "Same-predictor comparison with BONAS and more baselines (A: Reviewer_Lp96, Reviewer_tHc2; B: Reviewer_93Rt, Reviewer_YANc)",
+    "Unclear method description and no algorithm box (A: Reviewer_NXMZ, Reviewer_Lp96; B: Reviewer_eYgg)",
+    "No definition of weak against strong predictor (A: AC; B: Reviewer_eYgg)",
+    "When good architectures get discarded: search-space assumptions and failure cases (A: Reviewer_NXMZ, AC; B: Reviewer_YANc)",
+    "Table 3 needed for NAS-Bench-201 (A: Reviewer_Lp96; B: Reviewer_YANc)",
+    "Predictor training time (A: Reviewer_NXMZ; B: Reviewer_YANc)",
+    "Code and reproducibility (A: Reviewer_chmj; B: Reviewer_nK9v, AC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster for the same reason. Strong sample-efficiency results on NAS-Bench-101/201 and a state-of-the-art ImageNet number (81.3% in the MobileNet space) outweighed thin novelty over Bayesian-optimization (BO) style predictor NAS. In both, rebuttal tables raised several scores. The committees differed in route, not outcome. A's five reviewers ended at 6 to 8 (mean 6.8); three rose after the rebuttal. A's area chair (AC) deferred to that unanimity, yet called the paper 'too informal' and 'half-baked'. B's four regular reviewers ended at 6 to 7. B's AC called this borderline and added an emergency reviewer, Reviewer_93Rt, whose 4 (confidence 5) arrived a day before the discussion deadline. That score never moved and alone lowers B's mean from 6.25 to 5.8. The authors then ran 93Rt's ablations: a plot against BRP-NAS and a deep-ensemble EI variant of their own predictor. The AC and 93Rt were 'very surprised' by the results. B's AC judged novelty 'low' ('a simplified version of Bayesian optimization ... very similar to BRP-NAS') but accepted on the condition of a full code release. So B weighed novelty more harshly, but both committees let the results decide. Much of the decisive new evidence (plots, code and a re-tuned t-SNE figure) sat behind anonymous links, and no one in the record reports checking it. The open-domain procedure that the authors described in A's rebuttal (a fixed 10K pool) also differs from the one in the submission's footnote 1.",
+  "candidate_reasons": [
+    "Strong benchmarks outweigh thin novelty",
+    "Rebuttal experiments raised several scores",
+    "Emergency detractor lowered B's mean",
+    "Acceptance conditioned on code release",
+    "AC reservations yielded to unanimity",
+    "Unverified rebuttal evidence carried acceptance"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review ('too informal', 'half-baked')",
+    "Committee B meta-review ('Novelty is therefore low'; code condition)",
+    "Area_Chair_pMGY comments of 2021-09-01 and 2021-09-10",
+    "Reviewer_93Rt review and reply of 2021-09-04",
+    "Authors' replies of 2021-09-05 and 2021-09-06 (BRP-NAS plot, EI variant)",
+    "Reviewer_nK9v final review (post-rebuttal 1 and 2)",
+    "Reviewer_NXMZ review and replies of 2021-08-11, 2021-08-25 and 2021-08-27",
+    "Authors' replies to Reviewer_NXMZ of 2021-08-21 (10K pool) and 2021-08-27 (t-SNE re-plot)",
+    "Reviewer_tHc2 replies of 2021-08-11 and 2021-08-17",
+    "Reviewer_onF1 review and comment of 2021-09-01",
+    "paper_submitted.pdf footnote 1, Eq. 3, l.117, l.128, Tables 1-4"
+  ]
+}

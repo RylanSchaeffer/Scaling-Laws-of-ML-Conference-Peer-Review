@@ -1,0 +1,195 @@
+{
+  "pair_id": "n21-129",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 5, 6, 6],
+      "confidences": [4, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_LdW3"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 5, 6, 6 at confidences 4, 3, 3, 4; the spread is one point. Reviewer_LdW3's 5 is the only rating below threshold. Its basis is principled and correct: the data-center motivation is not revisited after the introduction, and the experiments use uniform synthetic idle periods with Gaussian-perturbed predictions (l.312-315)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_JJ9s",
+          "evidence": "Says 'the robustness metric is skipped over' and that it is unclear what Theorem 5 adds beyond Theorem 3. The submission states near-optimal robustness e/(e-1) through Theorem 5 (l.64-66, l.127-129), explains the 'all ρ simultaneously' gain right after Theorem 5, compares with [35], [39] and [4] (l.139-148), and uses footnote 1 to reconcile Theorem 5 with Wei and Zhang's Pareto bound. 4 hours, confidence 4. It never answered the authors' correction. The rest of the review ('technically sound', 'well organized') is accurate."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_LdW3",
+          "claim": "The link to dynamic power management in data centers appears in the first paragraphs of the introduction and is never revisited.",
+          "checked_against_paper": "correct",
+          "evidence": "Data centers appear at l.13 and l.21 and in one related-work sentence on powering data-center components (l.172-174). The experiments use the hard-drive power states of Irani et al. (l.332-334) and uniform synthetic idle periods. No section discusses real power states or idle-time patterns. The camera-ready adds a data-center sentence citing Lim et al."
+        },
+        {
+          "reviewer": "Reviewer_LdW3",
+          "claim": "The experiments draw requests uniformly at random and make predictions by randomly perturbing the true values.",
+          "checked_against_paper": "correct",
+          "evidence": "l.312-315: requests uniform in [0, 4]; prediction equal to the true value plus N(0, σ) noise, negatives rounded to 0."
+        },
+        {
+          "reviewer": "Reviewer_JJ9s",
+          "claim": "The paper skips the robustness metric and lacks comparisons with the robustness and consistency of the Pareto-optimal randomized ski-rental algorithm of [35].",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.64-66 and l.127-129 state consistency 1+ε and near-optimal robustness e/(e-1) through Theorem 5. l.139-148 compare with [35] ((ρ, ρ)-competitive), [39] (Pareto optimality) and [4]. Footnote 1 explains why Theorem 5 does not contradict [39]: that bound uses c = 0. The comparison is brief but present."
+        },
+        {
+          "reviewer": "Reviewer_8AFS",
+          "claim": "The paper does not cite Helmbold et al.'s work on disk spin-down, an instance of DPM.",
+          "checked_against_paper": "correct",
+          "evidence": "Not among the 39 references of the submission. The authors replied 'We didn't know about this paper'; the camera-ready cites it and uses its predictor."
+        },
+        {
+          "reviewer": "Reviewer_cGaH",
+          "claim": "The paper does not discuss limitations explicitly.",
+          "checked_against_paper": "correct",
+          "evidence": "No limitations section. Checklist item 1(b): 'The formal setup defined in our paper describes the limitations of our results.'"
+        },
+        {
+          "reviewer": "Reviewer_cGaH",
+          "claim": "The reduction plus the e/(e-1) ski-rental algorithm gives a new result for DPM without predictions.",
+          "checked_against_paper": "correct",
+          "evidence": "Corollary 4 (l.122), which l.120-121 present as not reported before."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_LdW3"],
+        "evidence": "Reviewer_LdW3 edited the review on 2021-08-26: 'Thank you for the detailed answer. I still have an issue with the positioning of this paper. I'm adjusting my score to 5.' The prior rating is not recorded; the thanks and the 'still' imply a rise to 5. Reviewer_JJ9s, Reviewer_8AFS and Reviewer_cGaH never edited or replied.",
+        "what_convinced_or_not": "The rebuttal added a real-data experiment: idle periods from five Nexus 5 I/O traces, predictions from the Share update algorithm of Herbster and Warmuth, competitive ratio 1.133 against 1.143 for FTP and 1.401 for the classical online algorithm. It also promised a discussion of DPM in practice. This moved LdW3 partway. The objection that the paper is a ski-rental theory paper presented as a DPM application stayed. The correction to JJ9s about robustness and Theorem 5 drew no answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Calls the paper 'borderline' and names the doubts about 'the learning aspect (fit for neurips vs theory conferences) and the application to power management'. It resolves them with an own view: 'papers in the area of algorithms with ML predictions are a good fit for neurips', citing recent NeurIPS and ICML acceptances. It names no technical point. The outcome matches the three 6s.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Final ratings 6, 5, 6, 6 (mean 5.75): three marginal accepts and one marginal reject.",
+        "No reviewer questioned correctness: Reviewer_JJ9s 'technically sound', Reviewer_8AFS 'solid and non-trivial', Reviewer_cGaH 'credible and interesting'.",
+        "The AC settled the open question, fit for NeurIPS, in the paper's favour by an own view of scope and recent precedent.",
+        "The real-data rebuttal experiment raised Reviewer_LdW3, the only detractor, to 5."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 7],
+      "confidences": [4, 4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_53BA", "Reviewer_da7H"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 7 at confidences 4, 4, 3, 4; none stands apart. The two 7s differ in weight. Reviewer_da7H engaged with the experiments and found a real problem. Reviewer_Bp21's 7 is two short paragraphs with details not checked."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Bp21",
+          "evidence": "A 7 at confidence 3 ('Math/other details were not carefully checked') in two short paragraphs. It raises no weakness beyond 'experiments don't seem completely necessary' and did not respond to the rebuttal. What it says is accurate (monotonicity of the CDFs, the lower bound, the role of Theorem 5), so the review is thin rather than wrong."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_da7H",
+          "claim": "At high noise, other algorithms such as ADJKR trend towards performing better than the proposed algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "In Figure 3 (right) of the submission, 'Our algorithm' rises to about 1.6 near σ = 4, slightly above the classical online algorithm (1.58) and PSK + Thm. 3 + Thm. 9. ADJKR appears in the main paper only in Figure 3 (left), where it is worse throughout; its DPM curves are in supplementary figures not in the PDF. The authors confirmed 'a bug in our implementation of Theorem 9' affecting Figure 3 (right) and supplementary Figures 4 and 5, and posted corrected figures."
+        },
+        {
+          "reviewer": "Reviewer_da7H",
+          "claim": "The noise value in the results goes up to roughly 5, and it is unclear what it means.",
+          "checked_against_paper": "incorrect",
+          "evidence": "l.313-315 define the noise as N(0, σ) added to a true length drawn from [0, 4], and both axes of Figure 3 read 'Noise parameter σ of the synthetic predictor' (0 to 4.5). The authors: 'We mentioned this in the text, but it may have been easy to miss'."
+        },
+        {
+          "reviewer": "Reviewer_da7H",
+          "claim": "The paper ends abruptly in the Experiments section without concluding remarks.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text ends with Figure 3 on page 9 and the references start on page 10. There is no conclusion."
+        },
+        {
+          "reviewer": "Reviewer_da7H",
+          "claim": "No learning happens; the predictions are noisy values around the true period lengths.",
+          "checked_against_paper": "correct",
+          "evidence": "l.312-315. The authors agreed and added a learned Share-update predictor on real traces in the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_SQBd",
+          "claim": "Page 5, line 182 should read A' with a prime.",
+          "checked_against_paper": "correct",
+          "evidence": "l.182 typesets the algorithm with a text apostrophe, while Lemma 6 (l.180) uses a math prime. Trivial, but it shows a close reading (20 hours)."
+        },
+        {
+          "reviewer": "Reviewer_53BA",
+          "claim": "The paper extends its ski-rental results to metrical task systems.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 4 casts DPM as a metrical task system only to combine algorithms with different ρ through Blum and Burch (l.277-299). The paper claims no result for metrical task systems in general. A minor slip in the summary."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "unknown",
+        "by_whom": ["Reviewer_da7H"],
+        "evidence": "Reviewer_da7H edited the review on 2021-09-01, the day of the comment 'I'm satisfied with your response to my suggestions'. The review text carries no update note, so the edit fits a rise to 7; no record confirms it. Reviewer_53BA edited on 2021-09-01 to add 'I am not changing the final score'. Reviewer_SQBd and Reviewer_Bp21 never edited or replied.",
+        "what_convinced_or_not": "da7H asked for real-world experiments, the meaning of the noise scale, an explanation of the high-noise results and concluding remarks. The rebuttal answered all four: the Nexus 5 experiment with a learned predictor, the definition of σ, a fixed bug with corrected figures, and a promised discussion. 53BA found the answer 'reasonable' but kept the paper 'only marginally' above threshold. SQBd got a promise to expand the comparisons and to relabel Theorem 3 as a lemma, and did not reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Summarises each reviewer: well written (da7H, Bp21), theory well developed with the monotone reduction (Bp21, SQBd, 53BA), more comparisons wanted (SQBd), real experiments supplied in the rebuttal (da7H). It ends 'Overall the paper has good support from the reviewers, so I recommend accept.' It does not mention the implementation bug the authors disclosed to Reviewer_da7H.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Final ratings 6, 6, 7, 7 (mean 6.5), none below threshold.",
+        "Reviewers found the theory well developed: the tight ski-rental trade-off, the lower bound and the monotone reduction to multi-state DPM.",
+        "Reviewer_da7H and Reviewer_Bp21 found the paper well written.",
+        "The rebuttal supplied the real-data experiment Reviewer_da7H asked for and fixed the experimental bug that da7H's question exposed."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The data-center motivation is not revisited after the introduction; no real power states or idle-time patterns (Reviewer_LdW3)",
+    "Robustness seemingly skipped and the gain of Theorem 5 over Theorem 3 unclear, a misreading (Reviewer_JJ9s)",
+    "Applicability of the approach beyond ski rental and its variants (Reviewer_JJ9s)",
+    "Missing citation of Helmbold et al. on disk spin-down; no algorithm box for machine-learning readers (Reviewer_8AFS)",
+    "No explicit limitations section (Reviewer_cGaH)"
+  ],
+  "issues_only_b": [
+    "High-noise results where the proposed algorithm does no better than the baselines, which exposed a bug in the authors' Theorem 9 code (Reviewer_da7H)",
+    "Meaning of the noise scale; no concluding remarks after the experiments (Reviewer_da7H)",
+    "Whether earlier learning-augmented ski-rental algorithms are monotone (Reviewer_SQBd)",
+    "Theorem, lemma and corollary labels; typo at l.182 (Reviewer_SQBd)"
+  ],
+  "shared_issues": [
+    "Synthetic experiments only: uniform idle periods and Gaussian-perturbed predictions, no learned predictor or real data (A: Reviewer_LdW3; B: Reviewer_da7H)",
+    "Unclear relevance of an online-algorithms paper to machine learning and NeurIPS (A: Reviewer_8AFS, Reviewer_LdW3, AC; B: Reviewer_53BA, Reviewer_da7H)",
+    "Thin comparison with earlier learning-augmented ski-rental algorithms (A: Reviewer_JJ9s; B: Reviewer_SQBd)",
+    "Careful steps built on standard techniques; the reduction from DPM to ski rental is expected (A: Reviewer_8AFS, Reviewer_cGaH; B: Reviewer_SQBd, Reviewer_Bp21)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees recommended a poster, and the agreement is sound. No reviewer in either committee questioned the correctness of the theory. Both saw the same contribution: a ski-rental algorithm with the optimal dependence on prediction error, a matching lower bound, and a reduction to multi-state power management that works because the algorithm is monotone. Both saw the same weaknesses: synthetic experiments, a thin link to machine learning, and steps built on known techniques. The committees weighted the fit question differently. In A, Reviewer_LdW3 and Reviewer_8AFS doubted that an online-algorithms paper belongs at NeurIPS, and the ratings ended at 6, 5, 6, 6 (mean 5.75). A's AC called the paper borderline and settled it with an own view that algorithms with predictions are in scope, citing recent NeurIPS and ICML papers. In B, only Reviewer_53BA raised fit, and still leaned to accept; the ratings ended at 6, 6, 7, 7 (mean 6.5), and the AC accepted on 'good support from the reviewers'. Both committees received the same rebuttal experiment on real smartphone traces with a learned predictor. It moved Reviewer_LdW3 up to 5 and satisfied Reviewer_da7H. B found one thing A did not: Reviewer_da7H's question about the high-noise curves led the authors to a bug in their Theorem 9 code. The bug touched only the experiments, so it cost the paper nothing. A's acceptance rests on its AC's scope judgement, because its scores sit at the threshold; B's acceptance rests on its scores.",
+  "candidate_reasons": [
+    "No technical error found anywhere",
+    "AC settles venue-fit doubt",
+    "Venue fit weighted differently",
+    "Same real-data rebuttal to both",
+    "Experiment bug fixed in rebuttal"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_LdW3 final review (post-rebuttal note of 2021-08-26)",
+    "Reviewer_8AFS final review",
+    "Reviewer_JJ9s final review and the authors' reply on robustness and Theorem 5",
+    "Authors' reply to Reviewer_da7H (Theorem 9 bug, corrected figures) and Reviewer_da7H's comment of 2021-09-01",
+    "Reviewer_53BA final note",
+    "paper_submitted.pdf l.64-66, l.127-129, l.139-148 and footnote 1 (robustness; comparison with [35], [39], [4])",
+    "paper_submitted.pdf l.312-315 and Figure 3 (synthetic data, σ, high-noise curves)"
+  ]
+}

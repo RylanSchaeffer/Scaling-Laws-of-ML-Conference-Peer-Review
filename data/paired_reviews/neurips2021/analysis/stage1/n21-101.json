@@ -1,0 +1,253 @@
+{
+ "pair_id": "n21-101",
+ "prompt_version": 1,
+ "kind": "poster",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    5,
+    6,
+    5,
+    8,
+    9
+   ],
+   "confidences": [
+    2,
+    3,
+    4,
+    3,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_hf1K",
+    "Reviewer_zbbB",
+    "Reviewer_aue9"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_aue9",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only 9 (confidence 5, 3 hours) against 5, 5, 6, 7 and 8. The review is informed: it describes the Clebsch-Gordan kernel construction, the hash table and the appendix losses. The score rests on enthusiasm: 'tremendous practical impact', the applications 'alone could be a paper in a mainstream vision conference', 'a delight to read'. It overstates the results: 'outperforms all methods on pose and size', but FS-Net leads IoU50 in Table 3 (92.2 against 79.1). It answers the novelty concern of four co-reviewers with one post-rebuttal sentence: 'not a simple integration'. The AC cites this score ('highest rate was 9!')."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_hnKB",
+     "evidence": "An 8 at confidence 4 from 3 hours. The main review is six sentences of generic praise ('well written, scientifically sound', 'The method is novel', 'Novelty and contribution are clearly stated'). It names no result, no weakness and no question. Four co-reviewers questioned the novelty, and hnKB gives no argument for it. No reply to the rebuttal and no part in the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_zbbB",
+     "claim": "SS-Conv gives only a 2x speedup over ST-Conv in the presented experiments, and tracking needs a single-stage network to reach real time.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: 293 against 148 FPS. l.235-237 and l.292: tracking uses one stage 'that achieves real-time tracking'. The rebuttal's 16x figure comes from the supplement (Plain24 at batch size 13)."
+    },
+    {
+     "reviewer": "Reviewer_hf1K",
+     "claim": "Without the second stage the method is below G2L in Table 2.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 mean ADD(S): 97.2 without the second stage, 98.7 for G2L, 99.2 with both stages."
+    },
+    {
+     "reviewer": "Reviewer_BHAN",
+     "claim": "In Table 3 the method leads almost every metric but trails FS-Net (92.2) by a large gap on IoU50.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: IoU50 79.1 against FS-Net's 92.2. The method leads the other five metrics, by 0.2 on IoU75 (63.7 against 63.5) and by 13.5 on 5°5cm (41.7 against 28.2)."
+    },
+    {
+     "reviewer": "Reviewer_aue9",
+     "claim": "The method outperforms all methods on pose and size estimation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3: FS-Net leads IoU50, 92.2 against 79.1. The claim holds for the other five metrics."
+    },
+    {
+     "reviewer": "Reviewer_viJM",
+     "claim": "Post-rebuttal: the paper claims the whole SS-Conv as novel, but the rebuttal locates the novelty in an enlarged-kernel strided SS-Conv, an implementation detail that the paper neither states nor ablates.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission never mentions a strided SS-Conv: Fig. 2 shows 'SS-Convs & Pool' blocks, Algorithm 1 has no stride, and Sec. 5.1 has no ablation of downsampling. Camera-ready footnote 1: 'We only discuss convolutions (stride = 1) in our paper'; downsampling uses a stride-1 convolution with average pooling, following Weiler et al. The promised details of the strided SS-Conv never appear."
+    },
+    {
+     "reviewer": "Reviewer_viJM",
+     "claim": "Almost all of the theoretical basis comes from 3D steerable CNNs [24] and submanifold sparse convolution [9].",
+     "checked_against_paper": "correct",
+     "evidence": "l.124-127: the spherical-harmonic kernel follows [24]. l.151: for the submanifold state definition 'we follow [9]'. Eq. 6 is the sparse convolution sum over active sites with the constraint of Eq. 4."
+    },
+    {
+     "reviewer": "Reviewer_hf1K",
+     "claim": "Line 82 is missing a reference.",
+     "checked_against_paper": "correct",
+     "evidence": "l.82: 'Wang et. al propose the task of category-level 6D pose tracking' with no citation; [21] is meant."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_hf1K"
+    ],
+    "evidence": "Reviewer_hf1K (2021-08-28, review edited that day): 'I would upgrade the rating from 6 to 7'. Reviewer_aue9 edited on 2021-08-26 to add 'I stay with my positive mark' (9). Reviewer_BHAN (2021-09-11): novelty is 'less of an issue', keeps 6. Reviewer_viJM (2021-09-01): 'I see no reason to update my rating' (5). Reviewer_zbbB (2021-09-10, review edited that day) is 'more and more convinced that this work perhaps doesn't reach the novelty bar for NeurIPS', then writes 'Because of that, I have upgraded my recommendation'; the final score is 5 and the earlier score is not visible. Reviewer_hnKB did not reply.",
+    "what_convinced_or_not": "The authors pasted one novelty defense to hf1K, zbbB, BHAN and viJM: a new strided SS-Conv that blurs the kernel with a Gaussian, the Feature-Steering refinement stage, and aue9's remark that the applications could be a vision paper. It moved hf1K and softened BHAN. viJM rejected it: the strided convolution is an unablated implementation detail, and the pipeline novelty suits a vision venue, not NeurIPS. The paper supports viJM: the strided SS-Conv is in neither the submission nor the camera-ready, which uses stride-1 convolutions with pooling. zbbB's comment cites only the NeurIPS novelty bar."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Four of six reviewers at 6 or above, and the AC accepts as a poster. The meta-review says the rebuttal 'managed to successfully address most of reviewer's concerns' and that the majority found 'a strong paper (highest rate was 9!)'. The record contradicts the first claim: both reviewers below 6 (viJM, zbbB) said that their novelty objection stands, and both ended at 5. The meta-review names no technical point.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Four of six reviewers at 6 or above, including a 9 and an 8.",
+    "Practical speedup over ST-Conv and strong pose results on LineMOD (99.2 ADD(S)) and REAL275.",
+    "The AC read the rebuttal as resolving the novelty concern, which the two 5s denied.",
+    "The venue-fit objection of Reviewer_viJM and Reviewer_zbbB was outvoted."
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    6,
+    6,
+    7
+   ],
+   "confidences": [
+    4,
+    4,
+    2,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_BhGd",
+    "Reviewer_zYbA"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 6, 6 and 7; no reviewer is more than one point from another. Novelty reservations hold three reviewers at 6."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_gTpb",
+     "evidence": "The committee's highest score (7) from a self-declared non-expert ('I am not an expert on this topic'). It found no Dense-Conv architecture or input resolution, but l.258-264 give both. It asks for a direct ST-Conv against SS-Conv comparison of speed and training time, which Table 1 and Fig. 3 give. The post-rebuttal reply is two lines."
+    },
+    {
+     "reviewer": "Reviewer_zYbA",
+     "evidence": "Partly inattentive, confidence 2. It 'did not find comparisons to the non-sparse counterpart, e.g. [24]', but Table 1 and Sec. 5.1 compare ST-Conv [24] with SS-Conv, and the same review quotes the speedup from that table. It did read Sec. 3.2.1 closely (m undefined, sizes in Eq. 9)."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_zYbA",
+     "claim": "The paper has no comparison to the non-sparse counterpart [24].",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1 and l.252-279 compare ST-Conv [24] (92.8 ADD(S), 148 FPS, 3.6M parameters) with SS-Conv (93.5, 293 FPS, 3.6M). Fig. 3 compares their training."
+    },
+    {
+     "reviewer": "Reviewer_zYbA",
+     "claim": "m is not defined at l.137.",
+     "checked_against_paper": "correct",
+     "evidence": "m is a summation index without a range in Eq. 7, the Gaussian centre at l.132, and a count at l.137 ('[2min(k, l) + 1]m'). It is never defined. The camera-ready writes M at this point."
+    },
+    {
+     "reviewer": "Reviewer_gTpb",
+     "claim": "The paper gives no detail of the Dense-Conv experiment: architecture, input resolution, input type.",
+     "checked_against_paper": "incorrect",
+     "evidence": "l.258-264: all four convolutions use one 12-layer plain architecture with 3x3x3 kernels and the same channels, and the inputs are voxelized into 64x64x64 dense or sparse grids. l.195-196 give the input feature (RGB and a constant 1)."
+    },
+    {
+     "reviewer": "Reviewer_BhGd",
+     "claim": "'Marginally' is the wrong word at l.267 and l.138, since the gaps are large.",
+     "checked_against_paper": "correct",
+     "evidence": "l.267: SS-Conv 'marginally outperforms' Dense-Conv and SP-Conv, but Table 1 gives 93.5 against 46.5 and 62.8. l.138: 'marginally less' parameters, but Table 1 gives 3.6M against 26.2M. l.278 does the same for training time."
+    },
+    {
+     "reviewer": "Reviewer_BhGd",
+     "claim": "The instance segmentation network is not named (l.193).",
+     "checked_against_paper": "correct",
+     "evidence": "l.193 says only 'an off-the-shelf model of instance segmentation'."
+    },
+    {
+     "reviewer": "Reviewer_dFJh",
+     "claim": "The rotation parameterization is not stated.",
+     "checked_against_paper": "correct",
+     "evidence": "l.204-206: the MLPs regress 'a rotation' with no parameterization. The rebuttal names the 6D representation of Zhou et al."
+    },
+    {
+     "reviewer": "Reviewer_dFJh",
+     "claim": "Eq. 6 is similar to the Minkowski Engine formulation apart from the SE(3)-equivariance constraint.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 6 is the standard sparse convolution sum over active sites plus the constraint of Eq. 4. The authors agree that [9] and Minkowski convolution 'share similar mathematical formulations'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_zYbA",
+     "Reviewer_BhGd"
+    ],
+    "evidence": "Reviewer_zYbA (2021-08-23, review edited that day): 'I am willing to raise the score to \"6\"'. Reviewer_BhGd (2021-09-01, review edited that day): 'will raise the rating to a 6'. Reviewer_gTpb (2021-09-03) and Reviewer_dFJh (2021-09-10) keep 7 and 6; their reviews are unedited.",
+    "what_convinced_or_not": "zYbA accepted that spherical harmonics are the way to meet the steering constraint of Eq. 4, and took the new ModelNet40 results (z/SO(3): SS-Conv 80.8, SP-Conv 21.9). It still calls the paper 'a combination of [9] and [24]' and asks for proofreading of Sec. 3.2.1. BhGd accepted the answers on what FPS measures, the MLP inputs and why Tables 1 and 2 differ, but keeps 'reservations regarding the novelty', 'which is why it is not a 7 or higher'. dFJh called the new place-recognition baseline (PN_VLAD) weak. The B rebuttal did not use the strided SS-Conv argument that A received."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "All four reviewers at 6 or 7. The first two sentences copy Reviewer_gTpb's summary nearly word for word ('its application' becomes 'application of the proposed method'). The only new sentence: 'All reviewers agree on the soundness of the proposed method and its efficiency over steerable convolutions or dense convolutions.' It leaves out the novelty reservations that BhGd and zYbA kept.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "All four reviewers at 6 or 7 after the rebuttal.",
+    "Sound method with a clear efficiency gain over ST-Conv and dense convolution.",
+    "Strong results on three pose tasks.",
+    "Novelty judged incremental, which held three reviewers at 6."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Venue fit: an efficient implementation and a vision pipeline are not enough novelty for NeurIPS (Reviewer_viJM, Reviewer_zbbB)",
+  "The rebuttal's strided SS-Conv is an unablated implementation detail that the paper does not claim (Reviewer_viJM)",
+  "Without the second stage the method trails G2L; impact and cost of the second stage (Reviewer_hf1K)",
+  "IoU50 gap to FS-Net in Table 3, and no speed comparison in Tables 2-4 (Reviewer_BHAN)",
+  "Real-time tracking only with a one-stage network; why SS-Conv beats ST-Conv in Table 1 (Reviewer_zbbB)",
+  "FLOPs in Table 1, integration into FCGF, Fig. 3 font size, missing reference at l.82 (Reviewer_hf1K); losses only in the appendix (Reviewer_aue9)"
+ ],
+ "issues_only_b": [
+  "Exposition of Sec. 3 and Sec. 3.2.1: no overview, m undefined at l.137, why spherical harmonics matter under sparsity (Reviewer_zYbA)",
+  "No stated rotation parameterization, no comparison with Minkowski Engine, no scenes beyond single objects (Reviewer_dFJh)",
+  "What the FPS in Table 1 measures, sparse memory access on GPUs, unnamed segmentation network, 'marginally' for large gaps at l.138 and l.267 (Reviewer_BhGd)",
+  "Memory use and data sparsity not quantified (Reviewer_gTpb)",
+  "No results on the original 3D recognition task, answered with ModelNet40 (Reviewer_zYbA)"
+ ],
+ "shared_issues": [
+  "Incremental novelty: SS-Conv combines [24] and [9] (A: Reviewer_hf1K, Reviewer_zbbB, Reviewer_BHAN, Reviewer_viJM; B: Reviewer_BhGd, Reviewer_zYbA, and Reviewer_dFJh on Minkowski Engine)",
+  "Modest 2x speedup over ST-Conv in Table 1 (A: Reviewer_zbbB; B: Reviewer_zYbA); both got the batch-size figures from the supplement",
+  "Efficiency evidence limited to Table 1: FLOPs and speeds for Tables 2-4 in A; memory and training time in B",
+  "Unclear Table 1 setup: why SS-Conv beats ST-Conv (A: Reviewer_zbbB); what the networks and FPS measure (B: Reviewer_BhGd, Reviewer_gTpb)",
+  "Practical value and strong pose results, praised in both"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Both committees recommended a poster for the same reasons. Nearly every reviewer saw SS-Conv as built from the steerable kernels of [24] and the submanifold sparse convolution of [9], and every reviewer credited its practical value: about twice the speed of ST-Conv (Table 1: 293 against 148 FPS), 99.2 ADD(S) on LineMOD, and 41.7 against 28.2 at 5°5cm on REAL275. Committee B was uniformly lukewarm (6, 6, 6, 7). Its rebuttal lifted Reviewer_BhGd and Reviewer_zYbA to 6, both kept their novelty doubts, and its AC followed the consensus. Committee A was split (5, 5, 6, 7, 8, 9), and its AC followed the majority. A's top scores are weak evidence: Reviewer_hnKB's 8 is generic praise, and Reviewer_aue9's 9 rests on enthusiasm and misreads Table 3. A's two 5s (Reviewer_viJM, Reviewer_zbbB) argue novelty for NeurIPS and find no error in the paper. A's meta-review says the rebuttal resolved the concerns, but both 5s kept their objection. The rebuttal's novelty claim in A, a new strided SS-Conv, is in neither the submission nor the camera-ready, and viJM was right to discount it. No reviewer in either committee found a checkable error that could sink the paper. The same facts got the same weight and the same decision.",
+ "candidate_reasons": [
+  "Same strengths, same novelty doubt",
+  "Incremental novelty offset by results",
+  "Venue-fit objection outvoted by majority",
+  "Rebuttal novelty claim absent from paper",
+  "AC misstates post-rebuttal consensus",
+  "Weak evidence behind top scores"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "paper_submitted.pdf Table 1 and l.252-279 (SS-Conv 293 FPS against ST-Conv 148; 'marginally' at l.267 and l.278)",
+  "paper_submitted.pdf Table 2 (99.2; 97.2 without the second stage; G2L 98.7) and Table 3 (IoU50 79.1 against FS-Net 92.2)",
+  "paper_submitted.pdf Fig. 2 ('SS-Convs & Pool'), l.82, l.124-156, l.193, l.258-264",
+  "paper.pdf (camera-ready) footnote 1: stride-1 convolutions with average pooling, following Weiler et al.",
+  "Reviewer_viJM comment (2021-09-01)",
+  "Reviewer_zbbB comment (2021-09-10)",
+  "Reviewer_hf1K comment (2021-08-28)",
+  "Reviewer_aue9 final review and Reviewer_hnKB review",
+  "Committee A meta-review",
+  "Reviewer_zYbA comment (2021-08-23) and Reviewer_BhGd comment (2021-09-01)",
+  "Reviewer_gTpb summary, copied into the Committee B meta-review"
+ ]
+}

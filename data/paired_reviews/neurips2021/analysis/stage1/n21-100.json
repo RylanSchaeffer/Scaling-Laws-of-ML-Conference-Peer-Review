@@ -1,0 +1,240 @@
+{
+  "pair_id": "n21-100",
+  "prompt_version": 1,
+  "kind": "poster",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        2,
+        3,
+        3,
+        2
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 5 at confidences 2, 3, 3, 2; no rating stands apart. The 5 (Reviewer_e9d1) is the most technical review and rests on points the paper and the authors confirm. The 7 (Reviewer_yNzP) is the thinnest review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_yNzP",
+          "evidence": "The top score in A, at confidence 2, from a short review that reports 20 hours. Its one substantive point expects the Optimal Fixed Classifier to lower-bound the error in all Section 5 experiments. The paper defines OFC as the best fixed re-weighting in hindsight (l.228-229, Eq. 6) and says OGD beats it on several shifts (l.277-280). The review calls the appendix evidence for both assumptions 'extensive', which the paper itself hedges ('approximately convex', l.161). It did not join the discussion. The review is thin rather than wrong in its verdict."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_e9d1",
+          "claim": "Assumption 1 (convexity of the loss in p) does not hold.",
+          "checked_against_paper": "correct",
+          "evidence": "l.160-162: the paper says the loss is only 'approximately convex'. With a finite hold-out set the estimated loss is a step function (l.169-172), so it cannot be convex. The authors replied that it holds 'approximately'."
+        },
+        {
+          "reviewer": "Reviewer_e9d1",
+          "claim": "FTL's sublinear regret comes from the strength of Assumption 2 with delta = 0, not from the algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "With delta = 0 the leader is the running mean of the estimates q-hat (l.198-200); the authors replied 'You are correct' and that this form gives the stability FTL needs. Theorem 3 is stated only for delta = 0; the general bound is in the appendix (l.200-201)."
+        },
+        {
+          "reviewer": "Reviewer_e9d1",
+          "claim": "The noise from estimating the confusion matrix is not taken into account.",
+          "checked_against_paper": "correct",
+          "evidence": "l.123-124: 'For simplicity, we assume for the remainder of the paper that this estimation error is zero.'"
+        },
+        {
+          "reviewer": "Reviewer_e9d1",
+          "claim": "Typos: Z(x) at l.141 should use f0; l.188 says 'second inequality' for an equality; Algorithm 3 omits the loss next to the gradient.",
+          "checked_against_paper": "correct",
+          "evidence": "Z(x) at l.141 uses P_f and q_t where Eq. 5 uses P_f0 and p; Eq. 9 has only equalities; Algorithm 3 writes the gradient estimate without the loss. The camera-ready still says 'second inequality'."
+        },
+        {
+          "reviewer": "Reviewer_4NjZ",
+          "claim": "Convexity is justified only by appendix plots and holds only approximately; the delta > 0 case is only in the supplement; error bars come from three runs.",
+          "checked_against_paper": "correct",
+          "evidence": "l.160-162 ('approximately convex ... justify in detail in the appendix'), l.200-201 (general delta only in the appendix), l.256-257 (three random seeds)."
+        },
+        {
+          "reviewer": "Reviewer_yNzP",
+          "claim": "OFC should be a lower bound on the error in all Section 5 experiments, but it is not.",
+          "checked_against_paper": "incorrect",
+          "evidence": "OFC is the best fixed re-weighting vector in hindsight (l.228-229, Eq. 6). A time-varying p_t can beat it, and the paper says so (l.277-280; Table 1, monotone shift: OGD 9.75% against OFC 10.24%)."
+        },
+        {
+          "reviewer": "Reviewer_zQxb",
+          "claim": "It is not clear how q-hat_t is obtained or how the hold-out set D0 is used.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 defines q-hat_t as the inverse transposed confusion matrix of f0 times the one-hot vector of f0's prediction (l.114-117). l.120-124 say D0 estimates the confusion matrices. The definition is terse, not missing."
+        },
+        {
+          "reviewer": "Reviewer_zQxb",
+          "claim": "Only average error is reported; the convergence behaviour of the algorithms is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "l.235-238 define the reported metric as average error; Tables 1 and 2 show averages only, with no curves over time."
+        },
+        {
+          "reviewer": "Area chair (Committee A meta-review)",
+          "claim": "The derivations assume the confusion matrix is differentiable in the parameter, which never holds for a finite sample, and Theorems 2 and 3 need L to be finite.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 uses the Jacobian J_f of 1 - diag(C) (l.119) with no differentiability assumption; l.169-172 concede the D0 estimate is a step function whose naive derivative is 0. Theorems 2 and 3 define L as a supremum of gradient norms without assuming it finite. The camera-ready adds a differentiability assumption and two finite-gradient (Lipschitz) assumptions."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Only Reviewer_4NjZ replied: 'I would like to keep my score of 6.' Reviewer_yNzP, Reviewer_zQxb and Reviewer_e9d1 did not reply.",
+        "what_convinced_or_not": "The authors conceded Reviewer_e9d1's FTL point and promised to move the general (delta >= 0) Theorem 3 into the main text. They added last-layer fine-tuning, a ResNet50 base model, and an uncalibrated FTH run whose error rose by 0.6 to 3 points. No reviewer engaged with these results, so nothing moved."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts because 'the reviewers all appreciated the novelty'. It frames the contribution modestly, as an 'estimator due to Lipton et al.' combined with 'basic online learning techniques'. It then adds its own reading: the Appendix C evidence does 'not verify that these assumptions hold in practice', and the derivations rest on a differentiable confusion matrix that a finite sample never gives. It sets these as required revisions, not as grounds for rejection.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers valued the new online label-shift setting and the reduction to online learning (Eq. 3, Theorem 1).",
+        "Ratings 7, 6, 6, 5 (mean 6.0); the one 5 called the paper borderline for limited theory, not flawed.",
+        "The AC judged the weak theory (strong or approximate assumptions, implicit differentiability) fixable in revision."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        6,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_qmA9",
+        "Reviewer_r9Tm"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 6, 6, 6; no rating stands apart. The 7 (Reviewer_EUMs) says the theorems and proofs 'appear rigorous' but 'I have not checked the proofs'. Each 6 names a specific weakness and says the merits outweigh it."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qmA9",
+          "claim": "Theorem 2 only competes with the single best fixed classifier, which is a weak target when the label distribution changes.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6 takes the infimum over one fixed re-weighting vector p, and Theorem 2 bounds that regret (l.165-167). l.39-40 claim optimality only against 'a fixed classifier'. The authors deferred dynamic regret to future work."
+        },
+        {
+          "reviewer": "Reviewer_qmA9",
+          "claim": "The algorithms depend heavily on the quality of the initial model f0.",
+          "checked_against_paper": "correct",
+          "evidence": "The hypothesis space is re-weightings of f0 (l.139-140), and FTH's Assumption 2 holds only when f0 is near Bayes optimal and calibrated (l.191-195)."
+        },
+        {
+          "reviewer": "Reviewer_BpAt",
+          "claim": "The arXiv validation set comes from later years than the training set, which conflicts with Q0 = Q_train (L80).",
+          "checked_against_paper": "correct",
+          "evidence": "l.286-291: papers sorted by submission time and split 2:1:1; the validation set D0 calibrates f0 and estimates the confusion matrix. The authors conceded. In their rerun with in-distribution calibration every error rose by 0.2 to 0.6 points, in the same order."
+        },
+        {
+          "reviewer": "Reviewer_BpAt",
+          "claim": "The known-label OGD oracle may slightly outperform label-free OGD, so 'performs just as well' is not fully justified.",
+          "checked_against_paper": "correct",
+          "evidence": "Checked against the rebuttal table, not the paper: known-label OGD is lower in all seven columns, by 0.03 to 0.14 points."
+        },
+        {
+          "reviewer": "Reviewer_BpAt",
+          "claim": "The paper motivates the method with medical diagnosis but has no experiment in that setting.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 covers only simulated shift on CIFAR-10 (5.2) and arXiv categories (5.3)."
+        },
+        {
+          "reviewer": "Reviewer_r9Tm",
+          "claim": "The gains on the 23-class arXiv task are marginal.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: base 27.21% against 25.52% to 25.70% for OGD and FTH, a gain of about 1.5 to 1.7 points; the oracle OFC reaches only 25.56%."
+        },
+        {
+          "reviewer": "Reviewer_r9Tm",
+          "claim": "'Label distribution shift' is an unnecessary new concept, the same as 'label shift'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper introduces no new concept: it uses the two terms as synonyms ('a setting we refer to as label shift', l.62) and claims novelty only for the online setting. The authors still offered to rename the paper."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Both edits (Reviewer_qmA9 on 2021-07-16, Reviewer_r9Tm on 2021-07-18) predate the rebuttal of 2021-08-10. Reviewer_BpAt: 'inclined to stick with my original recommendation'. Reviewer_qmA9: 'I would like to stay with my score'. Reviewer_r9Tm thanked the authors and restated the naming point. Reviewer_EUMs did not reply.",
+        "what_convinced_or_not": "The rebuttal brought five new results: a known-label OGD oracle, a ResNet50 base model, last-layer fine-tuning, an arXiv rerun with in-distribution calibration, and a concept-shift check (confusion-matrix MSE 0.0002). BpAt and r9Tm welcomed them; BpAt doubted 'performs just as well'. qmA9 stayed unconvinced that a fixed comparator suits changing distributions and pointed to dynamic regret; the authors deferred it to future work. No score moved either way."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Says 'The paper received uniformly positive reviews' and lists four strengths: novel setting, 'original and novel theoretical results', 'comprehensive experimental study', clarity. It names no weakness and omits Reviewer_qmA9's unresolved fixed-comparator objection. 'Original and novel theoretical results' goes beyond qmA9's own view that the methods are 'largely established on the previous studies'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers rated 6 or 7 (mean 6.25) and named the new setting as the main merit.",
+        "Each 6 named a weakness (fixed comparator, the p(x|y) assumption, large label spaces) but judged the merits larger.",
+        "The rebuttal's new experiments answered most empirical questions; no score fell, and the AC restated the positive consensus."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Assumption 1 (convexity) holds only approximately; Assumption 2 (symmetric optimality) is strong (Reviewer_4NjZ, Reviewer_e9d1, AC)",
+    "FTH's sublinear regret follows from Assumption 2 with delta = 0; the general bound is only in the appendix (Reviewer_e9d1, Reviewer_4NjZ)",
+    "Confusion-matrix estimation error set to zero (Reviewer_e9d1)",
+    "Implicit differentiability of the confusion matrix and finiteness of L; the theory assumes the population Q0 (AC)",
+    "Only three seeds; no ablation on shift magnitude; mini-batch or seasonal shift (Reviewer_4NjZ, Reviewer_zQxb)",
+    "Role of the Optimal Fixed Classifier unclear (Reviewer_yNzP)"
+  ],
+  "issues_only_b": [
+    "Whether p(x|y) stays fixed in real applications such as healthcare or credit scoring (Reviewer_EUMs, Reviewer_BpAt)",
+    "arXiv validation set split by year, against Q0 = Q_train, which affects calibration (Reviewer_BpAt)",
+    "No labelled-oracle (standard online learner) baseline and no medical experiment (Reviewer_BpAt)",
+    "Large label spaces and small arXiv gains (Reviewer_r9Tm)",
+    "'Label distribution shift' versus 'label shift' naming (Reviewer_r9Tm)"
+  ],
+  "shared_issues": [
+    "Regret against a fixed comparator is a weak target when q_t changes (A: Reviewer_zQxb; B: Reviewer_qmA9)",
+    "Dependence on the quality of the base model f0 (A: Reviewer_zQxb; B: Reviewer_qmA9)",
+    "Only the re-weighting vector adapts, not model parameters such as the last layer (A: Reviewer_zQxb; B: Reviewer_r9Tm)",
+    "No plots of adaptation over time (A: Reviewer_zQxb; B: Reviewer_BpAt)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Both committees recommended a poster, for the same reasons, and weighed the same facts the same way. Every reviewer valued the new problem, online label shift, and its simple reduction to online learning: under label shift the expected 0-1 loss is linear in the label marginals, so a confusion-matrix estimator gives unbiased losses and gradients without labels (Eq. 3, Theorem 1). No reviewer found an error in this core. The weaknesses that reviewers raised are real, and the paper confirms them: convexity holds only approximately (l.161), the hold-out loss estimate is a step function (l.169-172), estimation error is set to zero (l.123-124), the regret compares only to one fixed re-weighting (Eq. 6), and the arXiv validation set is a later time slice than the training set (l.286-291). Both committees treated these as limits of scope, not as errors in a key result. Ratings sat between 5 and 7 (means 6.0 and 6.25). Seven of eight reviewers chose a confidence level that says the math was not carefully checked, and no score moved after the rebuttal. The committees differ in depth, not in direction. In A, the lone 5 (Reviewer_e9d1) and the AC's own reading pressed on the theory, and the AC attached required revisions that state the hidden assumptions; the camera-ready adds the differentiability and finite-gradient ones. In B, the AC restated the strengths and passed over Reviewer_qmA9's unresolved objection to the fixed comparator. Neither difference had the weight to change a decision.",
+  "candidate_reasons": [
+    "Novel setting valued by everyone",
+    "No error in core reduction",
+    "Theory limits treated as revisions",
+    "Compressed 5-to-7 ratings, no champion",
+    "Proofs unchecked in both committees",
+    "Rebuttal results moved no scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Eq. 3 and Theorem 1 (l.103-124)",
+    "paper_submitted.pdf l.160-172 (approximate convexity; step-function Jacobian)",
+    "paper_submitted.pdf Eq. 6, Theorem 2, l.228-229 and l.277-280 (fixed comparator; OFC)",
+    "paper_submitted.pdf l.286-291 and Table 2 (arXiv split and results)",
+    "paper.pdf (camera-ready) Assumptions 1, 3 and 5",
+    "Reviewer_e9d1 final review and authors' reply ('You are correct')",
+    "Reviewer_yNzP final review",
+    "Reviewer_qmA9 final review and replies of 2021-08-26",
+    "Reviewer_BpAt final review and reply of 2021-08-26",
+    "Committee A meta-review",
+    "Committee B meta-review"
+  ]
+}

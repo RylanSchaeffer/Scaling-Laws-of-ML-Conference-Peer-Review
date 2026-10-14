@@ -1,0 +1,264 @@
+{
+ "pair_id": "n21-077",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [8, 7, 8, 6],
+   "confidences": [3, 5, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_Zi4o", "Reviewer_eo3B", "Reviewer_dFPw"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 8, 7, 8, 6 span two points. The lowest, Reviewer_D6zB (6, confidence 3), is still on the accept side; its only stated brake is the high-level positioning ('what prevented a higher initial score')."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Zi4o",
+     "evidence": "Rating 8 ('clear accept', confidence 3) on a three-line summary and five questions. The submission answers three of them: Table 3 gives NC only 69.9, RC only 71.7 and both 72.6 against 68.7, and lines 291-293 state the 100-epoch budget behind Fig. 1. Its post-rebuttal comment is one line: 'it addressed well my concerns'."
+    },
+    {
+     "reviewer": "Reviewer_eo3B",
+     "evidence": "Partial. It asked what happens if normal cells are replaced by standard transformer blocks; Table 3 already reports this (71.7). It then accepted a reply that quoted 71.1, a value not in Table 3."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Zi4o",
+     "claim": "No ablation shows how much scale invariance and locality each contribute, or whether reduction cells plus plain ViT blocks would suffice.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3: T2T-ViT baseline 68.7; NC changes only 69.9; RC dilations only 69.8; RC with PCM and plain blocks 71.7; full model 72.6. Lines 276-288 discuss these rows."
+    },
+    {
+     "reviewer": "Reviewer_Zi4o",
+     "claim": "Fig. 1 at 100% data does not match Table 2.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 291-293: the data-fraction runs use a budget equal to 100 epochs on full ImageNet, while Table 2 uses 300 epochs (line 225). The 100% points (68.7, 72.6) equal the 100-epoch results of Table 3."
+    },
+    {
+     "reviewer": "Reviewer_Zi4o",
+     "claim": "Reduction cells apply MHSA at high spatial resolution, and the paper does not say what this costs.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (3) applies MHSA to the PRM output, and no memory or speed figure is given. Neither the submitted nor the camera-ready text mentions Performer; only the rebuttal discloses it."
+    },
+    {
+     "reviewer": "Reviewer_eo3B",
+     "claim": "The paper does not explain how existing vision transformers (Swin, PVT and others) already model scale and locality.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 122 lists eleven such works in one citation string; Section 2.2 then discusses only serial designs and Conformer. Lines 55-56 group Swin [36] and PVT [66] under 'single-scale context' without discussing their feature pyramids."
+    },
+    {
+     "reviewer": "Reviewer_eo3B",
+     "claim": "There are no detection or segmentation experiments.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.5 and Table 4 cover only classification fine-tuning (CIFAR, iNat19, Cars, Flowers, Pets). Reviewer_dFPw makes the same point for COCO."
+    },
+    {
+     "reviewer": "Reviewer_dFPw",
+     "claim": "'Real Top-1' is not defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 and line 229 use 'real Top-1' with no definition or citation. The camera-ready keeps the same wording."
+    },
+    {
+     "reviewer": "Reviewer_dFPw",
+     "claim": "ViTAE reduces the number of parameters while maintaining the computational requirements.",
+     "checked_against_paper": "incorrect",
+     "evidence": "ViTAE adds parameters and MACs to its T2T-ViT base: 4.3M to 4.8M and 1.2G to 1.5G (Tiny), 21.5M to 23.6M and 5.2G to 5.6G (Small). Against other models the parameter counts are matched, not much lower. Table 2 lists most baselines at about twice their published multiply-adds: DeiT-S 9.8 (4.6 in the T2T-ViT and Swin papers), Swin-T 9.0 (4.5), RegNetY-4GF 8.0. On one scale, ViTAE-S (5.6) costs more than DeiT-S and Swin-T."
+    },
+    {
+     "reviewer": "Reviewer_D6zB",
+     "claim": "The paper gives no wall-clock comparison, and Table 2 lacks ResNet-RS.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission reports only parameters and MACs. ResNet-RS is absent from Table 2."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_eo3B", "Reviewer_dFPw"],
+    "evidence": "Reviewer_eo3B, 2021-08-31, review edited the same day: 'additional evaluations on the dense prediction. I will upgrade my rating based upon this.' Final 7. Reviewer_dFPw's review, edited 2021-08-19, ends 'After further analysis and extra experiments provided by the authors updated score to 8.' Reviewer_Zi4o edited on 2021-08-11 after writing 'it addressed well my concerns'; any score change is not exposed. Reviewer_D6zB neither edited nor replied.",
+    "what_convinced_or_not": "New, unreviewed results: COCO detection (44.6 mAP with Mask R-CNN), ADE20K (47.8 mIoU), pose and video segmentation, a reduction cell without attention (71.3), and throughput close to T2T-ViT. Pointers to Table 3 settled the ablation questions. No reviewer checked the replies. One quoted eo3B 71.1, a value not in Table 3 (71.7 is). Another told Zi4o that the RC gain from 68.7 to 71.7 is 'scale invariance', but that row includes PCM; the dilation-only row is 69.8."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Four sentences, no reviewer named, no weakness mentioned. 'All of the reviewers were impressed by the soundness of the experiments, the clarity of the exposition and the significance of the results' overstates Reviewer_D6zB (6) and Reviewer_eo3B, who called the results 'comparable with other competing methods'. It credits 'favorable performance in terms of computer vs performance'; Table 2's MACs column does not support this, because it lists most baselines at about twice their published compute.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three clear-accept ratings (8, 7, 8) and a 6; mean 7.25",
+    "ImageNet accuracy at small model size and data- and training-efficiency gains over T2T-ViT (Fig. 1)",
+    "Concurrent hybrid models treated as a related-work framing issue, not as a novelty bar (eo3B)",
+    "New detection, segmentation and ablation results in the rebuttal lifted eo3B and dFPw",
+    "AC's generic praise of soundness, clarity and the compute-accuracy trade-off"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [6, 5, 5],
+   "confidences": [4, 5, 5],
+   "reviews_edited_after_posting": ["Reviewer_seSX", "Reviewer_kqV3"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 5, 5. Reviewer_seSX reached 6 only after the rebuttal. The two confidence-5 reviewers agree at 5. Reviewer_kqV3's only edit (2021-07-17) came the day after posting, before the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_kqV3",
+     "evidence": "Generic and taste-based: 'it is obvious that the extra conv layers will help', 'not very interesting to me'. It calls the accuracy 'not competitive if comparing to many recently proposed vision transformer works' but names none and concedes 'it may be too fastidious'. It defers: 'my final rating will consider the other reviewers’ comments'. It never replied to the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_seSX",
+     "evidence": "Partial. It asked 'what if only reduction cell is used with following block the same as the original MHSA blocks?'; Table 3 already reports this (71.7)."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "Table 2 omits T2T-ViT-14↑384 (83.3%), which beats ViTAE-S↑384 (83.0%) with fewer parameters and FLOPs, so ViTAE does worse than its own baseline.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 lists T2T-ViT only at 224 px while listing ViTAE-T/S, ViT-B/16 and EfficientNet-B4 at 380-384 px. The T2T-ViT paper's Table 2 gives T2T-ViT-14↑384 at 21.5M, 17.1G MACs, 83.3%; ViTAE-S↑384 is 23.6M, 20.2G, 83.0%. That table's caption says 'training from scratch', which fits the rebuttal's protocol defence. The rebuttal's from-scratch 83.8% is in neither version of the paper, and the camera-ready still omits the row."
+    },
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "The paper does not report T2T-ViT with both transformer and Performer token modules, which may make the comparison misleading.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 lists only T2T-ViT-7/14/19, the Performer variants. The paper never says that ViTAE's reduction cells use Performer; only the rebuttal does. The rebuttal's T2T-ViT_t-14 (81.7) is still below ViTAE-S (82.0)."
+    },
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "The claim that ViTAE-T beats distilled DeiT is unfair because ViTAE inherits T2T's improvements.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 2: the T2T-ViT-7 base (71.7, 4.3M) is below DeiT-T (72.2) and DeiT-T⚗ (74.5); ViTAE-T reaches 75.3 (4.8M). The T2T base gives no head start over DeiT."
+    },
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "Pre- and post-fusion are equal without BN (69.1 vs 69.0), but with BN pre-fusion is clearly better; the paper does not explain why.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 rows 2-5: 69.1, 69.0, 68.8 (post with BN), 69.9 (pre with BN). Lines 276-278 give no reason. No error bars are reported (checklist 3c: N/A)."
+    },
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "It is not clear that multiple dilations help; Table 3 lacks a single-dilation control and per-row parameters and FLOPs.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 has no single-dilation row and no cost columns. Its multi-dilation rows without PCM score 68.9-69.9 against 68.7, not monotonic in the dilation set. In the rebuttal, one dilation-1 convolution scores 69.9, and the full model with one dilation scores 71.9 against 72.6."
+    },
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "Besides ImageNet, the model is never trained from scratch, although the paper claims data efficiency.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.5: the CIFAR and fine-grained results are fine-tuned from ImageNet. The camera-ready adds a from-scratch CIFAR table."
+    },
+    {
+     "reviewer": "Reviewer_dhAk",
+     "claim": "Conformer [46] and LocalViT [32] already introduce convolutions into transformers, so novelty is limited.",
+     "checked_against_paper": "correct",
+     "evidence": "The overlap is real, but both are arXiv preprints from April and May 2021, three to seven weeks before the 28 May deadline. The paper calls Conformer 'the most relevant concurrent work' (lines 127-131) and beats both at matched size in Table 2: ViTAE-T 75.3 vs LocalViT-T 74.8; ViTAE-S 82.0 vs Conformer-Ti 81.3."
+    },
+    {
+     "reviewer": "Reviewer_kqV3",
+     "claim": "There are no results on downstream detection and segmentation.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.5 covers only classification fine-tuning."
+    },
+    {
+     "reviewer": "Reviewer_kqV3",
+     "claim": "The extra convolution branches add FLOPs.",
+     "checked_against_paper": "correct",
+     "evidence": "MACs rise over T2T-ViT: 1.2G to 1.5G (Tiny) and 5.2G to 5.6G (Small). Table 2 hides the wider gap to other models: it lists DeiT-S at 9.8 and Swin-T at 9.0, against 4.6 and 4.5 in their published tables."
+    },
+    {
+     "reviewer": "Reviewer_kqV3",
+     "claim": "The accuracy is not competitive with many recently proposed vision transformers.",
+     "checked_against_paper": "incorrect",
+     "evidence": "No model is named. In Table 2, ViTAE-S (82.0) beats every listed transformer at 224 px: Swin-T 81.3, Conformer-Ti 81.3, T2T-ViT-14 81.5, ConT-B 81.8, T2T-ViT-19 81.9."
+    },
+    {
+     "reviewer": "Reviewer_seSX",
+     "claim": "There is no ablation of the reduction cell followed by the original MHSA blocks.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3, second-last row ([1,2,3,4]↓ with PCM, no NC options): 71.7, against 72.6 for the full model (lines 285-288)."
+    },
+    {
+     "reviewer": "Reviewer_seSX",
+     "claim": "The experiments use only single-object classification datasets.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 2 and 4 are ImageNet classification and classification fine-tuning."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": ["Reviewer_seSX"],
+    "evidence": "Reviewer_seSX, 2021-08-26 ('Most of my concerns are addressed'), review edited the same day: 'I will increase my score.' Final 6. Reviewer_kqV3 last edited on 2021-07-17, before the rebuttal; Reviewer_dhAk never edited. Neither posted after the rebuttal. The AC: 'several of the reviewers did not respond to the author rebuttal'.",
+    "what_convinced_or_not": "seSX was moved by the dense-prediction table ('the proposed method do work on multi-scale dataset also') and by memory and speed figures up to 1024 px. The detractors never engaged with the replies: the same dense-prediction table for kqV3; for dhAk, the T2T-ViT-14↑384 protocol defence with a new from-scratch 83.8%, the DeiT table, single-dilation runs and CIFAR from scratch. The AC judged 'a number of concerns' addressed but left 'comparison to prior models' open without saying which point."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "It reports 'borderline' ratings with concerns on 'novelty with respect to other hybrid model approaches and proper evaluation of baselines', and notes that 'several of the reviewers did not respond'. Then: 'In my reading, the authors were able to address a number of concerns, but some points remain unclear, particularly with respect to comparison to prior models.' It names neither the point nor a reviewer; the baseline concern is Reviewer_dhAk's. The decision matches the 6, 5, 5 ratings.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Borderline ratings 6, 5, 5 (mean 5.33); the two confidence-5 reviewers below the threshold",
+    "Design judged incremental against concurrent convolution-transformer hybrids (Conformer, LocalViT)",
+    "Baseline doubts: omitted T2T-ViT-14↑384, unreported T2T variants, DeiT comparison (dhAk)",
+    "Detractors silent after the rebuttal; AC kept 'comparison to prior models' open"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "ResNet-RS missing from Table 2 (D6zB)",
+  "How the work fits when large-scale data is available (D6zB)",
+  "Cost of attention at high resolution in reduction cells (Zi4o)",
+  "Meaning of 'fair comparison' (Zi4o) and of 'real Top-1' (dFPw)",
+  "Fig. 1 versus Table 2 accuracies (Zi4o; answered in lines 291-293)",
+  "Whether attention is needed in reduction cells (dFPw)",
+  "Generic broader-impact statement (dFPw)"
+ ],
+ "issues_only_b": [
+  "T2T-ViT-14↑384 (83.3%) omitted from Table 2 (dhAk; confirmed)",
+  "T2T-ViT with transformer and Performer modules not both reported (dhAk; confirmed)",
+  "DeiT⚗ comparison called unfair (dhAk; refuted by Table 2)",
+  "Thin evidence that multiple dilations help; no single-dilation control or cost columns in Table 3 (dhAk; confirmed)",
+  "Why hand-crafted multi-scale convolutions help when MHSA is already global (seSX)",
+  "Batch norm changes the fusion result without explanation (dhAk)",
+  "No from-scratch training beyond ImageNet (dhAk)",
+  "Accuracy 'not competitive' with recent transformers (kqV3; unsupported)",
+  "Only single-object classification benchmarks (seSX)"
+ ],
+ "shared_issues": [
+  "No detection or segmentation results (eo3B, dFPw; kqV3, seSX); both committees got the same rebuttal table",
+  "Overlap with concurrent convolution-transformer hybrids (eo3B as framing; dhAk and kqV3 as novelty)",
+  "Speed, memory or FLOPs cost of the convolution branches (D6zB; seSX, kqV3)",
+  "Ablation of reduction versus normal cells, already in Table 3 (Zi4o, eo3B; seSX)",
+  "Attention type in the reduction cells: the replies to Zi4o and dhAk disclose Performer, which the paper never states"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees split because of who reviewed the paper, not because they saw different evidence. A's lowest rating (6) equals B's highest. Both saw a T2T-ViT variant with parallel convolutions and a multi-dilation stem that gains ImageNet accuracy at small size, has no detection or segmentation results, and overlaps with concurrent hybrids (Conformer, LocalViT, Swin, PVT). A's reviewers treated the overlap as framing (Reviewer_eo3B: it does 'not nullify the contributions') and the missing dense tasks as fixable; the rebuttal's new COCO and ADE20K results raised eo3B and Reviewer_dFPw. B's two confidence-5 reviewers called the design incremental. Reviewer_kqV3 gave no specifics. Reviewer_dhAk gave checkable points: the paper confirms the omitted T2T-ViT-14↑384 row (83.3%, cheaper than ViTAE-S↑384 at 83.0%) and the thin evidence for multiple dilations, and it refutes the DeiT charge. In both committees every reviewer who answered the rebuttal was satisfied; B's two detractors never answered. B's AC conceded that 'a number of concerns' were addressed but rejected on an unnamed 'comparison to prior models'. A's AC wrote a generic accept that credits a compute-accuracy trade-off no reviewer checked. Table 2 lists most baselines at about twice their published compute, so ViTAE-S (5.6 GMACs) in fact costs more than DeiT-S (4.6) and Swin-T (4.5). The same facts were weighed differently; B added non-engagement and one valid baseline catch, and A added a thin accept rationale.",
+ "candidate_reasons": [
+  "reviewer pools split at threshold",
+  "concurrent work weighed against novelty",
+  "detractors silent after rebuttal",
+  "one committee caught baseline omission",
+  "generic AC accept, unchecked claims",
+  "AC residual doubt left unnamed"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_dhAk review, points 1-5",
+  "Reviewer_kqV3 review",
+  "Reviewer_eo3B review and 2021-08-31 comment",
+  "Reviewer_dFPw review, closing score note",
+  "Reviewer_seSX 2021-08-26 comment",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf Table 2 (T2T-ViT rows at 224 px only; MACs column)",
+  "paper_submitted.pdf Table 3 and lines 276-288",
+  "paper_submitted.pdf lines 121-131 (Conformer, LocalViT)",
+  "T2T-ViT paper (arXiv 2101.11986) Table 2: T2T-ViT-14↑384 and DeiT-small MACs",
+  "Swin Transformer paper (arXiv 2103.14030) Table 1(a): Swin-T 4.5G, DeiT-S 4.6G, RegNetY-4G 4.0G"
+ ]
+}

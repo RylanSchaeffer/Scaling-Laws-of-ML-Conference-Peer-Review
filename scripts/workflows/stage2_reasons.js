@@ -3,7 +3,8 @@ export const meta = {
   description: 'Stage 2: grow the set of reasons from the stage 1 notes, every judgement logged on disk',
   phases: [{ title: 'Pass' }, { title: 'Blocks' }, { title: 'Back-fill' }, { title: 'Merge' }],
 }
-// args: { run: 1, mode: 'pass' | 'blocks' | 'backfill' | 'merge', order: [...all 301 pair ids in order...],
+// args: { run: 1, mode: 'pass' | 'blocks' | 'backfill' | 'merge' | 'align', order: [...pair ids in this run's order...],
+//         run_a, run_b (align),
 //         start_turn, end_turn (pass, blocks; 1-based, inclusive), block_size (blocks), pairs: [...] (backfill), effort ('max' default) }
 // The set of reasons lives on disk at analysis/stage2/run_<run>/reasons.json; the script passes state only through files.
 // mode 'pass': one turn at a time; the turn's agent appends its new reasons to reasons.json itself.
@@ -34,6 +35,8 @@ This is a BLOCK turn (prompt section "A block turn"), block ${b}. Judge which re
 const consolidatePrompt = (b, turns) => `You are the consolidation judge of stage 2 (read ${ROOT}/analysis/stage2/prompt.md, section "Consolidation"). Run ${args.run}, block ${b}. The block's turn files are: ${turns.map(n => `${RUN}/turn_${pad(n)}.json`).join(', ')}. The current set of reasons is ${RUN}/reasons.json.
 For every proposal in those files' "added" lists decide: it is an existing reason under another name (map to it); it is the same new mechanism as another proposal in this block (one new reason for all of them); or it is new on its own. Append the new reasons to ${RUN}/reasons.json with the next ids, and write ${RUN}/block_${pad(b)}.json exactly as the instructions say. Edit no other file.`
 const bfPrompt = (id, n) => `You are the back-fill judge of stage 2 (read ${ROOT}/analysis/stage2/prompt.md, section "Back-fill"). Run ${args.run}. The pair is ${id}, judged at turn ${n} (${RUN}/turn_${pad(n)}.json). The final set of reasons is ${RUN}/reasons.json. Every reason in it whose id does not appear in that turn file's "judgements" was never judged for this pair. Read the pair's stage 1 notes (${ROOT}/analysis/stage1/${id}.json and ${ROOT}/analysis/stage1/${id}.md), judge each such reason for this pair, yes or no with one line of justification, and write ${RUN}/backfill_${id}.json. Create no reasons; edit no other file.`
+const alignPrompt = (a, b) => `You are the alignment judge of stage 2 (read ${ROOT}/analysis/stage2/prompt.md, section "Alignment across runs"). Run a is ${a} (the reference), run b is ${b}. Read ${ROOT}/analysis/stage2/run_${a}/derived/reasons_final.json and ${ROOT}/analysis/stage2/run_${b}/derived/reasons_final.json. For every reason of run b name the reason of run a that is the same mechanism, or null. Write ${ROOT}/analysis/stage2/alignment_run${a}_run${b}.json as the instructions say. Change nothing else.`
+const ALIGN = { type: 'object', properties: { aligned: { type: 'integer' }, unmatched: { type: 'array', items: { type: 'string' } }, wrote_file: { type: 'boolean' } }, required: ['aligned', 'unmatched', 'wrote_file'] }
 const mergePrompt = `You are the merge judge of stage 2 (read ${ROOT}/analysis/stage2/prompt.md, section "Merge"). Run ${args.run}. Read ${RUN}/reasons.json and name every pair of entries that are one mechanism under two names. Write ${RUN}/merges.json as the instructions say. Change nothing else.`
 
 const order = args.order
@@ -79,5 +82,10 @@ if (mode === 'merge') {
   phase('Merge')
   const m = await agent(mergePrompt, { label: 'merge', phase: 'Merge', schema: MERGE, ...OPTS })
   return { mode, merges: m && m.merges, wrote: !!(m && m.wrote_file) }
+}
+if (mode === 'align') {
+  phase('Merge')
+  const r = await agent(alignPrompt(args.run_a, args.run_b), { label: `align run ${args.run_b} to run ${args.run_a}`, phase: 'Merge', schema: ALIGN, ...OPTS })
+  return { mode, aligned: r && r.aligned, unmatched: r && r.unmatched, wrote: !!(r && r.wrote_file) }
 }
 throw new Error(`unknown mode ${mode}`)

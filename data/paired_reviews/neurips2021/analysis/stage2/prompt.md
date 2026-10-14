@@ -81,3 +81,18 @@ mechanism under two names. It writes `run_<k>/merges.json`:
 
 Entries that overlap but name different mechanisms are not merged. The merge is applied afterwards by
 a script, which ORs the judgements; nothing in `reasons.json` is deleted.
+
+## Alignment across runs
+
+The alignment judge reads two runs' `derived/reasons_final.json` (run a, the reference, and run b) and
+names, for every reason of run b, the reason of run a that is the same mechanism, or null when none is. A
+reason of run a may be named by several of run b's, and the other way round, when one run split what the
+other kept together. It writes `analysis/stage2/alignment_run<a>_run<b>.json`:
+
+```
+{"run_a": a, "run_b": b, "prompt_version": 2,
+ "alignment": [{"run_b": "R05", "run_a": "R12", "why": "..."}, {"run_b": "R06", "run_a": null, "why": "..."}, ...],
+ "reasoning": "..."}
+```
+
+Every reason of run b appears exactly once. The comparison script derives the stability numbers from it.

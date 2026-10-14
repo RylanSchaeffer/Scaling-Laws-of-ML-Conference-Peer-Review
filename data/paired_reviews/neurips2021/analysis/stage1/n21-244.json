@@ -1,0 +1,262 @@
+{
+  "pair_id": "n21-244",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        5,
+        4,
+        7
+      ],
+      "confidences": [
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_NBmz",
+        "Reviewer_5RfN"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_5RfN",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "Ratings 5/4/7 (QgMM, NBmz, 5RfN). The 7 is the only accept vote, two points above the next. It comes from the most careful A review (10 hours, confidence 4). That review first said the work 'seems to be lack of technical and algorithmic contribution' and that Theorem 1 'seems to be quite straightforward', which is B's objection. 5RfN then pressed the authors twice. It said the claim that an uncentered influence function (UIF) is needed for the second-order rate is 'only a conjecture'. The paper confirms this: lines 119-121 and 196-197 assert the need, and Theorem 1 proves sufficiency only. After a Taylor-expansion argument and the partial-linear-regression example (2021-08-25), it wrote 'Your response clearly addressed my concerns' and raised to 7 (edit 2021-08-31). The same reply softened the paper's claim to 'sufficient but not necessary'; 5RfN did not remark on that."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_NBmz",
+          "evidence": "Five hours, confidence 4. Its headline objection, that there is no proof of 'asymptotic optimality' of the bandit algorithm, misreads the title. On 2021-09-02 it wrote 'I misunderstood the meaning of \"asymptotically best\" and misread the content of the paper'. It raised its score on 2021-09-02 ('I increased my score because I felt that the setting is interesting'). After the discussion closed it wrote 'I could not read the paper carefully before' and returned to its initial 4 (edit 2021-09-24). Its final argument, that the best asymptotic variance 'should be determined by theoretical analysis, not by empirical evaluation', is wrong: sigma^2_k = var_p[psi_k(W_k, eta_k)] (lines 105-106, 125) depends on the unknown distribution p."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_NBmz",
+          "claim": "The title promises asymptotic optimality, but the paper gives no proof that its best-arm-identification algorithm is asymptotically optimal.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper never claims an optimal algorithm. 'Best' means the estimator with the lowest asymptotic variance: 'learning the estimator that will perform best in the sample-plentiful regime' (lines 37-40) and 'best performance in the asymptotic regime, as measured by the asymptotic variance' (lines 85-86). Lines 287-292 state that the single-log bounds do not reach the optimal rates. NBmz conceded the misreading on 2021-09-02."
+        },
+        {
+          "reviewer": "Reviewer_NBmz",
+          "claim": "Sample splitting wastes half of the samples; a cross-fitting or adaptive approach would use all data.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (1) and Algorithms 1-2 put half of each batch in D^eta and half in D^sigma. The authors agreed and said finite-sample bounds for cross-fitted estimators are not available."
+        },
+        {
+          "reviewer": "Reviewer_NBmz",
+          "claim": "(Discussion, 2021-09-21 and 2021-09-22) Asymptotic variance is a population quantity that should be derived by theory, not estimated; a constant estimator would be selected.",
+          "checked_against_paper": "incorrect",
+          "evidence": "sigma^2_k = var_p[psi_k(W_k, eta_k)] (lines 105-106, 125) depends on the unknown p and nuisance eta_k, so it must be estimated. Lines 97-107 restrict the arms to asymptotically linear estimators with an influence function, which excludes a constant estimator."
+        },
+        {
+          "reviewer": "Reviewer_QgMM",
+          "claim": "The experiments use only 9 formulas, so scaling with the number of formulas is not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 317: 'for a total of 9 formulas'. The rebuttal added runs with 17, 33 and 65 formulas; at 65, CS-LUCB needed 2.3% of the uniform baseline's samples. QgMM did not reply."
+        },
+        {
+          "reviewer": "Reviewer_5RfN",
+          "claim": "The experiments compare only with uniform sampling.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 337-345 compare CS-LUCB and CS-SE with 'a naive uniform sampling baseline' only. The authors said no other baseline exists for the sequential setting."
+        },
+        {
+          "reviewer": "Reviewer_5RfN",
+          "claim": "Theorem 1 is the only technical contribution and is straightforward; the claim that a UIF is needed for the second-order rate is unproven.",
+          "checked_against_paper": "correct",
+          "evidence": "The proof outline (lines 206-211) is an algebraic expansion with Lipschitz and Cauchy-Schwarz steps; the authors agreed it is 'indeed straightforward'. Lines 119-121 say 'one must have an UIF as well', but no result shows necessity. The rebuttal of 2021-08-25 calls the UIF 'a sufficient but not necessary condition'."
+        },
+        {
+          "reviewer": "Reviewer_5RfN",
+          "claim": "Appendix D has notation errors: lambda^T S_t is a scalar while psi(lambda) V_t is a matrix, and sub-psi is undefined.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The 12-page submitted PDF has no appendix. The authors conceded a missing transpose and an undefined notation."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": [
+          "Reviewer_5RfN",
+          "Reviewer_NBmz"
+        ],
+        "evidence": "Authors replied to all three on 2021-08-11. Reviewer_5RfN replied on 2021-08-23 and 2021-08-31 and wrote 'I raise my score to 7' (edit 2021-08-31). Reviewer_NBmz wrote on 2021-09-02 'I increased my score because I felt that the setting is interesting'. After the discussion period it wrote 'I keep my initial score' (2021-09-21, 2021-09-22) and its review was edited on 2021-09-24; the final rating is 4. Reviewer_QgMM never posted or edited.",
+        "what_convinced_or_not": "5RfN was convinced by the explanation of why Theorem 1 needs an uncentered influence function (Taylor expansion; partial linear regression as a Neyman-orthogonal case without a UIF) and by the answers on influence functions under latent variables and on regret minimisation. NBmz was briefly moved by the setting, then rejected its premise: it held that asymptotic variance is a population quantity that need not be estimated. The authors' long AIPW example with three adjustment sets did not move it. QgMM did not respond to the new results for 17 to 65 formulas."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Accepted at a mean of 5.33 (5, 4, 7) with one accept vote. The two-sentence meta-review says 'While the techniques are not new, the reviewers and the AC believe the result in this paper is an important first step'. That echoes QgMM's 'first step' wording and 5RfN's 7. It ignores NBmz, who had just returned to 4 and called the setting 'a bit unreasonable'. It adds a request to discuss causal-bandit theory that no A reviewer raised.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Reviewer_5RfN's 7, reached after two rebuttal rounds on why Theorem 1 needs an uncentered influence function; the only accept vote.",
+        "The AC valued the new framing as 'an important first step' and accepted at a mean of 5.33 despite 'the techniques are not new'.",
+        "Reviewer_QgMM's text is supportive (four strengths, two mild requests) despite its 5; the meta-review echoes its 'first step' wording.",
+        "Reviewer_NBmz's 4 rests on an admitted misreading and a mistaken view of asymptotic variance; the AC set it aside."
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        3,
+        4,
+        5,
+        5
+      ],
+      "confidences": [
+        4,
+        3,
+        1,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_sw9W",
+        "Reviewer_bePw"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 3/4/5/5 (sw9W, bePw, ysqL, t43v). All four sit at or below borderline, within two points. The lowest, Reviewer_sw9W's 3 (2 hours, confidence 4), rests partly on a false claim about the identification formulas. Without it the mean is 4.67, still a reject. No reviewer argued for acceptance."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_sw9W",
+          "evidence": "Two hours at confidence 4 for a 'Clear rejection'. Its main 'several (in)equalities are incorrect' claim is false: lines 81-82 are the textbook backdoor and frontdoor formulas for the page-2 DAG. Its other points (lambda_x undefined, a non-random PAC event, 'casual') are correct but are notation. 'Theorems hold under too many conditions' gives no example. It never answered the rebuttal, which cited Pearl's equations 3.21 and 3.31; its only edit (2021-07-04) predates the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_sw9W",
+          "claim": "The decompositions at lines 81-82 are incorrect; mu_x(Z1) needs a do-operator, which contradicts the claim of using only observational quantities.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The page-2 DAG is Z1->X, Z1->Y, X->Z2->Y. Line 81, mu_do(x) = E_p[mu_x(Z1)] with mu_x(Z1) := E_p[Y | X=x, Z1], is the backdoor adjustment formula. Line 82 is the frontdoor formula (Pearl 2000, eqs. 3.21 and 3.31). The only flaw is reusing mu_x' for E[Y | X=x', Z2]."
+        },
+        {
+          "reviewer": "Reviewer_sw9W",
+          "claim": "In the inequality below line 132, the event inside the probability is not random.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 128 defines k* = argmin_k c_k sigma^2_k, a fixed index, so P(c_k* sigma^2_k* >= min_k c_k sigma^2_k + epsilon) is the probability of a deterministic event. The display also reads '>= delta' where '<= delta' is meant. The authors conceded the notation."
+        },
+        {
+          "reviewer": "Reviewer_sw9W",
+          "claim": "lambda_x at line 76 is not defined (also Reviewer_ysqL).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 76 sets tau := sum_x lambda_x mu_do(x) with no definition of lambda_x; only line 315 sets lambda = (1, -1) for the ATE. The authors said the definition 'was mistakenly removed'; the camera-ready defines it."
+        },
+        {
+          "reviewer": "Reviewer_ysqL",
+          "claim": "Algorithm 1 does not take cost into account, and its first if-condition is wrong.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 (page 6) never uses c_k, although line 246 says CS-LUCB samples 'the estimator with the lowest c_k sigma-hat^2_k'. Its test sigma-hat^2_l - beta_l <= sigma-hat^2_u + beta_u - epsilon compares the leader's lower bound with the challenger's upper bound, the reverse of LUCB. The authors conceded; the camera-ready uses c_l sigma-hat^2_l + beta_l <= c_u sigma-hat^2_u - beta_u - epsilon."
+        },
+        {
+          "reviewer": "Reviewer_t43v",
+          "claim": "nu_theta should be nu_eta in the expression for nu on lines 280 and 282.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 275, 280 and 282 write nu = max{2 nu_theta, nu_1, nu_2}, where theta is the bound index; nu_eta is meant."
+        },
+        {
+          "reviewer": "Reviewer_t43v",
+          "claim": "Corollary 2's condition nu_eta <= -1/4 does not fit its bounds (should it be -1/2?).",
+          "checked_against_paper": "correct",
+          "evidence": "The display is inconsistent, but not where t43v guessed. With nu = max{2 nu_eta, nu_1, nu_2} and nu_1 = nu_2 = -1/2, the threshold -1/4 is right; the second bound's exponent 1/nu_eta should be 1/(2 nu_eta). The authors fixed the exponent."
+        },
+        {
+          "reviewer": "Reviewer_t43v",
+          "claim": "There is no lower bound, and Theorem 3 covers only epsilon = 0 (also Reviewer_bePw on lower bounds).",
+          "checked_against_paper": "correct",
+          "evidence": "Theorems 2-3 and Corollary 2 give upper bounds only. Theorem 3 returns a (0, delta)-PAC index (line 277)."
+        },
+        {
+          "reviewer": "Reviewer_bePw",
+          "claim": "If sample splitting follows Chernozhukov et al. 2018, the paper should cite it in the main text.",
+          "checked_against_paper": "incorrect",
+          "evidence": "It is reference [2], cited at line 45 and at line 117 inside the sample-splitting paragraph ('double/debiased machine learning [2, 4]')."
+        },
+        {
+          "reviewer": "Reviewer_bePw",
+          "claim": "Causal-bandit papers (Lattimore et al. 2016; Kallus 2018) are not cited or compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither appears among the 29 references. Committee A's AC asked for the same discussion."
+        },
+        {
+          "reviewer": "Reviewer_bePw",
+          "claim": "'Casual' for 'causal' in the title (also Reviewer_sw9W).",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted title: 'Asymptotically Best Casual Effect Identification with Multi-Armed Bandits'; also line 47."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Authors replied to all four on 2021-08-12. No reviewer posted in the discussion. Reviewer_bePw's edit (2021-09-01) adds 'After Rebuttal ... my score remains the same'. Reviewer_sw9W's edit (2021-07-04) predates the rebuttal. Reviewer_ysqL and Reviewer_t43v never edited.",
+        "what_convinced_or_not": "bePw was not convinced. It asked for clearer technical contributions, a comparison with the pure-exploration literature, and a proof behind the cumulative-regret analogy, and it noted 'casual' again in the rebuttal. ysqL had written 'I would be happy to revise my score if the authors can provide simple explanations'. The authors sent the same Theorem 1 argument that moved Reviewer_5RfN in A and conceded the Algorithm 1 errors; ysqL never replied. sw9W's formula claim was rebutted with Pearl's equations, with no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejected at a mean of 4.25 with no score above 5. The meta-review restates the reviews: 'the techniques materials of this paper is standard and the contribution is somewhat limited', the BAI idea is 'novel', and writing issues 'must be thoroughly addressed'. It does not mention the rebuttal or its Theorem 1 argument.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "No rating above 5 (3, 4, 5, 5; mean 4.25) and no champion.",
+        "The bandit algorithms, their analysis and the proof of Theorem 1 were judged standard; contribution 'somewhat limited' (bePw, ysqL, t43v, sw9W; meta-review).",
+        "Errors in the main text: Algorithm 1 ignores costs and reverses the stopping test, lambda_x is undefined, the PAC event is deterministic, Corollary 2 and nu_theta typos, 'Casual' in the title. The AC said writing issues 'must be thoroughly addressed'.",
+        "No lower bounds and missing related work (causal bandits; Kato et al. 2020).",
+        "Only bePw answered the rebuttal (score unchanged); ysqL, who had offered to revise, never replied."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Sample splitting discards half the data for nuisance fitting; cross-fitting suggested (Reviewer_NBmz)",
+    "Scaling with the number of formulas; experiments use only 9 (Reviewer_QgMM)",
+    "Necessity of the uncentered influence function asserted at lines 119-121 but not proved (Reviewer_5RfN)",
+    "Only a uniform-sampling baseline; no graph-based comparison (Reviewer_5RfN)",
+    "Whether estimated asymptotic variance is a valid selection criterion at all (Reviewer_NBmz, late discussion; mistaken)",
+    "Latent-variable cases where influence functions remain available; Appendix D notation (Reviewer_5RfN)"
+  ],
+  "issues_only_b": [
+    "Algorithm 1 ignores costs and reverses the LUCB stopping test (Reviewer_ysqL)",
+    "Undefined lambda_x and a deterministic PAC event (Reviewer_sw9W, Reviewer_ysqL)",
+    "Claimed errors in the backdoor and frontdoor formulas at lines 81-82 (Reviewer_sw9W; incorrect)",
+    "nu_theta typos, the Corollary 2 exponent, Theorem 3 only for epsilon = 0 (Reviewer_t43v)",
+    "Missing causal-bandit literature (Reviewer_bePw; A's AC raised it, A's reviewers did not)",
+    "LUCB and SE are not state-of-the-art fixed-confidence algorithms (Reviewer_bePw)",
+    "'Casual' in the title (Reviewer_sw9W, Reviewer_bePw)"
+  ],
+  "shared_issues": [
+    "Bandit algorithms and analysis are standard; little technical novelty beyond Theorem 1, whose proof is short (Reviewer_5RfN in A; Reviewer_bePw, Reviewer_ysqL, Reviewer_t43v, Reviewer_sw9W in B; both meta-reviews)",
+    "The best-arm-identification framing of formula selection is new (Reviewer_QgMM, Reviewer_5RfN in A; Reviewer_sw9W, Reviewer_ysqL, Reviewer_t43v and the AC in B)",
+    "No optimality result or lower bound for the bandit algorithms; 'Best' in the title is misleading (Reviewer_NBmz in A; Reviewer_bePw, Reviewer_t43v in B)",
+    "Weak practical motivation (Reviewer_NBmz in A; Reviewer_sw9W, Reviewer_ysqL in B)",
+    "Adaptive-experiment work by Kato and co-authors (2020) not discussed (Reviewer_NBmz in A; Reviewer_t43v in B)",
+    "Best-arm identification versus cumulative-regret framing (Reviewer_5RfN in A; Reviewer_bePw, Reviewer_ysqL in B)",
+    "Exposition gaps: missing bandit background (Reviewer_5RfN in A); notation and setting hard to follow (Reviewer_sw9W, Reviewer_ysqL in B). 5RfN and t43v both called the paper well organised."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees read the paper the same way: a new and simple framing (choose an identification formula by best-arm identification), standard bandit machinery (LUCB, SE and their analysis), one modest technical result (Theorem 1, with a short proof), and loose presentation. A accepted because one reviewer was converted by the rebuttal and the AC accepted below the mean. Reviewer_5RfN opened with B's objection ('lack of technical and algorithmic contribution'), argued it out over two rounds, and raised to 7 after the authors explained why an uncentered influence function gives the second-order nuisance rate. The AC accepted at a mean of 5.33 as 'an important first step'. It set aside Reviewer_NBmz's 4, which rested on an admitted misreading of 'asymptotically best' and on the mistaken view that asymptotic variance need not be estimated. B produced no champion: ratings stayed at 3 to 5, and only Reviewer_bePw answered the rebuttal, without a change. Reviewer_ysqL had offered to raise its score for a simple account of significance. The authors sent the argument that moved 5RfN, and ysqL never replied. B's reviewers read the main text more closely and found real errors that A missed: Algorithm 1 ignores costs and reverses the stopping test, lambda_x is undefined, and the PAC event is deterministic. These are easy to fix, and the camera-ready fixes them. Reviewer_sw9W's 3 (2 hours) rests partly on a false claim that the textbook backdoor and frontdoor formulas are wrong. No fatal flaw separates the outcomes. The two ACs drew opposite conclusions from the same facts: 'the techniques are not new ... an important first step' in A, 'standard and the contribution is somewhat limited' in B.",
+  "candidate_reasons": [
+    "Rebuttal converted a single champion",
+    "Rejecting committee silent after rebuttal",
+    "AC accepted below mean score",
+    "Standard techniques weighted differently",
+    "Misreading detractor discounted by AC",
+    "Fixable errors found by one committee"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_5RfN main review (Significance) and comments of 2021-08-23 and 2021-08-31",
+    "Authors' reply to Reviewer_5RfN of 2021-08-25 (Taylor expansion; 'sufficient but not necessary')",
+    "Reviewer_NBmz comments of 2021-09-02, 2021-09-21 and 2021-09-22",
+    "Reviewer_QgMM strengths and weaknesses",
+    "Committee A meta-review",
+    "Reviewer_ysqL Quality points 2-3",
+    "Reviewer_sw9W Quality section (lines 81-82, line 132)",
+    "Reviewer_bePw 'After Rebuttal' edit",
+    "Committee B meta-review",
+    "paper_submitted.pdf: page-2 DAG and lines 76, 81-82; lines 119-121 and 196-197; lines 127-133 (PAC definition); Algorithm 1 (page 6); lines 275-286 (Theorems 2-3, Corollary 2); line 317"
+  ]
+}

@@ -118,5 +118,61 @@
     "created_by_pair": "n21-092",
     "created_turn": 11,
     "exemplar": "A's Reviewer_PMym rated 8 citing a gain from O(eps^-2.5) to O(eps^-2), but the paper's Table 1 already lists stocBiO and STABLE at O(eps^-2), and A's area chair called the analysis 'tight' though the paper proves no lower bound."
+  },
+  {
+    "id": "R16",
+    "name": "Damaging rebuttal admission did not lower scores",
+    "definition": "The authors' response to one committee conceded an unfavourable fact about the paper's results, such as a stronger baseline beating the method, and that committee's reviewers and area chair did not lower their scores or recommendation, or raised them, so that committee ended higher than its information supported.",
+    "created_by_pair": "n21-104",
+    "created_turn": 12,
+    "exemplar": "Only A heard the authors concede that a tuned Transformer beats the model by 3 to 4 BLEU on MT (the camera-ready calls its MT results 'largely negative'), yet Reviewer_fSHR then raised to 7 and A's area chair called the results 'strong' and gave a spotlight."
+  },
+  {
+    "id": "R17",
+    "name": "Late objection left the authors no reply",
+    "definition": "A reviewer on one committee raised a new objection, or lowered their score, only after the author-response period had closed, so the authors could not answer it and it stood unrefuted in that committee's recommendation, while the other committee's objections came early enough to be answered in the rebuttal.",
+    "created_by_pair": "n21-127",
+    "created_turn": 13,
+    "exemplar": "A's Reviewer_ecPK cut 6 to 5 in an edit dated 2021-09-06, a month after the author response, on a new and wrong subsampling argument that nobody answered and A's meta-review repeated; B's equally wrong prior-work objection came in the review, was refuted, and its reviewer raised to 6."
+  },
+  {
+    "id": "R18",
+    "name": "Area chairs used different tier cut-offs",
+    "definition": "The two committees' area chairs turned near-identical reviewer scores and arguments into different tiers, each citing only the scores or general reviewer support, so the split reflects where each area chair placed the tier threshold, not a difference in the reviews or an area chair's own reading of the paper.",
+    "created_by_pair": "n21-136",
+    "created_turn": 14,
+    "exemplar": "Both committees gave one 8, two 7s and one 6 (mean 7.0); B's area chair recommended a spotlight on 'sufficient positive feedback and support' with no reason for the tier, while A's two-sentence meta-review on the same profile recommended a poster."
+  },
+  {
+    "id": "R19",
+    "name": "Area chair passed over the expert reviewer's verdict",
+    "definition": "One committee's best-informed reviewer (highest confidence, most specific review) reached a verdict that the area chair neither cited nor weighed, following instead the mean of less-informed reviewers' scores, so the recommendation reflected the less-informed majority.",
+    "created_by_pair": "n21-156",
+    "created_turn": 15,
+    "exemplar": "A's only confidence-4 reviewer, Reviewer_x8VX (5 h), rated 8 and called the qualitative evaluation 'great', but A's two-sentence meta-review never mentions that review and follows the 6.5 mean of three low-confidence 6s to a poster."
+  },
+  {
+    "id": "R20",
+    "name": "Rebuttal could answer one committee's concerns only",
+    "definition": "One committee's main concerns were gaps the authors could close in their response with new results or clarification, while the other committee's main concerns were about the paper's scope or demonstration, which no response could fix, so the rebuttal lifted the first committee's scores further than the second's.",
+    "created_by_pair": "n21-172",
+    "created_turn": 16,
+    "exemplar": "A's champion Reviewer_sKB5 asked about binding capacity, received a new table (384 against 24 error-free pairs at d=8100) and rose to 8, while B's three reviewers objected that XML with two fixed roles never tests HRR binding, which the authors could answer only with promised text."
+  },
+  {
+    "id": "R21",
+    "name": "One outlying score set the tier",
+    "definition": "A single reviewer whose score stood far from the rest of their committee, as champion or detractor, moved that committee's mean across a tier boundary, while the remaining reviewers' scores matched the other committee's.",
+    "created_by_pair": "n21-178",
+    "created_turn": 17,
+    "exemplar": "Without A's champion Reviewer_BBLZ (9) and B's detractor Reviewer_wwer (3), both committees end at 7, 7, 8, so the two outliers alone turn means of 7.75 and 6.25 into spotlight and poster."
+  },
+  {
+    "id": "R22",
+    "name": "Outlying reviewer ignored the rebuttal and discussion",
+    "definition": "A reviewer whose score stood apart from their committee never replied to the authors' response or joined the discussion, so a score whose basis the response had answered stood unrevised in that committee's recommendation.",
+    "created_by_pair": "n21-178",
+    "created_turn": 17,
+    "exemplar": "B's Reviewer_wwer never answered the authors' reply that TD3+BC appeared after the deadline and that other reviewers found the paper clear, and the 3 stood while B's other two raised scores rose to 7."
   }
 ]

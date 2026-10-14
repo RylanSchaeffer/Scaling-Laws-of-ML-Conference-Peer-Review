@@ -1,0 +1,171 @@
+{
+  "run": 1,
+  "turn": 17,
+  "pair_id": "n21-178",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both area chairs followed their reviewers: A's reports an explicit spotlight consensus, and B's poster matches three accepts and one reject (mean 6.25)."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither area chair nor any reviewer forecast impact beyond the paper's offline-RL setting."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The rebuttal moved two scores in each committee (A's vwkm and oZUe, B's yZ2w and fkPB)."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's detractor Reviewer_wwer gave 3 after 3 hours, misdescribed the method as 'one step gradients', asked for a baseline posted after the deadline and named no specific error; that review alone pulls B's mean down."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "The notes find that neither committee saw evidence the other missed; B-only points (YOEO, theory) were answered or not claimed, and the prior-work weakness was shared."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both cores praised the same simple, strong baseline and named the same under-credited prior work, yet one committee gave a spotlight and the other a poster."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "The raises cite the authors' responses (10-seed results, the YOEO table), not other reviewers' assessments."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Reviewer_yZ2w's text still says 'weak vote to reject' beside a 7, but that is stale text after a rebuttal raise and pulled B toward A; the outliers' scores match their own texts."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "All reviewers had confidence 4 or 5, and none said they could not judge the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "A's area chair cites a consensus, not BBLZ's view; B's echoes fkPB, who is not an outlier."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The two cores scored alike (7, 7, 8 in each); the gap comes from single outliers, not from a calibration shift across the committee."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A's spotlight rests on scores that include a 9, not on unanimity at the accept level."
+    },
+    {
+      "id": "R13",
+      "applies": true,
+      "justification": "B's Reviewer_yZ2w raised to 7 on the authors' YOEO table, writing 'I didn't double-check the GN scores', numbers not in the paper; this lifted B, so it narrowed the gap."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Neither meta-review carried the reviewers' weaknesses forward, so this does not separate the committees."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "B's 3 rested on wwer's wrong reading of the method ('one step gradients') and a post-deadline baseline, and A's 9 called the claims 'modest and well validated' though Table 1 and the authors' concession show an overstated superiority claim."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "The authors conceded to A's Reviewer_T3oZ that one-step is 'sometimes better and sometimes worse', yet no A score fell, BBLZ's 9 stood on 'modest' claims, and A's area chair praised the 'clear message' with a spotlight."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection or score cut came after the response period in either committee."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The final means differ (7.75 against 6.25), and each area chair followed its mean, so this is not a cut-off gap on near-identical scores."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither area chair set aside a best-informed reviewer; confidence was 4 or 5 across both committees."
+    },
+    {
+      "id": "R20",
+      "applies": false,
+      "justification": "Both committees' main concerns (seeds and prior work in A; YOEO novelty in B) were answerable, and the rebuttal lifted two scores in each."
+    }
+  ],
+  "added": [
+    {
+      "id": "R21",
+      "name": "One outlying score set the tier",
+      "definition": "A single reviewer whose score stood far from the rest of their committee, as champion or detractor, moved that committee's mean across a tier boundary, while the remaining reviewers' scores matched the other committee's.",
+      "justification": "R10 needs the area chair to adopt the outlier's view and R04 covers thin reviews, but no reason names the arithmetic mechanism here: one extreme score on each side, with identical cores, decides the tier."
+    },
+    {
+      "id": "R22",
+      "name": "Outlying reviewer ignored the rebuttal and discussion",
+      "definition": "A reviewer whose score stood apart from their committee never replied to the authors' response or joined the discussion, so a score whose basis the response had answered stood unrevised in that committee's recommendation.",
+      "justification": "R03 covers a rebuttal that moved one committee and not the other, but here the rebuttal moved both; the mechanism is one reviewer's non-engagement, which left an answered objection standing."
+    }
+  ],
+  "reasoning": "Stage 1 finds that the two committees' cores are identical (7, 7, 8 after rebuttal) and that one outlier per committee, in opposite directions, separates spotlight from poster. Existing reasons cover the quality of those outlier reviews (R04 for wwer's inattentive review, R15 for factual errors behind both outlier scores), the shared evidence weighted differently (R06), an unverified rebuttal table in B (R13) and A's unpenalised concession on the superiority claim (R16). None names the mechanism that a single extreme score moves a mean across a tier boundary, so R21 is added; none names a detractor who ignored an answering rebuttal, so R22 is added. Area-chair reasons do not apply, because both area chairs followed their means.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22"
+  ]
+}

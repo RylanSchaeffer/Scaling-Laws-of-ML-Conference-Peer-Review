@@ -1,0 +1,229 @@
+{
+ "pair_id": "n21-253",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    5,
+    7,
+    5,
+    6
+   ],
+   "confidences": [
+    5,
+    5,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_dFuU",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only rating above 6, at confidence 5 ('checked the math/other details carefully') after 3 hours. The review is three bullets of praise ('The novelty is clear and motivation is reasonable', 'achieves state-of-the-art performances on five popular VideoQA datasets') with no weakness and one request to release code. It misnames the method 'SimSamRea'. It accepts the five-dataset state-of-the-art claim although Table 5 leaves out ClipBERT, whose published TGIF-QA results are higher. It never posted after the rebuttal. This 7 is not evidence of quality."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_dFuU",
+     "evidence": "Three bullets of praise and no weakness at confidence 5 after 3 hours; misnames the method 'SimSamRea'; repeats the state-of-the-art claim without checking the baselines; no post after the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_iH3u",
+     "evidence": "A 6 on a four-sentence main review of stock praise ('technically sound', 'clearly written', 'Extensive evaluations are conducted on five benchmarks') and one question on W1 and W2 in Eq. 5. It does not look at the baselines. Its only later post: 'My question has been addressed. I will keep my original rating.'"
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_dFuU",
+     "claim": "SiaSamRea achieves state-of-the-art performance on five VideoQA datasets.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 5 (TGIF-QA) leaves out ClipBERT [22]. ClipBERT's own paper reports 82.8/87.8/60.3 on Action/Transition/FrameQA; the submission reports 79.7/85.3/60.2 (Table 5, lines 344-352). In Committee B's rebuttal the authors did not dispute this and blamed their own data filtering."
+    },
+    {
+     "reviewer": "Reviewer_THcD",
+     "claim": "The ablation does not separate extra clip information from ensembling or extra parameters.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 has only baseline, w/ SKR (averaging) and w/ SKG+SKR, on How2QA and MSVD-QA. The rebuttal ran the control: eight copies of the anchor clip give 41.3 on MSVD-QA, against 39.4 (baseline) and 45.5 (full method)."
+    },
+    {
+     "reviewer": "Reviewer_THcD",
+     "claim": "Section 3.2 does not say where the anchor clip may start or what 'nearby' means.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 141-143: 'We randomly decide the starting sampling index of the anchor clip' and siamese clips start 'nearby the index of the anchor clip', with no definition. The rebuttal added that the anchor starts in the first third of the video and siamese clips are adjacent."
+    },
+    {
+     "reviewer": "Reviewer_JZcw",
+     "claim": "SKR alone gives a big boost (~4%), so soft labels drive much of the gain, while the compared methods use no soft labels.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: SKR with plain averaging adds 3.9 (How2QA) and 5.3 (MSVD-QA) over the baseline; the similarity-based SKG adds only 1.1 and 0.8 more. No method in Tables 3-5 uses self-distillation, and no generic soft-label baseline is given."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after posting (posted 2021-07-10 to 2021-07-18). The authors answered on 2021-08-10 and asked for feedback on 2021-08-20. Reviewer_JZcw replied on 2021-08-22 and 2021-08-25: 'I would like to keep the Rating as 5'. Reviewer_iH3u replied on 2021-08-31: 'I will keep my original rating.' Reviewer_THcD and Reviewer_dFuU never posted. The meta-review's 'one reviewer increasing their score after the author response' has no support in the record.",
+    "what_convinced_or_not": "The rebuttal gave a W1/W2 ablation (44.5 without both, 45.5 with, on MSVD-QA), the anchor-copies control (41.3), sampling details, and a promise of notation and pseudo-code. iH3u was satisfied. THcD did not react. JZcw kept its objection that the method is generic video understanding, not VideoQA-specific. The answer to JZcw's soft-label fairness point only restated the claims, and JZcw did not pursue it."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Two of four ratings were below threshold (mean 5.75). The AC sided with the 7 and the 6, both thin, and overruled JZcw: generality to other tasks is 'outside the scope of this paper'. It cited 'strong results (outperforming recent work, including CoMVT [34] from CVPR 21) on 5 datasets' and a 'solid ablation study'. It asked the authors to 'add the missing comparison to [22] on TGIF' without noting that ClipBERT's published TGIF-QA results beat the paper's, which makes the five-dataset claim false. It also reports a score increase that the record does not show.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Both above-threshold scores came from thin reviews (dFuU 7 at confidence 5, iH3u 6)",
+    "AC judged the results state of the art on five datasets and the ablations solid",
+    "No A reviewer noticed that ClipBERT's published TGIF-QA results beat the paper's; the AC treated the omission as a camera-ready item",
+    "The remaining detractor's ground (method not VideoQA-specific) was weak, and the AC set it aside as out of scope",
+    "The rebuttal supplied the requested ablations (anchor copies, W1/W2) and sampling details, which the AC made conditions of acceptance"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    6,
+    5,
+    5
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_QHNZ",
+    "Reviewer_a2XV"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 6, 5, 5. The one 6 (Reviewer_QHNZ, confidence 3, 'Math/other details were not carefully checked') is one point above the rest and asks clarifying questions rather than arguing for the paper."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_R2rx",
+     "claim": "ClipBERT is missing from Table 5 (TGIF-QA) but present in Table 3, and ClipBERT reports better TGIF-QA results than the paper.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 5 lists 14 prior methods, VIS+LSTM to HGA, but not ClipBERT; Table 3 lists 'Clip-BERT [22] 37.4' on MSRVTT-QA, where ClipBERT loses. ClipBERT's own paper reports 82.8/87.8/60.3 on Action/Transition/FrameQA against the submission's 79.7/85.3/60.2, so the abstract's '+4.3% (action) on TGIF-QA' (lines 16-19, 349-350) is false. The authors did not dispute this."
+    },
+    {
+     "reviewer": "Reviewer_o6HV",
+     "claim": "ClipBERT outperforms SiaSamRea on most TGIF-QA tasks; ClipBERT reports no Count result.",
+     "checked_against_paper": "correct",
+     "evidence": "ClipBERT is higher on all three TGIF-QA tasks it reports (82.8/87.8/60.3 against 79.7/85.3/60.2) and gives no Count result."
+    },
+    {
+     "reviewer": "Reviewer_a2XV",
+     "claim": "ClipBERT results are reported only on MSRVTT-QA, though SiaSamRea reuses ClipBERT's encoders and initial weights.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 has ClipBERT on MSRVTT-QA only; Tables 4 and 5 leave it out. Lines 145-146 and 250-253 confirm the ClipBERT encoders and weights. ClipBERT published TGIF-QA but not MSVD-QA, ActivityNet-QA or How2QA results, so only the TGIF-QA omission hides a published number."
+    },
+    {
+     "reviewer": "Reviewer_a2XV",
+     "claim": "SiaSamRea is pretrained on TGIF-QA while the compared methods are not, so the comparisons are not like for like.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 253-258: 'Based on the initial weights from the ClipBert, we perform the clip-text pretraining on TGIF-QA', then fine-tune on the other datasets. None of the compared methods in Tables 3-4 is described as using TGIF-QA."
+    },
+    {
+     "reviewer": "Reviewer_R2rx",
+     "claim": "The claimed benefit of TGIF-QA pretraining (line 335) has no ablation.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 334-336 credit 'applying related-data (e.g., TGIF-QA) on the pretraining'; no table removes it. The rebuttal's run without it gives 39.7 (MSRVTT-QA) and 43.0 (MSVD-QA), against CoMVT's 39.5 and 42.6."
+    },
+    {
+     "reviewer": "Reviewer_R2rx",
+     "claim": "The main improvement comes from pretraining ClipBERT on TGIF-QA, not from the new modules.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Overstated. Table 1 shows +5.0 (How2QA) and +6.1 (MSVD-QA) from the modules over the paper's own baseline, and the rebuttal's run without TGIF-QA pretraining still beats ClipBERT by 2.3 (MSRVTT-QA) and 3.5 (MSVD-QA). But the state-of-the-art margins over CoMVT shrink from +2.1/+2.9 to +0.2/+0.4 without the pretraining."
+    },
+    {
+     "reviewer": "Reviewer_R2rx",
+     "claim": "Hyper-parameters are tuned per dataset, and no mean or standard deviation is reported.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 275-278: 'we use dataset-specific learning rates, training epochs and clip numbers based on validation performance'. Checklist 3(c), error bars: [No]."
+    },
+    {
+     "reviewer": "Reviewer_R2rx",
+     "claim": "The paper has many typos and grammar errors (e.g., line 78 'Not', line 364 'Boarder').",
+     "checked_against_paper": "correct",
+     "evidence": "Line 78 'Not that our method', line 139 'spare sampling', line 364 'Conclusion and Boarder Impact', line 225 'excavated'. Committee A's AC also asked for proofreading, while three A reviewers called the paper clearly written."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_QHNZ edited its review on 2021-08-25 to add 'they address my concerns. I maintain my original rating.' Reviewer_a2XV edited on 2021-09-01: 'The rebuttal resolves most of my concerns. However, I think that there is still remained necessity to improve the manuscript in presentation, discussion and reproducibility. I keep my score as it was.' Reviewer_R2rx and Reviewer_o6HV never posted after the rebuttal and did not edit. The reviewer discussion that the meta-review calls 'intensive' is not in the public record.",
+    "what_convinced_or_not": "The authors revealed that they had dropped TGIF-QA videos under 40 frames (40,333 of 71,739), which the submission does not state, and reported a ClipBERT retrained on the remaining 31,406 (ClipBERT*: 75.1/80.8/56.3/4.07) below SiaSamRea (79.7/85.3/60.2/3.61). They also gave runs without TGIF-QA pretraining (39.7 MSRVTT-QA, 43.0 MSVD-QA), ClipBERT in their own setting on three more datasets, and a training cost of about 5 times the time and 8 times the memory of ClipBERT. A ClipBERT handicapped by the authors' own filter does not answer a comparison with published results, and the no-pretraining numbers leave margins of only +0.2 and +0.4 over CoMVT. The clarifications satisfied QHNZ and most of a2XV's concerns, but nobody raised a score, and the meta-review still asks 'where the improvements come from' and for ClipBERT 'in different scenarios'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings were 5 (mean 5.25), and the one 6 had confidence 3. The meta-review reports that 'the reviewers' consensus has reached to the reject opinion' after a discussion that is not public. It names unclear sources of improvement (R2rx), ClipBERT comparisons 'in different scenarios' (R2rx, o6HV, a2XV) and 'better benchmark datasets', which no visible review asks for. It does not engage with the rebuttal's numbers.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "ClipBERT's published TGIF-QA results, higher than the paper's, left out of Table 5 (R2rx, o6HV, a2XV)",
+    "Gains confounded with an extra TGIF-QA pretraining stage that the compared methods did not use and the submission did not ablate (R2rx, a2XV)",
+    "The rebuttal compared only against a ClipBERT retrained on the authors' filtered subset; no score moved",
+    "Three ratings of 5 and one low-confidence 6 (mean 5.25); the AC reports a reviewer consensus to reject",
+    "Presentation, missing details and reproducibility (R2rx's typo list, o6HV, a2XV's post-rebuttal note)"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether the gain comes from new clip content or from ensembling; control with copies of the anchor clip (THcD)",
+  "Why the siamese predictions serve as training targets rather than as an inference-time ensemble with the anchor clip (THcD)",
+  "Soft labels as such, not the new modules, may explain the gain, and the compared methods use none (JZcw); Table 1 bears this out: averaging alone adds 3.9 and 5.3 points, SKG only 1.1 and 0.8 more",
+  "Effect of the learnable weights W1 and W2 in Eq. 5 (iH3u)"
+ ],
+ "issues_only_b": [
+  "ClipBERT left out of Table 5 although its published TGIF-QA results beat the paper's (R2rx, o6HV, a2XV); Committee A's AC noted only a 'missing comparison'",
+  "TGIF-QA pretraining not ablated and not used by the compared methods (R2rx, a2XV)",
+  "ClipBERT not reported on the other benchmarks (a2XV); ablations not run on a dataset with a published ClipBERT result (R2rx)",
+  "Dataset-specific hyper-parameter tuning and no error bars (R2rx)",
+  "Training time and memory cost (QHNZ, o6HV); the rebuttal gave about 5 times ClipBERT's time and 8 times its memory",
+  "Framing that prior methods treat each clip-text pair independently (R2rx)",
+  "Figure 4 does not show interdependence between clips, and hyper-parameters (anchor clips, frames per clip, alpha, omega) are not ablated (o6HV)"
+ ],
+ "shared_issues": [
+  "Clip sampling underspecified: where the anchor starts and what 'nearby' means (THcD in A; QHNZ in B)",
+  "Method not specific to VideoQA and not tried on other video tasks (JZcw in A; R2rx in B)",
+  "Missing notation, dimensions and architecture details (THcD in A; R2rx, QHNZ, o6HV in B)",
+  "No discussion of limitations or societal impact (THcD in A; QHNZ, a2XV in B)",
+  "Code release and reproducibility (dFuU and the AC in A; R2rx and a2XV in B)",
+  "English quality (the AC in A asks for proofreading; R2rx and a2XV in B), though three A reviewers called the paper clearly written"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "Committee B's reviewers found a checkable flaw that Committee A's reviewers missed, on a paper both panels scored as borderline (means 5.75 in A, 5.25 in B). Table 5 compares SiaSamRea on TGIF-QA with older methods but leaves out ClipBERT [22], the model it is initialised from. ClipBERT's own paper reports 82.8, 87.8 and 60.3 on Action, Transition and FrameQA; the submission reports 79.7, 85.3 and 60.2. Table 3 does cite ClipBERT's MSRVTT-QA result, where ClipBERT loses. So the abstract's '+4.3% (action) on TGIF-QA' state-of-the-art claim is false. Reviewer_R2rx, Reviewer_o6HV and Reviewer_a2XV all raised this; no A reviewer did. B also asked how much of the gain comes from the extra TGIF-QA pretraining that the compared methods did not use. The authors' own rebuttal numbers cut the margins over CoMVT from +2.1 and +2.9 to +0.2 and +0.4 without it. The rebuttal's answer on ClipBERT was a ClipBERT retrained on the 44% of TGIF-QA videos the authors kept, a filter the submission does not state. It moved no score, and the B AC rejected on a reported consensus that the ClipBERT comparison and the source of the gains were unresolved. In A, both scores above threshold came from thin reviews: Reviewer_dFuU's 7 is three bullets of praise at confidence 5, and Reviewer_iH3u's 6 is four sentences and one question. The remaining detractor, Reviewer_JZcw, held out on a weak ground (the method is 'not specially designed for the task'), which the AC rightly set aside. The AC then accepted on 'strong results ... on 5 datasets'. It asked only to 'add the missing comparison to [22] on TGIF' and did not note that this comparison reverses the TGIF-QA claim. The split comes from what the reviewers checked, amplified by two thin positive reviews in A, not from different weights on the same facts.",
+ "candidate_reasons": [
+  "Omitted stronger baseline caught by one",
+  "Thin enthusiastic reviews lifted mean",
+  "Extra pretraining confounds claimed gains",
+  "AC relied on false SOTA claim",
+  "Rebuttal handicapped baseline unconvincing"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_R2rx review (major points 2-5 and closing paragraph), Committee B",
+  "Reviewer_o6HV review (Experiments), Committee B",
+  "Reviewer_a2XV review and post-rebuttal edit of 2021-09-01, Committee B",
+  "Reviewer_QHNZ post-rebuttal edit of 2021-08-25, Committee B",
+  "Author responses 'Answer for Comparisons to ClipBERT', 'Answer for effect of pre-training' and 'Answer for Question 4' (2021-08-10), Committee B",
+  "Committee B meta-review",
+  "Reviewer_dFuU and Reviewer_iH3u reviews, Committee A",
+  "Reviewer_JZcw review and comments of 2021-08-22 and 2021-08-25, Committee A",
+  "Reviewer_THcD review and author 'Answer for Question 2' (anchor copies), Committee A",
+  "Committee A meta-review",
+  "paper_submitted.pdf abstract lines 16-19, Table 5 and lines 344-352 (TGIF-QA, no ClipBERT)",
+  "paper_submitted.pdf Table 3 (ClipBERT 37.4 on MSRVTT-QA only)",
+  "paper_submitted.pdf lines 250-258, 275-279 and 334-336 (TGIF-QA pretraining, dataset-specific tuning)",
+  "paper_submitted.pdf Table 1 and lines 285-294 (SKR averaging versus SKG)",
+  "paper.pdf (camera-ready): Section 4.2 filtering paragraph and Table 5 'ClipBERT*' row; the abstract keeps '+4.3% (action) on TGIF-QA'"
+ ]
+}

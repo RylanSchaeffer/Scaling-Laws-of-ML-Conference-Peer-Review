@@ -1,0 +1,253 @@
+{
+ "pair_id": "n21-246",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    5,
+    7,
+    5,
+    7
+   ],
+   "confidences": [
+    4,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_nyW6",
+    "Reviewer_Nzqf"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings split 2-2 (Reviewer_nyW6 and Reviewer_UvSm at 7, Reviewer_rJnu and Reviewer_Nzqf at 5). No single reviewer departs from the rest. The weakest review is Nzqf's 5 (see inattentive_reviews)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Nzqf",
+     "evidence": "Five-sentence main review, confidence 3, math not carefully checked, limitations answered 'yes'. Its main objection misreads the result: 'Since there is already a \\sqrt{T} term for the regret, saving O(\\log T) has a negligible performance improvement'. Theorems 8 and 9 contain no sqrt(T) term. After the authors pointed this out, it raised its score to 5 without engaging on the theory."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Nzqf",
+     "claim": "The regret already has a sqrt(T) term, so the result only saves an O(log T) factor.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 8 (lines 210-214) bounds R(K) by H^{3/2} d sqrt(tau log(tau/delta)) with tau = H*kappa, and Theorem 9 (lines 225-228) by d^3 H^5/Delta_min * log(dH^2 kappa/delta). Neither has a sqrt(T) or sqrt(K) term. Table 1 lists sqrt(T) only for the prior minimax bounds."
+    },
+    {
+     "reviewer": "Reviewer_Nzqf",
+     "claim": "The paper has no numerical results.",
+     "checked_against_paper": "correct",
+     "evidence": "The submission has no experiments; checklist item 3 is N/A (lines 457-465). The authors posted a simulation in the discussion (2021-08-24), and the camera-ready adds App. G."
+    },
+    {
+     "reviewer": "Reviewer_nyW6",
+     "claim": "The Bellman optimality equation in the Preliminaries is incorrectly stated.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 81 writes Q*_h(s,a) = r_h(s,a) + max_{a'} E_{s'~p_h(s,a)} Q*_{h+1}(s',a'), with the max outside the expectation. The authors called it a typo."
+    },
+    {
+     "reviewer": "Reviewer_nyW6",
+     "claim": "The statement after Theorem 5 that the linear-reward class subsumes MDPs with Bellman closure is untrue, so necessity is not shown for Bellman closure.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 171-172 say the linear-reward class 'strictly generalizes ... MDPs with Bellman closure'. That direction holds, because Bellman closure forces linear rewards (apply Asm. 1 to Q_{h+1} = 0). Theorem 5's alternative MDPs keep the dynamics and change only linear reward parameters (lines 164-165), so they stay Bellman-closed. nyW6's counterpoint, that linear rewards do not imply Bellman closure, is the converse."
+    },
+    {
+     "reviewer": "Reviewer_nyW6",
+     "claim": "The stated bounds do not make clear that the critical time kappa is independent of K.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 214 gives kappa only implicitly ('see Eq. 5 for an implicit definition') and line 215 asserts 'As expected, kappa is independent of the number of episodes K'. The rebuttal gave kappa = O~(d^2 H^4 Delta^-2 lambda_+^-3), and the camera-ready adds an explicit polynomial bound."
+    },
+    {
+     "reviewer": "Reviewer_rJnu",
+     "claim": "The sqrt(N) inflation of the confidence radius (line 294) leads to an extra linear N factor in the gap-dependent regret.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 286 sets beta_k proportional to dH sqrt(N) log(2dNHk/delta), and lines 293-294 call the cost 'polynomial (i.e., sqrt(N))'. The He et al. bound scales with beta_k^2, so the problem-dependent and constant bounds grow linearly in N. The authors conceded; the camera-ready says 'N in the problem-dependent one'."
+    },
+    {
+     "reviewer": "Reviewer_UvSm",
+     "claim": "Representation selection requires the transitions to be linear in every candidate representation.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 270: 'Given a set of N representations ... satisfying Asm. 2' (low-rank MDP). Committee A's AC repeats the point: 'the assumptions here are quite a bit stronger'."
+    },
+    {
+     "reviewer": "Reviewer_rJnu",
+     "claim": "The Appendix F example has H = 2 and its non-UNISOFT representation differs only at the last stage, so it is close to a bandit.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Appendix F is not in the PDF. The authors replied 'The reviewer is right' and gave a new construction that breaks UNISOFT at the first stage."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_nyW6",
+     "Reviewer_Nzqf"
+    ],
+    "evidence": "nyW6 (2021-08-31): 'I am happy to increase my score to a full accept'; the review was edited that day and is now 7, up from a self-described weak accept. Nzqf (2021-08-15): 'Based on the response, I am increasing the score'; edited that day, now 5. rJnu did not edit; it asked about the H = 2 experiment on 2021-08-26 and did not reply to the 2021-09-02 answer. UvSm never replied. Pre-rebuttal mean was at most 5.5; final mean 6.0.",
+    "what_convinced_or_not": "nyW6 was convinced by the explicit bound on kappa and the promise to clarify the text. Nzqf moved after the correction that there is no sqrt(T) term, while still asking for numerical validation and a clearer novelty statement. rJnu's concerns (N dependence, closeness to Papini et al. 2021) were conceded or answered in general terms and its score stayed at 5."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The meta-review accepts: 'a natural generalization of recent work on fine-grained representation properties in the linear bandits literature, but we believe it is a noteworthy contribution'. It adds its own technical view that selection here differs from FLAMBE, MOFFLE and Hao et al. because all candidates are realizable: 'the assumptions here are quite a bit stronger, but of course the result is also stronger'. It asks for the novelty explanation and the empirical evaluation from the discussion. It does not mention rJnu's N-dependence concern.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "Two reviewers (Reviewer_UvSm, Reviewer_nyW6) rated the necessity-and-sufficiency characterization of constant regret a strong theory result.",
+    "The rebuttal raised two scores: nyW6 to 7 after the explicit bound on kappa, Nzqf to 5 after the correction of its sqrt(T) misreading.",
+    "The AC judged the paper a natural but noteworthy generalization of Papini et al. 2021 and treated novelty and the MOFFLE comparison as items for the final version.",
+    "The weaker of the two negative reviews (Reviewer_Nzqf) rested on a misreading, so the 2-2 split did not argue for rejection."
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    5,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_tEY1"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5, 5, 6, all at confidence 4. Reviewer_WqxU's 6 is a self-described 'weak accept' one point above the others, not an outlier."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_aaaf",
+     "claim": "Line 38 says Du et al. 2019, Agarwal et al. 2020 and Modi et al. 2021 do not study sample complexity or regret.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 37-38 credit these works with 'the sample complexity of online representation learning'. Lines 39-40 say only that they do not study 'the impact of the representation on the learning process itself and its sample complexity or regret'."
+    },
+    {
+     "reviewer": "Reviewer_aaaf",
+     "claim": "Theorem 10's regret depends polynomially on N through beta_k ~ sqrt(N).",
+     "checked_against_paper": "correct",
+     "evidence": "Line 286 and lines 293-294 state the sqrt(N) inflation and the polynomial cost. The authors conceded that removing it is open."
+    },
+    {
+     "reviewer": "Reviewer_aaaf",
+     "claim": "The Theorem 10 regret can be matched by computing R~(K, z, beta_k) for each z, picking the smallest and running LSVI-UCB on it.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The worst-case and gap-dependent bounds do not separate the candidates; the only z-specific gain is the constant-regret term, which depends on lambda_+ and kappa of z (lines 153-158, 213-214). Those depend on the unknown optimal policy's occupancy, so R~ cannot be computed before learning. Under the mixing condition (Theorem 12) no single z need be UNISOFT."
+    },
+    {
+     "reviewer": "Reviewer_tEY1",
+     "claim": "The paper assumes the optimal policy is unique, which is stronger than the gap assumption.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 4 (line 131) and Theorem 5 (line 163) assume a unique optimal policy. The authors confirmed (2021-08-30) that the upper bounds need it. Whether it is 'much stronger' is a judgment."
+    },
+    {
+     "reviewer": "Reviewer_tEY1",
+     "claim": "LSVI-LEADER enumerates the whole feature class, and the cost of selection is sqrt(|Phi|) rather than polylog.",
+     "checked_against_paper": "correct",
+     "evidence": "Algorithm 1 solves one regression per representation at every stage and episode (lines 273-275), so computation is linear in N; the minimum over N values is not itself hard. Lines 293-294 state the polynomial statistical cost."
+    },
+    {
+     "reviewer": "Reviewer_tEY1",
+     "claim": "The constant regret bound hides factors that can be exponentially small, so the constant can be exponentially large.",
+     "checked_against_paper": "correct",
+     "evidence": "kappa is defined implicitly through Eq. 5 and grows as the minimum positive eigenvalue lambda_+ of the optimal feature covariance shrinks (lines 251-258). Nothing bounds lambda_+ below in terms of d or H. The authors' explicit bound is polynomial in 1/lambda_+, so the constant is large only when lambda_+ is small."
+    },
+    {
+     "reviewer": "Reviewer_WqxU",
+     "claim": "The necessity result needs a finite state space, and the main text does not mention this.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 5 opens 'Let M be any MDP with finite states' (line 162). The discussion after it (lines 167-172) does not repeat the restriction, and line 73 allows infinite S elsewhere."
+    },
+    {
+     "reviewer": "Reviewer_WqxU",
+     "claim": "For a tabular MDP, UNISOFT reduces to the optimal policy visiting every state with a minimum probability.",
+     "checked_against_paper": "incorrect",
+     "evidence": "With one-hot state-action features, optimal features cover one action per state, so the span condition of Assumption 4 (lines 131-135) fails whenever a reachable state has two or more actions. The authors said so in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": [
+     "Reviewer_tEY1"
+    ],
+    "evidence": "tEY1's review was edited 2021-09-14, after the author discussion, with 'After the long discussions and reading other reviews, I intend to degrade my score to 5'; the pre-rebuttal part of the review called the results 'quite interesting' and 'new to me' and said 'The proof looks good from a quick overview'. aaaf (2021-08-29): 'I'm maintaining my score at 5'. WqxU (2021-08-18) found the responses satisfactory and said a novelty summary would help 'a better final rating'; the authors posted one on 2021-08-23, and WqxU did not edit its 6. Pre-rebuttal mean was at least 5.67; final mean 5.33.",
+    "what_convinced_or_not": "The authors conceded the N dependence as an open problem, which confirmed aaaf's and tEY1's main concern. Their argument that Modi et al. is concurrent and studies a different setting did not move aaaf. tEY1 accepted the line-857 explanation and pushed back on c_M ('not depending on K itself might not be good enough'); after reading the other reviews it weighted the unique optimal action, the possibly exponential constant and the N cost as major."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three sentences. It names 'the polynomial dependence on N in the main results and the lack of detailed comparisons with the existing works', which are Reviewer_aaaf's two main points. N appears only in Section 4 (Theorems 10 and 12); the necessity and sufficiency results (Theorems 5, 8, 9) contain no N. It does not address the authors' reply that Modi et al. is concurrent and orthogonal, and it does not mention the core constant-regret result.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "The polynomial dependence on the number N of representations in the selection result was judged unacceptable (Reviewer_aaaf, Reviewer_tEY1).",
+    "Reviewer_aaaf demanded a detailed comparison with Modi et al. 2021, and the AC adopted it as a reason.",
+    "Reviewer_tEY1 lowered its score to 5 after the discussion, citing the unique optimal action, a possibly exponential constant and the N cost.",
+    "No reviewer was above 6; Reviewer_WqxU's weak accept concerned presentation and it did not argue for the paper."
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No experiments in the submission (Reviewer_rJnu, Reviewer_Nzqf); the authors posted a simulation only in A's forum",
+  "Bellman optimality equation misstated at line 81 (Reviewer_nyW6)",
+  "K-independence of the critical time kappa unclear in Theorems 8-9 (Reviewer_nyW6)",
+  "Whether the lower bound covers Bellman closure (Reviewer_nyW6; a misreading)",
+  "Every candidate representation must be a low-rank MDP (Reviewer_UvSm, Committee A AC)",
+  "Appendix F example has H = 2 and is close to a bandit (Reviewer_rJnu)",
+  "Claim that only a log T factor is saved next to sqrt(T) (Reviewer_Nzqf; a misreading)"
+ ],
+ "issues_only_b": [
+  "Constant may be exponentially large through a small lambda_+ (Reviewer_tEY1, Reviewer_WqxU)",
+  "Computational cost of LSVI-LEADER, linear in N (Reviewer_tEY1)",
+  "No result for misspecified or approximate representations (Reviewer_tEY1)",
+  "Finite-state restriction of the lower bound (Reviewer_WqxU; wrongly said to be unstated)",
+  "Tabular reading of UNISOFT and lambda_+ (Reviewer_WqxU; incorrect)",
+  "A select-then-run alternative to LSVI-LEADER (Reviewer_aaaf; incorrect)",
+  "Realizability references at line 23, deterministic-reward lower bound, polynomial c_M (Reviewer_tEY1)"
+ ],
+ "shared_issues": [
+  "Polynomial dependence on N in representation selection (A: Reviewer_rJnu; B: Reviewer_tEY1, Reviewer_aaaf, AC); only B's AC treated it as decisive",
+  "Limited technical novelty over Papini et al. 2021 and standard LSVI-UCB/ELEANOR tools (A: Reviewer_rJnu, Reviewer_Nzqf, AC; B: Reviewer_aaaf, Reviewer_WqxU)",
+  "Unique optimal action assumption (A: Reviewer_nyW6 asked why; B: Reviewer_tEY1 made it a reason to lower its score)",
+  "Relation to representation-learning work such as Modi et al. (MOFFLE) (A: AC asked for a clarification and judged the settings 'quite different'; B: Reviewer_aaaf and the AC made it a reason to reject)",
+  "Confusing 'good'/'learnable' terminology (A: Reviewer_nyW6; B: Reviewer_tEY1)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same facts and weighted them differently, and the gap opened in the discussion. On the reviewers' own statements, A's pre-rebuttal mean was at most 5.5 and B's at least 5.67. In A, the rebuttal raised Reviewer_nyW6 from a weak accept to 7 and Reviewer_Nzqf to 5; the AC accepted the paper as a natural but noteworthy generalization of Papini et al. 2021 and judged the MOFFLE setting 'quite different'. In B, Reviewer_tEY1 lowered its score to 5 after reading the other reviews, Reviewer_aaaf held at 5, and Reviewer_WqxU stayed at a lukewarm 6. B's AC rejected on the polynomial N cost and the missing comparison with Modi et al., aaaf's two points. The N cost is real and the paper states it, but it affects only the selection result (Section 4), not the necessity and sufficiency of UNISOFT (Theorems 5, 8, 9). The comparison demand rests partly on aaaf's misreading of lines 37-40 and on a concurrent preprint. A judged the paper by its core result; B judged it by its weakest extension. Neither committee found an error in a key result.",
+ "candidate_reasons": [
+  "same facts weighted differently",
+  "secondary result judged decisive",
+  "rebuttal raised A, discussion lowered B",
+  "no champion in rejecting committee",
+  "concurrent-work comparison demanded",
+  "terse meta-review overstates limitation"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_nyW6 comment 2021-08-31 ('increase my score to a full accept')",
+  "Reviewer_Nzqf comment 2021-08-15 ('I am increasing the score')",
+  "Reviewer_tEY1 post-rebuttal note, edited 2021-09-14 ('degrade my score to 5')",
+  "Reviewer_aaaf comment 2021-08-29 ('maintaining my score at 5')",
+  "Reviewer_WqxU comment 2021-08-18",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf lines 35-40 (related work, Modi et al.)",
+  "paper_submitted.pdf lines 286, 293-294 (sqrt(N) inflation)",
+  "paper_submitted.pdf Theorems 8-9, lines 210-228",
+  "paper_submitted.pdf Theorem 5, line 162 (finite states)",
+  "paper_submitted.pdf Assumption 4, line 131 (unique optimal policy)",
+  "paper_submitted.pdf line 81 (Bellman optimality equation)"
+ ]
+}

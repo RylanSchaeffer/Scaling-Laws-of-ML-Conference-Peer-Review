@@ -1,0 +1,201 @@
+{
+  "pair_id": "n21-243",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 6, 8, 4],
+      "confidences": [3, 3, 3, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_VttL",
+        "direction": "champion",
+        "basis": "inattentive",
+        "evidence": "An 8 ('Top 50% of accepted NeurIPS papers, clear accept') after 1 hour, against 5, 6 and 4. The review restates the abstract, asks no question, and its only criticism is 'some more discussions and comparisons for other order-based algorithms'. It calls the algorithm 'universal' and says it unifies 'a lot of previous works', but Section 3.1 shows only Chen et al. [5] as a special case (line 166), which HdRs flagged. It never engaged after the rebuttal, and the AC did not lean on it. Without it, A's mean falls from 5.75 to 5.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_VttL",
+          "evidence": "1 hour, confidence 3, math not carefully checked. A summary of the abstract plus praise ('nicely written', 'solid and detailed proofs'), no substantive weakness, no question, no reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HdRs",
+          "claim": "Algorithm 1 never updates W in the forward phase, and its first step is degenerate: with T = [], every candidate i gives the same score S(∅).",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 (page 4) starts with W = ∅, and lines 3-5 only append i to T, so W stays empty and the backward phase has no edges to prune. At T = [], W[T → i] is the empty graph for every i. For a decomposable score, line 4 as written picks the i that minimizes S_i(v_T) − S_i(∅), so the identity at line 144 with argmin S_i(v_T), and with it Proposition 3.1, holds only when the empty-parent scores S_i(∅) are equal. The authors conceded both points; the camera-ready restricts to decomposable scores, uses argmin S_i(e_T) and adds W = W[T → i]."
+        },
+        {
+          "reviewer": "Reviewer_HdRs",
+          "claim": "The claim that several existing order-based methods are special cases of GFBS is formally shown only for Chen et al. [5].",
+          "checked_against_paper": "correct",
+          "evidence": "The abstract (lines 8-10), line 50 ('several') and line 76 ('many') claim more, but Section 3.1 says 'we show that the equal-variance algorithm of [5], Algorithm 1, is a special case of GFBS' (line 166), and Proposition 3.1 covers only [5]. Lines 260-264 treat the QVF model [30] only for identifiability. The authors replied 'we apologize for this oversight'."
+        },
+        {
+          "reviewer": "Reviewer_HdRs",
+          "claim": "Line 238 says Assumption 4.3 will 'hold in most settings' with no formal or empirical support.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 237-238: 'This is a natural assumption that will hold in most settings.' No argument or example follows, and line 308 then calls it 'The causal minimality Assumption 4.3'. The camera-ready deletes the 'most settings' sentence and lists the comparison of 4.3 with causal minimality as future work."
+        },
+        {
+          "reviewer": "Reviewer_m1Q2",
+          "claim": "The paper does not show conditions under which the algorithm is optimal; it only posits that it finds the optimal structure.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Corollary 3.2 (lines 186-187) states that GFBS returns a global minimizer for linear SEMs with equal error variances. Theorem 4.6 and Corollary 4.7 give exact recovery under Assumptions 4.3 and 4.4, and Theorems 5.4 and 5.6 give sample complexity. Only global score optimality beyond the linear case is unproven, as lines 65-66 state ('merely empirical')."
+        },
+        {
+          "reviewer": "Reviewer_m1Q2",
+          "claim": "The evaluation uses only d = 5, only synthetic data, and reports no running times.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 342-343: 'our experiments are restricted to d = 5', because Gobnilp computes the global optimum. All data are synthetic, and Section 6 reports no timings. The authors cite SHD results at d = 20 and 30 in Appendix H.4.2, which is not in either PDF and which they admit the main text never mentions."
+        },
+        {
+          "reviewer": "Reviewer_m1Q2",
+          "claim": "Line 63 wrongly says that learning Markov random fields is NP-hard even for trees; Chow-Liu learns trees optimally.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 63 cites [13], Dasgupta's 'Learning polytrees', which concerns directed polytrees. The authors conceded, and the camera-ready drops 'even for trees'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting (posted 2021-07-16 to 2021-07-18). The authors answered all four reviewers on 2021-08-10. No reviewer posted a reply. The meta-review says 'the reviewers felt' Assumption 4.3 'seemed to be stronger' than causal minimality, so the reviewers reacted only in discussion that is not public.",
+        "what_convinced_or_not": "Nothing visibly moved a score. The rebuttal conceded the missing W update and the first-step degeneracy and proposed to restrict to decomposable scores; named three more special cases; argued that Assumption 4.3 implies causal minimality in linear models and is weaker than faithfulness; called Assumption 5.2 standard; pointed m1Q2 to Theorems 4.6, 5.4 and 5.6 and to appendix SHD results; and gave a timing table in which GFBS needs 811.7 s on the nonlinear NGP model at d = 40, against 48.2 s for NOTEARS and 0.48 s for GES. Per the AC, the minimality argument did not convince. That view holds outside linear models: for φ(x) = x², the gap in 4.3 equals E var(E[X_i | pa(i)] | Y), so a parent that changes only the noise scale satisfies minimality but violates 4.3. The rebuttal's own claim that 4.3 implies minimality concedes that 4.3 is at least as strong."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings 5, 6, 8, 4 (mean 5.75), two below threshold. The meta-review calls the work 'a nice contribution' and rejects on one ground, whether Assumptions 4.3 and 4.4 'were natural and/or properly justified', which 3sfT and HdRs raised. It sets aside VttL's 8 and HdRs's 6, and relies on a post-rebuttal reviewer view that is not in the public record. It does not mention the Algorithm 1 defects or the experiments.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Assumptions 4.3 and 4.4 not shown to be natural; the rebuttal's causal-minimality argument did not convince (AC, from 3sfT and HdRs)",
+        "Split panel (4, 5, 6, 8) with no reviewer engagement after the rebuttal",
+        "Below-threshold reviews on unclear significance (3sfT) and thin main-text experiments: d = 5, synthetic data, no running times (m1Q2)",
+        "The only clear accept (VttL, 8) was a one-hour review that restates the abstract"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [5, 6, 6, 7, 7],
+      "confidences": [3, 3, 2, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_vCrF", "Reviewer_d421", "Reviewer_YN8z", "Reviewer_tJvN"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 5, 6, 6, 7, 7; none is more than 1.2 from the mean of 6.2. vCrF's first version was a detractor outlier ('Unless I missed something, this paper has established that P = NP'), but it rested on a misreading, and vCrF raised its score to 6 after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_d421",
+          "evidence": "6 at confidence 2 ('quite likely that you did not understand central parts'), 3 hours. Five bullets of praise, no weakness, no question. It says the paper proves identifiability 'under mild statistical assumptions', while its own AC calls the assumptions 'fairly restrictive'. It never engaged after the rebuttal; its edit (2021-07-20) predates it."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vCrF",
+          "claim": "The output of GFBS is a minimizer of Problem (1); with an NP-hard score such as BDe, a polynomial-time GFBS would imply P = NP.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 116-117: 'We do not prove that this algorithm exactly solves (1) (save for the exceptional case of linear models)', and lines 65-66 call global optimality 'merely empirical'. The paper gives no result for BDe. The trigger is real: the output line of Algorithm 1 (page 4) reads 'arg min_{DAG W} S(W)'. The camera-ready changes it to 'Output: DAG W'."
+        },
+        {
+          "reviewer": "Reviewer_tJvN",
+          "claim": "In the forward phase, W must be updated to W[T → i] for the notation to make sense.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 lines 3-5 append i to T and never change W. The authors replied 'This is correct', and the camera-ready adds the update as line 5."
+        },
+        {
+          "reviewer": "Reviewer_tJvN",
+          "claim": "The Bregman-divergence and exponential-family formulation of Section 4.1, including Lemma 4.2, is known.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 224-226 say the proof 'follows from the well-known correspondence between Bregman divergences and exponential families', and lines 231-232 say 'Similar observations had also been made' in prior work."
+        },
+        {
+          "reviewer": "Reviewer_xMq4",
+          "claim": "The role of the backward step is not explained, and the pruning threshold depends on the possibly unknown gap Δ.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission describes the backward phase only through Algorithm 1, lines 147-148 and Definition 5.5, and never states why it is needed. Theorem 5.6 sets γ = Δ/2 (lines 318-319). The rebuttal proposed γ ≍ sqrt(d δ_n) when Δ is unknown, and the camera-ready adds that the backward phase 'serves to eliminate unnecessary edges'."
+        },
+        {
+          "reviewer": "Reviewer_YN8z",
+          "claim": "The main text does not discuss how the experimental models violate Assumption 4.4.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 generates noise 'such that Assumption 4.4 is satisfied' (lines 336-337) and defers models that violate it to Appendix G (lines 327-328), which is not in either PDF."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_vCrF", "Reviewer_YN8z"],
+        "evidence": "vCrF edited its review on 2021-08-29, the day it wrote 'I no longer see any major obstacle, so I will raise the score to marginally above the acceptance threshold' (final 6). YN8z wrote 'I am willing to increase my score' and edited on 2021-09-01 (final 7). tJvN edited on 2021-09-02 to add 'Thank you authors for your clarifying response'; whether its 7 moved is not visible. d421's edit (2021-07-20) predates the rebuttal, and xMq4 never edited or replied.",
+        "what_convinced_or_not": "The authors pointed vCrF to lines 116-117, which removed the P = NP objection; vCrF still saw notational problems. YN8z got the argument that the Bregman results give finite-sample bounds where none existed and match Gao et al. for least squares, plus a pointer to Appendix G. tJvN got confirmation of the W-update fix and the thresholds used (γ = 0.05 and 0.0005). xMq4's view that the results are 'not surprising' next to Chen et al. got a reply but no reaction."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 5, 6, 6, 7, 7 (mean 6.2), four of five at or above 6. The meta-review accepts on 'generality and unification of prior algorithms'. Its first weakness, 'fairly restrictive' assumptions with no insight into whether they are necessary, is the ground on which A rejected. Its second, a contribution that mainly places 'prior ideas in a more general setting', matches 3sfT in A and xMq4 in B. No B reviewer pressed the restrictiveness of the assumptions; d421 called them 'mild'. The accept matches the score profile, not the AC's own list of weaknesses.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Generality and unification of prior order-based algorithms (AC; YN8z, tJvN, d421)",
+        "Mean 6.2 with four of five reviewers at 6 or 7 after the rebuttal",
+        "The rebuttal removed vCrF's P = NP objection and raised YN8z",
+        "The AC accepted although it judged the assumptions 'fairly restrictive' and the contribution mainly a generalization"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Algorithm 1 degenerate at the first step, and its selection rule as written does not match line 144 or Chen et al. (HdRs)",
+    "'Several' order-based methods claimed as special cases, but only Chen et al. shown (HdRs)",
+    "Unsupported claim that Assumption 4.3 'will hold in most settings'; no comparison with faithfulness or minimality (HdRs, 3sfT)",
+    "Assumption 5.2 (Hölder smoothness, moments) restrictive (HdRs)",
+    "Experiments: d = 5 in the main text, synthetic data only, no running times, no exact-recovery curves, no dense graphs (m1Q2, HdRs)",
+    "Significance of the unification unclear, and the exponential-family link not exploited (3sfT)",
+    "Wrong NP-hardness claim for learning trees (m1Q2)"
+  ],
+  "issues_only_b": [
+    "Algorithm 1's output line read as a claim of exact minimization, hence P = NP (vCrF)",
+    "Pruning threshold needs the unknown gap Δ; weak signals in high dimensions (xMq4, tJvN)",
+    "Role of the backward phase not explained (xMq4)",
+    "No comparison of sample and computational complexity with the special-case algorithms (YN8z)",
+    "Section 4.1 and Lemma 4.2 are known results (tJvN)",
+    "Vertex-based versus edge-based framing confusing; experiments that violate Assumption 4.4 not discussed in the main text (YN8z)",
+    "Notation of Definition 5.5 and the large gap in the SF-2 NGP setting (tJvN)"
+  ],
+  "shared_issues": [
+    "Forward phase of Algorithm 1 never updates W (HdRs in A; tJvN in B)",
+    "Contribution mainly generalizes Chen et al.'s equal-variance algorithm (3sfT in A; xMq4 and the AC in B)",
+    "Assumptions 4.3 and 4.4 restrictive or not justified (3sfT, HdRs and the AC in A; only the AC in B)",
+    "Relation between recovering the true DAG and globally minimizing the score unclear (m1Q2 in A; vCrF, tJvN in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same weaknesses and weighted them differently. Both area chairs named the same main weakness: Assumptions 4.3 and 4.4 are restrictive or not justified. Committee A's AC rejected on it and cited a reviewer view, not in the public record, that Assumption 4.3 is stronger than causal minimality; that view holds outside linear models, and the camera-ready leaves the comparison as future work. Committee B's AC accepted on 'generality and unification' while calling the same assumptions 'fairly restrictive' and the contribution mainly a generalization of prior ideas, a point A's Reviewer_3sfT also made. The rebuttal moved scores only in B. There it removed Reviewer_vCrF's claim that the paper implies P = NP, a misreading of Algorithm 1's 'arg min S(W)' output line against lines 116-117, and vCrF and Reviewer_YN8z raised their scores to 6 and 7, for a mean of 6.2. In A, no reviewer replied to the rebuttal, and the mean of 5.75 depended on a one-hour 8 from Reviewer_VttL (5.0 without it). A's Reviewer_HdRs also found defects that the paper confirms: Algorithm 1 is degenerate as written, and only Chen et al. is shown to be a special case. None of these is fatal; the camera-ready fixed Algorithm 1 and kept the assumptions.",
+  "candidate_reasons": [
+    "ACs weighted shared weaknesses differently",
+    "Rebuttal reversed misreading-based objection",
+    "No reviewer engagement after rebuttal",
+    "Assumption justification judged insufficient",
+    "Low-effort champion discounted by AC"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_HdRs review (questions 1-3) and author response, Committee A",
+    "Reviewer_3sfT review and author response on Assumptions 4.3 and 4.4, Committee A",
+    "Reviewer_m1Q2 review and author response with timing table, Committee A",
+    "Reviewer_VttL review (1 hour), Committee A",
+    "Reviewer_vCrF review (edited 2021-08-29) and comment of 2021-08-29, Committee B",
+    "Reviewer_YN8z comment of 2021-09-01, Committee B",
+    "Reviewer_tJvN review (edited 2021-09-02), Committee B",
+    "Reviewer_d421 review, Committee B",
+    "paper_submitted.pdf page 4, Algorithm 1 (output line, lines 3-5) and lines 142-146",
+    "paper_submitted.pdf lines 59-66 and 116-117 (no proof of exact minimization)",
+    "paper_submitted.pdf lines 163-166 and Proposition 3.1 (only Chen et al. shown)",
+    "paper_submitted.pdf lines 237-245 and 308 (Assumptions 4.3 and 4.4)",
+    "paper_submitted.pdf lines 336-343 (experimental setup, d = 5)",
+    "paper.pdf (camera-ready): revised Algorithm 1, and conclusion leaving the comparison of Assumption 4.3 with causal minimality as future work"
+  ]
+}

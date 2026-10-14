@@ -1,0 +1,129 @@
+{
+  "run": 1,
+  "turn": 12,
+  "pair_id": "n21-104",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both area chairs followed their reviews: A's spotlight follows a 7.5 mean with a 9, and B's poster follows a 6.75 mean ('All reviewers agree the acceptance')."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or area chair forecast impact beyond the paper's own setting; A's AC praised the direction, not a broad downstream impact."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The rebuttal moved scores up in both committees (A's Reviewer_fSHR to 7; B's Reviewer_9RED and Reviewer_sHgm to 6), so it did not move one committee only."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's champion Reviewer_e5Ff wrote a 9 in 2 hours with general praise, no question and one weakness that restates the paper's limitation, and that thin review lifted A's mean to 7.5."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B raised the open positioning against NQG-T5 and the per-dataset tuned nonterminal counts and rule constraints; these held Reviewer_9RED and Reviewer_sHgm at 6 and B at poster."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the same novel latent grammar, respectable small-scale results and expensive dynamic program; A's AC called the results 'strong' and downplayed scale, B's AC called them 'good'."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No reviewer in either committee changed a score after reading the other reviewers; the recorded changes cite the authors' response."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each reviewer's rating matches the tone of its text: e5Ff's 9 matches its praise, and B's 6s match their stated reservations."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "B's least confident reviewer, Reviewer_LKem (confidence 2, 'I am not an expert'), gave 7, not a borderline score, and B's two 6s come from confident reviewers with specific concerns."
+    },
+    {
+      "id": "R10",
+      "applies": true,
+      "justification": "A's meta-review paraphrases the outlying 9 of Reviewer_e5Ff in structure and wording ('strong results', sample efficiency, time complexity as the only weakness) and sets aside the Transformer concern of the 7s."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments differ in content (B's 6s name unresolved positioning and tuning concerns), so the gap is not one of calibrating similar verdicts."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A's spotlight rests on a 9 champion and its paraphrase, not on the reviewers' agreement alone."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's scores rose on new experiments the authors ran on the paper's own tasks, and A's Reviewer_fSHR rose on an unfavourable concession, not on unverified favourable evidence."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's meta-review names high time complexity as 'the only main weakness' and calls the results 'strong', dropping Reviewer_FyUp's and Reviewer_fSHR's weak-MT-baseline concern and the authors' concession that a Transformer wins by 3 to 4 BLEU."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "A's Reviewer_e5Ff claimed the model beats seq2seq 'substantially' on MT and shows 'better sample efficiency', but the base model trails the LSTM (23.5 vs 25.1 BLEU) and no experiment varies data size; that error fed the 9 and the AC's 'strong'."
+    }
+  ],
+  "added": [
+    {
+      "id": "R16",
+      "name": "Damaging rebuttal admission did not lower scores",
+      "definition": "The authors' response to one committee conceded an unfavourable fact about the paper's results, such as a stronger baseline beating the method, and that committee's reviewers and area chair did not lower their scores or recommendation, or raised them, so that committee ended higher than its information supported.",
+      "justification": "R03 covers a response that persuaded one committee and not the other, and R13 covers scores raised on unverified favourable evidence; neither covers a committee that received an unfavourable admission and did not act on it. R14 covers only the meta-review's omission, not the reviewers' failure to lower their scores."
+    }
+  ],
+  "reasoning": "Both committees accepted unanimously and differ by one tier. A's spotlight rests on a thin, exuberant 9 whose MT claim is wrong (R04, R15), which A's area chair paraphrased (R10) while dropping the reviewers' MT-baseline concern (R14). B's two 6s rest on positioning and tuning concerns that A never raised (R05), and both committees weighted the same core facts with different enthusiasm (R06). The one cause no reason covered is that A heard the authors admit a tuned Transformer wins on MT and nobody lowered a score, so I added R16.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16"
+  ]
+}

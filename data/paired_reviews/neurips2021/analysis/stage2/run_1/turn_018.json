@@ -1,0 +1,170 @@
+{
+  "run": 1,
+  "turn": 18,
+  "pair_id": "n21-219",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's meta-review leans on the area chair's own reading ('pushes forward the research') and gives no reason for a spotlight, though no A reviewer rated above 7 or argued for a higher tier."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's area chair praised the paper's advance in its own area but forecast no impact beyond the paper's setting."
+    },
+    {
+      "id": "R03",
+      "applies": true,
+      "justification": "The rebuttal lifted A's Reviewer_vTqw to 7 ('My concerns are well addressed'), while no B reviewer replied or visibly moved and c6Mx's 4 stood."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "Two of A's three supporting reviews were thin: KmGd (2 h, confidence 2, three lines) and Dzyq (no specific point); B's critics c6Mx and TpjV were confidence 4 with specific claims."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B raised the incrementality of the l2 GLL result (1-D smoothing plus [FKT20], conceded by the authors) and the novelty of the private Frank-Wolfe; these held B at poster, and no A reviewer raised them."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees flagged the fragmented, hard-to-read set of results and saw the weaker l2 rate than [ZCH+20]; A's area chair ignored both, while B's made fragmentation its main message."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "B's meta-review mentions discussion, but the record shows no score change attributed to other reviewers' views in either committee."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "No reviewer's rating clearly contradicts the verdict of their own text."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's low-confidence KmGd gave 6 and B's Brcd gave 7, but neither committee's mean was held near the threshold by unsure reviewers in a way that separates the tiers; A went higher."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "B's area chair echoed a concern shared by c6Mx, MuL7 and Brcd, not one outlier, and A's cited no reviewer."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "Without the detractor B's reviewers scored at least as high as A's (mean 7.0 against 6.67); there is no calibration gap on similar verdicts."
+    },
+    {
+      "id": "R12",
+      "applies": true,
+      "justification": "A's 7, 6, 7, with no detractor and no reviewer above 7 or arguing for a spotlight, became a spotlight, while B's spread (4 to 8, with the only 8) held it at poster."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "vTqw rose on a refined bound that the camera-ready Theorem 11 carries and on standard proof answers, not on unchecked copied results."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's meta-review names no weakness, although KmGd and Dzyq flagged readability and too many results; B's meta-review carried the fragmentation concern forward."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "c6Mx's wrong weakly convex argument is a side point; the 4 rests mainly on the two claims the paper confirms, and vTqw's wrong l_p claim was withdrawn without effect."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "The authors told A's vTqw that [ZCH+20] has better sample complexity, yet vTqw raised to 7 and A's area chair gave a spotlight without mentioning it."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "No objection or score cut came after the response period in either committee."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The score profiles differ (7, 6, 7 against 7, 4, 8, 6), and A's area chair relied on own reading, not a cut-off on near-identical scores."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "Neither area chair set aside a best-informed reviewer: A's vTqw ended at 7 in line with the outcome, and B's poster matches its confidence-4 reviewers' 4 and 6."
+    },
+    {
+      "id": "R20",
+      "applies": true,
+      "justification": "A's only technical concerns were clarifications the authors answered, lifting vTqw; B's main concerns were incrementality and novelty, which the authors could only concede."
+    },
+    {
+      "id": "R21",
+      "applies": true,
+      "justification": "B's detractor Reviewer_c6Mx (4) alone pulled B's mean from 7.0 to 6.25; B's other reviewers (7, 8, 6) matched or exceeded A's 7, 6, 7."
+    },
+    {
+      "id": "R22",
+      "applies": false,
+      "justification": "c6Mx did not reply, but the response conceded its two main points rather than answering them, so the 4's basis was not answered."
+    }
+  ],
+  "added": [],
+  "reasoning": "Stage 1 finds A's spotlight the anomaly: a 7, 6, 7 panel with two thin reviews and no detractor, a meta-review that gives no reason for the tier and drops the readability weaknesses, and a rebuttal that answered A's only technical reviewer. B drew confident critics whose incrementality case the paper confirms, and its single detractor alone moved its mean below A's. Existing reasons cover each mechanism: the area chair's own reading (R01), thin supporting reviews (R04), B-only novelty concerns (R05), shared evidence weighted differently (R06), unanimity read as a higher tier (R12), the dropped weaknesses (R14), the unpenalised [ZCH+20] concession (R16), answerable versus unanswerable concerns (R20) and the single outlying score (R21). The stage 1 candidates map onto these, so no reason is added.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "pair_id": "n21-264",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 4, 5, 4, 5],
+      "confidences": [3, 4, 3, 4, 2],
+      "reviews_edited_after_posting": ["Reviewer_TmJ6"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings are 4,4,5,4,5; no reviewer is separated from the rest. The committee is uniformly negative, not split."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5BYY",
+          "evidence": "3 hours. The main review is only line-level notes on the abstract and introduction plus four related-work citations about 3D-structure RL, a different task from docking-score optimisation. It calls the results 'impressive' and votes 4 on 'novelty on the machine learning side is very limited'. 5BYY never replied after the rebuttal, which answered the novelty point directly."
+        },
+        {
+          "reviewer": "Reviewer_USDx",
+          "evidence": "Confidence 2, self-declared non-chemist ('to me (I'm not a chemist)'). The review checks no part of the method. USDx wrote on 2021-08-31 'I would be happy to raise my score to a 6' if the writing were fixed, then left the rating at 5."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_TmJ6",
+          "claim": "The model is trained on three proteins but Table 1 reports only fa7.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 caption: 'We trained our model and two baseline models with the target fa7.' Line 239 asserts 'Such a trend was consistent for all three targets' and defers to an appendix that is not in the submitted 13-page PDF. The authors supplied parp1 and 5ht1b quality scores only in rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_TmJ6",
+          "claim": "The GCN does not handle bond (edge) types.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 149-151: the graph is a node feature matrix, an adjacency matrix and an attachment-site mask; no edge features. Authors conceded in A4: 'our GCN doesn't explicitly handle bond types as edge information'."
+        },
+        {
+          "reviewer": "Reviewer_TmJ6",
+          "claim": "In the scaffold-based figure the method is no better than attaching fragments at random, so the PER may do nothing.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper itself says so at lines 286-288: 'even the molecules randomly optimized with our fragment-based generation algorithm show high docking scores when given the proper scaffold.' The authors' A3 conceded the 5ht1b case and blamed the scaffold."
+        },
+        {
+          "reviewer": "Reviewer_bYsg",
+          "claim": "Connectivity-preserving fragment generation appeared in Kajino (ICML-19) and was coupled with RL in Xu et al. (NeurIPS-20); neither is cited or compared.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither name appears anywhere in the submitted PDF's 45 references. Line 85 instead claims 'Our work is the first application of RL with fragment-based molecular generation method.'"
+        },
+        {
+          "reviewer": "Reviewer_USDx",
+          "claim": "Figure 4 does not say which panel is which protein, and the text ignores very large standard deviations.",
+          "checked_against_paper": "correct",
+          "evidence": "The Figure 4 caption names only the three models. USDx's quotation of lines 250-256 matches the PDF word for word. The authors' own rebuttal t-tests give FREED vs REINVENT hit-ratio p = 0.14, 0.19, 0.52, i.e. not significant, while the abstract claims 'state-of-the-art performance on two of three targets'."
+        },
+        {
+          "reviewer": "Reviewer_ADzq",
+          "claim": "Only two baselines, both RL, though the related work is full of generative models.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2 compares only with MORLD and REINVENT. A non-RL baseline (HierVAE) exists only in the rebuttal."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_TmJ6"],
+        "evidence": "TmJ6's review is marked edited 2021-08-28, the date of the post that says 'Overall, I'm raising my score to 5, but I'm still leaning towards rejection.' No other review carries an edit date. bYsg (2021-08-14) kept rejecting; ADzq (2021-09-01) wrote 'I still believe that it does not meet the NeurIPS bar mostly due to what I believe is a somehow limited novelty'. 5BYY never posted.",
+        "what_convinced_or_not": "The new numbers (internal diversity, HierVAE, t-tests, SA scores) were accepted as facts and still did not move anyone. bYsg rejected the method-level answers: 'no public code cannot be an excuse for no performance comparison'. The unfixed state of the manuscript and the promise of a revision counted for nothing: TmJ6 took proofreading 'for granted' and still would not accept."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: 'the reviewers unanimously agree that the submission is not strong enough ... The main reasons for that are the lack of novelty, clarity, and supporting evidence.' Those are exactly the three headings of the five reviews. No independent reading, no mention of the new experiments.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Limited machine-learning novelty: the gain is attributed to a hand-curated fragment library, not to the algorithm (ADzq, 5BYY, bYsg).",
+        "Poor writing and undefined notation, unfixed at review time (TmJ6, 5BYY, USDx).",
+        "Claims not supported by evidence: no comparison against the cited fragment and forward-synthesis methods, Table 1 on one target only, overstated 'superior' wording against large variances (bYsg, TmJ6, USDx)."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 5, 6, 6],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_sXy7"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7,5,6,6 are tight. BZA3's 7 is the highest but is the opposite of an empty champion vote: a long structured review with named weaknesses (L1 missing fragment baselines, Cl1 unclear PER description, M1-M6), plus two discussion posts including a final summary."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_dE1i",
+          "claim": "The line-85 claim to be 'the first application of RL with fragment-based molecular generation' is false; Stahl et al. 2019 did it.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 85 of the submitted PDF makes exactly that claim and Stahl is not in the references. Authors: 'We were not aware of the Stahl et al. at the time of the submission ... we will tone down on our statement.' EZqQ raised the same reference independently."
+        },
+        {
+          "reviewer": "Reviewer_EZqQ",
+          "claim": "The priority predictor estimates docking score but its accuracy is never reported.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3.2 describes the predictor; no regression metric appears in the paper. The rebuttal gave R^2 = 0.136 (fa7), 0.351 (5ht1b), 0.130 (parp1). EZqQ's last post kept it as an open concern: 'The docking score regression has really poor performance, thus is an unreliable component.'"
+        },
+        {
+          "reviewer": "Reviewer_sXy7",
+          "claim": "Keeping only the fragment with the most attachment sites may cut chemical-space coverage, and some quality filters fire on a fragment but not on molecules containing it.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors conceded both: 'Our method only considers fragments with the largest number of attachment sites, possibly disregarding the fragments with non-isomorphic configurations' and later found several SureChEMBL alerts of that kind. sXy7 closed at 6 with the worry standing."
+        },
+        {
+          "reviewer": "Reviewer_BZA3",
+          "claim": "Table 1 scores the first 3000 generated molecules, which are largely unoptimised.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 211-212 confirm the first-3000 protocol. Authors answered with top-n% quality scores in rebuttal (A8 to sXy7), which are better, and BZA3 accepted that answer in his closing post."
+        },
+        {
+          "reviewer": "Reviewer_dE1i",
+          "claim": "Table 1 is unfair because inappropriate fragments were removed from the library only for FREED.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 234-237 say the library was filtered for FREED and that such a constraint is not applicable to MORLD or REINVENT. The authors pointed to Appendix A.1, where the baselines get quality terms in the reward, and gave the large-library FREED column on request."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_sXy7"],
+        "evidence": "sXy7's review is edited 2021-08-24 and carries an appended '===== Update 24/08/2021 =====' saying 'I now raise both my score and confidence level by 1' (5 to 6, 3 to 4), after three rounds of questions. BZA3 (2021-09-02): 'I have decided to maintain my score and continue to believe that this paper should be accepted.' dE1i: 'I think my questions were properly addressed. The new results look appealing.' EZqQ stayed at 5.",
+        "what_convinced_or_not": "New experiments run during the discussion: HierVAE, then HierVAE with an active-learning loop that sXy7 designed, DeepFMPO on the three targets, Guacamol with an enlarged library, significance tests, UMAP coverage, PLIP interaction profiles, and a started 1180-fragment run. sXy7 and dE1i asked follow-ups across six rounds and had them answered. EZqQ was unmoved: the R^2 and the <100-fragment library were, for him, unfixed."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "'In the end all reviewers were happy to accept this paper' is not true of the record: EZqQ's final rating is 5, marginally below the acceptance threshold, and his last post lists two standing concerns. The AC's stated reason is process, not content: 'The reason they voted to accept is because of the engagement by the authors with their concerns and the changes the authors promised in the camera ready version.'",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at or above threshold, and the one champion, BZA3, held a detailed 7 throughout.",
+        "The authors answered every technical question with new runs; sXy7 raised 5 to 6 and confidence 3 to 4 because of it.",
+        "Reviewers treated the constrained fragment library as the contribution, not as a substitute for one: sXy7 calls it 'yet another useful place where expert knowledge can be plugged in'.",
+        "The AC credited promised camera-ready changes as if already made."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Limited ML novelty as a reason to reject: ADzq judged 'the main advantage ... is the library of fragments ... and less the algorithmic contributions', 5BYY 'the novelty on the machine learning side is very limited'.",
+    "Kajino (ICML-19) and Xu et al. (NeurIPS-20) as uncited prior art on connectivity-preserving fragment generation with RL (bYsg).",
+    "The claim at lines 93-107 that connectivity-preserving fragmentation helps and that forward-synthesis methods cannot handle docking must be shown empirically; bYsg refused the 'no public code' answer.",
+    "Whether the pharmacochemical-filter hypothesis is a necessary or a sufficient condition (bYsg).",
+    "Table 1 covers only fa7 of three trained targets (TmJ6); novelty rate of generated molecules (TmJ6)."
+  ],
+  "issues_only_b": [
+    "Line 85's 'first application of RL with fragment-based molecular generation' is false; Stahl et al. 2019 (dE1i, EZqQ). A never noticed this sentence.",
+    "The docking-score predictor's own accuracy is unreported and, once reported, poor (EZqQ).",
+    "Fragment-vocabulary construction: how motifs differing only in attachment sites are treated, and how much of ZINC the vocabulary can build (sXy7).",
+    "Guacamol benchmarking, and whether the filters can fire on a fragment but not on molecules containing it (sXy7).",
+    "Docking poses: do the enlarged scaffold molecules still fit the pocket (dE1i); Table 1's unfair library advantage over the baselines (dE1i)."
+  ],
+  "shared_issues": [
+    "Writing, notation and typos are poor (A: TmJ6, 5BYY, USDx; B: sXy7, EZqQ, dE1i).",
+    "Baselines are too few and all RL; a non-RL or fragment-based generative baseline is missing (A: ADzq, bYsg; B: EZqQ, dE1i, BZA3).",
+    "The fragment library (66-91) is very small and limits the search space and diversity (A: bYsg, TmJ6; B: EZqQ, sXy7, BZA3).",
+    "'Chemically realistic' is asserted from pictures, not measured (A: USDx; B: dE1i).",
+    "Figure 4 panels are unlabelled and the variances are large (A: USDx; B: EZqQ).",
+    "Only the first 3000 molecules are scored, and docking runtime and sample cost are unanalysed (A: TmJ6; B: BZA3, EZqQ)."
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees found the same paper and nearly the same defects: rough writing, two RL-only baselines, a tiny hand-filtered fragment library, unmeasured 'realisticness', and an overstated novelty claim. They split on what the curated library means and on what a promise is worth. Committee A read the library as the thing doing the work, which left, in ADzq's words, 'limited novelty from a modeling point of view', and treated an unfixed manuscript as an unfixed manuscript: TmJ6 took proofreading 'for granted' and still leaned reject, bYsg refused the 'code not released' excuse for a missing comparison. Committee B's reviewers were deeper in molecular generative modelling (sXy7 cites Guacamol, HierVAE, Maziarz, the 'failure modes' paper) and read the same constrained library as the correct inductive bias, 'yet another useful place where expert knowledge can be plugged in'. The discussions then diverged mechanically: A's 12 posts were one reply each and done; B's 26 included six rounds with sXy7 and four with dE1i, which pulled out HierVAE with active learning, a DeepFMPO comparison, Guacamol, significance tests, coverage analysis and pose profiling. sXy7 moved 5 to 6 on that engagement; A's only movement was TmJ6 4 to 5, still rejecting. The ACs sealed it in the same direction: A's counted unanimity of unfixed complaints, B's counted 'the engagement by the authors ... and the changes the authors promised in the camera ready version', and overstated its own committee by writing that all reviewers were happy to accept when EZqQ's final rating was 5.",
+  "candidate_reasons": [
+    "Domain prior read as missing novelty",
+    "Reviewer expertise match with the subfield",
+    "Deep multi-round discussion rewarded engagement",
+    "Promised camera-ready changes credited early",
+    "Unfixed writing treated as disqualifying",
+    "AC weighed unanimity versus author responsiveness"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_ADzq final comment, 2021-09-01 (Committee A)",
+    "Reviewer_bYsg response to rebuttal, 2021-08-14 (Committee A)",
+    "Reviewer_TmJ6 response to rebuttal, 2021-08-28, review edited same day (Committee A)",
+    "Reviewer_USDx review, confidence 2, and reply 2021-08-31 (Committee A)",
+    "Committee A meta-review",
+    "Reviewer_sXy7 review, '===== Update 24/08/2021 =====', and final response 2021-09-02 (Committee B)",
+    "Reviewer_BZA3 'Summary at end of review period', 2021-09-02 (Committee B)",
+    "Reviewer_EZqQ 'Reviewer's response', 2021-08-30 (Committee B)",
+    "Committee B meta-review",
+    "paper_submitted.pdf line 85 ('first application of RL with fragment-based molecular generation method')",
+    "paper_submitted.pdf Table 1 and caption (fa7 only; first 3,000 molecules)",
+    "paper_submitted.pdf lines 149-151 (graph input has no edge features) and lines 286-288 (random scaffold-based generation already scores high)",
+    "Authors' rebuttal t-tests, hit ratio FREED vs REINVENT p = 0.1401 / 0.1863 / 0.5217"
+  ]
+}

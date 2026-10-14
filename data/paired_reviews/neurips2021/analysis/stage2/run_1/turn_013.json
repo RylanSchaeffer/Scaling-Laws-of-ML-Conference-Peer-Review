@@ -1,0 +1,136 @@
+{
+  "run": 1,
+  "turn": 13,
+  "pair_id": "n21-127",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": true,
+      "justification": "A's area chair accepted a 5, 7, 6, 5 panel on 'high significance and potential impact' against two below-threshold scores, and B's area chair chose a spotlight on 8, 7, 6, 6 from their own reading with no reason given for the tier."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Both area chairs cited the paper's importance for the US Census and official statistics, so neither committee alone rested on a forecast of broad impact."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The rebuttal moved a score up in both committees (A's Reviewer_epzC to 6, B's Reviewer_eGa2 to 6); A's Reviewer_ecPK's cut came from a new objection, not from the response."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's 8 from Reviewer_bo89 is mostly a restated summary with no weakness named, and A's Reviewer_WJWj gave a 5 after 2 hours, asking a tightness question Theorem 4 answers and never replying to the authors."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A raised mechanism specificity, tightness and writing quality; the two 5s rest on them, and A's meta-review carried the mechanism-specificity doubt forward as a reason for its divided view."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw that the theory leans on Balcer and Vadhan [3]; A's Reviewer_WJWj counted it against the paper as incremental, while B's Reviewer_4cAR and Reviewer_eGa2 accepted the authors' answer and kept or raised their scores."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No reviewer in either committee posted in a reviewer discussion or cited other reviewers as the reason for a score change."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each reviewer's score matches the tenor of their own text; bo89's 8 is thin but wholly positive, and the 5s carry stated objections."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Reviewer_ecPK admitted unfamiliarity with the proof technique but gave a verdict, and B's low-confidence Reviewer_NcCk balances it; neither committee's mean was held near threshold by unsure reviewers more than the other's."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither area chair adopted one outlying reviewer's verdict: B's meta-review rests on its own reading, not on bo89's 8, and A's repeats a doubt shared by both 5s."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The committees' verbal assessments differ (A's two 5s argue for rejection), so the gap is not one of calibration on similar verdicts."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "Neither committee was unanimous at one score; B's spotlight came from a spread of 8, 7, 6, 6."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "The scores that rose (epzC, eGa2) rose on clarifications of the paper's own definitions and results, which the notes check as correct, not on unverified new evidence."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "B's meta-review restates the result and names no weakness its reviewers raised (reliance on [3], restriction to one error metric, overreaching microdata advice), while A's meta-review carries its reviewers' doubts forward."
+    },
+    {
+      "id": "R15",
+      "applies": true,
+      "justification": "A's Reviewer_ecPK cut 6 to 5 on the wrong claim that subsampling amplification lets point queries take less noise so the trade-off fits one mechanism, and A's area chair repeated it; Reviewer_WJWj's tightness doubt is also contradicted by Theorem 4."
+    },
+    {
+      "id": "R16",
+      "applies": true,
+      "justification": "The authors told B that Theorem 3's novelty lies 'not in the proof' but in its interpretation, building on [3]'s Theorem 7.2, yet Reviewer_4cAR kept 7 and B's area chair gave a spotlight."
+    }
+  ],
+  "added": [
+    {
+      "id": "R17",
+      "name": "Late objection left the authors no reply",
+      "definition": "A reviewer on one committee raised a new objection, or lowered their score, only after the author-response period had closed, so the authors could not answer it and it stood unrefuted in that committee's recommendation, while the other committee's objections came early enough to be answered in the rebuttal.",
+      "justification": "R15 covers a wrong claim feeding a score, but not its timing; the cause here is that the objection came after the response closed, so the authors could not refute it as they did B's wrong objection. R03 covers a response that persuaded one committee, not an objection the response never saw."
+    }
+  ],
+  "reasoning": "Both committees accepted the paper for its importance to official statistics and differ by one tier. A's two 5s rest on objections only A raised (R05), one of them wrong and raised after the response closed (R15, new R17), the other from a thin review (R04); A's area chair accepted over them on its own judgement (R01). B's spotlight rests on a thin 8 (R04), an area chair's untold choice of tier (R01) with a meta-review that drops its reviewers' weaknesses (R14), and a conceded novelty point that moved no score (R16). The reliance on [3] was weighed differently by the two committees (R06). The timing of ecPK's late cut was the one cause no existing reason covered, so I added R17.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17"
+  ]
+}

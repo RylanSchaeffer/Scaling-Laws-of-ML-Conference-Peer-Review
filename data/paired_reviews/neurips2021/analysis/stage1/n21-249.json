@@ -1,0 +1,204 @@
+{
+ "pair_id": "n21-249",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 7, 8, 6],
+   "confidences": [2, 3, 3, 2],
+   "reviews_edited_after_posting": ["Reviewer_BwZs", "Reviewer_beVp"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 8, 6 lie within two points. The top score, Reviewer_7ciX's 8, comes from an 8-hour review with line-level notes on the supplement proof ('As far as I can check, the proof is valid') and a correct catch of a typo in Theorem 1, so it is not exuberant."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_7ciX",
+     "claim": "The bound in Theorem 1 contains an epsilon that should be an r.",
+     "checked_against_paper": "correct",
+     "evidence": "In the Theorem 1 display after line 166, the second term is log(1 + N[](eps, Xi_T, rho_T,g*)) outside the integral, so eps is free. The authors conceded, and the camera-ready has r."
+    },
+    {
+     "reviewer": "Reviewer_7ciX",
+     "claim": "Assumption 4 (variance bound) is given without explanation or references, unlike the margin assumption.",
+     "checked_against_paper": "correct",
+     "evidence": "Assumption 4 (line 196) is stated bare. Assumption 7 is followed by references and a discussion of when it holds (lines 285-288)."
+    },
+    {
+     "reviewer": "Reviewer_G8uS",
+     "claim": "The norm ||.||_{2,g*} used at line 146 is not defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 140-141 define P_g and P_g h only. The authors conceded, and the camera-ready adds the definition. Committee B's Reviewer_kdLu and Reviewer_q5vX flagged the same gap."
+    },
+    {
+     "reviewer": "Reviewer_beVp",
+     "claim": "ISWERM requires knowing the full data-generating density p^(T) and its decomposition, which is a limitation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The ISWERM objective (line 55) uses only the data, g*, and the realized logging propensities g_t(A_t | X_t). The authors' answer is right, and the limitation does not exist."
+    },
+    {
+     "reviewer": "Reviewer_beVp",
+     "claim": "The 'right' or 'optimal' dependence on gamma claimed at lines 9 and 170 has no lower bound in the paper behind it.",
+     "checked_against_paper": "correct",
+     "evidence": "The paper proves no lower bound. The claims 'right dependence' (line 9) and 'rate-optimal regret guarantees' (line 11) rest on Zhan et al.'s lower bound through Remark 3. The authors apologised for the imprecision. The camera-ready abstract says 'good dependence' and drops 'rate-optimal'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Reviewer_BwZs (2021-08-25): 'I still lean towards accepting the paper, and will maintain my score'. Its 2021-07-17 edit predates the 2021-08-10 rebuttal. Reviewer_beVp's 2021-09-12 edit added an after-rebuttal note, 'I remain positive towards the paper', at 6. Reviewer_G8uS and Reviewer_7ciX posted nothing after the rebuttal and did not edit.",
+    "what_convinced_or_not": "The rebuttal answered beVp's density question correctly and told BwZs that Lemma 6 is already a Freedman/Bernstein-type bound combined with adaptive chaining. It promised clarifications everywhere. No reviewer pushed back, and no reviewer asked for a rewrite."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Two-sentence meta-review: 'the reviewers were unanimously in favor of acceptance'. All four ratings are 6 or above (mean 6.75). It repeats the readability concern but treats it as 'a revision for clarity', not as a condition. It engages with no technical point.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four ratings at 6 or above (mean 6.75); 'unanimously in favor of acceptance'",
+    "First-of-their-kind guarantees judged novel and significant; Reviewer_7ciX read the supplement proof and found it valid",
+    "Readability complaints, mainly from the two confidence-2 reviewers, treated as a camera-ready fix"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [5, 7, 7, 6, 5],
+   "confidences": [2, 3, 2, 3, 4],
+   "reviews_edited_after_posting": ["Reviewer_ZSG9", "Reviewer_kdLu"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_q5vX",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "Not a numeric outlier, because Reviewer_5gHo also gave 5. But q5vX is the only substantive detractor: confidence 4, the highest in either committee, 6 hours, posted 2021-08-01, two weeks after the other four. It argued that Theorem 1 belongs in a specialised journal, that Remarks 2-4 spend main-text space on subtle comparisons, and that the claimed match to Zhan et al.'s lower bound mixes setups. The Zhan et al. point is right: the authors conceded it, and the camera-ready says 'seemingly closing the gap' and leaves general Hamming-entropy classes open. Reviewer_ZSG9 cited it when lowering its score, and Reviewer_kdLu lowered its score after reading the other reviews."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_5gHo",
+     "evidence": "Two hours, confidence 2, one paragraph. It gives 5 for density and says the difficulty 'could be due to my lack of relevant background'. It names two typos and no technical point, and it never replied to the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_P7T1",
+     "evidence": "Confidence 2. It gives 7 with general praise ('well-written and pleasant to read') and says 'I am unable to judge the depth of this result'. Its only specific comment is how to capitalise Dutch surnames. It offered to move its score toward the others and never joined the discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_q5vX",
+     "claim": "Remarks 2, 3 and 4 occupy a significant part of the main text with subtle technical comparisons to prior papers.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 2 (lines 167-183), Remark 3 (lines 235-268) and Remark 4 (lines 269-280) fill about 63 of the 352 numbered main-text lines, on top of a 57-line related-work section (lines 78-134)."
+    },
+    {
+     "reviewer": "Reviewer_q5vX",
+     "claim": "The claim to match the lower bound of Zhan et al. is confusing, because that bound is set up with the Natarajan dimension of the policy class, not with the paper's bracketing-entropy classes.",
+     "checked_against_paper": "correct",
+     "evidence": "Remark 3 describes Zhan et al.'s setting as a finite Hamming entropy integral, admits that 'the two complexity measures are simply different' (line 239), and still says the result 'closes this open gap' (line 252). The abstract says 'rate-optimal'. The authors conceded the Hamming-versus-Natarajan slip. The camera-ready says 'seemingly closing the gap' and leaves general Hamming-entropy classes as an open question."
+    },
+    {
+     "reviewer": "Reviewer_q5vX",
+     "claim": "Bracketing entropy is restrictive for parametric classes, so standard parametric rates cannot be recovered with this technique.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 209-210 state that classes Lipschitz in a parameter from a compact subset of R^d satisfy Assumption 6 for any p > 0, so Theorem 4 gives fast rates close to gamma/T. The concern has force only for indicator-type policy classes, which are not Lipschitz in the parameter. For those classes, lines 240-241 assert p < 2 with no citation."
+    },
+    {
+     "reviewer": "Reviewer_q5vX",
+     "claim": "Once Theorem 1 is established, all applications, including the fast rates, are standard.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3 obtains Theorems 2-6 by instantiating Theorem 1, and lines 181-183 say the proof otherwise follows van de Geer and van Handel. Committee A's Reviewer_7ciX said the same thing ('Theorem 2 and 3 are direct corollary of Theorem 1') without counting it against the paper."
+    },
+    {
+     "reviewer": "Reviewer_ZSG9",
+     "claim": "In Figure 1(c), unweighted ERM outperforms importance-weighted ERM.",
+     "checked_against_paper": "correct",
+     "evidence": "In the 'Unweighted ERM' panel of Fig. 1(c) (CART), most of the 51 dots are red, which is the figure's code for 'ISWERM clearly worse'. The gaps are small. The text says only that 'all ERM methods perform similarly' (line 324)."
+    },
+    {
+     "reviewer": "Reviewer_ZSG9",
+     "claim": "Script O is not defined by line 140, and the main text does not say what g* is in the simulations.",
+     "checked_against_paper": "incorrect",
+     "evidence": "O = X x A x Y is defined in Section 1.1 (line 43), and line 317 gives g*(a | x) = 1/K. The authors pointed to both lines."
+    },
+    {
+     "reviewer": "Committee B area chair",
+     "claim": "There is no space in the current version to add proof sketches or anything else.",
+     "checked_against_paper": "correct",
+     "evidence": "In the submission, the main text ends on the last line of page 9 (line 352). But the camera-ready main text runs onto a tenth page. The camera-ready still has no proof-sketch section, and Remarks 2-4 remain."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": ["Reviewer_ZSG9", "Reviewer_kdLu"],
+    "evidence": "Reviewer_ZSG9 (2021-08-25; review edited the same day): 'After reading what the other reviewers have said, I have lowered my score slightly'. It cites clarity and 'the comments brought up by reviewer q5vX regarding ... Zhan et al.'. Its final rating is 7. Reviewer_kdLu (2021-08-19): 'I am happy to keep my score of 7'. Then on 2021-08-31 (review edited the same day) it asked for 'a fairly thorough rewrite', called this 'more in line with a major revision', and lowered to 6. Reviewer_q5vX, Reviewer_5gHo and Reviewer_P7T1 did not reply.",
+    "what_convinced_or_not": "Neither drop responds to the rebuttal's content. Both followed the other reviews, and ZSG9 named q5vX. The authors conceded the Natarajan slip, but they told q5vX 'We respectfully strongly disagree' on venue fit and defended Remarks 2-4. Their rejoinder to kdLu said the fixes need nothing 'close to a rewrite'. The AC read this as 'they seem unwilling to do a serious rewrite'."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The AC rejected at mean 6.0 with three of five ratings at 6 or above. The same meta-review calls the paper 'strong' with 'significant contributions' and admits 'the decision is not easy'. Its reasons follow q5vX (dense remarks, the Zhan et al. comparison, a better fit at ALT) and kdLu's last comment (major revision, page limit). 'This was the conclusion of absolute experts' has no support in the stated confidences: the highest is 4 (q5vX). 'The reviewers and I disagree' with the authors overstates the panel: P7T1 called the paper 'well-written', and ZSG9 still rates it 7. The AC also says the Zhan et al. issue needs only a technical qualification.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Presentation too dense for the NeurIPS audience; it needs intuition and proof sketches",
+    "No room in nine pages to add them; a major revision would need another round of review",
+    "Authors rejected a rewrite ('anything close to a rewrite'), read as unwillingness",
+    "Loose claim to match Zhan et al.'s lower bound across different complexity measures",
+    "Venue fit: Theorem 1 suits a journal or ALT better than NeurIPS"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether Theorem 1 holds for a more general data-generating process, and whether the xi_t process is needed (Reviewer_7ciX)",
+  "Whether Freedman's inequality would give the same result more simply (Reviewer_BwZs)",
+  "Whether ISWERM needs the full data-generating density (Reviewer_beVp; it does not)",
+  "Epsilon typo in the Theorem 1 bound and unclear steps in the supplement proof (Reviewer_7ciX)",
+  "How the bound compares with single-hypothesis and iid results, and the runtimes (Reviewer_7ciX, Reviewer_beVp)"
+ ],
+ "issues_only_b": [
+  "The claimed match to Zhan et al.'s lower bound uses a different complexity measure, Natarajan dimension versus bracketing entropy (Reviewer_q5vX, Reviewer_ZSG9, AC)",
+  "Remarks 2-4 spend too much main-text space on technical comparisons with prior work (Reviewer_q5vX, AC)",
+  "Venue fit: a sequential empirical-process result belongs in a journal or at ALT (Reviewer_q5vX, AC)",
+  "Bracketing entropy is restrictive for VC and Natarajan classes (Reviewer_q5vX)",
+  "No space for proof sketches, so a major revision is needed (Reviewer_kdLu, AC)",
+  "Unweighted ERM beats ISWERM in Fig. 1(c); IS weighting is not always better (Reviewer_ZSG9)",
+  "Doubly robust and clipped variants, and synthetic experiments that show the rates (Reviewer_kdLu)"
+ ],
+ "shared_issues": [
+  "Dense presentation without intuition for Theorem 1, M_T(f) and sequential bracketing entropy",
+  "Assumptions stated without motivation",
+  "Undefined norm ||.||_{2,g*} at line 146",
+  "Optimality of the dependence on the exploration rate asserted without a lower bound in the paper",
+  "Modest empirical gains for ISWERM",
+  "Meaning and choice of the reference policy g*",
+  "The applications follow directly from Theorem 1 (neutral for Reviewer_7ciX in A, a weakness for Reviewer_q5vX in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The committees split because they judged the same density problem differently, and because only Committee B had an expert critic. Both committees and both area chairs called the guarantees new and significant. Both also found the paper very hard to read. Committee A's AC asked for 'a revision for clarity'. Committee B's AC said proof sketches would not fit in nine pages, so the paper needed a major revision and a new review. The push came from Reviewer_q5vX, a late reviewer at confidence 4, the highest in either committee. q5vX said the result suits a journal, that Remarks 2-4 waste space, and that the claimed match to Zhan et al.'s lower bound mixes setups. The last point was right: the authors conceded it, and the camera-ready softens it. Reviewer_ZSG9 and Reviewer_kdLu then lowered their scores after reading the other reviews, and ZSG9 named q5vX. The authors then refused 'anything close to a rewrite'. The AC rejected at mean 6.0, with three of five ratings at 6 or above. Committee A had no reviewer above confidence 3, almost no discussion, and no score change. No reviewer in either committee found an error in a theorem.",
+ "candidate_reasons": [
+  "density: camera-ready fix versus major revision",
+  "late high-confidence expert detractor",
+  "discussion cascade lowered two scores",
+  "authors refused requested rewrite",
+  "overstated lower-bound matching claim",
+  "journal-style theory, venue fit doubts"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee B meta-review",
+  "Committee A meta-review",
+  "Reviewer_q5vX review (posted 2021-08-01)",
+  "Reviewer_ZSG9 response 2021-08-25",
+  "Reviewer_kdLu responses 2021-08-19 and 2021-08-31",
+  "Authors' response to Reviewer_q5vX (Natarajan concession; 'We respectfully strongly disagree')",
+  "Authors' rejoinder to Reviewer_kdLu 2021-08-31",
+  "Reviewer_7ciX review",
+  "paper_submitted Remark 3, lines 235-268, and abstract line 11",
+  "paper_submitted lines 209-210",
+  "paper_submitted Fig. 1(c) and line 324",
+  "camera-ready Remark 3 ('seemingly closing the gap') and abstract"
+ ]
+}

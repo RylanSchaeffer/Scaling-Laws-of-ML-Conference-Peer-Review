@@ -1,0 +1,234 @@
+{
+  "pair_id": "n21-254",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [3, 6, 7, 4],
+      "confidences": [4, 4, 4, 3],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "A 2-2 split, not one outlier: Reviewer_nCB6 (3) and Reviewer_984W (4) against Reviewer_oM5M (6) and Reviewer_hVW8 (7). Both detractors are weak. 984W is inattentive, and nCB6 mixes confirmed scope points with a wrong complexity claim. The decision came from the SAC's own reading, not from any one reviewer."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_984W",
+          "evidence": "Five generic sentences. The summary says only that the authors 'try to use reinforcement learning to investigate large sparse linear systems'. It asks for 'strong theories' without naming a gap. It reports 25 hours of reviewing. It did not answer the AC's question of 2021-08-23 ('Can you elaborate what kind of theory you expect')."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nCB6",
+          "claim": "The method is tested only on 2D Poisson, but the abstract and Section 1 suggest it coarsens arbitrary unstructured graphs.",
+          "checked_against_paper": "correct",
+          "evidence": "All experiments are 2D Poisson (lines 48-49, 305). The abstract (lines 14-15) says the agent can 'be applied to unstructured large graphs' with no PDE or planarity qualifier. Section 1 does say 'for the 2D Poisson problem' (line 62). The authors conceded, and the camera-ready abstract adds 'planar' and 'assuming bounded node degree'."
+        },
+        {
+          "reviewer": "Reviewer_nCB6",
+          "claim": "The paper claims speed, but it has no performance comparison with other methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 48 promises 'fast and high-quality' partitioning, and lines 147-148 claim SA-level quality 'at a lower cost'. No run time is given for greedy or SA. Figure 2 (right) shows only RL's own linear scaling. The wording 'faster than any other technique' is the reviewer's, not the paper's. The authors changed 'fast' to 'scalable'."
+        },
+        {
+          "reviewer": "Reviewer_nCB6",
+          "claim": "Algorithm 2 is not O(n); the argmax can cost O(n), so the total can be O(n^2).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Algorithm 2 line 5 takes the argmax over one subdomain V_k. Theorem 2 assumes n-independent bounded subdomain size (lines 226-228), and the experiments use a mean aggregate size of 400 (line 252). Each argmax is O(1), K = O(n), and Figure 2 (right) shows linear time up to 1.2 million nodes."
+        },
+        {
+          "reviewer": "Reviewer_nCB6",
+          "claim": "The released code fails; 'from DuelingNet2 import Net as Net_MPNN' in MG_Agent.py raises an error.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Not checkable from the PDF. The authors conceded the errors and said they fixed the repository."
+        },
+        {
+          "reviewer": "Reviewer_hVW8",
+          "claim": "The Aspect Ratio family is missing from Figure 3 (right).",
+          "checked_against_paper": "correct",
+          "evidence": "The legend lists Aspect Ratio, but no blue points are plotted. The authors said the convergence theory of [17] does not cover that family, so they left it out."
+        },
+        {
+          "reviewer": "Committee A SAC",
+          "claim": "Lloyd aggregation is not described at all, not even in an appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "Lloyd aggregation appears only in Algorithm 2 and lines 217-222, with citations [20, 21]. The submission has no appendix. Reviewer_oM5M (point 4) and Reviewer_hVW8 (point 1) asked for it. The camera-ready adds an appendix on it."
+        },
+        {
+          "reviewer": "Committee A SAC",
+          "claim": "The paper does not relate its RL approach to the literature on RL for combinatorial optimization.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 2 covers ML for multigrid, generic RL (games, robotics, DQN, PPO) and GNNs. It cites no work on ML or RL for combinatorial optimization."
+        },
+        {
+          "reviewer": "Committee A SAC",
+          "claim": "Lines 147-148 say the approach should do better than simulated annealing [18], but no comparison shows it.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 147-148 aim 'to retain the effectiveness of the SA approach, but at a lower cost'. The experiments compare only with greedy [17] and, for structured grids, with the Theorem 4 bound. 'More effective' overstates the paper's claim, but the missing SA comparison is real."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "The algorithm beats the classical greedy algorithm on a wide range of meshes.",
+          "checked_against_paper": "correct",
+          "evidence": "True for F-fraction, the optimisation objective: RL is higher for every family (Table 1, Figure 3 left). Not true for the effective convergence factor: in Figure 3 (right), RL is worse for most Structured, Different Size and Wide Valence grids."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review in A was edited after posting. Reviewer_nCB6 replied on 2021-08-18 only to clarify its point 6 and gave no sign of a change. Reviewer_984W did not answer the AC's question of 2021-08-23. Reviewer_oM5M and Reviewer_hVW8 did not post after the rebuttal.",
+        "what_convinced_or_not": "The authors answered mostly with promises: scope words in the abstract, a Lloyd appendix, a theory appendix, a variable-coefficient example and timing results. No reviewer responded to them. The SAC judged the submission as submitted and asked for a resubmission."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "The original AC meta-review is positive ('can be important for the field'), and the SAC note calls the AC's recommendation borderline. That matches a 5.0 mean. The SAC saw 'quite opposite recommendations', read the paper, calibrated against other papers, and rejected.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "The SAC judged the paper not self-contained for ML readers: Lloyd aggregation is never described, and there is no appendix.",
+        "No positioning against the literature on RL for combinatorial optimization.",
+        "The only baseline is the 2007 greedy algorithm [17]; no comparison with simulated annealing [18], which lines 147-148 invoke.",
+        "A polarised panel (3, 4, 6, 7) and a borderline AC left the decision to the SAC.",
+        "Experiments only on 2D Poisson, which the AC called 'a minus' but not decisive."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [4, 6, 6],
+      "confidences": [3, 2, 2],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_qGDk",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below 6: a 4 at confidence 3, against two 6s at confidence 2. qGDk is the only B reviewer who claims AMG experience. Its case is venue fit ('the ML component to this method is fairly standard') and the lone 2007 baseline, which the paper confirms. Its train/test complaint is wrong (lines 203-204). The AC accepted without answering the venue argument."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_5a9n",
+          "evidence": "Two hours, confidence 2, and 'I am not familiar with AMG-related algorithms'. Generic praise ('stands out as the first of its kind') and a wrong claim of theoretical superiority. The limitations field restates the paper's own limitation. No engagement after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qGDk",
+          "claim": "The only baseline is the greedy algorithm [17] from 2007.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 265-270 name greedy [17] (SIAM J. Sci. Comput., 2007) as the only comparison method. The only other reference line is the Theorem 4 upper bound for structured grids."
+        },
+        {
+          "reviewer": "Reviewer_qGDk",
+          "claim": "The manuscript links to a non-anonymized GitHub repository.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 1 (page 6) gives https://github.com/compdyn/rl_grid_coarsen, a named group account. The camera-ready uses the same URL."
+        },
+        {
+          "reviewer": "Reviewer_qGDk",
+          "claim": "There are no details on the train/test split.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 203-204 train on random convex triangular meshes of 30 to 120 nodes. Table 1 tests six families up to about 52,000 nodes, and Figure 2 goes to 1.2 million. Table 1 is not labelled as test data, which the authors agreed to fix."
+        },
+        {
+          "reviewer": "Reviewer_qGDk",
+          "claim": "The network (3 layers, width 32) and training (5 hours on a laptop CPU) are far smaller than usual in RL.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 180-181 give 3 TAGConv layers with 32 hidden units. Lines 254-255 give CPU-only training on a MacBook Pro in about 5 hours."
+        },
+        {
+          "reviewer": "Reviewer_xtZu",
+          "claim": "The convergence factor of the proposed method is not better than that of the previous method (Figure 3).",
+          "checked_against_paper": "correct",
+          "evidence": "In Figure 3 (right), most Structured, Different Size and Wide Valence points lie above the 45-degree line, so RL is worse. Graded Meshes and Non-convex sit near the line. The text calls the factors 'generally similar' (lines 292-295). The authors conceded that RL's convergence factors are worse than greedy's."
+        },
+        {
+          "reviewer": "Reviewer_5a9n",
+          "claim": "The method achieves superior results both theoretically and empirically.",
+          "checked_against_paper": "incorrect",
+          "evidence": "No theorem compares RL with greedy. Theorems 1-4 give optimal-agent equivalence, O(n) cost, an inherited two-grid convergence bound and an upper bound for structured grids. Empirical superiority holds for F-fraction only."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The objective is a simple theoretical bound that applies only to the two-grid case.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 142 ('the lowest (two-grid) complexity') and Theorem 3, which covers the two-grid cycle only."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The paper does not attempt to exaggerate its contributions.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The abstract claims 'better coarse graphs than existing algorithms' (line 16), and line 65 claims 'superior coarse grids to existing heuristic methods', both with one baseline. The abstract omits the 2D-Poisson scope, which the authors conceded to Committee A."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review in B was edited after posting. The B forum holds only the three author replies of 2021-08-10; no reviewer and no AC posted after them.",
+        "what_convinced_or_not": "The authors conceded that RL's convergence factors are worse than greedy's and promised plots and an architecture ablation. They defended the missing SA baseline by its cost and the small network by precedent. No reviewer replied, so nothing on record shows the rebuttal changed a view. The meta-review does not cite it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepted with two 6s against one 4. The meta-review says 'The reviewers seem to agree on this' (novelty and clarity). It adds the AC's own list of limits: a two-grid bound as objective, very simple examples, no wall-clock time against 'real high performing AMG solvers', no ablations. It does not address Reviewer_qGDk's venue argument or Reviewer_xtZu's convergence-factor point.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Novelty: the first attempt to learn AMG coarsening, with 'the potential to open up a refreshingly new direction of research'.",
+        "Two weak accepts (6, 6) against one 4, read by the AC as agreement on novelty and clarity.",
+        "The AC judged the paper clearly written and not exaggerated.",
+        "The AC accepted the exploratory limits (two-grid bound, simple examples, no wall-clock time, no ablations) as acceptable for a first paper."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Lloyd aggregation never described; paper not self-contained for ML readers (Reviewer_oM5M, Reviewer_hVW8, SAC)",
+    "No positioning against RL for combinatorial optimization (SAC)",
+    "Abstract omits the 2D-Poisson and planar scope (Reviewer_nCB6; authors conceded)",
+    "O(n) cost of Algorithm 2 disputed (Reviewer_nCB6; claim incorrect)",
+    "Released code broken (Reviewer_nCB6; authors conceded)",
+    "Aspect Ratio family missing from Figure 3 right (Reviewer_hVW8)",
+    "No comparison with simulated annealing despite lines 147-148 (SAC)"
+  ],
+  "issues_only_b": [
+    "RL's effective convergence factor no better than greedy's, worse for several families (Reviewer_xtZu; authors conceded)",
+    "ML component standard; better suited to a specialised venue (Reviewer_qGDk)",
+    "Non-anonymized GitHub link in footnote 1 (Reviewer_qGDk)",
+    "No ablation of the GNN architecture (Reviewer_xtZu, Committee B AC)",
+    "Very small network and 5-hour CPU training (Reviewer_qGDk)"
+  ],
+  "shared_issues": [
+    "Only 2D Poisson tested; generalization unknown (A: Reviewer_nCB6, Reviewer_oM5M, AC; B: Reviewer_5a9n, AC)",
+    "Single baseline, the 2007 greedy algorithm [17] (A: Reviewer_oM5M, SAC; B: Reviewer_qGDk)",
+    "No time-to-solution or wall-clock comparison (A: Reviewer_nCB6, Reviewer_oM5M; B: AC)",
+    "Limited theory: the guarantee is the two-grid bound inherited from [17] (A: Reviewer_984W, Reviewer_oM5M; B: AC)",
+    "Novelty: first learned AMG coarsening (A: AC, Reviewer_hVW8; B: AC, Reviewer_xtZu, Reviewer_5a9n)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same facts differently, and Committee A's senior area chair (SAC) decided the split. Both committees saw the first learned AMG coarsening method, tested only on 2D Poisson against one 2007 greedy baseline and with no solver timing. Committee A's panel split 3 and 4 against 6 and 7, and both detractors were weak: Reviewer_984W wrote five generic sentences and did not answer the AC, and Reviewer_nCB6 mixed confirmed scope points with a wrong O(n^2) complexity claim. A's AC wrote a positive meta-review with a borderline recommendation. The SAC read the paper and rejected it as not ready, for reasons the submission confirms: Lloyd aggregation is never described, related work omits RL for combinatorial optimization, and simulated annealing is invoked (lines 147-148) but never compared. Committee B's AC listed similar limits and accepted on novelty. B's two 6s came from self-declared non-experts at confidence 2, one of them generic (Reviewer_5a9n); the only B reviewer with AMG experience, Reviewer_qGDk, gave 4. The strongest checkable weakness came from B and moved neither committee: in Figure 3 (right), RL's effective convergence factor is worse than greedy's for most Structured, Different Size and Wide Valence grids, which the authors conceded to Reviewer_xtZu.",
+  "candidate_reasons": [
+    "SAC overrode borderline-positive AC",
+    "novelty outweighed exploratory evaluation",
+    "low-confidence non-expert weak accepts",
+    "inattentive detractor in split panel",
+    "self-containedness bar for ML readers",
+    "conceded solver-level weakness went unweighed"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A SAC meta-review",
+    "Committee A original AC meta-review",
+    "Committee B meta-review",
+    "Reviewer_984W review and Area_Chair_WbLM question of 2021-08-23",
+    "Reviewer_nCB6 review and authors' reply point 5",
+    "Reviewer_xtZu review and authors' reply point 1",
+    "Reviewer_qGDk review",
+    "Reviewer_5a9n review",
+    "paper_submitted.pdf Algorithm 2 and Theorem 2 (Section 4.3)",
+    "paper_submitted.pdf lines 147-148 and Section 2",
+    "paper_submitted.pdf Figure 3 right",
+    "paper_submitted.pdf abstract lines 14-16 and footnote 1"
+  ]
+}

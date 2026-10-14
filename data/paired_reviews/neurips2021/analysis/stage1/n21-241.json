@@ -1,0 +1,293 @@
+{
+  "pair_id": "n21-241",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_2AUC",
+        "Reviewer_dVax",
+        "Reviewer_UoCD"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Qn5b",
+        "direction": "champion",
+        "basis": "inattentive",
+        "evidence": "The only rating above threshold (6 at confidence 4) against three 5s, from a one-hour review. It calls the analysis 'sound and convincing' but says it cannot find how the equation below line 125 or Eq. (3) is derived, and it misses the Theorem 5/Corollary 6 mismatch that UoCD found. It concedes 'The experiment is not strong'. It never replied after the rebuttal. Its one sharp question, that Zheng et al. (2019a) compress the momentum while the paper compresses the gradient estimator, became part of the AC's case for rejection."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Qn5b",
+          "evidence": "One hour at confidence 4 for a theory paper. Declares the theory 'sound and convincing' while asking how Eq. (3) is obtained. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_UoCD",
+          "claim": "Corollary 6 does not follow from Theorem 5: its α = 8L²γ²/n falls outside the range Theorem 5 allows.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 5 requires α ≥ 8(L²+L_F²)γ²/n (lines 199-200). Corollary 6 sets α_t = 8L²γ²/n (lines 202-203), which is smaller whenever L_F > 0. The authors called it a typo. The forum version still has it."
+        },
+        {
+          "reviewer": "Reviewer_UoCD",
+          "claim": "Assumption 2 bounds the compression error by a constant, which 1-bit, top-k and random-k compression do not satisfy; prior work uses a relative bound.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 180: E_ω||δ_t^(i)||² ≤ ε²/2 for all t, i. Assumption 1 bounds only the variance, so nothing bounds the input to the compressor. Table 1 multiplies STORM's A_t by 1/α_t, so the absolute bound sets aside how the error scales in the small-α regime where ECX claims its gain. The authors replied that the assumption is 'widely used' (Tang et al. 2019; Wangni et al. 2018) and that a relative version also works, without showing it."
+        },
+        {
+          "reviewer": "Reviewer_UoCD",
+          "claim": "The STORM result needs a batch size proportional to T^(1/3) (Corollary 6), which defeats the purpose of a variance-reduced estimator.",
+          "checked_against_paper": "correct",
+          "evidence": "Corollary 6 sets B_0 = σ^(8/3) T^(1/3) / n^(2/3) (line 203). B_0 is only the batch for the initial estimator v_0 (Algorithm 1, step 1), so the batch does not grow during training and 'defeat the purpose' overstates the point."
+        },
+        {
+          "reviewer": "Reviewer_UoCD",
+          "claim": "The 'total batch-size B_0' variable in Algorithm 1 seems unused.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Algorithm 1, step 1: 'The initial gradient estimator v_0 = ∇F(x_0; ξ_0^(i)) with total batch-size B_0'. This misreading feeds UoCD's 'growing batch size' objection."
+        },
+        {
+          "reviewer": "Reviewer_UoCD",
+          "claim": "The paper does not compare ECX with simply applying error feedback to the momentum term, or explain why that would fail.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 107-110 attribute 'Single Compensation' to Zheng et al. (2019a) and describe it as compressing the gradient estimator v_t, but Section 3.2 analyses Single Compensation as compressing A(x_s; ξ_s) + δ_(s-1) (lines 117-122). Section 5 (lines 223-226) lists no separate momentum-compression baseline. The authors said 'we have also tried this method' and gave no numbers."
+        },
+        {
+          "reviewer": "Reviewer_Qn5b",
+          "claim": "Zheng et al. (2019a) compress the momentum, whereas this paper compresses the gradient estimator before it enters the momentum.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 compresses Δ_t = A(x_t; ξ_t) + e_t (steps 5-6) and forms v_t from C_ω[Δ_t] (step 14). The paper never analyses the momentum-compression method it attributes to Zheng et al. (lines 107-110)."
+        },
+        {
+          "reviewer": "Reviewer_Qn5b",
+          "claim": "Theorem 2 gives Single Compensation and ECX the same bound at α = 1.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 185-186: γ²ε²/α² for Single Compensation and γ²α²ε² for ECX, equal at α = 1. The authors confirmed to B's Reviewer_HwbF that the two methods coincide for SGD."
+        },
+        {
+          "reviewer": "Reviewer_2AUC",
+          "claim": "ECX requires at least three extra model-size buffers (δ_(t-1), δ_t, e_(t-1)).",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 as written reads e_(t-1), δ_(t-1) and δ_(t-2) at each step on every worker and on the server (steps 4 and 9), so the count holds for the algorithm as stated. Updating e at the end of the previous step would cut this to two, which matches the authors' '2X of extra memory buffer' to A and 'an extra buffer' beyond Single Compensation to B. Either way ECX needs one model-size buffer more than Single Compensation."
+        },
+        {
+          "reviewer": "Reviewer_dVax",
+          "claim": "The only deep-learning experiment is ResNet-50 on CIFAR-10.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 (line 220) uses ResNet-50 on CIFAR-10 with one 1-bit compressor (line 227), single runs and no error bars (checklist item 3c answers 'No'). Figure 1 adds a linear-regression toy. Figure 2 plots epochs, not wall-clock time."
+        },
+        {
+          "reviewer": "Reviewer_UoCD",
+          "claim": "STORM is cited as Cutkosky & Mehta (2020), Gorbunov et al. (2020) is cited as an accelerated method, and bibliography entries are duplicated.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 29 cites 'Momentum improves normalized SGD' for STORM. Line 69 cites 'Linearly converging error compensated sgd' for accelerated algorithms. Stich et al. 2018a/2018b and Zheng et al. 2019a/2019b are the same papers. The forum version keeps all of these."
+        },
+        {
+          "reviewer": "Committee A AC",
+          "claim": "The paper asks for 'the best compression method for variance reduced algorithms' but does not discuss optimality.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 32-34: 'what is the best compression method for variance reduced algorithms? In this paper, we answer this question'. No optimality result appears. The authors told B's Reviewer_7b4p 'We did not prove it'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_2AUC",
+          "Reviewer_UoCD"
+        ],
+        "evidence": "Author responses were posted on 2021-08-10. No reviewer posted a discussion comment; reactions are in edited reviews. 2AUC (edited 2021-08-23): 'I increase the score slightly', final 5. UoCD (edited 2021-08-28): 'Some of my concerns have been adressed and I increased my score', final 5. dVax (edited 2021-09-01): 'I didn't see full answer to my questions', no change stated. Qn5b did not edit or reply.",
+        "what_convinced_or_not": "Clarifications of the proofs and the contribution moved 2AUC and UoCD up, but not past 5. 2AUC still doubted, without time-wise results, that 'trading 3X memory with bandwidth' pays off. UoCD still wanted real applications, a reason why two error buffers beat compressing a momentum-like buffer, and a comparison not muddled by Assumption 2 and the T^(1/3) batch. The authors had answered the momentum question with 'we have also tried this method' and no data. dVax received one line promising more experiments."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four ratings at 5 (mean 5.25). The meta-review restates UoCD's post-rebuttal point that the 'need' for two buffers is not justified (it calls them 'two momentum buffers'; they hold compression errors), Qn5b's question about Zheng et al. (2019a), and 2AUC's and dVax's doubts about practical usability. It adds PowerSGD as a further single-buffer precedent and notes that the paper asks for 'the best compression method' without discussing optimality. It calls the strong assumptions a minor issue and sees STORM as the novel part.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No justification for two error buffers when single-buffer error feedback on the momentum exists (Zheng et al. 2019a, PowerSGD); raised by UoCD and Qn5b, made central by the AC",
+        "Experiments do not show practical value: one ResNet-50/CIFAR-10 setting, one compressor, and no wall-clock data to justify the extra model-size buffers (2AUC, dVax)",
+        "Framing as 'the best compression method' with no optimality result (AC)",
+        "Strong assumptions (absolute compression-error bound, T^(1/3) initial batch), treated as minor (UoCD, 2AUC)",
+        "Three of four ratings at 5 after the rebuttal; the only 6 came from a one-hour review"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7b4p",
+        "Reviewer_LLeQ",
+        "Reviewer_HwbF"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 7; no rating stands apart. The two 7s (Reviewer_56o9, Reviewer_HwbF) are the shortest reviews, both at confidence 3 with the math not carefully checked. They lift the mean from 6.0 to 6.5."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_56o9",
+          "evidence": "Four hours, confidence 3, math not carefully checked. A 7 on five sentences, almost all praise ('well-written and pleasing to read', 'well-motivated with respect to previous work'), with no specific point, question or weakness. It ranks the paper against 'my batch of seven NeuRIPS papers'. It never replied after the rebuttal. The AC's meta-review repeats its wording."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7b4p",
+          "claim": "In Corollary 4, ε sits in the denominator, so less compression gives a worse bound.",
+          "checked_against_paper": "correct",
+          "evidence": "The bound after line 196 has the term α²/(εT)^(2/3). The authors conceded 'ε should be on the numerator'. The forum version is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_7b4p",
+          "claim": "The introduction claims to find the best compression method for variance-reduced algorithms without proof.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 32-34. The authors replied 'We did not prove it'."
+        },
+        {
+          "reviewer": "Reviewer_7b4p",
+          "claim": "The contribution claims a faster rate than previous methods (lines 36-38), but Section 4 claims only the same asymptotic rate as uncompressed training, which error compensation already achieves for SGD.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 36-38 versus lines 144-146 and 197. Lines 239-240 and Figure 2(a, d) show no gain over Single Compensation for Momentum SGD; the gain appears only for small α_t (STORM, IGT)."
+        },
+        {
+          "reviewer": "Reviewer_7b4p",
+          "claim": "The IGT rate is worse than SGD's, so the IGT section does not show ECX matching an uncompressed rate.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 217-218: O(1/(nT)^(4/9)), 'even worse than that of Momentum SGD. A sharper rate of IGT ... is still an open problem.' The authors conceded that no non-convex IGT rate exists."
+        },
+        {
+          "reviewer": "Reviewer_7b4p",
+          "claim": "Assumption 2 contains the same expression twice (also Reviewer_LLeQ).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 180 states E_ω||δ_t^(i)||² ≤ ε²/2 twice; the server error is not bounded separately."
+        },
+        {
+          "reviewer": "Reviewer_7b4p",
+          "claim": "STORM is not from Cutkosky & Mehta (2020).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 29 and the reference list cite 'Momentum improves normalized SGD' (ICML 2020) for STORM."
+        },
+        {
+          "reviewer": "Reviewer_HwbF",
+          "claim": "For Momentum SGD, ECX does not outperform Single Compensation.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 239-240: 'For Momentum SGD, all the three implementations ... achieves similar convergence speed'; Figure 2(a, d)."
+        },
+        {
+          "reviewer": "Reviewer_HwbF",
+          "claim": "Only one compressor is tested and no training time is reported (Reviewer_LLeQ adds: no communication-cost results).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5 uses only the 1-bit compressor of Tang et al. (2019) (line 227) and plots loss and accuracy against epochs (Figure 2)."
+        },
+        {
+          "reviewer": "Reviewer_56o9",
+          "claim": "The contribution is well-motivated with respect to previous work.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The introduction mis-cites STORM (line 29) and claims 'the best compression method' (lines 32-34) and 'a faster convergence rate compared to previous methods' (lines 36-38); the authors withdrew or qualified both claims in the rebuttal to 7b4p. Lines 107-110 versus 117-122 leave unclear which prior method the Single Compensation baseline represents."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_7b4p",
+          "Reviewer_LLeQ"
+        ],
+        "evidence": "Author responses were posted on 2021-08-10. 7b4p asked about IGT (2021-08-23), got a reply (2021-08-27), and the same day wrote that it was 'willing to increase my score' to 6, but that some points 'abstain me increasing the score even further and recommending an accept'; review edited 2021-08-27. LLeQ (comment and edit 2021-09-01) raised its score to 6 'in the hopes that exposition and notation will be streamlined in the camera-ready version'. HwbF (2021-08-31): 'resolved my concerns. I will keep my positive review'; its edit (2021-07-16) came before the rebuttal. 56o9 never replied.",
+        "what_convinced_or_not": "Clarifications plus promises (fix Corollary 4's ε, the citations and the claims; add ablations and experiments) moved 7b4p and LLeQ to 6. 7b4p still called the IGT claim 'exaggerated', saw STORM as 'the only useful application of ECX', asked for ablations of the second error term and the low-pass filter, and called the experiments 'quite limited'. LLeQ raised its score on a camera-ready promise. HwbF accepted 'an extra buffer' as the memory cost. The forum version contains none of the promised changes."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings at 6 or 7 (mean 6.5). The positive case repeats Reviewer_56o9 almost word for word: 'well-written' and 'a nice analysis of several variance-reduced algorithms, balancing quantitative results and qualitative explanations'. It turns LLeQ's exposition complaints, 7b4p's low-pass-filter question and HwbF's request for more experiments into suggestions. It does not mention 7b4p's statement that its 6 was not a recommendation to accept, the conceded Corollary 4 error, or the over-claims. It says the reviewers find the paper well-written, but LLeQ called the exposition 'below average'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at 6 or 7 after the two critics raised their scores on the rebuttal",
+        "Praise for a well-written, generic analysis of several variance-reduced methods, taken from Reviewer_56o9",
+        "Weak exposition, the unexplained low-pass filter and narrow experiments treated as camera-ready fixes",
+        "STORM seen as a case with a clear practical gain"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Assumption 2 is an absolute bound on the compression error that 1-bit, top-k and random-k compressors do not satisfy for unbounded inputs (UoCD, 2AUC)",
+    "No analysis or experiment for error feedback on the momentum buffer, the method of Zheng et al. (2019a); Single Compensation is defined on v_t (lines 107-110) but analysed on A (lines 117-122) (UoCD, Qn5b, AC)",
+    "Corollary 6 breaks Theorem 5's condition on α; the STORM rate needs an initial batch proportional to T^(1/3); step sizes depend on T (UoCD)",
+    "The variance bound uses ∇f, not ∇f_i, although the data are heterogeneous (UoCD)",
+    "No extension to Adam (2AUC)",
+    "No comparison with PowerSGD (AC)"
+  ],
+  "issues_only_b": [
+    "Corollary 4 puts ε in the denominator (7b4p)",
+    "The IGT rate is worse than SGD's, and the claim to match uncompressed IGT is exaggerated (7b4p)",
+    "No ablation separating the low-pass filter from the second error term (7b4p, AC)",
+    "Why not three or more past errors, if two 'fully compensate' the error history (7b4p)"
+  ],
+  "shared_issues": [
+    "Narrow experiments: one ResNet-50/CIFAR-10 setting and one 1-bit compressor (dVax in A; HwbF, 7b4p and the AC in B)",
+    "No wall-clock or communication-cost measurements (2AUC in A; HwbF, LLeQ and 7b4p in B)",
+    "Over-claims: 'the best compression method' and a 'faster rate than previous methods' (UoCD and the AC in A; 7b4p in B)",
+    "Gain over Single Compensation only at small α, none for SGD or Momentum SGD (Qn5b and 2AUC in A; HwbF and 7b4p in B)",
+    "Necessity of the second error term not shown (UoCD and the AC in A; 7b4p in B)",
+    "The rate decomposition is a standard technique (2AUC in A; 7b4p in B)",
+    "Extra memory for the error buffers (2AUC in A; HwbF in B)",
+    "Mis-citations and an incomplete bibliography (UoCD in A; 7b4p in B)",
+    "Section 3.2 and Eq. (3) poorly explained (Qn5b and UoCD in A; LLeQ in B)",
+    "Related work on compressed variance-reduced methods not discussed (UoCD in A; 7b4p in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The two committees saw mostly the same weaknesses and scored them on opposite sides of the threshold. Both found narrow experiments (one ResNet-50/CIFAR-10 setting, one 1-bit compressor, no wall-clock data), over-claims ('the best compression method', a 'faster convergence rate'), a gain only at small α, and errors in the theory and the citations. In each committee the two critics raised their scores after a rebuttal made mostly of promises. A's Reviewer_2AUC and Reviewer_UoCD stopped at 5. B's Reviewer_7b4p and Reviewer_LLeQ stopped at 6, and 7b4p wrote that its 6 was not a recommendation to accept. UoCD and 7b4p each spent 14 hours. B's margin came from two light 7s at confidence 3 with the math unchecked. Reviewer_56o9 wrote five sentences and never engaged. Reviewer_HwbF listed the same missing timing data and single compressor that A held against the paper. A's only 6 came from Reviewer_Qn5b's one-hour review. UoCD's checkable points hold: Corollary 6 breaks Theorem 5's condition on α, and Assumption 2 is an absolute error bound that hides how the error scales with STORM's A_t, which Table 1 multiplies by 1/α_t. UoCD and Qn5b asked why error feedback on the momentum buffer, as in Zheng et al. (2019a), does not already solve the problem. The paper defines Single Compensation on v_t (lines 107-110) but analyses it on A (lines 117-122). The authors said they had tried it and gave no data. A's AC made this gap and the missing practical evidence the reasons to reject. B's AC repeated 56o9's praise and left every weakness to the camera-ready. The forum version is the submission with author names added, so none of the promised fixes appeared.",
+  "candidate_reasons": [
+    "Equal critiques scored 5 versus 6",
+    "Two low-effort sevens lifted mean",
+    "Momentum error-feedback alternative unanswered",
+    "AC echoed thinnest positive review",
+    "Rebuttal promises accepted unverified"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_UoCD review and update (edited 2021-08-28), Committee A",
+    "Reviewer_Qn5b review, Committee A",
+    "Reviewer_2AUC review and update (edited 2021-08-23), Committee A",
+    "Reviewer_dVax review and update (edited 2021-09-01), Committee A",
+    "Author responses of 2021-08-10 to UoCD and Qn5b ('we have also tried this method'), Committee A",
+    "Committee A meta-review",
+    "Reviewer_7b4p review and comments of 2021-08-23 and 2021-08-27, Committee B",
+    "Reviewer_LLeQ review and comment of 2021-09-01, Committee B",
+    "Reviewer_56o9 review, Committee B",
+    "Reviewer_HwbF review and comment of 2021-08-31, Committee B",
+    "Committee B meta-review",
+    "paper_submitted.pdf lines 28-38 (STORM citation, 'best compression method', 'faster convergence rate')",
+    "paper_submitted.pdf lines 107-110 versus 117-122, and Algorithm 1 (what Single Compensation and ECX compress)",
+    "paper_submitted.pdf Table 1 and Assumption 2 (line 180)",
+    "paper_submitted.pdf Corollary 4 (lines 195-197), Theorem 5 and Corollary 6 (lines 199-206), Corollary 8 (lines 215-218)",
+    "paper_submitted.pdf Section 5 and Figure 2 (lines 219-240)",
+    "paper.pdf (forum version): body identical to the submission; Corollary 4, Corollary 6 and the STORM citation unchanged"
+  ]
+}

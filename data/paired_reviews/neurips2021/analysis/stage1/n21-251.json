@@ -1,0 +1,208 @@
+{
+  "pair_id": "n21-251",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 5, 4, 6],
+      "confidences": [5, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_wxwg"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6 (iK1S), 5 (wxwg), 4 (vkHd), 6 (F2Td). Before the rebuttal the panel split two against two: iK1S and F2Td at 6, vkHd at 4 and wxwg at 4 or lower ('I raise my score to 5'). No single rating stands apart. Reviewer_vkHd's 4 is the floor, and the AC copied its wording, but it is not isolated."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_vkHd",
+          "claim": "The paper has just two myopic baselines and one non-myopic baseline.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.1 compares only EIC and PESC (lines 272-273), plus the authors' own SAA_CMAES variant on P3 (lines 282-283). Section 6.2 compares only the rollout method of [1] (lines 289-291)."
+        },
+        {
+          "reviewer": "Reviewer_vkHd",
+          "claim": "All results except 2-OPT-C in the rollout comparison come from another paper, so hyperparameters may differ.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 292-293: 'As code was unavailable for this rollout algorithm, we extract experimental data from [1] and replicate their experimental setup'. The Figure 4 caption says the rollout lines are extracted from Figure 3 of [1]."
+        },
+        {
+          "reviewer": "Reviewer_vkHd",
+          "claim": "The paper claims all BO methods are myopic, which is misleading given UCB and Thompson sampling.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 37-38 limit the claim to the listed constrained BO methods and name the exceptions [1, 14]. Lines 41-42 cite non-myopic unconstrained work [15-19]. UCB and Thompson sampling do not solve the multi-step dynamic program, as the authors replied."
+        },
+        {
+          "reviewer": "Reviewer_wxwg",
+          "claim": "Line 66 says the method beats the rollout method of [1] in high-dimensional problems, but nothing tests this.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 65-67 make the claim. The only test problems are P1-P3 from [1] (lines 269-271), and no experiment varies the dimension. The camera-ready weakens the claim to 'relatively higher-dimensional problems'."
+        },
+        {
+          "reviewer": "Reviewer_F2Td",
+          "claim": "The number of experiment repetitions is not in the paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 and the Figure 3 caption give no replication count; line 271 defers the set-up to the supplement. The authors' answer (150 and 500 replications) points to Appendix A.1."
+        },
+        {
+          "reviewer": "Reviewer_iK1S",
+          "claim": "The line-220 claim to be the first to use the likelihood ratio method for a BO gradient estimator is contradicted by [17, Section 3.2].",
+          "checked_against_paper": "not_checked",
+          "evidence": "The claim is at lines 220-221, and [17] is Wu & Frazier 2019, which is not in the files. The authors replied that [17] uses importance sampling only for variance reduction. The camera-ready narrows the claim to 'the first to demonstrate the benefits' and adds that sentence about [17]."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_wxwg"],
+        "evidence": "Only Reviewer_wxwg edited its review (2021-09-01): 'as the authors could clarify some of my concerns during the rebuttal, I raise my score to 5'. The authors' 2021-09-02 reply thanks it for raising. iK1S, vkHd and F2Td never edited, and no reviewer posted on the forum. The authors' 2021-08-11 responses gave a portfolio-optimization experiment (best feasible annualized return 7.08% for 2-OPT-C against 6.60% for EIC and 6.54% for PESC after 30 evaluations, 50 replications). Their 2021-09-02 posts added robot pushing and ADMMBO, NEI, ALBO and random search on P1-P3. These posts came after wxwg's edit, and no reviewer edited after them.",
+        "what_convinced_or_not": "Clarifications moved wxwg to 5, but its text still says the method 'is not sufficiently evaluated on real-data problems'. Reviewer_F2Td called real-world experiments its 'only concern', received one on 2021-08-11, and did not react. iK1S (confidence 5) did not react to the answers on [17], random search and IECI, and vkHd did not react to the answers on motivation, baselines and Thompson sampling. The AC reports that after 'more than a few communications' no reviewer would champion the paper."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Split reviews, mean 5.25, no rating above 6. The meta-review says 'none of reviewers are willing to champion this work'. Its requirement, 'It is required to include 1-3 real benchmarks which ideally arise out of motivating applications, more baselines, and ablation studies', copies Reviewer_vkHd's review word for word. It does not mention the portfolio, robot-pushing or new-baseline results that the rebuttal supplied.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers judged the evaluation too thin: three synthetic problems from [1], two myopic baselines, rollout curves copied from [1]",
+        "No rating above 6 after the rebuttal; the two 6s (iK1S, F2Td) never reacted, so the AC found no champion",
+        "The AC required real benchmarks, more baselines and ablations in vkHd's words and gave no credit to the rebuttal-period experiments"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 6, 5],
+      "confidences": [4, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_HPhn", "Reviewer_Strq", "Reviewer_uDRU", "Reviewer_8KpE"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 7 (HPhn), 7 (Strq), 6 (uDRU), 5 (8KpE); no isolated rating. The one score below threshold, Reviewer_8KpE's 5, comes from the most thorough review in B (about 6 hours, many specific questions, post-rebuttal follow-ups)."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_uDRU",
+          "evidence": "2 hours, confidence 3. Its summary says the method 'utilizes reparameterization trick to optimize the acquisition function', but the abstract (lines 18-19) says the estimator 'does not use the reparameterization trick'. It asks how constraints enter because '2-OPT-C doesn't involve constraint function g at all', but line 164 contains the probability-of-feasibility term. Its main text still says the paper 'cannot be accepted in the current form', yet it rose to 6 because it was 'impressed by the amount of work'."
+        },
+        {
+          "reviewer": "Reviewer_Strq",
+          "evidence": "3 hours, confidence 3, math not carefully checked. A 7 on a short review that names one weakness (only three test functions) and says 'The construction of the unbiases estimator is a little bit hard to follow, but I think I understood the overall idea'. Its post-rebuttal note is one sentence."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_uDRU",
+          "claim": "The method utilizes the reparameterization trick to optimize the acquisition function.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Abstract lines 18-19: the gradient estimator 'does not use the reparameterization trick'. Section 4 explains why reparameterization fails with constraints, and Section 5 replaces it with a likelihood-ratio estimator."
+        },
+        {
+          "reviewer": "Reviewer_uDRU",
+          "claim": "2-OPT-C does not involve the constraint function g at all.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 164: alpha contains PF(mu_1^c(x2), sigma_1^c(x2)^2), the posterior probability of feasibility from the GP on g. f1* (line 149) is the best feasible value, so it also depends on g at X1."
+        },
+        {
+          "reviewer": "Reviewer_uDRU",
+          "claim": "Assumption 1, needed for Theorem 1, is only in the appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 252-255: 'Both a detailed set of regularity conditions (Assumption 1) and the proof are provided in the supplement.'"
+        },
+        {
+          "reviewer": "Reviewer_Strq",
+          "claim": "Experiments use only three functions.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 269-271: P1, P2 and P3 from [1] are the only benchmark problems."
+        },
+        {
+          "reviewer": "Reviewer_8KpE",
+          "claim": "The main paper does not describe the three benchmark problems or define the median utility gap.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 269-277 name P1-P3 and report the 'utility gap' without describing either; both are deferred to the supplement."
+        },
+        {
+          "reviewer": "Reviewer_8KpE",
+          "claim": "The argument that [1] needs an extremely large amount of computation (lines 50-52) is not well supported.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 303-308: the code of [1] was unavailable, so the paper cites [17]'s timing for an unconstrained rollout and a 'private communication'. No timing of [1] itself is reported."
+        },
+        {
+          "reviewer": "Reviewer_HPhn",
+          "claim": "Wu & Frazier 2019 already uses importance sampling in a related context, so the work is incremental.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission says it builds on [17] (lines 74-77). The camera-ready concedes that [17] 'coincidentally also uses importance sampling', as a variance-reduction technique rather than for gradient estimation."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_HPhn", "Reviewer_Strq", "Reviewer_uDRU"],
+        "evidence": "HPhn edited 2021-08-26: 'increased my score by one unit. Congrats on the convincing responses and promising test case results' (6 to 7). Strq edited 2021-08-27: 'I think adding this example to the paper would make it considerably strongger'; the authors' 2021-09-02 reply thanks it for raising the rating (to 7). uDRU edited 2021-09-02: 'I am quite impressed by the amount of work authors have completed during the rebuttal phase ... I will increase my score to 6'. 8KpE edited 2021-08-30 with follow-up questions and states no change (5). The portfolio experiment came on 2021-08-10/11; robot pushing and the new baselines came on 2021-09-01/02. No reviewer posted on the forum.",
+        "what_convinced_or_not": "The portfolio experiment convinced HPhn and Strq. uDRU credited the volume of work, not a fix to the clarity problems it named. 8KpE was not convinced: it asked what the risk constraint is, how results change if it is relaxed, why existing BO of risk measures would not do better, and whether a simple EIC change that explores infeasible points would match 2-OPT-C. The rebuttal numbers had no error bars, and its summary claim that 2-OPT-C 'substantially outperforms benchmarks in all of these problems' conflicts with its own ties with PESC (robot pushing) and ADMMBO (P3 at 60 evaluations). No reviewer remarked on this."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Mean 6.25, three of four ratings above threshold. The meta-review says the reviewers reached a 'consensus' that the paper 'offered a significant contribution', and that they 'agree' the portfolio example 'was both relevant and convincing'. That overstates the panel: 8KpE stayed at 5 and questioned the portfolio set-up, and uDRU's text still says the paper cannot be accepted as written. The note adds no technical judgment of its own.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "The rebuttal's portfolio experiment moved HPhn from 6 to 7 and Strq up to 7, giving the paper two champions",
+        "uDRU rose to 6 for the volume of rebuttal work, despite unresolved clarity complaints and misreadings",
+        "The AC read the panel as a consensus and made the portfolio example a condition for the camera-ready"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "More baselines: random search, Thompson sampling, IECI [25] and the other cited constrained BO methods (iK1S, vkHd)",
+    "Claim of better query efficiency than rollout in high dimensions has no experiment (wxwg; lines 65-67)",
+    "Novelty claim at lines 220-221, first likelihood-ratio gradient estimator in BO, contested via [17] Section 3.2 (iK1S)",
+    "Weak motivation: applications only named in passing at lines 26-27 (vkHd)",
+    "Equality constraints, failures and binary constraints not handled (iK1S)",
+    "Myopia framing ignores UCB and Thompson sampling (vkHd; a misreading of lines 37-38)",
+    "Number of replications not in the main text (F2Td)"
+  ],
+  "issues_only_b": [
+    "Clarity and self-containedness: non-myopia, IPA and SAA not formally defined; Assumption 1 only in the supplement (uDRU)",
+    "No test that non-myopia causes the gain; a modified EIC that explores infeasible points might match it (8KpE)",
+    "Costly or unsafe infeasible evaluations would favour EIC (8KpE)",
+    "Theorem 1 needs delta > 0, which may exclude the optimum (8KpE)",
+    "Links to other multi-step methods (Jiang et al. 2020, Lee et al. 2020) and missing multi-step references (HPhn, 8KpE)",
+    "Portfolio problem: constraint level and relation to BO of risk measures (8KpE, post-rebuttal)",
+    "Reacting-flow problem P4 of [1] not tested (Strq)"
+  ],
+  "shared_issues": [
+    "Evaluation limited to three synthetic problems from [1], with no real-world problem (all four A reviewers; Strq and 8KpE in B)",
+    "Incremental over Wu & Frazier 2019 [17] (iK1S in A; HPhn in B)",
+    "Second stage evaluates one point, not a batch (iK1S in A; 8KpE and uDRU in B)",
+    "Rollout comparison relies on numbers copied from [1] (vkHd in A; uDRU in B)",
+    "Computational cost against other methods only discussed indirectly in the main paper (F2Td in A; 8KpE in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees judged the same weakness and received the same rebuttal; they differed on whether rebuttal-period experiments count. The submission tests 2-OPT-C on three synthetic problems from Lam & Willcox [1], against two myopic baselines, with rollout curves copied from [1] (lines 269-293). Six of the eight reviewers called the evaluation thin (all four in A; Reviewer_Strq and Reviewer_8KpE in B), and the paper confirms it. In both forums the authors posted a portfolio-optimization experiment on 2021-08-10/11, then robot pushing and four more baselines (ADMMBO, NEI, ALBO, random search) on 2021-09-01/02. In B, the portfolio result moved Reviewer_HPhn from 6 to 7 and Reviewer_Strq up to 7 within about two weeks, and Reviewer_uDRU rose to 6, 'impressed by the amount of work'. In A, only Reviewer_wxwg moved, from 4 or lower to 5, citing clarifications. A's two 6s never edited: Reviewer_iK1S (confidence 5) and Reviewer_F2Td, whose 'only concern' was real-world experiments. So A had no champion and B had two. A's AC copied Reviewer_vkHd's demand for '1-3 real benchmarks ..., more baselines, and ablation studies' and named no rebuttal result. B's AC called the panel a consensus and accepted on the portfolio example. B's case is weaker than its mean suggests. Its three raisers spent 2 to 3 hours each, uDRU misread the method twice, and the most thorough B reviewer, Reviewer_8KpE (about 6 hours), stayed at 5. The rebuttal numbers had no error bars, and its summary called ties with PESC and ADMMBO wins. A's case is weaker than its decision suggests: three of its four reviewers did not react to evidence that answered their main request, and the camera-ready contains the new problems and baselines. No reviewer found a technical error. Before the rebuttal no rating in either panel was above 6; the split in means (6.25 against 5.25) opened in the rebuttal phase.",
+  "candidate_reasons": [
+    "Rebuttal-period experiments credited unequally",
+    "Borderline reviewers silent after rebuttal",
+    "No champion versus two champions",
+    "AC adopted a detractor's wording",
+    "Score raised for rebuttal effort",
+    "Low-effort reviews carried the acceptance"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_vkHd review, point 2, Committee A",
+    "Reviewer_F2Td review ('My only concern is about numerical experiments'), never edited, Committee A",
+    "Reviewer_wxwg review update (edited 2021-09-01), Committee A",
+    "Author responses of 2021-08-10/11 (portfolio experiment) and 2021-09-01/02 (new baselines, robot pushing), both committees",
+    "Committee A meta-review",
+    "Reviewer_HPhn and Reviewer_Strq post-response notes (edited 2021-08-26 and 2021-08-27), Committee B",
+    "Reviewer_uDRU review and post-rebuttal note (edited 2021-09-02), Committee B",
+    "Reviewer_8KpE POST-REBUTTAL FEEDBACK (edited 2021-08-30), Committee B",
+    "Committee B meta-review",
+    "paper_submitted.pdf lines 264-302 and Figures 3-4 (experiments)",
+    "paper_submitted.pdf lines 18-19, 37-38, 65-67, 164, 220-221, 252-255, 303-308",
+    "paper.pdf (camera-ready): Section 5 (portfolio, robot pushing, new baselines) and Sections 1 and 4 (novelty claim narrowed, [21] importance-sampling note)"
+  ]
+}

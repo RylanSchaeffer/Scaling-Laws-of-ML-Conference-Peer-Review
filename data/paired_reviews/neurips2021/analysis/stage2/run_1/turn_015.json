@@ -1,0 +1,150 @@
+{
+  "run": 1,
+  "turn": 15,
+  "pair_id": "n21-156",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both area chairs followed their reviewers' scores: A's two-sentence meta-review follows the 6.5 mean to a poster, and B's restates its reviewers' agreement; neither substituted its own reading."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "No reviewer or area chair on either side forecast impact beyond the paper's own setting; B's 'timely, significant, and relevant' is a reviewer's assessment of the paper itself."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The rebuttal moved scores in both committees (A's Reviewer_7pq7 and Reviewer_4Rfw, B's Reviewer_d46C), so it did not move one committee and leave the other unchanged."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's Reviewer_4Rfw spent 1.5 h on three one-line questions and Reviewer_5o85 gave one specific point and never replied, both rating 6; A totals about 13 reviewer-hours against B's 23."
+    },
+    {
+      "id": "R05",
+      "applies": false,
+      "justification": "The one-sided issues (A's GP baseline and VEM bias; B's Eq. (12), Pontryagin, mode mismatch) changed no score; the weaknesses that held A's 6s down (no baseline, qualitative results, scaling) were shared."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees named the same faults (no baseline, qualitative 1D/2D results, Sec. 4.1 parameter bias, linear drift only); B's reviewers called them camera-ready work and rated 7-8, while A's 6s held them against the paper."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No reviewer in either committee changed a score after reading other reviewers; the score moves followed the authors' replies."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each rating matches its text: A's 6s carry stated reservations, and B's naZJ and czKb list weaknesses but write 'accept' with 7; QSy5's 8 is thin, not out of line with its positive text."
+    },
+    {
+      "id": "R09",
+      "applies": true,
+      "justification": "A's Reviewer_7pq7 said they were 'not familiar with the literature' and rated 6, and A's three 6s all came at confidence 3, holding A's mean at 6.5 near the threshold."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "Neither area chair followed a single outlier: A's meta-review ignores its outlier x8VX, and B has no outlier."
+    },
+    {
+      "id": "R11",
+      "applies": true,
+      "justification": "B's naZJ and czKb list almost exactly A's weaknesses yet rate 7 ('Good paper, accept') where A's similar assessments sit at 6, and each area chair followed its mean (6.5 vs 7.25) to poster and spotlight."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "B's spotlight follows a higher mean (7.25 vs 6.5) and includes an 8; A's maximum is also 8, so B's agreement did not lift it over a committee with a similar or higher mean."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "B's d46C raised on the authors' explanations of the formulation, not on unverified results; A's raises rested on the argument that no hybrid baseline exists, not on new evidence."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "A's meta-review carries cost and related-work requests and B's lists the parameter-error study and Eq. (12) as revisions; neither stated the opposite of its reviewers' weaknesses in a way that drove the tier."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "B's czKb (Eq. (12)) and naZJ (observations absent from figures) made wrong claims, but neither fed a score: czKb kept 7 and called it likely notation, and the figure point is minor."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "No rebuttal conceded an unfavourable result; the authors argued that a hybrid baseline does not exist and explained costs."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "czKb's post-rebuttal note of 2021-08-31 kept 'should be accepted' and lowered no score; no late objection stood unanswered against the paper."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The score profiles differ (6, 6, 6, 8 vs 8, 7, 7, 7; means 6.5 vs 7.25), so the split follows the reviews, not area chairs' thresholds on near-identical scores."
+    }
+  ],
+  "added": [
+    {
+      "id": "R19",
+      "name": "Area chair passed over the expert reviewer's verdict",
+      "definition": "One committee's best-informed reviewer (highest confidence, most specific review) reached a verdict that the area chair neither cited nor weighed, following instead the mean of less-informed reviewers' scores, so the recommendation reflected the less-informed majority.",
+      "justification": "R09 names the unsure reviewers' borderline scores and R10 names an area chair who follows an outlier; no reason names an area chair who averages over the committee's only expert, whose 8 and specific review go unmentioned while the thin 6s set the tier."
+    }
+  ],
+  "reasoning": "Both committees saw the same paper and the same faults; the split comes from how each committee's reviewers placed them on the scale and from who reviewed. B's reviewers wrote A's weaknesses and still rated 7-8 (R06, R11). A's three 6s came from thin or unsure reviews (R04, R09), and A's area chair followed their mean while ignoring the committee's only expert, whose 8 was the best-argued score in A; no existing reason names that aggregation failure, so I added R19. The rebuttal moved scores on both sides, wrong claims in B fed no score, and the score profiles differ, so R03, R15 and R18 do not apply.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19"
+  ]
+}

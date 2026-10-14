@@ -1,0 +1,143 @@
+{
+  "run": 1,
+  "turn": 14,
+  "pair_id": "n21-136",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Neither area chair substituted its own reading for the reviews: B's meta-review rests on 'sufficient positive feedback and support' from its reviewers, and A's follows its 8, 7, 6, 7; the tier split at equal means is a threshold difference, named by new R18."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "Neither meta-review nor any reviewer forecast impact beyond explainable clustering."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "No score moved in either committee; B's Reviewer_fBhF accepted the no-experiments argument on 2021-08-19 but kept 7, and A's reviewers did not reply."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "B's top score, Reviewer_mWXa's 8, rests on a four-sentence evaluation with no weakness, while A's 8 comes from Reviewer_skXW's 10-hour review that read the concurrent papers."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only A's Reviewer_skXW raised that concurrent ICML 2021 work has 'very similar results, both in terms of bounds as well as algorithms', with gains only in polylog factors, which leaves no case for a highlight; no B reviewer raised it, and B's area chair set it aside as a related-work fix."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw the missing experiments: A's reviewers kept it as a standing reservation, while B's Reviewer_fBhF dropped it as the only barrier to a strong accept; both also saw the same near-tight bounds and simple algorithm."
+    },
+    {
+      "id": "R07",
+      "applies": false,
+      "justification": "No reviewer in either committee posted in a reviewer discussion or changed a score."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each rating matches its review's tenor; Reviewer_skXW's 8 is explicitly a rating 'in isolation' with the scoop stated, and Reviewer_fBhF's 7 matched his written reservation when posted."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "Confidences are 4 throughout except B's Reviewer_gBnK at 3, who gave a verdict after 10 hours; no reviewer said they could not judge the paper."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "No outlier exists in either committee (all ratings within one point of 7.0); A's meta-review answers Reviewer_skXW's point, but skXW's 8 is not an outlying score."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The score profiles are identical (8, 7, 7, 6 in each), so no calibration gap between reviewer pools produced the split."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "Neither committee was unanimous; both spread from 6 to 8."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "No score rose in either committee after the response."
+    },
+    {
+      "id": "R14",
+      "applies": false,
+      "justification": "Both meta-reviews are short and name no reviewer weakness beyond the concurrent-work overlap, which B's area chair raised itself; A's meta-review does not carry its reviewers' other reservations forward either, so the asymmetry is absent."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "Reviewer_fBhF's 'shaving a k factor ... and a klog^2 factor' slip is minor and did not feed his score; other checkable claims in both committees are correct."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "Neither response conceded an unfavourable result; B's authors conceded only a typo in Eq. (1), and A's agreed the ICML papers are independent work."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "Both edits in A predate the author response, and no objection in either committee came after the response period."
+    }
+  ],
+  "added": [
+    {
+      "id": "R18",
+      "name": "Area chairs used different tier cut-offs",
+      "definition": "The two committees' area chairs turned near-identical reviewer scores and arguments into different tiers, each citing only the scores or general reviewer support, so the split reflects where each area chair placed the tier threshold, not a difference in the reviews or an area chair's own reading of the paper.",
+      "justification": "R01 names an area chair who departs from the scores on their own reading; R11 names a calibration gap between reviewer pools; R12 needs unanimous scores. Here the reviewer score profiles are identical and both area chairs cite only reviewer support, so the split sits in the area chairs' tier thresholds, which no existing reason names."
+    }
+  ],
+  "reasoning": "Stage 1 finds that both committees saw the same paper the same way and gave the same scores (one 8, two 7s, one 6), so the tier split sits in the area chairs and in what the reviewers knew. Only A's best-informed reviewer exposed the concurrent ICML work with near-identical algorithm and better bounds, which leaves no case for a highlight (R05); B's top score is a thin four-sentence review (R04), and the two committees weighted the missing experiments differently (R06). B's area chair gave a spotlight on general reviewer support, and A's gave a poster on the same score profile. Neither substituted its own reading for the reviews, so R01 does not fit by a plain reading, and R11 and R12 need different or unanimous scores. I added R18 for area chairs who set different tier cut-offs on the same scores. The candidate 'sole objection withdrawn after rebuttal' moved no score, so R03 does not apply and I added no reason for it.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18"
+  ]
+}

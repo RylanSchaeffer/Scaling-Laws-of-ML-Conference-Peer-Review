@@ -1,0 +1,274 @@
+{
+ "pair_id": "n21-250",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    5,
+    7,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_nmQh",
+    "Reviewer_czoi",
+    "Reviewer_pjM7"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6 (Reviewer_nmQh), 5 (Reviewer_czoi), 7 (Reviewer_G6A5) and 6 (Reviewer_pjM7) lie within one point of the mean of 6.0. The 7 is the only clear accept, but it is a thin review (see inattentive_reviews), not an outlier. No A reviewer recommended rejection."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_G6A5",
+     "evidence": "A 7 at confidence 3 ('Math/other details were not carefully checked') after 2 hours. The assessment is one line: 'Important problem; well-founded approach; promising results.' Its main request, a model-fit comparison of the naive latent-space GP and the LADDER kernel with a metric 'such as RMSE', is largely what Figure 2 already shows (MAE of both GPs against training-set size, lines 271-284). It calls the gains 'a significant performance benefit', although Figure 4b shows LADDER level with or behind prior methods on chemical design. It never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_czoi",
+     "claim": "The derivation from Eq. 3 to Eq. 4 is wrong: it implies L = sum_i v_i v_i^T, so the eigenvalues are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 188 defines v_i as 'the eigenvector of the kernel matrix L'. With unit eigenvectors, Eqs. 1 and 3 give k_z^T K^-1 K^-1 k_z', not Eq. 4. The authors conceded that v_i must be the eigenvalue-scaled eigenvector (V = U Lambda^1/2), and the camera-ready says so. Eq. 4, which the method uses, is a valid kernel, so the error is in the text, not in the results."
+    },
+    {
+     "reviewer": "Reviewer_czoi",
+     "claim": "Footnote 1 calls k_z the empirical kernel feature map but skips the orthonormalisation; this is not rigorous.",
+     "checked_against_paper": "correct",
+     "evidence": "Footnote 1 (page 5): 'Technically, we need to orthonormalize this feature map but core concept remains the same.' The authors agreed to remove it, and the camera-ready has no such footnote."
+    },
+    {
+     "reviewer": "Reviewer_czoi",
+     "claim": "The kernel follows directly from standard kernel-construction rules, as a quadratic form with A = K^-1/2 L K^-1/2, so novelty is limited.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 4 is k_z^T (K^-1 L K^-1) k_z'. Written in the orthonormalised empirical map K^-1/2 k_z, the middle matrix is K^-1/2 L K^-1/2, which is positive semi-definite. Reviewer_KoaP in B made the same point ('does not appear to be novel'). How much this limits novelty is a judgement; the mathematics is right."
+    },
+    {
+     "reviewer": "Reviewer_czoi",
+     "claim": "The paper does not test BO with the structured kernel alone, so the gains may come from the string or fingerprint kernel rather than the combination.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4 has no structured-kernel-only baseline (lines 285-312). Reviewer_pjM7 asked for the same 'direct BO approach'. The rebuttal table on chemical design: fingerprint-only BO 2.46, 2.80, 3.11, 3.32, 3.36 against LADDER 2.78, 2.93, 3.18, 3.25, 3.25 at 15, 25, 50, 75 and 100 evaluations. No string-kernel-only run on arithmetic expressions was given, then or in the camera-ready."
+    },
+    {
+     "reviewer": "Reviewer_czoi",
+     "claim": "In Figure 4 (right) LADDER is only on a par with several existing methods.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 4b: after 100 evaluations LADDER ends near -3.26, while DbAS and Naive LSBO with retraining end near -3.35. Lines 304-307 call LADDER and retraining 'statistically similar' at a 1% threshold, with p = 0.0489."
+    },
+    {
+     "reviewer": "Reviewer_nmQh",
+     "claim": "Simple generic baselines such as random search and a genetic algorithm are missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.3 compares only Naive LSBO (CMA, L-BFGS), LSBO with retraining, DbAS, CEM-PI, FB-VAE and RWR (lines 285-302). The rebuttal added random search on chemical design: 3.09 +- 0.17 against LADDER's 3.25 +- 0.18 after 100 evaluations. That is above the roughly 2.77 at which Naive LSBO ends in Figure 3b. The camera-ready does not include random search."
+    },
+    {
+     "reviewer": "Reviewer_nmQh",
+     "claim": "Lu et al. (2018), Structured Variationally Auto-encoded Optimization, is not cited.",
+     "checked_against_paper": "correct",
+     "evidence": "It is absent from the submitted reference list (lines 360-511); the camera-ready adds it. Reviewer_mmhZ in B raised the same reference."
+    },
+    {
+     "reviewer": "Reviewer_G6A5",
+     "claim": "The paper lacks a model-fit study that compares the naive latent-space kernel with the LADDER kernel.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Figure 2 (lines 271-284) compares the MAE of the two GPs over training sets of 20 to 100 points on both tasks. Only the metric differs from the request (RMSE)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_czoi"
+    ],
+    "evidence": "The authors replied on 2021-08-10. Reviewer_czoi edited on 2021-09-02: 'Based on discussions with other reviewers, I increase my score to 5', while 'still not convinced that the proposed method is effective'; the earlier score is not visible. Reviewer_nmQh edited on 2021-09-02: 'While at this stage, I was willing to improve my score, the discussion with the other reviewers made me aware of important aspects that I had overlooked ... I am thus going to keep my score.' Reviewer_pjM7 edited on 2021-08-22: 'I will stick with my score.' Reviewer_G6A5 never edited or replied. The reviewer discussion itself is not public.",
+    "what_convinced_or_not": "The random-search result, a clearer account of the kernel and promised related-work changes answered nmQh's questions. The structured-kernel-only table convinced no one that the latent space matters. nmQh wrote that 'the performance hinges on the used structured kernel' and that the latent information 'seems to contribute only moderately'. czoi said the question 'is to be answered by more empirical studies'. Neither lowered a score, and czoi's rise came from the discussion, not from new evidence."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Acceptance matches a mean of 6.0 with three of four ratings at 6 or 7. But the three-paragraph meta-review gives the AC's own reason: 'I think the simplicity of the authors' approach is its strength', and using the decoded structure is 'an obvious and natural baseline approach ... but (crucially) one that I have not seen elsewhere'. It does not discuss the structured-kernel-only result, which nmQh and czoi said still stood after the rebuttal. Its argument that Phi(z) 'may not have the predicted objective value of z' is close to the paper's Challenge #1 (lines 112-119). In B, Reviewer_KoaP called that framing misleading, because the naive GP is already trained on (z, f(Phi(z))) (lines 95-97), and the authors agreed to rephrase it.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "No reviewer below 5; mean 6.0 from ratings 6, 5, 7, 6",
+    "The AC's own view that a kernel on the decoded structure is simple, natural and new",
+    "The rebuttal added a random-search baseline that LADDER beats and conceded the Eq. 4 typo",
+    "Reviewers doubted that the latent space adds anything beyond the structured kernel, but scored this as borderline, not disqualifying (nmQh 6, czoi 5, pjM7 6)"
+   ]
+  },
+  "b": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    7,
+    4,
+    6
+   ],
+   "confidences": [
+    5,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_KoaP"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4 (Reviewer_KoaP), 7 (Reviewer_JPaw), 4 (Reviewer_iwAZ) and 6 (Reviewer_mmhZ) split two against two around a mean of 5.25. No single reviewer stands apart. The most influential voice is KoaP (4, confidence 5), but iwAZ also gave 4."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_iwAZ",
+     "evidence": "A 4 at confidence 4 on three generic cons. Detailed comment 1 asks why the paper includes no BO baseline, although Naive LSBO and LSBO with weighted retraining are BO methods (Figures 3-4). The novelty objection cites Moriconi et al. (2020, high-dimensional continuous BO) and Iwata and Otsuka (2019, transfer BO); the authors replied that these are different settings, and iwAZ did not contest it. 'Real-world experiments are needed' ignores that the two benchmarks are the standard ones for latent-space BO. iwAZ never replied to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_KoaP",
+     "claim": "The paper compares only against latent-space and generative-model methods; a GP with a Tanimoto kernel on Morgan fingerprints is missing and may explain the gains.",
+     "checked_against_paper": "correct",
+     "evidence": "The baselines are Naive LSBO, LSBO with retraining, DbAS, CEM-PI, FB-VAE and RWR (lines 285-302). The rebuttal table shows the kernel-only baseline ending ahead of LADDER (3.36 against 3.25 after 100 evaluations). The authors labelled the same numbers 'BO w/ Tanimoto kernel (Fingerprints kernel)' for KoaP and 'BO w/ Fingerprints kernel' for the other reviewers. The paper's fingerprints kernel is a dot product (lines 252-254), so it is unclear whether the Tanimoto kernel KoaP asked for was run."
+    },
+    {
+     "reviewer": "Reviewer_KoaP",
+     "claim": "The fingerprint radius is not given, and the kernel is a dot product rather than the standard Tanimoto similarity.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 249-254 use Morgan fingerprints and 'the dot product of their Morgan fingerprints', with no radius. The camera-ready adds 2048 bits and radius 3 and keeps the dot product."
+    },
+    {
+     "reviewer": "Reviewer_KoaP",
+     "claim": "The number of initial training points is not stated.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 267-268 say only 'small number of randomly selected structures and function evaluations'. The authors answered 10."
+    },
+    {
+     "reviewer": "Reviewer_KoaP",
+     "claim": "Figure 2 reports only the MAE of the posterior mean, without saying how the 50 training sets are drawn, so it is not 'strong empirical evidence' for the paper's two challenges.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 274-278 give 50 random training sets and 20 random test sets, with no sampling distribution and MAE only. Line 125 calls Figure 2 'strong empirical evidence to demonstrate these challenges and our key hypothesis'."
+    },
+    {
+     "reviewer": "Reviewer_KoaP",
+     "claim": "Naive LSBO does not ignore the decoder, so the 'fundamental disconnect' claim is misleading.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 95-97: the naive model is updated with '(z, f(Phi(z)))', so it is trained on the outcomes of decoded structures. Lines 112-113 say existing work does 'not account for this decoding process', and lines 116-119 call this a 'fundamental disconnect'. The authors agreed to rephrase."
+    },
+    {
+     "reviewer": "Reviewer_KoaP",
+     "claim": "LADDER's kernel needs the decoded structure, so its acquisition function is not differentiable; the authors' reason for not using a sum or product kernel (a harder mixed discrete-continuous search) does not hold.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 256-257: LADDER optimises the acquisition with CMA-ES. On 2021-08-18 the authors conceded 'the acquisition function is not differentiable because of the decoder'. A sum or product of kernels on z and Phi(z) is also a function of z alone and could be searched the same way. The authors gave the same flawed reason to Reviewer_nmQh in A, who accepted it."
+    },
+    {
+     "reviewer": "Reviewer_JPaw",
+     "claim": "In Figure 3 (right) the final gain is small (about 0.5) and the curves are noisy.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 3b: LADDER ends near -3.25 and both Naive LSBO variants near -2.77. The two-standard-error bands overlap for much of the run."
+    },
+    {
+     "reviewer": "Reviewer_JPaw",
+     "claim": "Societal impact appears only in the checklist, and the amount of compute is not reported.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist item 1c (lines 518-522) holds the only societal-impact text. Section 4.2 gives the CPU and RAM (lines 232-233) but no compute time."
+    },
+    {
+     "reviewer": "Reviewer_mmhZ",
+     "claim": "The training sets have at most 100 points, which is too few to learn a good VAE embedding.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 210 and 219: the latent-space models are pre-trained on 100K expressions and 250K molecules. The 100 points are BO evaluations and GP training sets (Figure 2). The authors pointed this out ('There seems to be some confusion')."
+    },
+    {
+     "reviewer": "Reviewer_iwAZ",
+     "claim": "The paper includes no Bayesian-optimisation baseline; BOCS, COMBO and BOSS should be compared.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Naive LSBO (CMA and L-BFGS) and LSBO with weighted retraining are BO methods (Figures 3-4, lines 285-302). The narrower point holds: BOCS, COMBO and BOSS are cited (lines 333-341) but not compared. BOCS and COMBO need fixed-size inputs, as the authors replied; BOSS fits the arithmetic task, and the authors did not run it."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "The authors replied on 2021-08-10. Reviewer_KoaP asked two follow-ups on 2021-08-17 (what the table numbers mean; whether the acquisition needs discrete optimisation), got answers on 2021-08-18, and edited the review on 2021-08-31: 'I have decided to keep my score.' Reviewer_mmhZ replied on 2021-08-24: 'I will keep my current rating.' Reviewer_JPaw and Reviewer_iwAZ never replied or edited.",
+    "what_convinced_or_not": "The structured-kernel-only table confirmed KoaP's doubt: 'performance is too comparable with the Tanimoto kernel (a strong baseline)'. KoaP asked for an experiment that shows 'the difference that the latent space makes'. mmhZ read the same table as showing 'the effectiveness of the structured kernel', and said the paper 'does not provide good reasoning about why the generalized Nystrom formulation is a good way of achieving the combination'. The authors' case for the Nystrom construction over a sum or product kernel fell when they conceded that the acquisition is not differentiable. Promises to rephrase the motivation satisfied KoaP only on the least important point (the kernel description)."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Rejection against a two-two split (4, 4 against 6, 7; mean 5.25). The meta-review says 'the consensus was that it missed important related work and baselines'. All four reviewers did name some missing baseline or reference, but JPaw (7) and mmhZ (6) did not treat it as disqualifying, and KoaP called the related work 'sufficiently comprehensive'. 'The improvement were marginal compared to missing comparable baselines' adopts KoaP's reading of the kernel-only table. 'Lacked motivation as indicated by several reviewers' matches mmhZ, KoaP and JPaw. The AC added Jenatton et al. (2017), which no reviewer raised and the authors could not answer.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "A confidence-5 expert (KoaP) made the structured-kernel-only baseline decisive, and the rebuttal showed that baseline ending ahead of LADDER",
+    "Two ratings of 4; the second (iwAZ) rests on generic novelty and baseline objections, partly mistaken",
+    "The Generalized Nystrom construction was not motivated, and the authors' argument against sum or product kernels collapsed in discussion",
+    "The AC framed missing baselines and related work as a consensus and added a missing reference of its own"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Eq. 3 does not give Eq. 4 as written (v_i called 'the eigenvector', line 188), and footnote 1's non-orthonormal feature map (czoi)",
+  "Sensitivity to the amount of unsupervised pre-training and to latent dimension d (nmQh)",
+  "Richer molecular kernels to test the paper's explanation of the chemical-design result (nmQh)",
+  "How LADDER differs from other BO-plus-DGM work; the reinforcement-learning section is unneeded (nmQh)",
+  "Whether using decoded structures raises the input dimension (pjM7)",
+  "A model-calibration study with RMSE (G6A5)"
+ ],
+ "issues_only_b": [
+  "The authors' reason for not using a sum or product kernel fails, because LADDER's acquisition is already not differentiable and runs on CMA-ES (KoaP); nmQh in A accepted the same answer",
+  "Overstated motivation: naive LSBO does not ignore the decoder, GP expressiveness is not the bottleneck, and Figure 2 is not 'strong empirical evidence' (KoaP); JPaw asked for a concrete example of the 'fundamental disconnect'",
+  "Figure 2 protocol: training-set sampling, hyperparameter fitting with ARD on about 20 points, no reference baselines (KoaP)",
+  "Fingerprint radius missing, dot product instead of Tanimoto, number of initial points missing (KoaP)",
+  "Loss of gradient-based acquisition optimisation as an unstated limitation (KoaP)",
+  "Novelty against Moriconi et al. 2020 and Iwata and Otsuka 2019; BOCS, COMBO and BOSS baselines; real-world experiments; search-space bounds, encoder training and decoding validity (iwAZ)",
+  "Use an established LSBO implementation, add a third benchmark and try VAE retraining; background too long; societal impact only in the checklist (JPaw)",
+  "Scalability to more data and the value of a latent space learned from little data, based on a misreading (mmhZ)",
+  "Missing reference Jenatton et al. 2017 (AC only)"
+ ],
+ "shared_issues": [
+  "Whether the gains come from the structured kernel alone; both committees saw the same table, with fingerprint-only BO ending ahead (czoi, pjM7, nmQh in A; KoaP, mmhZ in B)",
+  "The Generalized Nystrom kernel needs more motivation or intuition (nmQh in A; KoaP, JPaw, mmhZ in B)",
+  "Random-search baseline missing (nmQh in A; KoaP in B); only A received the result",
+  "MAE rather than an uncertainty-aware metric in Figure 2 (nmQh in A; KoaP in B)",
+  "Missing reference Lu et al. 2018 (nmQh in A; mmhZ in B)",
+  "Performance depends on choosing the right structured kernel; on chemical design LADDER only matches prior methods (czoi, G6A5 in A; KoaP, JPaw in B)",
+  "The kernel construction itself is standard (czoi in A; KoaP in B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The two committees saw the same paper, the same rebuttal and the same decisive result, and weighted them differently. Reviewers in both asked whether LADDER's gains come from the structured kernel alone (A: Reviewer_czoi, Reviewer_pjM7; B: Reviewer_KoaP, Reviewer_mmhZ). The authors gave all four the same table on chemical design: LADDER leads early (2.78 against 2.46 logP after 15 evaluations), but BO with the fingerprint kernel alone ends ahead (3.36 against 3.25 after 100). No string-kernel-only run was given for arithmetic expressions, the task with LADDER's large gain. In B, KoaP (4, confidence 5) had named this baseline in advance as a key reason to reject, read the table as 'too comparable', and kept 4. In discussion KoaP also showed that the authors' reason for preferring the Nystrom construction over a sum or product kernel fails, because LADDER's acquisition is already not differentiable and runs on CMA-ES. Reviewer_iwAZ added a 4 on generic novelty and baseline objections, partly mistaken, and never replied. The B area chair adopted KoaP's reading, called it a consensus against a two-two split, and added a missing reference of its own. In A, Reviewer_nmQh and czoi reached KoaP's conclusion after discussion ('the performance hinges on the used structured kernel'), but nmQh stayed at 6 and czoi rose to 5. The only clear accept was a thin 7 (Reviewer_G6A5: 2 hours, confidence 3, a one-line assessment). The A area chair accepted on its own view that the idea is simple, natural and new, and did not discuss the kernel-only result. Nobody found a fatal flaw. The difference lies in B's confident detractor, B's weak second 4, and the two area chairs' weights, not in different facts.",
+ "candidate_reasons": [
+  "Same ablation result weighted differently",
+  "Confident expert detractor in B",
+  "AC accepted on own novelty view",
+  "Thin champion review in A",
+  "Weak generic detractor in B",
+  "AC overstated reviewer consensus"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_KoaP review (edited 2021-08-31), comments of 2021-08-17 and author replies of 2021-08-18, Committee B",
+  "Author rebuttal tables of 2021-08-10 (fingerprint-only BO against LADDER) to czoi and pjM7 (A) and to KoaP and mmhZ (B)",
+  "Author rebuttal to Reviewer_nmQh (random search; sum and product kernels), Committee A",
+  "Reviewer_nmQh and Reviewer_czoi post-rebuttal updates (edited 2021-09-02), Committee A",
+  "Reviewer_G6A5 review, Committee A",
+  "Reviewer_iwAZ review, Committee B",
+  "Reviewer_mmhZ comment of 2021-08-24, Committee B",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "paper_submitted.pdf Eqs. 1-4, line 188 and footnote 1 (page 5)",
+  "paper_submitted.pdf lines 95-97 and 112-125 (naive LSBO, Challenges 1-2)",
+  "paper_submitted.pdf lines 249-269 (fingerprint kernel, CMA-ES, initialisation)",
+  "paper_submitted.pdf Figures 2-4 and lines 271-312 (Wilcoxon p = 0.0489)",
+  "paper.pdf (camera-ready) Section 6: kernel-only table added; no random-search or string-kernel-only results"
+ ]
+}

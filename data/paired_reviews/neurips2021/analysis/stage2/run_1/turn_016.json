@@ -1,0 +1,157 @@
+{
+  "run": 1,
+  "turn": 16,
+  "pair_id": "n21-172",
+  "kind": "spotlight/poster",
+  "prompt_version": 2,
+  "mode": "sequential",
+  "reasons_before": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19"
+  ],
+  "judgements": [
+    {
+      "id": "R01",
+      "applies": false,
+      "justification": "Both area chairs followed their reviewers: A's spotlight follows a 7.0 mean with one 8, and B's poster follows a 6.67 mean with its reviewers' shared reservation."
+    },
+    {
+      "id": "R02",
+      "applies": false,
+      "justification": "A's area chair forecast 'future work' and 'fairly broad interest', but B's area chair made a similar forecast ('a foundation for other systems to build on'), so the forecast is not one-sided."
+    },
+    {
+      "id": "R03",
+      "applies": false,
+      "justification": "The rebuttal moved scores in both committees (A's sKB5, B's uoCQ), so it did not leave the other committee unchanged."
+    },
+    {
+      "id": "R04",
+      "applies": true,
+      "justification": "A's Reviewer_LW6b wrote a two-sentence review with no specifics and later raised to 7 on 'the enthusiasm of the other reviewers', so one of A's four scores rests on little scrutiny."
+    },
+    {
+      "id": "R05",
+      "applies": true,
+      "justification": "Only B said that XML binds labels to two fixed roles and so never tests compositional binding; all three B reviewers raised it and B's area chair cited it as the reason the results are 'not compelling'."
+    },
+    {
+      "id": "R06",
+      "applies": true,
+      "justification": "Both committees saw a simple projection step shown on one XML task, not state of the art; A weighted the enabling step, B weighted the thin demonstration."
+    },
+    {
+      "id": "R07",
+      "applies": true,
+      "justification": "A's Reviewer_m8WY cited discussion with rafZ and sKB5 and Reviewer_LW6b cited 'the enthusiasm of the other reviewers' when they raised their scores, moving A's mean from at most 6.25 to 7.0."
+    },
+    {
+      "id": "R08",
+      "applies": false,
+      "justification": "Each final rating matches its text; LW6b's 7 still notes no comparative evaluation, but the text is no longer a reject verdict."
+    },
+    {
+      "id": "R09",
+      "applies": false,
+      "justification": "A's Reviewer_m8WY did not know HRRs but deferred to peers and rose to 7, not a borderline default; B's non-expert rRrp stayed at 6 on stated application concerns, not on inability to judge."
+    },
+    {
+      "id": "R10",
+      "applies": false,
+      "justification": "A's area chair paraphrased Reviewer_rafZ, whose 7 is not an outlier; B's area chair reflected all three reviewers."
+    },
+    {
+      "id": "R11",
+      "applies": false,
+      "justification": "The verbal assessments differ: B's reviewers all held a reservation about the application that A's did not, so this is not a calibration gap."
+    },
+    {
+      "id": "R12",
+      "applies": false,
+      "justification": "A's spotlight rests on a mean of 7.0 with an 8, not on unanimity at the accept level."
+    },
+    {
+      "id": "R13",
+      "applies": false,
+      "justification": "Reviewer_sKB5 rose on a new capacity table that the authors ran and later added to the paper as Appendix D, not on copied results or promises."
+    },
+    {
+      "id": "R14",
+      "applies": true,
+      "justification": "A's meta-review names no weakness (no comparison with other neuro-symbolic systems, one task, weak 670K results) and says the clarifications made 'all reviewers much more confident', although LW6b still noted no comparative evaluation; B's meta-review kept its reviewers' reservation."
+    },
+    {
+      "id": "R15",
+      "applies": false,
+      "justification": "B's Reviewer_rRrp misread the results as 'SOTA-exceeding', but the error favoured the paper and fed no difference; no other checkable error drove either recommendation."
+    },
+    {
+      "id": "R16",
+      "applies": false,
+      "justification": "The authors' concessions (arbitrary d, nested binding 'would be stronger') concern scope and choices, not an unfavourable result, and they did not lift the committee that received them above its information."
+    },
+    {
+      "id": "R17",
+      "applies": false,
+      "justification": "LW6b's late comparison objection was in A, the committee that ended higher, so it did not stand against the paper in a recommendation."
+    },
+    {
+      "id": "R18",
+      "applies": false,
+      "justification": "The committees' scores (7.0 with an 8 against 6.67 with none above 7) and arguments differ, so the split is not a cut-off difference on near-identical reviews."
+    },
+    {
+      "id": "R19",
+      "applies": false,
+      "justification": "B's area chair followed its expert reviewers uoCQ and M8pZ; A's area chair followed expert Reviewer_rafZ."
+    }
+  ],
+  "added": [
+    {
+      "id": "R20",
+      "name": "Rebuttal could answer one committee's concerns only",
+      "definition": "One committee's main concerns were gaps the authors could close in their response with new results or clarification, while the other committee's main concerns were about the paper's scope or demonstration, which no response could fix, so the rebuttal lifted the first committee's scores further than the second's.",
+      "justification": "R03 needs one committee left unmoved, but both moved; R05 covers a one-sided concern that counts against the paper, not the difference between concerns a response can close and concerns it cannot. Here A's answerable capacity question gave the rebuttal its upside, while B's structural objection about the task gave it none."
+    }
+  ],
+  "reasoning": "Both committees saw the same contribution and the same single-task demonstration. A ended higher through three score raises: the champion rose on a new capacity table, and two reviewers then deferred to their peers (R07), one of them after a two-sentence review (R04). B's reviewers all held a structural objection that only B raised (R05) and that no rebuttal could close, so B's rebuttal moved one reviewer by one point. The committees weighted the same facts differently (R06), and A's meta-review dropped every weakness (R14). No existing reason captured the asymmetry between answerable and unanswerable concerns, so R20 was added. R02 was rejected because B's area chair also forecast a foundation for future work.",
+  "reasons_after": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20"
+  ]
+}

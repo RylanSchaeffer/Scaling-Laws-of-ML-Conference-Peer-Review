@@ -29,7 +29,7 @@ FIG = os.path.join(ROOT, "figures")
 S = P.S
 
 # Layout, printed inches: four panels in a row, arrows in the gaps, a title row above the axes.
-PANELS = (("$N$ papers", 0.95), ("$R=4$ reviews, each scored 1 to 10", 1.3), ("Rank by mean score", 1.2), ("A second review", 1.0))
+PANELS = (("$N$ papers", 0.95), ("$R=4$ reviews, each scored 1 to 10", 1.3), ("Rank by score; award tiers\nby score $+\\,\\eta$", 1.2), ("A second review", 1.0))
 H = 1.9  # axes height
 TOP, BOT = 0.22, 0.04  # title row above the axes, margin below
 GAP, LEFT, RIGHT = 0.25, 0.14, 0.02  # the left margin holds the panel letter of (a)
@@ -178,7 +178,7 @@ def panel_second(ax):
     column(ax, XD, dark_rank=LANDS)
     x = XD + IW / 2 + 0.03 + 0.028 * (len(TIERS) - 1) + 0.05  # right of the widest box
     ax.text(x, rank_y(1), "new Best Paper", ha="left", va="center", **ANN)
-    ax.text(x, 1.45, "same papers,\nnew $u$ and $\\varepsilon$", ha="left", va="center", linespacing=1.15, **ANN)
+    ax.text(x, 1.45, "same papers,\nnew $u$, $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
     ax.text(x, rank_y(LANDS), "lands in\nSpotlight", ha="left", va="center", linespacing=1.15, **ANN)
 
 

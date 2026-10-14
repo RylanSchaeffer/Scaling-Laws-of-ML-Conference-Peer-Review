@@ -517,6 +517,22 @@ out of the main analyses.
     confirm it 1.3% of the time and reject it 5%. The tables above this entry are the
     continuous-score model and are superseded for the paper's numbers.
 
+17. **An award step: awards are a chair's call (14 October 2026).** Without it the model over-predicted
+    the NeurIPS 2021 committees' award agreement (5.6 shared orals and spotlights against 3 observed; 30%
+    rejected by the other committee against 48%, P = 0.007). A two-stage language-model reading of the
+    50 award pairs' public records (`data/paired_reviews/neurips2021/analysis/`,
+    `docs/neurips2021_stage2_results.md`) found that the award tier came from the meta-review rather than
+    the scores in most pairs: higher tier with no stated grounds in 30 of 50, stated weaknesses dropped in
+    33, the area chair's own judgement in 20. The model now cuts the award tiers (Best Paper, top ten,
+    orals, spotlights) on an award ordering, score plus a chair noise η ~ N(0, σ_η²) within the accepted
+    set, redrawn by a second review; acceptance stays by score (`peerreview.model.award_order`,
+    `ReviewModel.sigma_award`, `levels.main_model`). σ_η = 0.59 on the 1-10 axis, fitted so that the
+    model's awards fall inside each committee's score top-K as often as the real ones (26 of 53;
+    `scripts/fit_award_noise.py`, `results/award_noise.json`, bootstrap 90% range 0.42 to 0.76). Held out:
+    4.6 shared (P = 0.32) and 33% rejected (P = 0.02). Award reliability at the central level
+    ρ_a² = 0.45 against ρ² = 0.51 for scores. Every simulated result was rerun with the step
+    (`scripts/run_all.sh`); the paper holds the numbers.
+
 ## 9. Limitations
 
 One-dimensional quality; exchangeable reviewers (no leniency offsets, no matching); the

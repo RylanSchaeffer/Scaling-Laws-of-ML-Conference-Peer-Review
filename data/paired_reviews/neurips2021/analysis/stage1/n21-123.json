@@ -1,0 +1,254 @@
+{
+  "pair_id": "n21-123",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        6,
+        6,
+        5,
+        7,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        2,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_aYyX"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/6/5/7/5 sit within about one point of the 5.8 mean. The lone 7, Reviewer_Wj5d, is a one-hour, confidence-2 review of three questions with no reply to the rebuttal: weak evidence, but not an outlier that moved the outcome. The two 5s differ in quality: Reviewer_WuUC's is specific and largely accurate; Reviewer_YmV1's rests partly on a misreading."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Wj5d",
+          "evidence": "One hour at confidence 2. The main review is three questions (how often Conditions 1 and 3 hold, behaviour when they fail, poor small-sample results); the summary calls the topic 'learning of discrete graphical models'. No reply to the rebuttal. Its 7 says little about quality."
+        },
+        {
+          "reviewer": "Reviewer_YmV1",
+          "evidence": "Calls the method 'a heuristic search algorithm' although Theorems 3.1 and 5.1 give identifiability and finite-sample guarantees. Says entropy could be swapped for 'any functional F, say negative H' because 'there is nothing specific to H'; identifiability rests on the entropy inequality (C1). Claims 10 hours; never replied to the rebuttal, which answered both points."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_aYyX",
+          "claim": "The sparsity assumption M <= log d first appears on page 7 (line 261), not in the abstract or the contributions.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 264 ('Thus assuming M <~ log d') and Theorem 5.1 (line 277) state it. The contributions (lines 57-60) give O(d^3 r log d) time and O(d^2 r log^3 d) samples without it; the abstract says only 'for certain graph ensembles'."
+        },
+        {
+          "reviewer": "Reviewer_aYyX (also Reviewer_kVE1, Reviewer_Wj5d)",
+          "claim": "Algorithm 1 is worse than PC and GES at small n and at best comparable at larger n.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2: at n = 1000 and d >= 40, Algorithm 1 has the highest SHD in all 12 model/graph/d cases (MOD-ER d=50 about 55 vs 22-27; ADD-SF d=50 about 86 vs 30). At n >= 2000 it is mostly comparable, better in a few panels (MOD-SF d=50 about 29 vs 33-38; ADD-ER d=30 about 2 vs 9-12) and worse in a few (ADD-Tree d=50 about 7 vs GES 4), so 'at best comparable' is slightly harsh."
+        },
+        {
+          "reviewer": "Reviewer_WuUC",
+          "claim": "No experiment covers a case where the identifiability condition fails.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 317: both data models (MOD, ADD) satisfy the equal-entropy Condition 2, which implies Condition 1. ER and SF graphs test only a possible failure of Condition 3 (lines 315-317)."
+        },
+        {
+          "reviewer": "Reviewer_WuUC",
+          "claim": "For a fully connected DAG the condition is the same as Ghoshal and Honorio's (GH2018); it is much weaker only for very sparse graphs.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 158-162: (C1) relaxes 'all nodes in L_{j+1}' to 'at least one ancestor in L_{j+1}'. A complete DAG has one node per layer, so the two coincide, and for linear Gaussian models entropy order equals variance order. Strictly, the gain depends on layer width rather than sparsity."
+        },
+        {
+          "reviewer": "Reviewer_YmV1",
+          "claim": "The method is a heuristic; entropy could be replaced by any functional, e.g. negative H, and still give a unique DAG.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 3.1 rests on (C1), H(X_i | A_j) < H(X_k | A_j) for an ancestor X_i of X_k. Algorithm 1 step 3(b) sorts conditional entropies in ascending order; with -H it would pick high-entropy nodes, which can be descendants, so the layers would not be recovered. The paper gives proofs (Theorems 3.1, 5.1), not a heuristic. The authors' reply states the property a functional needs."
+        },
+        {
+          "reviewer": "Area chair A (meta-review)",
+          "claim": "The condition is strictly weaker than the faithfulness condition.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Faithfulness implies (C2) for ancestors (the directed path from X_i to X_k avoids A_j), but not the entropy ordering (C1). The paper claims only that faithfulness is not needed (lines 28, 56) and that (C2) is a mild nondegeneracy condition (lines 141-147). The error favours the paper and is not a reason for the reject."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_aYyX"
+        ],
+        "evidence": "Reviewer_aYyX's review was edited 2021-09-01 with an appended note: 'I feel more positive about the paper and will increase my score to 6.' No other A review was edited, and no A reviewer posted a discussion comment.",
+        "what_convinced_or_not": "aYyX accepted the replies on faithfulness, the M <= log d assumption, run time and the unfaithful example, without naming the decisive point. WuUC, YmV1, kVE1 and Wj5d never answered. The replies that corrected YmV1 (choice of H, 'not heuristic') and gave kVE1 the unfaithful example it asked for drew no response, and the AC did not cite them."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Three of five ratings are at or above 6 (mean 5.8), yet the AC rejected on 'mixed' opinions. The meta-review restates the reviewers' wish for discussion and examples of the conditions, then adds that verifying them 'in some real-world data would massively strengthen the paper', which no reviewer requested (kVE1 asked only how verifiable the conditions are). It calls recovery under the condition 'fairly straightforward', names no error, and mentions neither the rebuttal nor the experiments.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Reviewer opinions mixed on the significance of the results and the usefulness of the condition (two 5s against 6, 6, 7)",
+        "Unclear when the conditions hold; reviewers wanted more discussion and examples",
+        "AC wants the conditions verified on real-world data",
+        "AC sees recovery under the condition as 'fairly straightforward' layer-by-layer greedy search"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        5,
+        6,
+        7
+      ],
+      "confidences": [
+        4,
+        5,
+        2,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_E5SA",
+        "Reviewer_sG1J"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/5/6/7 sit within one point of the 6.0 mean. The 7, Reviewer_Zh6d, rests on a three-sentence main review with no discussion. The detractor, Reviewer_sG1J (5, confidence 5), engaged at length but began from a misreading of Condition 2."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_E5SA",
+          "evidence": "Generic praise ('extremely significant', 'very useful for other scholars') with no technical point; 'I did not check the proof of theorems'. Lowered to 6 on 2021-08-25 only by deferring to sG1J and g49G. Claims 10 hours."
+        },
+        {
+          "reviewer": "Reviewer_Zh6d",
+          "evidence": "A 7 on a three-sentence main review. Says the estimator 'performs as well and sometimes better' than PC and GES, ignoring the n = 1000 results in Figure 2. No reply to the rebuttal. Claims 10 hours."
+        },
+        {
+          "reviewer": "Reviewer_sG1J",
+          "evidence": "Confidence 5 ('checked the math/other details carefully') after 2 hours, yet the first weakness treats Condition 2 as required, while lines 156-158 call it a special case of Condition 1. sG1J later engaged and accepted the correction."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_sG1J",
+          "claim": "Condition 2 (equal conditional entropy h*) is assumed, which contradicts 'no distributional assumptions' and is too strong for any real model.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 3.1 (line 151) needs only Condition 1. Line 156 and Lemma 3.2 make Condition 2 a special case, and line 158 says (C1) 'significantly relaxes' it. sG1J accepted this on 2021-08-12; the AC called it 'largely a misunderstanding'. The experiments use only Condition-2 data (line 317), which may have fed the misreading."
+        },
+        {
+          "reviewer": "Reviewer_sG1J",
+          "claim": "The sample complexity is quadratic in d.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 5.1: n of order d^2 r log^3 d / (Delta*)^2 eps; lines 279-281 say cubic in the worst case (Markov chain, r = d)."
+        },
+        {
+          "reviewer": "Reviewer_sG1J",
+          "claim": "The paper has no lower bound.",
+          "checked_against_paper": "correct",
+          "evidence": "None is proved; the conclusion (line 333) lists lower bounds as future work. The rebuttals cite an Omega(2^M) bound from nonparametric statistics that the paper does not contain."
+        },
+        {
+          "reviewer": "Reviewer_sG1J",
+          "claim": "The experiments cannot show the d^2 dependence, and the gain over PC is not evident.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2 plots SHD against n = 1000-4000 for d = 10-50 only, with no scaling analysis. Algorithm 1 is worse than PC at n = 1000 for d >= 30 (except MOD-SF d=30) and roughly comparable above, sometimes better, sometimes worse."
+        },
+        {
+          "reviewer": "Reviewer_g49G",
+          "claim": "Algorithm 2 is exactly the forward pass of IAMB; the algorithms themselves are well known.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 198-199: 'PPS is exactly the forward phase of the well-known IAMB algorithm'. The paper's claim is the finite-sample guarantee for the forward phase alone under Condition 3, plus the testing-and-masking step in Algorithm 1."
+        },
+        {
+          "reviewer": "Reviewer_g49G",
+          "claim": "Networks have at most 50 nodes and at least 1000 samples, and the method does rather badly against simple baselines in several settings.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2: d = 10-50, n = 1000-4000. At n = 1000 and d >= 40, Algorithm 1 has the highest SHD in all 12 cases, often several times the baselines' (ADD-SF d=50: about 86 vs 30; ADD-Tree d=50: about 45 vs 6-17)."
+        },
+        {
+          "reviewer": "Reviewer_Zh6d",
+          "claim": "The estimator performs as well as, and sometimes better than, the current estimators.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Half true. Algorithm 1 beats PC and GES in a few panels at n >= 2000 (MOD-SF d=30-50, ADD-ER d=30), but at n = 1000 and d >= 40 it has the highest SHD in all 12 cases. The paper itself claims only 'comparably' (line 324)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": [
+          "Reviewer_sG1J",
+          "Reviewer_E5SA"
+        ],
+        "evidence": "sG1J 2021-08-12: 'I'm happy to up my score to 5'; review edited 2021-08-25. E5SA 2021-08-25: 'Dowgrade a little bit my rating after having read the discussion so far'; review edited the same day. g49G 2021-08-19: 'While I won't lower my score, I also believe the concerns of Reviewer sG1J are all valid.' Zh6d silent.",
+        "what_convinced_or_not": "The rebuttal convinced sG1J that Condition 2 is not needed and that nonparametric rates are expected. It did not convince sG1J on d^2 tightness, the missing lower bound or the presentation of the conditions ('The best I can recommend for this paper is a borderline'). g49G found the unfaithful example 'very helpful'. E5SA lowered after reading sG1J and g49G, with no argument of its own. The AC asked the authors for more on d^2 and prior work (authors' 2021-08-20 comment) and accepted their answer."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four ratings at 6-7 (mean 6.0); the AC recommends 'weak accept'. The AC answers sG1J's two objections directly: Condition 2 was 'largely a misunderstanding' (the paper confirms it), and d^2 'appears even in simpler settings' with lower bounds 'largely open', so 'insisting on these may be asking too much'. The AC requested the authors' d^2 and prior-work comparison during discussion.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Generalises the equal-variance condition, 'a recent success case' (AC)",
+        "The Condition 2 objection was a misunderstanding; Condition 1 is the actual assumption",
+        "The d^2 rate also appears in linear settings; demanding lower bounds is 'asking too much'",
+        "Three of four ratings at 6-7 after discussion"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why entropy and not another functional; YmV1's claim that any functional, even -H, works is wrong (Reviewer_YmV1)",
+    "Why not learn the PC skeleton first; PC's complexity and assumptions compared (Reviewer_WuUC)",
+    "Gain over Ghoshal and Honorio vanishes for complete DAGs; LiNGAM and nonlinear ANMs are already identifiable (Reviewer_WuUC)",
+    "The M <= log d assumption appears only on page 7 and is not justified (Reviewer_aYyX, Reviewer_YmV1)",
+    "Run-time comparison, a possibly vacuous Proposition 4.1 bound, and missing continuous-optimisation literature (Reviewer_kVE1, Reviewer_WuUC, Reviewer_aYyX)",
+    "Verify the conditions on real-world data (Committee A AC only)"
+  ],
+  "issues_only_b": [
+    "Condition 2 read as required and too strong; it is stated too prominently (Reviewer_sG1J; AC: 'largely a misunderstanding')",
+    "Quadratic dependence on d and no lower bound make the work incomplete (Reviewer_sG1J; AC: 'asking too much')",
+    "Networks only up to 50 nodes with at least 1000 samples (Reviewer_g49G)"
+  ],
+  "shared_issues": [
+    "Weak simulations: worse than PC and GES at n = 1000, comparable at larger n (A: aYyX, kVE1, WuUC, Wj5d; B: sG1J, g49G)",
+    "Unclear how often Conditions 1 and 3 hold and what happens when they fail (A: kVE1, Wj5d, WuUC; B: g49G, Zh6d)",
+    "Exponential dependence on the Markov boundary size M (A: aYyX, WuUC, YmV1; B: g49G)",
+    "Limited algorithmic novelty: layer-wise order search and greedy Markov boundary search are known (A: aYyX and the AC's 'fairly straightforward'; B: g49G)",
+    "No experiment shows the sample-complexity scaling (A: aYyX, kVE1; B: sG1J)",
+    "Need an unfaithful example where PC fails; the authors sent both committees the same one (A: kVE1; B: sG1J)",
+    "Thin limitations discussion and dense notation, e.g. the d_6 typo at line 176 (A: YmV1, WuUC; B: E5SA, g49G)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees weighted the same facts differently, and the area chairs decided the outcome. The scores are almost equal: A 6/6/5/7/5 (mean 5.8), B 6/5/6/7 (mean 6.0), with three votes at 6 or above on each side. Both sides saw a new entropy-based identifiability condition that generalises equal variance, algorithms close to known ones, weak simulations, and no evidence of how often the conditions hold. B's AC adjudicated. It asked the authors to compare the d^2 rate with prior work. It judged Reviewer_sG1J's main objection (Condition 2 too strong) 'largely a misunderstanding', which the paper confirms: Theorem 3.1 needs only Condition 1, and Lemma 3.2 makes Condition 2 a special case. It called a demand for lower bounds 'asking too much' and accepted. A's AC ran no visible discussion: no A reviewer posted a reply, and only Reviewer_aYyX edited a review, up to 6. A's meta-review names no error. It calls recovery under the condition 'fairly straightforward', asks for verification on real-world data that no reviewer requested, and rejects on 'mixed' opinions. Of A's two 5s, Reviewer_YmV1's rests partly on a misreading that the rebuttal answered and nobody revisited; Reviewer_WuUC's is substantive but names no error. The difference is AC judgement on a borderline paper, not a difference in what the committees found.",
+  "candidate_reasons": [
+    "Near-equal borderline scores, opposite AC calls",
+    "Accepting AC adjudicated detractor objections",
+    "Rejecting AC added real-data request",
+    "No reviewer discussion after rebuttal",
+    "Detractor misreading left unrevisited",
+    "Assumption realism weighed differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Authors' 2021-08-20 comment to Committee B ('At the request from the AC')",
+    "Reviewer_sG1J review and comments of 2021-08-12, 2021-08-15, 2021-08-16",
+    "Reviewer_g49G comment 2021-08-19",
+    "Reviewer_E5SA comment 2021-08-25",
+    "Reviewer_aYyX review, appended post-rebuttal note",
+    "Reviewer_YmV1 review (choice of H, 'heuristic')",
+    "Reviewer_WuUC review (GH2018 on complete DAGs, PC comparison, experiments)",
+    "paper lines 151-164 (Theorem 3.1, Condition 2, Lemma 3.2)",
+    "paper line 264 and Theorem 5.1 (M <= log d; n of order d^2 r log^3 d)",
+    "paper Figure 2 and lines 314-324",
+    "paper lines 198-199 (PPS is the IAMB forward phase)",
+    "paper line 333 (lower bounds left open)"
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-119",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 7],
+      "confidences": [4, 4, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_8mmz"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/6/7/7, all above threshold and within one point of the 6.5 mean. The two 7s differ in weight: Reviewer_8mmz gave a 7 only after asking for and getting new baselines; Reviewer_gJez's 7 is a four-point review (5+ hours claimed) with no reply to the rebuttal."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_QWw7",
+          "claim": "The baselines use only 4 attention heads while the method adds heads, so the gains may come from capacity.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 205-206 and 232-233 set H = 4 for every model; lines 215-216 give the method H' = 8 candidates. The authors' 08-28 8-head Transformer matches the method on text translation (O2M 20.6 vs 21.0, M2O 23.7 vs 23.5 BLEU) but not on speech (multilingual ASR 46.0 vs 40.0 WER; multilingual ST 13.7 vs 15.2 BLEU)."
+        },
+        {
+          "reviewer": "Reviewer_8mmz",
+          "claim": "No baseline tests learned selection against a static head allocation.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 1-5 compare only Transformer or S2T Transformer, the Bapna and Firat adapter, and the two selection strategies. The 08-28 language-family static baseline ties the group strategy on text translation (20.9/23.6 vs 21.0/23.5 BLEU) and loses on speech."
+        },
+        {
+          "reviewer": "Reviewer_QWw7",
+          "claim": "Only the Bapna and Firat (2019) adapter is compared; no newer adapter or multi-task architecture.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 183-193 list Transformer, S2T Transformer and that adapter as the only baselines."
+        },
+        {
+          "reviewer": "Reviewer_QWw7",
+          "claim": "The paper claims computational efficiency but reports no timing.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 50, 174-176 and 224-225 claim efficiency; the main paper reports no timing. The rebuttal's decoding speeds put the group strategy within 1.5% of the baseline and adapters 8-19% slower than it."
+        },
+        {
+          "reviewer": "Reviewer_QWw7",
+          "claim": "Separate and joint S2T baselines appear in only two experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Only Tables 3 and 5 have separate and joint rows; Tables 2 and 4 have one jointly trained S2T Transformer."
+        },
+        {
+          "reviewer": "Reviewer_QWw7",
+          "claim": "The grouped variant gives consistently better performance than the subset variant.",
+          "checked_against_paper": "correct",
+          "evidence": "Group matches or beats subset on every reported average, e.g. 40.0 vs 44.7 WER (Table 2) and 15.2 vs 13.3 BLEU (Table 4); on text translation the gap is 0.1-0.2 BLEU (Table 1)."
+        },
+        {
+          "reviewer": "Reviewer_8mmz",
+          "claim": "Arabic WER in Table 2 is extremely high.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: Arabic WER 109.5 for S2T Transformer and 93.4-97.3 for the other models."
+        },
+        {
+          "reviewer": "Reviewer_gJez",
+          "claim": "Parameter counts should be in each results table.",
+          "checked_against_paper": "correct",
+          "evidence": "Only lines 214-215 give sizes (adapter 460M, selection models 420M, text translation only); no baseline size and no speech sizes."
+        },
+        {
+          "reviewer": "Reviewer_gJez",
+          "claim": "The related work section is comprehensive.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The references omit Zhang et al. (2021, 'Share or Not?'), Switch Transformer, Ruder et al. and Kudugunta et al., which Reviewer_8mmz, Reviewer_zLUP or Reviewer_HGp8 cite; mixture-of-experts work gets one sentence (lines 71-73)."
+        },
+        {
+          "reviewer": "Reviewer_8Ajg",
+          "claim": "There is little analysis of which heads each language selects.",
+          "checked_against_paper": "correct",
+          "evidence": "The main paper's only analysis is the H' sweep (Section 5, Figure 2); head-sharing patterns are deferred to Appendix A.3, which the submitted PDF does not contain."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_8mmz"],
+        "evidence": "Reviewer_8mmz edited the review on 08-29 ('Following the discussion with the authors I would like to update my score to 7') and wrote the same day 'I have updated my review score to 7', one day after the authors' 08-28 results. Reviewer_QWw7 replied 08-31: 'I am still leaning positive for the paper but I am not increasing the review score' (stays 6). Reviewer_8Ajg and Reviewer_gJez neither replied nor edited.",
+        "what_convinced_or_not": "Reviewer_8mmz was convinced by two new baselines: an 8-head Transformer and a language-family static allocation. They show that capacity explains the text-translation gain (8-head M2O 23.7 vs group 23.5) but not the speech gains (multilingual ASR 46.0 vs 40.0 WER; multilingual ST 13.7 vs 15.2 BLEU). The static baseline scores below separately trained models in multi-domain ST (11.5 vs 13.2 TEDx BLEU), so it is a weak test of learned selection; all new numbers are single runs. Reviewer_QWw7 was not moved: dismissing AdapterFusion for its parameters is 'not a valid argument', and no state-of-the-art reference point was given. QWw7 also asked for the 8-head run, which the authors had posted three days earlier in 8mmz's thread."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are above threshold (mean 6.5). The meta-review calls the paper well written, novel and interesting, says the baseline questions were 'addressed during the discussion phase', and asks for the new results and a clearer Section 3.2. It passes over QWw7's unresolved AdapterFusion and state-of-the-art points.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four reviewers above threshold (6, 6, 7, 7)",
+        "Novel, clearly written method with broad text-translation, ASR and speech-translation experiments",
+        "Capacity-matched and static baselines added in discussion answered the main baseline objection and moved Reviewer_8mmz to 7"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 7, 5, 6],
+      "confidences": [4, 3, 5, 3],
+      "reviews_edited_after_posting": ["Reviewer_zLUP", "Reviewer_HGp8"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_HGp8",
+        "direction": "detractor",
+        "basis": "unclear",
+        "evidence": "A mild outlier: the only rating below threshold and the only confidence 5, one point under the 6.0 mean. The checkable objection, that the ELBO 'does not make sense' without y in q, is wrong (the bound holds for any q), and HGp8 withdrew it on 09-07. The final 5 then rests on a 'little bit limited' contribution next to dynamic networks, argued with one 2018 reference in the last comment, with no author reply after it. The one correct, specific point, a 0.1/0.2 BLEU margin over adapters, the paper itself concedes (line 223)."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_HGp8",
+          "claim": "Section 3.2 calls p(z|Theta) a posterior and has q(z) approximate p(z) instead of a posterior.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 120-122: 'marginalizing over the posterior of latent variable z, which modulates parameters' with Eq. 2's E_{p(z|Theta)}; lines 128-129: q 'to approximate the true distribution p(z)'; line 135 then calls q(z) the posterior."
+        },
+        {
+          "reviewer": "Reviewer_HGp8",
+          "claim": "The formulation is wrong: without y in q, the ELBO does not make sense.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Jensen's inequality bounds log p(y|x) from below for any q(z); the choice of q sets only the tightness. A task-level q(z|t) is the usual choice for a latent shared by all of a task's data, and the paper frames the model from a Bayesian neural network view (lines 118-119). HGp8 accepted the authors' derivation on 09-07."
+        },
+        {
+          "reviewer": "Reviewer_HGp8",
+          "claim": "In Table 1 the method beats Adapter by only 0.1 and 0.2 average BLEU.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: 21.0 vs 20.9 (O2M) and 23.5 vs 23.3 (M2O); the subset strategy ties the adapter. Line 223 concedes 'comparable performance'."
+        },
+        {
+          "reviewer": "Reviewer_HGp8",
+          "claim": "Related work on dynamic networks and conditional computation, e.g. Switch Transformer, is missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Only Shazeer et al. (2017) and GShard appear, in one sentence (lines 71-73); no Switch Transformer and no dynamic-network work."
+        },
+        {
+          "reviewer": "Reviewer_zLUP",
+          "claim": "The paper does not position itself against methods that learn to share components (Zhang et al., ICLR 2021) and does not compare with them.",
+          "checked_against_paper": "correct",
+          "evidence": "Zhang et al. (2021) is not cited; Guo et al. (2020) and Sachan and Neubig (2018) get a clause each (lines 41, 66-67). The only baselines are Transformer, S2T Transformer and one adapter."
+        },
+        {
+          "reviewer": "Reviewer_zLUP",
+          "claim": "The method outperforms transformers and adapters 'without increasing the number of parameters'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The method has H' = 8 candidate heads against the baselines' H = 4 (lines 205-216), so it adds attention weights; lines 170-173 count only the T x H' x L selection logits. The rebuttal gives 420M vs 416M (text translation) and 346M vs 311M (speech)."
+        },
+        {
+          "reviewer": "Reviewer_zLUP",
+          "claim": "Parameter counts are reported only for adapters and the method on text translation (lines 214-215).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 214-215 give 460M and 420M; no baseline size and no speech sizes appear."
+        },
+        {
+          "reviewer": "Reviewer_zLUP",
+          "claim": "Head selection ignores the input context because the logits are learned directly.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 137: 'directly learning the logit parameters', one per task and head (Eq. 4)."
+        },
+        {
+          "reviewer": "Reviewer_WC28",
+          "claim": "No experiment has error bars over random seeds; checkpoint averaging and averaging over languages do not substitute.",
+          "checked_against_paper": "correct",
+          "evidence": "No table reports variance. Checklist 3(c) (lines 536-539) answers [Yes] but cites only averages over languages and checkpoint averaging."
+        },
+        {
+          "reviewer": "Reviewer_NgLe",
+          "claim": "In text translation the method helps high-resource languages more.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, group vs Transformer: +1.4 high vs +0.4 low (O2M), +0.9 vs +0.6 (M2O); on O2M low-resource the adapter is better (16.6 vs 16.4)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_zLUP", "Reviewer_HGp8"],
+        "evidence": "Reviewer_zLUP edited the review on 08-12, the day of the comment 'I decided to increase my score' (now 6). Reviewer_HGp8 edited on 09-07 with 'I decide to raise my score to 5' after four rounds on the ELBO. Reviewer_WC28 (08-13): 'I decided to keep my score.' Reviewer_NgLe (08-15) found the efficiency result 'a little disappointing' and left the 7 unchanged.",
+        "what_convinced_or_not": "Reviewer_zLUP took the per-language BLEU and parameter counts but still wants positioning against learned-sharing work. Reviewer_HGp8 accepted the 09-03 derivation with q(z|t) and p(z|t) but kept a sub-threshold 5 for limited contribution next to dynamic networks. Reviewer_WC28 got a promise of seed runs and no results. Reviewer_NgLe was not impressed by decoding 9-24% faster than adapters and wants better low-resource results. B saw no new baseline experiments."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Three of four ratings are above threshold (mean 6.0), and two reviewers raised their scores. The meta-review praises novelty, clarity and 'consistent gains', says the authors clarified the conditional VAE formulation, and rejects on weak positioning against 'studies that learn to share components for multilingual and multidomain settings', Reviewer_zLUP's own words. zLUP raised the score to 6 despite that point. The meta-review counts adapters among the undiscussed work, but the paper discusses adapters (lines 68-70, 85-86) and uses them as a baseline in every table.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Weak positioning against methods that learn to share components (Reviewer_zLUP's point), the main open weakness in the meta-review",
+        "Non-standard conditional VAE formulation (Reviewer_HGp8), although the AC says the rebuttal clarified it",
+        "The only sub-threshold score, Reviewer_HGp8's 5 at confidence 5, for limited contribution next to dynamic networks"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Capacity confound: 4-head baselines against 8 candidate heads, and no fully shared 8-head baseline (Reviewer_QWw7, Reviewer_8mmz, Reviewer_gJez)",
+    "No static head-allocation baseline to show that learned selection matters (Reviewer_8mmz)",
+    "No state-of-the-art reference point for the baselines (Reviewer_QWw7)",
+    "Arabic WER above 100 in Table 2 (Reviewer_8mmz)",
+    "Subset variant poorly motivated; no separate baselines in the multilingual tasks; no analysis of selected heads in the main paper (Reviewer_QWw7, Reviewer_8Ajg)"
+  ],
+  "issues_only_b": [
+    "Section 3.2 VAE formulation called non-rigorous or wrong (Reviewer_HGp8); A asked only for clearer presentation",
+    "No error bars over random seeds (Reviewer_WC28; Reviewer_zLUP asks for standard deviations)",
+    "Missing learned-sharing and dynamic-network work treated as a positioning or novelty weakness (Reviewer_zLUP, Reviewer_HGp8, AC)",
+    "Head selection does not depend on the input context (Reviewer_zLUP)",
+    "Weaker gains on low-resource languages; no test beyond sequence generation (Reviewer_NgLe)"
+  ],
+  "shared_issues": [
+    "Small gains on text translation (A: Reviewer_8mmz 'modest improvements'; B: Reviewer_HGp8 and Reviewer_NgLe against adapters)",
+    "Only one adapter variant as the multi-task baseline (A: Reviewer_QWw7 asks for AdapterFusion; B: Reviewer_zLUP for learned-sharing methods, Reviewer_HGp8 for Switch Transformer)",
+    "Parameter counts and per-language BLEU missing (A: Reviewer_gJez, Reviewer_8mmz; B: Reviewer_zLUP)",
+    "Efficiency claimed without measurement (A: Reviewer_QWw7; B: Reviewer_NgLe)",
+    "Head-selection method under-explained (A: Reviewer_8Ajg and the AC; B: Reviewer_WC28, Reviewer_zLUP, Reviewer_HGp8)",
+    "Novel, clearly written, broad experiments (most reviewers on both sides)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw a novel, clearly written head-selection method with broad experiments, clear gains on speech and small gains on text translation. The split comes from B's area chair, not from a flaw that B's reviewers found. A's reviewers all rated above threshold (6, 6, 7, 7), and A's AC accepted, treating the baseline questions as settled by new experiments. B's reviewers rated 6, 7, 5, 6, after two of them raised their scores, and B's AC rejected. B's meta-review praises novelty, clarity and 'consistent gains', says the authors clarified the conditional VAE formulation, and rests on weak positioning against methods that learn to share components. That is Reviewer_zLUP's point, and zLUP raised the score to 6 despite it; in A, Reviewer_8mmz listed the same prior work (Zhang et al., 2021) as context for the paper's strengths. The meta-review also counts adapters as undiscussed, yet the paper discusses them (lines 68-70) and uses them as a baseline in every table. B's only sub-threshold score, Reviewer_HGp8's 5 at confidence 5, rested first on an overstated ELBO objection (the bound holds for any q), which HGp8 withdrew on 09-07, and then on a late 'limited contribution' remark. The strongest objection in the record arose only in A: the baselines use 4 heads, and the method draws on 8. The authors' 8-head Transformer matches the method on text translation (M2O 23.7 vs 23.5 BLEU) but not on speech (multilingual ASR 46.0 vs 40.0 WER), and that moved Reviewer_8mmz to 7. B never asked; Reviewer_zLUP's summary even says the method wins 'without increasing the number of parameters'. The committees weighted the same facts differently, and the committee that found the stronger objection accepted.",
+  "candidate_reasons": [
+    "AC rejects above-threshold majority",
+    "Rejection cites concerns called resolved",
+    "Related-work positioning treated as decisive",
+    "Overstated math objection from confident detractor",
+    "Capacity confound raised in one committee",
+    "Rebuttal experiments convinced accepting committee"
+  ],
+  "confidence": "medium",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_HGp8 review and comments 2021-08-16, 08-30, 09-03, 09-07",
+    "Authors' 2021-09-03 'Derivation of the bound' (Committee B)",
+    "Reviewer_zLUP review and 2021-08-12 comment",
+    "Reviewer_8mmz review and 2021-08-23 and 08-29 comments",
+    "Authors' 2021-08-28 'Results of two more baselines' (Committee A)",
+    "Reviewer_QWw7 review and 2021-08-31 comment",
+    "Reviewer_WC28 review and authors' 2021-08-10 reply",
+    "paper lines 118-137 (Eqs. 2-4, 'posterior' wording)",
+    "paper lines 170-176 (extra parameters counted as T x H' x L)",
+    "paper lines 205-216 and 232-233 (H = 4 baselines, H' = 8)",
+    "paper Table 1 and line 223",
+    "paper Section 2, lines 59-91, and reference list",
+    "paper checklist 3(c), lines 536-539"
+  ]
+}

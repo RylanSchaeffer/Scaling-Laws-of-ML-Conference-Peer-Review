@@ -1,0 +1,248 @@
+{
+ "pair_id": "n21-131",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    5,
+    4,
+    6,
+    4
+   ],
+   "confidences": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_BeFo",
+    "Reviewer_fU14"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 5/4/6/4 span two points around a 4.75 mean, all at confidence 4. Reviewer_V8Ya's 6 is the only vote above threshold. It is not an outlier, and it rests partly on misreadings (shared token table; no agent-agent referential games)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_V8Ya",
+     "evidence": "3 hours. The summary says that speaker and listener share a token embedding table. Lines 54-56 exclude weight sharing, and Section 3.3 makes T a parameter of the speaker; the authors corrected this. V8Ya's 2021-09-01 reason for keeping 6 is that the paper 'doesn't have any agent-agent referential games'. The Self In/Self Out columns of Table 3 (and Table 5) are trained speaker-listener pairs in the CIFAR reference game."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_fU14",
+     "claim": "Prototype tokens do not differ from one-hot tokens that the listener then embeds; the method is the status quo.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 109 and Section 5 add noise to the transmitted vector before the listener sees it, so where the embedding sits changes robustness (Table 1). Section 6.1 feeds the listener novel vectors (AMT caption embeddings) that a one-hot channel cannot carry. fU14 accepted both points on 2021-08-10."
+    },
+    {
+     "reviewer": "Reviewer_fU14",
+     "claim": "The paper gives almost no architectural details, so the one-hot baseline is unclear.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 147-148: one-hot agents 'would merely output d', the same agent without T. Section 4.1 defines both baselines. Appendix C: three-layer MLP, 64 hidden units, two-layer heads, sigmoid-bounded tokens. The detail is thin but present."
+    },
+    {
+     "reviewer": "Reviewer_fU14",
+     "claim": "In the zero-shot experiments the agents communicate in Sentence-BERT's embedding space, so 'novel' utterances are not novel to the system.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 309 sets T equal to the label embeddings. Appendix E: Sentence-BERT embeddings projected by a 3-D PCA fitted on sentences with all 10 class names. Sentence-BERT is not inside the listener, as the authors say, but the token geometry is BERT's."
+    },
+    {
+     "reviewer": "Reviewer_bPM2",
+     "claim": "The only baselines are single one-hot vectors and continuous vectors; sequences of one-hot tokens or binary {0,1}^d messages are missing, so the source of the gain is unclear.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.1 lists only cont and one-hot. Line 57 cites Foerster et al.'s binary messages but never compares with them. Lines 227-228 attribute the triangle gain to three prototypes in 'distant corners of the 9-dimensional unit hypercube', which are binary vectors that a binary-message channel can also send."
+    },
+    {
+     "reviewer": "Reviewer_bPM2",
+     "claim": "In the uniform environment prototypes do not beat one-hot.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2: cont -97.8 (3.8), proto -113.6 (3.8), one-hot -111.8 (3.4). One-hot used c = 5 against c = 3 for prototypes (lines 255-256)."
+    },
+    {
+     "reviewer": "Reviewer_BeFo",
+     "claim": "The number of prototypes is always set to the number of goals or classes.",
+     "checked_against_paper": "correct",
+     "evidence": "Triangle z = 3 for 3 landmarks (line 213), 9 points z = 9 (line 222), CIFAR z = 10 for 10 classes (line 301). Only uniform, with continuous targets, uses z = 5. No experiment varies z."
+    },
+    {
+     "reviewer": "Reviewer_BeFo",
+     "claim": "One-hot agents achieve the best performance on unseen classes in Table 3.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3 Self Out: one-hot 69%, cont 68%, proto (BERT) 66%, proto (hand) 58%. One-hot is also best on Label In and Self In (96%)."
+    },
+    {
+     "reviewer": "Reviewer_BeFo",
+     "claim": "The human zero-shot test only asks whether a token is closer to animals or to vehicles, so 'zero-shot human understanding' is overclaimed.",
+     "checked_against_paper": "correct",
+     "evidence": "Appendix C.2.2 (lines 671-672): the two held-out classes 'always consisted of one animal and one vehicle'; the reward matrix pays 0.75 for within-group confusion. The authors conceded the test is 'relatively crude'. The result is 70% vs 66% for BERT, p = .073."
+    },
+    {
+     "reviewer": "Reviewer_V8Ya",
+     "claim": "Speaker and listener share one token embedding table.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 54-56: agents 'may not access other agents' weights or gradients'. Section 3.3: T is a parameter of the speaking agent."
+    },
+    {
+     "reviewer": "Reviewer_V8Ya",
+     "claim": "The paper has no agent-agent referential games (2021-09-01 comment).",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3 Self In/Self Out and Table 5 report trained speaker-listener teams in the CIFAR reference game. There one-hot scores higher than prototypes: 96% and 69% vs 93% and 66%."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_fU14"
+    ],
+    "evidence": "fU14 edited the review on 2021-08-10 and wrote that day: 'I will raise my score to 4 (borderline 5)'. V8Ya, 2021-09-01: 'maintaining score'. BeFo's edit (2021-06-28) predates the rebuttal. BeFo and bPM2 did not reply.",
+    "what_convinced_or_not": "The authors' 'two societies' analogy and the noise and zero-shot arguments convinced fU14 that the method differs from embedded one-hot tokens. fU14 stayed below threshold: the noisy channel must be foregrounded, and less restrictive discrete baselines (sequences of tokens) are missing. fU14 offered 5 for reframing and 6 or more for those baselines; the authors replied with references, not experiments. V8Ya still wanted agent-agent referential games. BeFo's conditions (vary z, explain Table 3, reframe Section 6.2) got answers but no reply."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The AC rejects 'given reviewers' reservations' at a 4.75 mean. The AC's own reading is positive: the rebuttals were 'quite intuitive', the two problem areas are not 'show-stoppers', and the AC wants the perspective 'published and influencing the field'. The AC adds one own point, a side note on sequences of one-hot vectors.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four ratings below threshold (mean 4.75); the AC deferred to these reservations",
+    "Framing of discrete continuous tokens against one-hot tokens confused reviewers (AC theme 1)",
+    "Presentation of the experiments hard to parse (AC theme 2)",
+    "Agent-agent experiments too limited (Reviewer_V8Ya, AC)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    8,
+    7,
+    8
+   ],
+   "confidences": [
+    3,
+    5,
+    3,
+    2
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7/8/7/8. The two 8s carry very different weight: Reviewer_AvnV at confidence 5 and 11 hours, Reviewer_nATd at confidence 2 and 2 hours."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_nATd",
+     "evidence": "Rating 8 at confidence 2, 2 hours. The summary describes the 9-points task as 'which point of the triangle the listener should go to'. The ethics note praises 'good general ethical conduct' in the human experiments; Appendix F reports pay of $4.28 and $1.84 per hour. No reply after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_AvnV",
+     "claim": "The writing is clear and coherent, 'with no unjustified claims'; the paper gives new theoretical results on the optimality of one-hot tokens.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 126 calls one-hot 'an optimal solution' and promises 'a proof of optimality'; Appendix A proves only local optimality. Under Eq. 4, balanced binary codes give a larger sum once z = c >= 4 (32 vs 24 at c = 4). Section 6.2 calls a p = .073 human result one that 'compares favorably'; Appendix F reaches p < .0001 only after dropping Proto-1 as an outlier."
+    },
+    {
+     "reviewer": "Reviewer_AvnV",
+     "claim": "Line 138 has T_{z x c} where T_{c x z} is meant.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 108 and Eq. 5 use T_{c x z}; line 138 uses T_{z x c}. Reviewer_SUhS flagged the same; the authors confirmed."
+    },
+    {
+     "reviewer": "Reviewer_HBxw",
+     "claim": "100 supervised examples in training make the reference game not quite zero-shot.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 297-298 withhold the two classes from training. The authors confirmed that the 100 supervised examples exclude them."
+    },
+    {
+     "reviewer": "Reviewer_HBxw",
+     "claim": "Prototype agents do not differ significantly from cont agents in the zero-shot reference game.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3, proto (BERT) vs cont (BERT): Label Out 58 vs 55, Self Out 66 vs 68, AMT In 70 vs 73, AMT Out 56 vs 53, with standard errors of 0.4 to 1.0."
+    },
+    {
+     "reviewer": "Reviewer_SUhS",
+     "claim": "The term 'prototype' is never defined.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 3.3 introduces 'prototype-based communication' without defining a prototype. The authors conceded it is a synonym for token."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No B review was edited after posting. Only Reviewer_SUhS replied, on 2021-08-25: 'Many thanks for the clarifications'.",
+    "what_convinced_or_not": "Scores were already 7 to 8. The rebuttal corrected HBxw's zero-shot misreading and answered questions on runs, drift, clustering and naming. No reviewer engaged further."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "The three-paragraph meta-review restates reviewer praise: 'All reviewers agree that this is a solid contribution', hypothesis-driven structure, creative experiments, interpretability. It names no weakness, though Reviewer_HBxw and Reviewer_SUhS listed some.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Uniformly positive ratings (7, 8, 7, 8)",
+    "Hypotheses stated and tested with targeted experiments",
+    "Creative experimental design, including human evaluation",
+    "Interpretable, semantically clustered tokens"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Listeners already embed one-hot tokens, so the novelty over standard practice is unclear (Reviewer_fU14; Reviewer_V8Ya as a comment)",
+  "The noisy-channel assumption is non-standard in emergent communication and should frame the paper (Reviewer_fU14)",
+  "No less restrictive discrete baselines: sequences of one-hot tokens or binary {0,1}^d messages (Reviewer_bPM2, Reviewer_fU14, A's AC side note)",
+  "Zero-shot understanding borrows Sentence-BERT's embedding space (Reviewer_fU14)",
+  "One-hot wins Self Out in Table 3; the human test only separates animals from vehicles (Reviewer_BeFo)",
+  "Unclear presentation and section organisation (Reviewer_BeFo, Reviewer_bPM2, A's AC)",
+  "No VQ-VAE discussion or baseline (Reviewer_V8Ya); no study of whether discreteness emerges unforced (Reviewer_bPM2)"
+ ],
+ "issues_only_b": [
+  "The term 'prototype' is never defined (Reviewer_SUhS)",
+  "No Broader Impact section; AMT and embedding-bias risks (Reviewer_AvnV)",
+  "Supervision with 100 examples read as breaking zero-shot, which the paper contradicts (Reviewer_HBxw)",
+  "Language drift (Reviewer_AvnV); arbitrariness of the sign in human language (Reviewer_SUhS)",
+  "Notation and typos, e.g. T_{z x c} against T_{c x z} (Reviewer_SUhS, Reviewer_AvnV)"
+ ],
+ "shared_issues": [
+  "Simple particle-world tasks; richer agent-agent environments wanted (A: Reviewer_V8Ya, Reviewer_BeFo; B: Reviewer_HBxw)",
+  "Prototypes no better than baselines in some settings (A: Reviewer_bPM2 on uniform; B: Reviewer_SUhS and Reviewer_HBxw on cont)",
+  "Number of prototypes z never varied (A: Reviewer_BeFo, a condition for raising the score; B: Reviewer_HBxw, a minor suggestion)",
+  "Section 3.2 theory adds little or links loosely to the experiments (A: Reviewer_BeFo, Reviewer_fU14, Reviewer_bPM2; B: Reviewer_SUhS)"
+ ],
+ "same_facts_weighted_differently": false,
+ "verdict": "A rejected and B accepted because A's reviewers raised objections that B's reviewers never raised. A's four reviewers, all at confidence 4, cited the emergent-communication literature in depth. Reviewer_fU14 attacked the premise: listeners already embed one-hot tokens, and the gain needs a noisy channel that the field rarely assumes. fU14 and Reviewer_bPM2 noted that the only discrete baseline is one atomic one-hot token. The paper confirms the baseline point. Section 4.1 lists only one-hot and continuous baselines, and the triangle gain comes from three tokens in 'distant corners' of a 9-D cube (lines 227-228), which binary messages can also reach. Reviewer_BeFo correctly found that one-hot wins Self Out in Table 3 and that the human test only separates animals from vehicles. The rebuttal moved fU14 from below 4 to 4, no further. A's AC liked the paper and called its problems not 'show-stoppers', but deferred to the 4.75 mean. Three of B's four reviewers had confidence 3 or less, and none questioned the premise or the baselines. B's AC restated their praise. B's evidence is weaker than its 7.5 mean suggests: Reviewer_nATd's 8 rests on 2 hours at confidence 2, and Reviewer_AvnV's 8 at confidence 5 says the paper has 'no unjustified claims', yet the paper calls a p = .073 result favourable and overstates the optimality proof. On shared facts (simple tasks, prototypes no better than continuous messages) the sides judged oppositely, and they split on the clarity of the same text. A's AC blamed presentation and framing for A's low scores, but A's reviews rest mainly on the premise and the baselines.",
+ "candidate_reasons": [
+  "Specialist reviewers challenged the premise",
+  "Missing less restrictive discrete baselines",
+  "AC deferred to borderline scores",
+  "Shallow low-confidence positive reviews",
+  "Opposite clarity judgments, same text"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_fU14 review and 2021-08-10 comment",
+  "Reviewer_bPM2 review (choice of baselines)",
+  "Reviewer_BeFo limitations section",
+  "Reviewer_V8Ya 2021-09-01 comment",
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_AvnV review",
+  "Reviewer_nATd review",
+  "paper Section 4.1 and line 57",
+  "paper lines 227-228 (triangle tokens in hypercube corners)",
+  "paper Table 2 and Table 3",
+  "paper line 126 and Appendix A",
+  "paper Section 6.2 and Appendix F (p = .073; Proto-1 dropped)",
+  "paper Appendix C.2.2 (held-out pairs always one animal and one vehicle)",
+  "paper lines 54-56 and Section 3.3 (token matrix belongs to the speaker)",
+  "paper line 309 and Appendix E (tokens set to Sentence-BERT label embeddings)"
+ ]
+}

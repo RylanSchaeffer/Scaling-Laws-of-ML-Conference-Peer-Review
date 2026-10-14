@@ -1,0 +1,227 @@
+{
+  "pair_id": "n21-124",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 4, 4, 5],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 4, 4, 5 (XvYF, 7k3s, R7en, xra6) sit within one point, all below threshold. The two 4s differ in basis: Reviewer_7k3s (confidence 5) gave checkable theory errors that the camera-ready confirms; Reviewer_R7en gave clarity questions and later deferred to the others."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_R7en",
+          "evidence": "A 4 with no stated reason for rejection. The weaknesses are clarity questions (Table 2b, the signal-to-noise claim missing from Appendix B), a request for training details that Appendix C.1 partly gave, and one uncited baseline (Chen et al., 2019). The only post-rebuttal comment defers to others: 'After reading the comments of other reviewers ... I agree that this article should be further improved.'"
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7k3s",
+          "claim": "The code constrains the Frobenius norm of each layer's weight change, while the paper states a spectral-norm constraint; the method then reduces to a tuning heuristic for Gouk et al.'s ℓ2 constraint.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'The reviewer is correct that we constrain the Frobenius norm in the experiments and not the spectral norm. We will correct the typo in equation (7).' Camera-ready Eqs. (3) and (6) use the Frobenius norm, and Section 5.1 says 'we use the Frobenius norm for distance regularization'. Submitted PDF unavailable; checked against the camera-ready (paper.pdf)."
+        },
+        {
+          "reviewer": "Reviewer_7k3s",
+          "claim": "The proof (Eq. 15) takes the spectral norm of the Gaussian perturbation matrix U_L to be σ; it is a random variable that grows with the matrix size.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors' reply of 2021-09-02 does not address it. The camera-ready Acknowledgment thanks the program chairs for 'communicating with us regarding an omitted factor in equation (14), which we have added'. Camera-ready Theorem 4.1 now contains H, the maximum layer width, and log(4LHC2), and the references add Tropp's matrix-concentration notes. The rebuttal's claim that the bound 'eliminated the dependence on the width' of Gouk et al.'s bound therefore no longer holds."
+        },
+        {
+          "reviewer": "Reviewer_7k3s",
+          "claim": "The main complexity term does not shrink as n grows, and tuning σ alone cannot give the usual rate.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Submitted PDF unavailable. The camera-ready restates Eq. (4) as ε + C2·sqrt(((36/ε²)·K + 3 ln(n/δ) + 8)/n), so the best ε gives an n^(-1/4) rate, slower than the usual n^(-1/2). The authors' answer only pointed to Neyshabur et al."
+        },
+        {
+          "reviewer": "Reviewer_7k3s",
+          "claim": "Computing the KL divergence between prior and posterior on weight space, not hypothesis space, may be invalid.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Weight-space KL is the standard PAC-Bayes treatment, used by Neyshabur et al. (2018), on which the proof is based (camera-ready Section 4.1). By the data-processing inequality it upper-bounds the hypothesis-space KL, so the step is valid. 7k3s flagged its own unfamiliarity with PAC-Bayes."
+        },
+        {
+          "reviewer": "Reviewer_XvYF",
+          "claim": "The constrained optimisation problem is not much different from Gouk et al. (2020).",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Eq. (6) sets the layer-i radius to D·γ^(i-1); the next sentence says Gouk et al. use the same constraint with D_i = D for every layer."
+        },
+        {
+          "reviewer": "Reviewer_XvYF",
+          "claim": "Confidence-based label correction and reweighting are already well explored; the paper makes minor changes to existing algorithms.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Section 2 describes self-adaptive training (Huang et al., 2020), a Table 3 baseline, as a method that 'corrects noisy labels and reweights training data'. The paper's gain over it comes from adding the distance constraint (Table 3, RegSL against SAT)."
+        },
+        {
+          "reviewer": "Reviewer_R7en",
+          "claim": "The claim that the bound scales with the signal-to-noise ratio of the target data is not in Appendix B.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: the claim 'is a corollary of Theorem 4.1 by invoking Theorem 3 of Natajaran et al.' and 'We will include the details in Appendix B'. The camera-ready main text no longer makes the claim."
+        },
+        {
+          "reviewer": "Reviewer_xra6",
+          "claim": "The fine-tuning baseline is weaker than properly tuned fine-tuning in Li et al. (2020).",
+          "checked_against_paper": "not_checked",
+          "evidence": "Li et al.'s numbers not checked. The authors did not dispute the gap; they attributed it to their 30-epoch schedule against 9000 iterations in Li et al."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting, so 5, 4, 4, 5 are the pre-rebuttal ratings. Reviewer_7k3s replied on 2021-08-16, 'I still have concerns with the theoretical aspects', and added the Gaussian spectral-norm error. Reviewer_R7en replied on 2021-08-29 that the paper 'should be further improved'. Reviewer_XvYF and Reviewer_xra6 never replied.",
+        "what_convinced_or_not": "The Frobenius-norm concession confirmed 7k3s's view that the method is a tuning heuristic for Gouk et al.'s ℓ2 constraint. The σ answer did not satisfy 7k3s, and the authors' 2021-09-02 reply ignored the spectral-norm error. The novelty defence (PAC-Bayes instead of Rademacher complexity, a three-step 'pipeline'), the text-classification results and the layer-wise-only ablation drew no response from XvYF or xra6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings below threshold (mean 4.5). The two-sentence meta-review cites 'a disconnect between theory and the proposed method' (7k3s, xra6) and 'limited novelty wrt. prior work' (XvYF, 7k3s; Gouk et al.). It does not mention the norm mismatch or the proof error.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Distance regulariser judged a small change to Gouk et al.'s ℓ2-PGM (XvYF, 7k3s, AC)",
+        "PAC-Bayes bound does not motivate the layer-wise algorithm (7k3s, xra6, AC)",
+        "Theory errors: spectral norm stated but Frobenius norm coded; Gaussian spectral-norm step in the proof (7k3s)",
+        "Self-labeling judged a minor variant of existing correction and reweighting (XvYF)",
+        "All four ratings below threshold; none moved after the rebuttal"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 6],
+      "confidences": [3, 3, 3, 4],
+      "reviews_edited_after_posting": ["Reviewer_a4M8", "Reviewer_YhjQ"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 6 (a4M8, uNxM, YhjQ, FQxu) sit within one point. The high mark, Reviewer_YhjQ's 7, comes from the lightest review (2 hours, confidence 3); without it B's mean is 6.0, still above threshold."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_YhjQ",
+          "evidence": "A 7 at confidence 3 after 2 hours, the shortest time in either committee. It calls the work original 'including the bounds ... and fine-tuning approach' without naming Gouk et al., whose ℓ2-PGM the method extends (camera-ready Eq. 6). The post-rebuttal note is one line. Its questions (distant tasks, a layer-wise-only ablation) are specific, so the review is light rather than careless."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_a4M8",
+          "claim": "The 'state-of-the-art on seven transfer tasks' claim is overstated: 82.24% on CUB-200-2011 and 93.82% on Flowers trail published results above 90% and 99%.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 2 gives RegSL 82.24 on CUB-200-2011 and 93.82 on Flowers with ResNet-101. The authors conceded, and the camera-ready no longer says 'state-of-the-art'."
+        },
+        {
+          "reviewer": "Reviewer_a4M8",
+          "claim": "Layer-wise regularisation is motivated empirically; the bound does not speak to layer-wise differences.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'We agree with the reviewer that the motivation for layer-wise constraints comes from the empirical observation in Figure 2.' Camera-ready Section 4.1: 'Based on the above empirical finding, we propose layer-wise constraints as regularization.'"
+        },
+        {
+          "reviewer": "Reviewer_a4M8",
+          "claim": "The bound indicates that larger distances moved give a lower generalisation error.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The bound in Eq. (4) grows with every D_i, through the sum of D_i² and the products of B_j + D_j. Probably a slip; a4M8 said it is not an expert on PAC-Bayes bounds."
+        },
+        {
+          "reviewer": "Reviewer_FQxu",
+          "claim": "The distance regularisation is ℓ2-PGM (Gouk et al.) plus a layer-wise scale factor.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Eq. (6) and the sentence after it."
+        },
+        {
+          "reviewer": "Reviewer_FQxu",
+          "claim": "In the Appendix C.2 ablation, distance regularisation plus label removal is worse than ℓ2-PGM in most independent-noise settings.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The appendix is not in the available PDF. The authors did not dispute the numbers; they replied that label correction matters most at noise rates of 40% and above."
+        },
+        {
+          "reviewer": "Reviewer_uNxM",
+          "claim": "The paper does not show how often the label corrections are right.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 4(a) of the submission (Figure 5a in the camera-ready) plots the precision of label correction with and without regularisation. The authors pointed to it, and uNxM then asked about its denominator."
+        },
+        {
+          "reviewer": "Reviewer_YhjQ",
+          "claim": "The ablations lack layer-wise constraints without self-labeling.",
+          "checked_against_paper": "correct",
+          "evidence": "Authors: 'We have now included using layer-wise constraints without self-labeling in table 7' (MIT-Indoor 70.23, 64.40, 54.20, 32.54 at 20-80% independent noise; 69.05 correlated)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_a4M8"],
+        "evidence": "Reviewer_a4M8 edited on 2021-09-02 ('POST REBUTTAL ... Increasing my score') after writing 'I will increase by score' that day; final 6. Reviewer_YhjQ edited on 2021-09-10 ('The authors have reasonable addressed my primary concerns'); any change to its 7 is unknown. Reviewer_uNxM and Reviewer_FQxu never edited, so their 6s predate the rebuttal. uNxM replied on 2021-08-31; FQxu never replied.",
+        "what_convinced_or_not": "New experiments and clarifications: hyperparameter search budgets, a tempered 'state-of-the-art' claim, ViT-B under 80% label noise (55.05 against 32.06 for fine-tuning), ChestX-ray14 AUROC 0.8274 against 0.8235 for L2-PGM, text classification, a layer-wise-only ablation and label-correction counts. a4M8 was 'still not fully convinced' by the theory link on 2021-08-18, then raised its score after background on the bound and the ViT results. uNxM: the new results 'do help in understanding the significance'. No B reviewer questioned the rebuttal's claim that the bound removes Gouk et al.'s width dependence."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings at 6 or 7 (mean 6.25). The meta-review says most reviewers 'expressed a positive opinion on the paper following the discussion phase' and that the authors 'must revise significantly'. It names no strength, weakness or result.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Consistent gains over many baselines on seven datasets and under label noise judged useful (a4M8, YhjQ, FQxu)",
+        "New rebuttal experiments (ViT, ChestX-ray14, text, ablation) raised a4M8 and satisfied uNxM and YhjQ",
+        "Novelty over Gouk et al. and the weak theory link judged minor (FQxu, a4M8)",
+        "No reviewer checked the theory; three of four at confidence 3",
+        "All four ratings at 6 or 7; the AC followed them"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Paper states a spectral-norm constraint but the code uses the Frobenius norm (7k3s; conceded)",
+    "Proof takes the spectral norm of a Gaussian matrix to be σ (7k3s; unanswered; camera-ready adds the missing width factor)",
+    "Complexity term does not shrink with n; σ tuning unclear (7k3s)",
+    "No comparison with the operator-norm and MARS bounds of Gouk et al. or Long and Sedghi (7k3s)",
+    "Weight-space KL may be invalid (7k3s; unfounded)",
+    "Signal-to-noise corollary claimed but absent from Appendix B (R7en; conceded)",
+    "Missing baseline: batch spectral shrinkage, Chen et al. 2019 (R7en)",
+    "Fine-tuning baseline under-tuned relative to Li et al. 2020 (xra6)",
+    "Layer-wise distance observation already in SpotTune (xra6)"
+  ],
+  "issues_only_b": [
+    "Overstated 'state-of-the-art' claim; CUB and Flowers accuracy far below published results (a4M8)",
+    "Is the bound tight or vacuous? (a4M8)",
+    "Noise-stability term handled by heuristics rather than a penalty (uNxM)",
+    "Label-correction heuristics: entropy alternative, rationale for down-weighting, accuracy of corrections (uNxM)",
+    "Distant target tasks such as medical images (YhjQ)",
+    "Missing ablation of layer-wise constraints without self-labeling (YhjQ)",
+    "Layer pattern may reflect gradient-norm decay; robustness explanation loose (YhjQ)",
+    "Appendix C.2 ablation: distance plus label removal below ℓ2-PGM (FQxu)"
+  ],
+  "shared_issues": [
+    "Incremental over Gouk et al.'s distance-based regularisation (XvYF, 7k3s; FQxu, a4M8)",
+    "Weak link between the PAC-Bayes bound and the algorithm (7k3s, xra6; a4M8, uNxM)",
+    "Many hyperparameters; search budget and selection unclear (7k3s, R7en, xra6; a4M8, FQxu)",
+    "Self-labeling is a small extension of existing heuristics (XvYF; a4M8)",
+    "Narrow evaluation: ResNets pre-trained on ImageNet, image targets only (xra6; FQxu, YhjQ)",
+    "Section 4.1 hard to follow; noise stability not tied to the bound (xra6, R7en; a4M8)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A rejected and Committee B accepted because their reviewer pools weighted the same weaknesses differently, and A's pool included a theory-literate reviewer who found real errors. Both panels said the regulariser is Gouk et al.'s ℓ2 projection with a geometric per-layer schedule, that the PAC-Bayes bound does not motivate the layer-wise algorithm, and that the method adds many hyperparameters; the camera-ready confirms the first two (Eq. 6; 'Based on the above empirical finding'). A (5, 4, 4, 5; confidence 4, 5, 4, 4) made novelty and the theory-method gap decisive. Its Reviewer_7k3s (confidence 5) read the code and the proof: the paper stated a spectral-norm constraint while the code used the Frobenius norm (conceded), and the proof took the spectral norm of a Gaussian matrix to be σ. The authors never answered the second point; the camera-ready thanks the program chairs for flagging 'an omitted factor in equation (14)', and its bound now depends on the layer width H. No A score moved, and two A reviewers never replied. B (6, 6, 7, 6; confidence 3, 3, 3, 4) treated novelty and the theory gap as minor against consistent empirical gains. Its two unedited 6s show that B leaned to accept before the rebuttal; new ViT, ChestX-ray14 and text experiments then raised a4M8 and satisfied uNxM and YhjQ. No B reviewer checked the math, a4M8 disclaimed PAC-Bayes expertise, and nobody questioned the rebuttal's claim that the bound removes Gouk et al.'s width dependence. Both ACs followed their scores without adding analysis. The split comes from reviewer assignment and weighting, not from the rebuttal; the errors A found were real but fixable, and the camera-ready added the missing factor.",
+  "candidate_reasons": [
+    "Novelty over prior work weighted differently",
+    "Expert reviewer found proof errors",
+    "Accepting panel never checked theory",
+    "Rebuttal experiments lifted accepting panel",
+    "Rejecting reviewers silent after rebuttal",
+    "Meta-reviews echo reviewer scores"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_7k3s review and comment of 2021-08-16",
+    "Authors' reply to Reviewer_7k3s (Frobenius-norm concession) and reply of 2021-09-02",
+    "Camera-ready Acknowledgment ('omitted factor in equation (14)') and Theorem 4.1, Eq. (4)",
+    "Camera-ready Section 4.1, Eq. (6) and the sentence after it",
+    "Committee A meta-review",
+    "Reviewer_a4M8 review (POST REBUTTAL) and comments of 2021-08-18 and 2021-09-02",
+    "Authors' replies to Reviewer_a4M8 (ViT table) and Reviewer_YhjQ (ChestX-ray14, ablation)",
+    "Reviewer_uNxM comment of 2021-08-31",
+    "Committee B meta-review",
+    "Camera-ready Table 2"
+  ]
+}

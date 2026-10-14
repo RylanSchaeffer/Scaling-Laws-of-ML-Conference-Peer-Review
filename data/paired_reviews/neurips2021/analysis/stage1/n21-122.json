@@ -1,0 +1,234 @@
+{
+  "pair_id": "n21-122",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        6,
+        4,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        4,
+        2
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_MoMA"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/6/4/5 all lie within one point of the 5.0 mean, and no rating is above 6. Reviewer_MoMA's 4 (5 before the rebuttal) is not a score outlier, but it is the review the AC adopted. It is principled: long and specific, and its checkable points hold against the paper."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_MoMA",
+          "claim": "Line 174 claims the bounds 'provide a complete characterization of the difficulty of OOD generalization'.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 174-175 say exactly this, and line 131 says the expansion function class 'gives a full characterization'. The lower bound (Theorem 4.3) only shows that one constructed problem exists. The camera-ready keeps both phrases."
+        },
+        {
+          "reviewer": "Reviewer_MoMA",
+          "claim": "The experiments use only three DomainBed datasets, all style shifts that favour feature-invariance methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6.1 (lines 289-290) uses PACS, OfficeHome and VLCS only; no TerraIncognita or DomainNet. The authors' 2021-09-07 reply concedes that all three are 'diversity shift' and cites run time."
+        },
+        {
+          "reviewer": "Reviewer_MoMA",
+          "claim": "Selection is run once over models from all algorithms pooled together, not per algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 291-294: 200 models per setup from ERM, CORAL, Mixup, GroupDRO and IRM, then one selection over the pool. The authors confirm this and offer per-algorithm results only 'if the reviewer suggests to'."
+        },
+        {
+          "reviewer": "Reviewer_MoMA",
+          "claim": "DomainBed's CORAL and MMD, and often ERM, with standard validation selection match or beat the paper's selected models.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 'Ours' averages: 86.57 PACS, 68.09 OfficeHome, 76.32 VLCS. DomainBed's published training-domain-validation averages: CORAL 86.2, 68.7, 78.8; ERM 85.5, 66.5, 77.5. The gap is largest on VLCS. The paper's own 'Val' baseline (84.91, 67.09, 75.69) is below DomainBed ERM on PACS and VLCS; the authors blame their smaller hyperparameter grid."
+        },
+        {
+          "reviewer": "Reviewer_ZmeN",
+          "claim": "The improvement from the proposed model selection is marginal.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 average gains are 1.66, 1.00 and 0.63 points. Of 12 setups, 9 improve, 2 are identical (VLCS S, V) and 1 is worse (OfficeHome C, 55.07 vs 55.56). There are no error bars (checklist 3c 'N/A'), yet line 302 says 'significantly outperforms'."
+        },
+        {
+          "reviewer": "Reviewer_ZmeN",
+          "claim": "The abstract overclaims being the first to give rigorous, quantitative definitions of OOD.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract lines 7-8 claim 'the first step towards rigorous and quantitative definitions of 1) what is OOD'. Section 7 (lines 343-346) itself cites earlier formal domain-generalization bounds [12, 17, 38] and Ben-David et al. [10]."
+        },
+        {
+          "reviewer": "Reviewer_ZAxY",
+          "claim": "Learnability (Definition 3.4) needs the variation over E_all, so it cannot be checked from the training domains.",
+          "checked_against_paper": "correct",
+          "evidence": "Definition 3.4 (lines 134-138) conditions on V(phi, E_all). The bounds are population-level (lines 240-242). Figure 1 computes the expansion function only by treating all four OfficeHome domains as known."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_MoMA"
+        ],
+        "evidence": "MoMA's review, edited 2021-08-31, says 'I've lowered my score from 5 to 4'. No other A reviewer edited or replied. The authors answered on 2021-08-10. Their fuller reply to MoMA came on 2021-09-07, after MoMA's update and, per MoMA, almost a week after the discussion period ended.",
+        "what_convinced_or_not": "MoMA called the first reply 'dismissive'. It deferred more experiments to 'future work', answered the insight critique with 'We cannot agree', and argued that no method universally beats ERM. MoMA rejected that argument as no reason to skip a proper evaluation. The late reply 'does a slightly better job' but came too late to change the score."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects at a 5.0 mean with three of four ratings below threshold. The meta-review names MoMA's two theory points (the bounds give no insight into structural assumptions such as ICP and IRM; overclaiming such as 'complete characterization') and says 'I agree with both'. It does not cite MoMA's main stated reason, the experimental methodology.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Bounds formalize the known case and give no insight into structured shifts (Reviewer_MoMA, Reviewer_wFmp)",
+        "Overclaiming: 'complete characterization' and 'first' rigorous definitions (Reviewer_MoMA, Reviewer_ZmeN)",
+        "No rating above 6; MoMA dropped to 4 after a dismissive first rebuttal",
+        "AC agreed with MoMA's theory criticisms and judged them enough to reject"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        8,
+        5,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_8ktt",
+        "Reviewer_MbMa",
+        "Reviewer_Ja6b"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_MbMa",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "The 8 is two points above every other rating in either committee. The main review is two bullets that name no weakness. MbMa writes 'I do not have much knowledge about the prior work' yet judges the work original, did not check the maths (confidence 3), and posted nothing in the discussion. Without it, B's mean is 5.67, not 6.25."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_MbMa",
+          "evidence": "Two-bullet main review with no weakness. It judges originality while disclaiming knowledge of the field, accepts the experiments as 'demonstrated to be effective' without comment, and has no discussion post."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8ktt",
+          "claim": "Theorems 4.1 and 4.2 hide factors in d inside O(.).",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 192 and 200 say that O(.) depends on d. The proof sketch carries O(r1^d r2^d) (lines 223-225), and the rate exponent alpha^2/(alpha+d)^2 shrinks as d grows; the ResNet-50 features in Section 6 have d = 2048."
+        },
+        {
+          "reviewer": "Reviewer_Ja6b",
+          "claim": "Although the definitions are one-dimensional, line 177 takes the supremum over all projections (discussion, 2021-09-02).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 177 defines V^sup(h) as the sup over unit vectors beta of V(beta^T h), so the learnability assumption binds every one-dimensional projection of h. This undercuts the 'misinterpreting our definitions' reply that moved Reviewer_8ktt."
+        },
+        {
+          "reviewer": "Reviewer_8ktt",
+          "claim": "The experiments average per-coordinate variation instead of taking the supremum that the theory uses.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 and lines 262-265 use the mean over the d coordinates; Theorems 4.1 and 4.2 use the sup over all projections. The authors replied that taking the sup 'makes the variation of different models indistinguishable'."
+        },
+        {
+          "reviewer": "Reviewer_Ja6b",
+          "claim": "The selection strategy picks better models on all three datasets, 'for all combinations of the OOD dataset'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: better in 9 of 12 setups, identical in 2 (VLCS S, V), worse in 1 (OfficeHome C, 55.07 vs 55.56)."
+        },
+        {
+          "reviewer": "Reviewer_Ja6b",
+          "claim": "The characteristic-function integral in Eq. 4 can be complex, so a scalar bound on it is ill-posed.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 4 (line 190) integrates p-hat(t|y)|t|^alpha with no modulus. The authors called it a typo, and the camera-ready adds the modulus."
+        },
+        {
+          "reviewer": "Reviewer_Ja6b",
+          "claim": "The title is too general; Ben-David et al. already give a theory of OOD generalization.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper cites Ben-David et al. [10] and earlier domain-generalization bounds [12, 17, 38] (lines 343-346). The authors promised to change the title; the camera-ready keeps it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_8ktt"
+        ],
+        "evidence": "8ktt wrote on 2021-09-02 'I will raise my score to 6' (edit 2021-09-02). Ja6b edited on 2021-09-12 to add post-rebuttal comments and kept 6 ('I can't give a strong accept'). MbMa's 2021-08-31 edit carries no stated change. Reviewer_eZ4t never replied and stayed at 5. The authors answered on 2021-08-07 and sent reminders on 2021-08-23.",
+        "what_convinced_or_not": "The authors told 8ktt and Ja6b that their concerns 'arise from misinterpreting our definitions', which apply to one-dimensional features. 8ktt accepted this. Ja6b answered that line 177 takes the sup over all projections and asked why that is 'mild, or reasonable', but did not penalize the paper because 'the theory looks correct'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts at a 6.25 mean with three of four ratings at 6 or above. The meta-review says the reviewers found the paper 'very strong' and the theory 'compelling'. Only MbMa's thin 8 is that positive: 8ktt and Ja6b rated 'marginally above' and kept doubts about strong assumptions and vacuous bounds, and eZ4t rated 5. The meta-review engages no specific point.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Theory judged correct and rigorous; Reviewer_Ja6b checked the main proof line by line",
+        "Clear writing (Reviewer_MbMa, Reviewer_8ktt, Reviewer_Ja6b)",
+        "Model-selection gains on three datasets read as compelling",
+        "Champion 8 from Reviewer_MbMa, and Reviewer_8ktt's rise to 6 after the one-dimensional clarification"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Experimental methodology: three style-shift datasets, one selection over models pooled across algorithms, DomainBed baselines matching or beating the selected models (Reviewer_MoMA)",
+    "Model-selection gains are marginal (Reviewer_ZmeN)",
+    "No insight into structured shifts or into methods such as ICP, IRM and DRO, or into spurious-feature learning (Reviewer_MoMA, Reviewer_wFmp)",
+    "Finite-sample estimation of P(phi|y), and the trivial feature phi(x)=y (Reviewer_ZAxY)",
+    "The bounds depend explicitly on variation only, not on informativeness (Reviewer_wFmp)",
+    "No Colored MNIST experiment in the main text (Reviewer_ZmeN)"
+  ],
+  "issues_only_b": [
+    "Hidden dependence on d in the O(.) of Theorems 4.1 and 4.2 (Reviewer_8ktt)",
+    "Algorithm 1 averages per-coordinate variation while the theory uses the sup over all projections (Reviewer_8ktt)",
+    "The theory bounds worst-case error, which may not carry over to average accuracy (Reviewer_Ja6b)",
+    "A simpler proof route, the need for V^sup, and typos in Eq. 4 and the appendix proof (Reviewer_Ja6b)",
+    "Missing details and cost of the GPU kernel density estimation (Reviewer_Ja6b, Reviewer_eZ4t)",
+    "Wording of learnability, and whether the expansion function could be a constant (Reviewer_eZ4t)"
+  ],
+  "shared_issues": [
+    "Learnability is a strong, unverifiable assumption from which the bounds follow almost immediately (Reviewer_MoMA, Reviewer_ZAxY; Reviewer_8ktt, Reviewer_Ja6b)",
+    "The bounds are likely vacuous for deep networks, because conditional feature matching does not beat ERM (Reviewer_MoMA; Reviewer_8ktt)",
+    "The title or abstract overclaims (Reviewer_MoMA, Reviewer_ZmeN; Reviewer_Ja6b)",
+    "Heuristic selection rule: why a linear combination of accuracy and variation, and why this r0 (Reviewer_ZmeN; Reviewer_8ktt, Reviewer_Ja6b)",
+    "Weak link to prior theory such as Ben-David et al., DRO, IRM and covariate shift (Reviewer_wFmp; Reviewer_eZ4t, Reviewer_Ja6b)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same weaknesses and weighted them differently. Reviewers on each side said that the learnability assumption makes the bounds near-immediate, that the bounds are likely vacuous for deep networks, and that the title or abstract overclaims. In A, Reviewer_MoMA (confidence 4) pressed these points and added an accurate audit of the experiments: three style-shift datasets, one selection over a pool of five algorithms, and DomainBed's own validation-selected CORAL matching or beating the selected models. The authors' first reply deferred to 'future work', MoMA fell from 5 to 4, and the AC rejected on MoMA's overclaiming and insight points. In B, the 6.25 mean rests on a two-bullet 8 from Reviewer_MbMa, who disclaims knowledge of the field; without it the mean is 5.67. B's two 6s raised A's theory doubts but did not penalize a proof they found correct. Reviewer_8ktt rose to 6 on a 'you misread our one-dimensional definitions' reply that Reviewer_Ja6b found weak. B's AC called the reviews 'very strong' and engaged no point. No B reviewer compared the results with DomainBed or questioned the pooled selection, and B treated the overclaiming as a title fix that the camera-ready never made.",
+  "candidate_reasons": [
+    "Thin champion review lifts mean",
+    "Only one committee audited experiments",
+    "Rebuttal moved scores opposite ways",
+    "Dismissive first rebuttal hardened detractor",
+    "AC treated overclaiming as disqualifying",
+    "Correct proof excused shared doubts",
+    "Generic meta-review overstated reviewer enthusiasm"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_MoMA final review, including 'Update after rebuttal'",
+    "Reviewer_MoMA comment 2021-09-07",
+    "Committee A meta-review",
+    "Reviewer_MbMa review",
+    "Reviewer_8ktt comment 2021-09-02",
+    "Reviewer_Ja6b comment 2021-09-02",
+    "Committee B meta-review",
+    "paper lines 131 and 174-175 ('full' and 'complete characterization')",
+    "paper Section 6.1, lines 289-294, and Table 1",
+    "paper line 177 and lines 262-265 (V^sup versus mean variation)",
+    "Gulrajani and Lopez-Paz (DomainBed), training-domain validation results"
+  ]
+}

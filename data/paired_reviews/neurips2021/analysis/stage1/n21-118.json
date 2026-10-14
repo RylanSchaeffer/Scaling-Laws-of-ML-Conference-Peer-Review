@@ -1,0 +1,230 @@
+{
+  "pair_id": "n21-118",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_sYYW",
+        "Reviewer_YFNi",
+        "Reviewer_uD7E"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/6/6/5 sit within one point. The low end, Reviewer_aT3f's 5, comes from a thin review: its main review repeats the summary paragraph verbatim, then raises two speculative concerns (non-uniform real noise; 'I suspect the original network needs to be big'). aT3f then engaged over three discussion rounds and ended 'the paper is borderline' while saying it 'may be published'."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_YFNi",
+          "claim": "GainTuning is still inferior to the bias-free network [35] on out-of-distribution noise (Fig. 4).",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4 top table: Set12 sigma=70 25.54 vs 25.59, sigma=80 24.57 vs 24.94; BSD68 sigma=80 24.14 vs 24.38. Only BSD68 sigma=70 favours GainTuning (24.89 vs 24.87). Lines 207-208 nevertheless say GainTuning 'matches' the bias-free CNN."
+        },
+        {
+          "reviewer": "Reviewer_YFNi",
+          "claim": "The networks in the paper also use no biases (SM 1.1), so GainTuning impairs a bias-free network's generalization.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 100-101 define f_theta by 'weight and bias parameters'; lines 115-117 (Eq. 2) scale a vector 'that contains the weight and bias filter parameters'. Figure 4 lists 'Bias Free Model [35]' as a separate column from the pre-trained/GainTuning network. The supplement is not in the PDF; the authors say SM 1.1 describes DnCNN and its bias-free variant. This was YFNi's main concern; its clarification turned YFNi to 'recommend acceptance'."
+        },
+        {
+          "reviewer": "Reviewer_YFNi",
+          "claim": "Line 189 cites a Table 2 that does not exist, so the main text has no comparison of the three losses (also raised by Reviewer_uD7E).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 189 reads '(Table 2)'. The main paper has no numbered tables; the only tables sit inside Figures 3 and 4. The authors say it should be Table SM5."
+        },
+        {
+          "reviewer": "Reviewer_uD7E",
+          "claim": "Line 277 says GainTuning helps images with repetitive patterns most, while the Limitations say fine-tuning all parameters wins on such images.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 277-279: 'GainTuning is more beneficial for images with highly repetitive patterns'. Lines 298-302: on Urban100 and IUPR, 'fine-tuning all parameters, and even training only on the test data using Self2Self often outperforms GainTuning'. The authors conceded the point was unclear."
+        },
+        {
+          "reviewer": "Reviewer_sYYW",
+          "claim": "Results are only on grayscale images with Gaussian noise.",
+          "checked_against_paper": "correct",
+          "evidence": "Sections 5.1-5.3 use Gaussian white noise on BSD400-trained grayscale benchmarks (lines 182-185, 198-199, 229-230). The paper has no colour experiment; the TEM data in Section 5.4 are the only non-Gaussian case. Colour and Poisson results came only in the rebuttal."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_YFNi"
+        ],
+        "evidence": "Author responses posted 2021-08-10. Three reviews were edited afterwards: YFNi on 2021-08-18 ('My main concern had to do with the biases in the networks. This has been clarified in the rebuttal. I therefore recommend acceptance.'), uD7E on 2021-08-31 ('I recommend accepting the paper', same day as its discussion reply), sYYW on 2021-09-10 ('answered most of my questions and concerns'). YFNi's original text said the experiments 'prove the exact opposite of what they claim', so its final 6 is a raise. Earlier ratings of uD7E and sYYW are not exposed. aT3f did not edit and stayed at 5.",
+        "what_convinced_or_not": "YFNi was convinced by the clarification that the tuned networks have biases (its objection was a misreading). uD7E was convinced by the explanation of repetitive structure versus overfitting and a new figure adding the blind-spot loss to the overfitting analysis. sYYW said the rebuttal (colour-image results, a Gaussian-to-Poisson table of about 3.5 dB on Set12, promised related-work discussion) 'answered most of my questions and concerns', but still asked for a FastDVDnet-style comparison. aT3f found the equivalent-bias explanation for spatially varying noise 'reasonable' but called the per-channel choice 'a bit adhoc'; it did not reply to the last-n-layers comparison."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts at 6/6/6/5 after three positive post-rebuttal notes. The meta-review says 'all reviewers think that the rebuttal has addressed their most concerns, and agree with the acceptance (though some are on the borderline)', and passes on sYYW's DVDnet request. It overstates in two places: aT3f stayed at 5 and called the paper borderline, and the claim that experiments 'show that it outperforms existing methods' fails for the bias-free and sigma in [0,100] baselines at sigma=80 (Figure 4) and for Self2Self on new image content (Section 5.3).",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Reviewers found the idea simple, natural and general, tested across architectures, losses and kinds of distribution shift",
+        "Rebuttal cleared YFNi's bias misreading, uD7E's overfitting and repetitive-structure questions, and sYYW's colour and non-Gaussian requests",
+        "Ratings ended at 6/6/6/5 and the AC followed the near-consensus",
+        "Large gains over the mismatched pre-trained network on out-of-distribution noise and the qualitative TEM result were read as significant"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        4,
+        4,
+        5
+      ],
+      "confidences": [
+        5,
+        5,
+        5,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_9H2a"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/4/4/5 sit within one point. The two 4s (Reviewer_YCi9, Reviewer_bRMP, both confidence 5) rest on specific, checkable points that the paper confirms: small in-distribution gains, stronger simple baselines on out-of-distribution noise, and Self2Self winning on new image content. The weakest review is Reviewer_9H2a's 5 at confidence 3."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_9H2a",
+          "evidence": "Four one-line requests with no assessment of strengths or weaknesses. It asks for 'qualitative analysis on real noisy images', which Figure 2 and Section 5.4 already give, and asks why improvements are minor 'in the table3 and table 4', which the main paper does not have. Confidence 3; no reply to the rebuttal. Its only edit is dated 2021-08-10, the day of the author responses, with no post-rebuttal text."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_2yuX",
+          "claim": "In Fig. 3, GainTuning improves on the pre-trained model by at most 0.12 dB, and mostly by less than 0.1 dB.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3 table: DnCNN gains 0.10, 0.09, 0.10, 0.08, 0.07, 0.06 dB; UNet 0.12, 0.10, 0.08, 0.07, 0.07, 0.07 dB."
+        },
+        {
+          "reviewer": "Reviewer_YCi9",
+          "claim": "For in-distribution data, the majority of improvements on BSD68 are smaller than 0.03-0.04 dB.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Figure 3 BSD68 histogram (sigma=30): about 21 of 67 plotted images gain less than 0.04 dB; the median is near 0.055 dB and the mean 0.08 dB; 57 of 67 gain less than 0.1 dB. The number is too low, but the point that in-distribution gains are small holds."
+        },
+        {
+          "reviewer": "Reviewer_YCi9",
+          "claim": "For out-of-distribution noise, a denoiser trained on noise levels up to 100, and the bias-free model of [35], are better than GainTuning (also Reviewer_2yuX: GainTuning 'does not perform better than Trained on [0,100]').",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4 top table: at sigma=80 the [0,100] network (24.88, 24.36) and the bias-free CNN (24.94, 24.38) beat GainTuning (24.57, 24.14) by 0.22-0.37 dB. At sigma=70 all three are within 0.05 dB, with GainTuning slightly ahead of the [0,100] network on both test sets."
+        },
+        {
+          "reviewer": "Reviewer_bRMP",
+          "claim": "GainTuning is worse than Self2Self (Table SM4).",
+          "checked_against_paper": "correct",
+          "evidence": "The supplement is not in the PDF, but Section 5.3 (lines 238-248) states that Self2Self outperforms GainTuning on experiments (a), (b) and (c); fine-tuning all parameters also clearly wins on (b). The rebuttal answered that Self2Self wins 'only in situations where the test image had extensive repeating structure'; lines 240-244 contradict this for (a), piecewise-constant to natural images. bRMP did not reply."
+        },
+        {
+          "reviewer": "Reviewer_bRMP",
+          "claim": "Self2Self is the only single-image training baseline in Fig. 3.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 3 baselines are LIDIA (pre-trained and adapted) and Self2Self only. Section 5.4 adds blind-spot methods trained on the 40 TEM frames (lines 269-270)."
+        },
+        {
+          "reviewer": "Reviewer_YCi9",
+          "claim": "The TEM conclusions are drawn from one visual example with no quantitative measure.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 5.4 and Figure 2 show one nanoparticle image and report no metric; the authors confirm no ground truth exists. More examples are only in the supplement (Figures SM9, SM10)."
+        },
+        {
+          "reviewer": "Reviewer_2yuX",
+          "claim": "Almost all experiments remove Gaussian noise; the TEM image is the only exception.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 182-185, 198-199 and 229-230: all controlled experiments use Gaussian white noise."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Author responses posted 2021-08-10. No review was edited afterwards; Reviewer_9H2a's only edit carries the same date and adds no post-rebuttal text. Reviewer_YCi9 replied on 2021-08-31: 'I still believe that this paper could benefit from a substantial edit and thus stand by my ranking'. The meta-review quotes a reviewer's discussion note, by content most likely Reviewer_2yuX, that rejects the new experiments. Reviewer_bRMP and Reviewer_9H2a did not reply.",
+        "what_convinced_or_not": "Nothing moved a score. The quoted note says the last-n-layers comparison shows GainTuning wins without explaining why, that a network trained on a wider noise range still does better, and that the Gaussian-to-Poisson experiment is no substitute for real noise. The authors' reframing (gains come without retraining or architecture changes) did not answer B's yardstick of the strongest alternative. The rebuttal's claim that Self2Self wins only on repeating structure misstated Section 5.3, and no B reviewer responded to it."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Meta-review: 'All four reviewers agreed that the paper was not currently above threshold for acceptance, with a high indicator of confidence in their assessments.' It then quotes one reviewer's three-point discussion note. It gives no own assessment of the rebuttal.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings below threshold (5/4/4/5) at confidence 5/5/5/3",
+        "In-distribution gains of at most 0.12 dB; on out-of-distribution noise a network trained on a wider noise range or the bias-free CNN does as well or better",
+        "No explanation of why tuning per-channel gains works; seen as an empirical combination of known techniques",
+        "Controlled experiments use only Gaussian noise; the real-data TEM evidence is a single qualitative example",
+        "Rebuttal experiments (last-layer tuning, Gaussian-to-Poisson) judged insufficient"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Missing related work on feature modulation (AdaFM, CFSNet, ECCV 2020 modulation) and blind super-resolution (Reviewer_sYYW), and on self-supervised transfer for fluorescence microscopy (Reviewer_uD7E)",
+    "No colour-image experiments (Reviewer_sYYW)",
+    "No noise-level-conditioned baseline such as FastDVDnet (Reviewer_sYYW)",
+    "Spatially varying noise and locally adaptive gains (Reviewer_sYYW, Reviewer_aT3f)",
+    "Whether the tuned networks have biases, a misreading (Reviewer_YFNi)",
+    "Contradiction between line 277 and the Limitations on repetitive images (Reviewer_uD7E)",
+    "Blind-spot loss missing from the overfitting analysis (Reviewer_uD7E)",
+    "Network size and deployment cost (Reviewer_aT3f)",
+    "SURE terminology (Reviewer_YFNi)"
+  ],
+  "issues_only_b": [
+    "In-distribution gains are marginal, about 0.1 dB (Reviewer_2yuX, Reviewer_YCi9)",
+    "A network trained on sigma in [0,100] is a simpler alternative that does as well or better (Reviewer_2yuX, Reviewer_YCi9)",
+    "Self2Self beats GainTuning; more single-image and regularisation baselines needed (Reviewer_bRMP)",
+    "TEM evidence is one visual example with no quantitative measure (Reviewer_YCi9)",
+    "Out-of-distribution content settings are unrealistic because such training data are easy to get (Reviewer_YCi9)",
+    "Extra test-time optimisation cost and runtime (Reviewer_9H2a, Reviewer_YCi9)",
+    "Section 4 only restates existing losses (Reviewer_2yuX)"
+  ],
+  "shared_issues": [
+    "Controlled experiments use only synthetic Gaussian noise; realistic noise needed (A: sYYW, aT3f; B: 2yuX, YCi9, 9H2a)",
+    "Choice of per-channel gains is ad hoc or unexplained versus other parameter subsets (A: aT3f; B: 2yuX, YCi9, bRMP, 9H2a)",
+    "GainTuning trails the bias-free CNN [35] on out-of-distribution noise (A: YFNi; B: YCi9)",
+    "Combining pre-training with test-time adaptation is not new (A: YFNi found the gain restriction new; B: YCi9 found novelty limited)",
+    "Missing details on which architecture and loss each figure uses, the absent Table 2, and typos (A: YFNi, uD7E; B: YCi9, 2yuX)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighed the same facts differently. Both saw a simple, general method whose in-distribution gain is small (Figure 3: 0.06 to 0.12 dB) and whose large out-of-distribution gains are measured against a pre-trained network that never saw that noise level or image type. Committee A judged GainTuning against that network and valued its simplicity and breadth; its concerns were clarification questions and one misreading (Reviewer_YFNi thought the tuned networks were bias-free), which the rebuttal answered, so three reviews ended with positive notes at 6. Committee B, with three confidence-5 reviewers, judged it against the strongest alternatives and asked why tuning gains works. B's objections are correct readings of the paper: in Figure 4 the network trained on sigma in [0,100] and the bias-free CNN tie GainTuning at sigma=70 and beat it by 0.22 to 0.37 dB at sigma=80, and Section 5.3 reports that Self2Self beats GainTuning on all three new-content experiments. A rebuttal cannot change those facts, so no B score moved, and the same new experiments that went unchallenged in A were dismissed in B. Neither committee found an error; A's meta-review overstates that the method 'outperforms existing methods'.",
+  "candidate_reasons": [
+    "pretrained versus strongest-baseline yardstick",
+    "small in-distribution gains weighted differently",
+    "rebuttal cleared a misreading in A",
+    "B objections were correct readings",
+    "same rebuttal experiments, opposite reception"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_YFNi review and Post Rebuttal note",
+    "Reviewer_aT3f discussion, 2021-08-18 to 2021-08-20",
+    "Committee A meta-review",
+    "Reviewer_2yuX review, point 2",
+    "Reviewer_YCi9 review and 2021-08-31 reply",
+    "Reviewer_bRMP review and the authors' response on Self2Self",
+    "Committee B meta-review (quoted reviewer note)",
+    "paper_submitted Figure 3 table and BSD68 histogram",
+    "paper_submitted Figure 4 top table and lines 206-208",
+    "paper_submitted Section 5.3, lines 238-248",
+    "paper_submitted lines 100-101 and 115-117 (Eq. 2)",
+    "paper_submitted lines 277-279 vs 298-302"
+  ]
+}

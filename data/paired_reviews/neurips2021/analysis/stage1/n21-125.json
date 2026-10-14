@@ -1,0 +1,250 @@
+{
+  "pair_id": "n21-125",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 6, 6],
+      "confidences": [3, 4, 4, 5],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6/7/6/6 all sit within one point of the 6.25 mean. The highest, Reviewer_T9dA's 7 (3 hours), rests on specific points: the uncited Gulcehre et al. penalty, written out as a formula, and Theorem 1's unstated conditions. T9dA also calls the results 'not groundbreaking'."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_XtLh",
+          "claim": "Each new constraint alone trails the matching prior method: policy constraint alone 299 vs BCQ 1060; value constraint alone 555 vs CQL 1245.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The ablation totals are in supplementary Table S2, which is not in the PDF. The baseline totals match: CQL 1245 (lines 351-352) and BCQ 1060.46 (camera-ready Table 1). The authors did not dispute the numbers and said the policy-only variant 'performs similarly to BRAC-P and BRAC-V' (383.4, 434.5). Reviewer_ZoHU in B made the CQL comparison independently."
+        },
+        {
+          "reviewer": "Reviewer_XtLh",
+          "claim": "Line 79 implies that CRR and BRAC need complete episode trajectories.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 79-80: 'we do not even require that complete episode trajectories have been logged [59, 62]', citing CRR and BRAC. The authors called the sentence 'poorly worded', and the camera-ready rewrites it."
+        },
+        {
+          "reviewer": "Reviewer_XtLh",
+          "claim": "The unregularized FQE baseline performs very poorly.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 389-390 give FQE an average Pearson correlation of 0.01 (0.37 with the penalty). The Figure 3 caption reports negative correlation in 15 of 32 tasks."
+        },
+        {
+          "reviewer": "Reviewer_T9dA",
+          "claim": "The paper does not cite Gulcehre et al. (Regularized Behavior Value Estimation), which uses a very similar value penalty.",
+          "checked_against_paper": "correct",
+          "evidence": "References [1]-[63] do not include it. The rebuttal ran it on all 32 tasks (RBVE-C 747, RBVE-A 105, CDC 1397). The camera-ready cites it as [20] and puts the comparison in Appendix A.1."
+        },
+        {
+          "reviewer": "Reviewer_T9dA",
+          "claim": "Theorem 1 does not state the 'commonly-assumed conditions' it relies on.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 271-276 cite 'standard conditions' [3, 7, 9, 56] and 'commonly-assumed conditions' [30] without stating them. Line 273 puts the 'formal list of assumptions' in Appendix D.1, which is not in the PDF. The rebuttal then added a reference to assumptions A1-A9 of Antos et al., which include conditions on the behaviour policy."
+        },
+        {
+          "reviewer": "Reviewer_T9dA",
+          "claim": "The epsilon in Eq. 8 (line 182) is not defined.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 184 defines epsilon := Q(s, a_hat) - Q(s, a), two lines after Eq. 8."
+        },
+        {
+          "reviewer": "Reviewer_T9dA",
+          "claim": "The exploration penalty encourages a high KL between the behaviour and learned policies (summary).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 140-141 and Eq. 11: the penalty 'reduces the divergence' to the behaviour policy. This is a slip in the summary; the rest of the review reads the method correctly."
+        },
+        {
+          "reviewer": "Reviewer_jjjy",
+          "claim": "No source code is provided.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(a): 'code is not included'."
+        },
+        {
+          "reviewer": "Reviewer_jjjy",
+          "claim": "Lemma 1 derives both forward and reverse KL, but CDC uses only the reverse KL.",
+          "checked_against_paper": "correct",
+          "evidence": "Lemma 1 (line 209) gives both solutions. Line 213 says 'we prefer reverse KL', and Eq. 11 uses only the log-likelihood (reverse KL) term."
+        },
+        {
+          "reviewer": "Reviewer_jjjy",
+          "claim": "References [31] and [32] are the same paper.",
+          "checked_against_paper": "correct",
+          "evidence": "Both are Lan et al., Maxmin Q-learning (ICLR 2019 and ICLR 2020). The duplicate remains in the camera-ready ([32], [33]), although the authors said they had fixed it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. All four reviewers acknowledged the responses: Reviewer_T9dA on 2021-08-11, Reviewer_jjjy and Reviewer_JguC on 2021-08-18, Reviewer_XtLh on 2021-08-25. The authors asked jjjy, JguC and XtLh to raise their scores; none did.",
+        "what_convinced_or_not": "T9dA accepted the RBVE comparison (CDC 1397 vs best RBVE variant 747) and the Theorem 1 clarification. jjjy accepted the restated proofs and the new societal-impact text. JguC accepted the BRAC distinction: 'the motivations are clear to me now'. XtLh found the added Discussion text helpful. His question on the weak individual components got a framing answer, not numbers, and he stayed at 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts with all four ratings at 6 or above. The AC notes 'some discussion whether the individual regularisers themselves are especially novel', then calls them 'evidently complementary', with 'convincing empirical performance'. The AC fails 'to identify any reviewer concerns that have not been sufficiently addressed' and credits the promised literature additions. It also credits 'new ablations', but A's forum shows one new baseline (RBVE) and no new ablation.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or above threshold (6, 7, 6, 6) from the first review",
+        "Convincing results on 32 D4RL tasks; the two regularisers judged complementary by ablation",
+        "AC judged every concern answered, crediting the RBVE baseline and the promised literature additions"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 5, 6, 6],
+      "confidences": [4, 4, 3, 5],
+      "reviews_edited_after_posting": ["Reviewer_ZoHU", "Reviewer_dkx5", "Reviewer_meGC", "Reviewer_4YAR"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5/5/6/6 split evenly around the threshold, each half a point from the 5.5 mean. Both 5s rest on specific requests: Reviewer_ZoHU wants principled reasons for using both regularizers; Reviewer_dkx5 wants per-task hyperparameters."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ZoHU",
+          "claim": "In Table S2, CQL outperforms CDC with lambda = 0 (value penalty only).",
+          "checked_against_paper": "not_checked",
+          "evidence": "Table S2 is in the supplement, not in the PDF. The claim agrees with Reviewer_XtLh's totals in A (555 vs CQL 1245), and the authors did not dispute it."
+        },
+        {
+          "reviewer": "Reviewer_ZoHU",
+          "claim": "CDC uses two overestimation fixes at once: the ensemble lower confidence bound (Eq. 5) and the new penalty.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 1 Step 6 and lines 256-261 use Eq. 5 (nu = 0.75, M = 4) together with the penalty. Lines 157-159 give a one-sentence reason: the bound alone needs 'extremely pessimistic' estimates. The eta = lambda = 0 ablation keeps the ensemble."
+        },
+        {
+          "reviewer": "Reviewer_dkx5",
+          "claim": "The values of eta and lambda used for each dataset are not given.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text gives no values. On 2021-08-30 the authors said they had now 'updated Table S5 and showed those parameters per environment': eta ranges from 0.1 to 200 across tasks, lambda from 0.1 to 2."
+        },
+        {
+          "reviewer": "Reviewer_meGC",
+          "claim": "The results rest on only 3 runs per task (also Reviewer_4YAR).",
+          "checked_against_paper": "correct",
+          "evidence": "The main text never states the number of runs. The authors' replies confirm 3 seeds and add 5-seed reruns for CDC, CQL and BCQ. The camera-ready Table 1 keeps the submitted CDC numbers (total 1396.99)."
+        },
+        {
+          "reviewer": "Reviewer_meGC",
+          "claim": "Figure 2 has no error bars, although checklist 3(c) says that error bars are reported.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2 plots one point per task. Checklist 3(c) points to Figure S1 in the supplement, not to Figure 2."
+        },
+        {
+          "reviewer": "Reviewer_meGC",
+          "claim": "The amount of compute is not reported, although checklist 3(d) says it is.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist 3(d) points to Table S4. The authors conceded that Table S4 lists infrastructure only, and added '16-24 hours' per run."
+        },
+        {
+          "reviewer": "Reviewer_meGC",
+          "claim": "CDC does best on poor data and is often not the best on expert data.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1 (the submission's Table S1; the totals match lines 351-352): CDC is not the top method on any of the six Gym expert or medium-expert tasks, e.g. walker2d-expert BC 125.7 vs CDC 87.5, hopper-medium-expert BC 119.9 vs CDC 86.9. It is top on hopper-random, walker2d-random, and hopper and walker2d medium-replay."
+        },
+        {
+          "reviewer": "Reviewer_meGC",
+          "claim": "Figure 1 gives no task and no units.",
+          "checked_against_paper": "correct",
+          "evidence": "The Figure 1 caption names no environment, and the axes show raw values. The authors said it was walker2d-expert, but the camera-ready caption is unchanged."
+        },
+        {
+          "reviewer": "Reviewer_4YAR",
+          "claim": "The value penalty is CQL's with two small changes: a max over sampled actions and a rectifier.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6 squares the rectified gap between the max Q over N actions sampled from the policy and Q of the dataset action. The square is a third change. The text never contrasts the penalty with CQL's; lines 329-330 describe CQL only as lower-bounding values."
+        },
+        {
+          "reviewer": "Reviewer_4YAR",
+          "claim": "The paper compares with no recent method such as Fisher-BRC and with no model-based method.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 341-342 list BEAR, BRAC-V/P, BC, CQL, BCQ and SAC. MOReL [25] and MOPO [63] appear only in related work (line 314). The authors declined Fisher-BRC as concurrent work."
+        },
+        {
+          "reviewer": "Reviewer_4YAR",
+          "claim": "Training length and the policy-selection rule are omitted.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The main text gives neither. The authors point to supplement lines 621-642 and Tables S5-S6, which are not in the PDF, and state 1M steps without early stopping."
+        },
+        {
+          "reviewer": "Reviewer_4YAR",
+          "claim": "The paper under-acknowledges how heavily its two penalties lean on prior work.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 60 and the Figure 2 caption call the pair 'novel'. Related work is one paragraph (lines 313-334). It never compares the value penalty with CQL's or the log-likelihood term with BRAC's policy regularizer. Remark 1 does say that the lambda -> infinity limit is behaviour cloning."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_4YAR"],
+        "evidence": "Reviewer_4YAR, 2021-08-27: 'I'll raise to a weak accept'; his review was edited the same day. Reviewer_meGC edited on 2021-09-01 and added 'Update' notes that credit the 5-seed reruns and learning curves; the edit does not state a rating change. The edits by Reviewer_ZoHU (2021-07-15) and Reviewer_dkx5 (2021-07-16) predate the responses (2021-08-10). ZoHU never replied. dkx5 replied on 2021-08-27, still unsatisfied, and did not post again.",
+        "what_convinced_or_not": "4YAR: the rectifier-removal ablation ('validates its difference from CQL'), the lambda -> infinity ablation and the 5 seeds. He still wanted more on why the two penalties suit each other, and on online tuning. meGC: the 5 seeds and the learning curves. dkx5: not convinced, because the first answer described the architecture, not per-task values; the values came on 2021-08-30, after his last post. ZoHU: no reply, so his request for 'more principled reasoning' on the two regularizers stood."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split 5/5/6/6. The AC calls seeds, ablations and details 'nicely addressed' and the paper 'intriguing and valuable'. The AC then rejects on two writing themes: the novelty 'pitch', 'harder to judge without seeing a new revision', and an explanation of how the two constraints interact. These themes come from Reviewer_ZoHU (5, silent after the rebuttal), Reviewer_dkx5's first con, and Reviewer_4YAR. By then 4YAR was at weak accept and asked only for 'a bit more discourse'. The size 'rather large' is the AC's own judgment.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Novelty 'pitch' against similar methods not fixed, and not judgeable without a revision",
+        "No explanation of why the two constraints are right in combination; the ablation shows only that the combination works best",
+        "AC sized the needed writing changes as 'rather large'; ratings split 5, 5, 6, 6"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Closest prior work, Gulcehre et al. (RBVE), uncited; the rebuttal added a 32-task comparison (Reviewer_T9dA)",
+    "Theorem 1 conditions unstated; proofs informal, with external results not identified (Reviewer_T9dA, Reviewer_jjjy)",
+    "Forward KL in Lemma 1 unused; no societal-impact statement (Reviewer_jjjy)",
+    "Unregularized FQE far weaker than in the DOPE benchmark; line 79 wrongly implies that CRR and BRAC need full trajectories (Reviewer_XtLh)",
+    "Policy regularizer versus BRAC's dual form (Reviewer_JguC)"
+  ],
+  "issues_only_b": [
+    "Only 3 seeds and no error bars in Figure 2 (Reviewer_meGC, Reviewer_4YAR); 5-seed reruns in the rebuttal",
+    "Per-task eta and lambda missing; arbitrary search range; sensitivity and online tuning (Reviewer_dkx5, Reviewer_4YAR); disclosed eta spans 0.1 to 200",
+    "Value penalty is CQL plus a max and a rectifier; prior work under-acknowledged; requests for CQL-style and behaviour-cloning-limit ablations (Reviewer_4YAR)",
+    "No Fisher-BRC or model-based baselines; training length and policy selection unstated (Reviewer_4YAR)",
+    "Ensemble bound and value penalty overlap; scale of the behaviour-cloning loss; conflict with TD3+BC (Reviewer_ZoHU, Reviewer_dkx5)",
+    "CDC trails on expert data; Figure 1 and compute amount undocumented (Reviewer_meGC)"
+  ],
+  "shared_issues": [
+    "Limited novelty: each regularizer is close to prior work, and the combination is the contribution (A: Reviewer_jjjy, Reviewer_JguC, Reviewer_XtLh; B: Reviewer_ZoHU, Reviewer_4YAR)",
+    "The value penalty alone trails CQL (A: Reviewer_XtLh, 555 vs 1245, and policy-only 299 vs BCQ 1060; B: Reviewer_ZoHU)",
+    "Why both regularizers are needed and how they interact (A: Reviewer_JguC; B: Reviewer_ZoHU, Reviewer_dkx5, Reviewer_4YAR, the AC)",
+    "Clear writing and a strong D4RL total (every reviewer in both committees)",
+    "Reproducibility: code and settings (A: Reviewer_jjjy; B: Reviewer_dkx5, Reviewer_meGC)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Both committees saw the same facts and weighted them differently. Every reviewer found the paper clear and its 32-task D4RL total strong (1397 against CQL's 1245). Reviewers on both sides saw that each regularizer is close to prior work (a CQL-like value penalty, a behaviour-cloning policy term), and that the value penalty alone trails CQL (A: Reviewer_XtLh; B: Reviewer_ZoHU). Both were pointed to the same ablation as the only case for combining the two. A's reviewers put this above threshold at first review (6, 7, 6, 6), and none moved. A's AC accepted, calling the regularisers 'evidently complementary' and crediting promised literature additions. B's reviewers spent 29.5 hours against A's 16 and asked for more: 5 seeds, per-task hyperparameters, newer baselines, CQL-style ablations and a reason for the combination. The rebuttal supplied most of the experiments and lifted Reviewer_4YAR to 6. Reviewer_ZoHU never replied, and Reviewer_dkx5 got his per-task values only after his last post, so both stayed at 5. B's AC called the experimental points 'nicely addressed' but rejected on framing and on the unexplained combination. The AC sized the writing changes as 'rather large' and found the novelty pitch 'harder to judge without seeing a new revision'. B's concern is accurate, and its caution about promises has support. The camera-ready still rests the combination on the ablation alone ('operate synergistically as illustrated in the ablation studies'). It also keeps 'exploration penalty', the unlabelled Figure 1 and the submitted CDC numbers, although the authors promised to change all three.",
+  "candidate_reasons": [
+    "Same incrementality, different reviewer tolerance",
+    "AC discounts promised writing revisions",
+    "Combination justified only by ablation",
+    "Detractors silent or answered late",
+    "Borderline split resolved by AC",
+    "Stricter rigour demands in one committee"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_XtLh review (component totals 299 and 555 vs BCQ 1060 and CQL 1245)",
+    "Reviewer_ZoHU review (CQL vs lambda = 0, Table S2)",
+    "Reviewer_4YAR review and comments of 2021-08-19 and 2021-08-27",
+    "Reviewer_dkx5 comment of 2021-08-27 and authors' reply of 2021-08-30 (per-task eta 0.1 to 200)",
+    "Reviewer_meGC review update (edited 2021-09-01)",
+    "Authors' response to Reviewer_T9dA (RBVE table)",
+    "paper Eq. 6, Section 3.1 and lines 256-261",
+    "paper lines 341-363 and Figure 2",
+    "paper checklist 3(a), 3(c), 3(d)",
+    "camera-ready Table 1, the new Section 3.3 paragraph and the Discussion"
+  ]
+}

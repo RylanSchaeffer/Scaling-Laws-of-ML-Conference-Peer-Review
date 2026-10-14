@@ -428,7 +428,7 @@ def fig_mechanism():
 
     ax = axes[1]
     cen = t[t.level == "central"].sort_values("N")
-    ax.plot(cen.N, cen.z2_tenth, color=P.BLUE[650], lw=1.6 * P.S, label="Second review's 10th-best score")
+    ax.plot(cen.N, cen.z2_tenth, color=P.BLUE[650], lw=1.6 * P.S, label="Second review's 10th-ranked paper")
     ax.fill_between(cen.N, cen.z2_winner - cen.z2_winner_sd, cen.z2_winner + cen.z2_winner_sd, color=P.INK, alpha=0.08, lw=0)  # +-1 SD
     ax.plot(cen.N, cen.z2_winner, color=P.INK, lw=1.6 * P.S, label="First review's Best Paper")
     ax.set_ylabel("Second review's score (SD units)")
@@ -442,15 +442,21 @@ def fig_mechanism():
     ax = axes[2]
     r = load("R_needed")
     r = r[(r.metric == "overlap") & (r.N <= 1e5)]
+    R_MAX = 64  # the search's ceiling (scripts/run_R_needed.py): R_needed is inf where 64 reviews do not reach the target
     for su, c, ls, label in ((0.5, P.INK, "-", "With shared noise"), (0.0, P.INK2, (0, (4, 2)), "Reviewer noise only")):
         d = r[np.isclose(r.sigma_u, su)].sort_values("N")
-        ax.plot(d.N, d.R_needed, color=c, lw=1.6 * P.S, ls=ls, label=label)
+        fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
+        ax.plot(fin.N, fin.R_needed, color=c, lw=1.6 * P.S, ls=ls, label=label)
+        if len(unr):  # from the last reachable N, up past the ceiling at the first unreachable N
+            ax.plot([fin.N.iloc[-1], unr.N.iloc[0]], [fin.R_needed.iloc[-1], R_MAX], color=c, lw=1.6 * P.S, ls=ls)
+            ax.plot(unr.N, [R_MAX] * len(unr), ls="none", marker="^", ms=4.2 * P.S, color=c, mec=P.SURFACE, mew=0.6 * P.S, clip_on=False, zorder=5)
+    ax.text(1e5, R_MAX + 2.5, "Not reached with 64 reviews", color=P.INK2, fontsize=P.LEGEND_PT, va="bottom", ha="right")
     P.n_axis(ax)
-    ax.set_ylim(0, 30)  # the shared-noise curve ends near 23 at 100K; the legend sits above the curves' start
-    ax.set_yticks([0, 10, 20, 30])
+    ax.set_ylim(0, 76)
+    ax.set_yticks([0, 20, 40, 60])
     ax.set_ylabel("Reviews per paper")
-    ax.set_title("More reviews to hold top-10 overlap", loc="left")
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
+    ax.set_title("More reviews stop holding top-10 overlap", loc="left")
+    ax.legend(loc="lower right", handlelength=1.3, borderaxespad=0.2)
     mark_venues(ax)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
@@ -481,7 +487,7 @@ def fig_robustness():
     y = np.array(y) - y[-1]  # bottom row at 0
     rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
     fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S), gridspec_kw=dict(wspace=0.34))
-    panels = ((axes[0], "p2_best", "Best Paper again", (1e-3, 1), [1e-3, 1e-2, 1e-1, 1], P.INK),
+    panels = ((axes[0], "p2_best", "Best Paper again", (1e-4, 1), [1e-4, 1e-3, 1e-2, 1e-1, 1], P.INK),
               (axes[1], "p2_merely", "Merely accepted", (0, 1), [0, 0.5, 1], P.MUTED),
               (axes[2], "p2_reject", "Rejected", (1e-4, 0.5), [1e-3, 1e-2, 1e-1], P.ORANGE[450]))
     SIZES = ((2014, 2.8, 0.16), (2026, 4.2, -0.16))  # year, marker size, row offset: the bigger conference, the bigger dot

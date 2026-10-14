@@ -8,7 +8,7 @@ Part "grid": a submissions grid 1K to 100K with the fitted tier sizes and 25% ac
 main form, the six-point form, the ICLR 2022-2025 form and continuous scores.
 
 Writes results/scale_impact.csv.
-Usage: uv run python scripts/run_scale_impact.py [--workers 2]
+Usage: uv run python scripts/run_scale_impact.py [--workers 2] [--grid-only --grid-reps 20000]  (the paper's grid: 20,000 replays per point)
 """
 from __future__ import annotations
 
@@ -65,13 +65,13 @@ def job(spec: dict) -> dict:
     return out
 
 
-def specs() -> list[dict]:
+def specs(grid_reps: int | None = None, grid_only: bool = False) -> list[dict]:
     v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
     sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))[["venue", "year", "spotlights"]]
     v = v[(v.venue == "NeurIPS") & (v.denominator != "decided")].merge(sp, on=["venue", "year"])
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
     out = []
-    for year, reps in REPS_CONF.items():
+    for year, reps in ({} if grid_only else REPS_CONF).items():
         x = v[v.year == year].iloc[0]
         for label, R, scale, who in FORMS:
             out.append({"part": "conference", "form": label, "used_by": who, "R": R, "scale": scale, "year": year,
@@ -83,15 +83,17 @@ def specs() -> list[dict]:
         for N in N_GRID:
             out.append({"part": "grid", "form": label, "used_by": who, "R": R, "scale": scale, "year": np.nan, "N": N,
                         "alpha": 0.25, "orals": tier_size(fits, "orals", N), "spotlights": tier_size(fits, "spotlights", N),
-                        "level": "central", "reps": 5000 if N <= 10_000 else 2000})
+                        "level": "central", "reps": grid_reps or (5000 if N <= 10_000 else 2000)})
     return out
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=2)
+    ap.add_argument("--grid-reps", type=int, default=None, help="replays per grid point (default 5,000 up to 10K submissions, 2,000 above)")
+    ap.add_argument("--grid-only", action="store_true", help="re-simulate only the grid rows and replace them in the existing table")
     args = ap.parse_args()
-    sp = sorted(specs(), key=lambda s: -s["N"] * s["R"] * s["reps"])
+    sp = sorted(specs(args.grid_reps, args.grid_only), key=lambda s: -s["N"] * s["R"] * s["reps"])
     rows, t0 = [], time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         futs = [ex.submit(job, s) for s in sp]
@@ -100,9 +102,13 @@ def main() -> None:
             rows.append(r)
             print(f"[{i}/{len(sp)} {time.perf_counter() - t0:.0f}s] {r['part']} {r['form']} N={r['N']}: p2_best={r['p2_best']:.4f} "
                   f"p2_top10={r['p2_top10']:.3f} p2_reject={r['p2_reject']:.3f} ({r['wall_s']:.0f}s)", flush=True)
-    out = pd.DataFrame(rows).sort_values(["part", "year", "N", "form"])
-    out["year"] = out["year"].astype("Int64")
+    out = pd.DataFrame(rows)
     path = os.path.join(ROOT, "results", "scale_impact.csv")
+    if args.grid_only:  # keep the conference rows of the existing table
+        old = pd.read_csv(path)
+        out = pd.concat([old[old.part != "grid"], out], ignore_index=True)
+    out = out.sort_values(["part", "year", "N", "form"])
+    out["year"] = out["year"].astype("Int64")
     out.to_csv(path, index=False)
     print(f"wrote {path}: {len(out)} rows")
 

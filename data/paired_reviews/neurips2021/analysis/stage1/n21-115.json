@@ -1,0 +1,264 @@
+{
+  "pair_id": "n21-115",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        6,
+        6,
+        5
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_FzMA",
+        "Reviewer_AV84",
+        "Reviewer_LsqZ",
+        "Reviewer_2BAr"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 6, 5 at confidence 4, 3, 4, 3; the spread is one point. Reviewer_2BAr gives the only rating below the threshold and calls it 'very slightly tending towards reject'. The flat scores hide two moves in opposite directions: Reviewer_FzMA came down to 6 ('I will decrease my rating to 6') and Reviewer_LsqZ came up to 6 from 'leaning towards negative'."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_FzMA",
+          "claim": "The training scheme is not described: no pipeline figure, no statement of the training data or of known camera poses. After the rebuttal: the multi-view training detail 'was missing in the original manuscript'.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4 (L193-211) and Eq. 7 describe one network that predicts from a single image and a loss between the input image and its re-rendering. No multi-view loss and no camera poses appear; Figure 1 shows only the renderer. L310-311 say StyleGAN multi-view images are 'the data we need to train our model', and L39 even says 'under unknown poses'. The rebuttal says training needs two posed views and a loss that renders one view's predictions in the other, and calls it 'the key reason' for the lighting results. The camera-ready Section 4 still shows only the single-view loss."
+        },
+        {
+          "reviewer": "Reviewer_FzMA",
+          "claim": "Only the diffuse albedo varies spatially; roughness, metalness and specular albedo are global, so 'spatially-varying BRDF' is overstated.",
+          "checked_against_paper": "correct",
+          "evidence": "L144-145: 'We let the diffuse albedo vary spatially (a = a(x)) and globally define all other attributes'. L44 still claims 'realistic spatially-varying materials (SV-BRDFs)'."
+        },
+        {
+          "reviewer": "Reviewer_LsqZ",
+          "claim": "There are no real examples; reconstructions are shown only on StyleGAN-generated images.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6, 'Evaluation on a Real-world Dataset', trains and tests on StyleGAN images and is qualitative only (L306, L316); the Fig. 6 caption calls them 'real imagery from the StyleGAN-generated dataset'. L45-47 claim real-image results 'both quantitatively and visually', and the abstract claims 'synthetic and real data'. The authors sent ten LSUN reconstructions through an anonymous link on 2021-08-24; the camera-ready adds them as Fig. 7."
+        },
+        {
+          "reviewer": "Reviewer_LsqZ",
+          "claim": "Table 1 shows much better lighting but similar diffuse albedo to the DIB-R baseline.",
+          "checked_against_paper": "incorrect",
+          "evidence": "With the shader matched to the material, albedo (Tex.) improves: MC on metallic 0.145 against SH 0.201, SG on glossy 0.123 against 0.136. The mismatched shaders are no better (SG on metallic 0.203, MC on glossy 0.141). The rebuttal quoted the SH metallic value as 0.203, which is SG's number; the direction holds. LsqZ conceded: 'Sorry I missed that'."
+        },
+        {
+          "reviewer": "Reviewer_AV84",
+          "claim": "At L291 the authors say the predicted material has little correlation with the ground-truth material.",
+          "checked_against_paper": "correct",
+          "evidence": "L291-292: 'we find little correlation'; L298: the predicted roughness and metalness 'do not have strong correlation with the GT material'."
+        },
+        {
+          "reviewer": "Reviewer_AV84",
+          "claim": "No ablation of the loss terms; the loss weights are set heuristically (also Reviewer_2BAr).",
+          "checked_against_paper": "correct",
+          "evidence": "L210-211 set six weights 'which we empirically found worked best'; the main paper has no ablation. The rebuttal pointed to ablations in prior work and promised one."
+        },
+        {
+          "reviewer": "Reviewer_2BAr",
+          "claim": "No comparison supports the claim that DIB-R++ is 'highly performant' compared with path-tracing differentiable renderers.",
+          "checked_against_paper": "correct",
+          "evidence": "Abstract L11-13 makes the claim; the paper gives no time or memory comparison with Mitsuba 2 or any path tracer. The rebuttal added one: 5.4 s against 9.8 s and 1475 MB against 3287 MB for 300 iterations at 4 samples."
+        },
+        {
+          "reviewer": "Reviewer_LsqZ",
+          "claim": "Eq. 4 in the supplementary material is wrong.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The supplement is not in the PDF. The authors conceded: 'There is indeed a typo in the equation'."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": [
+          "Reviewer_LsqZ",
+          "Reviewer_FzMA"
+        ],
+        "evidence": "Reviewer_LsqZ's review says 'my current evaluation of this paper is leaning towards negative'. On 2021-08-21 LsqZ 'may lean towards keeping my original rating'; on 2021-08-24, after new results, 'I would like to change my rating to marginally above the acceptance threshold'; review edited 2021-09-02 ('updated my rating to 6'). Reviewer_FzMA asked a follow-up on 2021-08-20 and, in the review edited 2021-09-01, wrote 'I will decrease my rating to 6'. Reviewer_AV84 (edited 2021-09-11): 'I keep my original rating'. Reviewer_2BAr (edited 2021-09-10): 'I remain at a borderline recommendation'.",
+        "what_convinced_or_not": "LsqZ moved on new evidence, not on argument: ten LSUN real-car reconstructions and eleven turntable videos, sent through an anonymous link after LsqZ had noted that 'we cannot submit new images in the rebuttal'. LsqZ still called the novelty 'somewhat incremental'. FzMA moved down because the rebuttal showed that the disentanglement depends on posed multi-view training absent from the paper: 'I was overly impressed by the results in my original review without knowing this training detail.' Promises did not move 2BAr: the ablations and comparisons 'have not yet been demonstrated', and the revision would 'require another review cycle'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The ratings are borderline, but three of the four reviewers support acceptance. Reviewers are concerned about the magnitude of the contribution, but generally see the work as a useful addition to the literature.' The meta-review does not answer 2BAr's argument that the revision needs another review cycle.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers rated 6 after the discussion, and the chair counted them",
+        "Reviewers valued unsupervised single-image recovery of shape, material and lighting above the incremental technique (Reviewer_FzMA, Reviewer_LsqZ, Reviewer_AV84)",
+        "Lighting gains over DIB-R in Table 1 that no reviewer disputed (metallic 0.053 against 0.183; glossy 0.076 against 0.115)",
+        "LSUN real-image results and turntable videos supplied during the discussion moved Reviewer_LsqZ from leaning negative to 6"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        6,
+        5,
+        5
+      ],
+      "confidences": [
+        4,
+        3,
+        5,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_8HSK"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 6, 5, 5 at confidence 4, 3, 5, 4; the spread is one point. Reviewer_FLZ6 gives the only 6, at confidence 3, and never replied to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_SWGM",
+          "evidence": "Posted 2021-07-28, eleven or more days after the others, with limitations 'See Weaknesses above'. Summarises the method as two stages, DIB-R first inferring the mesh and a network then inferring albedo and lighting, and says MC/SG ray tracing was added 'to accelerate training/inference'. L196-200 show one U-Net that predicts shape, material and lighting together; the 'two-stage' of Section 3.3 names the renderer's rasterization and shading passes, and the shading models exist to capture specular effects (L33-42). Calls the paper 'not easy to follow', against six reviewers in both committees who called it clear. Never replied to the authors' correction; review unedited."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ShTU",
+          "claim": "Nothing in the formulation encourages disentanglement, so the term is misleading; the reliance on multi-view training images is mentioned only briefly in Section 6.1.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 7 has no cross-view or disentanglement term, and Section 4 describes only single-view reconstruction. L310-311 are the only statement that training needs multi-view images. The rebuttal named a multi-view consistency loss as one reason for the disentanglement. The camera-ready title drops 'Disentangle'. The supplementary Section C.1 that ShTU cites is not in the PDF."
+        },
+        {
+          "reviewer": "Reviewer_ShTU",
+          "claim": "All the formulations used in the renderer are pre-existing and cited.",
+          "checked_against_paper": "correct",
+          "evidence": "Disney BRDF [39, 40] on Cook-Torrance [41] (L141-143), spherical Gaussians after Wang et al. [35] (L162), the cosine SG of [42] (L165), the DIB-R rasterizer [7] (L117). L79-82 say the SG use follows NeRD and PhySG."
+        },
+        {
+          "reviewer": "Reviewer_8HSK",
+          "claim": "The paper says [14] does not generalize to real images, yet [14] shows real results, and the paper does not compare with [14].",
+          "checked_against_paper": "correct",
+          "evidence": "L64-66 group [14] with supervised methods that 'do not always generalize to complex real-world images'; the wording is hedged, so 8HSK slightly overstates it. No experiment compares with [14]; the only baselines are DIB-R [7] and Zhang et al. [11]."
+        },
+        {
+          "reviewer": "Reviewer_8HSK",
+          "claim": "The loss consists only of losses on images and vertices.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 7: image L1, mask IoU and perceptual losses on images; Laplacian, smoothness and deformation terms on the mesh (L203-211)."
+        },
+        {
+          "reviewer": "Reviewer_SWGM",
+          "claim": "The method is two-stage: DIB-R infers the mesh, then a network infers albedo and environment light; MC/SG ray tracing is added to accelerate training and inference.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L196-200: one U-Net predicts shape, material and lighting parameters jointly. The two stages of Section 3.3 are the renderer's rasterization and shading passes (L117-129). The shading models capture specular effects (L33-42); SG only accelerates relative to MC (L155). Training is slower than DIB-R: 77 h against 57 h, per the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_SWGM",
+          "claim": "There is no quantitative evaluation of the reconstructed 3D shape (mesh, depth or normals); also Reviewer_FLZ6.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 reports image L1, 2D IoU, and NCC for lighting and texture; there is no 3D metric. SWGM's wider claim of 'no such experimental evaluations' is wrong: Table 1 is titled 'single image 3D Reconstruction'. The rebuttal gave chamfer distance 0.036 against 0.037 for DIB-R."
+        },
+        {
+          "reviewer": "Reviewer_FLZ6",
+          "claim": "Table 1 does not say what its values measure.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L229-234 name the metrics: L1 pixel loss, 2D IoU loss, and normalized cross correlation for albedo and lighting, with details in the supplement. The caption does not repeat them."
+        },
+        {
+          "reviewer": "Reviewer_ShTU",
+          "claim": "There is no comparison with other differentiable renderers such as Mitsuba 2.",
+          "checked_against_paper": "correct",
+          "evidence": "The same gap that Reviewer_2BAr found in Committee A: nothing supports the 'highly performant' claim (L11-13). The rebuttal added 5.4 s against 9.8 s and 1475 MB against 3287 MB."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_8HSK"
+        ],
+        "evidence": "Reviewer_8HSK's review ends 'I vote for rejection'. On 2021-09-02, with the review edited the same day, 8HSK wrote 'I changed my rating to 5 and refrain from giving a higher score'. Reviewer_ShTU, Reviewer_FLZ6 and Reviewer_SWGM never replied and never edited their reviews.",
+        "what_convinced_or_not": "The case for unsupervised training convinced 8HSK ('I can understand the reason for not using synthetic ground truth'); novelty did not move: 'each component has been explored previously'. B received no new results: real LSUN reconstructions, ground-truth views and videos were only promised. The answers to SWGM's misreading and to ShTU's disentanglement question got no reply."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four final ratings are below the threshold. The meta-review lists 'novelty, clarity of presentation, and ease of understanding the technical underpinnings', concedes that 'the authors addressed many of the concerns and misunderstandings', and rejects because improving these points 'would require a second round of reviews'. No B reviewer made that argument; it is the chair's own standard. The clarity concern draws on ShTU's valid disentanglement point and on SWGM's misreading, although the same meta-review calls the paper 'generally well written'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers rated 5, each citing limited novelty: DIB-R plus standard rendering components (Reviewer_ShTU, Reviewer_8HSK, Reviewer_SWGM)",
+        "Contribution judged as a renderer whose parts all exist: 'the contribution in the renderer does not seem significant enough' (Reviewer_ShTU)",
+        "The submission does not explain what forces the disentanglement (Reviewer_ShTU)",
+        "The chair judged that the promised clarifications need a second review round",
+        "Three reviewers never engaged after the rebuttal, so their pre-rebuttal scores stood"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "'Spatially-varying BRDF' overstated: only the diffuse albedo varies (Reviewer_FzMA)",
+    "Confusing BRDF definition, a wrong supplementary Eq. 4, and the SG Fresnel approximation (Reviewer_LsqZ)",
+    "Title: 'image-based' and 'deferred' misdescribe the renderer (Reviewer_LsqZ)",
+    "Multiple importance sampling for MC shading; specularity hard to judge from one view (Reviewer_LsqZ)",
+    "Loss-term ablation and heuristic loss weights (Reviewer_AV84, Reviewer_2BAr)",
+    "No background modelling compared with Zhang et al. [11]; fixed mesh topology against implicit representations; source of the StyleGAN masks (Reviewer_AV84)"
+  ],
+  "issues_only_b": [
+    "Experiments against supervised single-image methods: Li et al. 2018 [14] and Deep Parametric Indoor Lighting Estimation (Reviewer_8HSK), Li et al. CVPR 2020 (Reviewer_SWGM); A's reviewers only asked to cite Li et al. 2020",
+    "Why the DIB-R rasterizer rather than nvdiffrast [8] (Reviewer_8HSK)",
+    "Direct illumination only, against methods that learn global illumination (Reviewer_SWGM)",
+    "Training time and convergence against DIB-R and Zhang et al. (Reviewer_ShTU)",
+    "Benefit of the cleaner decomposition not shown: apply the Fig. 7 edits to DIB-R; PSNR, SSIM and LPIPS; why approximate the cosine term with an SG (Reviewer_FLZ6)",
+    "Paper 'not easy to follow' (Reviewer_SWGM), against six reviewers who found it clear"
+  ],
+  "shared_issues": [
+    "Limited novelty, DIB-R plus standard graphics components (A: Reviewer_AV84, Reviewer_LsqZ, Reviewer_2BAr, rated 6, 6, 5; B: Reviewer_ShTU, Reviewer_8HSK, Reviewer_SWGM, rated 5, 5, 5)",
+    "What forces the albedo-lighting disentanglement, and the posed multi-view training that the submission omits (A: Reviewer_FzMA; B: Reviewer_ShTU)",
+    "No figure of the training pipeline (A: Reviewer_FzMA; B: Reviewer_SWGM)",
+    "No time or memory comparison with path-tracing renderers such as Mitsuba 2 behind 'highly performant' (A: Reviewer_2BAr; B: Reviewer_ShTU)",
+    "Generalization to real photographs not shown, StyleGAN data only (A: Reviewer_LsqZ, Reviewer_2BAr; B: Reviewer_8HSK); only A received LSUN results",
+    "No 3D shape metric (A: Reviewer_FzMA; B: Reviewer_FLZ6, Reviewer_SWGM)",
+    "Ground-truth references in matching views, and videos (A: Reviewer_AV84, Reviewer_LsqZ; B: Reviewer_FLZ6, Reviewer_8HSK)",
+    "Ground-truth material and lighting as supervision on synthetic data (A: Reviewer_LsqZ; B: Reviewer_8HSK)",
+    "Lighting ambiguous for diffuse objects (A: Reviewer_LsqZ; B: Reviewer_8HSK)",
+    "Predicted material parameters uncorrelated with ground truth, L291 (A: Reviewer_AV84; B: Reviewer_FLZ6)",
+    "Bias of the face data across skin tones (A: Reviewer_FzMA; B: Reviewer_ShTU and two ethics reviewers)",
+    "Promised revisions need another review cycle (A: Reviewer_2BAr, overridden by the chair; B: the chair)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected a borderline paper on largely the same facts. Final ratings were 6, 6, 6, 5 in A and 5, 6, 5, 5 in B. Six of eight reviewers called the novelty limited: DIB-R plus a microfacet BRDF, spherical Gaussians and Monte Carlo shading, all pre-existing. In each committee one reviewer found that the paper does not say what forces the albedo-lighting disentanglement (Reviewer_FzMA in A, Reviewer_ShTU in B). Both rebuttals named a multi-view consistency loss over posed views, which Section 4 and Eq. 7 of the submission omit. The committees weighted these facts differently. In A, Reviewer_AV84 and Reviewer_LsqZ called the novelty limited but rated 6, because they valued unsupervised single-image recovery of shape, material and lighting. In B, Reviewer_ShTU, Reviewer_8HSK and Reviewer_SWGM judged the renderer as the contribution and rated 5. The discussions also differed. In A, the authors sent ten LSUN real-car reconstructions and eleven turntable videos through an anonymous link, and LsqZ rose from 'leaning towards negative' to 6. FzMA fell to 6 on learning of the multi-view loss, but stayed above the line. That gave A's chair 'three of the four reviewers'. In B, three of four reviewers never replied. Reviewer_SWGM never answered the correction of its misread pipeline, and only Reviewer_8HSK moved, from a reject vote to 5. Both chairs followed their majorities. A's chair overrode Reviewer_2BAr's argument that the revision needs another review cycle. B's chair conceded that the rebuttal 'addressed many of the concerns and misunderstandings', and then rejected on that same argument. The outcome turned on one-point differences at three reviewers. The only evidence that one committee saw and the other did not was the LSUN material from A's discussion.",
+  "candidate_reasons": [
+    "Same novelty doubt, different scores",
+    "New results shown to one committee",
+    "Reviewers silent after the rebuttal",
+    "Renderer versus learning-task framing",
+    "Chair required second review round",
+    "One-point borderline rating differences"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_FzMA review, 'Post-Rebuttal' section, and follow-up of 2021-08-20",
+    "Reviewer_LsqZ discussion of 2021-08-21 and 2021-08-24",
+    "Authors' reply to Reviewer_LsqZ of 2021-08-24 (anonymous link: LSUN reconstructions, turntable videos)",
+    "Reviewer_2BAr post-rebuttal comments",
+    "Committee A meta-review",
+    "Reviewer_ShTU review, Cons and Limitations",
+    "Reviewer_SWGM review summary and the authors' 'Clarification of summary'",
+    "Reviewer_8HSK feedback of 2021-09-02",
+    "Committee B meta-review",
+    "paper_submitted.pdf Section 4, L193-211 and Eq. 7 (single-view loss only); L310-311 (multi-view training data); L39 ('unknown poses')",
+    "paper_submitted.pdf L144-145 (only diffuse albedo varies spatially); L196-200 (one network predicts all attributes)",
+    "paper_submitted.pdf Table 1 and L229-234; L291-298 (material uncorrelated with ground truth)",
+    "paper_submitted.pdf abstract L11-16 and L45-47 (performance and real-data claims); Section 6 (StyleGAN only, qualitative)",
+    "paper.pdf camera-ready: title without 'Disentangle'; LSUN results as Fig. 7; Section 4 loss still single-view"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "pair_id": "n21-112",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 5, 4],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_2sbT", "Reviewer_ay96"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 5, 5, 4, all at confidence 4. Every reviewer is below the threshold and none champions the paper. Time spent is 5, 20, 5 and 4 hours."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ay96",
+          "evidence": "The main concern is that showing only the root nodes would give the user all the information, so the graph adds nothing. Section 5.3 of the submission already tests this: SAG/G (root nodes plus interaction) scores 5.8 of 10 after the explanation against 8.6 for the full SAG (Fig. 6a). The review does not mention the ablation. The final comment concedes the connectivity point but keeps the 5 because 'as a non-expert in the explainability area I am still not very convinced' and 'I share the same feeling as the others reviewers'. Confidence 4, five hours."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_2sbT",
+          "claim": "The click-to-highlight feature exists only in the SAG condition and gives SAG an unfair advantage in this task; Fig. 6a supports this.",
+          "checked_against_paper": "correct",
+          "evidence": "L285-287: 'Along with a SAG representation, they can click on an option to highlight the corresponding SAG nodes'. The baselines get no such aid. Fig. 6a: the SAG/I group (graph, no click) scores 6.4 before and 6.8 after the explanation. The full SAG group scores 5.7 before and 8.6 after. Most of the gain needs the SAG-only aid. The rebuttal says SAG/I still beats the baselines (p = 0.0004 and 0.0012), but the baselines fall below their own no-explanation level (6.3 to 5.3 and 5.4, Fig. 5a)."
+        },
+        {
+          "reviewer": "Reviewer_uoik",
+          "claim": "Fig. 4c shows numerical confidence drops for removed patches, which gives participants the answer; the test was designed to highlight the strengths of SAG.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4c: after a click, the patches that overlap the chosen option are outlined and the highlighted edges carry labels such as '65% drop', '54% drop' and '47% drop'. The task asks which of two occluded images gets the higher confidence (L261-269), which is the quantity SAG displays. The claim is overstated in one detail: the two options are 'new sets of patches that have not been shown in the SAG' (L266-268), so the display is a strong cue, not the literal answer. The rebuttal's 'This is not true' answers only that detail."
+        },
+        {
+          "reviewer": "Reviewer_uoik",
+          "claim": "Grad-CAM and I-GOS were shown as heatmaps overlaid on the image, not as highlighted regions on a darkened image as in Fig. 1d.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 1(b-c) shows both baselines as colour overlays. The paper does not show the baseline interface of the study, but the rebuttal confirms 'We used the visualizations developed by the original authors.'"
+        },
+        {
+          "reviewer": "Reviewer_2sbT",
+          "claim": "With no overlap allowed, about 80% of images have only one MSE, so 'many' images having several explanations is a stretch.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2, overlap 0: 87% (CombS), 84% (BeamS-3) and 79% (BeamS-15) of images have one MSE. With overlap 1, 59-79% still have one. Table 1 contradicts Table 2: it gives mode 2 and mean 1.87 for BeamS-15 at overlap 0. The rebuttal's 'Approximately 60% of the images have multiple MSEs if we allow single patch overlaps' contradicts Table 2's 59% with one MSE. The camera-ready keeps both tables and the word 'many'."
+        },
+        {
+          "reviewer": "Reviewer_2sbT",
+          "claim": "Significance is tested with t-tests on bounded scores; a non-parametric test is more suitable.",
+          "checked_against_paper": "correct",
+          "evidence": "L296: 'p <0.0001 in unpaired t-tests'. The camera-ready switches to Mann-Whitney U tests with the same p < 0.0001. With means 8.6 against 5.3-5.4, the choice of test does not change the result."
+        },
+        {
+          "reviewer": "Reviewer_uoik",
+          "claim": "Generating a SAG takes 30 seconds per image on a strong GPU, speed is not compared to other methods, and there is no pseudocode or code.",
+          "checked_against_paper": "correct",
+          "evidence": "L251-253: 'Each SAG was generated within 30 seconds of wallclock time using a single Nvidia Tesla V100 GPU. The source code for generating SAGs will be released on publishing.' The paper gives no runtime for Grad-CAM or I-GOS and no algorithm box. The 30 seconds is an upper bound."
+        },
+        {
+          "reviewer": "Reviewer_sSPC",
+          "claim": "Eq. (1) gives an empty set when a single patch already exceeds the threshold.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (1) (L140) asks that N_i reach the threshold and that no proper subset does. For a one-patch region the only proper subset is the empty region, so Eq. (1) returns that patch. sSPC accepted the authors' reply: 'This addresses my question.'"
+        },
+        {
+          "reviewer": "Reviewer_ay96",
+          "claim": "Showing the root node of each MSE would already give the user all the information, so the graph connectivity may add nothing.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 5.3 (L311-328) and Fig. 6a: SAG/G, root nodes with the interaction, scores 6.0 before and 5.8 after; the full SAG scores 5.7 before and 8.6 after."
+        },
+        {
+          "reviewer": "Reviewer_sSPC",
+          "claim": "The checklist says negative societal impact is discussed in the appendix, but the appendix has no such discussion.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Checklist 1(c)-(d) (L432-435) points to the appendix. The submitted PDF has no appendix and the supplement is not in the files. The camera-ready PDF has no societal-impact text either."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_2sbT edited 2021-09-10 to add 'I read the other reviews and the authors' rebuttal, and decided to keep my current rating.' Reviewer_ay96 edited 2021-09-01, the day of its comment 'I am still leaning towards rejection', which names no score change. Reviewer_sSPC, 2021-09-01: 'I would retain my original rating'. Reviewer_uoik did not reply and did not edit.",
+        "what_convinced_or_not": "sSPC accepted the answers on Eq. (1) and on why multiple explanations beat their union (the A&B versus C&D example), but still wanted localization experiments against CAM methods and an MS COCO evaluation, and disagreed that explanation differs from localization. ay96 accepted the connectivity answer and stayed negative on motivation. 2sbT was not moved by the argument that highlighting 'would have changed' the baselines. uoik never answered the claims that the test options are not in the SAG and that the baselines used their original visualizations."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four reviews recommend rejection. The meta-review rests on the user study: 'multiple reviewers noted the experiment is designed in a way to specifically favor the occlusion method', which matches Reviewer_uoik ('the test was designed specifically to highlight the strengths of SAG') and Reviewer_2sbT (the SAG-only highlighting). The chair adds an own argument: users of explanations 'aren't actually interested in predicting model confidence under occlusion'. The meta-review does not mention the rebuttal, the ablation or Section 3.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "The user study, the main evidence, favours SAG: the test asks for the classifier's confidence on occluded images, which SAG displays, and only SAG users get the click aid (Reviewer_uoik, Reviewer_2sbT)",
+        "The chair's view that predicting confidence under occlusion is not what users of explanations need, so the study does not show practical value",
+        "Unclear motivation and impact (Reviewer_ay96) and doubts that several explanations beat one combined region (Reviewer_sSPC)",
+        "Missing comparisons: two baselines only, no automatic metric, no localization or MS COCO experiments (Reviewer_uoik, Reviewer_sSPC)",
+        "Four below-threshold ratings that the rebuttal did not move"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [4, 6, 7, 6],
+      "confidences": [3, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_RJDW"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_gy9K",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Rated 4 at confidence 3 against 6, 7, 6. It is the longest review in B (8 hours against 2 to 2.5). The points are specific: the sufficiency rationale (L113-114) ignores feature interactions, with a worked counterexample; why threshold instead of maximising confidence; seven hyperparameters cited by line. In the discussion gy9K asked why predicting the network's output on sub-images defines a good explanation, and promised to raise the score if answered. The authors replied the same day. gy9K did not respond and did not edit the review."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_cwRt",
+          "evidence": "Rated 7 after 2.5 hours. Lists no weakness except the term 'attention map'. States that 'the authors sufficiently provide evidence' without any comment on the task design, the SAG-only click aid or the baselines. Did not post in the discussion."
+        },
+        {
+          "reviewer": "Reviewer_kZGR",
+          "evidence": "Rated 6 after 2 hours with one paragraph of generic remarks: the steps 'do not include much novelty', cost is not measured, sizes are 'ad-hoc'. After the rebuttal kZGR wrote that the answers 'were not really insightful' and kept the 6 with no other reason."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_RJDW",
+          "claim": "In the user study SAG users see more information (several root nodes and sub-nodes) than Grad-CAM users, so the comparison may be unfair.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 4(b-c) and L283-287: SAG users see a graph of occluded sub-images with confidence values and a click aid; baseline users see one heatmap. Fig. 6a shows that the SAG-only click aid carries most of the gain (SAG/I 6.4 to 6.8; SAG 5.7 to 8.6)."
+        },
+        {
+          "reviewer": "Reviewer_RJDW",
+          "claim": "Users need more time to decide with SAG.",
+          "checked_against_paper": "correct",
+          "evidence": "Fig. 5c: mean 7.7 minutes after the SAG explanation against 2.2 (I-GOS) and 3.4 (Grad-CAM). L307-310 and L340-341 concede it."
+        },
+        {
+          "reviewer": "Reviewer_gy9K",
+          "claim": "The paper uses many hyperparameters (Ph=0.9, r=7, m=10, q=15, fewer than two shared patches, c=3, Pl=40%) without justification or sensitivity analysis.",
+          "checked_against_paper": "correct",
+          "evidence": "All seven appear at the cited lines (L133, L147, L160, L174, L196-197, L241, L250). Only r (Grad-CAM resolution, L108-109), c (not overwhelming, L241-242) and Pl (less clutter, L248-250) get a one-line reason. No sensitivity analysis is given; Fig. 3 varies only the search settings."
+        },
+        {
+          "reviewer": "Reviewer_gy9K",
+          "claim": "The rationale that a sufficient sub-image makes the rest of the image unimportant ignores interactions between features.",
+          "checked_against_paper": "correct",
+          "evidence": "L113-114 states the rationale, and L216-217 assumes 'that the function f is monotonic with the set of pixels covered by the region'. The rebuttal rests on an empirical observation of monotonicity that the paper does not report."
+        },
+        {
+          "reviewer": "Reviewer_kZGR",
+          "claim": "The higher computational cost is not measured against the other methods.",
+          "checked_against_paper": "correct",
+          "evidence": "L251-252 gives only 'within 30 seconds' on one V100. No runtime for Grad-CAM or I-GOS appears."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_RJDW"],
+        "evidence": "Reviewer_RJDW, 2021-08-20: 'I prefer to increase my score from 5 to 6'; review edited the same day. Reviewer_kZGR, 2021-08-31: 'My grade remains the same'. Reviewer_gy9K replied 2021-08-16 with new questions and a conditional offer to raise; no later post and no edit. Reviewer_cwRt did not post. Pre-rebuttal ratings were 4, 5, 7, 6.",
+        "what_convinced_or_not": "RJDW accepted the argument that showing more information is the contribution, that a highlighted Grad-CAM 'would be a novel contribution on its own', and that SAG/G is an extra baseline. RJDW said the response 'solves most of my concerns' and also 'I refer to the opinions of other reviewers'. The authors' long answer on mental models and faithfulness left gy9K at 4. kZGR found the answers on cost and sizes 'not really insightful' but did not lower the 6."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four ratings are at or above the threshold. The key sentence, 'it is important to understand better how to present explanations to the user', repeats Reviewer_cwRt ('the important question of how to present explanations to the user'). The chair names 'a representation bias in the experimental evaluation', which is Reviewer_RJDW's point, but does not weigh it. 'As also the most negative reviewer agrees upon' quotes Reviewer_gy9K's significance line without its condition 'if the motivation of the work can be well-explained', and ignores that gy9K kept the 4.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Reviewers found the question of how to present multiple explanations important and new (Reviewer_cwRt, Reviewer_RJDW, Reviewer_kZGR)",
+        "Three of four ratings at or above the threshold (6, 7, 6) after Reviewer_RJDW rose from 5 to 6",
+        "The rebuttal's claim that the extra information is the contribution satisfied the one B reviewer who raised the fairness problem",
+        "The chair accepted the 'representation bias in the experimental evaluation' as a difficulty, not a reason to reject, and read the most negative reviewer as agreeing on significance"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "The click-to-highlight aid exists only for SAG, and Fig. 6a shows it carries most of the gain (Reviewer_2sbT)",
+    "Baselines shown as colour overlays instead of highlighted regions (Reviewer_uoik)",
+    "Only two baselines and no automatic, non-human comparison (Reviewer_uoik)",
+    "About 80% of images have one MSE without overlap, so 'many' overstates (Reviewer_2sbT)",
+    "t-tests on bounded scores (Reviewer_2sbT)",
+    "No localization experiments against CAM methods and no MS COCO evaluation (Reviewer_sSPC)",
+    "Why not merge several explanations into one region (Reviewer_sSPC)",
+    "No code or pseudocode (Reviewer_uoik)",
+    "Unclear Section 3, notation clashes and unreadable figures (Reviewer_2sbT, Reviewer_sSPC)",
+    "Whether the graph adds anything over the root nodes (Reviewer_ay96)"
+  ],
+  "issues_only_b": [
+    "Why threshold the confidence instead of maximising it in the MSE definition (Reviewer_gy9K)",
+    "Explanations should be judged by faithfulness to the model, not by users' predictions; Grad-CAM is not meant as a proxy model (Reviewer_gy9K)",
+    "'Mental model' and 'fully explained' are undefined (Reviewer_gy9K)",
+    "'Attention map' can be confused with attention-based networks (Reviewer_cwRt)",
+    "Comparing maps of different sizes is unfair (Reviewer_RJDW)"
+  ],
+  "shared_issues": [
+    "The user study favours SAG because SAG shows more information than one heatmap (A: Reviewer_2sbT, Reviewer_uoik, meta-review; B: Reviewer_RJDW, meta-review 'representation bias')",
+    "Whether predicting the classifier's output on sub-images is a meaningful test of an explanation (A: meta-review, Reviewer_ay96; B: Reviewer_gy9K)",
+    "Runtime not reported against other methods (A: Reviewer_uoik, Reviewer_sSPC; B: Reviewer_RJDW, Reviewer_kZGR)",
+    "Ad hoc hyperparameters without sensitivity analysis (A: Reviewer_uoik, Reviewer_sSPC; B: Reviewer_gy9K, Reviewer_kZGR)",
+    "The search can miss patches that matter only jointly (A: Reviewer_2sbT; B: Reviewer_gy9K)",
+    "Modest methodological novelty (A: Reviewer_ay96; B: Reviewer_kZGR)",
+    "Users need more time with SAG (A: Reviewer_2sbT; B: Reviewer_RJDW)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B recommended more because it gave little weight to a flaw that both committees saw, and because its accept votes came from short, uncritical reviews. The flaw is in the user study, the paper's main evidence. Participants predict which of two occluded images the classifier scores higher (L261-269). SAG displays exactly such scores, and only SAG users can click an option to highlight its patches in the graph, with labels such as '65% drop' (L285-287, Fig. 4c). The group that saw the SAG without the click aid scores 6.4 of 10 before and 6.8 after the explanation; the group with the aid scores 5.7 before and 8.6 after (Fig. 6a). Grad-CAM and I-GOS users fall from 6.3 to 5.3 and 5.4 (Fig. 5a). In A, Reviewer_2sbT and Reviewer_uoik made this point, and the chair rejected on it. In B, Reviewer_RJDW made the same point, accepted the reply that the extra information is the contribution, and rose from 5 to 6; B's chair named a 'representation bias' and accepted for the importance of the question. B's 7 (Reviewer_cwRt) and 6 (Reviewer_kZGR) came from reviews of 2 to 2.5 hours that never examine the study design, and B's longest review (Reviewer_gy9K, 8 hours) rated 4. A's weakest vote is Reviewer_ay96's 5, whose main concern the paper's own ablation answers. The facts were the same; the weighting and the depth of reading differed, and the paper supports A's reading.",
+  "candidate_reasons": [
+    "user-study bias weighted differently",
+    "thin uncritical reviews carried acceptance",
+    "chair made evaluation flaw decisive",
+    "same rebuttal persuaded only one committee",
+    "borderline reviewers followed committee majority",
+    "unequal reviewer effort between committees"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_2sbT final review, highlighting point citing Fig. 6a",
+    "Reviewer_uoik final review, human-study bullets",
+    "Committee A meta-review",
+    "Reviewer_RJDW review and comment of 2021-08-20 (5 to 6)",
+    "Reviewer_cwRt review",
+    "Reviewer_gy9K review and comment of 2021-08-16",
+    "Committee B meta-review",
+    "paper_submitted.pdf Section 5.1, L261-269 and L285-287",
+    "paper_submitted.pdf Fig. 4c (labelled confidence drops after a click)",
+    "paper_submitted.pdf Fig. 5a and Fig. 6a (before and after scores)",
+    "paper_submitted.pdf Tables 1 and 2"
+  ]
+}

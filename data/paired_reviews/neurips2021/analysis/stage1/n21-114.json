@@ -1,0 +1,265 @@
+{
+ "pair_id": "n21-114",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    3,
+    5,
+    7
+   ],
+   "confidences": [
+    5,
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_1Bvp"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_Xxje",
+    "direction": "champion",
+    "basis": "inattentive",
+    "evidence": "Rates 7 against 4, 3 and 5. Spent 1 hour; about 1,000 characters of general praise ('Experiments are interesting and well done') that engage none of the inferential problems the other three reviewers raise. No part in the public discussion, and the chair reports that this 'fourth reviewer has (privately) expressed some concerns about the paper'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_Xxje",
+     "evidence": "1 hour. Strengths are generic ('Experiments are interesting and well done', 'well-written'); the only weakness named is that Atari is largely solved. It repeats the paper's claim that the score-similarity trend 'generalizes to other RL algorithms' without noting that only one correlation was replicated. No reply after the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_YjzP",
+     "claim": "Section 4.3 concludes that similarity to human attention 'can help identify and interpret the failures' of RL agents, but the data in Figure 4 are inconsistent across games.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 4a: failure-state similarity falls significantly only for Montezuma's Revenge, rises for Ms. Pac-Man and Seaquest, and shows no significant change for Breakout and Frostbite. L258-260 still conclude 'the mistakes made by the RL agents are more likely related to perceptual errors in certain games'. The camera-ready softens this to 'may help'."
+    },
+    {
+     "reviewer": "Reviewer_YjzP",
+     "claim": "Section 4.4 concludes that human-level performance must be preceded by human-level attention, which the seen/unseen comparison does not test.",
+     "checked_against_paper": "correct",
+     "evidence": "L277-281: 'the obstacle to achieving expert human-level performance for certain games is first a perception challenge', drawn from similarity drops in two games and one example (Figure 5b). YjzP's 'must' overstates the paper's 'suggest', but the causal reading is there; the program chairs named this paragraph for removal."
+    },
+    {
+     "reviewer": "Reviewer_YjzP",
+     "claim": "The paper proposes human attention as a prior for RL agents but runs no experiment on it.",
+     "checked_against_paper": "correct",
+     "evidence": "L304-308 propose using 'human attention as prior knowledge to guide the learning process of RL agents'; no experiment in the paper trains with such a prior."
+    },
+    {
+     "reviewer": "Reviewer_YjzP",
+     "claim": "The paper does not address the known failings of saliency maps as a tool for interpretability (Adebayo et al. 2018).",
+     "checked_against_paper": "correct",
+     "evidence": "The submission cites neither Adebayo et al. nor Atrey et al.; the limitations in Section 5 (L337-346) cover only overt versus covert attention and intrinsic reward. The camera-ready adds a paragraph citing both and calling saliency maps 'exploratory rather than explanatory'."
+    },
+    {
+     "reviewer": "Reviewer_YjzP",
+     "claim": "The checklist says code and data are included, but the supplement is only a PDF and the promised gaze video is missing.",
+     "checked_against_paper": "correct",
+     "evidence": "Checklist 3(a) answers [Yes] and L160-161 cite 'the attached video file'. The authors confirm they removed code and video for anonymity."
+    },
+    {
+     "reviewer": "Reviewer_iyMr",
+     "claim": "The statement that human and RL saliency maps are more correlated after training has no statistical test.",
+     "checked_against_paper": "correct",
+     "evidence": "L180-184 give CC 0.170 at step 0 and 0.320 after training with no test of the trend. The rebuttal supplies r(8) = 0.992 for CC and 0.987 for KL, which the camera-ready adds."
+    },
+    {
+     "reviewer": "Reviewer_iyMr",
+     "claim": "The error analysis may lack statistics to back its qualitative claims.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Figure 4a reports significance tests (** for p <= 0.01) and standard errors over 100 failure and 100 standard states per game; Figures 4b-c give the KL distributions."
+    },
+    {
+     "reviewer": "Reviewer_iyMr",
+     "claim": "Section 4.5 does not show that the paper's patterns hold for other agent architectures; it reports only one correlation.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.5 reports only the correlation between game score and CC across 3-5 trained models per algorithm (mean r = 0.631, L286-290) and none of the learning, discount, failure or unseen analyses. L290-293 still say the correlation 'generalizes to other deep RL algorithms'. Reviewer_1Bvp makes the same point. The camera-ready adds that future studies should run the other analyses."
+    },
+    {
+     "reviewer": "Committee A area chair",
+     "claim": "The paper misses Atrey et al., 'Exploratory not Explanatory: Counterfactual Analysis of Saliency Maps for Deep RL' (ICLR 2020).",
+     "checked_against_paper": "correct",
+     "evidence": "Absent from the submission's 83 references; the camera-ready cites it as [3] in the new saliency-limitations paragraph of Section 5."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "down",
+    "by_whom": [
+     "Reviewer_1Bvp"
+    ],
+    "evidence": "Reviewer_1Bvp's review, edited 2021-08-26: 'I am lowering the score to \"5: Marginally below the acceptance threshold\"'; reply the same day: 'inclined to re-evaluate this contribution as being below NeurIPS acceptance threshold'. The original review had said 'I would not mind seeing this work presented at NeurIPS'. Reviewer_YjzP (unedited 4) replied 2021-08-25 that the response is 'building a case on speculation that hasn't been directly tested'. Reviewer_iyMr and Reviewer_Xxje never replied, and their reviews are unedited.",
+    "what_convinced_or_not": "Nothing moved a score up. The authors' answer that the cross-game inconsistency 'is exactly what we want to emphasize' did not persuade YjzP. Their later claim that Section 4.1 is the controlled experiment YjzP asked for came on 2021-08-29 and drew no answer. 1Bvp accepted the clarifications but, on re-reading, found no 'rigorous evaluation and clear conclusions'. The reply to iyMr ended by attributing the concerns to 'misconceptions'; iyMr did not respond."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'Given that three reviewers have voted to reject and the fourth reviewer has (privately) expressed some concerns about the paper in the reviewer discussion, I will be recommending reject.' 'Central to the issue with this paper is reviewer YjzP's comment.' The chair adds own points: the missing Atrey et al. citation (correct), Sundararajan et al.'s axioms, and a null hypothesis in which a weak overlap with human attention looks strong because both overlap and score rise with training.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Conclusions of Sections 4.3 and 4.4 are causal readings of correlational, game-inconsistent data (Reviewer_YjzP, chair)",
+    "Limitations of saliency maps and the performance confound are not addressed, and Atrey et al. 2020 is not cited (chair, Reviewer_YjzP, Reviewer_iyMr)",
+    "Only the score-similarity correlation is shown beyond PPO (Reviewer_iyMr, Reviewer_1Bvp)",
+    "Three of four reviewers below the threshold after the rebuttal: Reviewer_1Bvp dropped to 5, and the lone 7 was thin and privately hesitant"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    7,
+    5
+   ],
+   "confidences": [
+    4,
+    3,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_bEDj",
+    "Reviewer_hVFS",
+    "Reviewer_sG7Q"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_sG7Q",
+    "direction": "detractor",
+    "basis": "unclear",
+    "evidence": "The only rating below the threshold (5 against three 7s). The original 4 rested on a principled objection (slowed, semi-frame-by-frame human data) and on speculative conclusions. After the rebuttal sG7Q withdrew the first ('I agree that the use of semi-frame-by-frame data is valid') and softened the second, and kept the 5 because sG7Q is 'not particularly excited about this work', calling the remaining issues 'more subjective than objective'."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_HwvK",
+     "evidence": "1 hour, confidence 3. Calls the work 'of very high quality' with 'rigorous analysis', which hVFS's itemised list of unquantified claims contradicts. The specific questions concern only the gaze-model split and wording. HwvK never replied; the rebuttal's split by trial (16 of 20) separates trajectories, not players, so HwvK's concern about the same people in training and test went unanswered."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_hVFS",
+     "claim": "The Figure 3b caption says the human attends to the oxygen level at the bottom, but the human panel shows only the enemy on the left.",
+     "checked_against_paper": "correct",
+     "evidence": "The human panel of Figure 3b (page 6) shows a single blob at the left enemy and nothing at the oxygen bar. The Figure 3 caption also names Ms. Pac-Man, but panel (a) is Breakout."
+    },
+    {
+     "reviewer": "Reviewer_hVFS",
+     "claim": "Claims in Sections 4.2 and 4.4 generalize from single plotted examples without a metric.",
+     "checked_against_paper": "correct",
+     "evidence": "L209-212 (small discount factors attend to fewer objects) rest on two examples in Figure 3; L266-269 (drops 'mostly due to new objects') rest on one example in Figure 5b. The paper has no count of attended objects or of new-object frames. The authors only promised a cluster analysis."
+    },
+    {
+     "reviewer": "Reviewer_hVFS",
+     "claim": "Section 4.5 gives no evidence that the PPO analyses transfer to other algorithms, only that they could be run.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.5 (L283-293) reports one score-similarity correlation (mean r = 0.631) and no repeat of the learning, discount, failure or unseen analyses."
+    },
+    {
+     "reviewer": "Reviewer_hVFS",
+     "claim": "The Discussion claim that agents first attend to a few important objects, then to others (L311-314), has no quantitative support.",
+     "checked_against_paper": "correct",
+     "evidence": "Only the two examples in Figure 2 bear on it; no metric of the number of attended objects over training appears."
+    },
+    {
+     "reviewer": "Reviewer_hVFS",
+     "claim": "The Figure 4 caption defines * for p <= 0.05, but every marked result in the figure is **.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 4a marks only ** (Montezuma's Revenge, Ms. Pac-Man, Seaquest); no single * appears."
+    },
+    {
+     "reviewer": "Reviewer_sG7Q",
+     "claim": "The human gaze data were collected in a slowed, semi-frame-by-frame mode, not in real-time play.",
+     "checked_against_paper": "correct",
+     "evidence": "L89-95 state this. Whether it invalidates the comparison is a judgement; sG7Q, bEDj and the chair later accepted the authors' argument that the slowed setting suits a comparison with agents."
+    },
+    {
+     "reviewer": "Reviewer_sG7Q",
+     "claim": "The failure-state and unseen-state results have no clear trends, and the paper speculates about their causes.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 4a: one game down, two up, two flat. Figure 5a and L266-276: Frostbite and Montezuma's Revenge down, Seaquest and Ms. Pac-Man up, Breakout mixed between CC and KL. The explanations offered rest on single examples."
+    },
+    {
+     "reviewer": "Reviewer_HwvK",
+     "claim": "The gaze model's 80-20 data split is not described.",
+     "checked_against_paper": "correct",
+     "evidence": "L156 says only 'We use 80% gaze data for training and 20% for testing.'"
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_bEDj",
+     "Reviewer_hVFS",
+     "Reviewer_sG7Q"
+    ],
+    "evidence": "Reviewer_bEDj's review, edited 2021-08-31: 'Score increased to 7'; reply 2021-08-31 'Increasing to 7'. Reviewer_hVFS's review, edited 2021-08-31, and reply 2021-08-30: 'I'm revising my rating to 7'. Reviewer_sG7Q's review, edited 2021-09-01: 'I'm increasing my rating from a 4 to a 5'. Reviewer_HwvK: unedited, no reply. The earlier ratings of bEDj and hVFS are not stated.",
+    "what_convinced_or_not": "The semi-frame-by-frame rationale: slowed play gives accurate gaze, and agents also act without time pressure (bEDj: 'better rationale behind semi-frame-by-frame learning'; sG7Q: 'likely even more appropriate than using real-time human data'). hVFS accepted the authors' three-point defence of the L2 policy distance ('it captures something meaningful as-is'). The rebuttal's claim that agents 'take an action every 16 frames' is not in the paper, which states NoFrameskip-v4 with Stable Baselines defaults; nobody checked it, and the chair's argument does not depend on it. hVFS's requests to quantify single-example claims got only promises. The overclaiming objection got the same paragraph YjzP rejected in A, and sG7Q accepted it."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'the biggest sticking point was the semi-frame-by-frame methodology ... In my opinion, the deep RL systems are effectively processing the games frame-by-frame (or close to it), and thus aren't under much \"time pressure\"'. The chair resolves the sticking point with own reasoning, agrees with hVFS that the L2 distance is 'a little strange', and does not mention the overclaiming in Sections 4.3-4.5 raised by hVFS and sG7Q.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "The authors' justification of semi-frame-by-frame human gaze, accepted by Reviewer_bEDj, Reviewer_sG7Q and the chair",
+    "Reviewer_hVFS satisfied that the L2 policy-change saliency score is meaningful",
+    "A large, systematic study (630 agents) and released tools valued by the chair, Reviewer_HwvK and Reviewer_bEDj",
+    "Three 7s after the rebuttal; the one 5 (Reviewer_sG7Q) self-described as subjective"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether perturbation saliency measures attention at all, given known failures of saliency maps (Reviewer_YjzP citing Adebayo et al.; Reviewer_iyMr; chair citing Atrey et al. and Sundararajan et al.)",
+  "Performance confound: better policies may make task-relevant pixels matter more, so the similarity-score correlation need not mean human-like attention (Reviewer_iyMr; chair's null hypothesis)",
+  "Human-attention prior proposed in Section 5 without an experiment (Reviewer_YjzP)",
+  "No statistical test for the rise in similarity during training (Reviewer_iyMr)",
+  "Vague terms such as 'correct' visual targets and 'world expert level' (Reviewer_iyMr); code and gaze video missing from the supplement (Reviewer_YjzP)"
+ ],
+ "issues_only_b": [
+  "Slowed, semi-frame-by-frame human gaze data may not match real-time attention (Reviewer_sG7Q, Reviewer_bEDj, Reviewer_hVFS)",
+  "L2 distance between policies as the saliency score, and functionally duplicate FIRE actions (Reviewer_hVFS; chair)",
+  "Single-example claims in Sections 4.2 and 4.4, and a Figure 3b caption the human panel does not support (Reviewer_hVFS)",
+  "Human saliency computed from a four-frame stack although humans viewed single frames (Reviewer_hVFS)",
+  "Gaze-model data split and training details (Reviewer_HwvK); how late-game unseen states were selected (Reviewer_bEDj)"
+ ],
+ "shared_issues": [
+  "Speculative or overclaimed conclusions in Sections 4.3 and 4.4 (A: Reviewer_YjzP, Reviewer_1Bvp; B: Reviewer_sG7Q, Reviewer_hVFS)",
+  "Section 4.5 replicates only the score-similarity correlation on other algorithms, not the analyses (A: Reviewer_iyMr, Reviewer_1Bvp; B: Reviewer_hVFS, Reviewer_bEDj)",
+  "Comparison with a model of human attention rather than measured gaze (A: Reviewer_1Bvp; B: Reviewer_HwvK, Reviewer_bEDj); both answered with Appendix 7",
+  "Unclear wording and figure labels (A: Reviewer_iyMr, Reviewer_1Bvp; B: Reviewer_hVFS, Reviewer_HwvK)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A rejected and Committee B accepted because the two reviewer pools put different weaknesses at the centre and weighted the one they shared differently; the facts about the paper were the same. A ended at 4, 3, 5, 7 and B at 7, 7, 7, 5, and the rebuttal widened the gap (Reviewer_1Bvp down in A; Reviewer_bEDj, Reviewer_hVFS and Reviewer_sG7Q up in B). Both committees saw that the interpretive conclusions outrun the data: in Figure 4a failure-state similarity falls in one game, rises in two and is flat in two, yet Section 4.3 concludes that failures are 'more likely related to perceptual errors', and Section 4.4 calls perception 'the obstacle' to human-level play. In A, Reviewer_YjzP (confidence 5, 8 hours) and Reviewer_iyMr made this, with the unexamined validity of perturbation saliency as 'attention', the core objection, and A's chair sharpened it with a performance-confound null hypothesis and a missing citation (Atrey et al. 2020, absent from the submission). In B, the main sticking point was instead the slowed, semi-frame-by-frame human gaze data, which the authors answered convincingly and the chair settled with own reasoning. B's reviewers raised the overclaiming too, but the authors answered sG7Q with the paragraph YjzP had rejected, and sG7Q accepted it. The program chairs' condition, to remove the causal claims at the end of 4.3 and 4.4, confirms A's objection and adopts B's view that it was fixable. The thin 7s in each committee (Reviewer_Xxje in A, Reviewer_HwvK in B, one hour each) decided neither outcome.",
+ "candidate_reasons": [
+  "Overclaiming judged fatal versus fixable",
+  "Different central objection per committee",
+  "Saliency validity questioned only in A",
+  "Same rebuttal text, opposite reception",
+  "Chair adds own methodological objections",
+  "Rebuttal moved committees apart"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_YjzP review and 2021-08-25 follow-up 'Section 4.3 Confusion'",
+  "Reviewer_iyMr review (perturbation 'attention' and the performance confound)",
+  "Reviewer_1Bvp 2021-08-26 response and review update (lowered to 5)",
+  "Committee A original meta-review",
+  "Reviewer_sG7Q review and 2021-09-01 'Re: Author response'",
+  "Reviewer_hVFS review, 2021-08-25 follow-up and 2021-08-30 final response",
+  "Reviewer_bEDj replies of 2021-08-27 and 2021-08-31",
+  "Committee B original meta-review",
+  "Program chairs' conditional-acceptance note (both forums)",
+  "Identical author paragraph to Reviewer_YjzP (A) and Reviewer_sG7Q (B), 2021-08-10",
+  "paper_submitted.pdf Figure 4a and L245-260 (Section 4.3)",
+  "paper_submitted.pdf L277-281 (Section 4.4) and L283-293 (Section 4.5)",
+  "paper_submitted.pdf references: no Atrey et al., no Adebayo et al.",
+  "paper_submitted.pdf Figure 3b (human panel shows no oxygen-bar attention)",
+  "paper.pdf camera-ready Sections 4.3-5: softened conclusions and new saliency-limitations paragraph"
+ ]
+}

@@ -1,0 +1,200 @@
+{
+  "pair_id": "n21-106",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7, 6],
+      "confidences": [2, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_wYkT", "Reviewer_ah1S", "Reviewer_RTgq"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7, 6 at confidence 2, 4, 4, 4. Every reviewer is at or above the threshold, and three of the four say the lower bound is specific to CTS (Reviewer_ah1S, Reviewer_nW4R, Reviewer_RTgq). Reviewer_nW4R's 7 rests on a specific technical reading (Section 6.2, greedy regret against UCB), not on enthusiasm."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ah1S",
+          "claim": "The 'problematic' action (u3,u4) is better than (1-1/e)OPT and even than 0.75·OPT for K=2, so the 1/Δ² dependence may come from the greedy-regret criterion rather than from TS.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: OPT = r({u1,u4}) = 0.97 and r({u3,u4}) = 0.884 − 0.52Δ ≥ 0.863 for Δ ≤ 0.04, against (1−1/e)·0.97 = 0.613 and 0.75·0.97 = 0.728. Every two-unit action in Table 1 is at least 0.80, so on this instance the (1−1/e)-approximation regret is at most zero for every algorithm. The Ω(log T/Δ²) of Theorem 1 exists only under the greedy regret of Eq. (2)."
+        },
+        {
+          "reviewer": "Reviewer_ah1S",
+          "claim": "The lower bound is proven on a small-scale problem and does not show the dependence on problem constants; it should hold for any consistent algorithm, not only TS.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (L261-265) is stated for 'the CMAB problem shown in Figure 1': four left nodes, two right nodes, K = 2, outputs fixed at their means (L243-245). Tightness is argued only on that instance (L279-287). The authors conceded both points and deferred them to future work. Reviewer_nW4R and Reviewer_RTgq made the algorithm-specific point too. ah1S also asked what Theorem 1 adds to the lower bound of [22]; the submission never mentions it, and the camera-ready adds that Lin et al. [22] 'also show a lower bound for greedy regret of order Ω(log T/Δ²)'."
+        },
+        {
+          "reviewer": "Reviewer_RTgq",
+          "claim": "The upper bound uses a Beta prior but the lower bound a Gaussian prior.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2 samples θ from Beta(a_i, b_i) (L208-213); Theorem 1 uses 'the CTS algorithm with Gaussian priors' (L261). The camera-ready adds a Gaussian-prior upper bound in an appendix, as the rebuttal promised."
+        },
+        {
+          "reviewer": "Reviewer_wYkT",
+          "claim": "The greedy regret of [22] has no max(·,0); the clipping makes the hardness result easier to prove.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (2) clips each round at zero and cites [22] for the definition. The authors confirmed that [22] has no clipping and said they 'do not know how to bound' the lower bound without it."
+        },
+        {
+          "reviewer": "Reviewer_nW4R",
+          "claim": "In Section 6.2, taking S_g as the greedy solution with minimum reward is not the worst case when performance is measured by greedy regret.",
+          "checked_against_paper": "correct",
+          "evidence": "L341-344: 'to take into account the worst case where Greedy always return a solution with minimum reward', S_g ∈ argmin over σ_K. A lower benchmark gives a smaller regret, so this is the most lenient choice. The authors called it 'a relatively conservative choice' and said the proof fails for other tie-breaking rules. The camera-ready keeps 'worst case'."
+        },
+        {
+          "reviewer": "Reviewer_ah1S",
+          "claim": "The requirement ε ≲ Δ combined with an ε^-6 (or higher) term may give a terrible problem-independent bound.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (5) contains (C/ε²)(C'/ε⁴)^|s_g,k| Δ_max, with ε < Δ_s,k/(2B|∪S_g|) (L276). The constant therefore grows at least as Δ^-6, and as Δ^-(2+4|s|) for greedy units with |s| edges (|s| = 2 for u2 in Figure 1). The authors replied that the CTS bound of [24] has the same term."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_wYkT"],
+        "evidence": "Reviewer_wYkT, edited 2021-09-12: 'I've found that the result is more significant than I thought. Therefore, I increased my score to 6.' Reviewer_ah1S, edited 2021-09-01: 'In light of the response, I am inclined towards accepting the paper'; no earlier score is stated, so a rise from 5 is unconfirmed. Reviewer_RTgq edited 2021-08-24 with no visible post-rebuttal text. Reviewer_nW4R never edited. No reviewer reply appears in the forum.",
+        "what_convinced_or_not": "The rebuttal recast the paper as a positive result: the first guarantee for CTS with a common approximation oracle, which 'breaks the misconception' drawn from the linear-regret example of [30]. Reviewer_ah1S had proposed this story while warning that it 'requires drastic changes in the paper'. The authors also explained why TS fits α-approximation regret poorly, promised a Gaussian-prior upper bound and a PMC definition, and corrected ah1S's conflation of monotonicity in μ with monotonicity in S. They conceded the open questions (an any-algorithm lower bound, a general instance, unclipped regret) as future work. That was enough for reviewers who already valued the upper bound."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are 6 or 7. The two-sentence meta-review restates the consensus: reviewers 'generally appreciate the upper bound results', and the lower bound 'appears to be a bit weak' but is 'a useful complement to the upper bounds'. It engages no specific point.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "First regret upper bound for CTS with a common approximation (greedy) oracle (Reviewer_nW4R, Reviewer_ah1S, Reviewer_RTgq)",
+        "Greedy regret is a stronger criterion than (1−1/e)-approximation regret, and CTS is tractable where the algorithm of [22] is not (Reviewer_ah1S)",
+        "Lower-bound weaknesses (CTS-only, one instance, Gaussian prior) accepted as limits, not flaws: 'a useful complement' (meta-review)",
+        "The rebuttal's positive framing raised Reviewer_wYkT to 6 and left Reviewer_ah1S 'inclined towards accepting'"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 4, 5, 4],
+      "confidences": [3, 5, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_kJUS"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_x5US",
+        "direction": "champion",
+        "basis": "inattentive",
+        "evidence": "Rated 7 against 4, 5, 4. The summary paraphrases the abstract; the main review is three sentences of praise ('very well-written', bounds 'useful') and a request for experiments. It never mentions the lower bound's limits (one instance, CTS only), which the other three B reviewers and three A reviewers raised. Confidence 3 with 'Math/other details were not carefully checked', unedited, no visible reply. The 10 hours reported do not show in the text."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_x5US",
+          "evidence": "A 7 with no technical assessment: no comment on either theorem's strength, the regret definition or the single-instance lower bound. Its only request, experiments, is generic for a theory paper, and the authors dismissed it in two sentences."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_1vtP",
+          "claim": "Swapping the means of u1 and u4 in the example changes the regret from 1/Δ² to a finite value, although performance relative to the optimal action is almost identical.",
+          "checked_against_paper": "correct",
+          "evidence": "Recomputed from Figure 1: after the swap OPT stays 0.97 and S_g stays {u2,u1}, at 0.884 instead of 0.892. The action played when u3 is picked first, {u3,u4}, rises to 0.892 − 0.51Δ, above S_g for Δ < 0.016, so those exploration rounds cost zero clipped regret and the 1/Δ² term vanishes. 'Finite' overstates: constant-gap log T terms remain. Theorem 2 still gives log T/Δ² there (Δ_u3^max = 0.048 + Δ). The authors answered with a two-armed-bandit analogy and did not dispute the computation."
+        },
+        {
+          "reviewer": "Reviewer_1vtP",
+          "claim": "The paper states the objective as maximising cumulative expected reward, but the clipped per-step regret no longer measures that.",
+          "checked_against_paper": "correct",
+          "evidence": "L194-196: maximise the cumulative expected reward, 'or equivalently' minimise Eq. (2), which clips each round at zero. Rounds that beat S_g earn no credit, so the two are not equivalent. The authors conceded the sentence 'is not very accurate'; the camera-ready keeps it."
+        },
+        {
+          "reviewer": "Reviewer_Lbtx",
+          "claim": "Theorem 1 is stated in terms of one instance; the bounds match only in that specific case, so the claim of 'almost matching upper and lower bound' should be removed.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (L261-265) covers only the Figure 1 instance with K = 2, and tightness is argued only there (L279-287). The abstract says 'an almost matching regret upper bound' with no qualifier, and the camera-ready abstract keeps it. The authors said Δ has 'no clear relationships' with Δ_min and Δ_max."
+        },
+        {
+          "reviewer": "Reviewer_Lbtx",
+          "claim": "The lower-bound instance assumes the learner sees which edge influenced a node, which is unnatural; one observes influenced nodes.",
+          "checked_against_paper": "correct",
+          "evidence": "The paper assumes edge-level semi-bandit feedback (L158-159, L231). That is the standard model of the CMAB work it builds on ([7, 29, 32]); the rebuttal cites these and gives an ad-placement case where clicks are attributed to pages, which the camera-ready adds. B's meta-review lists this concern first without addressing the reply."
+        },
+        {
+          "reviewer": "Reviewer_kJUS",
+          "claim": "The lower bound is for TS with Gaussian priors, the upper bound for TS with Beta priors.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 (L261) against Algorithm 2 (L208-213); the same point as Reviewer_RTgq in Committee A."
+        },
+        {
+          "reviewer": "Reviewer_x5US",
+          "claim": "The paper presents no experiments comparing with existing approaches.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no experimental section; the authors replied that the paper targets the theoretical question."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_kJUS"],
+        "evidence": "Reviewer_kJUS, edited 2021-09-27: 'After the discussion with other reviewers, I changed my score from 6 to 5. I agree with the opinion that the regret lower bound is limited to a special instance and does not capture the essential difficulty of the problem.' Reviewer_x5US, Reviewer_Lbtx and Reviewer_1vtP never edited and posted no visible reply. Pre-discussion ratings were 7, 4, 6, 4 (mean 5.25).",
+        "what_convinced_or_not": "The rebuttal conceded most substantive points: the lower bound is CTS-only and on one instance, Δ has 'no clear relationships' with Δ_min, clipping is needed for the proof, 'the proof technique is indeed not very difficult', and CUCB's bound on bar-graph PMC is smaller than CTS's. It offered future work, wording fixes and the positive framing that CTS with Greedy 'breaks the misconception'. It met Reviewer_1vtP's swap example with an analogy, not an answer. The meta-review says the replies 'were not sufficient to significantly change the sentiment', and the private reviewer discussion moved kJUS down."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three of four ratings are below threshold (4, 5, 4). The meta-review's three bullets come from the detractors: feedback 'inconsistent with what is observed in practice (nodes vs edges)' (Reviewer_Lbtx), bounds that 'don't directly reflect the performance of the algorithm' (Reviewer_1vtP), and a lower bound 'too stylized' (Reviewer_Lbtx, Reviewer_kJUS, Reviewer_1vtP). It does not mention Reviewer_x5US's 7 or the authors' answer that edge-level feedback is the standard CMAB model.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Lower bound is one stylized K = 2 instance, CTS-only, under Gaussian priors, so it says little about the hardness the title claims (Reviewer_Lbtx, Reviewer_kJUS, Reviewer_1vtP)",
+        "Clipped greedy regret does not reflect performance: swapping two means in the instance removes the 1/Δ² term (Reviewer_1vtP)",
+        "Edge-level feedback judged unrealistic for influence maximisation (Reviewer_Lbtx), listed first by the chair",
+        "Upper bound judged crude and not translated into known bounds for specific problems (Reviewer_Lbtx)",
+        "The only accept, Reviewer_x5US's 7, carries no technical assessment; reviewer discussion lowered Reviewer_kJUS from 6 to 5"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Section 6.2 measures regret against the lowest-reward greedy solution, the most lenient benchmark, and calls it the worst case (Reviewer_nW4R)",
+    "An ε^-6 or higher constant with ε below Δ makes problem-independent bounds poor (Reviewer_ah1S)",
+    "Whether the 1/Δ² phenomenon persists under Bayesian regret (Reviewer_RTgq)",
+    "Greedy oracles need monotone rewards, forfeiting TS's advantage on non-monotone rewards (Reviewer_ah1S; the authors showed this conflates monotonicity in μ with monotonicity in S)",
+    "Whether a per-round greedy oracle is standard, given online submodular maximisation methods (Reviewer_wYkT)",
+    "What Theorem 1 adds to the greedy-regret lower bound of Lin et al. [22], which the camera-ready now cites as Ω(log T/Δ²); also the missing explicit K dependence and the nonstandard action set (Reviewer_ah1S)"
+  ],
+  "issues_only_b": [
+    "Edge-level feedback unrealistic for influence maximisation, where only influenced nodes are seen (Reviewer_Lbtx; first point of B's meta-review)",
+    "Proof technique crude: a high-probability bound on exploration at each greedy step suffices (Reviewer_Lbtx; the authors agreed it is 'not very difficult')",
+    "Relation of Theorem 1's Δ to Δ_min and Δ_max, and the value of B for each motivating problem (Reviewer_Lbtx)",
+    "No experiments (Reviewer_x5US)"
+  ],
+  "shared_issues": [
+    "Lower bound only for CTS, not for any algorithm, though the intuition looks general (A: Reviewer_ah1S, Reviewer_nW4R, Reviewer_RTgq; B: Reviewer_Lbtx)",
+    "Lower bound on one small K = 2 instance with no dependence on other constants (A: Reviewer_ah1S; B: Reviewer_Lbtx, Reviewer_kJUS, Reviewer_1vtP). A's chair: 'a bit weak' but 'a useful complement'; B's chair: 'too stylized'",
+    "The 1/Δ² comes from the greedy-regret benchmark, not from TS (A: Reviewer_ah1S, zero approximation regret on the instance; B: Reviewer_1vtP, swapping two means removes it). A treated it as a framing issue, B as a reason to reject",
+    "Clipped per-round regret max(·,0) (A: Reviewer_wYkT; B: Reviewer_1vtP)",
+    "Gaussian prior in the lower bound, Beta prior in the upper bound (A: Reviewer_RTgq; B: Reviewer_kJUS)",
+    "Scope limited to greedy oracles (A: Reviewer_wYkT, Reviewer_ah1S; B: Reviewer_Lbtx, citing MNL assortment)",
+    "OIM, PMC and MP-MAB used without concrete definitions; OIM handled only on two-layer graphs (A: Reviewer_ah1S; B: Reviewer_1vtP, Reviewer_Lbtx)",
+    "Upper bound not compared with known bounds for specific problems (A: Reviewer_ah1S; B: Reviewer_Lbtx)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected because the committees weighted the same weaknesses differently and took different results as the contribution; no reviewer found an error in a result. Both found the lower bound weak: Theorem 1 holds only for CTS with Gaussian priors, on one four-node K = 2 instance, under a clipped greedy regret. Both also saw that the 1/Δ² comes from the greedy-regret benchmark rather than from Thompson sampling. In A, Reviewer_ah1S noted that every action in the instance beats 0.75·OPT, so the usual approximation regret there is zero. In B, Reviewer_1vtP noted that swapping the means of u1 and u4 keeps OPT at 0.97 but removes the 1/Δ² term. Both observations check out against Figure 1 and Table 1. The benchmark cuts both ways: it makes the upper bound stronger than the usual approximation guarantee and the lower bound weak evidence of hardness. A read the paper as a positive result, the first upper bound for CTS with a common approximation oracle. ah1S proposed that story, the rebuttal adopted it ('breaks the misconception'), Reviewer_wYkT rose to 6, and the chair called the lower bound 'a bit weak' but 'a useful complement'. B read the paper as its title and submitted abstract present it, a hardness analysis whose main result is that weak lower bound. Two detractors set the tone (Reviewer_Lbtx, 4 at confidence 5; Reviewer_1vtP, 4), and the private discussion moved Reviewer_kJUS from 6 to 5, adopting the view that the lower bound 'is limited to a special instance'. The only accept, Reviewer_x5US's 7, had no technical content. B's chair also led with Lbtx's edge-versus-node feedback objection, which applies to the whole CMAB line the paper follows, not to this paper alone.",
+  "candidate_reasons": [
+    "Same weaknesses weighted differently",
+    "Upper versus lower bound emphasis",
+    "Hardness framing invited stricter reading",
+    "Rebuttal reframing persuaded one committee",
+    "Reviewer discussion lowered a score",
+    "Champion review lacked substance"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_ah1S review (approximation-ratio point on (u3,u4), 'alternative story') and closing note (edited 2021-09-01)",
+    "Reviewer_wYkT 'After rebuttal' note (edited 2021-09-12)",
+    "Reviewer_nW4R review, Section 6.2 paragraph",
+    "Committee A meta-review",
+    "Reviewer_1vtP review (swapping u1 and u4; clipped regret) and the authors' reply",
+    "Reviewer_Lbtx review and the authors' reply parts 1 and 2 ('proof technique is indeed not very difficult'; CUCB bound on bar-graph PMC)",
+    "Reviewer_kJUS post-discussion note (edited 2021-09-27)",
+    "Reviewer_x5US review",
+    "Committee B meta-review",
+    "paper_submitted.pdf Figure 1, Table 1, L230-258 and Theorem 1 (L261-265)",
+    "paper_submitted.pdf Eq. (2) and L194-196; Section 6.2 L336-345; Theorem 2 Eq. (5) and L276; tightness L279-287",
+    "paper_submitted.pdf abstract L16-18 ('a clue on the hardness') against the camera-ready abstract ('break the misconception')"
+  ]
+}

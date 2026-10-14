@@ -1,0 +1,206 @@
+{
+  "pair_id": "n21-108",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 6, 7],
+      "confidences": [4, 5, 3],
+      "reviews_edited_after_posting": ["Reviewer_QXjD", "Reviewer_4wp8"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 7 at confidence 4, 5, 3. Reviewer_31ZF's 7 is one point above the others and is the least confident. The two 6s are lukewarm in their final text: Reviewer_QXjD keeps 'Novelty is low' and 'the outcomes are obvious', and Reviewer_4wp8 keeps 'so I vote negative to this paper'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_31ZF",
+          "evidence": "The only 7, at confidence 3, with generic strengths ('simple yet powerful', 'well-evaluated with extensive experiments'). Its one concrete weakness, that related work lacks pairwise-similarity methods and methods that also transfer similarity, is answered in the paper at L54-58 (few-shot methods [3] transfer similarity; web methods [31, 9] denoise by similarity), L95-98 and L104-110. 31ZF did not edit the review or join the discussion."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_31ZF",
+          "claim": "Related work lacks discussion of pairwise-similarity methods and of methods that also transfer similarity.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L54-58 contrast the method with few-shot methods that transfer similarity from base to novel categories [3] and with web-learning methods that denoise by similarity [31, 9]. L95-98 and L104-110 discuss metric-based few-shot learning, CurriculumNet, SelfLearning and SOMNet."
+        },
+        {
+          "reviewer": "Reviewer_4wp8",
+          "claim": "ImageNet pre-training is not standard in zero/few-shot learning and may make the comparison with baselines unfair.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L235-237: all baselines use the same ImageNet-pretrained ResNet50, and the novel categories do not overlap ImageNet-1k. The submission itself answers the fairness question."
+        },
+        {
+          "reviewer": "Reviewer_QXjD",
+          "claim": "The paper does not say how the novel classes were chosen.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text says only 'We split all categories into base categories and novel categories' (L232). The split rule is in the Appendix, which the rebuttal cites: the standard zero-shot split for CUB, a random 3:1 split for Car and FGVC."
+        },
+        {
+          "reviewer": "Reviewer_4wp8",
+          "claim": "Many experiments of Sections 5.8-5.10 appear only in the Appendix.",
+          "checked_against_paper": "correct",
+          "evidence": "L339-349: Sections 5.8, 5.9 and 5.10 each defer all results to the Appendix. Sections 5.4 (L292-295) and 5.6 (L329-331) do the same."
+        },
+        {
+          "reviewer": "Reviewer_QXjD",
+          "claim": "Novelty is low: the contributions are sample weighting, graph regularization and a learned similarity.",
+          "checked_against_paper": "correct",
+          "evidence": "The contributions at L72-77 are exactly these, plus an adversarial loss that the paper calls 'one minor contribution' (L75-76). SimNet comes from [47] (L59-60), and the regularizer is 'typical graph regularization [51]' (L213)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_QXjD", "Reviewer_4wp8"],
+        "evidence": "Reviewer_QXjD's 'Post rebuttal' note changes the rating from 'Marginally below' to 'Marginally above the acceptance threshold' (5 to 6); review edited 2021-08-29. Reviewer_4wp8's review, edited 2021-08-30, still ends 'so I vote negative to this paper' but carries a 6, and the meta-review says 4wp8's motivation questions were 'adequately addressed'. The edit date and the chair's note point to a post-rebuttal raise from 5 or lower. Reviewer_31ZF: unedited, no reply. No reviewer posted in the discussion.",
+        "what_convinced_or_not": "QXjD moved on one new table: accuracy on rare, moderate and popular Car classes, with gains of about 6-7 points over Cls Loss and 2-3 points over the best fusion in each group. The groups come from test-set image counts, a weak proxy for web popularity that the authors themselves question. 4wp8 got citations that fine-grained labels need experts, an analogy to mixed-supervision detection, and a restatement of L235-237 on ImageNet. Neither answer touches novelty, which QXjD ('Novelty is low') and 4wp8 ('methodological novelty is limited') still state in their final texts."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'all reviewers lean towards acceptance' matches 6, 6, 7, and the note that QXjD's and 4wp8's questions were 'adequately addressed' matches QXjD's stated change and 4wp8's edit. The meta-review overstates consensus: it says the reviewers found the problem 'of practical importance', but 4wp8's final text still calls the setting 'not so practical'. It does not mention the novelty doubts of QXjD and 4wp8.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All final ratings at or above 6 (6, 6, 7); the chair counted them",
+        "The rebuttal answered specific questions: rare against popular classes (Reviewer_QXjD, 5 to 6) and the motivation of the setting (Reviewer_4wp8)",
+        "All three reviewers judged the paper clearly written, with extensive experiments and consistent gains (Table 7)",
+        "Limited methodological novelty accepted for a first method in a new setting (Reviewer_QXjD, Reviewer_4wp8)"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 5, 3],
+      "confidences": [4, 5, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_hoaz", "Reviewer_bmx4"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_bmx4",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Rated 3 at confidence 5 after '1 hour', against 4, 5, 5. The review reverses the direction of transfer ('learn from web data and transfer the leanings to other datasets') and says the 'experiments do not consider a real-life web dataset at all'. L32-38 and L232-234 say the novel training set is web images and that similarity transfers from clean base classes to it. bmx4 repeated the error after the first reply and conceded it only 'to some extent' on 2021-08-27. Its clarity points are valid. It did not decide the outcome: without it, B's mean is 4.67."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_bmx4",
+          "evidence": "One hour, confidence 5. Misread the setting (transfer from web data to other datasets; no real web data used), which L32-38 and L232-234 contradict. After the authors' first reply it still wrote 'I do not believe that that datasets such as CUB, Car, and FGVC or ImageNet could be classified as web datasets'. It also says 'I do not believe the authors have adequately addressed the previous reviews', which refers to reviews outside this record."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_bmx4",
+          "claim": "The experiments do not consider a real-life web dataset at all; the paper learns from web data and transfers to other datasets.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L232-234: 'the novel training set is constructed using web images'. Table 1 lists 510 to 1000 web training images per novel category. L32-38 and Figure 2: similarity is learned on clean base classes and transferred to the web-labelled novel classes. The collection protocol is only in the Appendix (L237), which helps explain the misreading."
+        },
+        {
+          "reviewer": "Reviewer_bmx4",
+          "claim": "The problem definition is very short, and the experiments section has too many subsections with no stated research questions.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 is eight lines (L116-123). Section 5 has ten subsections, and five of them (5.4, 5.6, 5.8, 5.9, 5.10; L292-295, L329-331, L339-349) only point to the Appendix. No research questions are stated. The camera-ready (paper.pdf) merges the robustness subsections into one and moves the generalized-setting table into the main text."
+        },
+        {
+          "reviewer": "Reviewer_hoaz",
+          "claim": "Base and novel classes always come from the same dataset and meta-category, so transfer across meta-categories (for example CompCars as base, birds as novel) is untested.",
+          "checked_against_paper": "correct",
+          "evidence": "L231-234: each dataset is split into base and novel classes. L238-240 only conjecture that similarity transfers better within fine-grained categories. The rebuttal repeated the conjecture and cited ImageNet results in the Appendix, which again split one dataset."
+        },
+        {
+          "reviewer": "Reviewer_wyya",
+          "claim": "The method is SimNet plus a DANN-style adversarial loss, and sample weighting and graph regularization share the idea of MADA.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The SimNet and adversarial parts are right: SimNet is from [47] (L59-60), and the adversarial loss follows [8] (L67-69, L162), which the paper calls 'one minor contribution' (L75-76). The paper does not cite MADA. As published, MADA uses per-class domain discriminators weighted by predicted class probabilities and has no graph regularization, so the analogy fits at most the adversarial term. wyya itself grants that using transferred similarity to denoise web data 'is new'."
+        },
+        {
+          "reviewer": "Reviewer_wyya",
+          "claim": "Too many results and analyses are left to the Appendix (Sections 5.8-5.10).",
+          "checked_against_paper": "correct",
+          "evidence": "L339-349. Reviewer_4wp8 raised the same fact in Committee A, as a minor suggestion."
+        },
+        {
+          "reviewer": "Reviewer_K9m3",
+          "claim": "The method assumes most web images are correctly labelled; experiments on very dirty web data are needed.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The premise is stated at L176-179 ('non-outliers ... are usually dominant'). Section 5.8 (L339-341) says synthetic noise-ratio experiments are in the Appendix, which neither PDF contains. The authors pointed there; K9m3 did not reply."
+        },
+        {
+          "reviewer": "Reviewer_K9m3",
+          "claim": "Accuracy drops a lot in the generalized setting of Section 5.10.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission defers Section 5.10 to the Appendix (L345-349), so this was checked in the camera-ready (paper.pdf): its Table 8 gives 76.9 on CUB against 91.7 in the standard setting (Table 7). The rebuttal concedes the drop. Its new base/novel table keeps the method ahead of both fusions on every split."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_bmx4"],
+        "evidence": "Reviewer_bmx4, 2021-08-27: 'I will adjust the score accordingly adjusting it up a bit, but essentially the paper id still not good enough to be accepted'; review edited 2021-08-28; final 3, so most likely 2 before. Reviewer_hoaz, edited 2021-08-18: 'I would like to keep my rating.' Reviewer_wyya, 2021-09-02: 'I tend to remain my score of reject unchanged.' Reviewer_K9m3: no reply, review unedited. Probable mean 4.0 before the rebuttal and 4.25 after.",
+        "what_convinced_or_not": "The authors' second reply cleared bmx4's web-data misreading only 'to some extent', and bmx4 turned to new points: release of the scraped images, being 'supervised by google', novelty and clarity. K9m3 received a new base/novel table for the generalized setting and a pointer to Section 5.8, and never responded. hoaz's meta-category question got a conjecture and the ImageNet appendix, not a cross-dataset test. wyya's novelty objection and the presentation complaints are properties of the submission; the authors could only promise to merge Sections 5.4 and 5.7-5.9."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'None of the reviewers recommend accepting this paper' matches 4, 5, 5, 3. Its three reasons, presentation, novelty and 'the degree to which the experiments demonstrated the utility of the proposed method', come from Reviewer_hoaz, Reviewer_wyya, Reviewer_K9m3 and Reviewer_bmx4. It does not note that bmx4's web-data objection rested on a misreading that bmx4 partly withdrew; that would not change the outcome.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "No final rating above 5 (4, 5, 5, 3); the chair counted them",
+        "Presentation judged hard to follow, with key results left to the Appendix (Reviewer_hoaz, Reviewer_bmx4, Reviewer_wyya, Reviewer_K9m3)",
+        "Methodological novelty judged marginal: SimNet plus a DANN-style loss, likened to MADA (Reviewer_wyya, Reviewer_bmx4)",
+        "Doubts that the experiments show utility: transfer only within one meta-category (Reviewer_hoaz), very dirty data and the generalized-setting drop (Reviewer_K9m3), and the mistaken 'no real web data' (Reviewer_bmx4)",
+        "The rebuttal moved nobody across the threshold; Reviewer_K9m3 never replied"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Practicality of the setting when crowdsourcing could clean web data cheaply (Reviewer_4wp8)",
+    "Fairness of ImageNet pre-training, which L235-237 already address (Reviewer_4wp8)",
+    "Accuracy on rare against popular classes (Reviewer_QXjD)",
+    "How the novel classes were chosen, search-engine quality and fairness of web baselines, negative societal impact (Reviewer_QXjD)",
+    "Related work on similarity transfer, which the paper does cover, and no formal model of label noise (Reviewer_31ZF)"
+  ],
+  "issues_only_b": [
+    "Presentation hard to follow: order of the method, an eight-line problem definition, ten experiment subsections without research questions (Reviewer_hoaz, Reviewer_bmx4); all three A reviewers called the paper clearly written",
+    "Transfer tested only within one meta-category, and the restriction to fine-grained classes (Reviewer_hoaz)",
+    "Robustness to very dirty web data and the accuracy drop in the generalized setting (Reviewer_K9m3)",
+    "Unclear difference from zero/few-shot learning and the confusing term 'weak-shot' (Reviewer_K9m3, Reviewer_hoaz)",
+    "Overlap with DANN and MADA (Reviewer_wyya)",
+    "Web-data protocol missing from the main text, release of scraped images, supervision by the search engine (Reviewer_bmx4)",
+    "Layout of Figures 3-4 and more qualitative outlier examples (Reviewer_K9m3)"
+  ],
+  "shared_issues": [
+    "Limited methodological novelty (A: Reviewer_QXjD 'Novelty is low', Reviewer_4wp8 'limited'; B: Reviewer_wyya 'marginal', Reviewer_bmx4 'very limited'); A kept 6s, B rejected",
+    "Results of Sections 5.8-5.10 left to the Appendix (A: Reviewer_4wp8, as a minor suggestion; B: Reviewer_wyya, Reviewer_hoaz, Reviewer_bmx4, as a main weakness)",
+    "Practical use case of the setting (A: Reviewer_4wp8 doubts it; B: Reviewer_bmx4 cannot find it, Reviewer_hoaz calls the task practical)",
+    "Extensive experiments with consistent gains as the main strength (A: all three reviewers; B: Reviewer_hoaz)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected mainly because the committees weighed the same facts differently. The threshold fell between borderline 5s and 6s. Both committees saw a simple method built from known parts: SimNet [47], graph regularization [51] and an adversarial loss [8]. Both saw a new setting, gains of about 3 points over fused baselines (Table 7), and many results left to the Appendix. Both called the novelty limited. In A, the two reviewers who said so still rose to 6 after the rebuttal answered their specific questions. Reviewer_QXjD moved from 5 on a new table of rare against popular classes. Reviewer_4wp8's final text still says 'I vote negative' next to its 6. Reviewer_31ZF's 7 (confidence 3) rests on generic praise and one weakness that the paper already answers. In B, the objections were novelty and presentation, which no rebuttal can fix. Reviewer_hoaz (10 hours) found the paper hard to follow. It correctly noted that transfer is tested only within one meta-category, kept 5, and wrote 'it is fine to reject it as well'. Reviewer_wyya kept 4 on novelty, and Reviewer_K9m3 (5) never answered the rebuttal. Reviewer_bmx4's 3 rests on a misreading, since L232-234 say the novel training set is web images. Without bmx4, B's mean is still 4.67. The one real disagreement is clarity. All three A reviewers called the paper clearly written. All four B reviewers raised presentation problems, and the five stub subsections of Section 5 support them. Both chairs counted scores.",
+  "candidate_reasons": [
+    "Same novelty facts, different tolerance",
+    "Clarity judged in opposite directions",
+    "Rebuttal answered questions, not objections",
+    "Borderline reviewers crossed threshold in A",
+    "Experimental scope probed only in B",
+    "Score-counting chairs on both sides"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_QXjD final review, 'Post rebuttal' paragraph (5 to 6)",
+    "Reviewer_4wp8 final review: rating 6 with 'so I vote negative to this paper' (edited 2021-08-30)",
+    "Reviewer_31ZF review, Weaknesses",
+    "Committee A meta-review",
+    "Reviewer_hoaz review, Weaknesses and 'post rebuttal' note",
+    "Reviewer_bmx4 review and comments of 2021-08-10 and 2021-08-27",
+    "Reviewer_wyya review and reply of 2021-09-02",
+    "Reviewer_K9m3 review and the authors' base/novel table for the generalized setting",
+    "Committee B meta-review",
+    "paper_submitted.pdf L32-38 and L232-234 (web images form the novel training set)",
+    "paper_submitted.pdf L54-58, L95-98, L104-110 (similarity-based related work)",
+    "paper_submitted.pdf L72-77 (contributions; adversarial loss 'one minor contribution') and L176-179 (dominant non-outliers)",
+    "paper_submitted.pdf L292-295, L329-331, L339-349 (five Section 5 subsections that only point to the Appendix)",
+    "paper_submitted.pdf Table 7 (ours 89.8, 91.7, 92.8 against Fusion2 86.9, 88.5, 90.0)",
+    "paper.pdf camera-ready: robustness subsections merged into one; generalized-setting Table 8 moved into the main text"
+  ]
+}

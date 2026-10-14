@@ -1,0 +1,223 @@
+{
+ "pair_id": "n21-120",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    6,
+    6,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_Hyxs",
+    "Reviewer_w51Y"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 6, 6 (Hyxs, w51Y, tBBM), all at confidence 4. No spread. The texts are harsher than the scores: Hyxs wrote 'it's not clear how impactful it'll be' and w51Y, after the rebuttal, 'the main contribution of this paper is incremental'."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_Hyxs",
+     "claim": "The results of Sections 3.1 and 3.2 are mild generalizations of Gunasekar et al. 2018.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 109-111 say that Section 3 generalizes [9] (Gunasekar et al. 2018) to multiple outputs. Section 3.2 (finite filter width) is not in [9], but the authors conceded that Jagadeesan et al. 2021 'largely overlap' it, and the camera-ready says the CNN results 'are similar in two papers'."
+    },
+    {
+     "reviewer": "Reviewer_Hyxs",
+     "claim": "An l_p norm is induced only for p = 1, 2, so the positive results of Theorem 10 apply only to l_1 and l_2.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Theorem 10 (lines 222-224) and Table 2: l_p is induced if and only if 2/p is a natural number, so p = 2/3, 1/2, ... also qualify. The claim holds only for true norms (p >= 1). The paper calls the quasi-norms 'norms', which invited the misreading; the authors corrected it in the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_Hyxs",
+     "claim": "The limitations discussion is lacking; the conclusion lists extensions, not limitations.",
+     "checked_against_paper": "correct",
+     "evidence": "The conclusion (lines 320-337) lists open questions only, and checklist item 1(b) points to it for limitations. The authors conceded; the camera-ready adds a limitations sentence."
+    },
+    {
+     "reviewer": "Reviewer_w51Y",
+     "claim": "Closely relevant work is missing: Jagadeesan et al. (multi-channel linear CNNs, any kernel size) and the Pilanci-Ergen convex-duality papers need in-depth discussion.",
+     "checked_against_paper": "correct",
+     "evidence": "Jagadeesan et al. is reference [11], cited only inside a ten-item list on line 22 and never discussed; the Pilanci, Ergen and Sahiner papers are not cited. The authors replied that its results 'largely overlap with our results in section 3.2' and are stronger on multiple channels. The camera-ready adds a related-work paragraph on both lines of work and moves the finite-width CNN results to the supplement."
+    },
+    {
+     "reviewer": "Reviewer_w51Y",
+     "claim": "The paper gives no explicit definition of B.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 86-87 identify a linear function g with B in R^{m x n} such that g(x) = Bx; lines 89-90 write the predictor as the product of the layer matrices."
+    },
+    {
+     "reviewer": "Reviewer_tBBM",
+     "claim": "Homogeneity is mentioned often and non-homogeneous cases are highlighted in titles, but its role in the analysis is not discussed.",
+     "checked_against_paper": "correct",
+     "evidence": "Homogeneity appears in one sentence on line 23, the definition on line 85, and the titles of Sections 3.3, 4.5 and 4.5.2. Nothing explains why the analysis needs it. The paper title does not mention it, so 'title' means section titles."
+    },
+    {
+     "reviewer": "Reviewer_tBBM",
+     "claim": "The paper does not discuss how representation cost affects learning efficiency.",
+     "checked_against_paper": "correct",
+     "evidence": "Only one-line remarks that the trace norm and the l_{1,2} norm help multitask learning (lines 123-125, 132-134) and a general link to generalization (lines 36-40). The authors conceded and listed the relevant literature in the rebuttal."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Hyxs edited on 2021-08-22 to add 'My assessment of this paper is the same'. w51Y edited on 2021-08-21 to add a post-rebuttal update: 'I'd like to keep my assessment'. tBBM never edited or replied.",
+    "what_convinced_or_not": "The rebuttal conceded more than it refuted: Jagadeesan et al. 'largely overlap' Section 3.2, the convex-duality papers give 'stronger results' in one respect, and the limitations need more discussion. It promised discussion and illustrative experiments. w51Y kept 'incremental' because of the linear-only scope and those prior works. Hyxs accepted the clarifications (Definition 1.1, p = 2/k) but not the case for significance."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "All three reviewers rated 6, 'marginally above the acceptance threshold', yet the AC rejected. The meta-review cites a 'consensus' that the results are 'of limited significance'. That matches the texts of Hyxs and w51Y, not tBBM, and not any score. Every point in it comes from a review: statistical efficiency (tBBM), scope beyond linear networks and experiments (w51Y), interaction with optimization and complex definitions (Hyxs, named twice).",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Limited significance: Section 3 extends Gunasekar et al. 2018 and, by the authors' own reply, overlaps Jagadeesan et al. 2021",
+    "Scope limited to linear networks, with no link to statistical efficiency or to nonlinear networks",
+    "No experiments to show practical implications or the interaction with optimization (Hyxs)",
+    "Unnecessarily complex definitions (Hyxs)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    7,
+    7,
+    6,
+    8
+   ],
+   "confidences": [
+    4,
+    3,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 7, 7, 6, 8 (o8fi, ZwDT, n4py, GxMP), within two points. GxMP's 8 is the top score in either committee but only one point above the next; without it the mean is 6.67, still above A's 6.0. No reviewer argued for rejection."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_ZwDT",
+     "evidence": "Rating 7 at confidence 3 ('Math/other details were not carefully checked'), one hour spent, a three-sentence main review ('This is an interesting paper') that names no weakness, and no reply to the rebuttal."
+    },
+    {
+     "reviewer": "Reviewer_GxMP",
+     "evidence": "Rating 8 rests on a list of the theorems called 'very solid and intense', with no novelty judgment although it cites Gunasekar et al. 2018. Its one question assumes Section 3.1 covers general homogeneous networks; it covers only fully connected, diagonal and convolutional ones, and Section 3.4 treats any depth-two architecture. It asks for a summary table that already exists (Table 1, page 2), and its summary inverts the design question ('parameterization that leads to l_2 regularization')."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_o8fi",
+     "claim": "The results of Section 3 are mostly slight generalizations or improvements of known results, as the authors note.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 109-111: 'we first generalize their results [9] to multiple output case'."
+    },
+    {
+     "reviewer": "Reviewer_o8fi",
+     "claim": "The 'residual nets' are multiple parallel networks, quite different from traditional residual nets.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 172-176 define the ResNet as a sum of subnetworks evaluated at one weight vector w, and Theorem 7 refers to subnetworks that contain 'the first hidden layer in N_ResNet', so layers are shared. The definition does not say this plainly; the authors conceded it is unclear and gave w_2^T x + w_2^T diag(w_1) x as an example."
+    },
+    {
+     "reviewer": "Reviewer_GxMP",
+     "claim": "Section 3.1 already characterizes general homogeneous networks with widths larger than 2, so the d = 2 results of Section 3.4 seem redundant.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 3.1 covers only fully connected, diagonal and convolutional networks (Propositions 1-3). Section 3.4 (lines 182-191) characterizes any depth-two architecture; d is depth, not width. The authors' reply says the same."
+    },
+    {
+     "reviewer": "Reviewer_GxMP",
+     "claim": "A table that connects the Section 3 results would improve the presentation.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 1 on page 2 maps each Section 3 architecture to its induced complexity measure, and Table 2 does the same for Section 4. Neither lists assumptions."
+    },
+    {
+     "reviewer": "Reviewer_ZwDT",
+     "claim": "Elastic net cannot be the representation cost of certain architectures.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 4.5.1 (lines 287-296): elastic nets are not the induced complexity measure of any linear network; Section 4.5.3 shows that a general homogeneous parametrization can induce them."
+    },
+    {
+     "reviewer": "Reviewer_n4py",
+     "claim": "The paper names Gunasekar et al. as prior work on linear networks with single outputs or full convolutional filter width.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 109-111."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No B review was edited after posting. Only n4py replied (2021-09-01): 'I intend to keep my score, and would be happy to see this paper accepted.'",
+    "what_convinced_or_not": "Nothing needed to move. The replies clarified the residual-network definition, Section 3.4 against 3.1, and the overlap of technique with Gunasekar et al., and gave an l_{1,2} against l_{2,1} example. n4py found the transfer-learning link for grouping layers 'quite interesting'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "A three-sentence meta-review that summarizes the content and says 'The reviewers find the results to be a solid theoretical contribution', echoing GxMP's 'solid theoretical contributions' and o8fi's 'quite complete overview'. It names no weakness, not even o8fi's point that Section 3 lacks novelty.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "A fairly complete catalogue of representation costs for many linear architectures",
+    "New design results: architectures that induce l_p, group and k-support norms, plus impossibility results",
+    "Mean rating 7.0, no score below 6, and no objection pressed after the rebuttal"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Close overlap with Jagadeesan et al. 2021, cited only in a list (the authors conceded that Section 3.2 'largely overlaps'), and the uncited Pilanci-Ergen convex-duality papers (w51Y)",
+  "Linear-only scope limits significance; no comment on ReLU networks (Hyxs, w51Y, AC)",
+  "No link from representation cost to learning efficiency (tBBM, AC)",
+  "No discussion of the role of homogeneity (tBBM)",
+  "Limitations section only lists future work (Hyxs)",
+  "Equivalence classes in Definition 1.1 overly complex (Hyxs, AC)"
+ ],
+ "issues_only_b": [
+  "Residual-network definition unclear or misnamed (o8fi; the authors conceded it is unclear)",
+  "Finite-filter-width CNN section long and technical without insight; some results could be dropped (o8fi)",
+  "Relation between Sections 3.1 and 3.4 unclear (GxMP, from a misreading)",
+  "More examples of predictors that different architectures rank differently (n4py)"
+ ],
+ "shared_issues": [
+  "Section 3 largely generalizes Gunasekar et al. 2018 and Section 4 is the novel part (Hyxs in A; o8fi and n4py in B)",
+  "Dense, technical statements that need intuition or examples (Hyxs on mixing depths and grouping layers; o8fi on grouping layers and finite-width CNNs; GxMP on connecting results)",
+  "Experiments suggested (w51Y and A's AC as validation; GxMP only as a presentation aid)",
+  "Practical value of the Section 4 designs (Hyxs: motivation unconvincing, direct regularization is easier; n4py: only asked whether grouping layers have practical use)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "The two committees saw largely the same facts and weighted them differently at the threshold. Both found that Section 3 extends Gunasekar et al. 2018, as the paper itself says (lines 109-111), and that the design results of Section 4 are new. Committee A rated 6, 6, 6 at confidence 4, but Hyxs and w51Y wrote that the contribution is of unclear impact or incremental. A alone learned, through w51Y, of Jagadeesan et al. 2021, which the paper cites only in a list and which the authors conceded 'largely overlaps' Section 3.2. No A score moved, and A's AC followed the texts over the scores and rejected for 'limited significance'. Committee B rated 7, 7, 6, 8. Its most careful reviewer, o8fi, made the same novelty point as Hyxs but rated 7 for completeness. The two highest B scores rest on thin reviews: ZwDT wrote three sentences in one hour, and GxMP listed theorems, misread Section 3.4 and asked for a table the paper already has. B's AC accepted in three sentences that name no weakness. The overlap does not explain the split alone, because o8fi had already discounted Section 3. The split comes from weighting completeness against significance, and from A's AC treating unanimous 6s with significance doubts as a reject.",
+ "candidate_reasons": [
+  "AC rejected unanimous borderline scores",
+  "Completeness versus significance weighting",
+  "Prior-work overlap seen by one committee",
+  "Thin reviews inflated accept scores",
+  "Review texts harsher than scores"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Reviewer_Hyxs main review, Originality and Significance paragraphs",
+  "Reviewer_w51Y post-rebuttal update",
+  "Authors' reply to Reviewer_w51Y, point (3)",
+  "Reviewer_o8fi main review",
+  "Reviewer_ZwDT review",
+  "Reviewer_GxMP question on Sections 3.1 and 3.4",
+  "Committee B meta-review",
+  "paper_submitted.pdf lines 22 and 109-111",
+  "paper_submitted.pdf Table 1 (page 2) and Theorem 10",
+  "paper.pdf related-work paragraph on Jagadeesan et al. [18]"
+ ]
+}

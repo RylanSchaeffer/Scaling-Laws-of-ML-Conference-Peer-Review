@@ -1,0 +1,229 @@
+{
+  "pair_id": "n21-116",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 4],
+      "confidences": [4, 3, 5],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 5, 4 (Reviewer_Ep3z, Reviewer_1dhj, Reviewer_7Zmw) at confidence 4, 3, 5; all below threshold and within one point. All three name the gap to the dual (energy-based) models DualTB/DualTF as a weakness."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_7Zmw",
+          "evidence": "Two hours at confidence 5 and a short review. Reads L163 as '50M samples' and alleges that test examples were used to build the leaving-group vocabulary; L42 says the vocabulary covers 99.7% of the test set, which rules that out. Never replied to the rebuttal, which refuted the claim. Its other points (the workflow resembles G2Gs and RetroXpert; no gain over the dual models) are correct."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Ep3z",
+          "claim": "L260 claims GraphRetro 'outperforms all the template-free methods in top-n accuracy'; DualTF is better at n=1 and n=3 when the reaction class is known.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, class known: DualTF 65.7 and 81.9 against GraphRetro 63.9 and 81.5. The sentence is unchanged in the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_Ep3z",
+          "claim": "The abstract and L51-52 claim to outperform template-free methods at 53.7% top-1, but DualTF is almost identical and better at larger n, and the stronger template-based DualTB goes unmentioned.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, class unknown: GraphRetro 53.7/68.3/72.2/75.5, DualTF 53.6/70.7/74.6/77.0, DualTB 55.2/74.6/80.5/86.9. The abstract reads 'outperforming previous template-free and semi-template-based methods'."
+        },
+        {
+          "reviewer": "Reviewer_Ep3z",
+          "claim": "Table 1 has no error bars or significance tests, so the small margins could arise by chance.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 reports single numbers; checklist item 3(c) on error bars is answered [N/A]. The rebuttal gave 53.73 +/- 0.11 top-1 over three runs and agreed to say 'comparable performance'."
+        },
+        {
+          "reviewer": "Reviewer_Ep3z",
+          "claim": "The statement that template-based methods 'fail to generalize to new reactions' (L25-26) is contradicted by Table 1, where template-based methods do best.",
+          "checked_against_paper": "correct",
+          "evidence": "DualTB has the best value in every Table 1 column; GLN beats GraphRetro at class-known top-1 (64.2 vs 63.9) and at top-10 in both settings. The paper has no test on new reaction types."
+        },
+        {
+          "reviewer": "Reviewer_7Zmw",
+          "claim": "L163: the leaving groups are extracted from all 50k examples, so the test examples are included.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L163 does say '|X| = 170 for a standard dataset with 50,000 examples', a loose phrase. But L42 says the vocabulary covers '99.7% of the test set'; a vocabulary built with the test set would cover 100%. The authors confirmed it was built from the training set."
+        },
+        {
+          "reviewer": "Reviewer_7Zmw",
+          "claim": "Identifying the reaction center and then completing synthons is largely the same idea as G2Gs and RetroXpert.",
+          "checked_against_paper": "correct",
+          "evidence": "L35-38: semi-template methods [20, 26] work in two stages, and 'Our model GraphRetro also uses a similar workflow'. The stated novelty is selecting leaving groups from a vocabulary instead of sequential generation (L38-40)."
+        },
+        {
+          "reviewer": "Reviewer_1dhj",
+          "claim": "The energy-based dual models outperform GraphRetro by a respectable margin in most categories, both template-based and template-free.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: DualTB beats GraphRetro in all eight columns, by 1.5 to 11.4 points. DualTF beats it in five of eight, by 0.4 to 2.4; GraphRetro wins class-unknown top-1 by 0.1 and class-known top-5 and top-10."
+        },
+        {
+          "reviewer": "Committee A meta-review",
+          "claim": "The work sacrifices performance 'compared to all other work (even other semi-template based work)'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: GraphRetro beats both semi-template baselines (G2Gs, RetroXpert) at top-1 and top-3 in both settings, and RetroXpert in every column. It trails G2Gs only at top-5 in both settings and class-known top-10, by at most 0.8 points."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No A review was edited after posting. Reviewer_1dhj replied 2021-09-01: 'I do not feel the need to modify my initial rating of 5.' Reviewer_Ep3z and Reviewer_7Zmw posted nothing after the 2021-08-10 responses.",
+        "what_convinced_or_not": "The authors explained the gap to the dual models: duality enforcement helps, but using it would take them out of the graph paradigm. 1dhj accepted the explanation and concluded that the paper is not state of the art and 'doesn't allow the incorporation of valuable orthogonal ideas'. The responses refuted 7Zmw's leakage claim and conceded several of Ep3z's wording points with three-seed error bars, but neither reviewer replied."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All three ratings are below threshold (mean 4.33). The meta-review states 'it's reasonable to compare all methods against each other, and if we do so this work underperforms', rebuts the three author arguments in turn, and ends 'submit this to a more specialized venue as recommended by Reviewer 1dhj'.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "GraphRetro trails DualTB in every Table 1 column and DualTF in most",
+        "All method classes judged comparable on USPTO-50k, so the semi-template framing does not excuse the gap",
+        "Interpretability and graph-structure arguments judged not worth the accuracy loss",
+        "Overclaims and missing error bars (Reviewer_Ep3z)",
+        "Better suited to a specialized venue (Reviewer_1dhj, adopted by the chair)"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [4, 5, 8, 6],
+      "confidences": [5, 5, 5, 3],
+      "reviews_edited_after_posting": ["Reviewer_okuQ", "Reviewer_bGnx"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_Az8s",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "8 at confidence 5 after three hours; the next rating is 6. Calls the results 'strong' and the paper 'a very important step forward for computer aided synthesis', but never mentions DualTB or DualTF, which beat GraphRetro in Table 1. Lists only a per-class breakdown and stereochemistry as negatives. Posted nothing after the rebuttal. Without this rating the B mean is 5.0, not 5.75."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Az8s",
+          "evidence": "Says 'Related work is well acknowledged' while each other B reviewer found missing work: RetroPrime and D-MPNN (aDNh), AiZynthFinder (okuQ), the line graphs of Cai et al. (bGnx). Says 'Strong results are achieved' without addressing the Table 1 rows that beat GraphRetro."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_aDNh",
+          "claim": "The semi-template method RetroPrime is not compared; it reaches 64.8% top-1 against GraphRetro's 63.9%.",
+          "checked_against_paper": "correct",
+          "evidence": "RetroPrime is absent from Table 1 and the references; GraphRetro's class-known top-1 is 63.9. The authors conceded RetroPrime is better with class known and claimed +2.3 points with class unknown. The camera-ready table still lacks RetroPrime."
+        },
+        {
+          "reviewer": "Reviewer_aDNh",
+          "claim": "L130 (95% single-edit examples, so a single-edit setup) contradicts L150, which leverages dependencies between multiple edits.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L149-154 model dependencies between the labels of candidate bond edits (for example, aromatic-ring bonds tend to stay label 0) to rescore edits inside the single-edit model. No multiple-edit prediction is implied."
+        },
+        {
+          "reviewer": "Reviewer_aDNh",
+          "claim": "There are no experiments on USPTO-full, so scalability and generalization are not shown.",
+          "checked_against_paper": "correct",
+          "evidence": "L212: 'We use the benchmark dataset USPTO-50k for all our experiments.' The rebuttal reported only a synthon-completion accuracy (66.4%) on the full dataset."
+        },
+        {
+          "reviewer": "Reviewer_aDNh",
+          "claim": "The code contains much manual, hard-coded molecule fixing that the paper does not mention.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The main text describes attachment as a deterministic rule-based step using valency constraints (L101-102, L193-198) and defers details to Appendix B, which is not in the submitted PDF. The code was not inspected."
+        },
+        {
+          "reviewer": "Reviewer_okuQ",
+          "claim": "The results are not clearly superior to G2Gs [20].",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: GraphRetro beats G2Gs at top-1 (+2.9 class known, +4.8 class unknown) and top-3 (+0.2, +0.7), loses at top-5 (-0.8, -0.3) and class-known top-10 (-0.6), and ties at class-unknown top-10."
+        },
+        {
+          "reviewer": "Reviewer_okuQ",
+          "claim": "DualTF, a template-free method, outperforms the synthon-based methods including GraphRetro, especially with class unknown.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1, class unknown: DualTF wins n=3, 5 and 10 by 1.5 to 2.4 points; GraphRetro wins n=1 by 0.1."
+        },
+        {
+          "reviewer": "Reviewer_bGnx",
+          "claim": "The bond graph used to update edit scores is a line graph, already used for link prediction by Cai et al. (2020).",
+          "checked_against_paper": "correct",
+          "evidence": "L152-153: 'we build a graph with bonds (u, v) as nodes, and introduce an edge between bonds sharing an atom', which is the line graph. No line-graph work is cited. The authors conceded."
+        },
+        {
+          "reviewer": "Reviewer_Az8s",
+          "claim": "Edit prediction over existing bonds reduces complexity to O(N) instead of O(N^2) for atom pairs.",
+          "checked_against_paper": "correct",
+          "evidence": "L84-86 and L126-129 state this, motivated by new bonds forming in about 0.1% of training examples."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_okuQ"],
+        "evidence": "Reviewer_okuQ edited 2021-09-02, adding 'After author feedbacks': 'my final evaluation score is weak reject (+1)', i.e. 4 to 5. Reviewer_bGnx's edit (2021-08-04) predates the 2021-08-10 responses. Reviewer_aDNh replied 2021-08-12 and 2021-08-16 and kept 4. Reviewer_Az8s posted nothing.",
+        "what_convinced_or_not": "okuQ accepted the 10-14 point synthon-completion gain over G2Gs but found end-to-end results still 'mixed: sometimes win and sometimes lose against the G2Gs baseline'. aDNh accepted the D-MPNN clarification but not the scalability argument ('the generalization is still not demonstrated by experiments') and suggested resubmitting. The per-class table and stereochemistry answer went to Az8s, already at 8."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Ratings split two to two (4, 5 against 8, 6; mean 5.75). The two reject ratings come from the two reviewers who engaged in discussion, both at confidence 5. The chair accepted, citing only that leaving-group classification 'is simpler and achieves some better top-k accuracy for k<5', and listed the detractors' points (comparison with G2Gs, USPTO-full) as things the paper 'should' do. It never mentions DualTB or DualTF.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Leaving-group classification judged a novel, simpler, chemist-aligned formulation (Reviewer_Az8s, Reviewer_bGnx, Reviewer_okuQ)",
+        "Better top-1 than the prior semi-template methods G2Gs and RetroXpert",
+        "Gap to DualTF judged non-critical because duality enforcement could be added (Reviewer_bGnx)",
+        "A confident 8 from Reviewer_Az8s lifted the mean to 5.75 over two reject ratings"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Overclaims in the abstract, at L260 and in the conclusion's 'significant margins' (Reviewer_Ep3z)",
+    "No error bars or significance tests (Reviewer_Ep3z)",
+    "Interpretability, simplicity and manual-correction claims unsupported (Reviewer_Ep3z, chair)",
+    "Missing baselines: Tetko et al. 2020 augmented Transformer, Seidl et al. 2021 Hopfield networks (Reviewer_Ep3z)",
+    "Alleged test leakage into the leaving-group vocabulary, refuted by L42 (Reviewer_7Zmw)",
+    "Comparing a classifier with generative models is unfair; leaving groups outside the vocabulary are unreachable (Reviewer_7Zmw)",
+    "Better suited to a specialized venue; unclear benefit to the wider ML community (Reviewer_1dhj, Reviewer_Ep3z, chair)"
+  ],
+  "issues_only_b": [
+    "Missing RetroPrime baseline, better at class-known top-1 (Reviewer_aDNh)",
+    "No USPTO-full experiment; single-edit design fits USPTO-50k (Reviewer_aDNh, chair)",
+    "Hand-coded leaving-group attachment rules in the code (Reviewer_aDNh)",
+    "Prior art for the bond line graph: D-MPNN, Cai et al. 2020 (Reviewer_aDNh, Reviewer_bGnx)",
+    "Missing background for non-chemists, architecture intuition and AiZynthFinder citation (Reviewer_okuQ)",
+    "Needs atom mapping, unlike SMILES template-free methods (Reviewer_okuQ)",
+    "Per-reaction-class breakdown and stereochemistry handling (Reviewer_Az8s)"
+  ],
+  "shared_issues": [
+    "Underperforms the dual models DualTB/DualTF (A: all three reviewers and the chair; B: Reviewer_okuQ, Reviewer_bGnx)",
+    "Two-stage synthon workflow follows G2Gs and RetroXpert (A: Reviewer_7Zmw; B: Reviewer_aDNh, Reviewer_okuQ)",
+    "Gains over the semi-template baselines not uniform across n (A: Reviewer_Ep3z; B: Reviewer_okuQ, chair)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B accepted and Committee A rejected mainly because B drew a confident, uncritical champion and a lenient weak accept, and A drew neither. Both committees saw the same Table 1: GraphRetro trails DualTB in all eight columns and DualTF in five, and leads the earlier semi-template methods mainly at top-1 and top-3. All three A reviewers and the A chair treated the gap to the dual models as decisive, and the chair adopted Reviewer_1dhj's 'more specialized venue' view. In B, the two reviewers who engaged in discussion also rated below threshold (Reviewer_aDNh 4, Reviewer_okuQ 5, both confidence 5), on different grounds (a missing RetroPrime baseline, no USPTO-full run, mixed gains over G2Gs), which B's chair recast as revisions. Reviewer_Az8s gave 8 at confidence 5 after three hours without mentioning the dual models, and Reviewer_bGnx (6, confidence 3, two hours) called the DualTF gap 'not a critical weakness'. B's chair accepted on the 5.75 mean; without Az8s the mean is 5.0. A's chair overstated the deficit ('even other semi-template based work'), which Table 1 contradicts, but that error did not drive the outcome. The committees weighted the same facts differently, and the reviewer draw decided it.",
+  "candidate_reasons": [
+    "Lone exuberant champion lifts mean",
+    "Below-SOTA gap weighted differently",
+    "Chair accepts over engaged detractors",
+    "Chair adopts specialized-venue view",
+    "Fixable versus unfixable criticisms",
+    "Meta-review overstates performance deficit"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "paper_submitted.pdf Table 1 (DualTB, DualTF, G2Gs, RetroXpert and GraphRetro rows)",
+    "paper_submitted.pdf L42 and L163 (leaving-group vocabulary, 99.7% test coverage)",
+    "paper_submitted.pdf L250-265 (Section 4.1 claims, including L260)",
+    "paper_submitted.pdf L149-154 (bond line graph for edit-score updates)",
+    "Reviewer_Ep3z review (detailed comments on L51f, L260, L307f, error bars)",
+    "Reviewer_1dhj review and reply of 2021-09-01",
+    "Committee A meta-review",
+    "Reviewer_Az8s review",
+    "Reviewer_bGnx review (DualTF gap 'not a critical weakness')",
+    "Reviewer_okuQ 'After author feedbacks' (edited 2021-09-02)",
+    "Reviewer_aDNh comments of 2021-08-12",
+    "Committee B meta-review",
+    "paper.pdf camera-ready: L260 claim, '50,000 examples' and missing RetroPrime row unchanged"
+  ]
+}

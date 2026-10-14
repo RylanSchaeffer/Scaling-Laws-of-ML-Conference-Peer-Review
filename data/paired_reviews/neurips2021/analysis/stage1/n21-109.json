@@ -1,0 +1,202 @@
+{
+  "pair_id": "n21-109",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        8,
+        6,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_BTic",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "Rated 8 ('clear accept') against two 6s. Confidence is 3, and the review says 'I am not an expert in off-line RL'. It asks how BCQ and R-BCQ differ and how REM and REME differ. The praise rests on the writing, the supplied code and the online deployment. It misreads Table 3 as showing that AvgCost 'decreased significantly'. The 8 did not decide the outcome: the two 6s alone keep the committee above the threshold."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_r7q2",
+          "evidence": "One hour at confidence 5 ('checked the math/other details carefully'). The main review is three sentences that restate the abstract; the summary calls the experiments 'solid'. The only critique sits in the limitations field: discretising λ multiplies the data by L, and how to pick the λ set 'in Appendix'. L172 says Appendix C gives that procedure. No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_BTic",
+          "claim": "The online results show that AvgLogin and ROI increased and AvgCost decreased significantly with the proposed components.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 3 matches cost to the 4.1-Yuan budget (L344): week-1 AvgCost is 4.0628 for LR+LP and 4.0654 for R-BCQ, week-2 4.0684 and 4.0528. L368 says 'the AvgCost of all methods is similar'. Only AvgLogins and ROI rose: R-BCQ's ROI is 15.47% and 13.18% above LR+LP and about 2% above REM, with no error bars."
+        },
+        {
+          "reviewer": "Reviewer_r7q2",
+          "claim": "λ-generalization discretises λ into L values and enlarges the dataset L times.",
+          "checked_against_paper": "correct",
+          "evidence": "L167-171: each tuple becomes L tuples, and D' 'is L times as the size of D'. The simulation uses 21 values of λ (L248-249)."
+        },
+        {
+          "reviewer": "Reviewer_yK9B",
+          "claim": "The paper does not say how the gap of the λ grid is chosen.",
+          "checked_against_paper": "correct",
+          "evidence": "L248-249 give the simulation grid (0 to 1 in steps of 0.05) without a reason. L172 defers the candidate set to Appendix C. The rebuttal supplies the reason: trials of 0.2, 0.1, 0.05 and 0.02."
+        },
+        {
+          "reviewer": "Reviewer_yK9B",
+          "claim": "δ at line 149 is not defined; is it predetermined?",
+          "checked_against_paper": "incorrect",
+          "evidence": "L148-149 define b − δ as the lower bound of cost, and L344-345 set 'The value of δ is 0.1' for the real-world experiment."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. Reviewer_BTic, 2021-08-11: 'I would like to thank the authors for carefully replying to the comments', with no change of score. Reviewer_yK9B and Reviewer_r7q2 did not reply.",
+        "what_convinced_or_not": "Nothing had to be won back: all three ratings were above the threshold before the rebuttal. The responses answered clarification questions: λ from 0 to λmax with a gap of 0.05 found by trial, the meaning of δ and θ, and the argument for λ = 0. They promised notation fixes. No reviewer tested the answers."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All reviewers are inclined to accept the paper and the paper would be of interest to NeurIPS audience.' The chair calls the application 'well motivated' and the existence proof for the dual 'natural'. The chair adds a missing citation of its own (Archak, Mirrokni and Muthukrishnan 2012). The meta-review does not discuss novelty against BCQ and REM or generality beyond coupons.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All three reviewers rated above the threshold (8, 6, 6), and the chair cites this",
+        "Chair judged the coupon application well motivated and of interest to the NeurIPS audience",
+        "CMDP-to-Lagrangian formulation with an existence proof, simulation results and an online A/B test on Taobao Deals",
+        "No reviewer questioned novelty against BCQ and REM or applicability beyond coupons"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        7,
+        6,
+        4
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 7, 6, 4 at confidence 4, 3, 3, 3 spread evenly; no reviewer stands apart. The panel split two above the threshold (Reviewer_1JJe 7, Reviewer_XKos 6) and two below (Reviewer_34tS 5, Reviewer_gJ2K 4). The chair sided with the two below."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_34tS",
+          "claim": "No experimental result shows that λ-generalization works; results use fixed λ (0, 0.5, 1 in Table 2 and Figure 3; one λ per method in Table 3).",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1 (L260-271) answers this directly: to the same termination condition, λ-update needs 14000 episodes and 2.187 h, λ-generalization 3000 episodes and 0.439 h. Figures 3-4 evaluate one λ-conditioned network at several λ, and Figure 5 sweeps λ from 0 to 1 on real data. Deploying one λ per method is the design (L357-361). True part: the compute test is one simulation comparison, and the real deployment omits λ-update (L389-390)."
+        },
+        {
+          "reviewer": "Reviewer_34tS",
+          "claim": "R-BCQ is only a combination of two popular models.",
+          "checked_against_paper": "correct",
+          "evidence": "L61-63: R-BCQ 'combines the advantages of two popular offline RL methods: BCQ and REM'. Section 4.2 pairs BCQ's generative-model action filter (Eq. 5) with REM's convex combination of heads. L155: λ-generalization is 'based on the idea of multi-objective RL method [10]'."
+        },
+        {
+          "reviewer": "Reviewer_gJ2K",
+          "claim": "The evidence is limited to coupon allocation; nothing shows wider applicability, especially of R-BCQ and REME.",
+          "checked_against_paper": "correct",
+          "evidence": "All experiments use the coupon simulator (Section 5.1) or Taobao Deals (Section 5.2). No standard offline-RL or OPE benchmark appears. The rebuttal names D4RL and RL Unplugged and concedes that wider application 'is our future work'."
+        },
+        {
+          "reviewer": "Reviewer_gJ2K",
+          "claim": "The architecture of the generative model G is never presented.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 4.2 defines G(a|s,λ;ω) and its loss (L190, L205) but gives no architecture. The hyper-parameter appendices F.1 and F.2 are not in the submitted PDF, so this holds for the main text only. The rebuttal supplies 'four fully-connected layers'."
+        },
+        {
+          "reviewer": "Reviewer_XKos",
+          "claim": "The paper lacks a comparison with recent offline RL methods such as CQL.",
+          "checked_against_paper": "correct",
+          "evidence": "Baselines are BCQ, REM and MOPO in simulation, and LR+LP and GBDT+LP online. CQL is reference [18] but is not cited in the main text. The rebuttal reported, in text only, that CQL reaches similar AvgLogins at 20% higher AvgCost."
+        },
+        {
+          "reviewer": "Reviewer_34tS",
+          "claim": "The model uses users' age and gender, which raises a privacy concern.",
+          "checked_against_paper": "correct",
+          "evidence": "L339: 'The contextual information of a user includes the gender, age, and location'. Checklist 4(e) on personally identifiable information is answered N/A. The rebuttal does not address the point."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. No reviewer replied to any of the four author responses (all dated 2021-08-10).",
+        "what_convinced_or_not": "The rebuttal contested both reasons the chair later gave. To gJ2K it argued that the framework fits any CMDP and cited three RL application papers from NeurIPS 2020. To 34tS it argued that the three parts form one framework and pointed to Figures 4 and 5 for λ-generalization. To XKos it reported a text-only CQL comparison. It also conceded that wider application 'is our future work'. Nobody answered, and the meta-review repeats the pre-rebuttal objections."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Reviews split 2-2 (7 and 6 against 5 and 4; mean 5.5). The meta-review takes both reasons from the two lower reviews. 'Limited novelty ... combine/unify several prior methods' matches Reviewer_34tS's 'R-BCQ is only a combination of two popular models'. 'Specificity of the application' and 'a more applied venue' match Reviewer_gJ2K's 'a better fit for a more applied conference'. It ignores Reviewer_XKos's 'novel problem formulation and method', Reviewer_1JJe's 7 and the rebuttal.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Limited novelty: the framework combines prior methods, with R-BCQ built from BCQ and REM (Reviewer_34tS)",
+        "Evidence limited to one application, with no sign of wider applicability; chair recommends a more applied venue (Reviewer_gJ2K)",
+        "Mixed reviews, 7, 6, 5, 4 (mean 5.5), with no reviewer discussion after the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why the discount factor in the constraint equals the one in the objective (Reviewer_yK9B)",
+    "How to choose the λ grid and its gap; discretising λ loses continuity and multiplies the data L times (Reviewer_r7q2, Reviewer_yK9B)",
+    "Whether λ-generalization reaches the same optimal policy as λ-update (Reviewer_BTic)",
+    "Why policy learning (R-BCQ) and evaluation (REME) need separate networks (Reviewer_BTic)",
+    "Definitions of δ and θ, and the basis for the λ = 0 conclusion at L282-289 (Reviewer_yK9B)",
+    "Missing related work: Archak, Mirrokni and Muthukrishnan 2012 (Committee A chair)"
+  ],
+  "issues_only_b": [
+    "Incremental novelty: R-BCQ only combines BCQ and REM; 'three tricks' rather than a unified framework (Reviewer_34tS, Committee B chair)",
+    "All evidence from one application; no sign of wider applicability; better suited to an applied venue (Reviewer_gJ2K, Committee B chair)",
+    "No CQL baseline (Reviewer_XKos)",
+    "λ-generalization not validated by experiment, and wall-clock time used instead of complexity (Reviewer_34tS)",
+    "No architecture for the generative model G; R-BCQ and REME not well motivated (Reviewer_gJ2K)",
+    "Real-world data not released, and the simulator too simple to be meaningful (Reviewer_34tS)",
+    "Use of users' age and gender as features (Reviewer_34tS) and price-discrimination impact (Reviewer_1JJe)",
+    "Related work confined to the appendix; coupon-allocation literature not discussed (Reviewer_1JJe, Reviewer_XKos)"
+  ],
+  "shared_issues": [
+    "How R-BCQ and REME differ from BCQ and REM: a question in A (Reviewer_BTic), a novelty and clarity weakness in B (Reviewer_34tS, Reviewer_gJ2K)",
+    "Results reported at a few fixed λ values, 0, 0.5 and 1 (Reviewer_yK9B in A; Reviewer_34tS in B)",
+    "User retention as the only reward or metric (Reviewer_BTic in A; Reviewer_34tS in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A recommended a poster and Committee B a rejection, and neither committee found a technical error. They weighted the same two facts in opposite directions. First, the framework joins existing parts: R-BCQ combines BCQ and REM, and λ-generalization applies a multi-objective RL idea. Second, all evidence comes from one application, a coupon simulator and a Taobao Deals A/B test. A's three reviewers did not raise either fact as a weakness, and A's chair called the application 'well motivated' and 'of interest to NeurIPS audience'. B drew two reviewers who raised both facts, Reviewer_34tS (5) and Reviewer_gJ2K (4). B's chair adopted their reasons over a 7 and a 6 and pointed the authors to 'a more applied venue'. Both objections describe the paper correctly; whether they justify rejection is a judgment. A's support is thin: an 8 from a self-declared non-expert who misread Table 3, a one-hour 6 at confidence 5, and a 6 made of clarification questions. B's case contains one misreading: Reviewer_34tS says no experiment tests λ-generalization, but Table 1 does. No reviewer in B answered the rebuttal. The split comes from reviewer draw and from how each chair valued an applied paper with modest methodological novelty.",
+  "candidate_reasons": [
+    "applied-venue fit judged differently",
+    "combination of existing methods discounted",
+    "accepting reviewers never assessed novelty",
+    "chair broke split panel negatively",
+    "thin, low-expertise positive reviews",
+    "rebuttal ignored by rejecting committee"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Reviewer_gJ2K final review (Significance)",
+    "Reviewer_34tS final review (Originality 1; Quality 1)",
+    "Committee A meta-review",
+    "Reviewer_BTic final review",
+    "Reviewer_r7q2 final review",
+    "Authors' response to Reviewer_gJ2K",
+    "paper L61-63 and L155 (R-BCQ combines BCQ and REM; λ-generalization from multi-objective RL)",
+    "paper Table 1 (λ-update against λ-generalization)",
+    "paper Table 3 and L368 (online A/B results, matched cost)",
+    "paper L339 (gender and age features)"
+  ]
+}

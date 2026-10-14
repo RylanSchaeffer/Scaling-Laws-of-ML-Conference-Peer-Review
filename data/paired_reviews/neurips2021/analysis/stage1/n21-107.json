@@ -1,0 +1,227 @@
+{
+  "pair_id": "n21-107",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 7, 7, 7],
+      "confidences": [5, 4, 2, 4],
+      "reviews_edited_after_posting": ["Reviewer_8tm7", "Reviewer_QbiV"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 7, 7, 7 at confidence 5, 4, 2, 4. The depth differs, not the score. Reviewer_k2ys, Reviewer_8tm7 and Reviewer_QbiV engage with the proofs, the code and the experiments, and list weaknesses. Reviewer_wGDo's main review is two sentences of praise."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_wGDo",
+          "evidence": "Confidence 2 ('Math/other details were not carefully checked'), three hours. The main review is 'I enjoyed reading this paper' plus one sentence on clarity. It names no weakness and asks no question, and the authors' reply is a thank-you. The 7 adds no evidence on quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8tm7",
+          "claim": "The experiments do not compare MMU with the earlier coordinate descent and projected gradient methods.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 (L296-332) runs MMU on a 20 x 20 distance matrix and on CBCL faces. The only baseline is a 27-dimensional NMF shown as images (L318-319). No projected gradient, accelerated projected gradient or coordinate descent from [35], and no algorithm from [18-20], is run, and no timing is reported. The camera-ready still has no comparison, although the authors promised one to 8tm7."
+        },
+        {
+          "reviewer": "Reviewer_k2ys",
+          "claim": "The code uses a damped variant of the algorithm that the analysis does not cover.",
+          "checked_against_paper": "correct",
+          "evidence": "L302-303: 'For conditioning reasons, we perform a damped update whereby we add εI, ε = 10^-8, to each matrix variable at every iterate.' Theorems 1 and 2 are stated for the undamped update (23). Reviewer_QbiV raised the same point. The camera-ready adds a damping paragraph but no analysis of it."
+        },
+        {
+          "reviewer": "Reviewer_QbiV",
+          "claim": "The analysis assumes positive definite factors, which never occur for slack matrices of polytopes, and the stopping criterion is not stated.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 1 assumes positive definite A_i and a positive definite start; Theorem 2 (L262-263) covers positive definite fixed points only. Algorithm 1 says 'while stopping criterion not satisfied', and the experiments run a fixed 500 iterations (L301, L318-326). A zero slack entry forces A_i B_j = 0, so both factors cannot be positive definite."
+        },
+        {
+          "reviewer": "Reviewer_QbiV",
+          "claim": "The induction in the proof of Lemma 3 can be replaced by superadditivity of the concave, degree-one homogeneous map X -> tr(Z X^1/2 Z X^1/2).",
+          "checked_against_paper": "correct",
+          "evidence": "Appendix A applies Lieb's concavity to two matrices and extends to m matrices by induction (Eq. 30, L432). A concave function that is positively homogeneous of degree one is superadditive, which gives Eq. 30 at once. The authors called the suggestion 'a massive help'."
+        },
+        {
+          "reviewer": "Reviewer_8tm7",
+          "claim": "tr(XY)^2 <= tr(X^2) tr(Y^2) is the Cauchy-Schwarz inequality, so von Neumann's trace inequality is not needed.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 33 and L437-440 prove the inequality through von Neumann's trace inequality and then Cauchy-Schwarz. Cauchy-Schwarz for the trace inner product on symmetric matrices gives it in one step."
+        },
+        {
+          "reviewer": "Reviewer_k2ys",
+          "claim": "L173-180 credit Nesterov (arXiv 1707.07953) with the Cardano step in coordinate descent, while arXiv 1506.08568 proposed it first.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L173-180 credit [35], Vandaele, Glineur and Gillis, and make no priority claim; Nesterov is not an author of [35]. The earlier source is indeed not cited, and the camera-ready adds 'for a similar approach see also [27]'. A minor slip in an otherwise careful review."
+        },
+        {
+          "reviewer": "Reviewer_k2ys",
+          "claim": "Motivation fills pages 1-3 and related work pages 4-5; the cost of a single update and the iteration complexity are not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 starts at L199 on page 5, Theorem 1 is on page 6 and Algorithm 1 on page 7. The paper states no per-iteration cost, although each update needs an r x r inverse and matrix square roots (Eq. 16, 23)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No reviewer posted in the discussion. Reviewer_QbiV edited the review on 2021-09-01 to add 'I have not changed my (positive) assessment of this paper.' Reviewer_8tm7's edit (2021-07-14) predates the rebuttal (2021-08-10). Reviewer_k2ys and Reviewer_wGDo are unedited.",
+        "what_convinced_or_not": "Nothing needed convincing: all four reviewers already rated 7. The authors promised a comparison with previous methods (8tm7), a comparison table and the cost of a single update (k2ys), and a damping discussion (QbiV). The camera-ready delivers the damping paragraph and a citation for the Cardano step, but no comparison, no table and no cost analysis."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Three sentences: method and analysis 'original and of interest to the community', paper 'clearly written and motivated', authors 'encouraged to take into account the reviewers' comments'. This follows four 7s and names none of the weaknesses the reviewers listed (no baselines, damping, complexity). 'Clearly written and motivated' goes against Reviewer_k2ys, who called the motivation and related work 'rather confusing'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Unanimous 7s from reviewers who judged MMU a new, 'non-obvious generalization' of Lee-Seung (Reviewer_QbiV) with an 'elegant' proof (Reviewer_k2ys)",
+        "Expert reviewers (confidence 5, 4, 4) read the proofs, offered simplifications, and judged the theory sufficient for acceptance",
+        "Missing baselines, damping, stopping rule and complexity treated as revision items (Reviewer_8tm7, Reviewer_k2ys, Reviewer_QbiV)",
+        "Chair followed the unanimous scores"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 5, 4],
+      "confidences": [2, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_DJs1"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 4, 5, 4 at confidence 2, 3, 3; all below the threshold. Reviewer_Ux46's 5 is the most informed review and offers to raise the score if the gaps are fixed. Reviewer_DJs1's 4 comes from a one-hour read and rests on audience fit."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_DJs1",
+          "evidence": "One hour, confidence 2, 'I am not familiar with the positive semidefinite (PSD) factorization problem'. Says the paper demonstrates 'superiority' on 'several real world datasets'; there is one synthetic and one real dataset and no competing algorithm. Asks for a convergence-rate benefit over Lee-Seung, which is the diagonal special case of MMU (L271-281). The main concern is that the paper may be 'of less the interest for the NeurIPS audience'. The edit of 2021-08-23 adds only 'Update: thanks for the comments.'"
+        },
+        {
+          "reviewer": "Reviewer_LdXA",
+          "evidence": "Misstates the main result as convergence to critical points and calls that 'not quite surprising'. Says MMU must 'deal with many SDP constraints'. Both are wrong (see checkable claims). Calls the method 'incremental' and 'a combination and direct extension of several results' without naming any of them, and 'not very well-motivated' although three pages motivate it (L25-127). No reply to the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Ux46",
+          "claim": "The paper makes no experimental comparison with any algorithm from previous work (projected gradient from [35], coordinate descent, an SDP solver).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 6 (L296-332) runs only MMU, with a 27-dimensional NMF as the one qualitative baseline (L318-319). This is the gap Reviewer_8tm7 raised in Committee A. The camera-ready still has no comparison."
+        },
+        {
+          "reviewer": "Reviewer_Ux46",
+          "claim": "MMU has no convergence guarantee, whereas projected gradient descent converges by smoothness; per-iteration cost is not discussed, and MMU needs matrix square roots and inverses.",
+          "checked_against_paper": "correct",
+          "evidence": "L212-214: MM iterates are non-increasing but there is 'in general no guarantee that they converge to a minimizer'. Theorems 1-2 give monotonicity and KKT fixed points only. Eq. 16 and 23 need inverses and square roots, and no cost is stated. The authors conceded both points."
+        },
+        {
+          "reviewer": "Reviewer_Ux46",
+          "claim": "Recovering Lee-Seung is unintuitive because NMF minimizes KL divergence while MMU minimizes an l2 loss.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lee and Seung [25] give both a Euclidean and a KL algorithm. Eq. 25 (L277) is the Euclidean update B <- B o (A^T X)/(A^T A B), which MMU recovers (L279-281). The rebuttal says so."
+        },
+        {
+          "reviewer": "Reviewer_LdXA",
+          "claim": "The authors showed that MMU converges to a critical point, which is 'not quite surprising'.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The paper claims less: the objective is non-increasing (Theorem 1), and positive definite fixed points satisfy the KKT conditions (Theorem 2, L262-263). L213-214 say MM iterates need not converge to a minimizer."
+        },
+        {
+          "reviewer": "Reviewer_LdXA",
+          "claim": "Compared to NMF, MMU must deal with many SDP constraints, so the computation could be expensive.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L149-151: the iterates are updated by conjugation and 'the PSDness of the iterates is automatically guaranteed'. No projection or SDP solve occurs. The per-update cost (an r x r inverse and square roots per factor) is real but unquantified; that is Reviewer_Ux46's point, not LdXA's."
+        },
+        {
+          "reviewer": "Reviewer_DJs1",
+          "claim": "The proposed algorithm is delayed to the 5th page.",
+          "checked_against_paper": "correct",
+          "evidence": "Section 3 starts at L199 on page 5, and Algorithm 1 is on page 7. Pages 1-4 hold applications and prior work. Reviewer_k2ys made the same point in Committee A."
+        },
+        {
+          "reviewer": "Reviewer_DJs1",
+          "claim": "The superiority of the algorithm is demonstrated via simulation on several real world datasets.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Section 6 has one synthetic 20 x 20 distance matrix and one real dataset (CBCL faces), and compares MMU with no other PSD-factorization algorithm."
+        },
+        {
+          "reviewer": "Committee B area chair",
+          "claim": "The paper is mainly empirical, so a fair comparison with existing algorithms is essential.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The stated contributions are Theorem 1 (proof in the main text, L227-250), Theorem 2 and the structural results of Section 5 (block-diagonal preservation, Lee-Seung as a special case, tensors). Section 6 fills about 1.5 of 9 pages. The missing comparison is real; the framing is not."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No reviewer posted in the discussion. Reviewer_Ux46 and Reviewer_LdXA are unedited. Reviewer_DJs1 edited on 2021-08-23 to add only 'Update: thanks for the comments.', which names no score change.",
+        "what_convinced_or_not": "Ux46 offered: 'If the highlighted issues are fixed, I might increase my score.' The reply conceded that there is no convergence guarantee, promised a short cost discussion, and corrected the KL point, but did not answer the central request for experimental comparisons. The replies to LdXA were correct but combative ('We would like to stress that this is not correct', 'This is again not true'). DJs1 was told that comparing with Lee-Seung 'is not a meaningful task'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'I agree with the reviewers that the paper is not quite ready for publication.' The three requests come from the reviews: move the introduction to the supplement (Reviewer_DJs1), run-time analysis and comparison (Reviewer_Ux46), and 'a fair comparison with existing algorithms' because 'the paper is mainly empirical' (Reviewer_Ux46). The 'mainly empirical' framing ignores Theorems 1-2, which Committee A treated as the contribution. The chair does not mention novelty, Reviewer_LdXA's main objection.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "No experimental comparison with projected gradient or coordinate descent from [35] (Reviewer_Ux46; chair's point 3)",
+        "No convergence guarantee and no run-time or per-iteration analysis (Reviewer_Ux46, Reviewer_DJs1; chair's point 2)",
+        "Long introduction delays the algorithm to page 5 (Reviewer_DJs1; chair's point 1)",
+        "Low-confidence doubts on novelty and NeurIPS interest (Reviewer_LdXA 'incremental', Reviewer_DJs1 'less of the interest'), partly built on misreadings",
+        "Rebuttal left Ux46's main request unanswered, and no score moved"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Damped update outside the analysis, and the unstated stopping rule (Reviewer_k2ys, Reviewer_QbiV)",
+    "Positive definite factors assumed, while slack matrices of polytopes need singular factors (Reviewer_QbiV)",
+    "Shorter proofs of Lemma 3 by Cauchy-Schwarz and by superadditivity (Reviewer_8tm7, Reviewer_QbiV)",
+    "Earlier source for the Cardano step, a comparison table, and a Riemannian picture of the geometric mean (Reviewer_k2ys)",
+    "Meaning of the 'infinite-dimensional' building blocks in Figure 3, and the effect of the rank of the optimal factors (Reviewer_8tm7)"
+  ],
+  "issues_only_b": [
+    "Novelty: 'incremental', 'a combination and direct extension of several results' (Reviewer_LdXA)",
+    "Cost of 'many SDP constraints' (Reviewer_LdXA; wrong as stated)",
+    "Face experiment unconvincing as representation learning; experiments wanted on quantum-information applications (Reviewer_LdXA)",
+    "Lee-Seung as a KL method (Reviewer_Ux46; wrong), slack matrices too large to factor in practice, a 7-dimensional NMF baseline, and missing facedata.npy for the code (Reviewer_Ux46)",
+    "Convergence-rate benefit over Lee-Seung (Reviewer_DJs1)",
+    "The chair's framing of the paper as 'mainly empirical'"
+  ],
+  "shared_issues": [
+    "No experimental comparison with earlier PSD-factorization algorithms (A: Reviewer_8tm7; B: Reviewer_Ux46, chair)",
+    "No convergence rate or convergence guarantee (A: Reviewer_8tm7; B: Reviewer_Ux46, Reviewer_DJs1)",
+    "No per-iteration complexity or run-time analysis (A: Reviewer_k2ys; B: Reviewer_Ux46, chair)",
+    "Long motivation pushes the algorithm to page 5 (A: Reviewer_k2ys; B: Reviewer_DJs1, chair)",
+    "Narrow interest beyond the PSD-rank community (A: Reviewer_k2ys; B: Reviewer_DJs1)",
+    "More intuition for the matrix geometric mean (A: Reviewer_k2ys; B: Reviewer_DJs1)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected because the two committees weighted the same gaps differently, and the difference follows reviewer expertise. Both committees saw that Section 6 compares MMU with no earlier PSD-factorization algorithm (Reviewer_8tm7 in A; Reviewer_Ux46 and the chair in B), that the paper gives no convergence rate and no per-iteration cost (8tm7, Reviewer_k2ys; Ux46, Reviewer_DJs1), and that the algorithm starts only on page 5 (k2ys; DJs1). The submission confirms all three, and the camera-ready still has no comparison. A's reviewers (confidence 5, 4, 4, plus a thin 2) judged the paper as a mathematical contribution: a non-obvious matrix extension of Lee-Seung whose monotonicity proof rests on Lieb's concavity theorem. 8tm7 and Reviewer_QbiV proposed shorter proofs of Lemma 3, so they read the appendix. They listed the gaps as revisions and rated 7. B's reviewers (confidence 2, 3, 3; one, two and five hours) judged the paper as an algorithm that must beat baselines. Ux46's review is careful and its main points hold. Reviewer_LdXA misstated the result as convergence to critical points and claimed MMU handles 'many SDP constraints'; DJs1 admitted unfamiliarity and misdescribed the experiments. B's chair called the paper 'mainly empirical', although Section 6 fills about 1.5 of 9 pages. In B the rebuttal skipped Ux46's request for comparisons, argued with LdXA, and moved no score. Neither committee found an error in the paper; one committee counted the missing baselines as decisive and the other did not.",
+  "candidate_reasons": [
+    "Same gaps weighted differently",
+    "Theory experts versus generalist reviewers",
+    "Missing baselines decisive for one",
+    "Chair misframed theory as empirical",
+    "Rebuttal skipped central requested experiment",
+    "Reviewer misread main theorem"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_8tm7 review, Weaknesses ('compare with the earlier coordinate descent and projected gradient methods')",
+    "Reviewer_Ux46 review, main review and limitations; author reply of 2021-08-10",
+    "Reviewer_LdXA review and author reply of 2021-08-10",
+    "Reviewer_DJs1 review (one hour, confidence 2) and edit of 2021-08-23",
+    "Reviewer_QbiV review (damping, stopping rule, Lemma 3, singular factors) and update of 2021-09-01",
+    "Reviewer_k2ys review (damped code, complexity, Cardano citation, length of motivation)",
+    "Committee A meta-review",
+    "Committee B meta-review ('the paper is mainly empirical')",
+    "paper_submitted.pdf Section 6, L296-332 (NMF the only baseline; damping at L302-303)",
+    "paper_submitted.pdf L149-151, L212-214, Theorem 1 (L227) and Theorem 2 (L262-263)",
+    "paper_submitted.pdf Eq. 25 and L271-281 (the Euclidean Lee-Seung update as the diagonal case)",
+    "paper_submitted.pdf Appendix A, Eq. 30 and 33 (induction and the von Neumann step)",
+    "paper.pdf camera-ready Section 6: damping paragraph added; no comparison, table or cost analysis"
+  ]
+}

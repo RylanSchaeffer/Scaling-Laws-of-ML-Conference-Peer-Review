@@ -1,0 +1,195 @@
+{
+  "pair_id": "n21-080",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 7, 6],
+      "confidences": [4, 4, 1, 2],
+      "reviews_edited_after_posting": ["Reviewer_p3fb", "Reviewer_Qt6c"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 7, 6 (p3fb, Qt6c, TAuC, u4LL). No rating stands apart. Reviewer_TAuC's 7 at confidence 1 is the least informed score, but it is not an outlier in rating."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_TAuC",
+          "evidence": "Confidence 1 ('educated guess'). The main review is two sentences: the results 'seem novel' and 'appear to be correct', but 'I lack the domain knowledge to accurately assess the paper'. No question, no criticism, no post in the discussion. Its 7 carries no information about quality."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_u4LL",
+          "claim": "The hinge loss does not satisfy the regularity assumptions (2)-(3), so Gappletron is not proven better than BANDITRON, and the comparison in lines 84-98 may mislead.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 160: 'the hinge loss is not a regular surrogate loss'. Lines 88-90 compare Gappletron with BANDITRON's O(K^1/3 (BT)^2/3) surrogate regret in the non-separable case. The authors replied: 'Your comment regarding the comparison with Banditron is correct.'"
+        },
+        {
+          "reviewer": "Reviewer_Qt6c",
+          "claim": "Gaptron is not used as a baseline in the bandit experiments.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 306-310 list only PNewtron, SOBAdiag and importance-weighted Banditron. The authors replied: 'Gaptron was overlooked when designing the experiments'."
+        },
+        {
+          "reviewer": "Reviewer_Qt6c",
+          "claim": "The lower bound holds only for a worst-case feedback graph and does not depend on the domination number.",
+          "checked_against_paper": "correct",
+          "evidence": "Corollary 1 (lines 285-289) is Ω(KB^2 + √T) with no ρ. Lines 291-292: the proof uses a two-class filtering graph. Lines 328-330 leave tightness for the bandit graph open."
+        },
+        {
+          "reviewer": "Reviewer_p3fb",
+          "claim": "The minimum dominating set is hard to compute, so a greedy approximation is needed and the bound should carry roughly ρ log ρ.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 148-151: Gappletron needs the minimum dominating set, 'known to be hard to recover'. With any larger dominating set the results hold with ρ replaced by its size, and greedy finds one of size at most (ln ρ + 2)ρ."
+        },
+        {
+          "reviewer": "Reviewer_p3fb",
+          "claim": "The introduction contrasts T^1/2 with T^2/3, but the paper does not return to this after the introduction.",
+          "checked_against_paper": "correct",
+          "evidence": "The contrast appears only in lines 76-80. Sections 2-7 do not discuss it again."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Qt6c", "Reviewer_p3fb"],
+        "evidence": "Reviewer_Qt6c edited the review on 2021-08-19, the day it posted 'I am happy to increase my score to 7'. Reviewer_p3fb edited on 2021-08-25, the day it posted 'I am happy to increase my score' (final 6). Reviewer_TAuC and Reviewer_u4LL did not edit or post.",
+        "what_convinced_or_not": "On novelty, the authors listed what goes beyond van der Hoeven (2020): a general gap map for any regular loss (Lemma 1), which enables the high-probability bounds; any OCO algorithm, with up to a factor K gain in the separable case; and a √T lower bound under which, unlike in standard feedback-graph learning, the bandit graph appears to be the hardest case. They also showed Qt6c that Azuma plus Theorem 1 gives only T^3/4. Qt6c accepted both points in a 'high level response' while travelling. p3fb thanked them for 'clarifying the generalizations' and asked for a prior-art comparison in the paper."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All four ratings are on the accept side, and the AC accepted. 'The reviewers agree that it is of interest to the online learning research community.' The meta-review lists the credited contributions and turns the reviewers' gaps (a ρ-dependent lower bound, the hinge loss) into future work. It is loose: it calls ρ the 'graph independence number' (it is the domination number) and credits 'improved experimental results against prior art', although Gaptron, the closest prior art, was not a baseline.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings on the accept side (6, 7, 7, 6), so the AC followed a consensus",
+        "Rebuttal answered the incrementality concern over van der Hoeven (2020); Qt6c and p3fb raised their scores",
+        "New high-probability bounds and the √T lower bound credited as the technical contributions",
+        "Remaining gaps (ρ-dependent lower bound, hinge loss, prior-art comparison) left to future work or the camera-ready"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [7, 6, 6, 5],
+      "confidences": [4, 2, 3, 3],
+      "reviews_edited_after_posting": ["Reviewer_V4xK"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_fiNV",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "The only rating below 6 (5 against 7, 6, 6), so a mild outlier. Its main objection is that the upper bounds hold only with full information. Theorem 1 (line 222, 'Let G be any feedback graph') and Theorem 2 hold for any feedback graph. The authors called this 'a major misunderstanding'; fiNV never replied or edited. The AC did not use this objection."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_CwtQ",
+          "evidence": "One hour, confidence 2, a three-sentence main review: the gap map is unclear, and experiments on real data would help. Section 2 and Lemma 1 explain the gap map. Limitations field 'NA'. No post after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_fiNV",
+          "evidence": "Reads the upper bounds as full-information only, although the abstract, Table 1 ('Partial' column, B√(ρKT)) and Theorems 1-2 cover any feedback graph. Ignored the authors' correction."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_fiNV",
+          "claim": "The upper bounds apply only to the full information setting, which limits the scope of the work.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Theorem 1 (line 222) and Theorem 2 (line 253) hold for any feedback graph with domination number ρ. Only Theorem 3 (line 270) is for full information. Table 1 lists B√(ρKT) under 'Partial'."
+        },
+        {
+          "reviewer": "Reviewer_fiNV",
+          "claim": "The lower bound is close to the upper bound only in the full information case.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 291-292: the √T lower bound uses a two-class filtering graph, a partial-feedback graph with ρ = 1, where the upper bound is also of order √T. Lines 328-330: tightness is open only for the bandit graph."
+        },
+        {
+          "reviewer": "Reviewer_CwtQ",
+          "claim": "It is not clear what the gap map is for or how to construct a good one.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 183-185: the gap map sets the mixture of the max-margin prediction and uniform exploration. Lemma 1 (line 188) sets it to ℓ(W, x, y*) for any regular surrogate loss; lines 195-200 contrast this with Gaptron's ad hoc maps."
+        },
+        {
+          "reviewer": "Reviewer_V4xK",
+          "claim": "The experiments use synthetic data with parameters set by theory, not hand-tuned.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 297-305: synthetic data as in Kakade et al. (2008); bandit algorithms use worst-case theoretical tuning or all parameters set to 1."
+        },
+        {
+          "reviewer": "Reviewer_V4xK",
+          "claim": "The Ω(B^2 K + √T) lower bound implies Ω(B√K T^1/4), which leaves a gap of √ρ T^1/4 to the upper bound.",
+          "checked_against_paper": "correct",
+          "evidence": "Follows from a + b ≥ 2√(ab) applied to Corollary 1 (lines 285-289) and Theorem 1."
+        },
+        {
+          "reviewer": "Reviewer_SLin",
+          "claim": "Lemma 1 simplifies the original Gaptron proof, and the algorithm allows OCO algorithms other than OGD.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 173-179 (any OCO algorithm, against Gaptron's fixed-rate OGD) and lines 198-199 ('With Lemma 1 in hand, we simplify the analysis')."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B reviewer posted in the discussion. Only Reviewer_V4xK edited the review (2021-08-22), adding 'I've read the author's response, thanks.' The text still leans 'towards acceptance', consistent with an unchanged 6. The other three reviews were not edited after posting.",
+        "what_convinced_or_not": "Nothing visibly moved anyone. The authors told fiNV that every bound except Theorem 3 covers general feedback graphs; fiNV kept 5 without comment. The defence of synthetic data (a generator similar to Kakade et al. 2008 and others) and of theory-based tuning drew no reply. No B reviewer asked the authors to defend novelty, so the B rebuttal never addresses the concern the AC later used."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "Ratings 7, 6, 6, 5: three of four on the accept side, and the AC rejected. The meta-review grants 'a fairly complete picture of achievable regret bounds' but finds the paper 'not sufficiently innovative'. It says 'The main concern raised by the reviewers is that the paper is fairly incremental relative to van der Hoeven (2020)'. In the visible B reviews only Reviewer_SLin says the work 'mainly relies on tools developed in (van der Hoeven 2020)', and SLin gave 7. No B reviewer gives novelty as a reason to reject. The AC calls feedback graphs 'a well-established setting', but lines 48-52 state that no earlier feedback-graph analysis handles feature vectors; the meta-review does not engage with this. It does not use fiNV's objection.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "AC's own judgement that the paper is 'not sufficiently innovative' over van der Hoeven (2020)",
+        "Lukewarm support: SLin's 7 came with 'impact should be moderate'; the others were 6, 6 and 5",
+        "No reviewer engaged after the rebuttal, so no one contested the AC's novelty view",
+        "fiNV's misread 5 stayed uncorrected and pulled the mean to 6.0"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Hinge loss is not a regular surrogate loss, so the Banditron comparison (lines 84-98) misleads (u4LL; authors agreed)",
+    "Gaptron missing as a bandit baseline (Qt6c; authors agreed)",
+    "Why the high-probability bound cannot follow from Azuma plus Theorem 1 (Qt6c)",
+    "Greedy dominating set adds a log factor to ρ (p3fb; lines 148-151 agree)",
+    "T^1/2 versus T^2/3 contrast dropped after the introduction; theory mixed into the algorithm description; no worked example; no societal-impact discussion (p3fb)"
+  ],
+  "issues_only_b": [
+    "Synthetic data only; real datasets requested (CwtQ, fiNV, V4xK)",
+    "Theory-based rather than tuned hyperparameters; whiskers clipped in Figure 2 (V4xK)",
+    "Purpose and construction of the gap map (CwtQ; answered in Section 2)",
+    "Upper bounds allegedly limited to full information (fiNV; wrong)",
+    "Novelty judged insufficient for the venue (B's AC only; no B reviewer said so)"
+  ],
+  "shared_issues": [
+    "Close reliance on van der Hoeven (2020)'s surrogate-gap technique (A: p3fb 'most major issue', Qt6c; B: SLin as context, then the AC as the reason to reject)",
+    "Lower bound does not depend on ρ; tightness open for the bandit graph (A: p3fb, Qt6c, u4LL, AC; B: SLin)",
+    "Typos and notation order (A: p3fb, Qt6c; B: V4xK, fiNV)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A recommended more because its reviewers raised the novelty concern and the rebuttal answered it. In Committee B, only the area chair (AC) raised it as an objection, at decision time, and overrode accept-side reviews. Both committees saw the same paper: Gaptron (van der Hoeven, 2020) extended to feedback graphs, with high-probability bounds, a √T lower bound and synthetic experiments. Seven of eight reviewers gave 6 or 7. In A, Reviewer_p3fb called the reliance on van der Hoeven (2020) the 'most major issue'. Reviewer_Qt6c found the results 'not so much surprising'. The authors listed the advances: a general gap map (Lemma 1), high-probability bounds, any OCO algorithm, and a lower bound under which the bandit graph appears to be the hardest case. Both reviewers raised their scores, and A's AC followed the consensus. In B, Reviewer_SLin, the most expert reviewer, noted the same reliance and still gave 7. No B reviewer gave novelty as a reason to reject, so the authors never had to defend it there. B's only below-threshold score, Reviewer_fiNV's 5, rests on a misreading: Theorems 1 and 2 hold for any feedback graph. B's AC rejected the paper as 'not sufficiently innovative' and credited this view to 'the reviewers'. The visible B reviews do not support that attribution. Set aside the uninformative reviews (TAuC's 7 at confidence 1 in A; CwtQ's one-hour 6 and fiNV's misread 5 in B). Then B's ratings (7, 6) are no lower than A's (6, 7, 6). The committees weighted the same facts differently, and B's AC made the decisive call.",
+  "candidate_reasons": [
+    "AC overrode accept-side reviews",
+    "novelty bar set by AC",
+    "concern never put to authors",
+    "rebuttal resolved novelty concern",
+    "detractor misread theorem scope",
+    "no reviewer engagement after rebuttal"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_p3fb main review (weaknesses) and comment of 2021-08-25",
+    "Reviewer_Qt6c main review and comment of 2021-08-19",
+    "Authors' general response and response to Reviewer_p3fb (Committee A)",
+    "Reviewer_SLin main review",
+    "Reviewer_fiNV main review and the authors' reply",
+    "Reviewer_CwtQ and Reviewer_TAuC reviews",
+    "paper_submitted.pdf Theorem 1 (line 222), Theorem 2 (line 253), Theorem 3 (line 270), Table 1",
+    "paper_submitted.pdf lines 148-151, 160, 285-295, 306-310"
+  ]
+}

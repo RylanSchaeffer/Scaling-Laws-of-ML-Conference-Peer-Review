@@ -1,0 +1,232 @@
+{
+  "pair_id": "n21-102",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        7,
+        4,
+        4
+      ],
+      "confidences": [
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_43xz"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_FGbv",
+        "direction": "champion",
+        "basis": "principled",
+        "evidence": "The only rating above threshold (7 against 4 and 4). The review is specific (notation, the definition of the path in Eq. 5, the missing Alon et al. 2020 citation, equal-interval sampling, the pointer network), and FGbv replied in discussion: 'my remaining concerns are addressed'. The 7 rests on the idea and the clarity of Section 3, not on checked results: FGbv wrote 'I don't have a good understanding of what precise baselines were run, and whether the comparisons are fair'."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_43xz",
+          "claim": "TPTrans improves over the baselines on 3 of 4 languages, and the gains are modest.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2: TPTrans F1 beats Code Transformer by 1.62 (Python), 2.73 (Ruby) and 1.50 (Go) and trails it on JavaScript (30.91 against 32.13). No result in the submission has an error bar; checklist item 3(c) is answered N/A."
+        },
+        {
+          "reviewer": "Reviewer_43xz",
+          "claim": "The claim that JavaScript's structure is weak (lines 278 and 339) has no supporting evidence.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 278-279 and 338-340 assert it with no reference or analysis. The path-length table came only in the rebuttal, where the authors wrote 'we have not yet reached an accurate conclusion'."
+        },
+        {
+          "reviewer": "Reviewer_43xz",
+          "claim": "Adding absolute paths degrades the metrics (Table 3).",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: TPTrans-α F1 is below TPTrans on Python (35.52 against 36.00), Ruby (27.52 against 28.96) and JavaScript (29.52 against 29.85) and level on Go (53.65 against 53.61), from single runs. The rebuttal's repeated runs with the pointer network show no consistent difference, and the authors withdrew the 'conflict' explanation of lines 318-319."
+        },
+        {
+          "reviewer": "Reviewer_43xz",
+          "claim": "Relative-path terms enter Key and Value but not Query, and the absolute-path term pairs only with itself; the choice is not justified.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 6-7 add r_ij to the Key and the Value only; Eq. 9 adds a separate (a_i W_a^Q)(a_j W_a^K) term. The paper's rationale is the analogy to Shaw et al. and TUPE (lines 148-150) plus footnote 1, which says adding paths to token embeddings did not help; Table 3 removes terms but never tests a Query placement. The rebuttal supplied an edge-translation argument."
+        },
+        {
+          "reviewer": "Reviewer_FGbv",
+          "claim": "Alon et al. 2020 (Structural Language Models of Code) is not cited.",
+          "checked_against_paper": "correct",
+          "evidence": "The reference list (lines 358-439) cites Alon et al. only for code2seq (2018) and code2vec (2019). The authors conceded the omission."
+        },
+        {
+          "reviewer": "Reviewer_SWC5",
+          "claim": "Parts of the introduction to Section 3 are lifted from Section 3 of Zügner et al. 2021.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Zügner et al. is not available here. The authors conceded that 'some sentences are quite similar'. Both ethics reviewers found no ethical issue; Ethics_Reviewer_Uotp wrote that Eq. 1 was taken without a reference and asked for proper citations. The meta-review does not mention it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Author responses ran from 2021-08-10 to 2021-09-02. The only A edit (Reviewer_43xz, 2021-07-22) predates them. Reviewer_FGbv (2021-08-24): 'my remaining concerns are addressed', with the rating already at 7. Reviewer_SWC5 (2021-08-24): 'The parameter counts and error bars are appreciated', and conceded the parser point, rating unchanged at 4. Reviewer_43xz posted nothing after the rebuttal.",
+        "what_convinced_or_not": "The clarifications satisfied FGbv, who was already at 7. SWC5's objection, that a novel combination of existing components is a contribution of limited size, is not one that new numbers answer; SWC5 asked only what the spread measure was and did not react to the later classification or normalization results. 43xz's cons (arbitrary design, modest gains, one task, little insight) got long answers and no reply. A never received the deeper-model run or the unique-path counts that B received. The 2021-08-31 classification table showed TPTrans below three baselines, and the AC used it against the paper."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects with two of three ratings at 4. The meta-review's concerns follow Reviewer_43xz's cons almost one to one: the model is not shown to be 'consistently better', the evaluation uses a 'single task', and it is unclear how paths 'improve (or worsen)' performance. The AC adds its own reading of the 2021-08-31 results: 'it is not clear if TPTrans performs better than stronger baselines'. The authors' table supports this: TPTrans 94.94 on POJ-104 against TBCNN 95.21, ASTNN 98.2 and TreeCaps 98.32. The AC also credits 'a nice novel combination' and says the response fixed many clarity issues.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two of three reviewers stayed at 4 after the rebuttal",
+        "Gains not consistent across languages: JavaScript trails Code Transformer",
+        "One task only; the new classification results trail stronger baselines",
+        "Little insight into how and when path encodings help"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        4,
+        6,
+        7,
+        6
+      ],
+      "confidences": [
+        4,
+        4,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_ZRpb",
+        "Reviewer_86qv",
+        "Reviewer_y3EX"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_5kuu",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "The only rating below threshold (4 against 6, 7 and 6), held after one exchange ('Be more precise'). The grounds are specific: closeness to Code Transformer, and an overbroad first contribution (lines 76-77) that the authors conceded. Part of the novelty case is wrong: 5kuu says TPTrans differs from Zügner et al. only by using a CST, but TPTrans encodes each path's node sequence, which Table 4 isolates. The authors answered 5kuu's question about x and z with 'Pardon me?'. B's AC accepted the novelty point ('closely related to multiple recent efforts') and outweighed it."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_y3EX",
+          "evidence": "Confidence 5 ('checked the math/other details carefully'), yet the stated 'primary concern' rests on a wrong assumption about the settings: lines 250-254 give a one-layer Bi-GRU of hidden size 64 in a three-layer, 1024-wide Transformer, about 50K added parameters on roughly 100M, not 'a non-trivial number'. y3EX also wrote 'I did not find any record of the number of layers ... Please add this to p7'; line 250, on page 7, says three. The rest of the review is detailed (line-referenced typos, the Efficiency section). After the correction y3EX raised its score."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_y3EX",
+          "claim": "TPTrans adds a non-trivial number of parameters through its RNNs, unaccounted for in the comparisons.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 250-254: one-layer Bi-GRU, hidden size 64, 64-dimensional node embeddings, in a three-layer Transformer with d = 1024 and d_FF = 4096. Such a GRU has 49,920 parameters, matching the authors' count of about 0.06% of roughly 100M. The path projection matrices are shared across layers (lines 231-233), so even with them the addition stays at a few percent at most. y3EX accepted this: 'feels more convincing now'."
+        },
+        {
+          "reviewer": "Reviewer_y3EX",
+          "claim": "The paper does not record the number of layers.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 250: 'we use Transformer with three layers, eight heads'; line 251 gives d = 1024 and d_FF = 4096."
+        },
+        {
+          "reviewer": "Reviewer_5kuu",
+          "claim": "Eq. 10 should use W^Q, not W^V.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. 10's absolute-path term reads (a_i W_a^K)(a_j W_a^V)^T, while Eq. 9 uses W_a^Q and W_a^K. The authors confirmed the error."
+        },
+        {
+          "reviewer": "Reviewer_5kuu",
+          "claim": "The relative path encoding is very similar to Zügner et al. 2021, except that it uses a CST instead of an AST.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. 5 encodes the node-type sequence of each path with a GRU; Code Transformer encodes distances (lines 52-55, 266-268). Table 4's 'degenerate path to hops' ablation isolates this difference: F1 drops by 1.56 (Python), 2.52 (Ruby), 0.88 (JavaScript) and 1.32 (Go)."
+        },
+        {
+          "reviewer": "Reviewer_5kuu",
+          "claim": "The first contribution, being 'the first ones' to embed sequential information as an inductive bias for attention, is overbroad.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 76-77 make the claim without defining 'sequential information', and the paper itself cites Kim et al. 2020 for feeding root-path representations into a Transformer's input, though not into attention (lines 158-160). The authors conceded that the statement is 'overly broad'."
+        },
+        {
+          "reviewer": "Reviewer_ZRpb",
+          "claim": "The Code Transformer paper reports results that beat those shown here.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Zügner et al. is not available here. Table 2 lists only monolingual Code Transformer numbers. The authors called it a 'very keen observation', explained that multilingual training improves Code Transformer, and gave no comparison with it."
+        },
+        {
+          "reviewer": "Reviewer_86qv",
+          "claim": "Absolute positions add no value over relative ones and in fact hurt performance.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 3: TPTrans-α F1 is below TPTrans on three languages and level on Go, from single runs. The rebuttal's repeated runs with the pointer network put TPTrans-α level or slightly ahead on Ruby, JavaScript and Go, so the 'hurt' did not survive."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_y3EX",
+          "Reviewer_ZRpb",
+          "Reviewer_86qv"
+        ],
+        "evidence": "Reviewer_y3EX edited 2021-08-16: 'I am updating my assessment to a (slightly) more positive rating' (final 6). Reviewer_ZRpb edited 2021-08-22, the day it wrote 'I am happy to improve my score to weak accept' (final 6). Reviewer_86qv edited 2021-09-01: 'increasing my score accordingly' (final 7). Reviewer_5kuu replied 'Be more precise' on 2021-08-22 and never edited (4). B's pre-rebuttal mean was therefore at most 5.0, no higher than A's.",
+        "what_convinced_or_not": "y3EX: the parameter count ('feels more convincing now') and the six-layer, 512-wide run on Ruby (TPTrans 24.97 against a plain Transformer's 20.23 F1), while still asking for other models and datasets. ZRpb: the JavaScript path-length and variance table ('oddly encouraging'), which the authors themselves called inconclusive; ZRpb's multilingual Code Transformer point got an explanation, not a comparison. 86qv: the whole set of new experiments (deeper model, model sizes, path statistics, code classification). 5kuu was not convinced on the contribution claim or on novelty."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'The majority of the reviewers appreciated this, and based on their advice, I am recommending that the paper be accepted as a poster.' The decision matches three of four ratings at 6 or 7. The AC concedes the novelty point ('straightforward and also closely related to multiple recent efforts') and calls the rebuttal results 'compelling' without naming them. Among them, the code-classification results trail TBCNN, ASTNN and TreeCaps, and the deeper-model run compares TPTrans only with a plain Transformer, on Ruby only.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers at 6 or 7 after raising their scores in discussion",
+        "AC view: a simple idea is valuable once shown to work",
+        "Rebuttal experiments answered the capacity, depth, JavaScript and error-bar concerns",
+        "Novelty objection (Reviewer_5kuu) conceded but outweighed"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Why path terms enter Key and Value but not Query, and why the absolute term pairs only with itself (Reviewer_43xz)",
+    "Section 3 text resembles Zügner et al. 2021; ethics flag, no ethical issue found, not used by the AC (Reviewer_SWC5)",
+    "Missing citation of Alon et al. 2020, Structural Language Models of Code (Reviewer_FGbv)",
+    "Title claims code representation while only summarization is tested (Reviewer_43xz)"
+  ],
+  "issues_only_b": [
+    "The Code Transformer paper reports better multilingual results than the monolingual numbers in Table 2; not disputed, not pursued (Reviewer_ZRpb)",
+    "The three-layer, 1024-wide set-up may handicap the baselines; a deeper, narrower test was run for B only, against a plain Transformer (Reviewer_y3EX)",
+    "The 'first ones' contribution claim is overbroad; conceded by the authors (Reviewer_5kuu)",
+    "Whether the Code Transformer re-implementation matches Zügner et al. (Reviewer_86qv, lines 266-268)",
+    "Function-name prediction is a dubious benchmark (Reviewer_y3EX)"
+  ],
+  "shared_issues": [
+    "Limited novelty: a combination of known components close to GREAT and Code Transformer (A: Reviewer_SWC5, Reviewer_FGbv, the AC; B: Reviewer_5kuu, the AC)",
+    "Evaluation on one task, code summarization (A: Reviewer_SWC5, Reviewer_43xz, the AC; B: Reviewer_y3EX)",
+    "No error bars (A: Reviewer_FGbv, Reviewer_SWC5; B: Reviewer_5kuu, Reviewer_86qv)",
+    "JavaScript loss and the unsupported 'weak structure' explanation (A: Reviewer_43xz; B: Reviewer_ZRpb, Reviewer_y3EX)",
+    "Absolute paths do not help and the 'conflict' explanation is unsupported (A: Reviewer_43xz; B: Reviewer_y3EX, Reviewer_86qv, Reviewer_5kuu)",
+    "Comparable model capacity (A: Reviewer_SWC5; B: Reviewer_y3EX, Reviewer_86qv)",
+    "Unclear baselines and set-up, poor writing, no limitations section (A: Reviewer_FGbv, Reviewer_43xz, Reviewer_SWC5; B: all four reviewers)",
+    "Need for insight or qualitative analysis of what paths contribute (A: Reviewer_SWC5, Reviewer_43xz; B: Reviewer_86qv, Reviewer_ZRpb)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B accepted and Committee A rejected because the rebuttal moved B's reviewers and not A's. Before the rebuttal, B stood no higher than A: A's ratings (7, 4, 4; mean 5.0) never changed, and three B reviewers wrote that they raised their scores, so B's pre-rebuttal mean was at most 5.0. Both committees saw the same faults: an incremental combination of known parts, one task, no error bars, a loss to Code Transformer on JavaScript, and an unexplained absolute-path result. B's movers held objections that new numbers could answer. Reviewer_y3EX's capacity concern rested on a wrong assumption (the GRUs add about 50K parameters to a model of about 100M), and only B received the deeper-model run that y3EX then asked for. Reviewer_ZRpb accepted JavaScript path statistics that the authors called inconclusive, and Reviewer_86qv credited the whole set of new experiments. A's detractors objected to limited significance and lack of insight, which new numbers did not answer: Reviewer_SWC5 acknowledged the answers and kept 4, and Reviewer_43xz never replied. The two ACs then read the same new results in opposite ways. A's AC noted that the code-classification results do not beat stronger baselines, which the authors' own table confirms (94.94 against 98.2 and 98.32 on POJ-104). B's AC called the new results 'compelling'. The paper is borderline, the committees weighted the same facts differently, and neither found a fatal flaw.",
+  "candidate_reasons": [
+    "Rebuttal raised scores in one committee",
+    "Detractor silent after the rebuttal",
+    "Fixable versus unfixable reviewer objections",
+    "ACs read new results oppositely",
+    "Extra experiment shown to one committee",
+    "Corrected misreading lifted a score"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_43xz review (Cons list); no post after the rebuttal",
+    "Reviewer_SWC5 comment 2021-08-24",
+    "Reviewer_FGbv review ('whether the comparisons are fair') and comment 2021-08-24",
+    "Reviewer_y3EX review ('primary concern'), comment 2021-08-11 and update in final review",
+    "Authors' Response3 to Reviewer_y3EX, 2021-08-13 (deeper-model Ruby table, B only)",
+    "Reviewer_ZRpb comment 'Structure analysis', 2021-08-22",
+    "Reviewer_86qv discussion update in final review",
+    "Reviewer_5kuu review and comment 'Be more precise', 2021-08-22",
+    "Authors' post 'Further experiments on Code Classification Task', 2021-08-31 (both committees)",
+    "paper_submitted.pdf Table 2, Table 3, Table 4, Eq. 5-10, lines 76-77, 250-254, 278-279, 318-319"
+  ]
+}

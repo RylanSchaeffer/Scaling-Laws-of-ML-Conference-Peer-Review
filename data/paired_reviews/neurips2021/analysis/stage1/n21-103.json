@@ -1,0 +1,220 @@
+{
+  "pair_id": "n21-103",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [4, 3, 5, 5],
+      "confidences": [5, 5, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_zqNn"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "All four ratings are 3 to 5, within 1.25 of the 4.25 mean, and all are below threshold. Three reviewers lead with the same limited-novelty objection. The lowest, Reviewer_zqNn's 3, is a short review that adds Paint by Word to that objection. Reviewer_9mLQ's 5 is the odd one: its text is positive throughout and gives no reason to reject."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_9mLQ",
+          "evidence": "Asks 'Can proposed method control the scale of modified effect?', which the paper answers with s_edit (lines 202-205) and the scale sweeps of Figures 9 and 10. The main review is generic praise ('technically sound, claims are well supported', 'results look good'), yet the rating is 5 with no stated reason beyond a request to highlight the difference from DatasetGAN. No reply after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7mk5",
+          "claim": "The method combines known parts (joint image-segmentation modelling from DatasetGAN/SemanticGAN, GAN inversion), and its few-label advantage comes from those works.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 53-55, 102-109 and 124-133: EditGAN builds on DatasetGAN/SemanticGAN for p(x, y) and on prior encoders [65, 61, 2] for embedding. The 16 to 30 labels (lines 226-227) train DatasetGAN's segmentation branch. The new parts are the masked objective (Eqs. 1-5), editing vectors with s_edit, and refinement (Sec. 3.4)."
+        },
+        {
+          "reviewer": "Reviewer_7mk5",
+          "claim": "Unlike SEAN, the method controls only the shape of edited regions, not their content or style.",
+          "checked_against_paper": "correct",
+          "evidence": "No edit in Figures 1, 4, 5, 7 or 8 changes the colour or texture of an existing part; all add, remove, move or reshape parts. SEAN is cited only in related work [18], with no comparison. The authors conceded appearance edits are out of scope."
+        },
+        {
+          "reviewer": "Reviewer_zqNn",
+          "claim": "Paint by Word solves editing vectors in nearly the same way, with text in place of masks.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The claim concerns another paper. The submission does not cite Paint by Word. The authors replied that it optimizes per image and learns no reusable editing vectors; zqNn did not answer that point."
+        },
+        {
+          "reviewer": "Reviewer_M7u3",
+          "claim": "Generator (StyleGAN2), segmentation branch (DatasetGAN) and inversion encoder (pSp) all come from prior work.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 112 (StyleGAN2 [7, 8]); lines 124-128 (DatasetGAN's MLP branch [1]); lines 131-133 (encoder built on [65, 61, 2], where [61] is pSp)."
+        },
+        {
+          "reviewer": "Reviewer_M7u3",
+          "claim": "No baseline that edits the image directly, inverts original and edit, and uses the latent difference as the editing vector.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 compares only MaskGAN, LocalEditing and InterFaceGAN. The authors argued that pixel edits are harder than mask edits but did not run the baseline."
+        },
+        {
+          "reviewer": "Reviewer_M7u3",
+          "claim": "Figure 4's deleted ears are not fully removed, and Figure 5's shrunk car wheels leave blurry regions.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4, Delete Ear, top cat: faint ear outlines remain. Figure 5, third row, first car: the wheel wells are grey smudges. The authors called these over-strong edits."
+        },
+        {
+          "reviewer": "Reviewer_9mLQ",
+          "claim": "Implied: the paper does not show whether the strength of an edit can be controlled.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Lines 202-205 define the scale s_edit; Figure 9 applies five scales per class, and Figure 10 sweeps the scale from 0 to 2 on the smile benchmark (lines 285-286)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Responses posted 2021-08-10. Only Reviewer_zqNn reacted, by editing its review on 2021-08-19: 'the limited novelty is obvious. I still think it is obviously below the bar'. Reviewer_7mk5, Reviewer_M7u3 and Reviewer_9mLQ never replied or edited.",
+        "what_convinced_or_not": "The authors could answer the novelty objection only in words: a four-step protocol (masked optimization, editing vectors, scaling, refinement) and text distinctions from SEAN and Paint by Word. They gave no new experiments and declined to run M7u3's direct-edit baseline. zqNn agreed the method is simple but kept its rejection; the others stayed silent."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Rejects with all ratings below threshold: 'four reviewers unanimously consider the technical novelty of the paper as limited' and 'none of the reviewers advocated for this work'. The AC grants that 'the editing results are impressive'. 'Unanimously' overstates Reviewer_9mLQ, whose text calls the method technically sound and asks only to highlight the difference from DatasetGAN. The meta-review does not mention the rebuttal.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Limited technical novelty: a composition of DatasetGAN/SemanticGAN, StyleGAN2 and GAN inversion",
+        "No reviewer above threshold; nobody advocated for the paper",
+        "Rebuttal arguments on novelty changed no rating"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [8, 6, 8],
+      "confidences": [5, 5, 5],
+      "reviews_edited_after_posting": ["Reviewer_Wd7V", "Reviewer_nroC"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 8, 6, 8 sit within 1.33 of the 7.33 mean. Before the rebuttal Reviewer_Wd7V's 4 was the low pole; it rose to 6. Dropping either 8 leaves a mean of 7.0, so no single review carries the decision. Both 8s come from 2.5-hour reviews, and Reviewer_6weF's is thin."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_6weF",
+          "evidence": "An 8 at confidence 5 after 2.5 hours, with three sentences of assessment and no reply after the rebuttal. It calls the evaluation 'well done and extensive, comparing to several baselines and running it on several different domains'. Baselines appear only on the face smile benchmark, whose 400-image FID and unmatched edit scales both other B reviewers questioned."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Wd7V",
+          "claim": "FID is computed on only 400 edited images (line 258), too few for a 2048-dimensional covariance.",
+          "checked_against_paper": "correct",
+          "evidence": "Line 258: '400 edited test images'; line 306 uses 400 again for Figure 9. Reviewer_nroC raised the same point. With 4000 images in the rebuttal the ranking held, and InterFaceGAN kept the better FID."
+        },
+        {
+          "reviewer": "Reviewer_Wd7V",
+          "claim": "Table 1 does not match edit scales; Figure 10 shows InterFaceGAN near 0.9 accuracy and 0.7 ID score, so rescaled it could beat EditGAN.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 268-269 and 283-284 apply both at unit scale, which does not match effect size. Figure 10's InterFaceGAN curve passes about (0.90, 0.70), level with plain EditGAN at (0.915, 0.705). Line 288 itself says real-time EditGAN is 'on-par'. Only refinement lifts EditGAN above InterFaceGAN, so 'superior' overstates."
+        },
+        {
+          "reviewer": "Reviewer_Wd7V",
+          "claim": "The paper uses a non-official GANLocalEditing implementation.",
+          "checked_against_paper": "correct",
+          "evidence": "Footnote 2 links github.com/cyrilzakka/GANLocalEditing, not the official IVRL repository. The authors called it a typo."
+        },
+        {
+          "reviewer": "Reviewer_Wd7V",
+          "claim": "The refinement mask r may be user-defined at test time, which would make the InterFaceGAN comparison unfair.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Eq. (1) builds r from predicted segmentations and the fixed label list Q_edit; lines 208-210 reuse the objective with y0 as the target. No user input is needed, though the paper does not say so outright."
+        },
+        {
+          "reviewer": "Reviewer_Wd7V",
+          "claim": "Baselines StyleGAN2 Distillation and Mask-Guided Discovery are missing.",
+          "checked_against_paper": "correct",
+          "evidence": "Neither is cited or in Table 1. In the rebuttal StyleGAN2 Distillation beat EditGAN on attribute accuracy (98.3 vs 91.5) and ID score (0.78 vs 0.70), with worse FID (45.09 vs 41.74)."
+        },
+        {
+          "reviewer": "Reviewer_Wd7V",
+          "claim": "The claim at lines 239-240 that no previous method can make such complex, high-precision edits has no supporting experiment.",
+          "checked_against_paper": "correct",
+          "evidence": "The only comparison with baselines is the smile edit (Table 1, Figure 10). No baseline is run on the fine edits of Figures 4 and 7."
+        },
+        {
+          "reviewer": "Reviewer_6weF",
+          "claim": "The evaluation compares against several baselines on several domains.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Baselines appear only in the face smile benchmark (Table 1, Figure 10). Cars, cats and birds get qualitative figures and an EditGAN-only FID-versus-scale plot (Figure 9)."
+        },
+        {
+          "reviewer": "Reviewer_nroC",
+          "claim": "Linear Semantics in GANs (Xu and Zheng, CVPR 2021) does similar semantic editing.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The claim concerns another paper. The submission does not cite it. The authors replied that it optimizes per image on GAN samples only, without editing vectors or real-image editing, and called it concurrent."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_Wd7V", "Reviewer_nroC"],
+        "evidence": "Reviewer_Wd7V (edited 2021-09-02, a day after the authors' follow-up): 'after rebuttal I raise my score 4 -> 6'. Reviewer_nroC (edited 2021-09-01): 'My concerns have been adressed and I raised my score accordingly'; its earlier score is not stated. Reviewer_6weF did not respond.",
+        "what_convinced_or_not": "New experiments: FID on 4000 images, KID, LocalEditing with the e4e encoder, a StyleGAN2 Distillation baseline, runtimes, and the automatic definition of r. nroC called the transfer of edit vectors 'particularly intriguing'. Wd7V still wanted Table 1 'removed or ... rescaled' but judged it no obstacle. No reviewer remarked that the Distillation baseline beat EditGAN on two of three metrics."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts with ratings 8, 6, 8. The meta-review notes clarifications and that 'Scores have been increased'. Its opening copies Reviewer_nroC's and Reviewer_Wd7V's summaries; its reason, 'direct useful practical application', copies nroC's post-rebuttal text. It does not address the DatasetGAN overlap or Wd7V's remaining doubt about Table 1.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Reviewers judged the masked latent optimization and transferable editing vectors new, and the edits compelling",
+        "Rebuttal experiments answered the evaluation concerns; two ratings rose",
+        "Practical value: fine-grained edits from 16 to 30 labelled images"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Paint by Word already optimizes latents for masked edits, and the paper does not cite it (Reviewer_zqNn)",
+    "SEAN already edits by segmentation and also controls region style (Reviewer_7mk5)",
+    "Missing baseline: edit pixels directly, invert both images, use the latent difference (Reviewer_M7u3)",
+    "Artifacts at strong edits: ears not fully deleted (Figure 4), blurry wheel wells (Figure 5) (Reviewer_M7u3)",
+    "Dependence on segmentation-branch accuracy and on the shared latent code (Reviewer_9mLQ)"
+  ],
+  "issues_only_b": [
+    "FID on 400 images is too few (Reviewer_Wd7V, Reviewer_nroC)",
+    "Table 1 compares edits at unmatched scales; Figure 10 shows plain EditGAN on par with InterFaceGAN (Reviewer_Wd7V)",
+    "Missing baselines and inversion ablation: StyleGAN2 Distillation, Mask-Guided Discovery, e4e (Reviewer_Wd7V)",
+    "Unofficial LocalEditing code cited, and an unsupported 'no previous method' claim at lines 239-240 (Reviewer_Wd7V)",
+    "Linear Semantics in GANs not discussed (Reviewer_nroC); runtimes and transfer to BigGAN (Reviewer_6weF)"
+  ],
+  "shared_issues": [
+    "Heavy reliance on DatasetGAN/SemanticGAN (A: three reviewers lead with it as the reason to reject, the fourth asks to highlight the difference; B: Reviewer_nroC and Reviewer_Wd7V note it as context)",
+    "Shape edits only; no colour, texture or lighting changes (A: Reviewer_7mk5, Reviewer_M7u3; B: Reviewer_Wd7V)",
+    "Editing one instance of a part class alone, such as one eye or the front wheels (A: Reviewer_M7u3; B: Reviewer_Wd7V)",
+    "Closely related recent work missing from the paper (A: Paint by Word; B: Linear Semantics, StyleGAN2 Distillation)",
+    "Strong fine-grained qualitative results and clear writing (both ACs and nearly every reviewer)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "The committees weighted the same facts in opposite ways. Both saw strong, fine-grained edits made by adding a new editing protocol (masked latent optimization, reusable editing vectors, refinement) to DatasetGAN/SemanticGAN, StyleGAN2 and a pSp encoder, as the paper itself says (lines 53-55, 102-109, 124-133). All of Committee A's reviewers rated below threshold, and three led with limited novelty: a composition of known parts whose few-label advantage is inherited (Reviewer_7mk5, correct). Committee B's reviewers saw the same dependence ('builds heavily on DatasetGAN', Reviewer_nroC) but judged the protocol new and the results useful. The kind of objection then shaped the rebuttal. B's objections were empirical (400-image FID, unmatched edit scales, missing baselines); the authors answered with new experiments, and two B ratings rose (Reviewer_Wd7V 4 to 6, Reviewer_nroC to 8). A's objection was a judgment of novelty that no experiment answers; only Reviewer_zqNn replied, and it kept its 3. Neither AC added a reading of its own: A's rejected because 'none of the reviewers advocated', B's accepted because 'Scores have been increased'. Each side carries a weak vote. Reviewer_6weF's 8 is a 2.5-hour review that calls a one-benchmark evaluation 'extensive'. Reviewer_9mLQ's 5 has positive text and asks for an edit-scale control the paper already has. B accepted although Figure 10 shows plain EditGAN only on par with InterFaceGAN, and the rebuttal's StyleGAN2 Distillation baseline beat EditGAN on accuracy and identity.",
+  "candidate_reasons": [
+    "Same composition, opposite novelty weighting",
+    "Novelty objection immune to rebuttal",
+    "Empirical concerns answered with experiments",
+    "Post-rebuttal engagement only in one committee",
+    "ACs defer to rating consensus",
+    "Thin top score left unchallenged"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_7mk5 main review (SEAN, few-label advantage from DatasetGAN/SemanticGAN)",
+    "Reviewer_zqNn post-rebuttal comment (edited 2021-08-19)",
+    "Reviewer_M7u3 cons (direct-edit baseline, Figures 4 and 5)",
+    "Reviewer_9mLQ limitations item 3",
+    "Reviewer_Wd7V weaknesses and post-rebuttal update (edited 2021-09-02)",
+    "Reviewer_nroC post-rebuttal paragraph (edited 2021-09-01)",
+    "Reviewer_6weF main review",
+    "Authors' response to Reviewer_Wd7V (4000-image FID, e4e and StyleGAN2 Distillation tables)",
+    "paper lines 53-55, 102-109, 124-133 (builds on DatasetGAN/SemanticGAN and prior encoders)",
+    "paper lines 202-205, Figure 9 and Figure 10 (edit scale s_edit)",
+    "paper Table 1, lines 258, 268-289 and footnote 2",
+    "paper Eq. (1) and lines 206-213 (mask r and refinement)",
+    "paper Figure 4 (Delete Ear) and Figure 5 (third row, first car)"
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "pair_id": "n21-076",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        5,
+        4,
+        4
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_g7Ce",
+        "Reviewer_fa9Z"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 7, 7 (Reviewer_g7Ce, Reviewer_fa9Z, Reviewer_4et4). The low score, g7Ce, rose from 4 to 6 after the rebuttal. fa9Z is the warmest ('enjoyed reading the paper!') but is level with 4et4 at 7."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_fa9Z",
+          "evidence": "On the math only. It writes 'Theoretical background and analyses made throughout the paper is thorough and insightful'. Section 3.1 has errors that the authors conceded in B: line 137 calls the noise normal while Eq. (4) is Laplace, and Eq. (7) sets p(x|y,θ)p(θ) equal to p(x|y). Its experimental points (training cost, scaling function, 'GARM' and 'DB' typos) show a close reading of the tables."
+        },
+        {
+          "reviewer": "Reviewer_g7Ce",
+          "evidence": "On the math only. Confidence 5 ('checked the math/other details carefully'), yet the review raises no point on Section 3.1, whose errors are on pages 4 and 5. Its experimental charge (no edge-weighted baseline) is correct."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_g7Ce",
+          "claim": "There is no comparison with a loss weighted by a gradient or edge map, so the gain cannot be credited to uncertainty.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 3 and 4 compare only Original, GRAM and the proposed loss. The rebuttal added error-map and gradient-map weights on EDSR-S x4. The camera-ready adds them as Section 4.3."
+        },
+        {
+          "reviewer": "Reviewer_g7Ce",
+          "claim": "Lines 59-60 ('For the first time, we propose to cast SISR into a Bayesian estimation framework') overclaim, because [21] already did Bayesian uncertainty for SISR.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 94-96 of the same paper cite [21] for Bayesian uncertainty in SISR and [20] for data uncertainty in SISR. The camera-ready drops 'For the first time' from this bullet."
+        },
+        {
+          "reviewer": "Reviewer_4et4",
+          "claim": "θ comes from a Laplace likelihood on the L1 error, so it is not clear why it is epistemic and not aleatoric uncertainty.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 131-137 say the paper studies epistemic uncertainty, but Eq. (3) is the heteroscedastic observation-noise model that [22] calls aleatoric. The camera-ready changes the term to aleatoric."
+        },
+        {
+          "reviewer": "Reviewer_4et4",
+          "claim": "Line 179, 'Linear scaling would be a natural option', has no justification.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (10) follows line 179 directly. The submission has no ablation of the scaling function. The rebuttal added eleven functions on EDSR-S x4; linear and log were best."
+        },
+        {
+          "reviewer": "Reviewer_4et4",
+          "claim": "The 'nearest upsampling' module in the overview figure is not discussed.",
+          "checked_against_paper": "correct",
+          "evidence": "The module is in Fig. 2 (the review says Fig. 3). No text in the submission mentions it."
+        },
+        {
+          "reviewer": "Reviewer_fa9Z",
+          "claim": "The theoretical background and analyses are thorough and insightful.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Line 137 (ε standard normal) contradicts Eq. (4) (Laplace). Eq. (7) writes p(x_i|y_i) = p(x_i|y_i,θ_i)p(θ_i), and line 153 writes the improper prior as p(w) = 1/w."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_g7Ce"
+        ],
+        "evidence": "g7Ce's review, edited 2021-08-23, says 'Improved the rating from 4 ... to 6'. Its comment that day: 'The rebuttal addresses all my concerns'. fa9Z (2021-08-19): 'I'll keep my score of 7'; its edit on 2021-07-16 is before the rebuttal. 4et4 did not reply.",
+        "what_convinced_or_not": "g7Ce was convinced by the weighted-loss table: on EDSR-S x4, uncertainty weights beat error-map and gradient-map weights on all five test sets (Manga109 +0.46 dB against +0.26 dB at best). fa9Z accepted the 1.8x training cost and the eleven-function scaling ablation. 4et4 got answers and promises (rename 'epistemic', add error maps) but never responded."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All reviewers liked the paper ... The authors provided a strong rebuttal and all reviewers at the end lean toward accepting the paper. I concur with them.' The meta-review lists the questions but rules on none. 'All reviewers liked the paper' passes over g7Ce's first score of 4 and its 'novelty of this paper is limited'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Consistent PSNR gains over L1 for three backbones, three scales and two degradations, with no test-time cost",
+        "Rebuttal tables (error-map and gradient-map weights, eleven scaling functions) that moved g7Ce from 4 to 6",
+        "Two 7s (fa9Z, 4et4) that valued prioritising, not attenuating, uncertain pixels",
+        "No reviewer reported the Section 3.1 derivation errors, except 4et4's question on the epistemic label"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        5,
+        4,
+        4
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_WXXg",
+        "Reviewer_H49w"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 5, 4, 4 (Reviewer_oVep, Reviewer_WXXg, Reviewer_H49w, Reviewer_zyeM). zyeM promised 'borderline' but left 4 in the system. WXXg leaned to accept before the discussion ('I currently tend to accept the paper') and cut its score on 2021-08-31."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_WXXg",
+          "evidence": "Self-reported 0.5 hours and confidence 3 ('Math/other details were not carefully checked'). It cut its score because 'according to other reviewers, this paper have some errors in formulations', not from its own reading. Its review text still says 'I currently tend to accept the paper due to its strong intuition and clear presentation'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_oVep",
+          "claim": "Eq. (3) assumes ε is standard normal, but Eq. (4) is a Laplace likelihood (also Reviewer_H49w).",
+          "checked_against_paper": "correct",
+          "evidence": "Line 137: 'ε represents the normal distribution with zero-mean and unit-variance'. Eq. (4) is (1/2θ) exp(-||x-f(y)||_1/θ). The authors replied 'It's a mistake'. The camera-ready says 'Laplace'."
+        },
+        {
+          "reviewer": "Reviewer_oVep",
+          "claim": "Eq. (7) is wrong: p(x_i|y_i,θ_i)p(θ_i) gives p(x_i,θ_i|y_i), not p(x_i|y_i); and the improper Jeffreys prior needs '∝', not '=' (also Reviewer_H49w).",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (7) and line 153 ('p(w) = 1/w') read this way in the submission. The camera-ready writes p(x_i,θ_i|y_i) and '∝'."
+        },
+        {
+          "reviewer": "Reviewer_oVep",
+          "claim": "Eq. (6) and Eq. (9) differ only in the scalar on s_i.",
+          "checked_against_paper": "correct",
+          "evidence": "L_EU ends in '+ s_i' and L_ESU in '+ 2 s_i'; nothing else changes. The 'Jeffreys prior' contribution is a coefficient of 2 in place of 1."
+        },
+        {
+          "reviewer": "Reviewer_H49w",
+          "claim": "Lines 132 and 137 say the paper models epistemic uncertainty, but Eq. (3) models heteroscedastic observation noise, which is aleatoric.",
+          "checked_against_paper": "correct",
+          "evidence": "Same point as Reviewer_4et4 in A. The authors promised to change the terms; the camera-ready says 'aleatoric'."
+        },
+        {
+          "reviewer": "Reviewer_H49w",
+          "claim": "References [14] and [22] are the same Kendall and Gal 2017 paper.",
+          "checked_against_paper": "correct",
+          "evidence": "[14] is the NeurIPS 2017 version and [22] the arXiv 1703.04977 version of the same paper."
+        },
+        {
+          "reviewer": "Reviewer_H49w",
+          "claim": "Gains over the baseline are consistent but mild, about 0.1 to 0.3 dB PSNR on average.",
+          "checked_against_paper": "correct",
+          "evidence": "In Table 3 the mean gain per row over the test sets runs from 0.12 dB (EDSR x4) to 0.43 dB (EDSR-S x2)."
+        },
+        {
+          "reviewer": "Reviewer_zyeM",
+          "claim": "The experiments compare only with GRAM; no other pixel weighting (gradient, wavelet, DCT) is tested.",
+          "checked_against_paper": "correct",
+          "evidence": "Tables 3 and 4 have only Original, GRAM and the proposed loss."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "mixed",
+        "by_whom": [
+          "Reviewer_WXXg",
+          "Reviewer_zyeM"
+        ],
+        "evidence": "WXXg (2021-08-31): 'I will downgrade my rating a little'. Its review was edited that day and ends at 5; the unchanged text 'tend to accept' implies 6 before. The meta-review says WXXg went 'to 4'; the record shows 5. zyeM (2021-08-31): 'I will raise my rating to borderline', but the system score stayed 4; the AC counts it as 5. H49w (2021-08-31): 'I maintain my recommendation' (review edited that day, still 4). oVep did not reply.",
+        "what_convinced_or_not": "The weighted-loss table settled the baseline point: H49w thanks the authors for 'experimental results comparing to simple edge/texture detection', and the AC calls the baselines 'convincing'. The math got one-line concessions ('we will correct those mathematics issues'; 'It's a mistake') and a post hoc step-2 likelihood with θ̂ = 1/log(θ). H49w judged 'the revisions to be made to the manuscript are too many at this point'. WXXg wanted 'another reviewing process'. zyeM kept 'technical novelty ... relatively limited for NIPS'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All four reviewers recommend rejecting the work. The AC agrees with the concerns raised by the reviewers and finds no basis for overruling their recommendation.' It leads with 'the precision of the mathematical formulation' in Section 3.1 and zyeM's novelty point. It grants that the rebuttal baselines are 'convincing'. Two slips: it says WXXg reduced to 4 (the record shows 5), and it lists zyeM among the math critics, though zyeM only asked for more explanation of the prior.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Errors in the Section 3.1 derivation (normal versus Laplace, Eq. 7, improper prior, epistemic label), conceded by the authors",
+        "The math corrections plus the new experiments judged too many to accept without another review (H49w, WXXg)",
+        "Limited technical novelty: a standard Bayesian framing and a weighted loss (zyeM)",
+        "All four ratings at 5 or below after the discussion; the AC saw no basis to overrule"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No evaluation of the uncertainty estimate itself against [22] or against the error map (4et4)",
+    "The 'nearest upsampling' module in Fig. 2 is not described (4et4)",
+    "The 'for the first time' Bayesian SISR claim conflicts with [21]; arXiv citations of published papers (g7Ce)",
+    "Error map of the step-1 model as an alternative weight; visual analysis of step 1 against step 2 (g7Ce)",
+    "No societal-impact statement; table typos 'GARM' and 'DB' (fa9Z)"
+  ],
+  "issues_only_b": [
+    "Line 137 calls the noise normal while Eq. (4) is Laplace (oVep, H49w)",
+    "Eq. (7) is not a valid identity for p(x|y), and the improper Jeffreys prior is written as a density (oVep, H49w)",
+    "The sparsity prior only changes the coefficient on s_i from 1 to 2; no reason given for Jeffreys over other sparse priors (oVep, zyeM)",
+    "No probabilistic justification for the step-2 weighting (H49w)",
+    "Duplicate reference [14]/[22] (H49w)",
+    "Few and dated backbones, no recent state-of-the-art networks, and no test with noisy inputs (WXXg, H49w)",
+    "Relation to training with weighted hard samples not discussed (zyeM)"
+  ],
+  "shared_issues": [
+    "No baseline that weights the loss by a gradient or edge map (g7Ce in A; H49w, zyeM and WXXg in B); one identical rebuttal table answered all four",
+    "The linear weight in Eq. (10) is heuristic (fa9Z and 4et4 in A; oVep in B); one identical eleven-function table answered all three",
+    "The modelled uncertainty is called epistemic but is aleatoric (4et4 in A; H49w in B)",
+    "Limited novelty (g7Ce in A; zyeM in B)",
+    "Extra cost of two-step training and no limitations section (fa9Z in A; oVep in B)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B rejected and Committee A accepted mainly because B's reviewers checked the derivation in Section 3.1 and found errors that A's reviewers mostly missed. Reviewer_oVep (6 hours) and Reviewer_H49w (5 hours) found errors that the submitted PDF confirms. Line 137 calls the noise normal, but Eq. (4) is Laplace. Eq. (7) sets p(x|y,θ)p(θ) equal to p(x|y). The improper Jeffreys prior is written as a density, and the heteroscedastic model is called epistemic. The authors conceded all of them. In B these errors set the frame. H49w kept 4 because the revisions were 'too many'. Reviewer_WXXg (0.5 hours, math not checked) fell from 'tend to accept' to 5 on the word of the other reviewers. The AC led with the math. In A, only Reviewer_4et4 raised the epistemic label, and Reviewer_fa9Z called the theory 'thorough and insightful'. On the shared points (no edge-weighted baseline, heuristic linear weight, limited novelty) the committees weighed the same evidence differently. Identical rebuttal tables moved Reviewer_g7Ce from 4 to 6 in A. In B the AC called the same tables 'convincing', but no reviewer moved to accept. B wanted another review cycle for the fixes; A left them to the camera-ready, where the authors fixed most of them. The empirical case, mean gains of about 0.1 to 0.4 dB over L1, was the same for both and was not disputed.",
+  "candidate_reasons": [
+    "Derivation errors found only by B",
+    "Same rebuttal, different score response",
+    "Camera-ready fix versus re-review",
+    "Low-effort reviewer defers downward",
+    "Champion praised unchecked theory",
+    "Limited novelty weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_oVep review (math points 1-3)",
+    "Reviewer_H49w review and 2021-08-31 comment",
+    "Reviewer_WXXg review and 2021-08-31 comment",
+    "Reviewer_g7Ce edited review (4 to 6) and 2021-08-23 comment",
+    "Reviewer_fa9Z review ('thorough and insightful')",
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "paper_submitted.pdf page 4: lines 131-137, Eqs. (3)-(4)",
+    "paper_submitted.pdf page 5: line 153, Eqs. (6), (7), (9)",
+    "paper_submitted.pdf Tables 3-4 (Original, GRAM, proposed loss only)",
+    "paper.pdf (camera-ready) Section 3.1 and Section 4.3"
+  ]
+}

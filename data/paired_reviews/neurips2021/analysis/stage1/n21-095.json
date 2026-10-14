@@ -1,0 +1,218 @@
+{
+  "pair_id": "n21-095",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        8,
+        5
+      ],
+      "confidences": [
+        3,
+        3,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_nv9K"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "No single outlier: the committee split two against two (Reviewer_jJ4x 7 and Reviewer_e5P4 8 against Reviewer_MQP9 5 and Reviewer_nv9K 5). The 8 from e5P4 is the highest of the eight ratings in either committee and rests on five short bullets, two clarifying questions and no discussion post. jJ4x (2 hours, math 'not carefully checked') did not post in the discussion either."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nv9K",
+          "evidence": "Confidence 5 ('checked the math/other details carefully'), but the review calls the method 'min o1*w1+o2*w2+o3*w3' with 'learnable weights' and the comments place the MOPSolver at the lower ('inner') level. Algorithm 1 runs plain gradient descent on the lower level and the MOPSolver on the upper-level gradients, and MGDA recomputes the weights at every step. He had taken the SOML baseline equation for the method and conceded it on 2021-08-15 ('Yes indeed, the scalarization is called SOML in this draft'). The edited review also calls the venue 'a top conference like ICLR'."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_nv9K",
+          "claim": "MOML is a weighted sum of objectives with learnable weights, run like DARTS except that the inner level uses the MOPSolver.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Camera-ready Algorithm 1: gradient descent on the lower level (steps 4-6), MOPSolver on the upper-level gradients (steps 7-9); the fixed-weight sum is the SOML baseline (Section 5.1). The kernel is fair: MGDA returns a convex combination of the gradients, and Section 5.4 says DARTS is the single-objective special case."
+        },
+        {
+          "reviewer": "Reviewer_nv9K",
+          "claim": "The improvements are very limited and not significantly different, e.g. Table 2.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 2, average accuracy: DSAN+MOML 90.02 vs DSAN+SOML 89.85 (+0.17); MME+MOML 90.53 vs MME+SOML 89.90 (+0.63). No error bars."
+        },
+        {
+          "reviewer": "Reviewer_MQP9",
+          "claim": "The convergence result is asymptotic, and the error of the K-step lower-level solution and of the meta-gradient is not quantified.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Theorem 2 gives Kuratowski-Painlevé set convergence as K → +∞ with no rate. The non-asymptotic sketch the authors posted on 2021-08-30 is not in the camera-ready main text."
+        },
+        {
+          "reviewer": "Reviewer_jJ4x",
+          "claim": "The paper gives no runtime comparison of MOML with SOML.",
+          "checked_against_paper": "correct",
+          "evidence": "The camera-ready main text reports no running time; its appendix is not in the available PDF. The authors conceded that MOML is slower."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_nv9K"
+        ],
+        "evidence": "Reviewer_nv9K's review was edited on 2021-08-15, the day he wrote 'Therefore I revise my score to weak reject'. His review text says 'I decide to reject it' and his 2021-08-11 comment says 'My current stance is to argue for rejection'; the final rating is 5. No other review was edited. Reviewer_MQP9 asked for more on 2021-08-11 and did not answer the replies of 2021-08-14 and 2021-08-30. jJ4x and e5P4 never posted.",
+        "what_convinced_or_not": "The authors showed that the weighted sum below Eq. 2 was the SOML baseline and that the MOPSolver sits on the upper level. nv9K accepted this but kept 'a recombination of all existing techniques'. The authors' appeal to a highly cited TPAMI framework paper, and the non-asymptotic proof sketch for MQP9, drew no reply."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "With a two-against-two split (mean 6.25) the chair sided with the positive half. 'The paper is well written. The authors provide the theoretical analysis on convergence, and the experimental results demonstrate the effectiveness' paraphrases jJ4x. The one reservation, 'More discussion on the relation with the existing methods is needed', nods to nv9K and MQP9 without engaging their arguments.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Two positive reviews (Reviewer_jJ4x 7, Reviewer_e5P4 8) praising a general framework, convergence theory and experiments on four problems",
+        "Framework seen as the meta-learning analogue of Sener and Koltun's multi-task learning as multi-objective optimization (jJ4x)",
+        "Soft detractors: Reviewer_MQP9's 5 asked for deeper theory and called the experiments 'exhaustive'; Reviewer_nv9K's novelty case began from a misreading and moved up to weak reject",
+        "Chair accepted at mean 6.25 with a meta-review that restates the positive reviews"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        4,
+        4,
+        3
+      ],
+      "confidences": [
+        4,
+        3,
+        3,
+        1
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7cN3"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 4, 4, 3, all below threshold. Reviewer_kG42's 3 is the lowest and comes with confidence 1 and 0.5 hours; without it the committee is 5, 4, 4."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_kG42",
+          "evidence": "0.5 hours, confidence 1, 'I find it very difficult to understand this paper'. Calls the Section 5.1 comparison unfair because MAML is not trained against attacks, and does not mention the SOML baseline, which uses the same perturbed query sets."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_CNYc",
+          "claim": "Theorem 1 states no continuity condition on f, the proof's step that the accumulation point equals ω*(ᾱ) fails, and a pathological f meets all stated conditions.",
+          "checked_against_paper": "correct",
+          "evidence": "The authors conceded: 'we had missed an assumption that the mapping ... should be jointly continuous'. Camera-ready Theorem 1 now begins 'If f(ω, α) is jointly continuous' and adds that ω*(α) is uniformly bounded. The submitted PDF is not available, so the original statement is known from CNYc's review and the authors' reply."
+        },
+        {
+          "reviewer": "Reviewer_CNYc",
+          "claim": "Conditions (ii) and (iv) of Theorem 2 do not hold for the neural networks used, so the abstract's convergence claim needs qualification.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Theorem 2 needs (ii) uniform convergence of the inner iterates as K → +∞ and (iv) P-convexity of φ_K and strict P-convexity of φ. The authors called (iv) 'unfortunately needed'. The camera-ready abstract still says 'we prove the convergence properties'."
+        },
+        {
+          "reviewer": "Reviewer_CNYc",
+          "claim": "Table 1 rests on the self-defined B-score; MOML dominates SOML only for 1-shot and 5-shot BOIL and elsewhere gains PGD accuracy but loses clean accuracy.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1: MOML beats SOML on both accuracies only for BOIL (41.22/27.77 vs 40.44/25.94; 60.21/35.47 vs 58.54/34.28). In the other four settings its clean accuracy is lower, e.g. ProtoNet 1-shot 35.06 vs 38.65."
+        },
+        {
+          "reviewer": "Reviewer_kG42",
+          "claim": "The classification accuracy seems to have a big drop.",
+          "checked_against_paper": "correct",
+          "evidence": "Camera-ready Table 1: MOML's clean accuracy is 5.8 to 9.6 points below the original MAML, ProtoNet and BOIL (e.g. ProtoNet 1-shot 44.67 to 35.06). The text calls this 'slightly drops'."
+        },
+        {
+          "reviewer": "Reviewer_7cN3",
+          "claim": "K is never set large (usually below 10), so the problems can hardly be viewed as bi-level.",
+          "checked_against_paper": "not_checked",
+          "evidence": "The settings are in the appendix, which the available camera-ready PDF does not include. The authors did not dispute the claim and answered that a small K is standard."
+        },
+        {
+          "reviewer": "Reviewer_7cN3",
+          "claim": "The MOPSolver is not discussed in the main text, and Table 3 lacks error bars (Reviewer_3cBH: Tables 2 and 3).",
+          "checked_against_paper": "correct",
+          "evidence": "Even the camera-ready defers MGDA to Appendix A.2 'due to page limit', and its Tables 2 and 3 have no error bars, although the authors promised them."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_7cN3's edit (2021-07-16) predates the author responses (2021-08-11). Reviewer_3cBH: 'I would like to keep my score at 5' (2021-08-17). 7cN3: 'I plan to keep my score' (2021-08-29). Reviewer_kG42: 'I tend to keep my current score' (2021-09-03). Reviewer_CNYc never replied.",
+        "what_convinced_or_not": "The authors added a PGD-trained MAML baseline, an SOML weight sweep, a Pareto-front plot behind a Dropbox link, and conceded the Theorem 1 assumption. 7cN3 said the new experiments 'do provide more convincing evidence' but kept 4 'after reading the other reviews'. Other loss-weighting baselines, hypervolume and error bars were only promised. kG42 still saw no reason to combine few-shot learning with adversarial robustness."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Meta-review: 'all reviewers believe that the paper is not ready for publication' and the response 'did not convince them to raise their score'. It names no issue, does not discount kG42's confidence-1 review, and mentions neither the Theorem 1 gap nor the new experiments.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "No rating above 5; mean 4.0",
+        "Evaluation does not show the multi-objective benefit: one solution, no Pareto front or hypervolume, a self-defined B-score, lower clean accuracy, small gains without error bars (Reviewer_3cBH, Reviewer_CNYc, Reviewer_7cN3, Reviewer_kG42)",
+        "Theory overstated: Theorem 1 missing an assumption (conceded) and Theorem 2's K → ∞ and convexity conditions unmet in practice (Reviewer_CNYc, Reviewer_7cN3)",
+        "Unclear motivation and dense presentation, with the MOPSolver and the vector-valued minimum left out of the main text (Reviewer_7cN3, Reviewer_CNYc, Reviewer_kG42)",
+        "New rebuttal experiments acknowledged but no score moved; the chair followed the scores"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Runtime cost of the MGDA step relative to SOML (Reviewer_jJ4x)",
+    "Equivalence to DARTS with weighted objectives, and neglect of other ways to combine objectives such as hypervolume (Reviewer_nv9K)",
+    "Error bounds for the K-step lower-level solution and the meta-gradient; links to online-within-online and conditional meta-learning (Reviewer_MQP9)",
+    "Expressing a preference for one objective; NAS results left to the appendix (Reviewer_e5P4)"
+  ],
+  "issues_only_b": [
+    "Theorem 1 false as stated: counterexample and missing continuity assumption, conceded by the authors (Reviewer_CNYc)",
+    "Theorem 2's assumptions (inner convergence as K → ∞, P-convexity) unmet by the networks and small K used; the abstract overclaims (Reviewer_CNYc, Reviewer_7cN3)",
+    "Self-defined B-score; MOML dominates SOML in only 2 of 6 Table 1 settings and costs clean accuracy (Reviewer_CNYc, Reviewer_7cN3, Reviewer_kG42)",
+    "No Pareto-front plot, no hypervolume, no other loss-weighting baselines (GradNorm, DWA, PCGrad) in Sections 5.1-5.2 (Reviewer_3cBH, Reviewer_7cN3)",
+    "Baselines not trained on adversarial data, and why adversarial robustness belongs in few-shot learning (Reviewer_kG42, Reviewer_7cN3)",
+    "Missing error bars, hyperparameter selection for baselines, and no societal-impact discussion (Reviewer_3cBH, Reviewer_7cN3)"
+  ],
+  "shared_issues": [
+    "Novelty as a combination of known techniques (A: Reviewer_nv9K, 'a recombination of all existing techniques'; B: Reviewer_7cN3, 'a novel combination of well-known techniques'). A's Reviewer_jJ4x counted the same fact as a strength, the meta-learning analogue of Sener and Koltun",
+    "Small empirical gains (A: Reviewer_nv9K; B: Reviewer_3cBH, Reviewer_7cN3, Reviewer_kG42)",
+    "Dense writing, with α, ω, the MOPSolver and the vector-valued minimum under-defined in the main text (A: Reviewer_jJ4x, Reviewer_MQP9; B: Reviewer_CNYc, Reviewer_7cN3, Reviewer_kG42)",
+    "Only one Pareto solution rather than a set (A: Reviewer_MQP9 on lines 181-182; B: Reviewer_3cBH, Reviewer_7cN3)",
+    "Theory weaker than its billing (A: Reviewer_MQP9, asymptotic only and no error bound; B: Reviewer_CNYc, Reviewer_7cN3, assumptions unmet). A still counted the theory as a strength overall",
+    "How the SOML weights were chosen (A: Reviewer_e5P4; B: Reviewer_7cN3)",
+    "Motivation for several meta-objectives (A: Reviewer_MQP9; B: Reviewer_7cN3, Reviewer_kG42)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A accepted and Committee B rejected mainly because of which reviewers each drew and how hard they checked. Both saw the same paper: MGDA on the upper level of a MAML- or DARTS-style bilevel loop, convergence theorems under strong assumptions, and modest gains. A drew two champions, Reviewer_jJ4x (7) and Reviewer_e5P4 (8), who took the convergence theory and the 'strong empirical results' at face value; jJ4x did not check the math, e5P4 wrote five bullets, and neither posted in the discussion. A's two 5s were soft: Reviewer_MQP9 liked the paper and wanted deeper theory, and Reviewer_nv9K's novelty case began from a misreading of the method and moved up to weak reject. A's chair restated the positive reviews. B's four reviewers (5, 4, 4, 3) tested the claims. Reviewer_CNYc showed that Theorem 1 was false as stated, and the authors conceded a missing assumption; Theorem 2 holds only as K → ∞ and under P-convexity, which the experiments do not meet. B also showed, and the camera-ready Table 1 confirms, that MOML dominates SOML in only 2 of 6 few-shot settings and wins mainly on a self-defined B-score, while the domain-adaptation gains over SOML are 0.17 and 0.63 points, without error bars. The rebuttal added a PGD-trained MAML, an SOML weight sweep and a Pareto-front plot; Reviewer_7cN3 called them 'more convincing evidence' but kept 4, and B's chair followed the scores. Reviewer_kG42's confidence-1, half-hour review is weak, but B rejects without it. Mostly the committees weighted the same facts differently (a combination of known parts with modest gains); B also found the one documented error that A's reviewers missed. Only the camera-ready paper.pdf, without its appendix, was available for checking.",
+  "candidate_reasons": [
+    "Unengaged champions carried split committee",
+    "Theorem error caught by one committee",
+    "Evaluation scrutinised by one committee only",
+    "Meta-review paraphrased positive reviewer",
+    "Rebuttal experiments did not move scores",
+    "Same modest results weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_e5P4 review (8, five bullets, no discussion post)",
+    "Reviewer_jJ4x review",
+    "Reviewer_nv9K review and comments, 2021-08-11 to 2021-08-15",
+    "Committee A meta-review",
+    "Reviewer_CNYc review (Theorem 1 counterexample; Table 1 dominance)",
+    "Authors' response to Reviewer_CNYc, 2021-08-11 (missing joint-continuity assumption; condition (iv) 'unfortunately needed')",
+    "Reviewer_7cN3 comment, 2021-08-29",
+    "Committee B meta-review",
+    "paper.pdf (camera-ready; submitted PDF not available) Section 4.3, Theorems 1 and 2",
+    "paper.pdf Algorithm 1, steps 7-9",
+    "paper.pdf Table 1 and Section 5.1 text ('slightly drops')",
+    "paper.pdf Tables 2 and 3 (no error bars)"
+  ]
+}

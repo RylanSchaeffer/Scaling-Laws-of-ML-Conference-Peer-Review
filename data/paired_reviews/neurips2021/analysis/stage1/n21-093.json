@@ -1,0 +1,193 @@
+{
+ "pair_id": "n21-093",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [6, 4, 7],
+   "confidences": [5, 5, 3],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_egt5",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "The only negative score: 4 with confidence 5, against a 6 and a 7. Its one technical doubt, whether the pixel-wise mixture can model in-focus regions, is answered in the paper: 'Define sigma_1 = 0 such that g(sigma_1) = delta' (line 72) and 'the Gaussian kernel with size 1x1 is the Dirac delta kernel' (lines 150-151). Its two-stage baseline request is mostly covered by Table 1 (JNB, EBDB, DMENet). The valid remainder is two missing citations and no limitations paragraph in the main text. It identifies no error, and egt5 posted nothing after the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_egt5",
+     "evidence": "Partial. Reports 12 hours, yet asks whether the model handles clear regions, which line 72 and lines 150-151 answer with the Dirac-delta kernel. Asks for a two-stage baseline although Table 1 compares three two-stage methods. No reply to the rebuttal, which answered each point with arguments and two new experiments."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_egt5",
+     "claim": "It is not clear whether the pixel-wise GSM can model the clear (in-focus) regions, or whether the method alters regions without blur.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 72 sets sigma_1 = 0 so that g(sigma_1) is the Dirac delta, and Section 3.2 (lines 148-151) includes the 1x1 delta kernel in the GCM bank. A per-pixel PSF equal to the delta, the in-focus case, is therefore inside the model. The paper does not spell out the in-focus implication; the camera-ready adds that sentence."
+    },
+    {
+     "reviewer": "Reviewer_egt5",
+     "claim": "A commonly used baseline, detecting blur regions first and using them to guide the deblurring network, is neither discussed nor compared.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 31-54 and 96-104 discuss two-stage defocus-map-then-deblur methods, including DNN-based map estimation. Table 1 compares JNB, EBDB and DMENet, 'all two-stage methods focusing on defocus map estimation' (lines 209-210). Only the variant that feeds the map into a DNN is absent; the rebuttal ran it (24.54 dB against 25.47 dB)."
+    },
+    {
+     "reviewer": "Reviewer_egt5",
+     "claim": "Liu et al. (TCSVT 2021, generalised Gaussian kernels) and Aljadaany et al. (CVPR 2019, Douglas-Rachford networks) are not discussed or compared.",
+     "checked_against_paper": "correct",
+     "evidence": "Neither is among the 40 references. Related Work (lines 121-126) covers other unrolling methods [26-32] and argues they handle only uniform blur. The authors date Liu et al. to March 2021, shortly before the May 2021 deadline. The camera-ready cites both."
+    },
+    {
+     "reviewer": "Reviewer_egt5",
+     "claim": "The paper does not analyse its limitations.",
+     "checked_against_paper": "correct",
+     "evidence": "The Conclusion (lines 283-287) has no limitations. Checklist 1(b) answers 'See Supplementary Materials', which is not in the PDF I read. The rebuttal promised to add the discussion to the Conclusion, and the camera-ready does."
+    },
+    {
+     "reviewer": "Reviewer_e2uj",
+     "claim": "Without assumptions on B the fixed-point iteration (5) need not converge, so the link between motivation and method is weak; n in Eq. (5) differs from epsilon in Eq. (1).",
+     "checked_against_paper": "correct",
+     "evidence": "Section 1.2 (lines 67-73) states no convergence condition. Eq. (1) writes the noise as epsilon; Eq. (5) (line 70) writes n. The authors admitted the typo and gave a condition only for uniform Gaussian blur."
+    },
+    {
+     "reviewer": "Reviewer_uKyg",
+     "claim": "The method is trained and tested mainly on the dual-pixel DPD dataset; SRN and AttNet are motion-deblurring networks, and SRN's architecture is very similar to the proposed one.",
+     "checked_against_paper": "correct",
+     "evidence": "Training uses DPD only, without the dual-pixel views (line 191). Quantitative tests are DPD (Tables 1-2) and the 22-pair RTF set (Table 3); CUHK-BD is qualitative (Fig. 4). Lines 211-212 call SRN and AttNet 'DNNs of deblurring dynamic scene' that 'adopt a multi-scale architecture similar to our SRAM'."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after posting. No A reviewer posted after the author responses of 2021-08-10. The meta-review: 'Reviews on the negative side remained during the discussion period. All the reviewers stood by their decision.'",
+    "what_convinced_or_not": "Nothing on record convinced anyone. egt5 received the Dirac-delta answer, a map-guided DPDNet baseline (24.54 dB), an MPRNet comparison (25.02 dB against 25.47 dB) and a promised limitations paragraph, and did not reply. uKyg received MPRNet and GCM+SRN (24.18 dB) results. e2uj received a convergence condition that holds only for uniform Gaussian blur. Neither positive reviewer raised a score or argued for the paper."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The meta-review praises the paper ('well written and contains interesting contribution') and gives no technical reason to reject. Its only basis is that 'Reviews on the negative side remained' and 'All the reviewers stood by their decision'. The only negative score is egt5's 4, so the AC sided with one reviewer against a 6 and a 7. It also notes that a fourth reviewer never responded.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "AC sided with the one negative review (egt5: 4, confidence 5) against a 6 and a 7",
+    "egt5's requests: discussion of DR-Net and generalised-Gaussian kernels, a blur-map-guided baseline, a limitations section",
+    "No reviewer engaged after the rebuttal, so its new experiments changed nothing on record",
+    "Only three reviews; the fourth reviewer never responded"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [5, 7, 6, 3],
+   "confidences": [4, 4, 4, 5],
+   "reviews_edited_after_posting": ["Reviewer_SBT5"],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_mowT",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "3 with confidence 5 against 5, 6 and 7. The reasons are design suggestions (unequal loss weights, a transformer instead of the Conv-LSTM), a GPU time the paper already calls 'comparable' to SRN and AttNet (lines 235-236), a non sequitur ('The Gaussian kernel itself has been applied to the denoising task, so the robustness of the model is necessarily excellent'), and a generic novelty charge ('box up multi-scale, long range dependence, dual path'). Its strengths section misreads the mixture as a model of data distributions. mowT did not take part in the discussion, and the AC ignored the score."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_SBT5",
+     "evidence": "Reports 11 hours, but the main review is five generic sentences of praise; the only request is demo code. The post-rebuttal edit adds only 'like to keep my original rating'."
+    },
+    {
+     "reviewer": "Reviewer_mowT",
+     "evidence": "Treats the Gaussian kernel mixture as a tool to 'fit unfriendly data distributions' and argues that Gaussian kernels make noise-robustness tests unnecessary; Table 2 shows the clean-trained model losing 0.86 dB at noise level 5. No reply to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_mowT",
+     "claim": "Gaussian kernels are used for denoising, so the model's robustness is necessarily excellent and the robustness experiments are unnecessary.",
+     "checked_against_paper": "incorrect",
+     "evidence": "The GCM kernels model the blur inside the fixed-point deblurring (Eqs. 3-7), not a denoising filter. Table 2: the clean-trained model drops from 25.47 dB to 24.61 dB at noise s.t.d. 5."
+    },
+    {
+     "reviewer": "Reviewer_mowT",
+     "claim": "Table 1: the model has the fewest FLOPs but is not the fastest on GPU; the losses at all scales get equal weight (L144-145).",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 GPU times: 0.040 s against SRN 0.032 s and AttNet 0.041 s; the text says 'comparable' (lines 235-236). Lines 144-145: 'we assign equal weights to the loss at each scale'. Neither is a flaw; the rebuttal reports under 0.014 dB from unequal weights."
+    },
+    {
+     "reviewer": "Reviewer_1KQg",
+     "claim": "Eq. (8) has a typo (y should be y_t), and the paper does not say which weights are shared across scales or at which resolution the kernel sigmas apply.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (8), after line 139: 'x_t = y + sum_k omega_k (gamma_{t,k} . z_{t,k})'. Section 3.2 (lines 147-151) gives kernel sizes and sigmas without a resolution, and Section 3 does not state weight sharing for the main model."
+    },
+    {
+     "reviewer": "Reviewer_SpFs",
+     "claim": "The fixed-point iteration is not analysed for convergence, the network has no explicit artifact-removal block, and it is not compared with HQS-style unrolled networks.",
+     "checked_against_paper": "correct",
+     "evidence": "Section 1.2 gives no convergence analysis. The architecture (Section 3, Figs. 1-2) has no artifact-removal block. No experiment compares an unrolled HQS variant; lines 121-126 only state that unrolling methods handle uniform blur."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Only SBT5's review was edited (2021-08-23), to add 'keep my original rating'. SpFs (2021-08-23): 'I still tend to retain my previous rating.' 1KQg (2021-08-28): 'I retain a favorable opinion of the paper.' mowT posted nothing. The meta-review: SpFs 'agreed in the private discussion that it would be fine if the paper is accepted'.",
+    "what_convinced_or_not": "SpFs accepted the convergence answer ('reasonable to me') but not the HQS argument. The authors' second round (2021-08-24) timed HQS+CG at 0.31 to 0.82 s against 0.04 s, and showed an artifact-removal block adds 0.02 dB at 3.3 times the FLOPs. SpFs then wrote 'OK with both rejection / acceptance' without changing the score, and kept the concern after 1KQg's reply. 1KQg received the scales-versus-iterations ablation (K=1, R=3: 25.11 dB against 25.47 dB) and stayed favourable."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Lists the scores (3,5,6,7) and says mowT's 'final score of 3 has been ignored from the decision process' because mowT did not take part and the rebuttal addressed its comments. Counts SpFs as fine with acceptance and states 'the AC believes that the paper introduces interesting ideas'. Quotes the private exchange in which 1KQg answers SpFs, concedes 'we do not understand perfectly why the approach works', and offers its own guess: implicit regularisation from non-converged iterations, like early stopping.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC ignored mowT's 3: mowT did not take part and the rebuttal answered its points",
+    "1KQg (7, confidence 4) championed the efficient, well-motivated architecture and defended it in the private discussion",
+    "Second-round experiments (HQS+CG cost, artifact-removal ablation) moved SpFs (5) to 'OK with both rejection / acceptance'",
+    "AC's own view: interesting ideas; the open question of why the method works goes into the camera-ready"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Whether the kernel mixture can represent in-focus regions (egt5; answered in the paper by the Dirac-delta kernel)",
+  "Generalised-Gaussian defocus kernels of Liu et al., TCSVT 2021 (egt5)",
+  "Blur-map-guided two-stage DNN baseline (egt5; three two-stage methods already in Table 1)",
+  "Dual-pixel versus regular defocus PSFs, and why a DPD-trained model generalises (uKyg)",
+  "State-of-the-art motion-deblurring baseline and SRN with GCM inserted (uKyg)"
+ ],
+ "issues_only_b": [
+  "No explicit artifact-removal step; unclear why the method works (SpFs; carried into the meta-review)",
+  "Confusing 'GSM' and 'attention' names (1KQg; the final title adopts 'Gaussian Kernel Mixture')",
+  "Scales-versus-iterations ablation and under-specified architecture: Eq. (8) typo, weight sharing, kernel resolution (1KQg)",
+  "Equal loss weights, Conv-LSTM versus transformer, GPU time not the fastest despite fewest FLOPs (mowT)",
+  "Limited novelty as an assembly of known modules (mowT)",
+  "Code not released (SBT5)"
+ ],
+ "shared_issues": [
+  "Convergence of the fixed-point iteration unproven; loose link between the motivation and the network (e2uj; SpFs, 1KQg)",
+  "Comparison with other unrolling or optimisation-based deblurring schemes (egt5: Douglas-Rachford networks; SpFs: HQS)",
+  "No limitations discussion in the main text (egt5; SpFs)",
+  "Figure 3 hard to read (uKyg; 1KQg)",
+  "Notation errors: n for epsilon in Eq. (5) (e2uj); y for y_t in Eq. (8) (1KQg)",
+  "Generalisation beyond the training dataset and camera (uKyg; SpFs)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B recommended more because of how the two area chairs used their reviews, not because it saw a better paper. A's AC deferred to its lone detractor. B's AC discounted its detractor, and B had an engaged champion. A's ratings were higher (6, 4, 7; mean 5.67) than B's (5, 7, 6, 3; mean 5.25). A's AC rejected against a 6 and a 7 and gave no technical reason, only that 'Reviews on the negative side remained'. That negative review, Reviewer_egt5's 4, identifies no error. Its one technical doubt, whether in-focus regions are representable, is answered by the Dirac-delta kernel at line 72 and lines 150-151. Table 1 already covers most of its two-stage baseline request. The rest is two missing citations and a missing limitations paragraph, all fixed in the camera-ready. No A reviewer posted after the rebuttal, so its new experiments moved nobody. B's AC set aside Reviewer_mowT's 3, which rests on minor design suggestions and a non sequitur about robustness. B's reviewers replied, so the authors answered in two rounds. Reviewer_SpFs (5) asked the deepest question in either committee: why a network without an artifact-removal step works. After the second round SpFs was 'OK with both rejection / acceptance'. Reviewer_1KQg (7) then argued that the fixed-point iteration only motivates an efficient end-to-end architecture. Both committees saw a light network that leads on small benchmarks, with unproven convergence and a loose link between motivation and architecture. They weighted these facts differently.",
+ "candidate_reasons": [
+  "AC rejected despite positive majority",
+  "non-engaging detractor discounted only in B",
+  "engaged champion argued only in B",
+  "detractor's doubt answered in paper",
+  "no reviewer engagement after rebuttal",
+  "meta-review gives no technical reason"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review, including the private discussion excerpt",
+  "Reviewer_egt5 review and the author reply of 2021-08-10",
+  "paper_submitted.pdf line 72 and lines 147-151 (Dirac-delta kernel in the mixture)",
+  "paper_submitted.pdf Table 1 and lines 206-213 (two-stage baselines JNB, EBDB, DMENet)",
+  "paper_submitted.pdf Conclusion lines 283-287 and Checklist 1(b) (limitations)",
+  "Reviewer_mowT review",
+  "Reviewer_SpFs comment of 2021-08-23 and the authors' second-round reply of 2021-08-24",
+  "Reviewer_1KQg review and comment of 2021-08-28",
+  "Reviewer_SBT5 review (edited 2021-08-23)"
+ ]
+}

@@ -1,0 +1,186 @@
+{
+  "pair_id": "n21-086",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [5, 3, 5, 5],
+      "confidences": [4, 5, 4, 5],
+      "reviews_edited_after_posting": ["Reviewer_tpaP", "Reviewer_1red", "Reviewer_pxiA"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_tpaP",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Rating 3 (confidence 5) against three 5s. The case is specific: IFC applies MaX-DeepLab's memory to video, and the rest is VisTR and DETR. The paper's own related work supports the core of it (lines 80-84: 'We further utilize the concept of the memory tokens to the videos'). The review overstates it and has slips: the mask head is not DETR's, the COCO result it asks for is in Table 3b, the weaknesses sit in the limitations field, and one sentence stops mid-way ('At least, it dose not reach the'). The outlier does not decide the outcome: the other three A reviewers average 5.0."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_tpaP",
+          "evidence": "Asks 'What is pretrained model result on COCO', which Table 3b reports (35.1 AP). Says 'the decoder head and loss are the same with original DETR', but lines 180-190 describe conditional 1x1-convolution weights on an instance-agnostic spatial decoder, which the paper contrasts with DETR's instance-specific design. Edited on 2021-07-23, before the rebuttal; silent after it."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_qqgE",
+          "claim": "The biggest ablation gain (2.2 AP) comes from mask-based instead of box-based bipartite matching, not from the memory tokens.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2c: box-based 37.2, mask-based 39.4 AP. Table 3a: IFC over No Comm is +1.6, +0.8, +0.5, +0.8 AP at T = 5, 10, 15, 20."
+        },
+        {
+          "reviewer": "Reviewer_1red",
+          "claim": "Table 2 (41.0 AP) and Table 3 (39.0 AP) give different scores for the same setting, and the paper does not explain the gap.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2a, near-online T=5, ResNet-50: 41.0. Table 3a, IFC at T=5: 39.0. Lines 258-260 say the ablations are means of five runs; nothing says Table 2a is the best run. The rebuttal confirmed 'the max score of the five runs'. The camera-ready Table 2a reports 39.0."
+        },
+        {
+          "reviewer": "Reviewer_tpaP",
+          "claim": "IFC applies the core idea of MaX-DeepLab (pixel-memory attention) to video.",
+          "checked_against_paper": "correct",
+          "evidence": "Lines 80-84 describe MaX-DeepLab's memory tokens and say 'We further utilize the concept of the memory tokens to the videos'. Encode-Receive is joint self-attention over frame pixels and memory tokens (lines 126-129). The cross-frame Gather-Communicate step (Eq. 3) has no counterpart in MaX-DeepLab, so 'just apply' overstates it."
+        },
+        {
+          "reviewer": "Reviewer_tpaP",
+          "claim": "The decoder head and the loss are the same as in DETR (panoptic).",
+          "checked_against_paper": "incorrect",
+          "evidence": "The loss matches (cross-entropy, Dice, sigmoid focal; Eq. 7). The head does not: Nq conditional convolutional weights applied to an fpn-style, instance-agnostic spatial decoder (lines 180-190), which the paper contrasts with the instance-specific decoders of [13, 11]."
+        },
+        {
+          "reviewer": "Reviewer_tpaP",
+          "claim": "The result of the COCO-pretrained model is not given.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 3b gives COCO val AP of 35.0 without and 35.1 with memory tokens. The rebuttal pointed to it."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": ["Reviewer_pxiA"],
+        "evidence": "The AC writes: 'After reading the author response and other reviews one of the reviewers also reduced their score.' Two reviews were edited after the 2021-08-10 rebuttal: Reviewer_pxiA on 2021-08-29 and Reviewer_1red on 2021-09-01. Reviewer_tpaP's edit (2021-07-23) came before it. No reviewer posted in the discussion. pxiA is the likely one: its text reads above threshold ('non-trivial gain', 'need to be shared with the community') but its rating is 5, and the AC describes an 'initially more positive' reviewer who saw the memory tokens as new. This is an inference from the record, not a recorded score change.",
+        "what_convinced_or_not": "Nothing raised a score. The authors conceded borrowed components to three reviewers ('we agree that there are several components that have been used from previous works'). They disclosed to Reviewer_1red that Table 2a reports the best of five runs. Neither answer met the novelty concern."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'None of the reviewers recommended accepting this paper.' The meta-review names novelty as the common critique. It repeats one reviewer's view that the gain comes from other components, which Table 2c supports. It does not mention the best-of-five reporting.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or below 5 (mean 4.5); no reviewer recommended acceptance.",
+        "Limited novelty: only the memory tokens are new; the rest comes from DETR, VisTR, MaX-DeepLab, CondInst and MaskProp.",
+        "The core contribution is not the main source of the accuracy gain (mask-based matching gives 2.2 AP).",
+        "One reviewer lowered the score after the rebuttal."
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 7, 6, 6],
+      "confidences": [4, 5, 4, 4],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings span one point (6, 7, 6, 6). The 7 comes from Reviewer_8afQ (confidence 5, 8 hours), the most detailed review and the only reviewer who engaged after the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_rHZQ",
+          "evidence": "Rating 6 on a two-line main review ('The paper is clearly written.' plus SOTA and speed). No weaknesses and no view on novelty; three questions sit in the limitations field. Silent after the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_Z1DA",
+          "evidence": "Rating 6 with only clarifying questions and no assessment. Some are answered in the paper: memory tokens 'store the overall context of the clip' (lines 39-43), and both encoder phases 'follow the typical transformer encoder architecture' (lines 111-113). Silent after the rebuttal."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_8afQ",
+          "claim": "Table 2a gives 41.0 AP for ResNet-50, but Tables 2c, 3a, 3c and 3d give about 39 AP for the same setting.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 2a: 41.0. Table 2c, mask-based: 39.4. Tables 3a (IFC), 3c (M=8) and 3d (Decomp) at T=5: 39.0. The authors confirmed that Table 2a is the best of five runs. The camera-ready replaced 41.0, 42.8 and 44.6 with means of 39.0, 41.2 and 42.6."
+        },
+        {
+          "reviewer": "Reviewer_8afQ",
+          "claim": "The advantage of IFC over No Comm shrinks at larger clip lengths (Table 3a), and so does M=8 over M=1 (Table 3c).",
+          "checked_against_paper": "correct",
+          "evidence": "IFC minus No Comm: +1.6, +0.8, +0.5, +0.8 AP at T = 5, 10, 15, 20. M=8 minus M=1: +1.4, +0.4, +0.4, +1.0 AP."
+        },
+        {
+          "reviewer": "Reviewer_rHZQ",
+          "claim": "There are no qualitative comparisons with other methods.",
+          "checked_against_paper": "correct",
+          "evidence": "The submitted Figure 2 shows only IFC outputs and memory-token attention maps. The authors said comparisons are in the supplementary; the camera-ready Figure 2 adds VisTR."
+        },
+        {
+          "reviewer": "Committee B AC",
+          "claim": "The average scores in the ablation study still outperform SOTA, albeit less significantly.",
+          "checked_against_paper": "correct",
+          "evidence": "Narrowly. The best ablation mean is 40.4 AP (Table 3a, T=20) against 40.0 for MaskProp ResNet-50; the T=5 mean (39.0) is below it. Camera-ready means: 41.2 (ResNet-50) against 40.0, and 42.6 (ResNet-101) against MaskProp's 42.5."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No B review was edited after posting. Only Reviewer_8afQ replied (2021-09-10): 'My questions are adressed', but reporting the max in the SOTA table and the average elsewhere is 'a bad practice'; 'Given that the authors make this change, I will keep my rating.' The other three reviewers were silent.",
+        "what_convinced_or_not": "Answers on training and inference, on why IFC is needed beside decoder cross-attention, and on online and offline labels satisfied Reviewer_8afQ. The best-of-five disclosure lowered no score; the reviewer and the AC treated it as a camera-ready fix."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'All reviewers appreciated the submission in their initial review leaning positive.' The AC lists the novelty and ablation concerns, adopts Reviewer_8afQ's objection to best-of-five reporting, and accepts on the assumption that the averages 'still outperform SOTA, albeit less significantly'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "All four ratings at or above 6 (mean 6.25).",
+        "State-of-the-art accuracy on YouTube-VIS at high speed (89 FPS).",
+        "Memory tokens judged novel and general by the most detailed reviewer (Reviewer_8afQ).",
+        "Best-of-five reporting judged fixable because averaged scores still beat prior work."
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Encoder is MaX-DeepLab's pixel-memory attention applied to video (Reviewer_tpaP)",
+    "FPS comparison misleading for clip-level processing (Reviewer_tpaP)",
+    "Memory-token visualisation does not support the 'difficult instances' claim (Reviewer_qqgE)",
+    "Long-term tracking beyond the window T (Reviewer_1red)",
+    "Missing comparisons with TransVOD and with MaskProp's speed (Reviewer_pxiA, Reviewer_1red)"
+  ],
+  "issues_only_b": [
+    "Training and inference pipeline under-specified (Reviewer_8afQ)",
+    "Decoder cross-attention already links frames, so why IFC is needed (Reviewer_8afQ)",
+    "No qualitative comparison with other methods (Reviewer_rHZQ)",
+    "Distinguishing similar objects (Reviewer_rHZQ)",
+    "No contribution summary separating new parts from VisTR (Reviewer_G3h2)"
+  ],
+  "shared_issues": [
+    "Limited novelty: memory tokens are the only new component (A: Reviewer_qqgE, Reviewer_tpaP, Reviewer_pxiA; B: Reviewer_G3h2 and the meta-review)",
+    "Table 2a reports the best of five runs, the ablations the mean (A: Reviewer_1red; B: Reviewer_8afQ)",
+    "Small measured gain from IFC itself (A: Reviewer_qqgE through the matching ablation; B: Reviewer_8afQ through No Comm at larger T)",
+    "Online and offline methods mixed in Table 2a (A: Reviewer_tpaP; B: Reviewer_8afQ)",
+    "Relation to space-time factorisation in video transformers (A: Reviewer_pxiA; B: Reviewer_Z1DA)",
+    "Strong accuracy and speed (reviewers in both committees)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B recommended a poster and Committee A rejection because the two panels put the same paper on opposite sides of the threshold: A gave 5, 3, 5, 5 and B gave 6, 7, 6, 6. Both saw the same facts. The memory tokens are the one new component; the rest comes from DETR, VisTR, CondInst and MaskProp. Accuracy and speed are strong. Table 2a reported the best of five runs, and the rebuttal disclosed this to both committees. A weighted the narrow novelty, with reviewers who traced each component to prior work. B weighted the results, and two of its 6s rest on thin reviews (Reviewer_rHZQ, Reviewer_Z1DA). A's 3 (Reviewer_tpaP) does not decide the outcome: the other three A reviewers average 5.0. The paper confirms the specific doubts in both committees. IFC adds 0.5 to 1.6 AP over no communication, less than the 2.2 AP from mask-based matching. The camera-ready means lower every headline number by 1.4 to 2.0 AP and leave the ResNet-101 model 0.1 AP above MaskProp. B's AC accepted on the assumption that the averages still beat prior work, which holds narrowly. A's AC followed the scores and the novelty critique and did not mention the reporting issue.",
+  "candidate_reasons": [
+    "Same facts, different threshold calibration",
+    "Novelty weighted over SOTA results",
+    "Thin reviews behind accepting scores",
+    "Best-of-five reporting accepted as fixable",
+    "Post-rebuttal downgrade by positive reviewer",
+    "Prior-work tracing by rejecting panel"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Committee A meta-review",
+    "Committee B meta-review",
+    "Reviewer_8afQ review and 2021-09-10 comment",
+    "Reviewer_pxiA final review (Significance section; edited 2021-08-29)",
+    "Reviewer_qqgE review (2.2 AP from matching)",
+    "Reviewer_tpaP review (limitations field)",
+    "paper_submitted Table 2a vs Table 3a (41.0 vs 39.0 AP at T=5)",
+    "paper_submitted Table 2c and Table 3a (matching gain vs IFC gain)",
+    "paper_submitted lines 80-84 and 258-260",
+    "paper.pdf (camera-ready) Table 2a means 39.0, 41.2, 42.6"
+  ]
+}

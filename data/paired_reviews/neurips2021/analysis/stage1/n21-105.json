@@ -1,0 +1,202 @@
+{
+  "pair_id": "n21-105",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [6, 6, 6, 6],
+      "confidences": [4, 3, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_4qhh", "Reviewer_qrbW"],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 6, 6, 6, 6 at confidence 4, 3, 4, 4; every reviewer is just above the threshold. The texts differ more than the scores. Reviewer_BNRH calls the method 'somewhat obvious' to readers of the prior literature, and Reviewer_qrbW's update calls it 'a (somewhat trivial) combination of several existing pieces'. Reviewer_LU53 calls it 'a novel technique' with 'convincing and thorough experimental results'."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_LU53",
+          "evidence": "Says 'the paper doesn't explicitly state how' arbitrary marginals are estimated, proposes a naive ratio estimator, and asks for 'experimental results for marginal density estimation'. L110 says marginals are the case where o is the empty set, and Table 2 reports marginal log-likelihoods against ACFlow and TAN. LU53 accepted the one-line answer ('Conditioning on empty set makes sense'). The rest of the review (weight-sharing ablation, accuracy of the normalizer, a Locally Masked Convolution baseline) is reasonable."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_BNRH",
+          "claim": "Most of Sections 4.2 and 4.3 are adapted from Nash & Durkan (2019) without explicit attribution; AEM introduced jointly training an autoregressive energy model and a proposal with dimension-wise importance sampling.",
+          "checked_against_paper": "correct",
+          "evidence": "Sections 4.2-4.3 describe an energy network fed a per-dimension latent vector from a mixture-of-Gaussians proposal network, a normalizer estimated by importance sampling with that proposal (Eq. 5-6), the joint objective log p + log q (Eq. 8), and stopped gradients on proposal samples (L192-194). That is the AEM training scheme. The submission cites [21] in these sections only for importance sampling being accurate in one dimension (L170-171) and for proposal-energy weight sharing (L182). Section 2 presents AEM only as a joint-density method (L73-75). The camera-ready adds 'similar to AEMs [22]' and 'we adapt the approach for arbitrary conditioning'."
+        },
+        {
+          "reviewer": "Reviewer_qrbW",
+          "claim": "The paper claims to be the first to reduce arbitrary conditioning to one-dimensional conditionals; autoregressive methods such as Uria et al. [31] already allow this, and Query Training is a missing citation.",
+          "checked_against_paper": "correct",
+          "evidence": "L153-154: 'to the best of our knowledge, the first work to leverage this formulation'; L322-323: 'the first to wholly reduce arbitrary conditioning to one-dimensional conditionals'. The paper's own Section 2 (L78-80) says Uria et al. use masked inputs to share weights across arbitrary orderings, and L163 cites [31] for the weight-sharing scheme. Query Training is not cited. The camera-ready adds Query Training but keeps both 'first' claims."
+        },
+        {
+          "reviewer": "Reviewer_qrbW",
+          "claim": "It is not clear how the ordering of conditionals is handled for the Table 1 likelihoods.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L260-261: 'The order in which the unobserved one-dimensional conditionals are computed is randomly selected for each instance.'"
+        },
+        {
+          "reviewer": "Reviewer_4qhh",
+          "claim": "Imputation is not tested on VAEAC's datasets, CelebA or Omniglot, MNIST inpainting has no VAEAC comparison, and GAN baselines are dismissed without evidence.",
+          "checked_against_paper": "correct",
+          "evidence": "The experiments cover the five Papamakarios UCI sets with baseline numbers copied from Li et al. (Tables 1-2, Figure 2), flattened MNIST against ACFlow only (Table 3), and UCI Adult against VAEAC (Table 4). The rebuttal added White Wine, Yeast and Mushroom against VAEAC: energy ACE wins clearly only on Mushroom (0.232 vs 0.244) and is slightly worse on White Wine (0.853 vs 0.850); ACE Proposal wins on all three."
+        },
+        {
+          "reviewer": "Reviewer_LU53",
+          "claim": "The paper does not state how arbitrary marginals are estimated, and marginal density results are needed.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L110: joint or marginal likelihoods are 'recovered when o is the empty set'. Table 2 reports marginal log-likelihoods for 3, 5 and 10 dimensions against ACFlow and TAN."
+        },
+        {
+          "reviewer": "Reviewer_BNRH",
+          "claim": "The main text does not discuss computational cost relative to the baselines.",
+          "checked_against_paper": "correct",
+          "evidence": "The main text mentions cost only for evaluating several orderings (L209-210). No training or sampling time against ACFlow appears; the checklist places compute in the Appendix."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No reviewer states a change. Reviewer_BNRH (unedited), 2021-09-11: 'My opinion of the paper remains the same.' Reviewer_qrbW (edited 2021-08-25): 'I'm maintaining my current score'. Reviewer_4qhh (edited 2021-08-31) appended a rebuttal section ending 'I tend to be mostly satisfied with the authors' answer. Weak accept.' and names no earlier score. Reviewer_LU53 (unedited), 2021-08-27: 'Conditioning on empty set makes sense.'",
+        "what_convinced_or_not": "Three added imputation datasets satisfied 4qhh, who checked VAEAC's code and agreed the choice was not cherry-picked. The empty-set explanation satisfied LU53. The promise to credit Nash & Durkan did not move BNRH, who insisted that 'multiple reviewers here were unaware of their contributions after reading your paper' and that order-agnostic MADE training is a valid alternative to the authors' design. The discussion made qrbW more negative on novelty ('also not new'), but qrbW kept the 6. The novelty objection is a property of the paper, and no rebuttal could remove it."
+      },
+      "ac": {
+        "followed_reviews": "no",
+        "evidence": "All four reviewers rated 6 ('marginally above the acceptance threshold'), and the meta-review concedes that 'reviewers thought the work's ideas were generally worthy of publication'. The chair still rejected, calling the paper 'only being right on the border'. The novelty reasons come from the reviews: 'obvious to experts in the area' echoes BNRH, and 'incremental' echoes qrbW's update. But 'felt that the experimental validation is not strong' misstates three of four reviews: BNRH wrote that ACE 'clearly and consistently outperforms a strong baseline of ACFlow', LU53 'convincing and thorough experimental results', and qrbW 'The experimental results are still interesting and relevant'. Only 4qhh complained, and was 'mostly satisfied' after the rebuttal.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Method judged incremental or 'obvious to experts': order-agnostic weight sharing (Uria et al.) plus AEM's energy-and-proposal training (Reviewer_BNRH, Reviewer_qrbW)",
+        "Insufficient credit to Nash & Durkan and an overstated 'first work' claim, which the rebuttal only promised to fix",
+        "Experimental validation called 'not strong', which only Reviewer_4qhh's pre-rebuttal review supports",
+        "Chair read four 6s as 'right on the border' and placed the paper below the line"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [7, 6, 7, 5],
+      "confidences": [3, 3, 4, 3],
+      "reviews_edited_after_posting": ["Reviewer_TGax", "Reviewer_ENb9"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_AEG1",
+        "direction": "detractor",
+        "basis": "inattentive",
+        "evidence": "Rated 5 against 7, 6, 7, yet writes 'I would be in favor of having the paper presenting at the conference'. The review is one worked example: a question on how later normalizers depend on earlier unobserved values, which L205-207 answer, and an objection to mean imputation that is wrong (see checkable claims). Three hours, limitations 'Not needed', unedited, and no reply to the rebuttal."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_AEG1",
+          "evidence": "Asks how the normalizer of x3 is computed when x2 is unobserved; L205-207 say the values of xu 'are known ahead of time' during likelihood evaluation. Claims mean imputation ignores dependence and would blur MNIST completions; the coordinate means of p(xu | xo) equal the one-dimensional conditional means, and Figure 3a shows samples. The score contradicts the review's own stated preference for acceptance, and AEG1 never returned."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_AEG1",
+          "claim": "Imputation uses the means of p(x2|x1) and p(x3|x1) separately, ignoring dependence between x2 and x3, so completing half an MNIST image would give a blurred result.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The premise holds: L220-221 'we forego autoregression and directly obtain the mean of each distribution p(xui | xo)'. The defect does not: the mean of each coordinate under p(xu | xo) equals the mean of the one-dimensional conditional p(xui | xo), so nothing is lost for the NRMSE-optimal imputation. Blur is a property of any mean imputation, and the MNIST inpaintings in Figure 3a are samples, not means. Committee B's meta-review repeats the objection as a requested revision."
+        },
+        {
+          "reviewer": "Reviewer_AEG1",
+          "claim": "At inference the normalizer for x3 depends on x2, so the procedure works only when the likelihood of a full sample is evaluated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "L205-207: the values of xu 'are known ahead of time', so each conditional is evaluated at those values. That is what evaluating a likelihood means, and nothing breaks. The rebuttal says the same."
+        },
+        {
+          "reviewer": "Reviewer_TGax",
+          "claim": "Line 114 says the energy is non-negative.",
+          "checked_against_paper": "correct",
+          "evidence": "L114: 'assigning a nonnegative scalar energy'. The rebuttal says a softplus output enforces it; the normalizer makes this harmless."
+        },
+        {
+          "reviewer": "Reviewer_TGax",
+          "claim": "The paper over-emphasises order-agnosticism: at test time the estimated densities depend on the ordering.",
+          "checked_against_paper": "correct",
+          "evidence": "L82 advertises 'an order-agnostic weight-sharing technique' and L207 says the order 'does not matter', but L210-214 concede that ACE does not give consistent likelihoods across orderings and defer mitigation to the Appendix."
+        },
+        {
+          "reviewer": "Reviewer_ENb9",
+          "claim": "ACE combines the arbitrary-conditioning setup of ACFlow with the method of Autoregressive Energy Machines.",
+          "checked_against_paper": "correct",
+          "evidence": "The same fact Reviewer_BNRH raised in Committee A (Sections 4.2-4.3, Eq. 5-8). ENb9 called it 'an interesting combination' and listed it under strengths."
+        },
+        {
+          "reviewer": "Reviewer_4vM4",
+          "claim": "ACE's imputation advantage in Figure 2 is much larger at missing rate 0.1 than at 0.0 or 0.5.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 2: on Gas at 0.1, energy ACE's NRMSE is about 0.13 against about 0.38 to 0.59 for the baselines; at 0.0 and 0.5 the gaps are small, and on Gas at 0.5 energy ACE (about 0.41) roughly ties ACFlow+BG. The 0.1 column uses a different test mask (b drawn with p = 0.1, L284-285), and the baseline numbers are copied from Li et al. The rebuttal gave no specific answer."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_TGax", "Reviewer_ENb9"],
+        "evidence": "Reviewer_TGax, 2021-08-16: 'I will raise my score from a 6 to a 7'; review edited the same day. Reviewer_ENb9, 2021-08-16: 'My concerns have been addressed, so I will be raising my score by 1 point' (5 to 6); review edited the same day. Reviewer_4vM4, 2021-09-01: 'Thanks for your helpful comments', unedited 7. Reviewer_AEG1: no reply, unedited 5. Pre-rebuttal ratings were 6, 5, 7, 5 (mean 5.75).",
+        "what_convinced_or_not": "Answers to clarification questions, with no new experiments: importance sampling beats a grid because one proposal pass replaces many energy-network evaluations; non-autoregressive training is a stochastic approximation of the autoregressive objective; a softplus keeps the energy non-negative; 100 importance samples give variance of about 0.003 on Gas. TGax still called the error-accumulation argument 'speculative in terms of strong assumptions' and asked for evidence on sample counts, but raised the score anyway."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "'Three reviewers recommend acceptance, and one reviewer believes the paper is below the acceptance threshold. After reading the reviews and the rebuttal, I recommend this paper for acceptance.' The requested revisions come from TGax (number of importance samples), ENb9 (grid motivation, skip connection, latent vectors, stochastic approximation) and AEG1 (imputation by marginal means). The chair repeats AEG1's dependence objection, which is wrong for mean imputation, and does not mention novelty or AEM.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four reviewers recommended acceptance after the rebuttal (7, 6, 7 against one 5)",
+        "Rebuttal answered the clarification questions; Reviewer_TGax rose from 6 to 7 and Reviewer_ENb9 from 5 to 6",
+        "Reviewers valued the simplicity and the consistent gains over ACFlow and VAEAC; the overlap with AEM was read as a strength (Reviewer_ENb9, Reviewer_4vM4)",
+        "The only detractor, Reviewer_AEG1, said it favoured presentation and never engaged after the rebuttal"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Uncredited reuse of the AEM training scheme of Nash & Durkan in Sections 4.2-4.3 (Reviewer_BNRH)",
+    "Overstated 'first work' novelty claim given Uria et al., and the missing Query Training citation (Reviewer_qrbW)",
+    "Method an obvious or 'somewhat trivial' combination of existing pieces (Reviewer_BNRH, Reviewer_qrbW)",
+    "Input duplication per unobserved variable instead of MADE-style masking with order-agnostic training (Reviewer_BNRH)",
+    "Imputation benchmarks: VAEAC's datasets, CelebA, Omniglot, MNIST against VAEAC, GAN baselines (Reviewer_4qhh)",
+    "How marginals are computed, a Locally Masked Convolution baseline, and an ablation of proposal-energy weight sharing (Reviewer_LU53)"
+  ],
+  "issues_only_b": [
+    "Whether the normalizer is finite for a randomly initialised energy network (Reviewer_ENb9)",
+    "Design complexity: proposal against numerical quadrature, skip inputs to the energy network, one latent vector per feature, non-autoregressive training (Reviewer_ENb9)",
+    "Error accumulation across dimensions, the non-negative energy, the claimed limits of normalizing flows, and the effect of stopped gradients (Reviewer_TGax)",
+    "Imputation by per-dimension means ignoring dependence between unobserved features (Reviewer_AEG1, wrong for mean imputation)",
+    "Likelihood as an evaluation metric and the gains concentrated at missing rate 0.1 in Figure 2 (Reviewer_4vM4)"
+  ],
+  "shared_issues": [
+    "Number of importance samples and accuracy of the normalizer estimate (A: Reviewer_LU53, Reviewer_qrbW; B: Reviewer_TGax, Reviewer_ENb9)",
+    "Order dependence of test-time likelihoods (A: Reviewer_qrbW; B: Reviewer_TGax)",
+    "Training and sampling cost against ACFlow not reported (A: Reviewer_BNRH; B: Reviewer_4vM4)",
+    "Need for more datasets or domains (A: Reviewer_4qhh; B: Reviewer_4vM4, who called the current set sufficient)",
+    "ACE builds on AEM: A counted it against novelty and attribution (Reviewer_BNRH, Reviewer_4qhh, Reviewer_qrbW); B called it 'an interesting combination' (Reviewer_ENb9)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A rejected and Committee B accepted because the committees weighted the overlap with prior work differently and their chairs drew the line in different places; the evidence on the paper was largely the same. A rated it 6, 6, 6, 6. B rated it 7, 6, 7, 5 after the rebuttal and 6, 5, 7, 5 before it, no higher than A. In A, Reviewer_BNRH showed, correctly, that Sections 4.2-4.3 reuse the training scheme of Nash & Durkan's Autoregressive Energy Machines (energy network, learned mixture proposal, per-dimension importance sampling, joint objective), which the submission cites only for two side points (L170-171, L182). Reviewer_qrbW showed, correctly, that the claim 'the first work to leverage this formulation' (L153-154) ignores Uria et al., which the paper itself cites (L78-80). A rebuttal cannot fix novelty; the authors only promised citations, and no score moved. qrbW's update called the method 'a (somewhat trivial) combination', and A's chair rejected four above-threshold ratings as 'right on the border', calling the method 'obvious to experts' and, against three of the four reviews, the experiments 'not strong'. In B, nobody raised attribution or the 'first' claim: Reviewer_ENb9 knew the method was AEM applied to ACFlow's setting and called it 'an interesting combination'. B's questions were clarifications (importance sampling against a grid, non-autoregressive training, the sign of the energy), which the rebuttal answered with arguments, so Reviewer_TGax rose from 6 to 7 and ENb9 from 5 to 6. B's chair counted three accepts against one 5, and that 5 (Reviewer_AEG1) rests on a misreading and states a preference for acceptance. The deciding differences are a reviewer in A who knew the AEM and NADE literature well enough to show the overlap, and a chair in A who read the reservations rather than the scores.",
+  "candidate_reasons": [
+    "Prior-work overlap weighted differently",
+    "Expert reviewer exposed uncredited method",
+    "Chair rejected uniform borderline ratings",
+    "Rebuttal fixed clarifications, not novelty",
+    "Meta-review overstated experimental criticism",
+    "Vote-counting chair accepted majority"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_BNRH review, 'Relation to prior work', and reply of 2021-09-11",
+    "Reviewer_qrbW review, Originality paragraph and 'Update after rebuttal'",
+    "Reviewer_4qhh review, 'Rebuttal' section (edited 2021-08-31), and the authors' added White Wine, Yeast and Mushroom table",
+    "Committee A meta-review",
+    "Reviewer_TGax and Reviewer_ENb9 replies of 2021-08-16",
+    "Reviewer_AEG1 review",
+    "Committee B meta-review",
+    "paper_submitted.pdf L153-154 and L322-323 ('first' claims); Section 2, L73-82 (AEM, Uria et al.)",
+    "paper_submitted.pdf Sections 4.2-4.3, Eq. 5-8, L170-171 and L182 (the only citations of Nash & Durkan [21] there)",
+    "paper_submitted.pdf L110 and Table 2 (marginals); L205-214 (likelihood evaluation, ordering); L220-221 (mean imputation)",
+    "paper_submitted.pdf Figure 2 (gains concentrated at missing rate 0.1) and L284-285",
+    "paper.pdf camera-ready: adds 'similar to AEMs' and 'we adapt the approach'; keeps both 'first' claims"
+  ]
+}

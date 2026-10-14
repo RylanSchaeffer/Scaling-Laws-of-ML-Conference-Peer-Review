@@ -1,0 +1,207 @@
+{
+ "pair_id": "n21-087",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [6, 4, 5, 7, 6],
+   "confidences": [4, 3, 5, 4, 3],
+   "reviews_edited_after_posting": ["Reviewer_4TDb", "Reviewer_Kn8T"],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4, 5, 6, 6, 7 (mean 5.6) form an even spread with no isolated score. Two reviewers sit below the threshold (Reviewer_hcVR 4, Reviewer_aH4a 5) and three at or above it (Reviewer_4TDb 6, Reviewer_JA6Z 6, Reviewer_Kn8T 7)."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_JA6Z",
+     "evidence": "3 hours, confidence 3, math not checked. The praise is generic ('well-written', 'well-motivated'). The questions are generic or do not fit the paper: a VariBAD comparison (a risk-neutral deep meta-RL method) and CARLA/Torcs experiments for a tabular Bayes-adaptive planner. The limitations field reads 'Yes'. No reply to the rebuttal."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_hcVR",
+     "claim": "Line 121 defines V(s,y) with a min over policies where it should be a max, because G is a reward (Eq. 4).",
+     "checked_against_paper": "correct",
+     "evidence": "Submitted line 121 reads V(s,y) = min over π of CVaR_y(G_π^M); Eq. 4 maximises. The authors conceded. A typo, not an error in a result. Reviewer_ZrWX (B) found the same typo."
+    },
+    {
+     "reviewer": "Reviewer_Kn8T",
+     "claim": "The claim to be the first MCTS algorithm for CVaR optimisation is overstated, because [33] (RAMCP) already does this for epistemic uncertainty; RAMCP is also missing from the comparison.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 53-54 and 83-84 claim the first MCTS algorithm for CVaR optimisation in sequential decision making. Lines 62-64 cite [33] as optimising a risk metric in Bayesian RL. The baselines (lines 287-296) omit RAMCP. The authors narrowed the claim to 'in the presence of aleatoric uncertainty'."
+    },
+    {
+     "reviewer": "Reviewer_4TDb",
+     "claim": "The paper claims much novelty, but prior works [1-3] (Depeweg et al. 2018, Clements et al. 2019, Eriksson et al. 2021) already combine both uncertainty types in risk-sensitive RL.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 41-42 say previous works 'generally considered risk-aversion to either parametric or internal uncertainty'. Lines 52-53 claim the first risk metric in model-based Bayesian RL that addresses both. None of [1-3] is cited. Depeweg et al. 2018 gives a risk-sensitive criterion for model-based RL with Bayesian neural networks that weighs both uncertainty types, so the broad claim is overstated. The claim for the Bayes-adaptive MDP framework stands, as 4TDb concedes."
+    },
+    {
+     "reviewer": "Reviewer_4TDb",
+     "claim": "G_{π,σ} in Proposition 2 is undefined.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Line 139 defines G^G_(π,σ) as the return distribution under the agent and adversary policies; Prop. 2 (line 225) applies it to G+. The authors pointed to lines 138-139."
+    },
+    {
+     "reviewer": "Reviewer_4TDb",
+     "claim": "The perturbation budget is shared between prior and transition perturbations, so the user cannot set aversion to epistemic and aleatoric risk separately.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 174-175 and Prop. 1 (line 193) put one bound, 1/α, on the product of the prior perturbation δ and the transition perturbations ξ. This is a design choice; the authors defend it as optimising the worst 100α% of total returns."
+    },
+    {
+     "reviewer": "Reviewer_hcVR",
+     "claim": "The experiments do not isolate model-only and transition-only uncertainty and do not compare with robust or soft-robust methods (also Reviewer_aH4a).",
+     "checked_against_paper": "correct",
+     "evidence": "The baselines (lines 287-296) are CVaR BAMDP PG, CVaR VI BAMDP, CVaR VI Expected MDP (aleatoric only) and BAMCP (risk-neutral). There is no epistemic-only or robust-MDP baseline. Every evaluation episode mixes both uncertainty types (lines 331-334)."
+    },
+    {
+     "reviewer": "Reviewer_aH4a",
+     "claim": "Because the experiments sample the true MDP from the prior, the method may in effect have access to the true MDP.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Lines 331-333: a new MDP is drawn for each episode, and the planner sees only the prior, never the sampled MDP. The valid residue is that the evaluation assumes a correct prior; A's meta-review turned this into a request for an 'incorrect prior' analysis. aH4a gave confidence 5."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "Responses posted 2021-08-09. No A reviewer posted in the visible discussion. Reviewer_4TDb's edit (2021-09-16) adds 'The response clarified some minor issues, but my main points remain unchanged'; a silent rating change cannot be ruled out. Reviewer_Kn8T's edit is dated its posting day (2021-07-16), before the rebuttal. Reviewer_hcVR, Reviewer_aH4a and Reviewer_JA6Z never edited.",
+    "what_convinced_or_not": "The authors conceded the line-121 typo and the MCTS 'first' claim, narrowed the novelty claim to the Bayes-adaptive framework, and promised related work and a compute-budget experiment. They ran no new experiments, citing 'conference rules'. Nothing answered the request from hcVR and aH4a to separate the two uncertainty types, and both stayed below the threshold without a reply."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "Rejects although three of five reviewers rate 6 or 7 (mean 5.6). The listed concerns come from the reviews: scalability (Kn8T, aH4a, JA6Z), decoupling the two uncertainties (hcVR, aH4a), prior entropy (Kn8T). The decisive verdict, 'quite incremental', is stronger than any review: only 4TDb called the technical novelty limited, and it rated 6. No A review asks for the 'incorrect prior' analysis. The meta-review says the paper was 'carefully discussed by the reviewers' to a 'consensus'; the public record holds no reviewer comment after the rebuttal.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC judged the extension of the CVaR-MDP dual representation and MCTS to Bayes-adaptive MDPs 'quite incremental'",
+    "Two of five reviewers below the threshold (hcVR 4, aH4a 5); mean 5.6",
+    "Only two small domains and limited scalability",
+    "No experiment that separates epistemic from aleatoric risk, and no analysis of the prior"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [6, 7, 7, 6],
+   "confidences": [4, 4, 3, 3],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 7, 7, 6 (mean 6.5) lie within half a point of the mean; no reviewer is below the threshold."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_dKwV",
+     "evidence": "Main review of five sentences. Its questions sit in the limitations field and are generic (why MCTS, a model-free variant, cite bootstrap and distributional RL). No engagement with the propositions or Table 1. Its post-rebuttal reply is one line: 'I suggest to add some discussions'."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_ZrWX",
+     "claim": "On line 121 the min in the definition of V(s,y) should be a max.",
+     "checked_against_paper": "correct",
+     "evidence": "Same typo that Reviewer_hcVR found in A; the authors conceded."
+    },
+    {
+     "reviewer": "Reviewer_XkNN",
+     "claim": "The authors choose a static risk setting but do not discuss why.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 69-70 state the choice of static over dynamic risk with no reason. The rebuttal supplied one (risk of a bad total return, e.g. total journey time)."
+    },
+    {
+     "reviewer": "Reviewer_XkNN",
+     "claim": "The experiments do not separate parametric from intrinsic uncertainty.",
+     "checked_against_paper": "correct",
+     "evidence": "Every evaluation episode mixes both (lines 331-334); the only single-source baseline is CVaR VI Expected MDP. XkNN kept 7 and called such additions possibly 'out of scope'."
+    },
+    {
+     "reviewer": "Reviewer_ZrWX",
+     "claim": "The prior perturbation δ disappears in the stochastic-game formulation of Section 4.2.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. 11 perturbs only the BAMDP transition; lines 226-229 explain in three sentences that this covers both perturbations. The authors agreed to expand it."
+    },
+    {
+     "reviewer": "Reviewer_aq52",
+     "claim": "The only limitation that the paper states is root sampling.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 6 (lines 367-372) states root sampling and also limited scalability from the exponential growth of the BAMDP."
+    },
+    {
+     "reviewer": "Reviewer_aq52",
+     "claim": "The proposed algorithm is on par or better than the other variants in performance and time.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: RA-BAMCP matches exact CVaR VI BAMDP in betting (9.98 vs 10.00 at α = 0.03; 20.09 vs 20.77 at α = 0.2) and is best at α = 0.2 in navigation (27.76). It loses to CVaR BAMDP PG at α = 0.03 in navigation (23.51 vs 23.92). Its time is per episode, while the PG and VI times are one-off totals. The abstract's 'significantly outperforms' is stronger than the table; neither committee said so."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No B review was edited after posting. Reviewer_XkNN (2021-08-20): 'I will stick with my rating and vote to accept'. Reviewer_ZrWX (2021-08-24): 'still happy to see this paper accepted'. Reviewer_aq52 and Reviewer_dKwV (2021-08-25) acknowledged the response without change.",
+    "what_convinced_or_not": "All four were already at 6 or 7. The rebuttal gave XkNN a reason for static risk and promised a compute-budget experiment; XkNN wrote that it 'clarified the important points of confusion'. It conceded ZrWX's typo and δ point."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'The AC agrees overall reviewer consensus that this is an interesting advance'. The meta-review copies sentences from three reviews: dKwV's opening summary, XkNN's 'equivalent to finding a stable equilibrium for an adversarial two player game', and ZrWX's 'demonstrated on simple domains' and 'important ... problem in RL'. It names limited scalability and says the draft 'needs significant improvement', then accepts.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "All four reviewers at 6 or 7 (mean 6.5), all reaffirmed after the rebuttal",
+    "Reviewers judged the CVaR-in-BAMDP game formulation (Props. 1-2) novel for an under-explored problem",
+    "Toy domains accepted as a sanity check, given how hard Bayes-adaptive CVaR is",
+    "AC followed the consensus although it named the same scalability and writing weaknesses"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Uncited prior work on both uncertainty types in risk-sensitive RL, and risk-averse tree search (Reviewer_4TDb)",
+  "One shared budget gives no separate control of epistemic and aleatoric risk aversion (Reviewer_4TDb)",
+  "'First MCTS for CVaR' overclaim given RAMCP [33], and RAMCP missing as a baseline (Reviewer_Kn8T)",
+  "No robust or soft-robust baselines; scaling to non-conjugate posteriors (Reviewer_hcVR)",
+  "No convergence bound for the full algorithm; assumptions of the Bayesian-optimisation kernel (Reviewer_aH4a)",
+  "Effect of prior entropy or a misspecified prior (Reviewer_Kn8T, A meta-review)"
+ ],
+ "issues_only_b": [
+  "Static rather than dynamic risk chosen without a reason (Reviewer_XkNN)",
+  "Stability of the minimax optimisation (Reviewer_XkNN)",
+  "The prior perturbation δ vanishes in the game formulation; a root-sampling variant (Reviewer_ZrWX)",
+  "Implementation complexity may limit adoption; thin limitations section (Reviewer_aq52)",
+  "Why MCTS, model-free variants, and related work on bootstrap and distributional RL (Reviewer_dKwV)"
+ ],
+ "shared_issues": [
+  "Only two small toy domains and limited scalability (every reviewer in both committees)",
+  "Experiments do not separate epistemic from aleatoric uncertainty (A: hcVR, aH4a; B: XkNN)",
+  "Parts of the contribution reuse known results or techniques (A: 4TDb on the theory; B: aq52 on the algorithm)",
+  "Writing hard to follow in places (A: 4TDb, hcVR; B: dKwV, aq52, B meta-review)",
+  "Min should be max on line 121 (A: hcVR; B: ZrWX)",
+  "Performance against compute budget (A: Kn8T; B: XkNN)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee A rejected and Committee B accepted the same borderline paper because of reviewer draw and because the two area chairs weighed the same limits differently. Both committees saw a direct extension of Chow et al.'s CVaR game to Bayes-adaptive MDPs (the paper says Prop. 2 'directly extends Prop. 1 from [9]', line 226), tested on two toy domains, with no experiment that separates epistemic from aleatoric risk. B drew four reviewers at 6 or 7 (mean 6.5). They took the paper's 'first' claims at face value, treated the toy domains as a sanity check, and all acknowledged the rebuttal. B's AC accepted with a meta-review copied from three reviews, while saying the draft 'needs significant improvement'. A drew five reviewers from 4 to 7 (mean 5.6). Its two detractors (Reviewer_hcVR 4, Reviewer_aH4a 5) asked for the same decomposition experiment that B's Reviewer_XkNN asked for at 7, and never replied to the rebuttal. A's reviewers also showed, correctly, that the novelty claims are overstated: RAMCP [33] already applies MCTS to CVaR (Reviewer_Kn8T), and uncited work treats both uncertainty types in risk-sensitive RL (Reviewer_4TDb). A's AC called the contribution 'quite incremental' and cited a reviewer consensus that the public record does not show, although three of five reviewers rated 6 or 7. No reviewer in either committee found an error in a result.",
+ "candidate_reasons": [
+  "Reviewer draw: two sub-threshold reviewers",
+  "Novelty overclaims caught by one committee",
+  "AC judged extension incremental",
+  "Toy experiments tolerated versus penalised",
+  "Meta-review copied from positive reviews",
+  "Detractors silent after rebuttal"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review",
+  "Reviewer_4TDb final review and 2021-09-16 edit (A)",
+  "Reviewer_Kn8T review (A)",
+  "Reviewer_hcVR and Reviewer_aH4a reviews (A)",
+  "Reviewer_XkNN review and 2021-08-20 reply (B)",
+  "paper_submitted.pdf lines 41-42, 52-54, 83-84 (novelty claims)",
+  "paper_submitted.pdf line 226 (Prop. 2 extends [9])",
+  "paper_submitted.pdf lines 121 and 139",
+  "paper_submitted.pdf Table 1"
+ ]
+}

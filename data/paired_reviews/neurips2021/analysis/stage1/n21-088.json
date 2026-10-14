@@ -1,0 +1,244 @@
+{
+  "pair_id": "n21-088",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        6,
+        7,
+        7
+      ],
+      "confidences": [
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_DREH",
+        "Reviewer_S7fm",
+        "Reviewer_nzbx"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Final ratings 6, 7, 7, up from 5, 7, 6; nobody argues against acceptance. No reviewer engages with any proof: Reviewer_DREH and Reviewer_nzbx declare 'Math/other details were not carefully checked', and Reviewer_S7fm comments on no theorem."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_nzbx",
+          "evidence": "2 hours, confidence 3, 'Math/other details were not carefully checked'. The whole assessment is 'The problem is well-motivated. The paper is well-written. The contributions are significant.' plus a request for real data. Raised 6 to 7 on a rebuttal table of single regret numbers on five ETF funds, for a paper whose contribution is its theorems."
+        },
+        {
+          "reviewer": "Reviewer_S7fm",
+          "evidence": "Confidence 4, but no comment on any theorem, bound or proof: generic praise ('a solid contribution to the MAB field') and requests for a complexity analysis, more commentary on experiments and real data. Post-rebuttal one line: 'My ratings stays the same.' Did not question the reply that each step is 'a convex program', which is false for MC-UCB."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_DREH",
+          "claim": "Full-information, semi-bandit and full-bandit feedback are not properly explained after their introduction ('Exactly what is meant by ...?').",
+          "checked_against_paper": "incorrect",
+          "evidence": "L134-138 define the three settings in one clause each, L45-48 describe them in the introduction, and the first paragraphs of Sections 4, 5 and 6 define them formally. The terms are standard in bandits. The authors' re-explanation, with Markowitz as motivation and reasons for each algorithm, moved DREH from 5 to 6."
+        },
+        {
+          "reviewer": "Reviewer_DREH",
+          "claim": "The upper bounds for CMCB-FI and CMCB-SB seem to be of the same order.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Same order in T only. Theorem 3 carries a sqrt((||Sigma*||_+ + d^2) d) factor, about d^(3/2), that Theorem 1 lacks; the authors made this point in their reply."
+        },
+        {
+          "reviewer": "Reviewer_nzbx",
+          "claim": "The paper does not test the algorithms on real data sets (also Reviewer_S7fm).",
+          "checked_against_paper": "correct",
+          "evidence": "Section 7 uses one synthetic family (theta* = (1/d, ..., 1/d), unit variances, small negative covariances), and checklist 4(a) says 'This work uses synthetic data'. The camera-ready adds the Kaggle US Funds results from the rebuttal."
+        },
+        {
+          "reviewer": "Reviewer_S7fm",
+          "claim": "There is no estimate or analysis of the computational complexity of the optimization solved at each step.",
+          "checked_against_paper": "correct",
+          "evidence": "The submission has no complexity discussion, and the camera-ready main text adds none. The rebuttal answer ('a convex program', projected gradient descent) fits MC-Empirical, not MC-UCB: its domain Delta^c_d (w_i = 0 or c <= w_i <= 1, L230-231) is not convex (with c = 0.4, (1,0,0) and (0,0.5,0.5) are feasible, their midpoint is not), and its objective maximizes the convex bonus E_t(w)."
+        },
+        {
+          "reviewer": "Area chair A (meta-review); also Reviewer_DREH ('order-optimal to the information theoretical lower bounds')",
+          "claim": "The paper shows matching upper and lower regret bounds for the full-information and semi-bandit settings.",
+          "checked_against_paper": "incorrect",
+          "evidence": "The bounds match only in T: L235, L259 and Remark 4 (L269) say 'with respect to T'. Theorem 3 is about d^(3/2) sqrt(T) ln T, against the submitted Theorem 4 lower bound sqrt(c(d-m) T ln T), whose proof was wrong (conceded in Committee B's forum; the camera-ready states Omega(sqrt(cdT))). The Theorem 2 lower bound holds for an instance with rho = 1/sqrt(T)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": [
+          "Reviewer_DREH",
+          "Reviewer_nzbx"
+        ],
+        "evidence": "Reviewer_DREH's review gives an initial 'my recommendation would be 5, marginally below threshold'; DREH's comment of 2021-08-14 says 'I would raise my score to 6', and the review was edited that day. Reviewer_nzbx's review, edited 2021-09-11: 'I change my score from 6 to 7'. Reviewer_S7fm, edited 2021-09-11: 'My ratings stays the same' (7). Mean 6.0 before, 6.67 after.",
+        "what_convinced_or_not": "DREH was moved by explanations of material that is largely in the paper: the Markowitz motivation, the definitions of the three feedback settings, and the reason for each algorithm. nzbx was moved by a real-data regret table (five ETF funds, d = 5, T = 10,000, 50 runs, single numbers with no spread). Nobody in A raised, or was told of, the lower-bound error that Committee B found."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepts with all ratings at 6 or above, citing the real-data results, 'two scores increasing' and a post-rebuttal agreement that the paper 'is novel and provides interesting results'. It calls the panel 'three expert reviewers', though two declared confidence 3 with math not checked, and restates 'matching upper and lower regret bounds' without the 'with respect to T' qualifier.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Novel model: first risk-aware bandit with correlated options and continuous weights (all three reviewers)",
+        "Claimed matching upper and lower bounds for full-information and semi-bandit feedback, taken at face value",
+        "Clear writing and a responsive rebuttal on motivation, definitions and algorithm choice (Reviewer_DREH, 5 to 6)",
+        "Real-data ETF experiment added in the rebuttal (Reviewer_nzbx, 6 to 7)",
+        "Chair followed unanimous ratings of 6 or above"
+      ]
+    },
+    "b": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        7,
+        7,
+        4,
+        6
+      ],
+      "confidences": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_7HJc",
+        "Reviewer_kCrL"
+      ],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_7HJc",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "Rates 4 at confidence 4 against 7, 7, 6. The reasons are specific, and each one I could check holds: the submitted Theorem 4 states Omega(sqrt(c(d-m) T ln T)) (L264-267), the authors conceded the proof error, and the camera-ready states Omega(sqrt(cdT)); optimality is claimed only 'with respect to T' (L235, L259, L269); the full-bandit bound is T^(2/3) and its lower bound 'remains open' (Theorem 5, L312). After the rebuttal 7HJc checked the new proof ('they all seem correct') and kept 4 on significance, not on correctness."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_1ysV",
+          "evidence": "Confidence 3, 'Math/other details were not carefully checked'. Five sentences of assessment ('competently executed'), with one substantive remark ('there should be a better algorithm than ETE'). On 2021-09-11, after 7HJc's error report and post-rebuttal critique, wrote only 'I retain my score' (7)."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_7HJc",
+          "claim": "The proof of the Theorem 4 lower bound is incorrect: it assumes the regret is o(T^a) for every a > 0, an assumption from gap-dependent lower bounds that a polynomial lower bound cannot make, so the ln T factor is unsupported.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Theorem 4 (L264-267) states Omega(sqrt(c(d-m) T ln T)), and L262 sets the gap to sqrt(ln T/T). The proof (Eq. 18) is in the supplementary material, which neither PDF includes. The authors conceded ('the proof can be easily fixed by using the gap-independent analysis procedure in [Auer et al. 2002]') and re-proved Omega(sqrt(cdT)). The camera-ready Theorem 4 states Omega(sqrt(cdT)); its lead-in sentence still says Omega(sqrt(T ln T))."
+        },
+        {
+          "reviewer": "Reviewer_7HJc",
+          "claim": "The full-bandit result is an explore-then-exploit T^(2/3) bound without a lower bound, so it may be loose.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 5: O(Z(rho,pi) sqrt(d(ln T + d^2)) T^(2/3) + d Delta_max T^(2/3)). L312: 'The lower bound for CMCB-FB remains open'."
+        },
+        {
+          "reviewer": "Reviewer_7HJc",
+          "claim": "The bounds are tight only in T; tightness in d, c and the covariance is unknown, and covariance effects appear only in upper bounds.",
+          "checked_against_paper": "correct",
+          "evidence": "L235, L259 and Remark 4 (L269) claim optimality 'with respect to T'. Theorem 3 grows like d^(3/2); the lower bound grows like sqrt(cd). Remarks 1, 3 and 5 read covariance effects off upper bounds only. The abstract and L57-58 still say 'optimal regrets' and 'matching lower bounds' without the qualifier."
+        },
+        {
+          "reviewer": "Reviewer_7HJc",
+          "claim": "The proof of Theorem 2 is over-complicated; a Le Cam two-point argument gives Omega(sqrt(T)).",
+          "checked_against_paper": "not_checked",
+          "evidence": "The proof is in the supplementary material, not in either PDF. The statement (L213-216) fits the reviewer's reading: it draws theta* from N(0, I/(36(d-1)^2 T)) and sets rho = 1/sqrt(T), so mean gaps and risk both shrink like 1/sqrt(T), the usual vanishing-gap construction."
+        },
+        {
+          "reviewer": "Reviewer_7HJc",
+          "claim": "The rebuttal's claim that Theorem 1 improves on Degenne and Perchet (2016) compares a full-information result with a semi-bandit one.",
+          "checked_against_paper": "correct",
+          "evidence": "L107-108 describe [11] as 'combinatorial semi-bandits with correlation'; Theorem 1 is the full-information result. The authors conceded that the two 'cannot be directly compared'."
+        },
+        {
+          "reviewer": "Reviewer_u6Hw",
+          "claim": "The semi-bandit upper bound has a d^(3/2) dependence that the lower bound lacks, and Delta_max in Theorem 5 is not defined.",
+          "checked_against_paper": "correct",
+          "evidence": "Theorem 3 has sqrt((||Sigma*||_+ + d^2) d), about d^(3/2). L292-293 define Z(rho,pi), Sigma*_pi and ||C+_pi|| but not Delta_max. The camera-ready adds Delta_max = f(w*) - min f(w)."
+        },
+        {
+          "reviewer": "Reviewer_kCrL",
+          "claim": "The constraint parameter c should be an input to MC-UCB.",
+          "checked_against_paper": "correct",
+          "evidence": "Algorithm 2's input line lists only rho and lambda, while step 6 maximizes over Delta^c_d. The authors called it a typo."
+        },
+        {
+          "reviewer": "Area chair B (meta-review)",
+          "claim": "In the full-bandit case the authors analyzed only an extremely simple algorithm with a suboptimal rate.",
+          "checked_against_paper": "correct",
+          "evidence": "Not shown by the paper or the reviews: there is no full-bandit lower bound (L312), and 7HJc wrote only 'potentially loose'. It holds in substance by a standard reduction from the paper's model (Sections 3 and 6). Two pulls of the same w give z = (y1 + y2)/2 - rho (y1 - y2)^2/2 with E[z] = f(w), and f(w) is linear in the known features (w, ww^T). A linear-bandit algorithm in d + d(d+1)/2 dimensions (OFUL, the paper's [1], with a heavy-tail-robust estimator) then has regret of order sqrt(T) in T, below T^(2/3)."
+        },
+        {
+          "reviewer": "Area chair B (meta-review)",
+          "claim": "The authors are not familiar with the general bandit literature and have made mistakes in their claims.",
+          "checked_against_paper": "correct",
+          "evidence": "Two mistakes are conceded in the record: the Theorem 4 proof and the Degenne-Perchet comparison. The authors also agreed with Reviewer_kCrL that 'full-bandit' is usually called 'bandit' feedback. L305-308 say no statistical method estimates the covariance from non-fixed full-bandit data; that is the random-coefficient regression model (e.g. Hildreth and Houck 1968), which regresses squared residuals on products of the regressors."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "Reviewer_7HJc edited the review on 2021-08-26, adding post-rebuttal feedback that ends 'decides to keep my score' (4). Reviewer_kCrL edited on 2021-09-02: 'inclined to keep my score as is' (6). Reviewer_u6Hw on 2021-08-25: 'I will stick to my score' (7). Reviewer_1ysV on 2021-09-11: 'I retain my score' (7). u6Hw and 1ysV did not edit their reviews.",
+        "what_convinced_or_not": "The corrected proof convinced 7HJc on correctness but not on significance: tightness holds only in T, Theorem 2 is 'mostly a standard Bayes computation', the technical steps of Theorems 1 and 3 are hidden in proofs, and an explore-then-commit design is 'a little bit too light' without an optimality guarantee. The authors' long reply of 2021-08-28 restated the contributions and got no answer. The three positive reviewers neither engaged with 7HJc's points nor moved."
+      },
+      "ac": {
+        "followed_reviews": "partly",
+        "evidence": "Rejects against three ratings of 6 or 7. The reasons are 7HJc's: standard techniques, 'mistakes in their claims', 'overly sophisticated arguments to show simple results', and 'an extremely simple algorithm with a suboptimal rate' for full-bandit feedback. The chair adds a personal bar for bandit papers ('It would not cross the threshold if one just has some sublinear rate'), which undersells the full-information and semi-bandit results, rate-optimal in T.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Technical contribution judged too weak for the bandit bar: standard pure-exploitation and UCB algorithms and analyses (Reviewer_7HJc, chair)",
+        "Mistakes in claims: the flawed Theorem 4 proof with an unsupported ln T, and an unfair Degenne-Perchet comparison (Reviewer_7HJc)",
+        "Full-bandit case: explore-then-exploit T^(2/3) bound with no lower bound (Reviewer_7HJc, Reviewer_1ysV, chair)",
+        "Tightness only in T; covariance effects shown only in upper bounds (Reviewer_7HJc)",
+        "Chair sided with the single expert detractor over ratings of 7, 7 and 6"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "No real-data experiments (Reviewer_S7fm, Reviewer_nzbx)",
+    "Motivation for covariance as the risk measure and for definition (1) (Reviewer_DREH)",
+    "Motivation for the choice of MC-Empirical, MC-UCB and MC-ETE, and the meaning of the three feedback settings (Reviewer_DREH)",
+    "Computational complexity of the optimization at each step (Reviewer_S7fm)",
+    "Thin commentary on the experiments (Reviewer_S7fm)"
+  ],
+  "issues_only_b": [
+    "Incorrect proof of the Theorem 4 lower bound, with an unsupported ln T factor (Reviewer_7HJc)",
+    "Standard algorithms and analysis for full-information (pure exploitation) and semi-bandit (UCB) feedback, and an over-long Theorem 2 proof (Reviewer_7HJc)",
+    "Tightness only in T: d^(3/2) gap in the semi-bandit bounds, no tight dependence on c or the covariance (Reviewer_7HJc, Reviewer_u6Hw)",
+    "Unfair comparison with Degenne and Perchet (2016) (Reviewer_7HJc)",
+    "Undefined Delta_max, extension to sub-exponential noise, choice of the regularization parameter (Reviewer_u6Hw); MC-UCB details, missing input c, 'full-bandit' terminology (Reviewer_kCrL)"
+  ],
+  "shared_issues": [
+    "The full-bandit setting has only an explore-then-exploit T^(2/3) upper bound and no lower bound (A: Reviewer_DREH as a limitation, meta-review; B: Reviewer_1ysV, Reviewer_7HJc, chair). A treated it as an open problem, B as the main weakness",
+    "Novel model, the first risk-aware bandit with correlated options (A: all three reviewers and the chair; B: Reviewer_u6Hw, Reviewer_1ysV, Reviewer_kCrL; Reviewer_7HJc grants its relevance)"
+  ],
+  "same_facts_weighted_differently": false,
+  "verdict": "Committee A accepted and Committee B rejected because only B had a reviewer who checked the theory, and B's chair took his side against a positive majority. Reviewer_7HJc (4, confidence 4) found a real error: the submitted Theorem 4 claims an Omega(sqrt(c(d-m) T ln T)) lower bound from an argument that only gap-dependent bounds allow. The authors conceded and re-proved Omega(sqrt(cdT)), which the camera-ready states. 7HJc also argued, and the paper's text confirms, that the bounds are optimal only in T, and that the full-bandit result is an explore-then-exploit T^(2/3) bound with no lower bound. B's other reviewers (7, 7, 6) did not answer him and did not move. B's chair rejected because 'the technical contribution of this paper is too weak' and added a personal bar for bandit papers: 'It would not cross the threshold if one just has some sublinear rate.' Committee A's reviewers never checked a proof: two declare 'Math/other details were not carefully checked', one spent 2 hours, and S7fm comments on no theorem. Two A scores rose on the rebuttal, on re-explained definitions and a five-fund real-data table, and A's chair followed the scores and repeated the 'matching upper and lower bounds' claim. This is not only a difference of weight. The committees weighted one shared fact differently, the open full-bandit lower bound, which A called a limitation and B the main weakness. The rest of B's case, the proof error and an expert's argument that the techniques are standard, never reached A.",
+  "candidate_reasons": [
+    "Expert detractor found proof error",
+    "Chair overrode positive reviewer majority",
+    "Chair's high bar for bandit theory",
+    "No reviewer checked the proofs",
+    "Rebuttal experiment raised theory-paper scores",
+    "Open full-bandit bound weighted differently"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_7HJc final review: points 2-4 and post-rebuttal points 1, 2, 5, 6",
+    "Authors' response to Reviewer_7HJc, Part 2/2 (revised Theorem 4, Omega(sqrt(cdT)))",
+    "Committee B meta-review",
+    "Committee A meta-review",
+    "Reviewer_DREH comment of 2021-08-14 and Reviewer_nzbx post-rebuttal note",
+    "paper_submitted.pdf Theorem 4 and L262-267",
+    "paper.pdf (camera-ready) Theorem 4, Omega(sqrt(cdT)), and the Delta_max definition after Theorem 5",
+    "paper_submitted.pdf Theorem 2, L213-216 (rho = 1/sqrt(T), omega = 36(d-1)^2 T)",
+    "paper_submitted.pdf Theorem 3, L235, L259, Remark 4 at L269 ('with respect to T')",
+    "paper_submitted.pdf Theorem 5 and L305-312 (ETE; full-bandit lower bound open)",
+    "paper_submitted.pdf L230-231 (Delta^c_d) and the Algorithm 2 input line",
+    "paper_submitted.pdf L134-138 (feedback settings); Section 7 and checklist 4(a) (synthetic data only)"
+  ]
+}

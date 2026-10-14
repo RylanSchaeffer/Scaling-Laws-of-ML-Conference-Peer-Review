@@ -1,0 +1,271 @@
+{
+ "pair_id": "n21-084",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    5,
+    6,
+    5
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_FGzB",
+    "Reviewer_FMo7",
+    "Reviewer_C2g5",
+    "Reviewer_5hh7"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4, 5, 6, 5 all lie within one point of the 5.0 mean. Reviewer_C2g5 (6, confidence 3) is the only rating above threshold and Reviewer_FGzB (4) the lowest; neither stands apart."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_FMo7",
+     "evidence": "Partly. 4-5 hours. The main review breaks off mid-sentence ('The results reported in the Table-1 and 2 with'). Its last objection, that the softmax 'does show high confidence for the outlier sample' unlike a Bayesian model, treats POODLE as an outlier detector; the paper uses OOD samples only to move class prototypes (lines 162-166). Its two concrete points (Rot+KD-only comparisons, missing baselines) are correct."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_FGzB",
+     "claim": "Figure 2 does not support 'consistently yields accuracy gain on different backbones' in comparison with SSL and KD; the MobileNet case is a problem.",
+     "checked_against_paper": "correct",
+     "evidence": "Figure 2(a): on MobileNet the POODLE gain is about 0.8 points, against about 3.5 for SSL and 2.6 for KD. POODLE also trails SSL on ResNet-12 (about 2.4 vs 3.2)."
+    },
+    {
+     "reviewer": "Reviewer_FGzB",
+     "claim": "In Table 5, beta = 0.75 beats beta = 1 in most cases, which the text (a larger push coefficient helps) does not explain.",
+     "checked_against_paper": "correct",
+     "evidence": "Beta = 0.75 is higher in 5 of 8 cells; beta = 1 wins only at kappa = 0.5 and in the 5-shot cell at kappa = 1. Lines 276-278 and 284 give no reason."
+    },
+    {
+     "reviewer": "Reviewer_FGzB",
+     "claim": "Calling POODLE 'comparable' with SOTA only on tiered-ImageNet is wrong; roughly, it is on par with SOTA everywhere.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3: on tiered-ImageNet Rot+KD+POODLE is below Distill inductively (70.42/85.26 vs 71.5/86.0) and below TIM-GD transductively (79.67/86.96 vs 79.9/88.5). The mini-ImageNet and CUB leads are over older baselines and rest on a Rot+KD backbone; the authors' added table puts IEPT at 67.05 against 67.84 (mini-ImageNet, 1-shot inductive). The authors conceded the tiered point."
+    },
+    {
+     "reviewer": "Reviewer_FMo7",
+     "claim": "Tables 3 and 4 report POODLE on a Rot+KD backbone, which is unfair to earlier methods, and DSN, LEO, AWGIM and ECKPN are not compared.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 3's inductive block shows this paper only as Rot+KD and Rot+KD+POODLE; Table 4 is 'with Rot + KD baseline'. None of the four methods is in Table 3 or in the reference list."
+    },
+    {
+     "reviewer": "Reviewer_5hh7",
+     "claim": "The tables give no 95% confidence intervals.",
+     "checked_against_paper": "correct",
+     "evidence": "Tables 1-5 give means only; checklist Q3(c) answers 'No' on error bars."
+    },
+    {
+     "reviewer": "Reviewer_5hh7",
+     "claim": "Post-rebuttal: the approach 'requires additional examples from related domains, while the distribution calibration paper does not'.",
+     "checked_against_paper": "incorrect",
+     "evidence": "For in-domain FSL, the only setting in which distribution calibration reports results, negatives come from the base training set (line 175) and POODLE-R uses random vectors (Table 1 caption). Extra unlabeled target-domain data is needed only in the cross-domain experiments, where the compared methods use the same 20% split (lines 252-253, 261-262). The meta-review adopted the claim as 'reliance of methods on extra data'."
+    },
+    {
+     "reviewer": "Reviewer_C2g5",
+     "claim": "Liu et al. (2018), 'Large Margin Few-Shot Learning', is relevant and not cited.",
+     "checked_against_paper": "correct",
+     "evidence": "It is absent from the 52-entry reference list. The authors replied that it adds a margin loss to feature pretraining, while POODLE refines test-time prototypes against OOD samples."
+    },
+    {
+     "reviewer": "Reviewer_C2g5",
+     "claim": "Line 167 says that removing the stop-gradient changes the objective but does not say how.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 167 states the claim with no derivation in the main text; the authors pointed to Section B of the supplement."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_FMo7",
+     "Reviewer_C2g5"
+    ],
+    "evidence": "Reviewer_FMo7 (2021-08-18): 'I will increase my score from reject to weak reject'; review edited the same day, final 5. Reviewer_C2g5 (2021-09-01): 'taking the rebuttal into account, I am increasing my score'; edited the same day, final 6. Reviewer_FGzB added a three-sentence post-rebuttal note on 2021-08-13 and kept 4. Reviewer_5hh7 added a post-rebuttal paragraph on 2021-09-02 and kept 5. The authors' answer to that paragraph came after it ('Though the reviewer has made the decision') and got no reply.",
+    "what_convinced_or_not": "The new comparison tables convinced FMo7 that the comparison was fair, but not on novelty. C2g5 was moved by the account of why random negatives (POODLE-R) work, the distinction from Liu et al. (2018), and gains on the RFS and FEAT pretrained features. FGzB and 5hh7 kept 'limited novelty' and parity with SOTA. 5hh7 added that the method needs extra data from related domains. The authors' explicit in-domain answer ('we do not need any additional data') came only after 5hh7's final edit."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four reviewers were below threshold. The three stated shortcomings repeat Reviewer_5hh7's post-rebuttal paragraph almost word for word: 'limited technical novelty regarding the use of large margin', 'marginal improvements over SOTA', 'the reliance of methods on extra data'. The meta-review says the method improves 'feature learning', but the feature extractor is frozen (line 107). Its statement that 'all reviewers believe' the paper 'would make a great publication' matches no review. It does not mention C2g5's support or the authors' last reply to 5hh7.",
+    "meta_review_leans_on": "a_specific_reviewer"
+   },
+   "main_reasons_for_decision": [
+    "Three of four reviewers below threshold after the rebuttal (mean 5.0)",
+    "Limited technical novelty: the large-margin push-pull loss is a known technique (FGzB, FMo7, 5hh7)",
+    "Gains over SOTA judged marginal, on par with methods such as distribution calibration (FGzB, 5hh7)",
+    "Reliance on extra data (5hh7, adopted by the AC; wrong for the in-domain results)",
+    "Presentation and unclear details (FGzB, 5hh7)"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    4,
+    6,
+    7,
+    6
+   ],
+   "confidences": [
+    4,
+    4,
+    5,
+    4
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_6ffC",
+    "Reviewer_kzjj",
+    "Reviewer_e7JL",
+    "Reviewer_kwqH"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_6ffC",
+    "direction": "detractor",
+    "basis": "inattentive",
+    "evidence": "4 against 6, 7, 6, with 2 hours spent, the least in either committee. It says the paper compares only with 'very basic methods' and is 'not sure how it compares with sota', but Table 3 is a SOTA comparison with 14 other methods. It calls the optional broader-impact section a guideline violation and later concedes the point. Its follow-up asks how to collect medical negatives, though Table 4 already reports ISIC. Its novelty objection is shared by others."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_6ffC",
+     "evidence": "2 hours and a short list of pros and cons. Two of its concrete claims are wrong (no SOTA comparison; guideline violation). The cross-domain setup is called 'not convincing' with no reason. It ends: 'I can increase my score to 4 and leave this decision to AC.'"
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_6ffC",
+     "claim": "The method compares only with very basic methods on standard benchmarks; its standing against SOTA is unknown.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Table 3, 'Comparison to the state-of-the-art methods', lists 14 other methods, including TIM-GD (NeurIPS 2020), LaplacianShot (ICML 2020), Distill/RFS (ECCV 2020) and Neg-cosine (ECCV 2020). It omits FEAT, DeepEMD, FRN and IEPT, which 6ffC does not name."
+    },
+    {
+     "reviewer": "Reviewer_6ffC",
+     "claim": "The paper did not follow the submission guideline because it keeps a broader-impact section.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 7 is a broader-impact section. NeurIPS 2021 made it optional, not forbidden. 6ffC accepted this ('Thanks for pointing it out') and changed the charge to misuse of the section."
+    },
+    {
+     "reviewer": "Reviewer_kzjj",
+     "claim": "Line 220 ('consistently boosts the performance of all baselines by a large margin (1-3%)') is misleading; Rot+KD gains only about 0.09 on CUB 5-shot.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1: 13 of 18 POODLE-B gains over the CE loss are below 1 point; Rot+KD on CUB 5-shot gains 0.08 (POODLE-B) and 0.09 (POODLE-R)."
+    },
+    {
+     "reviewer": "Reviewer_kzjj",
+     "claim": "Table 2 swaps L_push and L_pull.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 2 puts the negative-sample superscripts (b, u) and the minus sign on L_pull, which is how Eq. 4 treats L_push; line 225 says the first gain comes from the pull loss with query samples. The authors confirmed the error."
+    },
+    {
+     "reviewer": "Reviewer_kzjj",
+     "claim": "DeepEMD is cited but missing from Table 3, and FRN beats Simple+POODLE, so calling POODLE SOTA for inductive settings is too strong.",
+     "checked_against_paper": "correct",
+     "evidence": "DeepEMD [50] is cited at line 59 and absent from Table 3. The authors' added table gives FRN 66.45/82.83 against POODLE-B + simple 64.08/81.41 on mini-ImageNet; the authors argued that FRN should be compared with Rot+POODLE instead."
+    },
+    {
+     "reviewer": "Reviewer_kwqH",
+     "claim": "In Figure 2(a), the POODLE gain beats the SSL gain only with the Conv-4-512 backbone.",
+     "checked_against_paper": "correct",
+     "evidence": "Clearly so only on Conv-4-512 (about 2.6 vs 0.3). POODLE edges SSL on WRN (about 3.7 vs 3.6), ties on DenseNet-121, and trails on ResNet-12 (about 2.4 vs 3.2) and MobileNet (about 0.8 vs 3.5). The authors' 'comparable or higher for three of five' also fits the figure."
+    },
+    {
+     "reviewer": "Reviewer_kwqH",
+     "claim": "The inductive Simple+POODLE result on mini-ImageNet (63.79/81.41) is left out of Table 3.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 has 63.79/81.41; Table 3's inductive block shows only Rot+KD+POODLE. In Table 3, 63.79 would rank below Distill's 64.8."
+    },
+    {
+     "reviewer": "Reviewer_e7JL",
+     "claim": "Eq. 2 applies the distance d to raw inputs x, not to extracted features.",
+     "checked_against_paper": "correct",
+     "evidence": "Eqs. 2 and 3 write d(w_k, x_i), while Eq. 1 defines the distance on z_i = f(x_i)/||f(x_i)||."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_6ffC",
+     "Reviewer_kzjj",
+     "Reviewer_e7JL",
+     "Reviewer_kwqH"
+    ],
+    "evidence": "Reviewer_kzjj (2021-08-21): 'I will update my review and raise my score another step'; edited the same day, final 6. Reviewer_e7JL: 'I decided to increase my score to 7'; edited 2021-09-01. Reviewer_kwqH: 'I would like to increase my rating to 6'; edited 2021-09-02. Reviewer_6ffC (2021-08-26): 'I can increase my score to 4 and leave this decision to AC'; edited the same day.",
+    "what_convinced_or_not": "kzjj: the confidence intervals, the new ablations (distractor class, entropy maximisation, label smoothing), the clarification that POODLE-R samples random feature vectors, and the push-term analysis, after which the method 'does make intuitive sense'; kzjj still wanted analysis beyond accuracy. e7JL: the clarification of how the transductive pull loss uses query samples ('my concern about transductive settings were resolved'), plus the shot-count and inference-time tables. kwqH: 'The newly added experimental results are also convincing'. The base-class answer to the 400-negatives worry reached kwqH (2021-08-10) and e7JL (2021-08-21) before their final scores. 6ffC stayed unconvinced on novelty, the cross-domain setup and the imbalance experiments, and doubted that so much new material is a fair rebuttal."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'Out of the 3 reviewers who spend the most time on this paper, they all thought that the submission was above the acceptance threshold.' This sets aside Reviewer_6ffC (2 hours, the only 4). The rest is generic: the idea 'should be generally useful', 'good empirical performance', 'the presentation is clear', and thanks for the authors' engagement. It does not address the novelty or SOTA-margin concerns of kzjj and kwqH.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "The three reviewers who spent the most time rated 6, 7 and 6 after the rebuttal",
+    "The idea of using unlabeled OOD data judged generally useful",
+    "Consistent gains across inductive, transductive, cross-domain and imbalanced settings",
+    "Clear presentation and active author engagement in the rebuttal"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "No account of how alpha and beta were chosen (FGzB; correct for the main text)",
+  "Beta = 0.75 beats beta = 1 in 5 of 8 Table 5 cells without explanation (FGzB; correct)",
+  "Uncited prior work: Liu et al. 2018, Large Margin Few-Shot Learning (C2g5; correct)",
+  "Stop-gradient effect (line 167) and the 'learn the inductive bias' wording (line 42) unexplained (C2g5, 5hh7)",
+  "No comparison with classifier-refinement methods on frozen features, including distribution calibration (5hh7)",
+  "Link to contrastive learning, joint base-plus-novel evaluation, scaling to large pretrained models (5hh7, C2g5)",
+  "Method needs extra data from related domains (5hh7, adopted by AC A; wrong for in-domain)",
+  "Softmax overconfidence on outliers compared with Bayesian models (FMo7; off-target)"
+ ],
+ "issues_only_b": [
+  "Table 2 swaps the push and pull labels (kzjj; confirmed)",
+  "Line 220 overclaims '1-3%' gains; 13 of 18 Table 1 gains are below 1 point (kzjj; confirmed)",
+  "No analysis beyond accuracy of why POODLE works; random negatives may act like label smoothing (kzjj, kwqH)",
+  "Missing ablations: distractor class, entropy maximisation on negatives, label smoothing, ground-truth weights (kzjj)",
+  "Eq. 1 is ProtoNets without attribution; role of gamma and normalisation; d(w_k, x_i) on raw inputs; disputed 'first loss for inductive and transductive' claim (e7JL)",
+  "Gain as the number of shots grows; transductive pull loss on query samples (e7JL)",
+  "Broader-impact section and imbalance experiments off-topic (6ffC)",
+  "Simple+POODLE left out of Table 3; Figure 2(b) backbone unstated (kwqH)"
+ ],
+ "shared_issues": [
+  "Limited novelty: the push-pull margin loss is known (A: FGzB, FMo7, 5hh7; B: 6ffC, kwqH)",
+  "Incomplete SOTA comparison, flattered by the Rot+KD backbone; small gain over recent methods (A: FGzB, FMo7, 5hh7; B: 6ffC, kzjj, kwqH)",
+  "No confidence intervals (A: 5hh7; B: kzjj)",
+  "Why random uniform negatives (POODLE-R) work as well as base-class negatives (A: C2g5, 5hh7; B: kzjj)",
+  "Number of negatives and whether OOD data exist in practice (A: 5hh7; B: kwqH, e7JL, 6ffC)",
+  "Figure 2(a): the POODLE gain does not consistently match SSL (A: FGzB; B: kwqH)",
+  "Inference overhead of test-time fine-tuning (A: 5hh7; B: e7JL)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B recommended acceptance because of who reviewed and how its AC counted, not because it saw a different paper. Both committees saw the same borderline method and nearly the same rebuttal tables, and both raised the same two facts: the loss is a known large-margin push-pull term, and the gain over recent methods (FEAT, FRN, IEPT, distribution calibration) is small. In B, the three reviewers who spent the most time (6.5, 8 and 10 hours) pressed for ablations, got them, and ended at 6, 7 and 6; Reviewer_e7JL and Reviewer_kzjj said that novelty was sufficient. B's lone detractor, Reviewer_6ffC (4, 2 hours), made two claims that the paper contradicts, and B's AC counted only the three reviewers 'who spend the most time'. In A, reviewers spent 3 to 5 hours. Two rose, but Reviewer_FGzB (4) and Reviewer_5hh7 (5) held on novelty and parity with SOTA. A's AC repeated 5hh7's three reasons. One of them, 'reliance on extra data', is wrong for the in-domain results, whose negatives come from the base training set or are random vectors (line 175, Table 1). B's reviewers had the authors' explicit answer on this from 2021-08-10; A's came only after 5hh7's last edit. That error did not decide A alone, because FGzB and Reviewer_FMo7 stayed below threshold on novelty. The split is a different weighting of the same facts, amplified by reviewer effort and by each AC's way of counting.",
+ "candidate_reasons": [
+  "same novelty concern, opposite weighting",
+  "small SOTA margin judged differently",
+  "more reviewer time in B",
+  "AC B discounted low-effort detractor",
+  "AC A copied one reviewer's reasons",
+  "misread extra-data objection in reject",
+  "key clarification reached A late"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Reviewer_5hh7 post-rebuttal paragraph and the authors' reply of 2021-09-02 (Committee A)",
+  "Reviewer_FMo7 comment of 2021-08-18 and Reviewer_FGzB post-rebuttal note",
+  "Committee B meta-review",
+  "Reviewer_6ffC review and reply of 2021-08-26",
+  "Reviewer_kzjj replies of 2021-08-16 and 2021-08-21",
+  "Reviewer_e7JL post-rebuttal sections",
+  "Authors' base-class answers to Reviewer_kwqH (2021-08-10) and Reviewer_e7JL (2021-08-21)",
+  "paper_submitted.pdf lines 107 and 175, Table 1 caption",
+  "paper_submitted.pdf Table 3, Table 5 and Figure 2(a)"
+ ]
+}

@@ -1,0 +1,260 @@
+{
+ "pair_id": "n21-079",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    7,
+    3,
+    5,
+    2
+   ],
+   "confidences": [
+    3,
+    4,
+    4,
+    3
+   ],
+   "reviews_edited_after_posting": [],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_mLY8",
+    "direction": "champion",
+    "basis": "exuberant",
+    "evidence": "The only rating above threshold (7 against 3, 5, 2), with confidence 3, 2 hours and 'Math/other details were not carefully checked'. The case for acceptance is potential impact: the paper 'could open new avenues for research'. It calls the experiments 'limited, but ... appropriate' and says they give 'good causal effect estimations'; Fig. 5 does not support this. It does not address the interventional-data setting that aP4W and KcVJ attacked, and it posted nothing after the rebuttal."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_mLY8",
+     "evidence": "Partial. The review names real clarity gaps (abstract Definition 1, 'shared parameters', acyclicity). But it finds the causal estimates 'sufficiently convincing' without reading Fig. 5 closely: in three of four rows iSPN is the least accurate column, worse even than naive conditioning. 2 hours; details 'not carefully checked'; silent in discussion."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_aP4W",
+     "claim": "iSPNs are SPNs trained on interventional data: an intervention's effect is learned from data sampled under that same intervention, which reduces to standard probabilistic inference; no observational data or other regime informs the estimate.",
+     "checked_against_paper": "correct",
+     "evidence": "Prop. 1 (lines 204-207) requires 'data D generated from the intervened SCMs'; its proof (lines 209-211) contains the sentence aP4W quotes. Lines 218-220: 'we only consider the direct setting where actual interventional data from the system is assumed to be captured'. Lines 225-227: training samples are simulated under each intervention. The main text reports no test on an intervention held out of training; line 249 concedes inherited OOD limits."
+    },
+    {
+     "reviewer": "Reviewer_aP4W",
+     "claim": "The paper does not show how SPN tractability helps answer interventional queries; with a known graph and no latent confounders, inference in the intervened model is already easy.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 277-279 exclude the CBN from every comparison although it 'performs exact inference according to the do-calculus (while best performing)'. Fig. 3 compares training time with MADE and MDN only. All graphs have 4 to 8 variables (lines 262-265). The rebuttal called this 'an advanced question which naturally follows from the work'."
+    },
+    {
+     "reviewer": "Reviewer_aP4W",
+     "claim": "Section 3.3 says what iSPNs are not, and does not say how g is built, how the network relates to the graph, or how queries are answered.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 175-183 discuss the compilation route the paper does not take. Definition 1 (lines 188-190) is abstract. The only construction detail in the main text is a RAT-SPN with Gaussian leaves (lines 281-282). The rebuttal pointed to the supplement and the code."
+    },
+    {
+     "reviewer": "Reviewer_KcVJ",
+     "claim": "Prop. 1 assumes data generated from the intervened SCM; with such data the problem of predicting an intervention from unintervened data 'goes away'.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 204-207 and 218-220, as for aP4W. The rebuttal to KcVJ did not address this comment."
+    },
+    {
+     "reviewer": "Reviewer_KcVJ",
+     "claim": "The adjacency-matrix input leaves no room for the unobserved confounders that Section 3.1 (line 133) presents as crucial.",
+     "checked_against_paper": "correct",
+     "evidence": "Line 185: G in {0,1}^(NxN) over the observed variables. Line 133 motivates with A <- C -> B. Lines 219-220 set hidden confounding aside as 'independent research'."
+    },
+    {
+     "reviewer": "Reviewer_KcVJ",
+     "claim": "The first five pages introduce nothing new; the contribution only starts on p.6.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Overstated. Section 2 (lines 67-121) is about one page. Pages 4-5 state the learning problem (lines 140-143), introduce the Causal Health SCM (Sec. 3.2) and give the iSPN overview (Fig. 2b). Definition 1 does first appear on p.6 (line 188), and Section 3.3 is about 1.5 pages."
+    },
+    {
+     "reviewer": "Reviewer_mLY8",
+     "claim": "The experiments convincingly show that iSPNs give good causal effect estimates.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Fig. 5: iSPN ATEs 0.0347, 0.9139, 0.6551, 0.0545 against ground truth 0.0397, 0.9337, 0.6703, 0.0537. DoWhy is closer in all four rows. In the first three rows iSPN is further from the truth than naive conditioning (0.0374, 0.9271, 0.6766). Only the Simpson's-paradox row separates iSPN from conditioning."
+    },
+    {
+     "reviewer": "Reviewer_3eLf",
+     "claim": "The paper gives no theory for consistent and unbiased estimation.",
+     "checked_against_paper": "correct",
+     "evidence": "The only formal result is Prop. 1 (expressivity). Its six-line proof assumes interventional data and cites Poon and Domingos (2011) for density approximation. The UFA paragraph (lines 221-224) is four lines."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "none",
+    "by_whom": [],
+    "evidence": "No A review was edited after posting. No A reviewer posted in the discussion; the forum holds only the four author replies of 2021-08-10.",
+    "what_convinced_or_not": "Nothing moved anyone. To aP4W's central point the authors answered with the Papantonis and Belle (2020) history and 'make do() a differentiable function', not with any use of observational data. They called the tractability question 'an advanced question which naturally follows from the work'. To 3eLf they cited the cubic cost of NOTEARS, a structure-learning method, although iSPN assumes the graph is known. They told KcVJ its assessment was 'widely exaggerated and not justified'. The AC: 'the rebuttal did not clarify the questions the reviewers raised'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "Three of four ratings are below threshold (3, 5, 2). The meta-review repeats the majority: the paper is 'too vague and would improve from a major revision', and 'the claim about how SPNs relate to causal inference' is 'not adequately developed'. It does not mention the champion, mLY8.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Two detractors (aP4W 3, confidence 4; KcVJ 2, confidence 3) with a correct, checkable objection: iSPN learns each interventional distribution from that intervention's own samples (Prop. 1, lines 218-220)",
+    "Method section vague: abstract Definition 1, unexplained 'shared parameters', construction of f and g left to the supplement",
+    "Rebuttal evaded the central objection; no reviewer engaged or moved",
+    "Lone champion (mLY8, 7) argued potential impact, not checked results; AC followed the majority"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    5,
+    6,
+    5
+   ],
+   "confidences": [
+    4,
+    4,
+    3,
+    3
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_WdJo",
+    "Reviewer_UWyh"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 6, 5, 6, 5 with confidences 4, 4, 3, 3. All four sit at the borderline; no reviewer champions or rejects the paper."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_WdJo",
+     "evidence": "Partial, in discussion only. The review is specific (ADD-based BNs, Zhao et al. 2015, definition on p.6). WdJo then raised the score with one line, 'I am happy with the authors' response'. The reply gave citations, not an analysis of ADD-based BNs or a comparison with the CBN."
+    },
+    {
+     "reviewer": "Reviewer_4XqK",
+     "evidence": "Partial. It says the experiments show 'the benefits ... in terms of efficiency and accuracy, compared to other methods', but Fig. 5 shows iSPN less accurate than DoWhy in every row. The rest of the review reads the paper closely (8 hours)."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_s1DW",
+     "claim": "Based on Fig. 5, DoWhy performs better than iSPN.",
+     "checked_against_paper": "correct",
+     "evidence": "DoWhy 0.0397, 0.9337, 0.6697, 0.0538 and iSPN 0.0347, 0.9139, 0.6551, 0.0545 against ground truth 0.0397, 0.9337, 0.6703, 0.0537. Lines 307-308 still say iSPN 'matches the performance of the causal baselines'. The authors never answered this question."
+    },
+    {
+     "reviewer": "Reviewer_s1DW",
+     "claim": "The paper assumes no hidden confounders, a setting in which every interventional query is identifiable from the observational distribution.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 218-220 set hidden confounding aside. In that setting the truncated factorization (Eq. 3) gives every interventional distribution; the authors agreed when 4XqK said so ('Correct.')."
+    },
+    {
+     "reviewer": "Reviewer_4XqK",
+     "claim": "The method assumes the input data are already interventional, so up to marginalisation the data already contain the target P(y | do(x)).",
+     "checked_against_paper": "correct",
+     "evidence": "Prop. 1 (lines 204-207), lines 218-220 and 225-227. The authors' reply ('we are actually modelling the joint space of the model's variables') does not address it."
+    },
+    {
+     "reviewer": "Reviewer_4XqK",
+     "claim": "Prop. 1 still holds for non-Markovian SCMs.",
+     "checked_against_paper": "correct",
+     "evidence": "The proof (lines 208-213) uses only data from the intervened system and the mutilated graph; latent confounders do not enter. The binding assumption is interventional data, not Markovianity."
+    },
+    {
+     "reviewer": "Reviewer_WdJo",
+     "claim": "The definition of iSPNs first appears on p.6, and the experiments are small, toy-like settings.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 1 is at line 188 on p.6. The four data sets have 4, 5, 5 and 8 variables (lines 262-265), all simulated from known models."
+    },
+    {
+     "reviewer": "Reviewer_WdJo",
+     "claim": "The paper does not show if or why iSPNs are more useful than causal BNs, e.g. BNs with ADDs (Zhao et al., 2015).",
+     "checked_against_paper": "correct",
+     "evidence": "ADDs are not mentioned. Lines 277-279 exclude the CBN from all comparisons."
+    },
+    {
+     "reviewer": "Reviewer_UWyh",
+     "claim": "CausalGAN (Kocaoglu et al.) is neither cited nor compared.",
+     "checked_against_paper": "correct",
+     "evidence": "It is absent from the submitted reference list (lines 327-433)."
+    },
+    {
+     "reviewer": "Reviewer_UWyh",
+     "claim": "The paper gives no real insight into SPNs or conditional SPNs and is not self-contained.",
+     "checked_against_paper": "correct",
+     "evidence": "Lines 74-85 list SPN properties and variants but define neither sum nor product nodes; decomposability and smoothness go to a footnote. Gated SPNs get four lines (86-89). The authors first replied 'This is not true!', then conceded the point on 2021-08-19."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_WdJo",
+     "Reviewer_UWyh"
+    ],
+    "evidence": "WdJo edited 2021-08-25: 'I am happy with the authors' response and have increased the score accordingly' (final 6). UWyh edited 2021-09-07: 'I am increasing my score based on the engagement of authors and their commitment to include relevant literature', yet 'I won't be able to recommend acceptance for this version' (final 5). Starting scores are not exposed. 4XqK (2021-08-23): 'I find them satisfactory', score stays 6. s1DW posted nothing.",
+    "what_convinced_or_not": "WdJo's objection ('not surprising' because SPNs and BNs convert) was one the authors could rebut: their reply centred on the Zhao et al. and Papantonis and Belle paragraph that A's KcVJ also received. UWyh moved on promises (an O(r) complexity analysis, an SPN appendix, a CausalGAN discussion and experiment), but stayed unclear on the contribution and on guarantees with a random SPN structure. The authors skipped s1DW's questions on Fig. 5 and on scaling. B got the same combative tone as A ('not creating any value for our paper', to WdJo), so tone does not explain the split."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The meta-review adopts the reviewers' two criticisms (Markovian restriction, readability) but accepts 'despite the lack of full support from the reviewers' scores' (6, 5, 6, 5). Its reasons are its own: the work 'addresses a fundamental problem in an original way', and 'the authors addressed all the concerns raised by the reviewers'. The record contradicts the second: UWyh's last post says 'I won't be able to recommend acceptance for this version', and s1DW's Fig. 5 and scaling questions got no answer. It does not mention the interventional-data setting that 4XqK raised.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC's own view that the work 'addresses a fundamental problem in an original way', breaking a 6, 6, 5, 5 split toward acceptance",
+    "AC's claim that the authors 'addressed all the concerns', which the record does not support",
+    "Reviewers framed the main limitation as Markovian scope and readability; 4XqK saw the interventional-data setting but still gave 6",
+    "Active discussion: WdJo and UWyh raised their scores after rebuttal arguments and camera-ready promises"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "Inference in a known, fully parameterised DAG already reduces to forward sampling, so SPN tractability adds nothing shown (aP4W; the paper excludes the CBN, lines 277-279)",
+  "Apparent conflict between SPN tractability and universal approximation (aP4W)",
+  "Section 3.1 is irrelevant once the graph is known, and it conflates extrapolation outside the support with structural ambiguity (aP4W)",
+  "No theory for consistent, unbiased estimation; statistical, not computational, efficiency is the bottleneck; hyperparameter selection unclear (3eLf)",
+  "Unexplained 'shared parameters'; Definition 1 has 'nothing interventional' (mLY8, KcVJ)",
+  "Acyclicity of the SCM not stated (mLY8); the invariance assumption misstated at line 105 (KcVJ)"
+ ],
+ "issues_only_b": [
+  "DoWhy more accurate than iSPN in every row of Fig. 5 (s1DW; confirmed, never answered)",
+  "Scaling to larger networks (s1DW; never answered)",
+  "CausalGAN neither cited nor compared (UWyh; confirmed)",
+  "No space- and time-complexity analysis; no guarantees with a random SPN structure (UWyh)",
+  "Using SPNs to model observational estimands of identifiable effects, e.g. the napkin graph (4XqK)",
+  "Atomic interventions and unidentifiable queries (s1DW)"
+ ],
+ "shared_issues": [
+  "iSPN needs samples from each intervention, so the task reduces to density estimation per regime (aP4W, KcVJ; 4XqK)",
+  "Vague, late method section: Definition 1 abstract and first on p.6 (mLY8, aP4W, 3eLf, KcVJ; WdJo, s1DW, UWyh)",
+  "SPN and gated-SPN background too thin; paper not self-contained (mLY8, aP4W; s1DW, UWyh)",
+  "No hidden confounders, and the 'freeing the investigation' sentence (KcVJ; s1DW, 4XqK, UWyh, AC B)",
+  "Small simulated data sets with 4 to 8 variables (mLY8, KcVJ; WdJo)",
+  "No shown advantage over causal BNs (aP4W; WdJo)",
+  "Too much text motivating causality at the expense of method detail (KcVJ; s1DW, AC B)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Both committees saw the same core facts and weighted them differently; then B's AC broke a 6, 6, 5, 5 split toward acceptance. The core fact: iSPN learns each interventional distribution from samples of that intervention, with the mutilated graph given (Prop. 1; lines 218-220, 225-227). It never infers an interventional distribution from observational data. In A, two reviewers made this the reason to reject (aP4W 3, confidence 4; KcVJ 2, confidence 3), and the paper confirms their reading. A's only champion, mLY8 (7, confidence 3, 2 hours), argued potential impact. In B, 4XqK saw the same fact but treated it as a question of scope and gave 6. The rebuttal evaded the point in A, and no A reviewer replied. In B, WdJo and UWyh rose after the rebuttal, to a final 6, 5, 6, 5. B also found a weakness A missed: DoWhy beats iSPN in every row of Fig. 5, and the authors never answered. B's AC accepted 'despite the lack of full support from the reviewers' scores', for originality and because 'the authors addressed all the concerns'. The record contradicts the second reason: UWyh still would not recommend acceptance. A's rejection rests on a correct objection; B's acceptance rests on its AC's own weighting of originality.",
+ "candidate_reasons": [
+  "AC broke split toward acceptance",
+  "AC claimed concerns addressed, unsupported",
+  "same core flaw: fatal versus scope",
+  "checkable objection confirmed by paper",
+  "rebuttal evaded central objection",
+  "camera-ready promises raised scores"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Reviewer_aP4W main review ('Significance of the Task')",
+  "Reviewer_KcVJ detailed comment on Prop. 1",
+  "Reviewer_4XqK main review and 2021-08-23 comment",
+  "Reviewer_s1DW main review (Fig. 5 DoWhy question)",
+  "paper_submitted.pdf Prop. 1 and lines 204-220",
+  "paper_submitted.pdf lines 225-227 (training on interventional samples)",
+  "paper_submitted.pdf Figure 5 (ATE table)",
+  "paper_submitted.pdf lines 277-279 (CBN excluded)",
+  "Authors' reply to Reviewer_aP4W (tractability question)",
+  "Reviewer_WdJo comment, 2021-08-25",
+  "Reviewer_UWyh comments, 2021-09-01 and 2021-09-07",
+  "Committee A meta-review",
+  "Committee B meta-review"
+ ]
+}

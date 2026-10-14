@@ -1,0 +1,238 @@
+{
+  "pair_id": "n21-099",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [
+        5,
+        4,
+        5
+      ],
+      "confidences": [
+        3,
+        4,
+        5
+      ],
+      "reviews_edited_after_posting": [
+        "Reviewer_fpwd"
+      ],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 5, 4, 5 (Reviewer_fpwd, Reviewer_ppBZ, Reviewer_Mjyk) span one point. Reviewer_ppBZ's 4 is the lowest, and its overlap argument became the chair's main reason, but it is not an outlier by score."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_ppBZ",
+          "claim": "SSMF is essentially SMF (Hooi et al., 2019) extended with several seasonal matrices W_i and an MDL heuristic that picks or adds one.",
+          "checked_against_paper": "correct",
+          "evidence": "Submission Table 1 gives SMF every listed property except 'Regime Shifts'; L74 'SMF misses regime shifts'; L225 SMF 'manages a single seasonal factor'. Eq. 1 is SMF's model. Eqs. 7-13 and Algorithm 1 lines 15-24 restate SMF's online update and forecast rule (SMF Sec. 4.2, 4.4 and Algorithm 1) with a regime index added. Sections 3-4 never cite SMF. Initialisation on the first three seasons and k = 15 'for a fair comparison' also come from SMF."
+        },
+        {
+          "reviewer": "Reviewer_ppBZ",
+          "claim": "Two of the three case studies are the same as in SMF, and some figures are remarkably similar.",
+          "checked_against_paper": "correct",
+          "evidence": "SMF (author copy) evaluates on NY-Taxi and a weekly US disease dataset (39 diseases x 50 states); the submission uses NYC-YT, NYC-CB and DISEASE (Tycho, 36 diseases x 57 regions). The taxi data cover a different period (2020) and zoning. Submission Figure 4 has the layout of SMF Figure 7 (weekly pattern, pickup map, dropoff map per component), and L265-266 repeat SMF's reading of 'a large number of bars and restaurants' as entertainment trips."
+        },
+        {
+          "reviewer": "Reviewer_ppBZ",
+          "claim": "Figure 2 needs error bars or a significance test, as SMF gave.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Figure 2 shows one RMSE bar per method and dataset; checklist 3(c) answers '[N/A]'. SMF Figure 3 caption: 'Error bars indicate one standard deviation.' The camera-ready adds error bars; SSMF's and SMF's overlap on NYC-YT and DISEASE and separate only on NYC-CB. Reviewer_fpwd made the same request."
+        },
+        {
+          "reviewer": "Reviewer_ppBZ",
+          "claim": "Both NYC datasets contain one massive COVID regime change, regime analysis is missing for the other datasets, and no simple forecasting baseline (such as copying last week) is given.",
+          "checked_against_paper": "correct",
+          "evidence": "NYC-YT spans 2020-01-01 to 2020-06-30 and NYC-CB 2017-03-01 to 2021-03-01 (L212-216). Section 5.3 analyses only NYC-YT, where the detected shift is the March 2020 stay-at-home order. Baselines are NCP, SMF and TRMF only (L222-226). No per-window RMSE or regime count is reported, so the source of the gains cannot be told."
+        },
+        {
+          "reviewer": "Reviewer_Mjyk",
+          "claim": "Without the regime memory SSMF has no advantage over SMF (Table 1), and the memory g only grows.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: SMF and SSMF differ only in 'Regime Shifts'. Algorithm 1 only appends regimes (line 12); nothing removes one; no figure or table reports g. Lemma 1 gives O(sgkmn + sk^2(m+n)) per step, so the 'constant time' claim holds only while g stays bounded."
+        },
+        {
+          "reviewer": "Reviewer_Mjyk",
+          "claim": "Eq. 6 should read W^(1) for W^(i), and Eq. 13 W^(z)_ts for W^(i)_ts.",
+          "checked_against_paper": "correct",
+          "evidence": "Both typos are in the submission and remain in the camera-ready."
+        },
+        {
+          "reviewer": "Reviewer_Mjyk",
+          "claim": "The data sparsity in the experiments is not stated.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 3 lists sparsity 98.3%, 96.2% and 92.4%. Mjyk claimed confidence 5 ('checked the math/other details carefully') after 2 hours."
+        },
+        {
+          "reviewer": "Reviewer_fpwd",
+          "claim": "Limitations and societal impact are not addressed, and the 'theory' section only analyses complexity.",
+          "checked_against_paper": "correct",
+          "evidence": "No limitations section exists, although checklist 1(b) answers '[Yes]'. Section 4.3 'Theoretical Analysis' holds only Lemma 1 (time) and Lemma 2 (memory). Reviewer_ppBZ and Reviewer_Mjyk said the same."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "down",
+        "by_whom": [
+          "Reviewer_fpwd"
+        ],
+        "evidence": "a/discussion.jsonl is empty: the authors posted no response in A. Reviewer_fpwd edited its review on 2021-09-02: 'R2 pointed out similarities to an existing work that I was unaware of. Given that and the authors not responding, I'm changing my score.' The final 5 is therefore a reduction; the earlier score is not recorded. The review text still praises 'a principled way' and 'compelling' results. Reviewer_ppBZ and Reviewer_Mjyk did not edit.",
+        "what_convinced_or_not": "No rebuttal existed, so Reviewer_ppBZ's overlap argument went unanswered. Reviewer_fpwd deferred to it and cited the authors' silence."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "All three ratings are below the threshold (mean 4.67) and the chair rejected. The three-sentence meta-review says 'The reviewers identified novelty as a main concern; indeed there is substantial overlap with a paper that has already been published', and adds unspecified 'concerns about the experimental analysis'. Only Reviewer_ppBZ raised novelty in a review; Reviewer_fpwd adopted it later; Reviewer_Mjyk called the regime idea 'very novel'. 'Indeed' suggests the chair checked SMF; the SMF paper supports the overlap.",
+        "meta_review_leans_on": "a_specific_reviewer"
+      },
+      "main_reasons_for_decision": [
+        "Substantial overlap with SMF (Hooi et al., 2019): the method is SMF plus a regime memory (Reviewer_ppBZ, endorsed by the chair with 'indeed')",
+        "Concerns about the experimental analysis: no error bars, no naive or classical baseline, gains possibly driven by the COVID shift (Reviewer_ppBZ, Reviewer_fpwd, Reviewer_Mjyk)",
+        "All three ratings below the threshold (mean 4.67), one lowered after the authors posted no response"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [
+        7,
+        5,
+        7,
+        6
+      ],
+      "confidences": [
+        3,
+        4,
+        3,
+        4
+      ],
+      "reviews_edited_after_posting": [],
+      "outlier": {
+        "present": false,
+        "reviewer": null,
+        "direction": null,
+        "basis": null,
+        "evidence": "Ratings 7, 5, 7, 6 (Reviewer_ZNwm, Reviewer_gthx, Reviewer_Fqt5, Reviewer_CeEZ) span two points. Reviewer_gthx's 5 is the only score below the threshold; it rests on a correct baseline complaint that the chair waived. The two 7s are thin but are half the committee, not an outlier."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_ZNwm",
+          "evidence": "Rating 7, confidence 3, 2 hours. The main review is one line of praise ('a well-organized paper and the content is solid') and three comments (other applications, deep-learning baselines, known regime-change times). It names no weakness, section, figure or number, and it did not reply to the authors."
+        },
+        {
+          "reviewer": "Reviewer_Fqt5",
+          "evidence": "Rating 7, confidence 3, 10 hours claimed. The main review is four sentences of praise ('a valuable contribution to the field') and one typo note. It names no weakness and asks no question; limitations 'Not applicable', although the paper has no limitations section. It did not reply to the authors."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Fqt5",
+          "claim": "SMF is the closest work; it uses a single seasonal factor, whereas SSMF models regimes individually.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 and L225. Fqt5 saw the same fact as Reviewer_ppBZ in A and counted it as the contribution."
+        },
+        {
+          "reviewer": "Reviewer_CeEZ",
+          "claim": "The model cost counts nonzero elements, which suggests sparse non-negative data, while Eq. 4 assumes Gaussian errors.",
+          "checked_against_paper": "correct",
+          "evidence": "L136 defines |.| as the number of nonzero elements; Eq. 4 is a Gaussian negative log-likelihood. The authors replied that the two costs encode different things; the point is minor."
+        },
+        {
+          "reviewer": "Reviewer_CeEZ",
+          "claim": "Fixing k = 15 for all methods (L232) need not give a fair comparison.",
+          "checked_against_paper": "correct",
+          "evidence": "L232-233. The choice copies SMF ('For fair comparison, we use k = 15 components for all algorithms'), as the authors replied. Neither the submission nor the camera-ready reports another k."
+        },
+        {
+          "reviewer": "Reviewer_gthx",
+          "claim": "Methods cited in the related work (Takahashi et al. 2017, Song et al. 2017, Najafi et al. 2019) and time-series methods are not compared.",
+          "checked_against_paper": "correct",
+          "evidence": "L67-71 cite them; the baselines are NCP, SMF and TRMF (L222-226). L70-71 say Song and Najafi do not extract seasonal patterns, the reason the authors repeated in their reply."
+        },
+        {
+          "reviewer": "Reviewer_gthx",
+          "claim": "The claimed ability to handle sparse data is not tested at different sparsity levels.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1 claims 'Sparse Data'; each dataset is used only at its native sparsity (Table 3)."
+        },
+        {
+          "reviewer": "Reviewer_ZNwm",
+          "claim": "SSMF achieves better accuracy than existing methods on taxi, bike and disease data.",
+          "checked_against_paper": "correct",
+          "evidence": "Submitted Figure 2 gives SSMF the lowest RMSE on all three, roughly 3.2 vs 3.4 for SMF on NYC-YT, 2.9 vs 3.55 on NYC-CB and 105 vs 116 on DISEASE, with no error bars. In the camera-ready, the added error bars of SSMF and SMF overlap on NYC-YT and DISEASE."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "No review was edited after posting. The authors answered all four reviewers on 2021-08-18. Only Reviewer_gthx replied, the same day, and asked again for baselines without seasonality ('it is still helpful to compare with them'). Reviewer_ZNwm, Reviewer_Fqt5 and Reviewer_CeEZ posted nothing.",
+        "what_convinced_or_not": "The replies explained k = 15 as SMF's choice, separated the MDL model cost from the Gaussian data cost, and promised deep-learning baselines, sparsity-level experiments and other k 'in future versions'. They changed no score and did not satisfy Reviewer_gthx. The camera-ready adds error bars to Figure 2 but none of the promised experiments."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Accepted with three of four ratings at 6 or 7 (mean 6.25): 'most of the reviewers were in favour of accepting the paper'. The chair waived the baseline requests of Reviewer_gthx and Reviewer_ZNwm by its own judgement: 'I understand the choice to focus on matrix factorisation methods in this setting.' It repeats the praise of the 'novelty of the formulation' and does not mention SMF.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four ratings at or above the threshold (7, 7, 6; mean 6.25)",
+        "Reviewers praised the novel regime-switching formulation, the importance of the problem, clear writing and sound results",
+        "Chair judged the clarity concerns answered by the author response",
+        "Chair accepted the focus on matrix-factorisation baselines and waived the requests for more baselines"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Depth of the overlap with SMF (Hooi et al., 2019): same model and update rules plus a regime memory, two of three datasets from SMF's sources, similar figures (Reviewer_ppBZ; adopted by Reviewer_fpwd and the chair)",
+    "Gains may reflect the single COVID lockdown shift; regime analysis shown only for NYC-YT (Reviewer_ppBZ)",
+    "No error bars or significance test in Figure 2, although SMF had error bars (Reviewer_ppBZ, Reviewer_fpwd)",
+    "No naive seasonal or classical forecasting baseline (Reviewer_ppBZ)",
+    "Regime memory g grows without bound, is never pruned and is not reported (Reviewer_Mjyk)",
+    "'Theoretical Analysis' covers only complexity; why per-time U and V and non-negative factors (Reviewer_fpwd, Reviewer_ppBZ)",
+    "Context covariates such as weather and hour of day (Reviewer_Mjyk)"
+  ],
+  "issues_only_b": [
+    "MDL model cost counts nonzeros while the data cost assumes Gaussian errors (Reviewer_CeEZ)",
+    "Fixed k = 15 across methods may bias the comparison (Reviewer_CeEZ)",
+    "Tensor methods cited in the related work (Takahashi, Song, Najafi) are not compared (Reviewer_gthx)",
+    "Case-study maps hard to read; zoom in and show more cases (Reviewer_gthx)",
+    "Use of known regime-change times and comparison with domain adaptation (Reviewer_ZNwm)",
+    "Loose terminology: SVD, matrix versus tensor, 'non-linear dynamical system' (Reviewer_CeEZ)"
+  ],
+  "shared_issues": [
+    "SSMF differs from SMF only by the regime memory (Reviewer_ppBZ and Reviewer_Mjyk in A; Reviewer_Fqt5 in B): A's ppBZ read it as low novelty, B as the contribution",
+    "Baselines limited to matrix-factorisation methods; no deep-learning or time-series baselines (Reviewer_ppBZ and Reviewer_Mjyk in A; Reviewer_gthx and Reviewer_ZNwm in B)",
+    "No experiments at other sparsity levels (Reviewer_Mjyk; Reviewer_gthx)",
+    "No limitations or societal-impact discussion (all three A reviewers; Reviewer_gthx)",
+    "Many typos and grammar errors (both committees)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee A rejected (5, 4, 5) and Committee B accepted (7, 5, 7, 6) mainly because they weighed the same fact in opposite ways: SSMF is SMF (Hooi et al., 2019) plus a memory of several seasonal regimes selected by MDL, and the submission's Table 1 gives SMF every listed property except regime shifts. In A, Reviewer_ppBZ called it 'essentially an extension' of low novelty, and the chair adopted this ('indeed there is substantial overlap'); in B, Reviewer_Fqt5 named the same difference and called the work 'a valuable contribution', and Reviewer_CeEZ praised its positioning. The submission and the SMF paper confirm ppBZ's specifics: Sections 4.1-4.2 restate SMF's online update and forecast rule with a regime index and do not cite SMF, two of three datasets come from SMF's sources, and Figure 4 repeats SMF Figure 7's layout and its 'bars and restaurants' reading. SMF's first author, Bryan Hooi, is an SSMF author, so this is self-extension that neither committee could see. Two process differences widened the split. The authors answered all four B reviewers but no A reviewer, and Reviewer_fpwd lowered its score citing ppBZ's point and 'the authors not responding'. B's two 7s are thin (Reviewer_ZNwm: one line of praise and three comments; Reviewer_Fqt5: four sentences and no weakness). A also raised checkable experimental gaps that B did not: no error bars although SMF had them, no naive seasonal baseline, and gains that may come from the single COVID shift; when the camera-ready added error bars, SSMF's and SMF's overlap on two of three datasets. A's own Reviewer_Mjyk called the regime idea 'very novel', so A's verdict rested on ppBZ's reading, not on a consensus. Neither committee found a technical flaw; the paper was accepted because one committee recommended it.",
+  "candidate_reasons": [
+    "Same overlap, opposite novelty verdicts",
+    "Only one committee examined prior paper",
+    "No rebuttal in rejecting committee",
+    "Reviewer deferred to colleague's novelty claim",
+    "Thin enthusiastic reviews in accepting committee",
+    "Experimental gaps unflagged by accepting committee"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_ppBZ review, Originality and Quality paragraphs",
+    "Reviewer_fpwd edit note (edited 2021-09-02)",
+    "Committee A meta-review",
+    "a/discussion.jsonl (empty) versus b/discussion.jsonl (four author responses of 2021-08-18 and Reviewer_gthx's reply)",
+    "Reviewer_Mjyk summary and point 1 ('very novel'; no advantage over SMF without the regime memory)",
+    "Reviewer_Fqt5 summary and main review",
+    "Reviewer_CeEZ Originality and Quality paragraphs",
+    "Committee B meta-review",
+    "paper_submitted.pdf Table 1, L67-74 and L221-233 (positioning, baselines, k = 15)",
+    "paper_submitted.pdf Sections 3.1 and 4.1-4.2, Eqs. 1 and 7-13, Algorithm 1 (no SMF citation)",
+    "paper_submitted.pdf Figure 2 (no error bars), Table 3 (sparsity), Section 5.3 and Figure 4",
+    "SMF, Hooi et al., SDM 2019, author copy at https://bhooi.github.io/smf/paper.pdf: Sec. 4.2, 4.4, Algorithm 1, Table 3, Figure 3 caption, Figure 7, Sec. 5.3",
+    "paper.pdf (camera-ready) Figure 2 with added error bars",
+    "paper.json author list (Bryan Hooi)"
+  ]
+}

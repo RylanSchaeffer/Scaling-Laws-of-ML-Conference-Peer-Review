@@ -1,0 +1,215 @@
+{
+  "pair_id": "n21-089",
+  "prompt_version": 1,
+  "kind": "poster/reject",
+  "committees": {
+    "a": {
+      "own_decision": "Reject",
+      "ratings_final": [9, 4, 5, 6],
+      "confidences": [4, 4, 4, 4],
+      "reviews_edited_after_posting": ["Reviewer_4bps"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_UE11",
+        "direction": "champion",
+        "basis": "exuberant",
+        "evidence": "UE11's 9 is three points above the next rating (wsEk's 6). The praise is two sentences on Theorem 1 ('a very significant result'). The rest of the review is criticism: the ReMERT results are 'technically sound but misleading to the reader', 'not much of the theory propagates to the actual algorithm', and ReMERN is 'unlikely' to be used in practice. Theorem 1 is the result that both chairs found stated for an unspecified relaxation. After the rebuttal UE11 wrote one line: 'I thank the authors for their response.' The meta-review cites UE11's view only as one side of the novelty dispute."
+      },
+      "inattentive_reviews": [],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_MNmG",
+          "claim": "Eq. (3) is identical to DisCor's solution except for the density ratio, and the relaxation in the proof minimizes the value error |Q - Q*|, as DisCor does.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (3) (L134) is (d^{pi_k}/mu) * exp(-|Q_k - Q*|) * |Q_k - B*Q_{k-1}|. Terms (c) and (d) are DisCor's; only term (a) is new. The authors concede it in the rebuttal: 'DisCor ignores this by relaxing d^{pi_k} to uniform distribution, while we keep d^{pi_k}'. Their answer to Committee B's chair (2021-08-20) gives the relaxation as regret -> E[|Q_k - Q*|] -> -log E[exp(-|Q_k - Q*|)], so the relaxed objective is the expected value error that DisCor minimizes. The main text never makes this comparison."
+        },
+        {
+          "reviewer": "Reviewer_wsEk",
+          "claim": "ReMERN only adds an on-policy correction to DisCor.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (7) (L176) sets w_k proportional to (d^{pi_k}/mu) * exp(-gamma [P^{pi_{k-1}} Delta_{k-1}]). Delta_k and its error network are DisCor's (L172-174, L180-181), and the density ratio comes from LFIW (L157-161). L287-288 call DisCor 'a composing part of ReMERN'."
+        },
+        {
+          "reviewer": "Area chair (meta-review)",
+          "claim": "Theorem 2's upper bound is almost vacuous because of the additive gamma*R_max/(1-gamma) term.",
+          "checked_against_paper": "correct",
+          "evidence": "Eq. (8) (L223) starts with gamma*R_max/(1-gamma), and rewards lie in [0, R_max] (L60). The first term alone nearly equals the largest possible Q value, and the other terms are non-negative. The camera-ready Eq. (8) drops the term."
+        },
+        {
+          "reviewer": "Area chair (meta-review)",
+          "claim": "The standard deviations are large enough that the Atari table values overlap.",
+          "checked_against_paper": "correct",
+          "evidence": "Table 1: in all five games the +/-1 SD ranges of ReMERT and DQN (Baseline) overlap, e.g. MsPacman 3481+/-1351 vs 3318+/-647 and Qbert 14511+/-1138 vs 13437+/-2537. Mean gains are 5 to 22 percent."
+        },
+        {
+          "reviewer": "Reviewer_MNmG",
+          "claim": "No baseline uses prioritized sampling such as PER, and ReMERT is not applicable to Meta-World.",
+          "checked_against_paper": "correct",
+          "evidence": "Figures 3-5 and Table 1 contain no PER run; L275 sends the reader to the PER paper. L279-280 exclude ReMERT from Meta-World because the randomized targets contradict its assumption. The authors say Atari PER results are in Appendix D, which is not in the supplied PDF."
+        },
+        {
+          "reviewer": "Reviewer_MNmG",
+          "claim": "The PER paper's scores beat ReMERT on 4 of the 5 Atari games.",
+          "checked_against_paper": "not_checked",
+          "evidence": "This needs the PER paper's score table, which is not in the supplied files. The authors answered that ReMERT beats PER on 8 of 13 games in Appendix D, which is also not in the supplied PDF."
+        },
+        {
+          "reviewer": "Reviewer_UE11",
+          "claim": "Moving from Theorem 2 to Eq. (11) needs several approximations and bounds, so little of the theory reaches the algorithm.",
+          "checked_against_paper": "correct",
+          "evidence": "L229-247: an upper bound replaces |Q_k - Q*|, q_k and h^{pi_k} are replaced by q_{k-1} and h^{pi_{k-1}}, the constant c becomes a hyperparameter (L239), and moving the expectation outside the exponential 'introduces an extra bias' (L245)."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "up",
+        "by_whom": ["Reviewer_4bps"],
+        "evidence": "Reviewer_4bps edited its review on 2021-08-31 and wrote the same day: 'I may have misunderstood things the first time I read this paper. I adjusted my score based on both the author's response and other reviews.' The final 5 and the harsh original text point to an upward move; the earlier score is not visible. UE11 replied with one line and did not edit. MNmG and wsEk never replied and did not edit.",
+        "what_convinced_or_not": "The answers on the toy MDP, Q iteration and Assumption 1 softened 4bps, who kept two concerns: 'the theoretical contribution seems not adequate' and 'the rigorousness of the experiments'. The authors answered MNmG's DisCor point by citing a different motivation. They gave MNmG and wsEk a toy-MDP table for ReMERN, an ablation of TCE against the on-policy weights, and timing data; neither reviewer responded. The chair's Theorem 2 objection, raised in a discussion that is not in the public record, produced a new bound that the chair said 'requires a careful verification by the reviewers'."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 9, 4, 5, 6 (mean 6.0). The meta-review leads with the DisCor novelty point of MNmG and wsEk and the noisy-experiment point of 4bps (3 or 4 seeds, overlapping curves). It adds two findings of its own: the near-vacuous Theorem 2 bound, and the Theorem 1 relaxation that appears only in appendix Eqs. 12-13. It closes on the head count: 'two out of four reviewers are on the negative side, and ... one of the positive reviewers is only recommending a weak accept'.",
+        "meta_review_leans_on": "own_reading"
+      },
+      "main_reasons_for_decision": [
+        "Novelty over DisCor judged low: the same optimization problem and relaxation, and ReMERN is DisCor's weight times a density ratio (MNmG, wsEk)",
+        "Gains not clearly significant: 3 or 4 seeds, overlapping curves and overlapping Atari values (4bps, chair)",
+        "Theorem 2's bound near-vacuous because of the additive gamma*R_max/(1-gamma) term (the chair's own finding)",
+        "Theory stated imprecisely: informal theorems, and the relaxation behind Theorem 1 only in the appendix (4bps, chair)",
+        "Head count: two reviewers below threshold, one weak accept, and the 9 not credited"
+      ]
+    },
+    "b": {
+      "own_decision": "Accept (Poster)",
+      "ratings_final": [6, 3, 9, 8],
+      "confidences": [4, 4, 5, 4],
+      "reviews_edited_after_posting": ["Reviewer_hPUt", "Reviewer_Giki"],
+      "outlier": {
+        "present": true,
+        "reviewer": "Reviewer_hPUt",
+        "direction": "detractor",
+        "basis": "principled",
+        "evidence": "hPUt's 3 is three points below the next rating (okGN's 6). Its reasons are specific and mostly check out: unstable, high-variance curves in Figure 4 and overlapping values in Table 1, undefined f* and f' in Eq. 4, two inconsistent definitions of eta(pi) (L62 vs L68), the vague 'ignoring some terms' in Theorem 2, and no limitations discussion although checklist 1(b) says Yes. hPUt engaged, withdrew one wrong point ('My reasoning was simply wrong'), and kept the 3 with reasons. Its weakest point is the 'regret' terminology objection, which L73-76 of the paper already concede."
+      },
+      "inattentive_reviews": [
+        {
+          "reviewer": "Reviewer_Giki",
+          "evidence": "Rating 9 at confidence 5 ('checked the math/other details carefully') after 1.2 hours. The summary starts with a stray 'Regret'. Most of the text is criticism that the rating ignores: Figure 1 'not convincing', Eq. 1 'flawed', no study of the weights, a 'weak' DQN baseline, more baselines needed. It says ReMERT beats DQN 'by a large margin' on Atari, which Table 1 contradicts against the authors' own DQN baseline. After the rebuttal it posted two one-line replies."
+        }
+      ],
+      "checkable_claims": [
+        {
+          "reviewer": "Reviewer_Giki",
+          "claim": "On the 5 selected Atari games ReMERT outperforms DQN by a large margin.",
+          "checked_against_paper": "incorrect",
+          "evidence": "Table 1: against the authors' own DQN (Baseline), mean gains are 5 to 22 percent and the +/-1 SD ranges overlap in all five games (e.g. MsPacman 3481+/-1351 vs 3318+/-647). A large margin appears only against the published Nature DQN scores (e.g. Enduro 301 vs 1303), which come from a different implementation."
+        },
+        {
+          "reviewer": "Reviewer_hPUt",
+          "claim": "Figure 4 learning curves are unstable in push and sweep and have high variance in stick-pull, hammer and peg-insert-side; Figure 3 and Table 1 have the same problem.",
+          "checked_against_paper": "correct",
+          "evidence": "Figure 4: the ReMERN mean peaks and then falls in push and sweep, and its shaded band overlaps DisCor or SAC in hammer, peg-insert-side, stick-pull, pick-place and faucet-close. Figure 3 bands overlap in Ant, Walker2d, Hopper and HalfCheetah. Table 1 ranges overlap in all five games. The paper still calls the Meta-World gain 'a significant improvement' (L278)."
+        },
+        {
+          "reviewer": "Reviewer_hPUt",
+          "claim": "The authors claim to discuss limitations, but the paper has no such discussion.",
+          "checked_against_paper": "correct",
+          "evidence": "Checklist item 1(b) answers [Yes] (L432). Section 5 (L320-333) has only conclusions and future work."
+        },
+        {
+          "reviewer": "Reviewer_hPUt",
+          "claim": "Minimizing regret is equivalent to maximizing return, so the 'regret' framing adds nothing.",
+          "checked_against_paper": "correct",
+          "evidence": "L73-76 say so: 'minimizing the regret is equivalent to maximizing the expected return'. The point is about naming, not a flaw in the result."
+        },
+        {
+          "reviewer": "Reviewer_hPUt",
+          "claim": "The importance ratio d^pi/mu is not an indicator of on-policiness (Question 1).",
+          "checked_against_paper": "incorrect",
+          "evidence": "hPUt withdrew it after the authors' reply: 'I see that you are correct on Point 2. My reasoning was simply wrong.'"
+        },
+        {
+          "reviewer": "Reviewer_8h92",
+          "claim": "Section 5 says ReMERN is robust to environment randomness, but the reward-noise experiment shows ReMERT as robust as or more robust than ReMERN.",
+          "checked_against_paper": "correct",
+          "evidence": "The noise experiment is Figure 5, not Figure 6 as cited. ReMERT matches or beats ReMERN in all three noisy tasks, and L300-301 say ReMERT 'has comparable performance to ReMERN'. The experiment does not support the distinction drawn at L327-328."
+        },
+        {
+          "reviewer": "Area_Chair_8DSN",
+          "claim": "Theorem 1 is vacuous when taken at face value, because any upper bound of the objective could be called 'a relaxation'.",
+          "checked_against_paper": "correct",
+          "evidence": "L132-133: 'Under mild conditions, the solution w_k to a relaxation of the optimization problem 1'. The main text states neither the relaxation nor the conditions. The camera-ready still labels it 'Theorem 1 (Informal)'."
+        },
+        {
+          "reviewer": "Reviewer_okGN",
+          "claim": "Assumption 1 is arbitrary and self-serving, and the theorem should bound the error instead.",
+          "checked_against_paper": "not_checked",
+          "evidence": "Assumption 1 is in the appendix, which is not in the supplied PDF. The camera-ready replaces it with error terms bounded by a 'recurring probability' (Definition 1), which is what okGN proposed."
+        }
+      ],
+      "rebuttal": {
+        "scores_moved": "none",
+        "by_whom": [],
+        "evidence": "hPUt's 2021-08-30 edit adds an UPDATE: 'I am willing to keep my score as it is.' Giki's edit is dated 2021-07-18, its posting day, before any rebuttal. okGN and 8h92 never edited. Giki replied 'thanks for clarification' and 'favouring on-policy samples in replay makes sense' and kept the 9.",
+        "what_convinced_or_not": "hPUt accepted the authors' point on on-policiness, but held that the method rests on approximations and heuristics and must stand on its experiments, which have high variance. okGN said the explanation of Assumption 1 'did not make sense'; the authors gave an anonymous link to a new proof, and okGN did not reply. The chair's question on 'a relaxation' got a two-step answer (regret to expected |Q_k - Q*|, then Jensen). The chair accepted but asked that Theorem 1 not be called a theorem."
+      },
+      "ac": {
+        "followed_reviews": "yes",
+        "evidence": "Ratings 6, 3, 9, 8 (mean 6.5). The meta-review credits 'multiple reviewers' who find the formulation 'refreshing and insightful' and restates the objections of okGN and hPUt. It does not answer hPUt's claim that the results are 'not sufficiently strong (curves overlap, or the error bars are too large to tell)'. It concludes that 'the lack of a comprehensive theory is not a fatal issue and the rest of the paper is reasonably executed', while saying Theorem 1 'is simply vacuous if read as a theorem'.",
+        "meta_review_leans_on": "scores"
+      },
+      "main_reasons_for_decision": [
+        "Three of four ratings at 6 or above, two of them 8 and 9 (8h92, Giki)",
+        "Optimization view of prioritized replay judged new and 'refreshing and insightful' (okGN, Giki, 8h92, chair)",
+        "The chair judged the loose theory 'not a fatal issue', while asking that Theorem 1 not be called a theorem",
+        "The chair did not treat hPUt's high-variance critique as decisive: 'the rest of the paper is reasonably executed'"
+      ]
+    }
+  },
+  "issues_only_a": [
+    "Novelty over DisCor: the same optimization problem and relaxation, and ReMERN's weight as DisCor's weight times a density ratio (MNmG, wsEk, chair)",
+    "Theorem 2's bound near-vacuous because of the additive gamma*R_max/(1-gamma) term (chair)",
+    "Ablation that separates TCE from the on-policy importance weights (wsEk)",
+    "The proposed method not shown on the Figure 1 toy MDP (MNmG, wsEk)",
+    "Missing code (MNmG) and a missing related-work citation (4bps)"
+  ],
+  "issues_only_b": [
+    "'Regret' terminology redundant with return maximization (hPUt)",
+    "Paper judged draft-like: two inconsistent definitions of eta(pi), undefined pi_k(a|s) (hPUt)",
+    "Weak DQN baseline on Atari; no stronger replay or exploration baselines (Giki)",
+    "Computation time of ReMERN and ReMERT (okGN)",
+    "Whether the LFIW fast buffer approximates the on-policy distribution (8h92)"
+  ],
+  "shared_issues": [
+    "Loose theory: informal theorems, an unstated relaxation in Theorem 1, many approximations between theory and algorithm (A: UE11, 4bps, chair; B: okGN, hPUt, chair)",
+    "Assumption 1 unjustified (A: 4bps; B: okGN)",
+    "High variance; gains not clearly significant (A: 4bps, chair; B: hPUt, chair)",
+    "PER missing as a baseline in the main experiments (A: MNmG, 4bps; B: okGN, hPUt)",
+    "ReMERT needs terminal states and episodic tasks (A: UE11, MNmG, wsEk; B: okGN, 8h92)",
+    "Figure 1 motivating example unconvincing or underspecified (A: 4bps, MNmG, wsEk; B: Giki)",
+    "No limitations discussion (A: MNmG, wsEk; B: hPUt)"
+  ],
+  "same_facts_weighted_differently": true,
+  "verdict": "Committee B accepted and Committee A rejected because the committees weighted the same weaknesses differently, and only A's reviewers tested the novelty claim against DisCor. Both found that Theorem 1 holds only for an unstated relaxation, that approximations separate theory from algorithm, that PER is missing, and that the gains have high variance; in all five Atari games of Table 1 the +/-1 SD ranges of ReMERT and the authors' DQN baseline overlap. In A, Reviewer_MNmG and Reviewer_wsEk showed, correctly, that ReMERN's weight is DisCor's weight times an LFIW density ratio (Eq. 7; L287-288 call DisCor 'a composing part of ReMERN'), and A's chair found, correctly, that Theorem 2's bound is near-vacuous. B's reviewers praised the regret framing as new and never compared it with DisCor, although the authors' answer to B's chair shows that the first relaxation turns regret into expected |Q_k - Q*|, the quantity DisCor minimizes. Each committee had one 9 that its own text does not support (UE11, Giki). B also had an 8 (8h92, who assessed neither novelty nor significance) where A had a 5 (4bps), and B's chair, while calling Theorem 1 vacuous as a theorem, judged the weak theory 'not a fatal issue'.",
+  "candidate_reasons": [
+    "DisCor-aware reviewers only in A",
+    "Novelty credited without prior-work check",
+    "Thin high scores lifted B",
+    "Chairs tolerated vacuous theory differently",
+    "Chair's own bound check in A"
+  ],
+  "confidence": "high",
+  "evidence_pointers": [
+    "Reviewer_MNmG review (Committee A)",
+    "Reviewer_wsEk review (Committee A)",
+    "Committee A meta-review (Theorem 2 bound)",
+    "Authors' answer to Area_Chair_8DSN on 'a relaxation' (Committee B, 2021-08-20)",
+    "Reviewer_Giki review (Committee B)",
+    "Reviewer_hPUt review and UPDATE (Committee B)",
+    "Committee B meta-review",
+    "paper Eq. (3), Eq. (7), L172-176, L287-288",
+    "paper Theorem 2, Eq. (8), L222-225",
+    "paper Table 1 and Figure 4",
+    "camera-ready Eq. (8)"
+  ]
+}

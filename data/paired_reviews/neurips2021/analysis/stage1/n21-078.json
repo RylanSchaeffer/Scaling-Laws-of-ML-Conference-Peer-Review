@@ -1,0 +1,252 @@
+{
+ "pair_id": "n21-078",
+ "prompt_version": 1,
+ "kind": "poster/reject",
+ "committees": {
+  "a": {
+   "own_decision": "Reject",
+   "ratings_final": [
+    4,
+    6,
+    7,
+    5
+   ],
+   "confidences": [
+    5,
+    5,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_d6mf"
+   ],
+   "outlier": {
+    "present": false,
+    "reviewer": null,
+    "direction": null,
+    "basis": null,
+    "evidence": "Ratings 4, 5, 6, 7 are evenly spread: two below and two above the threshold. All confidences are 4 or 5."
+   },
+   "inattentive_reviews": [
+    {
+     "reviewer": "Reviewer_YJwo",
+     "evidence": "2 hours, confidence 5, posted 2021-08-03, two weeks after the other reviews. It says 'No supplementary material is provided, and hence cannot check about the correctness' of the proofs, but Reviewer_d6mf in the same committee cites 'Table 3 of Appendix B.3'. It asks for an ablation on a benchmark dataset; Section 3.4 points to the PACS ablation in the appendix, which Committee B's Reviewer_xiMp cites as 'Table 9 of the supplementary'. The rest is acronyms and citation format. It never answered the rebuttal or the reminder of 2021-09-01."
+    }
+   ],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_d6mf",
+     "claim": "The original Colored-MNIST of IRM is left out of the DomainBed evaluations, and the authors' own dataset takes the same name.",
+     "checked_against_paper": "correct",
+     "evidence": "The authors apologised, renamed their dataset 'Background-Colored-MNIST' and gave Colored-MNIST results in the rebuttal. The camera-ready (paper.pdf; no submitted PDF) uses the new name and adds Colored-MNIST and Terra Incognita to Table 1 (Colored-MNIST: mDSDI 52.2, ARM 56.2)."
+    },
+    {
+     "reviewer": "Reviewer_d6mf",
+     "claim": "DS features hurt when they indicate a different class in the target domain; the paper ignores this limitation, marks limitations N/A, and still claims a 'theoretically sound' framework.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 (p. 4) holds in source domain S1 only. Page 5: 'there is no guarantee whether this domain-specific information on the source domain is relevant to the target domain'. In the rebuttal the authors reported a 40% drop on class '1' when the background of '2' moves to '1', and 31.1% against IRM's 65.2% on the 90%-flip Colored-MNIST domain under test-domain model selection. The camera-ready conclusion lists 'a theorem to explain when domain-specific may hurt performance in the unseen domain' as open."
+    },
+    {
+     "reviewer": "Reviewer_4Vtm",
+     "claim": "The implementation and experiments have little to do with the information theory.",
+     "checked_against_paper": "correct",
+     "evidence": "Eqs. (1)-(7) are an adversarial domain discriminator, a domain classifier, a covariance penalty and an MLDG-style meta step. No mutual-information term is estimated. The authors conceded 'not exactly minimizing measures of mutual information'. The camera-ready conclusion lists 'a stronger connection between theory in implementation' as open."
+    },
+    {
+     "reviewer": "Reviewer_4Vtm",
+     "claim": "The paper does not cite Dou et al. (MASF), Zhao et al. (entropy regularisation) or Balaji et al. (MetaReg).",
+     "checked_against_paper": "correct",
+     "evidence": "The authors agreed that 'three of your mentioned papers are missing'. The camera-ready reference list (44 entries) still lacks all three."
+    },
+    {
+     "reviewer": "Reviewer_YJwo",
+     "claim": "No supplementary material is provided, so the Lemmas and Theorem cannot be checked.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Reviewer_d6mf in the same committee cites 'Table 3 of Appendix B.3'. The paper sends the proofs to Appendix A.1 and A.2, and the authors pointed to the supplementary zip."
+    },
+    {
+     "reviewer": "Reviewer_YJwo",
+     "claim": "The ablation is run only on the authors' ColoredMNIST; it should use one of the five benchmark datasets.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Section 3.4 points to 'a similar experiment with PACS benchmark dataset' in the appendix (C.6 in the camera-ready; B.6 at submission, per the authors). Committee B's Reviewer_xiMp cites it as 'Table 9 of the supplementary'."
+    },
+    {
+     "reviewer": "Area chair A",
+     "claim": "Theorem 1 shows a stronger dependence on labels, but gives no guarantee that the representation generalises to the unseen target domain.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1: I(X^1;Y) = I(Z_sup;Y) = I(Z_sup*;Y) = I(Z_I*;Y) + eps_1 > I(Z_I*;Y), all in source domain S1. No target-domain quantity appears. Page 5 concedes 'no guarantee' that source domain-specific information is relevant to the target."
+    },
+    {
+     "reviewer": "Area chair A",
+     "claim": "The theoretical results are borrowed from existing findings on multi-view learning [14, 16].",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 3 and Lemma 1 ('Determinism (14)') are credited to [14], Tsai et al., 'Self-supervised learning from a multi-view perspective'. Definition 4 is credited to [16], Federici et al.'s multi-view information bottleneck. Theorem 1 has the form of Tsai et al.'s main result: the second domain X^2 takes the place of the second view, and eps_1 = I(X^1;Y|X^2) takes the place of their eps_info = I(X;T|S)."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_d6mf"
+    ],
+    "evidence": "Reviewer_d6mf's review was edited on 2021-08-20, the day it wrote 'I have raised my score'. The review called the paper 'just below the acceptance threshold' and says 'raised by score by 1', so 5 to 6. Reviewer_88Lv (2021-08-25): 'I would prefer to stick to my original rating' (7). Reviewer_4Vtm (2021-09-10): 'I would not change my original rating' (4). Reviewer_YJwo never replied. The mean went from 5.25 to 5.5.",
+    "what_convinced_or_not": "d6mf rose on a promised limitations paragraph, the renaming to Background-Colored-MNIST, new Colored-MNIST and Terra Incognita results, and the concession that DS features hurt when a background moves to another class. It still asked for more than 'DS features are unlikely to hurt', and for the 30 GB memory cost and the two-backbone comparison to be stated. 88Lv got the meta-split answer and the ablation without the disentanglement loss. Its randomised-domain-label test came back mixed (no change on Rotated MNIST, 5.4 points down on Office-Home), so it kept 7. 4Vtm welcomed the ablations but kept its novelty objection, 'shared by Reviewer YJwo'. The authors had conceded three missing citations and argued that adversarial DI learning plus meta-learned DS features is a new combination."
+   },
+   "ac": {
+    "followed_reviews": "partly",
+    "evidence": "The panel ended 2-2 (4, 5, 6, 7; mean 5.5), and the AC opened with 'This is a borderline paper.' Both of its reasons are its own. First, Theorem 1 gives 'no guarantee that such representation can generalize well to the unseen target domain(s)'; the theory is 'built based on a very ideal case', and the AC suggests semi-supervised domain adaptation instead. Second, 'the theoretical results are borrowed from existing findings on multi-view learning [14,16]'. No A reviewer raised the multi-view point; 4Vtm and 88Lv praised the formalism. The first reason sharpens d6mf's limitation critique, which d6mf had accepted as fixable. The meta-review mentions neither the reviewers' novelty complaints nor the experiments.",
+    "meta_review_leans_on": "own_reading"
+   },
+   "main_reasons_for_decision": [
+    "AC's own reading: Theorem 1 covers label information in a source domain only and gives no guarantee on the unseen target",
+    "AC's own reading: the theory is borrowed from multi-view learning [14, 16], so the theoretical contribution is unclear",
+    "Split panel (4, 5, 6, 7) that the AC called borderline",
+    "Unresolved novelty objection from Reviewer_4Vtm, backed by the inattentive Reviewer_YJwo"
+   ]
+  },
+  "b": {
+   "own_decision": "Accept (Poster)",
+   "ratings_final": [
+    6,
+    7,
+    7,
+    4
+   ],
+   "confidences": [
+    5,
+    4,
+    4,
+    5
+   ],
+   "reviews_edited_after_posting": [
+    "Reviewer_sfZU",
+    "Reviewer_FWcu",
+    "Reviewer_xiMp"
+   ],
+   "outlier": {
+    "present": true,
+    "reviewer": "Reviewer_SAJX",
+    "direction": "detractor",
+    "basis": "principled",
+    "evidence": "4 against 6, 7, 7, with confidence 5. The review is thin: the main review repeats the summary word for word, then raises four points in one paragraph. SAJX never answered the rebuttal or the reminder of 2021-08-29. But its central point is right and checkable: Theorem 1 holds in source domain S1 only, and the paper concedes 'no guarantee' for the target. Committee A's AC rejected on the same point."
+   },
+   "inattentive_reviews": [],
+   "checkable_claims": [
+    {
+     "reviewer": "Reviewer_sfZU",
+     "claim": "The main theorem is based on mutual information, while the algorithm is based on domain-adversarial learning.",
+     "checked_against_paper": "correct",
+     "evidence": "The losses in Eqs. (1)-(7) estimate no mutual information (as for Reviewer_4Vtm's claim in A). The camera-ready conclusion lists the theory-implementation connection as open."
+    },
+    {
+     "reviewer": "Reviewer_sfZU",
+     "claim": "The algorithm is an incremental version of MLDG that further applies two adversarial losses.",
+     "checked_against_paper": "incorrect",
+     "evidence": "Only Eq. (1) is adversarial (a min-max with the domain discriminator). Eq. (2) trains R and the domain classifier together to predict the domain. The MLDG part is fair: Eq. (6) is the MLDG update of [11], applied to theta_R and theta_F only."
+    },
+    {
+     "reviewer": "Reviewer_sfZU",
+     "claim": "CORAL, second best in Table 1, is only 0.6% worse on average.",
+     "checked_against_paper": "not_checked",
+     "evidence": "No submitted PDF. Camera-ready Table 1 gives 67.9 against 67.5 over seven datasets, and a 0.4 gap over the original five. The gap is small either way."
+    },
+    {
+     "reviewer": "Reviewer_xiMp",
+     "claim": "mDSDI scores 42.8 against 41.5 on DomainNet, leads by 0.5 on Office-Home, and beats the best competitor on VLCS by more than 1%.",
+     "checked_against_paper": "not_checked",
+     "evidence": "Camera-ready Table 1 matches DomainNet (42.8 against CORAL 41.5) and Office-Home (69.2 against 68.7). It shows VLCS at 79.0 against CORAL 78.8, a 0.2 lead. sfZU's 0.6 average gap fits a submitted VLCS of about 80.0, so this number appears to have changed after review."
+    },
+    {
+     "reviewer": "Reviewer_xiMp",
+     "claim": "DMG [7] and DSON [43], the closest methods that use domain-specific features, are missing from the experimental comparison.",
+     "checked_against_paper": "correct",
+     "evidence": "Table 1 holds only the 14 DomainBed baselines. The rebuttal promised to 'take them into account'; the camera-ready Table 1 still has neither."
+    },
+    {
+     "reviewer": "Reviewer_xiMp",
+     "claim": "Definitions 1 and 2 and Eq. (1) use only the marginal input distribution, which assumes covariate shift.",
+     "checked_against_paper": "correct",
+     "evidence": "Definition 1 is stated 'under covariate shift assumption'. Both definitions compare P_Q(Q(X)) or P_R(R(X)) across domains, with no label. The authors agreed, as they did with Reviewer_FWcu on Definition 2."
+    },
+    {
+     "reviewer": "Reviewer_SAJX",
+     "claim": "The theoretical analyses do not explain why using domain-specific knowledge improves the generalisation ability of the model.",
+     "checked_against_paper": "correct",
+     "evidence": "Theorem 1 holds in source domain S1 only, and page 5 concedes 'no guarantee' for the target. The rebuttal restated Theorem 1 and added that more label information means 'higher generalization ability'. That does not address the unseen domain."
+    },
+    {
+     "reviewer": "Reviewer_SAJX",
+     "claim": "It is not clear why the algorithm can explicitly decompose the features into domain-specific and domain-invariant parts.",
+     "checked_against_paper": "correct",
+     "evidence": "Eq. (3) only drives the cross-covariance of Z_I and Z_S to zero. That removes linear correlation, not dependence. The rebuttal's 'disentangled (independent) if the covariance between X and Y equals 0' is false in general. The camera-ready conclusion lists 'a method to make two representations to be non-linearly independent' as open."
+    }
+   ],
+   "rebuttal": {
+    "scores_moved": "up",
+    "by_whom": [
+     "Reviewer_sfZU",
+     "Reviewer_xiMp"
+    ],
+    "evidence": "Reviewer_sfZU, 2021-08-11: 'I would like to increase my score to 4', so it began at 3 or lower. 2021-08-14: 'Increased my score to 6', the date of its last edit. Reviewer_xiMp, 2021-08-20, edited the same day: 'I am increasing my rating to 7'. Reviewer_FWcu's edit fell on its posting day, 2021-07-16, before the rebuttal; on 2021-08-12 it wrote 'I confirm my initial rating' (7). Reviewer_SAJX never replied. The mean went from at most 5.0 to 6.0.",
+    "what_convinced_or_not": "sfZU moved in two steps. First, the authors said its eight references disentangle class from domain or causal factors, not DI from DS features, and that DG forbids target data. Second, they cited a DG survey's split between 'multi-component analysis' and 'generative modelling', said MLDG adapts all features while mDSDI adapts only DS features, and said CORAL is quadratic in the number of domains. The training times (8 hours against 14 for CORAL) are new and unchecked. B never saw the 30 GB memory figure that A received. xiMp cited answers to 'my concerns and the major ones raised by the other reviewers', but its first weakness, comparisons with DMG and DSON, got only a promise. FWcu asked for a longer discussion of the theory-implementation gap, 'since the same concern has been raised in different reviews'."
+   },
+   "ac": {
+    "followed_reviews": "yes",
+    "evidence": "'This paper received primarily positive reviews. The authors provided sufficient additional details during the rebuttal to reduce most concerns.' It treats the theory-implementation gap as a clarification for the final version. It names the lone detractor only to overrule it: the AC 'has read the concerns brought up by SAJX as well as the author rebuttal and is convinced by the responses provided'. That rebuttal restated Theorem 1 for the target-domain question and claimed that zero covariance means independence.",
+    "meta_review_leans_on": "scores"
+   },
+   "main_reasons_for_decision": [
+    "Three of four reviewers at 6 or 7 after the rebuttal (mean 6.0)",
+    "Best DomainBed average, with leads on DomainNet and Office-Home valued by FWcu and xiMp",
+    "Rebuttal moved Reviewer_sfZU from 3 or lower to 6 and Reviewer_xiMp to 7",
+    "AC accepted the reply to SAJX and left the theory-implementation gap to the camera-ready"
+   ]
+  }
+ },
+ "issues_only_a": [
+  "DS features hurt when a source background indicates a different class in the target; limitations marked N/A (d6mf; the authors conceded a 40% drop on one class)",
+  "Original Colored-MNIST left out while the authors' own dataset took its name; Terra Incognita left out (d6mf)",
+  "Two ResNet-50 backbones compared against one-backbone baselines; about 30 GB of memory (d6mf)",
+  "Theory borrowed from multi-view learning [14, 16] (AC A)",
+  "Ablations without the disentanglement loss and with randomised domain labels (4Vtm, 88Lv)",
+  "No supplementary proofs (YJwo; wrong); acronyms and citation format (YJwo)"
+ ],
+ "issues_only_b": [
+  "Average gain over the simpler CORAL is small (0.6); training time (sfZU)",
+  "Meta step is just MLDG (sfZU)",
+  "No comparison with DMG [7] or DSON [43] (xiMp) or the Fourier-based method (SAJX)",
+  "Definitions use marginal distributions only, assuming covariate shift; Definition 2 ignores labels (xiMp, FWcu)",
+  "Why meta-learning is applied only to DS features (FWcu)",
+  "Related work confined to the introduction (xiMp)"
+ ],
+ "shared_issues": [
+  "Gap between the information-theoretic analysis and the implementation (4Vtm; sfZU, FWcu, AC B)",
+  "Limited novelty of DI/DS disentanglement and of the adversarial and meta-learning parts (4Vtm, YJwo; sfZU)",
+  "Whether DS features help on an unseen target; the theory does not show it (d6mf, AC A; SAJX, FWcu)",
+  "How the covariance penalty separates Z_I and Z_S (4Vtm; FWcu, SAJX)",
+  "Missing related work (4Vtm: MASF, MetaReg, entropy regularisation; sfZU: disentanglement papers; xiMp: DMG, DSON)",
+  "Ablation on the authors' own coloured-MNIST dataset (d6mf, YJwo; xiMp); reliance on domain labels (88Lv; xiMp)"
+ ],
+ "same_facts_weighted_differently": true,
+ "verdict": "Committee B recommended more because the rebuttal moved its panel and its AC followed the panel. Committee A's AC broke a split panel with its own reading of the theory. Before the rebuttal, B was no more positive than A: its mean was at most 5.0, against 5.25. The rebuttal reused much of the same text in both forums. In B it lifted Reviewer_sfZU from 3 or lower to 6 and Reviewer_xiMp to 7; in A it lifted only Reviewer_d6mf, from 5 to 6. A's sub-threshold side included Reviewer_YJwo, a late 2-hour review whose two specific objections are wrong and which never answered. Both committees saw the same paper: DomainBed gains of about half a point over CORAL, and an information-theoretic analysis loosely tied to the algorithm. A's AC rejected on two points, and the paper confirms both. Theorem 1 compares label information inside a source domain and has no target-domain term; the paper itself concedes 'no guarantee' that source domain-specific information is relevant to the target. Lemma 1 and Definitions 3-4 are credited to two multi-view learning papers. B's lone detractor, Reviewer_SAJX, raised the first point. B's AC was 'convinced' by a reply that restated Theorem 1 and claimed that zero covariance means independence, which is false. The two ACs weighted the same weakness differently, and the different rebuttal uptake decided which AC faced a split.",
+ "candidate_reasons": [
+  "AC's own theory reading decisive",
+  "AC accepted flawed rebuttal answers",
+  "rebuttal converted strongest detractor",
+  "inattentive reviewer kept panel split",
+  "same weakness weighted differently by ACs"
+ ],
+ "confidence": "high",
+ "evidence_pointers": [
+  "Committee A meta-review",
+  "Committee B meta-review (SAJX sentence)",
+  "paper.pdf (camera-ready; no submitted PDF) p. 4: Assumption 1, Definitions 3-4, Lemma 1, Theorem 1",
+  "paper.pdf p. 5: 'no guarantee' that source domain-specific information is relevant to the target",
+  "paper.pdf references [14] Tsai et al. and [16] Federici et al.",
+  "paper.pdf Table 1 and Section 4 (open challenges)",
+  "Authors' response to Reviewer_SAJX, points 2-3",
+  "Authors' response to Reviewer_d6mf, points 1-2 and 7",
+  "Reviewer_sfZU comments 2021-08-11 and 2021-08-14",
+  "Reviewer_YJwo review; Reviewer_d6mf review ('Table 3 of Appendix B.3')",
+  "Reviewer_xiMp review (weakness 1) and the authors' reply"
+ ]
+}

@@ -16,6 +16,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from peerreview.tiers import tier_size
 from matplotlib.lines import Line2D
 from matplotlib.ticker import FixedLocator, NullLocator
 
@@ -404,60 +405,75 @@ TIER_ORDER = ("best", "top10", "oral", "spot", "accept")  # nested, smallest fir
 
 
 def fig_mechanism():
-    """Rerun framing throughout: two independent reviews, simulated on the NeurIPS 2026 review form
-    (results/best_paper.csv grid rows). (a) Overlap of their top-10 sets (constant number) against their
-    top-1% sets (fixed proportion). (b) The second review's expected score for the first review's
-    top-scored paper falls ever further below the second review's own 10th-best score. (c) Reviews per paper that hold the top-10 overlap at its
-    1K value as N grows (results/R_needed.csv), without and with shared noise."""
+    """Why a constant-number tier loses reproducibility, and why more reviews cannot restore it
+    (results/best_paper.csv grid rows, central level; results/R_needed_years.csv).
+    (a) Overlap of two reviews' top-10 sets (a constant number) against their top-1% sets (a fixed
+    proportion). (b) The rank the second review gives the first review's Best Paper, against the tier
+    sizes. (c) Reviews per paper that hold the top-ten overlap at its NeurIPS 2014 value, year by year,
+    with the chairs' call and with awards decided by the reviews alone."""
     t = load("best_paper")
-    t = t[t.source == "grid"]
-    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.62))
+    cen = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
+    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.55))
 
     ax = axes[0]
-    for col, c, label in (("overlap_top10", P.BLUE[650], "Top 10"), ("overlap_top1pct", P.MUTED, "Top 1\\%")):  # tier colours of Figs 1c, 3
-        lo, cen, hi = (t[t.level == lev].sort_values("N") for lev in LEV)
-        ax.fill_between(cen.N, lo[col].values, hi[col].values, color=c, alpha=0.13, lw=0)
-        ax.plot(cen.N, cen[col], color=c, lw=1.6 * P.S, label=label)
+    ax.plot(cen.N, cen.overlap_top1pct, color=P.MUTED, lw=1.6 * P.S, label="Top 1\\% of papers")
+    ax.plot(cen.N, cen.overlap_top10, color=P.BLUE[650], lw=1.6 * P.S, label="Top 10 papers")
     P.n_axis(ax)
-    ax.set_ylim(0, 0.4)
+    ax.set_ylim(0, 0.2)
+    ax.set_yticks([0, 0.05, 0.1, 0.15, 0.2])
     P.pct_axis(ax)
     ax.set_ylabel("Overlap of two reviews")
-    ax.set_title("Number falls, proportion holds", loc="left")
+    ax.set_title("Top 10 falls, top 1\\% holds", loc="left")
     ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
+    mark_venues(ax, label=True, y=0.03, va="bottom")
+
+    ax = axes[1]  # where the second review ranks the first review's Best Paper, against the tier sizes
+    fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
+    N = cen.N.values.astype(float)
+    orals = np.array([tier_size(fits, "orals", n) for n in N], float)
+    spots = orals + np.array([tier_size(fits, "spotlights", n) for n in N], float)
+    for y, c, label in ((0.25 * N, P.MUTED, "Accepted"), (spots, P.BLUE[250], "Spotlight"), (orals, P.BLUE[450], "Oral"),
+                        (np.full_like(N, 10.0), P.BLUE[650], "Top 10")):
+        ax.plot(N, y, color=c, lw=1.2 * P.S, zorder=2)
+        ax.text(N[-1], y[-1] * 1.3, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
+                bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.0))
+    ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.1, lw=0)
+    ax.plot(N, cen.winner_rank2_median, color=P.INK, lw=1.8 * P.S, zorder=4)
+    ax.text(N[0] * 1.1, 5e4, "Best Paper: median, 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT, zorder=6)
+    ax.set_yscale("log")
+    ax.set_ylim(1, 1e5)
+    ax.yaxis.set_major_locator(FixedLocator([1, 10, 100, 1000, 10000, 100000]))
+    ax.yaxis.set_minor_locator(NullLocator())
+    ax.set_yticklabels(["1", "10", "100", "1K", "10K", "100K"])
+    ax.set_ylabel("Rank under a second review")
+    ax.set_title("The Best Paper lands ever lower", loc="left")
+    P.n_axis(ax)
     mark_venues(ax)
 
-    ax = axes[1]
-    cen = t[t.level == "central"].sort_values("N")
-    ax.plot(cen.N, cen.z2_tenth, color=P.BLUE[650], lw=1.6 * P.S, label="Second review's 10th-ranked paper")
-    ax.fill_between(cen.N, cen.z2_winner - cen.z2_winner_sd, cen.z2_winner + cen.z2_winner_sd, color=P.INK, alpha=0.08, lw=0)  # +-1 SD
-    ax.plot(cen.N, cen.z2_winner, color=P.INK, lw=1.6 * P.S, label="First review's Best Paper")
-    ax.set_ylabel("Second review's score (SD units)")
-    ax.set_ylim(0, 6)  # headroom for the legend above the 10th-best curve (3.8 SD at 100K)
-    ax.set_yticks([0, 2, 4, 6])
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2)
-    ax.set_title("Gap to the top-10 bar grows", loc="left")
-    P.n_axis(ax)
-    mark_venues(ax, label=True, y=0.03, va="bottom")  # the bottom of (b) is empty
-
-    ax = axes[2]
-    r = load("R_needed")
-    r = r[(r.metric == "overlap") & (r.N <= 1e5)]
-    R_MAX = 64  # the search's ceiling (scripts/run_R_needed.py): R_needed is inf where 64 reviews do not reach the target
-    for su, c, ls, label in ((0.5, P.INK, "-", "With shared noise"), (0.0, P.INK2, (0, (4, 2)), "Reviewer noise only")):
-        d = r[np.isclose(r.sigma_u, su)].sort_values("N")
+    ax = axes[2]  # reviews per paper that hold the 2014 top-ten overlap, year by year
+    r = load("R_needed_years")
+    R_MAX = 64  # the search's ceiling (scripts/run_R_needed_years.py)
+    for name, c, ls, label in (("chairs' call", P.INK, "-", "Scores and the chairs' call (today)"),
+                               ("reviews alone", P.INK2, (0, (4, 2)), "Scores alone")):
+        d = r[r.variant == name].sort_values("year")
         fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
-        ax.plot(fin.N, fin.R_needed, color=c, lw=1.6 * P.S, ls=ls, label=label)
-        if len(unr):  # from the last reachable N, up past the ceiling at the first unreachable N
-            ax.plot([fin.N.iloc[-1], unr.N.iloc[0]], [fin.R_needed.iloc[-1], R_MAX], color=c, lw=1.6 * P.S, ls=ls)
-            ax.plot(unr.N, [R_MAX] * len(unr), ls="none", marker="^", ms=4.2 * P.S, color=c, mec=P.SURFACE, mew=0.6 * P.S, clip_on=False, zorder=5)
-    ax.text(1e5, R_MAX + 2.5, "Not reached with 64 reviews", color=P.INK2, fontsize=P.LEGEND_PT, va="bottom", ha="right")
-    P.n_axis(ax)
-    ax.set_ylim(0, 76)
-    ax.set_yticks([0, 20, 40, 60])
+        ax.plot(fin.year, fin.R_needed, color=c, lw=1.8 * P.S, ls=ls, label=label)
+        if len(unr):  # from the last reachable year up past the ceiling at the first unreachable year
+            ax.plot([fin.year.iloc[-1], unr.year.iloc[0]], [fin.R_needed.iloc[-1], R_MAX], color=c, lw=1.8 * P.S, ls=ls)
+            ax.plot(unr.year, [R_MAX] * len(unr), ls="none", marker="^", ms=4.6 * P.S, color=c, mec=P.SURFACE, mew=0.6 * P.S, clip_on=False, zorder=5)
+    ax.axhline(4, color=P.MUTED, lw=0.8 * P.S, ls=(0, (2, 2)), zorder=0)
+    unreachable = (~np.isfinite(r.R_needed)).any()
+    ymax = 78 if unreachable else 5 * int(np.ceil(1.6 * r.R_needed.max() / 5))  # headroom for the legend above the curves
+    ax.text(2026.4, 0.04 * ymax, "4 today", color=P.INK2, va="top", ha="right", fontsize=P.LEGEND_PT)
+    if unreachable:
+        ax.text(2026.4, R_MAX + 0.03 * ymax, "Not reached with 64 reviews", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT)
+    ax.set_xlim(2013.5, 2026.5)
+    ax.set_xticks([2014, 2018, 2022, 2026])
+    ax.set_ylim(0, ymax)
+    ax.set_xlabel("NeurIPS year")
     ax.set_ylabel("Reviews per paper")
-    ax.set_title("More reviews stop holding top-10 overlap", loc="left")
-    ax.legend(loc="lower right", handlelength=1.3, borderaxespad=0.2)
-    mark_venues(ax)
+    ax.set_title("Reviews to hold the 2014 top-10 overlap", loc="left")
+    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2, title="Awards decided by", title_fontsize=P.LEGEND_PT, alignment="left")
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig4_mechanism"))

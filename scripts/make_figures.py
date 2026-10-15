@@ -415,37 +415,45 @@ def fig_mechanism():
     cen = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
     fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.55))
 
-    ax = axes[0]
-    ax.plot(cen.N, cen.overlap_top1pct, color=P.MUTED, lw=1.6 * P.S, label="Top 1\\% of papers")
-    ax.plot(cen.N, cen.overlap_top10, color=P.BLUE[650], lw=1.6 * P.S, label="Top 10 papers")
-    P.n_axis(ax)
-    ax.set_ylim(0, 0.2)
-    ax.set_yticks([0, 0.05, 0.1, 0.15, 0.2])
-    P.pct_axis(ax)
-    ax.set_ylabel("Overlap of two reviews")
-    ax.set_title("Top 10 falls, top 1\\% holds", loc="left")
-    ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
-
-    ax = axes[1]  # where the second review ranks the first review's Best Paper, against the tier sizes
-    fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
+    ax = axes[0]  # a fixed proportion (top 1%) against a constant number (top 10): the share of one review's picks the other also picks
     N = cen.N.values.astype(float)
+    ax.plot(N, cen.overlap_top1pct, color=P.MUTED, lw=1.6 * P.S, zorder=3)
+    ax.plot(N, cen.overlap_top10, color=P.BLUE[650], lw=1.6 * P.S, zorder=3)
+    ax.text(1e5, cen.overlap_top1pct.iloc[-1] - 0.004, "Top 1\\% of submissions", color=P.MUTED, va="top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+    ax.text(1e5, 0.018, "Top 10 papers", color=P.BLUE[650], va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+    ax.text(N[0] * 1.05, 0.0915, "At 1K both are 10 papers", color=P.INK2, va="bottom", ha="left", fontsize=P.LEGEND_PT, zorder=6)
+    P.n_axis(ax)
+    ax.set_ylim(0, 0.1)
+    ax.set_yticks([0, 0.025, 0.05, 0.075, 0.1])
+    P.pct_axis(ax)
+    ax.set_ylabel("Share of one review's picks\nthe other also picks")
+    ax.set_title("Top 10 falls, top 1\\% holds", loc="left")
+
+    ax = axes[1]  # where a second review puts the first review's Best Paper: its rank, over the tiers that rank would earn
+    fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
     orals = np.array([tier_size(fits, "orals", n) for n in N], float)
     spots = orals + np.array([tier_size(fits, "spotlights", n) for n in N], float)
-    for y, c, label in ((0.25 * N, P.MUTED, "Accepted"), (spots, P.BLUE[250], "Spotlight"), (orals, P.BLUE[450], "Oral"),
-                        (np.full_like(N, 10.0), P.BLUE[650], "Top 10")):
-        ax.plot(N, y, color=c, lw=1.2 * P.S, zorder=2)
-        lift = 1.3 if label == "Top 10" else 1.9  # a sloping line rises to the left under a right-aligned label, so lift it more
-        ax.text(N[-1], y[-1] / lift, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6)  # above the line, rank 1 at the top
-    ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.1, lw=0)
+    bottom = np.full_like(N, 1e5)
+    bands = ((np.ones_like(N), np.full_like(N, 10.0), P.BLUE[650], 0.26, "Top 10"), (np.full_like(N, 10.0), orals, P.BLUE[450], 0.24, "Oral"),
+             (orals, spots, P.BLUE[250], 0.30, "Spotlight"), (spots, 0.25 * N, P.MUTED, 0.18, "Accepted, no award"), (0.25 * N, bottom, P.SURFACE, 0.0, "Rejected"))
+    for lo, hi, c, a, label in bands:
+        if a:
+            ax.fill_between(N, lo, hi, color=c, alpha=a, lw=0, zorder=1)
+            ax.plot(N, hi, color=c, lw=0.8 * P.S, zorder=2)  # the tier's last rank
+    for label, x, y, ha in (("Top 10", 1e5 / 1.03, 3.2, "right"), ("Oral", 1e5 / 1.03, 50, "right"), ("Spotlight", 1e5 / 1.03, 640, "right"),
+                            ("Accepted, no award", 1e5 / 1.03, 3100, "right"), ("Rejected", N[0] * 1.08, 5e4, "left")):  # inside each region
+        ax.text(x, y, label, color=P.INK2, va="center", ha=ha, fontsize=P.LEGEND_PT, zorder=6,
+                bbox=dict(facecolor=P.SURFACE, edgecolor="none", alpha=0.75, pad=0.4))
+    ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.15, lw=0, zorder=3)
     ax.plot(N, cen.winner_rank2_median, color=P.INK, lw=1.8 * P.S, zorder=4)
-    ax.text(N[0] * 1.1, 1.3, "Best Paper: median, 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT, zorder=6,
-            bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=0.5))
+    ax.text(N[0] * 1.08, 1.15, "First review's\nBest Paper: median\nand 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT,
+            linespacing=1.1, zorder=6)  # top left, above the band's upper edge (rank 8 at 1K)
     ax.set_yscale("log")
-    ax.set_ylim(1e5, 1)  # rank 1 at the top: the Best Paper's line falls as N grows, and the tiers stack in the paper's order
+    ax.set_ylim(1e5, 1)  # rank 1 at the top
     ax.yaxis.set_major_locator(FixedLocator([1, 10, 100, 1000, 10000, 100000]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.set_yticklabels(["1", "10", "100", "1K", "10K", "100K"])
-    ax.set_ylabel("Rank under a second review")
+    ax.set_ylabel("Second review's rank of the\nfirst review's Best Paper")
     ax.set_title("Best Paper lands ever lower", loc="left")
     P.n_axis(ax)
 

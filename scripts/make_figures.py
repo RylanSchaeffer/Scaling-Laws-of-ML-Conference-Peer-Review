@@ -425,7 +425,6 @@ def fig_mechanism():
     ax.set_ylabel("Overlap of two reviews")
     ax.set_title("Top 10 falls, top 1\\% holds", loc="left")
     ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
-    mark_venues(ax, label=True, y=0.5, va="bottom")
 
     ax = axes[1]  # where the second review ranks the first review's Best Paper, against the tier sizes
     fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
@@ -449,32 +448,29 @@ def fig_mechanism():
     ax.set_ylabel("Rank under a second review")
     ax.set_title("The Best Paper lands ever lower", loc="left")
     P.n_axis(ax)
-    mark_venues(ax)
 
     ax = axes[2]  # reviews per paper that hold each tier's overlap at its 1,000-submission value (results/R_needed_tiers_summary.csv)
     r = load("R_needed_tiers_summary")
-    R_MAX = 64  # the ladder's top rung (scripts/run_R_needed_tiers.py): R_needed is inf where 64 reviews fall short
-    unreachable = (~np.isfinite(r.R_needed)).any()
-    ymax = 78 if unreachable else 5 * int(np.ceil(1.3 * r.R_needed.max() / 5))
+    ymax = 10 ** np.ceil(np.log10(r.R_needed[np.isfinite(r.R_needed)].max() * 1.5))
     for tier, c, label in (("accept", P.MUTED, "Accepted"), ("spot", P.BLUE[250], ""), ("oral", P.BLUE[450], "Oral,\nSpotlight"), ("top10", P.BLUE[650], "Top 10")):
         d = r[r.tier == tier].sort_values("N")
         fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
         ax.plot(fin.N, fin.R_needed, color=c, lw=1.8 * P.S, zorder=3)
-        if len(unr):  # from the last reachable N up past the top rung at the first unreachable N
-            ax.plot([fin.N.iloc[-1], unr.N.iloc[0]], [fin.R_needed.iloc[-1], R_MAX], color=c, lw=1.8 * P.S, zorder=3)
-            ax.plot(unr.N, [R_MAX] * len(unr), ls="none", marker="^", ms=4.6 * P.S, color=c, mec=P.SURFACE, mew=0.6 * P.S, clip_on=False, zorder=5)
-            label += ": not reached\nwith 64 reviews"
-            y_end = R_MAX
-        else:
-            y_end = fin.R_needed.iloc[-1]
-        if label:  # the tier's name above the end of its curve; the oral and spotlight curves coincide and share one label
-            halo = dict(facecolor=P.SURFACE, edgecolor="none", pad=0.5) if len(unr) else None  # no data under the top-10 note
-            ax.text(1e5, y_end + 0.025 * ymax, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6, bbox=halo)
+        if len(unr):  # no number of reviews holds the tier from this size on: the curve leaves the top of the panel
+            ax.annotate("", xy=(unr.N.iloc[0], ymax), xytext=(fin.N.iloc[-1], fin.R_needed.iloc[-1]),
+                        arrowprops=dict(arrowstyle="-|>", color=c, lw=1.8 * P.S, mutation_scale=9 * P.S, shrinkA=0, shrinkB=0), zorder=3)
+            ax.text(fin.N.iloc[-1] / 1.15, ymax / 1.3, label + ": no number\nof reviews suffices", color=c, va="top", ha="right", fontsize=P.LEGEND_PT,
+                    linespacing=1.1, zorder=6)
+        elif label:
+            ax.text(1e5, fin.R_needed.iloc[-1] * 1.25, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6)
     P.n_axis(ax)
-    ax.set_ylim(0, ymax)
+    ax.set_yscale("log")
+    ax.set_ylim(3, ymax)
+    ax.yaxis.set_major_locator(FixedLocator([v for v in (4, 10, 100, 1000, 10000) if v <= ymax]))
+    ax.yaxis.set_minor_locator(NullLocator())
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{v:g}" if v < 1000 else f"{v / 1000:g}K"))
     ax.set_ylabel("Reviews per paper")
     ax.set_title("The top 10 needs ever more reviews", loc="left")
-    mark_venues(ax)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig4_mechanism"))
@@ -611,7 +607,6 @@ def fig_scales():
     P.pct_axis(ax)
     ax.set_ylabel("Probability")
     ax.set_title("Top 10 again", loc="left")
-    mark_venues(ax)
     hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
           plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main form, pessimistic to optimistic level, 2026 size")]

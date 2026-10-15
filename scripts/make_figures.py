@@ -433,18 +433,13 @@ def fig_mechanism():
     fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
     orals = np.array([tier_size(fits, "orals", n) for n in N], float)
     spots = orals + np.array([tier_size(fits, "spotlights", n) for n in N], float)
-    bottom = np.full_like(N, 1e5)
-    bands = ((np.ones_like(N), np.full_like(N, 10.0), P.BLUE[650], 0.26, "Top 10"), (np.full_like(N, 10.0), orals, P.BLUE[450], 0.24, "Oral"),
-             (orals, spots, P.BLUE[250], 0.30, "Spotlight"), (spots, 0.25 * N, P.MUTED, 0.18, "Accepted, no award"), (0.25 * N, bottom, P.SURFACE, 0.0, "Rejected"))
-    for lo, hi, c, a, label in bands:
-        if a:
-            ax.fill_between(N, lo, hi, color=c, alpha=a, lw=0, zorder=1)
-            ax.plot(N, hi, color=c, lw=0.8 * P.S, zorder=2)  # the tier's last rank
+    for hi, c in ((np.full_like(N, 10.0), P.BLUE[650]), (orals, P.BLUE[450]), (spots, P.BLUE[250]), (0.25 * N, P.MUTED)):
+        ax.plot(N, hi, color=c, lw=1.2 * P.S, zorder=2)  # each tier's last rank; the regions between the lines stay white
     for label, x, y, ha in (("Top 10", 1e5 / 1.03, 3.2, "right"), ("Oral", 1e5 / 1.03, 50, "right"), ("Spotlight", 1e5 / 1.03, 640, "right"),
-                            ("Accepted, no award", 1e5 / 1.03, 3100, "right"), ("Rejected", N[0] * 1.08, 5e4, "left")):  # inside each region
+                            ("Accepted, no award", 1e5 / 1.03, 3100, "right"), ("Rejected", N[0] * 1.08, 5e4, "left")):  # the tier each region of ranks earns
         ax.text(x, y, label, color=P.INK2, va="center", ha=ha, fontsize=P.LEGEND_PT, zorder=6,
-                bbox=dict(facecolor=P.SURFACE, edgecolor="none", alpha=0.75, pad=0.4))
-    ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.15, lw=0, zorder=3)
+                bbox=dict(facecolor=P.SURFACE, edgecolor="none", alpha=0.8, pad=0.4))
+    ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.12, lw=0, zorder=1)
     ax.plot(N, cen.winner_rank2_median, color=P.INK, lw=1.8 * P.S, zorder=4)
     ax.text(N[0] * 1.08, 1.15, "First review's\nBest Paper: median\nand 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT,
             linespacing=1.1, zorder=6)  # top left, above the band's upper edge (rank 8 at 1K)

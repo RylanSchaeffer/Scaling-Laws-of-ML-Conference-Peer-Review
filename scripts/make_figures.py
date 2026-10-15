@@ -439,7 +439,7 @@ def fig_mechanism():
                 bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.0))
     ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.1, lw=0)
     ax.plot(N, cen.winner_rank2_median, color=P.INK, lw=1.8 * P.S, zorder=4)
-    ax.text(N[0] * 1.1, 5e4, "Best Paper: median, 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT, zorder=6)
+    ax.text(N[0] * 1.1, 1.4, "Best Paper: median, 10--90\\% band", color=P.INK, va="bottom", ha="left", fontsize=P.LEGEND_PT, zorder=6)
     ax.set_yscale("log")
     ax.set_ylim(1, 1e5)
     ax.yaxis.set_major_locator(FixedLocator([1, 10, 100, 1000, 10000, 100000]))

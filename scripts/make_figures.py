@@ -405,12 +405,12 @@ TIER_ORDER = ("best", "top10", "oral", "spot", "accept")  # nested, smallest fir
 
 
 def fig_mechanism():
-    """Why a constant-number tier loses reproducibility, and why more reviews cannot restore it
-    (results/best_paper.csv grid rows, central level; results/R_needed_years.csv).
+    """Why a constant-number tier loses reproducibility, and what holding each tier costs in reviews
+    (results/best_paper.csv grid rows, central level; results/tier_sizes.csv; results/R_needed_tiers_summary.csv).
     (a) Overlap of two reviews' top-10 sets (a constant number) against their top-1% sets (a fixed
-    proportion). (b) The rank the second review gives the first review's Best Paper, against the tier
-    sizes. (c) Reviews per paper that hold the top-ten overlap at its NeurIPS 2014 value, year by year,
-    with the chairs' call and with awards decided by the reviews alone."""
+    proportion). (b) The rank the second review gives the first review's Best Paper, rank 1 at the top,
+    against the tier sizes. (c) Reviews per paper that hold each tier's overlap at its 1,000-submission
+    value, against submissions."""
     t = load("best_paper")
     cen = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
     fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.55))
@@ -425,7 +425,7 @@ def fig_mechanism():
     ax.set_ylabel("Overlap of two reviews")
     ax.set_title("Top 10 falls, top 1\\% holds", loc="left")
     ax.legend(loc="upper right", handlelength=1.3, borderaxespad=0.2)
-    mark_venues(ax, label=True, y=0.03, va="bottom")
+    mark_venues(ax, label=True, y=0.5, va="bottom")
 
     ax = axes[1]  # where the second review ranks the first review's Best Paper, against the tier sizes
     fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
@@ -435,13 +435,14 @@ def fig_mechanism():
     for y, c, label in ((0.25 * N, P.MUTED, "Accepted"), (spots, P.BLUE[250], "Spotlight"), (orals, P.BLUE[450], "Oral"),
                         (np.full_like(N, 10.0), P.BLUE[650], "Top 10")):
         ax.plot(N, y, color=c, lw=1.2 * P.S, zorder=2)
-        ax.text(N[-1], y[-1] * 1.3, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
-                bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.0))
+        lift = 1.3 if label == "Top 10" else 1.9  # a sloping line rises to the left under a right-aligned label, so lift it more
+        ax.text(N[-1], y[-1] / lift, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6)  # above the line, rank 1 at the top
     ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.1, lw=0)
     ax.plot(N, cen.winner_rank2_median, color=P.INK, lw=1.8 * P.S, zorder=4)
-    ax.text(N[0] * 1.1, 1.4, "Best Paper: median, 10--90\\% band", color=P.INK, va="bottom", ha="left", fontsize=P.LEGEND_PT, zorder=6)
+    ax.text(N[0] * 1.1, 1.3, "Best Paper: median, 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT, zorder=6,
+            bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=0.5))
     ax.set_yscale("log")
-    ax.set_ylim(1, 1e5)
+    ax.set_ylim(1e5, 1)  # rank 1 at the top: the Best Paper's line falls as N grows, and the tiers stack in the paper's order
     ax.yaxis.set_major_locator(FixedLocator([1, 10, 100, 1000, 10000, 100000]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.set_yticklabels(["1", "10", "100", "1K", "10K", "100K"])
@@ -455,7 +456,7 @@ def fig_mechanism():
     R_MAX = 64  # the ladder's top rung (scripts/run_R_needed_tiers.py): R_needed is inf where 64 reviews fall short
     unreachable = (~np.isfinite(r.R_needed)).any()
     ymax = 78 if unreachable else 5 * int(np.ceil(1.3 * r.R_needed.max() / 5))
-    for tier, c, label in (("accept", P.MUTED, "Accepted"), ("spot", P.BLUE[250], ""), ("oral", P.BLUE[450], "Oral, Spotlight"), ("top10", P.BLUE[650], "Top 10")):
+    for tier, c, label in (("accept", P.MUTED, "Accepted"), ("spot", P.BLUE[250], ""), ("oral", P.BLUE[450], "Oral,\nSpotlight"), ("top10", P.BLUE[650], "Top 10")):
         d = r[r.tier == tier].sort_values("N")
         fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
         ax.plot(fin.N, fin.R_needed, color=c, lw=1.8 * P.S, zorder=3)
@@ -467,11 +468,12 @@ def fig_mechanism():
         else:
             y_end = fin.R_needed.iloc[-1]
         if label:  # the tier's name above the end of its curve; the oral and spotlight curves coincide and share one label
-            ax.text(1e5, y_end + 0.025 * ymax, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6)
+            halo = dict(facecolor=P.SURFACE, edgecolor="none", pad=0.5) if len(unr) else None  # no data under the top-10 note
+            ax.text(1e5, y_end + 0.025 * ymax, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6, bbox=halo)
     P.n_axis(ax)
     ax.set_ylim(0, ymax)
     ax.set_ylabel("Reviews per paper")
-    ax.set_title("Reviews to hold each tier's 1K overlap", loc="left")
+    ax.set_title("The top 10 needs ever more reviews", loc="left")
     mark_venues(ax)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])

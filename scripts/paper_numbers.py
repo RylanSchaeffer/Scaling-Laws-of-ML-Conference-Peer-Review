@@ -83,12 +83,11 @@ def main():
         if not d.empty:
             print(f"sigma_u={su}: " + ", ".join(f"N={int(x.N)}: R={x.R_needed:.1f}" for x in d.itertuples()))
 
-    section("Fig 4c / sec:best / implications: reviews per paper to hold the 2014 top-ten overlap, by NeurIPS year (R_needed_years.csv)")
-    ry = load("R_needed_years")
-    for name in dict.fromkeys(ry.variant):
-        d = ry[ry.variant == name].sort_values("year")
-        print(f"{name:14s} target {d.target.iloc[0]:.4f}: " + ", ".join(f"{int(x.year)}: {x.R_needed:.1f}" for x in d.itertuples()))
-        print(f"{'':14s} limit overlap (infinite reviews): " + ", ".join(f"{int(x.year)}: {x.limit_overlap:.3f}" for x in d.itertuples()))
+    section("Fig 4c / sec:best / implications: reviews per paper to hold each tier's 1K overlap (R_needed_tiers_summary.csv)")
+    rt = load("R_needed_tiers_summary")
+    for tier in ("accept", "spot", "oral", "top10"):
+        d = rt[rt.tier == tier].sort_values("N")
+        print(f"{tier:7s} target {d.target.iloc[0]:.3f}: " + ", ".join(f"N={int(x.N)}: {x.R_needed:.1f}" for x in d.itertuples()))
 
     section("Fig 2b-d / sec:between / sec:accept: placement, central (placement.csv)")
     p = load("placement")

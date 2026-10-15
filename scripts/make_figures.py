@@ -450,30 +450,29 @@ def fig_mechanism():
     P.n_axis(ax)
     mark_venues(ax)
 
-    ax = axes[2]  # reviews per paper that hold the 2014 top-ten overlap, year by year
-    r = load("R_needed_years")
-    R_MAX = 64  # the search's ceiling (scripts/run_R_needed_years.py)
-    for name, c, ls, label in (("chairs' call", P.INK, "-", "Scores and the chairs' call (today)"),
-                               ("reviews alone", P.INK2, (0, (4, 2)), "Scores alone")):
-        d = r[r.variant == name].sort_values("year")
-        fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
-        ax.plot(fin.year, fin.R_needed, color=c, lw=1.8 * P.S, ls=ls, label=label)
-        if len(unr):  # from the last reachable year up past the ceiling at the first unreachable year
-            ax.plot([fin.year.iloc[-1], unr.year.iloc[0]], [fin.R_needed.iloc[-1], R_MAX], color=c, lw=1.8 * P.S, ls=ls)
-            ax.plot(unr.year, [R_MAX] * len(unr), ls="none", marker="^", ms=4.6 * P.S, color=c, mec=P.SURFACE, mew=0.6 * P.S, clip_on=False, zorder=5)
-    ax.axhline(4, color=P.MUTED, lw=0.8 * P.S, ls=(0, (2, 2)), zorder=0)
+    ax = axes[2]  # reviews per paper that hold each tier's overlap at its 1,000-submission value (results/R_needed_tiers_summary.csv)
+    r = load("R_needed_tiers_summary")
+    R_MAX = 64  # the ladder's top rung (scripts/run_R_needed_tiers.py): R_needed is inf where 64 reviews fall short
     unreachable = (~np.isfinite(r.R_needed)).any()
-    ymax = 78 if unreachable else 5 * int(np.ceil(1.6 * r.R_needed.max() / 5))  # headroom for the legend above the curves
-    ax.text(2026.4, 0.04 * ymax, "4 today", color=P.INK2, va="top", ha="right", fontsize=P.LEGEND_PT)
-    if unreachable:
-        ax.text(2026.4, R_MAX + 0.03 * ymax, "Not reached with 64 reviews", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT)
-    ax.set_xlim(2013.5, 2026.5)
-    ax.set_xticks([2014, 2018, 2022, 2026])
+    ymax = 78 if unreachable else 5 * int(np.ceil(1.3 * r.R_needed.max() / 5))
+    for tier, c, label in (("accept", P.MUTED, "Accepted"), ("spot", P.BLUE[250], ""), ("oral", P.BLUE[450], "Oral, Spotlight"), ("top10", P.BLUE[650], "Top 10")):
+        d = r[r.tier == tier].sort_values("N")
+        fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
+        ax.plot(fin.N, fin.R_needed, color=c, lw=1.8 * P.S, zorder=3)
+        if len(unr):  # from the last reachable N up past the top rung at the first unreachable N
+            ax.plot([fin.N.iloc[-1], unr.N.iloc[0]], [fin.R_needed.iloc[-1], R_MAX], color=c, lw=1.8 * P.S, zorder=3)
+            ax.plot(unr.N, [R_MAX] * len(unr), ls="none", marker="^", ms=4.6 * P.S, color=c, mec=P.SURFACE, mew=0.6 * P.S, clip_on=False, zorder=5)
+            label += ": not reached\nwith 64 reviews"
+            y_end = R_MAX
+        else:
+            y_end = fin.R_needed.iloc[-1]
+        if label:  # the tier's name above the end of its curve; the oral and spotlight curves coincide and share one label
+            ax.text(1e5, y_end + 0.025 * ymax, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6)
+    P.n_axis(ax)
     ax.set_ylim(0, ymax)
-    ax.set_xlabel("NeurIPS year")
     ax.set_ylabel("Reviews per paper")
-    ax.set_title("Reviews to hold the 2014 top-10 overlap", loc="left")
-    ax.legend(loc="upper left", handlelength=1.3, borderaxespad=0.2, title="Awards decided by", title_fontsize=P.LEGEND_PT, alignment="left")
+    ax.set_title("Reviews to hold each tier's 1K overlap", loc="left")
+    mark_venues(ax)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig4_mechanism"))

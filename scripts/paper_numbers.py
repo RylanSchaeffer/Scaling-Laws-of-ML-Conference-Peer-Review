@@ -75,7 +75,7 @@ def main():
             print(f"  {lev}: overlap_top10 at 1e3 {pct(at(gg, 1000, 'overlap_top10'))}, at 1e5 {pct(at(gg, 100000, 'overlap_top10'))}; "
                   f"first at 1e5 {pct(at(gg, 100000, 'p2_best'), 2)}")
 
-    section("Fig 4c / sec:best / implications: reviews needed (R_needed.csv)")
+    section("Not cited in the paper: reviews needed for the Best Paper tier, by shared-noise level (R_needed.csv)")
     r = load("R_needed")
     r = r[r.metric == "overlap"]
     for su in (0.0, 0.5):
@@ -83,11 +83,18 @@ def main():
         if not d.empty:
             print(f"sigma_u={su}: " + ", ".join(f"N={int(x.N)}: R={x.R_needed:.1f}" for x in d.itertuples()))
 
-    section("Fig 4c / sec:best / implications: reviews per paper to hold each tier's 1K overlap (R_needed_tiers_summary.csv)")
+    section("Fig 4c / sec:best / implications: reviews per paper to hold each tier's 1K overlap (R_needed_tiers_curve.csv, the drawn curve)")
     rt = load("R_needed_tiers_summary")
+    rc = load("R_needed_tiers_curve")
     for tier in ("accept", "spot", "oral", "top10"):
         d = rt[rt.tier == tier].sort_values("N")
-        print(f"{tier:7s} target {d.target.iloc[0]:.3f}: " + ", ".join(f"N={int(x.N)}: {x.R_needed:.1f}" for x in d.itertuples()))
+        c = rc[rc.tier == tier].sort_values("N")
+        r_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.R_needed.values))
+        lim_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.limit_overlap.values))
+        ns = float(c.N_star.iloc[0])
+        print(f"{tier:7s} target {d.target.iloc[0]:.4f}: " + ", ".join(f"N={N}: {r_at(N):.1f}" for N in (1000, 10000, 21544, 31623, 46416, 100000))
+              + (f"; N* = {ns:,.0f}" if np.isfinite(ns) else "; no N* up to 100,000"))
+        print(f"        R = inf overlap: " + ", ".join(f"N={N}: {lim_at(N):.4f}" for N in (1000, 10000, 46416, 100000)))
 
     section("Fig 2b-d / sec:between / sec:accept: placement, central (placement.csv)")
     p = load("placement")

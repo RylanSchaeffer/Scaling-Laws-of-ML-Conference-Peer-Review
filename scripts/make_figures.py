@@ -406,7 +406,7 @@ TIER_ORDER = ("best", "top10", "oral", "spot", "accept")  # nested, smallest fir
 
 def fig_mechanism():
     """Why a constant-number tier loses reproducibility, and what holding each tier costs in reviews
-    (results/best_paper.csv grid rows, central level; results/tier_sizes.csv; results/R_needed_tiers_summary.csv).
+    (results/best_paper.csv grid rows, central level; results/tier_sizes.csv; results/R_needed_tiers_curve.csv).
     (a) Overlap of two reviews' top-10 sets (a constant number) against their top-1% sets (a fixed
     proportion). (b) The rank the second review gives the first review's Best Paper, rank 1 at the top,
     against the tier sizes. (c) Reviews per paper that hold each tier's overlap at its 1,000-submission
@@ -446,31 +446,36 @@ def fig_mechanism():
     ax.yaxis.set_minor_locator(NullLocator())
     ax.set_yticklabels(["1", "10", "100", "1K", "10K", "100K"])
     ax.set_ylabel("Rank under a second review")
-    ax.set_title("The Best Paper lands ever lower", loc="left")
+    ax.set_title("Best Paper lands ever lower", loc="left")
     P.n_axis(ax)
 
-    ax = axes[2]  # reviews per paper that hold each tier's overlap at its 1,000-submission value (results/R_needed_tiers_summary.csv)
-    r = load("R_needed_tiers_summary")
-    ymax = 10 ** np.ceil(np.log10(r.R_needed[np.isfinite(r.R_needed)].max() * 1.5))
-    for tier, c, label in (("accept", P.MUTED, "Accepted"), ("spot", P.BLUE[250], ""), ("oral", P.BLUE[450], "Oral,\nSpotlight"), ("top10", P.BLUE[650], "Top 10")):
+    ax = axes[2]  # reviews per paper that hold each tier's overlap at its 1,000-submission value
+    r = load("R_needed_tiers_curve")  # each rung's overlap fitted across sizes and inverted on a fine grid (summarize_R_needed_tiers.py)
+    ymax = 1e4
+    for tier, c, label in (("accept", P.MUTED, "Accepted: always 4"), ("spot", P.BLUE[250], "Spotlight"), ("oral", P.BLUE[450], "Oral,"),
+                           ("top10", P.BLUE[650], "Top 10")):
         d = r[r.tier == tier].sort_values("N")
-        fin, unr = d[np.isfinite(d.R_needed)], d[~np.isfinite(d.R_needed)]
-        ax.plot(fin.N, fin.R_needed, color=c, lw=1.8 * P.S, zorder=3)
-        if len(unr):  # no number of reviews holds the tier from this size on: the curve leaves the top of the panel
-            ax.annotate("", xy=(unr.N.iloc[0], ymax), xytext=(fin.N.iloc[-1], fin.R_needed.iloc[-1]),
-                        arrowprops=dict(arrowstyle="-|>", color=c, lw=1.8 * P.S, mutation_scale=9 * P.S, shrinkA=0, shrinkB=0), zorder=3)
-            ax.text(fin.N.iloc[-1] / 1.15, ymax / 1.3, label + ": no number\nof reviews suffices", color=c, va="top", ha="right", fontsize=P.LEGEND_PT,
-                    linespacing=1.1, zorder=6)
-        elif label:
-            ax.text(1e5, fin.R_needed.iloc[-1] * 1.25, label, color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6)
+        fin = d[np.isfinite(d.R_needed)]
+        x, y = fin.N.values.astype(float), fin.R_needed.values
+        n_star = float(d.N_star.iloc[0])
+        if np.isfinite(n_star):  # from N* on no number of reviews holds the tier: the curve goes vertical there and leaves the panel
+            x, y = np.append(x, n_star), np.append(y, ymax * 10)
+            ax.text(n_star / 1.2, ymax / 1.6, f"{label}: from about {n_star / 1e4:.0f}0K\nsubmissions no number\nof reviews holds it",
+                    color=c, va="top", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6)
+        elif tier == "accept":  # under the flat line, where no curve runs
+            ax.text(1e5, y[-1] / 1.2, label, color=c, va="top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+        else:  # the oral and spotlight curves coincide: one label in two colours, "Oral," one line above "Spotlight"
+            ax.annotate(label, xy=(1e5, y[-1] * 1.25), xytext=(0, 1.15 * P.LEGEND_PT if tier == "oral" else 0), textcoords="offset points",
+                        color=c, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+        ax.plot(x, y, color=c, lw=1.8 * P.S, zorder=3)
     P.n_axis(ax)
     ax.set_yscale("log")
-    ax.set_ylim(3, ymax)
-    ax.yaxis.set_major_locator(FixedLocator([v for v in (4, 10, 100, 1000, 10000) if v <= ymax]))
+    ax.set_ylim(1.8, ymax)
+    ax.yaxis.set_major_locator(FixedLocator([4, 10, 100, 1000, 10000]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{v:g}" if v < 1000 else f"{v / 1000:g}K"))
-    ax.set_ylabel("Reviews per paper")
-    ax.set_title("The top 10 needs ever more reviews", loc="left")
+    ax.set_ylabel("Reviews per paper that hold\nthe overlap of 1K submissions")
+    ax.set_title("Same overlap, more reviews", loc="left")
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig4_mechanism"))

@@ -68,6 +68,8 @@ def tier_overlaps(reviews: list[tuple], R: int, sizes: dict, A: int) -> dict:
 
 def job(spec: dict) -> list[dict]:
     m = calibrated(main_model(sigma_u=0.0), "central")
+    if "sigma_award" in spec:  # run_chair_calls.py: the chair noise of k averaged calls
+        m = m.replace(sigma_award=float(spec["sigma_award"]))
     assert m.noise == "gaussian" and m.sigma_u == 0 and m.careless == 0, "the ladder is the main model"
     N, reps, chunk, Rs = spec["N"], spec["reps"], spec["chunk"], list(spec["Rs"])
     Rmax = max(Rs)

@@ -83,7 +83,19 @@ def main():
         if not d.empty:
             print(f"sigma_u={su}: " + ", ".join(f"N={int(x.N)}: R={x.R_needed:.1f}" for x in d.itertuples()))
 
-    section("Fig 4c / sec:best / implications: reviews per paper to hold each tier's 1K overlap (R_needed_tiers_curve.csv, the drawn curve)")
+    section("Fig 4a / sec:best: the ceiling, overlap with infinitely many reviewers (R_needed_tiers_curve.csv limit_overlap)")
+    rc = load("R_needed_tiers_curve")
+    for tier in ("spot", "oral", "top10"):
+        c = rc[rc.tier == tier].sort_values("N")
+        lim_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.limit_overlap.values))
+        print(f"{tier:7s} " + ", ".join(f"N={N}: {pct(lim_at(N))}" for N in (1000, 10000, 100000)))
+    cc = os.path.join(RES, "chair_calls.csv")
+    if os.path.exists(cc):
+        section("Two levers at the top (chair_calls.csv): top-ten overlap by reviews per paper R and independent chair calls k")
+        d = pd.read_csv(cc)
+        print(d.pivot_table(index=["N", "R"], columns="k", values="overlap_top10").round(4).to_string())
+
+    section("Fig 4b / sec:best / implications: reviews per paper to hold each tier's 1K overlap (R_needed_tiers_curve.csv, the drawn curve)")
     rt = load("R_needed_tiers_summary")
     rc = load("R_needed_tiers_curve")
     for tier in ("accept", "spot", "oral", "top10"):

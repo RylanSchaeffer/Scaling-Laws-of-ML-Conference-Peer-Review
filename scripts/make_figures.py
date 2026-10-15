@@ -370,6 +370,12 @@ def fig_scaling():
     fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.42))
     ax = axes[0]
     tier_curves(ax, "p2")
+    ctrl = os.path.join(RES, "top1pct_control.csv")
+    if os.path.exists(ctrl):  # the control: a fixed proportion, the top 1% of submissions, in place of a constant number (run_top1pct_control.py)
+        c = pd.read_csv(ctrl).sort_values("N")
+        ax.plot(c.N, c.p2_top1pct, color=P.INK2, lw=1.2 * P.S, ls=(0, (1.5, 1.5)), zorder=4)
+        mid = float(np.interp(np.log(1e4), np.log(c.N.values), c.p2_top1pct.values))
+        ax.text(1e4, mid * 1.12, "Top 1\\%", color=P.INK2, va="bottom", ha="center", fontsize=P.LEGEND_PT, zorder=6)  # above the dotted line, below the spotlight curve
     ax.set_title("Best Paper", loc="left")
     for ax, first, title in ((axes[1], "oral", "Oral paper"), (axes[2], "spot", "Spotlight paper"), (axes[3], "accept", "Accepted paper")):
         for second, color, label, _ in TIER_CURVES:
@@ -405,55 +411,34 @@ TIER_ORDER = ("best", "top10", "oral", "spot", "accept")  # nested, smallest fir
 
 
 def fig_mechanism():
-    """Why a constant-number tier loses reproducibility, and what holding each tier costs in reviews
-    (results/best_paper.csv grid rows, central level; results/tier_sizes.csv; results/R_needed_tiers_curve.csv).
-    (a) Overlap of two reviews' top-10 sets (a constant number) against their top-1% sets (a fixed
-    proportion). (b) The rank the second review gives the first review's Best Paper, rank 1 at the top,
-    against the tier sizes. (c) Reviews per paper that hold each tier's overlap at its 1,000-submission
-    value, against submissions."""
-    t = load("best_paper")
-    cen = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
-    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.55))
-
-    ax = axes[0]  # a fixed proportion (top 1%) against a constant number (top 10): the share of one review's picks the other also picks
-    N = cen.N.values.astype(float)
-    ax.plot(N, cen.overlap_top1pct, color=P.MUTED, lw=1.6 * P.S, zorder=3)
-    ax.plot(N, cen.overlap_top10, color=P.BLUE[650], lw=1.6 * P.S, zorder=3)
-    ax.text(1e5, cen.overlap_top1pct.iloc[-1] - 0.004, "Top 1\\% of submissions", color=P.MUTED, va="top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
-    ax.text(1e5, 0.018, "Top 10 papers", color=P.BLUE[650], va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6)
-    ax.text(N[0] * 1.05, 0.0915, "At 1K both are 10 papers", color=P.INK2, va="bottom", ha="left", fontsize=P.LEGEND_PT, zorder=6)
-    P.n_axis(ax)
-    ax.set_ylim(0, 0.1)
-    ax.set_yticks([0, 0.025, 0.05, 0.075, 0.1])
-    P.pct_axis(ax)
-    ax.set_ylabel("Share of one review's picks\nthe other also picks")
-    ax.set_title("Top 10 falls, top 1\\% holds", loc="left")
-
-    ax = axes[1]  # where a second review puts the first review's Best Paper: its rank, over the tiers that rank would earn
-    fits = pd.read_csv(os.path.join(RES, "tier_sizes.csv"))
-    orals = np.array([tier_size(fits, "orals", n) for n in N], float)
-    spots = orals + np.array([tier_size(fits, "spotlights", n) for n in N], float)
-    for hi, c in ((np.full_like(N, 10.0), P.BLUE[650]), (orals, P.BLUE[450]), (spots, P.BLUE[250]), (0.25 * N, P.MUTED)):
-        ax.plot(N, hi, color=c, lw=1.2 * P.S, zorder=2)  # each tier's last rank; the regions between the lines stay white
-    for label, x, y, ha in (("Top 10", 1e5 / 1.03, 3.2, "right"), ("Oral", 1e5 / 1.03, 50, "right"), ("Spotlight", 1e5 / 1.03, 640, "right"),
-                            ("Accepted, no award", 1e5 / 1.03, 3100, "right"), ("Rejected", N[0] * 1.08, 5e4, "left")):  # the tier each region of ranks earns
-        ax.text(x, y, label, color=P.INK2, va="center", ha=ha, fontsize=P.LEGEND_PT, zorder=6,
-                bbox=dict(facecolor=P.SURFACE, edgecolor="none", alpha=0.8, pad=0.4))
-    ax.fill_between(N, cen.winner_rank2_q10, cen.winner_rank2_q90, color=P.INK, alpha=0.12, lw=0, zorder=1)
-    ax.plot(N, cen.winner_rank2_median, color=P.INK, lw=1.8 * P.S, zorder=4)
-    ax.text(N[0] * 1.08, 1.15, "First review's\nBest Paper: median\nand 10--90\\% band", color=P.INK, va="top", ha="left", fontsize=P.LEGEND_PT,
-            linespacing=1.1, zorder=6)  # top left, above the band's upper edge (rank 8 at 1K)
-    ax.set_yscale("log")
-    ax.set_ylim(1e5, 1)  # rank 1 at the top
-    ax.yaxis.set_major_locator(FixedLocator([1, 10, 100, 1000, 10000, 100000]))
-    ax.yaxis.set_minor_locator(NullLocator())
-    ax.set_yticklabels(["1", "10", "100", "1K", "10K", "100K"])
-    ax.set_ylabel("Second review's rank of the\nfirst review's Best Paper")
-    ax.set_title("Best Paper lands ever lower", loc="left")
-    P.n_axis(ax)
-
-    ax = axes[2]  # reviews per paper that hold each tier's overlap at its 1,000-submission value
+    """Why the top ten loses reproducibility as conferences grow, and what holding each tier costs in reviews
+    (results/R_needed_tiers_curve.csv). (a) The overlap of two reviews' tiers with infinitely many reviewers,
+    when only the chair noise separates them: the ceiling the chairs' call sets, against submissions.
+    (b) Reviews per paper that hold each tier's overlap at its 1,000-submission value, against submissions."""
     r = load("R_needed_tiers_curve")  # each rung's overlap fitted across sizes and inverted on a fine grid (summarize_R_needed_tiers.py)
+    fig, axes = plt.subplots(1, 2, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.4))
+
+    ax = axes[0]  # the ceiling: overlap with infinitely many reviewers, per tier
+    summ = load("R_needed_tiers_summary")
+    for tier, c, label, lift in (("spot", P.BLUE[250], "Spotlight", 0.02), ("oral", P.BLUE[450], "Oral", 0.02), ("top10", P.BLUE[650], "Top 10", -0.02)):
+        # the accepted set is not drawn: with infinitely many reviewers both reviews accept the same papers (100%)
+        d = r[r.tier == tier].sort_values("N")
+        ax.plot(d.N, d.limit_overlap, color=c, lw=1.8 * P.S, zorder=3)
+        ax.text(1e5, d.limit_overlap.iloc[-1] + lift, label, color=c, va="bottom" if lift > 0 else "top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+    d = r[r.tier == "top10"]
+    n_star, target = float(d.N_star.iloc[0]), float(summ[summ.tier == "top10"].target.iloc[0])
+    ax.plot([n_star], [target], ls="none", marker="o", ms=4.5 * P.S, mfc=P.SURFACE, mec=P.BLUE[650], mew=1.2 * P.S, zorder=5)
+    ax.annotate(f"The top ten's ceiling meets\nits 1K level with four\nreviews, {100 * target:.1f}\\%, at {n_star / 1e4:.0f}0K", xy=(n_star, target),
+                xytext=(d.N.iloc[0] * 1.1, 0.03), ha="left", va="bottom", color=P.BLUE[650], fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6,
+                arrowprops=dict(arrowstyle="-", color=P.BLUE[650], lw=0.9 * P.S, shrinkA=2 * P.S, shrinkB=3 * P.S, relpos=(1.0, 0.5)))  # below the curve, leader to the point
+    P.n_axis(ax)
+    ax.set_ylim(0, 0.6)
+    ax.set_yticks([0, 0.2, 0.4, 0.6])
+    P.pct_axis(ax)
+    ax.set_ylabel("Overlap of two reviews with\ninfinitely many reviewers")
+    ax.set_title("Chair noise caps agreement", loc="left")
+
+    ax = axes[1]  # reviews per paper that hold each tier's overlap at its 1,000-submission value
     ymax = 1e4
     for tier, c, label in (("accept", P.MUTED, "Accepted: always 4"), ("spot", P.BLUE[250], "Spotlight"), ("oral", P.BLUE[450], "Oral,"),
                            ("top10", P.BLUE[650], "Top 10")):
@@ -480,7 +465,7 @@ def fig_mechanism():
     ax.set_ylabel("Reviews per paper that hold\nthe overlap of 1K submissions")
     ax.set_title("Same overlap, more reviews", loc="left")
     for i, a in enumerate(axes):
-        P.panel_label(a, "abc"[i])
+        P.panel_label(a, "ab"[i])
     P.save(fig, os.path.join(FIG, "fig4_mechanism"))
 
 

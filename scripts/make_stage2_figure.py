@@ -94,7 +94,7 @@ def main(run: str) -> None:
     P.save(fig, f"{ROOT}/figures/stage2_matrix_run{run}", width=fig_w)
 
     # Figure 2: share of pairs per reason by kind group (horizontal bars), most frequent first.
-    groups = [("Award split", ["oral/poster", "spotlight/poster", "spotlight/reject"]), ("Both spotlight", ["spotlight"]),
+    groups = [("Award split", ["oral/poster", "spotlight/poster", "spotlight/reject"]), ("Both Spotlight", ["spotlight"]),
               ("Accept split", ["poster/reject"]), ("Agreed", ["poster", "reject"])]
     groups = [(g, ks) for g, ks in groups if any(r["kind"] in ks for r in rows)]
     fig2, ax2 = plt.subplots(figsize=(P.CANVAS_W, (0.42 * n_reasons + 2) * P.S))

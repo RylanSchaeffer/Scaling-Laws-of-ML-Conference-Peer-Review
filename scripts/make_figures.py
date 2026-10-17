@@ -312,7 +312,7 @@ def fig_validation():
     ax.set_yticks(y)
     ax.set_yticklabels([VAR_LABEL[k] for k in vv.index])
     ax.set_xlabel("Chosen by both committees")
-    ax.set_title("NeurIPS 2021 orals + spotlights", loc="left")
+    ax.set_title("NeurIPS 2021 Orals + Spotlights", loc="left")
 
     ax = axes[1]
     obs = vv.obs_top_rej_share.iloc[0]  # 26 of the 54 oral-plus-spotlight papers, rejected by the other committee

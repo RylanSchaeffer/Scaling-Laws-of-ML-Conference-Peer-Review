@@ -377,7 +377,7 @@ def fig_scaling():
         mid = float(np.interp(np.log(1e4), np.log(c.N.values), c.p2_top1pct.values))
         ax.text(1e4, mid * 1.12, "Top 1\\%", color=P.INK2, va="bottom", ha="center", fontsize=P.LEGEND_PT, zorder=6)  # above the dotted line, below the spotlight curve
     ax.set_title("Best Paper", loc="left")
-    for ax, first, title in ((axes[1], "oral", "Oral paper"), (axes[2], "spot", "Spotlight paper"), (axes[3], "accept", "Accepted paper")):
+    for ax, first, title in ((axes[1], "oral", "Oral"), (axes[2], "spot", "Spotlight"), (axes[3], "accept", "Accepted")):
         for second, color, label, _ in TIER_CURVES:
             ax.plot(pl.N, pl[f"place_{first}_in_{second}"], color=color, lw=1.6 * P.S, label=label)
         log_prob_axis(ax)

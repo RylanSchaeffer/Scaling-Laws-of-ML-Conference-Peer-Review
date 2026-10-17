@@ -284,9 +284,10 @@ NeurIPS has used a six-point scale since 2025; ICML five points in 2025 and six 
 
 \paragraph{Stage 2: one set of reasons, grown one pair at a time.} The judge never saw a table. Its state was a set of reasons, each with a name, a one-sentence definition and the pair that first showed it. At each of 50 turns, over the award pairs in the order Oral/Poster, Spotlight/Poster, Spotlight/Reject, Spotlight/Spotlight, it read the next pair's notes and the set so far and answered in structured form: which reasons applied, with a line of justification each, and any new reason the pair needed. A back-fill then put every reason created at turn $n$ to the pairs of turns 1 to $n-1$, yes or no with a justification, so that every pair-by-reason cell holds one judgement; back-fill created no reasons. A final merge turn named entries that were one mechanism under two names: 4 merges took 37 reasons to 33, with 466 cells ticked of 1,650. A second run in the reverse order reproduced 26 of the 33 reasons, matched by definition, and agreed with the first run on 83\% of the cells. Figure~\ref{fig:reasons} shows every reason; Table~\ref{tab:reasons} the twelve most frequent.
 
-\begin{center}
+\begin{table}[t]
+\centering
 \small
-\captionof{table}{\textbf{Why the two NeurIPS 2021 committees recommended different tiers: the reasons found in the 50 pairs with an award.} One language-model judgement per pair and reason, grown one pair at a time; the twelve most frequent of 33 reasons (Fig.~\ref{fig:reasons} shows all). Columns: pairs in which the reason applies, overall and by the two committees' tiers (Oral/Poster 6 pairs, Spotlight/Poster 16, Spotlight/Reject 25, Spotlight/Spotlight 3).}
+\caption{\textbf{Why the two NeurIPS 2021 committees recommended different tiers: the reasons found in the 50 pairs with an award.} One language-model judgement per pair and reason, grown one pair at a time; the twelve most frequent of 33 reasons (Fig.~\ref{fig:reasons} shows all). Columns: pairs in which the reason applies, overall and by the two committees' tiers (Oral/Poster 6 pairs, Spotlight/Poster 16, Spotlight/Reject 25, Spotlight/Spotlight 3).}
 \label{tab:reasons}
 \begin{tabular}{lrrrrr}
 \toprule
@@ -306,7 +307,7 @@ Damaging rebuttal admission did not lower scores & 18 & 1 & 5 & 11 & 1 \\
 Committees applied different standards for the contribution type & 15 & 1 & 4 & 10 & 0 \\
 \bottomrule
 \end{tabular}
-\end{center}
+\end{table}
 
 \paragraph{Fitting the chair noise.} For each committee of each of the 301 pairs we take its reviewers' final ratings, its own decision and its tier. At a candidate $\sigma_\eta$ the award ordering $\bar s+\eta$ is drawn over the committee's accepted copies and its top $K$ are the model's awards, $K$ being the awards that committee gave (22 and 31). The fit statistic is the number of these awards inside the committee's own top $K$ by mean rating, summed over both committees; observed, 26.2 of 53 (ties at the boundary counted in proportion). At $\sigma_\eta=0$ the statistic is 53 of 53. Bisection with common random numbers over 20,000 draws gives $\sigma_\eta=0.59$; 200 bootstrap resamples of the pairs give the 90\% range 0.42 to 0.76. The same draws give the two statistics the fit does not use, conditional on the real scores: 3.6 papers in both award sets (observed 3; 5.9 at $\sigma_\eta=0$) and 22.4 of the 53 award copies rejected by the other committee (observed 25; 20.5 at $\sigma_\eta=0$).
 

@@ -108,20 +108,20 @@ Because true quality is never observed, we ground the question in what can be me
 We create a model of the ML peer review process, calibrate it to empirical data, and ask how each tier of outcomes (Rejected, Accepted, Spotlight, Oral, Best Paper) scales with the number of submissions if each submission was reviewed again. We find:
 
 \textbf{1. The proportion of each tier can be fit by a power law in the number of submissions $N$.} 
-Best Papers do not scale with conference size $(N^0)$, Acceptances scale a constant proportion $(N^{1.05})$, and Spotlights and Orals scale in between $(N^{0.72} \text{ and } N^{0.59}$ respectively) (Fig.~\ref{fig:main}b).
+Best Papers do not scale with conference size $(N^0)$, Acceptances scale at a constant proportion $(N^{1.05})$, and Spotlights and Orals scale in between $(N^{0.72} \text{ and } N^{0.59}$ respectively) (Fig.~\ref{fig:main}b).
 
 \textbf{2. Best Papers ($N^0$) are lotteries that are becoming even less meritocratic as the number of submissions increases.} From NeurIPS 2014 to 2026, the chance that a second review confirms the Best Paper fell from 1.2\% to 0.1\%, and the chance that it is in the top ten again from 8.6\% to 1.0\% (Fig.~\ref{fig:main}c). The chance decays as $N^{-0.73}$ over $10^3$ to $10^5$ submissions (Section~\ref{sec:best}).
 
-\textbf{3. Acceptances ($N^1$) are invariant to conference size, but remain coin tosses.} An independent second review rejects about half of accepted papers (Section~\ref{sec:accept}).
+\textbf{3. Acceptances ($N^{1.05}$) are invariant to conference size, but remain coin tosses.} A second review accepts about half of the accepted papers at every size: twice the 25\% it accepts of all submissions, and three times the 17\% it accepts of the papers the first review rejected (Section~\ref{sec:accept}).
 
 \textbf{4. Orals and Spotlights () are reproduced less the more they lag submissions.} From 1,000 to 100,000 submissions an Oral keeps its tier 12\% of the time at 1,000 submissions down to 4\% at 100,000, and a Spotlight 23\% down to 11\% (Section~\ref{sec:between}).
 
-\textbf{5. More reviewers cannot repair the top.} The chairs' call on a paper's tier is one judgement per paper that averaging reviews does not reach. It caps the top-ten overlap at 6\% at 100,000 submissions, and from about 50,000 submissions on no number of reviews holds the top ten to its 1,000-submission agreement (Section~\ref{sec:best}).
+\textbf{5. More reviewers cannot repair the awarded papers.} The chairs' call on a paper's tier is one judgement per paper that averaging reviews does not reach. It caps the top-ten overlap at 6\% at 100,000 submissions, and from about 50,000 submissions on no number of reviews holds the top ten to its 1,000-submission agreement (Section~\ref{sec:best}).
 
 \textbf{6. No variant of the model that fits the acceptance data, and no score scale in use, lets a second review confirm the Best Paper.} At NeurIPS 2026 size the chance is 0.06\% to 1.0\% across the variants and 0.10\% to 0.15\% across every scale with five or more points and four reviews (Sections~\ref{sec:sure} and~\ref{sec:scales}).
 
 
-Appendix~\ref{app:related} reviews related work.
+See Appendix~\ref{app:related} for related work.
 
 \begin{center}
 \small

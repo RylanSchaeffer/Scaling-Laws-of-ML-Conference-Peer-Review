@@ -88,7 +88,7 @@ TIERS = (  # (label, colour): the tier a second review gives the Best Paper, bes
     ("Top 10", P.BLUE[650]),  # in the second review's top 10 (the Best Paper again, 1-4%, is inside it)
     ("Oral", P.BLUE[450]),  # within its oral count, outside its top 10
     ("Spotlight", P.BLUE[250]),  # within its oral plus spotlight count, outside its orals
-    ("Merely accepted", P.MUTED),  # accepted with no award
+    ("Accepted", P.MUTED),  # accepted with no award (the legend of Fig 1c says "Accepted")
     ("Rejected", P.ORANGE[450]),  # rejected by it
 )
 LIGHT = {P.BLUE[250], P.MUTED}  # segments that take dark text

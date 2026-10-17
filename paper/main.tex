@@ -117,26 +117,6 @@ Best Papers do not scale with conference size $(N^0)$, Acceptances scale at a co
 
 % See Appendix~\ref{app:related} for related work.
 
-% \begin{center}
-% \small
-% \captionof{table}{\textbf{The same papers reviewed twice: the NeurIPS 2014 and 2021 experiments.} Two independent committees, each with its own reviewers and area chairs, decided the same submissions \citep{cortes2021inconsistency,beygelzimer2023neurips}.}
-% \label{tab:experiments}
-% \begin{tabular}{lrr}
-% \toprule
-%  & NeurIPS 2014 & NeurIPS 2021 \\
-% \midrule
-% Submissions to the conference & 1,678 & 9,122 \\
-% Papers decided by both committees & 166 & 764 \\
-% Accepted by committee 1, by committee 2 & 43, 44 & 206, 195 \\
-% Accepted by both & 22 & 99 \\
-% One committee's accepted papers rejected by the other & 49\%, 50\% & 52\%, 49\% \\
-% Orals plus Spotlights in committee 1, in committee 2 & -- & 29, 25 \\
-% In that tier in both & -- & 3 \\
-% One committee's Orals and Spotlights rejected by the other & -- & 13 of 29, 13 of 25 \\
-% The 4 and 2 Orals, in the other committee & -- & 6 Posters, no award \\
-% \bottomrule
-% \end{tabular}
-% \end{center}
 
 \section{Methods}\label{sec:methods}
 
@@ -152,13 +132,13 @@ Best Papers do not scale with conference size $(N^0)$, Acceptances scale at a co
 
 \subsection{Calibration and validation}\label{sec:faithful}
 
-\paragraph{Calibration.} The two experiments fix the \emph{disagreement}: the proportion of one committee's accepted papers that the other rejected, 49\% and 50\% in 2014 and 52\% and 49\% in 2021. NeurIPS 2021, the larger experiment, at 26.2\% acceptance gives 51\%: the central level. The pessimistic level is the 2014 report's own 57\%, its inconsistency rescaled to its 22.5\% target rate \citep{price2014nips}. We label each level by the reliability $\rho^2$ that gives its disagreement with continuous scores: central $\rho^2=0.50$, pessimistic 0.44. That disagreement is $1-P_2(z_\alpha,z_\alpha;\rho^2)/\alpha$ at acceptance rate $\alpha$, where $P_2(a,b;r)$ is the upper orthant probability of a standard bivariate normal with correlation $r$ and $z_\alpha=\Phi^{-1}(1-\alpha)$. The optimistic level, $\rho^2=0.71$, comes from the ICLR correlation of 0.40 between two reviews \citep{berenslab_iclr} by Spearman--Brown at ICLR's 3.7 reviews per paper, an upper bound because it omits shared noise. On the 1--10 form, and in every variant, $\sigma_\varepsilon$ is then set by simulation so that the model matches its level's disagreement at NeurIPS 2021's acceptance rate: 2.69, 2.35 and 1.50 at the pessimistic, central and optimistic levels.
+\paragraph{Calibration.} The two experiments fix the \emph{disagreement}: the proportion of one committee's accepted papers that the other rejected, 49\% and 50\% in 2014 and 52\% and 49\% in 2021 (Table~\ref{tab:experiments}). NeurIPS 2021, the larger experiment, at 26.2\% acceptance gives 51\%: the central level. The pessimistic level is the 2014 report's own 57\%, its inconsistency rescaled to its 22.5\% target rate \citep{price2014nips}. We label each level by the reliability $\rho^2$ that gives its disagreement with continuous scores: central $\rho^2=0.50$, pessimistic 0.44. That disagreement is $1-P_2(z_\alpha,z_\alpha;\rho^2)/\alpha$ at acceptance rate $\alpha$, where $P_2(a,b;r)$ is the upper orthant probability of a standard bivariate normal with correlation $r$ and $z_\alpha=\Phi^{-1}(1-\alpha)$. The optimistic level, $\rho^2=0.71$, comes from the ICLR correlation of 0.40 between two reviews \citep{berenslab_iclr} by Spearman--Brown at ICLR's 3.7 reviews per paper, an upper bound because it omits shared noise. On the 1--10 form, and in every variant, $\sigma_\varepsilon$ is then set by simulation so that the model matches its level's disagreement at NeurIPS 2021's acceptance rate: 2.69, 2.35 and 1.50 at the pessimistic, central and optimistic levels.
 
 \paragraph{The model matches ICLR's acceptance decisions.} For ICLR 2021--2025, whose reviews are public \citep{paperlists}, we split each decided paper's reviews into two halves and re-made the decisions in each half. The halves hold no chair's call, so here the model has no award step. It scores on ICLR's form of that year (integer 1--10 in 2021, 1/3/5/6/8/10 from 2022) with two reviews per half, quality matched to each year's score mean and spread, and reviewer noise fitted to the correlation between the halves' mean scores. It matches the proportion of inconsistent decisions (29\% to 33\% against 29\% to 32\% observed) and the overlap of the accepted sets (54\% to 63\% against 55\% to 65\%). The top-ten and top-30 overlaps, a handful of papers each, scatter on both sides of the prediction (Fig.~\ref{fig:validation}c).
 
 \subsection{The award step}\label{sec:award}
 
-\paragraph{Without the award step the model over-predicts award agreement.} At NeurIPS 2021 the two committees also chose Orals and Spotlights. Their Oral-plus-Spotlight tiers of 29 and 25 shared 3 papers, and each committee rejected 13 of the other's. We replay the 764 papers as a subsample of a conference with 7,902 decided papers, NeurIPS 2021's submissions less withdrawals, each replay a simulated conference reviewed twice. With awards cut on the score ranking ($\sigma_\eta=0$) the central level predicts 5.6 shared papers (90\% range 2 to 10) and 30\% rejected over 4,000 replays; the 48\% observed has $P=0.006$, the proportion of replays at or beyond it (Fig.~\ref{fig:validation}a,b).
+\paragraph{Without the award step the model over-predicts award agreement.} At NeurIPS 2021 the two committees also chose Orals and Spotlights. Their Oral-plus-Spotlight tiers of 29 and 25 shared 3 papers, and each committee rejected 13 of the other's (Table~\ref{tab:experiments}). We replay the 764 papers as a subsample of a conference with 7,902 decided papers, NeurIPS 2021's submissions less withdrawals, each replay a simulated conference reviewed twice. With awards cut on the score ranking ($\sigma_\eta=0$) the central level predicts 5.6 shared papers (90\% range 2 to 10) and 30\% rejected over 4,000 replays; the 48\% observed has $P=0.006$, the proportion of replays at or beyond it (Fig.~\ref{fig:validation}a,b).
 
 \paragraph{The award tier was a chair's call, not a reading of the scores.} To find what the model lacks, a language-model agent read the public records of the 50 duplicated papers that at least one committee made an Oral or a Spotlight: both committees' reviews, rebuttals, discussions, meta-reviews and decisions. It built one set of reasons for the splits, one pair at a time (Table~\ref{tab:reasons} in Appendix~\ref{app:reasons}). Three reasons appear in most pairs: the committees weighted the same evidence differently (45 of 50), one committee's reviews were thin or inattentive (39), and one committee raised a substantive concern the other never saw (39). These are the reviewer noise the model already has. The award itself came from above the reviews. In 30 pairs the meta-review gave the higher tier with no stated grounds, in 33 it dropped weaknesses its own reviewers had named, and in 20 the area chair's own judgement drove the recommendation. Spotlight papers' mean ratings ran from 5.75 to 8.0, overlapping the Posters' 5.0 to 7.5. Only 26 of the 53 award copies lay inside their own committee's top $K$ by mean rating, $K$ being the awards that committee gave. Had each committee given its awards to its top $K$ by mean rating, the two award sets would have shared 5.9 papers on the real scores, close to the replays' 5.6, against the 3 observed.
 
@@ -253,6 +233,40 @@ NeurIPS has used a six-point scale since 2025; ICML five points in 2025 and six 
 \clearpage
 \normalsize
 \appendix
+\section{The two-committee experiments}\label{app:experiments}
+
+NeurIPS 2014 and 2021 each sent a sample of their submissions to two independent committees, with their own reviewers and area chairs, and both committees decided every paper in the sample. Table~\ref{tab:experiments} gives the counts the paper uses.
+
+\begin{table}[t]
+\centering
+\small
+\caption{\textbf{The same papers reviewed twice: the NeurIPS 2014 and 2021 experiments} \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}. Each indented row splits the row above it by what the other committee decided for the same papers; percentages are of the row above. NeurIPS 2014 recorded only acceptance.}
+\label{tab:experiments}
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{NeurIPS 2014} & \multicolumn{2}{c}{NeurIPS 2021} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+ & Committee 1 & Committee 2 & Committee 1 & Committee 2 \\
+\midrule
+Submissions to the conference & \multicolumn{2}{c}{1,678} & \multicolumn{2}{c}{9,122} \\
+Papers reviewed by both committees & \multicolumn{2}{c}{166} & \multicolumn{2}{c}{764} \\
+\addlinespace
+Papers this committee accepted & 43 & 44 & 206 & 195 \\
+\quad also accepted by the other committee & 22 (51\%) & 22 (50\%) & 99 (48\%) & 99 (51\%) \\
+\quad rejected by the other committee & 21 (49\%) & 22 (50\%) & 107 (52\%) & 96 (49\%) \\
+\addlinespace
+Papers this committee gave an Oral or a Spotlight & \multicolumn{2}{c}{not recorded} & 29 & 25 \\
+\quad given an Oral or a Spotlight by the other too & & & 3 (10\%) & 3 (12\%) \\
+\quad accepted as a Poster by the other & & & 13 (45\%) & 9 (36\%) \\
+\quad rejected by the other & & & 13 (45\%) & 13 (52\%) \\
+\addlinespace
+Papers this committee gave an Oral & \multicolumn{2}{c}{not recorded} & 4 & 2 \\
+\quad given an Oral or a Spotlight by the other too & & & 0 & 0 \\
+\quad accepted as a Poster by the other & & & 4 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Related Work}\label{app:related}
 
 \paragraph{Review's consistency has been measured at the acceptance line, never for a Best Paper.} Experiments that review the same submissions twice have measured consistency mainly at the acceptance or funding line, a fixed proportion of submissions. The NeurIPS 2014 and 2021 experiments that calibrate our model (Section~\ref{sec:methods}) found that a second committee rejected about half of the papers the first accepted \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}. \citet{francois2015arbitrariness} fitted a Bayesian model to the 2014 data and argued that a higher acceptance rate would make the decisions less arbitrary. At ICLR, whose reviews are public, second reviews simulated from OpenReview data accept an accepted paper again 66\% to 75\% of the time \citep{tran2020open} and reject 30\% to 50\% of the accepted papers \citep{huang2026review}. Grant and telescope-time review agree to a similar degree. Two agencies' scores for the same proposals correlated at 0.59 \citep{hodgson1997reliable}, within the range at which two reviews' scores correlate in our calibrated model (0.44 to 0.71). A model of review at the European Southern Observatory puts the overlap of two panels' top quartiles near one half \citep{patat2018peer}, close to the 48\% overlap our model gives for the accepted papers at 25\% acceptance (Section~\ref{sec:accept}). Agreement between individual referees is low across fields \citep{cole1981chance,cicchetti1991reliability,bornmann2010reliability}. \citet{stinchcombe1986journal} and \citet{lindsey1988assessing} argued long ago that selectivity combined with imperfect reliability makes acceptance partly a matter of chance. For a fixed proportion the error rates depend on the reliability of the score and on the proportion selected, not on the number of candidates \citep{taylor1939relationship,bartos2024selection}, so growth leaves them unchanged, as we find for acceptance (Section~\ref{sec:accept}). NeurIPS 2021 also duplicated its Oral and Spotlight decisions, which we use to test the model (Section~\ref{sec:award}), but no experiment has duplicated a Best Paper decision, and none has followed a constant-number tier, whose proportion of submissions shrinks as $1/N$, as submissions grow.

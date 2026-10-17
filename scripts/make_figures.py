@@ -3,7 +3,8 @@
 Simulation results come from the sweep and robustness CSVs; analytic curves come from
 results/analytic_curves.csv, results/analytic_R_needed.csv, results/best_paper.csv and
 results/tier_scaling.csv, so every plotted number traces to a CSV row. Figures go to
-figures/fig{n}_{name}.pdf and .png, numbered as in the paper.
+figures/fig{n}_{name}.pdf and .png. The file numbers predate the merge of the scaling row into
+Fig 1: from fig2_validation on, file fig{n} is the paper's Fig n-1.
 
 Usage: uv run python scripts/make_figures.py [names...]
 """
@@ -28,6 +29,7 @@ FIG = os.path.join(ROOT, "figures")
 LEV = ("pessimistic", "central", "optimistic")
 NEURIPS = {2014: 1678, 2026: 30709}
 ROW_H = 1.69  # height of one row of panels, inches as printed (drawn at ROW_H * P.S)
+LEGEND_GAP_IN = 0.20 * ROW_H  # from the bottom of a row's axes to the top of a legend below it, inches as printed
 
 
 def load(name: str) -> pd.DataFrame:
@@ -206,16 +208,30 @@ def log_prob_axis(ax):
 
 
 def fig_headline():
-    """(a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions, with the
-    fitted power law of each tier's count. (c) Where a second review would rank
-    the NeurIPS Best Paper in 2014, 2021 and 2026 (results/best_paper.csv)."""
-    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, 1.1 * P.S),
-                             gridspec_kw=dict(wspace=0.4, width_ratios=[1, 1, 1.7]))  # (c) is wide so its narrow segments can carry labels
+    """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions,
+    with the fitted power law of each tier's count. (c) Where a second review would rank the NeurIPS Best
+    Paper in 2014, 2021 and 2026 (results/best_paper.csv). (d-g) The scaling laws of a second review for a
+    paper the first review made the Best Paper, an Oral, a Spotlight or an accepted paper (scaling_row).
+    Each row's panels are as tall as in the one-row figures (1.1 and ROW_H inches printed, at the default
+    subplot margins), so nothing inside a panel moves."""
+    top_h, bot_h, hspace = 1.1, ROW_H, 0.62
+    margins = 0.11 + 0.12  # matplotlib's default bottom and top subplot margins, as a fraction of the figure
+    plot_h = (1 - margins) * (top_h + bot_h)  # axes heights of the two one-row figures, summed
+    H = (plot_h + hspace * plot_h / 2) / (1 - margins)  # figure height that gives those axes heights with the gap between the rows
+    fig = plt.figure(figsize=(P.CANVAS_W, H * P.S))
+    gs = fig.add_gridspec(2, 1, height_ratios=[top_h, bot_h], hspace=hspace)
+    top = gs[0].subgridspec(1, 3, width_ratios=[1, 1, 1.7], wspace=0.4)  # (c) is wide so its narrow segments can carry labels
+    bot = gs[1].subgridspec(1, 4, wspace=0.42)
+    axes = [fig.add_subplot(top[0, i]) for i in range(3)]
     submissions_panel(axes[0])
     rates_panel(axes[1])
     standing_panel(axes[2])
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
+    row = [fig.add_subplot(bot[0, i]) for i in range(4)]
+    scaling_row(fig, row)
+    for i, a in enumerate(row):
+        P.panel_label(a, "defg"[i])
     P.save(fig, os.path.join(FIG, "fig1_headline"))
 
 
@@ -359,15 +375,15 @@ def experiment_points() -> list[tuple[str, str, int, float]]:
     return pts
 
 
-def fig_scaling():
-    """The scaling laws: where a second review places a paper that the first review made (a) the Best
-    Paper (results/best_paper.csv grid rows, p2_*), (b) an oral, (c) a spotlight or (d) an accepted paper
+def scaling_row(fig, axes):
+    """The scaling laws: where a second review places a paper that the first review made the Best
+    Paper (results/best_paper.csv grid rows, p2_*), an oral, a spotlight or an accepted paper
     (results/placement.csv, place_{first}_in_{second}), against submissions N on NeurIPS's tier trends.
     Every panel draws the same five nested curves, the probability of that tier or a higher one, at the
-    central level: above the paper's own tier a promotion, the own tier its overlap, below it a demotion."""
+    central level: above the paper's own tier a promotion, the own tier its overlap, below it a demotion.
+    Draws into four axes of `fig` and puts the shared legend below the row, clear of the x-axis labels."""
     pl = load("placement")
     pl = pl[pl.level == "central"].sort_values("N")
-    fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.42))
     ax = axes[0]
     tier_curves(ax, "p2")
     ctrl = os.path.join(RES, "top1pct_control.csv")
@@ -392,11 +408,18 @@ def fig_scaling():
         ax.text(NEURIPS[2026] / 1.1, 0.0001, "2026", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
                 bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo where a curve passes under the label
     axes[0].set_ylabel("Probability, second review")
-    h, l = axes[0].get_legend_handles_labels()  # the five tiers, from (a)
+    h, l = axes[0].get_legend_handles_labels()  # the five tiers, from the Best Paper panel
     h.append(Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, mfc=P.SURFACE, mec=P.INK, mew=0.8 * P.S))
     l.append("NeurIPS 2014 and 2021 experiments")
-    fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=6, handlelength=1.3, columnspacing=1.0,
+    legend_y = axes[0].get_position().y0 - LEGEND_GAP_IN * P.S / fig.get_size_inches()[1]  # the legend's top, in figure coordinates
+    fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, legend_y), ncol=6, handlelength=1.3, columnspacing=1.0,
                title="Tier the second review gives the paper; each tier includes the tiers to its right", title_fontsize=P.LEGEND_PT)
+
+
+def fig_scaling():
+    """The scaling row on its own (not in the paper, which has it as Fig 1d-g)."""
+    fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, ROW_H * P.S), gridspec_kw=dict(wspace=0.42))
+    scaling_row(fig, axes)
     for i, a in enumerate(axes):
         P.panel_label(a, "abcd"[i])
     P.save(fig, os.path.join(FIG, "fig2_scaling"))

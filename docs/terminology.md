@@ -35,6 +35,6 @@ Where the terms live in the code: `results/best_paper.csv` and `results/best_pap
 carry `p2_best`, `p2_top10`, `p2_oral`, `p2_spot`, `p2_accept` (nested cutoffs; merely accepted
 = `p2_accept - p2_spot`); the grid rows of `best_paper.csv` (`source == "grid"`) carry the same on the N grid
 plus the overlaps `overlap_*`; `results/tier_scaling.csv` is the continuous-score closed form (`ovl_*`). Figure legends: Fig 1c "Top 10, Oral, Spotlight, Accepted, Rejected";
-Fig 2 "Accepted, Spotlight, Oral, Top 10, Best Paper" (nested: each tier includes the tiers to its right);
-Fig 4a,b rows "Main model, No award step, Bounded quality, Exponential quality, Lognormal quality, $t_3$ quality,
-$t_3$ noise, Shared noise, 1% rave reviews, 5% rave reviews, 5% random reviews"; Fig 6 the same rows without "No award step".
+Fig 1d-g "Accepted, Spotlight, Oral, Top 10, Best Paper" (nested: each tier includes the tiers to its right);
+Fig 3a,b rows "Main model, No award step, Bounded quality, Exponential quality, Lognormal quality, $t_3$ quality,
+$t_3$ noise, Shared noise, 1% rave reviews, 5% rave reviews, 5% random reviews"; Fig 5 the same rows without "No award step".

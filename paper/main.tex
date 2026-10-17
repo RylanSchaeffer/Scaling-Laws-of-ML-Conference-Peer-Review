@@ -62,8 +62,8 @@ Which accepted paper wins an award is close to a lottery: at NeurIPS 2021 an awa
 
 \section{Introduction}
 
-Machine learning (ML) conference peer review serves two functions: it accepts good papers, and it exalts the best of them (Spotlights, Orals and Best Papers).
-Both functions require separating signal from noise, and both matter beyond the conference: accepted papers enter a scientific record that has no robust mechanism to correct them \citep{schaeffer2025refutations}, and awards capture the attention of a community that cannot read every paper.
+Machine learning (ML) conference peer review serves two functions: it accepts good papers, and it exalts the best into Spotlights, Orals and Best Papers.
+Both functions separate signal from noise, and matter beyond the conference: accepted papers enter a scientific record that has no robust mechanism to correct them \citep{schaeffer2025refutations}, and awards capture the attention of a community that cannot read every paper.
 
 \begin{figure}[t]
 \centering
@@ -100,21 +100,27 @@ Both functions require separating signal from noise, and both matter beyond the 
 \label{fig:mechanism}
 \end{figure}
 
-Both functions now run at a far larger scale (Fig.~\ref{fig:main}a). NeurIPS received 1,678 submissions in 2014 and 30,709 in 2026; over the past decade submissions grew 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}.
+Both functions have been under increasing strain from the geometrically increasing number of submissions (Fig.~\ref{fig:main}a): over the past decade submissions grew 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}, with NeurIPS receiving 1,678 submissions in 2014 and 30,709 in 2026.
 The process stayed the same: a few reviews per paper, a mean score on a short scale, and a final call by area chairs.
-We ask whether review still separates signal from noise well enough to accept good papers and elevate the best papers to prestigious awards.
+How well does peer review perform in light of this increasing strain?
 
-True quality is never observed, so we ask the question that can be measured. Two field experiments, at NeurIPS 2014 and 2021, sent the same papers to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}; Fig.~\ref{fig:scaling}d) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}.
-We create a generative model of the ML peer review process, calibrate it to the empirical data, and ask what it tells us about machine learning peer review for each tier of outcomes under re-review: Rejected, Accepted, Spotlight, Oral, Best Paper. Using our calibrated model, we find:
-\begin{enumerate}
-\item \textbf{The most important factor is how the number of each tier scales with the number of submissions.} Is each tier a constant number, a fixed proportion of submissions, or something between? 
-Fitting each NeurIPS count to a power law of submissions $N$ puts Acceptance at $N^{1.05}$ (a fixed proportion), Spotlights at $N^{0.72}$, Orals at $N^{0.59}$, between (Fig.~\ref{fig:main}b); Best Papers, 1 to 13 a year, are close to a constant number $N^0$. The Oral proportion fell from 1.2\% in 2014 to 0.4\% in 2026 at NeurIPS, and from 3.0\% to 0.7\% at ICML between 2021 and 2026. 
-\item \textbf{Best Papers, a constant number, are reproduced ever less, as a power law without a floor.} From NeurIPS 2014 to 2026 the chance that a second review confirms the Best Paper fell from 1.2\% to 0.1\%, and the chance that it is in the top ten again from 8.6\% to 1.0\% (Fig.~\ref{fig:main}c). The chance decays as $N^{-0.73}$ over $10^3$ to $10^5$ submissions (Section~\ref{sec:best}).
-\item \textbf{Acceptance, a fixed proportion, is reproduced equally well at every size.} From 1,000 to 100,000 submissions a second review rejects about half of the accepted papers (Section~\ref{sec:accept}).
-\item \textbf{Orals and Spotlights, between, are reproduced less the more they lag submissions.} From 1,000 to 100,000 submissions an Oral keeps its tier 12\% of the time at 1,000 submissions and 4\% at 100,000, and a Spotlight 23\% and 11\% (Section~\ref{sec:between}).
-\item \textbf{More reviewers cannot repair the top.} The chairs' call on a paper's tier is one judgement per paper that averaging reviews does not reach. It caps the top-ten overlap at 6\% at 100,000 submissions, and from about 50,000 submissions on no number of reviews holds the top ten to its 1,000-submission agreement (Section~\ref{sec:best}).
-\item \textbf{No variant of the model that fits the acceptance data, and no score scale in use, lets a second review confirm the Best Paper.} At NeurIPS 2026 size the chance is 0.06\% to 1.0\% across the variants and 0.10\% to 0.15\% across every scale with five or more points and four reviews (Sections~\ref{sec:sure} and~\ref{sec:scales}).
-\end{enumerate}
+Because true quality is never observed, we ground the question in what can be measured: a second independent review. Two field experiments, at NeurIPS 2014 and 2021, sent the same papers to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}; Fig.~\ref{fig:scaling}d) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}.
+We create a model of the ML peer review process, calibrate it to empirical data, and ask how each tier of outcomes (Rejected, Accepted, Spotlight, Oral, Best Paper) scales with the number of submissions if each submission was reviewed again. We find:
+
+\textbf{1. The proportion of each tier can be fit by a power law in the number of submissions $N$.} 
+Best Papers do not scale with conference size $(N^0)$, Acceptances scale a constant proportion $(N^{1.05})$, and Spotlights and Orals scale in between $(N^{0.72} \text{ and } N^{0.59}$ respectively) (Fig.~\ref{fig:main}b).
+
+\textbf{2. Best Papers ($N^0$) are lotteries that are becoming even less meritocratic as the number of submissions increases.} From NeurIPS 2014 to 2026, the chance that a second review confirms the Best Paper fell from 1.2\% to 0.1\%, and the chance that it is in the top ten again from 8.6\% to 1.0\% (Fig.~\ref{fig:main}c). The chance decays as $N^{-0.73}$ over $10^3$ to $10^5$ submissions (Section~\ref{sec:best}).
+
+\textbf{3. Acceptances ($N^1$) are invariant to conference size, but remain coin tosses.} An independent second review rejects about half of accepted papers (Section~\ref{sec:accept}).
+
+\textbf{4. Orals and Spotlights () are reproduced less the more they lag submissions.} From 1,000 to 100,000 submissions an Oral keeps its tier 12\% of the time at 1,000 submissions down to 4\% at 100,000, and a Spotlight 23\% down to 11\% (Section~\ref{sec:between}).
+
+\textbf{5. More reviewers cannot repair the top.} The chairs' call on a paper's tier is one judgement per paper that averaging reviews does not reach. It caps the top-ten overlap at 6\% at 100,000 submissions, and from about 50,000 submissions on no number of reviews holds the top ten to its 1,000-submission agreement (Section~\ref{sec:best}).
+
+\textbf{6. No variant of the model that fits the acceptance data, and no score scale in use, lets a second review confirm the Best Paper.} At NeurIPS 2026 size the chance is 0.06\% to 1.0\% across the variants and 0.10\% to 0.15\% across every scale with five or more points and four reviews (Sections~\ref{sec:sure} and~\ref{sec:scales}).
+
+
 Appendix~\ref{app:related} reviews related work.
 
 \begin{center}

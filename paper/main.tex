@@ -55,7 +55,7 @@ A fixed proportion (acceptance) is untouched by growth: a second review rejects 
 A constant number (Best Papers) is reproduced ever less, as a power law without a floor: from NeurIPS 2014 to 2026 the chance that a second review ranks the Best Paper in its top ten fell from 8.6\% to 1.0\%, and the chance that it is merely accepted, with no award, rose from 45\% to 67\%.
 Orals and Spotlights, between, keep their tier 12\% and 23\% of the time at 1,000 submissions and 4\% and 11\% at 100,000.
 More reviewers cannot repair the top: the chairs' choice among the accepted papers is one judgement per paper that averaging reviews does not reach, and beyond about 50,000 submissions no number of reviews holds the top ten to its 1,000-submission agreement.
-Which accepted paper wins an award is close to a lottery: at NeurIPS 2021 an award paper was accepted again by the other committee 52\% of the time, the same as any accepted paper, and given an award again 10\% of the time, no more than chance.
+Which accepted paper wins an award is close to a lottery: at NeurIPS 2021 an award paper was accepted again by the other committee 52\% of the time, the same as any accepted paper, and given an award again 11\% of the time, within what chance gives.
 \end{abstract}
 
 
@@ -75,7 +75,7 @@ How well does peer review perform in light of this increasing strain?
 \caption{\textbf{Conferences grow exponentially, their award tiers do not keep pace, and no tier survives a second review reliably: acceptance is a coin toss at every size, and the more prestigious the award, the faster it becomes a lottery as submissions grow.}
 (a) Conference submissions by year. (b) NeurIPS tiers by proportion (markers) and fitted power laws (lines). In 2016 and 2022, with no Spotlight tier, the Oral count includes Spotlights; Best Papers, 1 to 13 a year, are too few to draw. (c) The tier a second independent review gives the model's Best Paper at NeurIPS 2014, 2021 and 2026 submissions. (d--g) Where a second independent review places a paper that the first review made the Best Paper, an Oral, a Spotlight or an Accepted paper, against submissions $N$.
 % Each curve is the probability of that tier or a higher one; at the paper's own tier it is the chance that it keeps the tier, the tier's overlap. Tier sizes follow NeurIPS's trends (b) and acceptance is 25\% of $N$.
-Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experiments, the proportion of one committee's papers in a tier that the other committee accepted or put in the same tier. The Accepted papers sit on the model's line, whereas the 2021 Orals and Spotlights sit below it (Section~\ref{sec:award}).
+Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experiments, the proportion of one committee's papers in a tier that the other committee accepted or put in the same tier. The Accepted papers sit on the model's line, whereas the 2021 Spotlight tier sits below it (Section~\ref{sec:award}).
 % : 11\% were in that tier again and 52\% were accepted, against the curves' 16\% and 66\% .
 }
 \label{fig:main}
@@ -103,6 +103,13 @@ We create a model of the ML peer review process, calibrate it to empirical data,
 
 % See Appendix~\ref{app:related} for related work.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig0_schematic.pdf}
+\caption{\textbf{A second review sees the same papers with new noise, so it need not pick the same Best Paper.} (a) Each of $N$ papers has a hidden true quality $q$; black marks the paper the first review will make the Best Paper. (b) Each of the paper's $R=4$ reviewers reports the integer from 1 to 10 nearest to the paper's quality plus noise: shared noise $u$, the same for all of its reviewers and zero in the main model, and the reviewer's own noise $\varepsilon$. The paper's score is the mean of the four. (c) Papers are ranked by score, and a fixed proportion of $N$ is accepted. Within the accepted papers the award tiers are cut on the award ordering, the score plus the chairs' call $\eta$; the boxes nest, so each tier includes the tiers inside it. (d) New reviewers and area chairs review the same papers with new $u$, $\varepsilon$ and $\eta$: another paper becomes the Best Paper, and the first review's Best Paper lands in the Spotlight tier.}
+\label{fig:schematic}
+\end{figure}
+
 \section{Each tier's size follows a power law in submissions}\label{sec:tiers}
 
 Submissions have grown exponentially, but a conference's tiers need not grow with them, and at NeurIPS they have not grown alike. How a tier grows with the number of submissions $N$ turns out to decide how well a second review reproduces it (Sections~\ref{sec:bestpaper} to~\ref{sec:between}).
@@ -115,13 +122,6 @@ Submissions have grown exponentially, but a conference's tiers need not grow wit
 \section{Methods: a model of peer review, run twice}\label{sec:methods}
 
 The two experiments that reviewed the same papers twice did so at only two sizes, 1,678 and 9,122 submissions, and mostly at acceptance: only the 2021 experiment duplicated the Orals and Spotlights, and neither duplicated a Best Paper (Table~\ref{tab:experiments}). To ask the question for every tier at every size up to 100,000 submissions, we model the review process, calibrate its noise to the experiments' acceptance decisions, test it on decisions it was not calibrated to, and review every simulated conference twice.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{fig0_schematic.pdf}
-\caption{\textbf{A second review sees the same papers with new noise, so it need not pick the same Best Paper.} (a) Each of $N$ papers has a hidden true quality $q$; black marks the paper the first review will make the Best Paper. (b) Each of the paper's $R=4$ reviewers reports the integer from 1 to 10 nearest to the paper's quality plus noise: shared noise $u$, the same for all of its reviewers and zero in the main model, and the reviewer's own noise $\varepsilon$. The paper's score is the mean of the four. (c) Papers are ranked by score, and a fixed proportion of $N$ is accepted. Within the accepted papers the award tiers are cut on the award ordering, the score plus the chairs' call $\eta$; the boxes nest, so each tier includes the tiers inside it. (d) New reviewers and area chairs review the same papers with new $u$, $\varepsilon$ and $\eta$: another paper becomes the Best Paper, and the first review's Best Paper lands in the Spotlight tier.}
-\label{fig:schematic}
-\end{figure}
 
 \subsection{The model}\label{sec:model}
 

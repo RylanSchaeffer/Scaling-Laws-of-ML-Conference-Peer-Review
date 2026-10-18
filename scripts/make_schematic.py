@@ -1,10 +1,10 @@
 """Figure 0: the model of conference peer review, drawn (Methods section).
 
 (a) A conference receives N papers; paper i has a hidden true quality q_i ~ N(5, sigma_q^2).
-(b) Each paper receives R = 4 review scores, each the nearest integer from 1 to 10 to s_ij = q_i + u_i + eps_ij: shared noise u_i is the
-same for all of its reviewers, reviewer noise eps_ij is new for each; its score is the mean.
+(b) Each paper receives R = 4 review scores, each the nearest integer from 1 to 10 to s_ij = q_i + eps_ij: reviewer noise
+eps_ij is new for each reviewer; its score is the mean. (Shared noise u_i is a robustness check only and is not drawn.)
 (c) Papers are accepted by mean score; the award tiers are cut on the award ordering, score plus chair
-noise eta; its first three are the Best Papers. (d) A second review redraws u, eps and eta on the same papers, so the ranking changes and
+noise eta; its first three are the Best Papers. (d) A second review redraws eps and eta on the same papers, so the ranking changes and
 the first review's three Best Papers land in lower tiers.
 
 Every panel's data coordinates are inches on the printed page; the canvas is P.S times larger,
@@ -29,7 +29,7 @@ FIG = os.path.join(ROOT, "figures")
 S = P.S
 
 # Layout, printed inches: four panels in a row, arrows in the gaps, a title row above the axes.
-PANELS = (("$N$ papers", 0.95), ("$R=4$ reviews, each scored 1 to 10", 1.3), ("Rank by score; award tiers\nby score $+\\,\\eta$", 1.2), ("Reviewed again by new\nreviewers and area chairs", 1.0))
+PANELS = (("$N$ papers", 0.95), ("$R=4$ reviews,\neach scored 1 to 10", 1.3), ("Rank by score; award tiers\nby score $+\\,\\eta$", 1.2), ("Reviewed again by new\nreviewers and area chairs", 1.0))
 H = 1.9  # axes height
 TOP, BOT = 0.22, 0.04  # title row above the axes, margin below
 GAP, LEFT, RIGHT = 0.25, 0.14, 0.02  # the left margin holds the panel letter of (a)
@@ -95,17 +95,16 @@ def panel_papers(ax):
 
 
 # ---------------------------------------------------------------------------
-# (b) Three reviewers score one paper: each score is quality + shared noise + reviewer noise
+# (b) Four reviewers score one paper: each score is quality + reviewer noise
 # ---------------------------------------------------------------------------
 
-SEG = (dict(fc=P.INK2, ec=P.INK2),  # q_i: solid
-       dict(fc=P.SURFACE, ec=P.INK2, hatch="///"),  # u_i: hatched, the same length in every row
+SEG = (dict(fc=P.INK2, ec=P.INK2),  # q_i: solid, the same length in every row
        dict(fc=P.SURFACE, ec=P.INK2))  # eps_ij: empty, a different length in every row
 
 
-def bar(ax, x, y, eps, label, lq=0.36, lu=0.10, bh=0.085):
-    """One review score as a bar of three segments; eps is the reviewer-noise length."""
-    for style, length in zip(SEG, (lq, lu, eps)):
+def bar(ax, x, y, eps, label, lq=0.46, bh=0.085):
+    """One review score as a bar of two segments, quality then reviewer noise; eps is the noise length."""
+    for style, length in zip(SEG, (lq, eps)):
         ax.add_patch(Rectangle((x, y - bh / 2), length, bh, lw=0.5 * S, zorder=3, **style))
         x += length
     ax.text(x + 0.04, y, label, ha="left", va="center", fontsize=P.LEGEND_PT, color=P.INK)
@@ -124,11 +123,10 @@ def panel_reviews(ax):
     ym = 1.04
     ax.text(xq - 0.035, ym, "Mean score", ha="right", va="center", **ANN)
     bar(ax, xq, ym, float(np.mean(eps)), r"$\bar s_i$")
-    ax.text(0.68, 0.83, r"$s_{ij}=q_i+u_i+\varepsilon_{ij}$", ha="center", va="center", fontsize=P.LEGEND_PT, color=P.INK)
+    ax.text(0.68, 0.83, r"$s_{ij}=q_i+\varepsilon_{ij}$", ha="center", va="center", fontsize=P.LEGEND_PT, color=P.INK)
     legend = ((0.60, SEG[0], "$q_i$: true quality"),
-              (0.48, SEG[1], "$u_i$: shared noise, same"),
-              (0.36, None, "for all of its reviewers"),
-              (0.24, SEG[2], r"$\varepsilon_{ij}$: reviewer noise"))
+              (0.46, SEG[1], r"$\varepsilon_{ij}$: reviewer noise,"),
+              (0.34, None, "new for each reviewer"))
     for y, style, text in legend:
         if style is not None:
             ax.add_patch(Rectangle((0.12, y - 0.035), 0.09, 0.07, lw=0.5 * S, zorder=3, **style))
@@ -179,7 +177,7 @@ def panel_second(ax):
     column(ax, XD, dark_ranks=LANDS)
     x = XD + IW / 2 + 0.03 + 0.028 * (len(TIERS) - 1) + 0.05  # right of the widest box
     ax.text(x, rank_y(2), "new Best\nPapers", ha="left", va="center", linespacing=1.15, **ANN)
-    ax.text(x, rank_y(4.5), "same papers,\nnew $u$, $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
+    ax.text(x, rank_y(4.5), "same papers,\nnew $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
     ax.text(x, rank_y(8), "the first\nreview's Best\nPapers land\nlower", ha="left", va="center", linespacing=1.15, **ANN)
 
 

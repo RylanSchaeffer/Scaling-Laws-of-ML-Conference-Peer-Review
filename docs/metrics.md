@@ -48,8 +48,8 @@ rejected by 2 is matched by one paper accepted by 2 and rejected by 1).
 ## A second review
 
 A second review sees the same papers (same $q_i$) and redraws all reviewer errors
-$\varepsilon_{ij}$ and the shared noise $u_i$, because the field experiments used disjoint
-area chairs and reviewers.
+$\varepsilon_{ij}$ and the chairs' call $\eta_i$ (and the shared noise $u_i$ in the one robustness check
+that has it), because the field experiments used disjoint area chairs and reviewers.
 
 ## Sizes reported
 

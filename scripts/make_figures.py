@@ -544,7 +544,7 @@ def fig_robustness():
         y.append(pos)
         pos -= 1.0
     y = np.array(y) - y[-1]  # bottom row at 0
-    rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
+    rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in LEV]  # span all three levels
     fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S), gridspec_kw=dict(wspace=0.34))
     panels = ((axes[0], "p2_best", "Best Paper again", (1e-4, 1), [1e-4, 1e-3, 1e-2, 1e-1, 1], P.INK),
               (axes[1], "p2_merely", "Merely accepted", (0, 1), [0, 0.5, 1], P.MUTED),
@@ -553,7 +553,7 @@ def fig_robustness():
     for ax, col, title, xlim, ticks, c in panels:
         logx = xlim[0] > 0
         span = sorted((x.p2_accept - x.p2_spot) if col == "p2_merely" else x[col] for x in rng26)
-        ax.axvspan(max(span[0], xlim[0]), span[1], color=P.GRID, alpha=0.55, lw=0, zorder=0)
+        ax.axvspan(max(span[0], xlim[0]), span[-1], color=P.GRID, alpha=0.55, lw=0, zorder=0)
         for yi, n in zip(y, names):
             for yr, ms, dy in SIZES:
                 v = float(r[(r.variant == n) & (r.year == yr)][col].iloc[0])
@@ -580,7 +580,7 @@ def fig_robustness():
         ax.grid(axis="y", visible=False)
     hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
-          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main model, pessimistic to optimistic level, 2026 size")]
+          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main model, range over the three calibration levels, 2026 size")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
@@ -609,7 +609,7 @@ def fig_scales():
     names = [n for n in names if n != "Continuous, 4 reviews"] + ["Continuous, 4 reviews"]  # continuous last
     y = np.arange(len(names))[::-1].astype(float)
     y[-1] -= 0.6  # a gap before the continuous row, which is no real scale
-    rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in ("pessimistic", "optimistic")]
+    rng26 = [venue_rows(lev).query("venue == 'NeurIPS' and year == 2026").iloc[0] for lev in LEV]  # span all three levels
     fig, axes = plt.subplots(1, 4, figsize=(P.CANVAS_W, (ROW_H + 0.5) * P.S),
                              gridspec_kw=dict(wspace=0.36, width_ratios=[1, 1, 1, 1.15]))
     panels = ((axes[0], "p2_best", "Best Paper again", (1e-4, 0.3), [1e-3, 1e-2, 1e-1], P.INK),
@@ -619,7 +619,7 @@ def fig_scales():
     for ax, col, title, xlim, ticks, c in panels:
         logx = xlim[0] > 0
         span = sorted(x[col] for x in rng26)
-        ax.axvspan(max(span[0], xlim[0]), span[1], color=P.GRID, alpha=0.55, lw=0, zorder=0)
+        ax.axvspan(max(span[0], xlim[0]), span[-1], color=P.GRID, alpha=0.55, lw=0, zorder=0)
         for yi, n in zip(y, names):
             for yr, ms, dy in SIZES:
                 v = float(conf[(conf.form == n) & (conf.year == yr)][col].iloc[0])
@@ -655,7 +655,7 @@ def fig_scales():
     ax.set_title("Top 10 again", loc="left")
     hl = [Line2D([], [], ls="none", marker="o", ms=2.8 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2014 size"),
           Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, color=P.INK2, mec=P.SURFACE, label="NeurIPS 2026 size"),
-          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main form, pessimistic to optimistic level, 2026 size")]
+          plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main form, range over the three calibration levels, 2026 size")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
     lines, labels = ax.get_legend_handles_labels()  # the four forms of (d), in a second legend row under the first
     fig.legend(handles=lines, labels=["(d) " + labels[0]] + labels[1:], loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, handlelength=1.6)

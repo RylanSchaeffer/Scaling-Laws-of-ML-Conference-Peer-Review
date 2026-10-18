@@ -32,7 +32,7 @@ from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM, sample_quality
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
-from run_R_needed_tiers import N_GRID, TIERS, aggregate, tiers_at
+from run_R_needed_tiers import N_GRID, TIERS, aggregate, overlaps_from_orders, tiers_at
 
 R_LARGE = [32, 64, 96, 128, 192, 256, 512, 1024, 2048, 4096, np.inf]  # 32 and 64 repeat exact rungs as a check
 N_FINE = [int(round(x)) for x in np.geomspace(2_000, 100_000, 16)]  # pass 1: where does the Best Papers' target leave reach?
@@ -50,8 +50,9 @@ def snapped_moments(q: np.ndarray, m) -> tuple[np.ndarray, np.ndarray]:
     return mean, np.sqrt(np.maximum(var, 0.0))
 
 
-def overlaps(g, sd, z, eta, R, sizes, A) -> dict:
+def overlaps(g, sd, z, eta, R, sizes, N) -> dict:
     """One pair of reviews with R reviewers each on shared draws z (2 x N) and eta (2 x N); overlap per tier."""
+    A = sizes["accept_or_better"]
     accs, tops = [], []
     for k in range(2):
         sbar = g + (sd * z[k] / np.sqrt(R) if np.isfinite(R) else 0.0)
@@ -59,20 +60,12 @@ def overlaps(g, sd, z, eta, R, sizes, A) -> dict:
         t = sbar[acc] + eta[k][acc]  # the award ordering within the accepted set
         accs.append(acc)
         tops.append(acc[np.argsort(-t)])
-    out = {}
-    for name, K in sizes.items():
-        if name == "accept":
-            out[name] = np.intersect1d(accs[0], accs[1], assume_unique=True).size / A
-        else:
-            out[name] = np.intersect1d(tops[0][:K], tops[1][:K], assume_unique=True).size / K
-    return out
-
+    return overlaps_from_orders(accs, tops, sizes, N)
 
 def job(spec: dict) -> list[dict]:
     m = calibrated(main_model(sigma_u=0.0), "central")
     N, reps, chunk, Rs = spec["N"], spec["reps"], spec["chunk"], spec["Rs"]
     sizes = dict(spec["sizes"])
-    A = sizes["accept"]
     rng = np.random.default_rng(stable_seed(m.as_dict(), N, reps, chunk, "R_needed_tiers_clt"))
     t0 = time.perf_counter()
     acc = {R: {t: 0.0 for t in TIERS} for R in Rs}
@@ -82,11 +75,11 @@ def job(spec: dict) -> list[dict]:
         z = rng.standard_normal((2, N))
         eta = m.sigma_award * rng.standard_normal((2, N))
         for R in Rs:
-            o = overlaps(g, sd, z, eta, R, sizes, A)
+            o = overlaps(g, sd, z, eta, R, sizes, N)
             for t in TIERS:
                 acc[R][t] += o[t]
     wall = time.perf_counter() - t0
-    return [{"N": N, "R": R, "orals": sizes["oral"], "spotlights": sizes["spot"] - sizes["oral"], "reps": reps, "chunk": chunk,
+    return [{"N": N, "R": R, "orals": sizes["oral_or_better"], "spotlights": sizes["spot_or_better"] - sizes["oral_or_better"], "reps": reps, "chunk": chunk,
              **{f"overlap_{t}": acc[R][t] / reps for t in TIERS}, "sigma_eps": m.sigma_eps,
              "method": "clt" if np.isfinite(R) else "limit", "wall_s": wall / len(Rs)} for R in Rs]
 
@@ -99,8 +92,8 @@ def run(specs: list[dict], workers: int, tag: str) -> pd.DataFrame:
             rs = fu.result()
             rows.extend(rs)
             r = rs[-1]
-            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} best {r['overlap_best']:.3f} "
-                  f"oral {r['overlap_oral']:.3f} ({r['wall_s'] * len(rs):.0f}s)", flush=True)
+            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} Best Papers {r['overlap_best']:.3f} "
+                  f"Oral {r['overlap_oral']:.3f} ({r['wall_s'] * len(rs):.0f}s)", flush=True)
     return aggregate(pd.DataFrame(rows))
 
 
@@ -157,7 +150,7 @@ def main() -> None:
         lim.to_csv(path, index=False)
     ns = n_star(lim.N.values.astype(float), lim.overlap_best.values, target)
     print(f"{path}; target {target:.4f}; N* = {ns:,.0f}")
-    print(lim[["N", "overlap_best", "overlap_best_se", "overlap_oral", "overlap_spot"]].round(4).to_string(index=False))
+    print(lim[["N", "overlap_best", "overlap_best_se", "overlap_oral", "overlap_spot", "overlap_accept"]].round(4).to_string(index=False))
 
     Ns = sorted(set(N_GRID) | ({int(round(ns * f)) for f in APPROACH} if np.isfinite(ns) else set()))
     clt = run(specs(Ns, R_LARGE, args.reps), args.workers, "ladder")

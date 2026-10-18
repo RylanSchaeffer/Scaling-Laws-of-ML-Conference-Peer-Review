@@ -3,7 +3,7 @@
 
 Part "conference": the NeurIPS 2026 and 2014 conferences (submissions, acceptance rate, oral and
 spotlight counts) under each form: where a second review places the first review's three Best Papers
-(p2_*, the share of them in each tier; p2_best is the share it keeps among its own Best Papers).
+(p2_* for each separate tier and p2_*_or_better for each "or Better" set; p2_best is the share it keeps among its own Best Papers).
 Part "grid": a submissions grid 1K to 100K with the fitted tier sizes and 25% acceptance, for the
 main form, the six-point form, the ICLR 2022-2025 form and continuous scores.
 
@@ -23,7 +23,7 @@ import pandas as pd
 from peerreview.levels import LEVELS, ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
-from peerreview.tiers import tier_size
+from peerreview.tiers import CUTS, add_separate, cuts, tier_size
 from run_best_paper import N_BEST
 
 FORMS = (  # label, R, scale, who uses it
@@ -45,18 +45,18 @@ REPS_CONF = {2026: 40_000, 2014: 100_000}
 def job(spec: dict) -> dict:
     m = calibrated(main_model(R=spec["R"], scale=spec["scale"]), spec["level"])
     N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
-    tiers = {"best": N_BEST, "oral": int(spec["orals"]), "spot": int(spec["orals"] + spec["spotlights"]), "accept": A}
+    tiers = cuts(N_BEST, int(spec["orals"]), int(spec["spotlights"]), A)
     seed = stable_seed(m.as_dict(), N, spec["reps"], "scale_impact", spec["part"])
     t0 = time.perf_counter()
     r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, winner_tiers=tiers,
                             second_committee=True, n_best=N_BEST)  # lean: no overlaps, which the paper does not use
     out = {**spec, "rho2": LEVELS[spec["level"]], "sigma_eps": m.sigma_eps, "accepted": A, "seed": seed}
-    for name in ("best", "oral", "spot", "accept"):
+    for name in CUTS:  # "or Better" probabilities; the Best Papers are their own
         out[f"p2_{name}"] = r[f"winner_in2_{name}"]
         out[f"p2_{name}_se"] = r[f"winner_in2_{name}_se"]
         out[f"p_{name}"] = r[f"winner_in_{name}"]
-    out["p2_reject"] = 1.0 - out["p2_accept"]
-    out["p2_reject_se"] = out["p2_accept_se"]
+    add_separate(out, "p2")  # the separate tiers: p2_oral, p2_spot, p2_accept, p2_reject
+    add_separate(out, "p")
     out["winner_rank2_median"] = r["winner_rank2_median"]
     out["wall_s"] = time.perf_counter() - t0
     return out
@@ -79,7 +79,7 @@ def specs(grid_reps: int | None = None, grid_only: bool = False) -> list[dict]:
             continue
         for N in N_GRID:
             out.append({"part": "grid", "form": label, "used_by": who, "R": R, "scale": scale, "year": np.nan, "N": N,
-                        "alpha": 0.25, "orals": tier_size(fits, "orals", N), "spotlights": tier_size(fits, "spotlights", N),
+                        "alpha": 0.25, "orals": tier_size(fits, "oral_or_better", N), "spotlights": tier_size(fits, "spot", N),
                         "level": "central", "reps": grid_reps or (5000 if N <= 10_000 else 2000)})
     return out
 

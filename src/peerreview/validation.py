@@ -1,11 +1,13 @@
 """Out-of-sample tests (handoff §8.1): replay the NeurIPS 2021 consistency experiment's
-top tier in the calibrated model.
+award decisions in the calibrated model.
 
 Each committee ranks the same papers by its own mean score, accepts its top A, and
 puts the top `oral` papers of its award ordering (score plus chair noise within the
-accepted set, model.award_order) in an oral tier and the next `spot` in a spotlight tier. The statistics are the ones the experiment reported: the overlap of the two
-top tiers (oral + spotlight) and the share of one committee's spotlights that the
-other committee rejected.
+accepted set, model.award_order) in its Oral tier and the next `spot` in its Spotlight tier.
+The tiers are separate (peerreview.tiers); the experiment had no Best Papers tier, so its Spotlight
+or Better set is Orals plus Spotlights (sob). The statistics are the ones the experiment reported:
+the overlap of the two Spotlight or Better sets, and the share of one committee's Spotlights (and of
+its Spotlight or Better papers) that the other committee rejected.
 
 Two designs:
   pool       a stand-alone pool of n papers with exactly the observed tier sizes;
@@ -55,8 +57,8 @@ def replay_tiers(
     }
     per = 1 if m.gaussian_shortcut else m.R
     chunk = max(1, int(chunk_elems // (N * per)))
-    out: dict[str, list] = {k: [] for k in ("overlap", "top1", "top2", "spot1", "spot2", "spot1_rej2", "spot2_rej1",
-                                             "top1_rej2", "top2_rej1", "acc_overlap", "acc1")}
+    out: dict[str, list] = {k: [] for k in ("sob_overlap", "sob1", "sob2", "spot1", "spot2", "spot1_rej2", "spot2_rej1",
+                                             "sob1_rej2", "sob2_rej1", "acc_overlap", "acc1")}  # sob: Spotlight or Better
     done = 0
     while done < reps:
         r = min(chunk, reps - done)
@@ -67,22 +69,22 @@ def replay_tiers(
         a2 = s2 >= _kth_largest(s2, sizes["acc"])
         t1 = award_order(rng, s1, m, sizes["acc"])
         t2 = award_order(rng, s2, m, sizes["acc"])
-        top1 = t1 >= _kth_largest(t1, sizes["t1"])
-        top2 = t2 >= _kth_largest(t2, sizes["t2"])
-        spot1 = top1 & ~(t1 >= _kth_largest(t1, sizes["o1"]))
-        spot2 = top2 & ~(t2 >= _kth_largest(t2, sizes["o2"]))
+        sob1 = t1 >= _kth_largest(t1, sizes["t1"])  # Spotlight or Better: Orals plus Spotlights
+        sob2 = t2 >= _kth_largest(t2, sizes["t2"])
+        spot1 = sob1 & ~(t1 >= _kth_largest(t1, sizes["o1"]))  # Spotlight: Spotlight or Better minus the Orals
+        spot2 = sob2 & ~(t2 >= _kth_largest(t2, sizes["o2"]))
         sub = slice(0, n)
-        a1, a2, top1, top2, spot1, spot2 = (x[:, sub] for x in (a1, a2, top1, top2, spot1, spot2))
+        a1, a2, sob1, sob2, spot1, spot2 = (x[:, sub] for x in (a1, a2, sob1, sob2, spot1, spot2))
         with np.errstate(invalid="ignore", divide="ignore"):
-            out["overlap"].append((top1 & top2).sum(1))
-            out["top1"].append(top1.sum(1))
-            out["top2"].append(top2.sum(1))
+            out["sob_overlap"].append((sob1 & sob2).sum(1))
+            out["sob1"].append(sob1.sum(1))
+            out["sob2"].append(sob2.sum(1))
             out["spot1"].append(spot1.sum(1))
             out["spot2"].append(spot2.sum(1))
             out["spot1_rej2"].append((spot1 & ~a2).sum(1))
             out["spot2_rej1"].append((spot2 & ~a1).sum(1))
-            out["top1_rej2"].append((top1 & ~a2).sum(1))
-            out["top2_rej1"].append((top2 & ~a1).sum(1))
+            out["sob1_rej2"].append((sob1 & ~a2).sum(1))
+            out["sob2_rej1"].append((sob2 & ~a1).sum(1))
             out["acc_overlap"].append((a1 & a2).sum(1))
             out["acc1"].append(a1.sum(1))
         done += r

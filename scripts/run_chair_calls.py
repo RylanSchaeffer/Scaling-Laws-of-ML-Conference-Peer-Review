@@ -4,7 +4,7 @@ The award ordering is the score plus the chair noise eta, one draw per paper per
 each accepted paper independently and their calls were averaged, the chair noise would shrink to
 sigma_eta / sqrt(k); k = inf is the award ordering by score alone. This script simulates the main model
 (central level) at 100,000 submissions, and at 1,000 for the reference, with R reviews per paper and k
-chair calls, and records the overlap of two reviews' Best Papers (their top three), orals, spotlights and accepted sets.
+chair calls, and records the overlap of two reviews' separate tiers (Best Papers, Oral, Spotlight, Accepted) and "or Better" sets.
 
 Writes results/chair_calls.csv.
 Usage: uv run python scripts/run_chair_calls.py [--workers 8] [--reps 1000] [--chunk 250]

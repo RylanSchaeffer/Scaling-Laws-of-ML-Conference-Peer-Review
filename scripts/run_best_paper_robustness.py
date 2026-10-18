@@ -4,17 +4,16 @@ review form (integer 1-10 scores, four reviews per paper; other forms: scripts/r
 
 The model's Best Papers are the first three papers of the award ordering (score plus chair noise within the accepted set).
 For each variant the script simulates whole conferences, each reviewed twice, and records where the second
-review ranks the first review's Best Papers (p2_*: the share of them in its top M for M = 3, the oral count,
-the oral plus spotlight count and the accepted count; one minus the last is the probability that it rejects one
-of the Best Papers) and their true rank (p_*).
+review gives the first review's Best Papers each separate tier (p2_best, p2_oral, p2_spot, p2_accept, p2_reject)
+and each "or Better" set (p2_*_or_better), and the same for their true rank (p_*).
 
 Variants change one thing about the Gaussian model: the quality distribution (bounded, exponential,
 lognormal, t3), the reviewer noise (t3), shared paper-level noise, or a share of careless reviews
 ("rave" = the top score, "random" = a random point).
 Every variant is recalibrated at the central level (results/calibration_variants.csv).
 
-Each variant also replays the NeurIPS 2021 top tier (validation.replay_tiers, the 764-paper decided
-set within a 7,902-paper conference), for Fig. 5d.
+Each variant also replays the NeurIPS 2021 award decisions (validation.replay_tiers, the 764-paper decided
+set within a 7,902-paper conference): overlap2021_* is the overlap of the two committees' Spotlight or Better sets.
 
 Writes results/best_paper_robustness.csv.
 Usage: uv run python scripts/run_best_paper_robustness.py [--workers 2]
@@ -31,6 +30,7 @@ import pandas as pd
 from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import ReviewModel
 from peerreview.simulate import simulate_best_paper, stable_seed
+from peerreview.tiers import CUTS, add_separate, cuts
 from peerreview.validation import replay_tiers
 from run_best_paper import N_BEST
 
@@ -65,30 +65,26 @@ def job(name: str, year: int) -> dict:
     N, A, orals = int(x.N_used), int(round(x.N_used * x.acc_rate_used)), int(x.orals_used)
     sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))
     spotlights = int(sp[(sp.venue == "NeurIPS") & (sp.year == year)].spotlights.iloc[0])
-    tiers = {"best": N_BEST, "oral": orals, "spot": orals + spotlights, "accept": A}  # nested tiers
+    tiers = cuts(N_BEST, orals, spotlights, A)
     r = simulate_best_paper(m, N, REPS[year], best_K=(1,), winner_tiers=tiers, second_committee=True,
                             salt=f"best-paper-robustness-{name}", n_best=N_BEST)
-    return {"variant": name, "group": group, "year": year, "N": N, "accepted": A, "orals": orals,
-            "spotlights": spotlights, "level": "central",
-            "R": m.R, "scale": m.scale, "sigma_eps": m.sigma_eps, "reps": r["reps"], "seed": r["seed"],
-            "p_best": r["winner_in_best"], "p_oral": r["winner_in_oral"],
-            "p_spot": r["winner_in_spot"],
-            "p_accept": r["winner_in_accept"], "p_reject": 1 - r["winner_in_accept"],
-            "p_reject_se": r["winner_in_accept_se"], "p_best_se": r["winner_in_best_se"],
-            "winner_rank_median": r["winner_rank_median"],
-            "p2_best": r["winner_in2_best"], "p2_oral": r["winner_in2_oral"],
-            "p2_spot": r["winner_in2_spot"],
-            "p2_accept": r["winner_in2_accept"], "p2_reject": 1 - r["winner_in2_accept"],
-            "p2_reject_se": r["winner_in2_accept_se"], "p2_best_se": r["winner_in2_best_se"],
-            "winner_rank2_median": r["winner_rank2_median"], "wall_s": r["wall_s"]}
-
+    out = {"variant": name, "group": group, "year": year, "N": N, "accepted": A, "orals": orals,
+           "spotlights": spotlights, "level": "central",
+           "R": m.R, "scale": m.scale, "sigma_eps": m.sigma_eps, "reps": r["reps"], "seed": r["seed"],
+           "winner_rank_median": r["winner_rank_median"], "winner_rank2_median": r["winner_rank2_median"], "wall_s": r["wall_s"]}
+    for c in CUTS:  # "or Better" probabilities; the Best Papers are their own
+        out[f"p_{c}"], out[f"p_{c}_se"] = r[f"winner_in_{c}"], r[f"winner_in_{c}_se"]
+        out[f"p2_{c}"], out[f"p2_{c}_se"] = r[f"winner_in2_{c}"], r[f"winner_in2_{c}_se"]
+    add_separate(out, "p")  # the separate tiers
+    add_separate(out, "p2")
+    return out
 
 def overlap_job(name: str) -> dict:
     m = calibrated(form_model(2021, VARIANTS[name][1]), "central")  # the replay is of NeurIPS 2021, on its form
     seed = stable_seed(name, "best-paper-robustness-overlap2021")
     st = replay_tiers(m, OVERLAP_REPS, seed, n=764, accept_rate=(206 + 195) / 2 / 764, tiers1=(4, 25),
                       tiers2=(2, 23), N_conf=7902)
-    ov = st["overlap"]
+    ov = st["sob_overlap"]  # the two committees' Spotlight or Better sets
     return {"variant": name, "overlap2021_mean": ov.mean(), "overlap2021_q05": float(pd.Series(ov).quantile(0.05)),
             "overlap2021_q95": float(pd.Series(ov).quantile(0.95)), "p_overlap2021_le_obs": (ov <= OBS_OVERLAP).mean(),
             "overlap2021_reps": OVERLAP_REPS, "overlap2021_seed": seed}
@@ -105,7 +101,7 @@ def main() -> None:
         df = df.merge(pd.DataFrame(list(ov)), on="variant")
     out = os.path.join(ROOT, "results", "best_paper_robustness.csv")
     df.to_csv(out, index=False)
-    print(df[["variant", "year", "p2_best", "p2_oral", "p2_spot", "p2_reject", "p2_reject_se", "winner_rank2_median",
+    print(df[["variant", "year", "p2_best", "p2_oral", "p2_spot", "p2_accept", "p2_reject", "p2_reject_se", "winner_rank2_median",
               "p_best", "p_reject", "overlap2021_mean", "p_overlap2021_le_obs"]]
           .round(4).to_string(index=False))
 

@@ -31,6 +31,7 @@ import pandas as pd
 
 from peerreview import analytic as an
 from peerreview.levels import LEVELS, ROOT
+from peerreview.tiers import add_separate
 from run_best_paper import N_BEST
 
 N_GRID = [1000, 2000, 5000, 10_000, 20_000, 50_000, 100_000, 200_000, 500_000, 1_000_000]
@@ -39,25 +40,24 @@ N_GRID = [1000, 2000, 5000, 10_000, 20_000, 50_000, 100_000, 200_000, 500_000, 1
 def tiers(N: int, alpha: float, orals: float | None, spotlights: float | None, rho2: float) -> dict:
     r = float(np.sqrt(rho2))
     A = int(round(alpha * N))
-    M_oral = int(orals) if orals == orals and orals else None
-    # The spotlight tier holds orals plus spotlights (each tier includes the tiers above it).
-    M_spot = M_oral + int(spotlights) if M_oral and spotlights == spotlights and spotlights else None
+    M_oral = int(orals) if orals == orals and orals else None  # the size of Oral or Better (NeurIPS's Orals include its Best Papers)
+    M_spot = M_oral + int(spotlights) if M_oral and spotlights == spotlights and spotlights else None  # the size of Spotlight or Better
     out = {"accepted": A}
     # Rerun framing: the second review's scores correlate with the first review's at rho^2.
     K = N_BEST
     out["p2_best"] = an.containment_fixed_K(N, K, K, rho2)
-    out["p2_oral"] = an.containment_fixed_K(N, K, M_oral, rho2) if M_oral else np.nan
-    out["p2_spot"] = an.containment_fixed_K(N, K, M_spot, rho2) if M_spot else np.nan
-    out["p2_accept"] = an.containment_fixed_K(N, K, A, rho2)
-    out["p2_reject"] = 1.0 - out["p2_accept"]
+    out["p2_oral_or_better"] = an.containment_fixed_K(N, K, M_oral, rho2) if M_oral else np.nan
+    out["p2_spot_or_better"] = an.containment_fixed_K(N, K, M_spot, rho2) if M_spot else np.nan
+    out["p2_accept_or_better"] = an.containment_fixed_K(N, K, A, rho2)
+    add_separate(out, "p2")  # the separate tiers: p2_oral, p2_spot, p2_accept, p2_reject
     # True-rank framing.
     out["p_best"] = an.containment_fixed_K(N, K, K, r)
     out["p_top10pct"] = an.containment_fixed_K(N, K, int(round(0.10 * N)), r)
-    out["p_accept"] = an.containment_fixed_K(N, K, A, r)
+    out["p_accept_or_better"] = an.containment_fixed_K(N, K, A, r)
     out["p_rejected_by_committee2"] = an.rejected_given_top(N, K, alpha, r)
-    out["p_oral"] = an.containment_fixed_K(N, K, M_oral, r) if M_oral else np.nan
-    out["p_spot"] = an.containment_fixed_K(N, K, M_spot, r) if M_spot else np.nan
-    out["p_reject"] = 1.0 - out["p_accept"]
+    out["p_oral_or_better"] = an.containment_fixed_K(N, K, M_oral, r) if M_oral else np.nan
+    out["p_spot_or_better"] = an.containment_fixed_K(N, K, M_spot, r) if M_spot else np.nan
+    add_separate(out, "p")
     assert abs(out["p2_reject"] - out["p_rejected_by_committee2"]) < 1e-9
     return out
 

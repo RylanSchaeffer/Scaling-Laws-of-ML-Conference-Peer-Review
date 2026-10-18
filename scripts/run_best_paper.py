@@ -5,7 +5,8 @@ For every venue-year in data/venues.csv (with its submissions, acceptance rate, 
 spotlight counts) and for a grid of submissions N with the fitted tier sizes (results/tier_sizes.csv)
 and acceptance at 25%, each replay draws one conference, reviews it twice, and records the tier the
 second review gives each of the first review's three Best Papers, the first three papers of its award ordering
-(p2_*, averaged over the three), the overlap of the two reviews' tiers (overlap_*; overlap_best equals p2_best),
+(p2_{best,oral,spot,accept,reject} for the separate tiers and p2_*_or_better for the "or Better" sets, averaged over
+the three), the overlap of the two reviews' tiers (overlap_*; overlap_best equals p2_best),
 and the second review's score for those papers against its own third-best score (z2_*).
 
 Writes results/best_paper.csv.
@@ -26,7 +27,7 @@ import pandas as pd
 from peerreview.levels import LEVELS, ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
-from peerreview.tiers import tier_size
+from peerreview.tiers import CUTS, add_separate, cuts, tier_size
 
 N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
 CITED_YEARS = (2014, 2021, 2026)  # the NeurIPS years the paper quotes (--cited)
@@ -41,28 +42,24 @@ def job(spec: dict) -> dict:
     N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
     if not np.isfinite(m.sigma_eps):  # the level is unreachable on this form (coarse scale: ties floor the disagreement)
         return {**spec, "rho2": LEVELS[level], "sigma_eps": np.nan, "accepted": A, "wall_s": 0.0}
-    M_oral = int(spec["orals"]) if spec["orals"] == spec["orals"] else None  # NaN check
-    M_spot = M_oral + int(spec["spotlights"]) if M_oral and spec["spotlights"] == spec["spotlights"] else None
-    tiers = {"best": N_BEST, "accept": A}
-    if M_oral:
-        tiers["oral"] = M_oral
-    if M_spot:
-        tiers["spot"] = M_spot
+    tiers = cuts(N_BEST, spec["orals"], spec["spotlights"], A)  # the cutoffs; a venue-year with no Spotlight count has no Spotlight tier
     overlap = {**tiers, "top0p3pct": max(1, int(round(0.003 * N)))}  # a fixed proportion as large as the Best Papers at 1,000
     seed = stable_seed(m.as_dict(), N, spec["reps"], "best_paper_forms", spec["source"], level)
     t0 = time.perf_counter()
     r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, winner_tiers=tiers,
                             second_committee=True, overlap_tiers=overlap, n_best=N_BEST)
     out = {**spec, "rho2": LEVELS[level], "sigma_eps": m.sigma_eps, "accepted": A, "seed": seed}
-    for name in ("best", "oral", "spot", "accept"):
+    for name in CUTS:  # "or Better" probabilities and overlaps; the Best Papers are their own
         out[f"p2_{name}"] = r.get(f"winner_in2_{name}", np.nan)
         out[f"p2_{name}_se"] = r.get(f"winner_in2_{name}_se", np.nan)
         out[f"p_{name}"] = r.get(f"winner_in_{name}", np.nan)
         out[f"overlap_{name}"] = r.get(f"overlap_{name}", np.nan)
         out[f"overlap_{name}_se"] = r.get(f"overlap_{name}_se", np.nan)
-    out["p2_reject"] = 1.0 - out["p2_accept"]
-    out["p2_reject_se"] = out["p2_accept_se"]
-    out["p_reject"] = 1.0 - out["p_accept"]
+    for tier in ("oral", "spot", "accept"):  # separate tiers' overlaps, counted directly
+        out[f"overlap_{tier}"] = r.get(f"overlap_{tier}", np.nan)
+        out[f"overlap_{tier}_se"] = r.get(f"overlap_{tier}_se", np.nan)
+    add_separate(out, "p2")  # p2_oral, p2_spot, p2_accept, p2_reject: the separate tiers
+    add_separate(out, "p")
     out["overlap_top0p3pct"] = r["overlap_top0p3pct"]
     out["overlap_top0p3pct_se"] = r["overlap_top0p3pct_se"]
     for k in ("winner_rank2_median", "winner_rank2_q10", "winner_rank2_q90", "winner_rank_median",
@@ -86,9 +83,9 @@ def specs(reps: int) -> list[dict]:
                         "scale": SCALE, "R": R, "level": level, "reps": reps})
     for N in N_GRID:
         for level in LEVELS:
-            o = tier_size(fits, "orals", N)
+            o = tier_size(fits, "oral_or_better", N)
             out.append({"source": "grid", "venue": "", "year": np.nan, "N": N, "alpha": GRID_ALPHA,
-                        "orals": o, "spotlights": tier_size(fits, "spotlights", N),
+                        "orals": o, "spotlights": tier_size(fits, "spot", N),
                         "scale": SCALE, "R": R, "level": level, "reps": reps if N <= 10_000 else max(2000, reps // 2)})
     return out
 
@@ -115,7 +112,7 @@ def main() -> None:
             rows.append(r)
             print(f"[{i}/{len(sp)} {time.perf_counter() - t0:.0f}s] {r['source']} {r['venue']} {r['year']} N={r['N']} "
                   f"{r['scale']} R={r['R']} {r['level']}: p2_best={r['p2_best']:.4f} "
-                  f"p2_accept={r['p2_accept']:.3f} ({r['wall_s']:.0f}s)", flush=True)
+                  f"p2_accept_or_better={r['p2_accept_or_better']:.3f} ({r['wall_s']:.0f}s)", flush=True)
     out = pd.DataFrame(rows).sort_values(["source", "venue", "year", "N", "level"])
     out["year"] = out["year"].astype("Int64")
     path = os.path.join(ROOT, "results", "best_paper.csv")

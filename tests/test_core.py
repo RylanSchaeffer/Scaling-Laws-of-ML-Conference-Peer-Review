@@ -75,9 +75,9 @@ def test_second_committee_matches_closed_forms():
     # true-rank integrals at correlation rho^2, and the true-rank tiers those at rho; the same for
     # one paper and for the three of the paper (the share of them inside the tier).
     for n_best in (1, 3):
-        row = simulate_best_paper(m, N, reps=6000, best_K=(1,), winner_tiers={"best": 3, "top10": 10, "accept": A},
+        row = simulate_best_paper(m, N, reps=6000, best_K=(1,), winner_tiers={"best": 3, "top10": 10, "accept_or_better": A},
                                   second_committee=True, n_best=n_best)
-        for name, M in (("best", 3), ("top10", 10), ("accept", A)):
+        for name, M in (("best", 3), ("top10", 10), ("accept_or_better", A)):
             exact = an.containment_fixed_K(N, n_best, M, rho2)
             assert abs(row[f"winner_in2_{name}"] - exact) < 4 * row[f"winner_in2_{name}_se"] + 1e-3
         exact = an.containment_fixed_K(N, n_best, 10, np.sqrt(rho2))
@@ -93,12 +93,12 @@ def test_tier_size_fit_recovers_power_law():
                                orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8,
                                awards_used=[3, 3, 3, 3, np.nan]))
     f = fit_tier_sizes(counts)
-    a, o, s, w = (f[f.tier == t].iloc[0] for t in ("accepted", "orals", "spotlights", "awards"))
+    a, o, s, w = (f[f.tier == t].iloc[0] for t in ("accept_or_better", "oral_or_better", "spot", "best"))
     assert abs(a.gamma - 1.0) < 1e-9 and abs(a.a - 0.25) < 1e-9
     assert abs(o.gamma - 0.6) < 1e-9 and abs(o.a - 0.3) < 1e-9 and o.n_years == 5
     assert abs(s.gamma - 0.8) < 1e-9 and abs(s.a - 0.5) < 1e-9
     assert abs(w.gamma) < 1e-9 and abs(w.a - 3) < 1e-9 and w.n_years == 4  # a fixed number: gamma = 0
-    assert tier_size(f, "orals", 10_000) == round(0.3 * 10_000**0.6)
+    assert tier_size(f, "oral_or_better", 10_000) == round(0.3 * 10_000**0.6)
 
 
 def test_tier_overlap_closed_form_matches_exact_from_30():
@@ -110,20 +110,34 @@ def test_tier_overlap_closed_form_matches_exact_from_30():
         assert abs(approx / exact - 1) < 2e-3
 
 
-def test_placement_matches_overlap_and_nests():
+def test_tiers_are_separate():
+    from peerreview.tiers import add_separate, bands, cuts
+    c = cuts(3, 17, 48, 250)
+    assert c == {"best": 3, "oral_or_better": 17, "spot_or_better": 65, "accept_or_better": 250}
+    b = bands(c, 1000)
+    assert b == {"best": (0, 3), "oral": (3, 17), "spot": (17, 65), "accept": (65, 250), "reject": (250, 1000)}
+    assert "spot" not in bands(cuts(3, 45, float("nan"), 568), 2403)  # no Spotlight count, no Spotlight tier
+    r = add_separate({"p2_best": 0.1, "p2_oral_or_better": 0.3, "p2_spot_or_better": 0.6, "p2_accept_or_better": 0.9}, "p2")
+    assert np.isclose(r["p2_oral"], 0.2) and np.isclose(r["p2_spot"], 0.3) and np.isclose(r["p2_accept"], 0.3)
+    assert np.isclose(r["p2_reject"], 0.1)
+    assert np.isclose(sum(r[f"p2_{t}"] for t in ("best", "oral", "spot", "accept", "reject")), 1.0)
+
+
+def test_placement_is_separate_and_matches_overlap():
     from peerreview.simulate import simulate_best_paper
     from peerreview.model import ReviewModel, MAIN_FORM
+    from peerreview.tiers import add_separate, cuts
     m = ReviewModel(**MAIN_FORM, sigma_eps=2.0)
-    tiers = {"best": 3, "oral": 17, "spot": 65, "accept": 250}
+    tiers = cuts(3, 17, 48, 250)
     r = simulate_best_paper(m, 1000, reps=100, best_K=(1,), seed=3, winner_tiers=tiers, second_committee=True,
-                            overlap_tiers=tiers, place_tiers=tiers, n_best=3)
-    for k in ("best", "oral", "spot", "accept"):
-        assert r[f"place_{k}_in_{k}"] == r[f"overlap_{k}"]  # a paper keeps its own tier with the tier's overlap
-    for k in ("best", "oral", "spot", "accept"):  # the lean Best Papers path and the placement path agree
-        assert abs(r[f"winner_in2_{k}"] - r[f"place_best_in_{k}"]) < 1e-12
-    # tiers nest, so the chance of a tier or higher grows with the tier
-    assert r["place_oral_in_oral"] <= r["place_oral_in_spot"] <= r["place_oral_in_accept"] <= 1
-    assert r["place_spot_in_spot"] <= r["place_spot_in_accept"]
+                            overlap_tiers=tiers, place=True, n_best=3)
+    for x in ("best", "oral", "spot", "accept"):
+        assert r[f"place_{x}_in_{x}"] == r[f"overlap_{x}"]  # a paper keeps its own tier with the tier's overlap
+        assert np.isclose(sum(r[f"place_{x}_in_{y}"] for y in ("best", "oral", "spot", "accept", "reject")), 1.0)  # one tier each
+    add_separate(r, "winner_in2")
+    for y in ("best", "oral", "spot", "accept", "reject"):  # the lean Best Papers path and the placement path agree
+        assert abs(r[f"winner_in2_{y}"] - r[f"place_best_in_{y}"]) < 1e-12
+    assert abs(r["overlap_best"] - r["winner_in2_best"]) < 1e-12
 
 
 def test_award_step():
@@ -142,7 +156,7 @@ def test_award_step():
         rej = np.argsort(-row_s)[50:]
         assert list(np.argsort(-row_t)[50:]) == list(rej)  # rejected papers keep their score order
     # with sigma_award = 0 the simulator is unchanged (same seed, same numbers)
-    tiers = {"best": 3, "oral": 17, "spot": 65, "accept": 250}
+    tiers = {"best": 3, "oral_or_better": 17, "spot_or_better": 65, "accept_or_better": 250}
     a = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
     b = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers, accept=250)
     assert a["overlap_spot"] == b["overlap_spot"] and a["winner_in2_best"] == b["winner_in2_best"]
@@ -150,4 +164,4 @@ def test_award_step():
     c = simulate_best_paper(m0.replace(sigma_award=1.0), 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
     d = simulate_best_paper(m0, 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
     assert c["overlap_oral"] < d["overlap_oral"] and c["overlap_best"] < d["overlap_best"]
-    assert abs(c["overlap_accept"] - d["overlap_accept"]) < 0.03
+    assert abs(c["overlap_accept_or_better"] - d["overlap_accept_or_better"]) < 0.03

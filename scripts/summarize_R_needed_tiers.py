@@ -4,7 +4,8 @@ Reads results/R_needed_tiers_exact.csv (R <= 32, every review drawn; run_R_neede
 results/R_needed_tiers_clt.csv (R >= 32 and inf by the normal approximation; run_R_needed_tiers_large.py)
 and results/R_needed_tiers_limit.csv (R = inf on a fine grid of sizes).
 
-The target for each tier is its overlap at 1,000 submissions with four reviews. R_needed(N) is where
+The tiers are separate (peerreview.tiers): Best Papers, Oral, Spotlight, Accepted (accepted with no award); the
+"or Better" sets are summarised too. The target for each tier is its overlap at 1,000 submissions with four reviews. R_needed(N) is where
 the ladder's overlap crosses the target, interpolated in log R between rungs: the exact rungs up to 32,
 the approximate ones above. It is inf where even R = inf falls short. N* is the size at which the
 R = inf overlap falls to the target: from there on no number of reviews holds that tier.
@@ -32,6 +33,12 @@ from peerreview.model import MAIN_FORM
 from run_R_needed_tiers import N_GRID, R_LADDER, TIERS
 from run_R_needed_tiers_large import n_star
 from run_best_paper import N_BEST
+
+
+def tier_sizes(orals: int, spotlights: int, accepted: int) -> dict:
+    """Papers per separate tier and per "or Better" set; `orals` counts Oral or Better (NeurIPS's Orals include its Best Papers)."""
+    return {"best": N_BEST, "oral": orals - N_BEST, "spot": spotlights, "accept": accepted - orals - spotlights,
+            "oral_or_better": orals, "spot_or_better": orals + spotlights, "accept_or_better": accepted}
 
 
 def r_needed(Rs: np.ndarray, ov: np.ndarray, target: float) -> float:
@@ -62,9 +69,7 @@ def deficit_exponent(clt: pd.DataFrame, limit_of: dict, R_max: int = 256) -> flo
     """b in overlap(R) = limit - a R^-b, pooled over tiers and sizes from the approximate rungs 32 to R_max whose deficit
     below the limit is well resolved (more than 3 SE); a is free per tier and size."""
     xs, ys = [], []
-    for t in TIERS:
-        if t == "accept":
-            continue
+    for t in ("best", "oral", "spot", "accept"):  # the separate tiers; Accepted or Better reaches 100% in the limit, so it has no deficit to fit
         for N, g in clt[np.isfinite(clt.R) & (clt.R <= R_max)].groupby("N"):
             d = limit_of[t](N) - g[f"overlap_{t}"].values
             ok = d > 3 * g[f"overlap_{t}_se"].values
@@ -147,7 +152,7 @@ def main() -> None:
             rows.append({"tier": t, "N": int(N), "target": target, "R_needed": r_needed(d.R.values.astype(float), d[f"overlap_{t}"].values, target),
                          "overlap_at_4": float(at4.iloc[0]) if len(at4) else np.nan, "limit_overlap": lim_v,
                          "reachable": bool(lim_v >= target) if np.isfinite(lim_v) else np.nan, "N_star": ns,
-                         "size": int({"best": N_BEST, "oral": d.orals.iloc[0], "spot": d.orals.iloc[0] + d.spotlights.iloc[0], "accept": round(0.25 * N)}[t])})
+                         "size": int(tier_sizes(d.orals.iloc[0], d.spotlights.iloc[0], round(0.25 * N))[t])})
     s = pd.DataFrame(rows)
     s.to_csv(os.path.join(res, "R_needed_tiers_summary.csv"), index=False)
     show = s.pivot(index="N", columns="tier", values="R_needed").round(1)

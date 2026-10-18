@@ -4,7 +4,8 @@
 (b) Each paper receives R = 4 review scores, each the nearest integer from 1 to 10 to s_ij = q_i + eps_ij: reviewer noise
 eps_ij, new for each reviewer, moves a score up or down; the paper's score is the mean. (Shared noise u_i is a robustness check only and is not drawn.)
 (c) Papers are accepted by mean score; the award tiers are cut on the award ordering, score plus chair
-noise eta; its first three are the Best Papers. (d) A second review redraws eps and eta on the same papers, so the ranking changes and
+noise eta; its first three are the Best Papers. The tiers are separate boxes: Best Papers, Oral, Spotlight,
+Accepted (no award), Rejected. (d) A second review redraws eps and eta on the same papers, so the ranking changes and
 the first review's three Best Papers land in lower tiers.
 
 Every panel's data coordinates are inches on the printed page; the canvas is P.S times larger,
@@ -35,14 +36,14 @@ TOP, BOT = 0.22, 0.04  # title row above the axes, margin below
 GAP, LEFT, RIGHT = 0.25, 0.14, 0.02  # the left margin holds the panel letter of (a)
 IW, IH = 0.09, 0.115  # one paper icon
 
-# Tiers by rank in the column of (c) and (d): label, colour, lowest rank inside the tier.
-# Each tier includes the tiers above it; the column is schematic, not to scale.
-TIERS = (("Best Papers\n(the top three)", P.INK, 3), ("Oral", P.BLUE[450], 4),
-         ("Spotlight", P.BLUE[250], 5), ("Accepted, a fixed\nproportion of $N$", P.MUTED, 7))
+# The separate tiers by rank in the column of (c) and (d): label, colour, first and last rank inside the tier.
+# Each paper is in exactly one tier (peerreview.tiers); the column is schematic, not to scale.
+TIERS = (("Best Papers\n(the top three)", P.INK, 1, 3), ("Oral", P.BLUE[450], 4, 4), ("Spotlight", P.BLUE[250], 5, 5),
+         ("Accepted\n(no award)", P.MUTED, 6, 7), ("Rejected", P.ORANGE[450], 8, 10))
 RANKS, N_ACC = 10, 7  # ranks drawn; ranks above N_ACC are accepted, the rest rejected
 Y1, DR, CUT = 1.70, 0.145, 0.06  # rank 1 height, rank spacing, extra gap at the acceptance cut
 BEST = (1, 2, 3)  # the first review's Best Papers, by rank
-LANDS = (5, 7, 9)  # the ranks the second review gives them: a Spotlight, an accepted paper with no award, a rejection
+LANDS = (5, 7, 9)  # the ranks the second review gives them: Spotlight, Accepted (no award), Rejected
 ANN = dict(fontsize=P.LEGEND_PT, color=P.INK2)  # in-panel annotations
 
 
@@ -139,7 +140,7 @@ def panel_reviews(ax):
 
 
 # ---------------------------------------------------------------------------
-# (c), (d) A column of papers ranked by mean score, the nested tiers as nested boxes
+# (c), (d) A column of papers ranked by mean score, one box per separate tier
 # ---------------------------------------------------------------------------
 
 
@@ -148,31 +149,26 @@ def rank_y(r: int) -> float:
 
 
 def column(ax, xc: float, dark_ranks: tuple[int, ...]) -> list[tuple[float, float]]:
-    """Icons at every rank, the tier boxes around the top of the column and a box around the
-    rejected ranks. Returns (left edge, bottom) of each tier box, then of the rejected box."""
+    """Icons at every rank and one box around each separate tier's ranks. Returns (left edge, middle) of each box."""
     for r in range(1, RANKS + 1):
         paper(ax, xc, rank_y(r), dark=(r in dark_ranks), z=4)
     anchors = []
-    for k, (_, c, r) in enumerate(TIERS):
-        pad = 0.03 + 0.028 * k
-        top = rank_y(1) + IH / 2 + 0.02 + 0.022 * k
-        bot = rank_y(r) - IH / 2 - 0.025 if r == N_ACC else rank_y(r) - DR / 2  # in the gap below rank r
-        box(ax, xc - IW / 2 - pad, bot, xc + IW / 2 + pad, top, c)
-        anchors.append((xc - IW / 2 - pad, bot))
-    lo, hi = rank_y(RANKS) - IH / 2 - 0.02, rank_y(N_ACC + 1) + IH / 2 + 0.02
-    box(ax, xc - IW / 2 - 0.03, lo, xc + IW / 2 + 0.03, hi, P.ORANGE[450])
-    anchors.append((xc - IW / 2 - 0.03, (lo + hi) / 2))
+    for _, c, r0, r1 in TIERS:
+        top, bot = rank_y(r0) + IH / 2 + 0.011, rank_y(r1) - IH / 2 - 0.011
+        box(ax, xc - IW / 2 - PAD, bot, xc + IW / 2 + PAD, top, c)
+        anchors.append((xc - IW / 2 - PAD, (top + bot) / 2))
     return anchors
 
 
+PAD = 0.03  # a tier box's margin around the icons
 XC, XD = 1.0, 0.23  # column centres in (c) and (d): the two columns face each other across the gap
 
 
 def panel_rank(ax):
     anchors = column(ax, XC, dark_ranks=BEST)
-    labels = [t[0] for t in TIERS] + ["Rejected"]
-    x_outer = min(x for x, _ in anchors)  # left edge of the widest box
-    colours = [c for _, c, _ in TIERS] + [P.ORANGE[450]]
+    labels = [t[0] for t in TIERS]
+    x_outer = min(x for x, _ in anchors)  # left edge of the boxes
+    colours = [t[1] for t in TIERS]
     for (_, y), text, c in zip(anchors, labels, colours):
         ax.plot([x_outer - 0.075, x_outer - 0.015], [y, y], color=c, lw=1.0 * S, solid_capstyle="butt")  # leader
         ax.text(x_outer - 0.095, y, text, ha="right", va="center", linespacing=1.15, **ANN)
@@ -180,7 +176,7 @@ def panel_rank(ax):
 
 def panel_second(ax):
     column(ax, XD, dark_ranks=LANDS)
-    x = XD + IW / 2 + 0.03 + 0.028 * (len(TIERS) - 1) + 0.05  # right of the widest box
+    x = XD + IW / 2 + PAD + 0.05  # right of the boxes
     ax.text(x, rank_y(2), "new Best\nPapers", ha="left", va="center", linespacing=1.15, **ANN)
     ax.text(x, rank_y(4.5), "same papers,\nnew $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
     ax.text(x, rank_y(8), "the first\nreview's Best\nPapers land\nlower", ha="left", va="center", linespacing=1.15, **ANN)
@@ -200,7 +196,7 @@ def stage_arrow(ax_from, ax_to, y=H / 2):
 
 def best_paper_arrow(ax_c, ax_d):
     """Dashed: each of the first review's Best Papers, from its rank in (c) to its rank in (d)."""
-    x_from = XC + IW / 2 + 0.03 + 0.028 * (len(TIERS) - 1) + 0.012
+    x_from = XC + IW / 2 + PAD + 0.012
     for r1, r2 in zip(BEST, LANDS):
         con = ConnectionPatch((x_from, rank_y(r1)), (XD - IW / 2 - 0.012, rank_y(r2)), "data", "data",
                               axesA=ax_c, axesB=ax_d, arrowstyle="-|>", mutation_scale=7 * S, color=P.INK,

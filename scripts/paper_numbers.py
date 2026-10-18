@@ -1,5 +1,8 @@
 """Print every simulated number the paper quotes, from results/*.csv, in the order of the paper.
 
+Tiers are separate (peerreview.tiers): Best Papers, Oral, Spotlight, Accepted (no award), Rejected.
+A union is always printed as "X or Better".
+
 Usage: uv run python scripts/paper_numbers.py
 """
 from __future__ import annotations
@@ -61,21 +64,24 @@ def main():
             if r.empty:
                 continue
             r = r.iloc[0]
-            print(f"NeurIPS {yr} {lev:11s} N={int(r.N):6d} orals={int(r.orals)} spot={r.spotlights}: Best Papers again {pct(r.p2_best, 2)} "
-                  f"oral {pct(r.p2_oral)} spot {pct(r.p2_spot)} accept {pct(r.p2_accept)} merely {pct(r.p2_accept - r.p2_spot)} "
-                  f"reject {pct(r.p2_reject)} median rank {r.winner_rank2_median:.0f} reps={int(r.reps)} reps_best={r.reps_best}")
+            print(f"NeurIPS {yr} {lev:11s} N={int(r.N):6d} Oral or Better count={int(r.orals)} Spotlights={r.spotlights}: Best Papers {pct(r.p2_best, 2)} "
+                  f"Oral {pct(r.p2_oral)} Spotlight {pct(r.p2_spot)} Accepted {pct(r.p2_accept)} Rejected {pct(r.p2_reject)} | "
+                  f"Oral or Better {pct(r.p2_oral_or_better)} Spotlight or Better {pct(r.p2_spot_or_better)} Accepted or Better {pct(r.p2_accept_or_better)} "
+                  f"| median rank {r.winner_rank2_median:.0f} reps={int(r.reps)} reps_best={r.reps_best}")
     for v in ("ICML", "ICLR"):
         r = ven[(ven.venue == v) & (ven.year == 2026) & (ven.level == "central")]
         if not r.empty:
             r = r.iloc[0]
-            print(f"{v} 2026 central N={int(r.N)} orals={int(r.orals)} spot={r.spotlights}: Best Papers again {pct(r.p2_best, 2)} "
-                  f"oral {pct(r.p2_oral)} spot {pct(r.p2_spot)} accept {pct(r.p2_accept)} reject {pct(r.p2_reject)}")
+            print(f"{v} 2026 central N={int(r.N)} Oral or Better count={int(r.orals)} Spotlights={r.spotlights}: Best Papers {pct(r.p2_best, 2)} "
+                  f"Oral {pct(r.p2_oral)} Spotlight {pct(r.p2_spot)} Accepted {pct(r.p2_accept)} Rejected {pct(r.p2_reject)} | "
+                  f"Oral or Better {pct(r.p2_oral_or_better)} Spotlight or Better {pct(r.p2_spot_or_better)} Accepted or Better {pct(r.p2_accept_or_better)}")
 
     section("Fig 2a / sec:best / sec:between: grid, central (best_paper.csv grid rows)")
     g = grid[grid.level == "central"]
     for N in (1000, 100000):
-        print(f"N={N}: Best Papers again {pct(at(g, N, 'p2_best'), 2)} oral {pct(at(g, N, 'p2_oral'))} "
-              f"spot {pct(at(g, N, 'p2_spot'))} accept {pct(at(g, N, 'p2_accept'))} reject {pct(at(g, N, 'p2_reject'))} "
+        print(f"N={N}: Best Papers {pct(at(g, N, 'p2_best'), 2)} Oral {pct(at(g, N, 'p2_oral'))} "
+              f"Spotlight {pct(at(g, N, 'p2_spot'))} Accepted {pct(at(g, N, 'p2_accept'))} Rejected {pct(at(g, N, 'p2_reject'))} "
+              f"overlap Accepted or Better {pct(at(g, N, 'overlap_accept_or_better'))} "
               f"overlap_top0p3pct {pct(at(g, N, 'overlap_top0p3pct'))} median rank {at(g, N, 'winner_rank2_median'):.0f} "
               f"z2_winner {at(g, N, 'z2_winner'):.2f} z2_cut {at(g, N, 'z2_cut'):.2f}")
     print(f"exponent over 1e3..1e5: p2_best {exponent(g, 'p2_best'):.2f}")
@@ -87,7 +93,7 @@ def main():
 
     section("Fig 4a / sec:best: the ceiling, overlap with infinitely many reviewers (R_needed_tiers_curve.csv limit_overlap)")
     rc = load("R_needed_tiers_curve")
-    for tier in ("spot", "oral", "best"):
+    for tier in ("accept", "spot", "oral", "best"):
         c = rc[rc.tier == tier].sort_values("N")
         lim_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.limit_overlap.values))
         print(f"{tier:7s} " + ", ".join(f"N={N}: {pct(lim_at(N))}" for N in (1000, 10000, 100000)))
@@ -111,15 +117,18 @@ def main():
               + (f"; N* = {ns:,.0f}" if np.isfinite(ns) else "; no N* up to 100,000"))
         print(f"        R = inf overlap: " + ", ".join(f"N={N}: {lim_at(N):.4f}" for N in (1000, 10000, 46416, 100000)))
 
-    section("Fig 2b-d / sec:between / sec:accept: placement, central (placement.csv)")
+    section("Fig 1e-g / sec:between / sec:accept: placement, central (placement.csv): first-review group -> second-review tier")
     p = load("placement")
     p = p[p.level == "central"]
-    for N in (1000, 100000):
-        print(f"N={N}: oral->oral {pct(at(p, N, 'overlap_oral'))} spot->spot {pct(at(p, N, 'overlap_spot'))} accept->accept {pct(at(p, N, 'overlap_accept'))} "
-              f"oral->spot+ {pct(at(p, N, 'place_oral_in_spot'))} oral->accept {pct(at(p, N, 'place_oral_in_accept'))} spot->accept {pct(at(p, N, 'place_spot_in_accept'))} "
-              f"orals {at(p, N, 'orals'):.0f} spot tier {at(p, N, 'orals') + at(p, N, 'spotlights'):.0f}")
-    print(f"at N=9122 (Fig 2 caption, 2021 markers): spot->spot {pct(at(p, 9122, 'overlap_spot'))} spot->accept {pct(at(p, 9122, 'place_spot_in_accept'))} "
-          f"oral->accept {pct(at(p, 9122, 'place_oral_in_accept'))}")
+    seps = ("best", "oral", "spot", "accept", "reject")
+    for N in (1000, 9122, 30709, 100000):
+        print(f"N={N}: Oral tier {at(p, N, 'orals') - 3:.0f} papers, Spotlight tier {at(p, N, 'spotlights'):.0f}, "
+              f"Accepted tier {0.25 * N - at(p, N, 'orals') - at(p, N, 'spotlights'):.0f}")
+        for first in ("best", "oral", "spot", "accept", "accept_or_better"):
+            print(f"   {first:16s} -> " + " ".join(f"{y} {pct(at(p, N, f'place_{first}_in_{y}'))}" for y in seps)
+                  + (f" | accepted again (Accepted or Better) {pct(1 - at(p, N, f'place_{first}_in_reject'))}"))
+        print(f"   overlap Oral or Better {pct(at(p, N, 'overlap_oral_or_better'))} Spotlight or Better {pct(at(p, N, 'overlap_spot_or_better'))} "
+              f"Accepted or Better {pct(at(p, N, 'overlap_accept_or_better'))}")
 
     section("Fig 5 / sec:sure: variants at NeurIPS 2014 and 2026 size (best_paper_robustness.csv)")
     rb = load("best_paper_robustness")
@@ -130,7 +139,7 @@ def main():
             if x.empty:
                 continue
             x = x.iloc[0]
-            parts.append(f"{yr}: Best Papers again {pct(x.p2_best, 2)} oral {pct(x.p2_oral)} merely {pct(x.p2_accept - x.p2_spot)} reject {pct(x.p2_reject, 2)}")
+            parts.append(f"{yr}: Best Papers {pct(x.p2_best, 2)} Oral {pct(x.p2_oral)} Spotlight {pct(x.p2_spot)} Accepted {pct(x.p2_accept)} Rejected {pct(x.p2_reject, 2)}")
         print(f"{n:28s} " + " | ".join(parts))
 
     section("Fig 6 / sec:scales: forms at NeurIPS 2014 and 2026 size (scale_impact.csv)")
@@ -143,15 +152,15 @@ def main():
             if x.empty:
                 continue
             x = x.iloc[0]
-            parts.append(f"{yr}: Best Papers again {pct(x.p2_best, 2)} oral {pct(x.p2_oral)} merely {pct(x.p2_accept - x.p2_spot)} reject {pct(x.p2_reject)}")
+            parts.append(f"{yr}: Best Papers {pct(x.p2_best, 2)} Oral {pct(x.p2_oral)} Spotlight {pct(x.p2_spot)} Accepted {pct(x.p2_accept)} Rejected {pct(x.p2_reject)}")
         print(f"{f:28s} " + " | ".join(parts))
 
     section("Fig 3 / sec:award / sec:sure: NeurIPS 2021 replay, central, subsample (validation_neurips2021.csv)")
     v = load("validation_neurips2021")
     v = v[(v.design == "subsample") & (v.level == "central")]
     for x in v.itertuples():
-        print(f"{x.variant:22s} shared {x.overlap_mean:.1f} ({x.overlap_q05:.0f}-{x.overlap_q95:.0f}) P(<=3)={x.p_overlap_le_obs:.3f}  "
-              f"rejected {pct(x.top_rej_share_mean, 0)} ({pct(x.top_rej_share_q05, 0)}-{pct(x.top_rej_share_q95, 0)}) P(>=obs)={x.p_top_rej_ge_obs:.3f}")
+        print(f"{x.variant:22s} Spotlight or Better shared {x.sob_overlap_mean:.1f} ({x.sob_overlap_q05:.0f}-{x.sob_overlap_q95:.0f}) P(<=3)={x.p_sob_overlap_le_obs:.3f}  "
+              f"rejected {pct(x.sob_rej_share_mean, 0)} ({pct(x.sob_rej_share_q05, 0)}-{pct(x.sob_rej_share_q95, 0)}) P(>=obs)={x.p_sob_rej_ge_obs:.3f}")
 
     section("Chair noise (award_noise.json)")
     a = json.load(open(os.path.join(RES, "award_noise.json")))

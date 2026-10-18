@@ -8,12 +8,22 @@ submissions, two out-of-sample tests, and the paper.
 - **Paper:** [`paper/main.pdf`](paper/main.pdf) (source `paper/main.tex`)
 - **Report of all findings:** [`REPORT.md`](REPORT.md)
 - **Specification:** [`docs/handoff.md`](docs/handoff.md)
-- **Terminology (tiers, awards, second review):** [`docs/terminology.md`](docs/terminology.md)
+- **Terminology (separate tiers, "or Better" sets, second review):** [`docs/terminology.md`](docs/terminology.md)
 - **Metric definitions:** [`docs/metrics.md`](docs/metrics.md)
 - **Derivations:** [`docs/derivations.md`](docs/derivations.md) (two independent
   derivations in `docs/derivations/`)
 - **Empirical claims and their sources:** [`docs/claims.md`](docs/claims.md),
   `data/venues.csv`, `data/spotlights.csv`, `data/experiments.json`
+
+## Tiers: separate, like gold, silver and bronze
+
+Every paper gets exactly one tier: **Best Papers** (gold, the first three papers of the award
+ordering), **Oral** (silver, not one of the Best Papers), **Spotlight** (bronze, nothing higher),
+**Accepted** (accepted with no award) or **Rejected**. No tier contains another.
+A tier together with every tier above it is named in full: **Oral or Better**, **Spotlight or
+Better**, **Accepted or Better** (every accepted paper). In code and result files a bare key
+(`oral`) is the separate tier and a key ending in `_or_better` is the set
+([`docs/terminology.md`](docs/terminology.md), [`src/peerreview/tiers.py`](src/peerreview/tiers.py)).
 
 ## Layout
 

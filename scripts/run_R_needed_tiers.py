@@ -5,8 +5,9 @@ at its R = 4 calibration, the chairs' call on, sigma_eta = 0.59) is simulated wi
 per paper and per review; the mean of the first R of them is the paper's score with R reviews, so every
 rung of the ladder is evaluated on the same draws (common random numbers) and the overlap rises
 smoothly with R. The overlap of two reviews' tiers is the proportion of one review's tier that the
-other also puts there: the three Best Papers (a constant number), the orals and the spotlights (NeurIPS's fitted
-trends, results/tier_sizes.csv) and the accepted papers (25% of N). R = 64 is also run at three sizes
+other also puts there, for the separate tiers (peerreview.tiers): the three Best Papers (a constant number), the
+Oral and the Spotlight tiers (NeurIPS's fitted trends, results/tier_sizes.csv) and the Accepted tier (accepted with
+no award; Accepted or Better is 25% of N). The "or Better" overlaps are recorded too (overlap_*_or_better). R = 64 is also run at three sizes
 as a check on the normal approximation of run_R_needed_tiers_large.py, which carries the ladder beyond
 32 reviews and to the limit of infinitely many.
 
@@ -28,18 +29,32 @@ import pandas as pd
 from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import sample_quality, snap
 from peerreview.simulate import stable_seed
-from peerreview.tiers import tier_size
+from peerreview.tiers import bands, cuts, tier_size
 from run_best_paper import N_BEST
 
 N_GRID = [int(round(10 ** (3 + k / 6))) for k in range(13)]  # 1000, 1468, 2154, ... 68129, 100000
 R_LADDER = [4, 5, 6, 8, 10, 12, 16, 20, 24, 32]
 R_CHECK = {64: [10_000, 46_416, 100_000]}  # exact rungs beyond the ladder, as a check on the approximation
-TIERS = ("best", "oral", "spot", "accept")
+TIERS = ("best", "oral", "spot", "accept", "oral_or_better", "spot_or_better", "accept_or_better")  # separate tiers, then "or Better" sets
 
 
 def tiers_at(fits: pd.DataFrame, N: int) -> dict:
-    orals = tier_size(fits, "orals", N)
-    return {"best": N_BEST, "oral": orals, "spot": orals + tier_size(fits, "spotlights", N), "accept": int(round(0.25 * N))}
+    """The cutoffs (peerreview.tiers.CUTS) at N submissions on NeurIPS's trends, Accepted or Better at 25%."""
+    return cuts(N_BEST, tier_size(fits, "oral_or_better", N), tier_size(fits, "spot", N), int(round(0.25 * N)))
+
+
+def overlaps_from_orders(accs: list, tops: list, c: dict, N: int) -> dict:
+    """Overlap of two reviews per separate tier and per "or Better" set. accs[k]: review k's accepted papers;
+    tops[k]: the same papers in its award ordering, best first (so tops[k][:K] is its top K)."""
+    A = c["accept_or_better"]
+    out = {"accept_or_better": np.intersect1d(accs[0], accs[1], assume_unique=True).size / A}
+    for name in ("oral_or_better", "spot_or_better"):
+        K = c[name]
+        out[name] = np.intersect1d(tops[0][:K], tops[1][:K], assume_unique=True).size / K
+    for tier, (lo, hi) in bands(c, N).items():
+        if tier != "reject":
+            out[tier] = np.intersect1d(tops[0][lo:hi], tops[1][lo:hi], assume_unique=True).size / (hi - lo)
+    return out
 
 
 def snap_scores(x: np.ndarray, pts: np.ndarray) -> np.ndarray:
@@ -49,8 +64,9 @@ def snap_scores(x: np.ndarray, pts: np.ndarray) -> np.ndarray:
     return snap(x, pts)
 
 
-def tier_overlaps(reviews: list[tuple], R: int, sizes: dict, A: int) -> dict:
+def tier_overlaps(reviews: list[tuple], R: int, sizes: dict, N: int) -> dict:
     """Overlap per tier of two reviews' tiers with R reviewers each, from the prefix sums of their scores."""
+    A = sizes["accept_or_better"]
     accs, tops = [], []
     for cs, jit, eta in reviews:
         sbar = cs[:, R - 1] / R + jit  # the jitter breaks ties uniformly at random, as model.jitter does
@@ -58,14 +74,7 @@ def tier_overlaps(reviews: list[tuple], R: int, sizes: dict, A: int) -> dict:
         t = sbar[acc] + eta[acc]  # the award ordering within the accepted set (model.award_order)
         accs.append(acc)
         tops.append(acc[np.argsort(-t)])
-    out = {}
-    for name, K in sizes.items():
-        if name == "accept":
-            out[name] = np.intersect1d(accs[0], accs[1], assume_unique=True).size / A
-        else:
-            out[name] = np.intersect1d(tops[0][:K], tops[1][:K], assume_unique=True).size / K
-    return out
-
+    return overlaps_from_orders(accs, tops, sizes, N)
 
 def job(spec: dict) -> list[dict]:
     m = calibrated(main_model(sigma_u=0.0), "central")
@@ -75,7 +84,6 @@ def job(spec: dict) -> list[dict]:
     N, reps, chunk, Rs = spec["N"], spec["reps"], spec["chunk"], list(spec["Rs"])
     Rmax = max(Rs)
     sizes = dict(spec["sizes"])
-    A = sizes["accept"]
     pts = m.points
     rng = np.random.default_rng(stable_seed(m.as_dict(), N, reps, chunk, Rmax, "R_needed_tiers_exact"))
     t0 = time.perf_counter()
@@ -90,11 +98,11 @@ def job(spec: dict) -> list[dict]:
             eta = m.sigma_award * rng.standard_normal(N)
             reviews.append((cs, jit, eta))
         for R in Rs:
-            o = tier_overlaps(reviews, R, sizes, A)
+            o = tier_overlaps(reviews, R, sizes, N)
             for t in TIERS:
                 acc[R][t] += o[t]
     wall = time.perf_counter() - t0
-    return [{"N": N, "R": R, "orals": sizes["oral"], "spotlights": sizes["spot"] - sizes["oral"], "reps": reps, "chunk": chunk,
+    return [{"N": N, "R": R, "orals": sizes["oral_or_better"], "spotlights": sizes["spot_or_better"] - sizes["oral_or_better"], "reps": reps, "chunk": chunk,
              **{f"overlap_{t}": acc[R][t] / reps for t in TIERS}, "sigma_eps": m.sigma_eps, "method": "exact", "wall_s": wall / len(Rs)}
             for R in Rs]
 
@@ -119,8 +127,8 @@ def run(specs: list[dict], workers: int, tag: str) -> pd.DataFrame:
             rs = fu.result()
             rows.extend(rs)
             r = rs[0]
-            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} best {r['overlap_best']:.3f} "
-                  f"oral {r['overlap_oral']:.3f} spot {r['overlap_spot']:.3f} accept {r['overlap_accept']:.3f} ({r['wall_s'] * len(rs):.0f}s)", flush=True)
+            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} Best Papers {r['overlap_best']:.3f} "
+                  f"Oral {r['overlap_oral']:.3f} Spotlight {r['overlap_spot']:.3f} Accepted {r['overlap_accept']:.3f} ({r['wall_s'] * len(rs):.0f}s)", flush=True)
     return aggregate(pd.DataFrame(rows))
 
 

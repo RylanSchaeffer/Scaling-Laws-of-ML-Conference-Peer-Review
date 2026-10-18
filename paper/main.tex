@@ -113,13 +113,16 @@ For related work, please see Appendix~\ref{app:related}.
 \label{fig:schematic}
 \end{figure}
 
-\section{Each tier's size follows a power law in submissions}\label{sec:tiers}
+\section{Each Tier's Count Follows a Power Law with Submissions}\label{sec:tiers}
 
-At NeurIPS the tiers have not grown alike, and how a tier grows with the number of submissions $N$ decides how well a second review reproduces it (Sections~\ref{sec:bestpaper} to~\ref{sec:between}).
+At NeurIPS the tiers (Accepted, Spotlight, Oral, Best Paper) have not grown alike, and as we shall we, how a tier grows with the number of submissions $N$ decides how well a second review reproduces it (Sections~\ref{sec:bestpaper} to~\ref{sec:between}).
+We fit each NeurIPS tier's yearly count from 2014 to 2026 as a power law $cN^b$, by least squares on log scales (Fig.~\ref{fig:main}b).
 
-\paragraph{Acceptance keeps pace with submissions; Orals and Spotlights lag behind.} We fit each NeurIPS tier's yearly count from 2014 to 2026 as a power law $cN^b$, by least squares on log scales: at $b=1$ a tier keeps pace with submissions, at $b=0$ it does not grow (Fig.~\ref{fig:main}b). Accepted papers grow as $N^{1.05}$, a \emph{fixed proportion} of submissions, which the model holds at 25\%. Spotlights grow as $0.34\,N^{0.72}$ and Orals as $0.30\,N^{0.59}$. These tiers lie \emph{in between}: they grow, but more slowly than submissions, so each is an ever smaller proportion of them. The model's Spotlight tier holds the Orals as well as the Spotlights.
+\paragraph{Best Papers do not grow at all.} NeurIPS named 1 to 13 Best Papers a year from 2014 to 2025, with a median of 2.5 and mean of 3.5 (Appendix~\ref{app:bestpapers}). The fitted exponent cannot be told from zero, and thus we model the Best Papers as a \emph{constant number} ($N^0$).
 
-\paragraph{Best Papers do not grow at all.} NeurIPS named 1 to 13 Best Papers a year from 2014 to 2025; the fitted exponent, $0.27\pm0.25$, cannot be told from zero. The Best Papers are a \emph{constant number} ($N^0$). We define them as the three papers that a review ranks highest for an award, at every conference size: NeurIPS's median is 2.5 a year and its mean 3.5 (Appendix~\ref{app:bestpapers}). The exact number does not matter: two or four Best Papers scale as three do (Appendix~\ref{app:bestpapers}). These fits set every tier's size wherever the model varies submissions (Fig.~\ref{fig:main}d--g).
+\paragraph{Acceptance keeps pace with submissions; Orals and Spotlights lag behind.}
+Accepted papers grow as $N^{1.05}$, a \emph{fixed proportion} of submissions, around 25\%. 
+In comparison, spotlights grow as $0.34\,N^{0.72}$ and Orals as $0.30\,N^{0.59}$, more slowly than submissions, so each is an ever smaller proportion of submissions. The model's Spotlight tier holds the Orals as well as the Spotlights.
 
 
 \section{Methods: a model of peer review, run twice}\label{sec:methods}

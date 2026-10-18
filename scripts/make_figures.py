@@ -207,7 +207,7 @@ def log_prob_axis(ax):
     P.pct_axis(ax)
 
 
-def fig_headline():
+def fig_headline(exact: bool = False, stem: str = "fig1_headline"):
     """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions,
     with the fitted power law of each tier's count. (c) Where a second review would rank the NeurIPS Best
     Paper in 2014, 2021 and 2026 (results/best_paper.csv). (d-g) The scaling laws of a second review for a
@@ -229,10 +229,15 @@ def fig_headline():
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     row = [fig.add_subplot(bot[0, i]) for i in range(4)]
-    scaling_row(fig, row)
+    scaling_row(fig, row, exact=exact)
     for i, a in enumerate(row):
         P.panel_label(a, "defg"[i])
-    P.save(fig, os.path.join(FIG, "fig1_headline"))
+    P.save(fig, os.path.join(FIG, stem))
+
+
+def fig_headline_exact():
+    """The sibling of Fig 1 with exact (non-cumulative) tiers in (d-g): figures/fig1_headline_exact. Not in the paper."""
+    fig_headline(exact=True, stem="fig1_headline_exact")
 
 
 def standing_panel(ax):
@@ -375,7 +380,26 @@ def experiment_points() -> list[tuple[str, str, int, float]]:
     return pts
 
 
-def scaling_row(fig, axes):
+EXACT_TIERS = (  # the exclusive tiers of the sibling figure, best to worst: (upper nested tier, lower nested tier, colour, label)
+    ("best", None, P.INK, "Best Paper"),
+    ("top10", "best", P.BLUE[650], "2nd to 10th"),
+    ("oral", "top10", P.BLUE[450], "Oral"),
+    ("spot", "oral", P.BLUE[250], "Spotlight"),
+    ("accept", "spot", P.MUTED, "Accepted, no award"),
+    (None, "accept", P.ORANGE[450], "Rejected"),
+)
+
+
+def exact_curves(ax, N, nested: dict):
+    """One line per exclusive tier from the nested (tier-or-better) probabilities in `nested`, keyed by tier."""
+    for upper, lower, color, label in EXACT_TIERS:
+        hi = nested[upper] if upper else 1.0
+        lo = nested[lower] if lower else 0.0
+        ax.plot(N, hi - lo, color=color, lw=1.6 * P.S, label=label)
+    log_prob_axis(ax)
+
+
+def scaling_row(fig, axes, exact: bool = False):
     """The scaling laws: where a second review places a paper that the first review made the Best
     Paper (results/best_paper.csv grid rows, p2_*), an oral, a spotlight or an accepted paper
     (results/placement.csv, place_{first}_in_{second}), against submissions N on NeurIPS's tier trends.
@@ -385,29 +409,41 @@ def scaling_row(fig, axes):
     pl = load("placement")
     pl = pl[pl.level == "central"].sort_values("N")
     ax = axes[0]
-    tier_curves(ax, "p2")
+    if exact:
+        t = load("best_paper")
+        t = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
+        exact_curves(ax, t.N, {k: t[f"p2_{k}"].values for k in TIER_ORDER})
+    else:
+        tier_curves(ax, "p2")
     ax.set_title("Best Paper", loc="left")
     for ax, first, title in ((axes[1], "oral", "Oral"), (axes[2], "spot", "Spotlight"), (axes[3], "accept", "Accepted")):
-        for second, color, label, _ in TIER_CURVES:
-            ax.plot(pl.N, pl[f"place_{first}_in_{second}"], color=color, lw=1.6 * P.S, label=label)
-        log_prob_axis(ax)
+        if exact:
+            exact_curves(ax, pl.N, {k: pl[f"place_{first}_in_{k}"].values for k in TIER_ORDER})
+        else:
+            for second, color, label, _ in TIER_CURVES:
+                ax.plot(pl.N, pl[f"place_{first}_in_{second}"], color=color, lw=1.6 * P.S, label=label)
+            log_prob_axis(ax)
         ax.set_title(title, loc="left")
     panel = {"best": axes[0], "oral": axes[1], "spot": axes[2], "accept": axes[3]}
     colour = {tier: c for tier, c, _, _ in TIER_CURVES}
-    for first, second, N, v in experiment_points():  # the NeurIPS 2014 and 2021 experiments
+    for first, second, N, v in ([] if exact else experiment_points()):  # the NeurIPS 2014 and 2021 experiments (nested proportions)
         panel[first].plot([N], [v], ls="none", marker="o", ms=4.2 * P.S, mfc=colour[second], mec=P.INK, mew=0.8 * P.S, zorder=7,
                           clip_on=False)  # the 6-of-6 orals sit at 100%, on the frame
     for ax in axes:  # where we are this year: NeurIPS 2026 submissions
         ax.axvline(NEURIPS[2026], color=P.INK2, lw=0.9 * P.S, ls=(0, (4, 3)), zorder=0)
         ax.text(NEURIPS[2026] / 1.1, 0.0001, "2026", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
                 bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo where a curve passes under the label
-    axes[0].set_ylabel("Probability, second review")
-    h, l = axes[0].get_legend_handles_labels()  # the five tiers, from the Best Paper panel
-    h.append(Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, mfc=P.SURFACE, mec=P.INK, mew=0.8 * P.S))
-    l.append("NeurIPS 2014 and 2021 experiments")
+    axes[0].set_ylabel("Probability of exactly this tier" if exact else "Probability of this tier or better")
+    h, l = axes[0].get_legend_handles_labels()  # the tiers, from the Best Paper panel
+    if exact:
+        title = "Tier the second review gives the paper"
+    else:
+        h.append(Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, mfc=P.SURFACE, mec=P.INK, mew=0.8 * P.S))
+        l.append("NeurIPS 2014 and 2021 experiments")
+        title = "Tier the second review gives the paper; each tier includes the tiers to its right"
     legend_y = axes[0].get_position().y0 - LEGEND_GAP_IN * P.S / fig.get_size_inches()[1]  # the legend's top, in figure coordinates
     fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, legend_y), ncol=6, handlelength=1.3, columnspacing=1.0,
-               title="Tier the second review gives the paper; each tier includes the tiers to its right", title_fontsize=P.LEGEND_PT)
+               title=title, title_fontsize=P.LEGEND_PT)
 
 
 def fig_scaling():
@@ -628,7 +664,7 @@ def fig_scales():
     P.save(fig, os.path.join(FIG, "fig6_scales"))
 
 
-FIGURES = dict(headline=fig_headline, scaling=fig_scaling, validation=fig_validation, mechanism=fig_mechanism,
+FIGURES = dict(headline=fig_headline, headline_exact=fig_headline_exact, scaling=fig_scaling, validation=fig_validation, mechanism=fig_mechanism,
                robustness=fig_robustness, scales=fig_scales)
 
 

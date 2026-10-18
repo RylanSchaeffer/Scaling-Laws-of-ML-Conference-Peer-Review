@@ -1,8 +1,10 @@
-"""More replays for the two smallest tiers on the submissions grid. The grid rows of
+"""More replays for the smallest tier on the submissions grid. The grid rows of
 results/best_paper.csv come from 10,000 replays (5,000 above 10K submissions), enough for the
-overlaps and the large tiers but not for the Best Paper and top-ten probabilities, which fall to
-0.1% and 1% at 100K. This script re-simulates those two on the main form with many more replays
-(lean: no overlaps) and writes them back into the grid rows, with the replay count in reps_best.
+overlaps and the large tiers but not for the Best Papers probability, which falls below 1% at 100K.
+This script re-simulates it on the main form with many more replays (lean: no overlaps) and writes
+it back into the grid rows, with the replay count in reps_best. The Best Papers are the first three
+papers of the award ordering; p2_best, the share of them a second review also ranks in its top three,
+equals overlap_best.
 
 Usage: uv run python scripts/run_best_paper_hirep.py [--workers 2] [--venues]
   --venues does the same for the cited venue-years (NeurIPS 2014, 2021, 2026; ICML and ICLR 2026).
@@ -19,6 +21,7 @@ import pandas as pd
 
 from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.simulate import simulate_best_paper, stable_seed
+from run_best_paper import N_BEST
 
 PATH = os.path.join(ROOT, "results", "best_paper.csv")
 
@@ -36,9 +39,9 @@ def job(spec: tuple) -> dict:
     reps = reps_for(N)
     seed = stable_seed(m.as_dict(), N, reps, "best_paper_hirep", level, key)
     t0 = time.perf_counter()
-    r = simulate_best_paper(m, N, reps, best_K=(1,), seed=seed, winner_tiers={"best": 1, "top10": 10}, second_committee=True)
+    r = simulate_best_paper(m, N, reps, best_K=(1,), seed=seed, winner_tiers={"best": N_BEST}, second_committee=True,
+                            n_best=N_BEST)
     return {"N": N, "level": level, "key": key, "p2_best": r["winner_in2_best"], "p2_best_se": r["winner_in2_best_se"],
-            "p2_top10": r["winner_in2_top10"], "p2_top10_se": r["winner_in2_top10_se"],
             "overlap_best": r["winner_in2_best"], "overlap_best_se": r["winner_in2_best_se"],
             "winner_rank2_median": r["winner_rank2_median"], "reps_best": reps, "seed_best": seed,
             "wall_s": time.perf_counter() - t0}
@@ -73,7 +76,7 @@ def main() -> None:
                 if k not in ("N", "level", "key", "wall_s"):
                     b.loc[mask, k] = v
             print(f"[{i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} {r['level']}: p2_best={r['p2_best']:.5f}"
-                  f"+-{r['p2_best_se']:.5f} p2_top10={r['p2_top10']:.4f} ({r['reps_best']} reps, {r['wall_s']:.0f}s)", flush=True)
+                  f"+-{r['p2_best_se']:.5f} ({r['reps_best']} reps, {r['wall_s']:.0f}s)", flush=True)
             b.to_csv(PATH, index=False)  # checkpoint after every job
     print(f"updated {PATH}")
 

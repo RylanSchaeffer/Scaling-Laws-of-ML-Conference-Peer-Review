@@ -7,7 +7,7 @@ and results/R_needed_tiers_limit.csv (R = inf on a fine grid of sizes).
 The target for each tier is its overlap at 1,000 submissions with four reviews. R_needed(N) is where
 the ladder's overlap crosses the target, interpolated in log R between rungs: the exact rungs up to 32,
 the approximate ones above. It is inf where even R = inf falls short. N* is the size at which the
-R = inf top-ten overlap falls to the target: from there on no number of reviews holds the top ten.
+R = inf overlap falls to the target: from there on no number of reviews holds that tier.
 
 Writes results/R_needed_tiers.csv (every rung, column method: exact / clt / limit) and
 results/R_needed_tiers_summary.csv (one row per tier and size, with N_star), and prints the check of
@@ -31,6 +31,7 @@ from peerreview.levels import ROOT
 from peerreview.model import MAIN_FORM
 from run_R_needed_tiers import N_GRID, R_LADDER, TIERS
 from run_R_needed_tiers_large import n_star
+from run_best_paper import N_BEST
 
 
 def r_needed(Rs: np.ndarray, ov: np.ndarray, target: float) -> float:
@@ -146,7 +147,7 @@ def main() -> None:
             rows.append({"tier": t, "N": int(N), "target": target, "R_needed": r_needed(d.R.values.astype(float), d[f"overlap_{t}"].values, target),
                          "overlap_at_4": float(at4.iloc[0]) if len(at4) else np.nan, "limit_overlap": lim_v,
                          "reachable": bool(lim_v >= target) if np.isfinite(lim_v) else np.nan, "N_star": ns,
-                         "size": int({"top10": 10, "oral": d.orals.iloc[0], "spot": d.orals.iloc[0] + d.spotlights.iloc[0], "accept": round(0.25 * N)}[t])})
+                         "size": int({"best": N_BEST, "oral": d.orals.iloc[0], "spot": d.orals.iloc[0] + d.spotlights.iloc[0], "accept": round(0.25 * N)}[t])})
     s = pd.DataFrame(rows)
     s.to_csv(os.path.join(res, "R_needed_tiers_summary.csv"), index=False)
     show = s.pivot(index="N", columns="tier", values="R_needed").round(1)

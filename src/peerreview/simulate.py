@@ -21,8 +21,10 @@ Metric names (per selection X of size K; every value is a per-conference mean):
     ovl_X     P(accepted by 2 | accepted by 1)
     dis_X     P(rejected by 2 | accepted by 1) = 1 - ovl_X
     incons_X  share of all papers accepted by exactly one committee = 2A(1-ovl)/N
-  Best paper: best_in_K{K} = P(truly best paper is in Top_K(s1)).
-  Winner: true rank (1 = best) of the top-scored paper; pooled quantiles.
+  Highest-quality paper (not the Best Papers; not in the paper): best_in_K{K} = P(the paper of highest
+  true quality is in Top_K(s1)).
+  winner_rank: true rank (1 = best) of the first paper of the award ordering; pooled quantiles
+  (simulate_best_paper pools it over the n_best Best Papers).
   corr_qs = corr(q, s1); corr_s12 = corr(s1, s2) (computed before jitter).
 """
 
@@ -146,8 +148,8 @@ def simulate_chunk(
     top, accsel = sel.sizes(N)
     A_ref = int(round(sel.alpha_ref * N))
     M1, M5 = max(1, int(round(0.01 * N))), max(1, int(round(0.05 * N)))
-    # Award ordering (model.award_order): the top-of-ranking selections, the winner and the best paper's
-    # rank are by score + chair noise within the accepted set (A_ref); acceptance stays by the score.
+    # Award ordering (model.award_order): the top-of-ranking selections, the first paper of the award
+    # ordering (winner_rank) and the highest-quality paper's rank (best_in_K) are by score + chair noise within the accepted set (A_ref); acceptance stays by the score.
     t1 = award_order(rng, s1, m, A_ref)
     t2 = award_order(rng, s2, m, A_ref) if two_committees else None
 
@@ -205,7 +207,7 @@ def simulate_chunk(
             acc.add(f"dis_{name}", 1.0 - ovl)
             acc.add(f"incons_{name}", 2.0 * A * (1.0 - ovl) / N)
 
-    # --- best paper and winner ----------------------------------------------
+    # --- highest-quality paper (best_in_K) and first of the award ordering (winner_rank) ----------------------------------------------
     b = np.argmax(q, axis=1)
     srank_best = (t1 > t1[rows[:, 0], b][:, None]).sum(1)  # 0-based rank in the award ordering
     for K in sel.best_K:
@@ -265,23 +267,27 @@ def simulate_best_paper(
     overlap_tiers: dict[str, int] | None = None,
     place_tiers: dict[str, int] | None = None,
     accept: int | None = None,
+    n_best: int = 1,
 ) -> dict:
-    """High-replication P(best paper in Top_K) and winner rank; O(N) per conference.
+    """High-replication tier probabilities and ranks of the Best Papers, the first n_best papers of the award ordering; O(N) per conference.
 
     Every rank is in the award ordering (model.award_order): the score plus the chairs' award noise
     within the accepted set, whose size is `accept`, else the "accept" entry of winner_tiers or
-    overlap_tiers, else 25% of N. The Best Paper is the first paper of that ordering. With
-    sigma_award = 0 the award ordering is the score ordering.
+    overlap_tiers, else 25% of N. The Best Papers are the first n_best papers of that ordering
+    (the paper uses n_best = 3). With sigma_award = 0 the award ordering is the score ordering.
 
-    winner_tiers {name: M} adds winner_in_{name} = P(the top-scored paper is in the true top M).
-    second_committee re-reviews every paper with fresh noise (u and eps redrawn) and adds
-    winner_rank2, the top-scored paper's rank by the second committee's scores, and
-    winner_in2_{name} = P(that rank <= M): where a second review would place the Best Paper.
+    winner_tiers {name: M} adds winner_in_{name}, the proportion of the Best Papers in the true
+    top M, averaged over conferences: the probability for the Best Papers. second_committee
+    re-reviews every paper with fresh noise (u, eps and eta redrawn) and adds winner_rank2, the rank of
+    each of the Best Papers by the second review's award ordering (pooled over the three), and
+    winner_in2_{name}, the proportion of the Best Papers that the second review ranks within M:
+    where a second review would place the Best Papers. winner_in2_{n_best-sized tier} is the share of
+    the Best Papers tier that the second review keeps.
     With second_committee, overlap_tiers {name: K} adds overlap_{name}, the proportion of the
-    first review's top K that the second review also ranks in its top K (K = 1 is the
-    probability that both reviews pick the same Best Paper), and z2_winner and z2_tenth, the
-    second review's score for the first review's Best Paper and its own 10th-best score, both
-    in units of the second review's score SD about its mean.
+    first review's top K that the second review also ranks in its top K, and z2_winner and
+    z2_cut, the second review's score for the first review's Best Papers (their mean) and its own
+    n_best-th best score in its award ordering, both in units of the second review's score SD about
+    its mean.
     With overlap_tiers, place_tiers {name: K} adds place_{name}_in_{tier} for every tier in
     overlap_tiers: the proportion of the first review's top K (the papers it put in that tier)
     that the second review ranks within that tier's size, so where a second review places a
@@ -308,18 +314,21 @@ def simulate_best_paper(
         srank = (t > t[rows, b][:, None]).sum(1)
         for K in best_K:
             acc.add(f"best_in_K{K}", srank < K)
-        w = np.argmax(t, axis=1)
-        rank = (q > q[rows, w][:, None]).sum(1) + 1
-        acc.add("winner_rank", rank)
+        if n_best == 1:
+            W = np.argmax(t, axis=1)[:, None]
+        else:  # the first n_best papers of the award ordering, in any order
+            W = np.argpartition(-t, n_best - 1, axis=1)[:, :n_best]
+        rank = np.stack([(q > q[rows, W[:, k]][:, None]).sum(1) + 1 for k in range(n_best)], axis=1)
+        acc.add("winner_rank", rank.ravel())
         for name, M in (winner_tiers or {}).items():
-            acc.add(f"winner_in_{name}", rank <= M)
+            acc.add(f"winner_in_{name}", (rank <= M).mean(1))
         if second_committee:
             s2 = jitter(rng, sample_scores(rng, q, m), m)
             t2 = award_order(rng, s2, m, accept)
-            rank2 = (t2 > t2[rows, w][:, None]).sum(1) + 1
-            acc.add("winner_rank2", rank2)
+            rank2 = np.stack([(t2 > t2[rows, W[:, k]][:, None]).sum(1) + 1 for k in range(n_best)], axis=1)
+            acc.add("winner_rank2", rank2.ravel())
             for name, M in (winner_tiers or {}).items():
-                acc.add(f"winner_in2_{name}", rank2 <= M)
+                acc.add(f"winner_in2_{name}", (rank2 <= M).mean(1))
             if overlap_tiers:
                 order1 = np.argsort(-t, axis=1)
                 order2 = np.argsort(-t2, axis=1)
@@ -336,8 +345,8 @@ def simulate_best_paper(
                         for tname, KT in overlap_tiers.items():
                             acc.add(f"place_{xname}_in_{tname}", (r2 < int(KT)).sum(1) / int(KX))
                 mu2, sd2 = s2.mean(axis=1), s2.std(axis=1)
-                acc.add("z2_winner", (s2[rows, w] - mu2) / sd2)
-                acc.add("z2_tenth", (s2[rows, order2[:, 9]] - mu2) / sd2)
+                acc.add("z2_winner", ((s2[rows[:, None], W] - mu2[:, None]) / sd2[:, None]).mean(1))
+                acc.add("z2_cut", (s2[rows, order2[:, n_best - 1]] - mu2) / sd2)
         done += r
     row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability, "accept": int(accept)}
     row.update(acc.summary())

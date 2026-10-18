@@ -5,7 +5,7 @@ at its R = 4 calibration, the chairs' call on, sigma_eta = 0.59) is simulated wi
 per paper and per review; the mean of the first R of them is the paper's score with R reviews, so every
 rung of the ladder is evaluated on the same draws (common random numbers) and the overlap rises
 smoothly with R. The overlap of two reviews' tiers is the proportion of one review's tier that the
-other also puts there: the top ten (a constant number), the orals and the spotlights (NeurIPS's fitted
+other also puts there: the three Best Papers (a constant number), the orals and the spotlights (NeurIPS's fitted
 trends, results/tier_sizes.csv) and the accepted papers (25% of N). R = 64 is also run at three sizes
 as a check on the normal approximation of run_R_needed_tiers_large.py, which carries the ladder beyond
 32 reviews and to the limit of infinitely many.
@@ -29,16 +29,17 @@ from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import sample_quality, snap
 from peerreview.simulate import stable_seed
 from peerreview.tiers import tier_size
+from run_best_paper import N_BEST
 
 N_GRID = [int(round(10 ** (3 + k / 6))) for k in range(13)]  # 1000, 1468, 2154, ... 68129, 100000
 R_LADDER = [4, 5, 6, 8, 10, 12, 16, 20, 24, 32]
 R_CHECK = {64: [10_000, 46_416, 100_000]}  # exact rungs beyond the ladder, as a check on the approximation
-TIERS = ("top10", "oral", "spot", "accept")
+TIERS = ("best", "oral", "spot", "accept")
 
 
 def tiers_at(fits: pd.DataFrame, N: int) -> dict:
     orals = tier_size(fits, "orals", N)
-    return {"top10": 10, "oral": orals, "spot": orals + tier_size(fits, "spotlights", N), "accept": int(round(0.25 * N))}
+    return {"best": N_BEST, "oral": orals, "spot": orals + tier_size(fits, "spotlights", N), "accept": int(round(0.25 * N))}
 
 
 def snap_scores(x: np.ndarray, pts: np.ndarray) -> np.ndarray:
@@ -118,7 +119,7 @@ def run(specs: list[dict], workers: int, tag: str) -> pd.DataFrame:
             rs = fu.result()
             rows.extend(rs)
             r = rs[0]
-            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} top10 {r['overlap_top10']:.3f} "
+            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} best {r['overlap_best']:.3f} "
                   f"oral {r['overlap_oral']:.3f} spot {r['overlap_spot']:.3f} accept {r['overlap_accept']:.3f} ({r['wall_s'] * len(rs):.0f}s)", flush=True)
     return aggregate(pd.DataFrame(rows))
 
@@ -143,7 +144,7 @@ def main() -> None:
     path = os.path.join(ROOT, "results", "R_needed_tiers_exact.csv")
     df.to_csv(path, index=False)
     print(f"wrote {path}: {len(df)} rows")
-    print(df.pivot(index="N", columns="R", values="overlap_top10").round(3).to_string())
+    print(df.pivot(index="N", columns="R", values="overlap_best").round(3).to_string())
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
 (data/review_forms.csv) and on continuous scores, each recalibrated at the central level.
 
 Part "conference": the NeurIPS 2026 and 2014 conferences (submissions, acceptance rate, oral and
-spotlight counts) under each form: where a second review places the first review's Best Paper
-(p2_*), the tier overlaps (overlap_*) and the score positions (z2_*).
+spotlight counts) under each form: where a second review places the first review's three Best Papers
+(p2_*, the share of them in each tier; p2_best is the share it keeps among its own Best Papers).
 Part "grid": a submissions grid 1K to 100K with the fitted tier sizes and 25% acceptance, for the
 main form, the six-point form, the ICLR 2022-2025 form and continuous scores.
 
@@ -24,6 +24,7 @@ from peerreview.levels import LEVELS, ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
+from run_best_paper import N_BEST
 
 FORMS = (  # label, R, scale, who uses it
     ("Integer 1--10, 4 reviews", 4, "int10", "main form; NeurIPS 2014--2024, ICML 2023--2024, ICLR 2017--2019 and 2021"),
@@ -44,23 +45,19 @@ REPS_CONF = {2026: 40_000, 2014: 100_000}
 def job(spec: dict) -> dict:
     m = calibrated(main_model(R=spec["R"], scale=spec["scale"]), spec["level"])
     N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
-    tiers = {"best": 1, "top10": 10, "oral": int(spec["orals"]), "spot": int(spec["orals"] + spec["spotlights"]), "accept": A}
-    overlap = {**tiers, "top1pct": max(1, int(round(0.01 * N)))}
+    tiers = {"best": N_BEST, "oral": int(spec["orals"]), "spot": int(spec["orals"] + spec["spotlights"]), "accept": A}
     seed = stable_seed(m.as_dict(), N, spec["reps"], "scale_impact", spec["part"])
     t0 = time.perf_counter()
-    r = simulate_best_paper(m, N, spec["reps"], best_K=(1, 10), seed=seed, winner_tiers=tiers,
-                            second_committee=True, overlap_tiers=overlap)
+    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, winner_tiers=tiers,
+                            second_committee=True, n_best=N_BEST)  # lean: no overlaps, which the paper does not use
     out = {**spec, "rho2": LEVELS[spec["level"]], "sigma_eps": m.sigma_eps, "accepted": A, "seed": seed}
-    for name in ("best", "top10", "oral", "spot", "accept"):
+    for name in ("best", "oral", "spot", "accept"):
         out[f"p2_{name}"] = r[f"winner_in2_{name}"]
         out[f"p2_{name}_se"] = r[f"winner_in2_{name}_se"]
         out[f"p_{name}"] = r[f"winner_in_{name}"]
-        out[f"overlap_{name}"] = r[f"overlap_{name}"]
     out["p2_reject"] = 1.0 - out["p2_accept"]
     out["p2_reject_se"] = out["p2_accept_se"]
-    out["overlap_top1pct"] = r["overlap_top1pct"]
-    for k in ("winner_rank2_median", "z2_winner", "z2_winner_sd", "z2_tenth"):
-        out[k] = r[k]
+    out["winner_rank2_median"] = r["winner_rank2_median"]
     out["wall_s"] = time.perf_counter() - t0
     return out
 
@@ -101,7 +98,7 @@ def main() -> None:
             r = f.result()
             rows.append(r)
             print(f"[{i}/{len(sp)} {time.perf_counter() - t0:.0f}s] {r['part']} {r['form']} N={r['N']}: p2_best={r['p2_best']:.4f} "
-                  f"p2_top10={r['p2_top10']:.3f} p2_reject={r['p2_reject']:.3f} ({r['wall_s']:.0f}s)", flush=True)
+                  f"p2_reject={r['p2_reject']:.3f} ({r['wall_s']:.0f}s)", flush=True)
     out = pd.DataFrame(rows)
     path = os.path.join(ROOT, "results", "scale_impact.csv")
     if args.grid_only:  # keep the conference rows of the existing table

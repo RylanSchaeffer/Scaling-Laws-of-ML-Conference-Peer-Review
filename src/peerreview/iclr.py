@@ -642,11 +642,13 @@ SPLIT_METRICS = (
     "precision",
     "ovl_top10",
     "ovl_top30",
+    "ovl_top3",
     "corr_halves",
     "prec_vs_actual",
     "n_ge_cut_A",
     "n_ge_cut_top10",
     "n_ge_cut_top30",
+    "n_ge_cut_top3",
 )
 
 
@@ -681,6 +683,7 @@ def split_half_draws(
     seed: int = 0,
     A: int | None = None,
     Ks: Sequence[int] = (10, 30),
+    extra_Ks: Sequence[int] = (3,),
     chunk: int = 20,
 ) -> dict[str, np.ndarray]:
     """Per-split metrics for papers with >= 4 reviews.
@@ -689,7 +692,9 @@ def split_half_draws(
     In each split every paper's reviews are put in a uniformly random order; the
     first two form half 1 and the next two half 2 (extras are dropped). Each half
     accepts its top A papers by half mean (A defaults to accepted.sum()), ties
-    broken uniformly at random, and likewise picks its top K for each K in Ks.
+    broken uniformly at random, and likewise picks its top K for each K in Ks and extra_Ks. The
+    tie-breaks of extra_Ks (3: the Best Papers' size) come from a second generator, so adding them
+    leaves every other draw unchanged.
     Returned per split:
       inconsistent   share of papers accepted by exactly one half
       precision      |Acc1 & Acc2| / A
@@ -711,9 +716,10 @@ def split_half_draws(
     if not 1 <= A < n:
         raise ValueError("need 1 <= A < number of papers")
     rng = np.random.default_rng(seed)
+    rng_x = np.random.default_rng([seed, 1])  # tie-breaks for extra_Ks only
     out = {m: [] for m in ("inconsistent", "precision", "corr_halves", "prec_vs_actual", "n_ge_cut_A")}
-    out.update({f"ovl_top{K}": [] for K in Ks})
-    out.update({f"n_ge_cut_top{K}": [] for K in Ks})
+    out.update({f"ovl_top{K}": [] for K in (*Ks, *extra_Ks)})
+    out.update({f"n_ge_cut_top{K}": [] for K in (*Ks, *extra_Ks)})
     filled = np.where(valid, scores, 0.0)
     for start in range(0, n_splits, chunk):
         S = min(chunk, n_splits - start)
@@ -732,10 +738,10 @@ def split_half_draws(
         out["prec_vs_actual"].append((a1 & accepted[None, :]).sum(1) / A)
         out["corr_halves"].append(_rowcorr(h1, h2))
         out["n_ge_cut_A"].append((h1 >= _kth_largest(h1, A)[:, None]).sum(1))
-        for K in Ks:
+        for K, g in [(K, rng) for K in Ks] + [(K, rng_x) for K in extra_Ks]:
             if K < n:
-                t1 = _top_mask(h1, K, rng, eps)
-                t2 = _top_mask(h2, K, rng, eps)
+                t1 = _top_mask(h1, K, g, eps)
+                t2 = _top_mask(h2, K, g, eps)
                 out[f"ovl_top{K}"].append((t1 & t2).sum(1) / K)
                 out[f"n_ge_cut_top{K}"].append((h1 >= _kth_largest(h1, K)[:, None]).sum(1))
             else:

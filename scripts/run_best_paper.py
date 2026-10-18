@@ -1,12 +1,12 @@
-"""Where a second review would place the Best Paper, simulated on the main review form
+"""Where a second review would place the Best Papers, simulated on the main review form
 (peerreview.model.MAIN_FORM: integer 1-10 scores, four reviews per paper), at the three reliability levels.
 
 For every venue-year in data/venues.csv (with its submissions, acceptance rate, oral and
 spotlight counts) and for a grid of submissions N with the fitted tier sizes (results/tier_sizes.csv)
 and acceptance at 25%, each replay draws one conference, reviews it twice, and records the tier the
-second review gives the first review's Best Paper, the first paper of its award ordering (p2_*), the overlap of the two reviews'
-tiers (overlap_*), and the second review's score for that paper against its own 10th-best score
-(z2_*). Columns match the former analytic table.
+second review gives each of the first review's three Best Papers, the first three papers of its award ordering
+(p2_*, averaged over the three), the overlap of the two reviews' tiers (overlap_*; overlap_best equals p2_best),
+and the second review's score for those papers against its own third-best score (z2_*).
 
 Writes results/best_paper.csv.
 Usage: uv run python scripts/run_best_paper.py [--workers 2] [--reps 10000]
@@ -31,6 +31,7 @@ from peerreview.tiers import tier_size
 N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
 CITED_YEARS = (2014, 2021, 2026)  # the NeurIPS years the paper quotes (--cited)
 GRID_ALPHA = 0.25
+N_BEST = 3  # the Best Papers: the first three papers of the award ordering, at every size
 SCALE, R = MAIN_FORM["scale"], MAIN_FORM["R"]
 
 
@@ -42,18 +43,18 @@ def job(spec: dict) -> dict:
         return {**spec, "rho2": LEVELS[level], "sigma_eps": np.nan, "accepted": A, "wall_s": 0.0}
     M_oral = int(spec["orals"]) if spec["orals"] == spec["orals"] else None  # NaN check
     M_spot = M_oral + int(spec["spotlights"]) if M_oral and spec["spotlights"] == spec["spotlights"] else None
-    tiers = {"best": 1, "top10": 10, "accept": A}
+    tiers = {"best": N_BEST, "accept": A}
     if M_oral:
         tiers["oral"] = M_oral
     if M_spot:
         tiers["spot"] = M_spot
-    overlap = {**tiers, "top1pct": max(1, int(round(0.01 * N)))}
+    overlap = {**tiers, "top0p3pct": max(1, int(round(0.003 * N)))}  # a fixed proportion as large as the Best Papers at 1,000
     seed = stable_seed(m.as_dict(), N, spec["reps"], "best_paper_forms", spec["source"], level)
     t0 = time.perf_counter()
-    r = simulate_best_paper(m, N, spec["reps"], best_K=(1, 10), seed=seed, winner_tiers=tiers,
-                            second_committee=True, overlap_tiers=overlap)
+    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, winner_tiers=tiers,
+                            second_committee=True, overlap_tiers=overlap, n_best=N_BEST)
     out = {**spec, "rho2": LEVELS[level], "sigma_eps": m.sigma_eps, "accepted": A, "seed": seed}
-    for name in ("best", "top10", "oral", "spot", "accept"):
+    for name in ("best", "oral", "spot", "accept"):
         out[f"p2_{name}"] = r.get(f"winner_in2_{name}", np.nan)
         out[f"p2_{name}_se"] = r.get(f"winner_in2_{name}_se", np.nan)
         out[f"p_{name}"] = r.get(f"winner_in_{name}", np.nan)
@@ -62,11 +63,10 @@ def job(spec: dict) -> dict:
     out["p2_reject"] = 1.0 - out["p2_accept"]
     out["p2_reject_se"] = out["p2_accept_se"]
     out["p_reject"] = 1.0 - out["p_accept"]
-    out["p_top10pct"] = np.nan
-    out["overlap_top1pct"] = r["overlap_top1pct"]
-    out["overlap_top1pct_se"] = r["overlap_top1pct_se"]
+    out["overlap_top0p3pct"] = r["overlap_top0p3pct"]
+    out["overlap_top0p3pct_se"] = r["overlap_top0p3pct_se"]
     for k in ("winner_rank2_median", "winner_rank2_q10", "winner_rank2_q90", "winner_rank_median",
-              "z2_winner", "z2_winner_sd", "z2_winner_se", "z2_tenth", "z2_tenth_sd", "z2_tenth_se"):
+              "z2_winner", "z2_winner_sd", "z2_winner_se", "z2_cut", "z2_cut_sd", "z2_cut_se"):
         out[k] = r[k]
     out["wall_s"] = time.perf_counter() - t0
     return out
@@ -114,7 +114,7 @@ def main() -> None:
             r = f.result()
             rows.append(r)
             print(f"[{i}/{len(sp)} {time.perf_counter() - t0:.0f}s] {r['source']} {r['venue']} {r['year']} N={r['N']} "
-                  f"{r['scale']} R={r['R']} {r['level']}: p2_best={r['p2_best']:.4f} p2_top10={r['p2_top10']:.3f} "
+                  f"{r['scale']} R={r['R']} {r['level']}: p2_best={r['p2_best']:.4f} "
                   f"p2_accept={r['p2_accept']:.3f} ({r['wall_s']:.0f}s)", flush=True)
     out = pd.DataFrame(rows).sort_values(["source", "venue", "year", "N", "level"])
     out["year"] = out["year"].astype("Int64")

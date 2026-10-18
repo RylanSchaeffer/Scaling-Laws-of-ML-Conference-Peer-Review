@@ -337,7 +337,7 @@ def main() -> None:
     cols = ["year", "scale", "n_kept", "A", "accept_rate_kept"]
     cols += [f"{m}_{s}" for m in main_m for s in ("mean", "sd")] + ["sb_pred_corr_halves"]
     _print(sh[cols], "split-half replay, decided main track with >= 4 reviews (§8.2)")
-    tie = ["year", "A", "n_ge_cut_A_mean", "n_ge_cut_top10_mean", "n_ge_cut_top30_mean"]
+    tie = ["year", "A", "n_ge_cut_A_mean", "n_ge_cut_top10_mean", "n_ge_cut_top30_mean", "n_ge_cut_top3_mean"]
     _print(sh[tie], "papers at or above each half-1 cut (tie blocks)", "{:.1f}")
     print(f"\nwrote results/iclr_score_values.csv, iclr_counts.csv, iclr_pooled_pairs.csv, iclr_variance.csv, iclr_splithalf_observed.csv "
           f"({time.time() - t0:.0f} s)")

@@ -1,15 +1,17 @@
-"""Where does the Best Paper land under a second review, tier by tier, as conferences grow?
+"""Where do the Best Papers land under a second review, tier by tier, as conferences grow?
 And how much of each tier does a second review reproduce?
 
 Tier sizes follow NeurIPS's own trends (peerreview.tiers): acceptance is the grid's fixed
-proportion, orals and spotlights grow as fitted power laws of N, the top ten and the Best Paper are
-constant numbers. At each N of the grid and each reliability level this script computes, in
-the rerun framing (a paper's two scores correlate at rho^2):
+proportion, orals and spotlights grow as fitted power laws of N, and the Best Papers are a
+constant number, the first three papers of the award ordering. At each N of the grid and each
+reliability level this script computes, for continuous scores without the chairs' call, in the
+rerun framing (a paper's two scores correlate at rho^2):
 
-- p2_{best,top10,oral,spot,accept}: the probability that a second review ranks the first
-  review's Best Paper within its top M, for M = 1, 10, the oral count, the oral plus
-  spotlight count, and the accepted count (exact finite-N integrals).
-- ovl_{top10,oral,spot,accept}: the proportion of one review's tier that the other also puts
+- p2_{best,oral,spot,accept}: the probability that a second review ranks a paper among the first
+  review's Best Papers within its top M, for M = 3, the oral count, the oral plus
+  spotlight count, and the accepted count (exact finite-N integrals); p2_best is also the
+  Best Papers' overlap.
+- ovl_{oral,spot,accept}: the proportion of one review's tier that the other also puts
   in its tier. Exact for M < 30; for larger M the closed-form fixed-percentile formula
   (precision_pct_finite at rho^2), whose relative error is below 0.01% from M = 30 up.
 
@@ -31,6 +33,7 @@ from make_figures import venue_counts  # noqa: E402
 from peerreview import analytic as an  # noqa: E402
 from peerreview.levels import LEVELS, ROOT  # noqa: E402
 from peerreview.tiers import ACCEPT_SHARE, fit_tier_sizes, tier_size  # noqa: E402
+from run_best_paper import N_BEST  # noqa: E402
 
 N_GRID = [1000, 1500, 2000, 3000, 5000, 7000, 10_000, 15_000, 20_000, 30_000, 50_000, 70_000, 100_000]
 EXACT_BELOW = 30  # exact 2-D integral below this set size; closed form above
@@ -54,12 +57,10 @@ def main() -> None:
             A = int(round(ACCEPT_SHARE * N))  # the grid's fixed proportion; the fitted exponent is 1.05
             rows.append(dict(
                 level=level, rho2=rho2, N=N, M_oral=M_oral, M_spot=M_spot, A=A,
-                p2_best=an.containment_fixed_K(N, 1, 1, rho2),
-                p2_top10=an.containment_fixed_K(N, 1, 10, rho2),
-                p2_oral=an.containment_fixed_K(N, 1, M_oral, rho2),
-                p2_spot=an.containment_fixed_K(N, 1, M_spot, rho2),
-                p2_accept=an.containment_fixed_K(N, 1, A, rho2),
-                ovl_top10=overlap(N, 10, rho2),
+                p2_best=an.containment_fixed_K(N, N_BEST, N_BEST, rho2),  # = the Best Papers' overlap
+                p2_oral=an.containment_fixed_K(N, N_BEST, M_oral, rho2),
+                p2_spot=an.containment_fixed_K(N, N_BEST, M_spot, rho2),
+                p2_accept=an.containment_fixed_K(N, N_BEST, A, rho2),
                 ovl_oral=overlap(N, M_oral, rho2),
                 ovl_spot=overlap(N, M_spot, rho2),
                 ovl_accept=overlap(N, A, rho2),

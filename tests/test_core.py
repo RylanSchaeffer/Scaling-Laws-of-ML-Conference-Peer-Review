@@ -71,15 +71,18 @@ def test_second_committee_matches_closed_forms():
     m = ReviewModel(R=3, sigma_eps=2.0)
     rho2 = m.reliability
     N, A = 2000, 500
-    row = simulate_best_paper(m, N, reps=6000, best_K=(1,), winner_tiers={"top10": 10, "accept": A}, second_committee=True)
     # Committee 2's scores correlate with committee 1's at rho^2, so the rerun tiers are the
-    # true-rank integrals at correlation rho^2, and the true-rank tiers those at rho.
-    for name, M, c in (("top10", 10, rho2), ("accept", A, rho2)):
-        exact = an.containment_fixed_K(N, 1, M, c)
-        assert abs(row[f"winner_in2_{name}"] - exact) < 4 * row[f"winner_in2_{name}_se"] + 1e-3
-    exact = an.containment_fixed_K(N, 1, 10, np.sqrt(rho2))
-    assert abs(row["winner_in_top10"] - exact) < 4 * row["winner_in_top10_se"] + 1e-3
-    assert row["winner_rank2_median"] > row["winner_rank_median"]
+    # true-rank integrals at correlation rho^2, and the true-rank tiers those at rho; the same for
+    # one paper and for the three of the paper (the share of them inside the tier).
+    for n_best in (1, 3):
+        row = simulate_best_paper(m, N, reps=6000, best_K=(1,), winner_tiers={"best": 3, "top10": 10, "accept": A},
+                                  second_committee=True, n_best=n_best)
+        for name, M in (("best", 3), ("top10", 10), ("accept", A)):
+            exact = an.containment_fixed_K(N, n_best, M, rho2)
+            assert abs(row[f"winner_in2_{name}"] - exact) < 4 * row[f"winner_in2_{name}_se"] + 1e-3
+        exact = an.containment_fixed_K(N, n_best, 10, np.sqrt(rho2))
+        assert abs(row["winner_in_top10"] - exact) < 4 * row["winner_in_top10_se"] + 1e-3
+        assert row["winner_rank2_median"] > row["winner_rank_median"]
 
 
 def test_tier_size_fit_recovers_power_law():
@@ -87,7 +90,8 @@ def test_tier_size_fit_recovers_power_law():
     from peerreview.tiers import fit_tier_sizes, tier_size
     N = np.array([1000, 2000, 5000, 10_000, 20_000], float)
     counts = pd.DataFrame(dict(venue="NeurIPS", year=np.arange(2014, 2019), N_used=N, acc_rate_used=0.25,
-                               orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8, awards=[3, 3, 3, 3, np.nan]))
+                               orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8,
+                               awards_used=[3, 3, 3, 3, np.nan]))
     f = fit_tier_sizes(counts)
     a, o, s, w = (f[f.tier == t].iloc[0] for t in ("accepted", "orals", "spotlights", "awards"))
     assert abs(a.gamma - 1.0) < 1e-9 and abs(a.a - 0.25) < 1e-9
@@ -110,11 +114,13 @@ def test_placement_matches_overlap_and_nests():
     from peerreview.simulate import simulate_best_paper
     from peerreview.model import ReviewModel, MAIN_FORM
     m = ReviewModel(**MAIN_FORM, sigma_eps=2.0)
-    tiers = {"best": 1, "top10": 10, "oral": 17, "spot": 65, "accept": 250}
-    r = simulate_best_paper(m, 1000, reps=100, best_K=(1,), seed=3, winner_tiers={"best": 1}, second_committee=True,
-                            overlap_tiers=tiers, place_tiers={"oral": 17, "spot": 65, "accept": 250})
-    for k in ("oral", "spot", "accept"):
+    tiers = {"best": 3, "oral": 17, "spot": 65, "accept": 250}
+    r = simulate_best_paper(m, 1000, reps=100, best_K=(1,), seed=3, winner_tiers=tiers, second_committee=True,
+                            overlap_tiers=tiers, place_tiers=tiers, n_best=3)
+    for k in ("best", "oral", "spot", "accept"):
         assert r[f"place_{k}_in_{k}"] == r[f"overlap_{k}"]  # a paper keeps its own tier with the tier's overlap
+    for k in ("best", "oral", "spot", "accept"):  # the lean Best Papers path and the placement path agree
+        assert abs(r[f"winner_in2_{k}"] - r[f"place_best_in_{k}"]) < 1e-12
     # tiers nest, so the chance of a tier or higher grows with the tier
     assert r["place_oral_in_oral"] <= r["place_oral_in_spot"] <= r["place_oral_in_accept"] <= 1
     assert r["place_spot_in_spot"] <= r["place_spot_in_accept"]
@@ -136,12 +142,12 @@ def test_award_step():
         rej = np.argsort(-row_s)[50:]
         assert list(np.argsort(-row_t)[50:]) == list(rej)  # rejected papers keep their score order
     # with sigma_award = 0 the simulator is unchanged (same seed, same numbers)
-    tiers = {"best": 1, "top10": 10, "oral": 17, "spot": 65, "accept": 250}
+    tiers = {"best": 3, "oral": 17, "spot": 65, "accept": 250}
     a = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
     b = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers, accept=250)
     assert a["overlap_spot"] == b["overlap_spot"] and a["winner_in2_best"] == b["winner_in2_best"]
     # award noise lowers the award overlaps and leaves the acceptance overlap
     c = simulate_best_paper(m0.replace(sigma_award=1.0), 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
     d = simulate_best_paper(m0, 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
-    assert c["overlap_oral"] < d["overlap_oral"] and c["overlap_top10"] < d["overlap_top10"]
+    assert c["overlap_oral"] < d["overlap_oral"] and c["overlap_best"] < d["overlap_best"]
     assert abs(c["overlap_accept"] - d["overlap_accept"]) < 0.03

@@ -209,6 +209,16 @@ that agrees with N x rate to rounding. It is blank where no such count exists; t
 accepted count is round(rate x N). "Check" is the worst outcome over the row's claims. Bold text
 marks a contradiction. Every source link is in `data/venues.csv` (`check_url`).
 
+NeurIPS Best Papers, checked against the official award pages on 2026-10-17, are in
+`data/neurips_best_papers.csv`: the main track's top paper award (the "Best Paper" or "Outstanding Paper" award) and the
+same across all tracks (main plus Datasets and Benchmarks), with the other paper awards listed apart. Main
+track 2014-2025: 2, 2, 1, 3, 4, 1, 3, 6, 13, 2, 2, 3 (median 2.5, mean 3.5). All tracks: 2, 2, 1, 3, 4, 1, 3,
+8, 15, 4, 3, 4 (median 3, mean 4.2). The study uses the main-track count (`awards_used`), which differs from
+the handoff's Awards column in 2014 and 2015 (blank there; 2 each), 2019 (2 there, counting the Outstanding New
+Directions award; 1) and 2025 (4 there, counting one Datasets and Benchmarks paper; 3). 2021's 6 holds: the fact
+sheet's 5 omits one paper that the program chairs' post, the press release and the virtual site list. The model
+holds the Best Papers at three at every size.
+
 **Growth rates in the abstract** (29% per year at NeurIPS, 34% at ICML, 50% at ICLR): endpoint
 growth over the past decade from `data/venues.csv` (`N_used`), NeurIPS 2016 to 2026
 (2,403 to 30,709: 29.0%), ICML 2016 to 2026 (1,320 to 23,918: 33.6%) and ICLR 2017 to 2026,
@@ -345,4 +355,4 @@ Fitted on NeurIPS main-track counts from `data/venues.csv` (`orals_used`) and
 | Accepted | 0.155 N^1.048 (the N grid uses 0.25 N) | 2014-2026 (13) | 0.040 |
 | Spotlights | 0.343 N^0.716 | 2014-2026 (11; no tier 2016, 2022) | 0.117 |
 | Orals | 0.296 N^0.585 | 2014-2026 (13) | 0.185 |
-| Best Papers (`awards` row) | 0.144 N^0.343 (1 to 13 a year; not drawn) | 2016-2025 (10) | 0.274 |
+| Best Papers (`awards` row, main track; `awards_used`) | 0.258 N^0.268 (1 to 13 a year; not drawn; the model holds the tier at three) | 2014-2025 (12) | 0.282 |

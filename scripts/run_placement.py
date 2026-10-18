@@ -1,7 +1,7 @@
 """Where a second review places a paper that the first review made an oral, a spotlight or an
 accepted paper, against submissions N, on the main review form (peerreview.model.MAIN_FORM) at
 the three reliability levels. Companion to results/best_paper.csv, whose grid rows give the same
-for the Best Paper (p2_*).
+for the Best Papers (p2_*) with more replays.
 
 For each N on the submissions grid (tier sizes from results/tier_sizes.csv, acceptance 25%) each
 replay draws one conference, reviews it twice, and records, for every paper the first review put
@@ -26,21 +26,22 @@ from peerreview.levels import LEVELS, ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.tiers import tier_size
+from run_best_paper import N_BEST
 
 N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
 GRID_ALPHA = 0.25
-FIRST = ("top10", "oral", "spot", "accept")  # the first review's tiers whose papers we follow
+FIRST = ("best", "oral", "spot", "accept")  # the first review's tiers whose papers we follow
 
 
 def job(spec: dict) -> dict:
     m = calibrated(main_model(), spec["level"])
     N, A = spec["N"], int(round(GRID_ALPHA * spec["N"]))
-    tiers = {"best": 1, "top10": 10, "oral": int(spec["orals"]), "spot": int(spec["orals"]) + int(spec["spotlights"]), "accept": A}
+    tiers = {"best": N_BEST, "oral": int(spec["orals"]), "spot": int(spec["orals"]) + int(spec["spotlights"]), "accept": A}
     place = {k: tiers[k] for k in FIRST}
     seed = stable_seed(m.as_dict(), N, spec["reps"], "placement", spec["level"])
     t0 = time.perf_counter()
-    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, winner_tiers={"best": 1},
-                            second_committee=True, overlap_tiers=tiers, place_tiers=place)
+    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, second_committee=True, overlap_tiers=tiers,
+                            place_tiers=place, n_best=N_BEST)
     out = {**spec, "alpha": GRID_ALPHA, "accepted": A, "rho2": LEVELS[spec["level"]], "sigma_eps": m.sigma_eps, "seed": seed,
            **{k: v for k, v in tiers.items() if k in ("oral", "spot")}}
     for k, v in r.items():

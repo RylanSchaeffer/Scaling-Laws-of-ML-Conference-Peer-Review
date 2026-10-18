@@ -8,8 +8,8 @@ agreement the chairs' call allows at best. Every rung of the ladder is evaluated
 (common random numbers), so the overlap rises smoothly with R and the crossing of a target is
 well determined where the curve is flat.
 
-Pass 1: the R = inf overlaps on a fine grid of sizes, 20,000 to 100,000 submissions, which locates N*,
-the size from which the top ten's target (its overlap at 1,000 submissions with four reviews) is out of
+Pass 1: the R = inf overlaps on a fine grid of sizes, 2,000 to 100,000 submissions, which locates N*,
+the size from which the Best Papers' target (their overlap at 1,000 submissions with four reviews) is out of
 reach for any number of reviews. Pass 2: the ladder R = 32 ... 4096 and inf on the dense submissions
 grid of run_R_needed_tiers.py plus three sizes approaching N*.
 
@@ -35,7 +35,7 @@ from peerreview.tiers import tier_size
 from run_R_needed_tiers import N_GRID, TIERS, aggregate, tiers_at
 
 R_LARGE = [32, 64, 96, 128, 192, 256, 512, 1024, 2048, 4096, np.inf]  # 32 and 64 repeat exact rungs as a check
-N_FINE = [int(round(x)) for x in np.geomspace(20_000, 100_000, 12)]  # pass 1: where does the top ten's target leave reach?
+N_FINE = [int(round(x)) for x in np.geomspace(2_000, 100_000, 16)]  # pass 1: where does the Best Papers' target leave reach?
 APPROACH = (0.80, 0.90, 0.95)  # pass 2 adds N* times these
 
 
@@ -99,28 +99,28 @@ def run(specs: list[dict], workers: int, tag: str) -> pd.DataFrame:
             rs = fu.result()
             rows.extend(rs)
             r = rs[-1]
-            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} top10 {r['overlap_top10']:.3f} "
+            print(f"[{tag} {i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={r['N']} chunk {r['chunk']}: R={r['R']} best {r['overlap_best']:.3f} "
                   f"oral {r['overlap_oral']:.3f} ({r['wall_s'] * len(rs):.0f}s)", flush=True)
     return aggregate(pd.DataFrame(rows))
 
 
-def top10_target(reps: int) -> float:
-    """The top ten's overlap at 1,000 submissions with four reviews: the exact ladder's base row when it exists, else simulated."""
+def best_target(reps: int) -> float:
+    """The Best Papers' overlap at 1,000 submissions with four reviews: the exact ladder's base row when it exists, else simulated."""
     path = os.path.join(ROOT, "results", "R_needed_tiers_exact.csv")
     if os.path.exists(path):
         e = pd.read_csv(path)
         row = e[(e.N == N_GRID[0]) & (e.R == MAIN_FORM["R"])]
         if len(row):
-            return float(row.overlap_top10.iloc[0])
+            return float(row.overlap_best.iloc[0])
     m = calibrated(main_model(sigma_u=0.0), "central")
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
     r = simulate_best_paper(m, N_GRID[0], reps, best_K=(1,), seed=stable_seed(m.as_dict(), N_GRID[0], reps, "R_needed_tiers"),
                             second_committee=True, overlap_tiers=tiers_at(fits, N_GRID[0]))
-    return float(r["overlap_top10"])
+    return float(r["overlap_best"])
 
 
 def n_star(N: np.ndarray, limit: np.ndarray, target: float) -> float:
-    """The size at which the R = inf top-ten overlap falls to the target, interpolated in log N; inf if it never does."""
+    """The size at which the R = inf overlap falls to the target, interpolated in log N; inf if it never does."""
     order = np.argsort(N)
     N, limit = N[order], limit[order]
     for i in range(1, len(N)):
@@ -148,16 +148,16 @@ def main() -> None:
     path = os.path.join(ROOT, "results", "R_needed_tiers_limit.csv")
     if args.reuse_limit:
         lim = pd.read_csv(path)
-        target = float(lim.target_top10.iloc[0])
+        target = float(lim.target_best.iloc[0])
     else:
-        target = top10_target(args.base_reps)
-        print(f"top-ten target (1,000 submissions, 4 reviews): {target:.4f}")
+        target = best_target(args.base_reps)
+        print(f"Best Papers target (1,000 submissions, 4 reviews): {target:.4f}")
         lim = run(specs(N_FINE, [np.inf], args.limit_reps), args.workers, "limit")
-        lim["target_top10"] = target
+        lim["target_best"] = target
         lim.to_csv(path, index=False)
-    ns = n_star(lim.N.values.astype(float), lim.overlap_top10.values, target)
+    ns = n_star(lim.N.values.astype(float), lim.overlap_best.values, target)
     print(f"{path}; target {target:.4f}; N* = {ns:,.0f}")
-    print(lim[["N", "overlap_top10", "overlap_top10_se", "overlap_oral", "overlap_spot"]].round(4).to_string(index=False))
+    print(lim[["N", "overlap_best", "overlap_best_se", "overlap_oral", "overlap_spot"]].round(4).to_string(index=False))
 
     Ns = sorted(set(N_GRID) | ({int(round(ns * f)) for f in APPROACH} if np.isfinite(ns) else set()))
     clt = run(specs(Ns, R_LARGE, args.reps), args.workers, "ladder")

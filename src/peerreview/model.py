@@ -7,10 +7,10 @@ paper's score is the mean of its R (snapped) reviews. Optionally, a share
 `careless` of reviews ignore the paper: "rave" reviews give the top of the scale,
 "random" reviews a uniformly random score.
 
-Acceptance is by the score: the top A papers. Awards (the Best Paper, the top ten, orals,
+Acceptance is by the score: the top A papers. Awards (the Best Papers, orals,
 spotlights) are chosen within the accepted set by the award ordering a_i = score_i + eta_i,
 where eta_i ~ N(0, sigma_award^2) is the chairs' own noise, redrawn by every committee
-(`award_order`). With sigma_award = 0 the award ordering is the score ordering.
+(`award_order`); the Best Papers are its first three. With sigma_award = 0 the award ordering is the score ordering.
 
 Everything lives on a latent 1-to-10 axis.
 """

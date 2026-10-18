@@ -4,7 +4,7 @@ The award ordering is the score plus the chair noise eta, one draw per paper per
 each accepted paper independently and their calls were averaged, the chair noise would shrink to
 sigma_eta / sqrt(k); k = inf is the award ordering by score alone. This script simulates the main model
 (central level) at 100,000 submissions, and at 1,000 for the reference, with R reviews per paper and k
-chair calls, and records the overlap of two reviews' top tens, orals, spotlights and accepted sets.
+chair calls, and records the overlap of two reviews' Best Papers (their top three), orals, spotlights and accepted sets.
 
 Writes results/chair_calls.csv.
 Usage: uv run python scripts/run_chair_calls.py [--workers 8] [--reps 1000] [--chunk 250]
@@ -53,7 +53,7 @@ def main() -> None:
                 r["sigma_award"] = s["sigma_award"]
                 rows.append(r)
             r = rows[-1]
-            print(f"[{i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={s['N']} k={s['k']} chunk {s['chunk']}: R={r['R']} top10 {r['overlap_top10']:.3f}", flush=True)
+            print(f"[{i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={s['N']} k={s['k']} chunk {s['chunk']}: R={r['R']} best {r['overlap_best']:.3f}", flush=True)
     df = pd.DataFrame(rows)
     keys = ["N", "R", "orals", "spotlights", "sigma_eps", "method", "k", "sigma_award"]
     agg = {f"overlap_{t}": "mean" for t in TIERS}
@@ -66,7 +66,7 @@ def main() -> None:
     path = os.path.join(ROOT, "results", "chair_calls.csv")
     out.to_csv(path, index=False)
     print(f"wrote {path}")
-    print(out.pivot_table(index=["N", "R"], columns="k", values="overlap_top10").round(4).to_string())
+    print(out.pivot_table(index=["N", "R"], columns="k", values="overlap_best").round(4).to_string())
 
 
 if __name__ == "__main__":

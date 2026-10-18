@@ -5,7 +5,7 @@ two committees of R = 2 reviews on that year's score scale, random tie-breaking,
 N = the number of kept papers, acceptance at the kept set's observed rate, and
 sigma_eps chosen by bisection so that the model's correlation between the two
 committees' mean scores equals the observed correlation of the two half means.
-The model's accept-level precision, inconsistency share and top-10 / top-30
+The model's accept-level precision, inconsistency share and top-3 / top-10 / top-30
 overlaps are then compared with the observed values (not used in the fit).
 
 Quality placement: mean and between-paper SD of the year's individual scores
@@ -49,7 +49,7 @@ def job(row: dict, placement: str) -> dict:
     cal = calibrate_sigma_eps(m, float(row["corr_halves_mean"]), alpha=alpha, metric="corr_s12", N=N, reps=2000,
                               seed=seed, lo=0.02, hi=12.0, tol=5e-4)
     m = m.replace(sigma_eps=cal["sigma_eps"])
-    sel = Selections(fixed_K=(10, 30), pct=(), alphas=(alpha,), best_K=(1,), alpha_ref=alpha)
+    sel = Selections(fixed_K=(3, 10, 30), pct=(), alphas=(alpha,), best_K=(1,), alpha_ref=alpha)
     sim = simulate(m, N, reps=4000, sel=sel, salt=f"iclr-{row['year']}-{placement}")
     a = f"acc{alpha:.2f}"
     return dict(
@@ -63,6 +63,8 @@ def job(row: dict, placement: str) -> dict:
         model_top10=sim["ovl_K10"], model_top10_se=sim["ovl_K10_se"],
         obs_top30=row["ovl_top30_mean"], obs_top30_sd=row["ovl_top30_sd"],
         model_top30=sim["ovl_K30"], model_top30_se=sim["ovl_K30_se"],
+        obs_top3=row["ovl_top3_mean"], obs_top3_sd=row["ovl_top3_sd"],
+        model_top3=sim["ovl_K3"], model_top3_se=sim["ovl_K3_se"],
         model_rho2=sim["corr_qs"] ** 2, model_prec_true_acc=sim[f"prec_{a}"], model_prec_true_K10=sim["prec_K10"],
     )
 
@@ -80,7 +82,7 @@ def main() -> None:
     df = pd.DataFrame(rows).sort_values(["placement", "year"])
     df.to_csv(os.path.join(ROOT, "results", "validation_iclr.csv"), index=False)
     cols = ["year", "placement", "sigma_eps", "obs_corr", "model_corr", "obs_incons", "model_incons", "obs_precision",
-            "model_precision", "obs_top10", "model_top10", "obs_top30", "model_top30"]
+            "model_precision", "obs_top3", "model_top3", "obs_top10", "model_top10", "obs_top30", "model_top30"]
     print(df[cols].round(3).to_string(index=False))
 
 

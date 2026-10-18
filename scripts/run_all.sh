@@ -12,6 +12,8 @@ uv run python scripts/run_best_paper_robustness.py --workers "$W"
 uv run python scripts/make_tier_scaling.py
 uv run python scripts/run_best_paper.py --workers "$W"
 uv run python scripts/run_best_paper_hirep.py --workers "$W"
+uv run python scripts/run_best_paper_hirep.py --venues --workers "$W"
+uv run python scripts/run_best_paper_size.py --workers "$W"
 uv run python scripts/run_best_paper.py --cited --reps 50000 --workers "$W"
 uv run python scripts/run_placement.py --workers "$W"
 uv run python scripts/run_R_needed.py --workers "$W"
@@ -19,7 +21,6 @@ uv run python scripts/run_R_needed_tiers.py --workers "$W"
 uv run python scripts/run_R_needed_tiers_large.py --workers "$W"
 uv run python scripts/summarize_R_needed_tiers.py
 uv run python scripts/run_chair_calls.py --workers "$W"
-uv run python scripts/run_top1pct_control.py --workers "$W"
 uv run python scripts/run_scale_impact.py --workers "$W"
 uv run python scripts/run_scale_impact.py --grid-only --grid-reps 20000 --workers "$W"
 uv run python scripts/build_venues_used.py

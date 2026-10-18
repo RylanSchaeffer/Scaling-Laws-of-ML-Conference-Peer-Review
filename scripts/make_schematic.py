@@ -3,9 +3,9 @@
 (a) A conference receives N papers; paper i has a hidden true quality q_i ~ N(5, sigma_q^2).
 (b) Each paper receives R = 4 review scores, each the nearest integer from 1 to 10 to s_ij = q_i + u_i + eps_ij: shared noise u_i is the
 same for all of its reviewers, reviewer noise eps_ij is new for each; its score is the mean.
-(c) Papers are ranked by mean score and the nested tiers are cut by rank. (d) A second review
-redraws u and eps on the same papers, so the ranking changes and the first review's Best
-Paper lands in a lower tier.
+(c) Papers are accepted by mean score; the award tiers are cut on the award ordering, score plus chair
+noise eta; its first three are the Best Papers. (d) A second review redraws u, eps and eta on the same papers, so the ranking changes and
+the first review's three Best Papers land in lower tiers.
 
 Every panel's data coordinates are inches on the printed page; the canvas is P.S times larger,
 so the type prints at P.PRINT_PT. Nothing is read from results/.
@@ -37,17 +37,18 @@ IW, IH = 0.09, 0.115  # one paper icon
 
 # Tiers by rank in the column of (c) and (d): label, colour, lowest rank inside the tier.
 # Each tier includes the tiers above it; the column is schematic, not to scale.
-TIERS = (("Best Paper (rank 1)", P.INK, 1), ("Top 10", P.BLUE[650], 2), ("Oral", P.BLUE[450], 3),
+TIERS = (("Best Papers\n(the top three)", P.INK, 3), ("Oral", P.BLUE[450], 4),
          ("Spotlight", P.BLUE[250], 5), ("Accepted, a fixed\nproportion of $N$", P.MUTED, 7))
-RANKS, N_ACC = 11, 7  # ranks drawn; ranks above N_ACC are accepted, the rest rejected
+RANKS, N_ACC = 10, 7  # ranks drawn; ranks above N_ACC are accepted, the rest rejected
 Y1, DR, CUT = 1.70, 0.145, 0.06  # rank 1 height, rank spacing, extra gap at the acceptance cut
-LANDS = 5  # the rank the second review gives the first review's Best Paper: spotlight, not oral
+BEST = (1, 2, 3)  # the first review's Best Papers, by rank
+LANDS = (5, 7, 9)  # the ranks the second review gives them: a Spotlight, an accepted paper with no award, a rejection
 ANN = dict(fontsize=P.LEGEND_PT, color=P.INK2)  # in-panel annotations
 
 
 def paper(ax, x, y, dark=False, z=3):
     """A sheet with a folded top-right corner and three text lines, centred at (x, y).
-    dark: the paper the first review names Best Paper (the Best Paper colour, P.INK)."""
+    dark: a paper among the first review's Best Papers (the Best Papers colour, P.INK)."""
     x0, y0, f = x - IW / 2, y - IH / 2, 0.028
     fc, ec, lc, foldc = (P.INK, P.INK, P.SURFACE, P.INK2) if dark else (P.SURFACE, P.INK2, P.MUTED, P.GRID)
     body = [(x0, y0), (x0 + IW, y0), (x0 + IW, y0 + IH - f), (x0 + IW - f, y0 + IH), (x0, y0 + IH)]
@@ -82,7 +83,7 @@ def panel_papers(ax):
     y0, dy = 0.68, 0.13  # bottom of the lowest icon, stack spacing
     for k, (x, n) in enumerate(zip(xs, counts)):
         for m in range(n):
-            paper(ax, x, y0 + IH / 2 + dy * m, dark=(k == 5 and m == n - 1))  # high quality, not the highest
+            paper(ax, x, y0 + IH / 2 + dy * m, dark=(k == 5 or (k == 4 and m == n - 1)))  # high quality, not the highest
     amp, sd = max(counts) * dy + 0.04, 0.21  # the curve clears every stack, tails included
     xx = np.linspace(0.03, 0.93, 200)
     ax.plot(xx, y0 + 0.015 + amp * np.exp(-((xx - xs[3]) ** 2) / (2 * sd * sd)), color=P.INK2, lw=1.0 * S, zorder=1)
@@ -143,11 +144,11 @@ def rank_y(r: int) -> float:
     return Y1 - (r - 1) * DR - (CUT if r > N_ACC else 0.0)
 
 
-def column(ax, xc: float, dark_rank: int) -> list[tuple[float, float]]:
+def column(ax, xc: float, dark_ranks: tuple[int, ...]) -> list[tuple[float, float]]:
     """Icons at every rank, the tier boxes around the top of the column and a box around the
     rejected ranks. Returns (left edge, bottom) of each tier box, then of the rejected box."""
     for r in range(1, RANKS + 1):
-        paper(ax, xc, rank_y(r), dark=(r == dark_rank), z=4)
+        paper(ax, xc, rank_y(r), dark=(r in dark_ranks), z=4)
     anchors = []
     for k, (_, c, r) in enumerate(TIERS):
         pad = 0.03 + 0.028 * k
@@ -165,7 +166,7 @@ XC, XD = 1.0, 0.23  # column centres in (c) and (d): the two columns face each o
 
 
 def panel_rank(ax):
-    anchors = column(ax, XC, dark_rank=1)
+    anchors = column(ax, XC, dark_ranks=BEST)
     labels = [t[0] for t in TIERS] + ["Rejected"]
     x_outer = min(x for x, _ in anchors)  # left edge of the widest box
     colours = [c for _, c, _ in TIERS] + [P.ORANGE[450]]
@@ -175,11 +176,11 @@ def panel_rank(ax):
 
 
 def panel_second(ax):
-    column(ax, XD, dark_rank=LANDS)
+    column(ax, XD, dark_ranks=LANDS)
     x = XD + IW / 2 + 0.03 + 0.028 * (len(TIERS) - 1) + 0.05  # right of the widest box
-    ax.text(x, rank_y(1), "new Best Paper", ha="left", va="center", **ANN)
-    ax.text(x, 1.45, "same papers,\nnew $u$, $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
-    ax.text(x, rank_y(LANDS), "lands in\nSpotlight", ha="left", va="center", linespacing=1.15, **ANN)
+    ax.text(x, rank_y(2), "new Best\nPapers", ha="left", va="center", linespacing=1.15, **ANN)
+    ax.text(x, rank_y(4.5), "same papers,\nnew $u$, $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
+    ax.text(x, rank_y(8), "the first\nreview's Best\nPapers land\nlower", ha="left", va="center", linespacing=1.15, **ANN)
 
 
 # ---------------------------------------------------------------------------
@@ -195,13 +196,14 @@ def stage_arrow(ax_from, ax_to, y=H / 2):
 
 
 def best_paper_arrow(ax_c, ax_d):
-    """Dashed: the first review's Best Paper, from rank 1 in (c) to its rank in (d)."""
+    """Dashed: each of the first review's Best Papers, from its rank in (c) to its rank in (d)."""
     x_from = XC + IW / 2 + 0.03 + 0.028 * (len(TIERS) - 1) + 0.012
-    con = ConnectionPatch((x_from, rank_y(1)), (XD - IW / 2 - 0.012, rank_y(LANDS)), "data", "data",
-                          axesA=ax_c, axesB=ax_d, arrowstyle="-|>", mutation_scale=7 * S, color=P.INK,
-                          lw=1.0 * S, ls=(0, (3, 2)), zorder=10)
-    con.set_clip_on(False)
-    ax_d.add_artist(con)
+    for r1, r2 in zip(BEST, LANDS):
+        con = ConnectionPatch((x_from, rank_y(r1)), (XD - IW / 2 - 0.012, rank_y(r2)), "data", "data",
+                              axesA=ax_c, axesB=ax_d, arrowstyle="-|>", mutation_scale=7 * S, color=P.INK,
+                              lw=1.0 * S, ls=(0, (3, 2)), zorder=10)
+        con.set_clip_on(False)
+        ax_d.add_artist(con)
 
 
 def check_text(fig, axes) -> None:

@@ -1,12 +1,12 @@
-"""Where a second review would place the Best Paper under each model variant, at the NeurIPS 2014
+"""Where a second review would place the Best Papers under each model variant, at the NeurIPS 2014
 and 2026 conferences (their submissions, acceptance rates, oral and spotlight counts), on the main
 review form (integer 1-10 scores, four reviews per paper; other forms: scripts/run_scale_impact.py).
 
-The model's Best Paper is the first paper of the award ordering (score plus chair noise within the accepted set). For each variant the script
-simulates whole conferences, each reviewed twice, and records where the second review ranks the
-first review's Best Paper (p2_*: in its top M for M = 1, 10, the oral count, the oral plus spotlight
-count and the accepted count; one minus the last is the probability that it rejects the paper) and
-the paper's true rank (p_*).
+The model's Best Papers are the first three papers of the award ordering (score plus chair noise within the accepted set).
+For each variant the script simulates whole conferences, each reviewed twice, and records where the second
+review ranks the first review's Best Papers (p2_*: the share of them in its top M for M = 3, the oral count,
+the oral plus spotlight count and the accepted count; one minus the last is the probability that it rejects one
+of the Best Papers) and their true rank (p_*).
 
 Variants change one thing about the Gaussian model: the quality distribution (bounded, exponential,
 lognormal, t3), the reviewer noise (t3), shared paper-level noise, or a share of careless reviews
@@ -32,6 +32,7 @@ from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import ReviewModel
 from peerreview.simulate import simulate_best_paper, stable_seed
 from peerreview.validation import replay_tiers
+from run_best_paper import N_BEST
 
 VARIANTS = {  # name: (group, changes to the year's real review form)
     "Gaussian": ("main", {}),
@@ -64,18 +65,18 @@ def job(name: str, year: int) -> dict:
     N, A, orals = int(x.N_used), int(round(x.N_used * x.acc_rate_used)), int(x.orals_used)
     sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))
     spotlights = int(sp[(sp.venue == "NeurIPS") & (sp.year == year)].spotlights.iloc[0])
-    tiers = {"best": 1, "top10": 10, "oral": orals, "spot": orals + spotlights, "accept": A}  # nested tiers
+    tiers = {"best": N_BEST, "oral": orals, "spot": orals + spotlights, "accept": A}  # nested tiers
     r = simulate_best_paper(m, N, REPS[year], best_K=(1,), winner_tiers=tiers, second_committee=True,
-                            salt=f"best-paper-robustness-{name}")
+                            salt=f"best-paper-robustness-{name}", n_best=N_BEST)
     return {"variant": name, "group": group, "year": year, "N": N, "accepted": A, "orals": orals,
             "spotlights": spotlights, "level": "central",
             "R": m.R, "scale": m.scale, "sigma_eps": m.sigma_eps, "reps": r["reps"], "seed": r["seed"],
-            "p_best": r["winner_in_best"], "p_top10": r["winner_in_top10"], "p_oral": r["winner_in_oral"],
+            "p_best": r["winner_in_best"], "p_oral": r["winner_in_oral"],
             "p_spot": r["winner_in_spot"],
             "p_accept": r["winner_in_accept"], "p_reject": 1 - r["winner_in_accept"],
             "p_reject_se": r["winner_in_accept_se"], "p_best_se": r["winner_in_best_se"],
             "winner_rank_median": r["winner_rank_median"],
-            "p2_best": r["winner_in2_best"], "p2_top10": r["winner_in2_top10"], "p2_oral": r["winner_in2_oral"],
+            "p2_best": r["winner_in2_best"], "p2_oral": r["winner_in2_oral"],
             "p2_spot": r["winner_in2_spot"],
             "p2_accept": r["winner_in2_accept"], "p2_reject": 1 - r["winner_in2_accept"],
             "p2_reject_se": r["winner_in2_accept_se"], "p2_best_se": r["winner_in2_best_se"],
@@ -104,7 +105,7 @@ def main() -> None:
         df = df.merge(pd.DataFrame(list(ov)), on="variant")
     out = os.path.join(ROOT, "results", "best_paper_robustness.csv")
     df.to_csv(out, index=False)
-    print(df[["variant", "year", "p2_best", "p2_top10", "p2_oral", "p2_spot", "p2_reject", "p2_reject_se", "winner_rank2_median",
+    print(df[["variant", "year", "p2_best", "p2_oral", "p2_spot", "p2_reject", "p2_reject_se", "winner_rank2_median",
               "p_best", "p_reject", "overlap2021_mean", "p_overlap2021_le_obs"]]
           .round(4).to_string(index=False))
 

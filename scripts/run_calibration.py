@@ -62,7 +62,7 @@ def bisection_variants() -> list[tuple[ReviewModel, tuple[str, ...]]]:
     # Heavy-tailed noise on a bounded 1-to-10 scale (NeurIPS 2021 validation).
     for qd in ("gaussian", "beta"):
         v.append((ReviewModel(R=4, quality=qd, noise="t3", scale="int10"), all_levels))
-    # A few careless reviewers on the 1-to-10 scale (Best Paper robustness), central level.
+    # A few careless reviewers on the 1-to-10 scale (Best Papers robustness), central level.
     for share, kind in CARELESS:
         v.append((ReviewModel(R=4, scale="int10", careless=share, careless_kind=kind), ("central",)))
     return v

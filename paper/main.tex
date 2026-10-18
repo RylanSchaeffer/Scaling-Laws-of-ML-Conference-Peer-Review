@@ -65,11 +65,19 @@ Which accepted paper wins an award is close to a lottery: at NeurIPS 2021 an awa
 Machine learning (ML) conference peer review serves two functions: it accepts good papers, and it exalts the best into Spotlights, Orals and Best Papers.
 Both functions separate signal from noise, and matter beyond the conference: accepted papers enter a scientific record that has no robust mechanism to correct them \citep{schaeffer2025refutations}, and awards capture the attention of a community that cannot read every paper.
 
+Both functions have been under increasing strain from the geometrically increasing number of submissions (Fig.~\ref{fig:main}a), with submissions growing 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}.
+The process stayed the same: a few reviews per paper, and a final call by area chairs.
+How well does peer review perform in light of this increasing strain?
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig1_headline.pdf}
 \caption{\textbf{Conferences grow exponentially, their award tiers do not keep pace, and no tier survives a second review reliably: acceptance is a coin toss at every size, and the more prestigious the award, the faster it becomes a lottery as submissions grow.}
-(a) Conference submissions by year. (b) NeurIPS tiers by proportion (markers) and fitted power laws (lines). In 2016 and 2022, with no Spotlight tier, the Oral count includes Spotlights; Best Papers, 1 to 13 a year, are too few to draw. (c) The tier a second independent review gives the model's Best Paper at NeurIPS 2014, 2021 and 2026 submissions; Accepted means accepted with no award. (d--g) Where a second review places a paper that the first review made the Best Paper, an Oral, a Spotlight or an Accepted paper, against submissions $N$. Each curve is the probability of that tier or a higher one; at the paper's own tier it is the chance that it keeps the tier, the tier's overlap. Tier sizes follow NeurIPS's trends (b) and acceptance is 25\% of $N$. Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experiments, the proportion of one committee's papers in a tier that the other committee accepted (grey) or put in the same tier (the tier's colour). The accepted papers sit on the model's line. The 2021 Orals and Spotlights sit below it: 11\% were in that tier again and 52\% were accepted, against the curves' 16\% and 66\% (Section~\ref{sec:award}).}
+(a) Conference submissions by year. (b) NeurIPS tiers by proportion (markers) and fitted power laws (lines). In 2016 and 2022, with no Spotlight tier, the Oral count includes Spotlights; Best Papers, 1 to 13 a year, are too few to draw. (c) The tier a second independent review gives the model's Best Paper at NeurIPS 2014, 2021 and 2026 submissions. (d--g) Where a second independent review places a paper that the first review made the Best Paper, an Oral, a Spotlight or an Accepted paper, against submissions $N$.
+% Each curve is the probability of that tier or a higher one; at the paper's own tier it is the chance that it keeps the tier, the tier's overlap. Tier sizes follow NeurIPS's trends (b) and acceptance is 25\% of $N$.
+Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experiments, the proportion of one committee's papers in a tier that the other committee accepted or put in the same tier. The Accepted papers sit on the model's line, whereas the 2021 Orals and Spotlights sit below it (Section~\ref{sec:award}).
+% : 11\% were in that tier again and 52\% were accepted, against the curves' 16\% and 66\% .
+}
 \label{fig:main}
 \end{figure}
 
@@ -95,11 +103,9 @@ Both functions separate signal from noise, and matter beyond the conference: acc
 \label{fig:mechanism}
 \end{figure}
 
-Both functions have been under increasing strain from the geometrically increasing number of submissions (Fig.~\ref{fig:main}a): over the past decade submissions grew 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}, with NeurIPS receiving 1,678 submissions in 2014 and 30,709 in 2026.
-The process stayed the same: a few reviews per paper, a mean score on a short scale, and a final call by area chairs.
-How well does peer review perform in light of this increasing strain?
 
-Because true quality is never observed, we ground the question in what can be measured: a second independent review. Two field experiments, at NeurIPS 2014 and 2021, sent the same papers to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}; Fig.~\ref{fig:main}g) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}.
+
+Because true quality is never observed, we ground the question in what can be measured: a second independent review. Two experiments, at NeurIPS 2014 and 2021, sent submissions to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}; Fig.~\ref{fig:main}g) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}.
 We create a model of the ML peer review process, calibrate it to empirical data, and ask how each tier of outcomes (Rejected, Accepted, Spotlight, Oral, Best Paper) scales with the number of submissions if each submission was reviewed again. We find:
 
 \textbf{1. The number of papers in each tier follows a power law in the number of submissions $N$.} Acceptances are a constant proportion ($N^{1.05}$), Spotlights and Orals grow more slowly ($N^{0.72}$ and $N^{0.59}$), and Best Papers, 1 to 13 a year with no trend, are a constant number ($N^0$) (Fig.~\ref{fig:main}b).

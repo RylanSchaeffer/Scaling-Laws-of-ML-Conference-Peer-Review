@@ -386,12 +386,6 @@ def scaling_row(fig, axes):
     pl = pl[pl.level == "central"].sort_values("N")
     ax = axes[0]
     tier_curves(ax, "p2")
-    ctrl = os.path.join(RES, "top1pct_control.csv")
-    if os.path.exists(ctrl):  # the control: a fixed proportion, the top 1% of submissions, in place of a constant number (run_top1pct_control.py)
-        c = pd.read_csv(ctrl).sort_values("N")
-        ax.plot(c.N, c.p2_top1pct, color=P.INK2, lw=1.2 * P.S, ls=(0, (1.5, 1.5)), zorder=4)
-        mid = float(np.interp(np.log(1e4), np.log(c.N.values), c.p2_top1pct.values))
-        ax.text(1e4, mid * 1.12, "Top 1\\%", color=P.INK2, va="bottom", ha="center", fontsize=P.LEGEND_PT, zorder=6)  # above the dotted line, below the spotlight curve
     ax.set_title("Best Paper", loc="left")
     for ax, first, title in ((axes[1], "oral", "Oral"), (axes[2], "spot", "Spotlight"), (axes[3], "accept", "Accepted")):
         for second, color, label, _ in TIER_CURVES:

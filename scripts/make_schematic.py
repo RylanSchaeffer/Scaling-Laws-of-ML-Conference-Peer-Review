@@ -2,7 +2,7 @@
 
 (a) A conference receives N papers; paper i has a hidden true quality q_i ~ N(5, sigma_q^2).
 (b) Each paper receives R = 4 review scores, each the nearest integer from 1 to 10 to s_ij = q_i + eps_ij: reviewer noise
-eps_ij is new for each reviewer; its score is the mean. (Shared noise u_i is a robustness check only and is not drawn.)
+eps_ij, new for each reviewer, moves a score up or down; the paper's score is the mean. (Shared noise u_i is a robustness check only and is not drawn.)
 (c) Papers are accepted by mean score; the award tiers are cut on the award ordering, score plus chair
 noise eta; its first three are the Best Papers. (d) A second review redraws eps and eta on the same papers, so the ranking changes and
 the first review's three Best Papers land in lower tiers.
@@ -61,9 +61,9 @@ def paper(ax, x, y, dark=False, z=3):
 
 
 def reviewer(ax, x, y, c=P.INK2):
-    """A bust: head over shoulders, centred at (x, y)."""
-    ax.add_patch(Circle((x, y + 0.03), 0.021, fc=c, ec="none", zorder=3))
-    ax.add_patch(Wedge((x, y - 0.014), 0.044, 0, 180, fc=c, ec="none", zorder=3))
+    """A person: a round head, a clear gap, then rounded shoulders, centred at (x, y)."""
+    ax.add_patch(Circle((x, y + 0.037), 0.019, fc=c, ec="none", zorder=3))
+    ax.add_patch(Wedge((x, y - 0.032), 0.041, 0, 180, fc=c, ec="none", zorder=3))
 
 
 def box(ax, x0, y0, x1, y1, color, z=2):
@@ -98,38 +98,43 @@ def panel_papers(ax):
 # (b) Four reviewers score one paper: each score is quality + reviewer noise
 # ---------------------------------------------------------------------------
 
-SEG = (dict(fc=P.INK2, ec=P.INK2),  # q_i: solid, the same length in every row
-       dict(fc=P.SURFACE, ec=P.INK2))  # eps_ij: empty, a different length in every row
+QBAR = dict(fc=P.MUTED, ec=P.MUTED)  # q_i: a grey bar, the same length in every row
+LQ, BH = 0.46, 0.085  # quality bar length and height
 
 
-def bar(ax, x, y, eps, label, lq=0.46, bh=0.085):
-    """One review score as a bar of two segments, quality then reviewer noise; eps is the noise length."""
-    for style, length in zip(SEG, (lq, eps)):
-        ax.add_patch(Rectangle((x, y - bh / 2), length, bh, lw=0.5 * S, zorder=3, **style))
-        x += length
-    ax.text(x + 0.04, y, label, ha="left", va="center", fontsize=P.LEGEND_PT, color=P.INK)
+def bar(ax, x, y, eps, label, xl):
+    """One review score: the quality bar, then the reviewer noise eps as a line from q_i to a dot at the
+    score (right when eps > 0, left when eps < 0). The label sits at xl."""
+    ax.add_patch(Rectangle((x, y - BH / 2), LQ, BH, lw=0.5 * S, zorder=2, **QBAR))
+    xs = x + LQ + eps
+    ax.plot([x + LQ, xs], [y, y], color=P.INK, lw=1.1 * S, solid_capstyle="butt", zorder=4)
+    ax.plot(xs, y, "o", ms=2.8 * S, color=P.INK, zorder=5)
+    ax.text(xl, y, label, ha="left", va="center", fontsize=P.LEGEND_PT, color=P.INK)
 
 
 def panel_reviews(ax):
-    rows, eps = (1.62, 1.49, 1.36, 1.23), (0.05, 0.14, 0.08, 0.11)
+    rows, eps = (1.62, 1.49, 1.36, 1.23), (0.12, -0.10, 0.07, -0.05)  # noise moves a score up or down
     xi, yi, xr, xq = 0.16, 1.80, 0.37, 0.47  # paper icon, reviewer glyphs, bars
+    xl = xq + LQ + 0.17  # one column for the score labels
     paper(ax, xi, yi, dark=True)
     ax.text(xi + IW / 2 + 0.04, yi, "paper $i$", ha="left", va="center", **ANN)
     ax.plot([xi, xi], [yi - IH / 2 - 0.01, rows[-1]], color=P.MUTED, lw=0.6 * S, zorder=1)  # tree to its reviewers
     for y, e, j in zip(rows, eps, (1, 2, 3, 4)):
         ax.plot([xi, xr - 0.05], [y, y], color=P.MUTED, lw=0.6 * S, zorder=1)
         reviewer(ax, xr, y)
-        bar(ax, xq, y, e, f"$s_{{i{j}}}$")
+        bar(ax, xq, y, e, f"$s_{{i{j}}}$", xl)
     ym = 1.04
     ax.text(xq - 0.035, ym, "Mean score", ha="right", va="center", **ANN)
-    bar(ax, xq, ym, float(np.mean(eps)), r"$\bar s_i$")
+    bar(ax, xq, ym, float(np.mean(eps)), r"$\bar s_i$", xl)
+    xqi = xq + LQ  # the paper's quality, the same for every reviewer
+    ax.plot([xqi, xqi], [ym - 0.08, rows[0] + 0.09], color=P.INK2, lw=0.7 * S, ls=(0, (3, 2)), zorder=3)
+    ax.text(xqi, rows[0] + 0.11, "$q_i$", ha="center", va="bottom", fontsize=P.LEGEND_PT, color=P.INK)
     ax.text(0.68, 0.83, r"$s_{ij}=q_i+\varepsilon_{ij}$", ha="center", va="center", fontsize=P.LEGEND_PT, color=P.INK)
-    legend = ((0.60, SEG[0], "$q_i$: true quality"),
-              (0.46, SEG[1], r"$\varepsilon_{ij}$: reviewer noise,"),
-              (0.34, None, "new for each reviewer"))
-    for y, style, text in legend:
-        if style is not None:
-            ax.add_patch(Rectangle((0.12, y - 0.035), 0.09, 0.07, lw=0.5 * S, zorder=3, **style))
+    ax.add_patch(Rectangle((0.12, 0.60 - 0.035), 0.09, 0.07, lw=0.5 * S, zorder=3, **QBAR))
+    ax.text(0.26, 0.60, "$q_i$: true quality", ha="left", va="center", **ANN)
+    ax.plot([0.12, 0.19], [0.46, 0.46], color=P.INK, lw=1.1 * S, solid_capstyle="butt", zorder=4)
+    ax.plot(0.19, 0.46, "o", ms=2.8 * S, color=P.INK, zorder=5)
+    for y, text in ((0.46, r"$\varepsilon_{ij}$: reviewer noise, up or"), (0.34, "down, new for each reviewer")):
         ax.text(0.26, y, text, ha="left", va="center", **ANN)
 
 

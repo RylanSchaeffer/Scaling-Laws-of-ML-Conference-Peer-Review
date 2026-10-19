@@ -43,8 +43,9 @@ GAPS = {"best": (None, "best"), "oral": ("best", "oral_or_better"), "spot": ("or
 # fitted count series -> column of scripts.make_figures.venue_counts(). accept_or_better is N_used * acc_rate_used,
 # every accepted paper; oral_or_better is NeurIPS's Oral count, which includes its Best Papers; spot counts
 # Spotlights only; best counts Best Papers.
-SERIES_COLUMNS = {"accept_or_better": "accepted", "spot": "spotlights", "oral_or_better": "orals_used", "best": "awards_used",
-                  "oral": "orals_alone"}  # the Oral tier alone: orals_used - awards_used, years with both counts
+SERIES_COLUMNS = {"accept_or_better": "accepted", "spot_or_better": "spot_or_better", "spot": "spotlights", "oral_or_better": "orals_used",
+                  "best": "awards_used", "oral": "orals_alone"}  # spot_or_better: the Oral count plus the Spotlights, in the years with a
+# Spotlight tier (the Spotlight fit's years); oral: the Oral tier alone, orals_used - awards_used, years with both counts
 
 
 def cuts(n_best: int, n_oral_or_better: int | None = None, n_spot: int | None = None, n_accepted: int | None = None) -> dict:
@@ -104,7 +105,7 @@ def add_separate(row, prefix: str):
 
 
 def fit_tier_sizes(counts: pd.DataFrame, venue: str = "NeurIPS") -> pd.DataFrame:
-    """One row per count series (SERIES_COLUMNS: accept_or_better, spot, oral_or_better, best, oral): count = a * N^gamma fitted
+    """One row per count series (SERIES_COLUMNS: accept_or_better, spot_or_better, spot, oral_or_better, best, oral): count = a * N^gamma fitted
     on `venue`'s years with a positive count.
 
     gamma = 1 is a fixed proportion of submissions, gamma = 0 a constant number. `counts` has
@@ -112,7 +113,8 @@ def fit_tier_sizes(counts: pd.DataFrame, venue: str = "NeurIPS") -> pd.DataFrame
     (scripts/make_tier_scaling.py) uses the fitted Oral or Better and Spotlight counts and ACCEPT_SHARE * N
     for Accepted or Better, whose fitted exponent is close to 1.
     """
-    v = counts[counts.venue == venue].assign(accepted=lambda d: d.N_used * d.acc_rate_used, orals_alone=lambda d: d.orals_used - d.awards_used)
+    v = counts[counts.venue == venue].assign(accepted=lambda d: d.N_used * d.acc_rate_used, orals_alone=lambda d: d.orals_used - d.awards_used,
+                                             spot_or_better=lambda d: d.orals_used + d.spotlights)
     rows = []
     for series, col in SERIES_COLUMNS.items():
         d = v[v[col].notna() & (v[col] > 0)]

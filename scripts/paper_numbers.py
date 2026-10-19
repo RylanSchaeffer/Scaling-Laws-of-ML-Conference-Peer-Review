@@ -106,10 +106,10 @@ def main():
 
     section("Fig 4a / sec:best: the ceiling, overlap with infinitely many reviewers (R_needed_tiers_curve.csv limit_overlap)")
     rc = load("R_needed_tiers_curve")
-    for tier in ("accept", "spot", "oral", "best"):
+    for tier in ("accept_or_better", "spot_or_better", "oral_or_better", "best"):  # the sets Fig 4 draws
         c = rc[rc.group == tier].sort_values("N")
         lim_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.limit_overlap.values))
-        print(f"{tier:7s} " + ", ".join(f"N={N}: {pct(lim_at(N))}" for N in (1000, 10000, 100000)))
+        print(f"{tier:16s} " + ", ".join(f"N={N}: {pct(lim_at(N))}" for N in (1000, 10000, 100000)))
     cc = os.path.join(RES, "chair_calls.csv")
     if os.path.exists(cc):
         section("Two levers at the top (chair_calls.csv): Best Papers overlap by reviews per paper R and independent chair calls k")
@@ -120,13 +120,13 @@ def main():
     section("Fig 4b / sec:best / implications: reviews per paper to hold each tier's 1K overlap (R_needed_tiers_curve.csv, the drawn curve)")
     rt = load("R_needed_tiers_summary")
     rc = load("R_needed_tiers_curve")
-    for tier in ("accept", "spot", "oral", "best"):
+    for tier in ("accept_or_better", "spot_or_better", "oral_or_better", "best"):  # the sets Fig 4 draws
         d = rt[rt.group == tier].sort_values("N")
         c = rc[rc.group == tier].sort_values("N")
         r_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.R_needed.values))
         lim_at = lambda N: float(np.interp(np.log(N), np.log(c.N.values), c.limit_overlap.values))
         ns = float(c.N_star.iloc[0])
-        print(f"{tier:7s} target {d.target.iloc[0]:.4f}: " + ", ".join(f"N={N}: {r_at(N):.1f}" for N in (1000, 10000, 21544, 31623, 46416, 100000))
+        print(f"{tier:16s} target {d.target.iloc[0]:.4f}: " + ", ".join(f"N={N}: {r_at(N):.1f}" for N in (1000, 10000, 21544, 31623, 46416, 100000))
               + (f"; N* = {ns:,.0f}" if np.isfinite(ns) else "; no N* up to 100,000"))
         print(f"        R = inf overlap: " + ", ".join(f"N={N}: {lim_at(N):.4f}" for N in (1000, 10000, 46416, 100000)))
 
@@ -152,7 +152,7 @@ def main():
             if x.empty:
                 continue
             x = x.iloc[0]
-            parts.append(f"{yr}: Best Papers {pct(x.p2_best, 2)} Oral {pct(x.p2_oral)} Spotlight {pct(x.p2_spot)} Accepted {pct(x.p2_accept)} Rejected {pct(x.p2_reject, 2)}")
+            parts.append(f"{yr}: Best Papers {pct(x.p2_best, 2)} Oral {pct(x.p2_oral)} Oral or Better {pct(x.p2_oral_or_better)} Spotlight {pct(x.p2_spot)} Accepted {pct(x.p2_accept)} Rejected {pct(x.p2_reject, 2)}")
         print(f"{n:28s} " + " | ".join(parts))
 
     section("Fig 6 / sec:scales: forms at NeurIPS 2014 and 2026 size (scale_impact.csv)")
@@ -165,7 +165,7 @@ def main():
             if x.empty:
                 continue
             x = x.iloc[0]
-            parts.append(f"{yr}: Best Papers {pct(x.p2_best, 2)} Oral {pct(x.p2_oral)} Spotlight {pct(x.p2_spot)} Accepted {pct(x.p2_accept)} Rejected {pct(x.p2_reject)}")
+            parts.append(f"{yr}: Best Papers {pct(x.p2_best, 2)} Oral {pct(x.p2_oral)} Oral or Better {pct(x.p2_oral_or_better)} Spotlight {pct(x.p2_spot)} Accepted {pct(x.p2_accept)} Rejected {pct(x.p2_reject)}")
         print(f"{f:28s} " + " | ".join(parts))
     gr = sc[sc.part == "grid"]
     for f in dict.fromkeys(gr.form):

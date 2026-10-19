@@ -317,7 +317,7 @@ def fig_validation():
     ax.set_yticks(y)
     ax.set_yticklabels([VAR_LABEL[k] for k in vv.index])
     ax.set_xlabel("Chosen by both committees")
-    ax.set_title("2021 Spotlight or Better", loc="left")
+    ax.set_title("NeurIPS 2021 Spotlight or Better", loc="left")
 
     ax = axes[1]
     obs = vv.obs_sob_rej_share.iloc[0]  # 26 of the 54 Spotlight or Better papers, rejected by the other committee
@@ -471,32 +471,32 @@ def fig_mechanism():
 
     ax = axes[0]  # the ceiling: overlap with infinitely many reviewers, per tier
     summ = load("R_needed_tiers_summary")
-    for tier, c, label, lift in (("spot", P.BLUE[250], "Spotlight", 0.02), ("oral", P.BLUE[450], "Oral", -0.02), ("best", P.INK, "Best Papers", -0.02)):
-        # the award tiers, separate; the Accepted tier (83% to 96%) is not drawn: the chairs' call acts on the awards
+    for tier, c, label, lift in (("spot_or_better", P.BLUE[250], "Spotlight or Better", 0.02), ("oral_or_better", P.BLUE[450], "Oral or Better", 0.02), ("best", P.INK, "Best Papers", -0.02)):
+        # Accepted or Better is not drawn: acceptance goes by the mean score alone, so with infinitely many reviewers both reviews accept the same papers
         d = r[r.group == tier].sort_values("N")
         ax.plot(d.N, d.limit_overlap, color=c, lw=1.8 * P.S, zorder=3)
         if tier == "best":  # under the curve at 20K, clear of the frame and of the annotation's leader
             ax.text(2e4, float(np.interp(np.log(2e4), np.log(d.N), d.limit_overlap)) - 0.02, label, color=c, va="top", ha="center",
                     fontsize=P.LEGEND_PT, zorder=6)
-        else:
-            ax.text(1e5, d.limit_overlap.iloc[-1] + lift, label, color=c, va="bottom" if lift > 0 else "top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+        else:  # above the curve's left end: the curves fall to the right, away from the label
+            ax.text(1.05e3, d.limit_overlap.iloc[0] + lift, label, color=c, va="bottom", ha="left", fontsize=P.LEGEND_PT, zorder=6)
     d = r[r.group == "best"]
     n_star, target = float(d.N_star.iloc[0]), float(summ[summ.group == "best"].target.iloc[0])
     if np.isfinite(n_star):
         ax.plot([n_star], [target], ls="none", marker="o", ms=4.5 * P.S, mfc=P.SURFACE, mec=P.INK, mew=1.2 * P.S, zorder=5)
         ax.annotate(f"The Best Papers' ceiling\nmeets their 1K level with\nfour reviews, {100 * target:.1f}\\%, at {n_star / 1e3:.0f}K", xy=(n_star, target),
-                    xytext=(6e3, 0.135), ha="left", va="bottom", color=P.INK, fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6,
+                    xytext=(1.15e4, 0.097), ha="left", va="bottom", color=P.INK, fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6,
                     arrowprops=dict(arrowstyle="-", color=P.INK, lw=0.9 * P.S, shrinkA=2 * P.S, shrinkB=3 * P.S, relpos=(0.85, 0.0)))  # between the Oral and Best Papers curves, leader down to the point
     P.n_axis(ax)
-    ax.set_ylim(0, 0.4)  # nothing drawn reaches 31%
-    ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4])
+    ax.set_ylim(0, 0.6)  # Spotlight or Better reaches 50%
+    ax.set_yticks([0, 0.2, 0.4, 0.6])
     P.pct_axis(ax)
     ax.set_ylabel("Overlap of two reviews with\ninfinitely many reviewers")
     ax.set_title("The chairs' call caps agreement", loc="left")
 
     ax = axes[1]  # reviews per paper that hold each tier's overlap at its 1,000-submission value
     ymax = 1e4
-    for tier, c, label in (("accept", P.MUTED, "Accepted: always 4"), ("spot", P.BLUE[250], "Spotlight"), ("oral", P.BLUE[450], "Oral"),
+    for tier, c, label in (("accept_or_better", P.MUTED, "Accepted or Better: always 4"), ("spot_or_better", P.BLUE[250], "Spotlight or Better"), ("oral_or_better", P.BLUE[450], "Oral or Better"),
                            ("best", P.INK, "Best Papers")):
         d = r[r.group == tier].sort_values("N")
         fin = d[np.isfinite(d.R_needed)]
@@ -506,13 +506,12 @@ def fig_mechanism():
             x, y = np.append(x, n_star), np.append(y, ymax * 10)
             ax.text(n_star / 1.2, ymax / 1.6, f"{label}: from about {n_star / 1e4:.0f}0K\nsubmissions no number\nof reviews holds them",
                     color=c, va="top", ha="right", fontsize=P.LEGEND_PT, linespacing=1.1, zorder=6)
-        elif tier == "accept":  # under the flat line, where no curve runs
+        elif tier == "accept_or_better":  # under the flat line, where no curve runs
             ax.text(1e5, y[-1] / 1.2, label, color=c, va="top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
-        else:  # the Spotlight label above its curve's end, the Oral label below its own
-            above = tier == "spot"
-            ax.text(1e5, y[-1] * (1.2 if above else 1 / 1.2), label, color=c, va="bottom" if above else "top", ha="right",
-                    fontsize=P.LEGEND_PT, zorder=6)
+        else:  # the two curves coincide: one key in the empty upper left, the colours as in (a)
+            ax.plot([], [], color=c, lw=1.8 * P.S, label=label)
         ax.plot(x, y, color=c, lw=1.8 * P.S, zorder=3)
+    ax.legend(loc="upper left", bbox_to_anchor=(0.0, 0.72), frameon=False, fontsize=P.LEGEND_PT, handlelength=1.3, borderaxespad=0.3)
     P.n_axis(ax)
     ax.set_yscale("log")
     ax.set_ylim(1.8, ymax)
@@ -537,6 +536,10 @@ def fig_robustness():
     each variant's replay of the NeurIPS 2021 experiment is in Fig 4a,b. The grey span is the Gaussian
     model's pessimistic-to-optimistic range at 2026 size. Rows are grouped by family."""
     r = load("best_paper_robustness")
+    for yr in (2014, 2026):  # the main model's row from the run the text cites (results/best_paper.csv, more replays)
+        b = venue_rows("central").query("venue == 'NeurIPS' and year == @yr").iloc[0]
+        m = (r.variant == "Gaussian") & (r.year == yr)
+        r.loc[m, ["p2_best", "p2_accept", "p2_reject"]] = [b.p2_best, b.p2_accept, b.p2_reject]
     r["variant"] = r.variant.replace({"Gaussian": "Main model"})  # the paper's name for the base model on the 1-10 form
     names = list(dict.fromkeys(r.variant))
     groups = [r[r.variant == n].group.iloc[0] for n in names]
@@ -619,7 +622,7 @@ def fig_scales():
     axs[3].axis("off")  # a spacer, so the y label of (d) clears panel (c)
     axes = [axs[0], axs[1], axs[2], axs[4]]
     panels = ((axes[0], "p2_best", "Best Papers again", (3e-4, 0.2), [1e-3, 1e-2, 1e-1], P.INK),
-              (axes[1], "p2_oral", "Oral", (0, 0.25), [0, 0.1, 0.2], P.BLUE[450]),
+              (axes[1], "p2_oral_or_better", "Oral or Better", (0, 0.25), [0, 0.1, 0.2], P.BLUE[450]),
               (axes[2], "p2_reject", "Rejected", (0, 0.35), [0, 0.15, 0.3], P.ORANGE[450]))
     SIZES = ((2014, 2.8, 0.16), (2026, 4.2, -0.16))
     for ax, col, title, xlim, ticks, c in panels:

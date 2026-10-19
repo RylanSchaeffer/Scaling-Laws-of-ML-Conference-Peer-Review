@@ -118,5 +118,5 @@ Figure legends: Fig 1c "Best Papers, Oral, Spotlight, Accepted, Rejected" (separ
 Fig 1d-g "Best Papers, Oral or Better, Spotlight or Better, Accepted or Better" (each curve a tier or better; panels by the
 first review's set, the same four; y axis "Probability of this tier or better");
 Fig 3a "Spotlight or Better" (the NeurIPS 2021 Orals and Spotlights; the experiment had no Best Papers tier);
-Fig 3c "Accepted or Better, Top 30, Top 3"; Fig 4 "Best Papers, Oral, Spotlight, Accepted";
-Fig 5 "Best Papers again, Accepted, Rejected"; Fig 6 "Best Papers again, Oral, Rejected".
+Fig 3c "Accepted or Better, Top 30, Top 3"; Fig 4 "Best Papers, Oral or Better, Spotlight or Better, Accepted or Better"; Fig 2c,d (schematic) boxes "Best Papers, Oral or Better, Spotlight or Better, Accepted or Better", one inside the next;
+Fig 5 "Best Papers again, Accepted, Rejected"; Fig 6 "Best Papers again, Oral or Better, Rejected".

@@ -114,7 +114,9 @@ the quality distribution, not the tier) stays lowercase.
 | shared noise | u_i, an error that all of a paper's reviewers make alike (presentation, a hot or cold topic, the writing); robustness check only (σ_u = 0.5), zero in the main model and absent from its equation and the schematic (Rylan, 2026-10-18) | "AC noise" |
 | committee | only the real program committees of the NeurIPS 2014 and 2021 experiments, and real award committees | |
 
-Figure legends: Fig 1c and Fig 1d-g "Best Papers, Oral, Spotlight, Accepted, Rejected" (separate tiers);
+Figure legends: Fig 1c "Best Papers, Oral, Spotlight, Accepted, Rejected" (separate tiers);
+Fig 1d-g "Best Papers, Oral or Better, Spotlight or Better, Accepted or Better" (each curve a tier or better; panels by the
+first review's set, the same four; y axis "Probability of this tier or better");
 Fig 3a "Spotlight or Better" (the NeurIPS 2021 Orals and Spotlights; the experiment had no Best Papers tier);
 Fig 3c "Accepted or Better, Top 30, Top 3"; Fig 4 "Best Papers, Oral, Spotlight, Accepted";
 Fig 5 "Best Papers again, Accepted, Rejected"; Fig 6 "Best Papers again, Oral, Rejected".

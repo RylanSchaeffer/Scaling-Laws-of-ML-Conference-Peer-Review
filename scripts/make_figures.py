@@ -149,8 +149,9 @@ def rates_panel(ax):
     proportion of submissions, or something between? Markers: each year's main-track count over submissions, against that year's
     submissions (no spotlight tier in 2016 and 2022; best-paper awards, 1 to 13 a year, are too few to
     draw). Lines: the fitted power law count = a N^gamma (results/tier_sizes.csv) over the
-    fitted years' range of N. On log-log axes a fixed proportion (gamma = 1) is flat and a fixed
-    number (gamma = 0) falls as 1/N; the label gives each series' gamma."""
+    fitted years' range of N, drawn as the proportion a N^gamma / N. On log-log axes a fixed proportion (gamma = 1)
+    is flat and a fixed number (gamma = 0) falls as 1/N; each label gives the count's power law over N, so its
+    exponent is the one the text cites."""
     s = venue_counts().query("venue == 'NeurIPS'").assign(accepted=lambda d: d.N_used * d.acc_rate_used,
                                                            orals_alone=lambda d: d.orals_used - d.awards_used)
     fits = load("tier_sizes").set_index("series")
@@ -167,7 +168,7 @@ def rates_panel(ax):
         lo, hi = P.N_TICKS[0] / 1.15, P.N_TICKS[-1] * 1.15  # the axis limits of P.n_axis
         x = lo * 1.04 if end == "left" else hi / 1.1  # labels start at the frame, so the long ones fit
         y = f.a * xe ** (f.gamma - 1) * (1.45 if side == "above" else 1 / 1.5)
-        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}$", color=tc, ha=end, va="bottom" if side == "above" else "top", fontsize=P.LEGEND_PT,
+        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}/N$", color=tc, ha=end, va="bottom" if side == "above" else "top", fontsize=P.LEGEND_PT,
                 zorder=1, bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo over the gridlines, under the data
     ax.set_yscale("log")
     ax.set_ylim(1e-3, 0.9)  # nothing is drawn above 30%; room below the Oral or Better line for its label
@@ -195,7 +196,8 @@ def fig_headline(stem: str = "fig1_headline"):
     """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS counts (Accepted or Better, Spotlight, Oral) as a proportion of submissions,
     with the fitted power law of each count. (c) Where a second review would rank the NeurIPS Best
     Papers in 2014, 2021 and 2026 (results/best_paper.csv). (d-g) The scaling laws of a second review for a
-    paper the first review made one of its Best Papers, an Oral, a Spotlight, or Accepted or Better (scaling_row).
+    paper the first review made one of its Best Papers or put in Oral or Better, Spotlight or Better or Accepted or Better,
+    each curve the probability of a tier or better (scaling_row).
     Each row's panels are as tall as in the one-row figures (1.1 and ROW_H inches printed, at the default
     subplot margins), so nothing inside a panel moves."""
     top_h, bot_h, hspace = 1.1, ROW_H, 0.74  # room between the rows for the header of (d-g)
@@ -204,7 +206,7 @@ def fig_headline(stem: str = "fig1_headline"):
     H = (plot_h + hspace * plot_h / 2) / (1 - margins)  # figure height that gives those axes heights with the gap between the rows
     fig = plt.figure(figsize=(P.CANVAS_W, H * P.S))
     gs = fig.add_gridspec(2, 1, height_ratios=[top_h, bot_h], hspace=hspace)
-    top = gs[0].subgridspec(1, 3, width_ratios=[1, 1, 1.7], wspace=0.4)  # (c) is wide so its narrow segments can carry labels
+    top = gs[0].subgridspec(1, 3, width_ratios=[0.94, 1.06, 1.7], wspace=0.4)  # (b) fits its longest label; (c) is wide so its narrow segments can carry labels
     bot = gs[1].subgridspec(1, 4, wspace=0.42)
     axes = [fig.add_subplot(top[0, i]) for i in range(3)]
     submissions_panel(axes[0])
@@ -344,26 +346,24 @@ def fig_validation():
 
 def experiment_points() -> list[tuple[str, str, int, float]]:
     """The two NeurIPS two-committee experiments as points of Fig 1d-g (data/experiments.json): for the papers one
-    committee put in a group, the proportion the other committee put in each separate tier, pooled over both
-    directions. Groups: the separate Oral and Spotlight tiers (2021 only; that experiment had no Best Papers tier) and
-    Accepted or Better (2014 reported only acceptance). Zero proportions are left out (log axis).
-    Returns (first-review group, second-review tier, submissions N, proportion)."""
+    committee put in a group, the proportion the other committee put in a second group, pooled over both directions.
+    Both groups are "or Better" sets (the 2021 experiment had no Best Papers tier, so its Orals are Oral or Better).
+    Returns (first-review group, second-review group, submissions N, proportion)."""
     import json
     e = json.load(open(os.path.join(ROOT, "data", "experiments.json")))
     pts = []
     a = e["neurips2014"]["table_2x2"]["value"]
-    pts.append(("accept_or_better", "reject", e["neurips2014"]["design"]["value"]["conference_submissions"],
-                1 - 2 * a["both_accept"] / (a["committee_1_accepts"] + a["committee_2_accepts"])))
+    pts.append(("accept_or_better", "accept_or_better", e["neurips2014"]["design"]["value"]["conference_submissions"],
+                2 * a["both_accept"] / (a["committee_1_accepts"] + a["committee_2_accepts"])))
     n21 = e["neurips2021"]; N21 = n21["design"]["value"]["conference_submissions"]
+    acc = n21["accept_level"]["value"]
+    pts.append(("accept_or_better", "accept_or_better", N21, 2 * acc["accepted_by_both"] / (acc["accepts_original"] + acc["accepts_copy"])))
     c = np.array(n21["table1"]["value"]["counts"])[:4, :4]  # rows: original Oral, Spotlight, Poster, Reject; columns: the copy
-    rows = {"oral": [0], "spot": [1], "accept_or_better": [0, 1, 2]}  # first-review groups, as rows/columns of c
-    cols = {"oral": 0, "spot": 1, "accept": 2, "reject": 3}  # second-review tiers (Poster = Accepted, no award)
-    for first, idx in rows.items():
-        n = c[idx, :].sum() + c[:, idx].sum()  # the group's papers, counted from both committees
-        for second, j in cols.items():
-            k = c[idx, j].sum() + c[j, idx].sum()
-            if k:
-                pts.append((first, second, N21, k / n))
+    top1, top2 = c[:2, :].sum(), c[:, :2].sum()  # Spotlight or Better, 29 and 25
+    pts.append(("spot_or_better", "spot_or_better", N21, 2 * c[:2, :2].sum() / (top1 + top2)))  # 3 papers in both
+    pts.append(("spot_or_better", "accept_or_better", N21, (c[:2, :3].sum() + c[:3, :2].sum()) / (top1 + top2)))
+    oral1, oral2 = c[0, :].sum(), c[:, 0].sum()  # 4 and 2 Orals
+    pts.append(("oral_or_better", "accept_or_better", N21, (c[0, :3].sum() + c[:3, 0].sum()) / (oral1 + oral2)))  # all 6 accepted
     return pts
 
 
@@ -379,23 +379,47 @@ def smooth_line(N: np.ndarray, y: np.ndarray, se: np.ndarray | None, n_fine: int
     return np.exp(xf), np.exp(f(xf))
 
 
+OB_TIERS = (  # (key, colour, label): the curves of Fig 1d-g, the Best Papers and each "or Better" set (peerreview.tiers)
+    ("best", P.INK, "Best Papers"),
+    ("oral_or_better", P.BLUE[450], "Oral or Better"),
+    ("spot_or_better", P.BLUE[250], "Spotlight or Better"),
+    ("accept_or_better", P.MUTED, "Accepted or Better"),
+)
+SEP_ORDER = ("best", "oral", "spot", "accept")  # the separate tiers whose sum is each "or Better" set
+
+
+def or_better(d: pd.DataFrame, fmt: str, key: str) -> tuple[np.ndarray, np.ndarray]:
+    """The probability (and SE) that the second review puts a paper in `key` or better: the column itself when the table has
+    it (best_paper.csv), else the sum of the separate tiers (placement.csv), with the binomial SE at the effective replay
+    count of its Rejected column (the complement of Accepted or Better)."""
+    c = fmt.format(key)
+    if c in d:
+        return d[c].values, d[c + "_se"].values
+    tiers = SEP_ORDER[:SEP_ORDER.index(key.removesuffix("_or_better")) + 1]
+    y = sum(d[fmt.format(t)].values for t in tiers)
+    r, r_se = d[fmt.format("reject")].values, d[fmt.format("reject") + "_se"].values
+    n_eff = r * (1 - r) / r_se ** 2
+    return y, np.sqrt(y * (1 - y) / n_eff)
+
+
 def scaling_row(fig, axes):
-    """The scaling laws: the separate tier a second review gives a paper that the first review made one of its Best
-    Papers (results/best_paper.csv grid rows, p2_*), an Oral or a Spotlight, or Accepted or Better
-    (results/placement.csv, place_{first}_in_{tier}), against submissions N on NeurIPS's tier trends, central level.
-    Each panel's five curves sum to 1; at the paper's own tier the curve is the tier's overlap. Each curve is smoothed across
-    sizes (smooth_line) within its simulation error. Draws into four axes
-    of `fig` and puts the shared legend below the row, clear of the x-axis labels."""
+    """The scaling laws: the probability that a second review puts a paper in each tier or better (Best Papers, Oral or Better,
+    Spotlight or Better, Accepted or Better), for a paper the first review made one of its Best Papers (results/best_paper.csv
+    grid rows, p2_*) or put in Oral or Better, Spotlight or Better or Accepted or Better (results/placement.csv,
+    place_{first}_in_{tier}), against submissions N on NeurIPS's tier trends, central level. At the paper's own set the curve
+    is that set's overlap; above it a promotion, below it a demotion. Each curve is smoothed across sizes (smooth_line) within
+    its simulation error. Draws into four axes of `fig` and puts the shared legend below the row, clear of the x-axis labels."""
     pl = load("placement")
     pl = pl[pl.level == "central"].sort_values("N")
     t = load("best_paper")
     t = t[(t.source == "grid") & (t.level == "central")].sort_values("N")
-    panels = (("best", t, "p2_{}", "Best Papers"), ("oral", pl, "place_oral_in_{}", "Oral"),
-              ("spot", pl, "place_spot_in_{}", "Spotlight"), ("accept_or_better", pl, "place_accept_or_better_in_{}", "Accepted or Better"))
-    for ax, (_, d, col, title) in zip(axes, panels):
-        for key, color, label in SEP_TIERS:
-            c = col.format(key)
-            Nf, yf = smooth_line(d.N.values.astype(float), d[c].values, d[c + "_se"].values if c + "_se" in d else None)
+    panels = (("best", t, "p2_{}", "Best Papers"), ("oral_or_better", pl, "place_oral_or_better_in_{}", "Oral or Better"),
+              ("spot_or_better", pl, "place_spot_or_better_in_{}", "Spotlight or Better"),
+              ("accept_or_better", pl, "place_accept_or_better_in_{}", "Accepted or Better"))
+    for ax, (_, d, fmt, title) in zip(axes, panels):
+        for key, color, label in OB_TIERS:
+            y, se = or_better(d, fmt, key)
+            Nf, yf = smooth_line(d.N.values.astype(float), y, se)
             ax.plot(Nf, yf, color=color, lw=1.6 * P.S, label=label)
         log_prob_axis(ax)
         ax.set_title(title, loc="left")
@@ -403,24 +427,24 @@ def scaling_row(fig, axes):
     top = axes[0].get_position().y1 + 0.8 * LEGEND_GAP_IN * P.S / fig.get_size_inches()[1]  # above the panel titles
     fig.text((x0 + x1) / 2, top, "Where the first review put the paper", ha="center", va="bottom", fontsize=P.LEGEND_PT, color=P.INK2)
     panel = {first: ax for ax, (first, *_) in zip(axes, panels)}
-    colour = {key: c for key, c, _ in SEP_TIERS}
+    colour = {key: c for key, c, _ in OB_TIERS}
     pts = experiment_points()
     for first, second, N, v in pts:  # the NeurIPS 2014 and 2021 experiments
         near = [w for f2, s2, N2, w in pts if f2 == first and N2 == N and s2 != second and abs(np.log10(w / v)) < 0.26]
         dx = (1.25 if v > near[0] else 1 / 1.25) if near else 1.0  # two markers closer than a marker's height step apart sideways until their rims clear
         panel[first].plot([N * dx], [v], ls="none", marker="o", ms=4.2 * P.S, mfc=colour[second], mec=P.INK, mew=0.8 * P.S, zorder=7,
-                          clip_on=False)  # the 6-of-6 Orals accepted with no award sit at 100%, on the frame
+                          clip_on=False)  # the 6-of-6 Orals accepted sit at 100%, on the frame
     for ax in axes:  # where we are this year: NeurIPS 2026 submissions
         ax.axvline(NEURIPS[2026], color=P.INK2, lw=0.9 * P.S, ls=(0, (4, 3)), zorder=0)
         ax.text(NEURIPS[2026] / 1.1, 0.0001, "2026", color=P.INK2, va="bottom", ha="right", fontsize=P.LEGEND_PT, zorder=6,
                 bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo where a curve passes under the label
-    axes[0].set_ylabel("Probability of each tier")
+    axes[0].set_ylabel("Probability of this tier or better")
     h, l = axes[0].get_legend_handles_labels()  # the tiers, from the Best Papers panel
     h.append(Line2D([], [], ls="none", marker="o", ms=4.2 * P.S, mfc=P.SURFACE, mec=P.INK, mew=0.8 * P.S))
     l.append("NeurIPS 2014 and 2021 experiments")
     legend_y = axes[0].get_position().y0 - LEGEND_GAP_IN * P.S / fig.get_size_inches()[1]  # the legend's top, in figure coordinates
     fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, legend_y), ncol=6, handlelength=1.3, columnspacing=1.0,
-               title="Tier the second review gives the paper", title_fontsize=P.LEGEND_PT)
+               title="Tier or better that the second review gives the paper", title_fontsize=P.LEGEND_PT)
 
 
 def fig_scaling():

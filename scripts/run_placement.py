@@ -1,5 +1,5 @@
-"""Where a second review places a paper that the first review made an oral, a spotlight or an
-accepted paper, against submissions N, on the main review form (peerreview.model.MAIN_FORM) at
+"""Where a second review places a paper that the first review put in a separate tier (Best Papers, Oral, Spotlight,
+Accepted) or an "or Better" set, against submissions N, on the main review form (peerreview.model.MAIN_FORM) at
 the three reliability levels. Companion to results/best_paper.csv, whose grid rows give the same
 for the Best Papers (p2_*) with more replays.
 
@@ -27,23 +27,25 @@ import pandas as pd
 from peerreview.levels import LEVELS, ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
-from peerreview.tiers import cuts, tier_size
+from peerreview.tiers import cuts, fitted_count
 from run_best_paper import N_BEST
 
 N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
 GRID_ALPHA = 0.25
 
 
+REPS_CENTRAL = 20_000  # the central level draws Fig. 1e-g: enough replays for smooth curves at every size
+
+
 def job(spec: dict) -> dict:
     m = calibrated(main_model(), spec["level"])
     N, A = spec["N"], int(round(GRID_ALPHA * spec["N"]))
-    tiers = cuts(N_BEST, int(spec["orals"]), int(spec["spotlights"]), A)
+    cut_sizes = cuts(N_BEST, int(spec["n_oral_or_better"]), int(spec["spotlights"]), A)
     seed = stable_seed(m.as_dict(), N, spec["reps"], "placement", spec["level"])
     t0 = time.perf_counter()
-    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, second_committee=True, overlap_tiers=tiers,
+    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, second_committee=True, overlap_cuts=cut_sizes,
                             place=True, n_best=N_BEST)
-    out = {**spec, "alpha": GRID_ALPHA, "accepted": A, "rho2": LEVELS[spec["level"]], "sigma_eps": m.sigma_eps, "seed": seed,
-           **{k: v for k, v in tiers.items() if k in ("oral_or_better", "spot_or_better")}}
+    out = {**spec, "alpha": GRID_ALPHA, "accepted": A, "rho2": LEVELS[spec["level"]], "sigma_eps": m.sigma_eps, "seed": seed}
     for k, v in r.items():
         if k.startswith("place_") or k.startswith("overlap_"):
             out[k] = v
@@ -59,8 +61,8 @@ def main() -> None:
     args = ap.parse_args()
     levels = tuple(x for x in args.levels.split(",") if x) or tuple(LEVELS)
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
-    specs = [{"N": N, "level": lev, "orals": tier_size(fits, "oral_or_better", N), "spotlights": tier_size(fits, "spot", N),
-              "reps": args.reps if N <= 10_000 else max(1000, args.reps // 2), "scale": MAIN_FORM["scale"], "R": MAIN_FORM["R"]}
+    specs = [{"N": N, "level": lev, "n_oral_or_better": fitted_count(fits, "oral_or_better", N), "spotlights": fitted_count(fits, "spot", N),
+              "reps": REPS_CENTRAL if lev == "central" else args.reps if N <= 10_000 else max(1000, args.reps // 2), "scale": MAIN_FORM["scale"], "R": MAIN_FORM["R"]}
              for N in N_GRID for lev in levels]
     specs.sort(key=lambda s: -s["N"])
     rows, t0 = [], time.perf_counter()

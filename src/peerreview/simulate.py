@@ -107,12 +107,13 @@ class _Acc:
         out = {}
         for k, chunks in self.vals.items():
             v = np.concatenate(chunks)
-            if k in ("winner_rank", "winner_rank2"):
-                # Pooled over all conferences, never averaged over chunks (§9).
+            if k in ("winner_rank", "winner_rank2", "best_papers_rank", "best_papers_rank2"):
+                # Pooled over all conferences, never averaged over chunks (§9). winner_*: the first paper of the award
+                # ordering (simulate_chunk); best_papers_*: each of the three Best Papers, pooled (simulate_best_paper).
                 for qn in (0.1, 0.25, 0.5, 0.75, 0.9):
                     out[f"{k}_q{int(100 * qn)}"] = float(np.quantile(v, qn))
                 out[f"{k}_median"] = float(np.median(v))
-                out[f"{k}_logrank_mean" if k == "winner_rank2" else "winner_logrank_mean"] = float(np.mean(np.log(v)))
+                out["winner_logrank_mean" if k == "winner_rank" else f"{k}_logrank_mean"] = float(np.mean(np.log(v)))
                 continue
             ok = np.isfinite(v)
             n = int(ok.sum())
@@ -263,46 +264,46 @@ def simulate_best_paper(
     seed: int | None = None,
     chunk_elems: float = 4e6,
     salt: str = "",
-    winner_tiers: dict[str, int] | None = None,
+    best_papers_cuts: dict[str, int] | None = None,
     second_committee: bool = False,
-    overlap_tiers: dict[str, int] | None = None,
+    overlap_cuts: dict[str, int] | None = None,
     place: bool = False,
-    accept: int | None = None,
+    n_accepted: int | None = None,
     n_best: int = 1,
 ) -> dict:
     """High-replication tier probabilities and ranks of the Best Papers, the first n_best papers of the award ordering; O(N) per conference.
 
     Every rank is in the award ordering (model.award_order): the score plus the chairs' award noise
-    within the accepted set, whose size is `accept`, else the "accept_or_better" entry of winner_tiers or
-    overlap_tiers, else 25% of N. The Best Papers are the first n_best papers of that ordering
+    within the accepted set (Accepted or Better), whose size is `n_accepted`, else the "accept_or_better" entry of best_papers_cuts or
+    overlap_cuts, else 25% of N. The Best Papers are the first n_best papers of that ordering
     (the paper uses n_best = 3). With sigma_award = 0 the award ordering is the score ordering.
 
     Tiers are separate (peerreview.tiers): a paper is in exactly one of best, oral, spot, accept, reject.
     The cutoff dicts below are keyed by tiers.CUTS: "best" (n_best), then the size of each "or Better" set,
     "oral_or_better", "spot_or_better", "accept_or_better"; any other key is a plain top-M set.
 
-    winner_tiers {cut: M} adds winner_in_{cut}, the proportion of the Best Papers in the true top M,
+    best_papers_cuts {cut: M} adds best_papers_in_{cut}, the proportion of the Best Papers in the true top M,
     averaged over conferences. second_committee re-reviews every paper with fresh noise (u, eps and eta
-    redrawn) and adds winner_rank2, the rank of each of the Best Papers by the second review's award
-    ordering (pooled over the three), and winner_in2_{cut}, the proportion of the Best Papers that the
+    redrawn) and adds best_papers_rank2, the rank of each of the Best Papers by the second review's award
+    ordering (pooled over the three), and best_papers_in2_{cut}, the proportion of the Best Papers that the
     second review ranks within M. These are "or Better" probabilities; tiers.add_separate turns them into
-    the separate tiers'. winner_in2_best is the share of the Best Papers that the second review keeps.
-    With second_committee, overlap_tiers {cut: K} adds overlap_{cut}, the proportion of the first review's
+    the separate tiers'. best_papers_in2_best is the share of the Best Papers that the second review keeps.
+    With second_committee, overlap_cuts {cut: K} adds overlap_{cut}, the proportion of the first review's
     top K that the second review also ranks in its top K (overlap_best, overlap_oral_or_better, ...), and
     overlap_{tier} for each separate tier between two known cuts (overlap_oral, overlap_spot,
     overlap_accept): the proportion of the first review's tier that the second review puts in the same
-    tier. It also adds z2_winner and z2_cut, the second review's score for the first review's Best Papers
+    tier. It also adds z2_best_papers and z2_cut, the second review's score for the first review's Best Papers
     (their mean) and its own n_best-th best score in its award ordering, both in units of the second
     review's score SD about its mean.
-    With overlap_tiers, place adds place_{x}_in_{y}: the proportion of the first review's group x that the
+    With overlap_cuts, place adds place_{x}_in_{y}: the proportion of the first review's group x that the
     second review puts in the separate tier y (best, oral, spot, accept, reject). x is a separate tier
     (best, oral, spot, accept) or an "or Better" set (oral_or_better, spot_or_better, accept_or_better).
     Each x's five placements sum to 1, and place_x_in_x equals overlap_x for a separate tier x.
     """
     if seed is None:
         seed = stable_seed(m.as_dict(), N, reps, "best", salt)
-    if accept is None:
-        accept = (winner_tiers or {}).get("accept_or_better") or (overlap_tiers or {}).get("accept_or_better") or int(round(0.25 * N))
+    if n_accepted is None:
+        n_accepted = (best_papers_cuts or {}).get("accept_or_better") or (overlap_cuts or {}).get("accept_or_better") or int(round(0.25 * N))
     rng = np.random.default_rng(seed)
     per_paper = m.R if not m.gaussian_shortcut else 1
     chunk = max(1, int(chunk_elems // (N * per_paper)))
@@ -314,7 +315,7 @@ def simulate_best_paper(
         rows = np.arange(r)
         q = sample_quality(rng, (r, N), m)
         s = jitter(rng, sample_scores(rng, q, m), m)
-        t = award_order(rng, s, m, accept)
+        t = award_order(rng, s, m, n_accepted)
         b = np.argmax(q, axis=1)
         srank = (t > t[rows, b][:, None]).sum(1)
         for K in best_K:
@@ -324,41 +325,41 @@ def simulate_best_paper(
         else:  # the first n_best papers of the award ordering, in any order
             W = np.argpartition(-t, n_best - 1, axis=1)[:, :n_best]
         rank = np.stack([(q > q[rows, W[:, k]][:, None]).sum(1) + 1 for k in range(n_best)], axis=1)
-        acc.add("winner_rank", rank.ravel())
-        for name, M in (winner_tiers or {}).items():
-            acc.add(f"winner_in_{name}", (rank <= M).mean(1))
+        acc.add("best_papers_rank", rank.ravel())
+        for name, M in (best_papers_cuts or {}).items():
+            acc.add(f"best_papers_in_{name}", (rank <= M).mean(1))
         if second_committee:
             s2 = jitter(rng, sample_scores(rng, q, m), m)
-            t2 = award_order(rng, s2, m, accept)
+            t2 = award_order(rng, s2, m, n_accepted)
             rank2 = np.stack([(t2 > t2[rows, W[:, k]][:, None]).sum(1) + 1 for k in range(n_best)], axis=1)
-            acc.add("winner_rank2", rank2.ravel())
-            for name, M in (winner_tiers or {}).items():
-                acc.add(f"winner_in2_{name}", (rank2 <= M).mean(1))
-            if overlap_tiers:
+            acc.add("best_papers_rank2", rank2.ravel())
+            for name, M in (best_papers_cuts or {}).items():
+                acc.add(f"best_papers_in2_{name}", (rank2 <= M).mean(1))
+            if overlap_cuts:
                 order1 = np.argsort(-t, axis=1)
                 order2 = np.argsort(-t2, axis=1)
                 rank2_all = np.empty_like(order2)
                 rank2_all[rows[:, None], order2] = np.arange(N)[None, :]  # 0-based rank by the second review
                 r2 = rank2_all[rows[:, None], order1]  # the second review's rank of the first review's k-th paper
-                for name, K in overlap_tiers.items():  # "or Better" sets (and the Best Papers): top K in both
+                for name, K in overlap_cuts.items():  # "or Better" sets (and the Best Papers): top K in both
                     K = int(K)
                     acc.add(f"overlap_{name}", (r2[:, :K] < K).sum(1) / K)
-                bd = bands(overlap_tiers, N)
+                bd = bands(overlap_cuts, N)
                 for x, (lo, hi) in bd.items():  # separate tiers: the same tier in both reviews
                     if x not in ("best", "reject") and hi > lo:
                         acc.add(f"overlap_{x}", ((r2[:, lo:hi] >= lo) & (r2[:, lo:hi] < hi)).sum(1) / (hi - lo))
                 if place:  # first-review groups: each separate tier, and each "or Better" set (its top K)
                     groups = {x: (lo, hi) for x, (lo, hi) in bd.items() if x != "reject" and hi > lo}
-                    groups.update({c: (0, int(overlap_tiers[c])) for c in OR_BETTER if c in overlap_tiers})
+                    groups.update({c: (0, int(overlap_cuts[c])) for c in OR_BETTER if c in overlap_cuts})
                     for x, (lo, hi) in groups.items():
                         rx = r2[:, lo:hi]
                         for y, (ylo, yhi) in bd.items():
                             acc.add(f"place_{x}_in_{y}", ((rx >= ylo) & (rx < yhi)).sum(1) / (hi - lo))
                 mu2, sd2 = s2.mean(axis=1), s2.std(axis=1)
-                acc.add("z2_winner", ((s2[rows[:, None], W] - mu2[:, None]) / sd2[:, None]).mean(1))
+                acc.add("z2_best_papers", ((s2[rows[:, None], W] - mu2[:, None]) / sd2[:, None]).mean(1))
                 acc.add("z2_cut", (s2[rows, order2[:, n_best - 1]] - mu2) / sd2)
         done += r
-    row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability, "accept": int(accept)}
+    row = {**m.as_dict(), "N": N, "reps": reps, "seed": seed, "rho2": m.reliability, "accepted": int(n_accepted)}
     row.update(acc.summary())
     row["wall_s"] = time.perf_counter() - t0
     return row

@@ -29,8 +29,8 @@ def tasks(venues: pd.DataFrame) -> list[dict]:
         if N < 1000:  # the study's range is N = 1,000 to 1,000,000 (handoff §1)
             continue
         alpha = float(v["acc_rate_used"])
-        orals = int(v["orals_used"]) if pd.notna(v.get("orals_used")) else None
-        Ks = sorted({5, 10, 30} | ({orals} if orals else set()))
+        n_oral_or_better = int(v["orals_used"]) if pd.notna(v.get("orals_used")) else None  # NeurIPS-style Oral count: Oral or Better
+        Ks = sorted({5, 10, 30} | ({n_oral_or_better} if n_oral_or_better else set()))
         for lev in LEVELS:
             m = calibrated(ReviewModel(R=3), lev)
             d = m.as_dict()
@@ -40,7 +40,7 @@ def tasks(venues: pd.DataFrame) -> list[dict]:
                 sel=dict(fixed_K=Ks, pct=[], alphas=[alpha], best_K=[1, 5, 10, 30], alpha_ref=alpha),
                 two_committees=True,
                 extra=dict(venue=v["venue"], year=int(v["year"]), denominator=v.get("denominator", "submissions"),
-                           level=lev, alpha=alpha, orals=orals if orals else np.nan),
+                           level=lev, alpha=alpha, n_oral_or_better=n_oral_or_better if n_oral_or_better else np.nan),
             ))
     return out
 
@@ -50,10 +50,10 @@ def tidy(df: pd.DataFrame) -> pd.DataFrame:
     for _, r in df.iterrows():
         a = f"acc{r['alpha']:.2f}"
         A = int(round(r["alpha"] * r["N"]))
-        o = r["orals"]
+        o = r["n_oral_or_better"]
         rows.append(dict(
             venue=r["venue"], year=r["year"], denominator=r["denominator"], level=r["level"], N=r["N"],
-            alpha=r["alpha"], accepted=A, orals=o, reps=r["reps"], seed=r["seed"],
+            alpha=r["alpha"], accepted=A, n_oral_or_better=o, reps=r["reps"], seed=r["seed"],
             prec_K5=r["prec_K5"], prec_K10=r["prec_K10"], prec_K30=r["prec_K30"],
             prec_oral_or_better=r.get(f"prec_K{int(o)}", np.nan) if pd.notna(o) else np.nan,
             ovl_oral_or_better=r.get(f"ovl_K{int(o)}", np.nan) if pd.notna(o) else np.nan,

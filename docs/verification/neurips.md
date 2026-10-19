@@ -19,7 +19,7 @@ Working files (downloads, text extracts, small scripts) are in the session scrat
 7. **NeurIPS 2025 awards: 3 main-track best papers, not 4.** The fact sheet lists 4 best papers, but one of them is from the Datasets and Benchmarks track. It also lists 3 runners-up.
 8. **NeurIPS 2014 rejection shares: 50% and 49%, not 50% and 51%.** Of committee 2's 44 accepts, committee 1 rejected 22 (50%). Of committee 1's 43 accepts, committee 2 rejected 21 (49%). The 51% is the share that the other committee accepted.
 9. **The 0.544 in the 2014 notebook is not the calibrated correlation.** In the Reviewer Calibration notebook, 0.544 is the correlation of raw mean quality scores. The correlation of calibrated mean scores is 0.546, which rounds to the published 0.55.
-10. **§8.1 must pair each top-tier size with the correct rejection count.** See §2 below. For the oral-plus-spotlight tier (29 and 25 papers), the other committee rejected 13 of 29 and 13 of 25. The figures 13 of 25 and 13 of 23 are for spotlights only (orals excluded). The two "13 of 25" figures come from different committees.
+10. **§8.1 must pair each set size with the correct rejection count.** See §2 below. For the Spotlight or Better set (Orals and Spotlights; 29 and 25 papers), the other committee rejected 13 of 29 and 13 of 25. The figures 13 of 25 and 13 of 23 are for the Spotlight tier alone (Orals excluded). The two "13 of 25" figures come from different committees.
 11. **NeurIPS 2025 space constraint.** The PC post says space played a negligible role for the main track. A news report (36kr) gives the figure of about 400 papers rejected after AC acceptance. The §10.5 wording ("volume forced SAC-level ranking") is not in the PC post.
 12. **NeurIPS 2026 has no primary source yet.** The virtual site is not public (HTTP 403). There is no fact sheet and no PC post. The official data export `neurips-2026-orals-posters.json` has 9,236 records but only 6,285 unique ids, so it cannot give counts. The 2026 row must stay unverified.
 
@@ -41,7 +41,7 @@ Source: Beygelzimer, Dauphin, Liang and Wortman Vaughan, arXiv:2306.03262 v1 (th
 - Section 2 states that oral and spotlight decisions were made jointly by SACs and the program chairs.
 - Section 4.2 states that ACs, SACs and PCs made these recommendations, and that they used factors beyond raw reviewer scores, for example interest to a broad audience.
 - Section 5.1 states that during calibration ACs were often asked to edit their meta-reviews between poster and reject, or between spotlight and poster. So Table 1 shows recommendations after SAC/PC calibration, not raw AC proposals.
-- Inference (not stated in the paper): each copy had its own AC and SAC, but the same four PCs worked on decisions for both copies. So the top-tier decision has a component that both committees may share.
+- Inference (not stated in the paper): each copy had its own AC and SAC, but the same four PCs worked on decisions for both copies. So the oral and spotlight decisions have a component that both committees may share.
 
 ### Table 1 (rows: original committee; columns: copy committee)
 
@@ -61,12 +61,12 @@ The orientation was checked from the rendered PDF page: the row sums of accepts 
 - Accepts: 206 (original), 195 (copy); both accept 99; inconsistent 203 of 882 = 23.0%. Mean acceptance rate 22.7%; random baseline 2p(1-p) = 35.1%. All match the paper.
 - Share of one committee's accepts rejected by the other: 107/206 = 51.9% and 96/195 = 49.2%; pooled 50.6%. These match the paper.
 - Share of rejects (withdrawn counted as rejects) accepted by the other: 14.9% pooled. This matches the paper.
-- **Top tier = oral plus spotlight.** Sizes 29 (original) and 25 (copy); overlap 3. All 3 are spotlight in both copies; no paper was an oral in both.
-  - The original's 29 in the copy: 3 top tier, 13 poster, 13 reject. P(reject | top tier) = 13/29 = 0.448.
-  - The copy's 25 in the original: 3 top tier, 9 poster, 13 reject. P(reject | top tier) = 13/25 = 0.520.
-- **Spotlights only.** Original 25: 3 spotlight, 9 poster, 13 reject in the copy, so 13/25 = 0.520. Copy 23: 3 spotlight, 7 poster, 13 reject in the original, so 13/23 = 0.565. The blog states "13/25 and 13/23" for spotlights. The paper gives the table only.
-- **Orals only.** Original 4 and copy 2. All 6 were posters in the other copy, so no oral was rejected by the other committee.
-- **If only orals and spotlights were accepted.** The rate is 27/882 = 3.1%. Of each committee's top tier, the other's top tier excludes 26/29 and 22/25; the mean is 88.8%, which matches the paper. Disagreement is 48/882 = 5.4%. The paper text gives 5.8%, but its "8% relative improvement" over the 5.9% random baseline fits 5.4%. The blog gives a 3% improvement. So the paper and the blog disagree slightly here.
+- **Spotlight or Better = Orals and Spotlights** (the experiment had no Best Papers tier). Sizes 29 (original) and 25 (copy); overlap 3. All 3 are Spotlights in both copies; no paper was an Oral in both.
+  - The original's 29 in the copy: 3 Spotlight or Better, 13 poster, 13 reject. P(reject | Spotlight or Better) = 13/29 = 0.448.
+  - The copy's 25 in the original: 3 Spotlight or Better, 9 poster, 13 reject. P(reject | Spotlight or Better) = 13/25 = 0.520.
+- **The Spotlight tier alone.** Original 25: 3 Spotlight, 9 poster, 13 reject in the copy, so 13/25 = 0.520. Copy 23: 3 Spotlight, 7 poster, 13 reject in the original, so 13/23 = 0.565. The blog states "13/25 and 13/23" for spotlights. The paper gives the table only.
+- **The Oral tier alone.** Original 4 and copy 2. All 6 were posters in the other copy, so the other committee rejected no Oral.
+- **If only Spotlight or Better (Orals and Spotlights) were accepted.** The rate is 27/882 = 3.1%. Of each committee's Spotlight or Better set, the other's Spotlight or Better set excludes 26/29 and 22/25; the mean is 88.8%, which matches the paper. Disagreement is 48/882 = 5.4%. The paper text gives 5.8%, but its "8% relative improvement" over the 5.9% random baseline fits 5.4%. The blog gives a 3% improvement. So the paper and the blog disagree slightly here.
 
 ### Other numbers in the paper
 
@@ -91,9 +91,9 @@ The orientation was checked from the rendered PDF page: the row sums of accepts 
 | 1.6 | "57%" comes from using 22.5% instead of the committees' own rate | Price applied a 22.5% rate (the target rate he says the committees were "tasked with") to get 21/37 or 22/38, about 57%. Cortes & Lawrence say the debate used the main conference rate as a proxy. The realised 2014 rate was 24.7% | confirmed (22.5% is a target rate, not the realised rate) | http://blog.mrtz.org/2014/12/15/the-nips-experiment.html (E. Price guest post; origin of the claim); arXiv:2109.09774 Appendix C.1 |
 | 1.7 | 2014: correlation 0.55 ± 0.065 (0.544 in notebook) | Paper: 0.55, SE 0.065. Notebook: 0.5440 for raw mean quality, 0.5456 for calibrated mean quality | partly confirmed (0.544 is the raw-score value) | arXiv:2109.09774 §2.2, Fig. 2; https://raw.githubusercontent.com/lawrennd/neurips2014/master/notebooks/Reviewer%20Calibration.ipynb |
 | 1.8 | 2014 variance components 1.28 / 0.24 / 1.27; offset share 8.6%; about half subjective after offsets | Table 2: 1.28, 0.24, 1.27. 0.24/2.79 = 8.6%; 1.27/2.55 = 49.8% | confirmed | arXiv:2109.09774 Table 2; https://inverseprobability.com/slides/2021-06-16-the-neurips-experiment.slides.html |
-| 1.9 | 2014: no significant score-citation correlation among accepted papers; 0.22 ± 0.038 among rejected | Accepted (n = 414): 0.051 ± 0.049. Rejected: 0.22 ± 0.038 | confirmed | arXiv:2109.09774 Figs. 4 and 8 |
+| 1.9 | 2014: no significant score-citation correlation among accepted papers; 0.22 ± 0.038 among rejected | Accepted or Better (n = 414): 0.051 ± 0.049. Rejected: 0.22 ± 0.038 | confirmed | arXiv:2109.09774 Figs. 4 and 8 |
 | 1.10 | 2021: 882 papers, 203 (23.0%) inconsistent, mean rate 22.7%, random 35.1% | Same | confirmed | https://arxiv.org/pdf/2306.03262 §4.1; NeurIPS blog 8 Dec 2021 |
-| 1.11 | 2021: spotlights rejected by the other committee 13 of 25 and 13 of 23; orals+spotlights 29 and 25, agree on 3 | Same. 13/25 and 13/23 are spotlights only; for orals+spotlights the counts are 13/29 and 13/25 | confirmed | arXiv:2306.03262 Table 1 and §4.1; https://blog.neurips.cc/2021/12/08/the-neurips-2021-consistency-experiment/ |
+| 1.11 | 2021: Spotlights rejected by the other committee 13 of 25 and 13 of 23; Spotlight or Better (Orals and Spotlights) 29 and 25, agree on 3 | Same. 13/25 and 13/23 are the Spotlight tier alone; for Spotlight or Better the counts are 13/29 and 13/25 | confirmed | arXiv:2306.03262 Table 1 and §4.1; https://blog.neurips.cc/2021/12/08/the-neurips-2021-consistency-experiment/ |
 | 1.12 | 2021 reported no committee-score correlation and no disagreement by score band | Correlation reported: 0.575 initial, 0.586 final (Fig. 1). Disagreement versus score-threshold acceptance rate is plotted (Fig. 2), not tabulated by band | contradicted (correlation) / partly (score band) | arXiv:2306.03262 Fig. 1, Fig. 2 |
 | 1.13 | 2021 main track: 9,122 submissions, 25.7% accepted | 9,122; 2,334 accepted; 25.6% | partly confirmed (rate is 25.6%) | https://neurips.cc/media/Press/NeurIPS_2021-Fact_Sheet.pdf ; arXiv:2306.03262 §2 |
 

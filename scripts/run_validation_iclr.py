@@ -58,7 +58,7 @@ def job(row: dict, placement: str) -> dict:
         cal_converged=cal["converged"], seed=sim["seed"], reps=sim["reps"],
         obs_corr=row["corr_halves_mean"], model_corr=sim["corr_s12"],
         obs_incons=row["inconsistent_mean"], model_incons=sim[f"incons_{a}"], model_incons_se=sim[f"incons_{a}_se"],
-        obs_precision=row["precision_mean"], model_precision=sim[f"ovl_{a}"], model_precision_se=sim[f"ovl_{a}_se"],
+        obs_precision=row["precision_mean"], obs_precision_sd=row["precision_sd"], model_precision=sim[f"ovl_{a}"], model_precision_se=sim[f"ovl_{a}_se"],
         obs_top10=row["ovl_top10_mean"], obs_top10_sd=row["ovl_top10_sd"],
         model_top10=sim["ovl_K10"], model_top10_se=sim["ovl_K10_se"],
         obs_top30=row["ovl_top30_mean"], obs_top30_sd=row["ovl_top30_sd"],

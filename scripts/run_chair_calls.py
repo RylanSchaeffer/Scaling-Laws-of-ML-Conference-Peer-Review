@@ -20,8 +20,7 @@ import numpy as np
 import pandas as pd
 
 from peerreview.levels import ROOT, calibrated, main_model
-from peerreview.tiers import tier_size
-from run_R_needed_tiers import TIERS, aggregate, job, tiers_at
+from run_R_needed_tiers import GROUPS, job, cuts_at
 
 K_CALLS = [1, 2, 4, 16, np.inf]
 RS = [4, 16]
@@ -41,7 +40,7 @@ def main() -> None:
         for k in K_CALLS:
             sigma = 0.0 if not np.isfinite(k) else base.sigma_award / np.sqrt(k)
             for c in range(int(np.ceil(args.reps / args.chunk))):
-                specs.append({"N": N, "Rs": RS, "sizes": tiers_at(fits, N), "reps": args.chunk, "chunk": c, "sigma_award": sigma, "k": k})
+                specs.append({"N": N, "Rs": RS, "sizes": cuts_at(fits, N), "reps": args.chunk, "chunk": c, "sigma_award": sigma, "k": k})
     specs.sort(key=lambda s: -s["N"])
     rows, t0 = [], time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
@@ -55,12 +54,12 @@ def main() -> None:
             r = rows[-1]
             print(f"[{i}/{len(specs)} {time.perf_counter() - t0:.0f}s] N={s['N']} k={s['k']} chunk {s['chunk']}: R={r['R']} best {r['overlap_best']:.3f}", flush=True)
     df = pd.DataFrame(rows)
-    keys = ["N", "R", "orals", "spotlights", "sigma_eps", "method", "k", "sigma_award"]
-    agg = {f"overlap_{t}": "mean" for t in TIERS}
+    keys = ["N", "R", "n_oral_or_better", "spotlights", "sigma_eps", "method", "k", "sigma_award"]
+    agg = {f"overlap_{t}": "mean" for t in GROUPS}
     agg.update({"reps": "sum", "wall_s": "sum"})
     g = df.groupby(keys, dropna=False)
     out = g.agg(agg).reset_index()
-    for t in TIERS:
+    for t in GROUPS:
         out[f"overlap_{t}_se"] = (g[f"overlap_{t}"].std(ddof=1) / np.sqrt(g[f"overlap_{t}"].size())).values
     out = out.sort_values(["N", "R", "k"])
     path = os.path.join(ROOT, "results", "chair_calls.csv")

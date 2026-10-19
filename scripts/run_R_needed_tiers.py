@@ -29,18 +29,18 @@ import pandas as pd
 from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import sample_quality, snap
 from peerreview.simulate import stable_seed
-from peerreview.tiers import bands, cuts, tier_size
+from peerreview.tiers import bands, cuts, fitted_count
 from run_best_paper import N_BEST
 
 N_GRID = [int(round(10 ** (3 + k / 6))) for k in range(13)]  # 1000, 1468, 2154, ... 68129, 100000
 R_LADDER = [4, 5, 6, 8, 10, 12, 16, 20, 24, 32]
 R_CHECK = {64: [10_000, 46_416, 100_000]}  # exact rungs beyond the ladder, as a check on the approximation
-TIERS = ("best", "oral", "spot", "accept", "oral_or_better", "spot_or_better", "accept_or_better")  # separate tiers, then "or Better" sets
+GROUPS = ("best", "oral", "spot", "accept", "oral_or_better", "spot_or_better", "accept_or_better")  # separate tiers, then "or Better" sets
 
 
-def tiers_at(fits: pd.DataFrame, N: int) -> dict:
+def cuts_at(fits: pd.DataFrame, N: int) -> dict:
     """The cutoffs (peerreview.tiers.CUTS) at N submissions on NeurIPS's trends, Accepted or Better at 25%."""
-    return cuts(N_BEST, tier_size(fits, "oral_or_better", N), tier_size(fits, "spot", N), int(round(0.25 * N)))
+    return cuts(N_BEST, fitted_count(fits, "oral_or_better", N), fitted_count(fits, "spot", N), int(round(0.25 * N)))
 
 
 def overlaps_from_orders(accs: list, tops: list, c: dict, N: int) -> dict:
@@ -87,7 +87,7 @@ def job(spec: dict) -> list[dict]:
     pts = m.points
     rng = np.random.default_rng(stable_seed(m.as_dict(), N, reps, chunk, Rmax, "R_needed_tiers_exact"))
     t0 = time.perf_counter()
-    acc = {R: {t: 0.0 for t in TIERS} for R in Rs}
+    acc = {R: {t: 0.0 for t in GROUPS} for R in Rs}
     for _ in range(reps):
         q = sample_quality(rng, (N,), m)
         reviews = []
@@ -99,22 +99,22 @@ def job(spec: dict) -> list[dict]:
             reviews.append((cs, jit, eta))
         for R in Rs:
             o = tier_overlaps(reviews, R, sizes, N)
-            for t in TIERS:
+            for t in GROUPS:
                 acc[R][t] += o[t]
     wall = time.perf_counter() - t0
-    return [{"N": N, "R": R, "orals": sizes["oral_or_better"], "spotlights": sizes["spot_or_better"] - sizes["oral_or_better"], "reps": reps, "chunk": chunk,
-             **{f"overlap_{t}": acc[R][t] / reps for t in TIERS}, "sigma_eps": m.sigma_eps, "method": "exact", "wall_s": wall / len(Rs)}
+    return [{"N": N, "R": R, "n_oral_or_better": sizes["oral_or_better"], "spotlights": sizes["spot_or_better"] - sizes["oral_or_better"], "reps": reps, "chunk": chunk,
+             **{f"overlap_{t}": acc[R][t] / reps for t in GROUPS}, "sigma_eps": m.sigma_eps, "method": "exact", "wall_s": wall / len(Rs)}
             for R in Rs]
 
 
 def aggregate(df: pd.DataFrame) -> pd.DataFrame:
     """Average the chunks of equal size; the SE is across chunks."""
-    keys = ["N", "R", "orals", "spotlights", "sigma_eps", "method"]
-    agg = {f"overlap_{t}": "mean" for t in TIERS}
+    keys = ["N", "R", "n_oral_or_better", "spotlights", "sigma_eps", "method"]
+    agg = {f"overlap_{t}": "mean" for t in GROUPS}
     agg.update({"reps": "sum", "wall_s": "sum"})
     g = df.groupby(keys, dropna=False)
     out = g.agg(agg).reset_index()
-    for t in TIERS:
+    for t in GROUPS:
         out[f"overlap_{t}_se"] = (g[f"overlap_{t}"].std(ddof=1) / np.sqrt(g[f"overlap_{t}"].size())).values
     return out.sort_values(["N", "R"]).reset_index(drop=True)
 
@@ -146,7 +146,7 @@ def main() -> None:
         chunk = args.chunk * (args.base_reps // args.reps) if N == N_GRID[0] else args.chunk
         Rs = R_LADDER + [R for R, Ns in R_CHECK.items() if N in Ns]
         for c in range(int(np.ceil(reps / chunk))):
-            specs.append({"N": N, "Rs": Rs, "sizes": tiers_at(fits, N), "reps": chunk, "chunk": c})
+            specs.append({"N": N, "Rs": Rs, "sizes": cuts_at(fits, N), "reps": chunk, "chunk": c})
     specs.sort(key=lambda s: -s["N"] * max(s["Rs"]))
     df = run(specs, args.workers, "exact")
     path = os.path.join(ROOT, "results", "R_needed_tiers_exact.csv")

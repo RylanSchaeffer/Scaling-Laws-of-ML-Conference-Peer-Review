@@ -71,34 +71,34 @@ def test_second_committee_matches_closed_forms():
     m = ReviewModel(R=3, sigma_eps=2.0)
     rho2 = m.reliability
     N, A = 2000, 500
-    # Committee 2's scores correlate with committee 1's at rho^2, so the rerun tiers are the
-    # true-rank integrals at correlation rho^2, and the true-rank tiers those at rho; the same for
-    # one paper and for the three of the paper (the share of them inside the tier).
+    # Committee 2's scores correlate with committee 1's at rho^2, so the rerun probabilities of a top-M set are
+    # the true-rank integrals at correlation rho^2, and the true-rank ones those at rho; the same for
+    # one paper and for the three of the paper (the share of them inside the top M).
     for n_best in (1, 3):
-        row = simulate_best_paper(m, N, reps=6000, best_K=(1,), winner_tiers={"best": 3, "top10": 10, "accept_or_better": A},
+        row = simulate_best_paper(m, N, reps=6000, best_K=(1,), best_papers_cuts={"best": 3, "top10": 10, "accept_or_better": A},
                                   second_committee=True, n_best=n_best)
         for name, M in (("best", 3), ("top10", 10), ("accept_or_better", A)):
             exact = an.containment_fixed_K(N, n_best, M, rho2)
-            assert abs(row[f"winner_in2_{name}"] - exact) < 4 * row[f"winner_in2_{name}_se"] + 1e-3
+            assert abs(row[f"best_papers_in2_{name}"] - exact) < 4 * row[f"best_papers_in2_{name}_se"] + 1e-3
         exact = an.containment_fixed_K(N, n_best, 10, np.sqrt(rho2))
-        assert abs(row["winner_in_top10"] - exact) < 4 * row["winner_in_top10_se"] + 1e-3
-        assert row["winner_rank2_median"] > row["winner_rank_median"]
+        assert abs(row["best_papers_in_top10"] - exact) < 4 * row["best_papers_in_top10_se"] + 1e-3
+        assert row["best_papers_rank2_median"] > row["best_papers_rank_median"]
 
 
 def test_tier_size_fit_recovers_power_law():
     import pandas as pd
-    from peerreview.tiers import fit_tier_sizes, tier_size
+    from peerreview.tiers import fit_tier_sizes, fitted_count
     N = np.array([1000, 2000, 5000, 10_000, 20_000], float)
     counts = pd.DataFrame(dict(venue="NeurIPS", year=np.arange(2014, 2019), N_used=N, acc_rate_used=0.25,
                                orals_used=0.3 * N**0.6, spotlights=0.5 * N**0.8,
                                awards_used=[3, 3, 3, 3, np.nan]))
     f = fit_tier_sizes(counts)
-    a, o, s, w = (f[f.tier == t].iloc[0] for t in ("accept_or_better", "oral_or_better", "spot", "best"))
+    a, o, s, w = (f[f.series == t].iloc[0] for t in ("accept_or_better", "oral_or_better", "spot", "best"))
     assert abs(a.gamma - 1.0) < 1e-9 and abs(a.a - 0.25) < 1e-9
     assert abs(o.gamma - 0.6) < 1e-9 and abs(o.a - 0.3) < 1e-9 and o.n_years == 5
     assert abs(s.gamma - 0.8) < 1e-9 and abs(s.a - 0.5) < 1e-9
     assert abs(w.gamma) < 1e-9 and abs(w.a - 3) < 1e-9 and w.n_years == 4  # a fixed number: gamma = 0
-    assert tier_size(f, "oral_or_better", 10_000) == round(0.3 * 10_000**0.6)
+    assert fitted_count(f, "oral_or_better", 10_000) == round(0.3 * 10_000**0.6)
 
 
 def test_tier_overlap_closed_form_matches_exact_from_30():
@@ -128,16 +128,16 @@ def test_placement_is_separate_and_matches_overlap():
     from peerreview.model import ReviewModel, MAIN_FORM
     from peerreview.tiers import add_separate, cuts
     m = ReviewModel(**MAIN_FORM, sigma_eps=2.0)
-    tiers = cuts(3, 17, 48, 250)
-    r = simulate_best_paper(m, 1000, reps=100, best_K=(1,), seed=3, winner_tiers=tiers, second_committee=True,
-                            overlap_tiers=tiers, place=True, n_best=3)
+    cut_sizes = cuts(3, 17, 48, 250)
+    r = simulate_best_paper(m, 1000, reps=100, best_K=(1,), seed=3, best_papers_cuts=cut_sizes, second_committee=True,
+                            overlap_cuts=cut_sizes, place=True, n_best=3)
     for x in ("best", "oral", "spot", "accept"):
         assert r[f"place_{x}_in_{x}"] == r[f"overlap_{x}"]  # a paper keeps its own tier with the tier's overlap
         assert np.isclose(sum(r[f"place_{x}_in_{y}"] for y in ("best", "oral", "spot", "accept", "reject")), 1.0)  # one tier each
-    add_separate(r, "winner_in2")
+    add_separate(r, "best_papers_in2")
     for y in ("best", "oral", "spot", "accept", "reject"):  # the lean Best Papers path and the placement path agree
-        assert abs(r[f"winner_in2_{y}"] - r[f"place_best_in_{y}"]) < 1e-12
-    assert abs(r["overlap_best"] - r["winner_in2_best"]) < 1e-12
+        assert abs(r[f"best_papers_in2_{y}"] - r[f"place_best_in_{y}"]) < 1e-12
+    assert abs(r["overlap_best"] - r["best_papers_in2_best"]) < 1e-12
 
 
 def test_award_step():
@@ -156,12 +156,12 @@ def test_award_step():
         rej = np.argsort(-row_s)[50:]
         assert list(np.argsort(-row_t)[50:]) == list(rej)  # rejected papers keep their score order
     # with sigma_award = 0 the simulator is unchanged (same seed, same numbers)
-    tiers = {"best": 3, "oral_or_better": 17, "spot_or_better": 65, "accept_or_better": 250}
-    a = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
-    b = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers, accept=250)
-    assert a["overlap_spot"] == b["overlap_spot"] and a["winner_in2_best"] == b["winner_in2_best"]
+    cut_sizes = {"best": 3, "oral_or_better": 17, "spot_or_better": 65, "accept_or_better": 250}
+    a = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, best_papers_cuts=cut_sizes, second_committee=True, overlap_cuts=cut_sizes)
+    b = simulate_best_paper(m0, 1000, reps=50, best_K=(1,), seed=5, best_papers_cuts=cut_sizes, second_committee=True, overlap_cuts=cut_sizes, n_accepted=100)  # no award noise: the size does not matter
+    assert a["overlap_spot"] == b["overlap_spot"] and a["best_papers_in2_best"] == b["best_papers_in2_best"]
     # award noise lowers the award overlaps and leaves the acceptance overlap
-    c = simulate_best_paper(m0.replace(sigma_award=1.0), 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
-    d = simulate_best_paper(m0, 1000, reps=200, best_K=(1,), seed=5, winner_tiers=tiers, second_committee=True, overlap_tiers=tiers)
+    c = simulate_best_paper(m0.replace(sigma_award=1.0), 1000, reps=200, best_K=(1,), seed=5, best_papers_cuts=cut_sizes, second_committee=True, overlap_cuts=cut_sizes)
+    d = simulate_best_paper(m0, 1000, reps=200, best_K=(1,), seed=5, best_papers_cuts=cut_sizes, second_committee=True, overlap_cuts=cut_sizes)
     assert c["overlap_oral"] < d["overlap_oral"] and c["overlap_best"] < d["overlap_best"]
     assert abs(c["overlap_accept_or_better"] - d["overlap_accept_or_better"]) < 0.03

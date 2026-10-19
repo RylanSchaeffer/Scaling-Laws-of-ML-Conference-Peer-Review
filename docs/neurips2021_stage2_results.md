@@ -1,7 +1,8 @@
 # Why the two committees gave different awards: stage 2, run 1
 
-Scope: the 50 NeurIPS 2021 pairs in which at least one committee recommended an oral or a spotlight (6 oral/poster,
-16 spotlight/poster, 25 spotlight/reject, 3 spotlight/spotlight). One language-model judge per pair, in a fixed order,
+Scope: the 50 NeurIPS 2021 pairs in which at least one committee recommended an Oral or a Spotlight (6 Oral/Poster,
+16 Spotlight/Poster, 25 Spotlight/Reject, 3 Spotlight/Spotlight). The experiment had no Best Papers tier, so its
+Orals and Spotlights together are its Spotlight or Better set. One language-model judge per pair, in a fixed order,
 growing one shared set of reasons; every judgement is on disk (`analysis/stage2/run_1/`). The chart:
 `figures/stage2_matrix_run1.pdf` (pairs by reasons) and `figures/stage2_reasons_by_kind_run1.pdf`.
 
@@ -11,8 +12,9 @@ The award tier was a chair's call in most pairs, so the model now cuts the award
 the score plus a chair noise η ~ N(0, σ_η²) within the accepted set, redrawn by a second review. σ_η = 0.59 on
 the 1-10 axis, fitted so that the model's awards fall inside each committee's score top-K as often as the real
 ones did (26 of 53; `scripts/fit_award_noise.py`, `results/award_noise.json`, bootstrap 90% range 0.42 to 0.76).
-Held out: the model then predicts 4.6 shared awards (observed 3, P = 0.32) and 33% of award papers rejected by
-the other committee (observed 48%, P = 0.02; was 5.6 and 30% without the step). Paper: Section "The award step",
+Held out: the model then predicts 4.6 papers in both committees' Spotlight or Better sets (observed 3, P = 0.32)
+and 33% of one committee's Spotlight or Better papers rejected by the other (observed 48%, P = 0.02; was 5.6 and
+30% without the step). Paper: Section "The award step",
 Appendix "The NeurIPS 2021 paired reviews".
 
 ## What the matrix says
@@ -25,14 +27,14 @@ weaknesses its own reviewers had stated, and in 20 the area chair's own judgemen
 Score mechanics matter less: a factual misreading set a score in 24 pairs, the rebuttal moved one committee only
 in 26, and reviewers who said they were not experts had their accept scores counted in full in 19.
 
-Spotlight/reject splits (25 pairs) are where the area-chair mechanisms concentrate: the higher tier had no stated
+Spotlight/Reject splits (25 pairs) are where the area-chair mechanisms concentrate: the higher tier had no stated
 grounds in 19 of 25 and the meta-review dropped stated weaknesses in 19 of 25, against 3 of 6 and 2 of 6 for the
-oral/poster pairs. The oral/poster pairs are instead all cases of thin reviews on one side and different weighting
+Oral/Poster pairs. The Oral/Poster pairs are instead all cases of thin reviews on one side and different weighting
 of the same evidence.
 
 ## The reasons, most frequent first
 
-| Reason | Pairs | Oral/Poster (6) | Spotlight/Poster (16) | Spotlight/Reject (25) | Both spotlight (3) | Reappears in run 2 |
+| Reason | Pairs | Oral/Poster (6) | Spotlight/Poster (16) | Spotlight/Reject (25) | Both Spotlight (3) | Reappears in run 2 |
 |---|---|---|---|---|---|---|
 | Committees weighted the same evidence differently | 45 | 6 | 14 | 25 | 0 | yes |
 | One committee's reviews were thin or inattentive | 39 | 6 | 15 | 16 | 2 | yes |

@@ -118,18 +118,18 @@ def paper_figure(run: str) -> None:
     cols = [r["id"] for r in final]
     names = {r["id"]: r["name"] for r in final}
     kinds = [k for k in ("oral/poster", "spotlight/poster", "spotlight/reject", "spotlight") if any(r["kind"] == k for r in rows)]
-    short = {"oral/poster": "Oral vs Poster", "spotlight/poster": "Spotlight vs Poster", "spotlight/reject": "Spotlight vs Reject", "spotlight": "Spotlight, Spotlight"}
-    colors = {"oral/poster": P.BLUE[650], "spotlight/poster": P.BLUE[450], "spotlight/reject": P.BLUE[250], "spotlight": P.CAT[1]}
+    # the two committees' tiers (the data's kinds keep the venue's decision names: a Poster is Accepted, no award)
+    short = {"oral/poster": "Oral vs Accepted", "spotlight/poster": "Spotlight vs Accepted", "spotlight/reject": "Spotlight vs Rejected", "spotlight": "Spotlight from both"}
+    colors = {"oral/poster": P.BLUE[650], "spotlight/poster": P.BLUE[450], "spotlight/reject": P.BLUE[250], "spotlight": P.MUTED}  # orange means Rejected elsewhere
     P.setup()
     n = len(cols)
-    fig, ax = plt.subplots(figsize=(P.CANVAS_W, (0.165 * n + 0.9) * P.S))
+    fig, ax = plt.subplots(figsize=(P.CANVAS_W, (0.2 * n + 0.9) * P.S))  # rows tall enough for 23 pt reason names
     left = np.zeros(n)
     for k in kinds:
         v = np.array([sum(int(r[c]) for r in rows if r["kind"] == k) for c in cols], float)
         ax.barh(np.arange(n), v, left=left, height=0.72, color=colors[k], label=f"{short[k]} ($n={sum(r['kind'] == k for r in rows)}$)")
         left += v
     ax.set_yticks(range(n)); ax.set_yticklabels([tex(cap(names[c])) for c in cols]); ax.set_ylim(n - 0.5, -0.5)
-    ax.tick_params(axis="y", labelsize=P.LEGEND_PT)
     ax.set_xlabel("Pairs in which the reason applies (of 50)"); ax.set_xlim(0, 50)
     ax.legend(loc="lower right", handlelength=1.0)
     ax.grid(axis="y", visible=False)

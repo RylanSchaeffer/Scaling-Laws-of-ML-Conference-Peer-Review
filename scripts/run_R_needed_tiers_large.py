@@ -31,8 +31,7 @@ from scipy.special import ndtr
 from peerreview.levels import ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM, sample_quality
 from peerreview.simulate import simulate_best_paper, stable_seed
-from peerreview.tiers import tier_size
-from run_R_needed_tiers import N_GRID, TIERS, aggregate, overlaps_from_orders, tiers_at
+from run_R_needed_tiers import N_GRID, GROUPS, aggregate, overlaps_from_orders, cuts_at
 
 R_LARGE = [32, 64, 96, 128, 192, 256, 512, 1024, 2048, 4096, np.inf]  # 32 and 64 repeat exact rungs as a check
 N_FINE = [int(round(x)) for x in np.geomspace(2_000, 100_000, 16)]  # pass 1: where does the Best Papers' target leave reach?
@@ -68,7 +67,7 @@ def job(spec: dict) -> list[dict]:
     sizes = dict(spec["sizes"])
     rng = np.random.default_rng(stable_seed(m.as_dict(), N, reps, chunk, "R_needed_tiers_clt"))
     t0 = time.perf_counter()
-    acc = {R: {t: 0.0 for t in TIERS} for R in Rs}
+    acc = {R: {t: 0.0 for t in GROUPS} for R in Rs}
     for _ in range(reps):
         q = sample_quality(rng, (N,), m)
         g, sd = snapped_moments(q, m)
@@ -76,11 +75,11 @@ def job(spec: dict) -> list[dict]:
         eta = m.sigma_award * rng.standard_normal((2, N))
         for R in Rs:
             o = overlaps(g, sd, z, eta, R, sizes, N)
-            for t in TIERS:
+            for t in GROUPS:
                 acc[R][t] += o[t]
     wall = time.perf_counter() - t0
-    return [{"N": N, "R": R, "orals": sizes["oral_or_better"], "spotlights": sizes["spot_or_better"] - sizes["oral_or_better"], "reps": reps, "chunk": chunk,
-             **{f"overlap_{t}": acc[R][t] / reps for t in TIERS}, "sigma_eps": m.sigma_eps,
+    return [{"N": N, "R": R, "n_oral_or_better": sizes["oral_or_better"], "spotlights": sizes["spot_or_better"] - sizes["oral_or_better"], "reps": reps, "chunk": chunk,
+             **{f"overlap_{t}": acc[R][t] / reps for t in GROUPS}, "sigma_eps": m.sigma_eps,
              "method": "clt" if np.isfinite(R) else "limit", "wall_s": wall / len(Rs)} for R in Rs]
 
 
@@ -108,7 +107,7 @@ def best_target(reps: int) -> float:
     m = calibrated(main_model(sigma_u=0.0), "central")
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
     r = simulate_best_paper(m, N_GRID[0], reps, best_K=(1,), seed=stable_seed(m.as_dict(), N_GRID[0], reps, "R_needed_tiers"),
-                            second_committee=True, overlap_tiers=tiers_at(fits, N_GRID[0]))
+                            second_committee=True, overlap_cuts=cuts_at(fits, N_GRID[0]))
     return float(r["overlap_best"])
 
 
@@ -135,7 +134,7 @@ def main() -> None:
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
 
     def specs(Ns, Rs, reps):
-        return sorted([{"N": N, "Rs": Rs, "sizes": tiers_at(fits, N), "reps": args.chunk, "chunk": c}
+        return sorted([{"N": N, "Rs": Rs, "sizes": cuts_at(fits, N), "reps": args.chunk, "chunk": c}
                        for N in Ns for c in range(int(np.ceil(reps / args.chunk)))], key=lambda s: -s["N"])
 
     path = os.path.join(ROOT, "results", "R_needed_tiers_limit.csv")

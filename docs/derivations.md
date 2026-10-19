@@ -189,7 +189,7 @@ through $K=\mathrm{round}(pN)$ only: a deficit of relative size $\kappa(p,\rho)/
 $-0.25/K$ and $-0.08/K$ for $p\le25$ %. Rounding moves $p$ to $p_K$ by at most $1/(2N)$; use $p_K$
 in the formula. The swap fraction has the same correction with the opposite sign.
 
-**Using the $N$-free limit.** The limit overstates the precision of a small top tier. At $N=10^3$ it exceeds
+**Using the $N$-free limit.** The limit overstates the precision of a small top-$K$ set. At $N=10^3$ it exceeds
 the exact value by 6–8 % at $K=3$, 4 % at $K=5$, 2 % at $K=10$ and 0.6 % at $K=30$ ($\rho^2$ from 0.3 to 0.85;
 the table under "Small $K$" below). The simulator resolves this: at $N=10^3$, $p=0.3$ % ($K=3$), $\rho^2=0.85$ it
 gives $0.5091\pm0.0025$ against the limit 0.5395 ($z=-12.1$) and the exact value 0.5075 ($z=+0.64$)
@@ -294,7 +294,10 @@ experiments. `analytic.disagreement`, `inconsistent_share`, `invert_disagreement
 ### 4.1 Exact finite-$N$ formula
 
 Let $M$ be the size of the true set ($M=K$ for precision; $M=2K$, $10K$, $\mathrm{round}(0.01N)$ for the
-containment metrics of §6). By exchangeability,
+containment metrics of §6). §9 runs the same integral on two reviews' scores. There $M$ is the size of an
+"or Better" set, for example $M_{\rm oob}$, the size of Oral or Better (NeurIPS's Oral count, which includes its
+Best Papers; series `oral_or_better` in `results/tier_sizes.csv`, column `M_oral_or_better` in
+`results/tier_scaling.csv`). By exchangeability,
 
 $$E\lvert\mathrm{Top}_K(Y)\cap\mathrm{Top}_M(X)\rvert=N\,P(\text{paper 1 has score rank}\le K\text{ and quality rank}\le M).$$
 
@@ -735,6 +738,9 @@ The simulator checks of `c1pct`, `c5pct`, `c2x`, `c10x`, `cA` and `pctl` are in 
 
 ## 7. Best-paper probability (item 7)
 
+Here "the best paper" is the single truly best submission, quality rank 1. It is not the Best Papers
+tier, which is the first three papers of the award ordering.
+
 **Exact formula.** Let $m$ be the best paper's quality, with density $N\phi(m)\Phi(m)^{N-1}$, and $y$ its score,
 $y\mid m\sim N(\rho m,\tau^2)$. The other $N-1$ papers are iid given $X<m$. Each out-scores the best paper with
 probability
@@ -760,7 +766,7 @@ $$\boxed{P_{\rm best}(N,K)\sim\varepsilon_N\,\Gamma(c)\,I_K=\frac{(1+\rho)\,\Gam
 
 * The rate is the same as for precision. At $K=1$ the constant equals $C_1$, since $\Gamma(c)=\Gamma(1+c)/c$.
 * In $K$: $P_{\rm best}\propto\Gamma(K+c)/\Gamma(K)\approx K^{c}=K^{1/(1+\rho)}$, until $K$ nears $N^{1-\rho^2}$ (then it tends to 1, §8).
-* $P_{\rm best}(N,K)/\mathrm{prec}_{N,K}\to\Gamma(1+c)\Gamma(K+1)/\Gamma(K+c)\approx\Gamma(1+c)K^{\kappa}$: widening an award set from 1
+* $P_{\rm best}(N,K)/\mathrm{prec}_{N,K}\to\Gamma(1+c)\Gamma(K+1)/\Gamma(K+c)\approx\Gamma(1+c)K^{\kappa}$: widening the selected set from 1
   to $K$ raises the chance to include the best paper roughly like $K^{\rho/(1+\rho)}$ relative to precision.
 **The first correction.** The best paper is the true top 1. So, exactly,
 $P_{\rm best}(N,K)=E\lvert\mathrm{Top}_K(Y)\cap\mathrm{Top}_1(X)\rvert$: the §4.1 count with $M=1$. The code agrees:
@@ -909,6 +915,24 @@ Since $\rho^2<\rho$, the overlap is below the precision and decays faster: expon
 $\rho=0.7459$. The overlap is observable without knowing quality, so it is the field-testable proxy for
 precision; at fixed $(N,K)$ the map between them is monotone through $\rho$. If $u$ were shared,
 $r_{12}>\rho^2$ and the overlap would overstate the reliability that matters.
+
+**The tier sets** (`scripts/make_tier_scaling.py`, `results/tier_scaling.csv`). The closed form of the tiers
+uses continuous scores and no chair noise, so the award ordering is the score. The tiers are separate. A
+top-$M$ set of the award ordering holds a tier and every tier above it, so it is an "or Better" set:
+
+| $M$ | the top-$M$ set |
+|---|---|
+| 3 | the Best Papers |
+| $M_{\rm oob}$ (§4.1), fitted to series `oral_or_better` of `results/tier_sizes.csv` | Oral or Better (column `M_oral_or_better`; NeurIPS counts its Best Papers among its Orals) |
+| $M_{\rm oob}+M_{\rm spot}$, with $M_{\rm spot}$ the Spotlight count (series `spot`, Spotlights only) | Spotlight or Better (column `M_spot_or_better`) |
+| $A=\mathrm{round}(0.25N)$ | Accepted or Better |
+
+$E\lvert\mathrm{Top}_3(Y_1)\cap\mathrm{Top}_M(Y_2)\rvert/3$ at correlation $\rho^2$ (`containment_fixed_K(N, 3, M, rho2)`) is
+the probability that a second review puts one of the first review's Best Papers in that set: `p2_best`,
+`p2_oral_or_better`, `p2_spot_or_better`, `p2_accept_or_better`. $\mathrm{ovl}(N,M,\rho)$ with $M=M_{\rm oob}$ is the
+overlap of Oral or Better (`ovl_oral_or_better`); the same holds for the other two sets. A separate tier is the
+gap between two consecutive sets, so its probability is a difference: `p2_oral` $=$ `p2_oral_or_better` $-$ `p2_best`.
+`p2_reject` is $\mathrm{rej}_2$ above at $K=3$: 1 minus `p2_accept_or_better`.
 
 **Values** ($K=10$, $N=10^3,10^4,10^5,10^6$): at $\rho=0.7459$, overlap 0.157, 0.073, 0.035, 0.017 against
 precision 0.306, 0.196, 0.129, 0.086; at the repository's central $\rho=0.7098$, overlap 0.129, 0.054,
@@ -1312,7 +1336,7 @@ agree with the results above.
 | 6 | `containment_fixed_K`, `containment_limit`, `containment_miss`, `containment_miss_asymptotic`, `containment_fixed_K_asymptotic`, `beta_KM`, `omega_KM`, `mean_true_percentile` |
 | 7 | `best_paper_prob(method="exact"/"poisson")`, `best_paper_prob_asymptotic(order=0/1)` (with `beta_KM(K, 1, rho)`, `omega_KM(K, 1, rho)`) |
 | 8 | `winner_rank_cdf`, `winner_rank_quantile`, `winner_rank_median_asymptotic(form="semi"/"power")` |
-| 9 | `overlap_fixed_K`, `rejected_given_top` |
+| 9 | `overlap_fixed_K`, `rejected_given_top`; `containment_fixed_K(N, 3, M, rho2)` for the tier sets |
 | tail-accurate helpers | `log_P2`, `P2_tail` |
 
 Every finite-$N$ function accepts a scalar or an array of $N$, and works for $N$ up to $10^{300}$ and $K/N$

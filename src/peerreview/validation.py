@@ -34,22 +34,22 @@ def replay_tiers(
     seed: int,
     n: int = 882,
     accept_rate: float = 0.227,
-    tiers1: tuple[int, int] = (4, 25),
-    tiers2: tuple[int, int] = (2, 23),
+    counts1: tuple[int, int] = (4, 25),
+    counts2: tuple[int, int] = (2, 23),
     N_conf: int | None = None,
     chunk_elems: float = 4e6,
 ) -> dict[str, np.ndarray]:
-    """Per-conference statistics of the top-tier replay.
+    """Per-conference statistics of the Orals-and-Spotlights replay (2021 had no Best Papers, so the two form Spotlight or Better).
 
-    tiers = (orals, spotlights) for each committee, counted in a pool of n papers.
+    counts = (Orals, Spotlights) for each committee, separate tiers, counted in a pool of n papers.
     With N_conf set, the tiers and acceptance are fractions of an N_conf-paper
     conference and the statistics are counted inside its first n papers.
     """
     rng = np.random.default_rng(seed)
     N = n if N_conf is None else N_conf
     scale = N / n
-    o1, p1 = tiers1
-    o2, p2 = tiers2
+    o1, p1 = counts1
+    o2, p2 = counts2
     sizes = {
         "acc": int(round(accept_rate * N)),
         "o1": max(1, int(round(o1 * scale))), "t1": int(round((o1 + p1) * scale)),

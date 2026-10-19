@@ -1,8 +1,11 @@
 # Handoff: Scaling Laws of ML Conference Peer Review
 
 This file is the specification that this repository implements. Rylan pasted it on
-2026-10-02. It is kept verbatim except for one note: the body of §8.1 was missing from
-the paste. The reconstruction of §8.1 below is marked as such.
+2026-10-02. It is kept verbatim except for two changes. First, the body of §8.1 was missing
+from the paste; the reconstruction of §8.1 below is marked as such. Second, on 2026-10-18 the
+tier words were made explicit (`docs/terminology.md`). The tiers are separate. A set that holds
+a tier and every tier above it is named in full: Oral or Better, Spotlight or Better, Accepted
+or Better. No other content changed.
 
 **Purpose of this document.** It specifies a study to be reproduced from scratch in a clean session: the motivation, the probabilistic models, the quantities to compute, the analytical derivations to carry out, the calibration and validation procedures, the simulation protocol, and the empirical facts the study relies on, each with its source and verification status.
 
@@ -18,15 +21,15 @@ Two field experiments (NeurIPS 2014 and NeurIPS 2021, §10.1) sent the same pape
 
 **The question.** How does the quality of a conference's selections change as the number of submissions $N$ grows, holding the review process fixed, and which parameters of the review system determine that quality? The specific objects of interest are:
 
-1. **The top of the ranking.** When a conference picks the $K$ highest-scoring papers for best-paper awards ($K$ of order 1 to 10) or the top $K$ for oral presentations ($K$ of order 30 to 100 or more), what fraction of them are truly among the best $K$? How does that fraction depend on $N$, on review noise, on the number of reviews per paper, on the score scale, and on the shape of the quality distribution? The working hypothesis to test: as $N$ grows with noise held fixed, noise comes to dominate the extreme upper tail of scores, so the number of truly best papers among the top $K$ by score tends to zero.
+1. **The top of the ranking.** When a conference picks the $K$ highest-scoring papers for best-paper awards ($K$ of order 1 to 10) or the top $K$ for oral presentations (Oral or Better; $K$ of order 30 to 100 or more), what fraction of them are truly among the best $K$? How does that fraction depend on $N$, on review noise, on the number of reviews per paper, on the score scale, and on the shape of the quality distribution? The working hypothesis to test: as $N$ grows with noise held fixed, noise comes to dominate the extreme upper tail of scores, so the number of truly best papers among the top $K$ by score tends to zero.
 2. **The accept/reject boundary.** How many rejected papers deserved acceptance, and how many accepted papers did not, as a share and as a count, and how do these scale with $N$?
 
 **Two selection rules.** Every decision a conference makes is one of two kinds, and they should be analysed separately throughout:
 
 - **Fixed number.** Select the top $K$ by score with $K$ held constant as $N$ grows (best-paper awards; a fixed number of talk slots).
-- **Fixed percentile.** Select the top fraction $p$ of submissions (acceptance at a rate of roughly 20 to 40 percent; an oral or spotlight tier defined as a percentage of submissions, typically 0.3 to 3 percent).
+- **Fixed percentile.** Select the top fraction $p$ of submissions (acceptance at a rate of roughly 20 to 40 percent; Oral or Better, or Spotlight or Better, defined as a percentage of submissions, typically 0.3 to 3 percent).
 
-Treat these as the two cases. Do not introduce a third. Best papers are a fixed number; orals and acceptances are a fixed percentile (though the oral *count* at a given venue-year can also be analysed as a fixed-number selection of that size).
+Treat these as the two cases. Do not introduce a third. The Best Papers are a fixed number; Oral or Better and acceptances are a fixed percentile (though the oral *count* at a given venue-year, the size of Oral or Better, can also be analysed as a fixed-number selection of that size).
 
 **Range of $N$.** Analyse $N$ from 1,000 to 1,000,000. Do not plot or tabulate below 1,000 or above 1,000,000.
 
@@ -102,7 +105,7 @@ Replace Gaussian reviewer error by Student-$t_3$ rescaled to the same standard d
 
 ### 3.5 Combined variants for validation
 
-For the top-tier validation (§8.1) compare at least these six variants, each separately calibrated (§7.3): Gaussian quality with Gaussian noise; Gaussian quality with Gaussian noise plus shared noise; Gaussian quality with $t_3$ noise; bounded quality with Gaussian noise; bounded quality with $t_3$ noise; exponential-tail quality with Gaussian noise.
+For the Spotlight or Better validation (§8.1) compare at least these six variants, each separately calibrated (§7.3): Gaussian quality with Gaussian noise; Gaussian quality with Gaussian noise plus shared noise; Gaussian quality with $t_3$ noise; bounded quality with Gaussian noise; bounded quality with $t_3$ noise; exponential-tail quality with Gaussian noise.
 
 ### 3.6 What the model omits (state these as limitations)
 
@@ -129,7 +132,7 @@ Metrics for the accept/reject boundary (Question 2):
 6. **Swap fraction:** the share of accepted papers not in $\mathrm{Top}_A(q)$, which equals the share of deserving papers that were rejected. The **count** of wrong accepts is the swap fraction times $A$.
 7. **Two-committee disagreement:** $P(\text{rejected by committee 2}\mid\text{accepted by committee 1})$, the quantity the NeurIPS experiments report as "the fraction of accepted papers that would be rejected on a rerun". Also the **share of all papers with inconsistent decisions** (accepted by exactly one committee), which the experiments also report. Derive the relation between the two at acceptance rate $\alpha$ (both committees accept $\alpha N$ papers).
 
-Sizes to report: $K \in \{5, 10, 30\}$ and, where the question is orals, $K$ around 100 and $K$ equal to each venue-year's actual oral count; $p \in \{0.3\%, 0.5\%, 1\%, 5\%\}$ for top tiers and $\alpha \in \{0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40\}$ for acceptance, with 20 to 25 percent as the central case.
+Sizes to report: $K \in \{5, 10, 30\}$ and, where the question is Oral or Better, $K$ around 100 and $K$ equal to each venue-year's actual oral count; $p \in \{0.3\%, 0.5\%, 1\%, 5\%\}$ for Oral or Better and Spotlight or Better and $\alpha \in \{0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40\}$ for acceptance, with 20 to 25 percent as the central case.
 
 ---
 
@@ -202,23 +205,24 @@ Carry at least three reliabilities through all results: a pessimistic, a central
 
 The calibration uses only the accept-level disagreement. Test the model on data it was not fitted to, and report the comparison honestly in both directions.
 
-### 8.1 NeurIPS 2021 top-tier consistency
+### 8.1 NeurIPS 2021 Spotlight or Better consistency
 
 > **Reconstruction.** The body of this section was missing from the pasted handoff. The
 > text below is inferred from §3.5 and §10.1 and should be replaced if the original
 > is available.
 
-The NeurIPS 2021 experiment reports two top-tier facts that the calibration does not use
-(§10.1): of one committee's spotlight recommendations, the other committee rejected 13
-of 25 and 13 of 23; and if only orals and spotlights had been accepted, the two
+The NeurIPS 2021 experiment reports two facts about its awards that the calibration does
+not use (§10.1). It had no Best Papers tier, so its Orals and Spotlights together are its
+Spotlight or Better set. Of one committee's Spotlight recommendations, the other committee
+rejected 13 of 25 and 13 of 23; and if only orals and spotlights had been accepted, the two
 committees would have accepted 29 and 25 papers and agreed on 3. For each of the six
 variants of §3.5, calibrated separately (§7.3) to the NeurIPS 2021 accept-level
 disagreement, simulate the experiment: two committees score the same papers; each
-accepts at the experiment's acceptance rate and places its top-scored papers in a top
-tier of the observed size (29 and 25 of 882; and the spotlight counts 25 and 23 of 882).
-Report (i) the model's distribution of the top-tier overlap count, with the probability
-of observing 3 or fewer; (ii) the model's $P(\text{rejected by committee 2}\mid
-\text{top tier of committee 1})$ against 13/25 and 13/23. Simulate both a stand-alone
+accepts at the experiment's acceptance rate and places its top-scored papers in a
+Spotlight or Better set of the observed size (29 and 25 of 882; of these, 25 and 23 are
+Spotlights). Report (i) the model's distribution of the overlap count of the two Spotlight
+or Better sets, with the probability of observing 3 or fewer; (ii) the model's
+$P(\text{rejected by committee 2}\mid\text{Spotlight of committee 1})$ against 13/25 and 13/23. Simulate both a stand-alone
 pool of 882 papers and the experiment as a random 882-paper subsample of a 9,122-paper
 conference whose tiers are set conference-wide.
 
@@ -239,7 +243,7 @@ From the same dumps compute, per year, the between-paper and within-paper standa
 
 ### 8.4 Historical application
 
-Evaluate the calibrated model at each venue-year's $N$, acceptance rate and oral count (§10.4): fixed-number precision at $K = 5, 10, 30$; precision at that year's oral count; the swap fraction and the count of wrong accepts; the two-committee disagreement. Present as a time series per venue with sensitivity bands. Keep ICLR 2026's two possible acceptance denominators separate (§10.4).
+Evaluate the calibrated model at each venue-year's $N$, acceptance rate and oral count (§10.4): fixed-number precision at $K = 5, 10, 30$; precision at that year's oral count (Oral or Better); the swap fraction and the count of wrong accepts; the two-committee disagreement. Present as a time series per venue with sensitivity bands. Keep ICLR 2026's two possible acceptance denominators separate (§10.4).
 
 ---
 

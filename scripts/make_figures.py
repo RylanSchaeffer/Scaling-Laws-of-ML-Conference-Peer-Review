@@ -17,9 +17,10 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from peerreview.tiers import LABEL, tier_size
+from peerreview.tiers import LABEL
 from matplotlib.lines import Line2D
 from matplotlib.ticker import FixedLocator, NullLocator
+from scipy.interpolate import UnivariateSpline
 
 from peerreview import plotting as P
 from peerreview.levels import LEVELS, ROOT
@@ -124,7 +125,7 @@ def submissions_panel(ax):
         s = v[v.venue == venue]
         ax.plot(s.year, s.N_used, color=c, lw=1.6 * P.S, marker=mk, ms=3.0 * P.S, mew=0, label=venue)
     ax.set_yscale("log")
-    ax.set_ylim(400, 1e5)
+    ax.set_ylim(400, 2.5e5)  # headroom so the legend clears the data
     ax.yaxis.set_major_locator(FixedLocator([1e3, 1e4, 1e5]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.yaxis.set_major_formatter(plt.FuncFormatter(P.fmt_count))
@@ -136,36 +137,38 @@ def submissions_panel(ax):
     ax.legend(loc="upper left", handlelength=1.2, borderaxespad=0.2, labelspacing=0.25, handletextpad=0.5)
 
 
-RATE_TIERS = (  # (count series in results/tier_sizes.csv, count column of venue_counts(), colour, label end, label side)
+RATE_SERIES = (  # (count series in results/tier_sizes.csv, count column of venue_counts(), colour, label end, label side)
     ("accept_or_better", "accepted", P.MUTED, "left", "above"),  # every accepted paper; each label sits where no marker lies
     ("spot", "spotlights", P.BLUE[250], "left", "above"),  # Spotlights only
-    ("oral_or_better", "orals_used", P.BLUE[450], "right", "below"),  # NeurIPS's Orals, which include its Best Papers
-)  # Best Papers (1 to 13 a year; the `best` row of tier_sizes.csv) are fitted but not drawn: too few to show a trend
+    ("oral", "orals_alone", P.BLUE[450], "right", "below"),  # the Oral tier alone: NeurIPS's Orals less its Best Papers
+)  # Oral or Better (NeurIPS's Oral count) and the Best Papers (1 to 13 a year) are fitted (tier_sizes.csv) but not drawn
 
 
 def rates_panel(ax):
-    """Is each NeurIPS tier a constant number, a fixed proportion of submissions, or something
-    between? Markers: each year's main-track count over submissions, against that year's
+    """Is each NeurIPS count series (Accepted or Better, Spotlight, Oral) a constant number, a fixed
+    proportion of submissions, or something between? Markers: each year's main-track count over submissions, against that year's
     submissions (no spotlight tier in 2016 and 2022; best-paper awards, 1 to 13 a year, are too few to
     draw). Lines: the fitted power law count = a N^gamma (results/tier_sizes.csv) over the
     fitted years' range of N. On log-log axes a fixed proportion (gamma = 1) is flat and a fixed
-    number (gamma = 0) falls as 1/N; the label gives each tier's gamma."""
-    s = venue_counts().query("venue == 'NeurIPS'").assign(accepted=lambda d: d.N_used * d.acc_rate_used)
-    fits = load("tier_sizes").set_index("tier")
-    for tier, col, c, end, side in RATE_TIERS:
-        f = fits.loc[tier]
+    number (gamma = 0) falls as 1/N; the label gives each series' gamma."""
+    s = venue_counts().query("venue == 'NeurIPS'").assign(accepted=lambda d: d.N_used * d.acc_rate_used,
+                                                           orals_alone=lambda d: d.orals_used - d.awards_used)
+    fits = load("tier_sizes").set_index("series")
+    for series, col, c, end, side in RATE_SERIES:
+        f = fits.loc[series]
         d = s[s[col].notna() & (s[col] > 0)]
         ax.plot(d.N_used, d[col] / d.N_used, ls="none", marker="o", ms=2.6 * P.S, color=c, mew=0)
         yrs = s[(s.year >= f.year_min) & (s.year <= f.year_max)]
         x0, x1 = yrs.N_used.min(), yrs.N_used.max()
         ax.plot([x0, x1], [f.a * x0 ** (f.gamma - 1), f.a * x1 ** (f.gamma - 1)], color=c, lw=1.4 * P.S)
-        label = LABEL[tier]
+        label = LABEL[series]
         tc = P.INK2  # annotations in ink, not in the series colour
         xe = x0 if end == "left" else x1
         lo, hi = P.N_TICKS[0] / 1.15, P.N_TICKS[-1] * 1.15  # the axis limits of P.n_axis
         x = lo * 1.04 if end == "left" else hi / 1.1  # labels start at the frame, so the long ones fit
         y = f.a * xe ** (f.gamma - 1) * (1.45 if side == "above" else 1 / 1.5)
-        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}$", color=tc, ha=end, va="bottom" if side == "above" else "top", fontsize=P.LEGEND_PT)
+        ax.text(x, y, f"{label} $\\propto N^{{{f.gamma:.2f}}}$", color=tc, ha=end, va="bottom" if side == "above" else "top", fontsize=P.LEGEND_PT,
+                zorder=1, bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # a white halo over the gridlines, under the data
     ax.set_yscale("log")
     ax.set_ylim(1e-3, 0.9)  # nothing is drawn above 30%; room below the Oral or Better line for its label
     ax.yaxis.set_major_locator(FixedLocator([0.003, 0.01, 0.03, 0.1, 0.3]))
@@ -173,7 +176,7 @@ def rates_panel(ax):
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{100 * x:g}\\%"))
     P.n_axis(ax)
     ax.set_ylabel("Proportion of submissions")
-    ax.set_title("NeurIPS tiers", loc="left")
+    ax.set_title("NeurIPS counts", loc="left")
 
 Y_FLOOR = 0.00008  # shared y axis of Fig 1d-g: 0.01% to 100%
 Y_TICKS = [0.0001, 0.001, 0.01, 0.1, 1.0]
@@ -182,20 +185,20 @@ Y_TICKS = [0.0001, 0.001, 0.01, 0.1, 1.0]
 def log_prob_axis(ax):
     P.n_axis(ax)
     ax.set_yscale("log")
-    ax.set_ylim(Y_FLOOR, 1.0)
+    ax.set_ylim(Y_FLOOR, 1.5)  # headroom above 100%, so a marker at 100% sits inside the frame
     ax.yaxis.set_major_locator(FixedLocator(Y_TICKS))
     ax.yaxis.set_minor_locator(NullLocator())
     P.pct_axis(ax)
 
 
 def fig_headline(stem: str = "fig1_headline"):
-    """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS tiers as a proportion of submissions,
-    with the fitted power law of each tier's count. (c) Where a second review would rank the NeurIPS Best
+    """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS counts (Accepted or Better, Spotlight, Oral) as a proportion of submissions,
+    with the fitted power law of each count. (c) Where a second review would rank the NeurIPS Best
     Papers in 2014, 2021 and 2026 (results/best_paper.csv). (d-g) The scaling laws of a second review for a
     paper the first review made one of its Best Papers, an Oral, a Spotlight, or Accepted or Better (scaling_row).
     Each row's panels are as tall as in the one-row figures (1.1 and ROW_H inches printed, at the default
     subplot margins), so nothing inside a panel moves."""
-    top_h, bot_h, hspace = 1.1, ROW_H, 0.62
+    top_h, bot_h, hspace = 1.1, ROW_H, 0.74  # room between the rows for the header of (d-g)
     margins = 0.11 + 0.12  # matplotlib's default bottom and top subplot margins, as a fraction of the figure
     plot_h = (1 - margins) * (top_h + bot_h)  # axes heights of the two one-row figures, summed
     H = (plot_h + hspace * plot_h / 2) / (1 - margins)  # figure height that gives those axes heights with the gap between the rows
@@ -226,9 +229,8 @@ def standing_panel(ax):
         left = 0.0
         for (lab, c), w in zip(TIERS, tier_proportions(r)):
             ax.barh(y, w, left=left, height=0.62, color=c, edgecolor=P.SURFACE, lw=0.8 * P.S)
-            if w >= 0.05:  # every segment from 5% up carries its value; narrow segments take a smaller label so it stays inside
-                fs = P.LEGEND_PT if w >= 0.08 else 0.72 * P.LEGEND_PT
-                ax.text(left + w / 2, y, f"{100 * w:.0f}\\%", ha="center", va="center", color=P.INK if c in LIGHT else P.SURFACE, fontsize=fs)
+            if w >= 0.06:  # every segment wide enough for its value at the legend size carries it; narrower ones go unlabelled
+                ax.text(left + w / 2, y, f"{100 * w:.0f}\\%", ha="center", va="center", color=P.INK if c in LIGHT else P.SURFACE, fontsize=P.LEGEND_PT)
             left += w
     ax.set_yticks(range(len(years)))
     ax.set_yticklabels([str(yr) for yr in years])
@@ -265,7 +267,7 @@ def fig_validation():
     and the proportion of one committee's Spotlight or Better papers the other rejects; central level (circles,
     90% range) and pessimistic level (diamonds)."""
     v, ic = load("validation_neurips2021"), load("validation_iclr")
-    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S), gridspec_kw=dict(wspace=0.36))
+    fig, axes = plt.subplots(1, 3, figsize=(P.CANVAS_W, (ROW_H + 0.7) * P.S), gridspec_kw=dict(wspace=0.45))
     sub = v[v.design == "subsample"]
     vv = sub[sub.level == "central"].set_index("variant").loc[list(VAR_LABEL)]
     vp = sub[sub.level == "pessimistic"].set_index("variant").reindex(list(VAR_LABEL))  # NaN where not calibrated
@@ -290,14 +292,15 @@ def fig_validation():
         (ax.xaxis if axis == "x" else ax.yaxis).set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{100 * v:g}\\%"))
     ax.set_xlabel("Model overlap")
     ax.set_ylabel("Observed overlap")
-    ax.legend(loc="upper left", handlelength=1.0, borderaxespad=0.2)
+
     ax.set_title("ICLR split-half overlap", loc="left")
 
     def rows(ax, cen, pes, lo, hi, mean, obs, obs_text, c_bar, c_dot, xlim):
         ax.axvline(obs, color=P.INK, lw=1.0 * P.S)
         left = obs < sum(xlim) / 2
         ax.text(obs + (0.02 if left else -0.02) * (xlim[1] - xlim[0]), y.max() + 0.75, obs_text, color=P.INK,
-                va="center", ha="left" if left else "right", fontsize=P.LEGEND_PT)  # beside the line, roomier side
+                va="center", ha="left" if left else "right", fontsize=P.LEGEND_PT,
+                zorder=1, bbox=dict(facecolor=P.SURFACE, edgecolor="none", pad=1.5))  # beside the line, roomier side; a halo over the gridlines
         ax.hlines(y, cen[lo], cen[hi], color=c_bar, lw=2.0 * P.S)
         ax.plot(cen[mean], y, "o", color=c_dot, ms=4.4 * P.S, mec=P.SURFACE, mew=0.7 * P.S)
         ok = pes[mean].notna().values
@@ -312,7 +315,7 @@ def fig_validation():
     ax.set_yticks(y)
     ax.set_yticklabels([VAR_LABEL[k] for k in vv.index])
     ax.set_xlabel("Chosen by both committees")
-    ax.set_title("NeurIPS 2021 Spotlight or Better", loc="left")
+    ax.set_title("2021 Spotlight or Better", loc="left")
 
     ax = axes[1]
     obs = vv.obs_sob_rej_share.iloc[0]  # 26 of the 54 Spotlight or Better papers, rejected by the other committee
@@ -326,7 +329,9 @@ def fig_validation():
     hl = [Line2D([], [], ls="none", marker="o", ms=4.4 * P.S, color=P.INK2, mec=P.SURFACE, label=f"Central level, $\\rho^2$ = {LEVELS['central']:.2f}"),
           Line2D([], [], color=P.MUTED, lw=2.0 * P.S, label="90\\% range, central level"),
           Line2D([], [], ls="none", marker="D", ms=3.0 * P.S, color=P.INK2, mec=P.SURFACE, label=f"Pessimistic level, $\\rho^2$ = {LEVELS['pessimistic']:.2f}")]
-    fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.36, -0.08), ncol=3, handlelength=1.2)
+    fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.08), ncol=3, handlelength=1.2)
+    h, l = axes[2].get_legend_handles_labels()  # the sets of (c), in a second legend row: inside (c) a legend would cover data
+    fig.legend(h, ["(c) " + l[0]] + l[1:], loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=3, handlelength=1.0)
     for i, a in enumerate(axes):
         P.panel_label(a, "abc"[i])
     P.save(fig, os.path.join(FIG, "fig2_validation"))
@@ -362,11 +367,24 @@ def experiment_points() -> list[tuple[str, str, int, float]]:
     return pts
 
 
+def smooth_line(N: np.ndarray, y: np.ndarray, se: np.ndarray | None, n_fine: int = 200):
+    """A simulated probability against submissions as a smooth curve: a cubic smoothing spline of log y in log N,
+    weighted by 1/SE of log y, whose residuals are at the level of the simulation error (s = number of sizes). Monte
+    Carlo noise does not bend the curve; a series known to a fraction of its SE is all but interpolated."""
+    if se is None or not np.all(np.isfinite(se)) or np.any(se <= 0) or np.any(y <= 0):
+        return N, y
+    x, z = np.log(N), np.log(y)
+    f = UnivariateSpline(x, z, w=y / se, k=3, s=len(x))
+    xf = np.linspace(x[0], x[-1], n_fine)
+    return np.exp(xf), np.exp(f(xf))
+
+
 def scaling_row(fig, axes):
     """The scaling laws: the separate tier a second review gives a paper that the first review made one of its Best
     Papers (results/best_paper.csv grid rows, p2_*), an Oral or a Spotlight, or Accepted or Better
     (results/placement.csv, place_{first}_in_{tier}), against submissions N on NeurIPS's tier trends, central level.
-    Each panel's five curves sum to 1; at the paper's own tier the curve is the tier's overlap. Draws into four axes
+    Each panel's five curves sum to 1; at the paper's own tier the curve is the tier's overlap. Each curve is smoothed across
+    sizes (smooth_line) within its simulation error. Draws into four axes
     of `fig` and puts the shared legend below the row, clear of the x-axis labels."""
     pl = load("placement")
     pl = pl[pl.level == "central"].sort_values("N")
@@ -376,15 +394,20 @@ def scaling_row(fig, axes):
               ("spot", pl, "place_spot_in_{}", "Spotlight"), ("accept_or_better", pl, "place_accept_or_better_in_{}", "Accepted or Better"))
     for ax, (_, d, col, title) in zip(axes, panels):
         for key, color, label in SEP_TIERS:
-            ax.plot(d.N, d[col.format(key)], color=color, lw=1.6 * P.S, label=label)
+            c = col.format(key)
+            Nf, yf = smooth_line(d.N.values.astype(float), d[c].values, d[c + "_se"].values if c + "_se" in d else None)
+            ax.plot(Nf, yf, color=color, lw=1.6 * P.S, label=label)
         log_prob_axis(ax)
         ax.set_title(title, loc="left")
+    x0, x1 = axes[0].get_position().x0, axes[-1].get_position().x1
+    top = axes[0].get_position().y1 + 0.8 * LEGEND_GAP_IN * P.S / fig.get_size_inches()[1]  # above the panel titles
+    fig.text((x0 + x1) / 2, top, "Where the first review put the paper", ha="center", va="bottom", fontsize=P.LEGEND_PT, color=P.INK2)
     panel = {first: ax for ax, (first, *_) in zip(axes, panels)}
     colour = {key: c for key, c, _ in SEP_TIERS}
     pts = experiment_points()
     for first, second, N, v in pts:  # the NeurIPS 2014 and 2021 experiments
-        near = [w for f2, s2, N2, w in pts if f2 == first and N2 == N and s2 != second and abs(np.log10(w / v)) < 0.13]
-        dx = (1.17 if v > near[0] else 1 / 1.17) if near else 1.0  # two markers that would overlap step apart sideways
+        near = [w for f2, s2, N2, w in pts if f2 == first and N2 == N and s2 != second and abs(np.log10(w / v)) < 0.26]
+        dx = (1.25 if v > near[0] else 1 / 1.25) if near else 1.0  # two markers closer than a marker's height step apart sideways until their rims clear
         panel[first].plot([N * dx], [v], ls="none", marker="o", ms=4.2 * P.S, mfc=colour[second], mec=P.INK, mew=0.8 * P.S, zorder=7,
                           clip_on=False)  # the 6-of-6 Orals accepted with no award sit at 100%, on the frame
     for ax in axes:  # where we are this year: NeurIPS 2026 submissions
@@ -426,11 +449,15 @@ def fig_mechanism():
     summ = load("R_needed_tiers_summary")
     for tier, c, label, lift in (("spot", P.BLUE[250], "Spotlight", 0.02), ("oral", P.BLUE[450], "Oral", -0.02), ("best", P.INK, "Best Papers", -0.02)):
         # the award tiers, separate; the Accepted tier (83% to 96%) is not drawn: the chairs' call acts on the awards
-        d = r[r.tier == tier].sort_values("N")
+        d = r[r.group == tier].sort_values("N")
         ax.plot(d.N, d.limit_overlap, color=c, lw=1.8 * P.S, zorder=3)
-        ax.text(1e5, d.limit_overlap.iloc[-1] + lift, label, color=c, va="bottom" if lift > 0 else "top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
-    d = r[r.tier == "best"]
-    n_star, target = float(d.N_star.iloc[0]), float(summ[summ.tier == "best"].target.iloc[0])
+        if tier == "best":  # under the curve at 20K, clear of the frame and of the annotation's leader
+            ax.text(2e4, float(np.interp(np.log(2e4), np.log(d.N), d.limit_overlap)) - 0.02, label, color=c, va="top", ha="center",
+                    fontsize=P.LEGEND_PT, zorder=6)
+        else:
+            ax.text(1e5, d.limit_overlap.iloc[-1] + lift, label, color=c, va="bottom" if lift > 0 else "top", ha="right", fontsize=P.LEGEND_PT, zorder=6)
+    d = r[r.group == "best"]
+    n_star, target = float(d.N_star.iloc[0]), float(summ[summ.group == "best"].target.iloc[0])
     if np.isfinite(n_star):
         ax.plot([n_star], [target], ls="none", marker="o", ms=4.5 * P.S, mfc=P.SURFACE, mec=P.INK, mew=1.2 * P.S, zorder=5)
         ax.annotate(f"The Best Papers' ceiling\nmeets their 1K level with\nfour reviews, {100 * target:.1f}\\%, at {n_star / 1e3:.0f}K", xy=(n_star, target),
@@ -441,13 +468,13 @@ def fig_mechanism():
     ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4])
     P.pct_axis(ax)
     ax.set_ylabel("Overlap of two reviews with\ninfinitely many reviewers")
-    ax.set_title("Chair noise caps agreement", loc="left")
+    ax.set_title("The chairs' call caps agreement", loc="left")
 
     ax = axes[1]  # reviews per paper that hold each tier's overlap at its 1,000-submission value
     ymax = 1e4
     for tier, c, label in (("accept", P.MUTED, "Accepted: always 4"), ("spot", P.BLUE[250], "Spotlight"), ("oral", P.BLUE[450], "Oral"),
                            ("best", P.INK, "Best Papers")):
-        d = r[r.tier == tier].sort_values("N")
+        d = r[r.group == tier].sort_values("N")
         fin = d[np.isfinite(d.R_needed)]
         x, y = fin.N.values.astype(float), fin.R_needed.values
         n_star = float(d.N_star.iloc[0])
@@ -468,7 +495,7 @@ def fig_mechanism():
     ax.yaxis.set_major_locator(FixedLocator([4, 10, 100, 1000, 10000]))
     ax.yaxis.set_minor_locator(NullLocator())
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _p: f"{v:g}" if v < 1000 else f"{v / 1000:g}K"))
-    ax.set_ylabel("Reviews per paper that hold\nthe overlap of 1K submissions")
+    ax.set_ylabel("Reviews needed to hold the\noverlap at 1K and 4 reviews")  # no descender in line 1: under usetex the lines sit close
     ax.set_title("Same overlap, more reviews", loc="left")
     for i, a in enumerate(axes):
         P.panel_label(a, "ab"[i])
@@ -599,7 +626,8 @@ def fig_scales():
     grid = r[r.part == "grid"]
     for form, c, ls, label in FORM_LINES:
         d = grid[grid.form == form].sort_values("N")
-        ax.plot(d.N, d.p2_best, color=c, ls=ls, lw=1.6 * P.S, label=label)
+        Nf, yf = smooth_line(d.N.values.astype(float), d.p2_best.values, d.p2_best_se.values)  # within the simulation error, as in Fig 1d
+        ax.plot(Nf, yf, color=c, ls=ls, lw=1.6 * P.S, label=label, zorder=4 if form == FORM_LINES[0][0] else 3)  # the main form on top
     P.n_axis(ax)
     ax.set_yscale("log")
     ax.set_ylim(5e-4, 0.1)
@@ -613,7 +641,7 @@ def fig_scales():
           plt.Rectangle((0, 0), 1, 1, color=P.GRID, label="Main form, range over the three calibration levels, 2026 size")]
     fig.legend(handles=hl, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, handlelength=1.2)
     lines, labels = ax.get_legend_handles_labels()  # the four forms of (d), in a second legend row under the first
-    fig.legend(handles=lines, labels=["(d) " + labels[0]] + labels[1:], loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, handlelength=1.6)
+    fig.legend(handles=lines, labels=["(d) " + labels[0]] + labels[1:], loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=4, handlelength=2.4)  # long enough for two full dashes of the Continuous line
     for i, a in enumerate(axes):
         P.panel_label(a, "abcd"[i])
     P.save(fig, os.path.join(FIG, "fig6_scales"))

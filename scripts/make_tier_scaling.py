@@ -1,5 +1,5 @@
 """Where do the Best Papers land under a second review, tier by tier, as conferences grow?
-And how much of each tier does a second review reproduce?
+And how much of each tier and each "or Better" set does a second review reproduce?
 
 Tier sizes follow NeurIPS's own trends (peerreview.tiers): Accepted or Better is the grid's fixed
 proportion, the Oral or Better and Spotlight counts grow as fitted power laws of N, and the Best Papers
@@ -24,7 +24,6 @@ from __future__ import annotations
 import os
 import sys
 
-import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -32,7 +31,7 @@ from make_figures import venue_counts  # noqa: E402
 
 from peerreview import analytic as an  # noqa: E402
 from peerreview.levels import LEVELS, ROOT  # noqa: E402
-from peerreview.tiers import ACCEPT_SHARE, add_separate, fit_tier_sizes, tier_size  # noqa: E402
+from peerreview.tiers import ACCEPT_SHARE, add_separate, fit_tier_sizes, fitted_count  # noqa: E402
 from run_best_paper import N_BEST  # noqa: E402
 
 N_GRID = [1000, 1500, 2000, 3000, 5000, 7000, 10_000, 15_000, 20_000, 30_000, 50_000, 70_000, 100_000]
@@ -52,17 +51,17 @@ def main() -> None:
     rows = []
     for level, rho2 in LEVELS.items():
         for N in N_GRID:
-            M_oral = tier_size(fits, "oral_or_better", N)  # the size of Oral or Better
-            M_spot = M_oral + tier_size(fits, "spot", N)  # the size of Spotlight or Better
+            M_oral_or_better = fitted_count(fits, "oral_or_better", N)  # the size of Oral or Better
+            M_spot_or_better = M_oral_or_better + fitted_count(fits, "spot", N)  # the size of Spotlight or Better
             A = int(round(ACCEPT_SHARE * N))  # the grid's fixed proportion; the fitted exponent is 1.05
             rows.append(add_separate(dict(
-                level=level, rho2=rho2, N=N, M_oral=M_oral, M_spot=M_spot, A=A,
+                level=level, rho2=rho2, N=N, M_oral_or_better=M_oral_or_better, M_spot_or_better=M_spot_or_better, A=A,
                 p2_best=an.containment_fixed_K(N, N_BEST, N_BEST, rho2),  # = the Best Papers' overlap
-                p2_oral_or_better=an.containment_fixed_K(N, N_BEST, M_oral, rho2),
-                p2_spot_or_better=an.containment_fixed_K(N, N_BEST, M_spot, rho2),
+                p2_oral_or_better=an.containment_fixed_K(N, N_BEST, M_oral_or_better, rho2),
+                p2_spot_or_better=an.containment_fixed_K(N, N_BEST, M_spot_or_better, rho2),
                 p2_accept_or_better=an.containment_fixed_K(N, N_BEST, A, rho2),
-                ovl_oral_or_better=overlap(N, M_oral, rho2),
-                ovl_spot_or_better=overlap(N, M_spot, rho2),
+                ovl_oral_or_better=overlap(N, M_oral_or_better, rho2),
+                ovl_spot_or_better=overlap(N, M_spot_or_better, rho2),
                 ovl_accept_or_better=overlap(N, A, rho2),
             ), "p2"))
             print(level, N, flush=True)

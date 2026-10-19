@@ -106,8 +106,9 @@ class _RawAcc(simmod._Acc):
 
     def summary(self):
         out = super().summary()
-        if "winner_rank" in self.vals:
-            out["_winner_ranks"] = np.sort(np.concatenate(self.vals["winner_rank"])).astype(np.int64)
+        key = "winner_rank" if "winner_rank" in self.vals else "best_papers_rank" if "best_papers_rank" in self.vals else None
+        if key:  # simulate_chunk records winner_rank; simulate_best_paper (n_best = 1 here) records best_papers_rank
+            out["_winner_ranks"] = np.sort(np.concatenate(self.vals[key])).astype(np.int64)
         return out
 
 
@@ -568,7 +569,7 @@ def main() -> None:
     # The simulator's own pooled median equals the median of the raw ranks it kept.
     sims = {k: v for k, v in sims.items() if k[0] in args.kinds and k[1] in args.rho2 and k[2] in args.N}
     for (kind, r2, N), row in sims.items():
-        assert row["winner_rank_median"] == float(np.median(row["_winner_ranks"])), (kind, r2, N)
+        assert row.get("winner_rank_median", row.get("best_papers_rank_median")) == float(np.median(row["_winner_ranks"])), (kind, r2, N)
     summarise(df)
 
 

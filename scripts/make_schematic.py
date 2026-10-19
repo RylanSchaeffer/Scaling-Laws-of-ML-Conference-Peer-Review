@@ -178,7 +178,6 @@ def panel_second(ax):
     column(ax, XD, dark_ranks=LANDS)
     x = XD + IW / 2 + PAD + 0.05  # right of the boxes
     ax.text(x, rank_y(2), "new Best\nPapers", ha="left", va="center", linespacing=1.15, **ANN)
-    ax.text(x, rank_y(4.5), "same papers,\nnew $\\varepsilon$ and $\\eta$", ha="left", va="center", linespacing=1.15, **ANN)
     ax.text(x, rank_y(8), "the first\nreview's Best\nPapers land\nlower", ha="left", va="center", linespacing=1.15, **ANN)
 
 

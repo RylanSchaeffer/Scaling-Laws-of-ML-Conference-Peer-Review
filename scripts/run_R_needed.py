@@ -34,7 +34,7 @@ FORM = MAIN_FORM  # integer 1-10 scores, four reviews per paper
 def overlap(m: ReviewModel, N: int, R: int, reps: int) -> float:
     mR = m.replace(R=R)
     r = simulate_best_paper(mR, N, reps, best_K=(1,), seed=stable_seed(mR.as_dict(), N, reps, "R_needed"),
-                            second_committee=True, overlap_tiers={"top10": K}, accept=int(round(0.25 * N)))
+                            second_committee=True, overlap_cuts={"top10": K}, n_accepted=int(round(0.25 * N)))
     return float(r["overlap_top10"])
 
 

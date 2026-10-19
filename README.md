@@ -33,12 +33,12 @@ Better**, **Accepted or Better** (every accepted paper). In code and result file
 | `src/peerreview/simulate.py` | vectorised Monte Carlo of whole conferences; every metric |
 | `src/peerreview/analytic.py` | closed forms and exact finite-$N$ integrals for the Gaussian model |
 | `src/peerreview/calibrate.py`, `levels.py` | calibration to the NeurIPS experiments; the three reliability levels |
-| `src/peerreview/validation.py` | replay of the NeurIPS 2021 top tier |
+| `src/peerreview/validation.py` | replay of the NeurIPS 2021 Orals and Spotlights (Spotlight or Better; 2021 had no Best Papers) |
 | `scripts/fit_award_noise.py` | fits the chair noise σ_η on the NeurIPS 2021 pairs' scores (`results/award_noise.json`) |
 | `data/paired_reviews/neurips2021/` | the 301 public pairs of the NeurIPS 2021 consistency experiment and the two-stage language-model analysis of the 50 award pairs (`analysis/`) |
 | `src/peerreview/iclr.py` | ICLR public-review pipeline (paperlists dumps) |
-| `src/peerreview/tiers.py` | tier sizes as conferences grow: power-law fits of NeurIPS oral and spotlight counts to $N$ |
-| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV. The main results are simulated on the main review form (integer 1-10 scores, four reviews per paper; `peerreview.model.MAIN_FORM`): `run_best_paper.py` writes `best_paper.csv` (every venue-year and the submissions grid: where a second review places the Best Papers, the first three of the award ordering, tier overlaps, score positions), `run_best_paper_hirep.py` adds replays for the Best Papers tier, `run_best_paper_size.py` writes `best_paper_size.csv` (two, three and four Best Papers), `run_R_needed.py` writes `R_needed.csv`, `run_scale_impact.py` writes `scale_impact.csv` (the same model on every real score scale, `data/review_forms.csv`). `make_tier_scaling.py` writes `tier_sizes.csv` (the oral and spotlight fits) and `tier_scaling.csv`; `make_analytic_curves.py`, `make_R_needed.py` and `make_best_paper.py` write the continuous-score closed forms (`analytic_*.csv`, `best_paper_continuous.csv`), used to explain the power laws |
+| `src/peerreview/tiers.py` | the tier definitions (separate tiers, "or Better" sets, `CUTS`, `add_separate`) and tier sizes as conferences grow: power-law fits of NeurIPS's Oral or Better, Spotlight, Accepted or Better and Best Papers counts to $N$ (`fit_tier_sizes`, `fitted_count`, `SERIES_COLUMNS`); `spotlight_counts` (0 Spotlights where a venue-year had no Spotlight tier) |
+| `scripts/` | one script per result family; `scripts/run_all.sh` regenerates every simulated and data CSV. The main results are simulated on the main review form (integer 1-10 scores, four reviews per paper; `peerreview.model.MAIN_FORM`): `run_best_paper.py` writes `best_paper.csv` (every venue-year and the submissions grid: where a second review places the Best Papers, the first three of the award ordering, tier overlaps, score positions), `run_best_paper_hirep.py` re-simulates every `p2_*` (all cuts and the separate tiers) with more replays in chunks of 10,000 (120,000 for the central grid above 10K submissions), `run_placement.py` writes `placement.csv` (where a second review places each separate tier and "or Better" set; 20,000 replays at the central level), `run_best_paper_size.py` writes `best_paper_size.csv` (two, three and four Best Papers), `run_R_needed.py` writes `R_needed.csv`, `run_scale_impact.py` writes `scale_impact.csv` (the same model on every real score scale, `data/review_forms.csv`). `make_tier_scaling.py` writes `tier_sizes.csv` (the fitted count series `accept_or_better`, `spot`, `oral_or_better`, `best`, and `oral`, the Oral tier alone) and `tier_scaling.csv`; `make_analytic_curves.py`, `make_R_needed.py` and `make_best_paper.py` write the continuous-score closed forms (`analytic_*.csv`, `best_paper_continuous.csv`), used to explain the power laws |
 | `results/` | one CSV row per configuration, with parameters, metrics, replicates, seed and wall time |
 | `figures/` | every figure, from `scripts/make_figures.py` |
 | `tests/` | unit tests (`uv run pytest -q`) |
@@ -54,7 +54,7 @@ WORKERS=5 bash scripts/run_all.sh
 ```
 
 ```bash
-uv run python scripts/make_tier_scaling.py && uv run python scripts/run_best_paper.py && uv run python scripts/run_best_paper_hirep.py && uv run python scripts/run_R_needed.py && uv run python scripts/run_scale_impact.py && uv run python scripts/make_figures.py
+uv run python scripts/make_tier_scaling.py && uv run python scripts/run_best_paper.py && uv run python scripts/run_best_paper_hirep.py && uv run python scripts/run_placement.py && uv run python scripts/run_R_needed.py && uv run python scripts/run_scale_impact.py && uv run python scripts/make_figures.py
 ```
 
 ```bash

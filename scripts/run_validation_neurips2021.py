@@ -25,7 +25,7 @@ from peerreview.model import MAIN_FORM
 from peerreview.simulate import stable_seed
 from peerreview.validation import replay_tiers
 
-OBS = dict(n=764, accept_rate=(206 + 195) / 2 / 764, tiers1=(4, 25), tiers2=(2, 23), sob_overlap=3,
+OBS = dict(n=764, accept_rate=(206 + 195) / 2 / 764, counts1=(4, 25), counts2=(2, 23), sob_overlap=3,
            spot1_rej2=13, spot2_rej1=13, sob1_rej2=13, sob2_rej1=13)  # sob: Spotlight or Better (Orals plus Spotlights)
 # Every variant reviews on the main form (integer 1-10 scores, four reviews per paper), which is the 2021 form.
 FORM = MAIN_FORM
@@ -53,12 +53,12 @@ def job(name: str, level: str, design: str) -> dict:
     d = DESIGNS[design]
     seed = stable_seed(name, level, design, "neurips2021")
     st = replay_tiers(m, d["reps"], seed, n=OBS["n"], accept_rate=OBS["accept_rate"],
-                      tiers1=OBS["tiers1"], tiers2=OBS["tiers2"], N_conf=d["N_conf"])
+                      counts1=OBS["counts1"], counts2=OBS["counts2"], N_conf=d["N_conf"])
     ov = st["sob_overlap"]
     spot_share = (st["spot1_rej2"] + st["spot2_rej1"]) / (st["spot1"] + st["spot2"])
-    obs_share = (OBS["spot1_rej2"] + OBS["spot2_rej1"]) / sum(t[1] for t in (OBS["tiers1"], OBS["tiers2"]))
+    obs_share = (OBS["spot1_rej2"] + OBS["spot2_rej1"]) / sum(t[1] for t in (OBS["counts1"], OBS["counts2"]))
     sob_rej = (st["sob1_rej2"] + st["sob2_rej1"]) / (st["sob1"] + st["sob2"])
-    obs_sob_rej = (OBS["sob1_rej2"] + OBS["sob2_rej1"]) / sum(sum(t) for t in (OBS["tiers1"], OBS["tiers2"]))
+    obs_sob_rej = (OBS["sob1_rej2"] + OBS["sob2_rej1"]) / sum(sum(t) for t in (OBS["counts1"], OBS["counts2"]))
     acc_dis = 1 - st["acc_overlap"] / st["acc1"]
     return dict(
         variant=name, level=level, design=design, sigma_eps=m.sigma_eps, sigma_award=m.sigma_award, R=m.R, reps=d["reps"], seed=seed,

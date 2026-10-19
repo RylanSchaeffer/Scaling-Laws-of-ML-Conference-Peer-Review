@@ -43,22 +43,33 @@ GAPS = {"best": (None, "best"), "oral": ("best", "oral_or_better"), "spot": ("or
 # fitted count series -> column of scripts.make_figures.venue_counts(). accept_or_better is N_used * acc_rate_used,
 # every accepted paper; oral_or_better is NeurIPS's Oral count, which includes its Best Papers; spot counts
 # Spotlights only; best counts Best Papers.
-TIER_COLUMNS = {"accept_or_better": "accepted", "spot": "spotlights", "oral_or_better": "orals_used", "best": "awards_used"}
+SERIES_COLUMNS = {"accept_or_better": "accepted", "spot": "spotlights", "oral_or_better": "orals_used", "best": "awards_used",
+                  "oral": "orals_alone"}  # the Oral tier alone: orals_used - awards_used, years with both counts
 
 
-def cuts(n_best: int, orals: int | None = None, spotlights: int | None = None, accepted: int | None = None) -> dict:
+def cuts(n_best: int, n_oral_or_better: int | None = None, n_spot: int | None = None, n_accepted: int | None = None) -> dict:
     """The cutoffs on the award ordering from a venue's counts: the Best Papers, then the size of each "or Better"
-    set. `orals` is the Oral count including the Best Papers, `spotlights` the Spotlight count, `accepted` every
-    accepted paper. A missing count (None or NaN) drops its cut, and with it the separate tiers next to it."""
+    set. `n_oral_or_better` is the Oral count including the Best Papers (NeurIPS presents its Best Papers as Orals),
+    `n_spot` the Spotlight count, `n_accepted` every accepted paper (Accepted or Better). A missing count (None or NaN) drops its cut, and with it the separate tiers next to it."""
     ok = lambda x: x is not None and x == x  # noqa: E731  (NaN != NaN)
     out = {"best": int(n_best)}
-    if ok(orals):
-        out["oral_or_better"] = int(orals)
-        if ok(spotlights):
-            out["spot_or_better"] = int(orals) + int(spotlights)
-    if ok(accepted):
-        out["accept_or_better"] = int(accepted)
+    if ok(n_oral_or_better):
+        out["oral_or_better"] = int(n_oral_or_better)
+        if ok(n_spot):
+            out["spot_or_better"] = int(n_oral_or_better) + int(n_spot)
+    if ok(n_accepted):
+        out["accept_or_better"] = int(n_accepted)
     return out
+
+
+def spotlight_counts(root: str) -> pd.DataFrame:
+    """Main-track Spotlight counts per venue-year from data/spotlights.csv (columns venue, year, spotlights). A venue-year
+    with no Spotlight tier (tier == "no spotlight tier") has 0 Spotlights, so its Accepted tier runs from Oral or Better
+    to Accepted or Better; the count is NaN only where it is unknown."""
+    import os
+    sp = pd.read_csv(os.path.join(root, "data", "spotlights.csv"))
+    sp.loc[sp.tier == "no spotlight tier", "spotlights"] = 0
+    return sp[["venue", "year", "spotlights"]]
 
 
 def bands(c: dict, N: int) -> dict[str, tuple[int, int]]:
@@ -74,7 +85,7 @@ def bands(c: dict, N: int) -> dict[str, tuple[int, int]]:
 def add_separate(row, prefix: str):
     """Add the separate tiers' columns {prefix}_{oral, spot, accept, reject} to `row` (a dict or a DataFrame) from
     {prefix}_best and the "or Better" columns, as differences of probabilities for the same papers. Each _se is the
-    upper bound sqrt(se_hi^2 + se_lo^2): the two indicators are nested, so they correlate positively."""
+    upper bound sqrt(se_hi^2 + se_lo^2): one "or Better" set contains the other, so the two indicators correlate positively."""
     def get(k):
         return row[k] if k in row else None
     for tier, (above, below) in GAPS.items():
@@ -93,27 +104,28 @@ def add_separate(row, prefix: str):
 
 
 def fit_tier_sizes(counts: pd.DataFrame, venue: str = "NeurIPS") -> pd.DataFrame:
-    """One row per tier: count = a * N^gamma fitted on `venue`'s years with a positive count.
+    """One row per count series (SERIES_COLUMNS: accept_or_better, spot, oral_or_better, best, oral): count = a * N^gamma fitted
+    on `venue`'s years with a positive count.
 
     gamma = 1 is a fixed proportion of submissions, gamma = 0 a constant number. `counts` has
     columns venue, year, N_used, acc_rate_used, orals_used, spotlights, awards_used. The N grid
     (scripts/make_tier_scaling.py) uses the fitted Oral or Better and Spotlight counts and ACCEPT_SHARE * N
     for Accepted or Better, whose fitted exponent is close to 1.
     """
-    v = counts[counts.venue == venue].assign(accepted=lambda d: d.N_used * d.acc_rate_used)
+    v = counts[counts.venue == venue].assign(accepted=lambda d: d.N_used * d.acc_rate_used, orals_alone=lambda d: d.orals_used - d.awards_used)
     rows = []
-    for tier, col in TIER_COLUMNS.items():
+    for series, col in SERIES_COLUMNS.items():
         d = v[v[col].notna() & (v[col] > 0)]
         x, y = np.log10(d.N_used.to_numpy(float)), np.log10(d[col].to_numpy(float))
         gamma, log_a = np.polyfit(x, y, 1)
         resid = y - (log_a + gamma * x)
-        rows.append(dict(tier=tier, a=10 ** log_a, gamma=gamma, n_years=len(d), year_min=int(d.year.min()),
+        rows.append(dict(series=series, a=10 ** log_a, gamma=gamma, n_years=len(d), year_min=int(d.year.min()),
                          year_max=int(d.year.max()), rmse_log10=float(np.sqrt(np.mean(resid**2))),
                          note=f"log-log least squares on {venue} {int(d.year.min())}-{int(d.year.max())}"))
     return pd.DataFrame(rows).astype({"year_min": "Int64", "year_max": "Int64"})
 
 
-def tier_size(fits: pd.DataFrame, tier: str, N: float) -> int:
-    """Fitted number of papers in the count series `tier` (a key of TIER_COLUMNS) at N submissions, at least 1."""
-    r = fits[fits.tier == tier].iloc[0]
+def fitted_count(fits: pd.DataFrame, series: str, N: float) -> int:
+    """Fitted number of papers in the count series `series` (a key of SERIES_COLUMNS) at N submissions, at least 1."""
+    r = fits[fits.series == series].iloc[0]
     return max(1, int(round(r.a * float(N) ** r.gamma)))

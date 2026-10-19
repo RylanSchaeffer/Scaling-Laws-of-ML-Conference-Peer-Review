@@ -230,21 +230,21 @@ def jitter(rng: np.random.Generator, s: np.ndarray, m: ReviewModel) -> np.ndarra
     return s + width * rng.random(s.shape)
 
 
-def award_order(rng: np.random.Generator, s: np.ndarray, m: ReviewModel, accept: int) -> np.ndarray:
+def award_order(rng: np.random.Generator, s: np.ndarray, m: ReviewModel, n_accepted: int) -> np.ndarray:
     """The award ordering of one committee: the score plus the chairs' award noise within the accepted set.
 
-    `s` holds the (jittered) scores, one row per conference; `accept` is the number of accepted papers.
-    Returns t with t = s + eta for the accepted papers (the top `accept` by s) and t = s - 100 for the
-    rest, so that the top-K of t for any K <= accept is the award tier chosen by s + eta among the
-    accepted papers, the top-`accept` of t is the accepted set itself, and ranks beyond it follow s.
+    `s` holds the (jittered) scores, one row per conference; `n_accepted` is the number of accepted papers (Accepted or Better).
+    Returns t with t = s + eta for the accepted papers (the top `n_accepted` by s) and t = s - 100 for the
+    rest, so that the top-K of t for any K <= n_accepted is the top K chosen by s + eta among the
+    accepted papers, the top `n_accepted` of t is the accepted set itself, and ranks beyond it follow s.
     With sigma_award = 0 the scores are returned unchanged and no random numbers are drawn.
     """
     if m.sigma_award == 0:
         return s
     N = s.shape[-1]
-    A = int(accept)
+    A = int(n_accepted)
     if not 1 <= A <= N:
-        raise ValueError(f"accept must be in [1, N]; got {A} for N = {N}")
+        raise ValueError(f"n_accepted must be in [1, N]; got {A} for N = {N}")
     thr = np.partition(s, N - A, axis=-1)[..., N - A][..., None]
     t = s + m.sigma_award * rng.standard_normal(s.shape)
     return np.where(s >= thr, t, s - 100.0)

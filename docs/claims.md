@@ -104,9 +104,10 @@ no oral events). The CSV keeps these blank.
 - ICLR 2025 desk rejections (148) and ICLR 2024 and 2025 withdrawal rates have no primary
   source. No ICLR 2024 or 2025 retrospective exists.
 
-**§8.1 pairing of tier sizes and counts.** For the oral+spotlight tier (29 and 25 papers) the
-other committee rejected 13 of 29 and 13 of 25. For spotlights only (25 and 23) it rejected
-13 of 25 and 13 of 23. The handoff's §8.1 reconstruction mixes the two.
+**§8.1 pairing of sizes and counts.** NeurIPS 2021 had no Best Papers tier, so its Orals
+and Spotlights are its Spotlight or Better set. For Spotlight or Better (29 and 25 papers) the
+other committee rejected 13 of 29 and 13 of 25. For the Spotlight tier alone (25 and 23) it
+rejected 13 of 25 and 13 of 23. The handoff's §8.1 reconstruction mixes the two.
 `scripts/run_validation_neurips2021.py` uses the correct pairing.
 
 **NeurIPS 2021 base.** The quoted "23.0% at 22.7%" uses all 882 papers. It counts the 118
@@ -160,9 +161,9 @@ Full counts and derived values: `data/experiments.json`.
 | NeurIPS 2014 variance components | paper 1.28, reviewer offset 0.24, subjective 1.27. Offset share 0.24 / 2.79 = 8.6%. Subjective share after offsets 1.27 / 2.55 = 49.8%. | V | confirmed | [arXiv:2109.09774](https://arxiv.org/pdf/2109.09774) Table 2 |
 | NeurIPS 2014 score-citation correlation | accepted 0.051 +/- 0.049 (n = 414, not significant); rejected 0.22 +/- 0.038 | V | confirmed | [arXiv:2109.09774](https://arxiv.org/pdf/2109.09774) Figs. 4 and 8 |
 | NeurIPS 2021 accept-level inconsistency | 882 papers; 206 and 195 accepts, 99 in both; 203 (23.0%) inconsistent at 22.7% mean acceptance; random 35.1%. On the 764 decided papers: 26.6% at 26.2%. | V | confirmed | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) §4.1, Table 1; [NeurIPS blog](https://blog.neurips.cc/2021/12/08/the-neurips-2021-consistency-experiment/) |
-| NeurIPS 2021 spotlights rejected by the other committee | 13 of 25 and 13 of 23 (spotlights only) | V | confirmed | [NeurIPS blog](https://blog.neurips.cc/2021/12/08/the-neurips-2021-consistency-experiment/); Table 1 |
-| NeurIPS 2021 oral+spotlight tier | 29 and 25 papers, 3 in both (all spotlight in both). The other committee rejected 13 of 29 and 13 of 25. No oral was rejected by the other committee. | V | confirmed | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) Table 1, §4.1 |
-| NeurIPS 2021 disagreement if only orals and spotlights were accepted | 48 / 882 = 5.4% at 3.1%; random 5.9%. The paper text says 5.8%. | not in handoff | confirmed from Table 1 | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) |
+| NeurIPS 2021 Spotlights rejected by the other committee | 13 of 25 and 13 of 23 (the Spotlight tier alone) | V | confirmed | [NeurIPS blog](https://blog.neurips.cc/2021/12/08/the-neurips-2021-consistency-experiment/); Table 1 |
+| NeurIPS 2021 Spotlight or Better set (Orals and Spotlights; the experiment had no Best Papers tier) | 29 and 25 papers, 3 in both (all three are Spotlights in both). The other committee rejected 13 of 29 and 13 of 25. The other committee rejected no Oral. | V | confirmed | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) Table 1, §4.1 |
+| NeurIPS 2021 disagreement if only Spotlight or Better (Orals and Spotlights) were accepted | 48 / 882 = 5.4% at 3.1%; random 5.9%. The paper text says 5.8%. | not in handoff | confirmed from Table 1 | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) |
 | NeurIPS 2021 committee mean-score correlation | 0.575 (initial), 0.586 (final). Handoff: not reported. | V (absence) | **contradicted** | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) Fig. 1 |
 | NeurIPS 2021 disagreement by score band | No table. Figs. 2 and 3 plot disagreement against the acceptance rate for top-x% by mean score. | V (absence) | partly confirmed | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) Figs. 2, 3 |
 | NeurIPS 2021 recommendation process | The AC form had Accept (Oral) / (Spotlight) / (Poster) / Reject plus a qualifier. SACs and PCs set orals and spotlights jointly. Table 1 shows recommendations after calibration. | not in handoff | confirmed | [arXiv:2306.03262](https://arxiv.org/pdf/2306.03262) §2, §4.2, §5.1, App. B |
@@ -204,9 +205,9 @@ Full counts and derived values: `data/experiments.json`.
 
 ## §10.4 Submissions, acceptance rates, orals and awards by venue-year
 
-The columns N, Rate, Orals and Awards show the handoff values. "Accepted" is a source count
-that agrees with N x rate to rounding. It is blank where no such count exists; then the
-accepted count is round(rate x N). "Check" is the worst outcome over the row's claims. Bold text
+The columns N, Rate, Orals and Awards show the handoff values. "Accepted or Better" is a
+source count of every accepted paper. It agrees with N x rate to rounding. It is blank where
+no such count exists; then the accepted count is round(rate x N). "Check" is the worst outcome over the row's claims. Bold text
 marks a contradiction. Every source link is in `data/venues.csv` (`check_url`).
 
 NeurIPS Best Papers, checked against the official award pages on 2026-10-17, are in
@@ -227,7 +228,7 @@ its first year in the data (507 to 19,525: 50.0%).
 <!-- BEGIN 10.4 TABLES -->
 ### NeurIPS
 
-| Year | N | Rate | Accepted | Orals | Awards | Status | Check | Finding | Source |
+| Year | N | Rate | Accepted or Better | Orals | Awards | Status | Check | Finding | Source |
 |---|---|---|---|---|---|---|---|---|---|
 | 2014 | 1,678 | 24.7% | 414 | 20 |  | V | confirmed | All values hold; 414 accepted. A primary source gives 2 awards (handoff blank). | [link](https://media.nips.cc/Conferences/2014/NIPS-2014-Conference-Book.pdf) |
 | 2015 | 1,838 | 21.9% | 403 |  |  | S | confirmed | N and rate hold; 403 accepted. Primary sources give 15 orals and 2 awards (handoff blank). | [link](https://media.nips.cc/Conferences/2015/NIPS-2015-Conference-Book.pdf) |
@@ -245,7 +246,7 @@ its first year in the data (507 to 19,525: 50.0%).
 
 ### ICML
 
-| Year | N | Rate | Accepted | Orals | Awards | Status | Check | Finding | Source |
+| Year | N | Rate | Accepted or Better | Orals | Awards | Status | Check | Finding | Source |
 |---|---|---|---|---|---|---|---|---|---|
 | 2014 | 1,238 | 25.0% | 310 |  |  | S | not found | No primary source gives N. PMLR v32 has 310 papers, which fits the rate. | [link](https://proceedings.mlr.press/v32/) |
 | 2015 | 1,037 | 26.0% | 270 |  |  | S | confirmed | The PC letter gives 270 of 1,037 (26.0%). | [link](https://icml.cc/2015/booklet-icml2015.online.pdf) |
@@ -258,12 +259,12 @@ its first year in the data (507 to 19,525: 50.0%).
 | 2022 | 5,630 | 21.9% | 1,233 | 118 | 10 | S | not found | No primary source gives N. PMLR v162 has 1,233 papers, which fits the rate. Orals and awards hold. | [link](https://proceedings.mlr.press/v162/) |
 | 2023 | 6,538 | 27.9% | 1,828 | 158 | 6 | S | contradicted | N and rate hold (1,828 accepted). **The virtual site lists 155 orals**, not 158. | [link](https://icml.cc/static/virtual/data/icml-2023-orals-posters.json) |
 | 2024 | 9,473 | 27.5% |  | 144 | 10 | P | partly confirmed | The fact sheet gives the rate but not N; 9,473 is secondary (Paper Copilot: 9,653). The 144 orals and 10 awards include position papers; the main track has 129 and 8. | [link](https://media.icml.cc/Conferences/ICML2024/ICML2024_Fact_Sheet.pdf) |
-| 2025 | 12,107 | 26.9% | 3,260 | 120 | 6 | V | partly confirmed | N is secondary only. The 120 orals include 12 position-track orals; the main track has 108. Accepted count and awards hold. | [link](https://media.icml.cc/Conferences/ICML2025/ICML2025_Fact_Sheet.pdf) |
+| 2025 | 12,107 | 26.9% | 3,260 | 120 | 6 | V | partly confirmed | N is secondary only. The 120 orals include 12 position-track orals; the main track has 108. The accepted count and awards hold. | [link](https://media.icml.cc/Conferences/ICML2025/ICML2025_Fact_Sheet.pdf) |
 | 2026 | 23,918 | 26.6% | 6,352 | 159 | 2 | V | confirmed | All values hold (ICML post; PC paper). The fact sheet's 24,661 and 6,552 include the position track. | [link](https://x.com/icmlconf/status/2049919242862985559) |
 
 ### ICLR
 
-| Year | N | Rate | Accepted | Orals | Awards | Status | Check | Finding | Source |
+| Year | N | Rate | Accepted or Better | Orals | Awards | Status | Check | Finding | Source |
 |---|---|---|---|---|---|---|---|---|---|
 | 2017 | 507 | 39.1% | 198 | 15 | 3 | S | not found | No primary source gives N (secondary lists give 490 or 507). The official list has 198 accepted papers. Orals and awards hold. | [link](https://iclr.cc/archive/www/doku.php%3Fid=iclr2017:conference_posters.html) |
 | 2018 | 981 | 32.0% |  | 23 | 3 | S | contradicted | No primary source gives N. **The official schedule lists 336 accepted papers**, so the rate is 34.3% on 981; the 32.0% counts posters only. Orals hold; awards have a secondary source only. | [link](https://iclr.cc/Conferences/2018/Schedule?type=Poster) |
@@ -280,10 +281,10 @@ its first year in the data (507 to 19,525: 50.0%).
 
 ## §10.4a Main-track spotlights by venue-year
 
-Added on 2026-10-04 for Fig. 1b. A spotlight is the main-track tier between oral and poster
-("spotlight", "spotlight poster", or ICLR 2023's "notable-top-25%"). Counts exclude orals,
-Datasets & Benchmarks and position papers. A blank count means the venue had no such tier
-that year. ICML 2021 and 2022 labelled every non-oral paper a spotlight, so the label marks no
+Added on 2026-10-04 for Fig. 1b. A Spotlight is the separate main-track tier between oral and
+poster (venue labels "spotlight", "spotlight poster", or ICLR 2023's "notable-top-25%"). The
+counts are the Spotlight tier alone: they exclude orals, Datasets & Benchmarks and position
+papers. A blank count means the venue had no such tier that year. ICML 2021 and 2022 labelled every non-oral paper a spotlight, so the label marks no
 selective tier there. One agent per venue found the counts and a second agent re-checked
 each one at its source. Machine-readable copy: `data/spotlights.csv`.
 
@@ -345,14 +346,14 @@ each one at its source. Machine-readable copy: `data/spotlights.csv`.
 
 Handoff §10.6 lists the methods and context papers. They supply no data to the study, so they were not checked.
 
-## 10.4b Tier-size scaling fits (results/tier_sizes.csv)
+## 10.4b Tier and set size scaling fits (results/tier_sizes.csv)
 
 Fitted on NeurIPS main-track counts from `data/venues.csv` (`orals_used`) and
 `data/spotlights.csv`, log-log least squares of count on `N_used`, years with a positive count.
 
-| Tier | Fit | Years | RMSE (log10) |
+| Tier or set (key) | Fit | Years | RMSE (log10) |
 |---|---|---|---|
-| Accepted | 0.155 N^1.048 (the N grid uses 0.25 N) | 2014-2026 (13) | 0.040 |
-| Spotlights | 0.343 N^0.716 | 2014-2026 (11; no tier 2016, 2022) | 0.117 |
-| Orals | 0.296 N^0.585 | 2014-2026 (13) | 0.185 |
-| Best Papers (`awards` row, main track; `awards_used`) | 0.258 N^0.268 (1 to 13 a year; not drawn; the model holds the tier at three) | 2014-2025 (12) | 0.282 |
+| Accepted or Better (`accept_or_better`; every accepted paper) | 0.155 N^1.048 (the N grid uses A = 0.25 N) | 2014-2026 (13) | 0.040 |
+| Spotlight (`spot`; Spotlights only) | 0.343 N^0.716 | 2014-2026 (11; no Spotlight tier 2016, 2022) | 0.117 |
+| Oral or Better (`oral_or_better`; NeurIPS presents its Best Papers as orals) | 0.296 N^0.585 | 2014-2026 (13) | 0.185 |
+| Best Papers (`best`; main-track count `awards_used`) | 0.258 N^0.268 (1 to 13 a year; not drawn; the model holds the tier at three) | 2014-2025 (12) | 0.282 |

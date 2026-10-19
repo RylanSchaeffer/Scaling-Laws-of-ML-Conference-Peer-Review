@@ -27,7 +27,7 @@ import pandas as pd
 from peerreview.levels import LEVELS, ROOT, calibrated, main_model
 from peerreview.model import MAIN_FORM
 from peerreview.simulate import simulate_best_paper, stable_seed
-from peerreview.tiers import CUTS, add_separate, cuts, tier_size
+from peerreview.tiers import CUTS, add_separate, cuts, fitted_count, spotlight_counts
 
 N_GRID = [int(round(x)) for x in np.geomspace(1e3, 1e5, 13)]
 CITED_YEARS = (2014, 2021, 2026)  # the NeurIPS years the paper quotes (--cited)
@@ -42,17 +42,17 @@ def job(spec: dict) -> dict:
     N, A = spec["N"], int(round(spec["alpha"] * spec["N"]))
     if not np.isfinite(m.sigma_eps):  # the level is unreachable on this form (coarse scale: ties floor the disagreement)
         return {**spec, "rho2": LEVELS[level], "sigma_eps": np.nan, "accepted": A, "wall_s": 0.0}
-    tiers = cuts(N_BEST, spec["orals"], spec["spotlights"], A)  # the cutoffs; a venue-year with no Spotlight count has no Spotlight tier
-    overlap = {**tiers, "top0p3pct": max(1, int(round(0.003 * N)))}  # a fixed proportion as large as the Best Papers at 1,000
+    cut_sizes = cuts(N_BEST, spec["n_oral_or_better"], spec["spotlights"], A)  # the cutoffs; 0 Spotlights gives an empty Spotlight tier, an unknown count none
+    overlap = {**cut_sizes, "top0p3pct": max(1, int(round(0.003 * N)))}  # a fixed proportion as large as the Best Papers at 1,000
     seed = stable_seed(m.as_dict(), N, spec["reps"], "best_paper_forms", spec["source"], level)
     t0 = time.perf_counter()
-    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, winner_tiers=tiers,
-                            second_committee=True, overlap_tiers=overlap, n_best=N_BEST)
+    r = simulate_best_paper(m, N, spec["reps"], best_K=(1,), seed=seed, best_papers_cuts=cut_sizes,
+                            second_committee=True, overlap_cuts=overlap, n_best=N_BEST)
     out = {**spec, "rho2": LEVELS[level], "sigma_eps": m.sigma_eps, "accepted": A, "seed": seed}
     for name in CUTS:  # "or Better" probabilities and overlaps; the Best Papers are their own
-        out[f"p2_{name}"] = r.get(f"winner_in2_{name}", np.nan)
-        out[f"p2_{name}_se"] = r.get(f"winner_in2_{name}_se", np.nan)
-        out[f"p_{name}"] = r.get(f"winner_in_{name}", np.nan)
+        out[f"p2_{name}"] = r.get(f"best_papers_in2_{name}", np.nan)
+        out[f"p2_{name}_se"] = r.get(f"best_papers_in2_{name}_se", np.nan)
+        out[f"p_{name}"] = r.get(f"best_papers_in_{name}", np.nan)
         out[f"overlap_{name}"] = r.get(f"overlap_{name}", np.nan)
         out[f"overlap_{name}_se"] = r.get(f"overlap_{name}_se", np.nan)
     for tier in ("oral", "spot", "accept"):  # separate tiers' overlaps, counted directly
@@ -62,8 +62,8 @@ def job(spec: dict) -> dict:
     add_separate(out, "p")
     out["overlap_top0p3pct"] = r["overlap_top0p3pct"]
     out["overlap_top0p3pct_se"] = r["overlap_top0p3pct_se"]
-    for k in ("winner_rank2_median", "winner_rank2_q10", "winner_rank2_q90", "winner_rank_median",
-              "z2_winner", "z2_winner_sd", "z2_winner_se", "z2_cut", "z2_cut_sd", "z2_cut_se"):
+    for k in ("best_papers_rank2_median", "best_papers_rank2_q10", "best_papers_rank2_q90", "best_papers_rank_median",
+              "z2_best_papers", "z2_best_papers_sd", "z2_best_papers_se", "z2_cut", "z2_cut_sd", "z2_cut_se"):
         out[k] = r[k]
     out["wall_s"] = time.perf_counter() - t0
     return out
@@ -72,20 +72,20 @@ def job(spec: dict) -> dict:
 def specs(reps: int) -> list[dict]:
     v = pd.read_csv(os.path.join(ROOT, "data", "venues.csv"))
     v = v[v.denominator != "decided"]
-    sp = pd.read_csv(os.path.join(ROOT, "data", "spotlights.csv"))[["venue", "year", "spotlights"]]
+    sp = spotlight_counts(ROOT)  # 0 where the venue had no Spotlight tier
     v = v.merge(sp, on=["venue", "year"], how="left")
     fits = pd.read_csv(os.path.join(ROOT, "results", "tier_sizes.csv"))
     out = []
     for _, x in v.iterrows():
         for level in LEVELS:
             out.append({"source": "venue", "venue": x.venue, "year": int(x.year), "N": int(x.N_used),
-                        "alpha": float(x.acc_rate_used), "orals": x.orals_used, "spotlights": x.spotlights,
+                        "alpha": float(x.acc_rate_used), "n_oral_or_better": x.orals_used, "spotlights": x.spotlights,
                         "scale": SCALE, "R": R, "level": level, "reps": reps})
     for N in N_GRID:
         for level in LEVELS:
-            o = tier_size(fits, "oral_or_better", N)
+            o = fitted_count(fits, "oral_or_better", N)
             out.append({"source": "grid", "venue": "", "year": np.nan, "N": N, "alpha": GRID_ALPHA,
-                        "orals": o, "spotlights": tier_size(fits, "spot", N),
+                        "n_oral_or_better": o, "spotlights": fitted_count(fits, "spot", N),
                         "scale": SCALE, "R": R, "level": level, "reps": reps if N <= 10_000 else max(2000, reps // 2)})
     return out
 

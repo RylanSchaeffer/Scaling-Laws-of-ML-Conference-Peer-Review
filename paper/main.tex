@@ -44,7 +44,7 @@
 
 \maketitle
 
-% Acceptance is a fixed proportion ($N^{1}$), Orals ($N^{0.63}$) and Spotlights ($N^{0.72}$) grow more slowly, and Best Papers are a constant number ($N^{0}$).
+% Acceptance is a fixed proportion ($N^{1}$), Oral or Better ($N^{0.59}$) and Spotlights ($N^{0.72}$) grow more slowly, and Best Papers are a constant number ($N^{0}$).
 % We ask what a second review, with new reviewers and area chairs, would do to a paper in each tier.
 % A fixed proportion (acceptance) is untouched by growth: a second review rejects about half of the accepted papers at any conference size.
 % A constant number (Best Papers) is reproduced ever less, as a power law without a floor: from NeurIPS 2014 to 2026 the chance that a second review ranks the Best Papers in its top three fell from 2.9\% to 0.33\%, and the chance that they are Accepted, with no award, rose from 45\% to 67\%.
@@ -56,7 +56,7 @@ Over the past decade, submissions have grown 29\% per year at NeurIPS, 34\% at I
 Under such exponentially increasing strain, how well does machine learning conference peer review succeed at identifying good papers to accept and strong papers to honor?
 We answer these questions with a model of the review process, grounded in the measurable outcome of how submissions fare if reviewed by two independent committees, calibrated on real NeurIPS 2014 and 2021 experiments.
 The answer depends primarily on how each tier scales with the number of submissions.
-We find that: (1) The number of submissions in each tier follows a power law in the number of submissions $N$; (2) Best Papers ($N^0$) are a lottery among good papers that become ever less meritocratic as submissions grow; (3) Acceptances ($N^{1.05}$) are invariant to conference size, but remain coin tosses; (4) Orals ($N^{0.63}$) \& Spotlights ($N^{0.72}$) live in the middle; (5) Chairs give about half of the awards to papers the scores would not pick, usually without saying why; and (6) More reviewers cannot fix the award process, because the chair unilaterally decides.
+We find that: (1) The number of submissions in each tier follows a power law in the number of submissions $N$; (2) Best Papers ($N^0$) are a lottery among good papers that become ever less meritocratic as submissions grow; (3) Acceptances ($N^{1.05}$) are invariant to conference size, but remain coin tosses; (4) Oral or Better ($N^{0.59}$) \& Spotlights ($N^{0.72}$) live in the middle; (5) Chairs give about half of the awards to papers the scores would not pick, usually without saying why; and (6) More reviewers cannot fix the award process, because the chair unilaterally decides.
 These conclusions are robust to all modeling assumptions we tested, including rubric score formatting, noise distributions, reviewer inattention, and more.
 Overall, ML conference peer review is largely a lottery at every tier, and its awards become more of a lottery as conferences grow; conferences should either stop presenting awards as measures of merit and award them by explicit lottery, or commit to more independent chair reviewers and test them by duplicating award decisions.
 \end{abstract}
@@ -89,14 +89,14 @@ Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experi
 Because true quality is never observed, we ground the question in what can be measured: a second independent review. Two experiments, at NeurIPS 2014 and 2021, sent submissions to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}; Fig.~\ref{fig:main}g) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}.
 We create a model of the ML peer review process, calibrate it to empirical data, and ask how each tier of outcomes (Rejected, Accepted, Spotlight, Oral, Best Paper) scales with the number of submissions if each submission was reviewed again. We find:
 
-\textbf{1. The number of papers in each tier follows a power law in the number of submissions $N$.} Acceptances are a constant proportion ($N^{1.05}$), Spotlights ($N^{0.72}$) and Orals ($N^{0.63}$) grow more slowly, and Best Papers (1 to 13 a year at NeurIPS from 2014 to 2025, median 2.5, mean 3.5) do not grow with submissions but remain constant ($N^0$) (Fig.~\ref{fig:main}b).
+\textbf{1. The number of papers in each tier follows a power law in the number of submissions $N$.} Acceptances are a constant proportion ($N^{1.05}$), Spotlights ($N^{0.72}$) and Oral or Better ($N^{0.59}$) grow more slowly, and Best Papers (1 to 13 a year at NeurIPS from 2014 to 2025, median 2.5, mean 3.5) do not grow with submissions but remain constant ($N^0$) (Fig.~\ref{fig:main}b).
 
 \textbf{2. Best Papers ($N^0$) are a lottery among good papers, and become less meritocratic as submissions grow.} From NeurIPS 2014 to 2026 the chance that a second review confirms the Best Papers fell from 2.9\% to 0.33\% (Fig.~\ref{fig:main}c). No variant of the model that fits the acceptance data changes this.
 % the confirmation chance is 0.17\% to 2.7\% across the variants and 0.28\% to 0.37\% across every scale with five or more points (Sections~\ref{sec:sure} and~\ref{sec:scales}).
 
 \textbf{3. Acceptances ($N^{1.05}$) are invariant to conference size, but remain coin tosses.} A second review accepts about half of the accepted papers at every size: twice the 25\% it accepts of all submissions, and three times the 17\% it accepts of the papers the first review rejected (Section~\ref{sec:accept}).
 
-\textbf{4. Orals ($N^{0.63}$) and Spotlights ($N^{0.72}$) fall in between: as conferences grow, a second review agrees on them less often, but more slowly than on Best Papers.} An Oral keeps its tier 8\% of the time at 1,000 submissions and 4\% at 100,000; a Spotlight 14\% and 8\% (Section~\ref{sec:between}).
+\textbf{4. Oral or Better ($N^{0.59}$) and Spotlights ($N^{0.72}$) fall in between: as conferences grow, a second review agrees on them less often, but more slowly than on Best Papers.} A paper keeps Oral or Better 12\% of the time at 1,000 submissions and 4\% at 100,000, and a Spotlight keeps its tier 14\% and 8\% (Section~\ref{sec:between}).
 
 \textbf{5. Chairs give about half of the awards to papers the scores would not pick, usually without saying why.} At NeurIPS 2021 only 26 of the 53 Oral and Spotlight papers were among their committee's top-scored papers, and in 30 of the 50 award pairs the meta-review gave the higher tier with no stated grounds. Awards based on the scores over-predict the committees' agreement; one chair judgement per paper reproduces it (Section~\ref{sec:award}).
 
@@ -114,7 +114,7 @@ For related work, please see Appendix~\ref{app:related}.
 \section{Each Tier's Count Follows a Power Law with Submissions}\label{sec:tiers}
 
 At NeurIPS the counts (Accepted or Better, Spotlight, Oral, Best Papers) have not grown alike. As we shall see, how a tier grows with the number of submissions $N$ decides how well a second review reproduces it (Sections~\ref{sec:bestpaper} to~\ref{sec:between}).
-We fit the yearly counts of Accepted or Better, Spotlight, Oral, Oral or Better and Best Papers from 2014 to 2026 (Oral and Best Papers to 2025) as power laws $cN^b$, by least squares on log scales (Fig.~\ref{fig:main}b draws the first three as proportions of submissions, $cN^b/N$).
+We fit the yearly counts of Accepted or Better, Spotlight, Oral or Better, Oral and Best Papers from 2014 to 2026 (Oral and Best Papers to 2025) as power laws $cN^b$, by least squares on log scales (Fig.~\ref{fig:main}b draws the first three as proportions of submissions, $cN^b/N$).
 
 \textbf{Best Papers do not grow at all.} NeurIPS named 1 to 13 Best Papers a year from 2014 to 2025, with a median of 2.5 and mean of 3.5 (Appendix~\ref{app:bestpapers}). The fitted exponent cannot be told from zero, and thus we model the Best Papers as a \emph{constant number} ($N^0$).
 
@@ -122,7 +122,7 @@ We fit the yearly counts of Accepted or Better, Spotlight, Oral, Oral or Better 
 The accepted papers, Accepted or Better, grow as $N^{1.05}$, a \emph{constant proportion} of submissions, around 25\%.
 
 \textbf{Orals and Spotlights live in between.}
-Spotlights grow as $0.34\,N^{0.72}$ and Orals as $0.18\,N^{0.63}$; NeurIPS's Oral count, which includes its Best Papers and so counts Oral or Better, grows as $0.30\,N^{0.59}$: more slowly than submissions, so each is an ever smaller proportion over time.
+Spotlights grow as $0.34\,N^{0.72}$ and NeurIPS's Oral count, which includes its Best Papers and so counts Oral or Better, as $0.30\,N^{0.59}$ (the Oral tier alone as $0.18\,N^{0.63}$): more slowly than submissions, so each is an ever smaller proportion over time.
 
 
 \section{Methods: A Model of Peer Review, Run Twice}\label{sec:methods}
@@ -229,7 +229,7 @@ Peer review's decisions are read as verdicts on merit. A verdict is worth what a
 
 \paragraph{Acceptance is a coin toss for the papers it accepts.} A second review would reject about half of them at any size. The decision is not random, since a paper one review accepts is nearly three times as likely as one it rejects to be accepted again, but a single acceptance or rejection is weak evidence about a paper. Growth only multiplies the coin tosses.
 
-\paragraph{Awards are a lottery among good papers, and growth lengthens the odds.} A second review would almost always accept NeurIPS 2026's Best Papers but count only 0.33\% of them among its own; an Oral keeps its tier 8\% of the time at 1,000 submissions and 4\% at 100,000; and at NeurIPS 2021 one committee's award papers were ordinary accepted papers to the other. Awards are read as merit, but on another day, with other reviewers and other chairs, other good papers would have won. The prestige and attention an award confers rest mostly on luck, and more so every year.
+\paragraph{Awards are a lottery among good papers, and growth lengthens the odds.} A second review would almost always accept NeurIPS 2026's Best Papers but count only 0.33\% of them among its own; a paper keeps Oral or Better 12\% of the time at 1,000 submissions and 4\% at 100,000; and at NeurIPS 2021 one committee's award papers were ordinary accepted papers to the other. Awards are read as merit, but on another day, with other reviewers and other chairs, other good papers would have won. The prestige and attention an award confers rest mostly on luck, and more so every year.
 
 \paragraph{One unexplained judgement decides each award.} At NeurIPS 2021 the chairs gave about half of the awards to papers the scores would not pick, usually without stated grounds, and halved the agreement that the scores alone would have given. Had their departures tracked merit the scores missed, the two committees' chairs would have tended to agree. More reviewers cannot undo this, because the chairs' call is one draw per paper.
 

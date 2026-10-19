@@ -140,20 +140,19 @@ def submissions_panel(ax):
 RATE_SERIES = (  # (count series in results/tier_sizes.csv, count column of venue_counts(), colour, label end, label side)
     ("accept_or_better", "accepted", P.MUTED, "left", "above"),  # every accepted paper; each label sits where no marker lies
     ("spot", "spotlights", P.BLUE[250], "left", "above"),  # Spotlights only
-    ("oral", "orals_alone", P.BLUE[450], "right", "below"),  # the Oral tier alone: NeurIPS's Orals less its Best Papers
-)  # Oral or Better (NeurIPS's Oral count) and the Best Papers (1 to 13 a year) are fitted (tier_sizes.csv) but not drawn
+    ("oral_or_better", "orals_used", P.BLUE[450], "right", "below"),  # NeurIPS's Oral count, its Best Papers included: Oral or Better
+)  # the Oral tier alone and the Best Papers (1 to 13 a year) are fitted (tier_sizes.csv) but not drawn
 
 
 def rates_panel(ax):
-    """Is each NeurIPS count series (Accepted or Better, Spotlight, Oral) a constant number, a fixed
+    """Is each NeurIPS count series (Accepted or Better, Spotlight, Oral or Better) a constant number, a fixed
     proportion of submissions, or something between? Markers: each year's main-track count over submissions, against that year's
     submissions (no spotlight tier in 2016 and 2022; best-paper awards, 1 to 13 a year, are too few to
     draw). Lines: the fitted power law count = a N^gamma (results/tier_sizes.csv) over the
     fitted years' range of N, drawn as the proportion a N^gamma / N. On log-log axes a fixed proportion (gamma = 1)
     is flat and a fixed number (gamma = 0) falls as 1/N; each label gives the count's power law over N, so its
     exponent is the one the text cites."""
-    s = venue_counts().query("venue == 'NeurIPS'").assign(accepted=lambda d: d.N_used * d.acc_rate_used,
-                                                           orals_alone=lambda d: d.orals_used - d.awards_used)
+    s = venue_counts().query("venue == 'NeurIPS'").assign(accepted=lambda d: d.N_used * d.acc_rate_used)
     fits = load("tier_sizes").set_index("series")
     for series, col, c, end, side in RATE_SERIES:
         f = fits.loc[series]
@@ -193,7 +192,7 @@ def log_prob_axis(ax):
 
 
 def fig_headline(stem: str = "fig1_headline"):
-    """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS counts (Accepted or Better, Spotlight, Oral) as a proportion of submissions,
+    """Figure 1: two rows. (a) Papers submitted per year. (b) NeurIPS counts (Accepted or Better, Spotlight, Oral or Better) as a proportion of submissions,
     with the fitted power law of each count. (c) Where a second review would rank the NeurIPS Best
     Papers in 2014, 2021 and 2026 (results/best_paper.csv). (d-g) The scaling laws of a second review for a
     paper the first review made one of its Best Papers or put in Oral or Better, Spotlight or Better or Accepted or Better,

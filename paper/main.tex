@@ -175,7 +175,7 @@ Acceptance is the Best Papers' opposite: a fixed proportion, it grows as fast as
 
 \textbf{Oral or Better and Spotlight or Better lose agreement as conferences grow, but more slowly than the Best Papers.} Both grow more slowly than submissions: from 1,000 to 100,000 submissions, Oral or Better grows from 17 to 250 papers and Spotlight or Better from 65 to 1,555 (Section~\ref{sec:tiers}). Over that range, the chance that a second review keeps a paper in Oral or Better falls from 12\% to 4\%, and in Spotlight or Better from 23\% to 11\% (Fig.~\ref{fig:main}e,f). Yet it accepts these papers more often, 69\% to 78\% and 60\% to 70\% of the time, because the shrinking award tiers sit ever farther above the acceptance bar. The more a tier lags submissions, the faster growth turns it into a lottery among good papers. The NeurIPS 2021 committees agreed on their Spotlight or Better papers less still (Section~\ref{sec:award}).
 
-\section{Chairs Override the Scores for About Half the Awards}\label{sec:award}
+\section{Chairs Override the Scores, So More Reviewers Cannot Fix the Awards}\label{sec:award}\label{sec:best}
 
 To understand the role the chairs play, we turn to the NeurIPS 2021 experiment: its two committees chose Orals and Spotlights for the same papers, and their reviews and meta-reviews are public.
 
@@ -187,9 +187,7 @@ To understand the role the chairs play, we turn to the NeurIPS 2021 experiment: 
 
 \textbf{One chair judgement per paper reproduces the committees' agreement.} Fitted so that 26 of 53 model awards fall among the top-scored papers, the chairs' call has $\sigma_\eta=0.59$ (90\% range over resampled pairs, 0.42 to 0.76), about the spread of mean ratings among accepted papers (SD 0.52). On the real scores it predicts 3.6 shared award papers, against 3 observed; in full replays the main model predicts 4.6 shared and 33\% rejected ($P=0.32$ and $0.02$). The rejected share stays below the observed 48\%, so the model, if anything, overstates how reproducible awards are.
 
-\section{More Reviewers Cannot Fix the Awards}\label{sec:best}
-
-The usual remedy for noisy review is more reviewers per paper \citep{kaplan2008sample,snell2015menage,forscher2019many}. It reaches only the reviewers' noise, which averaging cancels. The chairs' call is made once per paper, after the reviews are in, and no number of reviewers averages it away.
+\textbf{More reviewers cannot fix the awards, because the chairs' call is made once per paper.} The usual remedy for noisy review is more reviewers per paper \citep{kaplan2008sample,snell2015menage,forscher2019many}, but averaging cancels only the reviewers' noise, not the chairs' call.
 
 \begin{figure}[t]
 \centering

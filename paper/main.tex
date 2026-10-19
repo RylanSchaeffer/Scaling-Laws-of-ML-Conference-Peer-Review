@@ -129,7 +129,7 @@ Spotlights grow as $0.34\,N^{0.72}$ and Orals as $0.18\,N^{0.63}$; NeurIPS's Ora
 
 \section{Methods: A Model of Peer Review, Run Twice}\label{sec:methods}
 
-The two experiments that reviewed the same papers twice did so at only two sizes, 1,678 and 9,122 submissions, and mostly at acceptance; neither duplicated the Best Papers (Table~\ref{tab:experiments}). To ask the question for every tier at every size up to 100,000 submissions, we model the review process, calibrate it to the experiments' acceptance decisions, test it on decisions it was not calibrated to, and review every simulated conference twice.
+A paper's quality is not externally visible, so we ground the analysis in what can be measured: review the same submissions twice, independently, and compare the outcomes. NeurIPS ran exactly this experiment in 2014 and 2021, sending about a tenth of its submissions to two independent program committees, each with its own reviewers and area chairs \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}; we calibrate our model to their acceptance decisions. But the experiments did so at only two sizes, 1,678 and 9,122 submissions, and mostly at acceptance; neither duplicated the Best Papers (Table~\ref{tab:experiments}). To ask the question for every tier at every size up to 100,000 submissions, we model the review process, test the model on decisions it was not calibrated to, and review every simulated conference twice.
 
 \subsection{The Model}\label{sec:model}
 

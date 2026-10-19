@@ -44,11 +44,6 @@
 
 \maketitle
 
-\begin{abstract}
-Over the past decade, submissions have grown 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR.
-Under such exponentially increasing strain, how well does machine learning conference peer review succeed at identifying good papers to accept and exceptional papers to award?
-We answer these questions with a model of the review process, grounded in the measurable outcome of how submissions fare if reviewed by two independent committees, calibrated on real NeurIPS 2014 and 2021 experiments.
-The answer depends primarily on how each tier scales with the number of submissions.
 % Acceptance is a fixed proportion ($N^{1}$), Orals ($N^{0.63}$) and Spotlights ($N^{0.72}$) grow more slowly, and Best Papers are a constant number ($N^{0}$).
 % We ask what a second review, with new reviewers and area chairs, would do to a paper in each tier.
 % A fixed proportion (acceptance) is untouched by growth: a second review rejects about half of the accepted papers at any conference size.
@@ -56,26 +51,31 @@ The answer depends primarily on how each tier scales with the number of submissi
 % Orals and Spotlights, between, keep their tier 8\% and 14\% of the time at 1,000 submissions and 4\% and 8\% at 100,000.
 % More reviewers cannot repair the top: the chairs' choice among the accepted papers is one judgement per paper that averaging reviews does not reach, and beyond about 70,000 submissions no number of reviews holds the Best Papers to their 1,000-submission agreement.
 % Which accepted paper wins an award is close to a lottery: at NeurIPS 2021 an award paper was accepted again by the other committee 52\% of the time, the same as any accepted paper, and given an award again 11\% of the time, within chance.
-We find that (1) The number of submissions in each tier follows a power law in the number of submissions $N$; (2) Best Papers ($N^0$) are a lottery among good papers that become ever less meritocratic as submissions grow; (3) Acceptances ($N^{1.05}$) are invariant to conference size, but remain coin tosses; (4) Orals ($N^{0.63}$) \& Spotlights ($N^{0.72}$) live in the middle; (5) Chairs give about half of the awards to papers the scores would not pick, usually without saying why; and (6) More reviewers cannot fix the award process, because the chair unilaterally decides.
+\begin{abstract}
+Over the past decade, submissions have grown 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR.
+Under such exponentially increasing strain, how well does machine learning conference peer review succeed at identifying good papers to accept and strong papers to honor?
+We answer these questions with a model of the review process, grounded in the measurable outcome of how submissions fare if reviewed by two independent committees, calibrated on real NeurIPS 2014 and 2021 experiments.
+The answer depends primarily on how each tier scales with the number of submissions.
+We find that: (1) The number of submissions in each tier follows a power law in the number of submissions $N$; (2) Best Papers ($N^0$) are a lottery among good papers that become ever less meritocratic as submissions grow; (3) Acceptances ($N^{1.05}$) are invariant to conference size, but remain coin tosses; (4) Orals ($N^{0.63}$) \& Spotlights ($N^{0.72}$) live in the middle; (5) Chairs give about half of the awards to papers the scores would not pick, usually without saying why; and (6) More reviewers cannot fix the award process, because the chair unilaterally decides.
 These conclusions are robust to all modeling assumptions we tested, including rubric score formatting, noise distributions, reviewer inattention, and more.
-Overall, our results suggest that ML conference peer review is largely a lottery at every increasing tier.
+Overall, ML conference peer review is largely a lottery at every tier, and its awards become more of a lottery as conferences grow; conferences should either stop presenting awards as measures of merit and award them by explicit lottery, or commit to more independent chair reviewers and test them by duplicating award decisions.
 \end{abstract}
 
 
 
 \section{Introduction}
 
-Machine learning (ML) conference peer review serves two functions: it accepts good papers, and it exalts the best into Spotlights, Orals and Best Papers.
-Both functions separate signal from noise, and matter beyond the conference: accepted papers enter a scientific record that has no robust mechanism to correct them \citep{schaeffer2025refutations}, and awards capture the attention of a community that cannot read every paper.
+Machine learning (ML) conference peer review serves two functions: it accepts good papers, and it elevates strong papers into Spotlights, Orals and Best Papers.
+Both functions matter beyond the conference: accepted papers enter a scientific record that has no robust mechanism to correct them \citep{schaeffer2025refutations}, and awards capture the attention of a community that cannot read every paper.
 
-Both functions have been under increasing strain from the geometrically increasing number of submissions (Fig.~\ref{fig:main}a), with submissions growing 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}.
-The process stayed the same: a few reviews per paper, and a final call by area chairs.
+Both functions have also been under increasing strain from the geometrically increasing number of submissions (Fig.~\ref{fig:main}a), with submissions growing 29\% per year at NeurIPS, 34\% at ICML and 50\% at ICLR \citep{neurips_factsheets,icml_factsheets,iclr_factsheets,csconfstats}.
+The process has stayed largely the same: a few reviews per paper, and a final call by area chairs.
 How well does peer review perform in light of this increasing strain?
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig1_headline.pdf}
-\caption{\textbf{Conferences Grow Exponentially, Award Tiers Do Not Keep Pace, Acceptance Is a Coin Toss, and as Submissions Grow, More Prestigious Awards Become Lotteries Faster.}
+\caption{\textbf{Conferences Grow Exponentially, Award Tiers Do Not Keep Pace, Acceptance Is a Coin Toss, and More Prestigious Awards Become Lotteries Faster as Submissions Grow.}
 (a) Conference submissions by year. (b) NeurIPS counts by proportion (markers) and fitted power laws (lines). In 2016 and 2022, with no Spotlight tier, the Oral count includes Spotlights; Best Papers, 1 to 13 a year, are too few to draw. (c) The tier a second independent review gives the model's Best Papers at NeurIPS 2014, 2021 and 2026 submissions. (d--g) Where a second independent review places a paper that the first review made one of the Best Papers, Oral or Better, Spotlight or Better, or Accepted or Better, against submissions $N$.
 % Each curve is the probability of that tier or better; at the paper's own set it is that set's overlap. Tier sizes follow NeurIPS's trends (b) and acceptance is 25\% of $N$.
 Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experiments, the proportion of one committee's papers in a tier or in Accepted or Better that the other committee put in each tier. The Accepted or Better papers sit on the model's lines, whereas the 2021 Spotlights sit above its Rejected line (Section~\ref{sec:award}).
@@ -89,9 +89,9 @@ Dashed line: NeurIPS 2026 submissions. Markers: the NeurIPS 2014 and 2021 experi
 
 
 Because true quality is never observed, we ground the question in what can be measured: a second independent review. Two experiments, at NeurIPS 2014 and 2021, sent submissions to two independent committees, and both times the second committee rejected about half of the papers the first accepted (Table~\ref{tab:experiments}; Fig.~\ref{fig:main}g) \citep{lawrence2014nips,cortes2021inconsistency,beygelzimer2023neurips}.
-We create a model of the ML peer review process, calibrate it to empirical data, and ask how each tier of outcomes (Rejected, Accepted, Spotlight, Oral, Best Papers) scales with the number of submissions if each submission was reviewed again. We find:
+We create a model of the ML peer review process, calibrate it to empirical data, and ask how each tier of outcomes (Rejected, Accepted, Spotlight, Oral, Best Paper) scales with the number of submissions if each submission was reviewed again. We find:
 
-\textbf{1. The number of papers in each tier follows a power law in the number of submissions $N$.} Acceptances are a constant proportion ($N^{1.05}$), Spotlights ($N^{0.72}$) and Orals ($N^{0.63}$) grow more slowly, and Best Papers (1 to 13 a year at NeurIPS from 2014 to 2025, median 2.5, mean 3.5) do not grow with submissions: they are a constant number ($N^0$) (Fig.~\ref{fig:main}b).
+\textbf{1. The number of papers in each tier follows a power law in the number of submissions $N$.} Acceptances are a constant proportion ($N^{1.05}$), Spotlights ($N^{0.72}$) and Orals ($N^{0.63}$) grow more slowly, and Best Papers (1 to 13 a year at NeurIPS from 2014 to 2025, median 2.5, mean 3.5) do not grow with submissions but remain constant ($N^0$) (Fig.~\ref{fig:main}b).
 
 \textbf{2. Best Papers ($N^0$) are a lottery among good papers, and become less meritocratic as submissions grow.} From NeurIPS 2014 to 2026 the chance that a second review confirms the Best Papers fell from 2.9\% to 0.33\% (Fig.~\ref{fig:main}c). No variant of the model that fits the acceptance data changes this.
 % the confirmation chance is 0.17\% to 2.7\% across the variants and 0.28\% to 0.37\% across every scale with five or more points (Sections~\ref{sec:sure} and~\ref{sec:scales}).

@@ -1,34 +1,139 @@
-"""Check paper/main.pdf against the layout rules of handoff §2: 4 to 6 pages of main
-text (the author allowed a seventh on 2 October 2026), the main figure at the bottom of
-page 1 or the top of page 2, and one large figure on every later page of the main text.
+"""Check paper/main.pdf against ICML 2027's rules for position papers.
 
-Usage: uv run python scripts/check_paper.py
+Each rule prints PASS or FAIL, and the script exits 1 if any fails:
+  - every page is US letter;
+  - the main body is at most 8 pages (9 with --camera-ready). It is everything before the first
+    end-matter heading: AI Use Statement, Acknowledgements, Impact Statement or References;
+  - the title starts with "Position:";
+  - the main body has an "Alternative Views" section;
+  - an AI Use Statement comes before the references;
+  - no "TODO" is left in the PDF.
+It then lists where each figure and table caption sits on the main-body pages.
+
+Sources: https://icml.cc/Conferences/2027/CallForPositionPapers,
+https://icml.cc/Conferences/2027/CallForPapers and https://icml.cc/Conferences/2027/AuthorInstructions.
+
+Usage: uv run python scripts/check_paper.py [--camera-ready] [--pdf PATH]
 """
 
 from __future__ import annotations
 
+import argparse
 import os
 import re
+import sys
 
 import pymupdf
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LETTER = (612, 792)  # US letter, in points
+END_MATTER = re.compile(r"^(AI Use Statement|Acknowledgements|Acknowledgments|Impact Statement|References)$")
+ALTERNATIVE_VIEWS = re.compile(r"^\d+\.?\s+Alternative Views$")
+CAPTION = re.compile(r"^(Figure|Table) (\d+)[.:]")
+
+
+def text_blocks(page) -> list[tuple[pymupdf.Rect, str]]:
+    """The page's lines of text, without the running head, the page number and line numbers. A
+    line that runs across the gutter is split into its two columns' parts, since PDF text
+    extraction can join two columns' lines that share a baseline; a line with a span that
+    crosses the middle of the page (a figure* or table* caption) stays whole."""
+    H, mid = page.rect.height, page.rect.width / 2
+    out = []
+    for block in page.get_text("dict")["blocks"]:
+        for line in block.get("lines", []):
+            parts, part = [], []
+            for span in line["spans"]:
+                if part and part[-1]["bbox"][2] <= mid <= span["bbox"][0]:
+                    parts.append(part)
+                    part = []
+                part.append(span)
+            parts.append(part)
+            for part in parts:
+                text = " ".join(" ".join(s["text"] for s in part).split())
+                rect = pymupdf.Rect(part[0]["bbox"])
+                for s in part[1:]:
+                    rect |= pymupdf.Rect(s["bbox"])
+                if not text or re.fullmatch(r"[\d\s]+", text) or rect.y1 < 0.08 * H or rect.y0 > 0.94 * H:
+                    continue
+                out.append((rect, text))
+    return out
+
+
+def before(a: pymupdf.Rect, b: pymupdf.Rect, mid: float) -> bool:
+    """Whether block a comes before block b in two-column reading order on the same page. A block
+    that spans both columns (a figure* or table*) above b comes first."""
+    a_col = 0 if a.x0 < mid else 1
+    b_col = 0 if b.x0 < mid else 1
+    if a.x0 < mid < a.x1 and a.y1 <= b.y0:
+        return True
+    return a_col < b_col or (a_col == b_col and a.y1 <= b.y0)
 
 
 def main() -> None:
-    doc = pymupdf.open(os.path.join(ROOT, "paper", "main.pdf"))
-    print(f"pages: {doc.page_count}")
-    ref_page = None
-    for i, page in enumerate(doc, 1):
-        text = page.get_text()
-        if ref_page is None and re.search(r"^References\s*$", text, re.M):
-            ref_page = i
-        H = page.rect.height
-        # Figures are vector PDFs: locate them by their caption blocks.
-        blocks = [b for b in page.get_text("blocks") if re.match(r"Figure \d:", b[4])]
-        where = ", ".join(f"Fig {re.match(r'Figure (\d)', b[4]).group(1)} caption at y={b[1] / H:.2f}" for b in blocks)
-        print(f"page {i}: {where or 'no figure caption'}")
-    print(f"references start on page {ref_page}")
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--camera-ready", action="store_true", help="allow the camera-ready 9 pages")
+    ap.add_argument("--pdf", default=os.path.join(ROOT, "paper", "main.pdf"))
+    args = ap.parse_args()
+    limit = 9 if args.camera_ready else 8
+
+    doc = pymupdf.open(args.pdf)
+    pages = [text_blocks(p) for p in doc]
+    failures = 0
+
+    def report(ok: bool, message: str) -> None:
+        nonlocal failures
+        failures += not ok
+        print(f"{'PASS' if ok else 'FAIL'}  {message}")
+
+    print(f"{args.pdf}: {doc.page_count} pages")
+
+    sizes = {(round(p.rect.width), round(p.rect.height)) for p in doc}
+    report(sizes == {LETTER}, f"US letter pages (found {', '.join(f'{w}x{h}' for w, h in sorted(sizes))} pt)")
+
+    # Where the main body ends: the first end-matter heading.
+    end = next(((i, r, t) for i, blocks in enumerate(pages) for r, t in blocks if END_MATTER.match(t)), None)
+    if end is None:
+        report(False, "main body length: no AI Use Statement, Acknowledgements, Impact Statement or References heading found")
+        body_pages = doc.page_count
+    else:
+        i, rect, heading = end
+        mid = doc[i].rect.width / 2
+        body_on_page = any(before(r, rect, mid) for r, t in pages[i] if (r, t) != (rect, heading))
+        body_pages = i + 1 if body_on_page else i
+        report(body_pages <= limit, f"main body is {body_pages} pages, limit {limit} (it ends at '{heading}' on page {i + 1})")
+
+    # The title: the largest type on page 1.
+    spans = [s for b in doc[0].get_text("dict")["blocks"] for line in b.get("lines", []) for s in line["spans"]]
+    largest = max(s["size"] for s in spans)
+    title = " ".join(" ".join(s["text"] for s in spans if s["size"] == largest).split())
+    report(title.startswith("Position:"), f"title starts with \"Position:\" (title: {title})")
+
+    def heading_page(pattern: re.Pattern) -> int | None:
+        return next((i for i, blocks in enumerate(pages) for _, t in blocks if pattern.match(t)), None)
+
+    alt = heading_page(ALTERNATIVE_VIEWS)
+    report(alt is not None and alt < body_pages, "an Alternative Views section in the main body"
+           + (f" (page {alt + 1})" if alt is not None else ""))
+
+    ai = heading_page(re.compile(r"^AI Use Statement$"))
+    refs = heading_page(re.compile(r"^References$"))
+    report(ai is not None and (refs is None or ai <= refs), "an AI Use Statement before the references")
+
+    todo = [i + 1 for i, blocks in enumerate(pages) if any("TODO" in t for _, t in blocks)]
+    report(not todo, "no TODO left" + (f" (pages {', '.join(map(str, todo))})" if todo else ""))
+
+    print("\nCaptions on the main-body pages (y: fraction of the page height from the top):")
+    for i in range(min(body_pages, doc.page_count)):
+        W, H = doc[i].rect.width, doc[i].rect.height
+        found = []
+        for r, t in pages[i]:
+            m = CAPTION.match(t)
+            if m:
+                span = "both columns" if r.width > 0.6 * W else "one column"
+                found.append(f"{m.group(1)} {m.group(2)} at y={r.y0 / H:.2f} ({span})")
+        print(f"  page {i + 1}: {'; '.join(found) or 'none'}")
+
+    sys.exit(1 if failures else 0)
 
 
 if __name__ == "__main__":

@@ -9,6 +9,9 @@ ordered magnitudes, text in ink tokens (never in a series colour).
 
 from __future__ import annotations
 
+import shutil
+from pathlib import Path
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
@@ -126,3 +129,18 @@ def save(fig, path_stem: str, width: float = CANVAS_W) -> None:
     fig.savefig(path_stem + ".pdf", bbox_inches="tight", pad_inches=0.01 * S, dpi=300)
     fig.savefig(path_stem + ".png", bbox_inches="tight", pad_inches=0.01 * S, dpi=300)
     plt.close(fig)
+    refresh_paper_copy(path_stem + ".pdf")
+
+
+def refresh_paper_copy(pdf: str) -> None:
+    """The paper is its own repository (the paper/ submodule) and keeps copies of the figures it
+    includes in paper/figures/. When a figure in figures/ that the paper includes is redrawn,
+    copy it over that copy. A figure the paper does not include yet is added by
+    scripts/sync_paper_figures.py."""
+    src = Path(pdf).resolve()
+    if src.parent.name != "figures":
+        return
+    dest = src.parent.parent / "paper" / "figures" / src.name
+    if dest.exists():
+        shutil.copyfile(src, dest)
+        print(f"refreshed paper/figures/{src.name}")

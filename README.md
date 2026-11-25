@@ -64,7 +64,7 @@ uv run python scripts/make_tier_scaling.py && uv run python scripts/run_best_pap
 cd paper && tectonic main.tex
 ```
 
-The paper uses the NeurIPS 2026 style file (`paper/neurips_2026.sty`, `preprint` option).
+The paper is an ICML 2027 position paper (`paper/icml2027.sty`, anonymous submission version).
 `uv run python scripts/check_paper.py` checks its layout. The figure files are numbered as in
 the paper, in its figure order: `fig1_headline`, `fig2_scaling` (the four-panel scaling figure, from
 `results/best_paper.csv` and `results/placement.csv`), `fig0_schematic`, `fig2_validation`,

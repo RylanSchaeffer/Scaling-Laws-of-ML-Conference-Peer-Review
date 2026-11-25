@@ -9,7 +9,7 @@ Spoiler: acceptance is a coin toss at every conference size, and awards become m
 
 ![arXiv](https://img.shields.io/badge/arXiv-coming_soon-df2a2a.svg?style=for-the-badge)
 
-[**Installation**](#installation) | [**Reproducing the Results**](#reproducing-the-results) | [**Repository Layout**](#repository-layout) | [**Terminology**](#terminology) | [**Data**](#data) | [**Citation**](#citation) | [**Contact**](#contact)
+[**Installation**](#installation) | [**Reproducing the Results**](#reproducing-the-results) | [**Repository Layout**](#repository-layout) | [**Terminology**](#terminology) | [**Data**](#data) | [**Citation**](#citation) | [**License**](#license) | [**Contact**](#contact)
 
 ## Installation
 
@@ -89,6 +89,12 @@ provenance and the analysis.
   year    = {2026}
 }
 ```
+
+## License
+
+The code is released under the [MIT License](LICENSE). The NeurIPS 2021 paired reviews and the
+analysis built on them (`data/paired_reviews/neurips2021/`) derive from OpenReview reviews and
+comments, licensed CC BY 4.0.
 
 ## Contact
 

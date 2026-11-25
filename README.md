@@ -81,16 +81,18 @@ repository alone, so it never pulls the data. Clone both with
 git clone --recurse-submodules git@github.com:RylanSchaeffer/Scaling-Laws-of-ML-Conference-Peer-Review.git
 ```
 
-or, in an existing clone,
+Then, once per clone, make `git pull` and `git switch` update `paper/` too. Without this, a pull
+that moves the `paper` pointer leaves `paper/` behind, and the next `git commit -a` moves the
+pointer back:
 
 ```bash
-git submodule update --init
+git config submodule.recurse true
 ```
 
-A fresh checkout leaves `paper/` on a detached commit. Before editing there, put it on its branch:
+A checkout leaves `paper/` on a detached commit. Before editing there, put it on its branch:
 
 ```bash
-git -C paper switch main
+git -C paper switch main && git -C paper pull --ff-only
 ```
 
 - **Figures.** The paper includes its own copies in `paper/figures/`. Redrawing a figure that
@@ -100,3 +102,23 @@ git -C paper switch main
   repository: `git add paper`.
 - **Overleaf edits.** Overleaf pushes to the manuscript repository. Bring them here with
   `git -C paper pull`, then commit the new `paper` pointer.
+
+**Clones from before the switch** (when `paper/` held plain files). Commit or stash any change in
+`paper/` first. After pulling, `paper/` may still hold ignored LaTeX build files, and
+`git submodule update --init` refuses a non-empty folder. Empty it, then check the submodule out:
+
+```bash
+git pull && rm -rf paper && git submodule update --init && git -C paper switch main
+```
+
+**Checking out a commit from before the switch** fails while the submodule is checked out. Remove the
+checkout first (commit and push anything in `paper/` before), then restore it on return. Nothing is
+downloaded again:
+
+```bash
+git submodule deinit -f paper && git switch --detach b416ba2
+```
+
+```bash
+git switch main && git submodule update --init
+```

@@ -126,7 +126,10 @@ def save(fig, path_stem: str, width: float = CANVAS_W) -> None:
         bb = fig.get_tightbbox(fig.canvas.get_renderer())  # inches
         w, h = fig.get_size_inches()
         fig.set_size_inches(w * width / bb.width, h)
-    fig.savefig(path_stem + ".pdf", bbox_inches="tight", pad_inches=0.01 * S, dpi=300)
+    # No creation date in the PDF, so redrawing an unchanged figure gives identical bytes and
+    # leaves the paper's copy (and its repository) unchanged.
+    fig.savefig(path_stem + ".pdf", bbox_inches="tight", pad_inches=0.01 * S, dpi=300,
+                metadata={"CreationDate": None})
     fig.savefig(path_stem + ".png", bbox_inches="tight", pad_inches=0.01 * S, dpi=300)
     plt.close(fig)
     refresh_paper_copy(path_stem + ".pdf")
@@ -141,6 +144,6 @@ def refresh_paper_copy(pdf: str) -> None:
     if src.parent.name != "figures":
         return
     dest = src.parent.parent / "paper" / "figures" / src.name
-    if dest.exists():
+    if dest.exists() and dest.read_bytes() != src.read_bytes():
         shutil.copyfile(src, dest)
         print(f"refreshed paper/figures/{src.name}")

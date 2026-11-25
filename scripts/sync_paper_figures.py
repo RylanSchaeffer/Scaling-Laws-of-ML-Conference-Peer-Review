@@ -25,13 +25,16 @@ PAPER_FIG = os.path.join(PAPER, "figures")
 
 
 def included(tex_path: str) -> list[str]:
-    """File names of every \\includegraphics in main.tex, commented-out lines skipped."""
-    names = set()
+    """File names of every \\includegraphics (or \\includegraphics*) in main.tex, comments
+    removed. The options may run over several lines."""
     with open(tex_path) as f:
-        for line in f:
-            line = re.sub(r"(?<!\\)%.*", "", line)
-            for name in re.findall(r"\\includegraphics\s*(?:\[[^\]]*\])?\s*\{([^}]+)\}", line):
-                names.add(name if os.path.splitext(name)[1] else name + ".pdf")
+        # A % starts a comment unless an odd number of backslashes escapes it (\% is a
+        # percent sign, \\% is a line break followed by a comment).
+        text = "".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", line) for line in f)
+    names = set()
+    for name in re.findall(r"\\includegraphics\*?\s*(?:\[[^\]]*\])?\s*\{([^}]+)\}", text):
+        name = name.strip()
+        names.add(name if os.path.splitext(name)[1] else name + ".pdf")
     return sorted(names)
 
 
@@ -62,15 +65,18 @@ def main() -> None:
             print(f"{name}: paper/figures/ copy is {'out of date' if os.path.exists(dest) else 'missing'}")
             problems.append(name)
         else:
-            os.makedirs(PAPER_FIG, exist_ok=True)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
             shutil.copyfile(src, dest)
             print(f"copied figures/{name} -> paper/figures/{name}")
             copied.append(name)
 
-    if os.path.isdir(PAPER_FIG):
-        for name in sorted(set(os.listdir(PAPER_FIG)) - set(names)):
-            if not name.startswith("."):
-                print(f"{name}: in paper/figures/, but main.tex no longer includes it")
+    present = set()
+    for dirpath, dirnames, filenames in os.walk(PAPER_FIG):
+        dirnames[:] = [d for d in dirnames if not d.startswith(".")]
+        present |= {os.path.relpath(os.path.join(dirpath, f), PAPER_FIG)
+                    for f in filenames if not f.startswith(".")}
+    for name in sorted(present - set(names)):
+        print(f"{name}: in paper/figures/, but main.tex no longer includes it")
 
     if copied:
         print("Commit inside paper/ first, then commit the new paper pointer in this repository.")

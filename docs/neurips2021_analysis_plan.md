@@ -47,8 +47,13 @@ one script and ships with the release as a zip.
 
 ## 3. The analysis, two stages, every step on disk
 
-**Model:** `claude-opus-5-5`, temperature 0, through the API. Every call's prompt, response,
-model id, prompt version and timestamp are saved. No step edits an earlier step's files.
+**Model:** `claude-opus-5-5`, run as Claude Code workflow agents (`scripts/workflows/stage1_notes.js`,
+`scripts/workflows/stage2_reasons.js`). The plan was temperature 0 through the API; the runs used Claude
+Code instead, which sets no temperature and takes a reasoning effort. Stage 1 ran at effort `max`. Stage 2
+run 1 ran at `max` for turns 1 to 6 and at `high` from turn 7, back-fill and merge included; run 2 ran at
+`high`. Each agent wrote its own output files. Every JSON output records its pair and prompt version, and
+the run READMEs record the model and effort; the agents' prompts and responses are not saved in the
+repository. No step edits an earlier step's files.
 
 **Stage 1: notes per pair.** For each of the 301 pairs the model reads both committees' full
 records (reviews with initial and final ratings, rebuttals, discussion, meta-reviews, decisions)

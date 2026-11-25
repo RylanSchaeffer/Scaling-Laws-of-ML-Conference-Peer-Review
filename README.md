@@ -64,8 +64,10 @@ uv run python scripts/make_tier_scaling.py && uv run python scripts/run_best_pap
 cd paper && tectonic main.tex
 ```
 
-The paper is an ICML 2027 position paper (`paper/icml2027.sty`, `preprint` option: the arXiv version, with the author's name).
-`uv run python scripts/check_paper.py` checks `paper/main.pdf` against ICML 2027's position-paper rules. The figure files are numbered as in
+The paper uses the ICML 2027 style (`paper/icml2027.sty`). It goes first to arXiv, with its current title and the
+author's name (`preprint` option), then to ICML 2027's position-paper track; `paper/main.tex` lists what that submission
+still needs. `uv run python scripts/check_paper.py` checks the preprint and lists the submission's to-dos; with
+`--submission` it requires them. The figure files are numbered as in
 the paper, in its figure order: `fig1_headline`, `fig2_scaling` (the four-panel scaling figure, from
 `results/best_paper.csv` and `results/placement.csv`), `fig0_schematic`, `fig2_validation`,
 `fig4_mechanism`, `fig5_robustness`, `fig6_scales`.

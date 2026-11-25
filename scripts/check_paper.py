@@ -1,19 +1,24 @@
-"""Check paper/main.pdf against ICML 2027's rules for position papers.
+"""Check paper/main.pdf: now the arXiv preprint, later an ICML 2027 position-paper submission.
 
-Each rule prints PASS or FAIL, and the script exits 1 if any fails:
+The paper is first posted to arXiv with its current title and the author's name, then submitted
+to ICML 2027's position-paper track. These rules hold for both, print PASS or FAIL, and make the
+script exit 1 if one fails:
   - every page is US letter;
+  - no "TODO" is left in the PDF.
+These hold for the submission. By default they are listed as done or to do; with --submission
+they print PASS or FAIL and count like the others:
   - the main body is at most 8 pages (9 with --camera-ready). It is everything before the first
     end-matter heading: AI Use Statement, Acknowledgements, Impact Statement or References;
   - the title starts with "Position:";
   - the main body has an "Alternative Views" section;
   - an AI Use Statement comes before the references;
-  - no "TODO" is left in the PDF.
+  - the authors are anonymous ("Anonymous Authors" on page 1).
 It then lists where each figure and table caption sits on the main-body pages.
 
 Sources: https://icml.cc/Conferences/2027/CallForPositionPapers,
 https://icml.cc/Conferences/2027/CallForPapers and https://icml.cc/Conferences/2027/AuthorInstructions.
 
-Usage: uv run python scripts/check_paper.py [--camera-ready] [--pdf PATH]
+Usage: uv run python scripts/check_paper.py [--submission] [--camera-ready] [--pdf PATH]
 """
 
 from __future__ import annotations
@@ -71,6 +76,8 @@ def before(a: pymupdf.Rect, b: pymupdf.Rect, mid: float) -> bool:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--submission", action="store_true",
+                    help="also require the ICML 2027 position-paper submission rules")
     ap.add_argument("--camera-ready", action="store_true", help="allow the camera-ready 9 pages")
     ap.add_argument("--pdf", default=os.path.join(ROOT, "paper", "main.pdf"))
     args = ap.parse_args()
@@ -78,49 +85,55 @@ def main() -> None:
 
     doc = pymupdf.open(args.pdf)
     pages = [text_blocks(p) for p in doc]
-    failures = 0
-
-    def report(ok: bool, message: str) -> None:
-        nonlocal failures
-        failures += not ok
-        print(f"{'PASS' if ok else 'FAIL'}  {message}")
-
-    print(f"{args.pdf}: {doc.page_count} pages")
+    always, submission = [], []  # (ok, message) pairs
 
     sizes = {(round(p.rect.width), round(p.rect.height)) for p in doc}
-    report(sizes == {LETTER}, f"US letter pages (found {', '.join(f'{w}x{h}' for w, h in sorted(sizes))} pt)")
+    always.append((sizes == {LETTER}, f"US letter pages (found {', '.join(f'{w}x{h}' for w, h in sorted(sizes))} pt)"))
+
+    todo = [i + 1 for i, blocks in enumerate(pages) if any("TODO" in t for _, t in blocks)]
+    always.append((not todo, "no TODO left" + (f" (pages {', '.join(map(str, todo))})" if todo else "")))
 
     # Where the main body ends: the first end-matter heading.
     end = next(((i, r, t) for i, blocks in enumerate(pages) for r, t in blocks if END_MATTER.match(t)), None)
     if end is None:
-        report(False, "main body length: no AI Use Statement, Acknowledgements, Impact Statement or References heading found")
         body_pages = doc.page_count
+        submission.append((False, f"main body at most {limit} pages: no AI Use Statement, Acknowledgements, "
+                                  "Impact Statement or References heading found"))
     else:
         i, rect, heading = end
         mid = doc[i].rect.width / 2
         body_on_page = any(before(r, rect, mid) for r, t in pages[i] if (r, t) != (rect, heading))
         body_pages = i + 1 if body_on_page else i
-        report(body_pages <= limit, f"main body is {body_pages} pages, limit {limit} (it ends at '{heading}' on page {i + 1})")
+        submission.append((body_pages <= limit,
+                           f"main body is {body_pages} pages, limit {limit} (it ends at '{heading}' on page {i + 1})"))
 
     # The title: the largest type on page 1.
     spans = [s for b in doc[0].get_text("dict")["blocks"] for line in b.get("lines", []) for s in line["spans"]]
     largest = max(s["size"] for s in spans)
     title = " ".join(" ".join(s["text"] for s in spans if s["size"] == largest).split())
-    report(title.startswith("Position:"), f"title starts with \"Position:\" (title: {title})")
+    submission.append((title.startswith("Position:"), f"title starts with \"Position:\" (title: {title})"))
 
     def heading_page(pattern: re.Pattern) -> int | None:
         return next((i for i, blocks in enumerate(pages) for _, t in blocks if pattern.match(t)), None)
 
     alt = heading_page(ALTERNATIVE_VIEWS)
-    report(alt is not None and alt < body_pages, "an Alternative Views section in the main body"
-           + (f" (page {alt + 1})" if alt is not None else ""))
+    submission.append((alt is not None and alt < body_pages, "an Alternative Views section in the main body"
+                       + (f" (page {alt + 1})" if alt is not None else "")))
 
     ai = heading_page(re.compile(r"^AI Use Statement$"))
     refs = heading_page(re.compile(r"^References$"))
-    report(ai is not None and (refs is None or ai <= refs), "an AI Use Statement before the references")
+    submission.append((ai is not None and (refs is None or ai <= refs), "an AI Use Statement before the references"))
 
-    todo = [i + 1 for i, blocks in enumerate(pages) if any("TODO" in t for _, t in blocks)]
-    report(not todo, "no TODO left" + (f" (pages {', '.join(map(str, todo))})" if todo else ""))
+    submission.append(("Anonymous Authors" in doc[0].get_text(), "anonymous authors (\"Anonymous Authors\" on page 1)"))
+
+    required = always + (submission if args.submission else [])
+    print(f"{args.pdf}: {doc.page_count} pages")
+    for ok, message in required:
+        print(f"{'PASS' if ok else 'FAIL'}  {message}")
+    if not args.submission:
+        print("\nFor the ICML 2027 submission (--submission requires these):")
+        for ok, message in submission:
+            print(f"  {'done ' if ok else 'to do'}  {message}")
 
     print("\nCaptions on the main-body pages (y: fraction of the page height from the top):")
     for i in range(min(body_pages, doc.page_count)):
@@ -133,7 +146,7 @@ def main() -> None:
                 found.append(f"{m.group(1)} {m.group(2)} at y={r.y0 / H:.2f} ({span})")
         print(f"  page {i + 1}: {'; '.join(found) or 'none'}")
 
-    sys.exit(1 if failures else 0)
+    sys.exit(1 if any(not ok for ok, _ in required) else 0)
 
 
 if __name__ == "__main__":

@@ -24,8 +24,6 @@ The header of `paper/main.tex` lists these too. Check with
 - [ ] Check the NeurIPS 2026 counts against the official fact sheet once it is out, probably in
       December (`data/venues.csv`, `data/spotlights.csv`: 30,709 submissions and 292 Spotlights
       come from secondary reports). Rerun the affected results if they change.
-- [ ] Redraw the figures for ICML's 6.75 in text width: `TEXTWIDTH_IN` in
-      `src/peerreview/plotting.py` is still NeurIPS's 5.5 in, so figure type prints near 9.8 pt.
 - [ ] Small fixes from the pre-arXiv audit:
   - the last appendix page holds only a few lines (Figure 7's float placement);
   - the Figure 6d caption should say that the integer 1-10, six-point and ICLR curves nearly coincide;
